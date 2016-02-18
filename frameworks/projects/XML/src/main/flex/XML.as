@@ -340,7 +340,7 @@ package
 		}
 		
 		private var _children:Array;
-		private var _attributes:Array;
+		private var _attributes:Array = [];
 		private var _processingInstructions:Array;
 		private var _parent:XML;
 		private var _value:String;
@@ -580,10 +580,10 @@ package
 		 */
 		public function childIndex():int
 		{
-			if(!parent)
+			if(!_parent)
 				return -1;
 
-			return parent.getIndexOf(this);
+			return _parent.getIndexOf(this);
 		}
 		
 		/**
@@ -700,7 +700,14 @@ package
 
 		private function deleteChildAt(idx:int):void
 		{
-
+			if(idx < 0)
+				return;
+			if(idx >= _children.length)
+				return;
+			var child:XML = _children[idx];
+			child.setParent(null);
+			_children.splice(idx,1);
+				_
 		}
 		
 		/**
@@ -1642,16 +1649,24 @@ package
 				{
 					for(i=0;i<_attributes.length;i++)
 					{
-						//TODO incomplete...
-						//if(_attributes[i].name.equals() )
+						if(_attributes[i].name().equals(attr.name()))
+						{
+							_attributes[i].setValue(value);
+							return;
+						}
 						//addChild(_att)
 					}
+					if(value)
+						attr.setValue(value);
+					addChild(attr);
 				}
+				return;
 
 			}
 			if(attr.indexOf("xmlns") == 0)
 			{
 				//it's a namespace declaration
+				//TODO This does not seem right.
 				var ns:Namespace = new Namespace(value.toString());
 				if(attr.indexOf("xmlns:") == 0)// it has a prefix
 					ns.prefix = attr.split(":")[1];
@@ -1660,6 +1675,7 @@ package
 			else
 			{
 				//it's a regular attribute string
+				//TODO use toXMLName or toAttributeName to convert attr and assing it
 
 			}
 
@@ -1899,9 +1915,11 @@ package
 		
 		public function setParent(parent:XML):void
 		{
-			if(_parent)
-				_parent.removeChild(this);
+			var oldParent:XML = _parent;
 			_parent = parent;
+			//assign first to prevent the possiblity of a recursive loop
+			if(oldParent)
+				_parent.removeChild(this);
 		}
 
 		public function setValue(value:String):void
@@ -2137,7 +2155,6 @@ package
 				return indent + "<?" + name().localName + " " + _value + "?>";
 
 			// We excluded the other types, so it's a normal element
-			//TODO I'm here...
 			// step 8.
 			//ancestors
 			if(!ancestors)
