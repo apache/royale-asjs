@@ -707,7 +707,6 @@ package
 			var child:XML = _children[idx];
 			child.setParent(null);
 			_children.splice(idx,1);
-				_
 		}
 		
 		/**
