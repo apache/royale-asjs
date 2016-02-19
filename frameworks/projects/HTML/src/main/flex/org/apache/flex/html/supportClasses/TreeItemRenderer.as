@@ -47,10 +47,15 @@ package org.apache.flex.html.supportClasses
 			super.data = value;
 			
 			var treeData:TreeListData = listData as TreeListData;
+			var indentSpace:String = "    ";
 			
-			var indent:String = treeData.hasChildren ? (treeData.isOpen ? "-" : "+") : " ";
+			COMPILE::JS {
+				indentSpace = "&nbsp;&nbsp;&nbsp;&nbsp;"
+			}
+			
+			var indent:String = treeData.hasChildren ? (treeData.isOpen ? "▼" : "▶") : " ";
 			for (var i:int=0; i < treeData.depth; i++) {
-				indent += "    ";
+				indent += indentSpace;
 			}
 			
 			this.text = indent + this.text;
