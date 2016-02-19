@@ -109,6 +109,7 @@
             <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
             <arg value="-js-output-type=FLEXJS" />
+            <arg value="-compiler.strict-xml=true" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <arg value="-output=${basedir}/target/generated-sources/flexjs" />
             <arg value="-load-config=${basedir}/src/main/resources/compile-asjs-config.xml" />
