@@ -140,6 +140,8 @@ internal class CoreClasses
     import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
+    import org.apache.flex.utils.Proxy; Proxy;
+
 	COMPILE::JS
 	{
 	    import org.apache.flex.utils.Language; Language;
