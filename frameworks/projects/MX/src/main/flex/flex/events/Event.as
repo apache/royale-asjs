@@ -10,6 +10,7 @@ package flex.events
 		}
 		
 		public static const ADDED:String = "added";
+		public static const CHANGE:String = "change";
 		public static const ENTER_FRAME:String = "enterFrame";
 		public static const REMOVED:String = "removed";
 		public static const REMOVED_FROM_STAGE:String = "removedFromStage";

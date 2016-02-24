@@ -45,7 +45,7 @@ COMPILE::JS
 COMPILE::AS3
 public dynamic class Proxy extends flash.utils.Proxy
 {
-	private var valueMap:Object = {};
+	protected var valueMap:Object = {};
 	
 	override flash_proxy function getProperty(propName:*):*
 	{
@@ -100,25 +100,12 @@ public dynamic class Proxy extends flash.utils.Proxy
 COMPILE::JS
 public dynamic class Proxy extends EventDispatcher
 {
-    /**
-     *  Constructor.
-     * 
-     *  @param delay The number of milliseconds 
-     *  to wait before dispatching the event.
-     *  @param repeatCount The number of times to dispatch
-     *  the event.  If 0, keep dispatching forever.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
     public function Proxy()
     {
     }
     
     
-	private var valueMap:Object = {};
+	protected var valueMap:Object = {};
     
     public function getProperty(propName:String):*
     {

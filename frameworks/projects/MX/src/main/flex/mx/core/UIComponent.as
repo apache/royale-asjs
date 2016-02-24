@@ -69,10 +69,17 @@ import flash.geom.Transform;
 import flash.geom.Vector3D;
 import flash.system.ApplicationDomain;
 import flash.system.Capabilities;
-import flash.text.TextFormatAlign;
-import flash.text.TextLineMetrics;
 import flash.utils.Dictionary;
 */
+import flex.text.TextLineMetrics;
+COMPILE::AS3
+{
+	import flash.text.TextFormatAlign;		
+}
+COMPILE::JS
+{
+	import flex.text.TextFormatAlign;
+}
 import org.apache.flex.reflection.getQualifiedClassName;
 
 import mx.automation.IAutomationObject;

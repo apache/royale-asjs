@@ -215,18 +215,21 @@ public class StyleProtoChain
             if (inheritChain == StyleProtoChain.STYLE_UNINITIALIZED)
                 inheritChain = nonInheritChain;
 
-            // If this object is a module then add its global styles to the 
-            // inheritChain. If we don't have global styles in this style manager
-            // then the user didn't declare a global style in the module and the
-            // compiler didn't add a duplicate default style. In that case don't 
-            // add global styles to the chain because the parent style manager's
-            // global styles are already on the chain.
-            if (object is IModule)
-            {
-                styleDeclaration = styleManager.getStyleDeclaration("global");
-                if (styleDeclaration)
-                    inheritChain = styleDeclaration.addStyleToProtoChain(inheritChain, DisplayObject(object));
-            }
+			COMPILE::LATER
+			{
+		        // If this object is a module then add its global styles to the 
+		        // inheritChain. If we don't have global styles in this style manager
+		        // then the user didn't declare a global style in the module and the
+		        // compiler didn't add a duplicate default style. In that case don't 
+		        // add global styles to the chain because the parent style manager's
+		        // global styles are already on the chain.
+		        if (object is IModule)
+		        {
+		            styleDeclaration = styleManager.getStyleDeclaration("global");
+		            if (styleDeclaration)
+		                inheritChain = styleDeclaration.addStyleToProtoChain(inheritChain, DisplayObject(object));
+		        }
+			}
         }
         else
         {
@@ -860,7 +863,10 @@ public class StyleProtoChain
         {
             hierarchy = new OrderedObject();
 
-            var myApplicationDomain:DefinitionManager;
+			var myApplicationDomain:DefinitionManager = new DefinitionManager();
+			COMPILE::LATER
+			{
+			var myApplicationDomain:DefinitionManager;
             var factory:IFlexModuleFactory = ModuleManager.getAssociatedFactory(object);
             if (factory != null)
             {
@@ -873,6 +879,7 @@ public class StyleProtoChain
                     return hierarchy;
                 myApplicationDomain = new DefinitionManager(myRoot.loaderInfo.applicationDomain);
             }
+			}
 
             styleManager.typeHierarchyCache[className] = hierarchy;
             while (!isStopClass(className))
