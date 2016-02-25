@@ -26,7 +26,7 @@ COMPILE::AS3 {
  *  The LocalStorage class allows apps to store small amounts of data
  *  locally, in the browser's permitted storage area. This data will persist
  *  between browser invocations. The data is stored in key=value pairs.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -35,17 +35,17 @@ COMPILE::AS3 {
  */
 public class LocalStorage
 {
-	
+
 	/**
 	 * Constructor.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function LocalStorage() 
+	public function LocalStorage()
 	{
 		COMPILE::AS3 {
 			try {
@@ -55,13 +55,13 @@ public class LocalStorage
 			}
 		}
 	}
-	
+
 	COMPILE::AS3
 	private var sharedObject:SharedObject;
-	
+
 	/**
 	 * Returns true if the platform provides local storage.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -71,11 +71,11 @@ public class LocalStorage
 	public function storageAvailable():Boolean
 	{
 		var result:Boolean = false;
-		
+
 		COMPILE::AS3 {
 			result = (sharedObject != null);
 		}
-		
+
 		COMPILE::JS {
 			try {
 				result = 'localStorage' in window && window['localStorage'] !== null;
@@ -83,115 +83,137 @@ public class LocalStorage
 				result = false;
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Stores a value with a key. The value may be converted to a String, depending
 	 * on the platform.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function setValue(key:String, value:Object) : Boolean
+	public function setItem(key:String, value:String) : Boolean
 	{
 		if (!storageAvailable()) return false;
-				
+
 		COMPILE::AS3 {
 			sharedObject.data[key] = value;
 			sharedObject.flush();
 		}
-		
+
 		COMPILE::JS {
-			window.localStorage[key] = value;
+			window.localStorage.setItem(key, value);
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Returns the value associated with the key, or undefined if there is
 	 * no value stored. Note that a String version of the value may have been
 	 * stored, depending on the platform.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function getValue(key:String) : Object
+	public function getItem(key:String) : String
 	{
 		if (!storageAvailable()) return null;
-		
-		var result:Object = null;
-		
+
+		var result:String = null;
+
 		COMPILE::AS3 {
-			result = sharedObject.data[key];
+			result = sharedObject.data[key] as String;
 		}
-		
+
 		COMPILE::JS {
-			result = window.localStorage[key];
+			result = window.localStorage.getItem(key);
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * Removed the value and, possibly, the key from local storage. On some
 	 * platforms, retriving the value after removing it will be an error, on
 	 * others it may return undefined or null.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function removeValue(key:String) : Boolean
+	public function removeItem(key:String) : Boolean
 	{
 		if (!storageAvailable()) return null;
-				
+
 		COMPILE::AS3 {
 			delete sharedObject.data[key];
 			sharedObject.flush();
 		}
-		
+
 		COMPILE::JS {
-			window.localStorage[key] = null;
+			window.localStorage.removeItem(key);
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Returns true if there is a value stored for the key.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function hasValue(key:String) : Boolean
+	public function hasItem(key:String) : Boolean
 	{
 		if (!storageAvailable()) return false;
-		
+
 		var result:Boolean = false;
-		
+
 		COMPILE::AS3 {
 			result = sharedObject.data.hasOwnProperty(key);
 		}
-		
+
 		COMPILE::JS {
 			result = (window.localStorage[key] !== null);
 		}
-		
+
 		return result;
+	}
+
+	/**
+	 * Clears all values from local storage.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 *  @flexjsignoreimport window
+	 */
+	public function clear() : void
+	{
+		if (!storageAvailable()) return;
+
+		COMPILE::AS3 {
+			sharedObject.clear();
+		}
+
+		COMPILE::JS {
+			window.localStorage.clear();
+		}
 	}
 }
 }
