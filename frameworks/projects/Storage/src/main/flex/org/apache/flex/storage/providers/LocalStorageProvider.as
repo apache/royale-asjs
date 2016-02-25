@@ -16,29 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.flex.storage.providers
 {
-	import org.apache.flex.storage.providers.LocalStorageProvider;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.storage.IWebStorage;
+
+COMPILE::AS3 {
+	import flash.net.SharedObject;
+}
 
 /**
- *  The LocalStorage class allows apps to store small amounts of data
+ *  The LocalStorageProvider class allows apps to store small amounts of data
  *  locally, in the browser's permitted storage area. This data will persist
- *  between browser invocations. The data is stored in key=value pairs.
+ *  between browser invocations. The data is stored in key=value pairs and the
+ *  value must be a string.
  *
- *  This class uses the ValuesManager to determine a storage provider - an implementation
- *  class the actually does the storing and retrieving. To change the provider implementation,
- *  set a ClassReference for the LocalStorage CSS style. The default is the
- *  org.apache.flex.storage.providers.LocalStorageProvider class.
- *
- *  @see org.apache.flex.storage.IWebStorage
- *  @see org.apache.flex.storage.provides.LocalStorageProvider
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
+ *  @flexjsignoreimport window
  */
-public class LocalStorage
+public class LocalStorageProvider implements IWebStorage
 {
 
 	/**
@@ -50,15 +48,19 @@ public class LocalStorage
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function LocalStorage()
+	public function LocalStorageProvider()
 	{
-		storageProvider = ValuesManager.valuesImpl.newInstance(this, "iStorageProvider") as IWebStorage;
+		COMPILE::AS3 {
+			try {
+				sharedObject = SharedObject.getLocal("flexjs","/",false);
+			} catch(e) {
+				sharedObject = null;
+			}
+		}
 	}
 
-	/**
-	 * The implementation of the storage system.
-	 */
-	private var storageProvider:IWebStorage;
+	COMPILE::AS3
+	private var sharedObject:SharedObject;
 
 	/**
 	 * Returns true if the platform provides local storage.
@@ -71,7 +73,21 @@ public class LocalStorage
 	 */
 	public function storageAvailable():Boolean
 	{
-		return storageProvider.storageAvailable();
+		var result:Boolean = false;
+
+		COMPILE::AS3 {
+			result = (sharedObject != null);
+		}
+
+		COMPILE::JS {
+			try {
+				result = 'localStorage' in window && window['localStorage'] !== null;
+			} catch(e) {
+				result = false;
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -83,18 +99,25 @@ public class LocalStorage
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function setItem(key:String, value:Object) : Boolean
+	public function setItem(key:String, value:String) : Boolean
 	{
-		// turn the value into a string in some fashion, if possible, return
-		// the knowlege of what type value really is for getItem().
-		var valueAsString:String = value.toString();
-		return storageProvider.setItem(key, valueAsString);
+		if (!storageAvailable()) return false;
+
+		COMPILE::AS3 {
+			sharedObject.data[key] = value;
+			sharedObject.flush();
+		}
+
+		COMPILE::JS {
+			window.localStorage.setItem(key, value);
+		}
+
+		return true;
 	}
 
 	/**
 	 * Returns the value associated with the key, or undefined if there is
-	 * no value stored. Note that a String version of the value may have been
-	 * stored, depending on the platform.
+	 * no value stored. Note that a String version of the value is stored.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -102,12 +125,21 @@ public class LocalStorage
 	 *  @productversion FlexJS 0.0
 	 *  @flexjsignoreimport window
 	 */
-	public function getItem(key:String) : Object
+	public function getItem(key:String) : String
 	{
-		var value:Object = storageProvider.getItem(key);
-		// perhaps figure out what value is exactly and return that
-		// object.
-		return value;
+		if (!storageAvailable()) return null;
+
+		var result:String = null;
+
+		COMPILE::AS3 {
+			result = sharedObject.data[key] as String;
+		}
+
+		COMPILE::JS {
+			result = window.localStorage.getItem(key);
+		}
+
+		return result;
 	}
 
 	/**
@@ -123,7 +155,18 @@ public class LocalStorage
 	 */
 	public function removeItem(key:String) : Boolean
 	{
-		return storageProvider.removeItem(key);
+		if (!storageAvailable()) return null;
+
+		COMPILE::AS3 {
+			delete sharedObject.data[key];
+			sharedObject.flush();
+		}
+
+		COMPILE::JS {
+			window.localStorage.removeItem(key);
+		}
+
+		return true;
 	}
 
 	/**
@@ -137,7 +180,19 @@ public class LocalStorage
 	 */
 	public function hasItem(key:String) : Boolean
 	{
-		return storageProvider.hasItem(key);
+		if (!storageAvailable()) return false;
+
+		var result:Boolean = false;
+
+		COMPILE::AS3 {
+			result = sharedObject.data.hasOwnProperty(key);
+		}
+
+		COMPILE::JS {
+			result = (window.localStorage[key] !== null);
+		}
+
+		return result;
 	}
 
 	/**
@@ -151,7 +206,15 @@ public class LocalStorage
 	 */
 	public function clear() : void
 	{
-		storageProvider.clear();
+		if (!storageAvailable()) return;
+
+		COMPILE::AS3 {
+			sharedObject.clear();
+		}
+
+		COMPILE::JS {
+			window.localStorage.clear();
+		}
 	}
 }
 }

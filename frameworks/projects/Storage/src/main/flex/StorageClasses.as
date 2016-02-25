@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package 
+package
 {
 
 /**
@@ -26,8 +26,9 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class StorageClasses
-{	
+{
     import org.apache.flex.storage.LocalStorage; LocalStorage;
+    import org.apache.flex.storage.providers.LocalStorageProvider; LocalStorageProvider;
 }
 
 }

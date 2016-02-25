@@ -20,5 +20,5 @@
 
 
 <componentPackage>
-
+	<component id="LocalStorage" class="org.apache.flex.storage.LocalStorage"/>
 </componentPackage>
