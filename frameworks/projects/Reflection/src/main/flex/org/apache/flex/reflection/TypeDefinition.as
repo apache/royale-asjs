@@ -65,6 +65,28 @@ package org.apache.flex.reflection
             }
             return _rawData;
         }
+		
+		public function get dynamic():Boolean
+		{
+			COMPILE::AS3
+			{
+				return Boolean(rawData.@dynamic);
+			}
+			COMPILE::JS
+			{
+				var data:Object = rawData;
+				var name:String = data.names[0].qName;
+				var def:Object = getDefinitionByName(name);
+				var rdata:* = def.prototype.FLEXJS_REFLECTION_INFO();
+				if (rdata !== undefined)
+				{
+					return Boolean(rdata.dynamic);
+				}
+				return false;
+			}
+					
+		}        
+		
         /**
          *  @flexjsignorecoercion XML 
          */
