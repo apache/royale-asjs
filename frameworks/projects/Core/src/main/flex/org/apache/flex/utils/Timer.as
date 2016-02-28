@@ -111,7 +111,11 @@ public class Timer extends EventDispatcher
     
     public var delay:Number;
     public var repeatCount:int;
-    
+    public function get running():Boolean
+	{
+		return timerInterval != -1;
+	}
+	
     private var currentCount:int = 0;
     
     private var timerInterval:int = -1;
