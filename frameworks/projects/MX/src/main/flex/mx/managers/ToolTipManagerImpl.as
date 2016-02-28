@@ -19,37 +19,47 @@
 
 package mx.managers
 {
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;		
+	import flash.events.TimerEvent;
+}
+COMPILE::JS
+{
+	import mx.managers.SystemManagerGlobals;
+	
+	import flex.display.DisplayObject;
+	import flex.events.TimerEvent;
+}
+import org.apache.flex.events.Event;
+import org.apache.flex.events.EventDispatcher;
+import org.apache.flex.events.MouseEvent;
+import org.apache.flex.geom.Point;
+import org.apache.flex.geom.Rectangle;
+import org.apache.flex.utils.PointUtils;
+import org.apache.flex.utils.Timer;
 
-    import flash.display.DisplayObject;
-    import flash.events.Event;
-    import flash.events.EventDispatcher;
-    import flash.events.MouseEvent;
-    import flash.events.TimerEvent;
-    import flash.geom.Point;
-    import flash.geom.Rectangle;
-    import flash.utils.Timer;
+import mx.controls.ToolTip;
+import mx.core.FlexGlobals;
+import mx.core.FlexVersion;
+import mx.core.IFlexDisplayObject;
+import mx.core.IFlexModule;
+import mx.core.IInvalidating;
+import mx.core.ILayoutDirectionElement;
+import mx.core.IToolTip;
+import mx.core.IUIComponent;
+import mx.core.IVisualElement;
+import mx.core.LayoutDirection;
+import mx.core.mx_internal;
+import mx.effects.EffectManager;
+import mx.effects.IAbstractEffect;
+import mx.events.DynamicEvent;
+import mx.events.EffectEvent;
+import mx.events.ToolTipEvent;
+import mx.styles.IStyleClient;
+import mx.validators.IValidatorListener;
 
-    import mx.controls.ToolTip;
-    import mx.core.FlexGlobals;
-    import mx.core.FlexVersion;
-    import mx.core.IFlexDisplayObject;
-    import mx.core.IFlexModule;
-    import mx.core.IInvalidating;
-    import mx.core.ILayoutDirectionElement;
-    import mx.core.IToolTip;
-    import mx.core.IUIComponent;
-    import mx.core.IVisualElement;
-    import mx.core.LayoutDirection;
-    import mx.core.mx_internal;
-    import mx.effects.EffectManager;
-    import mx.effects.IAbstractEffect;
-    import mx.events.DynamicEvent;
-    import mx.events.EffectEvent;
-    import mx.events.ToolTipEvent;
-    import mx.styles.IStyleClient;
-    import mx.validators.IValidatorListener;
-
-    use namespace mx_internal;
+use namespace mx_internal;
 
 [ExcludeClass]
 
@@ -129,6 +139,10 @@ public class ToolTipManagerImpl extends EventDispatcher
         if (hasEventListener("initialize"))
     		dispatchEvent(new Event("initialize"));
 
+		COMPILE::JS
+		{
+			SystemManagerGlobals.topLevelSystemManagers[0].addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);		
+		}
     }
 
     //--------------------------------------------------------------------------
@@ -686,34 +700,46 @@ public class ToolTipManagerImpl extends EventDispatcher
      *  @private
      *  Returns true if the mouse is over the specified target.
      */
-    private static function mouseIsOver(target:DisplayObject):Boolean
+    private function mouseIsOver(target:DisplayObject):Boolean
     {
-    	if (!target || !target.stage)
-    		return false;
-    		
-    	//SDK:13465 - If we pass through the above if block, then
-    	//we have a target component and its been added to the 
-    	//display list. If the mouse coordinates are (0,0), there 
-    	//is a chance the component has not been positioned yet 
-    	//and we'll end up mistakenly showing tooltips since the 
-    	//target hitTest will return true. 
-    	if ((target.stage.mouseX == 0)	 && (target.stage.mouseY == 0))
-    		return false;
-        
-        if (target is ILayoutManagerClient && !ILayoutManagerClient(target).initialized)
-            return false;
-		
-		if (target is IVisualElement && !IVisualElement(target).visible)
-			return false;
-		
-		if (target is IFlexDisplayObject && !IFlexDisplayObject(target).visible)
-			return false;
-    		
-        if (!isVisibleParentsIncluded(target))
-            return false;
-        
-    	return target.hitTestPoint(target.stage.mouseX,
-    							   target.stage.mouseY, true);
+		COMPILE::AS3
+		{
+			if (!target || !target.stage)
+				return false;
+			
+			//SDK:13465 - If we pass through the above if block, then
+			//we have a target component and its been added to the 
+			//display list. If the mouse coordinates are (0,0), there 
+			//is a chance the component has not been positioned yet 
+			//and we'll end up mistakenly showing tooltips since the 
+			//target hitTest will return true. 
+			if ((target.stage.mouseX == 0)	 && (target.stage.mouseY == 0))
+				return false;
+			
+			if (target is ILayoutManagerClient && !ILayoutManagerClient(target).initialized)
+				return false;
+			
+			if (target is IVisualElement && !IVisualElement(target).visible)
+				return false;
+			
+			if (target is IFlexDisplayObject && !IFlexDisplayObject(target).visible)
+				return false;
+			
+			if (!isVisibleParentsIncluded(target))
+				return false;
+			
+			return target.hitTestPoint(target.stage.mouseX,
+				target.stage.mouseY, true);				
+		}
+		COMPILE::JS
+		{
+			var screenPos:Point = new Point(target.x, target.y);
+			screenPos = PointUtils.localToGlobal(screenPos, target);
+			var screenX:Number = lastMouseEvent.screenX;
+			var screenY:Number = lastMouseEvent.screenY;
+			return ((screenPos.x <= screenX && screenX <= screenPos.x + target.width) &&
+					(screenPos.y <= screenY && screenY <= screenPos.y + target.height));
+		}
     }
     
     /**
@@ -968,9 +994,12 @@ public class ToolTipManagerImpl extends EventDispatcher
             currentTarget is IFlexModule)
             IFlexModule(currentToolTip).moduleFactory = IFlexModule(currentTarget).moduleFactory;
         
+		COMPILE::LATER
+		{
         if (hasEventListener("createTip"))
     		if (!dispatchEvent(new Event("createTip", false, true)))
 	    		return;
+		}
 
         var sm:ISystemManager = getSystemManager(currentTarget) as ISystemManager;
        	sm.topLevelSystemManager.toolTipChildren.addChild(currentToolTip as DisplayObject);
@@ -1221,8 +1250,8 @@ public class ToolTipManagerImpl extends EventDispatcher
                 y = screenHeight - toolTipHeight;
             
             var pos:Point = new Point(x, y);
-            pos = DisplayObject(sm).localToGlobal(pos);
-            pos = DisplayObject(sm.getSandboxRoot()).globalToLocal(pos);
+            pos = PointUtils.localToGlobal(pos, sm);
+            pos = PointUtils.globalToLocal(pos, sm.getSandboxRoot());
             x = pos.x;
             y = pos.y;
         }
@@ -1592,14 +1621,14 @@ public class ToolTipManagerImpl extends EventDispatcher
     {
         var upperLeft:Point = new Point(0, 0);
         
-        upperLeft = obj.localToGlobal(upperLeft);
+        upperLeft = PointUtils.localToGlobal(upperLeft, obj);
         
         // If the layout has been mirrored, then the 0,0 is the uppper
         // right corner; compensate here.
         if (mirror)
             upperLeft.x -= obj.width;
 
-        upperLeft = parent.globalToLocal(upperLeft);
+        upperLeft = PointUtils.globalToLocal(upperLeft, obj);
         
         return new Rectangle(upperLeft.x, upperLeft.y, obj.width, obj.height);
     }
@@ -1624,10 +1653,11 @@ public class ToolTipManagerImpl extends EventDispatcher
      *  @private
      *  This handler is called when the mouse moves out of an object
      *  with a toolTip.
+	 *  @flexjsignorecoercion flex.display.DisplayObject
      */
     mx_internal function toolTipMouseOutHandler(event:MouseEvent):void
     {
-        checkIfTargetChanged(event.relatedObject);
+        checkIfTargetChanged(event.relatedObject as DisplayObject);
     }
 
     /**
@@ -1644,10 +1674,11 @@ public class ToolTipManagerImpl extends EventDispatcher
      *  @private
      *  This handler is called when the mouse moves out of an object
      *  with an errorString.
+	 *  @flexjsignorecoercion flex.display.DisplayObject
      */
     mx_internal function errorTipMouseOutHandler(event:MouseEvent):void
     {
-        checkIfTargetChanged(event.relatedObject);
+        checkIfTargetChanged(event.relatedObject as DisplayObject);
     }
 
     /**
@@ -1711,6 +1742,15 @@ public class ToolTipManagerImpl extends EventDispatcher
     {
         reset();
     }
+	
+	COMPILE::JS
+	private var lastMouseEvent:MouseEvent;
+	
+	COMPILE::JS
+	private function mouseMoveHandler(event:MouseEvent):void
+	{
+		lastMouseEvent = event;
+	}
 
 }
 

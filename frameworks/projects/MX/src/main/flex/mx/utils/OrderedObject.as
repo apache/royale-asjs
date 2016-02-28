@@ -203,7 +203,7 @@ public dynamic class OrderedObject extends Proxy
 	 *  @productversion Flex 3
 	 */
 	COMPILE::JS
-	override public function deleteProperty(name:*):Boolean
+	override public function deleteProperty(name:String):Boolean
 	{
 		var deleted:Boolean = delete valueMap[name]; 
 		
@@ -246,7 +246,7 @@ public dynamic class OrderedObject extends Proxy
         return(name in valueMap);
     }
 	COMPILE::JS
-	override protected function hasProperty(name:*):Boolean
+	override public function hasProperty(name:String):Boolean
 	{
 		return(name in valueMap);
 	}
@@ -272,9 +272,9 @@ public dynamic class OrderedObject extends Proxy
         return propertyList[index -1];
     }
 	COMPILE::JS
-	override public function nextName(index:int):String
+	override public function elementNames():Array
 	{
-		return propertyList[index -1];
+		return propertyList.slice();
 	}
 
     /**
@@ -297,11 +297,6 @@ public dynamic class OrderedObject extends Proxy
     {
         return valueMap[propertyList[index -1]];
     }
-	COMPILE::JS
-	override public function nextValue(index:int):*
-	{
-		return valueMap[propertyList[index -1]];
-	}
 
     /**
      *  Updates the specified property on the proxied object.
@@ -336,7 +331,7 @@ public dynamic class OrderedObject extends Proxy
         }
     }               
 	COMPILE::JS
-	override public function setProperty(name:*, value:*):void
+	override public function setProperty(name:String, value:*):void
 	{
 		var oldVal:* = valueMap[name];
 		if (oldVal !== value)

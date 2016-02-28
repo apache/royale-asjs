@@ -16,19 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+
 package flex.display
 {
-import flex.display.TopOfDisplayList;
-
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.geom.Point;
-import org.apache.flex.geom.Rectangle;
-
-public interface DisplayObject extends IEventDispatcher
-{
-	include "../../mx/core/IDisplayObjectInterface.as"    
+	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.core.graphics.SolidColor;
 	
-	function get topOfDisplayList():TopOfDisplayList;
-}
+	public class Graphics
+	{
+		private var host:GraphicsContainer;
+		
+		public function Graphics(host:GraphicsContainer)
+		{
+			this.host = host;
+		}
+		
+		public function beginFill(color:uint, alpha:Number = 1.0):void
+		{
+			var sc:SolidColor = new SolidColor();
+			sc.color = color;
+			host.fill = sc;
+		}
+		
+		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
+		{
+			host.drawRect(x, y, width, height);	
+		}
+		
+		public function endFill():void
+		{
+			// really, we should queue up the drawing commands and execute them here.
+		}
+	}
 }

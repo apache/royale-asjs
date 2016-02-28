@@ -16,19 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flex.display
-{
-import flex.display.TopOfDisplayList;
 
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.geom.Point;
-import org.apache.flex.geom.Rectangle;
-
-public interface DisplayObject extends IEventDispatcher
+package flex.ui
 {
-	include "../../mx/core/IDisplayObjectInterface.as"    
-	
-	function get topOfDisplayList():TopOfDisplayList;
-}
+	public class Mouse
+	{
+		public function Mouse()
+		{
+		}
+		
+		COMPILE::JS
+		private static var styleElement:HTMLStyleElement;
+		
+		COMPILE::JS
+		public static function hide():void
+		{
+			if (!styleElement)
+				styleElement = document.createElement("STYLE");
+			var css:CSSStyleSheet = styleElement.sheet as CSSStyleSheet;
+			css.insertRule("* { cursor: none; }", 0);
+		}
+		
+		COMPILE::JS
+		public static function show():void
+		{
+			if (!styleElement)
+				return;
+			var css:CSSStyleSheet = styleElement.sheet as CSSStyleSheet;
+			css.deleteRule(0);
+		}
+		
+	}
 }

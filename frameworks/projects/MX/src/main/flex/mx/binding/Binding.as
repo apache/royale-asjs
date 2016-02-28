@@ -160,7 +160,7 @@ public class Binding
      *  We will resynch with our binding if isEnabled is set to true
      *  and one or more of our watchers fired while we were disabled.
      */
-    mx_internal var disabledRequests:Dictionary;
+    mx_internal var disabledRequests:Array;
 
 	/**
  	 *  @private
@@ -357,8 +357,16 @@ public class Binding
         }
         catch(error:Error)
         {
-            if (allowedErrors[error.errorID] == null)
-                throw error;
+			COMPILE::AS3
+			{
+				if (allowedErrors[error.errorID] == null)
+					throw error;					
+			}
+			COMPILE::JS
+			{
+				if (allowedErrors[error.name] == null)
+					throw error;					
+			}
         }
         finally
         {
@@ -375,9 +383,9 @@ public class Binding
         if (o != null)
         {
             disabledRequests = (disabledRequests != null) ? disabledRequests : 
-                new Dictionary(true);
+				[];
             
-            disabledRequests[o] = true;
+            disabledRequests.push(o);
         }
     }  
     
@@ -389,7 +397,7 @@ public class Binding
     {
         if (disabledRequests != null)
         {
-            for (var key:Object in disabledRequests) 
+            for each (var key:Object in disabledRequests) 
             {
                 execute(key);
             }
@@ -445,21 +453,42 @@ public class Binding
 	            //   Error #1055: - has no properties.
 	            //   Error #1069: Property - not found on - and there is no default value
 	            // We allow any other errors to be thrown.
-	            if ((error.errorID != 1006) &&
-	                (error.errorID != 1009) &&
-	                (error.errorID != 1010) &&
-	                (error.errorID != 1055) &&
-	                (error.errorID != 1069))
-	            {
-	                throw error;
-	            }
-	            else
-	            {
-	                if (BindingManager.debugDestinationStrings[destString])
-	                {
-	                    trace("Binding: destString = " + destString + ", error = " + error);
-	                }
-	            }
+				COMPILE::AS3
+				{
+					if ((error.errorID != 1006) &&
+						(error.errorID != 1009) &&
+						(error.errorID != 1010) &&
+						(error.errorID != 1055) &&
+						(error.errorID != 1069))
+					{
+						throw error;
+					}
+					else
+					{
+						if (BindingManager.debugDestinationStrings[destString])
+						{
+							trace("Binding: destString = " + destString + ", error = " + error);
+						}
+					}						
+				}
+				COMPILE::JS
+				{
+					if ((error.name != 1006) &&
+						(error.name != 1009) &&
+						(error.name != 1010) &&
+						(error.name != 1055) &&
+						(error.name != 1069))
+					{
+						throw error;
+					}
+					else
+					{
+						if (BindingManager.debugDestinationStrings[destString])
+						{
+							trace("Binding: destString = " + destString + ", error = " + error);
+						}
+					}
+				}
 			}
         }
 
@@ -470,6 +499,7 @@ public class Binding
 	 *	@private
 	 *  true if XMLLists x and y contain the same node sequence.
 	 */
+	COMPILE::LATER
 	private static function nodeSeqEqual(x:XMLList, y:XMLList):Boolean
 	{
 		var n:uint = x.length();
@@ -504,18 +534,28 @@ public class Binding
         	//	Suppress binding assignments on non-simple XML: identical single nodes, or
         	//	lists over identical node sequences.
 			//	Note: outer tests are inline for efficiency
-        	if (!(lastValue is XML && lastValue.hasComplexContent() && lastValue === value) &&
-        		!(lastValue is XMLList && lastValue.hasComplexContent() && value is XMLList &&
-        			nodeSeqEqual(lastValue as XMLList, value as XMLList)))
-        	{
-	            destFunc.call(document, value);
-
-                if(destFuncFailed == false) {
-                    //	Note: state is not updated if destFunc throws
-                    lastValue = value;
-                    hasHadValue = true;
-	            }
-	        }
+			COMPILE::LATER
+			{
+	        	if (!(lastValue is XML && lastValue.hasComplexContent() && lastValue === value) &&
+	        		!(lastValue is XMLList && lastValue.hasComplexContent() && value is XMLList &&
+	        			nodeSeqEqual(lastValue as XMLList, value as XMLList)))
+	        	{
+		            destFunc.call(document, value);
+	
+	                if(destFuncFailed == false) {
+	                    //	Note: state is not updated if destFunc throws
+	                    lastValue = value;
+	                    hasHadValue = true;
+		            }
+		        }
+			}
+			destFunc.call(document, value);
+			
+			if(destFuncFailed == false) {
+				//	Note: state is not updated if destFunc throws
+				lastValue = value;
+				hasHadValue = true;
+			}
         }
     }
 

@@ -16,19 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+
 package flex.display
 {
-import flex.display.TopOfDisplayList;
-
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.geom.Point;
-import org.apache.flex.geom.Rectangle;
-
-public interface DisplayObject extends IEventDispatcher
-{
-	include "../../mx/core/IDisplayObjectInterface.as"    
+	import org.apache.flex.core.UIBase;
 	
-	function get topOfDisplayList():TopOfDisplayList;
-}
+	public class MovieClip extends Sprite
+	{
+	}
 }

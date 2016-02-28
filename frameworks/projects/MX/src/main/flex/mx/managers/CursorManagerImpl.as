@@ -20,26 +20,46 @@
 package mx.managers
 {
 
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
-import flash.display.InteractiveObject;
-import flash.display.Sprite;
-import flash.events.ContextMenuEvent;
-import flash.events.Event;
-import flash.events.EventDispatcher;
-import flash.events.IEventDispatcher;
-import flash.events.IOErrorEvent;
-import flash.events.MouseEvent;
-import flash.events.ProgressEvent;
-import flash.geom.Point;
-import flash.text.TextField;
-import flash.text.TextFieldType;
-import flash.ui.Mouse;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.InteractiveObject;
+	import flash.display.Sprite;		
+	import flash.events.IOErrorEvent;
+	import flash.events.Event;
+	import flash.events.ProgressEvent;
+	import flash.events.ContextMenuEvent;
+	import flash.text.TextField;
+	import flash.text.TextFieldType;
+	import flash.ui.Mouse;
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;
+	import flex.display.InteractiveObject;
+	import flex.display.Sprite;
+	import flex.events.ContextMenuEvent;
+	import flex.events.Event;
+	import flex.events.IOErrorEvent;
+	import flex.events.ProgressEvent;
+	import flex.text.TextField;
+	import flex.text.TextFieldType;
+	import flex.ui.Mouse;
+}
+import org.apache.flex.events.EventDispatcher;
+import org.apache.flex.events.IEventDispatcher;
+import org.apache.flex.events.MouseEvent;
+import org.apache.flex.geom.Point;
 import mx.core.FlexGlobals;
-import org.apache.flex.core.UIBase;
+import org.apache.flex.utils.PointUtils;
 import mx.core.mx_internal;
 import mx.core.ISystemCursorClient;
-import mx.core.IUIComponent;
+COMPILE::JS
+	{
+		import mx.core.UIComponent;		
+	}
 import mx.events.Request;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.StyleManager;
@@ -576,6 +596,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     /**
      *  @private
      *  Decides what cursor to display.
+	 *  @flexjsignorecoercion flex.display.Sprite
      */
     private function showCurrentCursor():void 
     {
@@ -595,10 +616,13 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
 				{
 					// The first time a cursor is requested of the CursorManager,
 					// create a Sprite to hold the cursor symbol
-					cursorHolder = new UIBase();
+					cursorHolder = new UIComponent() as Sprite;
 					cursorHolder.name = "cursorHolder";
+					COMPILE::AS3
+					{
 					cursorHolder.mouseEnabled = false;
 					cursorHolder.mouseChildren = false;
+					}
                		systemManager.cursorChildren.addChild(cursorHolder);
 				}
             }
@@ -620,10 +644,13 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
                 
                 if (currentCursor)
                 {
-                    if (currentCursor is InteractiveObject)
-                        InteractiveObject(currentCursor).mouseEnabled = false;
-                    if (currentCursor is DisplayObjectContainer)
-                        DisplayObjectContainer(currentCursor).mouseChildren = false;
+					COMPILE::AS3
+					{
+						if (currentCursor is InteractiveObject)
+							InteractiveObject(currentCursor).mouseEnabled = false;
+						if (currentCursor is DisplayObjectContainer)
+							DisplayObjectContainer(currentCursor).mouseChildren = false;							
+					}
                     cursorHolder.addChild(currentCursor);
                     
                     addContextMenuHandlers();
@@ -633,8 +660,8 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
                     if (systemManager is SystemManager)
                     {
 						pt = new Point(SystemManager(systemManager).mouseX + item.x, SystemManager(systemManager).mouseY + item.y);
-						pt = SystemManager(systemManager).localToGlobal(pt);
-						pt = cursorHolder.parent.globalToLocal(pt);
+						pt = PointUtils.localToGlobal(pt, systemManager);
+						pt = PointUtils.globalToLocal(pt, cursorHolder.parent);
                     	cursorHolder.x = pt.x;
                     	cursorHolder.y = pt.y;
                     }
@@ -642,8 +669,8 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
                     else if (systemManager is DisplayObject)
                     {
 						pt = new Point(DisplayObject(systemManager).mouseX + item.x, DisplayObject(systemManager).mouseY + item.y);
-						pt = DisplayObject(systemManager).localToGlobal(pt);
-						pt = cursorHolder.parent.globalToLocal(pt);
+						pt = PointUtils.localToGlobal(pt, systemManager);
+						pt = PointUtils.globalToLocal(pt, cursorHolder.parent);
                     	cursorHolder.x = DisplayObject(systemManager).mouseX + item.x;
                     	cursorHolder.y = DisplayObject(systemManager).mouseY + item.y;
                     }
@@ -756,11 +783,14 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
             const app:InteractiveObject = systemManager.document as InteractiveObject;
         	const sm:InteractiveObject = systemManager as InteractiveObject;
         	
-        	if (app && app.contextMenu)
-        		app.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, contextMenu_menuSelectHandler, true);
-
-        	if (sm && sm.contextMenu)
-        		sm.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, contextMenu_menuSelectHandler, true);
+			COMPILE::AS3
+			{
+				if (app && app.contextMenu)
+					app.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, contextMenu_menuSelectHandler, true);
+				
+				if (sm && sm.contextMenu)
+					sm.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, contextMenu_menuSelectHandler, true);					
+			}
    
         	listenForContextMenu = false; 	
         }
@@ -875,8 +905,8 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     mx_internal function mouseMoveHandler(event:MouseEvent):void
     {
         
-		var pt:Point = new Point(event.stageX, event.stageY);
-		pt = cursorHolder.parent.globalToLocal(pt);
+		var pt:Point = new Point(event.screenX, event.screenY);
+		pt = PointUtils.globalToLocal(pt, cursorHolder.parent);
 		pt.x += currentCursorXOffset;
 		pt.y += currentCursorYOffset;
        	cursorHolder.x = pt.x;

@@ -19,8 +19,12 @@
 
 package mx.binding
 {
-
 import mx.events.PropertyChangeEvent;
+
+import org.apache.flex.reflection.MetaDataArgDefinition;
+import org.apache.flex.reflection.MetaDataDefinition;
+import org.apache.flex.reflection.MethodDefinition;
+import org.apache.flex.reflection.TypeDefinition;
 
 [ExcludeClass]
 
@@ -114,7 +118,7 @@ public class BindabilityInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function BindabilityInfo(typeDescription:XML)
+	public function BindabilityInfo(typeDescription:TypeDefinition)
 	{
 		super();
 
@@ -130,7 +134,7 @@ public class BindabilityInfo
 	/**
 	 *  @private
 	 */
-	private var typeDescription:XML;
+	private var typeDescription:TypeDefinition;
 	
 	/**
 	 *  @private
@@ -169,16 +173,33 @@ public class BindabilityInfo
 			changeEvents = copyProps(getClassChangeEvents(), {});
 
 			// Get child-specific events.
-			var childDesc:XMLList =
-				typeDescription.accessor.(@name == childName) +
-				typeDescription.method.(@name == childName);
+			var childDesc:Array = [];
+			for each (var p:MethodDefinition in typeDescription.accessors)
+			{
+				if (p.name == childName)
+				{
+					childDesc.push(p);
+					break;
+				}
+			}
+			if (childName == null)
+			{
+				for each (var p:MethodDefinition in typeDescription.methods)
+				{
+					if (p.name == childName)
+					{
+						childDesc.push(p);
+						break;
+					}
+				}				
+			}
 			
 			var numChildren:int = childDesc.length();
 
 			if (numChildren == 0)
 			{
 				// we've been asked for events on an unknown property
-				if (!typeDescription.@dynamic)
+				if (!typeDescription.dynamic)
 				{
 					trace("warning: no describeType entry for '" +
 						  childName + "' on non-dynamic type '" +
@@ -194,7 +215,8 @@ public class BindabilityInfo
 						  "':\n" + childDesc);
 				}
 
-				addBindabilityEvents(childDesc.metadata, changeEvents);
+				var prop:MethodDefinition = childDesc[0];
+				addBindabilityEvents(prop.metadata, changeEvents);
 			}
 
 			childChangeEvents[childName] = changeEvents;
@@ -229,13 +251,18 @@ public class BindabilityInfo
 	/**
 	 *  @private
 	 */
-	private function addBindabilityEvents(metadata:XMLList,
+	private function addBindabilityEvents(metadata:Array,
 										  eventListObj:Object):void
 	{
-		addChangeEvents(metadata.(@name == BINDABLE), eventListObj, true);
-		addChangeEvents(metadata.(@name == CHANGE_EVENT), eventListObj, true);
-		addChangeEvents(metadata.(@name == NON_COMMITTING_CHANGE_EVENT),
-						eventListObj, false);
+		for each (var p:MetaDataDefinition in metadata)
+		{
+			if (p.name == BINDABLE)
+				addChangeEvents(p.args, eventListObj, true);
+			else if (p.name == CHANGE_EVENT)
+				addChangeEvents(p.args, eventListObj, true);
+			else if (p.name == NON_COMMITTING_CHANGE_EVENT)
+				addChangeEvents(p.args, eventListObj, false);
+		}
 	}
 
 	/**
@@ -244,22 +271,21 @@ public class BindabilityInfo
 	 *  to an event list object.
 	 *  Note: metadata's first arg value is assumed to be change event name.
 	 */
-	private function addChangeEvents(metadata:XMLList, eventListObj:Object, isCommit:Boolean):void
+	private function addChangeEvents(metadata:Array, eventListObj:Object, isCommit:Boolean):void
 	{
-		for each (var md:XML in metadata)
+		var atLeastOne:Boolean = false;
+		for each (var md:MetaDataArgDefinition in metadata)
 		{
-			var arg:XMLList = md.arg;
-			if (arg.length() > 0)
+			if (md.value)
 			{
-				var eventName:String = arg[0].@value;
+				var eventName:String = md.@value;
 				eventListObj[eventName] = isCommit;
-			}
-			else
-			{
-				trace("warning: unconverted Bindable metadata in class '" +
-					  typeDescription.@name + "'");
+				atLeastOne = true;
 			}
 		}
+		if (!atLeastOne)
+			trace("warning: unconverted Bindable metadata in class '" +
+				typeDescription.name + "'");
 	}
 
 	/**

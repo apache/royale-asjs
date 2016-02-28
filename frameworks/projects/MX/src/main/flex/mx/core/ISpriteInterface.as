@@ -30,7 +30,6 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::LATER
     function get graphics():Graphics;
 
     /**

@@ -20,13 +20,25 @@
 package mx.managers
 {
 
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
-import flash.display.Graphics;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Graphics;
+	import flash.display.MovieClip;
+	import flash.display.Sprite;
+	import flash.display.LoaderInfo;
+		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;
+	import flex.display.Graphics;
+	import flex.display.MovieClip;
+	import flex.display.Sprite;	
+}
 import flash.display.Loader;
-import flash.display.LoaderInfo;
-import flash.display.MovieClip;
-import flash.display.Sprite;
 import flash.display.Stage;
 import flash.display.StageAlign;
 import flash.display.StageQuality;
@@ -43,8 +55,8 @@ import flash.text.Font;
 import flash.text.TextFormat;
 import flash.ui.Keyboard;
 import flash.utils.Dictionary;
-import flash.utils.Timer;
-import flash.utils.getQualifiedClassName;
+import org.apache.flex.utils.Timer;
+import org.apache.flex.reflection.getQualifiedClassName;
 
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
@@ -240,14 +252,17 @@ public class SystemManager extends MovieClip
 
         super();
 
-        // Loaded SWFs don't get a stage right away
-        // and shouldn't override the main SWF's setting anyway.
-        if (stage)
-        {
-            stage.scaleMode = StageScaleMode.NO_SCALE;
-            stage.align = StageAlign.TOP_LEFT;
-            stage.quality = StageQuality.HIGH;
-        }
+		COMPILE::AS3
+		{
+			// Loaded SWFs don't get a stage right away
+			// and shouldn't override the main SWF's setting anyway.
+			if (stage)
+			{
+				stage.scaleMode = StageScaleMode.NO_SCALE;
+				stage.align = StageAlign.TOP_LEFT;
+				stage.quality = StageQuality.HIGH;
+			}				
+		}
 
         // If we don't have a stage then we are not top-level,
         // unless there are no other top-level managers, in which
@@ -261,14 +276,24 @@ public class SystemManager extends MovieClip
         if (topLevel)
             SystemManagerGlobals.topLevelSystemManagers.push(this);
 
-        // Make sure to stop the playhead on the current frame.
-        stop();
+		COMPILE::AS3
+		{
+			// Make sure to stop the playhead on the current frame.
+			stop();				
+		}
 
         // Listen for the last frame (param is 0-indexed) to be executed.
         //addFrameScript(totalFrames - 1, frameEndHandler);
 
-        if (root && root.loaderInfo)
-            root.loaderInfo.addEventListener(Event.INIT, initHandler);
+		COMPILE::AS3
+		{
+			if (root && root.loaderInfo)
+				root.loaderInfo.addEventListener(Event.INIT, initHandler);				
+		}
+		COMPILE::JS
+		{
+			initHandler(null);
+		}
             
     }
 
@@ -2024,13 +2049,16 @@ public class SystemManager extends MovieClip
     {
         var mainClassName:String = info()["mainClassName"];
 
-        if (mainClassName == null)
-        {
-            var url:String = loaderInfo.loaderURL;
-            var dot:int = url.lastIndexOf(".");
-            var slash:int = url.lastIndexOf("/");
-            mainClassName = url.substring(slash + 1, dot);
-        }
+		COMPILE::AS3
+		{
+			if (mainClassName == null)
+			{
+				var url:String = loaderInfo.loaderURL;
+				var dot:int = url.lastIndexOf(".");
+				var slash:int = url.lastIndexOf("/");
+				mainClassName = url.substring(slash + 1, dot);
+			}				
+		}
 
         var mainClass:Class = Class(getDefinitionByName(mainClassName));
         

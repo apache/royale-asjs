@@ -23,6 +23,10 @@ COMPILE::AS3
 {
 	import flash.display.Stage;
 }
+COMPILE::JS
+{
+	import org.apache.flex.core.UIBase;
+}
 
 COMPILE::AS3
 public class TopOfDisplayList extends Stage

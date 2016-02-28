@@ -19,9 +19,16 @@
 
 package mx.states 
 {
-import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.events.IEventDispatcher;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;			
+}
+import org.apache.flex.events.Event;
+import org.apache.flex.events.IEventDispatcher;
 
 import mx.binding.BindingManager;
 import mx.collections.IList;

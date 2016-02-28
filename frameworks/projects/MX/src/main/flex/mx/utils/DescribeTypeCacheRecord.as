@@ -20,10 +20,13 @@
 package mx.utils 
 {
 
-import flash.utils.Proxy;
+import org.apache.flex.utils.Proxy;
+import org.apache.flex.reflection.TypeDefinition;
+COMPILE::AS3
+{
 import flash.utils.flash_proxy;
-
 use namespace flash_proxy;
+}
 
 [ExcludeClass]
 
@@ -60,7 +63,7 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
     /**
      *  @private
      */
-    public var typeDescription:XML;
+    public var typeDescription:TypeDefinition;
     
     //----------------------------------
     //  typeName
@@ -94,6 +97,7 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
     /**
      *  @private
      */
+	COMPILE::AS3
     override flash_proxy function getProperty(name:*):*
     {
         var result:* = cache[name];
@@ -106,10 +110,25 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
         
         return result;
     }
+	COMPILE::JS
+	override public function getProperty(name:String):*
+	{
+		var result:* = cache[name];
+		
+		if (result === undefined)
+		{
+			result = DescribeTypeCache.extractValue(name, this);
+			cache[name] = result;
+		}
+		
+		return result;
+	}
+	
 
     /**
      *  @private
      */
+	COMPILE::AS3
     override flash_proxy function hasProperty(name:*):Boolean
     {
         if (name in cache)
@@ -124,6 +143,21 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
         
         return true;
     }
+	COMPILE::JS
+	override public function hasProperty(name:String):Boolean
+	{
+		if (name in cache)
+			return true;
+		
+		var value:* = DescribeTypeCache.extractValue(name, this);       
+		
+		if (value === undefined)
+			return false;
+		
+		cache[name] = value;
+		
+		return true;
+	}
 }
 
 }

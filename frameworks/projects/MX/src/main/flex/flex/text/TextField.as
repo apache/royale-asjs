@@ -6,6 +6,7 @@ COMPILE::AS3
 }
 COMPILE::JS
 {
+	import mx.core.IUITextField;
 	import org.apache.flex.html.Label;
 }
 

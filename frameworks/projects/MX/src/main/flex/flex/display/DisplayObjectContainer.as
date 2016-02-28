@@ -23,6 +23,6 @@ package flex.display
 
 	public interface DisplayObjectContainer extends DisplayObject, IUIBase
 	{
-		
+		include "../../mx/core/IDisplayObjectContainerInterface.as"    
 	}
 }

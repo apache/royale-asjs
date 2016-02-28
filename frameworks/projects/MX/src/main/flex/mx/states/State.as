@@ -20,7 +20,7 @@
 package mx.states
 {
 
-import flash.events.EventDispatcher;
+import org.apache.flex.events.EventDispatcher;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
 

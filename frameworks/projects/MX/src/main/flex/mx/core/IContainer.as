@@ -41,16 +41,17 @@ COMPILE::AS3
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;		
 	import flash.geom.Rectangle;
+	import flash.display.Graphics;
 }
 COMPILE::JS
 {
 	import flex.display.DisplayObject;
 	import flex.display.Sprite;		
 	import org.apache.flex.geom.Rectangle;
+	import flex.display.Graphics;
 }
 COMPILE::LATER
 {
-	import flash.display.Graphics;
 	import flash.media.SoundTransform;
 }
 

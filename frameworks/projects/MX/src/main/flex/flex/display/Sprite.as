@@ -19,7 +19,19 @@
 
 package flex.display
 {
-	public interface Sprite extends InteractiveObject
+	import org.apache.flex.core.graphics.GraphicsContainer;
+	
+	public class Sprite extends GraphicsContainer implements InteractiveObject
 	{
+		private var _name:String;
+		public function get name():String
+		{
+			return _name;
+		}
+		public function set name(value:String):void
+		{
+			_name = value;
+		}
+		
 	}
 }
