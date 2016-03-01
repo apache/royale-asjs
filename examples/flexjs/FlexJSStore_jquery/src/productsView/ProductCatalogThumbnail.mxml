@@ -118,7 +118,7 @@ limitations under the License.
             }
         }
 
-        public function clickHandler(event:org.apache.flex.events.Event):void
+        public function clickHandler(event:org.apache.flex.events.MouseEvent):void
         {
             if (event.target != purchase &&
                 event.target != compare &&

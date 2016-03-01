@@ -69,5 +69,19 @@ package org.apache.flex.events
         {
             return goog.events.hasListener(this, type);
         }
+		
+		override public function dispatchEvent(event:Object):Boolean
+		{
+			try 
+			{
+				return super.dispatchEvent(event);
+			}
+			catch (e:Error)
+			{
+				if (e.name != "stopImmediatePropagation")
+					throw e;
+			}
+			return false;
+		}
 	}
 }

@@ -103,8 +103,7 @@ public dynamic class Proxy extends EventDispatcher
     public function Proxy()
     {
     }
-    
-    
+        
 	protected var valueMap:Object = {};
     
     public function getProperty(propName:String):*
