@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.core
 {
-import flash.geom.Matrix;
-import flash.geom.Matrix3D;
+COMPILE::LATER
+{
+	import flash.geom.Matrix;
+	import flash.geom.Matrix3D;		
+}
 
 /**
  *  The IAssetLayoutFeatures interface defines the minimum properties and methods 
@@ -252,11 +255,13 @@ public interface IAssetLayoutFeatures
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.1
      */
+	COMPILE::LATER
     function set layoutMatrix(value:Matrix):void;
     
     /**
      * @private
      */
+	COMPILE::LATER
     function get layoutMatrix():Matrix;
     
     /**
@@ -267,11 +272,13 @@ public interface IAssetLayoutFeatures
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.1
      */
+	COMPILE::LATER
     function set layoutMatrix3D(value:Matrix3D):void;
     
     /**
      * @private
      */
+	COMPILE::LATER
     function get layoutMatrix3D():Matrix3D;
     
     /**
@@ -359,6 +366,7 @@ public interface IAssetLayoutFeatures
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.1
      */
+	COMPILE::LATER
     function get computedMatrix():Matrix;
     
     /**
@@ -369,6 +377,7 @@ public interface IAssetLayoutFeatures
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.1
      */
+	COMPILE::LATER
     function get computedMatrix3D():Matrix3D;
 }
 }

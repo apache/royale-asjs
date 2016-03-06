@@ -20,18 +20,35 @@
 package mx.preloaders
 {
 
-import flash.display.DisplayObject;
-import flash.display.LoaderInfo;
-import flash.display.MovieClip;
-import flash.display.Sprite;
-import flash.events.ErrorEvent;
-import flash.events.Event;
-import flash.events.IEventDispatcher;
-import flash.events.IOErrorEvent;
-import flash.events.ProgressEvent;
-import flash.events.TimerEvent;
-import flash.system.ApplicationDomain;
-import flash.utils.Timer;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.display.LoaderInfo;
+	import flash.display.MovieClip;
+	import flash.display.Sprite;
+	import flash.events.ErrorEvent;
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.MovieClip;
+	import flex.display.Sprite;
+	import flex.events.Event;
+	import flex.events.IEventDispatcher;
+	import flex.events.IOErrorEvent;
+	import flex.events.ProgressEvent;
+	import flex.events.TimerEvent;
+	
+	import org.apache.flex.utils.Timer;		
+}
+
+import flex.system.DefinitionManager;
 
 import mx.core.RSLItem;
 import mx.core.RSLListLoader;
@@ -145,7 +162,7 @@ public class Preloader extends Sprite
     /**
      *  @private
      */
-    private var applicationDomain:ApplicationDomain = null;
+    private var applicationDomain:DefinitionManager = null;
     
     /**
      *  @private
@@ -171,7 +188,7 @@ public class Preloader extends Sprite
 							   sizes:Array = null,
 							   rslList:Array = null,
 							   resourceModuleURLs:Array = null,
-							   applicationDomain:ApplicationDomain = null):void
+							   applicationDomain:DefinitionManager = null):void
 	{
 		
 	}
@@ -238,7 +255,10 @@ public class Preloader extends Sprite
 
         this.applicationDomain = applicationDomain;
 
-        root.loaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+		COMPILE::AS3
+		{
+			root.loaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);				
+		}
     
         var n:int;
         var i:int;
@@ -387,10 +407,17 @@ public class Preloader extends Sprite
      */
     private function getByteValues():Object
     {
-        var li:LoaderInfo = root.loaderInfo;
-        var loaded:int = li.bytesLoaded;
-        var total:int = li.bytesTotal;
-        
+		COMPILE::AS3
+		{
+			var li:LoaderInfo = root.loaderInfo;
+			var loaded:int = li.bytesLoaded;
+			var total:int = li.bytesTotal;				
+		}
+		COMPILE::JS
+		{
+			var loaded:int = 100;
+			var total:int = 100;				
+		}
 		COMPILE::LATER
 		{
         // Look up the rsl bytes and include those
@@ -632,9 +659,12 @@ public class Preloader extends Sprite
         if (displayClass)
             displayClass.removeEventListener(Event.COMPLETE, displayClassCompleteHandler);
         
+		COMPILE::AS3
+		{
         if (root) 
             root.loaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-            
+		}
+		
         if (app) 
         {
             app.removeEventListener("validatePropertiesComplete", appProgressHandler);

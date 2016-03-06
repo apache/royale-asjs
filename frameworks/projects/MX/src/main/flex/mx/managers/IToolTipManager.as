@@ -20,7 +20,14 @@
 package mx.managers
 {
 
-import flash.display.DisplayObject;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+}
 
 import mx.core.IToolTip;
 import mx.core.IUIComponent;

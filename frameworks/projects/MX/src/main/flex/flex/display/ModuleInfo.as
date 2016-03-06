@@ -27,6 +27,7 @@ package flex.display
 	public class ModuleInfo
 	{
 		
+		COMPILE::AS3
 		private var loaderInfo:LoaderInfo;
 		
 		COMPILE::AS3
@@ -35,19 +36,40 @@ package flex.display
 			this.loaderInfo = loaderInfo;
 		}
 		
+		COMPILE::AS3
 		public function get height():Number
 		{
 			return loaderInfo.height;			
 		}
 		
+		COMPILE::AS3
 		public function get width():Number
 		{
 			return loaderInfo.width;
 		}
 		
+		COMPILE::AS3
 		public function get url():String
 		{
 			return loaderInfo.url;
+		}
+		
+		COMPILE::JS
+		public function get height():Number
+		{
+			return document.height;			
+		}
+		
+		COMPILE::JS
+		public function get width():Number
+		{
+			return document.width;
+		}
+		
+		COMPILE::JS
+		public function get url():String
+		{
+			return document.url;
 		}
 	}
 }

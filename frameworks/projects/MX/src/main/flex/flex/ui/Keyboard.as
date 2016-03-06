@@ -29,6 +29,11 @@ package flex.ui
 		public static const UP = 0x26;
 		public static const RIGHT = 0x27;
 		public static const DOWN = 0x28;
+		public static const PAGE_UP = 0x21;
+		public static const PAGE_DOWN = 0x22;
+		public static const HOME = 0x24;
+		public static const END = 0x23;
+		public static const ENTER = 0x0D;
 		
 	}
 }

@@ -18,5 +18,6 @@ package flex.events
 		public static const ENTER_FRAME:String = "enterFrame";
 		public static const REMOVED:String = "removed";
 		public static const REMOVED_FROM_STAGE:String = "removedFromStage";
+		public static const RESIZE:String = "resize";
 	}
 }

@@ -19,7 +19,10 @@
 
 package flex.system
 {
-	import flash.system.ApplicationDomain;
+COMPILE::AS3
+{
+	import flash.system.ApplicationDomain;		
+}
 
 	public class DefinitionManager
 	{
@@ -41,13 +44,37 @@ package flex.system
 			{
 				return appdom.hasDefinition(name);
 			}
+			COMPILE::JS
+			{
+				var parts:Array = name.split(".");
+				var obj:* = window;
+				for each (var part:String in parts)
+				{
+					obj = obj[part];
+					if (obj === undefined)
+						return false;
+				}
+				return true;
+			}
 		}
 		
 		public function getDefinition(name:String):Object
 		{
 			COMPILE::AS3
 			{
-				return appdom.hasDefinition(name);
+				return appdom.getDefinition(name);
+			}
+			COMPILE::JS
+			{
+				var parts:Array = name.split(".");
+				var obj:* = window;
+				for each (var part:String in parts)
+				{
+					obj = obj[part];
+					if (obj === undefined)
+						throw new Error("definition not found");
+				}
+				return obj;				
 			}
 		}
 	}

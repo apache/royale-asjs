@@ -20,8 +20,14 @@
 package mx.effects
 {
 
-import flash.events.Event;
-import flash.events.IEventDispatcher;
+COMPILE::AS3
+{
+	import flash.events.IEventDispatcher;		
+}
+COMPILE::JS
+{
+	import org.apache.flex.events.IEventDispatcher;		
+}
 
 /**
  *  The IAbstractEffect interface is used to denote

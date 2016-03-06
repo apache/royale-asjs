@@ -80,7 +80,7 @@ COMPILE::JS
             _dispatcher.addEventListener(type,listener,useCapture,priority,useWeakReference); 
         }
 		COMPILE::JS
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false):void
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, handlerScope:Object = null):void
 		{
 			if (_dispatcher == null)
 			{
@@ -98,12 +98,20 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
+		COMPILE::AS3
         public function dispatchEvent(event:Event):Boolean
         {
             if (_dispatcher != null)
                 return _dispatcher.dispatchEvent(event);
             return true; 
         }
+		COMPILE::JS
+		public function dispatchEvent(event:Object):Boolean
+		{
+			if (_dispatcher != null)
+				return _dispatcher.dispatchEvent(event);
+			return true; 
+		}
     
         /**
          *  @inheritDoc
@@ -128,11 +136,18 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
+		COMPILE::AS3
         public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
         {
             if (_dispatcher != null)
                 _dispatcher.removeEventListener(type,listener,useCapture);         
         }
+		COMPILE::JS
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false, handlerScope:Object = null):void
+		{
+			if (_dispatcher != null)
+				_dispatcher.removeEventListener(type,listener,useCapture);         
+		}
     
         /**
          *  @inheritDoc
@@ -142,6 +157,7 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
+		COMPILE::AS3
         public function willTrigger(type:String):Boolean
         {
             if (_dispatcher != null)

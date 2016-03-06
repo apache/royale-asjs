@@ -20,7 +20,14 @@
 package mx.managers
 {
 
-import flex.display.DisplayObject;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;		
+}
 import org.apache.flex.events.IEventDispatcher;
 import mx.core.IFlexDisplayObject;
 import mx.managers.IFocusManager;

@@ -20,11 +20,22 @@
 package mx.core
 {
 
-import flash.display.DisplayObject;
-import flash.geom.Rectangle;
-import flash.text.StyleSheet;
-import flash.text.TextFormat;
-import flash.text.TextLineMetrics;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.geom.Rectangle;
+	import flash.text.StyleSheet;
+	import flash.text.TextFormat;
+	import flash.text.TextLineMetrics;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.geom.Rectangle;
+	import flex.text.StyleSheet;
+	import flex.text.TextFormat;
+	import flex.text.TextLineMetrics;		
+}
 import mx.managers.IToolTipManagerClient;
 import mx.styles.ISimpleStyleClient;
 

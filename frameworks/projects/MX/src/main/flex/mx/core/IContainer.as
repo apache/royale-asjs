@@ -39,14 +39,18 @@ public interface IContainer extends IUIComponent
 COMPILE::AS3
 {
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;		
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.display.Graphics;
 }
 COMPILE::JS
 {
 	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;
 	import flex.display.Sprite;		
+	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
 	import flex.display.Graphics;
 }

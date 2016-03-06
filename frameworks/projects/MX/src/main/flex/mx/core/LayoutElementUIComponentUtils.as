@@ -69,12 +69,15 @@ public class LayoutElementUIComponentUtils
         // explicit trumps measured. measuredWidth should already be
         // constraint between min & max during measure phase.
         var result:Number = obj.getExplicitOrMeasuredWidth();
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             result = (obj.scaleX == 0) ? 0 : result / obj.scaleX;
         }
+		}
         return result;
     }
 
@@ -93,12 +96,15 @@ public class LayoutElementUIComponentUtils
         // explicit trumps measured. measuredWidth should already be
         // constraint between min & max during measure phase. 
         var result:Number = obj.getExplicitOrMeasuredHeight();
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             result = (obj.scaleY == 0) ? 0 : result / obj.scaleY;
         }
+		}
         return result;
     }
     
@@ -118,12 +124,15 @@ public class LayoutElementUIComponentUtils
                 minWidth = Math.min(minWidth, obj.explicitMaxWidth);
         }
 
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             minWidth = (obj.scaleX == 0) ? 0 : minWidth / obj.scaleX;
         }
+		}
         return minWidth;
     }
     
@@ -143,12 +152,15 @@ public class LayoutElementUIComponentUtils
                 minHeight = Math.min(minHeight, obj.explicitMaxHeight);
         }
 
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             minHeight = (obj.scaleY == 0) ? 0 : minHeight / obj.scaleY;
         }
+		}
         return minHeight;
     }
     
@@ -161,12 +173,15 @@ public class LayoutElementUIComponentUtils
         else
             maxWidth = DEFAULT_MAX_WIDTH;
 
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             maxWidth = (obj.scaleX == 0) ? 0 : maxWidth / obj.scaleX;
         }
+		}
         return maxWidth;
     }
     
@@ -179,12 +194,15 @@ public class LayoutElementUIComponentUtils
         else
             maxHeight = DEFAULT_MAX_HEIGHT;
 
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             maxHeight = (obj.scaleY == 0) ? 0 : maxHeight / obj.scaleY;
         }
+		}
         return maxHeight;
     }
     
@@ -377,13 +395,15 @@ public class LayoutElementUIComponentUtils
     public static function getLayoutBoundsWidth(obj:IUIComponent/*,transformMatrix:Matrix*/):Number
     {
         var width:Number = obj.width;
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             width = (obj.scaleX == 0) ? 0 : width / obj.scaleX;
         }
-
+		}
 		/*
         if (transformMatrix)
         {
@@ -408,13 +428,15 @@ public class LayoutElementUIComponentUtils
     public static function getLayoutBoundsHeight(obj:IUIComponent/*,transformMatrix:Matrix*/):Number
     {
         var height:Number = obj.height;
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
             // We are already taking scale into account from the transform,
             // so adjust here since IUIComponent mixes it with width/height
             height = (obj.scaleY == 0) ? 0 : height / obj.scaleY;
         }
-
+		}
 		/*
         if (transformMatrix)
         {
@@ -536,6 +558,8 @@ public class LayoutElementUIComponentUtils
             if (isNaN(height))
                 height = getPreferredUBoundsHeight(obj);
     
+			COMPILE::LATER
+			{
             if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
             {
                 // We are already taking scale into account from the transform,
@@ -543,6 +567,7 @@ public class LayoutElementUIComponentUtils
                 width *= obj.scaleX;
                 height *= obj.scaleY;
             }
+			}
             obj.setActualSize(width, height);
             return;
         //}

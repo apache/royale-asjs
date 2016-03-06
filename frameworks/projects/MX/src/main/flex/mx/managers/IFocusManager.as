@@ -23,7 +23,14 @@ package mx.managers
 import org.apache.flex.core.IUIBase;
 import org.apache.flex.events.IEventDispatcher;
 //import flash.display.InteractiveObject;
-import flash.display.Sprite;
+COMPILE::AS3
+{
+	import flash.display.Sprite;		
+}
+COMPILE::JS
+{
+	import flex.display.Sprite;		
+}
 import mx.core.IButton;
 
 /**

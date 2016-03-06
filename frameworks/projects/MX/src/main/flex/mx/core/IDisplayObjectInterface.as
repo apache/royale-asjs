@@ -78,7 +78,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get mask():DisplayObject;
+	COMPILE::LATER
     function set mask(value:DisplayObject):void;
 
 
@@ -126,7 +128,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get scaleX():Number;
+	COMPILE::LATER
     function set scaleX(value:Number):void;
 
 
@@ -138,7 +142,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get scaleY():Number;
+	COMPILE::LATER
     function set scaleY(value:Number):void;
 
 
@@ -150,6 +156,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get mouseX():Number; // note: no setter
 
 
@@ -161,6 +168,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get mouseY():Number; // note: no setter
 
 
@@ -172,7 +180,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get rotation():Number;
+	COMPILE::LATER
     function set rotation(value:Number):void;
 
 
@@ -219,7 +229,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get cacheAsBitmap():Boolean;
+	COMPILE::LATER
     function set cacheAsBitmap(value:Boolean):void;
 
     /**
@@ -230,7 +242,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get opaqueBackground():Object;
+	COMPILE::LATER
     function set opaqueBackground(value:Object):void;
 
 
@@ -242,7 +256,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get scrollRect():Rectangle;
+	COMPILE::LATER
     function set scrollRect(value:Rectangle):void;
 
 
@@ -254,7 +270,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get filters():Array;
+	COMPILE::LATER
     function set filters(value:Array):void;
 
     /**
@@ -265,7 +283,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get blendMode():String;
+	COMPILE::LATER
     function set blendMode(value:String):void;
 
     /**
@@ -289,7 +309,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get scale9Grid():Rectangle;
+	COMPILE::LATER
     function set scale9Grid(innerRectangle:Rectangle):void;
 
     /**
@@ -322,6 +344,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function getBounds(targetCoordinateSpace:DisplayObject):Rectangle;
 
     /**
@@ -332,6 +355,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function getRect(targetCoordinateSpace:DisplayObject):Rectangle;
 
     /**
@@ -353,6 +377,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function hitTestObject(obj:DisplayObject):Boolean;
 
     /**
@@ -363,6 +388,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function hitTestPoint(x:Number, y:Number, shapeFlag:Boolean=false):Boolean;
 
     /**

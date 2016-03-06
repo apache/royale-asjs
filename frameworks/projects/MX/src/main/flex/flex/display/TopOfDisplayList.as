@@ -31,10 +31,24 @@ COMPILE::JS
 COMPILE::AS3
 public class TopOfDisplayList extends Stage
 {
-	public function TopOfDisplayList()
+	public function TopOfDisplayList(stage:Stage)
 	{
 		super();
+		_stage = stage;
 	}
+	
+	override public function get width():Number
+	{
+		return _stage.stageWidth;
+	}
+	
+	override public function get height():Number
+	{
+		return _stage.stageHeight;
+	}
+	
+	private var _stage:Stage;
+	
 }
 
 COMPILE::JS

@@ -20,7 +20,7 @@
 package mx.collections 
 {
     
-import flash.events.IEventDispatcher;
+import org.apache.flex.events.IEventDispatcher;
 import mx.events.CollectionEvent;
 
 /**

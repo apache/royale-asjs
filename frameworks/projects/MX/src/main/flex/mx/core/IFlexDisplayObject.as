@@ -24,7 +24,7 @@ package mx.core
 
 COMPILE::AS3
 {
-	import flash.display.DisplayObject;		
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.geom.Rectangle;
 }
@@ -34,6 +34,8 @@ COMPILE::JS
 	import org.apache.flex.geom.Rectangle;
 }
 import org.apache.flex.events.IEventDispatcher;
+import flex.display.TopOfDisplayList;
+import flex.display.DisplayObject;
 
 /**
  *  The IFlexDisplayObject interface defines the interface for skin elements.
@@ -44,10 +46,9 @@ import org.apache.flex.events.IEventDispatcher;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public interface IFlexDisplayObject extends /*IBitmapDrawable, */IEventDispatcher
+public interface IFlexDisplayObject extends /*IBitmapDrawable, */IEventDispatcher, flex.display.DisplayObject
 {
-	include "IDisplayObjectInterface.as"	
-
+	
 	//--------------------------------------------------------------------------
 	//
 	//  Properties

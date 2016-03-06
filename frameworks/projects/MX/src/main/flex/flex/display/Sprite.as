@@ -18,20 +18,134 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package flex.display
-{
+{	
 	import org.apache.flex.core.graphics.GraphicsContainer;
 	
-	public class Sprite extends GraphicsContainer implements InteractiveObject
+	public class Sprite extends GraphicsContainer implements DisplayObjectContainer
 	{
+		COMPILE::JS
 		private var _name:String;
+		COMPILE::JS
 		public function get name():String
 		{
 			return _name;
 		}
+		COMPILE::JS
 		public function set name(value:String):void
 		{
 			_name = value;
 		}
 		
+		COMPILE::JS
+		public function get numChildren():int
+		{
+			return numElements;
+		}
+		
+		COMPILE::JS
+		public function getChildAt(index:int):DisplayObject
+		{
+			return getElementAt(index) as DisplayObject;
+		}
+		
+		COMPILE::JS
+		public function getChildByName(name:String):DisplayObject
+		{
+			for (var i:int = 0; i < numChildren; i++)
+			{
+				if (getChildAt(i).name == name)
+					return getChildAt(i);
+			}
+			return null;
+		}
+		
+		COMPILE::JS
+		public function getChildIndex(child:DisplayObject):int
+		{
+			return getElementIndex(child);
+		}
+		
+		COMPILE::JS
+		public function setChildIndex(child:DisplayObject, index:int):void
+		{
+			removeElement(child);
+			addElementAt(child, index);
+		}
+		
+		COMPILE::JS
+		public function addChild(child:DisplayObject):DisplayObject
+		{
+			addElement(child);
+			return child;
+		}
+		
+		COMPILE::JS
+		public function addChildAt(child:DisplayObject, index:int):DisplayObject
+		{
+			addElement(child, index);
+			return child;
+		}
+		
+		COMPILE::JS
+		public function removeChild(child:DisplayObject):DisplayObject
+		{
+			removeElement(child);
+			return child;
+		}
+		
+		COMPILE::JS
+		public function removeChildAt(index:int):DisplayObject
+		{
+			var child:DisplayObject = getChildAt(index);
+			removeElement(child);
+			return child;
+		}
+		
+		/**
+		 *  @flexjsignorecoercion flex.display.TopOfDisplayList
+		 */
+		public function get topOfDisplayList():TopOfDisplayList
+		{
+			return topMostEventDispatcher as TopOfDisplayList;
+		}
+
+		COMPILE::JS
+		/**
+		 *  @flexjsignorecoercion flex.display.DisplayObject
+		 */
+		public function get root():DisplayObject
+		{
+			return topMostEventDispatcher as DisplayObject;
+		}
+		
+		COMPILE::JS
+		/**
+		 *  @flexjsignorecoercion flex.display.DisplayObject
+		 */
+		public function contains(child:DisplayObject):Boolean
+		{
+			while (child)
+			{
+				if (child.parent == this)
+					return true;
+				child = child.parent as DisplayObject;
+			}
+			return topMostEventDispatcher as DisplayObject;
+		}
+		
+		COMPILE::JS
+		private var _graphics:Graphics;
+		
+		COMPILE::JS
+		/**
+		 *  @flexjsignorecoercion flex.display.DisplayObject
+		 */
+		public function get graphics():Graphics
+		{
+			if (!_graphics)
+				_graphics = new Graphics(this);
+			return _graphics
+		}
+
 	}
 }

@@ -25,6 +25,11 @@ COMPILE::AS3
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		
 }
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;		
+}
 import org.apache.flex.core.UIBase;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
@@ -311,11 +316,14 @@ public class EffectManager extends EventDispatcher
         var effectClass:Class;      
         if (target is UIComponent && target.moduleFactory)
         {
-            // only UIComponents have moduleFactories
-            var appDomain:DefinitionManager = new DefinitionManager(
-                target.moduleFactory.info()["currentDomain"]);
-            if (appDomain.hasDefinition("mx.effects." + value))
-                effectClass = Class(appDomain.getDefinition("mx.effects." + value));
+			COMPILE::LATER
+			{
+				// only UIComponents have moduleFactories
+				var appDomain:DefinitionManager = new DefinitionManager(
+					target.moduleFactory.info()["currentDomain"]);
+				if (appDomain.hasDefinition("mx.effects." + value))
+					effectClass = Class(appDomain.getDefinition("mx.effects." + value));					
+			}
         }
         if (!effectClass)
             effectClass = Class(target.systemManager.getDefinitionByName(

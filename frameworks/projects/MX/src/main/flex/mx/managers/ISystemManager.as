@@ -450,6 +450,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList, IFlexModul
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function getSandboxRoot():DisplayObject;
 
     /**
@@ -469,6 +470,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList, IFlexModul
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */  
+	COMPILE::LATER
 	function getVisibleApplicationRect(bounds:Rectangle = null, skipToSandboxRoot:Boolean = false):Rectangle;
     
     /**

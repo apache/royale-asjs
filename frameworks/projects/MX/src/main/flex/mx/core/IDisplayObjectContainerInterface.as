@@ -123,6 +123,7 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get textSnapshot():TextSnapshot;
     
     /**
@@ -133,6 +134,7 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function getObjectsUnderPoint(point:Point):Array;
 
     /**
@@ -143,6 +145,7 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function areInaccessibleObjectsUnderPoint(point:Point):Boolean;
 
     /**
@@ -158,7 +161,9 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get tabChildren():Boolean;
+	COMPILE::LATER
     function set tabChildren(enable:Boolean):void;
     
     /**
@@ -169,7 +174,9 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get mouseChildren():Boolean;
+	COMPILE::LATER
     function set mouseChildren(enable:Boolean):void;
 
     /**
@@ -190,6 +197,7 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function swapChildrenAt(index1:int, index2:int):void;
 
     /**
@@ -200,4 +208,5 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function swapChildren(child1:DisplayObject, child2:DisplayObject):void;

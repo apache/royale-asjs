@@ -20,7 +20,7 @@
 package mx.managers
 {
 
-import flash.events.IEventDispatcher;
+import org.apache.flex.events.IEventDispatcher;
 import mx.core.mx_internal;
 
 use namespace mx_internal;

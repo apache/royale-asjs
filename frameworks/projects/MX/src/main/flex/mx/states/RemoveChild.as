@@ -19,9 +19,16 @@
 
 package mx.states
 {
-
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;		
+}
 
 import mx.core.UIComponent;
 import mx.core.mx_internal;

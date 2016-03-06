@@ -26,7 +26,7 @@ COMPILE::AS3
 }
 COMPILE::JS
 {
-	import flash.text.TextField;	
+	import flex.text.TextField;	
 }
 
 [ExcludeClass]

@@ -20,8 +20,9 @@
 package flex.display
 {
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.geom.Point;
 
-	public interface DisplayObjectContainer extends DisplayObject, IUIBase
+	public interface DisplayObjectContainer extends InteractiveObject, IUIBase
 	{
 		include "../../mx/core/IDisplayObjectContainerInterface.as"    
 	}

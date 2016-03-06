@@ -24,11 +24,11 @@ COMPILE::AS3
 {
     import flash.utils.ByteArray;
     import flash.utils.Dictionary;
-    import flash.utils.getQualifiedClassName;
     import flash.xml.XMLNode;
 }
-
 import mx.collections.IList;
+
+import org.apache.flex.reflection.getQualifiedClassName;
 
 /**
  *  The ObjectUtil class is an all-static class with methods for
@@ -887,7 +887,14 @@ public class ObjectUtil
                         }
                         
                         // now that we know we have the same properties, let's compare the values
-                        var propName:QName;
+						COMPILE::AS3
+						{
+							var propName:QName;								
+						}
+						COMPILE::JS
+						{
+							var propName:String;								
+						}
                         var aProp:Object;
                         var bProp:Object;
                         for (var i:int = 0; i < aProps.length; i++)
@@ -1112,7 +1119,10 @@ public class ObjectUtil
             n = properties.length();
             var uris:Array = options.uris;
             var uri:String;
-            var qName:QName;
+			COMPILE::AS3
+			{
+				var qName:QName;					
+			}
             for (i = 0; i < n; i++)
             {
                 prop = properties[i];
@@ -1125,55 +1135,59 @@ public class ObjectUtil
                 if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
                     continue;
                 
-                if (uris != null)
-                {
-                    if (uris.length == 1 && uris[0] == "*")
-                    {   
-                        qName = new QName(uri, p);
-                        try
-                        {
-                            obj[qName]; // access the property to ensure it is supported
-                            propertyNames.push();
-                        }
-                        catch(e:Error)
-                        {
-                            // don't keep property name 
-                        }
-                    }
-                    else
-                    {
-                        for (var j:int = 0; j < uris.length; j++)
-                        {
-                            uri = uris[j];
-                            if (prop.@uri.toString() == uri)
-                            {
-                                qName = new QName(uri, p);
-                                try
-                                {
-                                    obj[qName];
-                                    propertyNames.push(qName);
-                                }
-                                catch(e:Error)
-                                {
-                                    // don't keep property name 
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (uri.length == 0)
-                {
-                    qName = new QName(uri, p);
-                    try
-                    {
-                        obj[qName];
-                        propertyNames.push(qName);
-                    }
-                    catch(e:Error)
-                    {
-                        // don't keep property name 
-                    }
-                }
+				COMPILE::AS3
+				{
+					if (uris != null)
+					{
+						if (uris.length == 1 && uris[0] == "*")
+						{   
+							qName = new QName(uri, p);
+							try
+							{
+								obj[qName]; // access the property to ensure it is supported
+								propertyNames.push();
+							}
+							catch(e:Error)
+							{
+								// don't keep property name 
+							}
+						}
+						else
+						{
+							for (var j:int = 0; j < uris.length; j++)
+							{
+								uri = uris[j];
+								if (prop.@uri.toString() == uri)
+								{
+									qName = new QName(uri, p);
+									try
+									{
+										obj[qName];
+										propertyNames.push(qName);
+									}
+									catch(e:Error)
+									{
+										// don't keep property name 
+									}
+								}
+							}
+						}
+					}
+					else if (uri.length == 0)
+					{
+						qName = new QName(uri, p);
+						try
+						{
+							obj[qName];
+							propertyNames.push(qName);
+						}
+						catch(e:Error)
+						{
+							// don't keep property name 
+						}
+					}
+
+				}
             }
         }
 

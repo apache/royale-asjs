@@ -242,7 +242,7 @@ public class SetEventHandler extends OverrideBase
 	COMPILE::JS
 	override public function addEventListener(
 		type:String, listener:Function,
-		useCapture:Boolean = false):void
+		useCapture:Boolean = false, handlerScope:Object = null):void
    {
         if (type == "handler")
             handlerFunction = listener;

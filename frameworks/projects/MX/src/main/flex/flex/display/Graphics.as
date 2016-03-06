@@ -43,6 +43,39 @@ package flex.display
 			host.drawRect(x, y, width, height);	
 		}
 		
+		public function clear():void
+		{
+			host.removeAllElements();
+		}
+		
+		private var lastX:Number = 0;
+		private var lastY:Number = 0;
+		
+		public function moveTo(x:Number, y:Number):void
+		{
+			lastX = x;
+			lastY = y;
+		}
+		
+		public function lineTo(x:Number, y:Number):void
+		{
+			var path:String = "M " + lastX.toString() + " " + lastY.toString();
+			path += "L " + x.toString() + " " + y.toString();
+			host.drawPath(path);
+			lastX = x;
+			lastY = y;
+		}
+		
+		public function curveTo(mx:Number, my:Number, x:Number, y:Number):void
+		{
+			var path:String = "M " + lastX.toString() + " " + lastY.toString();
+			path += "Q " + mx.toString() + " " + my.toString() + " " +
+						+ x.toString() + " " + y.toString();
+			host.drawPath(path);
+			lastX = x;
+			lastY = y;
+		}
+		
 		public function endFill():void
 		{
 			// really, we should queue up the drawing commands and execute them here.

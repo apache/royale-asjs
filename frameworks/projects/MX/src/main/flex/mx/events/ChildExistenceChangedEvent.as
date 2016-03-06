@@ -28,7 +28,7 @@ COMPILE::JS
 {
 	import flex.display.DisplayObject;		
 }
-import flex.events.Event;
+import org.apache.flex.events.Event;
 
 /**
  *  Represents events that are dispatched when a the child of a control

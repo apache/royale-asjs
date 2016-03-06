@@ -20,10 +20,13 @@
 package mx.core
 {
 
-import flash.events.IEventDispatcher;
-import flash.geom.Matrix;
-import flash.geom.Matrix3D;
-import flash.geom.Vector3D;
+import org.apache.flex.events.IEventDispatcher;
+COMPILE::LATER
+{
+	import flash.geom.Matrix;
+	import flash.geom.Matrix3D;
+	import flash.geom.Vector3D;		
+}
 
 /**
  *  The ILayoutElement interface is used primarily by the layout classes to query,

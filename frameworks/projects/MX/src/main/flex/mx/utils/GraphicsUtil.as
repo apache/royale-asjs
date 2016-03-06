@@ -20,7 +20,14 @@
 package mx.utils
 {
 
-import flash.display.Graphics;
+COMPILE::AS3
+{
+	import flash.display.Graphics;		
+}
+COMPILE::JS
+{
+	import flex.display.Graphics;		
+}
 
 /**
  *  The Graphics class is an all-static class with utility methods

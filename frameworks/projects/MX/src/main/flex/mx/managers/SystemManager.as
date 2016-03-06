@@ -28,7 +28,23 @@ COMPILE::AS3
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.LoaderInfo;
-		
+	import flash.display.Loader;
+	import flash.display.Stage;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;
+	import flash.events.EventPhase;
+	import flash.events.FocusEvent;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.ui.Keyboard;
+	import flash.geom.Point;
+	import flash.system.ApplicationDomain;
+	import flash.text.Font;
+	import flash.text.TextFormat;
+	import flash.utils.Dictionary;		
 }
 COMPILE::JS
 {
@@ -36,26 +52,15 @@ COMPILE::JS
 	import flex.display.DisplayObjectContainer;
 	import flex.display.Graphics;
 	import flex.display.MovieClip;
-	import flex.display.Sprite;	
+	import flex.display.Sprite;
+	import flex.events.Event;
+	import flex.events.EventPhase;
+	import flex.ui.Keyboard;
+	
+	import org.apache.flex.geom.Point;
 }
-import flash.display.Loader;
-import flash.display.Stage;
-import flash.display.StageAlign;
-import flash.display.StageQuality;
-import flash.display.StageScaleMode;
-import flash.events.Event;
-import flash.events.EventPhase;
-import flash.events.FocusEvent;
-import flash.events.KeyboardEvent;
-import flash.events.MouseEvent;
-import flash.events.TimerEvent;
-import flash.geom.Point;
-import flash.system.ApplicationDomain;
-import flash.text.Font;
-import flash.text.TextFormat;
-import flash.ui.Keyboard;
-import flash.utils.Dictionary;
 import org.apache.flex.utils.Timer;
+import flex.system.DefinitionManager;
 import org.apache.flex.reflection.getQualifiedClassName;
 
 import mx.core.IChildList;
@@ -264,6 +269,8 @@ public class SystemManager extends MovieClip
 			}				
 		}
 
+		COMPILE::AS3
+		{
         // If we don't have a stage then we are not top-level,
         // unless there are no other top-level managers, in which
         // case we got loaded by a non-Flex shell or are sandboxed.
@@ -272,7 +279,8 @@ public class SystemManager extends MovieClip
 
         if (!stage)
             isStageRoot = false;
-
+		}
+		
         if (topLevel)
             SystemManagerGlobals.topLevelSystemManagers.push(this);
 
@@ -355,6 +363,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     private function deferredNextFrame():void
     {
         if (currentFrame + 1 > totalFrames)
@@ -445,6 +454,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     private var _stage:Stage;
     
     /**
@@ -593,6 +603,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  get the main stage if we're loaded into another swf in the same sandbox
      */
+	COMPILE::AS3
     override public function get stage():Stage
     {
         if (_stage)
@@ -830,9 +841,18 @@ public class SystemManager extends MovieClip
 
         if (!_cursorChildren)
         {
+			COMPILE::AS3
+			{
             _cursorChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "toolTipIndex"),
                 new QName(mx_internal, "cursorIndex"));
+			}
+			COMPILE::JS
+			{
+				_cursorChildren = new SystemChildrenList(this,
+					"toolTipIndex",
+					"cursorIndex");				
+			}
         }
 
         return _cursorChildren;
@@ -1004,6 +1024,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function get explicitHeight():Number
     {
         return _explicitHeight;
@@ -1012,6 +1033,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     public function set explicitHeight(value:Number):void
     {
         _explicitHeight = value;
@@ -1037,6 +1059,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function get explicitWidth():Number
     {
         return _explicitWidth;
@@ -1045,6 +1068,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     public function set explicitWidth(value:Number):void
     {
         _explicitWidth = value;
@@ -1083,7 +1107,10 @@ public class SystemManager extends MovieClip
 
             value.x = 0;
             value.y = 0;
+			COMPILE::AS3
+			{
             value.scrollRect = null;
+			}
 
             _focusPane = value;
         }
@@ -1124,9 +1151,18 @@ public class SystemManager extends MovieClip
      */
     public function get measuredHeight():Number
     {
+		COMPILE::AS3
+		{
         return topLevelWindow ?
                topLevelWindow.getExplicitOrMeasuredHeight() :
                loaderInfo.height;
+		}
+		COMPILE::JS
+		{
+			return topLevelWindow ?
+				topLevelWindow.getExplicitOrMeasuredHeight() :
+				height;
+		}
     }
 
     //----------------------------------
@@ -1146,9 +1182,18 @@ public class SystemManager extends MovieClip
      */
     public function get measuredWidth():Number
     {
-        return topLevelWindow ?
-               topLevelWindow.getExplicitOrMeasuredWidth() :
-               loaderInfo.width;
+		COMPILE::AS3
+		{
+			return topLevelWindow ?
+				topLevelWindow.getExplicitOrMeasuredWidth() :
+				loaderInfo.width;				
+		}
+		COMPILE::JS
+		{
+			return topLevelWindow ?
+				topLevelWindow.getExplicitOrMeasuredWidth() :
+				width;				
+		}
     }
 
     //----------------------------------
@@ -1364,9 +1409,18 @@ public class SystemManager extends MovieClip
 
         if (!_popUpChildren)
         {
+			COMPILE::AS3
+			{
             _popUpChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "noTopMostIndex"),
                 new QName(mx_internal, "topMostIndex"));
+			}
+			COMPILE::JS
+			{
+				_popUpChildren = new SystemChildrenList(this,
+					"noTopMostIndex",
+					"topMostIndex");				
+			}
         }
 
         return _popUpChildren;
@@ -1421,6 +1475,8 @@ public class SystemManager extends MovieClip
      */
     public function get screen():Rectangle
     {
+		COMPILE::AS3
+		{
         if (!_screen)
             Stage_resizeHandler();
 
@@ -1428,6 +1484,7 @@ public class SystemManager extends MovieClip
         {
             Stage_resizeHandler();
         }
+		}
         return _screen;
     }
 
@@ -1456,9 +1513,18 @@ public class SystemManager extends MovieClip
 
         if (!_toolTipChildren)
         {
+			COMPILE::AS3
+			{
             _toolTipChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "topMostIndex"),
                 new QName(mx_internal, "toolTipIndex"));
+			}
+			COMPILE::JS
+			{
+				_toolTipChildren = new SystemChildrenList(this,
+					"topMostIndex",
+					"toolTipIndex");
+			}
         }
 
         return _toolTipChildren;
@@ -1615,6 +1681,7 @@ public class SystemManager extends MovieClip
      * @private
      *  Only create idle events if someone is listening.
      */
+	COMPILE::AS3
     override public function addEventListener(type:String, listener:Function,
                                               useCapture:Boolean = false,
                                               priority:int = 0,
@@ -1701,6 +1768,8 @@ public class SystemManager extends MovieClip
             return;
         }
 
+		COMPILE::LATER
+		{
         // When the first listener registers for 'idle' events,
         // create a Timer that will fire every IDLE_INTERVAL.
         if (type == FlexEvent.IDLE && !idleTimer)
@@ -1715,6 +1784,8 @@ public class SystemManager extends MovieClip
             addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
             addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
         }
+		}
+		
 
         super.addEventListener(type, listener, useCapture, priority, useWeakReference);
     }
@@ -1731,6 +1802,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function removeEventListener(type:String, listener:Function,
                                                  useCapture:Boolean = false):void
     {
@@ -2090,6 +2162,8 @@ public class SystemManager extends MovieClip
         if (runtimeDPIProviderClass)
             Singleton.registerClass("mx.core::RuntimeDPIProvider", runtimeDPIProviderClass);
         
+		COMPILE::AS3
+		{
         if (isStageRoot)
         {
             // TODO: Finalize scaling behavior
@@ -2101,15 +2175,19 @@ public class SystemManager extends MovieClip
         {
             _width = loaderInfo.width;
             _height = loaderInfo.height;
-        }
+        }		
+		}
 
         // Create an instance of the preloader and add it to the stage
         preloader = new Preloader();
 
-        // Listen for preloader events
-        // preloader notifes when it is ok to go to frame2
-        preloader.addEventListener(FlexEvent.PRELOADER_DOC_FRAME_READY,
-                                   preloader_preloaderDocFrameReadyHandler);
+		COMPILE::AS3
+		{
+			// Listen for preloader events
+			// preloader notifes when it is ok to go to frame2
+			preloader.addEventListener(FlexEvent.PRELOADER_DOC_FRAME_READY,
+				preloader_preloaderDocFrameReadyHandler);				
+		}
         // wait for a complete event.  This gives the preloader
         // a chance to load resource modules before
         // everything really gets kicked off
@@ -2128,8 +2206,16 @@ public class SystemManager extends MovieClip
         // we redirect public API to parent systemmanager
         if (!_popUpChildren)
         {
-            _popUpChildren = new SystemChildrenList(
-                this, new QName(mx_internal, "noTopMostIndex"), new QName(mx_internal, "topMostIndex"));
+			COMPILE::AS3
+			{
+				_popUpChildren = new SystemChildrenList(
+					this, new QName(mx_internal, "noTopMostIndex"), new QName(mx_internal, "topMostIndex"));					
+			}
+			COMPILE::JS
+			{
+				_popUpChildren = new SystemChildrenList(
+					this, "noTopMostIndex", "topMostIndex");					
+			}
         }
         _popUpChildren.addChild(preloader);
 
@@ -2202,6 +2288,8 @@ public class SystemManager extends MovieClip
             Loader(parent).contentLoaderInfo.applicationDomain :
             info()["currentDomain"] as ApplicationDomain;
 		
+		COMPILE::AS3
+		{
         // Initialize the preloader.
         preloader.initialize(
             usePreloader,
@@ -2218,7 +2306,10 @@ public class SystemManager extends MovieClip
             resourceModuleURLs,
             domain);
 		}
+		}
 		
+		COMPILE::JS
+		{
 		// Initialize the preloader.
 		preloader.initialize(
 			usePreloader,
@@ -2227,10 +2318,11 @@ public class SystemManager extends MovieClip
 			preloaderBackgroundAlpha,
 			preloaderBackgroundImage,
 			preloaderBackgroundSize,
-			stage.stageWidth,
-			stage.stageHeight,
+			width,
+			height,
 			null,
 			null);
+		}
     }
 
     //--------------------------------------------------------------------------
@@ -2486,18 +2578,26 @@ public class SystemManager extends MovieClip
      */
     public function getDefinitionByName(name:String):Object
     {
+		COMPILE::AS3
+		{
         var domain:ApplicationDomain =
             !topLevel && parent is Loader ?
             Loader(parent).contentLoaderInfo.applicationDomain :
             info()["currentDomain"] as ApplicationDomain;
-
+		var dm:DefinitionManager = new DefinitionManager(domain);
+		}
+		COMPILE::JS
+		{
+			var dm:DefinitionManager = new DefinitionManager();			
+		}
+		
         //trace("SysMgr.getDefinitionByName domain",domain,"currentDomain",info()["currentDomain"]);    
             
         var definition:Object;
 
-        if (domain.hasDefinition(name))
+        if (dm.hasDefinition(name))
         {
-            definition = domain.getDefinition(name);
+            definition = dm.getDefinition(name);
             //trace("SysMgr.getDefinitionByName got definition",definition,"name",name);
         }
 
@@ -2656,8 +2756,13 @@ public class SystemManager extends MovieClip
             g.drawRect(0, 0, s.width, s.height);
             g.endFill();
             }
-            catch (e:SecurityError)
+            catch (e:Error)
             {
+				COMPILE::AS3
+				{
+					if (!(e is SecurityError))
+						throw e;
+				}
                 // trace("resizeMouseCatcher: ignoring security error " + e);
             }
         }
@@ -2684,36 +2789,41 @@ public class SystemManager extends MovieClip
         // parent and get a positive response to the query or
         // or there is not a listener for the new application event
         // that SWFLoader always adds. 
-        if (!isStageRoot)
-        {
-            if (root.loaderInfo.parentAllowsChild)
-            {
-                try
-                {
-                    if (!parent.dispatchEvent(new Event("mx.managers.SystemManager.isBootstrapRoot", false, true)) ||
-                        // use string literal to avoid link dependency on SWFBridgeEvent.BRIDGE_NEW_APPLICATION
-                        !root.loaderInfo.sharedEvents.hasEventListener("bridgeNewApplication"))
-                        isBootstrapRoot = true;
-                }
-                catch (e:Error)
-                {
-                }
-            }
-        }
-
 		COMPILE::LATER
 		{
+	        if (!isStageRoot)
+	        {
+	            if (root.loaderInfo.parentAllowsChild)
+	            {
+	                try
+	                {
+	                    if (!parent.dispatchEvent(new Event("mx.managers.SystemManager.isBootstrapRoot", false, true)) ||
+	                        // use string literal to avoid link dependency on SWFBridgeEvent.BRIDGE_NEW_APPLICATION
+	                        !root.loaderInfo.sharedEvents.hasEventListener("bridgeNewApplication"))
+	                        isBootstrapRoot = true;
+	                }
+	                catch (e:Error)
+	                {
+	                }
+	            }
+	        }
+
 			allSystemManagers[this] = this.loaderInfo.url;
 		}
+		COMPILE::AS3
+		{
         root.loaderInfo.removeEventListener(Event.INIT, initHandler);
+		}
 
         if (!SystemManagerGlobals.info)
             SystemManagerGlobals.info = info();
+		COMPILE::AS3
+		{
         if (!SystemManagerGlobals.parameters)
             SystemManagerGlobals.parameters = loaderInfo.parameters;
-
         var docFrame:int = (totalFrames == 1)? 0 : 1;
         addEventListener(Event.ENTER_FRAME, docFrameListener);
+		}
 
         /*
         addFrameScript(docFrame, docFrameHandler);
@@ -2731,6 +2841,7 @@ public class SystemManager extends MovieClip
         }
     }
 
+	COMPILE::AS3
     private function docFrameListener(event:Event):void
     {
         if (currentFrame == 2)
@@ -2743,6 +2854,7 @@ public class SystemManager extends MovieClip
         }
     }
 
+	COMPILE::AS3
     private function extraFrameListener(event:Event):void
     {
         if (lastFrame == currentFrame)
@@ -2762,6 +2874,7 @@ public class SystemManager extends MovieClip
      *  advance the playhead to the next frame.
      *  This will cause the framescript to run, which runs frameEndHandler().
      */
+	COMPILE::AS3
     private function preloader_preloaderDocFrameReadyHandler(event:Event):void
     {
         // Advance the next frame
@@ -2793,19 +2906,21 @@ public class SystemManager extends MovieClip
         preloader = null;
 
         // Add the mouseCatcher as child 0.
-        mouseCatcher = new UIBase();
+        mouseCatcher = new Sprite();
         mouseCatcher.name = "mouseCatcher";
         // Must use addChildAt because a creationComplete handler can create a
         // dialog and insert it at 0.
         noTopMostIndex = noTopMostIndex + 1;
         super.addChildAt(mouseCatcher, 0);  
         resizeMouseCatcher();
+		COMPILE::LATER
+		{
         if (!topLevel)
         {
             mouseCatcher.visible = false;
             mask = mouseCatcher;
         }
-
+		}
         // Add the application as child 1.
         noTopMostIndex = noTopMostIndex + 1;
         super.addChildAt(DisplayObject(app), 1);
@@ -2851,12 +2966,13 @@ public class SystemManager extends MovieClip
      *  When this function is called, we know that the application
      *  class has been defined and read in by the Player.
      */
-    mx_internal function docFrameHandler(event:Event = null):void
-    {
-        
-        if (readyForKickOff)
-            kickOff();
-    }
+	COMPILE::AS3
+	mx_internal function docFrameHandler(event:Event = null):void
+	{
+		
+		if (readyForKickOff)
+			kickOff();
+	}			
 
     /**
      *  @private
@@ -2867,8 +2983,11 @@ public class SystemManager extends MovieClip
         preloader.removeEventListener(Event.COMPLETE,
                                    preloader_completeHandler);
         readyForKickOff = true;
+		COMPILE::AS3
+		{
         if (currentFrame >= 2)
             kickOff();
+		}
     }   
 
     /**
@@ -2887,11 +3006,14 @@ public class SystemManager extends MovieClip
             perfUtil.markTime("SystemManager.kickOff().start");
         }
         
+		COMPILE::LATER
+		{
         if (!isTopLevel())
             SystemManagerGlobals.topLevelSystemManagers[0].
                 // dispatch a FocusEvent so we can pass ourselves along
                 dispatchEvent(new FocusEvent(FlexEvent.NEW_CHILD_APPLICATION, false, false, this));
-
+		}
+		
         // Generated code will bring in EmbeddedFontRegistry
         Singleton.registerClass("mx.core::IEmbeddedFontRegistry",
                 Class(getDefinitionByName("mx.core::EmbeddedFontRegistry")));
@@ -2990,7 +3112,10 @@ public class SystemManager extends MovieClip
 
         initializeTopLevelWindow(null);
 
-        deferredNextFrame();
+		COMPILE::AS3
+		{
+			deferredNextFrame();				
+		}
     }
 
     /**
@@ -3006,6 +3131,7 @@ public class SystemManager extends MovieClip
      *  handled by both Scroller and by Spark classes like TextArea or
      *  or List that include a Scroller in their skin. 
      */
+	COMPILE::AS3
     private function keyDownHandler(e:KeyboardEvent):void
     {
         if (!e.cancelable)
@@ -3039,6 +3165,7 @@ public class SystemManager extends MovieClip
      *  this for a few mouse events and not all of them (MOUSE_WHEEL and 
      *  MOUSE_DOWN).
      */
+	COMPILE::AS3
     private function mouseEventHandler(e:MouseEvent):void
     {
         if (!e.cancelable && e.eventPhase != EventPhase.BUBBLING_PHASE)
@@ -3067,6 +3194,7 @@ public class SystemManager extends MovieClip
         }
     }
 
+	COMPILE::AS3
     private function extraFrameHandler(event:Event = null):void
     {
         var frameList:Object = info()["frames"];
@@ -3088,6 +3216,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     private function nextFrameTimerHandler(event:TimerEvent):void
     {
         if (currentFrame + 1 <= framesLoaded)
@@ -3107,6 +3236,8 @@ public class SystemManager extends MovieClip
      */
     private function initializeTopLevelWindow(event:Event):void
     {
+		COMPILE::LATER
+		{
         // This listener is intended to run before any other KeyboardEvent listeners
         // so that it can redispatch a cancelable=true copy of the event. 
         if (getSandboxRoot() == this)
@@ -3115,12 +3246,16 @@ public class SystemManager extends MovieClip
             addEventListener(MouseEvent.MOUSE_WHEEL, mouseEventHandler, true, 1000);
             addEventListener(MouseEvent.MOUSE_DOWN, mouseEventHandler, true, 1000);
         }
+		}
+		COMPILE::AS3
+		{
         if (isTopLevelRoot() && stage)
         {
             stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler, false, 1000);
             stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseEventHandler, false, 1000);
             stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseEventHandler, false, 1000);
         }
+		}
         
 		COMPILE::LATER
 		{
@@ -3163,16 +3298,21 @@ public class SystemManager extends MovieClip
             }
         }
 
+		COMPILE::AS3
+		{
         if (isTopLevelRoot() && stage)
             stage.addEventListener(Event.RESIZE, Stage_resizeHandler, false, 0, true);
         else if (topLevel && stage)
         {
+			COMPILE::LATER
+			{
             // listen to resizes on the sandbox root
             var sandboxRoot:DisplayObject = getSandboxRoot();
             if (sandboxRoot != this)
                 sandboxRoot.addEventListener(Event.RESIZE, Stage_resizeHandler, false, 0, true);
+			}
         }
-
+		
         var w:Number;
         var h:Number;
 
@@ -3204,7 +3344,12 @@ public class SystemManager extends MovieClip
             w = loaderInfo.width;
             h = loaderInfo.height;
         }
-
+		}
+		COMPILE::JS
+		{
+			var w:Number = this.width;
+			var h:Number = this.height;
+		}
         childManager.initializeTopLevelWindow(w, h);
     }
     
@@ -3257,6 +3402,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  Keep track of the size and position of the stage.
      */
+	COMPILE::AS3
     private function Stage_resizeHandler(event:Event = null):void
     {   
         if (isDispatchingResizeEvent)
@@ -3394,8 +3540,13 @@ public class SystemManager extends MovieClip
         {
             index = childList.getChildIndex(DisplayObject(f)); 
         }
-        catch (e:ArgumentError)
+        catch (e:Error)
         {
+			COMPILE::AS3
+			{
+				if (!(e is ArgumentError))
+					throw e;
+			}
             // index has been preset to -1 so just continue.    
         }
         
@@ -3429,6 +3580,7 @@ public class SystemManager extends MovieClip
      *  After IDLE_THRESHOLD goes by without any user activity,
      *  we dispatch an 'idle' event.
      */
+	COMPILE::LATER
     private function idleTimer_timerHandler(event:TimerEvent):void
     {
         idleCounter++;
@@ -3447,6 +3599,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function get mouseX():Number
     {
         if (_mouseX === undefined)
@@ -3457,6 +3610,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function get mouseY():Number
     {
         if (_mouseY === undefined)
@@ -3473,8 +3627,11 @@ public class SystemManager extends MovieClip
         // If the parent isn't rooted yet,
         // Or the root is the stage (which is the case in a second AIR window)
         // use the global system manager instance.
-        if ((!localRoot || localRoot is Stage) && parent is IUIComponent)
-            localRoot = DisplayObjectContainer(IUIComponent(parent).systemManager);
+		COMPILE::AS3
+		{
+			if ((!localRoot || localRoot is Stage) && parent is IUIComponent)
+				localRoot = DisplayObjectContainer(IUIComponent(parent).systemManager);				
+		}
         if (localRoot is ISystemManager)
         {
             sm = ISystemManager(localRoot);
@@ -3502,8 +3659,13 @@ public class SystemManager extends MovieClip
         {
             return super.parent;
         }   
-        catch (e:SecurityError) 
+        catch (e:Error) 
         {
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
             // trace("parent: ignoring security error");
         }
         
@@ -3523,30 +3685,38 @@ public class SystemManager extends MovieClip
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+	 * 
+	 *  @flexjsignorecoercion flex.display.DisplayObject
      */
     public function getTopLevelRoot():DisplayObject
     {
-        // work our say up the parent chain to the root. This way we
-        // don't have to rely on this object being added to the stage.
-        try
-        {
-            var sm:ISystemManager = this;
-            if (sm.topLevelSystemManager)
-                sm = sm.topLevelSystemManager;
-            var parent:DisplayObject = DisplayObject(sm).parent;
-            var lastParent:DisplayObject = DisplayObject(sm);
-            while (parent)
-            {
-                if (parent is Stage)
-                    return lastParent;
-                lastParent = parent; 
-                parent = parent.parent;             
-            }
-        }
-        catch (error:SecurityError)
-        {
-        }       
-        
+		COMPILE::AS3
+		{
+			// work our say up the parent chain to the root. This way we
+			// don't have to rely on this object being added to the stage.
+			try
+			{
+				var sm:ISystemManager = this;
+				if (sm.topLevelSystemManager)
+					sm = sm.topLevelSystemManager;
+				var parent:DisplayObject = DisplayObject(sm).parent;
+				var lastParent:DisplayObject = DisplayObject(sm);
+				while (parent)
+				{
+					if (parent is Stage)
+						return lastParent;
+					lastParent = parent; 
+					parent = parent.parent;             
+				}
+			}
+			catch (error:SecurityError)
+			{
+			}       				
+		}
+        COMPILE::JS
+		{
+			return topOfDisplayList as DisplayObject;
+		}
         return null;
     }
 
@@ -3561,6 +3731,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function getSandboxRoot():DisplayObject
     {
         // work our say up the parent chain to the root. This way we
@@ -3665,6 +3836,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function getVisibleApplicationRect(bounds:Rectangle = null, skipToSandboxRoot:Boolean = false):Rectangle
     {
         if (hasEventListener("getVisibleApplicationRect"))
@@ -3740,6 +3912,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  dispatch certain stage events from sandbox root
      */
+	COMPILE::AS3
     private function stageEventHandler(event:Event):void
     {
         if (event.target is Stage && mouseCatcher)
@@ -3774,13 +3947,31 @@ public class SystemManager extends MovieClip
 
 	public function get moduleInfo():ModuleInfo
 	{
-		return new ModuleInfo(loaderInfo);
+		COMPILE::AS3
+		{
+			return new ModuleInfo(loaderInfo);				
+		}
+		COMPILE::JS
+		{
+			return new ModuleInfo();				
+		}
 	}
 	
+	COMPILE::AS3
+	private var _topOfDisplayList:TopOfDisplayList;
+	
+	/**
+	 *  @flexjsignorecoercion flex.display.TopOfDisplayList
+	 */
+	COMPILE::AS3
 	public function get topOfDisplayList():TopOfDisplayList
 	{
-		return new TopOfDisplayList();
+		if (!_topOfDisplayList)
+			_topOfDisplayList = new TopOfDisplayList(stage);
+		return _topOfDisplayList;
 	}
+	
+
 }
 
 }

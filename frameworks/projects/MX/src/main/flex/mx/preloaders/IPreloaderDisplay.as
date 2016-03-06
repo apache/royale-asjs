@@ -20,8 +20,15 @@
 package mx.preloaders
 {
 
-import flash.display.Sprite;
-import flash.events.IEventDispatcher;
+COMPILE::AS3
+{
+	import flash.display.Sprite;		
+}
+COMPILE::JS
+{
+	import flex.display.Sprite;		
+}
+import org.apache.flex.events.IEventDispatcher;
 
 /**
  *  Defines the interface that 

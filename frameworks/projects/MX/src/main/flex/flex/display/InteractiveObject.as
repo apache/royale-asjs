@@ -19,7 +19,7 @@
 
 package flex.display
 {
-	public interface InteractiveObject extends DisplayObjectContainer
+	public interface InteractiveObject extends DisplayObject
 	{
 		
 	}

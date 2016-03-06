@@ -19,9 +19,15 @@
 
 package flex.display
 {
-	import org.apache.flex.core.UIBase;
-	
 	public class MovieClip extends Sprite
 	{
+		public function get totalFrames():int
+		{
+			return 1;
+		}
+		public function get framesLoaded():int
+		{
+			return 1;
+		}
 	}
 }

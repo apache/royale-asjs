@@ -20,9 +20,10 @@
 package mx.utils
 {
 
-import flash.display.DisplayObject;
-import flash.utils.getQualifiedClassName;
+import org.apache.flex.reflection.getQualifiedClassName;
+
 import mx.core.IRepeaterClient;
+import mx.core.IUIComponent;
 
 /**
  *  The NameUtil utility class defines static methods for
@@ -108,9 +109,11 @@ public class NameUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+	 * 
+	 *  @flexjsignorecoercion mx.core.IUIComponent
      */
     public static function displayObjectToString(
-                                displayObject:DisplayObject):String
+                                displayObject:IUIComponent):String
     {
         var result:String;
 
@@ -118,13 +121,13 @@ public class NameUtil
         // to build up the string to return.
         try
         {
-            for (var o:DisplayObject = displayObject;
+            for (var o:IUIComponent = displayObject;
                  o != null;
-                 o = o.parent)
+                 o = o.parent as IUIComponent)
             {
                 // If this object is in the display tree,
                 // stop after we've prepended the topmost Application instance.
-                if (o.parent && o.stage && o.parent == o.stage)
+                if (o.parent && o.topOfDisplayList && o.parent == o.topOfDisplayList)
                     break;
     
                 // Prefer id over name if specified.
@@ -140,8 +143,13 @@ public class NameUtil
                 result = result == null ? s : s + "." + result;
             }
         }
-        catch (e:SecurityError)
+        catch (e:Error)
         {
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
             // Ignore error and continue with what we have. 
             // We may not have access to our parent if we are loaded into a sandbox.
         }
