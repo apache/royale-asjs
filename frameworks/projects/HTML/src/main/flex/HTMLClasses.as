@@ -107,9 +107,9 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.models.TextModel; TextModel;
     import org.apache.flex.html.beads.models.TitleBarModel; TitleBarModel;
+	import org.apache.flex.html.beads.models.ToggleButtonModel; ToggleButtonModel;
 	COMPILE::AS3
 	{
-		import org.apache.flex.html.beads.models.ToggleButtonModel; ToggleButtonModel;
 		import org.apache.flex.html.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
 	}
 	import org.apache.flex.html.beads.models.ViewportModel; ViewportModel;
