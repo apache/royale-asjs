@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*"
+				initComplete="startup()">
+    <fx:Script>
+        <![CDATA[			
+			import org.apache.flex.storage.PermanentStorage;
+			import org.apache.flex.storage.events.FileReadEvent;
+			import org.apache.flex.storage.events.FileWriteEvent;
+			
+			private function startup():void
+			{
+				trace("Starting up");
+			}
+			
+			private function onRead():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				
+				var useFile:String = readFileNameField.text;
+				
+				storage.addEventListener("COMPLETE", handleRead);
+				storage.addEventListener("ERROR", handleRead);
+				storage.readTextFromDataFile( useFile );
+			}
+			
+			private function handleRead(event:FileReadEvent):void
+			{
+				trace("Read event type: "+event.type);
+				if (event.type == "ERROR") {
+					status.text = "Error: "+event.errorMessage;
+					readContent.text = "";
+				}
+				else {
+					trace(event.data);
+					status.text = "Read Success!";
+					readContent.text = String(event.data);
+				}
+			}
+			
+			private function onSave():void
+			{
+				var storage:PermanentStorage = new PermanentStorage();
+				var today:Date = new Date();
+				
+				var useFile:String = writeFileNameField.text;
+				var useContent:String = today.toString() + " " + contentField.text;
+				
+				storage.addEventListener("COMPLETE", handleSave);
+				storage.writeTextToDataFile(useFile, useContent);
+			}
+			
+			private function handleSave(event:FileWriteEvent):void
+			{
+				if (event.type == "ERROR") {
+					status.text = "Error: "+event.errorMessage;
+				} else {
+					status.text = "Write Success!";
+				}
+			}
+		]]>
+    </fx:Script>
+	
+	<fx:Style>
+	
+	.labelStyle {
+		color: #9999FF;
+	}
+	
+	.contentStyle {
+		font-size: 18pt;
+	}
+	
+	</fx:Style>
+	
+	<js:beads>
+		<js:ViewBaseDataBinding />
+	</js:beads>
+	
+	<js:VContainer width="100%" height="100%">
+		<js:Label text="Storage Example" width="100%" />
+		<js:Spacer height="20" />
+		
+		<js:HContainer>
+			<js:Label text="Write File Name:" className="labelStyle" />
+			<js:TextInput id="writeFileNameField" text="testfile.txt" />
+		</js:HContainer>
+		<js:HContainer>
+			<js:Label text="Content:" className="labelStyle" />
+			<js:TextInput id="contentField" />
+		</js:HContainer>
+		<js:TextButton text="SAVE" click="onSave()" />
+		<js:Spacer height="20" />
+		
+		<js:Label id="status" />
+		<js:Spacer height="20" />
+		
+		<js:HContainer>
+			<js:Label text="Read File Name:" className="labelStyle" />
+			<js:TextInput id="readFileNameField" text="testfile.txt" />
+		</js:HContainer>
+		<js:TextButton text="READ" click="onRead()" />
+		<js:HContainer>
+			<js:Label text="Content:" className="labelStyle" />
+		</js:HContainer>
+		<js:HContainer>
+			<js:Label id="readContent" className="contentStyle" />
+		</js:HContainer>
+	</js:VContainer>
+		
+
+</js:ViewBase>
