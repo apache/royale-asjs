@@ -30,6 +30,7 @@
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
     <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
     <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+    <property name="CORDOVA.SWC" value="${FALCONJX_HOME}/../externs/cordova/out/bin/cordova.swc" />
     <property name="target.name" value="Storage-${release.version}.swc" />
     <property name="target.name.no.version" value="Storage.swc" />
 
@@ -118,6 +119,7 @@
             <arg value="-external-library-path+=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
+            <arg value="--external-library-path+=${CORDOVA.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </java>
@@ -155,6 +157,7 @@
             <arg value="-external-library-path+=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
+            <arg value="--external-library-path+=${CORDOVA.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </compc>

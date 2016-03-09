@@ -16,29 +16,45 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.storage.events
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class StorageClasses
-{
-    import org.apache.flex.storage.LocalStorage; LocalStorage;
-    import org.apache.flex.storage.providers.LocalStorageProvider; LocalStorageProvider;
-
-	import org.apache.flex.storage.PermanentStorage; PermanentStorage;
-	import org.apache.flex.storage.events.FileReadEvent; FileReadEvent;
-	import org.apache.flex.storage.events.FileWriteEvent; FileWriteEvent;
-
-	import org.apache.flex.storage.providers.AirStorageProvider; AirStorageProvider;
-
-	import org.apache.flex.storage.providers.WebStorageProvider; WebStorageProvider;
-
+	import org.apache.flex.events.Event;
+	
+	/**
+	 * The FileWriteEvent class is used to signal varies events in the life and
+	 * use of permanent files. 
+	 * 
+	 * COMPLETE - The file has been successfully written.
+	 * ERROR    - An error occurred writing or opening the file.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class FileWriteEvent extends Event
+	{
+		/**
+		 * Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function FileWriteEvent(type:String)
+		{
+			super(type);
+		}
+		
+		/**
+		 * If not null, the error that occurred opening or writing the file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var errorMessage:String;
+	}
 }
-
-}
-

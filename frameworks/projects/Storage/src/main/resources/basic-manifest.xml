@@ -21,4 +21,5 @@
 
 <componentPackage>
 	<component id="LocalStorage" class="org.apache.flex.storage.LocalStorage"/>
+	<component id="PermanentStorage" class="org.apache.flex.storage.PermanentStorage"/>
 </componentPackage>

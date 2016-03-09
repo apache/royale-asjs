@@ -24,3 +24,19 @@ LocalStorage
 {
     IStorageProvider: ClassReference("org.apache.flex.storage.providers.LocalStorageProvider");
 }
+
+PermanentStorage
+{
+	IStorageProvider: ClassReference("org.apache.flex.storage.providers.WebStorageProvider");
+}
+
+@media -flex-flash
+{
+/**
+ * StorageProvider for AIR platform
+ */
+PermanentStorage
+{
+	IStorageProvider: ClassReference("org.apache.flex.storage.providers.AirStorageProvider");
+}	
+}
