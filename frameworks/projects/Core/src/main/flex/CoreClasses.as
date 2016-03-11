@@ -145,6 +145,8 @@ internal class CoreClasses
 	COMPILE::JS
 	{
 	    import org.apache.flex.utils.Language; Language;
+		import QName; QName;
+		import Namespace; Namespace;
 	}
 }
 
