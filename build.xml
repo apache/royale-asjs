@@ -627,6 +627,7 @@
                 <exclude name="**/*.pbj"/>
                 <exclude name="**/*.swf"/>
                 <exclude name="**/*.mxp"/>
+                <exclude name="fb.properties"/>
                 <exclude name="fonts/**"/>
                 <exclude name="test*/**"/>
                 <exclude name="js/VanillaSDK/**"/>
