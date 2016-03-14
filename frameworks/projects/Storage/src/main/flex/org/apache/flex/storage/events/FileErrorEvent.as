@@ -16,76 +16,65 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.flex.storage.events
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.storage.file.IDataStream;
 	
 	/**
-	 * The IPermanentStorage interface provides the template for creating
-	 * an interface to a device's native file system.
+	 * The FileErrorEvent class is used to signal varies errors that may occur
+	 * while handling a permanent file. 
+	 * 
+	 * ERROR    - A genric error occurred reading or opening the file.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IPermanentStorage extends IEventDispatcher
-	{	
+	public class FileErrorEvent extends Event
+	{
 		/**
-		 * A convenience function to read an entire file as a single 
-		 * string of text. The file is storaged in the application's
-		 * data storage directory. 
-		 * 
-		 *  @param fileName The name of the file.
+		 * Constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function readTextFromDataFile( fileName:String ) : void;
+		public function FileErrorEvent(type:String)
+		{
+			super(type);
+		}
 		
 		/**
-		 * A convenience function write a string into a file that resides in the
-		 * application's data storage directory. If the file already exists it is 
-		 * replaced with the string.
-		 * 
-		 *  @param fileName The name of file.
-		 *  @param text The string to be stored.
+		 * Contains the IDataOutput or IDataInput stream on which the error occurred.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function writeTextToDataFile( fileName:String, text:String ) : void;
+		public var stream:IDataStream;
 		
 		/**
-		 * Opens an output stream into a file in the data storage directory. A Ready
-		 * event is dispatched when the stream has been opened. Use the stream to
-		 * write data to the file.
-		 * 
-		 *  @param fileName The name of file.
+		 * If not null, the error that occurred opening or reading the file.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function openOutputDataStream( fileName:String ) : void;
+		public var errorMessage:String;
 		
 		/**
-		 * Opens an input stream into a file in the data storage directory. A Ready
-		 * event is dispatched when the stream has been opened. Use the stream to
-		 * read data from the file.
-		 * 
-		 *  @param fileName The name of file.
+		 * An error code, if any, associated with the error that triggered this event.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function openInputDataStream( fileName:String ) : void;
+		public var errorCode:Number;
 	}
 }

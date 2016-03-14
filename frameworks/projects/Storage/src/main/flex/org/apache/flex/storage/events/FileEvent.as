@@ -19,12 +19,16 @@
 package org.apache.flex.storage.events
 {
 	import org.apache.flex.events.Event;
+	import org.apache.flex.storage.file.IDataStream;
 	
 	/**
-	 * The FileReadEvent class is used to signal varies events in the life and
+	 * The FileEvent class is used to signal varies events in the life and
 	 * use of permanent files. 
 	 * 
-	 * COMPLETE - The file has been completely read.
+	 * READY    - The file has been created or opened successfully.
+	 * READ     - Some (or all) of the data has been read.
+	 * WRITE    - Some (or all) of the data has been written.
+	 * COMPLETE - The read or write process has finished and the file is closed.
 	 * ERROR    - An error occurred reading or opening the file.
 	 *
 	 *  @langversion 3.0
@@ -32,7 +36,7 @@ package org.apache.flex.storage.events
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class FileReadEvent extends Event
+	public class FileEvent extends Event
 	{
 		/**
 		 * Constructor.
@@ -42,7 +46,7 @@ package org.apache.flex.storage.events
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function FileReadEvent(type:String)
+		public function FileEvent(type:String)
 		{
 			super(type);
 		}
@@ -56,6 +60,16 @@ package org.apache.flex.storage.events
 		 *  @productversion FlexJS 0.0
 		 */
 		public var data:String;
+		
+		/**
+		 * Contains the IDataOutput or IDataInput stream to use for streaming.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public var stream:IDataStream;
 		
 		/**
 		 * If not null, the error that occurred opening or reading the file.

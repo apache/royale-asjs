@@ -16,31 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.storage.file
 {
 
 /**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
+ * The File class provides access to a specific file on the device.
  */
-internal class StorageClasses
+public interface IDataInput extends IDataStream
 {
-    import org.apache.flex.storage.LocalStorage; LocalStorage;
-    import org.apache.flex.storage.providers.LocalStorageProvider; LocalStorageProvider;
-
-	import org.apache.flex.storage.PermanentStorage; PermanentStorage;
-	import org.apache.flex.storage.events.FileEvent; FileEvent;
-	import org.apache.flex.storage.events.FileErrorEvent; FileErrorEvent;
+	function readText():void;
 	
-	import org.apache.flex.storage.file.DataInputStream; DataInputStream;
-	import org.apache.flex.storage.file.DataOutputStream; DataOutputStream;
-
-	import org.apache.flex.storage.providers.AirStorageProvider; AirStorageProvider;
-	import org.apache.flex.storage.providers.WebStorageProvider; WebStorageProvider;
-
+	function close():void;
 }
 
 }
-

@@ -16,45 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.events
+package org.apache.flex.storage.file
 {
-	import org.apache.flex.events.Event;
+
+/**
+ * The File class provides access to a specific file on the device.
+ */
+public interface IDataOutput extends IDataStream
+{
+	function writeText(text:String):void;
 	
-	/**
-	 * The FileWriteEvent class is used to signal varies events in the life and
-	 * use of permanent files. 
-	 * 
-	 * COMPLETE - The file has been successfully written.
-	 * ERROR    - An error occurred writing or opening the file.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class FileWriteEvent extends Event
-	{
-		/**
-		 * Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function FileWriteEvent(type:String)
-		{
-			super(type);
-		}
-		
-		/**
-		 * If not null, the error that occurred opening or writing the file.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public var errorMessage:String;
-	}
+	function close():void;
+}
+
 }
