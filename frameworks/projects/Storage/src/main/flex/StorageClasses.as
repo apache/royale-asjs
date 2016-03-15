@@ -29,6 +29,15 @@ internal class StorageClasses
 {
     import org.apache.flex.storage.LocalStorage; LocalStorage;
     import org.apache.flex.storage.providers.LocalStorageProvider; LocalStorageProvider;
+
+	import org.apache.flex.storage.PermanentStorage; PermanentStorage;
+	import org.apache.flex.storage.events.FileReadEvent; FileReadEvent;
+	import org.apache.flex.storage.events.FileWriteEvent; FileWriteEvent;
+
+	import org.apache.flex.storage.providers.AirStorageProvider; AirStorageProvider;
+
+	import org.apache.flex.storage.providers.WebStorageProvider; WebStorageProvider;
+
 }
 
 }

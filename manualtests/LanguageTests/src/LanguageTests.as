@@ -19,9 +19,6 @@
 package
 {
 
-import org.apache.flex.core.SimpleApplication;
-import org.apache.flex.events.Event;
-
 import classes.B;
 
 import interfaces.IA;
@@ -30,6 +27,9 @@ import interfaces.IC;
 import interfaces.ID;
 import interfaces.IE;
 import interfaces.IF;
+
+import org.apache.flex.core.SimpleApplication;
+import org.apache.flex.events.Event;
 
 public class LanguageTests extends SimpleApplication implements IA, IE
 {
@@ -149,6 +149,19 @@ public class LanguageTests extends SimpleApplication implements IA, IE
             trace("removeEventListener worked");
         else
             trace("This shouldn't show!");
+        
+        var n:Namespace = new Namespace("my_ns", "http://www.apache.org/2016/flex/ns/internal");
+        trace("Namespace.prefix (should be my_ns): ", n.prefix);
+        trace("Namespace.uri (should be http://www.apache.org/2016/flex/ns/internal): ", n.uri);
+        var q:QName = new QName(n, "my_namespaced_property");
+        trace("QName.localName (should be my_namespaced_property): ", q.localName);
+        trace("QName.uri (should be http://www.apache.org/2016/flex/ns/internal): ", q.uri);
+        var o:MyDynamicClass = new MyDynamicClass;
+        o[q] = "value_of_namespaced_property";
+        trace("Get namespaced property via []: ", o[q]);
+        trace("Get namespaced property via ::: ", o.n::my_namespaced_property);
+        trace("Get namespaced property via my_ns: ", o.my_ns::my_namespaced_property);
+        
 	}
     
     public function eventHandler(e:Event):void
@@ -156,4 +169,11 @@ public class LanguageTests extends SimpleApplication implements IA, IE
         
     }
 }
+}
+
+namespace my_ns = "http://www.apache.org/2016/flex/ns/internal";
+
+dynamic class MyDynamicClass
+{
+    my_ns var my_namespaced_property:String;    
 }
