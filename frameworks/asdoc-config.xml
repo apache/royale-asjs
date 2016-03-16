@@ -458,7 +458,7 @@
             <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org</path-element>
             <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
@@ -466,6 +466,7 @@
             <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/google/maps/LatLng.as</path-element>
             </doc-sources>
             
 </flex-config>
