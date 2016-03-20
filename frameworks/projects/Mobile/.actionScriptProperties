@@ -46,6 +46,7 @@ limitations under the License.
       <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/air/airglobal.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Core/target/Core.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/HTML/target/HTML.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/Graphics/target/Graphics.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
