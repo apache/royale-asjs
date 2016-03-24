@@ -282,6 +282,11 @@
             property="FALCON_HOME"
             value="${env.FALCON_HOME}"/>
 
+        <available file="${basedir}/lib/falcon-mxmlc.jar"
+            type="file"
+            property="FALCON_HOME"
+            value="${basedir}"/>
+
         <available file="${basedir}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
             type="file"
             property="FALCON_HOME"
@@ -305,6 +310,11 @@
             type="file"
             property="FALCONJX_HOME"
             value="${basedir}/../flex-falcon/compiler.jx"/>
+
+        <available file="${basedir}/js/lib/jsc.jar"
+            type="file"
+            property="FALCONJX_HOME"
+            value="${basedir}/js"/>
 
         <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_HOME"/>
