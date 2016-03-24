@@ -33,6 +33,7 @@ import flash.utils.flash_proxy;
 COMPILE::JS
 {
 	import org.apache.flex.events.Event;	
+	import flex.utils.IExternalizable;
 }
 import org.apache.flex.utils.Proxy;
 import mx.core.IPropertyChangeNotifier;

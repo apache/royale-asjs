@@ -69,7 +69,7 @@ package flex.display
 		public function curveTo(mx:Number, my:Number, x:Number, y:Number):void
 		{
 			var path:String = "M " + lastX.toString() + " " + lastY.toString();
-			path += "Q " + mx.toString() + " " + my.toString() + " " +
+			path += "Q " + mx.toString() + " " + my.toString() + " "
 						+ x.toString() + " " + y.toString();
 			host.drawPath(path);
 			lastX = x;

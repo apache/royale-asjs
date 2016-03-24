@@ -21,7 +21,7 @@ package mx.utils
 {
 
 import flash.system.Capabilities;
-import flash.utils.getDefinitionByName;
+import org.apache.flex.reflection.getDefinitionByName;
 
 /**
  *  The Platform utility class contains several static methods to check what

@@ -429,8 +429,11 @@ public class UITextField extends TextField
     {
         _x = value;
         super.x = value;
+		COMPILE::LATER
+		{
         if (mirror)
             validateTransformMatrix();
+		}
     }
     
     /**
@@ -455,8 +458,11 @@ public class UITextField extends TextField
         var changed:Boolean = super.width != value;
         
         super.width = value;
+		COMPILE::LATER
+		{
         if (mirror)
             validateTransformMatrix();
+		}
         
         // Since changing the width may reflow the text which can
         // change the textWidth and/or textHeight dispatch an event so 
@@ -783,6 +789,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get className():String
     {
         return NameUtil.getUnqualifiedClassName(this);
@@ -888,6 +895,7 @@ public class UITextField extends TextField
      *  @private
      *  Storage for the explicitHeight property.
      */
+	COMPILE::AS3
     private var _explicitHeight:Number;
 
     /**
@@ -898,6 +906,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function get explicitHeight():Number
     {
         return _explicitHeight;
@@ -906,6 +915,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
+	COMPILE::AS3
     public function set explicitHeight(value:Number):void
     {
         _explicitHeight = value;
@@ -1003,6 +1013,7 @@ public class UITextField extends TextField
      *  @private
      *  Storage for the explicitWidth property.
      */
+	COMPILE::AS3
     private var _explicitWidth:Number;
 
     /**
@@ -1013,6 +1024,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function get explicitWidth():Number
     {
         return _explicitWidth;
@@ -1021,6 +1033,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
+	COMPILE::AS3
     public function set explicitWidth(value:Number):void
     {
         _explicitWidth = value;
@@ -1583,6 +1596,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function get percentHeight():Number
     {
         return NaN;
@@ -1591,6 +1605,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
+	COMPILE::AS3
      public function set percentHeight(value:Number):void
      {
      }
@@ -1607,6 +1622,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	 COMPILE::AS3
     public function get percentWidth():Number
     {
         return NaN;
@@ -1615,6 +1631,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
+	COMPILE::AS3
      public function set percentWidth(value:Number):void
      {
      }
@@ -1717,6 +1734,10 @@ public class UITextField extends TextField
             styleChanged("styleName");
         }
 
+		COMPILE::JS
+		{
+			element.className = styleName.toString();
+		}
         // If we don't have a parent pointer yet, then we'll wait
         // and initialize the proto chain when the parentChanged()
         // method is called.
@@ -1922,7 +1943,9 @@ public class UITextField extends TextField
     
     /**
      *  @private
+	 *  TODO (aharui): I'm not seeing this in the doc
      */
+	COMPILE::LATER
     override public function insertXMLText(beginIndex:int, endIndex:int, 
                                            richText:String, 
                                            pasting:Boolean = false):void
@@ -2016,6 +2039,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function setFocus():void
     {
         systemManager.topOfDisplayList.focus = this;
@@ -2215,8 +2239,11 @@ public class UITextField extends TextField
         {
             const oldMirror:Boolean = mirror;
             mirror = getStyle("layoutDirection") == LayoutDirection.RTL;
+			COMPILE::LATER
+			{
             if (mirror || oldMirror)
                 validateTransformMatrix();
+			}
         }
 
         // Set the text format.
@@ -2265,6 +2292,7 @@ public class UITextField extends TextField
      *  Update the transform.matrix based on the mirror flag.  This method must be 
      *  called when x, width, or layoutDirection changes.
      */
+	COMPILE::LATER
     private function validateTransformMatrix():void
     {
         if (mirror)
@@ -2375,6 +2403,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public function setColor(color:uint):void
     {
         explicitColor = color;

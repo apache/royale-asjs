@@ -20,8 +20,16 @@
 package mx.core
 {
 
-import flash.text.TextFormat;
-import flex.text.TextLineMetrics;
+COMPILE::AS3
+{
+	import flash.text.TextFormat;
+	import flash.text.TextLineMetrics;		
+}
+COMPILE::JS
+{
+	import flex.text.TextFormat;
+	import flex.text.TextLineMetrics;		
+}
 
 import mx.managers.ISystemManager;
 
@@ -639,7 +647,10 @@ public class UITextFormat extends TextFormat
         letterSpacing = source.letterSpacing;
         blockIndent = source.blockIndent;
         bullet = source.bullet;
+		COMPILE::LATER
+		{
         display = source.display;
+		}
         indent = source.indent;
         kerning = source.kerning;
         tabStops = source.tabStops;

@@ -241,11 +241,13 @@ public interface IVisualElement extends ILayoutElement, ILayoutDirectionElement
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     function get designLayer():DesignLayer;
     
     /**
      *  @private
      */
+	COMPILE::LATER
     function set designLayer(value:DesignLayer):void;
 
     /**

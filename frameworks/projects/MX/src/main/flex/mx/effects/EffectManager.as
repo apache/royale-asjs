@@ -470,20 +470,36 @@ public class EffectManager extends EventDispatcher
                 if (info.vectorEffectsCount == 0 &&
                     target is IDeferredInstantiationUIComponent)
                 {
-                    IDeferredInstantiationUIComponent(target).cacheHeuristic = true;
+					COMPILE::LATER
+					{
+	                    IDeferredInstantiationUIComponent(target).cacheHeuristic = true;
+					}
                 }
             }
             else
             {
-                // If a vector effect started playing, forcibly uncache
-                // the target regardless of anything else.
-                if (info.vectorEffectsCount++ == 0 &&
-                    target is IDeferredInstantiationUIComponent &&
-                    IDeferredInstantiationUIComponent(target).cachePolicy == UIComponentCachePolicy.AUTO)
-                {
-                    target.cacheAsBitmap = false;
-                }
-            }
+				COMPILE::LATER
+				{
+	                // If a vector effect started playing, forcibly uncache
+	                // the target regardless of anything else.
+	                if (info.vectorEffectsCount++ == 0 &&
+	                    target is IDeferredInstantiationUIComponent &&
+	                    IDeferredInstantiationUIComponent(target).cachePolicy == UIComponentCachePolicy.AUTO)
+	                {
+	                    target.cacheAsBitmap = false;
+	                }
+	            }
+				// If a vector effect started playing, forcibly uncache
+				// the target regardless of anything else.
+				if (info.vectorEffectsCount++ == 0 &&
+					target is IDeferredInstantiationUIComponent)
+				{
+					COMPILE::LATER
+					{
+					target.cacheAsBitmap = false;
+					}
+				}
+			}
         }
         else // effect end
         {
@@ -492,8 +508,11 @@ public class EffectManager extends EventDispatcher
                 if (info.bitmapEffectsCount != 0)
                     info.bitmapEffectsCount--;
 
+				COMPILE::LATER
+				{
                 if (target is IDeferredInstantiationUIComponent)
                     IDeferredInstantiationUIComponent(target).cacheHeuristic = false;
+				}
             }
             else
             {
@@ -506,11 +525,14 @@ public class EffectManager extends EventDispatcher
                     {
                         // Crank up the counter.
                         n = info.bitmapEffectsCount;
+						COMPILE::LATER
+						{
                         for (i = 0; i < n; i++)
                         {
                             if (target is IDeferredInstantiationUIComponent)
                             IDeferredInstantiationUIComponent(target).cacheHeuristic = true;
                         }
+						}
                     }
                 }
             }

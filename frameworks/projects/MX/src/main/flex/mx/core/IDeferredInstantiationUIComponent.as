@@ -49,6 +49,7 @@ public interface IDeferredInstantiationUIComponent extends IUIComponent
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
+	COMPILE::LATER
     function set cacheHeuristic(value:Boolean):void;
 
 	//----------------------------------
@@ -63,6 +64,7 @@ public interface IDeferredInstantiationUIComponent extends IUIComponent
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
+	COMPILE::LATER
     function get cachePolicy():String
 
 	//----------------------------------
@@ -123,6 +125,7 @@ public interface IDeferredInstantiationUIComponent extends IUIComponent
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
+	COMPILE::LATER
 	function createReferenceOnParentDocument(
 						parentDocument:IFlexDisplayObject):void;
 	
@@ -140,6 +143,7 @@ public interface IDeferredInstantiationUIComponent extends IUIComponent
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
+	COMPILE::LATER
 	function deleteReferenceOnParentDocument(
 						parentDocument:IFlexDisplayObject):void;
 

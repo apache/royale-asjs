@@ -1251,7 +1251,10 @@ public class ToolTipManagerImpl extends EventDispatcher
             
             var pos:Point = new Point(x, y);
             pos = PointUtils.localToGlobal(pos, sm);
-            pos = PointUtils.globalToLocal(pos, sm.getSandboxRoot());
+			COMPILE::LATER
+			{
+	            pos = PointUtils.globalToLocal(pos, sm.getSandboxRoot());
+			}
             x = pos.x;
             y = pos.y;
         }

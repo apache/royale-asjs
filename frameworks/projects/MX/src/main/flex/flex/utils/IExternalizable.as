@@ -16,24 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flex.display
-{
-COMPILE::AS3
-{
-	import flash.display.DisplayObject;		
-	import flash.display.DisplayObjectContainer;		
-}
-import flex.display.TopOfDisplayList;
 
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.geom.Point;
-import org.apache.flex.geom.Rectangle;
-
-public interface DisplayObject extends IEventDispatcher, IUIBase
+package flex.utils
 {
-	include "../../mx/core/IDisplayObjectInterface.as"    
-	
-	function get topOfDisplayList():TopOfDisplayList;
-}
+	public interface IExternalizable
+	{
+		
+	}
 }

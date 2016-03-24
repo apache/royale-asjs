@@ -35,7 +35,7 @@ COMPILE::AS3
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		
 	import flash.display.InteractiveObject;		
-	import flash.display.Sprite;
+//	import flash.display.Sprite;
 	import flash.display.GradientType;
 	import flash.display.Graphics;
 	import flash.display.Loader;
@@ -48,9 +48,10 @@ COMPILE::JS
 	import flex.display.DisplayObject;	
 	import flex.display.DisplayObjectContainer;	
 	import flex.display.InteractiveObject;	
+	import flex.display.Graphics;
 	import flex.display.Loader;
-	import flex.display.Sprite;	
 }
+import flex.display.Sprite;	
 /*
 import flash.display.Shader;
 */
@@ -158,7 +159,6 @@ import mx.validators.ValidationResult;
 
 use namespace mx_internal;
 
-import org.apache.flex.core.UIBase;
 import flex.system.DefinitionManager;
 import org.apache.flex.events.EventDispatcher;
 import org.apache.flex.events.IEventDispatcher;
@@ -1475,7 +1475,7 @@ include "../styles/metadata/AnchorStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class UIComponent extends UIBase
+public class UIComponent extends Sprite
     implements IAutomationObject, IChildList, IConstraintClient,
     IDeferredInstantiationUIComponent, IFlexDisplayObject, IFlexModule,
     IInvalidating, ILayoutManagerClient, IPropertyChangeNotifier,
@@ -1706,8 +1706,11 @@ public class UIComponent extends UIBase
             if (UIComponentGlobals.callLaterSuspendCount == 0)
             {
                 var sm:ISystemManager = SystemManagerGlobals.topLevelSystemManagers[0];
+				COMPILE::AS3
+				{
                 if (sm && sm.topOfDisplayList)
                     sm.topOfDisplayList.invalidate();
+				}
             }
         }
     }
@@ -1731,9 +1734,12 @@ public class UIComponent extends UIBase
         super();
         
         // Override  variables in superclasses.
+		COMPILE::AS3
+		{
         focusRect = false; // We do our own focus drawing.
         // We are tab enabled by default if IFocusManagerComponent
         tabEnabled = (this is IFocusManagerComponent);
+		}
         tabFocusEnabled = (this is IFocusManagerComponent);
 
         // Whether the component can accept user interaction.
@@ -2088,6 +2094,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get accessibilityName():String
     {
         return accessibilityProperties ? accessibilityProperties.name : "";
@@ -2472,9 +2479,14 @@ public class UIComponent extends UIBase
         {
             return _parent ? _parent : super.parent;
         }
-        catch (e:SecurityError)
+        catch (e:Error)
         {
             // trace("UIComponent.get parent(): " + e);
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
         }
 
         return null;
@@ -2781,6 +2793,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     override public function get rotationZ():Number
     {
         return rotation;
@@ -2788,6 +2801,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     override public function set rotationZ(value:Number):void
     {
         rotation = value;
@@ -3107,6 +3121,7 @@ public class UIComponent extends UIBase
      *  @productversion Flex 3
      */
     
+	COMPILE::LATER
     override public function get scaleX():Number
     {
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
@@ -3119,8 +3134,10 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the scaleX property.
      */
+	COMPILE::LATER
     private var _scaleX:Number = 1.0;
     
+	COMPILE::LATER
     override public function set scaleX(value:Number):void
     {
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
@@ -3187,6 +3204,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     override public function get scaleY():Number
     {
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
@@ -3201,9 +3219,11 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the scaleY property.
      */
+	COMPILE::LATER
     private var _scaleY:Number = 1.0;
 
 
+	COMPILE::LATER
     override public function set scaleY(value:Number):void
     {
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
@@ -3310,11 +3330,13 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     mx_internal final function get $scaleX():Number
     {
         return super.scaleX;
     }
 
+	COMPILE::LATER
     mx_internal final function set $scaleX(value:Number):void
     {
         super.scaleX = value;
@@ -3332,11 +3354,13 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     mx_internal final function get $scaleY():Number
     {
         return super.scaleY;
     }
 
+	COMPILE::LATER
     mx_internal final function set $scaleY(value:Number):void
     {
         super.scaleY = value;
@@ -3414,9 +3438,12 @@ public class UIComponent extends UIBase
         if (!initialized)
             return;
 
+		COMPILE::LATER
+		{
         if (designLayer && !designLayer.effectiveVisibility) 
             value = false; 
-        
+		}
+		
         if ($visible == value)
             return;
 
@@ -3463,8 +3490,11 @@ public class UIComponent extends UIBase
         {
             _alpha = value;
         
+			COMPILE::LATER
+			{
             if (designLayer)
                 value = value * designLayer.effectiveAlpha; 
+			}
             
             $alpha = value;
 
@@ -3545,6 +3575,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     override public function get doubleClickEnabled():Boolean
     {
         return super.doubleClickEnabled;
@@ -3554,6 +3585,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Propagate to children.
      */
+	COMPILE::LATER
     override public function set doubleClickEnabled(value:Boolean):void
     {
         super.doubleClickEnabled = value;
@@ -3621,6 +3653,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     override public function set cacheAsBitmap(value:Boolean):void
     {
         super.cacheAsBitmap = value;
@@ -3704,6 +3737,7 @@ public class UIComponent extends UIBase
      *  @private
      *  Storage for the layer property.
      */
+	COMPILE::LATER
     private var _designLayer:DesignLayer;
     
     [Inspectable (environment='none')]
@@ -3716,6 +3750,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     public function get designLayer():DesignLayer
     {
         return _designLayer;
@@ -3724,6 +3759,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set designLayer(value:DesignLayer):void
     {
         if (_designLayer)
@@ -3781,6 +3817,7 @@ public class UIComponent extends UIBase
      *  Note that this "base property" is final and cannot be overridden,
      *  so you can count on it to reflect what is happening at the player level.
      */
+	COMPILE::LATER
     mx_internal final function get $blendMode():String
     {
         return super.blendMode;
@@ -3789,6 +3826,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     mx_internal final function set $blendMode(value:String):void
     {
         super.blendMode = value;
@@ -4998,6 +5036,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set cachePolicy(value:String):void
     {
         if (_cachePolicy != value)
@@ -5036,6 +5075,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function set cacheHeuristic(value:Boolean):void
     {
         if (_cachePolicy == UIComponentCachePolicy.AUTO)
@@ -5092,7 +5132,10 @@ public class UIComponent extends UIBase
 
             value.x = 0;
             value.y = 0;
+			COMPILE::AS3
+			{
             value.scrollRect = null;
+			}
 
             _focusPane = value;
         }
@@ -5100,7 +5143,10 @@ public class UIComponent extends UIBase
         {
             removeChild(_focusPane);
 
+			COMPILE::AS3
+			{
             _focusPane.mask = null;
+			}
             _focusPane = null;
         }
     }
@@ -7429,6 +7475,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function stopDrag():void
     {
         super.stopDrag();
@@ -7544,8 +7591,11 @@ public class UIComponent extends UIBase
                 listeningForRender = true;
             }
 
+			COMPILE::AS3
+			{
             if (_systemManager.topOfDisplayList)
                 _systemManager.topOfDisplayList.invalidate();
+			}
         }
     }
 
@@ -7634,10 +7684,13 @@ public class UIComponent extends UIBase
         else if (child is IUITextField)
             IUITextField(child).nestLevel = nestLevel + 1;
 
+		COMPILE::LATER
+		{
         if (child is InteractiveObject)
             if (doubleClickEnabled)
                 InteractiveObject(child).doubleClickEnabled = true;
-
+		}
+		
         // Sets up the inheritingStyles and nonInheritingStyles objects
         // and their proto chains so that getStyle() works.
         // If this object already has some children,
@@ -8378,6 +8431,8 @@ public class UIComponent extends UIBase
 				}
 				case 3:
 				{
+					COMPILE::LATER
+					{
 					propertyName = bindingData[index++];
 					value = bindingData[index++];
 					if (value is Array)
@@ -8389,6 +8444,7 @@ public class UIComponent extends UIBase
 						theBindings.push(bindings[bindingIndex]);
 					w = new XMLWatcher(propertyName, theBindings);
 					break;
+					}
 				}
 			}
 			watchers.push(w);
@@ -8795,6 +8851,7 @@ public class UIComponent extends UIBase
     public function callLater(method:Function,
                               args:Array /* of Object */ = null):void
     {
+		
         // trace(">>calllater " + this)
         // Push the method and the arguments onto the method queue.
         methodQueue.push(new MethodQueueElement(method, args));
@@ -8815,9 +8872,12 @@ public class UIComponent extends UIBase
                 listeningForRender = true;
             }
 
+			COMPILE::AS3
+			{
             // Force a "render" event to happen soon
             if (sm.topOfDisplayList)
                 sm.topOfDisplayList.invalidate();
+			}
         }
 
         // trace("<<calllater " + this)
@@ -8903,6 +8963,8 @@ public class UIComponent extends UIBase
     {
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
         {
+			COMPILE::LATER
+			{
             if (_scaleX != oldScaleX)
             {
                 var scalingFactorX:Number = Math.abs(_scaleX / oldScaleX);
@@ -8932,6 +8994,7 @@ public class UIComponent extends UIBase
     
                 super.scaleY = oldScaleY = _scaleY;
             }
+			}
         }
         else
         {
@@ -8943,8 +9006,11 @@ public class UIComponent extends UIBase
                 currentState = newState;
             }
            
+			COMPILE::LATER
+			{
             oldScaleX = scaleX;
             oldScaleY = scaleY;
+			}
         }
         
         // Typically state changes occur immediately, but during
@@ -9139,6 +9205,8 @@ public class UIComponent extends UIBase
         }
         else
         {
+			COMPILE::LATER
+			{
             var xScale:Number = Math.abs(scaleX);
             var yScale:Number = Math.abs(scaleY);
 
@@ -9156,7 +9224,7 @@ public class UIComponent extends UIBase
                     _measuredHeight /= yScale;
                 }
             }
-
+			}
             measure();
 
             invalidateSizeFlag = false;
@@ -9173,6 +9241,8 @@ public class UIComponent extends UIBase
             if (!isNaN(explicitMaxHeight) && measuredHeight > explicitMaxHeight)
                 measuredHeight = explicitMaxHeight;
 
+			COMPILE::LATER
+			{
             if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
             {
                 if (xScale != 1.0)
@@ -9187,9 +9257,13 @@ public class UIComponent extends UIBase
                     _measuredHeight *= yScale;
                 }
             }
+			}
         }
 
+		COMPILE::LATER
+		{
         adjustSizesForScaleChanges();
+		}
 
         if (isNaN(oldMinWidth))
         {
@@ -9326,6 +9400,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::LATER
     mx_internal function adjustSizesForScaleChanges():void
     {
         var xScale:Number = scaleX;
@@ -9422,10 +9497,14 @@ public class UIComponent extends UIBase
      */
     protected function get unscaledWidth():Number
     {
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
             return width / Math.abs(scaleX);
         else
             return width;
+		}
+		return width;
     }
 
     /**
@@ -9482,10 +9561,14 @@ public class UIComponent extends UIBase
      */
     protected function get unscaledHeight():Number
     {
+		COMPILE::LATER
+		{
         if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
             return height / Math.abs(scaleY);
         else
             return height;
+		}
+		return height;
     }
 
     /**
@@ -9642,6 +9725,8 @@ public class UIComponent extends UIBase
 			
             var unscaledWidth:Number = width;
             var unscaledHeight:Number = height;
+			COMPILE::LATER
+			{
             if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
             {
                 unscaledWidth = scaleX == 0 ? 0 : width / scaleX;
@@ -9655,6 +9740,7 @@ public class UIComponent extends UIBase
                 if (Math.abs(unscaledHeight - lastUnscaledHeight) < .00001)
                     unscaledHeight = lastUnscaledHeight;
             }
+			}
             updateDisplayList(unscaledWidth,unscaledHeight);
             lastUnscaledWidth = unscaledWidth;
             lastUnscaledHeight = unscaledHeight;
@@ -10725,8 +10811,13 @@ public class UIComponent extends UIBase
         var height:Number;
         if (obj is UIComponent)
         {
+			COMPILE::LATER
+			{
             width = UIComponent(obj).unscaledWidth * Math.abs(obj.scaleX);
             height = UIComponent(obj).unscaledHeight * Math.abs(obj.scaleY);
+			}
+			width = UIComponent(obj).unscaledWidth;
+			height = UIComponent(obj).unscaledHeight;
         }
         else
         {
@@ -10768,6 +10859,8 @@ public class UIComponent extends UIBase
             
             var pt:Point;
             
+			COMPILE::LATER
+			{
             if (rotation)
             {
                 var rotRad:Number = rotation * Math.PI / 180;
@@ -10780,7 +10873,8 @@ public class UIComponent extends UIBase
                 pt = new Point(obj.x - thickness, obj.y - thickness);
                 DisplayObject(focusObj).rotation = 0;
             }
-            
+			}
+			
             if (obj.parent == this)
             {
                 // This adjustment only works if obj is a direct child of this.
@@ -11273,7 +11367,14 @@ public class UIComponent extends UIBase
         {
             var message:String = resourceManager.getString(
                 "core", "stateUndefined", [ stateName ]);
-            throw new ArgumentError(message);
+			COMPILE::AS3
+			{
+				throw new ArgumentError(message);
+			}
+			COMPILE::JS
+			{
+				throw new Error(message);
+			}
         }
         return null;
     }
@@ -11935,7 +12036,14 @@ public class UIComponent extends UIBase
         {
             var message:String = resourceManager.getString(
                 "core", "badParameter", [ styleClient ]);
-            throw new ArgumentError(message);
+			COMPILE::AS3
+			{
+	            throw new ArgumentError(message);
+			}
+			COMPILE::JS
+			{
+				throw new Error(message);
+			}
         }
     }
     
@@ -12363,7 +12471,7 @@ public class UIComponent extends UIBase
         g.clear();
         g.beginFill(color);
 
-        g.drawRoundRect(targetArea.x, targetArea.y,
+        g.drawRoundRect(targetArea.left, targetArea.top,
                         targetArea.width, targetArea.height,
                         targetArea.cornerRadius * 2,
                         targetArea.cornerRadius * 2);
@@ -12592,6 +12700,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function createReferenceOnParentDocument(
                         parentDocument:IFlexDisplayObject):void
     {
@@ -12645,6 +12754,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function deleteReferenceOnParentDocument(
                                 parentDocument:IFlexDisplayObject):void
     {
@@ -13043,8 +13153,16 @@ public class UIComponent extends UIBase
     {
         //reset systemManager in case we've been reparented to a new Window.
         //systemManager will be set on get systemManager()
-        if (event.eventPhase != EventPhase.AT_TARGET)
-            return;
+		COMPILE::AS3
+		{
+	        if (event.eventPhase != EventPhase.AT_TARGET)
+	            return;
+		}
+		COMPILE::JS
+		{
+			if (event.target != event.currentTarget)
+				return;			
+		}
 
         try
         {
@@ -13054,10 +13172,15 @@ public class UIComponent extends UIBase
                 return;
             }
         }
-        catch (error:SecurityError)
-        {
-
-        } 
+		catch (e:Error)
+		{
+			// trace("UIComponent.get parent(): " + e);
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
+		}
     }
     
     /**
@@ -13066,8 +13189,16 @@ public class UIComponent extends UIBase
      */
     private function removedHandler(event:flex.events.Event):void
     {
-        if (event.eventPhase != EventPhase.AT_TARGET)
-            return;
+		COMPILE::AS3
+		{
+	        if (event.eventPhase != EventPhase.AT_TARGET)
+	            return;
+		}
+		COMPILE::JS
+		{
+			if (event.target != event.currentTarget)
+				return;			
+		}
 
         try
         {
@@ -13077,10 +13208,15 @@ public class UIComponent extends UIBase
                 return;
             }
         }
-        catch (error:SecurityError)
-        {
-
-        }
+		catch (e:Error)
+		{
+			// trace("UIComponent.get parent(): " + e);
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
+		}
     }
     
     /**
@@ -13350,11 +13486,17 @@ public class UIComponent extends UIBase
                     child = child.parent;
             }
         }
-        catch (e:SecurityError)
-        {
-            // You can't own what you don't have access to.
-            return false;
-        }
+		catch (e:Error)
+		{
+			// trace("UIComponent.get parent(): " + e);
+			COMPILE::AS3
+			{
+				if (!(e is SecurityError))
+					throw e;
+			}
+			// You can't own what you don't have access to.
+			return false;
+		}
 
         return child == this;
     }
@@ -13784,6 +13926,8 @@ public class UIComponent extends UIBase
             else
                 current = current.parent;
 
+			COMPILE::AS3
+			{
             if (current && current.scrollRect)
             {
                 // clip the bounds by the scroll rect
@@ -13793,6 +13937,7 @@ public class UIComponent extends UIBase
                 currentRect.y = pt.y;
                 bounds = Rectangle.convert(bounds.intersection(currentRect));
             }
+			}
         } while (current && current != targetParent);
 
         return bounds;
@@ -13851,6 +13996,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function get mouseX():Number
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseX] === undefined)
@@ -13861,6 +14007,7 @@ public class UIComponent extends UIBase
     /**
      *  @private
      */
+	COMPILE::AS3
     override public function get mouseY():Number
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseY] === undefined)
@@ -14414,6 +14561,7 @@ public class UIComponent extends UIBase
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     protected function applyComputedMatrix():void
     {
         _layoutFeatures.updatePending = false;
@@ -14759,6 +14907,38 @@ public class UIComponent extends UIBase
             return super.transform.matrix;
         }
     }
+	
+	//--------------------------------------------------------------------------
+	//
+	//  Overridden methods
+	//
+	//--------------------------------------------------------------------------
+	
+	/**
+	 *  Returns a string indicating the location of this object
+	 *  within the hierarchy of DisplayObjects in the Application.
+	 *  This string, such as <code>"MyApp0.HBox5.Button17"</code>,
+	 *  is built by the <code>displayObjectToString()</code> method
+	 *  of the mx.utils.NameUtils class from the <code>name</code>
+	 *  property of the object and its ancestors.
+	 *  
+	 *  @return A String indicating the location of this object
+	 *  within the DisplayObject hierarchy. 
+	 *
+	 *  @see flash.display.DisplayObject#name
+	 *  @see mx.utils.NameUtil#displayObjectToString()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	COMPILE::JS
+	public function toString():String
+	{
+		return NameUtil.displayObjectToString(this);
+	}	
+
 }
 
 }

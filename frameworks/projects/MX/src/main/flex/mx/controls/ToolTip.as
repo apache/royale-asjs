@@ -20,9 +20,17 @@
 package mx.controls
 {
 
-import flash.display.DisplayObject;
-import flash.text.TextFieldAutoSize;
-import flash.text.TextFormat;
+COMPILE::AS3
+{
+	import flash.display.DisplayObject;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;		
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.text.TextFormat;			
+}
 import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
@@ -167,10 +175,13 @@ public class ToolTip extends UIComponent implements IToolTip, IFontContextCompon
     {
         super();
 
-        // InteractiveObject variables.
-        // Make the ToolTip invisible to the mouse so that it doesn't
-        // interfere with the ToolTipManager's mouse-tracking.
-        mouseEnabled = false;
+		COMPILE::AS3
+		{
+	        // InteractiveObject variables.
+	        // Make the ToolTip invisible to the mouse so that it doesn't
+	        // interfere with the ToolTipManager's mouse-tracking.
+	        mouseEnabled = false;
+		}
     }
 
     //--------------------------------------------------------------------------
@@ -451,13 +462,16 @@ public class ToolTip extends UIComponent implements IToolTip, IFontContextCompon
         {
             textField = IUITextField(createInFontContext(UITextField));
 
-            textField.autoSize = TextFieldAutoSize.LEFT;
-            textField.mouseEnabled = false;
-            textField.multiline = true;
-            textField.selectable = false;
-            textField.wordWrap = false;
-            textField.styleName = this;
-            
+			COMPILE::AS3
+			{
+	            textField.autoSize = TextFieldAutoSize.LEFT;
+	            textField.mouseEnabled = false;
+	            textField.multiline = true;
+	            textField.selectable = false;
+	            textField.wordWrap = false;
+	            textField.styleName = this;
+			}
+			
             if (childIndex == -1)
                 addChild(DisplayObject(textField));
             else 

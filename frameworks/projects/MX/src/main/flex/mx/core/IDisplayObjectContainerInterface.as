@@ -22,6 +22,10 @@
  *  for web version of flash.display.DisplayObjectContainer
  *  
  */
+COMPILE::AS3
+{
+	import flash.display.DisplayObjectContainer;		
+}
 import flash.text.TextSnapshot;
 import flash.geom.Point;
 
@@ -33,7 +37,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function addChild(child:DisplayObject):DisplayObject;
+	COMPILE::AS3
+    function addChild(child:flash.display.DisplayObject):flash.display.DisplayObject;
+	COMPILE::JS
+	function addChild(child:DisplayObject):DisplayObject;
    
     /**
      *  @copy flash.display.DisplayObjectContainer#addChildAt()
@@ -43,6 +50,9 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
+	function addChildAt(child:flash.display.DisplayObject, index:int):flash.display.DisplayObject;
+	COMPILE::JS
     function addChildAt(child:DisplayObject, index:int):DisplayObject;
     
     /**
@@ -53,7 +63,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function removeChild(child:DisplayObject):DisplayObject;
+	COMPILE::AS3
+    function removeChild(child:flash.display.DisplayObject):flash.display.DisplayObject;
+	COMPILE::JS
+	function removeChild(child:DisplayObject):DisplayObject;
     
     /**
      *  @copy flash.display.DisplayObjectContainer#removeChildAt()
@@ -63,7 +76,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function removeChildAt(index:int):DisplayObject;
+	COMPILE::AS3
+    function removeChildAt(index:int):flash.display.DisplayObject;
+	COMPILE::JS
+	function removeChildAt(index:int):DisplayObject;
 
     /**
      *  @copy flash.display.DisplayObjectContainer#getChildIndex()
@@ -73,7 +89,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function getChildIndex(child:DisplayObject):int;
+	COMPILE::AS3
+    function getChildIndex(child:flash.display.DisplayObject):int;
+	COMPILE::JS
+	function getChildIndex(child:DisplayObject):int;
     
     /**
      *  @copy flash.display.DisplayObjectContainer#setChildIndex()
@@ -83,7 +102,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function setChildIndex(child:DisplayObject, index:int):void;
+	COMPILE::AS3
+    function setChildIndex(child:flash.display.DisplayObject, index:int):void;
+	COMPILE::JS
+	function setChildIndex(child:DisplayObject, index:int):void;
 
     /**
      *  @copy flash.display.DisplayObjectContainer#getChildAt()
@@ -93,7 +115,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function getChildAt(index:int):DisplayObject;
+	COMPILE::AS3
+    function getChildAt(index:int):flash.display.DisplayObject;
+	COMPILE::JS
+	function getChildAt(index:int):DisplayObject;
     
     /**
      *  @copy flash.display.DisplayObjectContainer#getChildByName()
@@ -103,7 +128,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function getChildByName(name:String):DisplayObject;
+	COMPILE::AS3
+    function getChildByName(name:String):flash.display.DisplayObject;
+	COMPILE::JS
+	function getChildByName(name:String):DisplayObject;
 
     /**
      *  @copy flash.display.DisplayObjectContainer#numChildren
@@ -187,7 +215,10 @@ import flash.geom.Point;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function contains(child:DisplayObject):Boolean;
+	COMPILE::AS3
+    function contains(child:flash.display.DisplayObject):Boolean;
+	COMPILE::JS
+	function contains(child:DisplayObject):Boolean;
 
     /**
      *  @copy flash.display.DisplayObjectContainer#swapChildrenAt()

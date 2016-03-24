@@ -20,6 +20,9 @@
 package flex.display
 {	
 	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.geom.Point;
+	import org.apache.flex.utils.PointUtils;
+	import mx.managers.SystemManagerGlobals;
 	
 	public class Sprite extends GraphicsContainer implements DisplayObjectContainer
 	{
@@ -147,5 +150,30 @@ package flex.display
 			return _graphics
 		}
 
+		COMPILE::JS
+		public function get mouseX():Number
+		{
+			var pt:Point = new Point(SystemManagerGlobals.lastMouseEvent.screenX,
+									 SystemManagerGlobals.lastMouseEvent.screenY);
+			pt = PointUtils.globalToLocal(pt, this);
+			return pt.x;
+		}
+		
+		COMPILE::JS
+		public function get mouseY():Number
+		{
+			var pt:Point = new Point(SystemManagerGlobals.lastMouseEvent.screenX,
+				SystemManagerGlobals.lastMouseEvent.screenY);
+			pt = PointUtils.globalToLocal(pt, this);
+			return pt.x;
+		}
+		
+		COMPILE::JS
+		override public function get parent():DisplayObjectContainer
+		{
+			return super.parent as DisplayObjectContainer;
+		}
+
 	}
+	
 }

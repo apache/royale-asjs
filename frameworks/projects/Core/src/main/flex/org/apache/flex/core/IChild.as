@@ -42,18 +42,18 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+		COMPILE::AS3
         function get parent():DisplayObjectContainer;
         
-        /**
-         *  The parent.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::JS
-        function get parent():IUIBase;
+		/**
+		 *  The parent.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::JS
+		function get parent():IUIBase;
 	}
 }

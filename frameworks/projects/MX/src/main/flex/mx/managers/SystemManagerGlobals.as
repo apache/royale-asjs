@@ -19,6 +19,10 @@
 
 package mx.managers
 {
+COMPILE::JS
+{
+	import org.apache.flex.events.MouseEvent;		
+}
 
 [ExcludeClass]
 
@@ -50,6 +54,11 @@ public class SystemManagerGlobals
 	 *  in the application..
      */
 	public static var parameters:Object;
+	
+	COMPILE::JS
+	{
+		public static var lastMouseEvent:MouseEvent;
+	}
 }
 
 }

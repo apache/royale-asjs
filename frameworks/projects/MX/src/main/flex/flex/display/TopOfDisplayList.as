@@ -26,6 +26,8 @@ COMPILE::AS3
 COMPILE::JS
 {
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.HTMLElementWrapper;
+	import org.apache.flex.core.WrappedHTMLElement;
 }
 
 COMPILE::AS3
@@ -52,11 +54,28 @@ public class TopOfDisplayList extends Stage
 }
 
 COMPILE::JS
-public class TopOfDisplayList extends UIBase
+public class TopOfDisplayList extends Sprite
 {
 	public function TopOfDisplayList()
 	{
 		super();
+	}
+	
+	/**
+	 * @flexjsignorecoercion flex.display.InteractiveObject
+	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+	 */
+	public function get focus():InteractiveObject
+	{
+		return (document.activeElement as WrappedHTMLElement).flexjs_wrapper as InteractiveObject;
+	}
+	
+	/**
+	 * @flexjsignorecoercion org.apache.flex.core.HTMLElementWrapper
+	 */
+	public function set focus(value:InteractiveObject):void
+	{
+		document.activeElement = (value as HTMLElementWrapper).element;
 	}
 }
 

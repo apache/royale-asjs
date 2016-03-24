@@ -30,7 +30,7 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
-
+        <allow-subclass-overrides>true</allow-subclass-overrides>
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
@@ -49,6 +49,8 @@
             <path-element>../../../../../externs/Core.swc</path-element>
             <path-element>../../../../../externs/Graphics.swc</path-element>
             <path-element>../../../../../externs/Collections.swc</path-element>
+            <path-element>../../../../../externs/Reflection.swc</path-element>
+            <path-element>../../../../../externs/HTML.swc</path-element>
         </library-path>
         
         <namespaces>

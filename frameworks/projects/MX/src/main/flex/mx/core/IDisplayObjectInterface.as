@@ -32,7 +32,10 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function get root():DisplayObject;
+	COMPILE::AS3
+    function get root():flash.display.DisplayObject;
+	COMPILE::JS
+	function get root():DisplayObject;
 
 
     /**
@@ -67,7 +70,10 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function get parent():DisplayObjectContainer;
+	COMPILE::AS3
+    function get parent():flash.display.DisplayObjectContainer;
+	COMPILE::JS
+	function get parent():DisplayObjectContainer;
 
 
     /**
@@ -91,9 +97,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get visible():Boolean;
     function set visible(value:Boolean):void;
+	 * already in IUIBase
+     */
 
 
     /**
@@ -103,9 +110,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get x():Number;
     function set x(value:Number):void;
+	* already in IUIBase
+	*/
 
 
     /**
@@ -115,9 +123,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get y():Number;
     function set y(value:Number):void;
+	 * already in IUIBase
+     */
 
 
     /**
@@ -156,7 +165,6 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::LATER
     function get mouseX():Number; // note: no setter
 
 
@@ -168,7 +176,6 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::LATER
     function get mouseY():Number; // note: no setter
 
 
@@ -193,9 +200,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get alpha():Number;
     function set alpha(value:Number):void;
+	 * already in IUIBase
+     */
 
 
     /**
@@ -205,9 +213,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get width():Number;
     function set width(value:Number):void;
+	 * already in IUIBase
+     */
 
     /**
      *  @copy flash.display.DisplayObject#height
@@ -216,9 +225,10 @@
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     function get height():Number;
     function set height(value:Number):void;
+	 * already in IUIBase
+     */
 
 
     /**

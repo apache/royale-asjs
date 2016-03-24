@@ -54,6 +54,7 @@ COMPILE::JS
 	import flex.display.MovieClip;
 	import flex.display.Sprite;
 	import flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	import flex.events.EventPhase;
 	import flex.ui.Keyboard;
 	
@@ -301,6 +302,7 @@ public class SystemManager extends MovieClip
 		COMPILE::JS
 		{
 			initHandler(null);
+			super.addEventListener(MouseEvent.MOUSE_MOVE, js_mouseMoveHandler);
 		}
             
     }
@@ -841,18 +843,9 @@ public class SystemManager extends MovieClip
 
         if (!_cursorChildren)
         {
-			COMPILE::AS3
-			{
             _cursorChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "toolTipIndex"),
                 new QName(mx_internal, "cursorIndex"));
-			}
-			COMPILE::JS
-			{
-				_cursorChildren = new SystemChildrenList(this,
-					"toolTipIndex",
-					"cursorIndex");				
-			}
         }
 
         return _cursorChildren;
@@ -1409,18 +1402,9 @@ public class SystemManager extends MovieClip
 
         if (!_popUpChildren)
         {
-			COMPILE::AS3
-			{
             _popUpChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "noTopMostIndex"),
                 new QName(mx_internal, "topMostIndex"));
-			}
-			COMPILE::JS
-			{
-				_popUpChildren = new SystemChildrenList(this,
-					"noTopMostIndex",
-					"topMostIndex");				
-			}
         }
 
         return _popUpChildren;
@@ -1513,18 +1497,9 @@ public class SystemManager extends MovieClip
 
         if (!_toolTipChildren)
         {
-			COMPILE::AS3
-			{
             _toolTipChildren = new SystemChildrenList(this,
                 new QName(mx_internal, "topMostIndex"),
                 new QName(mx_internal, "toolTipIndex"));
-			}
-			COMPILE::JS
-			{
-				_toolTipChildren = new SystemChildrenList(this,
-					"topMostIndex",
-					"toolTipIndex");
-			}
         }
 
         return _toolTipChildren;
@@ -2206,16 +2181,8 @@ public class SystemManager extends MovieClip
         // we redirect public API to parent systemmanager
         if (!_popUpChildren)
         {
-			COMPILE::AS3
-			{
 				_popUpChildren = new SystemChildrenList(
 					this, new QName(mx_internal, "noTopMostIndex"), new QName(mx_internal, "topMostIndex"));					
-			}
-			COMPILE::JS
-			{
-				_popUpChildren = new SystemChildrenList(
-					this, "noTopMostIndex", "topMostIndex");					
-			}
         }
         _popUpChildren.addChild(preloader);
 
@@ -3969,6 +3936,16 @@ public class SystemManager extends MovieClip
 		if (!_topOfDisplayList)
 			_topOfDisplayList = new TopOfDisplayList(stage);
 		return _topOfDisplayList;
+	}
+	
+	/**
+	 *  @private
+	 *  Track mouse moves in order to determine idle
+	 */
+	COMPILE::JS
+	private function js_mouseMoveHandler(event:MouseEvent):void
+	{
+		SystemManagerGlobals.lastMouseEvent = event;
 	}
 	
 

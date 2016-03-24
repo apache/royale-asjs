@@ -1,6 +1,9 @@
 package flex.system
 {
+	COMPILE::AS3
+	{
 	import flash.system.Capabilities;
+	}
 	
 	public class I18NManager
 	{
@@ -18,6 +21,10 @@ package flex.system
 					return Capabilities["languages"];
 				else
 					return [ Capabilities.language ];
+			}
+			COMPILE::JS
+			{
+				return [ navigator.language ];
 			}
 		}
 	}

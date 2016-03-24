@@ -35,7 +35,6 @@ COMPILE::JS
 }
 import org.apache.flex.events.IEventDispatcher;
 import flex.display.TopOfDisplayList;
-import flex.display.DisplayObject;
 
 /**
  *  The IFlexDisplayObject interface defines the interface for skin elements.
