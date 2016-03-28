@@ -94,6 +94,7 @@
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
+        <antcall target="MX"/>
     </target>
     
     <target name="fonts">
@@ -135,6 +136,7 @@
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
+        <ant dir="${basedir}/projects/MX" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
@@ -216,6 +218,10 @@
 
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
+    </target>
+
+    <target name="MX" description="Clean build of MX">
+        <ant dir="${basedir}/projects/MX"/>
     </target>
 
     <target name="Network" description="Clean build of Network.swc">
