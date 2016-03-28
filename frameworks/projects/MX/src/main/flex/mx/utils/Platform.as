@@ -20,7 +20,11 @@
 package mx.utils
 {
 
-import flash.system.Capabilities;
+COMPILE::AS3
+{
+	import flash.system.Capabilities;	
+}
+import org.apache.flex.utils.Platform;
 import org.apache.flex.reflection.getDefinitionByName;
 
 /**
@@ -36,8 +40,6 @@ public class Platform
 {
     include "../core/Version.as";
 
-    private static var _instance: Platform;
-	
 	protected static var _initialized:Boolean;
 	protected static var _isAndroid:Boolean;
 	protected static var _isIOS:Boolean;
@@ -265,24 +267,21 @@ public class Platform
 	protected static function getPlatforms():void {
 		if (!_initialized)
 		{
-            var cap: Class = Capabilities;
-            var version:  String = Capabilities.version;
-            var os: String = Capabilities.os;
-            var playerType: String = Capabilities.playerType;
+			var p:String = org.apache.flex.utils.Platform.platform;
 
-			_isAndroid = version.indexOf("AND") > -1;
-			_isIOS = version.indexOf('IOS') > -1;
-			_isBlackBerry = version.indexOf('QNX') > -1;
+			_isAndroid = p == org.apache.flex.utils.Platform.ANDROID;
+			_isIOS = p == org.apache.flex.utils.Platform.IOS;
+			_isBlackBerry = p == org.apache.flex.utils.Platform.BLACKBERRY;
 			_isMobile = _isAndroid || _isIOS || _isBlackBerry;
 			
-			_isMac = os.indexOf("Mac OS") != -1;
-			_isWindows = os.indexOf("Windows") != -1;
-			_isLinux = os.indexOf("Linux") != -1; // note that Android is also Linux
-			_isIPad = os.indexOf('iPad') > -1;
+			_isMac = p == org.apache.flex.utils.Platform.MAC;
+			_isWindows = p == org.apache.flex.utils.Platform.WINDOWS;
+			_isLinux = p == org.apache.flex.utils.Platform.LINUX; // note that Android is also Linux
+			_isIPad = org.apache.flex.utils.Platform.isIPad;
 			_isDesktop = !_isMobile;
 			
-			_isAir = playerType == "Desktop";
-			_isBrowser = (playerType == "PlugIn" || playerType == "ActiveX");
+			_isAir = org.apache.flex.utils.Platform.isAir;
+			_isBrowser = org.apache.flex.utils.Platform.isBrowser;
 			
 			_initialized = true;
 		}
@@ -304,6 +303,8 @@ public class Platform
      * */
     private static function computeOSVersionString(): String
     {
+		COMPILE::AS3
+		{
         var os: String = Capabilities.os;
         var osVersionMatch: Array;
         var version: String = "";
@@ -331,6 +332,12 @@ public class Platform
                 version = osVersionMatch[1];
         }
         return version;
+		}
+		COMPILE::JS
+		{
+			// TODO (aharui): Do something better someday?
+			return "0";
+		}
     }
 
 }

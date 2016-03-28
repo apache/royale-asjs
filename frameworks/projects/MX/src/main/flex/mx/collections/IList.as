@@ -21,7 +21,10 @@ package mx.collections
 {
     
 import org.apache.flex.events.IEventDispatcher;
+COMPILE::LATER
+{
 import mx.events.CollectionEvent;
+}
 
 /**
  *  Dispatched when the IList has been updated in some way.

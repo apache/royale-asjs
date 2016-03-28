@@ -26,8 +26,10 @@ COMPILE::JS
 {
 	import flex.display.DisplayObjectContainer;		
 }
-
+COMPILE::LATER
+{
 import mx.geom.TransformOffsets;
+}
 
 /**
  *  The IVisualElement interface defines the minimum properties and methods 

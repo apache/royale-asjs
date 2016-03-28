@@ -56,10 +56,7 @@ import mx.core.FlexGlobals;
 import org.apache.flex.utils.PointUtils;
 import mx.core.mx_internal;
 import mx.core.ISystemCursorClient;
-COMPILE::JS
-	{
-		import mx.core.UIComponent;		
-	}
+import mx.core.UIComponent;		
 import mx.events.Request;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.StyleManager;

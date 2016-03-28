@@ -20,9 +20,10 @@
 package mx.utils
 {
 
-import flash.utils.describeType;
-import flash.utils.getDefinitionByName;
-import flash.utils.getQualifiedClassName;
+import org.apache.flex.reflection.describeType;
+import org.apache.flex.reflection.TypeDefinition;
+import org.apache.flex.reflection.getDefinitionByName;
+import org.apache.flex.reflection.getQualifiedClassName;
 import mx.binding.BindabilityInfo;
 
 [ExcludeClass]
@@ -122,7 +123,7 @@ public class DescribeTypeCache
                     // definition, it's just a string value.
                 }
             }
-            var typeDescription:XML = flash.utils.describeType(o);
+            var typeDescription:TypeDefinition = org.apache.flex.reflection.describeType(o);
             var record:DescribeTypeCacheRecord = new DescribeTypeCacheRecord();
             record.typeDescription = typeDescription;
             record.typeName = className;

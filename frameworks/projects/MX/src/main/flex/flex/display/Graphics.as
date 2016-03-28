@@ -43,6 +43,11 @@ package flex.display
 			host.drawRect(x, y, width, height);	
 		}
 		
+		public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, rx:Number, ry:Number):void
+		{
+			host.drawRoundRect(x, y, width, height, rx, ry);	
+		}
+		
 		public function clear():void
 		{
 			host.removeAllElements();

@@ -102,6 +102,48 @@ package org.apache.flex.core.graphics
             }
 		}
 
+		/**
+		 *  Draw the rectangle.
+		 *  @param x The x position of the top-left corner of the rectangle.
+		 *  @param y The y position of the top-left corner.
+		 *  @param width The width of the rectangle.
+		 *  @param height The height of the rectangle.
+		 *  @param rx The width of the ellipse that draws the rounded corners.
+		 *  @param ry The height of the ellipse that draws the rounded corners.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0.3
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, rx:Number, ry:Number):void
+		{
+			COMPILE::AS3
+			{
+				applyStroke();
+				beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
+				graphics.drawRoundRect(x, y, width, height, rx, ry);
+				endFill();
+			}
+			COMPILE::JS
+			{
+				var style:String = getStyleStr();
+				var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+				rect.flexjs_wrapper = this;
+				rect.style.left = x;
+				rect.style.top = y;
+				rect.setAttribute('style', style);
+				rect.setAttribute('x', String(x) + 'px');
+				rect.setAttribute('y', String(y) + 'px');
+				rect.setAttribute('width', String(width) + 'px');
+				rect.setAttribute('height', String(height) + 'px');
+				rect.setAttribute('rx', String(rx) + 'px');
+				rect.setAttribute('ry', String(ry) + 'px');
+				element.appendChild(rect);
+			}
+		}
+		
         COMPILE::AS3
 		public function createRect(x:Number, y:Number, width:Number, height:Number):void
 		{

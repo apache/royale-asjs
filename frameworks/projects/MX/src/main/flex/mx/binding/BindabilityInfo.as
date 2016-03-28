@@ -174,7 +174,8 @@ public class BindabilityInfo
 
 			// Get child-specific events.
 			var childDesc:Array = [];
-			for each (var p:MethodDefinition in typeDescription.accessors)
+			var p:MethodDefinition;
+			for each (p in typeDescription.accessors)
 			{
 				if (p.name == childName)
 				{
@@ -184,7 +185,7 @@ public class BindabilityInfo
 			}
 			if (childName == null)
 			{
-				for each (var p:MethodDefinition in typeDescription.methods)
+				for each (p in typeDescription.methods)
 				{
 					if (p.name == childName)
 					{

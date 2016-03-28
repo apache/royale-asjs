@@ -31,7 +31,6 @@ COMPILE::AS3
 COMPILE::JS
 {
 	import flex.display.DisplayObject;
-	import flex.text.StyleSheet;
 	import flex.text.TextFormat;
 	import flex.text.TextLineMetrics;		
 	import org.apache.flex.geom.Rectangle;

@@ -10,8 +10,8 @@ package flex.events
 			this.bytesTotal = bytesTotal;
 		}
 		
-		public var bytesLoaded;
-		public var bytesTotal;
+		public var bytesLoaded:int;
+		public var bytesTotal:int;
 		public static const PROGRESS:String = "progress";
 	}
 }

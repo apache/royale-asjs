@@ -24,23 +24,27 @@ COMPILE::AS3
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		
-	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
-	import flash.text.TextLineMetrics;
+	import flex.display.TopOfDisplayList;
+	import org.apache.flex.core.IFlexJSElement;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel
 }
 COMPILE::JS
 {
 	import flex.display.DisplayObject;
-	import flex.display.DisplayObjectContainer;		
-	import flex.display.Sprite;
+	import flex.display.DisplayObjectContainer;
 	import flex.text.TextFieldType;
 	import flex.text.TextFormat;
 	import flex.text.TextFormatAlign;
-	import flex.text.TextLineMetrics;
 }
+import flex.text.TextLineMetrics;
+import flex.display.Sprite;
 
 import mx.automation.IAutomationObject;
 import mx.core.LayoutDirection;
@@ -60,6 +64,7 @@ import mx.utils.StringUtil;
 
 import flex.events.Event;
 import flex.text.TextField;
+import org.apache.flex.events.IEventDispatcher;
 
 use namespace mx_internal;
 
@@ -333,9 +338,15 @@ public class UITextField extends TextField
         
         // Register as a weak listener for "change" events from ResourceManager.
         // If UITextFields registered as a strong listener,
-        // they wouldn't get garbage collected.
-        resourceManager.addEventListener(
-            Event.CHANGE, resourceManager_changeHandler, false, 0, true);
+        // they wouldn't get garbage collected
+		COMPILE::LATER
+		{
+			resourceManager.addEventListener(
+				Event.CHANGE, resourceManager_changeHandler, false, 0, true);
+		}
+		resourceManager.addEventListener(
+			Event.CHANGE, resourceManager_changeHandler);
+
     }
 
     //--------------------------------------------------------------------------
@@ -761,7 +772,14 @@ public class UITextField extends TextField
         if (isEmpty)
             super.text = "Wj";
         
-        tlm = getLineMetrics(0);
+		COMPILE::AS3
+		{
+			tlm = TextLineMetrics.convert(getLineMetrics(0));				
+		}
+		COMPILE::JS
+		{
+			tlm = getLineMetrics(0);				
+		}
 
         if (isEmpty)
             super.text = "";
@@ -2732,6 +2750,120 @@ public class UITextField extends TextField
     {
         return null;
     }
+
+	COMPILE::AS3
+	private var _beads:Vector.<IBead>;
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#addBead()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */ 
+	COMPILE::AS3
+	public function addBead(bead:IBead):void
+	{
+		if (!_beads)
+			_beads = new Vector.<IBead>;
+		bead.strand = this;		
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#getBeadByType()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function getBeadByType(classOrInterface:Class):IBead
+	{
+		for each (var bead:IBead in _beads)
+		{
+			if (bead is classOrInterface)
+				return bead;
+		}
+		return null;
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#removeBead()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function removeBead(value:IBead):IBead	
+	{
+		var n:int = _beads.length;
+		for (var i:int = 0; i < n; i++)
+		{
+			var bead:IBead = _beads[i];
+			if (bead == value)
+			{
+				_beads.splice(i, 1);
+				return bead;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IUIBase#element
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function get element():IFlexJSElement
+	{
+		return null;
+	}
+	
+	/**
+	 *  The method called when added to a parent.  This is a good
+	 *  time to set up beads.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 *  @flexjsignorecoercion Class
+	 *  @flexjsignorecoercion Number
+	 */
+	COMPILE::AS3
+	public function addedToParent():void
+	{
+		// do nothing for now
+	}
+	
+	COMPILE::AS3
+	public function get topMostEventDispatcher():IEventDispatcher
+	{
+		return root as IEventDispatcher;
+	}
+
+	COMPILE::AS3
+	private var _topOfDisplayList:TopOfDisplayList;
+	
+	/**
+	 *  @flexjsignorecoercion flex.display.TopOfDisplayList
+	 */
+	COMPILE::AS3
+	public function get topOfDisplayList():TopOfDisplayList
+	{
+		if (!_topOfDisplayList)
+			_topOfDisplayList = new TopOfDisplayList(stage);
+		return _topOfDisplayList;
+	}
+	
 
 }
 

@@ -54,10 +54,10 @@ COMPILE::JS
 	import flex.display.MovieClip;
 	import flex.display.Sprite;
 	import flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
 	import flex.events.EventPhase;
 	import flex.ui.Keyboard;
 	
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 }
 import org.apache.flex.utils.Timer;
@@ -70,26 +70,48 @@ import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 import mx.core.IRawChildrenContainer;
 import mx.core.IUIComponent;
+COMPILE::LATER
+{
 import mx.core.RSLData;
 import mx.core.RSLItem;
+}
 import mx.core.Singleton;
 import mx.core.mx_internal;
 import mx.events.DynamicEvent;
 import mx.events.FlexEvent;
+COMPILE::LATER
+{	
 import mx.events.RSLEvent;
 import mx.events.Request;
 import mx.events.SandboxMouseEvent;
+}
 import mx.preloaders.Preloader;
 import mx.utils.DensityUtil;
+COMPILE::LATER
+{
 import mx.utils.LoaderUtil;
-
+}
 import flex.display.ModuleInfo;
+COMPILE::AS3
+{
 import flex.display.TopOfDisplayList;
+}
+COMPILE::LATER
+{
 
 import org.apache.flex.core.UIBase;
+}
 import org.apache.flex.events.EventDispatcher;
 import org.apache.flex.events.IEventDispatcher;
 import org.apache.flex.geom.Rectangle;
+import org.apache.flex.core.IFlexJSElement;
+
+COMPILE::AS3
+{
+import org.apache.flex.core.IBeadView;
+import org.apache.flex.core.IBead;
+import org.apache.flex.core.IBeadModel
+};
 
 // NOTE: Minimize the non-Flash classes you import here.
 // Any dependencies of SystemManager have to load in frame 1,
@@ -3948,7 +3970,104 @@ public class SystemManager extends MovieClip
 		SystemManagerGlobals.lastMouseEvent = event;
 	}
 	
+	COMPILE::AS3
+	private var _beads:Vector.<IBead>;
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#addBead()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */ 
+	COMPILE::AS3
+	public function addBead(bead:IBead):void
+	{
+		if (!_beads)
+			_beads = new Vector.<IBead>;
+		bead.strand = this;		
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#getBeadByType()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function getBeadByType(classOrInterface:Class):IBead
+	{
+		for each (var bead:IBead in _beads)
+		{
+			if (bead is classOrInterface)
+				return bead;
+		}
+		return null;
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IStrand#removeBead()
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function removeBead(value:IBead):IBead	
+	{
+		var n:int = _beads.length;
+		for (var i:int = 0; i < n; i++)
+		{
+			var bead:IBead = _beads[i];
+			if (bead == value)
+			{
+				_beads.splice(i, 1);
+				return bead;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 *  @copy org.apache.flex.core.IUIBase#element
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::AS3
+	public function get element():IFlexJSElement
+	{
+		return null;
+	}
+	
+	/**
+	 *  The method called when added to a parent.  This is a good
+	 *  time to set up beads.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 *  @flexjsignorecoercion Class
+	 *  @flexjsignorecoercion Number
+	 */
+	COMPILE::AS3
+	public function addedToParent():void
+	{
+		// do nothing for now
+	}
 
+	COMPILE::AS3
+	public function get topMostEventDispatcher():IEventDispatcher
+	{
+		return this;
+	}
 }
 
 }

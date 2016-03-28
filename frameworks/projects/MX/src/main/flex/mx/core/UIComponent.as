@@ -1773,8 +1773,13 @@ public class UIComponent extends Sprite
         // Register as a weak listener for "change" events from ResourceManager.
         // If UIComponents registered as a strong listener,
         // they wouldn't get garbage collected.
-        resourceManager.addEventListener(
-            org.apache.flex.events.Event.CHANGE, resourceManager_changeHandler, false, 0, true);
+		COMPILE::LATER
+		{
+			resourceManager.addEventListener(
+				org.apache.flex.events.Event.CHANGE, resourceManager_changeHandler, false, 0, true);				
+		}
+		resourceManager.addEventListener(
+			org.apache.flex.events.Event.CHANGE, resourceManager_changeHandler);
 
         _width = super.width;
         _height = super.height;
@@ -9629,7 +9634,14 @@ public class UIComponent extends Sprite
      */
     public function measureText(text:String):TextLineMetrics
     {
-        return determineTextFormatFromStyles().measureText(text);
+		COMPILE::AS3
+		{
+			return TextLineMetrics.convert(determineTextFormatFromStyles().measureText(text));				
+		}
+		COMPILE::JS
+		{
+			return determineTextFormatFromStyles().measureText(text);				
+		}
     }
 
     /**
@@ -9650,7 +9662,14 @@ public class UIComponent extends Sprite
      */
     public function measureHTMLText(htmlText:String):TextLineMetrics
     {
-        return determineTextFormatFromStyles().measureHTMLText(htmlText);
+		COMPILE::AS3
+		{
+			return TextLineMetrics.convert(determineTextFormatFromStyles().measureHTMLText(htmlText));				
+		}
+		COMPILE::JS
+		{
+			return determineTextFormatFromStyles().measureHTMLText(htmlText);				
+		}
     }
 
     //--------------------------------------------------------------------------
@@ -10246,7 +10265,7 @@ public class UIComponent extends Sprite
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function drawRoundRect(x:Number, y:Number, w:Number, h:Number,
+    public function drawRoundRectWithGradientAndHole(x:Number, y:Number, w:Number, h:Number,
                                   r:Object = null, c:Object = null,
                                   alpha:Object = null, rot:Object = null,
                                   gradient:String = null, ratios:Array = null,
@@ -12594,9 +12613,15 @@ public class UIComponent extends Sprite
         _endingEffectInstances.push(effectInst);
         invalidateProperties();
 
-        // weak reference
-        UIComponentGlobals.layoutManager.addEventListener(
-            FlexEvent.UPDATE_COMPLETE, updateCompleteHandler, false, 0, true);
+		COMPILE::LATER
+		{
+			// weak reference
+			UIComponentGlobals.layoutManager.addEventListener(
+				FlexEvent.UPDATE_COMPLETE, updateCompleteHandler, false, 0, true);				
+		}
+		// weak reference
+		UIComponentGlobals.layoutManager.addEventListener(
+			FlexEvent.UPDATE_COMPLETE, updateCompleteHandler);
     }
 
     /**

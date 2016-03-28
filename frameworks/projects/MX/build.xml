@@ -37,7 +37,9 @@
     </target>
     
     <target name="test" unless="is.jenkins">
-        <ant dir="src/test/flex"/>
+        <!-- no tests yet
+         <ant dir="src/test/flex"/>
+         -->
     </target>
     
     <target name="test-js" unless="is.jenkins">
@@ -94,6 +96,7 @@
             <arg value="-define=COMPILE::AS3,true" />
             <arg value="-define=COMPILE::JS,false" />
             <arg value="-define=COMPILE::LATER,false" />
+            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </compc>
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name.no.version}" />
     </target>
@@ -120,6 +123,7 @@
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
             <arg value="-define=COMPILE::LATER,false" />
+            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </java>
     </target>
 
@@ -158,6 +162,7 @@
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
             <arg value="-define=COMPILE::LATER,false" />
+            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </compc>
         <copy file="${basedir}/target/externs/${target.name}" tofile="${FLEXJS_HOME}/frameworks/externs/${target.name.no.version}" />
     </target>

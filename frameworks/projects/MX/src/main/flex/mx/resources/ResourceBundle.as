@@ -20,11 +20,16 @@
 package mx.resources
 {
 
-import flash.system.ApplicationDomain;
+COMPILE::AS3
+{
+	import flash.system.ApplicationDomain;		
+}
 
 import mx.core.mx_internal;
-import mx.utils.StringUtil;
-
+COMPILE::LATER
+{
+	import mx.utils.StringUtil;
+}
 use namespace mx_internal;
 
 /**
@@ -69,6 +74,7 @@ public class ResourceBundle implements IResourceBundle
      *  Set by bootstrap loaders
      *  to allow for alternate search paths for resources
      */
+	COMPILE::AS3
     mx_internal static var backupApplicationDomain:ApplicationDomain;
 
     //--------------------------------------------------------------------------
@@ -80,6 +86,7 @@ public class ResourceBundle implements IResourceBundle
     /**
      *  @private
      */
+	COMPILE::AS3
     private static function getClassByName(name:String,
                                            domain:ApplicationDomain):Class
     {

@@ -24,14 +24,14 @@ COMPILE::AS3
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
+//	import flash.display.Sprite;
 }
 COMPILE::JS
 {
 	import flex.display.DisplayObject;
 	import flex.display.DisplayObjectContainer;
-	import flex.display.Sprite;
 }
+import flex.display.Sprite;
 import mx.managers.ISystemManager;
 
 /**

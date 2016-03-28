@@ -38,17 +38,16 @@ COMPILE::LATER
 	import flash.system.Capabilities;
 	import flash.system.SecurityDomain;
 	import flash.utils.Dictionary;		
+	import mx.core.IFlexModuleFactory;
+	import mx.core.Singleton;
+	import mx.events.ModuleEvent;
+	import mx.events.ResourceEvent;
+	import mx.modules.IModuleInfo;
+	import mx.modules.ModuleManager;
 }
-import org.apache.flex.utils.Timer;
-import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
-import mx.core.Singleton;
 import mx.events.FlexEvent;
-import mx.events.ModuleEvent;
-import mx.events.ResourceEvent;
 import mx.managers.SystemManagerGlobals;
-import mx.modules.IModuleInfo;
-import mx.modules.ModuleManager;
 import mx.utils.StringUtil;
 import org.apache.flex.core.UIBase;
 
@@ -473,7 +472,14 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
 			compiledLocales[0] :
 			"en_US";
 
-		var applicationDomain:DefinitionManager = new DefinitionManager(info["currentDomain"]);
+		COMPILE::AS3
+		{
+			var applicationDomain:DefinitionManager = new DefinitionManager(info["currentDomain"]);				
+		}
+		COMPILE::JS
+		{
+			var applicationDomain:DefinitionManager = new DefinitionManager();				
+		}
 
 		var compiledResourceBundleNames:Array /* of String */ =
 			info["compiledResourceBundleNames"];
@@ -1147,14 +1153,19 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
 	        var applicationDomain:DefinitionManager =
 	            new DefinitionManager(ApplicationDomain.currentDomain);
 		}
+		COMPILE::JS
+		{
+			var applicationDomain:DefinitionManager =
+				new DefinitionManager();			
+		}
 		
         if (!applicationDomain.hasDefinition("_CompiledResourceBundleInfo"))
             return;
         var c:Class = Class(applicationDomain.getDefinition(
                                 "_CompiledResourceBundleInfo"));
 
-        var locales:Array /* of String */ = c.compiledLocales;
-        var bundleNames:Array /* of String */ = c.compiledResourceBundleNames;
+        var locales:Array /* of String */ = c["compiledLocales"];
+        var bundleNames:Array /* of String */ = c["compiledResourceBundleNames"];
 
         installCompiledResourceBundles(
             applicationDomain, locales, bundleNames);

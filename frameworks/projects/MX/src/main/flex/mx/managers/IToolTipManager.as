@@ -31,7 +31,7 @@ COMPILE::JS
 
 import mx.core.IToolTip;
 import mx.core.IUIComponent;
-import mx.effects.Effect;
+import mx.effects.IEffect;
 
 [ExcludeClass]
 
@@ -111,12 +111,12 @@ public interface IToolTipManager
 	/**
 	 *  @private
 	 */
-	function get hideEffect():Effect;
+	function get hideEffect():IEffect;
 
 	/**
 	 *  @private
 	 */
-	function set hideEffect(value:Effect):void;
+	function set hideEffect(value:IEffect):void;
 	
     //----------------------------------
     //  scrubDelay
@@ -153,12 +153,12 @@ public interface IToolTipManager
 	/**
 	 *  @private
 	 */
-	function get showEffect():Effect;
+	function get showEffect():IEffect;
 	
 	/**
 	 *  @private
 	 */
-	function set showEffect(value:Effect):void;
+	function set showEffect(value:IEffect):void;
 
     //----------------------------------
     //  showEffect

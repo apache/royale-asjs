@@ -19,12 +19,20 @@
 
 package mx.core
 {
-import flash.display.DisplayObject;
+COMPILE::LATER
+{
 import flash.display.Stage;
-import flash.system.Capabilities;
+}
+
+COMPILE::AS3
+{
+	import flash.system.Capabilities;
+	import flash.display.DisplayObject;
+	import mx.managers.SystemManager;
+}
+import org.apache.flex.utils.Display;
 
 import mx.core.mx_internal;
-import mx.managers.SystemManager;
 import mx.utils.Platform;
 
 use namespace mx_internal;
@@ -121,9 +129,11 @@ public class RuntimeDPIProvider
 	{
 		if (Platform.isIOS) // as isIPad returns false in the simulator
 		{
-			var scX:Number = Capabilities.screenResolutionX;
-			var scY:Number = Capabilities.screenResolutionY;
+			var scX:Number = Display.width;
+			var scY:Number = Display.height;
 					
+			COMPILE::AS3
+			{
 			// Use the stage width/height only when debugging, because Capabilities reports the computer resolution
 			if (Capabilities.isDebugger)
 			{
@@ -133,6 +143,7 @@ public class RuntimeDPIProvider
 					scX = root.stage.fullScreenWidth;
 					scY = root.stage.fullScreenHeight;
 				}
+			}
 			}
 					
 			/*  as of Dec 2013,  iPad (resp. iPad retina) are the only iOS devices to have 1024 (resp. 2048) screen width or height
@@ -144,7 +155,7 @@ public class RuntimeDPIProvider
 				return DPIClassification.DPI_320;
 		}
 				
-		return classifyDPI(Capabilities.screenDPI);
+		return classifyDPI(Display.dpi);
 	}
     
     /**

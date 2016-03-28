@@ -44,17 +44,20 @@ import mx.core.FlexVersion;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
 import mx.events.FlexChangeEvent;
-import mx.events.ModuleEvent;
+COMPILE::LATER
+{
+	import mx.events.ModuleEvent;
+	import mx.events.StyleEvent;
+	import mx.modules.IModuleInfo;
+	import mx.modules.ModuleManager;
+	import mx.styles.IStyleModule;		
+}
 import mx.events.Request;
-import mx.events.StyleEvent;
 import mx.managers.ISystemManager;
 import mx.managers.SystemManagerGlobals;
-import mx.modules.IModuleInfo;
-import mx.modules.ModuleManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import mx.styles.IStyleManager2;
-import mx.styles.IStyleModule;
 import mx.utils.MediaQueryParser;
 
 use namespace mx_internal;
@@ -298,7 +301,11 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 					getImplementation("mx.styles::IStyleManager2"));
 				if (_parent is IEventDispatcher)
 				{
-					IEventDispatcher(_parent).addEventListener(FlexChangeEvent.STYLE_MANAGER_CHANGE, styleManagerChangeHandler, false, 0, true);
+					COMPILE::LATER
+					{
+						IEventDispatcher(_parent).addEventListener(FlexChangeEvent.STYLE_MANAGER_CHANGE, styleManagerChangeHandler, false, 0, true);							
+					}
+					IEventDispatcher(_parent).addEventListener(FlexChangeEvent.STYLE_MANAGER_CHANGE, styleManagerChangeHandler);
 				}
 			}
 			
@@ -1873,10 +1880,13 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 }
 
 import org.apache.flex.events.EventDispatcher;
+COMPILE::LATER
+{
 import mx.events.ModuleEvent;
 import mx.events.StyleEvent;
 import mx.modules.IModuleInfo;
 import mx.styles.IStyleModule;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //

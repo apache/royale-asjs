@@ -17,59 +17,55 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package flex.display
+package org.apache.flex.utils
 {
 	COMPILE::AS3
 	{
-		import flash.display.LoaderInfo;		
+		import flash.system.Capabilities;
 	}
-
-	public class ModuleInfo
+	
+	public class Display
 	{
-		
-		COMPILE::AS3
-		private var loaderInfo:LoaderInfo;
-		
-		COMPILE::AS3
-		public function ModuleInfo(loaderInfo:LoaderInfo)
+		public function Display()
 		{
-			this.loaderInfo = loaderInfo;
 		}
 		
-		COMPILE::AS3
-		public function get height():Number
+		public static function get dpi():int
 		{
-			return loaderInfo.height;			
+			COMPILE::AS3
+			{
+				return Capabilities.screenDPI;	
+			}
+			COMPILE::JS
+			{
+				// TODO (aharui)
+				return 96;
+			}
 		}
-		
-		COMPILE::AS3
-		public function get width():Number
+
+		public static function get width():int
 		{
-			return loaderInfo.width;
+			COMPILE::AS3
+			{
+				return Capabilities.screenResolutionX;	
+			}
+			COMPILE::JS
+			{
+				return screen.width;
+			}
 		}
-		
-		COMPILE::AS3
-		public function get url():String
+
+		public static function get height():int
 		{
-			return loaderInfo.url;
-		}
-		
-		COMPILE::JS
-		public function get height():Number
-		{
-			return document.height;			
-		}
-		
-		COMPILE::JS
-		public function get width():Number
-		{
-			return document.width;
-		}
-		
-		COMPILE::JS
-		public function get url():String
-		{
-			return document.URL;
+			COMPILE::AS3
+			{
+				return Capabilities.screenResolutionY;	
+			}
+			COMPILE::JS
+			{
+				return screen.height;
+			}
 		}
 	}
+	
 }

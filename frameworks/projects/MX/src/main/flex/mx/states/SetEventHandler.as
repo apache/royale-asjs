@@ -130,6 +130,7 @@ public class SetEventHandler extends OverrideBase
      *  @private
      *  Dictionary of installed event handlers.
      */
+	COMPILE::LATER
     private static var installedHandlers:Dictionary;
     
     //--------------------------------------------------------------------------
@@ -273,6 +274,8 @@ public class SetEventHandler extends OverrideBase
             appliedTarget = obj;
             var uiObj:UIComponent = obj as UIComponent;
     
+			COMPILE::LATER
+			{
             if (!installedHandlers)
                 installedHandlers = new Dictionary(true);
                 
@@ -297,6 +300,7 @@ public class SetEventHandler extends OverrideBase
                     obj.removeEventListener(name, oldHandlerFunction);
                 }
             }
+			}
     
             // Set new handler as weak reference
             if (handlerFunction != null)
@@ -307,6 +311,8 @@ public class SetEventHandler extends OverrideBase
                 // be removed if needed by a state based on this state. We 
                 // only do so for legacy MXML documents that support hierarchical
                 // states. 
+				COMPILE::LATER
+				{
                 if (!(parent.document is IStateClient2))
                 {   
                     if (installedHandlers[obj] == undefined)
@@ -314,6 +320,7 @@ public class SetEventHandler extends OverrideBase
                     
                     installedHandlers[obj][name] = handlerFunction;
                 }
+				}
                 
                 // Disable bindings for the base event handler if appropriate. If the binding
                 // fires while our override is applied, the correct value will automatically
@@ -355,6 +362,8 @@ public class SetEventHandler extends OverrideBase
 	        if (oldHandlerFunction != null)
 	            obj.addEventListener(name, oldHandlerFunction, false, 0, true);
 	        
+			COMPILE::LATER
+			{
 	        if (installedHandlers[obj])
 	        {
 	            var deleteObj:Boolean = true;
@@ -374,7 +383,7 @@ public class SetEventHandler extends OverrideBase
 	            if (deleteObj)
 	                delete installedHandlers[obj];
 	        }
-            
+			}
             // Re-enable bindings for the base event handler if appropriate. If the binding
             // fired while our override was applied, the current value will automatically
             // be applied once enabled.

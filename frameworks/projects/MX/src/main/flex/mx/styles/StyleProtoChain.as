@@ -37,17 +37,20 @@ import org.apache.flex.reflection.getQualifiedSuperclassName;
 import mx.core.FlexGlobals;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModule;
-import mx.core.IFlexModuleFactory;
+COMPILE::LATER
+{
+	import mx.core.IFlexModuleFactory;
+	import mx.effects.EffectManager;
+	import mx.managers.SystemManager;
+	import mx.modules.IModule;
+	import mx.modules.ModuleManager;		
+}
 import mx.core.IFontContextComponent;
 import mx.core.IInvalidating;
 import mx.core.IUITextField;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
-import mx.effects.EffectManager;
-import mx.managers.SystemManager;
-import mx.modules.IModule;
-import mx.modules.ModuleManager;
 import mx.utils.NameUtil;
 import mx.utils.OrderedObject;
 import mx.utils.object_proxy;

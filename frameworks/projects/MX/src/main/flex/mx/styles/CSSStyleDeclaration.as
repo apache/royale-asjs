@@ -1124,8 +1124,6 @@ public class CSSStyleDeclaration extends EventDispatcher
 }
 
 }
-import flash.utils.Dictionary;
-
 COMPILE::AS3
 {
     import flash.utils.Dictionary;

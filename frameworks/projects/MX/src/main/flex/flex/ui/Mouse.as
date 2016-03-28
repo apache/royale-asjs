@@ -28,11 +28,14 @@ package flex.ui
 		COMPILE::JS
 		private static var styleElement:HTMLStyleElement;
 		
+		/**
+		 * @flexjsignorecoercion HTMLStyleElement
+		 */
 		COMPILE::JS
 		public static function hide():void
 		{
 			if (!styleElement)
-				styleElement = document.createElement("STYLE");
+				styleElement = document.createElement("STYLE") as HTMLStyleElement;
 			var css:CSSStyleSheet = styleElement.sheet as CSSStyleSheet;
 			css.insertRule("* { cursor: none; }", 0);
 		}

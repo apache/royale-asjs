@@ -50,14 +50,17 @@ COMPILE::JS
 
 import flex.system.DefinitionManager;
 
+COMPILE::LATER
+{
 import mx.core.RSLItem;
 import mx.core.RSLListLoader;
 import mx.core.ResourceModuleRSLItem;
-import mx.core.mx_internal;
-import mx.events.FlexEvent;
 import mx.events.RSLEvent;
 import mx.managers.SystemManagerGlobals;
 import mx.resources.IResourceManager;
+}
+import mx.core.mx_internal;
+import mx.events.FlexEvent;
 
 use namespace mx_internal;
 

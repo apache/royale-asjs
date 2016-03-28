@@ -13,6 +13,10 @@ public class TextLineMetrics extends flash.text.TextLineMetrics
 		super(x, width, height, ascent, descent, leading);
 	}
 	
+	public static function convert(tlm:flash.text.TextLineMetrics):flex.text.TextLineMetrics
+	{
+		return new flex.text.TextLineMetrics(tlm.x, tlm.width, tlm.height, tlm.ascent, tlm.descent, tlm.leading);
+	}
 }
 
 COMPILE::JS

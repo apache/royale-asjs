@@ -28,6 +28,11 @@ COMPILE::AS3
 }
 import mx.collections.IList;
 
+import org.apache.flex.reflection.DefinitionWithMetaData;
+import org.apache.flex.reflection.MetaDataArgDefinition;
+import org.apache.flex.reflection.MetaDataDefinition;
+import org.apache.flex.reflection.MethodDefinition;
+import org.apache.flex.reflection.TypeDefinition;
 import org.apache.flex.reflection.getQualifiedClassName;
 
 /**
@@ -1010,31 +1015,47 @@ public class ObjectUtil
 
         var className:String;
         var classAlias:String;
+		COMPILE::LATER
+		{
         var properties:XMLList;
         var prop:XML;
+		}
+		var propertyList:Array;
         var isDynamic:Boolean = false;
         var metadataInfo:Object;
 
         if (typeof(obj) == "xml")
         {
+			COMPILE::LATER
+			{
             className = "XML";
             properties = obj.text();
             if (properties.length())
                 propertyNames.push("*");
             properties = obj.attributes();
+			}
         }
         else
         {
-            var classInfo:XML = DescribeTypeCache.describeType(obj).typeDescription;
-            className = classInfo.@name.toString();
+            var classInfo:TypeDefinition = DescribeTypeCache.describeType(obj).typeDescription;
+            className = classInfo.name;
+			COMPILE::LATER
+			{
             classAlias = classInfo.@alias.toString();
-            isDynamic = classInfo.@isDynamic.toString() == "true";
+			}
+            isDynamic = classInfo.dynamic;
 
+			propertyList.concat(classInfo.accessors);
+			propertyList.concat(classInfo.variables);
+			
+			COMPILE::LATER
+			{
             if (options.includeReadOnly)
                 properties = classInfo..accessor.(@access != "writeonly") + classInfo..variable;
             else
                 properties = classInfo..accessor.(@access == "readwrite") + classInfo..variable;
-
+			}
+			
             var numericIndex:Boolean = false;
         }
 
@@ -1052,7 +1073,7 @@ public class ObjectUtil
         result["alias"] = classAlias;
         result["properties"] = propertyNames;
         result["dynamic"] = isDynamic;
-        result["metadata"] = metadataInfo = recordMetadata(properties);
+        result["metadata"] = metadataInfo = recordMetadata(propertyList);
         
         var excludeObject:Object = {};
         if (excludes)
@@ -1065,8 +1086,15 @@ public class ObjectUtil
         }
 
         var isArray:Boolean = (obj is Array);
+		COMPILE::AS3
+		{
         var isDict:Boolean  = (obj is Dictionary);
-        
+		}
+		COMPILE::JS
+		{
+			var isDict:Boolean = false;
+		}
+
         if (isDict)
         {
             // dictionaries can have multiple keys of the same type,
@@ -1077,7 +1105,7 @@ public class ObjectUtil
                 propertyNames.push(key);
             }
         }
-        else if (isDynamic)
+		else if (isDynamic)
         {
             for (var p:String in obj)
             {
@@ -1100,12 +1128,23 @@ public class ObjectUtil
             numericIndex = isArray && !isNaN(Number(p));
         }
 
-        if (isArray || isDict || className == "Object")
+		COMPILE::AS3
+		{
+			var allDone:Boolean = isArray || isDict || className == "Object";
+		}
+		COMPILE::JS
+		{
+			var allDone:Boolean = isArray || className == "Object";
+		}
+		
+        if (allDone)
         {
             // Do nothing since we've already got the dynamic members
         }
         else if (className == "XML")
         {
+			COMPILE::LATER
+			{
             n = properties.length();
             for (i = 0; i < n; i++)
             {
@@ -1113,80 +1152,81 @@ public class ObjectUtil
                 if (excludeObject[p] != 1)
                     propertyNames.push(new QName("", "@" + p));
             }
+			}
         }
         else
         {
-            n = properties.length();
+            n = propertyList.length;
             var uris:Array = options.uris;
             var uri:String;
-			COMPILE::AS3
-			{
-				var qName:QName;					
-			}
+			var qName:QName;					
             for (i = 0; i < n; i++)
             {
-                prop = properties[i];
-                p = prop.@name.toString();
+				var member:DefinitionWithMetaData = propertyList[i] as DefinitionWithMetaData;
+                p = member.name;
+				COMPILE::LATER
+				{
                 uri = prop.@uri.toString();
-                
+				}
+				uri = "";
+				
                 if (excludeObject[p] == 1)
                     continue;
                     
                 if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
                     continue;
                 
-				COMPILE::AS3
+				if (uris != null)
 				{
-					if (uris != null)
+					COMPILE::LATER
 					{
-						if (uris.length == 1 && uris[0] == "*")
-						{   
-							qName = new QName(uri, p);
-							try
-							{
-								obj[qName]; // access the property to ensure it is supported
-								propertyNames.push();
-							}
-							catch(e:Error)
-							{
-								// don't keep property name 
-							}
-						}
-						else
-						{
-							for (var j:int = 0; j < uris.length; j++)
-							{
-								uri = uris[j];
-								if (prop.@uri.toString() == uri)
-								{
-									qName = new QName(uri, p);
-									try
-									{
-										obj[qName];
-										propertyNames.push(qName);
-									}
-									catch(e:Error)
-									{
-										// don't keep property name 
-									}
-								}
-							}
-						}
-					}
-					else if (uri.length == 0)
-					{
+					if (uris.length == 1 && uris[0] == "*")
+					{   
 						qName = new QName(uri, p);
 						try
 						{
-							obj[qName];
-							propertyNames.push(qName);
+							obj[qName]; // access the property to ensure it is supported
+							propertyNames.push();
 						}
 						catch(e:Error)
 						{
 							// don't keep property name 
 						}
 					}
-
+					else
+					{
+						for (var j:int = 0; j < uris.length; j++)
+						{
+							uri = uris[j];
+							if (prop.@uri.toString() == uri)
+							{
+								qName = new QName(uri, p);
+								try
+								{
+									obj[qName];
+									propertyNames.push(qName);
+								}
+								catch(e:Error)
+								{
+									// don't keep property name 
+								}
+							}
+						}
+					}
+					}
+				}
+				else if (uri.length == 0)
+				{
+					qName = new QName(uri, p);
+					try
+					{
+						obj[qName];
+						propertyNames.push(qName);
+					}
+					catch(e:Error)
+					{
+						// don't keep property name 
+					}
 				}
             }
         }
@@ -1369,18 +1409,18 @@ public class ObjectUtil
     /**
      *  @private
      */
-    private static function recordMetadata(properties:XMLList):Object
+    private static function recordMetadata(properties:Array):Object
     {
         var result:Object = null;
 
         try
         {
-            for each (var prop:XML in properties)
+            for each (var prop:DefinitionWithMetaData in properties)
             {
-                var propName:String = prop.attribute("name").toString();
-                var metadataList:XMLList = prop.metadata;
+                var propName:String = prop.name;
+                var metadataList:Array = prop.metadata;
 
-                if (metadataList.length() > 0)
+                if (metadataList.length > 0)
                 {
                     if (result == null)
                         result = {};
@@ -1388,19 +1428,19 @@ public class ObjectUtil
                     var metadata:Object = {};
                     result[propName] = metadata;
 
-                    for each (var md:XML in metadataList)
+                    for each (var md:MetaDataDefinition in metadataList)
                     {
-                        var mdName:String = md.attribute("name").toString();
+                        var mdName:String = md.name;
                         
-                        var argsList:XMLList = md.arg;
+                        var argsList:Array = md.args;
                         var value:Object = {};
 
-                        for each (var arg:XML in argsList)
+                        for each (var arg:MetaDataArgDefinition in argsList)
                         {
-                            var argKey:String = arg.attribute("key").toString();
+                            var argKey:String = arg.name;
                             if (argKey != null)
                             {
-                                var argValue:String = arg.attribute("value").toString();
+                                var argValue:String = arg.value;
                                 value[argKey] = argValue;
                             }
                         }

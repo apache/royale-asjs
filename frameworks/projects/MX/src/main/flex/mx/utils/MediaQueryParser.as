@@ -22,7 +22,8 @@ package mx.utils
 import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
 import org.apache.flex.core.UIBase;
-import flash.system.Capabilities;
+import org.apache.flex.utils.Display;
+import org.apache.flex.utils.Platform;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
 import mx.managers.ISystemManager;
@@ -130,7 +131,7 @@ public class MediaQueryParser  extends EventDispatcher
         osPlatform = getPlatform();
         osVersion = getOSVersion();
         // compute device  DPI
-        deviceDPI = Capabilities.screenDPI;
+        deviceDPI = Display.dpi;
         // compute width, height and diagonal
         computeDeviceDimensions( );
 
@@ -512,7 +513,7 @@ public class MediaQueryParser  extends EventDispatcher
     
     private function getPlatform():String
     {
-        var s:String = Capabilities.version.substr(0, 3);
+        var s:String = org.apache.flex.utils.Platform.platform;
         // if there is a friendly name, then use it
         if (platformMap.hasOwnProperty(s))
             return platformMap[s] as String;
@@ -528,7 +529,7 @@ public class MediaQueryParser  extends EventDispatcher
      * returns a CSSOSVersion suitable for MediaQueryParser for the current device operating system version.
      * */
     private function getOSVersion():CSSOSVersion {
-		return  new CSSOSVersion(Platform.osVersion) ;
+		return  new CSSOSVersion(mx.utils.Platform.osVersion) ;
     }
 
     /** @private recompute device dimension
@@ -539,8 +540,8 @@ public class MediaQueryParser  extends EventDispatcher
     private function computeDeviceDimensions(): Boolean
     {
         if (sm) {
-            var w: Number = sm.topOfDisplayList.stageWidth;
-            var h: Number = sm.topOfDisplayList.stageHeight;
+            var w: Number = sm.topOfDisplayList.width;
+            var h: Number = sm.topOfDisplayList.height;
             var diag: Number = Math.sqrt(w * w + h * h);
 
            // we need to update styles if device-width is used and has changed or device-height is used and has changed

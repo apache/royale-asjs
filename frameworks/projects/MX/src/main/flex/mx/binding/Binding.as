@@ -22,7 +22,10 @@ package mx.binding
 
 import mx.collections.errors.ItemPendingError;
 import mx.core.mx_internal;
+COMPILE::LATER
+{
 import flash.utils.Dictionary;
+}
 
 use namespace mx_internal;
 
@@ -473,6 +476,7 @@ public class Binding
 				}
 				COMPILE::JS
 				{
+					/*
 					if ((error.name != 1006) &&
 						(error.name != 1009) &&
 						(error.name != 1010) &&
@@ -482,12 +486,12 @@ public class Binding
 						throw error;
 					}
 					else
-					{
+					{*/
 						if (BindingManager.debugDestinationStrings[destString])
 						{
 							trace("Binding: destString = " + destString + ", error = " + error);
 						}
-					}
+					/*}*/
 				}
 			}
         }

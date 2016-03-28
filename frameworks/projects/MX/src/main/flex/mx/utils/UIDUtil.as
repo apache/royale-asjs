@@ -20,8 +20,11 @@
 package mx.utils
 {
 
-import flash.utils.ByteArray;
-import flash.utils.Dictionary;
+COMPILE::AS3
+{
+	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;		
+}
 
 import mx.core.IPropertyChangeNotifier;
 import mx.core.IUIComponent;
@@ -67,6 +70,7 @@ public class UIDUtil
 		55, 56, 57, 65, 66, 67, 68, 69, 70];
 
     private static const DASH:int = 45;       // dash ascii
+	COMPILE::AS3
     private static const UIDBuffer:ByteArray = new ByteArray();       // static ByteArray used for UID generation to save memory allocation cost
 
     //--------------------------------------------------------------------------
@@ -83,6 +87,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     private static var uidDictionary:Dictionary = new Dictionary(true);
 
     //--------------------------------------------------------------------------
@@ -111,10 +116,12 @@ public class UIDUtil
      */
 	public static function createUID():String
     {
+		var i:int;
+		var j:int;
+		
+		COMPILE::AS3
+		{
         UIDBuffer.position = 0;
-
-        var i:int;
-        var j:int;
 
         for (i = 0; i < 8; i++)
         {
@@ -145,6 +152,40 @@ public class UIDUtil
         }
 
         return UIDBuffer.toString();
+		}
+		COMPILE::JS
+		{
+			var s:String = "";
+			for (i = 0; i < 8; i++)
+			{
+				s += ALPHA_CHAR_CODES[int(Math.random() * 16)];
+			}
+			
+			for (i = 0; i < 3; i++)
+			{
+				s += DASH;
+				for (j = 0; j < 4; j++)
+				{
+					s += ALPHA_CHAR_CODES[int(Math.random() * 16)];
+				}
+			}
+			
+			s += DASH;
+			
+			var time:uint = new Date().getTime(); // extract last 8 digits
+			var timeString:String = time.toString(16).toUpperCase();
+			// 0xFFFFFFFF milliseconds ~= 3 days, so timeString may have between 1 and 8 digits, hence we need to pad with 0s to 8 digits
+			for (i = 8; i > timeString.length; i--)
+				s += "0";
+			s += timeString;
+			
+			for (i = 0; i < 4; i++)
+			{
+				s += ALPHA_CHAR_CODES[int(Math.random() * 16)];
+			}
+			
+			return s;
+		}
     }
 
     /**
@@ -162,6 +203,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public static function fromByteArray(ba:ByteArray):String
     {
         if (ba != null && ba.length >= 16 && ba.bytesAvailable >= 16)
@@ -242,6 +284,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     public static function toByteArray(uid:String):ByteArray
     {
         if (isUID(uid))
@@ -317,6 +360,8 @@ public class UIDUtil
         {
             try
             {
+				COMPILE::AS3
+				{
                 // We don't create uids for XMLLists, but if
                 // there's only a single XML node, we'll extract it.
                 if (item is XMLList && item.length == 1)
@@ -337,17 +382,14 @@ public class UIDUtil
                     if (nodeKind == "text" || nodeKind == "attribute")
                         return xitem.toString();
 
-                    COMPILE::AS3
+                    var notificationFunction:Function = xitem.notification();
+                    if (!(notificationFunction is Function))
                     {
-                        var notificationFunction:Function = xitem.notification();
-                        if (!(notificationFunction is Function))
-                        {
-                            // The xml node hasn't already been initialized
-                            // for notification, so do so now.
-                            notificationFunction =
-                                XMLNotifier.initializeXMLForNotification(); 
-                            xitem.setNotification(notificationFunction);
-                        }
+                        // The xml node hasn't already been initialized
+                        // for notification, so do so now.
+                        notificationFunction =
+                            XMLNotifier.initializeXMLForNotification(); 
+                        xitem.setNotification(notificationFunction);
                     }
                     
                     // Generate a new uid for the node if necessary.
@@ -379,6 +421,17 @@ public class UIDUtil
                         }
                     }
                 }
+				}
+				COMPILE::JS
+				{
+					if ("mx_internal_uid" in item)
+						return item.mx_internal_uid;
+					
+					if ("uid" in item)
+						return item.uid;
+					
+					item["mx_internal_uid"] = result = createUID();
+				}
             }
             catch(e:Error)
             {
@@ -416,7 +469,14 @@ public class UIDUtil
             case "f":
                 return 15;
             default:
+				COMPILE::AS3
+				{
                 return new uint(hex);
+				}
+				COMPILE::JS
+				{
+				return parseInt(hex, 16);
+				}
         }    
     }
 }

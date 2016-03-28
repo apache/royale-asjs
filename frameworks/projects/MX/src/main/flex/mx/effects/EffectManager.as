@@ -34,19 +34,19 @@ import org.apache.flex.core.UIBase;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
 import mx.events.FocusEvent;
-import flex.system.DefinitionManager;
 COMPILE::LATER
 {
+	import flex.system.DefinitionManager;
 	import flash.utils.Dictionary;		
+	import mx.core.EventPriority;
+	import mx.core.UIComponentCachePolicy;
 }
 
-import mx.core.EventPriority;
 import mx.core.FlexGlobals;
 import mx.core.IDeferredInstantiationUIComponent;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
-import mx.core.UIComponentCachePolicy;
 import mx.core.mx_internal;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;

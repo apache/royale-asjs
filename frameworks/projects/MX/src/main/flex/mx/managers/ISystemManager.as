@@ -35,7 +35,10 @@ import flex.display.TopOfDisplayList;
 
 import flex.events.IEventDispatcher;
 import org.apache.flex.geom.Rectangle;
+COMPILE::LATER
+{
 import flash.text.TextFormat;
+}
 
 import mx.core.IChildList;
 import mx.core.IFlexModuleFactory;

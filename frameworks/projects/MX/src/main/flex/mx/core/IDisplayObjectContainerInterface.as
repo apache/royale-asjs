@@ -26,8 +26,11 @@ COMPILE::AS3
 {
 	import flash.display.DisplayObjectContainer;		
 }
+COMPILE::LATER
+{
 import flash.text.TextSnapshot;
 import flash.geom.Point;
+}
 
     /**
      *  @copy flash.display.DisplayObjectContainer#addChild()

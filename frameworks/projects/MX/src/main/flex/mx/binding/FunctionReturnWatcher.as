@@ -22,7 +22,10 @@ package mx.binding
 
 import org.apache.flex.events.Event;
 import flex.events.IEventDispatcher;
+COMPILE::LATER
+{
 import mx.core.EventPriority;
+}
 import mx.core.mx_internal;
 
 use namespace mx_internal;
