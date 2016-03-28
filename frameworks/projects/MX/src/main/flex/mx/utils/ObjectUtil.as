@@ -793,11 +793,14 @@ public class ObjectUtil
         if (b == null)
             return -1;
            
+		COMPILE::LATER
+		{
         if (a is ObjectProxy)
             a = ObjectProxy(a).object_proxy::object;
             
         if (b is ObjectProxy)
             b = ObjectProxy(b).object_proxy::object;
+		}
             
         var typeOfA:String = typeof(a);
         var typeOfB:String = typeof(b);
@@ -1003,9 +1006,12 @@ public class ObjectUtil
         var n:int;
         var i:int;
 
+		COMPILE::LATER
+		{
         if (obj is ObjectProxy)
             obj = ObjectProxy(obj).object_proxy::object;
-
+		}
+		
         if (options == null)
             options = { includeReadOnly: true, uris: null, includeTransient: true };
 

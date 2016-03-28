@@ -49,6 +49,7 @@ import mx.core.IFontContextComponent;
 import mx.core.IInvalidating;
 import mx.core.IUITextField;
 import mx.core.IVisualElement;
+import mx.core.IUIComponent;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.utils.NameUtil;
@@ -64,6 +65,7 @@ use namespace object_proxy;
  *  @private
  *  This is an all-static class with methods for building the protochains
  *  that Flex uses to look up CSS style properties.
+ *  @flexjsignoreimport mx.core.UIComponent
  */
 public class StyleProtoChain
 {
@@ -162,6 +164,7 @@ public class StyleProtoChain
      *  @private
      *  Implements the initProtoChain() logic for UIComponent and TextBase.
      *  The 'object' parameter will be one or the other.
+	 *  @flexjsignorecoercion mx.core.UIComponent
      */
     public static function initProtoChain(object:IStyleClient, inheritPopUpStylesFromOwner:Boolean=true):void
     {
@@ -778,7 +781,7 @@ public class StyleProtoChain
             styleProp == "styleName" ||
             styleProp == "themeColor")
         {
-        	if (object is UIComponent)
+        	if (object is IUIComponent)
                 object["initThemeColor"]();
         }
         

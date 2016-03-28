@@ -22,5 +22,6 @@
 <componentPackage>
 
     <!--<component id="Button" class="org.apache.flex.html.Button"/>-->
+    <component id="UIComponent" class="mx.core.UIComponent"/>
     
 </componentPackage>

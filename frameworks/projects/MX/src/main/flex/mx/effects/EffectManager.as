@@ -47,6 +47,7 @@ import mx.core.IDeferredInstantiationUIComponent;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
+import mx.core.UIComponentGlobals;
 import mx.core.mx_internal;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
@@ -72,6 +73,7 @@ use namespace mx_internal;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *  @flexjsignoreimport mx.core.UIComponent
  */
 public class EffectManager extends EventDispatcher
 {
@@ -314,7 +316,7 @@ public class EffectManager extends EventDispatcher
         }
         
         var effectClass:Class;      
-        if (target is UIComponent && target.moduleFactory)
+        if (target is IUIComponent && target.moduleFactory)
         {
 			COMPILE::LATER
 			{
@@ -604,6 +606,7 @@ public class EffectManager extends EventDispatcher
 
     /**
      *  @private
+	 *  @flexjsignorecoercion mx.core.UIComponent
      */
     mx_internal static function eventHandler(eventObj:Event):void
     {   
@@ -635,18 +638,19 @@ public class EffectManager extends EventDispatcher
             
         if (eventObj.type == UIBase.CHILD_REMOVED)
         {
-            if (eventObj.target is UIComponent)
+			var uic:UIComponent = eventObj.target as UIComponent;
+            if (uic)
             {
-                if (UIComponent(eventObj.target).initialized == false)
+                if (uic.initialized == false)
                 {
                     return;
                 }
-                else if (UIComponent(eventObj.target).isEffectStarted)
+                else if (uic.isEffectStarted)
                 {
-                    for (var i:int = 0; i < UIComponent(eventObj.target)._effectsStarted.length; i++)
+                    for (var i:int = 0; i < uic._effectsStarted.length; i++)
                     {
                         // Don't allow removedEffect to trigger more than one effect at a time
-                        if (UIComponent(eventObj.target)._effectsStarted[i].triggerEvent.type == UIBase.CHILD_REMOVED)
+                        if (uic._effectsStarted[i].triggerEvent.type == UIBase.CHILD_REMOVED)
                             return;
                     }
                 }
@@ -663,12 +667,12 @@ public class EffectManager extends EventDispatcher
                     var index:int = parent.getChildIndex(targ);
                     if (index >= 0)
                     {
-                        if (targ is UIComponent)    
+                        if (uic)    
                         {
                             // Since we get the "removed" event before the child is actually removed, 
                             // we need to delay adding back the child. We must exit the current 
                             // script block must exit before the child can be removed.
-                            UIComponent(targ).callLater(removedEffectHandler, [targ, parent, index, eventObj]);
+                            uic.callLater(removedEffectHandler, [targ, parent, index, eventObj]);
                         }
                     }
                 }
@@ -682,6 +686,7 @@ public class EffectManager extends EventDispatcher
     
     /**
      *  @private
+	 *  @flexjsignorecoercion mx.core.UIComponent
      */ 
     private static function createAndPlayEffect(eventObj:Event, target:Object):void
     {
@@ -757,8 +762,9 @@ public class EffectManager extends EventDispatcher
         // previously animating the same properties of my target object,
         // then finish the other effect before starting this new one.
         //
-        if (effectInst.target is UIComponent &&
-            UIComponent(effectInst.target).isEffectStarted)
+		var uic:UIComponent = effectInst.target as UIComponent;
+        if (uic &&
+            uic.isEffectStarted)
         {
             var affectedProps:Array = effectInst.getAffectedProperties();
             for (i = 0; i < affectedProps.length; i++)
@@ -834,7 +840,7 @@ public class EffectManager extends EventDispatcher
         // Block all layout, responses from web services, and other background
         // processing until the effect finishes executing.
         if (effectInst.suspendBackgroundProcessing)
-            UIComponent.suspendBackgroundProcessing();
+            UIComponentGlobals.suspendBackgroundProcessing();
     }
 
     /**
@@ -908,7 +914,7 @@ public class EffectManager extends EventDispatcher
 
         // Resume the background processing that was suspended earlier
         if (effectInst.suspendBackgroundProcessing)
-            UIComponent.resumeBackgroundProcessing();       
+            UIComponentGlobals.resumeBackgroundProcessing();       
     }
 
     //--------------------------------------------------------------------------

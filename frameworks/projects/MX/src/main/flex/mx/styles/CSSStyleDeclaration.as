@@ -829,7 +829,7 @@ public class CSSStyleDeclaration extends EventDispatcher
      */
     public function clearStyle(styleProp:String):void
     {
-        public::setStyle(styleProp, undefined);
+        setStyle(styleProp, undefined);
     }
 
     /**

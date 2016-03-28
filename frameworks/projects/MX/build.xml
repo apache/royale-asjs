@@ -37,9 +37,7 @@
     </target>
     
     <target name="test" unless="is.jenkins">
-        <!-- no tests yet
          <ant dir="src/test/flex"/>
-         -->
     </target>
     
     <target name="test-js" unless="is.jenkins">

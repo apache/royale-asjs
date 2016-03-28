@@ -33,6 +33,8 @@ COMPILE::LATER
 	import flash.geom.Matrix;		
 }
 import mx.managers.ILayoutManager;
+import mx.managers.SystemManagerGlobals;
+import mx.managers.ISystemManager;
 
 use namespace mx_internal;
 
@@ -155,6 +157,78 @@ public class UIComponentGlobals
     {
         _catchCallLaterExceptions = value;
     }
+	
+	/**
+	 *  Blocks the background processing of methods
+	 *  queued by <code>callLater()</code>,
+	 *  until <code>resumeBackgroundProcessing()</code> is called.
+	 *
+	 *  <p>These methods can be useful when you have time-critical code
+	 *  which needs to execute without interruption.
+	 *  For example, when you set the <code>suspendBackgroundProcessing</code>
+	 *  property of an Effect to <code>true</code>,
+	 *  <code>suspendBackgroundProcessing()</code> is automatically called
+	 *  when it starts playing, and <code>resumeBackgroundProcessing</code>
+	 *  is called when it stops, in order to ensure that the animation
+	 *  is smooth.</p>
+	 *
+	 *  <p>Since the LayoutManager uses <code>callLater()</code>,
+	 *  this means that <code>commitProperties()</code>,
+	 *  <code>measure()</code>, and <code>updateDisplayList()</code>
+	 *  is not called in between calls to
+	 *  <code>suspendBackgroundProcessing()</code> and
+	 *  <code>resumeBackgroundProcessing()</code>.</p>
+	 *
+	 *  <p>It is safe for both an outer method and an inner method
+	 *  (i.e., one that the outer methods calls) to call
+	 *  <code>suspendBackgroundProcessing()</code>
+	 *  and <code>resumeBackgroundProcessing()</code>, because these
+	 *  methods actually increment and decrement a counter
+	 *  which determines whether background processing occurs.</p>
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static function suspendBackgroundProcessing():void
+	{
+		UIComponentGlobals.callLaterSuspendCount++;
+	}
+	
+	/**
+	 *  Resumes the background processing of methods
+	 *  queued by <code>callLater()</code>, after a call to
+	 *  <code>suspendBackgroundProcessing()</code>.
+	 *
+	 *  <p>Refer to the description of
+	 *  <code>suspendBackgroundProcessing()</code> for more information.</p>
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static function resumeBackgroundProcessing():void
+	{
+		if (UIComponentGlobals.callLaterSuspendCount > 0)
+		{
+			UIComponentGlobals.callLaterSuspendCount--;
+			
+			// Once the suspend count gets back to 0, we need to
+			// force a render event to happen
+			if (UIComponentGlobals.callLaterSuspendCount == 0)
+			{
+				var sm:ISystemManager = SystemManagerGlobals.topLevelSystemManagers[0];
+				COMPILE::AS3
+				{
+					if (sm && sm.topOfDisplayList)
+						sm.topOfDisplayList.invalidate();
+				}
+			}
+		}
+	}
+
 }
 
 }
