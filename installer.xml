@@ -704,27 +704,24 @@
         description="Downloads Flat fonts and copies to correct locations">
         
         <mkdir dir="${download.dir}"/>
-        <echo>${INFO_INSTALLING_FLAT_FONTS} ${flat.font.url.server}/${flat.font.url.folder}/${flat.font.url.file}</echo>
+        <echo>${INFO_INSTALLING_FLAT_FONTS} https://github.com/designmodo/Flat-UI/archive/2.2.2.zip</echo>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
         dest="${download.dir}/flat-ui_2_2.zip"
         verbose="false"/>
         
         <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
-        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
-            <patternset>
-                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"/>
-                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"/>
-                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg"/>
-                <include name="Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff"/>
-            </patternset>
-            <flattenmapper />
-        </unzip>
-        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
-            <patternset>
-                <include name="Flat-UI-2.2.2/README.md"/>
-            </patternset>
-            <flattenmapper />
-        </unzip>
+        <mkdir dir="${download.dir}/flat/fonts"/>
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${download.dir}/flat/fonts" />
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"
+            todir="${FLEXJS_HOME/frameworks/fonts"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"
+            todir="${FLEXJS_HOME/frameworks/fonts"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg"
+            todir="${FLEXJS_HOME/frameworks/fonts"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff"
+            todir="${FLEXJS_HOME/frameworks/fonts"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/README.md"
+            todir="${FLEXJS_HOME/frameworks/fonts"/>
     </target>
     
     <!-- swfobject.js (Version 2.2) -->
