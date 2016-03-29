@@ -713,15 +713,15 @@
         <mkdir dir="${download.dir}/flat/fonts"/>
         <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${download.dir}/flat/fonts" />
         <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"
-            todir="${FLEXJS_HOME/frameworks/fonts"/>
+            todir="${FLEXJS_HOME}/frameworks/fonts"/>
         <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"
-            todir="${FLEXJS_HOME/frameworks/fonts"/>
+            todir="${FLEXJS_HOME}/frameworks/fonts"/>
         <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg"
-            todir="${FLEXJS_HOME/frameworks/fonts"/>
+            todir="${FLEXJS_HOME}/frameworks/fonts"/>
         <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff"
-            todir="${FLEXJS_HOME/frameworks/fonts"/>
+            todir="${FLEXJS_HOME}/frameworks/fonts"/>
         <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/README.md"
-            todir="${FLEXJS_HOME/frameworks/fonts"/>
+            todir="${FLEXJS_HOME}/frameworks/fonts"/>
     </target>
     
     <!-- swfobject.js (Version 2.2) -->
