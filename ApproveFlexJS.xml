@@ -361,8 +361,6 @@
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->
                 <exclude name="frameworks/projects/*/target/**"/>
-                <!--          fonts     -->
-                <exclude name="frameworks/fonts/**"/>
                 <!--          swcs     -->
                 <exclude name="frameworks/libs/Binding.swc"/>
                 <exclude name="frameworks/libs/Charts.swc"/>
