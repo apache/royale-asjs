@@ -739,12 +739,13 @@
         </copy>
          -->
          
-         <!-- fonts -->
+         <!-- fonts
           <copy todir="${basedir}/temp/frameworks/fonts">
               <fileset dir="${basedir}/frameworks/fonts" >
                   <include name="**/**"/>
               </fileset>
           </copy>
+          -->
          
         <!-- examples -->
         <copy todir="${basedir}/temp/examples">
