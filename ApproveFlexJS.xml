@@ -54,9 +54,10 @@
 	
     <property name="src.rat.report" value="${basedir}/rat-report-src.txt"/>
     <property name="bin.rat.report" value="${basedir}/rat-report-bin.txt"/>
-	<property name="apache.rat.jar" value="apache-rat-0.8.jar" />
-	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.8.jar" />
-	<property name="apache.rat.url" value="http://people.apache.org/~aharui/rat" />
+	<property name="apache.rat.jar" value="apache-rat-0.11.jar" />
+	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
+	<property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
+    <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
 	   
     <property file="${basedir}/approvefalcon.properties"/>
     
@@ -187,7 +188,7 @@
 		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
 	</target>
 	<target name="install-rat.tasks.jar" unless="apache.rat.tasks.found">
-		<get src="${apache.rat.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
+		<get src="${apache.rat.tasks.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
 	</target>
 	
     <target name="rat-taskdef" description="Rat taskdef">
