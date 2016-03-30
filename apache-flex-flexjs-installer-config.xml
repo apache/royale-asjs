@@ -239,7 +239,7 @@
 			<license>Adobe Flex SDK 授權合約</license>
 		</zh_TW>
 	</component>
-    <component id="STEP_REQUIRED_INSTALL_FLAT_FONTS" required="true" property="do.flat.install">
+    <component id="STEP_REQUIRED_INSTALL_FLAT_FONTS" required="false" property="do.flat.install">
         <el_GR>
             <label>designmodo fonts (Προαιρετικό)</label>
             <message>Για το designmodo fonts ισχύει η συμφωνία χρήσης του CC-BY-NC-ND License. Θέλετε να εγκαταστήσετε το designmodo fonts;</message>

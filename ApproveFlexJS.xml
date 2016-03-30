@@ -54,6 +54,7 @@
 	
     <property name="src.rat.report" value="${basedir}/rat-report-src.txt"/>
     <property name="bin.rat.report" value="${basedir}/rat-report-bin.txt"/>
+    <property name="doc.rat.report" value="${basedir}/rat-report-doc.txt"/>
 	<property name="apache.rat.jar" value="apache-rat-0.11.jar" />
 	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
 	<property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
@@ -146,11 +147,19 @@
             <isset property="rc" />
         </not>
     </condition>
+    <condition property="doc.package.url.path"
+        value="${package.url.path}">
+        <not>
+            <isset property="rc" />
+        </not>
+    </condition>
 
 	<property name="package.url.path" value="https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}" />
 	<property name="package.url.name" value="apache-flex-flexjs-${release.version}-src" />
     <property name="bin.package.url.path" value="${package.url.path}/binaries" />
     <property name="bin.package.url.name" value="apache-flex-flexjs-${release.version}-bin" />
+    <property name="doc.package.url.path" value="${package.url.path}/doc" />
+    <property name="doc.package.url.name" value="apache-flex-flexjs-${release.version}-asdocs" />
 	
     <condition property="zip.package">
         <equals arg1="zip" arg2="${package.suffix}" />
@@ -197,10 +206,10 @@
         classpathref="anttask.classpath"/>
     </target>
 
-    <target name="main" depends="install-rat,download,check-sigs,uncompress,rat-check,binary-rat,check-notices,build,approve" description="Perform required release approval steps">
+    <target name="main" depends="install-rat,download,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,build,approve" description="Perform required release approval steps">
     </target>
     
-    <target name="main-no-download" depends="install-rat,check-sigs,uncompress,rat-check,binary-rat,check-notices,build,approve" description="Perform required release approval steps">
+    <target name="main-no-download" depends="install-rat,check-sigs,uncompress,rat-check,binary-rat,doc-rat,check-notices,build,approve" description="Perform required release approval steps">
     </target>
 	
     <target name="test" >
@@ -229,6 +238,10 @@
             dest="${basedir}/${bin.package.url.name}.${package.suffix}" />
         <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.md5"
             dest="${basedir}/${bin.package.url.name}.${package.suffix}.md5" />
+        <get src="${doc.package.url.path}/${doc.package.url.name}.zip"
+            dest="${basedir}/${doc.package.url.name}.zip" />
+        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.md5"
+            dest="${basedir}/${doc.package.url.name}.zip.md5" />
         <antcall target="get_asc" />
     </target>
 
@@ -237,6 +250,8 @@
         dest="${basedir}/${package.url.name}.${package.suffix}.asc" />
         <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.asc"
         dest="${basedir}/${bin.package.url.name}.${package.suffix}.asc" />
+        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.asc"
+        dest="${basedir}/${doc.package.url.name}.zip.asc" />
     </target>
     
     <target name="check-sigs" description="check md5 and gpg sigs">
@@ -258,6 +273,15 @@
             </not>
         </condition>
         <fail message="Binary Package MD5 checksum did not match" if="BinaryMD5Invalid" />
+        <replace file="${basedir}/${doc.package.url.name}.zip.md5"
+        token=" " />
+        <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="md5" verifyproperty="doc.md5.ok" />
+        <condition property="DocMD5Invalid">
+            <not>
+                <equals arg1="${doc.md5.ok}" arg2="true" />
+            </not>
+        </condition>
+        <fail message="Doc Package MD5 checksum did not match" if="DocMD5Invalid" />
         <antcall target="gpg_check" />
     </target>
 
@@ -272,6 +296,11 @@
             <arg value="${basedir}/${bin.package.url.name}.${package.suffix}.asc" />
             <arg value="${basedir}/${bin.package.url.name}.${package.suffix}" />
         </exec>
+        <exec executable="gpg" failonerror="true">
+            <arg value="--verify" />
+            <arg value="${basedir}/${doc.package.url.name}.${package.suffix}.asc" />
+            <arg value="${basedir}/${doc.package.url.name}.${package.suffix}" />
+        </exec>
     </target>
     
     <target name="uncompress" depends="pre-clean, untar-file, unzip-file" />
@@ -279,6 +308,7 @@
     <target name="pre-clean" description="remove old uncompressed package" >
 		<delete dir="${basedir}/${package.url.name}" failonerror="false" />
         <delete dir="${basedir}/${bin.package.url.name}" failonerror="false" />
+        <delete dir="${basedir}/${doc.package.url.name}" failonerror="false" />
 	</target>
 	
     <target name="untar-file" unless="zip.package" description="Untars zipFile">
@@ -286,6 +316,8 @@
                 dest="${basedir}" compression="gzip"/>
         <untar src="${basedir}/${bin.package.url.name}.${package.suffix}"
                 dest="${basedir}" compression="gzip"/>
+        <unzip src="${basedir}/${doc.package.url.name}.zip"
+                dest="${basedir}/${doc.package.url.name}"/>
     </target>
 
     <target name="unzip-file" if="zip.package" description="Unzips zipFile">
@@ -293,6 +325,8 @@
                 dest="${basedir}/${package.url.name}"/>
         <unzip src="${basedir}/${bin.package.url.name}.${package.suffix}"
                 dest="${basedir}/${bin.package.url.name}"/>
+        <unzip src="${basedir}/${doc.package.url.name}.${package.suffix}"
+                dest="${basedir}/${doc.package.url.name}"/>
     </target>
 
     <target name="rat-check" >
@@ -315,6 +349,7 @@
                 <exclude name="frameworks/js/.jshintrc"/>
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -357,6 +392,7 @@
                 <exclude name="frameworks/js/.jshintrc"/>
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
                 <!--          Google Closure Library     -->
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->
@@ -423,6 +459,50 @@
         addproperty="rat.bin.binaries.ok"/>
     </target>
 
+    <target name="doc-rat" >
+        <echo message="Checking files at ${basedir}/${doc.package.url.name}, report is ${doc.rat.report}"/>
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
+            reportFile="${doc.rat.report}">
+            <fileset dir="${basedir}/${doc.package.url.name}">
+                <!-- exclude generated html -->
+                <exclude name="asdoc/index.html"/>
+                <exclude name="asdoc/index-*.html"/>
+                <exclude name="asdoc/google/maps/**/*.html"/>
+                <exclude name="asdoc/org/**/*.html"/>
+                <exclude name="asdoc/package*.html"/>
+                <exclude name="asdoc/all-classes.html"/>
+                <exclude name="asdoc/all-index*.html"/>
+                <exclude name="asdoc/class-*.html"/>
+                <exclude name="asdoc/title-bar.html"/>
+                <exclude name="asdoc/Namespace.html"/>
+                <exclude name="asdoc/QName.html"/>
+                <!-- exclude log -->
+                <exclude name="asdoc/validation_errors.log"/>
+            </fileset>
+        </rat:report>
+        
+        <antcall target="display-text" >
+            <param name="file" value="${doc.rat.report}" />
+        </antcall>
+        <input
+        message="Check that there are no unknown or unapproved licenses or archives. Is it ok?"
+        validargs="y,n"
+        defaultvalue="y"
+        addproperty="rat.doc.license.ok"/>
+        <echo>filtering out AL files to make it easier to see binary files</echo>
+        <copy file="${doc.rat.report}" tofile="${doc.rat.report}.bin.txt" />
+        <replaceregexp file="${doc.rat.report}.bin.txt" match="..AL.*" replace="__AL" byline="true"/>
+        <replaceregexp file="${doc.rat.report}.bin.txt" flags="gs" match="__AL." replace="" byline="false"/>
+        <antcall target="display-text" >
+            <param name="file" value="${doc.rat.report}.bin.txt" />
+        </antcall>
+        <input
+        message="Check that there are no unexpected binaries.  Is it ok?"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="rat.doc.binaries.ok"/>
+    </target>
+
     <target name="check-notices" description="open each notice file for review, grep for a few things" >
         <fail message="README not in package">
 			<condition>
@@ -487,6 +567,7 @@
             validargs="y,n"
         defaultvalue="y"
         addproperty="license.ok"/>
+        
         <antcall target="display-text" >
             <param name="file" value="${basedir}/${bin.package.url.name}/NOTICE" />
         </antcall>
@@ -504,6 +585,24 @@
         validargs="y,n"
         defaultvalue="y"
         addproperty="bin.license.ok"/>
+        
+        <antcall target="display-text" >
+            <param name="file" value="${basedir}/${doc.package.url.name}/asdoc/NOTICE" />
+        </antcall>
+        <input
+        message="Check the doc package NOTICE for required notices from third-parties. Is it ok?"
+        validargs="y,n"
+        defaultvalue="y"
+        addproperty="doc.notice.ok"/>
+        
+        <antcall target="display-text" >
+            <param name="file" value="${basedir}/${doc.package.url.name}/asdoc/LICENSE" />
+        </antcall>
+        <input
+        message="Check the doc package LICENSE for the Apache License and third-party licenses. Is it ok?"
+        validargs="y,n"
+        defaultvalue="y"
+        addproperty="doc.license.ok"/>
     </target>
 
     <target name="ask.build">
@@ -678,12 +777,16 @@
 				<equals arg1="${rat.binaries.ok}" arg2="y" />
                 <equals arg1="${rat.bin.license.ok}" arg2="y" />
                 <equals arg1="${rat.bin.binaries.ok}" arg2="y" />
+                <equals arg1="${rat.doc.license.ok}" arg2="y" />
+                <equals arg1="${rat.doc.binaries.ok}" arg2="y" />
 				<equals arg1="${readme.ok}" arg2="y" />
 				<equals arg1="${releasenotes.ok}" arg2="y" />
 				<equals arg1="${notice.ok}" arg2="y" />
 				<equals arg1="${license.ok}" arg2="y" />
                 <equals arg1="${bin.notice.ok}" arg2="y" />
                 <equals arg1="${bin.license.ok}" arg2="y" />
+                <equals arg1="${doc.notice.ok}" arg2="y" />
+                <equals arg1="${doc.license.ok}" arg2="y" />
 			</and>
 		</condition>
 		<property name="vote" value="-1" />
@@ -707,7 +810,14 @@ NOTICE is ok: ${bin.notice.ok}
 LICENSE is ok: ${bin.license.ok}
 No unapproved licenses or archives in binary package: ${rat.bin.license.ok}
 No unapproved binaries in binary package: ${rat.bin.binaries.ok}
-		</echo>
+
+Package ${doc.package.url.path}/${doc.package.url.name}.zip
+Doc kit signatures match: y
+NOTICE is ok: ${doc.notice.ok}
+LICENSE is ok: ${doc.license.ok}
+No unapproved licenses or archives in doc package: ${rat.doc.license.ok}
+No unapproved binaries in doc package: ${rat.doc.binaries.ok}
+        </echo>
 		<fail>
 			<condition>
 	            <equals arg1="-1" arg2="${vote}"/>

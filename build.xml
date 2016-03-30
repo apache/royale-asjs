@@ -531,6 +531,7 @@
                 <include name="RELEASE_NOTES"/>
                 <include name="LICENSE"/>
                 <include name="LICENSE.bin"/>
+                <include name="LICENSE.base"/>
                 <include name="NOTICE"/>
             </fileset>
         </copy>
@@ -742,7 +743,7 @@
          <!-- fonts
           <copy todir="${basedir}/temp/frameworks/fonts">
               <fileset dir="${basedir}/frameworks/fonts" >
-                  <include name="**/**"/>
+                  <include name="**/*.swf"/>
               </fileset>
           </copy>
           -->
@@ -1006,12 +1007,8 @@
         <copy todir="${basedir}/temp/asdoc">
             <fileset dir="${basedir}/asdoc-output"/>
         </copy>
-        <copy todir="${basedir}/temp/asdoc">
-            <fileset dir="${basedir}">
-                <include name="LICENSE" />
-                <include name="NOTICE" />
-            </fileset>
-        </copy>
+        <copy todir="${basedir}/temp/asdoc" file="${basedir}/NOTICE" />
+        <copy tofile="${basedir}/temp/asdoc/LICENSE" file="${basedir}/LICENSE.base" />
         <zip file="${basedir}/out/${kit.prefix}-asdocs.zip" basedir="${basedir}/temp"/>
         <antcall target="clean-temp"/>
     </target>
@@ -1378,6 +1375,7 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
                 <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
