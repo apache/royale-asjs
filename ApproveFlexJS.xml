@@ -298,8 +298,8 @@
         </exec>
         <exec executable="gpg" failonerror="true">
             <arg value="--verify" />
-            <arg value="${basedir}/${doc.package.url.name}.${package.suffix}.asc" />
-            <arg value="${basedir}/${doc.package.url.name}.${package.suffix}" />
+            <arg value="${basedir}/${doc.package.url.name}.zip.asc" />
+            <arg value="${basedir}/${doc.package.url.name}.zip" />
         </exec>
     </target>
     
