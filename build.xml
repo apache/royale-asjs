@@ -782,14 +782,20 @@
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
 		<echo message="Copying GCL from ${GOOG_HOME}"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${GOOG_HOME}" />
+			<fileset dir="${GOOG_HOME}" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
 	<target name="copy-gcl-from-downloaded" unless="GOOG_HOME">
 		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${basedir}/js/lib/google/closure-library" />
+			<fileset dir="${basedir}/js/lib/google/closure-library" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
@@ -1064,7 +1070,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.48.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1078,7 +1084,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
@@ -1090,7 +1096,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
@@ -1109,7 +1115,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.6.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
@@ -1163,7 +1169,7 @@
         <mkdir dir="${basedir}/mustella/java/bin"/>
         <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.48.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1177,7 +1183,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
@@ -1189,7 +1195,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
@@ -1208,7 +1214,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.6.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>

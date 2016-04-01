@@ -32,9 +32,9 @@
             selenium (2.32.0) - Apache 2.0
 	-->
 	
-    <property name="selenium2.jar.dir.name" value="2.48"/>
-    <property name="selenium2.jar.name" value="selenium-java-2.48.2"/>
-    <property name="selenium2.dir.name" value="selenium-2.48.2"/>
+    <property name="selenium2.jar.dir.name" value="2.53"/>
+    <property name="selenium2.jar.name" value="selenium-java-2.53.0"/>
+    <property name="selenium2.dir.name" value="selenium-2.53.0"/>
 	
     <!-- 
         Because the downloads requires a network connection and the JARs don't change very often, 
