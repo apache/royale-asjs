@@ -1706,9 +1706,8 @@
             />
         <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/flex-falcon/compiler" />
-        <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
-        <ant dir="${base.folder.name}/flex-flexunit" />
+        <ant dir="${base.folder.name}/flex-falcon" target="all" />
+        <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     
     <target name="all" depends="set.base.folder, download-all, main" />
