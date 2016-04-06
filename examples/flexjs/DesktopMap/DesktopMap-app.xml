@@ -17,7 +17,7 @@
   limitations under the License.
 
 -->
-<application xmlns="http://ns.adobe.com/air/application/4.0">
+<application xmlns="http://ns.adobe.com/air/application/16.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -45,7 +45,7 @@
 	<!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
 	Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
 	An updated version of application must have a versionNumber value higher than the previous version. Required for namespace >= 2.5 . -->
-	<versionNumber>0.5.0</versionNumber>
+	<versionNumber>0.6.0</versionNumber>
 
 	<!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
 	<!-- <versionLabel></versionLabel> -->
@@ -88,10 +88,10 @@
 		<!-- <resizable></resizable> -->
 
 		<!-- The window's initial width in pixels. Optional. -->
-		<!-- <width></width> -->
+		<width>640</width>
 
 		<!-- The window's initial height in pixels. Optional. -->
-		<!-- <height></height> -->
+		<height>720</height>
 
 		<!-- The window's initial x position. Optional. -->
 		<!-- <x></x> -->

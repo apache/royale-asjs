@@ -2,10 +2,6 @@ Below are the licenses for components included in the binary distribution.
 
 ------------------------------------------------------------------------------------------
 
-This product bundles designmodo’s (http://designmodo.com/flat-free/)
-Flat UI glyph fonts available under an MIT license. For details, see 
-frameworks/fonts/README.md
-
 This product bundles Google Closure Library available under Apache License 2.0.  
 For details see https://developers.google.com/closure/library/
 

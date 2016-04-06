@@ -17,9 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<basic:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:basic="library://ns.apache.org/flexjs/basic"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:views="views.*" 
 				xmlns:apache="org.apache.flex.html.beads.*"
 				xmlns:html="org.apache.flex.html.*"
@@ -27,21 +27,21 @@ limitations under the License.
 				initComplete="onInitComplete()" xmlns:models="models.*" >
 	
 	<fx:Style>
-		@namespace basic  "library://ns.apache.org/flexjs/basic";
+		@namespace js  "library://ns.apache.org/flexjs/basic";
 		@namespace views  "views.*";
 		
-		basic|Container {
+		js|Container {
 			background-color: #FFFFFF;
 		}
 		
-		basic|StackedViewManager {
+		js|StackedViewManager {
 			padding-top: 0px;
 			padding-bottom: 0px;
 			padding-left: 0px;
 			padding-right: 0px;
 		}
 		
-		basic|TabbedViewManager {
+		js|TabbedViewManager {
 			position : absolute ;
 			height : 100% ;
 			width : 100% ;
@@ -214,7 +214,7 @@ limitations under the License.
 				backButton.visible = manager.views.length > 1;
 			}
 			
-			private function goBack(event:org.apache.flex.events.Event):void
+			private function goBack(event:org.apache.flex.events.MouseEvent):void
 			{
 				if (navController.selectedIndex == 1) {
 					watchListStack.pop();
@@ -223,34 +223,34 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	
-	<basic:beads>
-		<basic:ViewBaseDataBinding />
-	</basic:beads>
+	<js:beads>
+		<js:ViewBaseDataBinding />
+	</js:beads>
 	
-	<basic:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
-		<basic:navigationBarItems>
-			<basic:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
-				<basic:beads>
+	<js:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+		<js:navigationBarItems>
+			<js:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
+				<js:beads>
 					<apache:ImageButtonView />
-				</basic:beads>
-			</basic:TextButton>
-			<basic:Image source="assets/logo.png" width="218" height="55" />
-		</basic:navigationBarItems>
-		<basic:views>
-			<basic:StackedViewManager title="Assets">
-				<basic:views>
+				</js:beads>
+			</js:TextButton>
+			<js:Image source="assets/logo.png" width="218" height="55" />
+		</js:navigationBarItems>
+		<js:views>
+			<js:StackedViewManager title="Assets">
+				<js:views>
 					<views:AssetsView id="assetsView" title="Assets" next="onAssetsNext()" />
-				</basic:views>
-			</basic:StackedViewManager>
+				</js:views>
+			</js:StackedViewManager>
 			
-			<basic:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
-				<basic:views>
+			<js:StackedViewManager id="watchListStack" title="Watch List" viewChanged="watchListStackChanged(event)">
+				<js:views>
 					<views:WatchListView id="watchListView" dataModel="{applicationModel}"/>
-				</basic:views>
-			</basic:StackedViewManager>
+				</js:views>
+			</js:StackedViewManager>
 			
 			<views:AlertsView id="alertsView" title="Alerts" dataModel="{applicationModel}" />
-		</basic:views>
-	</basic:TabbedViewManager>
+		</js:views>
+	</js:TabbedViewManager>
 	
-</basic:ViewBase>
+</js:ViewBase>

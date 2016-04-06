@@ -57,9 +57,9 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flexjs.version" value="0.5.0"/>
-    <property name="falcon.version" value="0.5.0"/>
-    
+    <property name="flexjs.version" value="0.6.0"/>
+    <property name="falcon.version" value="0.6.0"/>
+
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
     <property name="swfobject.url.file" value="2.2.zip" />
@@ -92,6 +92,9 @@
         <isset property="installer" />
     </condition>
     <condition property="flash.donot.ask" value="true">
+        <isset property="installer" />
+    </condition>
+    <condition property="flat.donot.ask" value="true">
         <isset property="installer" />
     </condition>
 
@@ -277,7 +280,7 @@
         </fail>
     </target>
     
-    <target name="ask-licenses" depends="ask-air,ask-flash" description="Ask about the various licenses">
+    <target name="ask-licenses" depends="ask-air,ask-flash,ask-flat" description="Ask about the various licenses">
 	</target>
     
     <target name="ask-air" unless="air.donot.ask"
@@ -291,6 +294,7 @@
         <condition property="do.air.install">
             <equals arg1="${yes}" arg2="${input.air.download}"/>
         </condition>
+        <fail message="${ERROR_REQUIRED_LICENSE}" unless="do.air.install" />
         <!-- Only ask once per ant run.  -->
         <property name="air.donot.ask" value="set"/>
     </target>
@@ -306,8 +310,24 @@
         <condition property="do.flash.install">
             <equals arg1="${yes}" arg2="${input.flash.download}"/>
         </condition>
+        <fail message="${ERROR_REQUIRED_LICENSE}" unless="do.flash.install" />
         <!-- Only ask once per ant run.  -->
         <property name="flash.donot.ask" value="set"/>
+    </target>
+
+    <target name="ask-flat" unless="flat.donot.ask"
+        description="Prompt the user before downloading Flat fonts">
+        
+        <input
+        message="${flat.prompt.text}"
+        validargs="${yes.no.prompts}"
+        defaultvalue="${no}"
+        addproperty="input.flat.download"/>
+        <condition property="do.flat.install">
+            <equals arg1="${yes}" arg2="${input.flat.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="flat.donot.ask" value="set"/>
     </target>
 
     <target name="mac-chmod" description="makes some scripts executable" unless="isWindows">
@@ -326,6 +346,10 @@
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
             <arg value="${FLEXJS_HOME}/js/bin/asjscompc"/>
+        </exec>
+        <exec executable="chmod" dir="${FLEXJS_HOME}">
+            <arg value="+x" />
+            <arg value="${FLEXJS_HOME}/js/bin/asnodec"/>
         </exec>
         <exec executable="chmod" dir="${FLEXJS_HOME}">
             <arg value="+x" />
@@ -408,13 +432,18 @@
         <property name="skipCache" value="true" />
     </target>
 
-    <target name="get-third-party-files" depends="air-download,flash-download,swfobject-download" />
+    <target name="get-third-party-files" depends="air-download,flash-download,flat-download,swfobject-download" />
     
     <target name="air-check" description="Checks if AIR SDK has been downloaded.">
-        <available file="${FLEXJS_HOME}/lib/adt.jar" property="air.jar.present"/>
+        <available file="${FLEXJS_HOME}/lib/adt.jar" property="skip.air.install"/>
+        <condition property="skip.air.install" value="true">
+            <not>
+                <isset property="do.air.install" />
+            </not>
+        </condition>
     </target>
     
-    <target name="air-download" depends="air-check" unless="air.jar.present"
+    <target name="air-download" depends="air-check" unless="skip.air.install"
         description="Downloads AIR SDK and copies to correct locations">
         
         <mkdir dir="${download.dir}"/>
@@ -628,10 +657,15 @@
 
     <!-- Because this requires a network connection it downloads Flash SDK only if it doesn't already exist. -->
     <target name="flash-check" description="Checks if Flash SDK has been downloaded.">
-        <available file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" property="flash.swc.present"/>
+        <available file="${FLEXJS_HOME}/frameworks/libs/player/${flash.sdk.version}/playerglobal.swc" property="skip.flash.install"/>
+        <condition property="skip.flash.install" value="true">
+            <not>
+                <isset property="do.flash.install" />
+            </not>
+        </condition>
     </target>
     
-    <target name="flash-download" depends="flash-check" unless="flash.swc.present"
+    <target name="flash-download" depends="flash-check" unless="skip.flash.install"
         description="Downloads playerglobal.swc and copies to correct locations">
         
         <mkdir dir="${download.dir}"/>
@@ -654,6 +688,46 @@
 			<param name="failmessage" value="Flash SDK download failed" />
 			<param name="md5" value="${flash.sdk.url.md5}" />
         </antcall>
+    </target>
+    
+    <!-- Because this requires a network connection it downloads Flash SDK only if it doesn't already exist. -->
+    <target name="flat-check" description="Checks if Flat fonts has been downloaded.">
+        <!-- make this folder anyway so example scripts don't fail -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
+        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.woff" property="skip.flat.install"/>
+        <condition property="skip.flat.install" value="true">
+            <not>
+                <isset property="do.flat.install" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="flat-download" depends="flat-check" unless="skip.flat.install"
+        description="Downloads Flat fonts and copies to correct locations">
+        
+        <mkdir dir="${download.dir}"/>
+        <echo>${INFO_INSTALLING_FLAT_FONTS} https://github.com/designmodo/Flat-UI/archive/2.2.2.zip</echo>
+        <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
+        dest="${download.dir}/flat-ui_2_2.zip"
+        verbose="false"/>
+        
+        <mkdir dir="${download.dir}/flat/fonts"/>
+        <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${download.dir}/flat/fonts" />
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot"
+            tofile="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.eot"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf"
+            tofile="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg"
+            tofile="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.svg"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff"
+            tofile="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.woff"/>
+        <copy file="${download.dir}/flat/fonts/Flat-UI-2.2.2/README.md"
+            tofile="${FLEXJS_HOME}/frameworks/fonts/README.md"/>
+            
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flat-ui-icons-regular.swf/lastSuccessfulBuild/artifact/frameworks/fonts/flat-ui-icons-regular.swf"
+            dest="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.swf"
+            verbose="false"/>
+            
     </target>
     
     <!-- swfobject.js (Version 2.2) -->

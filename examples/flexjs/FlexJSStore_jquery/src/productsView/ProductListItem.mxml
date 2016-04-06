@@ -60,6 +60,16 @@ limitations under the License.
         {
             _data = value;
         }
+        
+        public function get listData():Object
+        {
+        	return null;
+        }
+        
+        public function set listData(value:Object):void
+        {
+        	// not used
+        }
 
         private var _itemRendererParent:Object;
         
@@ -99,7 +109,7 @@ limitations under the License.
         <js:ContainerDataBinding />
     </js:beads>
         
-    <js:ImageButton id="removeButton" backgroundImage="assets/trashcan.png"
+    <js:ImageButton id="removeButton" source="assets/trashcan.png"
         width="14" height="14" y="5"
         click="removeItem()">
         <js:beads>

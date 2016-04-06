@@ -87,14 +87,14 @@
         Each of the main targets for the modules will call clean themselves before proceeding.
     -->
 
-    <target name="main" depends="check-if-ide,prebuild,frameworks-as,frameworks-js,frameworks-recompile,post-build,last-message-if-airsdk" description="Full build" unless="airsdk.found">
+    <target name="main" depends="check-if-ide,prebuild,frameworks,post-build,last-message-if-airsdk" description="Full build" unless="airsdk.found">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
         <echo>ant main target completed on ${build.datetime}</echo>
     </target>
 
-    <target name="main-jenkins" depends="dump-config,prebuild,frameworks-as,frameworks-js-jenkins,post-build" description="Full build">
+    <target name="main-jenkins" depends="dump-config,prebuild,frameworks,post-build" description="Full build">
         <tstamp>
         	<format property="build.datetime" pattern="MM/dd/yyyy hh:mm:ss aa" />
         </tstamp>
@@ -282,6 +282,11 @@
             property="FALCON_HOME"
             value="${env.FALCON_HOME}"/>
 
+        <available file="${basedir}/lib/falcon-mxmlc.jar"
+            type="file"
+            property="FALCON_HOME"
+            value="${basedir}"/>
+
         <available file="${basedir}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
             type="file"
             property="FALCON_HOME"
@@ -305,6 +310,11 @@
             type="file"
             property="FALCONJX_HOME"
             value="${basedir}/../flex-falcon/compiler.jx"/>
+
+        <available file="${basedir}/js/lib/jsc.jar"
+            type="file"
+            property="FALCONJX_HOME"
+            value="${basedir}/js"/>
 
         <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_HOME"/>
@@ -372,7 +382,7 @@
         <delete dir="${basedir}/lib"/>
     </target>
 
-    <target name="clean" depends="examples-clean,frameworks-as-clean,package-clean,checkintests-clean"
+    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
@@ -398,7 +408,7 @@
         <ant dir="${basedir}/manualtests" target="clean"/>
     </target>
 
-    <target name="frameworks-as-clean">
+    <target name="frameworks-clean">
         <ant dir="${basedir}/frameworks" target="clean"/>
     </target>
 
@@ -427,27 +437,8 @@
         Build framework SWCs
     -->
 
-    <target name="frameworks-as" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
+    <target name="frameworks" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
         <ant dir="${basedir}/frameworks">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-
-    <target name="frameworks-js-jenkins" description="Full check of all JavaScript framework files, using gsjlint and jshint">
-        <property name="no.lint" value="true" />
-        <ant dir="${basedir}/frameworks" target="js">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-    
-    <target name="frameworks-js" description="Full check of all JavaScript framework files, using gsjlint and jshint" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="js">
-            <property name="locale" value="${locale}"/>
-        </ant>
-    </target>
-
-    <target name="frameworks-recompile" description="Full build of all Actionscript framework SWCs, which picks up JS files" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks" target="re-compile">
             <property name="locale" value="${locale}"/>
         </ant>
     </target>
@@ -540,19 +531,13 @@
                 <include name="RELEASE_NOTES"/>
                 <include name="LICENSE"/>
                 <include name="LICENSE.bin"/>
+                <include name="LICENSE.base"/>
                 <include name="NOTICE"/>
             </fileset>
         </copy>
          
         <!-- frameworks -->
         <antcall target="stage-framework-as"/>
-        
-        <copy todir="${basedir}/temp/frameworks/js">
-            <fileset dir="${basedir}/frameworks/js" >
-                <include name="jshint.properties"/>
-                <include name=".jshintrc"/>
-            </fileset>
-        </copy>
         
         <!-- asdoc -->
         <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
@@ -653,6 +638,7 @@
                 <exclude name="**/*.pbj"/>
                 <exclude name="**/*.swf"/>
                 <exclude name="**/*.mxp"/>
+                <exclude name="fb.properties"/>
                 <exclude name="fonts/**"/>
                 <exclude name="test*/**"/>
                 <exclude name="js/VanillaSDK/**"/>
@@ -754,12 +740,13 @@
         </copy>
          -->
          
-         <!-- fonts -->
+         <!-- fonts
           <copy todir="${basedir}/temp/frameworks/fonts">
               <fileset dir="${basedir}/frameworks/fonts" >
-                  <include name="**/**"/>
+                  <include name="**/*.swf"/>
               </fileset>
           </copy>
+          -->
          
         <!-- examples -->
         <copy todir="${basedir}/temp/examples">
@@ -795,14 +782,20 @@
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
 		<echo message="Copying GCL from ${GOOG_HOME}"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${GOOG_HOME}" />
+			<fileset dir="${GOOG_HOME}" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
 	<target name="copy-gcl-from-downloaded" unless="GOOG_HOME">
 		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${basedir}/js/lib/google/closure-library" />
+			<fileset dir="${basedir}/js/lib/google/closure-library" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
@@ -1020,12 +1013,8 @@
         <copy todir="${basedir}/temp/asdoc">
             <fileset dir="${basedir}/asdoc-output"/>
         </copy>
-        <copy todir="${basedir}/temp/asdoc">
-            <fileset dir="${basedir}">
-                <include name="LICENSE" />
-                <include name="NOTICE" />
-            </fileset>
-        </copy>
+        <copy todir="${basedir}/temp/asdoc" file="${basedir}/NOTICE" />
+        <copy tofile="${basedir}/temp/asdoc/LICENSE" file="${basedir}/LICENSE.base" />
         <zip file="${basedir}/out/${kit.prefix}-asdocs.zip" basedir="${basedir}/temp"/>
         <antcall target="clean-temp"/>
     </target>
@@ -1081,43 +1070,56 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.45.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-1.3.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.9.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.14.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.3.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.3.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.3.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/ini4j-0.5.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-websocket-8.1.8.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-3.4.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-3.4.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/json-20080701.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-dep-4.11.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.21.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/operadriver-1.5.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/protobuf-java-2.4.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.8.5.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
             </classpath>
@@ -1148,8 +1150,6 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/jquery_externals.js" />
-            <arg value="-external-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs/createjs_externals.js" />
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
         </java>
         <fail>
@@ -1169,43 +1169,56 @@
         <mkdir dir="${basedir}/mustella/java/bin"/>
         <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.45.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-1.3.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.9.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.14.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.3.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.3.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.3.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/ini4j-0.5.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-websocket-8.1.8.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-3.4.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-3.4.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/json-20080701.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-dep-4.11.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.21.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/operadriver-1.5.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/protobuf-java-2.4.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.8.5.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
             </classpath>
@@ -1368,6 +1381,7 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
                 <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>

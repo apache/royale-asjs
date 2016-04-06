@@ -27,37 +27,26 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
-    type="file"
-    property="FALCON_HOME"
-    value="${env.FALCON_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
-    type="file"
-    property="FALCON_HOME"
-    value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk"/>
-    
-    <available file="${env.FALCONJX_HOME}/lib/jsc.jar"
-    type="file"
-    property="FALCONJX_HOME"
-    value="${env.FALCONJX_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar"
-    type="file"
-    property="FALCONJX_HOME"
-    value="${FLEXJS_HOME}/../flex-falcon/compiler.jx"/>
-    
-    <available file="${env.GOOG_HOME}/closure/goog/base.js"
-    type="file"
-    property="GOOG_HOME"
-    value="${env.GOOG_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js"
-    type="file"
-    property="GOOG_HOME"
-    value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     
     <include file="${basedir}/../../build_example.xml" />
+    
+    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/libs/js.swc" type="file" />
+        </and>
+    </condition>
+    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/js.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FALCONJX_HOME}/../js/libs/js.swc" type="file" />
+        </and>
+    </condition>
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
     
 <!-- temp remove build_example.compilejs -->
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
