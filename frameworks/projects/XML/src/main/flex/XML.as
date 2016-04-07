@@ -734,6 +734,8 @@ package
 				5. Return list
 			*/
 			var i:int;
+			if(!name)
+				name = "*";
 			name = toXMLName(name);
 			var list:XMLList = new XMLList();
 			if(name.isAttribute)
@@ -766,6 +768,8 @@ package
 		 */
 		public function elements(name:Object = "*"):XMLList
 		{
+			if(!name)
+				name = "*";
 			name = toXMLName(name);
 			var i:int;
 			var list:XMLList = new XMLList();

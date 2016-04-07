@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="xmltest" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../.."/>
+    <property name="example" value="ReflectionTest" />
+    
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <!-- use this to add keep metadata option -->
+    <property name="theme_arg" value="-keep-as3-metadata+=Event" />
+    <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
+    type="file"
+    property="FALCON_HOME"
+    value="${env.FALCON_HOME}"/>
+    
+    <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
+    type="file"
+    property="FALCON_HOME"
+    value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk"/>
+    
+    <available file="${env.FALCONJX_HOME}/lib/jsc.jar"
+    type="file"
+    property="FALCONJX_HOME"
+    value="${env.FALCONJX_HOME}"/>
+    
+    <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar"
+    type="file"
+    property="FALCONJX_HOME"
+    value="${FLEXJS_HOME}/../flex-falcon/compiler.jx"/>
+    
+    <available file="${env.GOOG_HOME}/closure/goog/base.js"
+    type="file"
+    property="GOOG_HOME"
+    value="${env.GOOG_HOME}"/>
+    
+    <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js"
+    type="file"
+    property="GOOG_HOME"
+    value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
+    
+    <include file="${basedir}/../build_example.xml" />
+
+    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of FlexJSUI.swc">
+    </target>
+    
+    <target name="clean">
+        <delete dir="${basedir}/bin" failonerror="false" />
+        <delete dir="${basedir}/bin-debug" failonerror="false" />
+        <delete dir="${basedir}/bin-release" failonerror="false" />
+    </target>
+
+</project>
