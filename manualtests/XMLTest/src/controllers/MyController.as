@@ -31,12 +31,12 @@ package controllers
 		{
 			if (app)
 			{
-				this.app = app as ReflectionTest;
+				this.app = app as XMLTest;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
 		
-		private var app:ReflectionTest;
+		private var app:XMLTest;
 		
 		private function viewChangeHandler(event:Event):void
 		{
@@ -44,7 +44,7 @@ package controllers
 		        
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as ReflectionTest;
+			this.app = document as XMLTest;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

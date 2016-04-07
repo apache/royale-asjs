@@ -21,7 +21,7 @@
 
 <project name="xmltest" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
-    <property name="example" value="ReflectionTest" />
+    <property name="example" value="XMLTest" />
     
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
