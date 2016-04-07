@@ -37,23 +37,16 @@ limitations under the License.
 			import org.apache.flex.events.Event;
 			import org.apache.flex.utils.UIUtils;
 						
-            import org.apache.flex.reflection.describeType;
-            import org.apache.flex.reflection.MetaDataArgDefinition;
-            import org.apache.flex.reflection.MetaDataDefinition;
-            import org.apache.flex.reflection.MethodDefinition;
-            import org.apache.flex.reflection.TypeDefinition;
-            
+            import XML;
+
             [Event(name="foo", type="org.apache.flex.events.Event")]
             public function runTest():void
             {
-                var metadata:Array;
-                var mtd:MetaDataDefinition;
-                var mtdarg:MetaDataArgDefinition;
                 var args:Array;
                 var j:int;
                 var m:int;
                 var xml1:XML = <foo baz="true"/>;
-                trace(xmll1);
+                trace(xml1);
                 trace(xml1.baz);
 
             }
