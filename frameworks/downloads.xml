@@ -26,8 +26,8 @@
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
 	<property name="download.dir" value="${FLEXJS_HOME}/in"/>
-	        
-    <!-- 
+    
+    <!--
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
        clean does not remove these since they don't change often and the downloads take time.
     -->
@@ -82,11 +82,42 @@
     <!-- swfobject.js (Version 2.2) -->
     <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
     <target name="flat-ui-check" description="Checks if SWFObject has been downloaded.">
-        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat-ui.present"/>
+        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat.donot.ask"/>
+        <condition property="flat.donot.ask">
+            <isset property="build.noprompt"/>
+        </condition>
+        <condition property="do.flat.install">
+            <isset property="build.noprompt"/>
+        </condition>
     </target>
     
-    <target name="flat-ui-download" depends="flat-ui-check" unless="flat-ui.present"
-        description="Copies FlatUI from github">
+    <target name="ask-flat" unless="flat.donot.ask"
+        description="Prompt the user before downloading Flat fonts">
+        
+        <property name="flat.prompt.text"
+        value="Apache FlexJS includes an optional component set that
+        ${line.separator}uses fonts from designmodo.com.
+        ${line.separator}The font files are subject to and governed by the
+        ${line.separator}Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported license:
+        ${line.separator}http://creativecommons.org/licenses/by-nc-nd/3.0/
+        ${line.separator}This license is not compatible with the Apache v2 license.
+        ${line.separator}Do you want to install the designmodo fonts?"/>
+        <input
+        message="${flat.prompt.text}"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="input.flat.download"/>
+        <condition property="do.flat.install">
+            <equals arg1="y" arg2="${input.flat.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="flat.donot.ask" value="set"/>
+    </target>
+    
+    <target name="flat-ui-download" depends="flat-ui-check,get-flat-fonts"
+        description="Copies FlatUI from github" />
+        
+    <target name="get-flat-fonts" depends="ask-flat" if="do.flat.install" >
         
         <mkdir dir="${download.dir}"/>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"

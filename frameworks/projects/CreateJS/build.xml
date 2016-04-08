@@ -28,9 +28,18 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
     <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <condition property="JS.SWC" value="${FALCONJX_HOME}/../js/libs/js.swc" >
+        <available file="${FALCONJX_HOME}/../js/libs/js.swc" />
+    </condition>
     <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
-    <property name="CREATEJS.SWC" value="${FALCONJX_HOME}/../externs/createjs/out/bin/createjs.swc" />
+    <condition property="GCL.SWC" value="${FALCONJX_HOME}/../js/libs/GCL.swc" >
+        <available file="${FALCONJX_HOME}/../js/libs/GCL.swc" />
+    </condition>
     <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+    <condition property="CREATEJS.SWC" value="${FALCONJX_HOME}/../js/libs/createjs.swc" >
+        <available file="${FALCONJX_HOME}/../js/libs/createjs.swc" />
+    </condition>
+    <property name="CREATEJS.SWC" value="${FALCONJX_HOME}/../externs/createjs/out/bin/createjs.swc" />
     <condition property="no.lint" value="true">
         <os family="windows"/>
     </condition>

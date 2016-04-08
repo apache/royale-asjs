@@ -51,14 +51,7 @@ package org.apache.flex.events
 		 */
 		public function CustomEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-            COMPILE::AS3
-            {
-                super(type, bubbles, cancelable);                    
-            }
-            COMPILE::JS
-            {
-                super(type);
-            }
+            super(type, bubbles, cancelable);                    
 		}
 	}
 }

@@ -170,7 +170,7 @@ package org.apache.flex.events
 								   commandKey:Boolean = false, controlKey:Boolean = false,
 								   clickCount:int = 0)
 		{
-			super(type);
+			super(type, bubbles, cancelable);
 
 			this.localX = localX;
 			this.localY = localY;

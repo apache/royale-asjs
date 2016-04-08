@@ -105,14 +105,15 @@ package org.apache.flex.events
 
 		public static const CHANGE:String = "change";
 
-        public function Event(type:String, target:Object = null) {
-            super(type, target);
+        public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
+            super(type);
+			this.bubbles = true;
+			this.cancelable = true;
         }
 
-		public function init(type:String):void {
-			this.type = type;
-		}
-		
+		public var bubbles:Boolean;
+		public var cancelable:Boolean;
+				
 		/**
 		 * Google Closure doesn't seem to support stopImmediatePropagation, but
 		 * actually the HTMLElementWrapper fireListener override sends a
@@ -122,12 +123,12 @@ package org.apache.flex.events
 		 */
 		public function stopImmediatePropagation():void
 		{
-			// do nothing
+			throw new Error("stopImmediatePropagation");
 		}
 		
 		public function cloneEvent():org.apache.flex.events.Event
 		{
-			return this;
+			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
     }
 }

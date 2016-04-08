@@ -578,8 +578,11 @@ package org.apache.flex.core
 
             dispatchEvent('initialize');
 
-            if (model is IBead) addBead(model as IBead);
-            if (controller is IBead) addBead(controller as IBead);
+			for (var index:int in beads) {
+				addBead(beads[index]);
+			}
+
+			dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 
             initialView.applicationModel = model;
             addElement(initialView);

@@ -28,6 +28,8 @@ package
 internal class CollectionsClasses
 {
     import org.apache.flex.collections.ArrayList; ArrayList;
+	import org.apache.flex.collections.FlattenedList; FlattenedList;
+	import org.apache.flex.collections.HierarchicalData; HierarchicalData;
 	import org.apache.flex.collections.LazyCollection; LazyCollection;
 }
 

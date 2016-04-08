@@ -41,15 +41,7 @@ package org.apache.flex.events
 		public function ValueEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 value:Object = null)
 		{
-            COMPILE::AS3
-            {
-    			super(type, bubbles, cancelable);
-            }
-            
-            COMPILE::JS
-            {
-                super(type);
-            }
+			super(type, bubbles, cancelable);
             
 			this.value = value;
 		}
