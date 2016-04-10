@@ -100,7 +100,8 @@ package
 		COMPILE::JS
 		public function toString():String
 		{
-			return _localName;
+			var uriVal:String = _uri ? _uri : "*";
+			return uriVal + "::" + _localName;
 		}
 
 		COMPILE::JS
