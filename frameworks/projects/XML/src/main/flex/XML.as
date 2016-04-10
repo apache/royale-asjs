@@ -313,6 +313,7 @@ package
 		COMPILE::JS
 		public function XML(xml:String = null)
 		{
+			_children = [];
 			if(xml)
 			{
 				var parser:DOMParser = new DOMParser();
@@ -807,8 +808,6 @@ package
 			list.targetObject = this;
 			list.targetProperty = name;
 			return list;
-
-			return null;
 		}
 
 		COMPILE::JS
