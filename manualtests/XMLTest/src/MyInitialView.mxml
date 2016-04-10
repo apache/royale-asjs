@@ -50,7 +50,12 @@ limitations under the License.
                 trace(xml1.toXMLString() == '<foo baz="true"/>');
                 var baz:XMLList = xml1.@baz;
                 trace("baz: " + xml1.@baz.toString() + " //true");
-
+                var child:XML = <pop><child name="Sam"/></pop>;
+                xml1.appendChild(child);
+                child = new XML('<pop><child name="George"/></pop>');
+                xml1.appendChild(child);
+                trace(xml1.pop[0].toString());
+                trace(xml1.pop[1].toString());
             }
 		]]>
 	</fx:Script>

@@ -183,12 +183,15 @@ package
 			var xml:XML;
 			var i:int;
 			var data:* = node.nodeValue;
+			var qname:QName = new QName(node.namespaceURI,node.nodeName);
+			qname.prefix = node.prefix;
 			switch(node.nodeType)
 			{
 				case 1:
 					//ELEMENT_NODE
 					xml = new XML();
 					xml.setNodeKind("element");
+					xml.setName(qname);
 					iterateElement(node,xml);
 					break;
 				//case 2:break;// ATTRIBUTE_NODE (handled separately)
@@ -196,11 +199,13 @@ package
 					//TEXT_NODE
 					xml = new XML();
 					xml.setNodeKind("text");
+					xml.setName(qname);
 					xml.setValue(data);
 					break;
 				case 4:
 					//CDATA_SECTION_NODE
 					xml = new XML();
+					xml.setName(qname);
 					xml.setNodeKind("text");
 					data = "<![CDATA[" + data + "]]>";
 					xml.setValue(data);
@@ -211,7 +216,7 @@ package
 					//PROCESSING_INSTRUCTION_NODE
 					xml = new XML();
 					xml.setNodeKind("processing-instruction");
-					xml.setName(node.nodeName);
+					xml.setName(qname);
 					xml.setValue(data);
 					break;
 				case 8:
@@ -563,7 +568,7 @@ package
 			*/
 			var i:int;
 			var list:XMLList = new XMLList();
-			if(parseInt(name,10).toString() == propertyName)
+			if(parseInt(propertyName,10).toString() == propertyName)
 			{
 				if(propertyName != "0")
 					return null;
