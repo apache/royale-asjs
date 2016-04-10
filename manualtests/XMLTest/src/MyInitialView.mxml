@@ -47,8 +47,9 @@ limitations under the License.
                 var m:int;
                 var xml1:XML = <foo baz="true"/>;
                 trace(xml1.toXMLString());
+                trace(xml1.toXMLString() == '<foo baz="true"/>');
                 var baz:XMLList = xml1.@baz;
-                trace(xml1.@baz.toString());
+                trace("baz: " + xml1.@baz.toString() + " //true");
 
             }
 		]]>
