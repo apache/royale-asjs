@@ -329,6 +329,10 @@ package
 				var node:Element = doc.childNodes[0];
 				_version = doc.xmlVersion;
 				_encoding = doc.xmlEncoding;
+				_name = new QName();
+				_name.prefix = node.prefix;
+				_name.uri = node.namespaceURI;
+				_name.localName = node.localName;
 				iterateElement(node,this);
 				normalize();
 			}
@@ -2257,16 +2261,19 @@ package
 			//attributes and namespace declarations... (15-16)
 			for(i=0;i<declarations.length;i++)
 			{
-				strArr.push(" xmlns");
-				if(declarations[i].prefix)
+				var decVal:String = escapeAttributeValue(declarations[i].uri);
+				if(decVal)
 				{
-					strArr.push(":");
-					strArr.push(declarations[i].prefix);
+					strArr.push(" xmlns");
+					if(declarations[i].prefix)
+					{
+						strArr.push(":");
+						strArr.push(declarations[i].prefix);
+					}
+					strArr.push('="');
+					strArr.push(decVal);
+					strArr.push('"');
 				}
-				strArr.push('="');
-				strArr.push(escapeAttributeValue(declarations[i].uri));
-				strArr.push('"');
-
 			}
 			for(i=0;i<_attributes.length;i++)
 			{

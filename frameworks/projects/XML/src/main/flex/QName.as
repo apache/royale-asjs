@@ -57,11 +57,13 @@ package
 				if(localNameVal)
 					_localName = localNameVal.toString();
 			}
+			else if(localNameVal)
+			{
+				_localName = localNameVal;
+			}
 			else if (qNameOrUri && qNameOrUri.toString())
 			{
-				_uri = qNameOrUri.toString();
-				if(localNameVal)
-					_localName = localNameVal;
+				_localName = qNameOrUri.toString();
 			}
 		}
 
