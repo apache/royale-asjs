@@ -16,12 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-COMPILE::JS
-{
 package
 {
 	public class QName
 	{
+		COMPILE::JS
 		public function QName(qNameOrUri:*=null,localNameVal:*=null)
 		{
 			/*
@@ -96,15 +95,19 @@ package
 			_prefix = value;
 		}
 
+		COMPILE::JS
 		public function toString():String
 		{
 			return _localName;
 		}
 
+		COMPILE::JS
 		public function equals(name:QName):Boolean
 		{
 			return this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
 		}
+		
+    	COMPILE::JS
 		public function matches(name:QName):Boolean
 		{
 			if(this.uri == "*" || name.uri == "*")
@@ -125,6 +128,7 @@ package
 			_isAttribute = value;
 		}
 
+		COMPILE::JS
 		public function getNamespace(namespaces:Array=null):Namespace
 		{
 			/*
@@ -158,5 +162,5 @@ package
 
 	}
 }
-}
+
 

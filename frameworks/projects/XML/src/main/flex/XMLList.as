@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-COMPILE::JS
-{
 package
 {
 	public class XMLList
 	{
+		COMPILE::JS
 		public function XMLList()
 		{
 			addIndex(0);
 		}
+		COMPILE::JS
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -108,6 +108,7 @@ package
 			  b. Call the [[Put]] method of x[0] with arguments P and V
 			4. Return
 		*/
+		COMPILE::JS
 		private function addIndex(idx:int):void
 		{
 			var idxStr:String = "" + idx;
@@ -145,6 +146,7 @@ package
 			);
 		}
 		
+		COMPILE::JS
 		public function appendChild(child:XML):void
 		{
 			addIndex(_xmlArray.length);
@@ -158,6 +160,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function attribute(attributeName:*):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -176,6 +179,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function attributes():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -195,6 +199,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -213,6 +218,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function children():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -231,6 +237,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function comments():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -244,6 +251,7 @@ package
 			return retVal;
 		}
 		
+		COMPILE::JS
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
@@ -269,6 +277,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function contains(value:XML):Boolean
 		{
 			
@@ -287,6 +296,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function copy():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -304,6 +314,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function descendants(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -324,6 +335,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function elements(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -337,6 +349,7 @@ package
 			return retVal;
 		}
 
+		COMPILE::JS
 		public function equals(list:*):Boolean
 		{
 			/*
@@ -364,6 +377,7 @@ package
 			return false;
 		}
 		
+		COMPILE::JS
 		public function hasComplexContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return true.
@@ -378,6 +392,7 @@ package
 			return false;
 		}
 
+		COMPILE::JS
 		override public function hasOwnProperty(propertyName:*):Boolean
 		{
 			/*
@@ -410,6 +425,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function hasSimpleContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return false.
@@ -430,6 +446,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function length():int
 		{
 			return _xmlArray.length;
@@ -442,6 +459,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function normalize():XMLList
 		{
 			/*
@@ -472,6 +490,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function parent():Object
 		{
 			if(_xmlArray.length == 0)
@@ -493,6 +512,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function processingInstructions(name:String = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -513,6 +533,7 @@ package
 			return retVal;
 		}
 
+		COMPILE::JS
 		public function removeChild(child:*):void
 		{
 			var i:int;
@@ -538,6 +559,7 @@ package
 			}
 		}
 
+		COMPILE::JS
 		public function removeChildAt(idx:int):void
 		{
 			if(idx >= 0 && idx < _xmlArray.length)
@@ -580,6 +602,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function text():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -599,6 +622,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		override public function toLocaleString():String
 		{
 			var retVal:Array = [];
@@ -618,6 +642,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function toString():String
 		{
 			var retVal:Array = [];
@@ -637,6 +662,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function toXMLString():String
 		{
 			var retVal:Array = [];
@@ -656,10 +682,11 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		override public function valueOf():*
 		{
 			return this;
 		}
 	}
 }
-}
+

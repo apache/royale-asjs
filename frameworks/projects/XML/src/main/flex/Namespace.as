@@ -16,13 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-COMPILE::JS
-{
 package
 {
 	public class Namespace
 	{
-		public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)
+		COMPILE::JS
+    	public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)
 		{
 			/*
 				When the Namespace constructor is called with a no arguments, one argument uriValue or two arguments prefixValue and uriValue, the following steps are taken:
@@ -119,16 +118,18 @@ package
 			_prefix = value;
 		}
 
+		COMPILE::JS
 		public function toString():String
 		{
 			return uri;
 		}
 
+		COMPILE::JS
 		override public function valueOf():*
 		{
 			return this;
 		}
 	}
 }
-}
+
 

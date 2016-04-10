@@ -16,8 +16,6 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-COMPILE::JS
-{
 package
 {
 	public class XML
@@ -31,6 +29,7 @@ package
 
 		static private var defaultNamespace:Namespace;
 
+		COMPILE::JS
 		static public function setDefaultNamespace(ns:*):void
 		{
 			if(!ns)
@@ -86,6 +85,7 @@ package
 		 */
 		static public var prettyPrinting:Boolean = true;
 		
+		COMPILE::JS
 		static private function escapeAttributeValue(value:String):String
 		{
 			var outArr:Array = [];
@@ -118,6 +118,7 @@ package
 			return outArr.join("");
 		}
 
+		COMPILE::JS
 		static private function escapeElementValue(value:String):String
 		{
 			var i:int;
@@ -144,6 +145,7 @@ package
 			return outArr.join("");
 		}
 
+		COMPILE::JS
 		static private function insertAttribute(att:Attr,parent:XML):XML
 		{
 			var xml:XML = new XML();
@@ -154,6 +156,7 @@ package
 			parent.addChild(xml);
 			return xml;
 		}
+		COMPILE::JS
 		static private function iterateElement(node:Element,xml:XML):void
 		{
 			var i:int;
@@ -174,6 +177,7 @@ package
 		* returns an XML object from an existing node without the need to parse the XML.
 		* The new XML object is not normalized
 		*/
+		COMPILE::JS
 		static private function fromNode(node:Element):XML
 		{
 			var xml:XML;
@@ -227,6 +231,7 @@ package
 			return xml;
 		}
 
+		COMPILE::JS
 		static private function namespaceInArray(ns:Namespace,arr:Array,considerPrefix:Boolean=true):Boolean
 		{
 			if(!arr)
@@ -245,6 +250,7 @@ package
 			return false;
 		}
 
+		COMPILE::JS
 		static private function trimXMLWhitespace(value:String):String
 		{
 			return value.replace(/^\s+|\s+$/gm,'');
@@ -255,6 +261,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		static public function defaultSettings():Object
 		{
 			return {
@@ -271,6 +278,7 @@ package
 		 * @param rest
 		 * 
 		 */
+		COMPILE::JS
 		static public function setSettings(value:Object):void
 		{
 			if(!value)
@@ -289,6 +297,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		static public function settings():Object
 		{
 			return {
@@ -301,6 +310,7 @@ package
 		}
 
 
+		COMPILE::JS
 		public function XML(xml:String = null)
 		{
 			if(xml)
@@ -357,6 +367,7 @@ package
 		 *
 		 * 	
 		 */
+		COMPILE::JS
 		public function addChild(child:XML):void
 		{
 			if(!child)
@@ -384,6 +395,7 @@ package
 		 * @return 
 		 * 	
 		 */
+		COMPILE::JS
 		public function addNamespace(ns:Namespace):XML
 		{
 			/*
@@ -442,6 +454,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function appendChild(child:XML):XML
 		{
 			/*
@@ -478,6 +491,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function attribute(attributeName:*):XMLList
 		{
 			var i:int;
@@ -502,6 +516,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function attributes():XMLList
 		{
 			var i:int;
@@ -520,6 +535,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function child(propertyName:Object):XMLList
 		{
 			/*
@@ -578,6 +594,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function childIndex():int
 		{
 			if(!_parent)
@@ -592,6 +609,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function children():XMLList
 		{
 			var i:int;
@@ -609,6 +627,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function comments():XMLList
 		{
 			var i:int;
@@ -622,6 +641,7 @@ package
 			return list;
 		}
 		
+		COMPILE::JS
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
@@ -649,6 +669,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function contains(value:XML):Boolean
 		{
 			return this.equals(value);
@@ -660,6 +681,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function copy():XML
 		{
 			/*
@@ -698,6 +720,7 @@ package
 			return xml;
 		}
 
+		COMPILE::JS
 		private function deleteChildAt(idx:int):void
 		{
 			if(idx < 0)
@@ -716,6 +739,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function descendants(name:Object = "*"):XMLList
 		{
 			/*
@@ -766,6 +790,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function elements(name:Object = "*"):XMLList
 		{
 			if(!name)
@@ -786,6 +811,7 @@ package
 			return null;
 		}
 
+		COMPILE::JS
 		public function equals(xml:*):Boolean
 		{
 			/*
@@ -842,6 +868,7 @@ package
 			return true;
 		}
 
+		COMPILE::JS
 		public function hasAttribute(nameOrXML:*,value:String=null):Boolean
 		{
 			if(!_attributes)
@@ -869,6 +896,7 @@ package
 			return false;
 		}
 
+		COMPILE::JS
 		private function getAncestorNamespaces(namespaces:Array):Array
 		{
 			//don't modify original
@@ -909,11 +937,13 @@ package
 			return _children ? _children.slice() : [];
 		}
 
+		COMPILE::JS
 		public function getIndexOf(elem:XML):int
 		{
 			return _children.indexOf(elem);
 		}
 		
+		COMPILE::JS
 		private function getURI(prefix:String):String
 		{
 			var i:int;
@@ -936,6 +966,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function hasComplexContent():Boolean
 		{
 			/*
@@ -956,6 +987,7 @@ package
 			return false;
 		}
 
+		COMPILE::JS
 		override public function hasOwnProperty(p:*):Boolean
 		{
 			/*
@@ -998,6 +1030,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function hasSimpleContent():Boolean
 		{
 			/*
@@ -1024,11 +1057,13 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function inScopeNamespaces():Array
 		{
 			return _namespaces.slice();
 		}
 		
+		COMPILE::JS
 		private function insertChildAt(child:XML,idx:int):void{
 			/*
 				When the [[Insert]] method of an XML object x is called with property name P and value V, the following steps are taken:
@@ -1067,6 +1102,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function insertChildAfter(child1:XML, child2:XML):XML
 		{
 			/*
@@ -1103,6 +1139,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function insertChildBefore(child1:XML, child2:XML):XML
 		{
 			/*
@@ -1139,6 +1176,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function length():int
 		{
 			return 1;
@@ -1150,6 +1188,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function localName():Object
 		{
 			return name().localName;
@@ -1163,6 +1202,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function name():Object
 		{
 			if(!_name)
@@ -1177,6 +1217,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function namespace(prefix:String = null):*
 		{
 			/*
@@ -1220,6 +1261,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function namespaceDeclarations():Array
 		{
 			/*
@@ -1290,6 +1332,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function normalize():XML
 		{
 			var len:int = _children.length-1;
@@ -1324,6 +1367,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function parent():*
 		{
 			return _parent;
@@ -1335,6 +1379,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function prependChild(child:XML):XML
 		{
 			child.setParent(this);
@@ -1351,6 +1396,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function processingInstructions(name:String = "*"):XMLList
 		{
 			return null;
@@ -1363,6 +1409,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function removeChild(child:XML):Boolean
 		{
 			/*
@@ -1417,6 +1464,7 @@ package
 			child.setParent(null);
 			return removed;
 		}
+		COMPILE::JS
 		private function removeChildByName(name:*):Boolean
 		{
 			var i:int;
@@ -1455,6 +1503,7 @@ package
 			}
 			return removedItem;
 		}
+		COMPILE::JS
 		public function removeChildAt(index:int):void
 		{
 			/*
@@ -1482,6 +1531,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function removeNamespace(ns:*):XML
 		{
 			/*
@@ -1543,6 +1593,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function replace(propertyName:Object, value:*):XML
 		{
 			/*
@@ -1575,6 +1626,7 @@ package
 			return null;
 		}
 
+		COMPILE::JS
 		private function replaceChild(idx:int,v:*):void
 		{
 			/*
@@ -1628,6 +1680,7 @@ package
 			}
 		}
 
+		COMPILE::JS
 		private function isAncestor(xml:XML):Boolean
 		{
 			var p:XML = parent();
@@ -1640,6 +1693,7 @@ package
 			return false;
 		}
 
+		COMPILE::JS
 		public function setAttribute(attr:*,value:String):void
 		{
 			var i:int;
@@ -1691,6 +1745,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function setChild(elementName:*, elements:Object):void
 		{
 			
@@ -1809,6 +1864,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function setChildren(value:Object):XML
 		{
 			var i:int;
@@ -1861,6 +1917,7 @@ package
 		 * @param name
 		 * 
 		 */
+		COMPILE::JS
 		public function setLocalName(name:String):void
 		{
 			if(!_name)
@@ -1875,6 +1932,7 @@ package
 		 * @param name
 		 * 
 		 */
+		COMPILE::JS
 		public function setName(name:*):void
 		{
 			if(name is QName)
@@ -1889,6 +1947,7 @@ package
 		 * @param ns
 		 * 
 		 */
+		COMPILE::JS
 		public function setNamespace(ns:Object):void
 		{
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction")
@@ -1916,6 +1975,7 @@ package
 			_nodeKind = value;
 		}
 		
+		COMPILE::JS
 		public function setParent(parent:XML):void
 		{
 			var oldParent:XML = _parent;
@@ -1936,6 +1996,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function text():XMLList
 		{
 			var list:XMLList = new XMLList();
@@ -1969,6 +2030,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function toString():String
 		{
 			// text, comment, processing-instruction, attribute, or element
@@ -1981,6 +2043,7 @@ package
 			return toXMLString();
 		}
 
+		COMPILE::JS
 		private function toAttributeName(name:*):QName
 		{
 			var qname:QName;
@@ -1994,6 +2057,7 @@ package
 			qname.isAttribute = true;
 			return qname;
 		}
+		COMPILE::JS
 		private function toXMLName(name:*):QName
 		{
 			var qname:QName;
@@ -2049,6 +2113,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		public function toXMLString(indentLevel:int=0,ancestors:Array=null):String
 		{
 			/*
@@ -2264,6 +2329,7 @@ package
 		 * @return 
 		 * 
 		 */
+		COMPILE::JS
 		override public function valueOf():*
 		{
 			return this;
@@ -2271,4 +2337,4 @@ package
 		
 	}
 }
-}
+
