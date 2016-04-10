@@ -116,29 +116,10 @@ package
 				{
 					"get": function():* { return _xmlArray[idx]; },
 					"set": function(newValue:*):void {
-						var i:int;
-						if(newValue is XML)
-						{
-							_xmlArray[idx] = newValue;
-						}
-						else if(newValue is XMLList)
-						{
-							var len:int = newValue.length();
-							for(i=0;i<len;i++)
-							{
-								// replace the first one and add each additonal one.
-								if(i==0)
-									_xmlArray[idx] = newValue[i];
-								else
-									_xmlArray.splice(idx+i,0,newValue[i]);
-							}
-						}
-						// add indexes as necessary
-						while(idx++ < _xmlArray.length)
-						{
-							if(!this.hasOwnProperty(idx))
-								addIndex(idx);
-						}
+						if(idx >= _xmlArray.length)
+							appendChild(newValue);
+						else
+							replaceChildAt(idx,newValue);
 					},
 					enumerable: true,
 					configurable: true
@@ -149,8 +130,12 @@ package
 		COMPILE::JS
 		public function appendChild(child:XML):void
 		{
-			addIndex(_xmlArray.length);
 			_xmlArray[_xmlArray.length] = child;
+			addIndex(_xmlArray.length);
+			if(_targetObject)
+			{
+				_targetObject.appendChild(child);
+			}
 		}
 		
 		/**
@@ -564,6 +549,38 @@ package
 		{
 			if(idx >= 0 && idx < _xmlArray.length)
 				_xmlArray.splice(idx,1);
+		}
+		COMPILE::JS
+		private function replaceChildAt(idx:int,child:*):void
+		{
+			var i:int;
+			var childToReplace:XML = _xmlArray[idx];
+			if(childToReplace && _targetObject)
+			{
+				_targetObject.replaceChildAt(childToReplace.childIndex,child);
+			}
+			if(child is XML)
+			{
+				_xmlArray.splice(idx+i,0,child);
+			}
+			else if(child is XMLList)
+			{
+				var len:int = child.length();
+				for(i=0;i<len;i++)
+				{
+					// replace the first one and add each additonal one.
+					if(i==0)
+						_xmlArray[idx] = child[i];
+					else
+						_xmlArray.splice(idx+i,0,child[i]);
+				}
+			}
+			// add indexes as necessary
+			while(idx++ < _xmlArray.length)
+			{
+				if(!this.hasOwnProperty(idx))
+					addIndex(idx);
+			}
 		}
 
 		private var _targetObject:*;

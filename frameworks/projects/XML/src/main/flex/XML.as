@@ -1635,7 +1635,7 @@ package
 		}
 
 		COMPILE::JS
-		private function replaceChild(idx:int,v:*):void
+		public function replaceChildAt(idx:int,v:*):void
 		{
 			/*
 				When the [[Replace]] method of an XML object x is called with property name P and value V, the following steps are taken:
@@ -1680,6 +1680,19 @@ package
 				//6.
 				if(_children[idx])
 					_children[idx].setParent(null);
+
+				var len:int = v.length();
+				v[0].setParent(this);
+				_children[idx] = v[0];
+				var listIdx:int = 1;
+				var chld:XML = v[0];
+				while(listIdx < len)
+				{
+					chld = v[listIdx];
+					insertChildAt(chld,idx+listIdx);
+					listIdx++;
+
+				}
 
 			}
 			else
@@ -2257,6 +2270,10 @@ package
 			{
 				ns.prefix = "";
 				declarations.push(ns);
+			}
+			if(XML.prettyPrinting)
+			{
+				strArr.push(new Array(indentLevel).join(' '));
 			}
 			strArr.push("<");
 			if(ns.prefix)
