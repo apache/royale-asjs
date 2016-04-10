@@ -37,7 +37,9 @@
         </path>
     </target>
     
-    <target name="main" depends="clean,check-falcon-home,check-falconjx-home,more-props,compile-asjs,compile-extern-swc,copy-js,compile,test-js" description="Full build of XML.swc">
+    <!--<target name="main" depends="clean,check-falcon-home,check-falconjx-home,more-props,compile-asjs,compile-extern-swc,copy-js,compile,test-js" description="Full build of XML.swc">
+    </target>-->
+    <target name="main" depends="clean,check-falcon-home,check-falconjx-home,more-props,compile-asjs,copy-js,compile,test-js" description="Full build of XML.swc">
     </target>
     
     <target name="test" unless="is.jenkins">
@@ -153,7 +155,7 @@
             <load-config filename="src/main/resources/compile-asjs-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-external-library-path+=${JS.SWC}" />
+            <arg value="-external-library-path=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
