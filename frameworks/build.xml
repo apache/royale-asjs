@@ -94,6 +94,7 @@
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
+        <antcall target="XML"/>
     </target>
     
     <target name="fonts">
@@ -138,6 +139,7 @@
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
+        <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -228,6 +230,9 @@
 
     <target name="Storage" description="Clean build of Storage.swc">
         <ant dir="${basedir}/projects/Storage"/>
+    </target>
+    <target name="XML" description="Clean build of XML.swc">
+        <ant dir="${basedir}/projects/XML"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
