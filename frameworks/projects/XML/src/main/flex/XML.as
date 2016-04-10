@@ -265,11 +265,11 @@ package
 		static public function defaultSettings():Object
 		{
 			return {
-			    ignoreComments : true,
-			    ignoreProcessingInstructions : true,
-			    ignoreWhitespace : true,
-			    prettyIndent : 2,
-			    prettyPrinting : true
+			    "ignoreComments" : true,
+			    "ignoreProcessingInstructions" : true,
+			    "ignoreWhitespace" : true,
+			    "prettyIndent" : 2,
+			    "prettyPrinting" : true
 			}
 		}
 		
@@ -301,11 +301,11 @@ package
 		static public function settings():Object
 		{
 			return {
-			    ignoreComments : ignoreComments,
-			    ignoreProcessingInstructions : ignoreProcessingInstructions,
-			    ignoreWhitespace : ignoreWhitespace,
-			    prettyIndent : prettyIndent,
-			    prettyPrinting : prettyPrinting
+			    "ignoreComments" : ignoreComments,
+			    "ignoreProcessingInstructions" : ignoreProcessingInstructions,
+			    "ignoreWhitespace" : ignoreWhitespace,
+			    "prettyIndent" : prettyIndent,
+			    "prettyPrinting" : prettyPrinting
 			}
 		}
 
@@ -711,7 +711,7 @@ package
 			xml.setNodeKind(_nodeKind);
 			xml.setName(name());
 			xml.setValue(_value);
-			for(i-0;i<_namespaces.length;i++)
+			for(i=0;i<_namespaces.length;i++)
 			{
 				xml.addNamespace(new Namespace(_namespaces[i]));
 			}
