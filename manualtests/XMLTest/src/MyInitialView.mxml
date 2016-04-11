@@ -33,13 +33,58 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[			
-			import org.apache.flex.core.IPopUpHost;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.utils.UIUtils;
 						
             import XML;
 
-            [Event(name="foo", type="org.apache.flex.events.Event")]
+            private var xmlStr:String = '<?xml version="1.0" encoding="UTF-8" ?>'+
+                '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"'+
+                '              xmlns:dac="com.printui.view.components.DesignAreaComponents.*">'+
+                '<'+'!'+'-'+'- just a comment -'+'-'+'>'+
+                '<?bla fud?>'+
+                '   bla bla<product description="Cardigan Sweater" product_image="cardigan.jpg">'+
+                '      <fx:catalog_item gender="Men\'s" fx:foo="bah">'+
+                '         <item_number>QWZ5671</item_number>'+
+                '         <price>39.95</price>'+
+                '         <size description="Medium">'+
+                '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                '         </size>'+
+                '         <size description="Large">'+
+                '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                '         </size>'+
+                '      </fx:catalog_item>'+
+        '      <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]'+']>   </script>'+
+'      <catalog_item gender="Women\'s">'+
+           '         <item_number>RRX9856</item_number>'+
+           '         <price>42.50</price>'+
+           '         <size description="Small">'+
+                         '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Medium">'+
+                         '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Large">'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Extra Large">'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+        '      </catalog_item>'+
+        '   </product>'+
+'</catalog>';
+
+            private var xml:XML = new XML(xmlStr);
+            private var text:String = "hi";
+            private var xml2:XML = new XML('<root xmlns:fz="http://ns.adobe.com/mxml/2009"><a><b/></a><a name="fred"/><a>hi<b>yeah!</b></a><a name="frank"/><c/></root>');
+
             public function runTest():void
             {
                 var args:Array;
@@ -63,6 +108,84 @@ limitations under the License.
                 pop[0] = <pop><child name="Fred"/></pop>;
                 trace(pop.toString());
                 trace(xml1.toString());
+
+
+var xmlString:String = xml.toXMLString();
+var script:XML = xml..script[0].children()[0];
+var kind = script.nodeKind();
+var comment = xml.children()[0];
+var comKind = comment.nodeKind();
+var instr = xml.processingInstructions()[0];
+var prod = xml.product[0];
+//JIRA https://issues.apache.org/jira/browse/FLEX-35069
+//var catalog_item = xml..('http://ns.adobe.com/mxml/2009')::catalog_item[0];
+var prod_desc_name = prod.@description.name();
+//xml2.appendChild(catalog_item);
+trace(prod.childIndex());
+                var list1:XMLList = xml2.a;
+                var aaa = list1[0];
+                var aab = list1[0][0][0];
+                var list2:XMLList = xml2.child("a");
+                var list3:XMLList = xml2.descendants();
+                list3  = list3.(attribute("name").length());
+                list2[list2.length()] = <c id="1"/>;
+                list2[0] = <bla/>;
+                var list4:XMLList = new XMLList();
+                list4[0] = <a id="1"/>;
+                list4[1] = <a id="2"/>;
+                list4[2] = <a id="3"/>;
+//JIRA https://issues.apache.org/jira/browse/FLEX-35072
+//                list1 += list4
+list1.concat(list4);
+                xml2.insertChildAfter(xml2.a,<a id="123"/>);
+                xml2.a = list4;
+                xml2.a = <a id="123"/>;
+                xml2.a += <a id="456"/>;
+                //xml2.a -= <a id="456"/>;
+                var a = xml2.baz
+                trace(xml2.toString());
+                trace(xml2.toXMLString());
+                trace(list1[0].toString());
+                trace(list1[0].toXMLString());
+                trace(list1[1].toString());
+                trace(list1[1].toXMLString());
+                trace(list1[2].toString());
+                trace(list1[2].toXMLString());
+                trace(list1[3].toString());
+                trace(list1[3].toXMLString());
+                var aaa = list1[4];
+                trace(list1[4].toString());
+                trace(list1[4].toXMLString());
+                trace(list1[5].toString());
+                trace(list1[5].toXMLString());
+                
+                delete xml2.a;
+                var aa:XMLList = list2.b;
+                var ab:XMLList = list2.@name;
+                var ac = ab.parent();
+                trace(list2.length());
+                var list3:XMLList = list1.copy();
+                //list1[0].@foo = "food";
+                trace(list1[1].contains(<a name="fred"/>));
+                trace("simple: " +list1[0].hasSimpleContent());
+                trace("complex: " +list1[0].hasComplexContent());
+                trace("simple: " +list1[1].hasSimpleContent());
+                trace("complex: " +list1[1].hasComplexContent());
+                trace("simple: " +list1[2].hasSimpleContent());
+                trace("complex: " +list1[2].hasComplexContent());
+                trace("simple: " +list1.hasSimpleContent());
+                trace("complex: " +list1.hasComplexContent());
+                var list2:XMLList = xml2.b;
+                trace("list 2");
+                trace("simple: " +list2.hasSimpleContent());
+                trace("complex: " +list2.hasComplexContent());
+                var elem:XMLList = list1.elements();
+                var elem2:XMLList = list1.elements("c");
+                var elem3:XMLList = list1.elements("a");
+                trace(list1.toXMLString());
+                trace(list1.toString());
+                trace("done");
+
             }
 		]]>
 	</fx:Script>
