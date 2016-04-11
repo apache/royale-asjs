@@ -437,6 +437,13 @@ package
 			return _xmlArray.length;
 		}
 		
+		COMPILE::JS
+		public function name():QName
+		{
+			if(_xmlArray.length == 1)
+				return _xmlArray[0].name();
+			return null;
+		}
 		/**
 		 * Merges adjacent text nodes and eliminates empty text nodes for each of the following:
 		 * all text nodes in the XMLList, all the XML objects contained in the XMLList, and the descendants of all the XML objects in the XMLList.
