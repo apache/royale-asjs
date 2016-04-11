@@ -779,16 +779,16 @@ package
 					if(name.matches(_attributes[i].name()))
 						list.appendChild(_attributes[i]);
 				}
-				for(i=0;i<_children.length;i++)
+			}
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "element")
 				{
-					if(_children[i].nodeKind() == "element")
-					{
-						if(name.matches(_children[i].name()))
-							list.appendChild(_children[i]);
+					if(name.matches(_children[i].name()))
+						list.appendChild(_children[i]);
 
-						list.concat(_children[i].descendants());
-					} 
-				}
+					list.concat(_children[i].descendants());
+				} 
 			}
 			return list;
 		}
@@ -1407,7 +1407,15 @@ package
 		COMPILE::JS
 		public function processingInstructions(name:String = "*"):XMLList
 		{
-			return null;
+			var i:int;
+			var list:XMLList = new XMLList();
+			for(i=0;i<_children.length;i++)
+			{
+				if(_children[i].nodeKind() == "processing-instruction")
+					list.appendChild(_children[i]);
+			}
+			list.targetObject = this;
+			return list;
 		}
 		
 		/**
