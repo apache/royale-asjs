@@ -270,11 +270,11 @@ package
 		static public function defaultSettings():Object
 		{
 			return {
-			    "ignoreComments" : true,
-			    "ignoreProcessingInstructions" : true,
-			    "ignoreWhitespace" : true,
-			    "prettyIndent" : 2,
-			    "prettyPrinting" : true
+			    ignoreComments : true,
+			    ignoreProcessingInstructions : true,
+			    ignoreWhitespace : true,
+			    prettyIndent : 2,
+			    prettyPrinting : true
 			}
 		}
 		
@@ -306,11 +306,11 @@ package
 		static public function settings():Object
 		{
 			return {
-			    "ignoreComments" : ignoreComments,
-			    "ignoreProcessingInstructions" : ignoreProcessingInstructions,
-			    "ignoreWhitespace" : ignoreWhitespace,
-			    "prettyIndent" : prettyIndent,
-			    "prettyPrinting" : prettyPrinting
+			    ignoreComments : ignoreComments,
+			    ignoreProcessingInstructions : ignoreProcessingInstructions,
+			    ignoreWhitespace : ignoreWhitespace,
+			    prettyIndent : prettyIndent,
+			    prettyPrinting : prettyPrinting
 			}
 		}
 
@@ -1672,8 +1672,8 @@ package
 					throw new TypeError("cannot assign parent xml as child");
 				v.setParent(this);
 				if(_children[idx])
-					_children[idx].setParent(null);
-				_children[idx] = v;
+					removeChild(_children[idx]);
+				insertChildAt(v,idx);
 			}
 			else if(v is XMLList)
 			{
@@ -1999,11 +1999,13 @@ package
 		COMPILE::JS
 		public function setParent(parent:XML):void
 		{
+			if(parent == _parent)
+				return;
 			var oldParent:XML = _parent;
 			_parent = parent;
 			//assign first to prevent the possiblity of a recursive loop
 			if(oldParent)
-				_parent.removeChild(this);
+				oldParent.removeChild(this);
 		}
 
 		public function setValue(value:String):void

@@ -52,12 +52,15 @@ limitations under the License.
                 trace("baz: " + xml1.@baz.toString() + " //true");
                 var child:XML = <pop><child name="Sam"/></pop>;
                 xml1.appendChild(child);
-                child = new XML('<pop><child name="George"/></pop>');
+                child = <pop><child name="George"/></pop>;
                 xml1.appendChild(child);
                 trace(xml1.pop[0].toString());
                 trace(xml1.pop[1].toString());
                 var pop:XMLList = xml1.pop;
-                pop[pop.length()] = new XML('<pop><child name="Fred"/></pop>');
+                pop[pop.length()] = <pop><child name="Fred"/></pop>;
+                trace(pop.toString());
+                trace(xml1.toString());
+                pop[0] = <pop><child name="Fred"/></pop>;
                 trace(pop.toString());
                 trace(xml1.toString());
             }

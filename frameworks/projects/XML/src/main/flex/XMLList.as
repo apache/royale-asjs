@@ -557,7 +557,7 @@ package
 			var childToReplace:XML = _xmlArray[idx];
 			if(childToReplace && _targetObject)
 			{
-				_targetObject.replaceChildAt(childToReplace.childIndex,child);
+				_targetObject.replaceChildAt(childToReplace.childIndex(),child);
 			}
 			if(child is XML)
 			{
