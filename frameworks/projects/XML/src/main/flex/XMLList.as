@@ -255,7 +255,8 @@ package
 			while(i<len)
 				appendChild(list[i++]);
 
-//			for each(item in list)
+//			var xmlList:XMLList = list;
+//			for each(item in xmlList)
 //				appendChild(item);
 				
 			return this;
@@ -337,6 +338,17 @@ package
 				if(list.length())
 					retVal.concat(list);
 			}
+			return retVal;
+		}
+
+		COMPILE::JS
+		public function elementNames():Array
+		{
+			var retVal:Array = [];
+			var i:int=0;
+			var len:int = _xmlArray.length;
+			while(i<len)
+				retVal.push(i++);
 			return retVal;
 		}
 
