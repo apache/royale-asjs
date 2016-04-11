@@ -249,8 +249,14 @@ package
 				throw new TypeError("invalid type");
 
 			var item:XML;
-			for each(item in list)
-				appendChild(item);
+			//work-around for FLEX-35070
+			var len:int = list.length();
+			var i:int=0;
+			while(i<len)
+				appendChild(list[i++]);
+
+//			for each(item in list)
+//				appendChild(item);
 				
 			return this;
 		}
@@ -360,6 +366,19 @@ package
 				4. Return false
 			*/
 			return false;
+		}
+		COMPILE::JS
+		public function filter(callback:Function):XMLList
+		{
+			var list:XMLList = new XMLList();
+			for(var i:int = 0;i<_xmlArray.length;i++)
+			{
+				if(callback(_xmlArray[i]))
+					list.appendChild(_xmlArray[i]);
+			}
+			list.targetObject = _targetObject;
+			list.targetProperty = _targetProperty;
+			return list;
 		}
 		
 		COMPILE::JS
