@@ -651,6 +651,24 @@ package
 			return _targetProperty;
 		}
 		
+		COMPILE::JS
+		public function setAttribute(attr:*,value:String):void
+		{
+			var len:int = _xmlArray.length;
+			for (var i:int=0;i<len;i++)
+				_xmlArray[i].setAttribute(attr,value);
+
+		}
+
+
+		COMPILE::JS
+		public function setChild(elementName:*, elements:Object):void
+		{
+			var len:int = _xmlArray.length;
+			if(len == 0)
+				_xmlArray[0].setChild(elementName,elements);
+
+		}
 		/**
 		 * Calls the text() method of each XML object and returns an XMLList object that contains the results.
 		 * 
