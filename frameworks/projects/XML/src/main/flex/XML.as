@@ -1762,7 +1762,21 @@ package
 			{
 				//it's a regular attribute string
 				//TODO use toXMLName or toAttributeName to convert attr and assing it
-
+				var qname:QName = toAttributeName(attr);
+				var attrXML:XML = new XML();
+				attrXML.setNodeKind("attribute");
+				attrXML.setName(toAttributeName(attr));
+				attrXML.setValue(value);
+				for(i=0;i<_attributes.length;i++)
+				{
+					if(_attributes[i].name().equals(attrXML.name()))
+					{
+						_attributes[i].setValue(value);
+						return;
+					}
+					//addChild(_att)
+				}
+				addChild(attrXML);
 			}
 
 		}
