@@ -665,7 +665,7 @@ package
 		public function setChild(elementName:*, elements:Object):void
 		{
 			var len:int = _xmlArray.length;
-			if(len == 0)
+			if(len == 1)
 				_xmlArray[0].setChild(elementName,elements);
 
 		}
