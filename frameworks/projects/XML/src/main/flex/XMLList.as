@@ -664,8 +664,7 @@ package
 		COMPILE::JS
 		public function setChild(elementName:*, elements:Object):void
 		{
-			var len:int = _xmlArray.length;
-			if(len == 1)
+			if(_xmlArray.length == 1)
 				_xmlArray[0].setChild(elementName,elements);
 
 		}
