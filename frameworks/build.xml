@@ -159,6 +159,7 @@
             <exclude name="swfobject/index.template.html" />
             <exclude name="swfobject/expressInstall.swf" />
             <exclude name="swfobject/swfobject.js" />
+            <exclude name="swfobject/history/**" />
         </delete>
     </target>
     
