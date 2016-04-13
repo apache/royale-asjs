@@ -35,6 +35,7 @@ limitations under the License.
 		<![CDATA[			
 						
             import XML;
+            import mx.collections.XMLListCollection;
 
             private var xmlStr:String = '<?xml version="1.0" encoding="UTF-8" ?>'+
                 '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"'+
@@ -135,8 +136,8 @@ trace(prod.childIndex());
                 list4[1] = <a id="2"/>;
                 list4[2] = <a id="3"/>;
 //JIRA https://issues.apache.org/jira/browse/FLEX-35072
-//                list1 += list4
-list1.concat(list4);
+                list1 += list4
+//list1.concat(list4);
                 xml2.insertChildAfter(xml2.a,<a id="123"/>);
                 xml2.a = list4;
                 xml2.a = <a id="123"/>;
@@ -185,7 +186,56 @@ list1.concat(list4);
                 trace(list1.toXMLString());
                 trace(list1.toString());
                 trace("done");
+                trace("test 3");
+var xmlSource:XML =
+<xmlParentNode>
+   <Set1>
+      <child><year>2015</year></child>
+      <child><year>2016</year></child>
+      <child><year>2017</year></child>
+  </Set1>
+  <Set2>
+      <child><year>2015</year></child>
+      <child><year>2016</year></child>
+      <child><year>2017</year></child>
+  </Set2>
+</xmlParentNode>;
 
+
+//var xmllcSet1:XMLListCollection = new XMLListCollection();
+//var xmllcSet2:XMLListCollection = new XMLListCollection();
+
+//xmllcSet1.source = xmlSource.Set1.child;
+//xmllcSet2.source = xmlSource.Set2.child;
+
+var xmllcSet1:XMLList = xmlSource.Set1.child;
+var xmllcSet2:XMLList = xmlSource.Set2.child;
+
+trace(xmllcSet1.toXMLString());
+trace(xmllcSet2.toXMLString());
+
+
+//var xmllcFiltered: XMLListCollection = new XMLListCollection();
+
+//xmllcFiltered.source = xmlSource.Set1.child.(year == "2015");
+var xmllcFiltered:XMLList = xmlSource.Set1.child.(year == "2015");
+trace(xmllcFiltered.toXMLString());
+trace("test 4");
+var svg:XML = <svg>
+ <group>
+   <rect id="1" />
+   <rect id="2" />
+ </group>
+ <group>
+   <rect id="3" />
+   <rect id="4" />
+ </group>
+</svg>;
+
+var rects:XMLList = svg..rect;
+rects[1].@width = "100px";
+rects.(@id==3).@height = "100px";
+trace(rects.toXMLString());
             }
 		]]>
 	</fx:Script>
