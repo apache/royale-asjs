@@ -157,7 +157,9 @@
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
         <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
             <exclude name="swfobject/index.template.html" />
-        </delete> 
+            <exclude name="swfobject/expressInstall.swf" />
+            <exclude name="swfobject/swfobject.js" />
+        </delete>
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">

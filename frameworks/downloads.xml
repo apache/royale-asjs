@@ -79,9 +79,9 @@
         </delete>
     </target>
         
-    <!-- swfobject.js (Version 2.2) -->
-    <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
-    <target name="flat-ui-check" description="Checks if SWFObject has been downloaded.">
+    <!-- flat ui fonts  -->
+    <!-- Because this requires a network connection it downloads Flat UI fonts only if it doesn't already exist. -->
+    <target name="flat-ui-check" description="Checks if Flat UI fonts have been downloaded.">
         <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat.donot.ask"/>
         <condition property="flat.donot.ask">
             <isset property="build.noprompt"/>
@@ -118,7 +118,6 @@
         description="Copies FlatUI from github" />
         
     <target name="get-flat-fonts" depends="ask-flat" if="do.flat.install" >
-        
         <mkdir dir="${download.dir}"/>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
         dest="${download.dir}/flat-ui_2_2.zip"

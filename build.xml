@@ -179,6 +179,8 @@
         <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
         <!-- don't ask again about these since we just did if these weren't already set -->	    
 	    <property name="build.noprompt" value="set" />
+        <!-- this flag is used by frameworks/build.xml to prevent a second download -->
+        <property name="no.thirdparty-downloads" value="set" />
     </target>
 
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config"
