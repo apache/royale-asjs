@@ -22,6 +22,9 @@
 	<property name="FLEXJS_HOME" location="../.."/>
 
 	<!-- properties -->
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
 	<property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
@@ -166,7 +169,13 @@
     </target>
 	
     <target name="subset-goog" >
+        <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
+            <not>
+                <isset property="GOOG_HOME"/>
+            </not>
+        </condition>
         <property name="GOOG_DIR" value="${GOOG_HOME}" />
+        <echo>Subsetting ${GOOG_DIR}</echo>
         <delete failonerror="false">
             <!-- we only need base.js, eventtarget.js and their dependencies -->
             <fileset dir="${GOOG_DIR}">
