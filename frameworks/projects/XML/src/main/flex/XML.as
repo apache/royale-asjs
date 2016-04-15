@@ -2243,7 +2243,7 @@ package
 			var i:int;
 			var ns:Namespace;
 			var strArr:Array = [];
-
+			indentLevel = isNaN(indentLevel) ? 0 : indentLevel;
 			var indentArr:Array = [];
 			for(i=0;i<indentLevel;i++)
 				indentArr.push(_indentStr);
