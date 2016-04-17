@@ -22,12 +22,15 @@
 	<property name="FLEXJS_HOME" location="../.."/>
 
 	<!-- properties -->
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
 	<property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
 	<property name="download.dir" value="${FLEXJS_HOME}/in"/>
-	        
-    <!-- 
+    
+    <!--
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
        clean does not remove these since they don't change often and the downloads take time.
     -->
@@ -75,19 +78,50 @@
             <fileset dir="${FLEXJS_HOME}/templates/swfobject">
                 <include name="**/**"/>
                 <exclude name="index.template.html"/>
+                <exclude name="history/**"/>
             </fileset>
         </delete>
     </target>
         
-    <!-- swfobject.js (Version 2.2) -->
-    <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
-    <target name="flat-ui-check" description="Checks if SWFObject has been downloaded.">
-        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat-ui.present"/>
+    <!-- flat ui fonts  -->
+    <!-- Because this requires a network connection it downloads Flat UI fonts only if it doesn't already exist. -->
+    <target name="flat-ui-check" description="Checks if Flat UI fonts have been downloaded.">
+        <available file="${FLEXJS_HOME}/frameworks/fonts/flat-ui-icons-regular.ttf" property="flat.donot.ask"/>
+        <condition property="flat.donot.ask">
+            <isset property="build.noprompt"/>
+        </condition>
+        <condition property="do.flat.install">
+            <isset property="build.noprompt"/>
+        </condition>
     </target>
     
-    <target name="flat-ui-download" depends="flat-ui-check" unless="flat-ui.present"
-        description="Copies FlatUI from github">
+    <target name="ask-flat" unless="flat.donot.ask"
+        description="Prompt the user before downloading Flat fonts">
         
+        <property name="flat.prompt.text"
+        value="Apache FlexJS includes an optional component set that
+        ${line.separator}uses fonts from designmodo.com.
+        ${line.separator}The font files are subject to and governed by the
+        ${line.separator}Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported license:
+        ${line.separator}http://creativecommons.org/licenses/by-nc-nd/3.0/
+        ${line.separator}This license is not compatible with the Apache v2 license.
+        ${line.separator}Do you want to install the designmodo fonts?"/>
+        <input
+        message="${flat.prompt.text}"
+        validargs="y,n"
+        defaultvalue="n"
+        addproperty="input.flat.download"/>
+        <condition property="do.flat.install">
+            <equals arg1="y" arg2="${input.flat.download}"/>
+        </condition>
+        <!-- Only ask once per ant run.  -->
+        <property name="flat.donot.ask" value="set"/>
+    </target>
+    
+    <target name="flat-ui-download" depends="flat-ui-check,get-flat-fonts"
+        description="Copies FlatUI from github" />
+        
+    <target name="get-flat-fonts" depends="ask-flat" if="do.flat.install" >
         <mkdir dir="${download.dir}"/>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
         dest="${download.dir}/flat-ui_2_2.zip"
@@ -130,8 +164,52 @@
     	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${FLEXJS_HOME}/js/lib/google/closure-library">
     		<cutdirsmapper dirs="1" />
     	</unzip>
+        <property name="GOOG_DIR" value="${FLEXJS_HOME}/js/lib/google/closure-library" />
+        <antcall target="subset-goog" />
     </target>
 	
+    <target name="subset-goog" >
+        <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
+            <not>
+                <isset property="GOOG_HOME"/>
+            </not>
+        </condition>
+        <property name="GOOG_DIR" value="${GOOG_HOME}" />
+        <echo>Subsetting ${GOOG_DIR}</echo>
+        <delete failonerror="false">
+            <!-- we only need base.js, eventtarget.js and their dependencies -->
+            <fileset dir="${GOOG_DIR}">
+                <include name="**"/>
+                <exclude name="closure/goog/array/array.js"/>
+                <exclude name="closure/goog/asserts/asserts.js"/>
+                <exclude name="closure/goog/base.js"/>
+                <exclude name="closure/goog/deps.js"/>
+                <exclude name="closure/goog/debug/entrypointregistry.js"/>
+                <exclude name="closure/goog/debug/error.js"/>
+                <exclude name="closure/goog/disposable/disposable.js"/>
+                <exclude name="closure/goog/disposable/idisposable.js"/>
+                <exclude name="closure/goog/dom/nodetype.js"/>
+                <exclude name="closure/goog/events/browserevent.js"/>
+                <exclude name="closure/goog/events/browserfeature.js"/>
+                <exclude name="closure/goog/events/event.js"/>
+                <exclude name="closure/goog/events/eventid.js"/>
+                <exclude name="closure/goog/events/events.js"/>
+                <exclude name="closure/goog/events/eventtarget.js"/>
+                <exclude name="closure/goog/events/eventtype.js"/>
+                <exclude name="closure/goog/events/listenable.js"/>
+                <exclude name="closure/goog/events/listener.js"/>
+                <exclude name="closure/goog/events/listenermap.js"/>
+                <exclude name="closure/goog/labs/useragent/browser.js"/>
+                <exclude name="closure/goog/labs/useragent/engine.js"/>
+                <exclude name="closure/goog/labs/useragent/platform.js"/>
+                <exclude name="closure/goog/labs/useragent/util.js"/>
+                <exclude name="closure/goog/object/object.js"/>
+                <exclude name="closure/goog/reflect/reflect.js"/>
+                <exclude name="closure/goog/string/string.js"/>
+                <exclude name="closure/goog/useragent/useragent.js"/>
+            </fileset>
+        </delete>
+    </target>
     <target name="gcl-clean" description="Deletes Google Closure Library">
     	<echo message="Deleting Google Closure Library"/>
         <delete dir="${FLEXJS_HOME}/js/lib" failonerror="false" />

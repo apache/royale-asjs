@@ -234,7 +234,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -278,7 +278,7 @@
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+configname=air" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -321,7 +321,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,false" />
             <arg value="-define=CONFIG::js_only,true" />

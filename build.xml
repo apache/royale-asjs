@@ -179,6 +179,8 @@
         <!-- <ant dir="${basedir}/frameworks/js" target="thirdparty-downloads"/> -->
         <!-- don't ask again about these since we just did if these weren't already set -->	    
 	    <property name="build.noprompt" value="set" />
+        <!-- this flag is used by frameworks/build.xml to prevent a second download -->
+        <property name="no.thirdparty-downloads" value="set" />
     </target>
 
     <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config"
@@ -531,6 +533,7 @@
                 <include name="RELEASE_NOTES"/>
                 <include name="LICENSE"/>
                 <include name="LICENSE.bin"/>
+                <include name="LICENSE.base"/>
                 <include name="NOTICE"/>
             </fileset>
         </copy>
@@ -739,12 +742,13 @@
         </copy>
          -->
          
-         <!-- fonts -->
+         <!-- fonts
           <copy todir="${basedir}/temp/frameworks/fonts">
               <fileset dir="${basedir}/frameworks/fonts" >
-                  <include name="**/**"/>
+                  <include name="**/*.swf"/>
               </fileset>
           </copy>
+          -->
          
         <!-- examples -->
         <copy todir="${basedir}/temp/examples">
@@ -780,14 +784,20 @@
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
 		<echo message="Copying GCL from ${GOOG_HOME}"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${GOOG_HOME}" />
+			<fileset dir="${GOOG_HOME}" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
 	<target name="copy-gcl-from-downloaded" unless="GOOG_HOME">
 		<echo message="Copying GCL from ${basedir}/temp/js/lib/google/closure-library"></echo>
 		<copy todir="${basedir}/temp/js/lib/google/closure-library">
-			<fileset dir="${basedir}/js/lib/google/closure-library" />
+			<fileset dir="${basedir}/js/lib/google/closure-library" >
+                <include name="**"/>
+                <exclude name="closure/goog/crypt/**" />
+            </fileset>
 		</copy>
 	</target>
 	
@@ -1005,12 +1015,8 @@
         <copy todir="${basedir}/temp/asdoc">
             <fileset dir="${basedir}/asdoc-output"/>
         </copy>
-        <copy todir="${basedir}/temp/asdoc">
-            <fileset dir="${basedir}">
-                <include name="LICENSE" />
-                <include name="NOTICE" />
-            </fileset>
-        </copy>
+        <copy todir="${basedir}/temp/asdoc" file="${basedir}/NOTICE" />
+        <copy tofile="${basedir}/temp/asdoc/LICENSE" file="${basedir}/LICENSE.base" />
         <zip file="${basedir}/out/${kit.prefix}-asdocs.zip" basedir="${basedir}/temp"/>
         <antcall target="clean-temp"/>
     </target>
@@ -1066,7 +1072,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.48.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1080,7 +1086,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
@@ -1092,7 +1098,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
@@ -1111,7 +1117,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.6.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
@@ -1143,8 +1149,10 @@
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-library-path+=${FLEX_SDK_HOME}/mustella/mustella.swc" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
         </java>
@@ -1165,7 +1173,7 @@
         <mkdir dir="${basedir}/mustella/java/bin"/>
         <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.48.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1179,7 +1187,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-18.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
@@ -1191,7 +1199,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.29.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
@@ -1210,7 +1218,7 @@
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.6.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
@@ -1377,6 +1385,7 @@
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
             <fileset dir="${rat.dir}">
                 <exclude name="LICENSE.bin"/>
+                <exclude name="LICENSE.base"/>
                 <!--          Start of binary files           -->
                 <!-- exclude media (png, gif, jpg, mp3, flv) -->
                 <exclude name="**/*.png"/>
@@ -1701,9 +1710,8 @@
             />
         <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/flex-falcon/compiler" />
-        <ant dir="${base.folder.name}/flex-falcon/compiler.jx" />
-        <ant dir="${base.folder.name}/flex-flexunit" />
+        <ant dir="${base.folder.name}/flex-falcon" target="all" />
+        <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     
     <target name="all" depends="set.base.folder, download-all, main" />

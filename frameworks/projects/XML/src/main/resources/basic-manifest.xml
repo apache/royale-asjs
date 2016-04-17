@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<?xml version="1.0"?>
 <!--
 
   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,12 +17,8 @@
   limitations under the License.
 
 -->
-<launchConfiguration type='org.eclipse.ui.externaltools.ProgramLaunchConfigurationType'>
-<booleanAttribute key='org.eclipse.debug.core.appendEnvironmentVariables' value='false'/>
-<listAttribute key='org.eclipse.debug.ui.favoriteGroups'>
-<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
-</listAttribute>
-<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGURATION_BUILD_SCOPE' value='${project}'/>
-<stringAttribute key='org.eclipse.ui.externaltools.ATTR_LOCATION' value='$FLEXJS_HOME/js/bin/$MXMLC'/>
-<stringAttribute key='org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS' value='-debug=false -fb &quot;${project_loc}&quot;'/>
-</launchConfiguration>
+
+
+<componentPackage>
+
+</componentPackage>
