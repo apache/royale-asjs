@@ -19,24 +19,20 @@ limitations under the License.
 -->
 <js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
-				xmlns:local="*" 
-				xmlns:models="models.*"
                 initComplete="testit()"
 				>
 	<fx:Script>
 		<![CDATA[
-			
-			private function testit():void
-			{
-				trace();
-			}
-			
-			private function refreshBtnClick(event:Event):void
-			{
-				var e:Event = new Event("refresh",true);
-				dispatchEvent(e);
-			}
-			
+		import org.apache.flex.events.MouseEvent;
+
+		private function testit():void {
+			trace();
+		}
+
+		private function onRefreshBtnClick(event:MouseEvent):void {
+			var e:Event = new Event("refresh", true);
+			dispatchEvent(e);
+		}
 		]]>
 	</fx:Script>
 	
@@ -53,7 +49,7 @@ limitations under the License.
 	
 	
 	<js:Label text="Number of users on flex.apache.org for last 30 days" x="10" y="10" />
-	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="refreshBtnClick(event)"/> 
+	<js:TextButton id="refreshButton" text="Refresh" x="300" y="10" click="onRefreshBtnClick(event)"/>
 	
 	<js:ColumnChart id="columnChart" x="40" y="40" width="2000" height="768" className="AllCharts">
 		<js:beads>

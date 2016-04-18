@@ -19,9 +19,9 @@
 -->
 
 
-<project name="chartexample" default="main" basedir=".">
+<project name="FlexWebsiteStatsViewer" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../.."/>
-    <property name="example" value="ChartExample" />
+    <property name="example" value="FlexWebsiteStatsViewer" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
