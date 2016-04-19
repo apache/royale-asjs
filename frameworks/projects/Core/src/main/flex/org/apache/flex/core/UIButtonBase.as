@@ -277,6 +277,7 @@ package org.apache.flex.core
 		
 		private var _width:Number;
         
+		[Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
         /**
          *  @copy org.apache.flex.core.UIBase#width
@@ -327,6 +328,7 @@ package org.apache.flex.core
 		
 		private var _height:Number;
 
+		[Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
         /**
          *  @copy org.apache.flex.core.UIBase#width
