@@ -20,7 +20,6 @@ package org.apache.flex.createjs
 {
     COMPILE::AS3
     {
-        import org.apache.flex.core.ITextModel;
         import org.apache.flex.html.Button;            
     }
     COMPILE::JS
@@ -30,11 +29,24 @@ package org.apache.flex.createjs
         import createjs.Shape;
         import createjs.Stage;
         
-        import org.apache.flex.createjs.core.UIBase;
+        import org.apache.flex.createjs.core.CreateJSBase;
         import org.apache.flex.core.WrappedHTMLElement;
     }
+	
+	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.SolidColor;
+	
+	/**
+	 * The TextButton class provides a clickable button.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion FlexJS 0.0
+	 */
 
-    COMPILE::AS3
+	COMPILE::AS3
 	public class TextButton extends Button
 	{
 		public function TextButton()
@@ -42,6 +54,75 @@ package org.apache.flex.createjs
 			super();
 		}
 		
+		private var _fill:IFill;
+		
+		/**
+		 *  A solid color fill.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fill():IFill
+		{
+			return _fill;
+		}
+		public function set fill(value:IFill):void
+		{
+			_fill = value;
+		}
+		
+		private var _textColor:IFill;
+		
+		
+		/**
+		 *  The color of the text.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get textColor():IFill
+		{
+			return _textColor;
+		}
+		
+		public function set textColor(value:IFill):void
+		{
+			_textColor = value;
+		}
+		
+		private var _fontName:String;
+		
+		/**
+		 *  The font to use for the button's label.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+		
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+		}
+		
+		
+		/**
+		 *  The button's label.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get text():String
 		{
 			return ITextModel(model).text;
@@ -49,47 +130,32 @@ package org.apache.flex.createjs
 		public function set text(value:String):void
 		{
 			ITextModel(model).text = value;
-		}
-		
-		public function get html():String
-		{
-			return ITextModel(model).html;
-		}
-		public function set html(value:String):void
-		{
-			ITextModel(model).html = value;
-		}
-				
+		}	
 	}
     
     COMPILE::JS
-    public class TextButton extends UIBase
+    public class TextButton extends CreateJSBase
     {
         private var buttonBackground:Shape;
         private var buttonLabel:Text;
-        private var button:Container;
+        private var button:createjs.Container;
+		
         /**
+		 * @private
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        override public function createElement():WrappedHTMLElement
-        {
+        override protected function createElement():WrappedHTMLElement
+        {	
             buttonBackground = new createjs.Shape(null);
             buttonBackground.name = 'background';
-            buttonBackground.graphics.beginFill('red').
-                drawRoundRect(0, 0, 200, 60, 10);
             
-            buttonLabel = new createjs.Text('button', 'bold 24px Arial',
-                '#FFFFFF');
+            buttonLabel = new createjs.Text('button');
             buttonLabel.name = 'label';
             buttonLabel.textAlign = 'center';
             buttonLabel.textBaseline = 'middle';
-            buttonLabel.x = 200 / 2;
-            buttonLabel.y = 60 / 2;
             
             button = new createjs.Container();
             button.name = 'button';
-            button.x = 50;
-            button.y = 25;
             button.addChild(buttonBackground);
             button.addChild(buttonLabel);
             
@@ -97,22 +163,71 @@ package org.apache.flex.createjs
             element.flexjs_wrapper = this;
             return element;
         }
+		
+		private var _fontName:String = "bold 18px Arial"
+		
+		/**
+		 *  The font to use for the button's label.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+		
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+			redrawShape();
+		}
         
-        
-        /**
-         * @flexjsignorecoercion createjs.Text
-         */
-        public function get text():String
-        {
-            return buttonLabel.text;
-        }
-        
-        /**
-         * @flexjsignorecoercion createjs.Text
-         */
-        public function set text(value:String):void
-        {
-            buttonLabel.text = value;
-        }
+		/**
+		 *  The button's label
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get text():String
+		{
+			return ITextModel(model).text;
+		}
+		public function set text(value:String):void
+		{
+			ITextModel(model).text = value;
+			redrawShape();
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function redrawShape():void
+		{
+			if (isNaN(width) || isNaN(height)) return;
+			
+			var fillColor:String = null;
+			var fillAlpha:Number = 1.0;
+			if (fill != null) {
+				fillAlpha = (fill as SolidColor).alpha;
+				fillColor = convertColorToString((fill as SolidColor).color, fillAlpha);
+			}
+			buttonBackground.graphics.beginFill(fillColor).
+				drawRoundRect(0, 0, width, height, 8);
+			
+			var color:String = null;
+			if (textColor != null) {
+				color = convertColorToString((textColor as SolidColor).color, 1.0);
+			}
+			buttonLabel.x = width / 2;
+			buttonLabel.y = height / 2;
+			buttonLabel.text = text;
+			buttonLabel["font"] = fontName;
+			buttonLabel["color"] = color;
+		}
     }
 }
