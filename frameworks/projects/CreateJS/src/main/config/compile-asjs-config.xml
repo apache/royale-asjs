@@ -58,6 +58,7 @@
         <library-path>
             <path-element>../../../../../externs/Core.swc</path-element>
             <path-element>../../../../../externs/HTML.swc</path-element>
+            <path-element>../../../../../externs/Graphics.swc</path-element>
         </library-path>
         
         <warn-no-constructor>false</warn-no-constructor>

@@ -16,21 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package models
 {
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CreateJSClasses
-{	
-	import org.apache.flex.createjs.core.UIBase; UIBase;
-	import org.apache.flex.createjs.core.View; View;
-	import org.apache.flex.createjs.graphics.GraphicShape; GraphicShape;
+	/**
+	 * This model exists to satisfy the requirement that FlexJS apps have
+	 * models.
+	 */
+	public class MyModel extends EventDispatcher
+	{
+		public function MyModel()
+		{
+		}
+	}
 }
-
-}
-

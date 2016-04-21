@@ -28,54 +28,144 @@ package org.apache.flex.createjs
         import createjs.Text;
         import createjs.Stage;
         
-        import org.apache.flex.createjs.core.UIBase;
+        import org.apache.flex.createjs.core.CreateJSBase;
         import org.apache.flex.core.WrappedHTMLElement;
     }
+	
+	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.SolidColor;
+	
+	/**
+	 * The Label class provides a static text string which may be colored.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion FlexJS 0.0
+	 */
     
     COMPILE::AS3
 	public class Label extends org.apache.flex.html.Label
-	{
-		
+	{		
+		/**
+		 * @private
+		 */
+		public function get fill():IFill
+		{
+			return null;
+		}
+		public function set fill(value:IFill):void
+		{
+		}
+				
+		/**
+		 * The color of the text.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get textColor():IFill
+		{
+			return null;
+		}
+		public function set textColor(value:IFill):void
+		{
+		}
+				
+		/**
+		 * The font to use for the text. Any CSS-style font name may be used.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return null;
+		}
+		public function set fontName(value:String):void
+		{
+		}	
 	}
     
     COMPILE::JS
-    public class Label extends UIBase
+    public class Label extends CreateJSBase
     {
+		private var _fontName:String = "18px Arial"
+		
+		/**
+		 * The font to use for the text. Any CSS-style font name may be used.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+			redrawShape();
+		}
+		
+		/**
+		 * The string to display.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get text():String
+		{
+			return ITextModel(model).text;
+		}
+		public function set text(value:String):void
+		{
+			ITextModel(model).text = value;
+			redrawShape();
+		}
         
         /**
+		 * @private
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        override public function createElement():WrappedHTMLElement
+        override protected function createElement():WrappedHTMLElement
         {
-            var text:Text = new Text('default text', '20px Arial', '#ff7700');
-            text.x = 0;
-            text.y = 20;
+            var text:Text = new Text('default text');
             text.textBaseline = 'alphabetic';
             
-            positioner = element = text as WrappedHTMLElement;
+            element = text as WrappedHTMLElement;
+			element.flexjs_wrapper = this;
+			
+			positioner = element;
+			
             return element;
         }
-        
-        
-        /**
-         * @flexjsignorecoercion createjs.Text
-         */
-        public function get text():String
-        {
-            return (element as Text).text;
-        }
-        
-        /**
-         * @flexjsignorecoercion createjs.Text
-         */
-        public function set text(value:String):void
-        {
-            var text:Text = element as Text;
-            text.text = value;
-            var stage:Stage = text.getStage();
-            if (stage)
-                stage.update();
-        }
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion createjs.Text
+		 */
+		override protected function redrawShape():void
+		{
+			var color:String = null;
+			if (textColor != null) {
+				color = convertColorToString((textColor as SolidColor).color, 1.0);
+			}
+			
+			var label:createjs.Text = element as createjs.Text;
+			label.text = text;
+			label["font"] = fontName;
+			label["color"] = color;
+		}
         
     }
 }

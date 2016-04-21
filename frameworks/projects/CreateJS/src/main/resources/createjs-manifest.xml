@@ -22,10 +22,12 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.flex.createjs.Application"/>
-    <component id="UIBase" class="org.apache.flex.createjs.core.UIBase"/>
-    <component id="ViewBase" class="org.apache.flex.createjs.core.ViewBase"/>
-    <component id="Label" class="org.apache.flex.createjs.Label"/>
+    <component id="View" class="org.apache.flex.createjs.core.View"/>
+    <component id="Container" class="org.apache.flex.createjs.Container" />
     <component id="TextButton" class="org.apache.flex.createjs.TextButton"/>
     <component id="CheckBox" class="org.apache.flex.createjs.CheckBox"/>
+    <component id="Label" class="org.apache.flex.createjs.Label"/>
+    <component id="Circle" class="org.apache.flex.createjs.graphics.Circle" />
+    <component id="Rect" class="org.apache.flex.createjs.graphics.Rect" />
 
 </componentPackage>
