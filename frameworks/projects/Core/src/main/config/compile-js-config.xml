@@ -20,10 +20,9 @@
 
     <compiler>
         <accessible>false</accessible>
-        
-        <external-library-path>
-        </external-library-path>
-        
+
+        <external-library-path><path-element>/Users/christoferdutz/Maven-Repository/com/adobe/air/framework/airglobal/20.0/airglobal-20.0.swc</path-element></external-library-path>
+
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -47,7 +46,7 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>basic-manifest.xml</manifest>
+                <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         

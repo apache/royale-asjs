@@ -47,12 +47,13 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>basic-manifest.xml</manifest>
+                <manifest>../src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../src/main/flex</path-element>
+            <!--path-element>generated-sources/asjs</path-element-->
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -60,7 +61,7 @@
     
     <include-file>
         <name>js/out/*</name>
-        <path>../../../target/generated-sources/flexjs/*</path>
+        <path>generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>
@@ -71,7 +72,7 @@
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>  
         
-    <target-player>${playerglobal.version}</target-player>
+    <target-player>20.0</target-player>
 	
 
 </flex-config>

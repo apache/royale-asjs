@@ -31,6 +31,10 @@
     <version>0.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <air.version>20.0</air.version>
+    </properties>
+
     <modules>
         <module>Binding</module>
         <module>Charts</module>
@@ -50,6 +54,7 @@
         <module>Network</module>
         <module>Reflection</module>
         <module>Storage</module>
+        <module>XML</module>
     </modules>
 
 </project>
