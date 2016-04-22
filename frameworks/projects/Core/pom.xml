@@ -58,13 +58,6 @@
             <type>swc</type>
             <scope>external</scope>
         </dependency>
-        <dependency>
-            <groupId>com.adobe.flash.framework</groupId>
-            <artifactId>playerglobal</artifactId>
-            <version>20.0</version>
-            <type>swc</type>
-            <scope>external</scope>
-        </dependency>
     </dependencies>
 
 </project>
