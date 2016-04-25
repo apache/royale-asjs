@@ -33,6 +33,11 @@ package org.apache.flex.createjs.core
 		import org.apache.flex.core.graphics.SolidColor;
     }
 	
+	COMPILE::AS3
+	{
+		import org.apache.flex.core.UIBase;
+	}
+	
 	/**
 	 * This is the base class for CreateJS component wrappers used by FlexJS
 	 * applications. This class provides standard properties that most of the

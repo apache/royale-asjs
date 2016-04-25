@@ -29,5 +29,6 @@
     <component id="Label" class="org.apache.flex.createjs.Label"/>
     <component id="Circle" class="org.apache.flex.createjs.graphics.Circle" />
     <component id="Rect" class="org.apache.flex.createjs.graphics.Rect" />
+    <component id="Move" class="org.apache.flex.createjs.tween.Move" />
 
 </componentPackage>
