@@ -19,6 +19,7 @@
 package org.apache.flex.createjs.tween
 {	
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.Event;
 	
 	import org.apache.flex.createjs.core.CreateJSBase;
 	
@@ -30,17 +31,14 @@ package org.apache.flex.createjs.tween
 	}
 		
     /**
-     * The Move effect animates an object from one place to another. Once the
-	 * target object is set, its starting position may be given (or its current
-	 * location will be used) and an ending position given, the play() function
-	 * is used to make the animation have effect. 
+     * This is the base class for the CreateJS/TweenJS effects. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
      */
-	public class Move extends EventDispatcher
+	public class Effect extends EventDispatcher
 	{
 		/**
 		 * Constructor 
@@ -50,75 +48,90 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-        public function Move(target:Object=null)
+        public function Effect(target:Object=null)
 		{
 			super();
 			
-			actualTarget = target;
+			_actualTarget = target;
 		}
 		
+		private var _target:Object;
 		
-		private var _actualTarget:Object;
-		
+		[Bindable("targetChanged")]
 		/**
-		 *  @private
-		 *  The actual target.
+		 * The object upon which the effect is being made. This can be either an
+		 * actual object or the ID (String) of an object.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
 		 */
-		public function get actualTarget():Object
+		public function get target():Object
 		{
-			return _actualTarget;
+			return _target;
 		}
-		public function set actualTarget(value:Object):void
+		public function set target(value:Object):void
 		{
-			_actualTarget = value;
+			_target = value;
+			if (value != null) {
+				if (value is String) {
+					// if this is an id, then look it up somehow - don't know how yet
+				}
+				else {
+					_actualTarget = value;
+				}
+				
+				dispatchEvent(new Event("targetChanged"));
+			}
 		}
 		
 		
 		/**
-		 *  Starting x value.  If NaN, the current x value is used 
+		 * @private
+		 */
+		protected var _actualTarget:Object;
+		
+		/**
+		 * The duration of the effect, defaults to 1000 (1 second).
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var xFrom:Number;
+		public var duration:Number = 1000;
 		
 		/**
-		 *  Ending x value.  If NaN, the current x value is not changed 
+		 * Determines if the effect should loop continuously or not. The default
+		 * is false (do not loop).
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var xTo:Number;
+		public var loop:Boolean = false;
 		
 		/**
-		 *  Starting y value.  If NaN, the current y value is used 
+		 * @private
+		 * Returns the options necessary for an effect to take place. This is an
+		 * internally used function.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var yFrom:Number;
+		public function createTweenOptions():Object
+		{
+			// implement in subclass
+			return null;
+		}
+		
 		
 		/**
-		 *  Ending y value.  If NaN, the current y value is not changed 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public var yTo:Number;
-		
-		COMPILE::JS
-		private var tween:createjs.Tween;
-		
-		/**
-		 *  Causes the target object to move between its starting and ending positions. 
+		 *  Plays the effect on the target object 
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
@@ -129,21 +142,7 @@ package org.apache.flex.createjs.tween
 		 */
 		public function play():void
 		{
-			COMPILE::JS {
-				var target:CreateJSBase = actualTarget as CreateJSBase;
-				var element:createjs.Shape = target.element as createjs.Shape;
-				tween = createjs.Tween.get(element, {loop: false});
-				
-				var options:Object = {x:xTo, y:yTo};
-				
-				if (!isNaN(xFrom)) target.x = xFrom;
-				if (!isNaN(yFrom)) target.y = yFrom;
-				
-				tween.to( options, 1000, createjs.Ease.getPowInOut(2));
-				
-				var stage:createjs.Stage = element.getStage();
-				createjs.Ticker.addEventListener("tick", stage);
-			}
+			// supply in subclass
 		}
 	}
 }
