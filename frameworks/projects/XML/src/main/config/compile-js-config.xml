@@ -20,9 +20,10 @@
 
     <compiler>
         <accessible>false</accessible>
-
-        <external-library-path><path-element>/Users/christoferdutz/Maven-Repository/com/adobe/air/framework/airglobal/20.0/airglobal-20.0.swc</path-element></external-library-path>
-
+        
+        <external-library-path>
+        </external-library-path>
+        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -41,6 +42,10 @@
         <locale/>
         
         <library-path>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+             if these swcs are on the external-library-path then their requires
+             will not be listed -->
+            <path-element>../../../../../externs/Core.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -60,18 +65,16 @@
     <include-file>
     </include-file>
 
+    <!-- TODO: Why this? -->
     <include-sources>
+        <path-element>../src/main/flex</path-element>
     </include-sources>
-    
-    <include-classes>
-        <class>CoreClasses</class>
-    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
-    
-    <!--<target-player>${playerglobal.version}</target-player>-->
+        
+    <target-player>${playerglobal.version}</target-player>
 	
 
 </flex-config>

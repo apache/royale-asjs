@@ -20,9 +20,13 @@
 
     <compiler>
         <accessible>false</accessible>
-
-        <external-library-path><path-element>/Users/christoferdutz/Maven-Repository/com/adobe/air/framework/airglobal/20.0/airglobal-20.0.swc</path-element></external-library-path>
-
+        
+        <external-library-path>
+            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
+            <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/HTML.swc</path-element>
+        </external-library-path>
+        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -40,13 +44,12 @@
 	  
         <locale/>
         
-        <library-path>
-        </library-path>
-        
+        <library-path/>
+
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../src/main/resources/basic-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/html5</uri>
+                <manifest>../src/main/resources/html5-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -58,20 +61,23 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>defaults.css</path>
+    </include-file>
+    <include-file>
+        <name>js/out/*</name>
+        <path>generated-sources/flexjs/*</path>
     </include-file>
 
-    <include-sources>
-    </include-sources>
-    
     <include-classes>
-        <class>CoreClasses</class>
+        <class>HTML5Classes</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/html5</uri>
     </include-namespaces>
-    
-    <!--<target-player>${playerglobal.version}</target-player>-->
+        
+    <target-player>${playerglobal.version}</target-player>
 	
 
 </flex-config>
