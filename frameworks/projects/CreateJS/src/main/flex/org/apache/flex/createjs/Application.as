@@ -123,6 +123,7 @@ package org.apache.flex.createjs
          *
          * <inject_html>
          * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+		 * <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
          * </inject_html>
          */
 		public function Application()
@@ -167,6 +168,8 @@ package org.apache.flex.createjs
             dispatchEvent('viewChanged');
             
             stage.update();
+			
+			dispatchEvent('applicationComplete');
         }
 		
 		/**
