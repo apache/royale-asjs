@@ -31,11 +31,11 @@
     <condition property="JS.SWC" value="${FALCONJX_HOME}/../js/libs/js.swc" >
         <available file="${FALCONJX_HOME}/../js/libs/js.swc" />
     </condition>
-    <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/out/bin/js.swc" />
+    <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/target/js.swc" />
     <condition property="GCL.SWC" value="${FALCONJX_HOME}/../js/libs/GCL.swc" >
         <available file="${FALCONJX_HOME}/../js/libs/GCL.swc" />
     </condition>
-    <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/out/bin/GCL.swc" />
+    <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/target/GCL.swc" />
     <property name="target.name" value="Graphics-${release.version}.swc" />
     <property name="target.name.no.version" value="Graphics.swc" />
     
@@ -98,7 +98,7 @@
         <compc fork="true"
             output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="${basedir}/src/main/resources/compile-config.xml" />
+            <load-config filename="${basedir}/src/main/config/compile-as-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-define=COMPILE::AS3,true" />
@@ -119,7 +119,7 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <arg value="-output=${basedir}/target/generated-sources/flexjs" />
-            <arg value="-load-config=${basedir}/src/main/resources/compile-asjs-config.xml" />
+            <arg value="-load-config=${basedir}/src/main/config/compile-js-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
@@ -157,7 +157,7 @@
         <compc fork="true"
             output="${basedir}/target/externs/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="src/main/resources/compile-asjs-config.xml" />
+            <load-config filename="src/main/config/compile-js-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-external-library-path+=${JS.SWC}" />
