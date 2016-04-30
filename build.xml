@@ -289,12 +289,12 @@
             property="FALCON_HOME"
             value="${basedir}"/>
 
-        <available file="${basedir}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
+        <available file="${basedir}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
             type="file"
             property="FALCON_HOME"
-            value="${basedir}/../flex-falcon/compiler/generated/dist/sdk"/>
+            value="${basedir}/../flex-falcon/compiler"/>
 
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler/generated/dist/sdk folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_HOME"/>
     </target>
 
@@ -308,17 +308,17 @@
             property="FALCONJX_HOME"
             value="${env.FALCONJX_HOME}"/>
 
-        <available file="${basedir}/../flex-falcon/compiler.jx/lib/jsc.jar"
+        <available file="${basedir}/../flex-falcon/compiler-jx/lib/jsc.jar"
             type="file"
             property="FALCONJX_HOME"
-            value="${basedir}/../flex-falcon/compiler.jx"/>
+            value="${basedir}/../flex-falcon/compiler-jx"/>
 
         <available file="${basedir}/js/lib/jsc.jar"
             type="file"
             property="FALCONJX_HOME"
             value="${basedir}/js"/>
 
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_HOME"/>
     </target>
 
