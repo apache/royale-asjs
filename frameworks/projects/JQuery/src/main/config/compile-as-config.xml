@@ -23,8 +23,8 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
+            <path-element>../../../libs/Core.swc</path-element>
+            <path-element>../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -62,7 +62,7 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>defaults.css</path>
+        <path>../src/main/resources/defaults.css</path>
     </include-file>
     <include-file>
         <name>js/out/*</name>

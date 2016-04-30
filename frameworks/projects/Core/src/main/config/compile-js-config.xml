@@ -21,7 +21,8 @@
     <compiler>
         <accessible>false</accessible>
 
-        <external-library-path><path-element>/Users/christoferdutz/Maven-Repository/com/adobe/air/framework/airglobal/20.0/airglobal-20.0.swc</path-element></external-library-path>
+        <external-library-path>
+        </external-library-path>
 
 		<mxml>
 			<children-as-data>true</children-as-data>

@@ -22,6 +22,10 @@
         <accessible>false</accessible>
         
         <external-library-path>
+            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
+            <path-element>../../../libs/Core.swc</path-element>
+            <path-element>../../../libs/Graphics.swc</path-element>
+            <path-element>../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -41,25 +45,34 @@
 	  
         <locale/>
         
-        <library-path>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-             if these swcs are on the external-library-path then their requires
-             will not be listed -->
-            <path-element>../../../../../externs/Core.swc</path-element>
-            <path-element>../../../../../externs/Graphics.swc</path-element>
-            <path-element>../../../../../externs/HTML.swc</path-element>
-        </library-path>
+        <library-path/>
+
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-sources>
-        <path-element>../flex</path-element>
-    </include-sources>
+    <include-file>
+        <name>defaults.css</name>
+        <path>../src/main/resources/defaults.css</path>
+    </include-file>
+    <include-file>
+        <name>js/out/*</name>
+        <path>generated-sources/flexjs/*</path>
+    </include-file>
+
+    <include-classes>
+        <class>ChartsClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
