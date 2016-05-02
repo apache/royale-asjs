@@ -1011,9 +1011,9 @@
     <target name="asdoc-package" description="Package the asdocs">      
         <antcall target="clean-temp"/>
         <antcall target="asdoc"/>
-        
+        <property name="doc_output" value="${basedir}/asdoc-output" />
         <copy todir="${basedir}/temp/asdoc">
-            <fileset dir="${basedir}/asdoc-output"/>
+            <fileset dir="${doc_output}"/>
         </copy>
         <copy todir="${basedir}/temp/asdoc" file="${basedir}/NOTICE" />
         <copy tofile="${basedir}/temp/asdoc/LICENSE" file="${basedir}/LICENSE.base" />
