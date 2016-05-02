@@ -114,6 +114,16 @@ package org.apache.flex.createjs.tween
 		public var loop:Boolean = false;
 		
 		/**
+		 * The easing function to apply.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public var easing:Function = null;
+		
+		/**
 		 * @private
 		 * Returns the options necessary for an effect to take place. This is an
 		 * internally used function.

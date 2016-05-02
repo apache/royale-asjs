@@ -80,10 +80,14 @@ package org.apache.flex.createjs.tween
 				_tween = createjs.Tween.get(element, {loop: loop});
 				_tween.setPaused(true);
 				
+				if (easing == null) {
+					easing = org.apache.flex.createjs.tween.Ease.getPowInOut(2);
+				}
+				
 				for (var i:int=0; i < _tweens.length; i++) {
 					var e:Effect = _tweens[i] as Effect;
 					var options:Object = e.createTweenOptions();
-					_tween.to( options, e.duration, createjs.Ease.getPowInOut(2));					
+					_tween.to( options, e.duration, easing);					
 				}
 
 				_tween.setPaused(false);
