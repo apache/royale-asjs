@@ -67,17 +67,19 @@ Install Prerequisites
     Ant 1.7.1 or greater (*1)                   ANT_HOME
         (for Java 1.7 see note at (*2))
 
-    Adobe Flash Player playerglobal swcs (*3)   PLAYERGLOBAL_HOME
+    Google Closure Library (*3)                 GOOG_HOME
 
-    Adobe AIR Integration Kit (*4)             AIR_HOME
+    Adobe Flash Player playerglobal swcs (*4)   PLAYERGLOBAL_HOME
 
-    Adobe Flash Player Content Debugger (*5)   FLASHPLAYER_DEBUGGER
+    Adobe AIR Integration Kit (*5)             AIR_HOME
 
-    Apache Flex 'Falcon' Compiler (*6)          FALCON_HOME
+    Adobe Flash Player Content Debugger (*6)   FLASHPLAYER_DEBUGGER
 
-    Apache Flex 'FalconJX' Compiler (*7)       FALCONJX_HOME
+    Apache Flex 'Falcon' Compiler (*7)          FALCON_HOME
 
-    Apache Flex FlexUnit (*8)                  FLEXUNIT_HOME
+    Apache Flex 'FalconJX' Compiler (*8)       FALCONJX_HOME
+
+    Apache Flex FlexUnit (*9)                  FLEXUNIT_HOME
 
     Apache Flex SDK or repository               FLEX_HOME
 
@@ -101,7 +103,13 @@ Install Prerequisites
          version as 1.6 so the JVM args for the data model (-d32/-d64) will not
          be set correctly and you will get compile errors.
 
-    *3) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
+    *3) The Google Closure Library can be downloaded or cloned from GitHub:
+           https://github.com/google/closure-library
+
+        Set GOOG_HOME to the absolute path of the folder that contains the 
+        third_party and closure sub-folders.
+
+    *4) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
 
         Use URL above to download playerglobal11_1.swc. Create the directory,
@@ -126,7 +134,7 @@ Install Prerequisites
 
             frameworks/libs/player/<version.major>.<version.minor>/playerglobal.swc
 
-    *4) The Adobe AIR integration kit for Windows can be downloaded from:
+    *5) The Adobe AIR integration kit for Windows can be downloaded from:
 
            http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip
 
@@ -144,7 +152,7 @@ Install Prerequisites
         This version of Apache FlexJS was certified for use with Adobe AIR 16
         and is compatible with version 3.1 and up.
 
-    *5) The Adobe Flash Player content debuggers can be found here:
+    *6) The Adobe Flash Player content debuggers can be found here:
 
            http://www.adobe.com/support/flashplayer/downloads.html
 
@@ -163,21 +171,21 @@ Install Prerequisites
 
         On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
 
-    *6) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
+    *7) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
         repository as a sibling of the flex-asjs repository, you don’t need to
         set this variable, otherwise, set it as: 
              FALCON_HOME=<repo-path>/compiler
 			 
 	    Look at flex-falcon/README for instructions on how to build Falcon
 
-    *7) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
+    *8) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
          repository as a sibling of the flex-asjs repository, you don’t need to
          set this variable, otherwise, set it as
-             FALCONJX_HOME=<repo-path>/compiler.jx
+             FALCONJX_HOME=<repo-path>/compiler-jx
         
 	 Look at flex-falcon/README_JX for instructions on how to build FalconJX
 			 
-    *8) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
+    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
          have cloned the flex-flexunit repository as a sibling of the flex-asjs
          repository, you don’t need to set this variable. 
 	 Look at flex-flexunit/README for instructions on how to build FlexUnit
