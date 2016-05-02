@@ -2,15 +2,6 @@ Below are the licenses for components included in the binary distribution.
 
 ------------------------------------------------------------------------------------------
 
-This product bundles Google Closure Library available under Apache License 2.0.  
-For details see https://developers.google.com/closure/library/
-
-Google Closure Library appears to bundle:
-- Mochikit, available under MIT License.  See:
-  js/lib/google/closure-library/third_party/closure/goog/mochikit
-- SVGPan, available under a “2-clause” BSD License.  See:
-  js/lib/google/closure-library/third_party/closure/goog/svgpan/svgpan.js
-- Dojo, available under a “3-clause” BSD License.  See:
-  js/lib/google/closure-library/third_party/closure/goog/dojo/dom/query.js
-- JPEG Encoder, available under a “3-clause” BSD License.  See:
-  js/lib/google/closure-library/third_party/closure/goog/jpeg_encoder/jpeg_encoder_basic.js
+This product bundles a subset of Google Closure Library available 
+under Apache License 2.0.  For details see 
+https://developers.google.com/closure/library/
