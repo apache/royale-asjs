@@ -416,6 +416,7 @@
                 <exclude name="frameworks/libs/Network.swc"/>
                 <exclude name="frameworks/libs/Reflection.swc"/>
                 <exclude name="frameworks/libs/Storage.swc"/>
+                <exclude name="frameworks/libs/XML.swc"/>
                 <exclude name="frameworks/externs/Binding.swc"/>
                 <exclude name="frameworks/externs/Charts.swc"/>
                 <exclude name="frameworks/externs/Collections.swc"/>
@@ -434,6 +435,7 @@
                 <exclude name="frameworks/externs/Network.swc"/>
                 <exclude name="frameworks/externs/Reflection.swc"/>
                 <exclude name="frameworks/externs/Storage.swc"/>
+                <exclude name="frameworks/externs/XML.swc"/>
             </fileset>
         </rat:report>
         
