@@ -19,6 +19,11 @@ in a browser without Flash.
 This is the fourth release of Apache FlexJS.  It is an ‘beta’ type of release.
 Expect to find lots of bugs and missing features.
 
+Bug Fixes
+---------
+-FLEX-35048 [FlexJS] Binding not works expectedly
+-FLEX-35006 bug in mxmlc/compc/etc scripts when flexjs path contains spaces
+
 Apache FlexJS 0.5.0
 =================
 
@@ -28,6 +33,11 @@ in a browser without Flash.
 
 This is the third release of Apache FlexJS.  It is an ‘beta’ type of release.
 Expect to find lots of bugs and missing features.
+
+Bug Fixes
+---------
+-FLEX-34928 [FlexJS] First view in TabbedViewManager not laid out properly
+
 
 Apache FlexJS 0.0.2
 =================
@@ -95,6 +105,8 @@ New Features
 Bug Fixes
 ---------
 -FLEX-34258 Error cross-compiling on Windows
+-FLEX-33887 "super" not converted to goog.base call when used in customer setter
+-FLEX-33901 Need getQualifiedClassName and getQualifiedSuperClassName in JS
 
 Please report new issues to our bugbase at:
 
