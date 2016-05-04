@@ -725,7 +725,7 @@ package
 				if(str)
 					retVal.push(str);
 			}
-			return retVal.join("");
+			return retVal.join("\n");
 		}
 		
 		/**
@@ -745,7 +745,7 @@ package
 				if(str)
 					retVal.push(str);
 			}
-			return retVal.join("");
+			return retVal.join("\n");
 		}
 		
 		/**
