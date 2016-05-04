@@ -599,7 +599,7 @@ package
 			}
 			if(child is XML)
 			{
-				_xmlArray.splice(idx+i,0,child);
+				_xmlArray[idx] = child;
 			}
 			else if(child is XMLList)
 			{
