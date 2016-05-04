@@ -19,13 +19,32 @@
 
 @namespace createjs "library://ns.apache.org/flexjs/createjs";
 
+createjs|TextButton
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+}
+
+createjs|Label
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+}
+
+createjs|CheckBox
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+}
+
 @media -flex-flash
 {
 
 createjs|TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
+}
+
+createjs|Label
+{
+	IBeadView: ClassReference("org.apache.flex.html.beads.TextFieldView");
 }
 
 createjs|CheckBox

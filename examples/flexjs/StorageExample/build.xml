@@ -51,6 +51,22 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
+    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/cordova.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/libs/cordova.swc" type="file" />
+        </and>
+    </condition>
+    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/cordova.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FALCONJX_HOME}/../js/libs/cordova.swc" type="file" />
+        </and>
+    </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/cordova/out/bin/cordova.swc"/>
     <property name="opt1_arg" value="-remove-circulars" />
 

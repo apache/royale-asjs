@@ -59,5 +59,33 @@ package org.apache.flex.storage
 		 *  @productversion FlexJS 0.0
 		 */
 		function writeTextToDataFile( fileName:String, text:String ) : void;
+		
+		/**
+		 * Opens an output stream into a file in the data storage directory. A Ready
+		 * event is dispatched when the stream has been opened. Use the stream to
+		 * write data to the file.
+		 * 
+		 *  @param fileName The name of file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function openOutputDataStream( fileName:String ) : void;
+		
+		/**
+		 * Opens an input stream into a file in the data storage directory. A Ready
+		 * event is dispatched when the stream has been opened. Use the stream to
+		 * read data from the file.
+		 * 
+		 *  @param fileName The name of file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function openInputDataStream( fileName:String ) : void;
 	}
 }

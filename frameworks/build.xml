@@ -95,6 +95,7 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="MX"/>
+        <antcall target="XML"/>
     </target>
     
     <target name="fonts">
@@ -140,6 +141,7 @@
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
+        <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -157,7 +159,10 @@
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
         <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
             <exclude name="swfobject/index.template.html" />
-        </delete> 
+            <exclude name="swfobject/expressInstall.swf" />
+            <exclude name="swfobject/swfobject.js" />
+            <exclude name="swfobject/history/**" />
+        </delete>
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">
@@ -234,6 +239,9 @@
 
     <target name="Storage" description="Clean build of Storage.swc">
         <ant dir="${basedir}/projects/Storage"/>
+    </target>
+    <target name="XML" description="Clean build of XML.swc">
+        <ant dir="${basedir}/projects/XML"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">

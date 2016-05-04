@@ -25,58 +25,99 @@ package org.apache.flex.createjs
     COMPILE::JS
     {
         import createjs.Container;
+		import createjs.DisplayObject;
         import createjs.Shape;
         import createjs.Stage;
         import createjs.Text;
-        
-        import org.apache.flex.createjs.core.UIBase;
+		
+		import org.apache.flex.createjs.core.CreateJSBase;
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.events.Event;
     }
 	
+	import org.apache.flex.core.IToggleButtonModel;
+	import org.apache.flex.core.graphics.IFill;
+	import org.apache.flex.core.graphics.SolidColor;
+	
     COMPILE::AS3
 	public class CheckBox extends org.apache.flex.html.CheckBox
-	{	
+	{			
+		/**
+		 * @private
+		 */
+		public function get fill():IFill
+		{
+			return null;
+		}
+		public function set fill(value:IFill):void
+		{
+		}
+				
+		/**
+		 * The color of the text.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get textColor():IFill
+		{
+			return null;
+		}
+		public function set textColor(value:IFill):void
+		{
+		}
+				
+		/**
+		 * The font to use for the text. Any CSS-style font name may be used.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return null;
+		}
+		public function set fontName(value:String):void
+		{
+		}	
 	}
     
     COMPILE::JS
-    public class CheckBox extends UIBase
+    public class CheckBox extends CreateJSBase
     {
         private var checkMark:Shape;
-        private var checkMarkBackground:Shape;
         private var checkBoxLabel:Text;
+		private var checkBackground:Shape;
         
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        override public function createElement():WrappedHTMLElement
+        override protected function createElement():WrappedHTMLElement
         {
-            checkMarkBackground = new createjs.Shape(null);
-            checkMarkBackground.name = 'checkmarkbackground';
-            checkMarkBackground.graphics.beginFill('red').
-                drawRoundRect(0, 0, 40, 40, 8);
-            
             checkMark = new createjs.Shape(null);
             checkMark.name = 'checkmark';
-            checkMark.graphics.beginFill('white').drawRoundRect(0, 0, 32, 32, 6);
-            checkMark.x = 4;
-            checkMark.y = 4;
-            checkMark.visible = false;
             
-            checkBoxLabel = new createjs.Text('checkbox', '20px Arial', '#ff7700');
+            checkBoxLabel = new createjs.Text('checkbox', '20px Arial');
             checkBoxLabel.name = 'label';
             checkBoxLabel.textAlign = 'left';
             checkBoxLabel.textBaseline = 'middle';
-            checkBoxLabel.x = 45;
-            checkBoxLabel.y = 40 / 2;
+			
+			checkBackground = new createjs.Shape(null);
+			checkBackground.name = 'checkbackground';
             
             var container:createjs.Container = new createjs.Container();
             element = container as WrappedHTMLElement;
             container.name = 'checkbox';
-            container.addChild(this.checkMarkBackground);
+			container.addChild(this.checkBackground);
             container.addChild(this.checkBoxLabel);
             container.addChild(this.checkMark);
-            container.onClick = clickHandler;
+			
+			checkBoxLabel.addEventListener("click", clickHandler);
+			checkMark.addEventListener("click", clickHandler);
             
             this.positioner = this.element;
             
@@ -85,17 +126,18 @@ package org.apache.flex.createjs
         
         public function get text():String
         {
-            return checkBoxLabel.text;   
+            return IToggleButtonModel(model).text;   
         }
         
         public function set text(value:String):void
         {
-            checkBoxLabel.text = value;
+			IToggleButtonModel(model).text = value;
+			redrawShape();
         }
             
         public function get selected():Boolean
         {
-            return checkMark.visible;
+            return IToggleButtonModel(model).selected;;
         }
         
         /**
@@ -103,11 +145,71 @@ package org.apache.flex.createjs
          */
         public function set selected(value:Boolean):void
         {
-            checkMark.visible = value;
-            var stage:Stage = (element as Container).getStage();
-            if (stage)
-                stage.update();
+			IToggleButtonModel(model).selected = value;
+            redrawShape();
+			
+			dispatchEvent( new org.apache.flex.events.Event("change") );
         }
+		
+		private var _fontName:String = "18px Arial"
+		
+		/**
+		 * The font to use for the text. Any CSS-style font name may be used.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+			redrawShape();
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion createjs.Container
+		 */
+		override protected function redrawShape():void
+		{
+			var color:String = "black";
+			if (textColor != null) {
+				color = convertColorToString((textColor as SolidColor).color, 1.0);
+			}
+			
+			var fillColor:String = "DeepSkyBlue";
+			var fillAlpha:Number = 1.0;
+			if (fill != null) {
+				fillAlpha = (fill as SolidColor).alpha;
+				fillColor = convertColorToString((fill as SolidColor).color, fillAlpha);
+			}
+			
+			var label:createjs.Text = element as createjs.Text;
+			checkBoxLabel.text = text;
+			checkBoxLabel["font"] = fontName;
+			checkBoxLabel["color"] = color;
+			
+			checkBoxLabel.x = 45;
+			checkBoxLabel.y = 40 / 2;
+			
+			checkMark.graphics.setStrokeStyle(1);
+			checkMark.graphics.beginStroke('gray');
+			checkMark.graphics.beginFill(selected?fillColor:'white');
+			checkMark.graphics.drawRoundRect(0, 0, 32, 32, 6);
+			checkMark.graphics.endFill();
+			checkMark.graphics.endStroke();
+			checkMark.x = 4;
+			checkMark.y = 4;
+						
+			var stage:Stage = checkBoxLabel.getStage();
+			if (stage)
+				stage.update();
+		}
         
         
         /**

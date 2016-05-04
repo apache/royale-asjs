@@ -152,6 +152,12 @@
 			<zh_CN>Adobe Flash Player playerglobal.swc (必须的)</zh_CN>
 			<zh_TW>Adobe Flash Player playerglobal.swc (必須的)</zh_TW>
 		</step>
+        <step id="flat-download" property="do.flat.install">
+            <el_GR>DesignModo fonts</el_GR>
+            <en_US>DesignModo fonts (Optional)</en_US>
+            <zh_CN>DesignModo fonts (必须的)</zh_CN>
+            <zh_TW>DesignModo fonts (必須的)</zh_TW>
+        </step>
 		<step id="swfobject-download">
 			<el_GR>SWFObject (Απαιτούμενο)</el_GR>
 			<en_US>SWFObject (Required)</en_US>
@@ -233,4 +239,27 @@
 			<license>Adobe Flex SDK 授權合約</license>
 		</zh_TW>
 	</component>
+    <component id="STEP_REQUIRED_INSTALL_FLAT_FONTS" required="false" property="do.flat.install">
+        <el_GR>
+            <label>designmodo fonts (Προαιρετικό)</label>
+            <message>Για το designmodo fonts ισχύει η συμφωνία χρήσης του CC-BY-NC-ND License. Θέλετε να εγκαταστήσετε το designmodo fonts;</message>
+            <license>'Αδεια χρήσης CC-BY-NC-ND</license>
+        </el_GR>
+        <en_US>
+            <label>designmodo fonts (Optional)</label>
+            <message>The CC-BY-NC-ND license applies to the designmodo fonts.  Do you want to install the designmodo fonts?</message>
+            <license>CC-BY-NC-ND</license>
+            <licenseURL>http://creativecommons.org/licenses/by-nc-nd/3.0/</licenseURL>
+        </en_US>
+        <zh_CN>
+            <label>designmodo (必须的)</label>
+            <message>CC-BY-NC-ND 许可协议适用于 designmodo 的 fonts 文件. 您想要安装 designmodo 的 fonts 文件吗?</message>
+            <license>C-BY-NC-ND 许可协议</license>
+        </zh_CN>
+        <zh_TW>
+            <label>designmodo fonts(必須的)</label>
+            <message>CC-BY-NC-ND 授權合約適用於 designmodo 的 fonts 檔案. 您想要安裝 designmodo 的 fonts 檔案嗎?</message>
+            <license>CC-BY-NC-ND 授權合約</license>
+        </zh_TW>
+    </component>
 </config>

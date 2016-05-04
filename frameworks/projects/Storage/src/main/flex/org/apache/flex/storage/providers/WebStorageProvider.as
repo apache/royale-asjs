@@ -20,14 +20,20 @@ package org.apache.flex.storage.providers
 {
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
-
-	import org.apache.flex.storage.events.FileReadEvent;
-    import org.apache.flex.storage.events.FileWriteEvent;
+	
+	import org.apache.flex.storage.events.FileEvent;
+	import org.apache.flex.storage.events.FileErrorEvent;
+	import org.apache.flex.storage.file.DataInputStream;
+	import org.apache.flex.storage.file.DataOutputStream;
 
 	/**
 	 * The WebStorageProvider class implements the IPermanentStorageProvider
 	 * interface for saving files to a mobile device. 
 	 * 
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
 	 * @flexjsignorecoercion FileEntry
 	 * @flexjsignorecoercion FileWriter
 	 * @flexjsignorecoercion window
@@ -95,20 +101,63 @@ package org.apache.flex.storage.providers
 					fileEntry.file(function (file):void {
 						var reader:FileReader = new FileReader();
 						reader.onloadend = function (e):void {
-							var newEvent:FileReadEvent = new FileReadEvent("COMPLETE");
+							var newEvent:FileEvent = new FileEvent("READ");
 							newEvent.data = this.result;
 							_target.dispatchEvent(newEvent);
+							
+							var finEvent:FileEvent = new FileEvent("COMPLETE");
+							_target.dispatchEvent(finEvent);
 						};
 						reader.readAsText(file);
 					}, function (e):void {
-						var errEvent:FileReadEvent = new FileReadEvent("ERROR");
-						errEvent.errorMessage = "Cannot open file for reading";
-						_target.dispatchEvent(errEvent);
+						var err1Event:FileErrorEvent = new FileErrorEvent("ERROR");
+						err1Event.errorMessage = "Cannot open file for reading";
+						err1Event.errorCode = 2;
+						_target.dispatchEvent(err1Event);
 					});
 				}, function (e):void {
-					var errEvent:FileReadEvent = new FileReadEvent("ERROR");
-					errEvent.errorMessage = "File does not exist";
-					_target.dispatchEvent(errEvent);
+					var err2Event:FileErrorEvent = new FileErrorEvent("ERROR");
+					err2Event.errorMessage = "File does not exist";
+					err2Event.errorCode = 1;
+					_target.dispatchEvent(err2Event);
+				});
+			}
+		}
+		
+		/**
+		 * Opens an input stream into a file in the data storage directory. A Ready
+		 * event is dispatched when the stream has been opened. Use the stream to
+		 * read data from the file.
+		 * 
+		 *  @param fileName The name of file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function openInputDataStream( fileName:String ) : void
+		{
+			COMPILE::JS {
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
+				
+				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
+					fileEntry.file(function (file):void {
+						var inputStream:DataInputStream = new DataInputStream(_target, file, new FileReader());
+						var newEvent:FileEvent = new FileEvent("READY");
+						newEvent.stream = inputStream;
+						_target.dispatchEvent(newEvent);
+					}, function (e):void {
+						var err1Event:FileErrorEvent = new FileErrorEvent("ERROR");
+						err1Event.errorMessage = "Cannot open file for reading";
+						err1Event.errorCode = 2;
+						_target.dispatchEvent(err1Event);
+					});
+				}, function (e):void {
+					var err2Event:FileErrorEvent = new FileErrorEvent("ERROR");
+					err2Event.errorMessage = "File does not exist";
+					err2Event.errorCode = 1;
+					_target.dispatchEvent(err2Event);
 				});
 			}
 		}
@@ -136,32 +185,69 @@ package org.apache.flex.storage.providers
 					directoryEntry.getFile(fileName, { 'create': true }, function (fileEntry):void {
 						fileEntry.createWriter(function (fileWriter):void {
 							fileWriter.onwriteend = function (e):void {
-								var newEvent:FileWriteEvent = new FileWriteEvent("COMPLETE");
+								var newEvent:FileEvent = new FileEvent("WRITE");
 								_target.dispatchEvent(newEvent);
+								
+								var finEvent:FileEvent = new FileEvent("COMPLETE");
+								_target.dispatchEvent(finEvent);
 							};
 							
 							fileWriter.onerror = function (e):void {
-								var newEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+								var newEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 								newEvent.errorMessage = "Failed to write the file.";
+								newEvent.errorCode = 3;
 								_target.dispatchEvent(newEvent);
 							};
 							
 							var blob:Blob = new Blob([text], { type: 'text/plain' });
 							fileWriter.write(blob);
 						}, function(e):void {
-							var errEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+							var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 							errEvent.errorMessage = "Cannot open file for writing.";
+							errEvent.errorCode = 1;
 							_target.dispatchEvent(errEvent);
 						});
 					}, function(e):void {
-						var errEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+						var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 						errEvent.errorMessage = "Cannot create file.";
+						errEvent.errorCode = 4;
 						_target.dispatchEvent(errEvent);
 					});
 				}, function(e):void {
-					var errEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+					var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 					errEvent.errorMessage = "Cannot create file.";
+					errEvent.errorCode = 4;
 					_target.dispatchEvent(errEvent);
+				});
+			}
+		}
+		
+		/**
+		 * Opens an output stream into a file in the data storage directory. A Ready
+		 * event is dispatched when the stream has been opened. Use the stream to
+		 * write data to the file.
+		 * 
+		 *  @param fileName The name of file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function openOutputDataStream( fileName:String ) : void
+		{
+			COMPILE::JS {
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
+				
+				window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry):void {
+					directoryEntry.getFile(fileName, { 'create': true }, function (fileEntry):void {
+						fileEntry.createWriter(function (fileWriter):void {
+							var outputStream:DataOutputStream = new DataOutputStream(_target, fileEntry, fileWriter);
+							var newEvent:FileEvent = new FileEvent("READY");
+							newEvent.stream = outputStream;
+							_target.dispatchEvent(newEvent);
+						});
+					});
 				});
 			}
 		}

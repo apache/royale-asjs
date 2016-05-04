@@ -38,12 +38,30 @@
         </and>
     </condition>
 
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
     <condition property="FALCONJX_HOME" value="${env.FALCONJX_HOME}">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
             <available file="${env.FALCONJX_HOME}/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/js">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -216,7 +234,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -260,7 +278,7 @@
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+configname=air" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -303,7 +321,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,false" />
             <arg value="-define=CONFIG::js_only,true" />

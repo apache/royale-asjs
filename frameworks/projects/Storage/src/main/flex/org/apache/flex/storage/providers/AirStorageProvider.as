@@ -28,14 +28,20 @@ package org.apache.flex.storage.providers
 		import flash.utils.ByteArray;
 		import flash.errors.IOError;
 	}
-
-	import org.apache.flex.storage.events.FileReadEvent;
-	import org.apache.flex.storage.events.FileWriteEvent;
+		
+	import org.apache.flex.storage.events.FileEvent;
+	import org.apache.flex.storage.events.FileErrorEvent;
+	import org.apache.flex.storage.file.DataOutputStream;
+	import org.apache.flex.storage.file.DataInputStream;
 
 	/**
 	 * The AirStorageProvider class implements the IPermanentStorageProvider
 	 * interface for saving files to a mobile device using the Adobe(tm) AIR platform. 
 	 * 
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
 	 * @flexjsignorecoercion FileEntry
 	 * @flexjsignorecoercion FileWriter
 	 * @flexjsignorecoercion window
@@ -100,8 +106,9 @@ package org.apache.flex.storage.providers
 				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
 				
 				if (!file.exists) {
-					var errEvent:FileReadEvent = new FileReadEvent("ERROR");
+					var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 					errEvent.errorMessage = "File does not exist.";
+					errEvent.errorCode = 1;
 					_target.dispatchEvent(errEvent);
 					return;
 				}
@@ -115,8 +122,45 @@ package org.apache.flex.storage.providers
 				
 				var text:String = new String(bytes);
 				
-				var newEvent:FileReadEvent = new FileReadEvent("COMPLETE");
+				var newEvent:FileEvent = new FileEvent("READ");
 				newEvent.data = text;
+				_target.dispatchEvent(newEvent);
+				
+				var finEvent:FileEvent = new FileEvent("COMPLETE");
+				_target.dispatchEvent(finEvent);
+			}
+		}
+		
+		/**
+		 * Opens a file for input streaming. Events are dispatched when the file is ready
+		 * for reading, after each read, and when the file is closed. 
+		 * 
+		 *  @param fileName The name of the file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function openInputDataStream( fileName:String ) : void
+		{
+			COMPILE::AS3 {
+				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
+				var stream:FileStream = new FileStream();
+				
+				if (!file.exists) {
+					var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
+					errEvent.errorMessage = "File does not exist.";
+					errEvent.errorCode = 1;
+					_target.dispatchEvent(errEvent);
+					return;
+				}
+				
+				var instream:DataInputStream = new DataInputStream(_target, file, stream);
+				stream.open(file, FileMode.READ);
+				
+				var newEvent:FileEvent = new FileEvent("READY");
+				newEvent.stream = instream;
 				_target.dispatchEvent(newEvent);
 			}
 		}
@@ -146,19 +190,65 @@ package org.apache.flex.storage.providers
 					stream.writeUTFBytes(text);
 					stream.close();
 				} catch(ioerror:IOError) {
-					var ioEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+					var ioEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 					ioEvent.errorMessage = "I/O Error";
+					ioEvent.errorCode = 2;
 					_target.dispatchEvent(ioEvent);
 					return;
 				} catch(secerror:SecurityError) {
-					var secEvent:FileWriteEvent = new FileWriteEvent("ERROR");
+					var secEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 					secEvent.errorMessage = "Security Error";
+					secEvent.errorCode = 3;
 					_target.dispatchEvent(secEvent);
 					return;
 				}
 				
-				var newEvent:FileWriteEvent = new FileWriteEvent("COMPLETE");
+				var newEvent:FileEvent = new FileEvent("WRITE");
 				_target.dispatchEvent(newEvent);
+				
+				var finEvent:FileEvent = new FileEvent("COMPLETE");
+				_target.dispatchEvent(finEvent);
+			}
+		}
+		
+		/**
+		 * Opens a file for output streaming. Events are dispatched when the file is ready
+		 * to receive output, after each write to the file, and when the file is closed.
+		 * 
+		 *  @param fileName The name of the file.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function openOutputDataStream( fileName:String ) : void
+		{
+			COMPILE::AS3 {
+				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
+				var stream:FileStream = new FileStream();
+				
+				var outstream:DataOutputStream = new DataOutputStream(_target, file, stream);
+				try {
+					stream.open(file, FileMode.WRITE);
+					var newEvent:FileEvent = new FileEvent("READY");
+					newEvent.stream = outstream;
+					_target.dispatchEvent(newEvent);
+					
+				} catch(ioerror:IOError) {
+					var ioEvent:FileErrorEvent = new FileErrorEvent("ERROR");
+					ioEvent.errorMessage = "I/O Error";
+					ioEvent.errorCode = 2;
+					_target.dispatchEvent(ioEvent);
+					return;
+					
+				} catch(secerror:SecurityError) {
+					var secEvent:FileErrorEvent = new FileErrorEvent("ERROR");
+					secEvent.errorMessage = "Security Error";
+					secEvent.errorCode = 3;
+					_target.dispatchEvent(secEvent);
+					return;
+				}
 			}
 		}
 	}
