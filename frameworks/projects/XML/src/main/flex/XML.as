@@ -2078,6 +2078,7 @@ package
 		COMPILE::JS
 		public function toString():String
 		{
+			var i:int;
 			// text, comment, processing-instruction, attribute, or element
 			if(_nodeKind == "text" || _nodeKind == "attribute")
 				return _value;
@@ -2085,6 +2086,17 @@ package
 				return "";
 			if(_nodeKind == "processing-instruction")
 				return "";
+			if(this.hasSimpleContent())
+			{
+				var s:String = "";
+				for(i=0;i<_children.length;i++)
+				{
+					if(_children[i].nodeKind() == "comment" || _children[i].nodeKind() == "processing-instruction")
+						continue;
+					s = s + _children[i].toString();
+				}
+				return s;
+			}
 			return toXMLString();
 		}
 

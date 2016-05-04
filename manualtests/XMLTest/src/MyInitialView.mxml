@@ -139,6 +139,7 @@ trace(prod.childIndex());
                 list1 += list4
 //list1.concat(list4);
                 xml2.insertChildAfter(xml2.a,<a id="123"/>);
+                trace(xml2.toString());
                 xml2.a = list4;
                 xml2.a = <a id="123"/>;
                 xml2.a += <a id="456"/>;
