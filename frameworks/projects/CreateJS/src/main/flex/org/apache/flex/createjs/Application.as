@@ -130,7 +130,7 @@ package org.apache.flex.createjs
 		{
 			super();
 		}
-        
+		        
         private var stage:Stage;
         
         /**
@@ -159,8 +159,16 @@ package org.apache.flex.createjs
             body.appendChild(this.element);
             
             stage = new createjs.Stage('flexjsCanvas');
+			
+			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
             
             dispatchEvent('initialize');
+			
+			for (var index:int in beads) {
+				addBead(beads[index]);
+			}
+			
+			dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
             
             initialView.applicationModel = this.model;
             addElement(initialView);

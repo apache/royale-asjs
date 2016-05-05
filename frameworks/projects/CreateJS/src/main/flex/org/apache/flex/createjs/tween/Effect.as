@@ -48,49 +48,40 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-        public function Effect(target:Object=null)
+        public function Effect(target:CreateJSBase=null)
 		{
 			super();
 			
 			_actualTarget = target;
 		}
 		
-		private var _target:Object;
+		private var _target:String;
 		
 		[Bindable("targetChanged")]
 		/**
-		 * The object upon which the effect is being made. This can be either an
-		 * actual object or the ID (String) of an object.
+		 * The name of the object upon which the effect is being made. 
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get target():Object
+		public function get target():String
 		{
 			return _target;
 		}
-		public function set target(value:Object):void
+		public function set target(value:String):void
 		{
-			_target = value;
-			if (value != null) {
-				if (value is String) {
-					// if this is an id, then look it up somehow - don't know how yet
-				}
-				else {
-					_actualTarget = value;
-				}
-				
+			if (value != _target) {
+				_target = value;
 				dispatchEvent(new Event("targetChanged"));
 			}
 		}
 		
-		
 		/**
 		 * @private
 		 */
-		protected var _actualTarget:Object;
+		protected var _actualTarget:CreateJSBase;
 		
 		/**
 		 * The duration of the effect, defaults to 1000 (1 second).
@@ -121,7 +112,14 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var easing:Function = null;
+		//public var easing:Function = null;
+		private var _easing:Function = null;
+		public function get easing():Function {
+			return _easing;
+		}
+		public function set easing(value:Function):void {
+			_easing = value;
+		}
 		
 		/**
 		 * @private

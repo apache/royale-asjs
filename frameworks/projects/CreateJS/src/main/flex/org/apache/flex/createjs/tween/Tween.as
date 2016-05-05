@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.tween
 {		
+	import org.apache.flex.core.IDocument;
 	import org.apache.flex.createjs.core.CreateJSBase;
 	
 	COMPILE::JS {
@@ -39,7 +40,7 @@ package org.apache.flex.createjs.tween
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
      */
-	public class Tween extends Effect
+	public class Tween extends Effect implements IDocument
 	{
 		/**
 		 * Constructor 
@@ -114,6 +115,18 @@ package org.apache.flex.createjs.tween
 		 */
 		public var alphaTo:Number;
 		
+		/**
+		 *  @private
+		 *  The document.
+		 */
+		private var document:Object;
+		
+		public function setDocument(document:Object, id:String = null):void
+		{
+			this.document = document;	
+		}
+		
+		
 		COMPILE::JS
 		private var _tween:createjs.Tween;
 		
@@ -129,8 +142,10 @@ package org.apache.flex.createjs.tween
 				return null;
 			}
 			COMPILE::JS {
-				var target:CreateJSBase = _actualTarget as CreateJSBase;
-				var element:createjs.Shape = target.element as createjs.Shape;
+				if (target != null) {
+					_actualTarget = document[target] as CreateJSBase;
+				}
+				var element:createjs.Shape = _actualTarget.element as createjs.Shape;
 				
 				// initialize options with the original values. if target values
 				// are supplied, replace the original values with the targets.
@@ -140,9 +155,9 @@ package org.apache.flex.createjs.tween
 				if (!isNaN(alphaTo)) options["alpha"] = alphaTo;
 				
 				// if precondition values are set, move or set the target accordingly.
-				if (!isNaN(xFrom)) target.x = xFrom;
-				if (!isNaN(yFrom)) target.y = yFrom;
-				if (!isNaN(alphaFrom)) target.alpha = alphaFrom;
+				if (!isNaN(xFrom)) _actualTarget.x = xFrom;
+				if (!isNaN(yFrom)) _actualTarget.y = yFrom;
+				if (!isNaN(alphaFrom)) _actualTarget.alpha = alphaFrom;
 				
 				return options;
 			}
@@ -162,8 +177,10 @@ package org.apache.flex.createjs.tween
 		override public function play():void
 		{
 			COMPILE::JS {
-				var target:CreateJSBase = _actualTarget as CreateJSBase;
-				var element:createjs.Shape = target.element as createjs.Shape;
+				if (target != null) {
+					_actualTarget = document[target] as CreateJSBase;
+				}
+				var element:createjs.Shape = _actualTarget.element as createjs.Shape;
 				_tween = createjs.Tween.get(element, {loop: loop});
 
 				var options:Object = createTweenOptions();
