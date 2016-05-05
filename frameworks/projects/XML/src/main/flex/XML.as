@@ -1871,7 +1871,7 @@ package
 				var chldrn:XMLList = this.child(elementName);
 				var childIdx:int = children().length() -1;
 				if(chldrn.length())
-					childIdx = chldrn[0].childIndex();
+					childIdx = chldrn[0].childIndex()-1;
 				
 				len = chldrn.length() -1;
 				for (i= len; i >= 0;  i--)
@@ -1889,7 +1889,10 @@ package
 					chld = elements[i];
 					if(!curChild)
 					{
-						curChild = appendChild(chld);
+						if(childIdx < 0)
+							curChild = prependChild(chld);
+						else
+							curChild = appendChild(chld);
 					}
 					else {
 						curChild = insertChildAfter(curChild, chld);
