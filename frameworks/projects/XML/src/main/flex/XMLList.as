@@ -132,10 +132,23 @@ package
 		{
 			_xmlArray[_xmlArray.length] = child;
 			addIndex(_xmlArray.length);
-			if(_targetObject)
+			do//while false
 			{
-				_targetObject.appendChild(child);
-			}
+				if(!_targetObject)
+					break;
+				if(!_targetProperty)
+				{
+					_targetObject.appendChild(child);
+					break;
+				}
+				var objToAppend:XMLList = _targetObject.child(_targetProperty);
+				if(!objToAppend.length())
+				{
+					_targetObject.appendChild(child);
+					break;
+				}
+				_targetObject.insertChildAfter(objToAppend[objToAppend.length()-1],child);
+			}while(false);
 		}
 		
 		/**
