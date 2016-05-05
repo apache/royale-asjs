@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.tween
 {		
+	import org.apache.flex.core.IDocument;
 	import org.apache.flex.createjs.core.CreateJSBase;
 	
 	COMPILE::JS {
@@ -27,6 +28,8 @@ package org.apache.flex.createjs.tween
 		import createjs.Ticker;
 	}
 		
+	[DefaultProperty("tweens")]
+		
     /**
      * The Sequence effect plays a set of effects, one after the other. 
 	 *  
@@ -35,7 +38,7 @@ package org.apache.flex.createjs.tween
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
      */
-	public class Sequence extends Effect
+	public class Sequence extends Effect implements IDocument
 	{
 		/**
 		 * Constructor 
@@ -54,6 +57,15 @@ package org.apache.flex.createjs.tween
 		
 		private var _tweens:Array;
 		
+		public function set tweens(value:Array):void
+		{
+			_tweens = value;
+		}
+		public function get tweens():Array
+		{
+			return _tweens;
+		}
+		
 		public function addEffect(effect:Effect):void
 		{
 			_tweens.push(effect);
@@ -61,6 +73,17 @@ package org.apache.flex.createjs.tween
 		
 		COMPILE::JS
 		private var _tween:createjs.Tween;
+		
+		/**
+		 *  @private
+		 *  The document.
+		 */
+		private var document:Object;
+		
+		public function setDocument(document:Object, id:String = null):void
+		{
+			this.document = document;	
+		}
 		
 		/**
 		 *  Causes the effects in the tween list to be played, one after the other. 
@@ -75,19 +98,21 @@ package org.apache.flex.createjs.tween
 		override public function play():void
 		{
 			COMPILE::JS {
-				var target:CreateJSBase = _actualTarget as CreateJSBase;
-				var element:createjs.Shape = target.element as createjs.Shape;
+				if (target != null) {
+					_actualTarget = document[target] as CreateJSBase;
+				}
+				var element:createjs.Shape = _actualTarget.element as createjs.Shape;
 				_tween = createjs.Tween.get(element, {loop: loop});
 				_tween.setPaused(true);
-				
-				if (easing == null) {
-					easing = org.apache.flex.createjs.tween.Ease.getPowInOut(2);
-				}
 				
 				for (var i:int=0; i < _tweens.length; i++) {
 					var e:Effect = _tweens[i] as Effect;
 					var options:Object = e.createTweenOptions();
-					_tween.to( options, e.duration, easing);					
+					
+					var useEasing:Function = easing;
+					if (e.easing != null) useEasing = e.easing;
+					
+					_tween.to( options, e.duration, useEasing);					
 				}
 
 				_tween.setPaused(false);

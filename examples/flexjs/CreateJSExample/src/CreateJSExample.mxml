@@ -28,47 +28,33 @@ limitations under the License.
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
     
+    <js:beads>
+        <js:ApplicationDataBinding />
+    </js:beads>
+    
+    <fx:Declarations>
+    	<cjs:Sequence id="seq" target="circle" loop="true">
+			<cjs:Tween id="tween1" target="circle" xTo="400" 
+					duration="1000" easing="{Ease.getPowInOut(4)}" /> 
+			<cjs:Tween id="tween2" target="circle" alphaTo="0" yTo="175" 
+					duration="500" easing="{Ease.getPowInOut(2)}" />
+			<cjs:Tween id="tween3" target="circle" alphaTo="0" yTo="225" 
+					duration="100" />
+			<cjs:Tween id="tween4" target="circle" alphaTo="1" yTo="200" 
+					duration="500" easing="{Ease.getPowInOut(2)}" />
+			<cjs:Tween id="tween5" target="circle" xTo="100" 
+					duration="800" easing="{Ease.getPowInOut(2)}" />
+    	</cjs:Sequence>
+    </fx:Declarations>
+    
     <fx:Script>
     	<![CDATA[
     		import org.apache.flex.createjs.tween.Ease;
-    		import org.apache.flex.createjs.tween.Tween;
-    		import org.apache.flex.createjs.tween.Sequence;
+    		//import org.apache.flex.createjs.tween.Tween;
+    		//import org.apache.flex.createjs.tween.Sequence;
     		
-    		private function runEffect():void {
-    			var move1:Tween = new Tween(circle);
-    			move1.xTo = 400;
-    			move1.duration = 1000;
-    			move1.easing = Ease.getPowInOut(4);
-    			
-    			var move2:Tween = new Tween(circle);
-    			move2.alphaTo = 0;
-    			move2.yTo = 175;
-    			move2.duration = 500;
-    			move2.easing = Ease.getPowInOut(2);
-    			
-    			var move3:Tween = new Tween(circle);
-    			move3.alphaTo = 0;
-    			move3.yTo = 225;
-    			move3.duration = 100;
-    			
-    			var move4:Tween = new Tween(circle);
-    			move4.alphaTo = 1;
-    			move4.yTo = 200;
-    			move4.duration = 500;
-    			move4.easing = Ease.getPowInOut(2);
-    			
-    			var move5:Tween = new Tween(circle);
-    			move5.xTo = 100;
-    			move5.duration = 800;
-    			move5.easing = Ease.getPowInOut(2);
-    		
-    			var seq:Sequence = new Sequence(circle);
-    			seq.loop = true;
-    			seq.addEffect(move1);
-    			seq.addEffect(move2);
-    			seq.addEffect(move3);
-    			seq.addEffect(move4);
-    			seq.addEffect(move5);
+    		private function runEffect():void {    			
+    			// run the sequence of tweens
     			seq.play();
     		}
     	]]>
@@ -82,6 +68,8 @@ limitations under the License.
 					<js:SolidColor color="#26C9FF" />
 				</js:fill>
 			</cjs:Circle>
+			
+			<cjs:Circle id="other" x="100" y="400" width="100" height="100" />
    		    
         </cjs:View>
     </js:initialView>
