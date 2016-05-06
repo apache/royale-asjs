@@ -22,20 +22,20 @@ package org.apache.flex.createjs.graphics
 	{
 		import org.apache.flex.core.graphics.Circle
 	}
-		
+
     COMPILE::JS
     {
         import createjs.Shape;
 		import createjs.Stage;
-        
+
         import org.apache.flex.createjs.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.SolidColor;
 	import org.apache.flex.core.graphics.SolidColorStroke;
-	
+
 	/**
 	 * Creates a circle.
 	 *
@@ -44,26 +44,94 @@ package org.apache.flex.createjs.graphics
 	 *  @playerversion AIR 1.1
 	 *  @productversion FlexJS 0.0
 	 */
-    
+
     COMPILE::AS3
 	public class Circle extends org.apache.flex.core.graphics.Circle
 	{
 		// nothing special for SWF version.
 	}
-    
+
     COMPILE::JS
     public class Circle extends GraphicShape
     {
+		private var _radius:Number = 0;
+
+		/**
+		 * The radius of the circle.
+	 	 *
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get radius():Number
+		{
+			return _radius;
+		}
+		public function set radius(value:Number):void
+		{
+			if (value != _radius) {
+				var centerX:Number = super.x + _radius;
+				var centerY:Number = super.y + _radius;
+
+				_radius = value;
+
+				this.x = centerX;
+				this.y = centerY;
+
+				dispatchEvent(new Event("radiusChanged"));
+			}
+		}
+
+		/**
+		 * The center X position of the circle.
+	 	 *
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function set x(value:Number):void
+		{
+			var realX:Number = value - radius;
+			super.x = realX;
+		}
+		override public function get x():Number
+		{
+			var realX:Number = super.x;
+			return realX + radius;
+		}
+
+		/**
+		 * The center Y position of the circle.
+	 	 *
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function set y(value:Number):void
+		{
+			var realY:Number = value - radius;
+			super.y = realY;
+		}
+		override public function get y():Number
+		{
+			var realY:Number = super.y;
+			return realY + radius;
+		}
+
 		/**
 		 * @private
          * @flexjsignorecoercion createjs.Shape
+	 	 *
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.0
 		 */
 		override protected function redrawShape():void
 		{
-			var minSize:Number = Math.min(width, height);
-			if (isNaN(minSize)) return;
-			
-			var radius:Number = minSize/2;
 			var fillColor:String = null;
 			var fillAlpha:Number = 1.0;
 			if (fill != null) {
@@ -78,17 +146,17 @@ package org.apache.flex.createjs.graphics
 				strokeAlpha = (stroke as SolidColorStroke).alpha;
 				strokeColor = convertColorToString((stroke as SolidColorStroke).color, strokeAlpha);
 			}
-			
+
 			var circle:createjs.Shape = element as createjs.Shape;
 			circle.graphics.setStrokeStyle(strokeWeight);
 			circle.graphics.beginStroke(strokeColor);
 			circle.graphics.beginFill(fillColor);
 			circle.graphics.drawCircle(0, 0, radius);
-			
+
 			var stage:createjs.Stage = circle.getStage();
 			if (stage)
 				stage.update();
 		}
-        
+
     }
 }

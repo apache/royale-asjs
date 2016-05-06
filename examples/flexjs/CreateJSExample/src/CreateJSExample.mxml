@@ -21,7 +21,7 @@ limitations under the License.
                    xmlns:local="*"
                    xmlns:js="library://ns.apache.org/flexjs/basic" 
                    xmlns:cjs="library://ns.apache.org/flexjs/createjs"
-                   applicationComplete="runEffect()"
+                   applicationComplete="seq.play()"
                    >
 
     <js:valuesImpl>
@@ -49,27 +49,19 @@ limitations under the License.
     
     <fx:Script>
     	<![CDATA[
+    		// import required for Ease functions in data binding.
     		import org.apache.flex.createjs.tween.Ease;
-    		//import org.apache.flex.createjs.tween.Tween;
-    		//import org.apache.flex.createjs.tween.Sequence;
-    		
-    		private function runEffect():void {    			
-    			// run the sequence of tweens
-    			seq.play();
-    		}
     	]]>
     </fx:Script>
     
     <js:initialView>
         <cjs:View>
 
-			<cjs:Circle id="circle" x="100" y="100" width="100" height="100">
+			<cjs:Circle id="circle" x="100" y="100" radius="50">
 				<js:fill>
 					<js:SolidColor color="#26C9FF" />
 				</js:fill>
 			</cjs:Circle>
-			
-			<cjs:Circle id="other" x="100" y="400" width="100" height="100" />
    		    
         </cjs:View>
     </js:initialView>
