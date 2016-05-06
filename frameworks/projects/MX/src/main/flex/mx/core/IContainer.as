@@ -61,7 +61,10 @@ COMPILE::LATER
 
 include "ISpriteInterface.as"
 include "IDisplayObjectContainerInterface.as"
+COMPILE::AS3
+{
 include "IInteractiveObjectInterface.as"
+}
 
     /**
      *  @copy mx.core.Container#defaultButton
