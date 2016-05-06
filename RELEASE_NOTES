@@ -9,6 +9,15 @@ This is the fifth release of Apache FlexJS.  This release supports Maven.
 It is an ‘beta’ type of release.   Expect to find lots of bugs and missing 
 features.
 
+New Features
+---------
+- Support for XML contructors and literals as well as E4X.
+See here for limitations: https://cwiki.apache.org/confluence/display/FLEX/Using+XML+in+FlexJS
+- Support for Typed Node.js
+
+Bug Fixes
+---------
+
 Apache FlexJS 0.6.0
 =================
 
