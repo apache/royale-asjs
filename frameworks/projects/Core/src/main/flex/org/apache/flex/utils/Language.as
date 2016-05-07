@@ -413,9 +413,10 @@ package org.apache.flex.utils
 		
 		private static function compareNumber(a:Object, b:Object):int{
 			for each(var n:String in sortNames){
-				var v:int = a[n] - b[n];
-				if (v!=0){
-					return v*muler;
+				if (a[n]>b[n]){
+					return muler;
+				}else if (a[n]<b[n]){
+					return -muler;
 				}
 			}
 			return 0;
