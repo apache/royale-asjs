@@ -23,10 +23,10 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../libs/Binding.swc</path-element>
-            <path-element>../../../libs/Core.swc</path-element>
-            <path-element>../../../libs/Graphics.swc</path-element>
-            <path-element>../../../libs/HTML.swc</path-element>
+            <path-element>../../../../../libs/Binding.swc</path-element>
+            <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/Graphics.swc</path-element>
+            <path-element>../../../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -51,17 +51,17 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/flat</uri>
-                <manifest>../src/main/resources/flat-manifest.xml</manifest>
+                <manifest>../resources/flat-manifest.xml</manifest>
             </namespace>
             <!-- TODO: Why is this neesed? -->
             <namespace>
                 <uri>library://ns.apache.org/flexjs/flat</uri>
-                <manifest>../src/main/resources/flat-as-manifest.xml</manifest>
+                <manifest>../resources/flat-as-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../src/main/flex</path-element>
+            <path-element>../flex</path-element>
             <!--<path-element>asjs/src</path-element>-->
         </source-path>
         
@@ -70,11 +70,11 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>../src/main/resources/defaults.css</path>
+        <path>../resources/defaults.css</path>
     </include-file>
     <include-file>
         <name>js/out/*</name>
-        <path>generated-sources/flexjs/*</path>
+        <path>../../../target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>

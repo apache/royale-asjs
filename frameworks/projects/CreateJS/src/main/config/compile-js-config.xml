@@ -47,18 +47,18 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/createjs</uri>
-                <manifest>../src/main/resources/createjs-manifest.xml</manifest>
+                <manifest>../resources/createjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../src/main/flex</path-element>
+            <path-element>../flex</path-element>
         </source-path>
         
         <library-path>
-            <path-element>../../../externs/Core.swc</path-element>
-            <path-element>../../../externs/HTML.swc</path-element>
-            <path-element>../../../externs/Graphics.swc</path-element>
+            <path-element>../../../../../externs/Core.swc</path-element>
+            <path-element>../../../../../externs/HTML.swc</path-element>
+            <path-element>../../../../../externs/Graphics.swc</path-element>
         </library-path>
         
         <warn-no-constructor>false</warn-no-constructor>
