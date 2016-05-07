@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+COMPILE::AS3
+{
     import flash.display.Graphics;
     import flash.display.Sprite;
+}
     
     import org.apache.flex.core.IChild;
     import org.apache.flex.events.Event;

@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+import org.apache.flex.events.Event;
+
 COMPILE::AS3
 {
-    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.utils.getQualifiedClassName;        
 }

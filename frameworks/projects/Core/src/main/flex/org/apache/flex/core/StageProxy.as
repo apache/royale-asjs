@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.Stage;
-    import flash.events.Event;
-	
+    COMPILE::AS3
+    {
+        import flash.display.Stage;
+        import flash.events.Event;
+    }	
     import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 

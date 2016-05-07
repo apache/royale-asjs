@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils.dbg
 {
+COMPILE::AS3
+{
     import flash.utils.Dictionary;
     import flash.utils.getQualifiedClassName;
+}
     
     import org.apache.flex.core.IChild;
 

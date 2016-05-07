@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+import org.apache.flex.events.Event;
+
+COMPILE::AS3
     {
         import flash.display.DisplayObject;
-        import flash.events.Event;
     }
     
     import org.apache.flex.core.IBead;
