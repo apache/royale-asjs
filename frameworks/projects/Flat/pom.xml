@@ -24,11 +24,11 @@
     <parent>
         <groupId>org.apache.flex.flexjs.framework</groupId>
         <artifactId>projects</artifactId>
-        <version>0.6.0-SNAPSHOT</version>
+        <version>0.7.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>Flat</artifactId>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>0.7.0-SNAPSHOT</version>
     <packaging>swc</packaging>
 
     <build>
@@ -37,13 +37,13 @@
             <plugin>
                 <groupId>org.apache.flex.flexjs.compiler</groupId>
                 <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.6.0-SNAPSHOT</version>
+                <version>0.7.0-SNAPSHOT</version>
                 <extensions>true</extensions>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.flex.flexjs.compiler</groupId>
                         <artifactId>compiler-jx</artifactId>
-                        <version>0.6.0-SNAPSHOT</version>
+                        <version>0.7.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -62,28 +62,28 @@
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>Core</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.7.0-SNAPSHOT</version>
             <type>swc</type>
             <scope>external</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>Binding</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.7.0-SNAPSHOT</version>
             <type>swc</type>
             <scope>external</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>Graphics</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.7.0-SNAPSHOT</version>
             <type>swc</type>
             <scope>external</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flex.flexjs.framework</groupId>
             <artifactId>HTML</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.7.0-SNAPSHOT</version>
             <type>swc</type>
             <scope>external</scope>
         </dependency>

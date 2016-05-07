@@ -17,10 +17,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
-{   
+{
+COMPILE::AS3
+{
     import flash.display.DisplayObjectContainer;
     import flash.text.Font;
-    
+}
+
     import org.apache.flex.core.IStyleableObject;
     import org.apache.flex.events.Event;
 		

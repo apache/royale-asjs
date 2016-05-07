@@ -82,7 +82,7 @@
                         <dependency>
                             <groupId>org.apache.flex.compiler</groupId>
                             <artifactId>falcon-jx-compiler</artifactId>
-                            <version>0.6.0-SNAPSHOT</version>
+                            <version>0.7.0-SNAPSHOT</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.apache.flex.flexjs</groupId>
             <artifactId>framework</artifactId>
-            <version>0.6.0-SNAPSHOT</version>
+            <version>0.7.0-SNAPSHOT</version>
             <type>pom</type>
         </dependency>
         <dependency>
