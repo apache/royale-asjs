@@ -20,11 +20,8 @@
 package org.apache.flex.utils
 {
 
-COMPILE::AS3
-{
-    import flash.display.BitmapData;
-    import flash.utils.ByteArray;
-}
+import flash.display.BitmapData;
+import flash.utils.ByteArray;
 
 /**
  *  The PNGEncoder class converts raw bitmap images into encoded

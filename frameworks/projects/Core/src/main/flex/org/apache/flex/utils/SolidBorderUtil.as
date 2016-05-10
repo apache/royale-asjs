@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
-{
-    import flash.display.Graphics;
-}
+import flash.display.Graphics;
 
     
 /**

@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
-{
     import flash.display.DisplayObject;
     import flash.display.Graphics;
-}
     
     import org.apache.flex.core.IStatesObject;
     import org.apache.flex.core.IUIBase;
