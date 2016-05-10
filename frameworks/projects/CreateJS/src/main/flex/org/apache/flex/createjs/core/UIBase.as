@@ -44,7 +44,7 @@ package org.apache.flex.createjs.core
 	
 	/**
 	 * The CreateJS framework provides its own version of UIBase. CreateJS uses
-	 * the HTML 5 <canvas> for its work and does not use the HTML DOM like the
+	 * the HTML 5 &lt;canvas&gt; for its work and does not use the HTML DOM like the
 	 * most of FlexJS, so this replacement for UIBase allows the CreateJS wrapper
 	 * classes for FlexJS to fit in.
 	 *

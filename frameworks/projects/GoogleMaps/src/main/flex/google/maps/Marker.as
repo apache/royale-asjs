@@ -25,7 +25,7 @@ package google.maps {
 public class Marker extends google.maps.MVCObject {
 
     /**
-     * @param opt_opts [(Object<?,string>|google.maps.MarkerOptions|null|undefined)] 
+     * @param opt_opts [(Object|google.maps.MarkerOptions|null|undefined)] 
      * @see [google_maps_api_v3_11]
      */
     public function Marker(opt_opts:Object = null) {
@@ -277,7 +277,7 @@ public class Marker extends google.maps.MVCObject {
 	}
 
     /**
-     * @param options [(Object<?,string>|google.maps.MarkerOptions|null)] 
+     * @param options [(Object|google.maps.MarkerOptions|null)] 
      * @see [google_maps_api_v3_11]
      * @returns {undefined} 
      */
