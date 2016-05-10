@@ -41,6 +41,15 @@ package org.apache.flex.utils
 		//   Static Property
 		//--------------------------------------
 
+		
+		/**
+		 * Helper var for sortOn
+		 */
+		static private var sortNames:Array;
+		static private var sortNamesOne:Array = [];
+		static private var muler:Number;
+		static private var zeroStr:String = String.fromCharCode(0);
+		
 		//--------------------------------------
 		//   Static Function
 		//--------------------------------------
@@ -361,5 +370,56 @@ package org.apache.flex.utils
             return boundMethod;
         };
 
+		/**
+		 * @author lizhi
+		 * @param	arr
+		 * @param	names
+		 * @param	opt
+		 */
+		public static function sortOn(arr:Array,names:Object,opt:int=0):void{
+			if (names is Array){
+				sortNames = names as Array;
+			}else{
+				sortNamesOne[0] = names;
+				sortNames = sortNamesOne;
+			}
+			muler = (Array.DESCENDING & opt) > 0?-1: 1;
+			if(opt&Array.NUMERIC){
+				arr.sort(compareNumber);
+			}else if (opt&Array.CASEINSENSITIVE){
+				arr.sort(compareStringCaseinsensitive);
+			}else{
+				arr.sort(compareString);
+			}
+		}
+		private static function compareStringCaseinsensitive(a:Object, b:Object):int{
+			for each(var n:String in sortNames){
+				var v:int = (a[n]||zeroStr).toString().toLowerCase().localeCompare((b[n]||zeroStr).toString().toLowerCase());
+				if (v != 0){
+					return v*muler;
+				}
+			}
+			return 0;
+		}
+		private static function compareString(a:Object, b:Object):int{
+			for each(var n:String in sortNames){
+				var v:int = (a[n]||zeroStr).toString().localeCompare((b[n]||zeroStr).toString());
+				if (v != 0){
+					return v*muler;
+				}
+			}
+			return 0;
+		}
+		
+		private static function compareNumber(a:Object, b:Object):int{
+			for each(var n:String in sortNames){
+				if (a[n]>b[n]){
+					return muler;
+				}else if (a[n]<b[n]){
+					return -muler;
+				}
+			}
+			return 0;
+		}
 	}
 }
