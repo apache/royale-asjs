@@ -97,7 +97,7 @@ package org.apache.flex.createjs
 	 *  an initial view.
 	 * 
      * This is the CreateJS Application class which must be used in place of the normal
-	 * FlexJS Application. CreateJS uses the HTML5 <canvas>, rather than the HTML DOM. This
+	 * FlexJS Application. CreateJS uses the HTML5 &lt;canvas&gt;, rather than the HTML DOM. This
 	 * class sets up the canvas and injects the necessary HTML elements into the index.html
 	 * file to bootstrap CreateJS.
 	 *
