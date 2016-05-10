@@ -17,17 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events.utils
-{
-COMPILE::AS3
-{
+{	
     import flash.events.Event;
     import flash.events.IEventDispatcher;
     import flash.events.MouseEvent;
-}
-
-import org.apache.flex.events.IEventDispatcher;
-
-import org.apache.flex.events.MouseEvent;
+    
+    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.utils.IHandlesOriginalEvent;
     
 	/**

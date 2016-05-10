@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-COMPILE::AS3
-{
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
-}
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;

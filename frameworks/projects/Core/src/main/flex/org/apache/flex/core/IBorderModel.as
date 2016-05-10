@@ -18,14 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	COMPILE::AS3
-	{
-		import flash.geom.Rectangle;
-	}
+    import flash.geom.Rectangle;
 
-	import org.apache.flex.geom.Rectangle;
-
-/**
+    /**
      *  The IBorderModel interface is the basic interface for a data model for
      *  drawing borders.
      *  
