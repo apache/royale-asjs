@@ -371,7 +371,6 @@ package org.apache.flex.utils
         };
 
 		/**
-		 * @author lizhi
 		 * @param	arr
 		 * @param	names
 		 * @param	opt
