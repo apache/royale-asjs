@@ -22,10 +22,6 @@
         <accessible>false</accessible>
         
         <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -45,40 +41,44 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <library-path>
+        </library-path>
+        
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../resources/basic-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/createjs</uri>
+                <manifest>../../../../../../../projects/CreateJS/src/main/resources/createjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../../../../../../../projects/CreateJS/src/main/flex</path-element>
         </source-path>
+        
+        <library-path>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+        </library-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
     <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-    <include-file>
-        <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/Charts/target/generated-sources/flexjs/*</path>
     </include-file>
 
+    <include-sources>
+    </include-sources>
+    
     <include-classes>
-        <class>ChartsClasses</class>
+        <class>CreateJSClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/createjs</uri>
     </include-namespaces>
-        
-    <target-player>${playerglobal.version}</target-player>
+    
+    <!--<target-player>${playerglobal.version}</target-player>-->
 	
 
 </flex-config>

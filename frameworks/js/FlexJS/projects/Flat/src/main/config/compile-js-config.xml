@@ -22,10 +22,6 @@
         <accessible>false</accessible>
         
         <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -45,37 +41,37 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <library-path>
+            <!-- asjscompc won't 'link' these classes in, but will list their requires
+             if these swcs are on the external-library-path then their requires
+             will not be listed -->
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+        </library-path>
+        
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../resources/basic-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/flat</uri>
+                <manifest>../../../../../../../projects/Flat/src/main/resources/flat-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../../../../../../../projects/Flat/src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
     <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-    <include-file>
-        <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/Charts/target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>
-        <class>ChartsClasses</class>
+        <class>FlatClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/flat</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

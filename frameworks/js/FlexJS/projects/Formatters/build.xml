@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="FormattersJS" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../../../../.."/>
+    
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+    <condition property="JS.SWC" value="${FALCONJX_HOME}/../js/libs/js.swc" >
+        <available file="${FALCONJX_HOME}/../js/libs/js.swc" />
+    </condition>
+    <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/target/js.swc" />
+    <condition property="GCL.SWC" value="${FALCONJX_HOME}/../js/libs/GCL.swc" >
+        <available file="${FALCONJX_HOME}/../js/libs/GCL.swc" />
+    </condition>
+    <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/target/GCL.swc" />
+    <property name="target.name" value="FormattersJS.swc" />
+    <property name="target.name.no.version" value="FormattersJS.swc" />
+
+    <target name="main" depends="clean,compile-extern-swc,compile-asjs,copy-js,test" description="Full build of Formatters.swc">
+    </target>
+
+    <target name="test" unless="is.jenkins">
+        <!-- no tests yet
+         <ant dir="as/tests" />
+         -->
+    </target>
+    
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+                <include name="${target.name.no.version}"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false">
+            <fileset dir="${basedir}/target">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <path id="lib.path">
+        <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+    </path>
+    
+    <target name="compile-asjs">
+        <echo message="Cross-compiling ${target.name}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
+            <arg value="-output=${basedir}/target/generated-sources/flexjs" />
+            <arg value="-load-config=${basedir}/src/main/config/compile-js-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${JS.SWC}" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${GCL.SWC}" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
+        </java>
+    </target>
+    
+    <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
+        <echo message="Compiling target/${target.name}"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <!-- make JS output folder now so include-file doesn't error -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs"/>
+        <mkdir dir="${basedir}/target"/>
+        
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+         Link in the classes (and their dependencies) for the MXML tags
+         listed in this project's manifest.xml.
+         Also link the additional classes (and their dependencies)
+         listed in CoreClasses.as,
+         because these aren't referenced by the manifest classes.
+         Keep the standard metadata when compiling.
+         Include the appropriate CSS files and assets in the SWC.
+         Don't include any resources in the SWC.
+         Write a bundle list of referenced resource bundles
+         into the file bundles.properties in this directory.
+         -->
+        <compc fork="true"
+            output="${basedir}/target/${target.name}">
+            <jvmarg line="${compc.jvm.args}"/>
+            <load-config filename="src/main/config/compile-js-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-external-library-path+=${JS.SWC}" />
+            <!-- this is not on external-library path otherwise goog.requires are not generated -->
+            <arg value="-library-path+=${GCL.SWC}" />
+            <arg value="-define=COMPILE::AS3,false" />
+            <arg value="-define=COMPILE::JS,true" />
+        </compc>
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name.no.version}" />
+    </target>
+    
+    <target name="copy-js">
+        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+            <fileset dir="${basedir}/target/generated-sources/flexjs">
+                <include name="**/**"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>
