@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <actionScriptProperties analytics="false" mainApplicationPath="GoogleMaps.as" projectUUID="7d907ea6-da29-4573-9741-08d2cf0f85d6" version="11">
-  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::AS3,true&#10;-define=COMPILE::JS,false&#10;-load-config=../resources/compile-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/flex" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::AS3,true&#10;-define=COMPILE::JS,false&#10;-load-config=../config/compile-as-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/flex" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
