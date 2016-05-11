@@ -60,7 +60,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}" />
  
-    <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
+    <target name="main" depends="check-compile-env,clean,prepare,compile"
         description="Clean build of all SWCs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
@@ -80,7 +80,6 @@
         <antcall target="Binding"/>
         <antcall target="Collections"/>
         <antcall target="HTML"/>
-        <!--
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="CreateJS"/>
@@ -95,11 +94,6 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
-         -->
-    </target>
-    
-    <target name="fonts">
-        <ant dir="${basedir}/fontsrc" target="main"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -123,22 +117,17 @@
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
         <ant dir="${basedir}/projects/Binding" target="clean"/>
-        <!--
         <ant dir="${basedir}/projects/Charts" target="clean"/>
-         -->
         <ant dir="${basedir}/projects/Collections" target="clean"/>
         <ant dir="${basedir}/projects/Core" target="clean"/>
-         <!--
         <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/DragDrop" target="clean"/>
         <ant dir="${basedir}/projects/Effects" target="clean"/>
         <ant dir="${basedir}/projects/Flat" target="clean"/>
         <ant dir="${basedir}/projects/Formatters" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
-          -->
         <ant dir="${basedir}/projects/Graphics" target="clean"/>
         <ant dir="${basedir}/projects/HTML" target="clean"/>
-         <!--
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
@@ -146,8 +135,6 @@
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
-        <ant dir="${basedir}/fontsrc" target="clean"/>
-          -->
 
         <!-- delete the FlashBuilder executable directories -->
         <delete includeemptydirs="true" failonerror="false">
