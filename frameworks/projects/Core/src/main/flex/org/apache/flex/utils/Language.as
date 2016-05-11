@@ -376,17 +376,25 @@ package org.apache.flex.utils
 		 * @param	names
 		 * @param	opt
 		 */
-		public static function sortOn(arr:Array,names:Object,opt:int=0):void{
+		public static function sortOn(arr:Array,names:Object,opt:Object=0):void{
 			if (names is Array){
 				sortNames = names as Array;
 			}else{
 				sortNamesOne[0] = names;
 				sortNames = sortNamesOne;
 			}
-			muler = (Array.DESCENDING & opt) > 0?-1: 1;
-			if(opt&Array.NUMERIC){
+			if (opt is Array){
+				var opt2:int = 0;
+				for each(var o:int in opt){
+					opt2 = opt2 | o;
+				}
+			}else{
+				opt2 = opt as int;
+			}
+			muler = (Array.DESCENDING & opt2) > 0?-1: 1;
+			if(opt2&Array.NUMERIC){
 				arr.sort(compareNumber);
-			}else if (opt&Array.CASEINSENSITIVE){
+			}else if (opt2&Array.CASEINSENSITIVE){
 				arr.sort(compareStringCaseinsensitive);
 			}else{
 				arr.sort(compareString);
