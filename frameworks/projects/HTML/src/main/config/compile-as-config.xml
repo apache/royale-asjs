@@ -53,7 +53,6 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
-            <!-- TODO: Why is this needed? -->
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../resources/basic-as-manifest.xml</manifest>
@@ -77,7 +76,7 @@
     </include-file>
     <include-file>
         <name>js/out/*</name>
-        <path>../../../target/generated-sources/flexjs/*</path>
+        <path>../../../../../js/FlexJS/projects/HTML/target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>

@@ -45,18 +45,18 @@
             <!-- asjscompc won't 'link' these classes in, but will list their requires
              if these swcs are on the external-library-path then their requires
              will not be listed -->
-            <path-element>../../../../../externs/Core.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
         </library-path>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../../../../../../../projects/Collections/src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
     <include-sources>
-        <path-element>../flex</path-element>
+        <path-element>../../../../../../../projects/Collections/src/main/flex</path-element>
     </include-sources>
     
     <include-namespaces>
