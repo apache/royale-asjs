@@ -57,7 +57,7 @@
     
     <include-file>
         <name>js/out/*</name>
-        <path>../../../target/generated-sources/flexjs/*</path>
+        <path>../../../../../js/FlexJS/projects/Reflection/target/generated-sources/flexjs/*</path>
     </include-file>
 
     <!-- TODO: Why this? -->
