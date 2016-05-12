@@ -23,6 +23,7 @@ package org.apache.flex.core
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.flex.utils.Timer;
 
     COMPILE::AS3 {
         import flash.display.DisplayObject;
@@ -561,45 +562,76 @@ package org.apache.flex.core
         {
             return element.childNodes;
         };
+		
+		COMPILE::JS
+		protected var startupTimer:Timer;
 
-
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.IBead
-         */
-        COMPILE::JS
-        public function start():void
-        {
-            element = document.getElementsByTagName('body')[0];
-            element.flexjs_wrapper = this;
-            element.className = 'Application';
-
-            MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
-
-            dispatchEvent('initialize');
-
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IBead
+		 */
+		COMPILE::JS
+		public function start():void
+		{
+			element = document.getElementsByTagName('body')[0];
+			element.flexjs_wrapper = this;
+			element.className = 'Application';
+			
+			if (model is IBead) addBead(model as IBead);
+			if (controller is IBead) addBead(controller as IBead);
+			
 			for (var index:int in beads) {
 				addBead(beads[index]);
 			}
-
+			
 			dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
-
-            initialView.applicationModel = model;
-            addElement(initialView);
-
-            if (initialView)
-            {
-            	var baseView:UIBase = initialView as UIBase;
-                if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
-    			    this.element.style.height = window.innerHeight.toString() + 'px';
-    			    this.element.style.width = window.innerWidth.toString() + 'px';
-    			    this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
-  				}
-
-                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
-            }
-            dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
-        };
-
+			
+			if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+				initialize();
+			else {			
+				startupTimer = new Timer(34, 0);
+				startupTimer.addEventListener("timer", handleStartupTimer);
+				startupTimer.start();
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		protected function handleStartupTimer(event:Event):void
+		{
+			if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+			{
+				startupTimer.stop();
+				initialize();
+			}
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IBead
+		 */
+		COMPILE::JS
+		protected function initialize():void
+		{
+			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+			
+			dispatchEvent('initialize');
+			
+			initialView.applicationModel = model;
+			addElement(initialView);
+			
+			if (initialView)
+			{
+				var baseView:UIBase = initialView as UIBase;
+				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
+					this.element.style.height = window.innerHeight.toString() + 'px';
+					this.element.style.width = window.innerWidth.toString() + 'px';
+					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+				}
+				
+				dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+			}
+			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
+		}
     }
 }
