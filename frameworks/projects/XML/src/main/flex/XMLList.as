@@ -540,6 +540,51 @@ package
 			}
 			return retVal;
 		}
+
+		COMPILE::JS
+		public function plus(rightHand:*):*
+		{
+			/*
+				Semantics
+				The production AdditiveExpression : AdditiveExpression + MultiplicativeExpression is evaluated as follows:
+				
+				1. Let a be the result of evalutating AdditiveExpression
+				2. Let left = GetValue(a)
+				3. Let m be the result of evaluating MultiplicativeExpression
+				4. Let right = GetValue(m)
+				5. If (Type(left) ∈ {XML, XMLList}) and (Type(right) ∈ {XML, XMLList})
+				  a. Let list be a new XMLList
+				  b. Call the [[Append]] method of list with argument x
+				  c. Call the [[Append]] method of list with argument y
+				  d. Return list
+				6. Let pLeft = ToPrimitive(left)
+				7. Let pRight = ToPrimitive(right)
+				8. If Type(pLeft) is String or Type(pRight) is String
+				  a. Return the result of concatenating ToString(pLeft) and ToString(pRight)
+				9. Else
+				  a. Apply the addition operation to ToNumber(pLeft) and ToNumber(pRight) and return the result. See ECMAScript Edition 3, section 11.6.3 for details.
+			*/
+			if(rightHand is XML || rightHand is XMLList)
+			{
+				var list:XMLList = new XMLList();
+				list.concat(this);
+				list.concat(rightHand);
+				if(rightHand is XML)
+					list.targetObject = rightHand;
+				else{
+					list.targetObject = rightHand.targetObject;
+					list.targetProperty = rightHand.targetProperty;
+				}
+				return list;
+			}
+			if(rightHand is String)
+				return this.toString() + rightHand;
+			if(rightHand === NaN)
+				return NaN;
+			if(isNaN(Number( this.toString() )) || isNaN(Number( rightHand.toString() )))
+				return this.toString() + rightHand.toString();
+			return Number(this.toString()) + rightHand;
+		}
 		
 		/**
 		 * If a name parameter is provided, lists all the children of the XMLList object that contain processing instructions with that name.

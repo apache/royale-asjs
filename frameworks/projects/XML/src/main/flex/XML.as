@@ -1381,6 +1381,14 @@ package
 			return _parent;
 		}
 		
+		COMPILE::JS
+		public function plus(rightHand:*):*
+		{
+			var list:XMLList = new XMLList();
+			list.appendChild(this);
+			return list.plus(rightHand);
+		}
+
 		/**
 		 * Inserts the provided child object into the XML element before any existing XML properties for that element.
 		 * @param value

@@ -43,10 +43,10 @@
     property="FALCONJX_HOME"
     value="${env.FALCONJX_HOME}"/>
     
-    <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar"
+    <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar"
     type="file"
     property="FALCONJX_HOME"
-    value="${FLEXJS_HOME}/../flex-falcon/compiler.jx"/>
+    value="${FLEXJS_HOME}/../flex-falcon/compiler-jx"/>
     
     <available file="${env.GOOG_HOME}/closure/goog/base.js"
     type="file"
