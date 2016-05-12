@@ -48,6 +48,13 @@
             <path-element>../../../../../libs/CoreJS.swc</path-element>
         </library-path>
         
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../../../../../../../projects/Collections/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <source-path>
             <path-element>../../../../../../../projects/Collections/src/main/flex</path-element>
         </source-path>
@@ -55,9 +62,9 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-sources>
-        <path-element>../../../../../../../projects/Collections/src/main/flex</path-element>
-    </include-sources>
+    <include-classes>
+        <class>CollectionsClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>

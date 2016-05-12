@@ -73,7 +73,7 @@
     </include-sources>
     
     <include-classes>
-        <class>HTMLClasses</class>
+        <class>JQueryClasses</class>
     </include-classes>
     
     <include-namespaces>

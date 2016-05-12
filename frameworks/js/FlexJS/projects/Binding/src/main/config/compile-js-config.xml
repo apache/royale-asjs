@@ -65,9 +65,9 @@
     <include-file>
     </include-file>
 
-    <include-sources>
-        <path-element>../../../../../../../projects/Binding/src/main/flex</path-element>
-    </include-sources>
+    <include-classes>
+        <class>BindingClasses</class>
+    </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
