@@ -49,6 +49,13 @@
             <path-element>../../../../../libs/HTMLJS.swc</path-element>
         </library-path>
         
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/html5</uri>
+                <manifest>../../../../../../../projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
         <source-path>
             <path-element>../../../../../../../projects/HTML5/src/main/flex</path-element>
         </source-path>
@@ -56,10 +63,10 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
 
-    <include-sources>
-        <path-element>../../../../../../../projects/HTML5/src/main/flex</path-element>
-    </include-sources>
-    
+    <include-classes>
+        <class>HTML5Classes</class>
+    </include-classes>
+
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/html5</uri>
     </include-namespaces>
