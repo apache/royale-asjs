@@ -116,25 +116,25 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
-        <ant dir="${basedir}/projects/Binding" target="clean"/>
-        <ant dir="${basedir}/projects/Charts" target="clean"/>
-        <ant dir="${basedir}/projects/Collections" target="clean"/>
-        <ant dir="${basedir}/projects/Core" target="clean"/>
-        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
-        <ant dir="${basedir}/projects/DragDrop" target="clean"/>
-        <ant dir="${basedir}/projects/Effects" target="clean"/>
-        <ant dir="${basedir}/projects/Flat" target="clean"/>
-        <ant dir="${basedir}/projects/Formatters" target="clean"/>
-        <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
-        <ant dir="${basedir}/projects/Graphics" target="clean"/>
-        <ant dir="${basedir}/projects/HTML" target="clean"/>
-        <ant dir="${basedir}/projects/HTML5" target="clean"/>
-        <ant dir="${basedir}/projects/JQuery" target="clean"/>
-        <ant dir="${basedir}/projects/Mobile" target="clean"/>
-        <ant dir="${basedir}/projects/Network" target="clean"/>
-        <ant dir="${basedir}/projects/Reflection" target="clean"/>
-        <ant dir="${basedir}/projects/Storage" target="clean"/>
-        <ant dir="${basedir}/projects/XML" target="clean"/>
+        <ant dir="${basedir}/projects/BindingJS" target="clean"/>
+        <ant dir="${basedir}/projects/ChartsJS" target="clean"/>
+        <ant dir="${basedir}/projects/CollectionsJS" target="clean"/>
+        <ant dir="${basedir}/projects/CoreJS" target="clean"/>
+        <ant dir="${basedir}/projects/CreateJSJS" target="clean"/>
+        <ant dir="${basedir}/projects/DragDropJS" target="clean"/>
+        <ant dir="${basedir}/projects/EffectsJS" target="clean"/>
+        <ant dir="${basedir}/projects/FlatJS" target="clean"/>
+        <ant dir="${basedir}/projects/FormattersJS" target="clean"/>
+        <ant dir="${basedir}/projects/GoogleMapsJS" target="clean"/>
+        <ant dir="${basedir}/projects/GraphicsJS" target="clean"/>
+        <ant dir="${basedir}/projects/HTMLJS" target="clean"/>
+        <ant dir="${basedir}/projects/HTML5JS" target="clean"/>
+        <ant dir="${basedir}/projects/JQueryJS" target="clean"/>
+        <ant dir="${basedir}/projects/MobileJS" target="clean"/>
+        <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
+        <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
+        <ant dir="${basedir}/projects/StorageJS" target="clean"/>
+        <ant dir="${basedir}/projects/XMLJS" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
         <delete includeemptydirs="true" failonerror="false">
@@ -158,78 +158,78 @@
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">
-        <ant dir="${basedir}/projects/Binding"/>
+        <ant dir="${basedir}/projects/BindingJS"/>
     </target>
     
     <target name="Charts" description="Clean build of Charts.swc">
-        <ant dir="${basedir}/projects/Charts"/>
+        <ant dir="${basedir}/projects/ChartsJS"/>
     </target>
 
     <target name="Core" description="Clean build of Core.swc">
-        <ant dir="${basedir}/projects/Core"/>
+        <ant dir="${basedir}/projects/CoreJS"/>
     </target>
 
     <target name="Collections" description="Clean build of Collections.swc">
-        <ant dir="${basedir}/projects/Collections"/>
+        <ant dir="${basedir}/projects/CollectionsJS"/>
     </target>
 
     <target name="CreateJS" description="Clean build of CreateJS.swc">
-        <ant dir="${basedir}/projects/CreateJS"/>
+        <ant dir="${basedir}/projects/CreateJSJS"/>
     </target>
 
     <target name="DragDrop" description="Clean build of DragDrop.swc">
-        <ant dir="${basedir}/projects/DragDrop"/>
+        <ant dir="${basedir}/projects/DragDropJS"/>
     </target>
 
     <target name="Effects" description="Clean build of Effects.swc">
-        <ant dir="${basedir}/projects/Effects"/>
+        <ant dir="${basedir}/projects/EffectsJS"/>
     </target>
 
     <target name="Flat" description="Clean build of Flat.swc">
-        <ant dir="${basedir}/projects/Flat"/>
+        <ant dir="${basedir}/projects/FlatJS"/>
     </target>
 
     <target name="Formatters" description="Clean build of Formatters.swc">
-        <ant dir="${basedir}/projects/Formatters"/>
+        <ant dir="${basedir}/projects/FormattersJS"/>
     </target>
 
     <target name="GoogleMaps" description="Clean build of GoogleMaps.swc">
-        <ant dir="${basedir}/projects/GoogleMaps"/>
+        <ant dir="${basedir}/projects/GoogleMapsJS"/>
     </target>
 
     <target name="Graphics" description="Clean build of Graphics.swc">
-        <ant dir="${basedir}/projects/Graphics"/>
+        <ant dir="${basedir}/projects/GraphicsJS"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">
-        <ant dir="${basedir}/projects/HTML"/>
+        <ant dir="${basedir}/projects/HTMLJS"/>
     </target>
 
     <target name="HTML5" description="Clean build of HTML5.swc">
-        <ant dir="${basedir}/projects/HTML5"/>
+        <ant dir="${basedir}/projects/HTML5JS"/>
     </target>
 
     <target name="JQuery" description="Clean build of JQuery.swc">
-        <ant dir="${basedir}/projects/JQuery"/>
+        <ant dir="${basedir}/projects/JQueryJS"/>
     </target>
 
     <target name="Mobile" description="Clean build of Mobile.swc">
-        <ant dir="${basedir}/projects/Mobile"/>
+        <ant dir="${basedir}/projects/MobileJS"/>
     </target>
 
     <target name="Network" description="Clean build of Network.swc">
-        <ant dir="${basedir}/projects/Network"/>
+        <ant dir="${basedir}/projects/NetworkJS"/>
     </target>
 
     <target name="Reflection" description="Clean build of Reflection.swc">
-        <ant dir="${basedir}/projects/Reflection"/>
+        <ant dir="${basedir}/projects/ReflectionJS"/>
     </target>
 
     <target name="Storage" description="Clean build of Storage.swc">
-        <ant dir="${basedir}/projects/Storage"/>
+        <ant dir="${basedir}/projects/StorageJS"/>
     </target>
     <target name="XML" description="Clean build of XML.swc">
-        <ant dir="${basedir}/projects/XML"/>
+        <ant dir="${basedir}/projects/XMLJS"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
