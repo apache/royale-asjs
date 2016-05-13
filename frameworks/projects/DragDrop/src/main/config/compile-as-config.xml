@@ -61,7 +61,7 @@
     
     <include-file>
         <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/DragDrop/target/generated-sources/flexjs/*</path>
+        <path>../../../../../js/FlexJS/projects/DragDropJS/target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>

@@ -66,7 +66,7 @@
     </include-file>
     <include-file>
         <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/HTML5/target/generated-sources/flexjs/*</path>
+        <path>../../../../../js/FlexJS/projects/HTML5JS/target/generated-sources/flexjs/*</path>
     </include-file>
 
     <include-classes>
