@@ -1,0 +1,10 @@
+[INFO]
+Executing COMPC
+in tool group Falcon
+with args:
+
+[
+-load-config=/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/target/compile-extern-config.xml,
+-define=COMPILE::AS3,false,
+-define=COMPILE::JS,true
+]

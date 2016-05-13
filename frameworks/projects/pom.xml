@@ -46,8 +46,8 @@
         <module>Flat</module>
         <module>Formatters</module>
         <module>GoogleMaps</module>
-        <!--module>Graphics</module-->
-        <!--module>HTML</module-->
+        <module>Graphics</module>
+        <module>HTML</module>
         <module>HTML5</module>
         <module>JQuery</module>
         <module>Mobile</module>
