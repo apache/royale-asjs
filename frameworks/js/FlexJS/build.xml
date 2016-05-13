@@ -136,25 +136,8 @@
         <ant dir="${basedir}/projects/StorageJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
 
-        <!-- delete the FlashBuilder executable directories -->
-        <delete includeemptydirs="true" failonerror="false">
-            <fileset dir="${basedir}/projects">
-                <include name="*/bin/**"/>
-            </fileset>
-        </delete> 
-        <!-- Delete empty folders -->
         <delete dir="${basedir}/libs"/>
-        <delete dir="${basedir}/locale">
-            <exclude name="**/metadata.properties"/>
-        </delete>
-        <delete dir="${basedir}/libs/generated"/>
-        <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
-        <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
-            <exclude name="swfobject/index.template.html" />
-            <exclude name="swfobject/expressInstall.swf" />
-            <exclude name="swfobject/swfobject.js" />
-            <exclude name="swfobject/history/**" />
-        </delete>
+        <delete dir="${basedir}/generated-sources"/>
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">
