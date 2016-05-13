@@ -135,7 +135,8 @@
     </target>
 
     <target name="copy-js" >
-        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources"/>
+        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources">
             <fileset dir="${basedir}/target/generated-sources/flexjs">
                 <include name="**/**" />
             </fileset>

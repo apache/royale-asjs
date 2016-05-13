@@ -94,7 +94,6 @@
         <echo message="Compiling target/${target.name}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-        <!-- make JS output folder now so include-file doesn't error -->
         <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs"/>
         <mkdir dir="${basedir}/target"/>
         
@@ -129,7 +128,8 @@
     </target>
     
     <target name="copy-js">
-        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources"/>
+        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources">
             <fileset dir="${basedir}/target/generated-sources/flexjs">
                 <include name="**/**"/>
             </fileset>
