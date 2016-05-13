@@ -31,8 +31,8 @@ package org.apache.flex.core.graphics
 		
 		/**
 		 *  Draw the rectangle.
-		 *  @param x The x position of the top-left corner of the rectangle.
-		 *  @param y The y position of the top-left corner.
+		 *  @param xp The x position of the top-left corner of the rectangle.
+		 *  @param yp The y position of the top-left corner.
 		 *  @param width The width of the rectangle.
 		 *  @param height The height of the rectangle.
 		 *
@@ -42,14 +42,14 @@ package org.apache.flex.core.graphics
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
-		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
+		public function drawRect(xp:Number, yp:Number, width:Number, height:Number):void
 		{
             COMPILE::AS3
             {
                 graphics.clear();
                 applyStroke();
-                beginFill(new Rectangle(x, y, width, height), new Point(x,y));
-                graphics.drawRect(x, y, width, height);
+                beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
+                graphics.drawRect(xp, yp, width, height);
                 endFill();                    
             }
             COMPILE::JS
@@ -62,13 +62,11 @@ package org.apache.flex.core.graphics
                 {
                     rect.setAttribute('x', String(stroke.weight / 2) + 'px');
                     rect.setAttribute('y', String(stroke.weight / 2) + 'px');
-                    setPosition(x, y, stroke.weight, stroke.weight);
                 }
                 else
                 {
                     rect.setAttribute('x', '0' + 'px');
                     rect.setAttribute('y', '0' + 'px');
-                    setPosition(x, y, 0, 0);
                 }
                 rect.setAttribute('width', String(width) + 'px');
                 rect.setAttribute('height', String(height) + 'px');
