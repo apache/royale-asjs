@@ -49,6 +49,7 @@
                     <includeClasses>
                         <includeClass>CoreClasses</includeClass>
                     </includeClasses>
+                    <skipExtern>false</skipExtern>
                 </configuration>
                 <dependencies>
                     <dependency>
