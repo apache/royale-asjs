@@ -58,7 +58,7 @@ package org.apache.flex.core.graphics
 		 *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
-		public function drawPath(x:Number,y:Number,data:String):void
+		public function drawPath(xp:Number,yp:Number,data:String):void
 		{
 			COMPILE::AS3
             {
@@ -67,8 +67,8 @@ package org.apache.flex.core.graphics
                 var bounds:Rectangle = PathHelper.getBounds(data);
                 this.width = bounds.width;
                 this.height = bounds.height;
-                beginFill(bounds,new Point(bounds.left + x, bounds.top + y) );
-                var graphicsPath:GraphicsPath = PathHelper.getSegments(data,x,y);
+                beginFill(bounds,new Point(bounds.left + xp, bounds.top + yp) );
+                var graphicsPath:GraphicsPath = PathHelper.getSegments(data,xp,yp);
                 graphics.drawPath(graphicsPath.commands, graphicsPath.data);
                 endFill();
             }
@@ -81,14 +81,6 @@ package org.apache.flex.core.graphics
                 path.setAttribute('style', style);
                 path.setAttribute('d', data);
                 element.appendChild(path);
-                if (stroke)
-                {
-                    setPosition(x, y, stroke.weight, stroke.weight);
-                }
-                else
-                {
-                    setPosition(x, y, 0, 0);
-                }
 
                 resize(x, y, path['getBBox']());
 

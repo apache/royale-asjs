@@ -81,8 +81,8 @@ package org.apache.flex.core.graphics
 		/**
 		 *  Draws text at the given point.
 		 *  @param value The string to draw.
-		 *  @param x The x position of the top-left corner of the rectangle.
-		 *  @param y The y position of the top-left corner.
+		 *  @param xt The x position of the top-left corner of the rectangle.
+		 *  @param yt The y position of the top-left corner.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -93,7 +93,7 @@ package org.apache.flex.core.graphics
          *  @flexjsignorecoercion Node
          *  @flexjsignorecoercion SVGLocatable
 		 */
-		public function drawText(value:String, x:Number, y:Number):void
+		public function drawText(value:String, xt:Number, yt:Number):void
 		{
             COMPILE::AS3
             {
@@ -109,8 +109,8 @@ package org.apache.flex.core.graphics
                     textField.alpha = color.alpha;
                 }
                 
-                textField.x = x;
-                textField.y = y;                    
+                textField.x = xt;
+                textField.y = yt;                    
             }
             COMPILE::JS
             {
@@ -118,9 +118,8 @@ package org.apache.flex.core.graphics
                 var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
                 text.flexjs_wrapper = this;
                 text.setAttribute('style', style);
-                text.setAttribute('x', String(x) + 'px');
-                text.setAttribute('y', String(y) + 'px');
-                setPosition(x, y, 0, 0);
+                text.setAttribute('x', String(xt) + 'px');
+                text.setAttribute('y', String(yt) + 'px');
                 var textNode:Text = document.createTextNode(value) as Text;
                 text.appendChild(textNode as Node);
                 element.appendChild(text);

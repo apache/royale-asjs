@@ -33,8 +33,8 @@ package org.apache.flex.core.graphics
 		
 		/**
 		 *  Draw the ellipse.
-		 *  @param x The x position of the top-left corner of the bounding box of the ellipse.
-		 *  @param y The y position of the top-left corner of the bounding box of the ellipse.
+		 *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
+		 *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
 		 *  @param width The width of the ellipse.
 		 *  @param height The height of the ellipse.
 		 *
@@ -45,14 +45,14 @@ package org.apache.flex.core.graphics
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion SVGEllipseElement
 		 */
-		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
+		public function drawEllipse(xp:Number, yp:Number, width:Number, height:Number):void
 		{
             COMPILE::AS3
             {
                 graphics.clear();
                 applyStroke();
-                beginFill(new Rectangle(x, y, width, height), new Point(x,y));
-                graphics.drawEllipse(x,y,width,height);
+                beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
+                graphics.drawEllipse(xp,yp,width,height);
                 endFill();                    
             }
             COMPILE::JS
@@ -65,13 +65,11 @@ package org.apache.flex.core.graphics
                 {
                     ellipse.setAttribute('cx', String(width / 2 + stroke.weight));
                     ellipse.setAttribute('cy', String(height / 2 + stroke.weight));
-                    setPosition(x, y, stroke.weight * 2, stroke.weight * 2);
                 }
                 else
                 {
                     ellipse.setAttribute('cx', String(width / 2));
                     ellipse.setAttribute('cy', String(height / 2));
-                    setPosition(x, y, 0, 0);
                 }
                 ellipse.setAttribute('rx', String(width / 2));
                 ellipse.setAttribute('ry', String(height / 2));

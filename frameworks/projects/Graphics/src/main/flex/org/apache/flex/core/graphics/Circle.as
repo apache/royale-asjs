@@ -40,8 +40,8 @@ package org.apache.flex.core.graphics
 
 		/**
 		 *  Draw the circle.
-		 *  @param x The x location of the center of the circle
-		 *  @param y The y location of the center of the circle.
+		 *  @param cx The x location of the center of the circle
+		 *  @param cy The y location of the center of the circle.
 		 *  @param radius The radius of the circle.
 		 *
 		 *  @langversion 3.0
@@ -51,14 +51,14 @@ package org.apache.flex.core.graphics
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion SVGCircleElement
 		 */
-		public function drawCircle(x:Number, y:Number, radius:Number):void
+		public function drawCircle(cx:Number, cy:Number, radius:Number):void
 		{
             COMPILE::AS3
             {
                 graphics.clear();
                 applyStroke();
-                beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
-                graphics.drawCircle(x,y,radius);
+                beginFill(new Rectangle(cx,cy,radius*2, radius*2),new Point(cx-radius,cy-radius));
+                graphics.drawCircle(cx,cy,radius);
                 endFill();
             }
             COMPILE::JS                
@@ -71,20 +71,18 @@ package org.apache.flex.core.graphics
                 {
                     circle.setAttribute('cx', String(radius + stroke.weight));
                     circle.setAttribute('cy', String(radius + stroke.weight));
-                    setPosition(x - radius, y - radius, stroke.weight, stroke.weight);
                 }
                 else
                 {
                     circle.setAttribute('cx', String(radius));
                     circle.setAttribute('cy', String(radius));
-                    setPosition(x - radius, y - radius, 0, 0);
                 }
                 
                 circle.setAttribute('rx', String(radius));
                 circle.setAttribute('ry', String(radius));
                 element.appendChild(circle);
                 
-                resize(x, y, (circle as SVGCircleElement).getBBox());
+                resize(x-radius, y-radius, (circle as SVGCircleElement).getBBox());
 
             }
 		}
