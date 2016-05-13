@@ -106,6 +106,8 @@
         <echo message="Compiling target/${target.name}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs"/>
+        <mkdir dir="${basedir}/target"/>
         
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
@@ -138,7 +140,8 @@
     </target>
 
     <target name="copy-js">
-        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
+        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources"/>
+        <copy todir="${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources">
             <fileset dir="${basedir}/target/generated-sources/flexjs">
                 <include name="**/**"/>
             </fileset>

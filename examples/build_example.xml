@@ -247,7 +247,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
@@ -291,7 +291,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
@@ -336,7 +336,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.as" />
         </java>
         <fail>
