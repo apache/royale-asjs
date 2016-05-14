@@ -17,6 +17,8 @@ See here for limitations: https://cwiki.apache.org/confluence/display/FLEX/Using
 
 Bug Fixes
 ---------
+-FLEX-35089 - FlexJS Circle not drawn in proper location when x-compiled for JavaScript
+-FLEX-35058 - Flex JS LICENCE and NOTICE doesn't follow ASF policy
 
 Apache FlexJS 0.6.0
 =================
