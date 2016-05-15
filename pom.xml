@@ -44,7 +44,7 @@
 
     <repositories>
         <repository>
-            <id>flex-release</id>
+            <id>apache-release</id>
             <url>https://repository.apache.org/content/repositories/releases</url>
             <releases>
                 <enabled>true</enabled>
@@ -54,7 +54,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>flex-snapshots</id>
+            <id>apache-snapshots</id>
             <url>https://repository.apache.org/content/repositories/snapshots</url>
             <releases>
                 <enabled>false</enabled>
@@ -64,6 +64,29 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache-plugins-release</id>
+            <url>https://repository.apache.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>apache-plugins-snapshots</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <mailingLists>
         <mailingList>
