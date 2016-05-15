@@ -45,7 +45,7 @@
     <repositories>
         <repository>
             <id>flex-release</id>
-            <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+            <url>https://repository.apache.org/content/repositories/releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
