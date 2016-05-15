@@ -42,6 +42,17 @@
         </site>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>flex-release</id>
+            <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <repository>
+            <id>flex-snapshots</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
     <mailingLists>
         <mailingList>
             <name>Apache Flex User List</name>
