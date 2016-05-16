@@ -579,7 +579,7 @@ package
 			}
 			if(rightHand is String)
 				return this.toString() + rightHand;
-			if(rightHand === NaN)
+			if(rightHand is Number && isNaN(rightHand))
 				return NaN;
 			if(isNaN(Number( this.toString() )) || isNaN(Number( rightHand.toString() )))
 				return this.toString() + rightHand.toString();
