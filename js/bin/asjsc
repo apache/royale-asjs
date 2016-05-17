@@ -67,4 +67,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "$SCRIPT_HOME/../lib/mxmlc.jar" +flexlib="$FLEX_HOME/frameworks" -js-output-type=jsc -external-library-path="$FLEX_HOME/frameworks/js/libs/js.swc" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -Dflexcompiler="$FALCON_HOME" -Dflexlib="$FLEX_HOME/frameworks" -jar "$SCRIPT_HOME/../lib/mxmlc.jar" +flexlib="$FLEX_HOME/frameworks" -js-output-type=jsc -external-library-path="$SCRIPT_HOME/../libs/js.swc" "$@"
