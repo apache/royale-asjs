@@ -106,6 +106,10 @@
         <os family="windows" />
     </condition>
     <property name="MXMLC" value="mxmlc" />
+    <condition property="ASJSC" value="asjsc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="ASJSC" value="asjsc" />
     
     <condition property="java.home" value="${env.JAVA_HOME}" >
         <and>
@@ -920,6 +924,22 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             <replacefilter
             token="$COMPC"
             value="${COMPC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/ASJSC (Debug and Release Build).launch">
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/ASJSC (Debug Build).launch">
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
