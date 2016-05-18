@@ -43,7 +43,7 @@
     <property name="target.name" value="StorageJS.swc" />
     <property name="target.name.no.version" value="StorageJS.swc" />
 
-    <target name="main" depends="clean,compile-extern-swc,compile-asjs,copy-js,test" description="Full build of Storage.swc">
+    <target name="main" depends="clean,compile-js-swc,compile-asjs,copy-js,test" description="Full build of Storage.swc">
     </target>
 
     <target name="test" unless="is.jenkins">
@@ -101,7 +101,7 @@
         </java>
     </target>
 
-    <target name="compile-extern-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
+    <target name="compile-js-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
         <echo message="Compiling target/${target.name}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
