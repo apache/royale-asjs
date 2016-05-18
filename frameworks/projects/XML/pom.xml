@@ -47,7 +47,6 @@
                             <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
                         </namespace>
                     </namespaces>
-
                 </configuration>
                 <dependencies>
                     <dependency>

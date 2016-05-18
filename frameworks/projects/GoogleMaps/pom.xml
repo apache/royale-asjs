@@ -42,7 +42,7 @@
                 <configuration>
                     <namespaces>
                         <namespace>
-                            <uri>library://ns.apache.org/flexjs/flat</uri>
+                            <uri>library://ns.apache.org/flexjs/google</uri>
                             <manifest>${project.basedir}/src/main/resources/google-manifest.xml</manifest>
                         </namespace>
                     </namespaces>
