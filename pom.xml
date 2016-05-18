@@ -34,6 +34,35 @@
     <name>Apache Flex - ASJS</name>
     <description>The Apache Flex ASJS Project</description>
 
+    <scm>
+        <connection>scm:git://git.apache.org/flex-asjs.git</connection>
+        <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
+        <url>https://github.com/apache/flex-asjs</url>
+    </scm>
+
+    <properties>
+        <java.version>1.6</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
+        <maven.version>3.3.1</maven.version>
+
+        <!-- URL of the ASF SonarQube server -->
+        <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
+
+        <flex.version>4.15.0</flex.version>
+        <flash.version>20.0</flash.version>
+        <air.version>20.0</air.version>
+
+        <!-- Tell sonar where the coverage reports are located -->
+        <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+    </properties>
+
+    <modules>
+        <module>examples</module>
+        <module>frameworks</module>
+    </modules>
+
     <!-- Only configure the site distribution as the rest is handled by the apache parent -->
     <distributionManagement>
         <site>
@@ -41,6 +70,28 @@
             <url>scp://www.mycompany.com/www/docs/project/</url>
         </site>
     </distributionManagement>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://issues.apache.org/jira/browse/FLEX</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Apache Flex User List</name>
+            <subscribe>users-subscribe@flex.apache.org</subscribe>
+            <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
+            <post>users@flex.apache.org</post>
+            <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+        </mailingList>
+        <mailingList>
+            <name>Apache Flex Developer List</name>
+            <subscribe>dev-subscribe@flex.apache.org</subscribe>
+            <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
+            <post>dev@flex.apache.org</post>
+            <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+        </mailingList>
+    </mailingLists>
 
     <repositories>
         <repository>
@@ -87,55 +138,5 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
-    <mailingLists>
-        <mailingList>
-            <name>Apache Flex User List</name>
-            <subscribe>users-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
-            <post>users@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
-        </mailingList>
-        <mailingList>
-            <name>Apache Flex Developer List</name>
-            <subscribe>dev-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
-            <post>dev@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
-        </mailingList>
-    </mailingLists>
-
-    <issueManagement>
-        <system>Jira</system>
-        <url>https://issues.apache.org/jira/browse/FLEX</url>
-    </issueManagement>
-
-    <scm>
-        <connection>scm:git://git.apache.org/flex-asjs.git</connection>
-        <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
-        <url>https://github.com/apache/flex-asjs</url>
-    </scm>
-
-    <properties>
-        <java.version>1.6</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
-        <maven.version>3.3.1</maven.version>
-
-        <!-- URL of the ASF SonarQube server -->
-        <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
-
-        <flex.version>4.15.0</flex.version>
-        <flash.version>20.0</flash.version>
-        <air.version>20.0</air.version>
-
-        <!-- Tell sonar where the coverage reports are located -->
-        <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
-        <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
-    </properties>
-
-    <modules>
-        <module>frameworks/projects</module>
-    </modules>
 
 </project>

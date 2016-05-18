@@ -24,35 +24,16 @@
 
     <parent>
         <groupId>org.apache.flex.flexjs.examples</groupId>
-        <artifactId>examples-flexjs</artifactId>
+        <artifactId>examples</artifactId>
         <version>0.7.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>MapSearch</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-native</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.flex.flexjs.compiler</groupId>
-                <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.7.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <mainClass>MapSearch.mxml</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>GoogleMaps</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-    </dependencies>
+    <modules>
+    </modules>
 
 </project>
