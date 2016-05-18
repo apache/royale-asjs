@@ -42,7 +42,7 @@
                 <configuration>
                     <namespaces>
                         <namespace>
-                            <uri>library://ns.apache.org/flexjs/svg</uri>
+                            <uri>library://ns.apache.org/flexjs/jquery</uri>
                             <manifest>${project.basedir}/src/main/resources/jquery-manifest.xml</manifest>
                         </namespace>
                     </namespaces>

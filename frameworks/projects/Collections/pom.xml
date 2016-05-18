@@ -40,6 +40,12 @@
                 <version>0.7.0-SNAPSHOT</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <namespaces>
+                        <namespace>
+                            <uri>library://ns.apache.org/flexjs/basic</uri>
+                            <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
+                        </namespace>
+                    </namespaces>
                     <includeClasses>
                         <includeClass>CollectionsClasses</includeClass>
                     </includeClasses>

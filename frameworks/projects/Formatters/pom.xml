@@ -42,7 +42,7 @@
                 <configuration>
                     <namespaces>
                         <namespace>
-                            <uri>library://ns.apache.org/flexjs/flat</uri>
+                            <uri>library://ns.apache.org/flexjs/basic</uri>
                             <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
                         </namespace>
                     </namespaces>
