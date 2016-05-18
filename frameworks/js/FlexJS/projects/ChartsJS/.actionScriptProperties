@@ -48,8 +48,8 @@ limitations under the License.
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/CreateJS.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/js/libs/js.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/js/libs/GCL.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="${FLEX_FALCON}/js/libs/js.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="${FLEX_FALCON}/js/libs/GCL.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CoreJS/target/CoreJS.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/GraphicsJS/target/GraphicsJS.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/HTMLJS/target/HTMLJS.swc" useDefaultLinkType="false"/>
