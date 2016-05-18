@@ -49,11 +49,12 @@
                 <include name="${target.name.no.version}"/>
             </fileset>
         </delete>
-        <delete failonerror="false">
+        <delete failonerror="false" includeemptydirs="true">
             <fileset dir="${basedir}/target">
                 <include name="**/**"/>
             </fileset>
         </delete>
+        <ant dir="src/test/flex" target="clean"/>
     </target>
     
     <path id="lib.path">

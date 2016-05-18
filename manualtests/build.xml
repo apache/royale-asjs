@@ -88,6 +88,8 @@
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
         <ant dir="${basedir}/RollEventsTest"/>
+        <ant dir="${basedir}/ReflectionTest"/>
+        <ant dir="${basedir}/XMLTest"/>
     </target>
 	   
     <!--
@@ -116,6 +118,8 @@
         <ant dir="${basedir}/LanguageTests" target="clean"/>
         <ant dir="${basedir}/ListsTest" target="clean"/>
         <ant dir="${basedir}/RollEventsTest" target="clean"/>
+        <ant dir="${basedir}/ReflectionTest" target="clean"/>
+        <ant dir="${basedir}/XMLTest" target="clean"/>
     </target>
     
 </project>
