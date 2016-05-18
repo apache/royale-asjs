@@ -23,28 +23,48 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.flex.examples.flexjs</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.apache.flex.flexjs.examples</groupId>
+        <artifactId>examples-flexjs</artifactId>
+        <version>0.7.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>MobileTrader</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.7.0-SNAPSHOT</version>
     <packaging>swf</packaging>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>7.1.0-SNAPSHOT</version>
+                <groupId>org.apache.flex.flexjs.compiler</groupId>
+                <artifactId>flexjs-maven-plugin</artifactId>
+                <version>0.7.0-SNAPSHOT</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <sourceFile>MobileTrader.mxml</sourceFile>
+                    <mainClass>MobileTrader.mxml</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>Charts</artifactId>
+            <version>0.7.0-SNAPSHOT</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>Mobile</artifactId>
+            <version>0.7.0-SNAPSHOT</version>
+            <type>swc</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>Network</artifactId>
+            <version>0.7.0-SNAPSHOT</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
 
 </project>

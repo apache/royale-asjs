@@ -23,9 +23,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.apache.flex.examples.flexjs</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>org.apache.flex.flexjs.examples</groupId>
+        <artifactId>examples-flexjs</artifactId>
+        <version>0.7.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>DataBindingExample_as</artifactId>
@@ -33,16 +33,15 @@
     <packaging>swf</packaging>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
         <plugins>
             <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>7.1.0-SNAPSHOT</version>
+                <groupId>org.apache.flex.flexjs.compiler</groupId>
+                <artifactId>flexjs-maven-plugin</artifactId>
+                <version>0.7.0-SNAPSHOT</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <sourceFile>DataBindingExample.as</sourceFile>
-                    <defines>
+                    <mainClass>DataBindingExample.mxml</mainClass>
+                    <!--defines>
                         <property>
                             <name>CONFIG::as_only</name>
                             <value>true</value>
@@ -51,7 +50,7 @@
                             <name>CONFIG::js_only</name>
                             <value>false</value>
                         </property>
-                    </defines>
+                    </defines-->
                 </configuration>
             </plugin>
         </plugins>

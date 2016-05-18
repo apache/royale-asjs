@@ -34,36 +34,6 @@
     <name>Apache Flex - ASJS</name>
     <description>The Apache Flex ASJS Project</description>
 
-    <!-- Only configure the site distribution as the rest is handled by the apache parent -->
-    <distributionManagement>
-        <site>
-            <id>website</id>
-            <url>scp://www.mycompany.com/www/docs/project/</url>
-        </site>
-    </distributionManagement>
-
-    <mailingLists>
-        <mailingList>
-            <name>Apache Flex User List</name>
-            <subscribe>users-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
-            <post>users@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
-        </mailingList>
-        <mailingList>
-            <name>Apache Flex Developer List</name>
-            <subscribe>dev-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
-            <post>dev@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
-        </mailingList>
-    </mailingLists>
-
-    <issueManagement>
-        <system>Jira</system>
-        <url>https://issues.apache.org/jira/browse/FLEX</url>
-    </issueManagement>
-
     <scm>
         <connection>scm:git://git.apache.org/flex-asjs.git</connection>
         <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
@@ -89,7 +59,84 @@
     </properties>
 
     <modules>
-        <module>frameworks/projects</module>
+        <module>examples</module>
+        <module>frameworks</module>
     </modules>
+
+    <!-- Only configure the site distribution as the rest is handled by the apache parent -->
+    <distributionManagement>
+        <site>
+            <id>website</id>
+            <url>scp://www.mycompany.com/www/docs/project/</url>
+        </site>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://issues.apache.org/jira/browse/FLEX</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Apache Flex User List</name>
+            <subscribe>users-subscribe@flex.apache.org</subscribe>
+            <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
+            <post>users@flex.apache.org</post>
+            <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+        </mailingList>
+        <mailingList>
+            <name>Apache Flex Developer List</name>
+            <subscribe>dev-subscribe@flex.apache.org</subscribe>
+            <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
+            <post>dev@flex.apache.org</post>
+            <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+        </mailingList>
+    </mailingLists>
+
+    <repositories>
+        <repository>
+            <id>apache-release</id>
+            <url>https://repository.apache.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache-snapshots</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache-plugins-release</id>
+            <url>https://repository.apache.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>apache-plugins-snapshots</id>
+            <url>https://repository.apache.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
