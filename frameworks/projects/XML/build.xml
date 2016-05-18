@@ -58,7 +58,7 @@
                 <include name="${target.name.no.version}"/>
             </fileset>
         </delete>
-        <delete failonerror="false">
+        <delete failonerror="false" includeemptydirs="true">
             <fileset dir="${basedir}/target">
                 <include name="**/**"/>
             </fileset>
