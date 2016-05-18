@@ -30,7 +30,16 @@
     <property name="target.name" value="Graphics.swc" />
     <property name="target.name.no.version" value="Graphics.swc" />
     
-    <target name="main" depends="clean,compile,test" description="Full build of Graphics.swc">
+    <target name="main" depends="clean,js-if-needed,compile,test" description="Full build of Graphics.swc">
+    </target>
+    
+    <target name="check-js">
+        <uptodate property="js-not-needed" targetfile="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
+            <srcfiles dir="${basedir}/src/main/flex" includes="**/**"/>
+        </uptodate>
+    </target>
+    <target name="js-if-needed" depends="check-js" unless="js-not-needed">
+        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
     </target>
     
     <target name="test" unless="is.jenkins">

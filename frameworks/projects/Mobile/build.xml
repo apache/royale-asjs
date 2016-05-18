@@ -30,9 +30,18 @@
     <property name="target.name" value="Mobile.swc" />
     <property name="target.name.no.version" value="Mobile.swc" />
 
-    <target name="main" depends="clean,compile,test" description="Full build of Mobile.swc">
+    <target name="main" depends="clean,js-if-needed,compile,test" description="Full build of Mobile.swc">
     </target>
 
+    <target name="check-js">
+        <uptodate property="js-not-needed" targetfile="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
+            <srcfiles dir="${basedir}/src/main/flex" includes="**/**"/>
+        </uptodate>
+    </target>
+    <target name="js-if-needed" depends="check-js" unless="js-not-needed">
+        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
+    </target>
+    
     <target name="test" unless="is.jenkins">
         <!-- no tests yet
          <ant dir="as/tests" />
