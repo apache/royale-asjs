@@ -23,7 +23,7 @@
 				   xmlns:models="models.*"
 				   xmlns:js="library://ns.apache.org/flexjs/basic" 
 				   xmlns:cordova="library://ns.apache.org/flexjs/cordova" 
-				   deviceready="MyInitialView(initialView).ready = true"
+				   isdeviceready="MyInitialView(initialView).ready = true"
 				   >
 	
 	<cordova:valuesImpl>
