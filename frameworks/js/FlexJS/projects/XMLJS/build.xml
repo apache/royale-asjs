@@ -27,37 +27,15 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
-    <target name="more-props" >
-        <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/target/js.swc" />
-        <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/target/GCL.swc" />
-        <property name="target.name" value="XMLJS.swc" />
-        <property name="target.name.no.version" value="XMLJS.swc" />
-        <path id="lib.path">
-            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
-        </path>
-    </target>
+    <property name="target.name" value="${ant.project.name}.swc" />
     
-    <!--<target name="main" depends="clean,check-falcon-home,check-falconjx-home,more-props,compile-asjs,compile-js-swc,copy-js,compile,test-js" description="Full build of XML.swc">
-    </target>-->
-    <target name="main" depends="clean,check-falcon-home,check-falconjx-home,more-props,compile-asjs,copy-js,test-js" description="Full build of XML.swc">
-    </target>
-    
-    <target name="test" unless="is.jenkins">
-        <!-- no tests yet
-        <ant dir="as/tests" />
-        -->
-    </target>
-    
-    <target name="test-js" unless="is.jenkins">
-        <!-- no tests yet
-         <ant dir="js/tests" />
-         -->
+    <target name="main" depends="clean,check-compiler,compile-js-swc,compile-asjs,copy-js" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs">
-                <include name="${target.name.no.version}"/>
+                <include name="${target.name}"/>
             </fileset>
         </delete>
         <delete failonerror="false" includeemptydirs="true">
@@ -67,7 +45,7 @@
         </delete>
     </target>
     
-    <target name="compile-asjs">
+    <target name="compile-asjs" depends="check-compiler">
         <echo message="Cross-compiling ${target.name}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
@@ -100,34 +78,20 @@
         <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs"/>
         <mkdir dir="${basedir}/target"/>
         
-        <!-- Load the <compc> task. We can't do this at the <project> level -->
-        <!-- because targets that run before flexTasks.jar gets built would fail. -->
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!--
-         Link in the classes (and their dependencies) for the MXML tags
-         listed in this project's manifest.xml.
-         Also link the additional classes (and their dependencies)
-         listed in CoreClasses.as,
-         because these aren't referenced by the manifest classes.
-         Keep the standard metadata when compiling.
-         Include the appropriate CSS files and assets in the SWC.
-         Don't include any resources in the SWC.
-         Write a bundle list of referenced resource bundles
-         into the file bundles.properties in this directory.
-         -->
         <compc fork="true"
             output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
             <load-config filename="src/main/config/compile-js-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-compiler.strict-xml=true" />
             <arg value="-external-library-path=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
             <arg value="-define=COMPILE::AS3,false" />
             <arg value="-define=COMPILE::JS,true" />
         </compc>
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name.no.version}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name}" />
     </target>
 
     <target name="copy-js" >
@@ -137,6 +101,21 @@
                 <include name="**/**" />
             </fileset>
         </copy>
+    </target>
+
+    <target name="check-compiler" depends="check-falcon-home, check-falconjx-home">
+        <condition property="JS.SWC" value="${FALCONJX_HOME}/../js/libs/js.swc" >
+            <available file="${FALCONJX_HOME}/../js/libs/js.swc" />
+        </condition>
+        <property name="JS.SWC" value="${FALCONJX_HOME}/../externs/js/target/js.swc" />
+        <condition property="GCL.SWC" value="${FALCONJX_HOME}/../js/libs/GCL.swc" >
+            <available file="${FALCONJX_HOME}/../js/libs/GCL.swc" />
+        </condition>
+        <property name="GCL.SWC" value="${FALCONJX_HOME}/../externs/GCL/target/GCL.swc" />
+        <path id="lib.path">
+            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+        </path>
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
 
     <target name="check-falcon-home" unless="FALCON_HOME"
@@ -149,12 +128,12 @@
         property="FALCON_HOME"
         value="${env.FALCON_HOME}"/>
         
-        <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
+        <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
-        value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk"/>
+        value="${FLEXJS_HOME}/../flex-falcon/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler/generated/dist/sdk folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a FlexJS SDK folder"
         unless="FALCON_HOME"/>
     </target>
 
@@ -168,16 +147,13 @@
         property="FALCONJX_HOME"
         value="${env.FALCONJX_HOME}"/>
         
-        <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar"
+        <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar"
         type="file"
         property="FALCONJX_HOME"
-        value="${FLEXJS_HOME}/../flex-falcon/compiler.jx"/>
+        value="${FLEXJS_HOME}/../flex-falcon/compiler-jx"/>
         
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler.jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a FlexJS SDK"
         unless="FALCONJX_HOME"/>
     </target>
-    <target name="asjs" depends="check-falcon-home,check-falconjx-home,more-props,compile-asjs">
-    </target>
-
 
 </project>
