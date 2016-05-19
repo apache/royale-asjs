@@ -26,13 +26,12 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
-    <property name="target.name" value="Mobile.swc" />
-    <property name="target.name.no.version" value="Mobile.swc" />
-
-    <target name="main" depends="clean,js-if-needed,compile,test" description="Full build of Mobile.swc">
+    
+    <property name="target.name" value="${ant.project.name}.swc" />
+    
+    <target name="main" depends="clean,check-compiler,js-if-needed,compile,test" description="Full build of ${ant.project.name}.swc">
     </target>
-
+    
     <target name="check-js">
         <uptodate property="js-not-needed" targetfile="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
             <srcfiles dir="${basedir}/src/main/flex" includes="**/**"/>
@@ -42,16 +41,22 @@
         <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
     </target>
     
-    <target name="test" unless="is.jenkins">
-        <!-- no tests yet
-         <ant dir="as/tests" />
-         -->
+    <target name="check-for-tests" >
+        <condition property="skip-tests" >
+            <not>
+                <available file="${basedir}/src/test/flex/build.xml" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="test" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/flex" />
     </target>
     
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${FLEXJS_HOME}/frameworks/libs">
-                <include name="${target.name.no.version}"/>
+                <include name="${target.name}"/>
             </fileset>
         </delete>
         <delete failonerror="false" includeemptydirs="true">
@@ -59,34 +64,20 @@
                 <include name="**/**"/>
             </fileset>
         </delete>
+        <antcall target="clean-tests" />
     </target>
     
-    <path id="lib.path">
-        <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
-    </path>
+    <target name="clean-tests" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/flex" target="clean"/>
+    </target>
     
     <target name="compile" description="Compiles .as files into .swc">
-        <echo message="Compiling target/${target.name}"/>
+        <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <!-- make JS output folder now so include-file doesn't error -->
-        <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
+        <mkdir dir="${basedir}/target/generated-sources/flexjs" />
         
-        <!-- Load the <compc> task. We can't do this at the <project> level -->
-        <!-- because targets that run before flexTasks.jar gets built would fail. -->
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!--
-         Link in the classes (and their dependencies) for the MXML tags
-         listed in this project's manifest.xml.
-         Also link the additional classes (and their dependencies)
-         listed in CoreClasses.as,
-         because these aren't referenced by the manifest classes.
-         Keep the standard metadata when compiling.
-         Include the appropriate CSS files and assets in the SWC.
-         Don't include any resources in the SWC.
-         Write a bundle list of referenced resource bundles
-         into the file bundles.properties in this directory.
-         -->
         <compc fork="true"
             output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
@@ -96,7 +87,33 @@
             <arg value="-define=COMPILE::AS3,true" />
             <arg value="-define=COMPILE::JS,false" />
         </compc>
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name.no.version}" />
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>
-
+    
+    <target name="check-compiler" depends="check-falcon-home">
+        <path id="lib.path">
+            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+        </path>
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+    </target>
+    
+    <target name="check-falcon-home" unless="FALCON_HOME"
+        description="Check FALCON_HOME is a directory.">
+        
+        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+        
+        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
+        type="file"
+        property="FALCON_HOME"
+        value="${env.FALCON_HOME}"/>
+        
+        <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
+        type="file"
+        property="FALCON_HOME"
+        value="${FLEXJS_HOME}/../flex-falcon/compiler"/>
+        
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a FlexJS SDK folder"
+        unless="FALCON_HOME"/>
+    </target>
+    
 </project>
