@@ -53,7 +53,6 @@
                 <uri>library://ns.apache.org/flexjs/flat</uri>
                 <manifest>../resources/flat-manifest.xml</manifest>
             </namespace>
-            <!-- TODO: Why is this neesed? -->
             <namespace>
                 <uri>library://ns.apache.org/flexjs/flat</uri>
                 <manifest>../resources/flat-as-manifest.xml</manifest>
@@ -62,7 +61,6 @@
         
         <source-path>
             <path-element>../flex</path-element>
-            <!--<path-element>asjs/src</path-element>-->
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -77,6 +75,8 @@
         <path>../../../../../js/FlexJS/projects/FlatJS/target/generated-sources/flexjs/*</path>
     </include-file>
 
+    <include-lookup-only>true</include-lookup-only>
+    
     <include-classes>
         <class>FlatClasses</class>
         <!--<class>FlatASJSClasses</class>-->
