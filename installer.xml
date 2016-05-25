@@ -216,7 +216,7 @@
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
     
-    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,setup-launch-configs-windows,delete-download-dir" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
 
@@ -953,6 +953,19 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             <replacefilter
             token="@java"
             value="&quot;${java.executable}&quot;"/>
+        </replace>
+    </target>
+    
+    <target name="setup-launch-configs-windows" description="Custom Flash Builder launch configurations for Windows" if="isWindows">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+        	<replacefilter
+        	token="PATH"
+        	value="UNIX_PATH" />
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        	<replacefilter
+        	token="PATH"
+        	value="UNIX_PATH" />
         </replace>
     </target>
 
