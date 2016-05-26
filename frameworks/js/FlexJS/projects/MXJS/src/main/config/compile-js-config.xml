@@ -31,6 +31,7 @@
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
         <allow-subclass-overrides>true</allow-subclass-overrides>
+        
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
@@ -45,23 +46,23 @@
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
-            <path-element>../../../externs/Binding.swc</path-element>
-            <path-element>../../../externs/Core.swc</path-element>
-            <path-element>../../../externs/Graphics.swc</path-element>
-            <path-element>../../../externs/Collections.swc</path-element>
-            <path-element>../../../externs/Reflection.swc</path-element>
-            <path-element>../../../externs/HTML.swc</path-element>
+            <path-element>../../../../../libs/BindingJS.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../libs/HTMLJS.swc</path-element>
         </library-path>
         
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/mx</uri>
-                <manifest>../src/main/resources/mx-manifest.xml</manifest>
+                <manifest>../../../../../../../projects/MX/src/main/resources/mx-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../src/main/flex</path-element>
+            <path-element>../../../../../../../projects/MX/src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
