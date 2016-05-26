@@ -28,12 +28,8 @@ COMPILE::AS3
     import flash.display.InteractiveObject;
     import flash.display.Loader;
     import flash.display.Shape;
-    import flash.display.Sprite;
     import flash.events.Event;
-    import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
-    import flash.geom.Point;
-    import flash.geom.Rectangle;
     import flash.text.TextField;
     import flash.text.TextLineMetrics;
     import flash.ui.Keyboard;        
@@ -46,16 +42,17 @@ COMPILE::JS
     import flex.display.InteractiveObject;
     import flex.display.Loader;
     import flex.display.Shape;
-    import flex.display.Sprite;
     import flex.events.Event;
-    import flex.events.KeyboardEvent;
     import flex.events.MouseEvent;
-    import flex.geom.Point;
-    import flex.geom.Rectangle;
     import flex.text.TextField;
     import flex.text.TextLineMetrics;
     import flex.ui.Keyboard;            
 }
+import flex.display.Sprite;
+import org.apache.flex.geom.Point;
+import org.apache.flex.geom.Rectangle;
+import org.apache.flex.utils.PointUtils;
+import mx.events.KeyboardEvent;
 
 import flex.system.DefinitionManager;
 import org.apache.flex.reflection.getDefinitionByName;
@@ -529,7 +526,11 @@ public class Container extends UIComponent
     
     mx_internal function getLayoutChildAt(index:int):IUIComponent
     {
+		COMPILE::LATER
+		{
         return PostScaleAdapter.getCompatibleIUIComponent(getChildAt(index));
+		}
+		return getChildAt(index) as IUIComponent;
     }
 
     //--------------------------------------------------------------------------
@@ -832,12 +833,15 @@ public class Container extends UIComponent
     {
         super.enabled = value;
 
+		COMPILE::LATER
+		{
         // Scrollbars must be enabled/disabled when this container is.
         if (horizontalScrollBar)
             horizontalScrollBar.enabled = value;
         if (verticalScrollBar)
             verticalScrollBar.enabled = value;
-
+		}
+		
         invalidateProperties();
         
         if (border && border is IInvalidating)
@@ -1570,6 +1574,7 @@ public class Container extends UIComponent
      *  @private
      *  The horizontal scrollbar (null if not present).
      */
+	COMPILE::LATER
     private var _horizontalScrollBar:ScrollBar;
 
     /**
@@ -1586,6 +1591,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get horizontalScrollBar():ScrollBar
     {
         return _horizontalScrollBar;
@@ -1594,6 +1600,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set horizontalScrollBar(value:ScrollBar):void
     {
         _horizontalScrollBar = value;
@@ -1607,6 +1614,7 @@ public class Container extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPosition property.
      */
+	COMPILE::LATER
     private var _horizontalScrollPosition:Number = 0;
 
     [Bindable("scroll")]
@@ -1626,6 +1634,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get horizontalScrollPosition():Number
     {
         if (!isNaN(horizontalScrollPositionPending))
@@ -1636,6 +1645,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set horizontalScrollPosition(value:Number):void
     {
         if (_horizontalScrollPosition == value)
@@ -1668,6 +1678,7 @@ public class Container extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPolicy property.
      */
+	COMPILE::LATER
     mx_internal var _horizontalScrollPolicy:String = ScrollPolicy.AUTO;
 
     [Bindable("horizontalScrollPolicyChanged")]
@@ -1704,6 +1715,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get horizontalScrollPolicy():String
     {
         return _horizontalScrollPolicy;
@@ -1712,6 +1724,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set horizontalScrollPolicy(value:String):void
     {
         if (_horizontalScrollPolicy != value)
@@ -1835,6 +1848,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get maxHorizontalScrollPosition():Number
     {
         return horizontalScrollBar ?
@@ -1856,6 +1870,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get maxVerticalScrollPosition():Number
     {
         return verticalScrollBar ?
@@ -2106,6 +2121,7 @@ public class Container extends UIComponent
      *  @private
      *  The vertical scrollbar (null if not present).
      */
+	COMPILE::LATER
     private var _verticalScrollBar:ScrollBar;
 
     /**
@@ -2122,6 +2138,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get verticalScrollBar():ScrollBar
     {
         return _verticalScrollBar;
@@ -2130,6 +2147,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set verticalScrollBar(value:ScrollBar):void
     {
         _verticalScrollBar = value;
@@ -2143,6 +2161,7 @@ public class Container extends UIComponent
      *  @private
      *  Storage for the verticalScrollPosition property.
      */
+	COMPILE::LATER
     private var _verticalScrollPosition:Number = 0;
 
     [Bindable("scroll")]
@@ -2162,6 +2181,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get verticalScrollPosition():Number
     {
         if (!isNaN(verticalScrollPositionPending))
@@ -2173,6 +2193,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set verticalScrollPosition(value:Number):void
     {
         if (_verticalScrollPosition == value)
@@ -2205,6 +2226,7 @@ public class Container extends UIComponent
      *  @private
      *  Storage for the verticalScrollPolicy property.
      */
+	COMPILE::LATER
     mx_internal var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
 
     [Bindable("verticalScrollPolicyChanged")]
@@ -2241,6 +2263,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     public function get verticalScrollPolicy():String
     {
         return _verticalScrollPolicy;
@@ -2249,6 +2272,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     public function set verticalScrollPolicy(value:String):void
     {
         if (_verticalScrollPolicy != value)
@@ -2312,6 +2336,8 @@ public class Container extends UIComponent
         // out our children.  That way, children that have a percentage width or
         // percentage height will only expand to consume space that's left over
         // after leaving room for the scrollbars.
+		COMPILE::LATER
+		{
         var verticalScrollBarIncluded:Boolean =
             verticalScrollBar != null &&
             (doingLayout || verticalScrollPolicy == ScrollPolicy.ON);
@@ -2320,7 +2346,7 @@ public class Container extends UIComponent
             (doingLayout || horizontalScrollPolicy == ScrollPolicy.ON);
         if (!verticalScrollBarIncluded && !horizontalScrollBarIncluded)
             return bm;
-
+		}
         // The viewMetrics property needs to return its own object.
         // Rather than allocating a new one each time, we'll allocate one once
         // and then hold a reference to it.
@@ -2336,11 +2362,13 @@ public class Container extends UIComponent
             _viewMetrics.bottom = bm.bottom;
         }
 
+		COMPILE::LATER
+		{
         if (verticalScrollBarIncluded)
             _viewMetrics.right += verticalScrollBar.minWidth;
         if (horizontalScrollBarIncluded)
             _viewMetrics.bottom += horizontalScrollBar.minHeight;
-
+		}
         return _viewMetrics;
     }
 
@@ -2381,6 +2409,8 @@ public class Container extends UIComponent
         // depending on whether we're doing layout or not.
         // In that case, we can't use a cached value.
         // In all other cases, use the cached value if it exists.
+		COMPILE::LATER
+		{
         if (_viewMetricsAndPadding &&
             (!horizontalScrollBar ||
              horizontalScrollPolicy == ScrollPolicy.ON) &&
@@ -2389,7 +2419,8 @@ public class Container extends UIComponent
         {
             return _viewMetricsAndPadding;
         }
-
+		}
+		
         if (!_viewMetricsAndPadding)
             _viewMetricsAndPadding = new EdgeMetrics();
 
@@ -2963,22 +2994,9 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */ 
-    public function get numElements():int
+    override public function getElementAt(index:int):IVisualElement
     {
-        return numChildren;
-    }
-    
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
-     */ 
-    public function getElementAt(index:int):IVisualElement
-    {
-        return getChildAt(index) as IVisualElement;
+        return super.getElementAt(index) as IVisualElement;
     }
     
     /**
@@ -2989,12 +3007,9 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function getElementIndex(element:IVisualElement):int
+    override public function getElementIndex(element:IVisualElement):int
     {
-        if (! (element is DisplayObject) )
-            throw ArgumentError(element + " is not found in this Container");
-        
-        return getChildIndex(element as DisplayObject);
+        return super.getElementIndex(element);
     }
     
     /**
@@ -3066,7 +3081,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function removeAllElements():void
+    override public function removeAllElements():void
     {
         for (var i:int = numElements - 1; i >= 0; i--)
         {
@@ -3174,6 +3189,8 @@ public class Container extends UIComponent
         // Create the border/background object.
         createBorder();
 
+		COMPILE::LATER
+		{
         // To save ourselves an extra layout pass, check to see
         // if the scrollbars will definitely be needed.
         // If so, create them now.
@@ -3182,7 +3199,8 @@ public class Container extends UIComponent
             verticalScrollPolicy == ScrollPolicy.ON,
             horizontalScrollPolicy == ScrollPolicy.ON ||
             verticalScrollPolicy == ScrollPolicy.ON);
-
+		}
+		
         // Determine the child-creation policy (ContainerCreationPolicy.AUTO,
         // ContainerCreationPolicy.ALL, or ContainerCreationPolicy.NONE).
         // If the author has specified a policy, use it.
@@ -3281,7 +3299,10 @@ public class Container extends UIComponent
             changedStyles = null;
         }
 
+		COMPILE::LATER
+		{
         createOrDestroyBlocker();
+		}
     }
 
     /**
@@ -3305,7 +3326,10 @@ public class Container extends UIComponent
                         ILayoutManagerClient (child).validateSize(true);
                 }
             }
+			COMPILE::LATER
+			{
             adjustSizesForScaleChanges();
+			}
         }
         else
         {
@@ -3365,9 +3389,11 @@ public class Container extends UIComponent
         // is resized to be larger, the new max scroll positions
         // are reduced and the current scroll positions
         // will be invalid unless we clamp them.
+		COMPILE::LATER
+		{
         if (clampScrollPositions())
             scrollChildren();
-        
+		}
         if (contentPane)
         {
             vm = viewMetrics;
@@ -3381,6 +3407,8 @@ public class Container extends UIComponent
                 effectOverlay.height = unscaledHeight;
             }
 
+			COMPILE::LATER
+			{
             // Set the positions and sizes of the scrollbars.
             if (horizontalScrollBar || verticalScrollBar)
             {
@@ -3436,7 +3464,6 @@ public class Container extends UIComponent
                     whiteBox.y = horizontalScrollBar.y;
                 }
             }
-
             contentPane.x = vm.left;
             contentPane.y = vm.top;
 
@@ -3447,6 +3474,7 @@ public class Container extends UIComponent
             }
 
             scrollChildren();
+			}
         }
 
         invalidateDisplayListFlag = false;
@@ -3527,6 +3555,8 @@ public class Container extends UIComponent
 
         layoutChrome(unscaledWidth, unscaledHeight);
 
+		COMPILE::LATER
+		{
         if (scrollPositionChanged)
         {
             clampScrollPositions();
@@ -3594,6 +3624,7 @@ public class Container extends UIComponent
             // text anti-aliasing issue with device text on Windows).
             contentPane.cacheAsBitmap = (backgroundColor != null);
         }
+		}
     }
 
     /**
@@ -3607,9 +3638,9 @@ public class Container extends UIComponent
     override public function contentToGlobal(point:Point):Point
     {
         if (contentPane)
-            return contentPane.localToGlobal(point);
+            return PointUtils.localToGlobal(point, contentPane);
         
-        return localToGlobal(point);
+        return PointUtils.localToGlobal(point, this);
     }
     
     /**
@@ -3623,9 +3654,9 @@ public class Container extends UIComponent
     override public function globalToContent(point:Point):Point
     {
         if (contentPane)
-            return contentPane.globalToLocal(point);
+            return PointUtils.globalToLocal(point, contentPane);
         
-        return globalToLocal(point);
+        return PointUtils.globalToLocal(point, this);
     }
 
     /**
@@ -3642,7 +3673,7 @@ public class Container extends UIComponent
             return point;
         
         point = contentToGlobal(point);
-        return globalToLocal(point);
+        return PointUtils.globalToLocal(point, this);
     }
     
     /**
@@ -3658,7 +3689,7 @@ public class Container extends UIComponent
         if (!contentPane)
             return point;
         
-        point = localToGlobal(point);
+        point = PointUtils.localToGlobal(point, this);
         return globalToContent(point);
     }
 
@@ -3713,6 +3744,8 @@ public class Container extends UIComponent
             invalidateViewMetricsAndPadding();
         }
 
+		COMPILE::LATER
+		{
         if (allStyles || styleProp == "horizontalScrollBarStyleName")
         {
             if (horizontalScrollBar && horizontalScrollBar is ISimpleStyleClient)
@@ -3734,6 +3767,7 @@ public class Container extends UIComponent
                     verticalScrollBarStyleName;
             }
         }
+		}
     }
 
     /**
@@ -3916,14 +3950,21 @@ public class Container extends UIComponent
      */
     override public function prepareToPrint(target:IFlexDisplayObject):Object
     {
+		COMPILE::LATER
+		{
         var rect:Rectangle = (contentPane &&  contentPane.scrollRect) ? contentPane.scrollRect : null;
 
         if (rect)
             contentPane.scrollRect = null;
-
+		}
+		
         super.prepareToPrint(target);
 
+		COMPILE::LATER
+		{
         return rect;
+		}
+		return null;
     }
 
     /**
@@ -4447,14 +4488,19 @@ public class Container extends UIComponent
         // This should be the last step in initializing the child, so that
         // it can't be referenced until initialization is complete.
         // However, it must be done before executing executeBindings().
+		COMPILE::LATER
+		{
         child.createReferenceOnParentDocument(
             IFlexDisplayObject(childDescriptor.document));
+		}
 
         if (!child.document)
             child.document = childDescriptor.document;
 
         // Repeaters don't get added as children of the Container,
         // so they have their own initialization sequence.
+		COMPILE::LATER
+		{
         if (child is IRepeater)
         {
             // Add this repeater to the list maintained by the parent
@@ -4484,6 +4530,19 @@ public class Container extends UIComponent
                                        creationCompleteHandler);
             }
         }
+		}
+		// This needs to run before child.executeBindings(), because
+		// executeBindings() depends on the parent being set.
+		addChild(DisplayObject(child));
+		
+		child.executeBindings();
+		
+		if (creationPolicy == ContainerCreationPolicy.QUEUED ||
+			creationPolicy == ContainerCreationPolicy.NONE)
+		{
+			child.addEventListener(FlexEvent.CREATION_COMPLETE,
+				creationCompleteHandler);
+		}
 
         // Return a reference to the child UIComponent that was just created.
         return child;
@@ -4900,6 +4959,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     private function createOrDestroyBlocker():void
     {
         // If this container is being enabled and a blocker exists,
@@ -5015,8 +5075,11 @@ public class Container extends UIComponent
         }
         else
         {
+			COMPILE::LATER
+			{
             changed = createOrDestroyScrollbars(false, false, false);
-
+			}
+			
             // Get scrollableWidth and scrollableHeight for scrollChildren()
             bounds = getScrollableRect();
             scrollableWidth = bounds.right;
@@ -5052,7 +5115,11 @@ public class Container extends UIComponent
             {
                 if (!IUIComponent(child).includeInLayout)
                     continue;
+				COMPILE::LATER
+				{
                 var uic:IUIComponent = PostScaleAdapter.getCompatibleIUIComponent(child);
+				}
+				var uic:IUIComponent = child as IUIComponent;
                 width = uic.width;
                 height = uic.height;
                 x = uic.x;
@@ -5131,19 +5198,27 @@ public class Container extends UIComponent
         newScrollableWidth = Math.floor(newScrollableWidth);
         newScrollableHeight = Math.floor(newScrollableHeight);
 
+		COMPILE::LATER
+		{
         if (horizontalScrollBar && horizontalScrollPolicy != ScrollPolicy.ON)
             newViewableHeight -= horizontalScrollBar.minHeight;
         if (verticalScrollBar && verticalScrollPolicy != ScrollPolicy.ON)
             newViewableWidth -= verticalScrollBar.minWidth;
-
+		}
+		
         newViewableWidth -= (vm.left + vm.right);
         newViewableHeight -= (vm.top + vm.bottom);
         
+		COMPILE::LATER
+		{
         var needHorizontal:Boolean =
             horizontalScrollPolicy == ScrollPolicy.ON;
         var needVertical:Boolean =
             verticalScrollPolicy == ScrollPolicy.ON;
-
+		}
+		
+		COMPILE::LATER
+		{
         var needContentPane:Boolean =
             needHorizontal ||
             needVertical ||
@@ -5151,6 +5226,12 @@ public class Container extends UIComponent
             effectOverlay != null ||
             vm.left > 0 ||
             vm.top > 0;
+		}
+		var needContentPane:Boolean =
+			hasNegativeCoords ||
+			effectOverlay != null ||
+			vm.left > 0 ||
+			vm.top > 0;
 
         // These "if" statements are tuned for the most common case,
         // which is that the Container does not need scrollbars.
@@ -5161,25 +5242,33 @@ public class Container extends UIComponent
             // Don't display scrollbars if the Container is so small
             // that scrollbars would occlude everything else
             // or the scrollbar buttons would overlap.
+			COMPILE::LATER
+			{
             if (horizontalScrollPolicy == ScrollPolicy.AUTO &&
                 unscaledHeight - vm.top - vm.bottom >= 18 &&
                 unscaledWidth - vm.left - vm.right >= 32)
             {
                 needHorizontal = true;
             }
+			}
         }
         if (newViewableHeight < newScrollableHeight)
         {
             needContentPane = true;
 
+			COMPILE::LATER
+			{
             if (verticalScrollPolicy == ScrollPolicy.AUTO &&
                 unscaledWidth - vm.left - vm.right >= 18 &&
                 unscaledHeight - vm.top - vm.bottom >= 32)
             {
                 needVertical = true;
             }
+			}
         }
 
+		COMPILE::LATER
+		{
         // Fix for 106095. The logic here says "if removing the scrollbars
         // would make enough room to display the view's children, then remove
         // the scrollbars".
@@ -5210,7 +5299,6 @@ public class Container extends UIComponent
 
         var changed:Boolean = createOrDestroyScrollbars(
             needHorizontal, needVertical, needContentPane);
-
         if ((scrollableWidth != newScrollableWidth ||
              viewableWidth != newViewableWidth) ||
              changed)
@@ -5246,11 +5334,14 @@ public class Container extends UIComponent
         }
 
         return changed;
+		}
+		return false
     }
 
     /**
      *  @private
      */
+	COMPILE::LATER
     private function createOrDestroyScrollbars(
                             needHorizontal:Boolean,
                             needVertical:Boolean,
@@ -5426,6 +5517,7 @@ public class Container extends UIComponent
      *  Returns true if either horizontalScrollPosition or
      *  verticalScrollPosition was changed to ensure this.
      */
+	COMPILE::LATER
     private function clampScrollPositions():Boolean
     {
         var changed:Boolean = false;
@@ -5491,7 +5583,11 @@ public class Container extends UIComponent
         // because that changes logic of how many children we have
         var n:int = numChildren;
 
-        var newPane:Sprite = new FlexSprite();
+		COMPILE::LATER
+		{
+		var newPane:Sprite = new FlexSprite();
+		}
+        var newPane:Sprite = new Sprite();
         newPane.name = "contentPane";
 
         // Place content pane above border and background image but below
@@ -5541,6 +5637,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     protected function scrollChildren():void
     {
         if (!contentPane)
@@ -5600,6 +5697,7 @@ public class Container extends UIComponent
     /**
      *  @private
      */
+	COMPILE::LATER
     private function dispatchScrollEvent(direction:String,
                                          oldPosition:Number,
                                          newPosition:Number,
@@ -5629,7 +5727,10 @@ public class Container extends UIComponent
                 _forceClippingCount--;
                 
             createContentPane();
+			COMPILE::LATER
+			{
             scrollChildren();
+			}
         }
     }
     
@@ -5696,6 +5797,8 @@ public class Container extends UIComponent
         var direction:String;
         var oldPos:Number;
 
+		COMPILE::LATER
+		{
         if (verticalScrollBar)
         {
             direction = ScrollEventDirection.VERTICAL;
@@ -5800,6 +5903,7 @@ public class Container extends UIComponent
                 }
             }
         }
+		}
     }
     
     //--------------------------------------------------------------------------
@@ -5812,6 +5916,7 @@ public class Container extends UIComponent
      *  @private
      *  This method copied verbatim from mx.core.ScrollControlBase.
      */
+	COMPILE::LATER
     private function mouseWheelHandler(event:MouseEvent):void
     {
         // If this Container has a vertical scrollbar, then handle the event
@@ -5853,6 +5958,8 @@ public class Container extends UIComponent
             FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler);
         forceLayout = false;
 
+		COMPILE::LATER
+		{
         var needToScrollChildren:Boolean = false;
 
         if (!isNaN(horizontalScrollPositionPending))
@@ -5898,6 +6005,8 @@ public class Container extends UIComponent
 
         if (needToScrollChildren)
             scrollChildren();
+		}
+
     }
 
     /**
@@ -5915,6 +6024,7 @@ public class Container extends UIComponent
      *  This method is called if the user interactively moves
      *  the horizontal scrollbar thumb.
      */
+	COMPILE::LATER
     private function horizontalScrollBar_scrollHandler(event:Event):void
     {
         // TextField.scroll bubbles so you might see it here
@@ -5935,6 +6045,7 @@ public class Container extends UIComponent
      *  This method is called if the user interactively moves
      *  the vertical scrollbar thumb.
      */
+	COMPILE::LATER
     private function verticalScrollBar_scrollHandler(event:Event):void
     {
         // TextField.scroll bubbles so you might see it here

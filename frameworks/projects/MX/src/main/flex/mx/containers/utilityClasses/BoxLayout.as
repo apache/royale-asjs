@@ -180,8 +180,11 @@ public class BoxLayout extends Layout
 		var w:Number = Math.max(unscaledWidth, mw) - vm.right - vm.left;
 		var h:Number = Math.max(unscaledHeight, mh) - vm.bottom - vm.top;
 
+		COMPILE::LATER
+		{
 		var horizontalScrollBar:ScrollBar = target.horizontalScrollBar;
 		var verticalScrollBar:ScrollBar = target.verticalScrollBar;
+		}
 
 		var gap:Number;
 		var numChildrenWithOwnSpace:int;
@@ -227,12 +230,18 @@ public class BoxLayout extends Layout
 				height = child.getExplicitOrMeasuredHeight();
 			}
 
+			COMPILE::LATER
+			{
 			// if scaled and zoom is playing, best to let the sizes be non-integer
 			if (child.scaleX == 1 && child.scaleY == 1)
 				child.setActualSize(Math.floor(width), Math.floor(height));
 			else
 				child.setActualSize(width, height);
+			}
+			child.setActualSize(width, height);
 
+			COMPILE::LATER
+			{
 			// Ignore scrollbar sizes for child alignment purpose.
 			if (verticalScrollBar != null &&
 				target.verticalScrollPolicy == ScrollPolicy.AUTO)
@@ -243,6 +252,7 @@ public class BoxLayout extends Layout
 				target.horizontalScrollPolicy == ScrollPolicy.AUTO)
 			{
 				h += horizontalScrollBar.minHeight;
+			}
 			}
 
 			// Use the child's width and height because a Resize effect might
@@ -268,6 +278,8 @@ public class BoxLayout extends Layout
 			excessSpace = Flex.flexChildHeightsProportionally(
 				target, h - (numChildrenWithOwnSpace - 1) * gap, w);
 
+			COMPILE::LATER
+			{
 			// Ignore scrollbar sizes for child alignment purpose.
 			if (horizontalScrollBar != null &&
 				target.horizontalScrollPolicy == ScrollPolicy.AUTO)
@@ -279,7 +291,8 @@ public class BoxLayout extends Layout
 			{
 				w += verticalScrollBar.minWidth;
 			}
-
+			}
+			
 			top = paddingTop + excessSpace * verticalAlign;
 
 			for (i = 0; i < n; i++)
@@ -307,6 +320,8 @@ public class BoxLayout extends Layout
 			excessSpace = Flex.flexChildWidthsProportionally(
 				target, w - (numChildrenWithOwnSpace - 1) * gap, h);
 
+			COMPILE::LATER
+			{
 			// Ignore scrollbar sizes for child alignment purpose.
 			if (horizontalScrollBar != null &&
 				target.horizontalScrollPolicy == ScrollPolicy.AUTO)
@@ -318,7 +333,8 @@ public class BoxLayout extends Layout
 			{
 				excessSpace += verticalScrollBar.minWidth;
 			}
-
+			}
+			
 			left = paddingLeft + excessSpace * horizontalAlign;
 
 			for (i = 0; i < n; i++)

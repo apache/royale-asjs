@@ -106,7 +106,9 @@ include "IInteractiveObjectInterface.as"
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get horizontalScrollPosition():Number;
+	COMPILE::LATER
     function set horizontalScrollPosition(value:Number):void;
 
     /**
@@ -117,7 +119,9 @@ include "IInteractiveObjectInterface.as"
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::LATER
     function get verticalScrollPosition():Number;
+	COMPILE::LATER
     function set verticalScrollPosition(value:Number):void;
 
     /**

@@ -1048,9 +1048,17 @@ public class Application extends LayoutContainer
 
         var sm:ISystemManager = systemManager;
         
-        _url = LoaderUtil.normalizeURL(sm.loaderInfo);
-        _parameters = sm.loaderInfo.parameters;
-
+		COMPILE::AS3
+		{
+	        _url = LoaderUtil.normalizeURL(root.loaderInfo);
+	        _parameters = root.loaderInfo.parameters;
+		}
+		COMPILE::JS
+		{
+			_url = LoaderUtil.normalizeURL(window.location.href);
+			_parameters = makeParameters(window.location.search);			
+		}
+		
         initManagers(sm);
         _descriptor = null;
 
@@ -1205,6 +1213,8 @@ public class Application extends LayoutContainer
             objData.width = width;
             objData.height = height;
 
+			COMPILE::LATER
+			{
             objData.verticalScrollPosition = verticalScrollPosition;
             objData.horizontalScrollPosition = horizontalScrollPosition;
 
@@ -1223,7 +1233,7 @@ public class Application extends LayoutContainer
 
             if (verticalScrollBar)
                 verticalScrollBar.visible = false;
-
+			}
             if (whiteBox)
                 whiteBox.visible = false;
 
@@ -1247,6 +1257,8 @@ public class Application extends LayoutContainer
         {
             setActualSize(obj.width, obj.height);
 
+			COMPILE::LATER
+			{
             if (horizontalScrollBar)
                 horizontalScrollBar.visible = obj.horizontalScrollBarVisible;
             if (verticalScrollBar)
@@ -1257,7 +1269,7 @@ public class Application extends LayoutContainer
 
             horizontalScrollPosition = obj.horizontalScrollPosition;
             verticalScrollPosition = obj.verticalScrollPosition;
-
+			}
             updateDisplayList(unscaledWidth, unscaledHeight);
         }
 
