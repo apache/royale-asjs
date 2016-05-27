@@ -31,6 +31,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
@@ -143,7 +144,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			contentView.addElement(c, dispatchEvent);
 		}
@@ -151,7 +152,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
 		{
 			contentView.addElementAt(c, index, dispatchEvent);
 		}
@@ -159,7 +160,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function getElementIndex(c:Object):int
+		public function getElementIndex(c:IVisualElement):int
 		{
 			return contentView.getElementIndex(c);
 		}
@@ -167,7 +168,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			contentView.removeElement(c, dispatchEvent);
 		}
@@ -183,7 +184,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function getElementAt(index:int):Object
+		public function getElementAt(index:int):IVisualElement
 		{
 			return contentView.getElementAt(index);
 		}

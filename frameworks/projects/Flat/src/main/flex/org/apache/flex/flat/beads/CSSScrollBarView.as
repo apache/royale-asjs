@@ -26,6 +26,7 @@ package org.apache.flex.flat.beads
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -134,10 +135,10 @@ package org.apache.flex.flat.beads
 			_thumb = new Button();				
             Button(_thumb).className = "vscrollbar-thumb";
             
-            UIBase(value).addElement(_decrement);
-            UIBase(value).addElement(_increment);
-            UIBase(value).addElement(_track);
-            UIBase(value).addElement(_thumb);
+            UIBase(value).addElement(_decrement as IVisualElement);
+            UIBase(value).addElement(_increment as IVisualElement);
+            UIBase(value).addElement(_track as IVisualElement);
+            UIBase(value).addElement(_thumb as IVisualElement);
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             

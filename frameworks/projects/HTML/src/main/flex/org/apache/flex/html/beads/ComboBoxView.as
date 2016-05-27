@@ -29,6 +29,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
     import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Button;
@@ -201,6 +202,10 @@ package org.apache.flex.html.beads
 		{
 			return _popUpVisible;
 		}
+		/**
+		 *  @private
+		 *  @flexjsignorecoercion org.apache.flex.core.IVisualElement
+		 */
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value != _popUpVisible)
@@ -218,7 +223,7 @@ package org.apache.flex.html.beads
 					while (host && !(host is IPopUpHost))
 						host = host.parent;
                     if (host)
-    					IPopUpHost(host).addElement(popUp);
+    					IPopUpHost(host).addElement(popUp as IVisualElement);
 				}
 				else
 				{

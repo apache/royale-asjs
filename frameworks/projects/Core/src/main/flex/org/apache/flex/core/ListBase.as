@@ -77,7 +77,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function $addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
 		}
@@ -87,7 +87,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		public function $addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
 		{
 			super.addElementAt(c, index, dispatchEvent);
 		}
@@ -97,7 +97,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $removeElement(c:Object, dispatchEvent:Boolean = true):void
+		public function $removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			super.removeElement(c, dispatchEvent);
 		}
@@ -107,7 +107,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $getElementIndex(c:Object):int
+		public function $getElementIndex(c:IVisualElement):int
 		{
 			return super.getElementIndex(c);
 		}
@@ -117,7 +117,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $getElementAt(index:int):Object
+		public function $getElementAt(index:int):IVisualElement
 		{
 			return super.getElementAt(index);
 		}

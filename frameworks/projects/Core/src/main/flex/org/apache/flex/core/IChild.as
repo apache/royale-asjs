@@ -32,7 +32,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public interface IChild
+    public interface IChild extends IVisualElement
 	{
         /**
          *  The parent.

@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
         
+    import org.apache.flex.core.IChild;
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStatesObject;
     import org.apache.flex.effects.Effect;
@@ -266,6 +267,10 @@ package org.apache.flex.core
             }
         }
         
+		/**
+		 *  @flexjsignorecoercion org.apache.flex.core.IChild
+		 *  @flexjsignorecoercion org.apache.flex.core.IParent
+		 */
         private function apply(oldState:State, s:State):void
         {
             var arr:Array = s.overrides;
@@ -286,7 +291,7 @@ package org.apache.flex.core
                         }
                     }
                     var childrenAdded:Boolean = false;
-                    for each (var item:Object in ai.items)
+                    for each (var item:IChild in ai.items)
                     {
                         if (!isItemInState(item, oldState))
                         {
@@ -295,9 +300,9 @@ package org.apache.flex.core
                                 parent = parent[ai.destination] as IParent;
                             if (ai.relativeTo != null)
                             {
-                                var child:Object = ai.document[ai.relativeTo];
+                                var child:IChild = ai.document[ai.relativeTo];
                                 if (ai.destination)
-                                    parent = IChild(child).parent as IParent;
+                                    parent = child.parent as IParent;
                                 var index:int = parent.getElementIndex(child);
                                 if (ai.position == "after")
                                     index++;

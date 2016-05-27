@@ -30,6 +30,7 @@ import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IMXMLDocument;
 import org.apache.flex.core.IParent;
 import org.apache.flex.core.IStrand;
+import org.apache.flex.core.IVisualElement;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.IEventDispatcher;
 
@@ -168,6 +169,7 @@ public class MXMLDataInterpreter
     
     /**
      * @flexjsignorecoercion Function 
+     * @flexjsignorecoercion org.apache.flex.core.IUIBase 
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -295,13 +297,13 @@ public class MXMLDataInterpreter
         }
         COMPILE::AS3
         {
-            if (parent && comp is DisplayObject)
-                parent.addElement(comp, !(parent is IContainer));
+            if (parent && comp is IVisualElement)
+                parent.addElement(comp as IVisualElement, !(parent is IContainer));
         }
         COMPILE::JS
         {
             if (parent && comp is IUIBase)
-                parent.addElement(comp, !(parent is IContainer));
+                parent.addElement(comp as IUIBase, !(parent is IContainer));
         }
         
         if (children)

@@ -94,7 +94,7 @@ package org.apache.flex.html.beads
 			loader.y = 0;
 			loader.width = host.width;
 			loader.height = host.height;
-			(host as UIBase).addElement(loader);
+			(host as UIBase).addChild(loader);
 		}
 
 		/**

@@ -28,7 +28,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IUIBase extends IStrand, IEventDispatcher
+	public interface IUIBase extends IStrand, IEventDispatcher, IVisualElement
 	{
         /**
          *  Each IUIBase has an element that is actually added to
@@ -80,72 +80,6 @@ package org.apache.flex.core
          */
 		function addedToParent():void;
 		
-		/**
-		 *  The alpha or opacity in the range of 0 to 1.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get alpha():Number;
-		function set alpha(value:Number):void;
-		
-		/**
-		 *  The x co-ordinate or left side position of the bounding box.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get x():Number;
-		function set x(value:Number):void;
-		
-		/**
-		 *  The y co-ordinate or top position of the bounding box.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get y():Number;
-		function set y(value:Number):void;
-		
-		/**
-		 *  The width of the bounding box.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get width():Number;
-		function set width(value:Number):void;
-		
-		/**
-		 * The height of the bounding box.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function get height():Number;
-		function set height(value:Number):void;
-        
-        /**
-         *  Whether the component is visible.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        function get visible():Boolean;
-        function set visible(value:Boolean):void;
-        
         /**
          *  The top most event dispatcher.  Good for trying to capture
          *  all input events.

@@ -20,6 +20,7 @@ package org.apache.flex.charts.core
 {
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.core.IVisualElement;
 
 	/**
 	 * The IAxisGroup defines the interface for classes that provide drawing
@@ -30,7 +31,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IAxisGroup
+	public interface IAxisGroup extends IVisualElement
 	{
 		function removeAllElements():void;
 		

@@ -60,7 +60,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			owner.$addElement(c, dispatchEvent);
 		}
@@ -68,7 +68,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
 		{
 			owner.$addElementAt(c, index, dispatchEvent);
 		}
@@ -76,7 +76,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			owner.$removeElement(c, dispatchEvent);
 		}
@@ -84,7 +84,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function getElementIndex(c:Object):int
+		public function getElementIndex(c:IVisualElement):int
 		{
 			return owner.$getElementIndex(c);
 		}
@@ -92,7 +92,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function getElementAt(index:int):Object
+		public function getElementAt(index:int):IVisualElement
 		{
 			return owner.$getElementAt(index);
 		}

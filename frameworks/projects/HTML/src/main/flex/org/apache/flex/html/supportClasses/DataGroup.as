@@ -24,6 +24,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IVisualElement;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
@@ -58,7 +59,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
 			
@@ -72,7 +73,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{	
 			super.removeElement(c, dispatchEvent);
 			

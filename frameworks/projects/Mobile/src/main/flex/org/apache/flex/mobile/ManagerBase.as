@@ -19,6 +19,7 @@
 package org.apache.flex.mobile
 {
 	import org.apache.flex.core.IChrome;
+	import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	COMPILE::JS
@@ -118,7 +119,7 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean=true):void
+		override public function addElement(c:IVisualElement, dispatchEvent:Boolean=true):void
 		{
 			if (c is IChrome) {
 				super.addElementAt(c,0,dispatchEvent);
@@ -134,7 +135,7 @@ package org.apache.flex.mobile
 		/**
 		 * @private.
 		 */
-		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean=true):void
+		override public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean=true):void
 		{
 			if (c is IChrome) {
 				super.addElementAt(c, index, dispatchEvent);
@@ -147,7 +148,7 @@ package org.apache.flex.mobile
 		/**
 		 * @private
 		 */
-		override public function removeElement(c:Object, dispatchEvent:Boolean=true):void
+		override public function removeElement(c:IVisualElement, dispatchEvent:Boolean=true):void
 		{
 			if (c is IChrome) {
 				super.removeElement(c, dispatchEvent);
@@ -160,7 +161,7 @@ package org.apache.flex.mobile
 		/**
 		 * @private
 		 */
-		override public function getElementAt(index:int):Object
+		override public function getElementAt(index:int):IVisualElement
 		{
 			return _contentArea.getElementAt(index);
 		}
@@ -168,7 +169,7 @@ package org.apache.flex.mobile
 		/**
 		 * @private
 		 */
-		override public function getElementIndex(c:Object):int
+		override public function getElementIndex(c:IVisualElement):int
 		{
 			return _contentArea.getElementIndex(c);
 		}

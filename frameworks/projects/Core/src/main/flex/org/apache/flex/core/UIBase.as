@@ -168,7 +168,7 @@ package org.apache.flex.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public static const SIZE_CHANGED = "sizeChanged";
+		public static const SIZE_CHANGED:String = "sizeChanged";
 		
         /**
          *  Constructor.
@@ -1112,8 +1112,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
             COMPILE::AS3
             {
@@ -1127,8 +1128,9 @@ package org.apache.flex.core
             }
             COMPILE::JS
             {
-                element.appendChild(c.positioner);
-                c.addedToParent();
+				var ui:IUIBase = c as IUIBase;
+                element.appendChild(ui.positioner);
+                ui.addedToParent();
             }
 		}
         
@@ -1139,8 +1141,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
         {
             COMPILE::AS3
             {
@@ -1159,9 +1162,10 @@ package org.apache.flex.core
                     addElement(c);
                 else
                 {
-                    element.insertBefore(c.positioner,
+					var ui:IUIBase = c as IUIBase;
+                    element.insertBefore(ui.positioner,
                         children[index]);
-                    c.addedToParent();
+                    ui.addedToParent();
                 }
             }
         }
@@ -1174,11 +1178,11 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IVisualElement
         {
             COMPILE::AS3
             {
-                return getChildAt(index);
+                return getChildAt(index) as IVisualElement;
             }
             COMPILE::JS
             {
@@ -1194,8 +1198,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IVisualElement):int
         {
             COMPILE::AS3
             {
@@ -1208,9 +1213,10 @@ package org.apache.flex.core
             {
                 var children:Array = internalChildren();
                 var n:int = children.length;
+				var ui:IUIBase = c as IUIBase;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] == c.element)
+                    if (children[i] == ui.element)
                         return i;
                 }
                 return -1;                
@@ -1224,8 +1230,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
         {
             COMPILE::AS3
             {
@@ -1236,7 +1243,8 @@ package org.apache.flex.core
             }
             COMPILE::JS
             {
-                element.removeChild(c.element);
+				var ui:IUIBase = c as IUIBase;
+                element.removeChild(ui.element);
             }
         }
 		

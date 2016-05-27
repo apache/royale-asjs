@@ -29,7 +29,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IItemRenderer extends IEventDispatcher
+	public interface IItemRenderer extends IEventDispatcher, IVisualElement
 	{
         /**
          *  The data item to be displayed by the item renderer.

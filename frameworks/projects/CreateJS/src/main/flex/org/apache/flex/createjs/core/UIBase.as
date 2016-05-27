@@ -30,6 +30,7 @@ package org.apache.flex.createjs.core
 	import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -334,49 +335,54 @@ package org.apache.flex.createjs.core
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
         {
-            (element as Container).addChild(c.element as DisplayObject);
+            (element as Container).addChild((c as IUIBase).element as DisplayObject);
         }
         
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IVisualElement
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
         {
-            (element as Container).addChildAt(c.element as DisplayObject, index);
+            (element as Container).addChildAt((c as IUIBase).element as DisplayObject, index);
         }
         
         
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IVisualElement
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IVisualElement):int
         {
-            return (element as Container).getChildIndex(c.element as DisplayObject);
-        }
-        
-
-        /**
-         * @flexjsignorecoercion createjs.Container
-         * @flexjsignorecoercion createjs.DisplayObject
-         */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
-        {
-            (element as Container).removeChild(c.element as DisplayObject);
+            return (element as Container).getChildIndex((c as IUIBase).element as DisplayObject);
         }
         
 
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IVisualElement
          */
-        public function getElementAt(index:int):Object
+        public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
         {
-            return (element as Container).getChildAt(index);
+            (element as Container).removeChild((c as IUIBase).element as DisplayObject);
+        }
+        
+
+        /**
+         * @flexjsignorecoercion createjs.Container
+         * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IVisualElement
+         */
+        public function getElementAt(index:int):IVisualElement
+        {
+            return (element as Container).getChildAt(index) as IVisualElement;
         }
         
 

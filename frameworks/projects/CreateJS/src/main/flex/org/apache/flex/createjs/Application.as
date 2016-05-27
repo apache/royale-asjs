@@ -22,7 +22,9 @@ package org.apache.flex.createjs
 	import org.apache.flex.core.IApplicationView;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IValuesImpl;
+	import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -318,11 +320,13 @@ package org.apache.flex.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion createjs.DisplayObject
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
-			stage.addChild(c.element as DisplayObject);
-			c.addedToParent();
+			var ui:IUIBase = c as IUIBase;
+			stage.addChild(ui.element as DisplayObject);
+			ui.addedToParent();
 		}
 		
 		/**
@@ -333,11 +337,13 @@ package org.apache.flex.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion createjs.DisplayObject
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
 		{
-			stage.addChildAt(c.element as DisplayObject, index);
-			c.addedToParent();
+			var ui:IUIBase = c as IUIBase;
+			stage.addChildAt(ui.element as DisplayObject, index);
+			ui.addedToParent();
 		}
 		
 		/**
@@ -347,12 +353,13 @@ package org.apache.flex.createjs
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IVisualElement
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
-		public function getElementAt(index:int):Object
+		public function getElementAt(index:int):IVisualElement
 		{
 			var c:WrappedHTMLElement = stage.getChildAt(index) as WrappedHTMLElement;
-			return c.flexjs_wrapper;
+			return c.flexjs_wrapper as IVisualElement;
 		}
 		
 		/**
@@ -363,10 +370,11 @@ package org.apache.flex.createjs
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion createjs.DisplayObject
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function getElementIndex(c:Object):int
+		public function getElementIndex(c:IVisualElement):int
 		{
-			return stage.getChildIndex(c.element as DisplayObject)
+			return stage.getChildIndex((c as IUIBase).element as DisplayObject)
 		}
 		
 		/**
@@ -376,10 +384,11 @@ package org.apache.flex.createjs
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
 		{
-			stage.removeChild(c.element as DisplayObject);
+			stage.removeChild((c as IUIBase).element as DisplayObject);
 		}
 		
 		/**

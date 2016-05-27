@@ -144,14 +144,15 @@ package org.apache.flex.mobile
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.mobile.IView
 		 */
 		public function pop():void
 		{
 			if (ViewManagerModel(model).views.length > 1) {
-				var lastView:Object = ViewManagerModel(model).popView();
+				var lastView:IView = ViewManagerModel(model).popView() as IView;
 				removeElement(_topView);
 				addElement(lastView);
-				_topView = lastView as IView;
+				_topView = lastView;
 				
 				dispatchEvent( new Event("viewChanged") );
 			}

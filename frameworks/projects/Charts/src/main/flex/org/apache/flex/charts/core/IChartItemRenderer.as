@@ -67,50 +67,5 @@ package org.apache.flex.charts.core
 		function get yField():String;
 		function set yField(value:String):void;
 		
-		/**
-		 *  The x display position for the itemRenderer. This is set by
-		 *  the chart's layout manager.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function set x(value:Number):void;
-		function get x():Number;
-		
-		/**
-		 *  The y display position for the itemRenderer. This is set by
-		 *  the chart's layout manager.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function set y(value:Number):void;
-		function get y():Number;
-		
-		/**
-		 *  The display width for the itemRenderer. This is set by
-		 *  the chart's layout manager.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function set width(value:Number):void;
-		
-		/**
-		 *  The display height for the itemRenderer. This is set by
-		 *  the chart's layout manager.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		function set height(value:Number):void;
 	}
 }

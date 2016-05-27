@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile
 {
+	import org.apache.flex.core.IVisualElement;
+	
 	/**
 	 * The IView interface is implemented by any class that can be managed by
 	 * an IViewManager.
@@ -27,7 +29,7 @@ package org.apache.flex.mobile
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IView
+	public interface IView extends IVisualElement
 	{
 		/**
 		 * The parent view manager.
