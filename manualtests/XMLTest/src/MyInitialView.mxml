@@ -35,6 +35,7 @@ limitations under the License.
 		<![CDATA[
 						
       import XML;
+            private var quotedXML : XML =<root title="That's Entertainment"/>;
 
             private var xmlStr:String = '<?xml version="1.0" encoding="UTF-8" ?>'+
                 '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"'+
