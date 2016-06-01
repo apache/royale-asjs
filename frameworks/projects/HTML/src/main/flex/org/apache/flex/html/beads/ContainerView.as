@@ -144,17 +144,17 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement):IVisualElement
 		{
-			contentView.addElement(c, dispatchEvent);
+			return contentView.addElement(c);
 		}
 		
 		/**
 		 * @private
 		 */
-		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int):IVisualElement
 		{
-			contentView.addElementAt(c, index, dispatchEvent);
+			return contentView.addElementAt(c, index);
 		}
 		
 		/**
@@ -168,9 +168,9 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement):IVisualElement
 		{
-			contentView.removeElement(c, dispatchEvent);
+			return contentView.removeElement(c);
 		}
 		
 		/**
@@ -204,7 +204,8 @@ package org.apache.flex.html.beads
 			
             createViewport();
 			
-			(host as IContentViewHost).strandChildren.addElement(viewport.contentView, false);
+			// this should not trigger a childAdded event
+			(host as IContentViewHost).strandChildren.addElement(viewport.contentView);
 			
 			displayBackgroundAndBorder(host as UIBase);
 			

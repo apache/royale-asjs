@@ -142,14 +142,14 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(value:IVisualElement, dispatchEvent:Boolean = true):void
+		override public function addElement(value:IVisualElement):IVisualElement
 		{
 			_children.push(value);
 			
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
 			
-			super.addElement(value, dispatchEvent);
+			return super.addElement(value);
 		}
 		
 		/**
@@ -161,7 +161,7 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(value:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+		override public function addElementAt(value:IVisualElement, index:int):IVisualElement
 		{
 			if (index >= _children.length) _children.push(value);
 			else _children.splice(index, 0, value);
@@ -169,7 +169,7 @@ package org.apache.flex.charts.optimized
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
 			
-			super.addElementAt(value, index, dispatchEvent);
+			return super.addElementAt(value, index);
 		}
 		
 		/**

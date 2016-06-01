@@ -119,43 +119,46 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(c:IVisualElement, dispatchEvent:Boolean=true):void
+		override public function addElement(c:IVisualElement):IVisualElement
 		{
 			if (c is IChrome) {
-				super.addElementAt(c,0,dispatchEvent);
+				super.addElementAt(c, 0);
 			}
 			else {
-				_contentArea.addElement(c, dispatchEvent);
+				_contentArea.addElement(c);
 //				(c as UIBase).setWidthAndHeight(_contentArea.width, _contentArea.height, false);
 //				(c as UIBase).width = _contentArea.width;
 //				(c as UIBase).height = _contentArea.height;
 			}
+			return c;
 		}
 		
 		/**
 		 * @private.
 		 */
-		override public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean=true):void
+		override public function addElementAt(c:IVisualElement, index:int):IVisualElement
 		{
 			if (c is IChrome) {
-				super.addElementAt(c, index, dispatchEvent);
+				super.addElementAt(c, index);
 			}
 			else {
-				_contentArea.addElement(c, dispatchEvent);
+				_contentArea.addElement(c);
 			}
+			return c;
 		}
 		
 		/**
 		 * @private
 		 */
-		override public function removeElement(c:IVisualElement, dispatchEvent:Boolean=true):void
+		override public function removeElement(c:IVisualElement):IVisualElement
 		{
 			if (c is IChrome) {
-				super.removeElement(c, dispatchEvent);
+				super.removeElement(c);
 			}
 			else {
-				_contentArea.removeElement(c, dispatchEvent);
+				_contentArea.removeElement(c);
 			}
+			return c;
 		}
 		
 		/**

@@ -94,10 +94,12 @@ package org.apache.flex.mobile.beads
 			model.addEventListener("selectedChange", toggleChangedHandler);
 			
 			boundingBox = new Rect();
-			UIBase(host).addElement(boundingBox, false);
+			// no event is expected
+			UIBase(host).addElement(boundingBox);
 			
 			actualSwitch = new Rect();
-			UIBase(host).addElement(actualSwitch, false);
+			// no event is expected
+			UIBase(host).addElement(actualSwitch);
 			
 			layoutChromeElements();
 		}

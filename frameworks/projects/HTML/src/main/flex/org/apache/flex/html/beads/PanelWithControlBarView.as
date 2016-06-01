@@ -123,7 +123,7 @@ package org.apache.flex.html.beads
 				_controlBar.height = 30;
 				
 				for each(var comp:IUIBase in controlBarItems) {
-					_controlBar.addElement(comp, false);
+					_controlBar.addElementNoChangeEvent(comp);
 				}
 			}
 			
@@ -134,10 +134,12 @@ package org.apache.flex.html.beads
 		{
 			super.completeSetup();
 			
-			(_strand as IContentViewHost).strandChildren.addElement(titleBar, false);
+			// should not generate change event
+			(_strand as IContentViewHost).strandChildren.addElement(titleBar);
 			
 			if (controlBar) {
-				(_strand as IContentViewHost).strandChildren.addElement(_controlBar, false);
+				// should not generate change event
+				(_strand as IContentViewHost).strandChildren.addElement(_controlBar);
 			}
 		}
 		

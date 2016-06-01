@@ -72,7 +72,8 @@ package org.apache.flex.mobile.beads
 			_tabBar.dataProvider = model.views;
 			_tabBar.labelField = "title";
 			_tabBar.addEventListener("change",handleButtonBarChange);
-			UIBase(_strand).addElement(_tabBar, false);
+			// no event is expected
+			UIBase(_strand).addElement(_tabBar);
 			
 			super.strand = value;
 		}

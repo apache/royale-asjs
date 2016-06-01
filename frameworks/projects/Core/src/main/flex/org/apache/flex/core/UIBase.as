@@ -1114,7 +1114,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement):IVisualElement
 		{
             COMPILE::AS3
             {
@@ -1132,6 +1132,7 @@ package org.apache.flex.core
                 element.appendChild(ui.positioner);
                 ui.addedToParent();
             }
+			return c;
 		}
         
         /**
@@ -1143,7 +1144,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IVisualElement, index:int):IVisualElement
         {
             COMPILE::AS3
             {
@@ -1168,6 +1169,7 @@ package org.apache.flex.core
                     ui.addedToParent();
                 }
             }
+			return c;
         }
         
         /**
@@ -1232,7 +1234,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IVisualElement):IVisualElement
         {
             COMPILE::AS3
             {
@@ -1246,6 +1248,7 @@ package org.apache.flex.core
 				var ui:IUIBase = c as IUIBase;
                 element.removeChild(ui.element);
             }
+			return c;
         }
 		
         /**

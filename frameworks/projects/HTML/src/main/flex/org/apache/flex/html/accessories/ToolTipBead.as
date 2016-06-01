@@ -112,7 +112,8 @@ package org.apache.flex.html.accessories
             var pt:Point = determinePosition(event, event.target);
             tt.x = pt.x;
             tt.y = pt.y;
-            host.addElement(tt, false); // don't trigger a layout
+			
+            host.addElementNoChangeEvent(tt); // don't trigger a layout
 		}
 		
 		/**

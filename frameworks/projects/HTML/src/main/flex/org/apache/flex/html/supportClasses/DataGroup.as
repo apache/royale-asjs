@@ -59,21 +59,22 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		override public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		override public function addElement(c:IVisualElement):IVisualElement
 		{
-			super.addElement(c, dispatchEvent);
+			super.addElement(c);
 			
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
 			newEvent.item = c;
 			
 			var strand:IEventDispatcher = parent as IEventDispatcher;
 			strand.dispatchEvent(newEvent);
+			return c;
 		}
 		
 		/**
 		 * @private
 		 */
-		override public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		override public function removeElement(c:IVisualElement):IVisualElement
 		{	
 			super.removeElement(c, dispatchEvent);
 			
@@ -82,6 +83,7 @@ package org.apache.flex.html.supportClasses
 			
 			var strand:IEventDispatcher = parent as IEventDispatcher;
 			strand.dispatchEvent(newEvent);
+			return c;
 		}
 
         /**

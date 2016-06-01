@@ -59,25 +59,28 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 */
-		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement):IVisualElement
 		{
-			owner.$addElement(c, dispatchEvent);
+			owner.$addElement(c);
+			return c;
 		}
 		
 		/**
 		 *  @private
 		 */
-		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int):IVisualElement
 		{
-			owner.$addElementAt(c, index, dispatchEvent);
+			owner.$addElementAt(c, index);
+			return c;
 		}
 		
 		/**
 		 *  @private
 		 */
-		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement):IVisualElement
 		{
-			owner.$removeElement(c, dispatchEvent);
+			owner.$removeElement(c);
+			return c;
 		}
 		
 		/**

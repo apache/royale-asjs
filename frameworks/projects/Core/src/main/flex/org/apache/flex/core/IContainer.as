@@ -33,6 +33,48 @@ package org.apache.flex.core
     public interface IContainer extends IParent
 	{
         /**
+         *  Containers have an arbitrary and dynamic set of
+		 *  of children and usually dispatch notifications
+		 *  and do other work when the set changes.  These
+		 *  APIs allow the set to be changed without notification
+		 *  which can be beneficial for performance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		function addElementNoChangeEvent(element:IVisualElement):IVisualElement;
+		
+        /**
+         *  Containers have an arbitrary and dynamic set of
+		 *  of children and usually dispatch notifications
+		 *  and do other work when the set changes.  These
+		 *  APIs allow the set to be changed without notification
+		 *  which can be beneficial for performance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		function addElementAtNoChangeEvent(element:IVisualElement, index:int):IVisualElement;
+		
+        /**
+         *  Containers have an arbitrary and dynamic set of
+		 *  of children and usually dispatch notifications
+		 *  and do other work when the set changes.  These
+		 *  APIs allow the set to be changed without notification
+		 *  which can be beneficial for performance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		function removeElementNoChangeEvent(element:IVisualElement):IVisualElement;
+		
+        /**
          *  This method is called after children have been
          *  added to the container so the container doesn't
          *  have to re-layout as each child is added.

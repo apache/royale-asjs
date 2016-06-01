@@ -71,7 +71,7 @@ package org.apache.flex.mobile.chrome
 			
 			for (var i:int=0; i < _controls.length; i++)
 			{
-				addElement( _controls[i], false );
+				addElementNoChangeEvent( _controls[i] );
 			}
 			
 			dispatchEvent(new Event("layoutNeeded"));

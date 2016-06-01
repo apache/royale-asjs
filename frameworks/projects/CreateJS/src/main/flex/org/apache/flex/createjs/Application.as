@@ -322,11 +322,12 @@ package org.apache.flex.createjs
          *  @flexjsignorecoercion createjs.DisplayObject
          *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function addElement(c:IVisualElement):IVisualElement
 		{
 			var ui:IUIBase = c as IUIBase;
 			stage.addChild(ui.element as DisplayObject);
 			ui.addedToParent();
+			return c;
 		}
 		
 		/**
@@ -339,11 +340,12 @@ package org.apache.flex.createjs
          *  @flexjsignorecoercion createjs.DisplayObject
          *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+		public function addElementAt(c:IVisualElement, index:int):IVisualElement
 		{
 			var ui:IUIBase = c as IUIBase;
 			stage.addChildAt(ui.element as DisplayObject, index);
 			ui.addedToParent();
+			return c;
 		}
 		
 		/**
@@ -386,9 +388,10 @@ package org.apache.flex.createjs
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.IUIBase
 		 */
-		public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function removeElement(c:IVisualElement):IVisualElement
 		{
 			stage.removeChild((c as IUIBase).element as DisplayObject);
+			return c;
 		}
 		
 		/**

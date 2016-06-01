@@ -32,7 +32,7 @@ package org.apache.flex.core
 		function get height():Number;
 		function set height(value:Number):void;
 
-		function addElement(value:IVisualElement, dispatchEvent:Boolean = true):void;
+		function addElement(value:IVisualElement):IVisualElement;
 		function removeAllElements():void;
 	}
 }

@@ -132,49 +132,95 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        override public function addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+        override public function addElement(c:IVisualElement):IVisualElement
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
-				contentView.addElement(c, dispatchEvent);
-                if (dispatchEvent)
-                    this.dispatchEvent(new Event("childrenAdded"));
+				contentView.addElement(c);
+                this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
 				super.addElement(c);
 			}
+			return c;
         }
         
         /**
          *  @private
          */
-        override public function addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+        public function addElementNoChangeEvent(c:IVisualElement):IVisualElement
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
-				contentView.addElementAt(c, index, dispatchEvent);
-                if (dispatchEvent)
-                    this.dispatchEvent(new Event("childrenAdded"));
+				contentView.addElement(c);
+			}
+			else {
+				super.addElement(c);
+			}
+			return c;
+        }
+		
+        /**
+         *  @private
+         */
+        override public function addElementAt(c:IVisualElement, index:int):IVisualElement
+        {
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.addElementAt(c, index);
+                this.dispatchEvent(new Event("childrenAdded"));
 			}
 			else {
 				super.addElementAt(c, index);
 			}
+			return c;
+        }
+
+
+        /**
+         *  @private
+         */
+        public function addElementAtNoChangeEvent(c:IVisualElement, index:int):IVisualElement
+        {
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.addElementAt(c, index);
+			}
+			else {
+				super.addElementAt(c, index);
+			}
+			return c;
         }
         
         /**
          *  @private
          */
-        override public function removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+        override public function removeElement(c:IVisualElement):IVisualElement
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
-				contentView.removeElement(c, dispatchEvent);
-                if (dispatchEvent)
-                    this.dispatchEvent(new Event("childrenRemoved"));
+				contentView.removeElement(c);
+                this.dispatchEvent(new Event("childrenRemoved"));
 			}
 			else {
 				super.removeElement(c);
 			}
+			return c;
+        }
+        
+        /**
+         *  @private
+         */
+        public function removeElementNoChangeEvent(c:IVisualElement):IVisualElement
+        {
+			var contentView:IParent = view as IParent;
+			if (contentView != null) {
+				contentView.removeElement(c);
+			}
+			else {
+				super.removeElement(c);
+			}
+			return c;
         }
         
         /**
@@ -229,9 +275,9 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function $addElement(c:IVisualElement):void
 		{
-			super.addElement(c, dispatchEvent);
+			super.addElement(c);
 		}
 		
 		/**
@@ -239,9 +285,9 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElementAt(c:IVisualElement, index:int, dispatchEvent:Boolean = true):void
+		public function $addElementAt(c:IVisualElement, index:int):void
 		{
-			super.addElementAt(c, index, dispatchEvent);
+			super.addElementAt(c, index);
 		}
 		
 		/**
@@ -249,9 +295,9 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $removeElement(c:IVisualElement, dispatchEvent:Boolean = true):void
+		public function $removeElement(c:IVisualElement):void
 		{
-			super.removeElement(c, dispatchEvent);
+			super.removeElement(c);
 		}
 		
 		/**

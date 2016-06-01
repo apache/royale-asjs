@@ -95,7 +95,8 @@ package org.apache.flex.mobile.beads
 				_navigationBar = new NavigationBar();
 				_navigationBar.controls = model.navigationBarItems;
 				_navigationBar.addBead(new HorizontalLayout());
-				UIBase(_strand).addElement(_navigationBar, false);
+				// no event is expected
+				UIBase(_strand).addElement(_navigationBar);
 			}
 		}
 		

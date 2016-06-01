@@ -295,16 +295,13 @@ public class MXMLDataInterpreter
         {
             comp.setMXMLDescriptor(document, children);                
         }
-        COMPILE::AS3
-        {
-            if (parent && comp is IVisualElement)
-                parent.addElement(comp as IVisualElement, !(parent is IContainer));
-        }
-        COMPILE::JS
-        {
-            if (parent && comp is IUIBase)
-                parent.addElement(comp as IUIBase, !(parent is IContainer));
-        }
+		if (parent && comp is IVisualElement)
+		{
+			if (parent is IContainer)
+				(parent as IContainer).addElementNoChangeEvent(comp as IVisualElement);
+			else
+				parent.addElement(comp as IVisualElement);
+		}
         
         if (children)
         {

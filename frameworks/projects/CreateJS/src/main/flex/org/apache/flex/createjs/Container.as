@@ -26,6 +26,7 @@ package org.apache.flex.createjs
 	import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.IStatesImpl;
 	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.IVisualElement;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
@@ -297,5 +298,30 @@ package org.apache.flex.createjs
 		{
 			_transitions = value;   
 		}
+		
+		/**
+		 *  @private
+		 */
+		public function addElementNoChangeEvent(c:IVisualElement):IVisualElement
+		{
+			return addElement(c);
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function addElementAtNoChangeEvent(c:IVisualElement, index:int):IVisualElement
+		{
+			return addElementAt(c, index);
+		}
+
+		/**
+		 *  @private
+		 */
+		public function removeElementNoChangeEvent(c:IVisualElement):IVisualElement
+		{
+			return removeElement(c);
+		}
+
 	}
 }

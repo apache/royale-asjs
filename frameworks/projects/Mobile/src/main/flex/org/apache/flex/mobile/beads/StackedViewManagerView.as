@@ -65,7 +65,8 @@ package org.apache.flex.mobile.beads
 				_toolBar = new ToolBar();
 				_toolBar.controls = model.toolBarItems;
 				_toolBar.addBead(new HorizontalLayout());
-				UIBase(value).addElement(_toolBar,false);
+				// no event is expected
+				UIBase(value).addElement(_toolBar);
 			}
 			
 			super.strand = value;
