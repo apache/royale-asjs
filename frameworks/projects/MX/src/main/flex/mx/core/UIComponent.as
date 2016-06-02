@@ -8674,7 +8674,7 @@ public class UIComponent extends Sprite
             
                 for (i = 0; i < thisContainerNumElements; i++)
                 {
-                    var elt:IVisualElement = thisContainer.getElementAt(i);
+                    var elt:IVisualElement = thisContainer.getElementAt(i) as IVisualElement;
                     // Can be null if IUITextField or IUIFTETextField.
                     if (elt && !(elt is IStyleClient))
                         elt.invalidateLayoutDirection();

@@ -20,6 +20,7 @@
 package mx.core
 {
 
+import org.apache.flex.core.IVisualElement;
 
 /**
  *  The IVisualElementContainer interface defines the minimum properties and methods 
@@ -70,7 +71,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */ 
-    function getElementAt(index:int):IVisualElement
+    function getElementAt(index:int):org.apache.flex.core.IVisualElement
     
     //----------------------------------
     //  Visual Element addition
@@ -101,7 +102,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */   
-    function addElement(element:IVisualElement):IVisualElement;
+    function addElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement;
     
     /**
      *  Adds a visual element to this container. 
@@ -133,7 +134,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function addElementAt(element:IVisualElement, index:int):IVisualElement;
+    function addElementAt(element:org.apache.flex.core.IVisualElement, index:int):org.apache.flex.core.IVisualElement;
     
     //----------------------------------
     //  Visual Element removal
@@ -157,7 +158,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function removeElement(element:IVisualElement):IVisualElement;
+    function removeElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement;
     
     /**
      *  Removes a visual element from the specified index position 
@@ -176,7 +177,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function removeElementAt(index:int):IVisualElement;
+    function removeElementAt(index:int):org.apache.flex.core.IVisualElement;
     
     /**
      *  Removes all visual elements from the container.
@@ -206,7 +207,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */ 
-    function getElementIndex(element:IVisualElement):int;
+    function getElementIndex(element:org.apache.flex.core.IVisualElement):int;
     
     /**
      *  Changes the position of an existing visual element in the visual container.
@@ -236,7 +237,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function setElementIndex(element:IVisualElement, index:int):void;
+    function setElementIndex(element:org.apache.flex.core.IVisualElement, index:int):void;
     
     //----------------------------------
     //  Visual Element swapping
@@ -255,7 +256,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    function swapElements(element1:IVisualElement, element2:IVisualElement):void;
+    function swapElements(element1:org.apache.flex.core.IVisualElement, element2:org.apache.flex.core.IVisualElement):void;
     
     /**
      *  Swaps the visual elements at the two specified index 

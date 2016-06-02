@@ -20,13 +20,16 @@
 package mx.containers.utilityClasses
 {
 
+COMPILE::LATER
+{
+	import mx.controls.scrollClasses.ScrollBar;
+	import mx.core.ScrollPolicy;
+}
 import mx.containers.BoxDirection;
-import mx.controls.scrollClasses.ScrollBar;
 import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.core.IUIComponent;
 import mx.core.mx_internal;
-import mx.core.ScrollPolicy;
 
 use namespace mx_internal;
 

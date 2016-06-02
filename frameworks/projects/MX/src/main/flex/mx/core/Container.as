@@ -56,20 +56,24 @@ import mx.events.KeyboardEvent;
 
 import flex.system.DefinitionManager;
 import org.apache.flex.reflection.getDefinitionByName;
+import org.apache.flex.core.IVisualElement;
 
 import mx.binding.BindingManager;
+COMPILE::LATER
+{
 import mx.containers.utilityClasses.PostScaleAdapter;
 import mx.controls.HScrollBar;
 import mx.controls.VScrollBar;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.scrollClasses.ScrollBar;
+import mx.events.ScrollEvent;
+import mx.events.ScrollEventDetail;
+import mx.events.ScrollEventDirection;
+}
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IUITextField;
 import mx.events.ChildExistenceChangedEvent;
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
-import mx.events.ScrollEvent;
-import mx.events.ScrollEventDetail;
-import mx.events.ScrollEventDirection;
 import mx.geom.RoundedRectangle;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
@@ -2994,9 +2998,9 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */ 
-    override public function getElementAt(index:int):IVisualElement
+    override public function getElementAt(index:int):org.apache.flex.core.IVisualElement
     {
-        return super.getElementAt(index) as IVisualElement;
+        return super.getElementAt(index) as org.apache.flex.core.IVisualElement;
     }
     
     /**
@@ -3007,7 +3011,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    override public function getElementIndex(element:IVisualElement):int
+    override public function getElementIndex(element:org.apache.flex.core.IVisualElement):int
     {
         return super.getElementIndex(element);
     }
@@ -3020,12 +3024,12 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */ 
-    public function addElement(element:IVisualElement):IVisualElement
+    override public function addElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not supported in this Container");
         
-        return addChild(element as DisplayObject) as IVisualElement;
+        return addChild(element as DisplayObject) as org.apache.flex.core.IVisualElement;
     }
     
     /**
@@ -3036,12 +3040,12 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function addElementAt(element:IVisualElement, index:int):IVisualElement
+    override public function addElementAt(element:org.apache.flex.core.IVisualElement, index:int):org.apache.flex.core.IVisualElement
     {
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not supported in this Container");
         
-        return addChildAt(element as DisplayObject, index) as IVisualElement;
+        return addChildAt(element as DisplayObject, index) as org.apache.flex.core.IVisualElement;
     }
     
     /**
@@ -3052,12 +3056,12 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function removeElement(element:IVisualElement):IVisualElement
+    override public function removeElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not found in this Container");
         
-        return removeChild(element as DisplayObject) as IVisualElement;
+        return removeChild(element as DisplayObject) as org.apache.flex.core.IVisualElement;
     }
     
     /**
@@ -3068,9 +3072,9 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function removeElementAt(index:int):IVisualElement
+    public function removeElementAt(index:int):org.apache.flex.core.IVisualElement
     {
-        return removeChildAt(index) as IVisualElement;
+        return removeChildAt(index) as org.apache.flex.core.IVisualElement;
     }
     
     /**
@@ -3097,7 +3101,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function setElementIndex(element:IVisualElement, index:int):void
+    public function setElementIndex(element:org.apache.flex.core.IVisualElement, index:int):void
     {
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not found in this Container");
@@ -3113,7 +3117,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function swapElements(element1:IVisualElement, element2:IVisualElement):void
+    public function swapElements(element1:org.apache.flex.core.IVisualElement, element2:org.apache.flex.core.IVisualElement):void
     {
         if (! (element1 is DisplayObject) )
             throw ArgumentError(element1 + " is not found in this Container");

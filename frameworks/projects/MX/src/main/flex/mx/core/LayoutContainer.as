@@ -31,7 +31,10 @@ import mx.containers.utilityClasses.Layout;
 import mx.effects.EffectManager;
 import mx.events.FlexEvent;
 import mx.managers.ISystemManager;
+COMPILE::LATER
+{
 import mx.managers.LayoutManager;
+}
 import mx.managers.SystemManager;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;

@@ -24,6 +24,7 @@ COMPILE::AS3
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;		
+	import flash.display.Stage;		
 }
 COMPILE::JS
 {
@@ -505,6 +506,23 @@ public interface ISystemManager extends IEventDispatcher, IChildList, IFlexModul
      *  @productversion Flex 4
      */
     function invalidateParentSizeAndDisplayList():void;
+
+	
+	//----------------------------------
+	//  stage
+	//----------------------------------
+	
+	/**
+	 *  The flash.display.Stage that represents the application window
+	 *  mapped to this SystemManager
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	COMPILE::AS3
+	function get stage():Stage
 
 }
 

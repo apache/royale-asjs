@@ -26,10 +26,13 @@ import flash.events.IEventDispatcher;
 import flash.system.Capabilities;
 import flash.utils.Dictionary;
 
+COMPILE::LATER
+{
 import mx.core.ApplicationDomainTarget;
+import mx.core.RSLData;
+}
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
-import mx.core.RSLData;
 import mx.events.Request;
 import mx.managers.SystemManagerGlobals;
 import mx.utils.Platform;

@@ -210,6 +210,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
+	COMPILE::LATER
     public function getObjectsUnderPoint(point:Point):Array
     {
         return owner.rawChildren_getObjectsUnderPoint(point);

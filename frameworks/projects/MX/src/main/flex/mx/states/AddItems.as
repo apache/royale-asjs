@@ -38,7 +38,7 @@ import mx.core.IDeferredContentOwner;
 import mx.core.IMXMLObject;
 import mx.core.ITransientDeferredInstance;
 import mx.core.IUIComponent;
-import mx.core.IVisualElement;
+import org.apache.flex.core.IVisualElement;
 import mx.core.IVisualElementContainer;
 import mx.core.UIComponent;
 

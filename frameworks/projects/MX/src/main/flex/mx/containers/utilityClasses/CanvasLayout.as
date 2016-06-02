@@ -22,7 +22,10 @@ package mx.containers.utilityClasses
 
 import flash.display.DisplayObject;
 import flash.geom.Rectangle;
+COMPILE::LATER
+{
 import mx.containers.Canvas;
+}
 import mx.containers.errors.ConstraintError;
 import mx.core.Container;
 import mx.core.EdgeMetrics;

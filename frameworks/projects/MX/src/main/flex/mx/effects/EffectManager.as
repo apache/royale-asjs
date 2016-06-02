@@ -56,7 +56,7 @@ import mx.events.ResizeEvent;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import mx.core.IVisualElementContainer;
-import mx.core.IVisualElement;
+import org.apache.flex.core.IVisualElement;
 
 use namespace mx_internal;
 
