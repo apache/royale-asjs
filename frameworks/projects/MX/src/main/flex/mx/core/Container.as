@@ -43,7 +43,7 @@ COMPILE::JS
     import flex.display.Loader;
     import flex.display.Shape;
     import flex.events.Event;
-    import flex.events.MouseEvent;
+    import org.apache.flex.events.MouseEvent;
     import flex.text.TextField;
     import flex.text.TextLineMetrics;
     import flex.ui.Keyboard;            
@@ -555,7 +555,10 @@ public class Container extends UIComponent
     {
         super();
 
+		COMPILE::AS3
+		{
         tabEnabled = false;
+		}
         tabFocusEnabled = false;
         
         showInAutomationHierarchy = false;
@@ -807,6 +810,7 @@ public class Container extends UIComponent
      *  @private
      *  Propagate to children.
      */
+	COMPILE::AS3
     override public function set doubleClickEnabled(value:Boolean):void
     {
         super.doubleClickEnabled = value;
@@ -892,7 +896,10 @@ public class Container extends UIComponent
 
             o.x = 0;
             o.y = 0;
+			COMPILE::LATER
+			{
             o.scrollRect = null;
+			}
 
             _focusPane = o;
         }
@@ -907,7 +914,10 @@ public class Container extends UIComponent
         {
             o.x = contentPane.x;
             o.y = contentPane.y;
+			COMPILE::LATER
+			{
             o.scrollRect = contentPane.scrollRect;
+			}
         }
 
         invalidateSizeFlag = oldInvalidateSizeFlag;
@@ -2454,6 +2464,7 @@ public class Container extends UIComponent
      *  The mouseShieldChildren style is an inherting style
      *  that is used by the children views.
      */
+	COMPILE::AS3
     override public function addEventListener(
                                     type:String, listener:Function,
                                     useCapture:Boolean = false,
@@ -2495,6 +2506,7 @@ public class Container extends UIComponent
      *  $addEventListener to add event listeners without affecting the behavior 
      *  of the component.
      */
+	COMPILE::AS3
     mx_internal function $addEventListener(
                             type:String, listener:Function,
                             useCapture:Boolean = false,
@@ -2509,7 +2521,7 @@ public class Container extends UIComponent
      *  @private
      *  Remove the mouse shield if we no longer listen to any mouse events
      */
-    
+    COMPILE::AS3
     override public function removeEventListener(
                                     type:String, listener:Function,
                                     useCapture:Boolean = false):void
@@ -2549,6 +2561,7 @@ public class Container extends UIComponent
      *  $removeEventListener to remove event listeners without affecting the behavior 
      *  of the component.
      */
+	COMPILE::AS3
     mx_internal function $removeEventListener(
                               type:String, listener:Function,
                               useCapture:Boolean = false):void
@@ -3026,9 +3039,12 @@ public class Container extends UIComponent
      */ 
     override public function addElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
+		COMPILE::AS3
+		{
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not supported in this Container");
-        
+		}
+		
         return addChild(element as DisplayObject) as org.apache.flex.core.IVisualElement;
     }
     
@@ -3042,8 +3058,11 @@ public class Container extends UIComponent
      */
     override public function addElementAt(element:org.apache.flex.core.IVisualElement, index:int):org.apache.flex.core.IVisualElement
     {
-        if (! (element is DisplayObject) )
-            throw ArgumentError(element + " is not supported in this Container");
+		COMPILE::AS3
+		{
+			if (! (element is DisplayObject) )
+				throw ArgumentError(element + " is not supported in this Container");
+		}
         
         return addChildAt(element as DisplayObject, index) as org.apache.flex.core.IVisualElement;
     }
@@ -3058,8 +3077,11 @@ public class Container extends UIComponent
      */
     override public function removeElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
-        if (! (element is DisplayObject) )
-            throw ArgumentError(element + " is not found in this Container");
+		COMPILE::AS3
+		{
+			if (! (element is DisplayObject) )
+				throw ArgumentError(element + " is not supported in this Container");
+		}
         
         return removeChild(element as DisplayObject) as org.apache.flex.core.IVisualElement;
     }
@@ -3103,8 +3125,11 @@ public class Container extends UIComponent
      */
     public function setElementIndex(element:org.apache.flex.core.IVisualElement, index:int):void
     {
-        if (! (element is DisplayObject) )
-            throw ArgumentError(element + " is not found in this Container");
+		COMPILE::AS3
+		{
+			if (! (element is DisplayObject) )
+				throw ArgumentError(element + " is not supported in this Container");
+		}
         
         return setChildIndex(element as DisplayObject, index);
     }
@@ -3117,6 +3142,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     public function swapElements(element1:org.apache.flex.core.IVisualElement, element2:org.apache.flex.core.IVisualElement):void
     {
         if (! (element1 is DisplayObject) )
@@ -3135,6 +3161,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     public function swapElementsAt(index1:int, index2:int):void
     {
         swapChildrenAt(index1, index2);
@@ -3248,9 +3275,16 @@ public class Container extends UIComponent
         if (autoLayout == false)
             forceLayout = true;
 
+		COMPILE::LATER
+		{
         // weak references
         UIComponentGlobals.layoutManager.addEventListener(
             FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler, false, 0, true);
+		}
+		// weak references
+		UIComponentGlobals.layoutManager.addEventListener(
+			FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler);
+
     }
 
     /**
@@ -3979,9 +4013,11 @@ public class Container extends UIComponent
      */
     override public function finishPrint(obj:Object, target:IFlexDisplayObject):void
     {
+		COMPILE::LATER
+		{
         if (obj)
             contentPane.scrollRect = Rectangle(obj);
-
+		}
         super.finishPrint(obj,target);
     }
 
@@ -4023,8 +4059,15 @@ public class Container extends UIComponent
         {
             forceLayout = true;
             // weak reference
+			COMPILE::LATER
+			{
             UIComponentGlobals.layoutManager.addEventListener(
                 FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler, false, 0, true);
+			}
+			// weak references
+			UIComponentGlobals.layoutManager.addEventListener(
+				FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler);
+
         }
     }
 
@@ -4093,8 +4136,15 @@ public class Container extends UIComponent
         {
             forceLayout = true;
             // weak reference
+			COMPILE::LATER
+			{
             UIComponentGlobals.layoutManager.addEventListener(
                 FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler, false, 0, true);
+			}
+			// weak references
+			UIComponentGlobals.layoutManager.addEventListener(
+				FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler);
+
         }
 
         if (hasEventListener("childrenChanged"))
@@ -5192,10 +5242,13 @@ public class Container extends UIComponent
         // 91.9/0.01 = 9190 if it weren't for the rounding.
         // To undo the effect of the rounding, we'll add a fudge factor to
         // newViewableWidth. That way, we don't display unwanted scrollbars.
+		COMPILE::LATER
+		{
         if (scaleX != 1.0)
             newViewableWidth += 1.0 / Math.abs(scaleX);
         if (scaleY != 1.0)
             newViewableHeight += 1.0 / Math.abs(scaleY);
+		}
 
         newViewableWidth = Math.floor(newViewableWidth);
         newViewableHeight = Math.floor(newViewableHeight);

@@ -261,5 +261,15 @@ package org.apache.flex.core
             
             return source.dispatchEvent(e);
         }
+		
+		public function get tabIndex():int
+		{
+			return _element.tabIndex;
+		}
+		
+		public function set tabIndex(value:int):void
+		{
+			_element.tabIndex = value;
+		}
 	}
 }

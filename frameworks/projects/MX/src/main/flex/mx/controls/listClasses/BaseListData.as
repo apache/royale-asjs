@@ -20,7 +20,7 @@
 package mx.controls.listClasses
 {
 
-import flash.events.EventDispatcher;
+import org.apache.flex.events.EventDispatcher;
 
 import mx.core.IUIComponent;
 import mx.core.IUID;

@@ -256,6 +256,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     function swapElements(element1:org.apache.flex.core.IVisualElement, element2:org.apache.flex.core.IVisualElement):void;
     
     /**
@@ -275,6 +276,7 @@ public interface IVisualElementContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+	COMPILE::LATER
     function swapElementsAt(index1:int, index2:int):void;
 
 }

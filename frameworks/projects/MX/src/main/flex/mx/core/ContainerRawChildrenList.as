@@ -20,9 +20,16 @@
 package mx.core
 {
 
+COMPILE::AS3
+{
 import flash.display.DisplayObject;
 import flash.geom.Point;
-
+}
+COMPILE::JS
+{
+import flex.display.DisplayObject;
+import org.apache.flex.geom.Point;
+}
 use namespace mx_internal;
 
 [ExcludeClass]

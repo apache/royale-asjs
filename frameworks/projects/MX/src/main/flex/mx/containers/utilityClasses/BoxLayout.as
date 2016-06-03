@@ -173,12 +173,17 @@ public class BoxLayout extends Layout
 		var horizontalAlign:Number = getHorizontalAlignValue();
 		var verticalAlign:Number = getVerticalAlignValue();
 
+		COMPILE::LATER
+		{
 		var mw:Number = target.scaleX > 0 && target.scaleX != 1 ?
 						target.minWidth / Math.abs(target.scaleX) :
 						target.minWidth;
 		var mh:Number = target.scaleY > 0 && target.scaleY != 1 ?
 						target.minHeight / Math.abs(target.scaleY) :
 						target.minHeight;
+		}
+		var mw:Number = target.minWidth;
+		var mh:Number = target.minHeight;
 
 		var w:Number = Math.max(unscaledWidth, mw) - vm.right - vm.left;
 		var h:Number = Math.max(unscaledHeight, mh) - vm.bottom - vm.top;

@@ -20,12 +20,19 @@
 package mx.containers.utilityClasses
 {	
 
-import flash.events.Event;
-import flash.events.IEventDispatcher;
+COMPILE::AS3
+{
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+}
+COMPILE::JS
+{
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+}
 import mx.core.IInvalidating;
 import mx.core.mx_internal;
 import mx.core.IMXMLObject;
-import flash.events.EventDispatcher;
 
 use namespace mx_internal;
 

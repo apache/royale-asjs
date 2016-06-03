@@ -97,7 +97,26 @@ public class Rectangle
     {
         height = value - top;
     }
+	
+	public function get x():Number
+	{
+		return left;
+	}
+	public function set x(value:Number):void
+	{
+		left = value;
+	}
+	
+	public function get y():Number
+	{
+		return top;
+	}
 
+	public function set y(value:Number):void
+	{
+		top = value;
+	}
+	
 	public static function convert(obj:Object):org.apache.flex.geom.Rectangle
 	{
 		return new org.apache.flex.geom.Rectangle(obj.x, obj.y, obj.width, obj.height);

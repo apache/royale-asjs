@@ -16,25 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-package flex.ui
-{
-	public class Keyboard
+package flex.events
+{	
+    import flex.display.InteractiveObject;
+	
+	public class FocusEvent extends Event
 	{
-		public function Keyboard()
+		public function FocusEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, relatedObject:InteractiveObject = null,
+			shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
 		{
+			super(type, bubbles, cancelable);
+			this.relatedObject = relatedObject;
 		}
-				
-		public static const TAB:int = 0x09;
-		public static const LEFT:int = 0x25;
-		public static const UP:int = 0x26;
-		public static const RIGHT:int = 0x27;
-		public static const DOWN:int = 0x28;
-		public static const PAGE_UP:int = 0x21;
-		public static const PAGE_DOWN:int = 0x22;
-		public static const HOME:int = 0x24;
-		public static const END:int = 0x23;
-		public static const ENTER:int = 0x0D;
 		
+		public var relatedObject:InteractiveObject;
+		public var keyCode:uint;
+		public var shiftKey:Boolean;
+		
+		public static const FOCUS_IN:String = "focusIn";
+		public static const FOCUS_OUT:String = "focusOut";
 	}
 }

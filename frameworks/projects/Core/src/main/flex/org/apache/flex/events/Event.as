@@ -130,5 +130,14 @@ package org.apache.flex.events
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
+		
+		/**
+		 */
+		public function isDefaultPrevented():Boolean
+		{
+			return defaultPrevented;
+		}
+		
+
     }
 }

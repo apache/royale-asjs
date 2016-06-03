@@ -19,13 +19,18 @@
 
 package mx.utils
 {
-
+COMPILE::AS3
+{
 import flash.display.DisplayObject;
+import flash.display.Loader;
 import flash.display.LoaderInfo;
 import flash.events.IEventDispatcher;
 import flash.system.Capabilities;
 import flash.utils.Dictionary;
-
+}
+COMPILE::JS
+{
+}
 COMPILE::LATER
 {
 import mx.core.ApplicationDomainTarget;
@@ -36,8 +41,6 @@ import mx.core.mx_internal;
 import mx.events.Request;
 import mx.managers.SystemManagerGlobals;
 import mx.utils.Platform;
-
-import flash.display.Loader;
 
 use namespace mx_internal;
 
@@ -110,7 +113,7 @@ use namespace mx_internal;
      *  on it. If you want the unencoded url, you must call unencodeURI() on
      *  the results.
      *
-     *  @param loaderInfo A LoaderInfo instance.
+     *  @param loaderInfo A LoaderInfo instance or url string.
      *
      *  @return A normalized <code>LoaderInfo.url</code> property.
      *  
@@ -119,9 +122,20 @@ use namespace mx_internal;
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public static function normalizeURL(loaderInfo:LoaderInfo):String
+    public static function normalizeURL(loaderInfo:Object):String
     {
-        var url:String = loaderInfo.url;
+        var url:String;
+		COMPILE::AS3
+		{
+			if (loaderInfo is LoaderInfo)
+			  url = loaderInfo.url;
+			else
+			  url = loaderInfo.toString();
+		}
+		COMPILE::JS
+		{
+			url = loaderInfo.toString();
+		}
         var index:int;
         var searchString:String;
         var urlFilter:Function;
@@ -388,6 +402,7 @@ use namespace mx_internal;
      * @return
      * encoded url that may be loaded with a URLRequest
      **/
+	COMPILE::AS3
     mx_internal static function OSToPlayerURI(url:String, local:Boolean):String 
     {
         
@@ -455,6 +470,7 @@ use namespace mx_internal;
      * 
      *  @return the parent module factory if available, null otherwise. 
      */
+	COMPILE::AS3
     private static function getParentModuleFactory(moduleFactory:IFlexModuleFactory):IFlexModuleFactory    
     {
         var request:Request = new Request(Request.GET_PARENT_FLEX_MODULE_FACTORY_REQUEST);
@@ -600,6 +616,7 @@ use namespace mx_internal;
      * 
      *  @return true if loaded into the top-level application domain, false otherwise.
      */ 
+	COMPILE::LATER
     private static function isLoadedIntoTopLevelApplicationDomain(moduleFactory:IFlexModuleFactory):Boolean
     {
         if (moduleFactory is DisplayObject)
@@ -627,6 +644,7 @@ use namespace mx_internal;
      *  @param moduleFactory  The moduleFactory to set in the primary and 
      *  failover rsls.
      */
+	COMPILE::LATER
     private static function updateRSLModuleFactory(rsl:Array, moduleFactory:IFlexModuleFactory):void
     {
         var n:int = rsl.length;

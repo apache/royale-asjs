@@ -20,8 +20,16 @@
 package mx.containers.utilityClasses
 {
 
+COMPILE::AS3
+{
 import flash.display.DisplayObject;
 import flash.geom.Rectangle;
+}
+COMPILE::JS
+{
+import flex.display.DisplayObject;
+import org.apache.flex.geom.Rectangle;	
+}
 COMPILE::LATER
 {
 import mx.containers.Canvas;
@@ -36,7 +44,10 @@ import mx.events.ChildExistenceChangedEvent;
 import mx.events.MoveEvent;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
+COMPILE::LATER
+{
 import flash.utils.Dictionary;
+}
 
 use namespace mx_internal;
 
@@ -98,7 +109,10 @@ public class CanvasLayout extends Layout
     private var colSpanChildren:Array = [];
     private var rowSpanChildren:Array = [];
     
+	COMPILE::LATER
+	{
     private var constraintCache:Dictionary = new Dictionary(true);
+	}
     
     private var constraintRegionsInUse:Boolean = false;
 
@@ -317,7 +331,11 @@ public class CanvasLayout extends Layout
             return;
         //Calculate constraint boundaries if it has not been calculated
         //already 
+		COMPILE::LATER
+		{
         var childInfo:ChildConstraintInfo = constraintCache[constraintChild];
+		}
+		var childInfo:ChildConstraintInfo;
         if (!childInfo)
             childInfo = parseConstraints(child);
         var left:Number = childInfo.left;
@@ -1158,7 +1176,10 @@ public class CanvasLayout extends Layout
                                                 top, bottom, verticalCenter, baseline, leftBoundary, 
                                                 rightBoundary, hcBoundary, topBoundary, bottomBoundary, 
                                                 vcBoundary, baselineBoundary); 
-        constraintCache[child] = info;                                              
+		COMPILE::LATER
+		{
+        constraintCache[child] = info;    
+		}
         return info;
     }
 
@@ -1690,8 +1711,11 @@ public class CanvasLayout extends Layout
         DisplayObject(event.relatedObject).removeEventListener(
             MoveEvent.MOVE, child_moveHandler);
             
+		COMPILE::LATER
+		{
         //delete this child from the constraint cache if it exists
         delete constraintCache[event.relatedObject]; 
+		}
     }
 
     /**

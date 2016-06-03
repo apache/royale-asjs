@@ -89,6 +89,7 @@ public class RoundedRectangle extends Rectangle
 	 *  @productversion Flex 3
 	 */
 	public var cornerRadius:Number = 0;
+	
 }
 
 }

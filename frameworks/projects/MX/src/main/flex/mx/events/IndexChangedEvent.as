@@ -20,8 +20,15 @@
 package mx.events
 {
 
+COMPILE::AS3
+{
 import flash.display.DisplayObject;
-import flash.events.Event;
+}
+COMPILE::JS
+{
+import flex.display.DisplayObject;
+}
+import flex.events.Event;
 
 /**
  *  The IndexChangedEvent class represents events that are dispatched when 
@@ -299,7 +306,7 @@ public class IndexChangedEvent extends Event
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():Event
     {
         return new IndexChangedEvent(type, bubbles, cancelable,
                                      relatedObject, oldIndex, 

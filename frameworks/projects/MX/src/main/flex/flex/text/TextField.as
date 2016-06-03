@@ -426,19 +426,7 @@ public class TextField extends Label
 		_tabEnabled = value;
 		trace("TextField.tabEnabled not implemented");
 	}
-	
-	private var _tabIndex:int;
-	public function get tabIndex():int
-	{
-		trace("TextField.tabIndex not implemented");
-		return _tabIndex;
-	}
-	public function set tabIndex(value:int):void
-	{
-		_tabIndex = value;
-		trace("TextField.tabIndex not implemented");
-	}
-	
+		
 	private var _textColor:uint;
 	public function get textColor():uint
 	{

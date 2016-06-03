@@ -36,7 +36,17 @@ import flash.system.IME;
 import flash.text.TextField;
 import flash.ui.Keyboard;
 }
-
+COMPILE::JS
+{
+	import flex.display.DisplayObject;
+	import flex.display.DisplayObjectContainer;
+	import flex.display.InteractiveObject;	
+	import org.apache.flex.events.EventDispatcher;
+	import flex.events.Event;
+	import flex.events.FocusEvent;
+	import flex.ui.Keyboard;
+	import flex.text.TextField;
+}
 COMPILE::LATER
 {
 import mx.core.FlexSprite;
@@ -154,9 +164,12 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 		this.popup = popup;
 
         IMEEnabled = true;
+		COMPILE::AS3
+		{
 		// Only <= IE8 supported focus cycling out of the SWF
         browserMode = Capabilities.playerType == "ActiveX" && !popup;
-        desktopMode = Platform.isAir && !popup;
+		desktopMode = Platform.isAir && !popup;
+		}
         // Flash main windows come up activated, AIR main windows don't
         windowActivated = !desktopMode;
     
@@ -204,6 +217,8 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 
         // Make sure the SystemManager is running so it can tell us about
         // mouse clicks and stage size changes.
+		COMPILE::AS3
+		{
 		try
 		{
 			var awm:IActiveWindowManager = 
@@ -219,6 +234,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 		{
 			// ignore null pointer errors caused by container using a 
 			// systemManager from another sandbox.
+		}
 		}
     }
 
@@ -593,15 +609,24 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+	 *  @flexjsignorecoercion flex.display.InteractiveObject;
+	 *  @flexjsignorecoercion org.apache.flex.core.IUIBase;
      */
     public function getFocus():IFocusManagerComponent
     {
+		COMPILE::AS3
+		{
         var stage:Stage = form.systemManager.stage;
         
         if (!stage)
             return null;
             
         var o:InteractiveObject = stage.focus;
+		}
+		COMPILE::JS
+		{
+			var o:InteractiveObject = document.activeElement as InteractiveObject;			
+		}
 		var i:IUIBase;
 		while (o != null)
 		{
@@ -620,8 +645,11 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // different than it does on device when using StageText.  In ADL, when
         // the focus is a StageText component, a TextField whose parent is the 
         // stage is assigned focus.  
+		COMPILE::AS3
+		{
         if ((!o && _lastFocus) || (o is TextField && o.parent == stage))
             return _lastFocus;
+		}
         
         return findFocusManagerComponent(i);
     }
@@ -684,6 +712,8 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             // trace("FM " + this + " setting last focus " + target);
             _lastFocus = findFocusManagerComponent(i);
             
+			COMPILE::AS3
+			{
 			if (Capabilities.hasIME)
             {
                 var usesIME:Boolean;
@@ -696,7 +726,8 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                 if (IMEEnabled)
                     IME.enabled = usesIME;
             }
-            
+			}
+			
 			// handle default button here
 			// we can't check for Button because of cross-versioning so
 			// for now we just check for an emphasized property
@@ -800,8 +831,11 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         if (activated)
         {
             dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_DEACTIVATE));
+			COMPILE::AS3
+			{
             if (form.systemManager.stage)
                 form.systemManager.stage.focus = null;
+			}
         }
     }   
 
@@ -876,6 +910,8 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // listen for focus changes, use weak references for the stage
 		// form.systemManager can be null if the form is created in a sandbox and 
 		// added as a child to the root system manager.
+		COMPILE::AS3
+		{
 		var sm:ISystemManager = form.systemManager;
 		if (sm)
 		{
@@ -909,7 +945,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             sm.addEventListener("windowActivate", activateWindowHandler, true, 0, true);
             sm.addEventListener("windowDeactivate", deactivateWindowHandler, true, 0, true);
         }
-
+		}
         activated = true;
         dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_ACTIVATE));
         
@@ -944,6 +980,8 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // trace("FocusManager deactivating " + this);
         // trace("FocusManager deactivating = " + this._form.systemManager.loaderInfo.url);
          
+		COMPILE::AS3
+		{
         // listen for focus changes
 		var sm:ISystemManager = form.systemManager;
         if (sm)
@@ -971,7 +1009,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         form.removeEventListener(KeyboardEvent.KEY_DOWN, defaultButtonKeyHandler);
         // stop listening for default button in Capture phase
         form.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler, true);
-
+		}
         activated = false;
         dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_DEACTIVATE));
 
@@ -1023,7 +1061,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	            o = o.parent;
 	        }
 	    }
-	    catch (error:SecurityError)
+	    catch (error:Error)
 	    {
 	    	// can happen in a loaded child swf
 	    	// trace("findFocusManagerComponent: handling security error");
@@ -1276,10 +1314,12 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             }
             else
             {
+				COMPILE::AS3
+				{
                 o.addEventListener("tabChildrenChange", tabChildrenChangeHandler);
                 checkChildren = doc.tabChildren;
-            }
-
+	            }
+			}
             if (checkChildren)
             {
                 if (o is IRawChildrenContainer)
@@ -1296,7 +1336,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                         {
                             addFocusables(rawChildren.getChildAt(i));
                         }
-                        catch(error:SecurityError)
+                        catch(error:Error)
                         {
                             // Ignore this child if we can't access it
                             // trace("addFocusables: ignoring security error getting child from rawChildren: " + error);
@@ -1316,7 +1356,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                         {
                             addFocusables(doc.getChildAt(i));
                         }
-                        catch(error:SecurityError)
+                        catch(error:Error)
                         {
                             // Ignore this child if we can't access it
                             // trace("addFocusables: ignoring security error getting child at document." + error);
@@ -1340,8 +1380,11 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         var p:DisplayObjectContainer = o.parent;
         while (p && p != s)
         {
+			COMPILE::AS3
+			{
             if (!p.tabChildren)
                 return false;
+			}
             if (p is IFocusManagerComponent && !(IFocusManagerComponent(p).hasFocusableChildren))
                 return false;
             p = p.parent;
@@ -1655,6 +1698,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
+	 *  @flexjsignorecoercion flex.display.InteractiveObject
 	 */
 	private function getNextFocusManagerComponent2(
                             backward:Boolean = false, 
@@ -1680,11 +1724,17 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         {
 	        // if there is no passed in object, then get the object that has the focus
     	    var o:DisplayObject = fromObject; 
+			COMPILE::AS3
+			{
         	if (!o)
         		o = form.systemManager.stage.focus;
             else if (o == form.systemManager.stage)
                 o == null;
-        
+			}
+			COMPILE::JS
+			{
+				o = document.activeElement as InteractiveObject;
+			}
 	        o = DisplayObject(findFocusManagerComponent2(InteractiveObject(o)));
 	
 	        var g:String = "";
@@ -1767,6 +1817,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	COMPILE::AS3
     override public function toString():String
     {
         return Object(form).toString() + ".focusManager";
@@ -1807,11 +1858,19 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         
         // if it is truly parented, add it, otherwise it will get added when the top of the tree
         // gets parented.
+		COMPILE::AS3
+		{
         if (target.stage)
         {
             // trace("FM: addedHandler: adding focusables");
             addFocusables(DisplayObject(event.target));
         }
+		}
+		COMPILE::JS
+		{
+			// trace("FM: addedHandler: adding focusables");
+			addFocusables(DisplayObject(event.target));			
+		}
     }
 
     /**
@@ -1874,7 +1933,10 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         {
             if (!dontRemoveTabChildrenHandler)
             {
+				COMPILE::AS3
+				{
                 o.removeEventListener("tabChildrenChange", tabChildrenChangeHandler);
+				}
                 o.removeEventListener("hasFocusableChildrenChange", hasFocusableChildrenChangeHandler);
             }
 
@@ -1933,11 +1995,14 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // trace("FocusManager focusInHandler in  = " + this._form.systemManager.loaderInfo.url);
         // trace("FM " + this + " focusInHandler " + target);
 
+		COMPILE::AS3
+		{
         if (lastFocus && !isEnabledAndVisible(DisplayObject(lastFocus)) && DisplayObject(form).stage)
         {
             DisplayObject(form).stage.focus = null;
             lastFocus = null;
         }
+		}
     }
     
     /**
@@ -2018,6 +2083,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @private
      *  Add or remove if tabbing properties change.
      */
+	COMPILE::AS3
     private function tabChildrenChangeHandler(event:Event):void
     {
         if (event.target != event.currentTarget)
@@ -2147,7 +2213,10 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                 // the focus somewhere else, so we set fauxFocus to the stage as a signal
                 // to the setFocusToNextObject logic that it shouldn't use the stage.focus
                 // as the starting point.
+				COMPILE::AS3
+				{
                 fauxFocus = sm.stage;
+				}
             }
             // trace("tabHandled by " + this);
             setFocusToNextObject(event);
@@ -2166,6 +2235,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
     /**
      *  @private
      *  Watch for TAB keys.
+	 *  @flexjsignorecoercion flex.display.InteractiveObject
      */
     mx_internal function keyDownHandler(event:KeyboardEvent):void
     {
@@ -2205,7 +2275,14 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                 var o:DisplayObject = fauxFocus;
 				if (!o)
 				{
+					COMPILE::AS3
+					{
 					o = form.systemManager.stage.focus;
+					}
+					COMPILE::JS
+					{
+					o = document.activeElement as InteractiveObject;
+					}
 				}
 				
                 // trace("focus was at " + o);
@@ -2325,9 +2402,19 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	
     }
 	
+	/**
+	 * @flexjsignorecoercion flex.display.InteractiveObject
+	 */
 	private function getBrowserFocusComponent(shiftKey:Boolean):InteractiveObject
 	{
+		COMPILE::AS3
+		{
     	var focusComponent:InteractiveObject = form.systemManager.stage.focus;
+		}
+		COMPILE::JS
+		{
+			var focusComponent:InteractiveObject = document.activeElement as InteractiveObject;			
+		}
 		
 		// if the focus is null it means focus is in an application we
 		// don't have access to. Use either the last object or the first
@@ -2344,7 +2431,14 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 
 }
 
+COMPILE::AS3
+{
 import flash.display.DisplayObject;
+}
+COMPILE::JS
+{
+	import flex.display.DisplayObject;	
+}
 
 /** 
  * @private

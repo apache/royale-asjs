@@ -1124,7 +1124,12 @@ public class Application extends LayoutContainer
             if (!resizeHandlerAdded)
             {
                 // weak reference
+				COMPILE::LATER
+				{
                 systemManager.addEventListener(Event.RESIZE, resizeHandler, false, 0, true);
+				}
+				systemManager.addEventListener(Event.RESIZE, resizeHandler);
+				
                 resizeHandlerAdded = true;
             }
         }
@@ -1323,11 +1328,14 @@ public class Application extends LayoutContainer
     {
         super.resourcesChanged();
         
+		COMPILE::AS3
+		{
         // "View Source" on the context menu
         if (viewSourceCMI)
         {
             viewSourceCMI.caption = resourceManager.getString("core", "viewSource");
         }
+		}
     }
     
     //--------------------------------------------------------------------------
@@ -1875,6 +1883,23 @@ public class Application extends LayoutContainer
         
         invalidateDisplayList();      
     }
+	
+	COMPILE::JS
+	private function makeParameters(url:String):Object
+	{
+		if (url == null || url.length == 0)
+			return {};
+		
+		url = url.substring(1); // remove leading ?
+		var parts:Array = url.split("&");
+		var parms:Object = {};
+		for each (var part:String in parts)
+		{
+			var subParts:Array = part.split("=");
+			parms[subParts[0]] = subParts[1];
+		}
+		return parms;
+	}
 }
 
 }

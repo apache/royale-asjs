@@ -35,8 +35,7 @@ COMPILE::JS
     import flex.display.DisplayObject;
     import flex.display.Graphics;
     import flex.events.Event;
-    import flex.geom.Rectangle;
-    import flex.text.StyleSheet;
+    import org.apache.flex.geom.Rectangle;
     import flex.text.TextFormat;
     import flex.text.TextLineMetrics;    
 }

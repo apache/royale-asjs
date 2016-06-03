@@ -24,7 +24,7 @@ package flex.display
 	import org.apache.flex.utils.PointUtils;
 	import mx.managers.SystemManagerGlobals;
 	
-	public class Sprite extends GraphicsContainer implements DisplayObjectContainer
+	public class Shape extends GraphicsContainer
 	{
 		COMPILE::JS
 		private var _name:String;
@@ -37,71 +37,6 @@ package flex.display
 		public function set name(value:String):void
 		{
 			_name = value;
-		}
-		
-		COMPILE::JS
-		public function get numChildren():int
-		{
-			return numElements;
-		}
-		
-		COMPILE::JS
-		public function getChildAt(index:int):DisplayObject
-		{
-			return getElementAt(index) as DisplayObject;
-		}
-		
-		COMPILE::JS
-		public function getChildByName(name:String):DisplayObject
-		{
-			for (var i:int = 0; i < numChildren; i++)
-			{
-				if (getChildAt(i).name == name)
-					return getChildAt(i);
-			}
-			return null;
-		}
-		
-		COMPILE::JS
-		public function getChildIndex(child:DisplayObject):int
-		{
-			return getElementIndex(child);
-		}
-		
-		COMPILE::JS
-		public function setChildIndex(child:DisplayObject, index:int):void
-		{
-			removeElement(child);
-			addElementAt(child, index);
-		}
-		
-		COMPILE::JS
-		public function addChild(child:DisplayObject):DisplayObject
-		{
-			addElement(child);
-			return child;
-		}
-		
-		COMPILE::JS
-		public function addChildAt(child:DisplayObject, index:int):DisplayObject
-		{
-			addElementAt(child, index);
-			return child;
-		}
-		
-		COMPILE::JS
-		public function removeChild(child:DisplayObject):DisplayObject
-		{
-			removeElement(child);
-			return child;
-		}
-		
-		COMPILE::JS
-		public function removeChildAt(index:int):DisplayObject
-		{
-			var child:DisplayObject = getChildAt(index);
-			removeElement(child);
-			return child;
 		}
 		
 		/**
