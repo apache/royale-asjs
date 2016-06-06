@@ -29,6 +29,8 @@ internal class MobileClasses
 {	
 	import org.apache.flex.mobile.ManagerBase; ManagerBase;
 	
+	import org.apache.flex.mobile.DatePicker; DatePicker;
+	import org.apache.flex.mobile.beads.DatePickerView; DatePickerView;
 	import org.apache.flex.mobile.ToggleSwitch; ToggleSwitch;
 	import org.apache.flex.mobile.ViewManagerBase; ViewManagerBase;
 	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
