@@ -153,6 +153,12 @@ DateField {
     IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatMMDDYYYYBead");
 }
 
+RangeStepper {
+	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+}
+
 HContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");

@@ -91,6 +91,7 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.beads.models.RangeModel; RangeModel;
+    import org.apache.flex.html.beads.models.RangeModelExtended; RangeModelExtended;
 	COMPILE::AS3
 	{
 	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
@@ -152,12 +153,16 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;
+	import org.apache.flex.html.beads.DecrementButtonView; DecrementButtonView;
+	import org.apache.flex.html.beads.IncrementButtonView; IncrementButtonView;
+	import org.apache.flex.html.beads.RangeStepperView; RangeStepperView;
     import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.flex.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.flex.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;
 	import org.apache.flex.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
+	import org.apache.flex.html.beads.controllers.RangeStepperMouseController; RangeStepperMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
