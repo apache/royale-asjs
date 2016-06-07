@@ -84,10 +84,6 @@
             <load-config filename="${basedir}/src/main/config/compile-as-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
-            <arg value="-define=COMPILE::AS3,true" />
-            <arg value="-define=COMPILE::JS,false" />
-            <arg value="-define=COMPILE::LATER,false" />
-            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </compc>
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>

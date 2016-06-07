@@ -66,10 +66,6 @@
             <arg value="-external-library-path+=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
-            <arg value="-define=COMPILE::AS3,false" />
-            <arg value="-define=COMPILE::JS,true" />
-            <arg value="-define=COMPILE::LATER,false" />
-            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </java>
     </target>
     
@@ -90,10 +86,6 @@
             <arg value="-external-library-path=${JS.SWC}" />
             <!-- this is not on external-library path otherwise goog.requires are not generated -->
             <arg value="-library-path+=${GCL.SWC}" />
-            <arg value="-define=COMPILE::AS3,false" />
-            <arg value="-define=COMPILE::JS,true" />
-            <arg value="-define=COMPILE::LATER,false" />
-            <arg value="-define=CONFIG::performanceInstrumentation,false" />
         </compc>
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name}" />
     </target>

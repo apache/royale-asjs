@@ -32,6 +32,24 @@
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
         <allow-subclass-overrides>true</allow-subclass-overrides>
         
+        <!-- Conditional compilation for the framework performance instrumentation code. -->
+        <define>
+            <name>CONFIG::performanceInstrumentation</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>COMPILE::AS3</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::LATER</name>
+            <value>false</value>
+        </define>
+        
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
