@@ -54,7 +54,6 @@ package org.apache.flex.html.beads
 			super();
 		}
 
-		private var _strand:IStrand;
 		private var _label:Label;
 		private var _incrementButton:ImageButton;
 		private var _decrementButton:ImageButton;

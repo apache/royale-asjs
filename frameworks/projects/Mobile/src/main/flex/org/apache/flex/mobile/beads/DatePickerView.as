@@ -75,8 +75,6 @@ package org.apache.flex.mobile.beads
 		{
 			return String(index);
 		}
-
-		private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand

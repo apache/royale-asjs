@@ -35,8 +35,6 @@ package org.apache.flex.html.beads
 			super();
 		}
 
-		private var _strand:IStrand;
-
 		private var _backRect:Rect;
 		private var _arrow:Path;
 
