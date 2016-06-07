@@ -45,11 +45,20 @@
                             <uri>library://ns.apache.org/flexjs/flat</uri>
                             <manifest>${project.basedir}/src/main/resources/flat-manifest.xml</manifest>
                         </namespace>
+                        <namespace>
+                            <type>as</type>
+                            <uri>library://ns.apache.org/flexjs/flat</uri>
+                            <manifest>${project.basedir}/src/main/resources/flat-as-manifest.xml</manifest>
+                        </namespace>
                     </namespaces>
                     <includeClasses>
                         <includeClass>FlatClasses</includeClass>
                     </includeClasses>
                     <includeFiles>
+                        <include-file>
+                            <name>defaults.css</name>
+                            <path>../src/main/resources/defaults.css</path>
+                        </include-file>
                         <include-file>
                             <name>js/out/*</name>
                             <path>generated-sources/flexjs/*</path>
