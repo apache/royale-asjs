@@ -49,6 +49,12 @@
                     <includeClasses>
                         <includeClass>EffectsClasses</includeClass>
                     </includeClasses>
+                    <includeFiles>
+                        <include-file>
+                            <name>js/out/*</name>
+                            <path>generated-sources/flexjs/*</path>
+                        </include-file>
+                    </includeFiles>
                 </configuration>
                 <dependencies>
                     <dependency>

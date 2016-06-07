@@ -49,6 +49,16 @@
                     <includeClasses>
                         <includeClass>JQueryClasses</includeClass>
                     </includeClasses>
+                    <includeFiles>
+                        <include-file>
+                            <name>defaults.css</name>
+                            <path>../src/main/resources/defaults.css</path>
+                        </include-file>
+                        <include-file>
+                            <name>js/out/*</name>
+                            <path>generated-sources/flexjs/*</path>
+                        </include-file>
+                    </includeFiles>
                 </configuration>
                 <dependencies>
                     <dependency>

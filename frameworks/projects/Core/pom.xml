@@ -49,6 +49,12 @@
                     <includeClasses>
                         <includeClass>CoreClasses</includeClass>
                     </includeClasses>
+                    <includeFiles>
+                        <include-file>
+                            <name>js/out/*</name>
+                            <path>generated-sources/flexjs/*</path>
+                        </include-file>
+                    </includeFiles>
                     <skipExtern>false</skipExtern>
                 </configuration>
                 <dependencies>
@@ -68,7 +74,7 @@
             <artifactId>airglobal</artifactId>
             <version>${air.version}</version>
             <type>swc</type>
-            <!--scope>external</scope-->
+            <scope>external</scope>
         </dependency>
 
         <dependency>
@@ -85,6 +91,7 @@
             <version>0.7.0-SNAPSHOT</version>
             <type>swc</type>
             <classifier>extern</classifier>
+            <scope>external</scope>
         </dependency>
     </dependencies>
 
