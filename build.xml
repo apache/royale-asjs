@@ -183,7 +183,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
@@ -357,8 +357,29 @@
     <target name="create-config" description="Create flex config file" unless="airsdk.found">
         <ant dir="${basedir}/frameworks" target="flex-config" />
         <ant dir="${basedir}/frameworks" target="air-config" />
+        <ant dir="${basedir}/frameworks" target="js-config" />
     </target>
 	
+    <target name="copy-externs" description="Copy extern swcs into this folder">
+        <mkdir dir="${basedir}/js/libs" />
+        <copy todir="${basedir}/js/libs" flatten="true">
+            <fileset dir="${FALCONJX_HOME}/../externs">
+                <include name="**/*.swc"/>
+            </fileset>
+        </copy>
+        <antcall target="rename_jquery" />
+    </target>
+    
+    <target name="check_jquery" >
+        <condition property="jquery_exists">
+            <available file="${basedir}/js/libs/jquery.swc" />
+        </condition>
+    </target>
+    
+    <target name="rename_jquery" depends="check_jquery" unless="jquery_exists" >
+        <move file="${basedir}/js/libs/jquery-1.9.swc" tofile="${basedir}/js/libs/jquery.swc" />
+    </target>
+    
     <target name="setup-binary-release" depends="thirdparty-clean"
         description="Set properties needed to turn on features for release sdk">       
 	    <!-- 
@@ -395,6 +416,7 @@
             <include name="**/*.swf"/>
         </delete>
 
+        <delete dir="${basedir}/js/libs" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/out" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
         <delete dir="${basedir}/tempDoc" failonerror="false" includeEmptyDirs="true"/>
@@ -661,6 +683,7 @@
             <fileset dir="${basedir}/frameworks">
                 <include name="air-config-template.xml"/>
                 <include name="flex-config-template.xml"/>
+                <include name="js-config-template.xml"/>
             </fileset>
         </copy>
 
@@ -674,6 +697,8 @@
         <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
         <echo message="Updating config file flex-config.xml with version ${build.version}"/>
         <fix-config-file file="${basedir}/temp/frameworks/flex-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file js-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/js-config-template.xml" version="${build.version}" />
         
         <!-- Update all Version.as files in the kit frameworks directory with build.number -->
         <!--<antcall target="version-update"/>-->
