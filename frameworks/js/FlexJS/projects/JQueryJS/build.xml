@@ -59,7 +59,7 @@
             <arg value="-compiler.strict-xml=true" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <arg value="-output=${basedir}/target/generated-sources/flexjs" />
-            <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
+            <arg value="-load-config=${FLEX_HOME}/frameworks/jquery-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>
     </target>
@@ -74,7 +74,7 @@
         <compc fork="true"
             output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="${FLEX_HOME}/frameworks/js-config.xml" />
+            <load-config filename="${FLEX_HOME}/frameworks/jquery-config.xml" />
             <load-config filename="src/main/config/compile-js-config.xml" />
             <arg value="-compiler.strict-xml=true" />
         </compc>

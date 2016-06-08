@@ -21,10 +21,6 @@
     <compiler>
         <accessible>false</accessible>
         
-        <external-library-path append="true">
-            <path-element>../../../../../../../../js/libs/jquery.swc</path-element>
-        </external-library-path>
-        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
