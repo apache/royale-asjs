@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*"
 				initComplete="startup()">
@@ -199,7 +199,7 @@ limitations under the License.
 	</fx:Style>
 	
 	<js:beads>
-		<js:ViewBaseDataBinding />
+		<js:ViewDataBinding />
 	</js:beads>
 	
 	<js:VContainer width="100%" height="100%">
@@ -242,4 +242,4 @@ limitations under the License.
 	</js:VContainer>
 		
 
-</js:ViewBase>
+</js:View>
