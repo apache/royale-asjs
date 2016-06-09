@@ -37,8 +37,7 @@
         <module>CordovaCameraExample</module>
         <module>CreateJSExample</module>
         <module>DataBindingExample</module>
-        <!-- Needs "depends" support -->
-        <!--module>DataBindingExample_as</module-->
+        <module>DataBindingExample_as</module>
         <module>DataBindingExample_Flat</module>
         <module>DataGridExample</module>
         <module>DesktopMap</module>

@@ -40,20 +40,29 @@
                 <version>0.7.0-SNAPSHOT</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <mainClass>DataBindingExample.mxml</mainClass>
-                    <!--defines>
-                        <property>
+                    <mainClass>DataBindingExample.as</mainClass>
+                    <defines>
+                        <define>
                             <name>CONFIG::as_only</name>
                             <value>true</value>
-                        </property>
-                        <property>
+                        </define>
+                        <define>
                             <name>CONFIG::js_only</name>
                             <value>false</value>
-                        </property>
-                    </defines-->
+                        </define>
+                    </defines>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flex.flexjs.framework</groupId>
+            <artifactId>Network</artifactId>
+            <version>0.7.0-SNAPSHOT</version>
+            <type>swc</type>
+        </dependency>
+    </dependencies>
 
 </project>
