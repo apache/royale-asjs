@@ -19,24 +19,25 @@
 package org.apache.flex.mobile
 {
 	/**
-	 * The IViewManager interface is implemented by classes that manage or control
-	 * IViews.
+	 * The IViewManagerView interface is implemented by any class that can be managed by
+	 * an IViewManager.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IViewManager extends IViewManagerView
+	public interface IViewManagerView
 	{
 		/**
-		 * The view that is currently active in the view manager.
+		 * The parent view manager.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get selectedView():IViewManagerView;
+		function get viewManager():IViewManager;
+		function set viewManager(value:IViewManager):void;
 	}
 }

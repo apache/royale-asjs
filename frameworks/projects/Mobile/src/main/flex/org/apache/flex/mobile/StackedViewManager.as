@@ -20,7 +20,7 @@ package org.apache.flex.mobile
 {	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IView;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
@@ -101,7 +101,7 @@ package org.apache.flex.mobile
 		}
 
 		
-		private var _topView:IView;
+		private var _topView:IViewManagerView;
 
 		/**
 		 * The top-most (current) view.
@@ -111,7 +111,7 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function get selectedView():IView
+		override public function get selectedView():IViewManagerView
 		{
 			return _topView;
 		}
@@ -125,7 +125,7 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function push(nextView:IView):void
+		public function push(nextView:IViewManagerView):void
 		{
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
@@ -151,7 +151,7 @@ package org.apache.flex.mobile
 				var lastView:Object = ViewManagerModel(model).popView();
 				removeElement(_topView);
 				addElement(lastView);
-				_topView = lastView as IView;
+				_topView = lastView as IViewManagerView;
 				
 				dispatchEvent( new Event("viewChanged") );
 			}

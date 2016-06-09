@@ -35,7 +35,7 @@ internal class MobileClasses
 	import org.apache.flex.mobile.ViewManagerBase; ViewManagerBase;
 	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
 	import org.apache.flex.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
-	import org.apache.flex.mobile.beads.ViewManagerView; ViewManagerView;
+	import org.apache.flex.mobile.beads.ViewManagerViewBase; ViewManagerViewBase;
 	import org.apache.flex.mobile.beads.ToggleSwitchView; ToggleSwitchView;
 	import org.apache.flex.mobile.beads.controllers.ToggleSwitchMouseController; ToggleSwitchMouseController;
 	import org.apache.flex.mobile.chrome.NavigationBar; NavigationBar;

@@ -19,7 +19,7 @@
 package org.apache.flex.mobile
 {	
 	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IView;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.TabBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;

@@ -28,12 +28,12 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
-	import org.apache.flex.mobile.IView;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
 	
 	/**
-	 * The ViewManagerView creates the visual elements of the StackedViewManager. This
+	 * The ViewManagerViewBase creates the visual elements of the StackedViewManager. This
 	 * includes a NavigationBar, ToolBar, and contentArea.
 	 *  
 	 *  @langversion 3.0
@@ -41,7 +41,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ViewManagerView implements IBeadView
+	public class ViewManagerViewBase implements IBeadView
 	{
 		/**
 		 * Constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mobile.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ViewManagerView()
+		public function ViewManagerViewBase()
 		{
 			super();
 		}
@@ -154,7 +154,7 @@ package org.apache.flex.mobile.beads
 			if (n > 0) {
 				for (var i:int = 0; i < n; i++)
 				{
-					var view:IView = ViewManagerModel(model).views[i] as IView;
+					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
 					UIBase(view).x = model.contentX;
 					UIBase(view).y = model.contentY;
 					UIBase(view).setWidthAndHeight(model.contentWidth, model.contentHeight, true);

@@ -29,8 +29,8 @@ package org.apache.flex.binding
     import org.apache.flex.events.IEventDispatcher;
     
     /**
-     *  The ViewBaseDataBinding class implements databinding for
-     *  ViewBase instances.  Different classes can have
+     *  The ViewDataBinding class implements databinding for
+     *  View instances.  Different classes can have
      *  different databinding implementation that optimize for
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings
@@ -41,7 +41,7 @@ package org.apache.flex.binding
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewBaseDataBinding implements IBead
+	public class ViewDataBinding implements IBead
 	{
         /**
          *  Constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function ViewBaseDataBinding()
+		public function ViewDataBinding()
 		{
 			super();
 		}

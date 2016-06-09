@@ -167,7 +167,6 @@ internal class HTMLClasses
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
 
-    import org.apache.flex.html.MXMLBeadViewBase; MXMLBeadViewBase;
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 

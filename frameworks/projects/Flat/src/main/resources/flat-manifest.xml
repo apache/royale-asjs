@@ -88,12 +88,12 @@
     <component id="FlexibleFirstChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout" lookupOnly="true" />
     <component id="OneFlexibleChildVerticalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout" lookupOnly="true" />
     <component id="OneFlexibleChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout" lookupOnly="true" />
-    <component id="MXMLBeadViewBase" class="org.apache.flex.html.MXMLBeadViewBase" lookupOnly="true" />
+    <component id="MXMLBeadView" class="org.apache.flex.html.MXMLBeadView" lookupOnly="true" />
 
     <component id="Border" class="org.apache.flex.html.supportClasses.Border" lookupOnly="true" />
 
-    <component id="ViewBase" class="org.apache.flex.core.ViewBase" lookupOnly="true" />
-    <component id="ViewBaseDataBinding" class="org.apache.flex.binding.ViewBaseDataBinding" lookupOnly="true" />
+    <component id="View" class="org.apache.flex.core.View" lookupOnly="true" />
+    <component id="ViewDataBinding" class="org.apache.flex.binding.ViewDataBinding" lookupOnly="true" />
     <component id="State" class="org.apache.flex.states.State" lookupOnly="true" />
 
 </componentPackage>
