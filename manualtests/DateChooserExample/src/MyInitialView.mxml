@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*">
@@ -41,4 +41,4 @@ limitations under the License.
 	
 	<js:DateField id="dateField" x="450" y="90" />
 	
-</js:ViewBase>
+</js:View>

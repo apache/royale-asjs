@@ -18,7 +18,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
 				xmlns:models="models.*"
 				xmlns:js="library://ns.apache.org/flexjs/basic" 
@@ -88,7 +88,7 @@
 		]]>
 	</fx:Script>
 	<js:beads>
-		<js:MXMLBeadViewBaseDataBinding />
+		<js:MXMLBeadViewDataBinding />
 	</js:beads>
 	
 	<!-- FIRST COLUMN -->
@@ -185,4 +185,4 @@
 	</js:Panel>
 			
 			
-</js:ViewBase>
+</js:View>
