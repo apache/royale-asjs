@@ -17,7 +17,7 @@
   limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:js="library://ns.apache.org/flexjs/basic" 
     xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:haloviews="halo.views.*"
@@ -208,4 +208,4 @@
         <mx:TextInput id="newStateInput" text="" enter="{currentState=newStateInput.text}" />
     </s:Group>    
     -->    
-</js:ViewBase>
+</js:View>
