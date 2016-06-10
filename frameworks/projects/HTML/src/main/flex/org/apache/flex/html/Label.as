@@ -156,6 +156,7 @@ package org.apache.flex.html
             element = document.createElement('span') as WrappedHTMLElement;
             positioner = element;
             element.flexjs_wrapper = this;
+            element.style.whiteSpace = "nowrap";
             return element;
         }        
 
