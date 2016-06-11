@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.Shape;            
     }
@@ -48,14 +48,14 @@ package org.apache.flex.core
 		{
 			super();
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 _shape = new flash.display.Shape();
                 this.addElement(_shape);
             }
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _shape:flash.display.Shape;
 		
 		private var _fillColor:uint = 0x000000;
@@ -104,7 +104,7 @@ package org.apache.flex.core
          */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 _shape.graphics.clear();
                 _shape.graphics.beginFill(_fillColor);

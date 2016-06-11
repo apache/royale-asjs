@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {        
         import flash.external.ExternalInterface;
         import flash.utils.getQualifiedClassName;
@@ -66,7 +66,7 @@ package org.apache.flex.core
         
         private function viewChangedHandler(event:Event):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (ExternalInterface.available)
                 {

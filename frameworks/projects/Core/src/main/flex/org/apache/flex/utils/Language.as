@@ -20,7 +20,7 @@ package org.apache.flex.utils
 {
 
 	[ExcludeClass]
-	COMPILE::AS3
+	COMPILE::SWF
 	public class Language {}
 
     COMPILE::JS

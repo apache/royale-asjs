@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObject;
         import flash.events.Event;
@@ -89,7 +89,7 @@ package org.apache.flex.core
          */
         public function callLater(fn:Function, args:Array = null, thisArg:Object = null):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 DisplayObject(_strand).addEventListener(Event.ENTER_FRAME, enterFrameHandler);
             }
@@ -104,7 +104,7 @@ package org.apache.flex.core
             }
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function enterFrameHandler(event:Event):void
         {
             DisplayObject(_strand).removeEventListener(Event.ENTER_FRAME, enterFrameHandler);

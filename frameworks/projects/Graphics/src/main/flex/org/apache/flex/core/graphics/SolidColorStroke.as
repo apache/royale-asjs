@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.CapsStyle;
         import flash.display.JointStyle;            
@@ -103,7 +103,7 @@ package org.apache.flex.core.graphics
 			_weight = value;
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		public function apply(s:GraphicShape):void
 		{
 			s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);

@@ -38,7 +38,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.metadata;

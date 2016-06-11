@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.CapsStyle;
         import flash.display.JointStyle;
@@ -44,7 +44,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawRect(xp:Number, yp:Number, width:Number, height:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 graphics.clear();
                 applyStroke();

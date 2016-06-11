@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.GraphicsPath;
         import flash.geom.Point;
@@ -60,7 +60,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawPath(xp:Number,yp:Number,data:String):void
 		{
-			COMPILE::AS3
+			COMPILE::SWF
             {
                 graphics.clear();
                 applyStroke();

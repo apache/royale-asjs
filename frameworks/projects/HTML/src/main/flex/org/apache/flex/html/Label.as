@@ -71,7 +71,7 @@ package org.apache.flex.html
          */
 		public function get text():String
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {                    
                 return ITextModel(model).text;
             }
@@ -86,7 +86,7 @@ package org.apache.flex.html
          */
 		public function set text(value:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 ITextModel(model).text = value;                    
             }
@@ -109,7 +109,7 @@ package org.apache.flex.html
          */
 		public function get html():String
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return ITextModel(model).html;                    
             }
@@ -124,7 +124,7 @@ package org.apache.flex.html
          */
 		public function set html(value:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 ITextModel(model).html = value;                    
             }
@@ -139,7 +139,7 @@ package org.apache.flex.html
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
         override public function addedToParent():void
         {
             super.addedToParent();

@@ -29,7 +29,7 @@
 
    <compiler>
 
-    <define><name>COMPILE::AS3</name><value>true</value></define>
+    <define><name>COMPILE::SWF</name><value>true</value></define>
     <define><name>COMPILE::JS</name><value>false</value></define>
     <define><name>CONFIG::debug</name><value>false</value></define>
     <define><name>CONFIG::release</name><value>true</value></define>

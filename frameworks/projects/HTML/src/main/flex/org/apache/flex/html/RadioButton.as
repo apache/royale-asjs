@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObject;
         import flash.events.MouseEvent;
@@ -27,7 +27,7 @@ package org.apache.flex.html
 	
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.core.UIButtonBase;            
     }
@@ -55,7 +55,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class RadioButton extends UIButtonBase implements IStrand
 	{
 		/**

@@ -19,7 +19,7 @@
 package org.apache.flex.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.DisplayObject;
 }
@@ -254,7 +254,7 @@ public class MXMLDataInterpreter
             comp.setStyle(name, value);
         }            
         
-        COMPILE::AS3
+        COMPILE::SWF
         {
             // flexjs on the JS side won't have effects in here, they are regular properties
             // but falcon provides this set for SWFs for future compatibility with
@@ -278,7 +278,7 @@ public class MXMLDataInterpreter
         {
             name = data[i++];
             value = data[i++];
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 comp.addEventListener(name, value);
             }
@@ -293,7 +293,7 @@ public class MXMLDataInterpreter
         {
             comp.setMXMLDescriptor(document, children);                
         }
-        COMPILE::AS3
+        COMPILE::SWF
         {
             if (parent && comp is DisplayObject)
                 parent.addElement(comp, !(parent is IContainer));
@@ -423,7 +423,7 @@ public class MXMLDataInterpreter
             host[name] = value;
         }
         
-        COMPILE::AS3 
+        COMPILE::SWF 
         {
             // flexjs on the JS side won't have effects in here, they are regular properties
             // but falcon provides this set for SWFs for future compatibility with
@@ -447,7 +447,7 @@ public class MXMLDataInterpreter
         {
             name = data[i++];
             value = data[i++];
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 host.addEventListener(name, value as Function);
             }

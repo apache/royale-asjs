@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.html.Label;            
     }
@@ -45,7 +45,7 @@ package org.apache.flex.createjs
 	 *  @productversion FlexJS 0.0
 	 */
     
-    COMPILE::AS3
+    COMPILE::SWF
 	public class Label extends org.apache.flex.html.Label
 	{		
 		/**

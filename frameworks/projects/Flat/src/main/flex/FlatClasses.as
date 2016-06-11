@@ -27,7 +27,7 @@ package
  */
 internal class FlatClasses
 {	
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
 		import org.apache.flex.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;

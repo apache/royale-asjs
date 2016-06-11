@@ -253,7 +253,7 @@ package org.apache.flex.binding
                     }
                 }
                 
-                COMPILE::AS3
+                COMPILE::SWF
                 {
                     if (allowedErrors.indexOf(error.errorID) == -1)
                         throw error;                        
@@ -281,7 +281,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public static var allowedErrors:Array = [
             1006, //   Error #1006: Call attempted on an object that is not a function.
             1009, //   Error #1009: null has no properties.

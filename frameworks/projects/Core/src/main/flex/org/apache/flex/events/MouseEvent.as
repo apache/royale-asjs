@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.events.MouseEvent;
 		import flash.display.InteractiveObject;
@@ -41,7 +41,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public class MouseEvent extends flash.events.MouseEvent
 	{
         private static function platformConstant(s:String):String

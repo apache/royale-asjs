@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.cordova.camera
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.BitmapData;
         import flash.display.DisplayObject;
@@ -70,10 +70,10 @@ package org.apache.cordova.camera
 			FRONT : 1      // Use the front-facing camera
 		};
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private static var root:DisplayObjectContainer;
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		public static function init(r:DisplayObjectContainer):void
 		{
 			root = r;		
@@ -96,14 +96,14 @@ package org.apache.cordova.camera
 		
 		private var cameraSuccess:Function;
 		private var cameraError:Function;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var ui:Sprite;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var camera:flash.media.Camera;
 		
 		public function getPicture( cameraSuccess:Function, cameraError:Function, cameraOptions:Object ) : void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 this.cameraSuccess = cameraSuccess;
                 this.cameraError = cameraError;
@@ -129,14 +129,14 @@ package org.apache.cordova.camera
             }
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private function mouseClickHandler(event:MouseEvent):void
 		{
 			savePicture();
 			root.removeChild(ui);
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private function keyDownHandler(event:KeyboardEvent):void
 		{
 			if (event.keyCode == Keyboard.ESCAPE)
@@ -148,7 +148,7 @@ package org.apache.cordova.camera
 			}
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function savePicture():void
 		{
 			var f:File = File.createTempFile();

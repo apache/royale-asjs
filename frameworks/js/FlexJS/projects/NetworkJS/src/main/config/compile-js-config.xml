@@ -29,7 +29,7 @@
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <define>
-            <name>COMPILE::AS3</name>
+            <name>COMPILE::SWF</name>
             <value>false</value>
         </define>
         <define>

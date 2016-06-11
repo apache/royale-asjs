@@ -27,7 +27,7 @@ package
  */
 internal class GoogleStubClasses
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 	import google.maps.Animation; Animation;
 	import google.maps.LatLng; LatLng;
 	import google.maps.Marker; Marker;

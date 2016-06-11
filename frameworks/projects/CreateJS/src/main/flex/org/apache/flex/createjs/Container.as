@@ -32,7 +32,7 @@ package org.apache.flex.createjs
 	import org.apache.flex.states.State;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.Container;
 	}
@@ -59,7 +59,7 @@ package org.apache.flex.createjs
 	 *  @playerversion AIR 1.1
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public class Container extends org.apache.flex.html.Container
 	{
 		// does nothing different for SWF version.

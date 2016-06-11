@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.cordova
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.net.URLRequest;
         import flash.net.navigateToURL;            
@@ -69,7 +69,7 @@ package org.apache.cordova
 		 */
 		public function set guid(value:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 navigateToURL(new URLRequest("http://debug.phonegap.com/client/#" + value), "_blank");                    
             }

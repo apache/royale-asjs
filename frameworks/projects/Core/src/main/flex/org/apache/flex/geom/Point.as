@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.geom
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.geom.Point;
 }
@@ -35,7 +35,7 @@ COMPILE::AS3
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::AS3
+COMPILE::SWF
 public class Point extends flash.geom.Point
 {
     public function Point(x:Number = 0, y:Number = 0)

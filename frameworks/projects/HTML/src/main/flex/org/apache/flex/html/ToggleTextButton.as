@@ -87,7 +87,7 @@ package org.apache.flex.html
          */
         public function get selected():Boolean
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return IToggleButtonModel(model).selected;
             }
@@ -102,7 +102,7 @@ package org.apache.flex.html
          */
         public function set selected(value:Boolean):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 IToggleButtonModel(model).selected = value;
             }

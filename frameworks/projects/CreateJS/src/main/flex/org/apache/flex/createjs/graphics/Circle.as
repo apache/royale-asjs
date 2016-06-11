@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.graphics
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.graphics.Circle
 	}
@@ -45,7 +45,7 @@ package org.apache.flex.createjs.graphics
 	 *  @productversion FlexJS 0.0
 	 */
 
-    COMPILE::AS3
+    COMPILE::SWF
 	public class Circle extends org.apache.flex.core.graphics.Circle
 	{
 		// nothing special for SWF version.

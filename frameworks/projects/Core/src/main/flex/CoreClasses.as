@@ -28,7 +28,7 @@ internal class CoreClasses
 {
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;
@@ -43,7 +43,7 @@ internal class CoreClasses
     import org.apache.flex.core.IBeadLayout; IBeadLayout;
     import org.apache.flex.core.IBeadModel; IBeadModel;
     import org.apache.flex.core.IBeadView; IBeadView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IBorderModel; IBorderModel;
 	}
@@ -68,7 +68,7 @@ internal class CoreClasses
     import org.apache.flex.core.IPopUp; IPopUp;
     import org.apache.flex.core.IRangeModel; IRangeModel;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IScrollBarModel; IScrollBarModel;
 	}
@@ -83,7 +83,7 @@ internal class CoreClasses
     import org.apache.flex.core.IValueToggleButtonModel; IValueToggleButtonModel;
 	import org.apache.flex.core.IViewport; IViewport;
 	import org.apache.flex.core.IViewportModel; IViewportModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.IViewportScroller; IViewportScroller;
 	}
@@ -93,7 +93,7 @@ internal class CoreClasses
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.core.UIBase; UIBase;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.UIButtonBase; UIButtonBase;
 	}
@@ -107,18 +107,18 @@ internal class CoreClasses
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
     import org.apache.flex.utils.BinaryData; BinaryData;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
 	}
     import org.apache.flex.utils.CSSContainerUtils; CSSContainerUtils;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
 	}
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
     import org.apache.flex.utils.MixinManager; MixinManager;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     	import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;

@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-	COMPILE::AS3
+	COMPILE::SWF
     {
         import flash.geom.Point;
         import flash.geom.Rectangle;
@@ -85,7 +85,7 @@ package org.apache.flex.core.graphics
             }
         }
 
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function applyStroke():void
 		{
 			if(stroke)
@@ -94,7 +94,7 @@ package org.apache.flex.core.graphics
 			}
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function beginFill(targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			if(fill)
@@ -103,7 +103,7 @@ package org.apache.flex.core.graphics
 			}
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function endFill():void
 		{
 			if(fill)
@@ -122,7 +122,7 @@ package org.apache.flex.core.graphics
 
 		override public function addedToParent():void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 super.addedToParent();
             }

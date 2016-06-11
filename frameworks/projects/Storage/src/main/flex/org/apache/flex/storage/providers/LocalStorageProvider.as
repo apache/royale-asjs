@@ -20,7 +20,7 @@ package org.apache.flex.storage.providers
 {
 	import org.apache.flex.storage.IWebStorage;
 
-COMPILE::AS3 {
+COMPILE::SWF {
 	import flash.net.SharedObject;
 }
 
@@ -50,7 +50,7 @@ public class LocalStorageProvider implements IWebStorage
 	 */
 	public function LocalStorageProvider()
 	{
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			try {
 				sharedObject = SharedObject.getLocal("flexjs","/",false);
 			} catch(e) {
@@ -59,7 +59,7 @@ public class LocalStorageProvider implements IWebStorage
 		}
 	}
 
-	COMPILE::AS3
+	COMPILE::SWF
 	private var sharedObject:SharedObject;
 
 	/**
@@ -75,7 +75,7 @@ public class LocalStorageProvider implements IWebStorage
 	{
 		var result:Boolean = false;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			result = (sharedObject != null);
 		}
 
@@ -103,7 +103,7 @@ public class LocalStorageProvider implements IWebStorage
 	{
 		if (!storageAvailable()) return false;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			sharedObject.data[key] = value;
 			sharedObject.flush();
 		}
@@ -131,7 +131,7 @@ public class LocalStorageProvider implements IWebStorage
 
 		var result:String = null;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			result = sharedObject.data[key] as String;
 		}
 
@@ -157,7 +157,7 @@ public class LocalStorageProvider implements IWebStorage
 	{
 		if (!storageAvailable()) return null;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			delete sharedObject.data[key];
 			sharedObject.flush();
 		}
@@ -184,7 +184,7 @@ public class LocalStorageProvider implements IWebStorage
 
 		var result:Boolean = false;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			result = sharedObject.data.hasOwnProperty(key);
 		}
 
@@ -208,7 +208,7 @@ public class LocalStorageProvider implements IWebStorage
 	{
 		if (!storageAvailable()) return;
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			sharedObject.clear();
 		}
 

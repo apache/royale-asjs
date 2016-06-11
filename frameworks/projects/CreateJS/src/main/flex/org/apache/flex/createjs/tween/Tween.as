@@ -138,7 +138,7 @@ package org.apache.flex.createjs.tween
 		 */
 		override public function createTweenOptions():Object
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				return null;
 			}
 			COMPILE::JS {

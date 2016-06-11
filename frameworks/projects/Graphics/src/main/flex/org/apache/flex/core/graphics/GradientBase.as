@@ -33,7 +33,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		protected var compoundTransform:CompoundTransform;
 		
 		/**
@@ -80,7 +80,7 @@ package org.apache.flex.core.graphics
 		public function set entries(value:Array):void
 		{
 			_entries = value;
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 processEntries();                    
             }
@@ -150,12 +150,12 @@ package org.apache.flex.core.graphics
 			_y = value;                
 		}
 
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function toRad(a:Number):Number {
 			return a*Math.PI/180;
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function get rotationInRadians():Number
 		{
 			return rotation / 180 * Math.PI;
@@ -167,7 +167,7 @@ package org.apache.flex.core.graphics
 		 *  Array into the internal <code>colors</code>, <code>ratios</code>,
 		 *  and <code>alphas</code> arrays.
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function processEntries():void
 		{
 			colors = [];

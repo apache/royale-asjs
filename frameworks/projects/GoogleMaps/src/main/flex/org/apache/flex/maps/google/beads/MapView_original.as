@@ -26,7 +26,7 @@
  */
 package org.apache.flex.maps.google.beads
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.events.Event;
 		import flash.html.HTMLLoader;
 		import flash.net.URLRequest;
@@ -84,7 +84,7 @@ package org.apache.flex.maps.google.beads
 		}
 	}
 
-	COMPILE::AS3
+	COMPILE::SWF
 	public class MapView_original extends BeadViewBase implements IBeadView
 	{
 		/**

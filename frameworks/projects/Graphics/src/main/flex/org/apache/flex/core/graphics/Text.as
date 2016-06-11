@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.text.TextFieldType;        
         import org.apache.flex.core.CSSTextField;            
@@ -53,7 +53,7 @@ package org.apache.flex.core.graphics
 		{
 			super();
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 _textField = new CSSTextField();
                 addChild(_textField);                    
@@ -61,7 +61,7 @@ package org.apache.flex.core.graphics
 		}
 		
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _textField:CSSTextField;
 		
 		/**
@@ -72,7 +72,7 @@ package org.apache.flex.core.graphics
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function get textField() : CSSTextField
 		{
 			return _textField;
@@ -95,7 +95,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawText(value:String, xt:Number, yt:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 textField.selectable = false;
                 textField.type = TextFieldType.DYNAMIC;

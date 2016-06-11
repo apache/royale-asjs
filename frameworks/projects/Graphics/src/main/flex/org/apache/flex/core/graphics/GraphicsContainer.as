@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.GraphicsPath;
         import flash.display.Shape;
@@ -51,7 +51,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function removeAllElements():void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 graphics.clear();
             }
@@ -79,7 +79,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 applyStroke();
                 beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
@@ -102,7 +102,7 @@ package org.apache.flex.core.graphics
             }
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		public function createRect(x:Number, y:Number, width:Number, height:Number):void
 		{
 			var color:uint = (fill as SolidColor).color;
@@ -132,7 +132,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 applyStroke();
                 beginFill(new Rectangle(x,y,width,height), new Point(x,y));
@@ -169,7 +169,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawCircle(x:Number, y:Number, radius:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 applyStroke();
                 beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
@@ -211,7 +211,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawPath(data:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 applyStroke();
                 var bounds:Rectangle = PathHelper.getBounds(data);
@@ -259,7 +259,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawText(value:String, x:Number, y:Number):Object
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var textField:CSSTextField = new CSSTextField();
                 addChild(textField);

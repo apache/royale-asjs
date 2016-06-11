@@ -25,7 +25,7 @@ package org.apache.flex.core
     import org.apache.flex.utils.MXMLDataInterpreter;
 	import org.apache.flex.utils.Timer;
 
-    COMPILE::AS3 {
+    COMPILE::SWF {
         import flash.display.DisplayObject;
         import flash.display.Sprite;
         import flash.display.StageAlign;
@@ -117,7 +117,7 @@ package org.apache.flex.core
         {
             super();
 
-            COMPILE::AS3 {
+            COMPILE::SWF {
     			if (stage)
     			{
     				stage.align = StageAlign.TOP_LEFT;
@@ -130,7 +130,7 @@ package org.apache.flex.core
             }
         }
 
-        COMPILE::AS3
+        COMPILE::SWF
         private function initHandler(event:flash.events.Event):void
         {
 			if (model is IBead) addBead(model as IBead);
@@ -150,7 +150,7 @@ package org.apache.flex.core
 
         }
 
-        COMPILE::AS3
+        COMPILE::SWF
         private function enterFrameHandler(event:flash.events.Event):void
         {
             if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
@@ -169,7 +169,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         protected function initialize():void
         {
 
@@ -249,7 +249,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         [Bindable("__NoChangeEvent__")]
-        COMPILE::AS3
+        COMPILE::SWF
         public var model:Object;
 
         COMPILE::JS
@@ -344,7 +344,7 @@ package org.apache.flex.core
          */
         public var beads:Array;
 
-        COMPILE::AS3
+        COMPILE::SWF
         private var _beads:Vector.<IBead>;
 
         /**
@@ -355,7 +355,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function addBead(bead:IBead):void
         {
             if (!_beads)
@@ -372,7 +372,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function getBeadByType(classOrInterface:Class):IBead
         {
             for each (var bead:IBead in _beads)
@@ -391,7 +391,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function removeBead(value:IBead):IBead
         {
             var n:int = _beads.length;
@@ -417,7 +417,7 @@ package org.apache.flex.core
          */
         public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 if (c is IUIBase)
                 {
                     addChild(IUIBase(c).element as DisplayObject);
@@ -442,7 +442,7 @@ package org.apache.flex.core
          */
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 if (c is IUIBase)
                 {
                     addChildAt(IUIBase(c).element as DisplayObject, index);
@@ -475,7 +475,7 @@ package org.apache.flex.core
          */
         public function getElementAt(index:int):Object
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 return getChildAt(index);
             }
             COMPILE::JS {
@@ -494,7 +494,7 @@ package org.apache.flex.core
          */
         public function getElementIndex(c:Object):int
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 if (c is IUIBase)
                     return getChildIndex(IUIBase(c).element as DisplayObject);
 
@@ -522,7 +522,7 @@ package org.apache.flex.core
          */
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 if (c is IUIBase)
                 {
                     removeChild(IUIBase(c).element as DisplayObject);
@@ -545,7 +545,7 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            COMPILE::AS3 {
+            COMPILE::SWF {
                 return numChildren;
             }
             COMPILE::JS {

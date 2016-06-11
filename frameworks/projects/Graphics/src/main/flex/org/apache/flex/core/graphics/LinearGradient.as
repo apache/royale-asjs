@@ -14,7 +14,7 @@
 
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.GradientType;
         import flash.display.InterpolationMethod;
@@ -26,7 +26,7 @@ package org.apache.flex.core.graphics
 	
 	public class LinearGradient extends GradientBase implements IFill
 	{
-		COMPILE::AS3
+		COMPILE::SWF
 		private static var commonMatrix:Matrix = new Matrix();
         
 		private var _scaleX:Number;
@@ -44,7 +44,7 @@ package org.apache.flex.core.graphics
 			_scaleX = value;
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		public function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
 		{
 			commonMatrix.identity();
@@ -55,7 +55,7 @@ package org.apache.flex.core.graphics
 			
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		public function end(s:GraphicShape):void
 		{
 			s.graphics.endFill();

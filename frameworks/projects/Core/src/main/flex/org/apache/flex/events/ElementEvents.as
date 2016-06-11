@@ -20,7 +20,7 @@ package org.apache.flex.events
 {
 
 	[ExcludeClass]
-	COMPILE::AS3
+	COMPILE::SWF
 	public class ElementEvents
 	{
 	}

@@ -131,7 +131,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				// this is where the layout is calculated
 				var host:UIBase = _strand as UIBase;

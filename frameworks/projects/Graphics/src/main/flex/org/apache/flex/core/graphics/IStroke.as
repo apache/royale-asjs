@@ -16,7 +16,7 @@ package org.apache.flex.core.graphics
 {
 	public interface IStroke
 	{
-        COMPILE::AS3
+        COMPILE::SWF
 		function apply(s:GraphicShape):void;
         
         COMPILE::JS

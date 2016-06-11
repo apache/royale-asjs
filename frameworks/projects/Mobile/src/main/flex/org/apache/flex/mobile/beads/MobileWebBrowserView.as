@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile.beads
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.events.Event;
 		import flash.media.StageWebView;
 		import flash.geom.Rectangle;
@@ -48,7 +48,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public class MobileWebBrowserView implements IBeadView
 	{
 		/**

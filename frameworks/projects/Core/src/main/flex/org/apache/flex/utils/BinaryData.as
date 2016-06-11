@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.ByteArray;
 }
@@ -49,7 +49,7 @@ public class BinaryData
 		
 	}
 	
-    COMPILE::AS3
+    COMPILE::SWF
 	private var ba:ByteArray = new ByteArray();
 	
     COMPILE::JS
@@ -82,7 +82,7 @@ public class BinaryData
      */
 	public function writeByte(byte:int):void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             ba.writeByte(byte);                
         }
@@ -108,7 +108,7 @@ public class BinaryData
      */
 	public function writeShort(short:int):void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             ba.writeShort(short);                
         }
@@ -134,7 +134,7 @@ public class BinaryData
      */
 	public function writeUnsignedInt(unsigned:uint):void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             ba.writeUnsignedInt(unsigned);                
         }
@@ -160,7 +160,7 @@ public class BinaryData
      */
 	public function writeInt(integer:uint):void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             ba.writeInt(integer);                
         }
@@ -186,7 +186,7 @@ public class BinaryData
      */
 	public function readByte():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.readByte();                
         }
@@ -210,7 +210,7 @@ public class BinaryData
      */
 	public function readShort():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.readShort();                
         }
@@ -234,7 +234,7 @@ public class BinaryData
      */
 	public function readUnsignedInt():uint
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.readUnsignedInt();                
         }
@@ -258,7 +258,7 @@ public class BinaryData
      */
     public function readInt():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.readInt();                
         }
@@ -282,7 +282,7 @@ public class BinaryData
      */
 	public function get length():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.length;                
         }
@@ -302,7 +302,7 @@ public class BinaryData
      */
 	public function get bytesAvailable():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.bytesAvailable;                
         }
@@ -322,7 +322,7 @@ public class BinaryData
      */
 	public function get position():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return ba.position;                
         }
@@ -337,7 +337,7 @@ public class BinaryData
      */
 	public function set position(value:int):void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             ba.position = value;
         }

@@ -52,7 +52,7 @@ package org.apache.flex.mobile
 			
 			_contentArea = new UIBase();
 			
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				addEventListener("initComplete", handleInitComplete);
 				addEventListener("sizeChanged", handleInitComplete);
 				addEventListener("widthChanged", handleInitComplete);
