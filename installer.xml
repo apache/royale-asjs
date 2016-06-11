@@ -954,6 +954,26 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS MVC Project.launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS Project.launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
         <replace file="${FLEXJS_HOME}/js/bin/mxmlc.bat">
             <replacefilter
             token="@java"

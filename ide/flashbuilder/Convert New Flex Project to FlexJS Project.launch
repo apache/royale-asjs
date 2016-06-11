@@ -4,17 +4,14 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES"/>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="ANT_HOME" value="/Applications/Adobe Flash Builder 4.7/eclipse/plugins/org.apache.ant_1.8.2.v20110505-1300"/>
 <mapEntry key="PATH" value="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 (MacOS X Default)"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value=""/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_TARGETS" value="run,"/>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_HIDE_INTERNAL_TARGETS" value="true"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="$FLEXJS_HOME/cordova-build.xml"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-Dprojectdir=${project_loc}"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="$FLEXJS_HOME/ide/flashbuilder/antscripts.xml"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-DprojectDir="&quot;{project_loc}&quot;"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>

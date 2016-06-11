@@ -12,7 +12,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value=""/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_HIDE_INTERNAL_TARGETS" value="true"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="/Users/pent/dev/flex-asjs/cordova-build.xml"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="$FLEXJS_HOME/cordova-build.xml"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-Dprojectdir=${project_loc}"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>

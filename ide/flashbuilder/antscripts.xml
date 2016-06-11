@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="flashbuilder_antscripts" default="convert_project" basedir=".">
+
+	<property environment="env"/>
+    
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+
+    <target name="check_params" >
+        <fail unless="projectDir"
+            message="projectDir parameter not set" />
+        <fail message="projectDir ${projectDir} does not exist">
+            <condition>
+                <not>
+                    <available file="${projectDir}" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS project">
+        <copy file="${basedir}/../../examples/flexjs/HelloWorld/src/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+    </target>
+
+    <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS MVC project">
+        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/DataBindingExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
+        <mkdir dir="${projectDir}/src/models" />
+        <mkdir dir="${projectDir}/src/controllers" />
+        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/StockDataJSONItemConverter.as" tofile="${projectDir}/src/StockDataJSONItemConverter.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
+        <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
+        <replace file="${projectDir}/src/controllers/MyController.as" token="DataBindingExample" value="${projectName}" />
+    </target>
+
+    <target name="cutpath" >
+        <basename file="${projectDir}" property="projectName" />
+        <echo>projectDir: ${projectDir}</echo>
+        <echo>projectName: ${projectName}</echo>
+    </target>
+</project>
