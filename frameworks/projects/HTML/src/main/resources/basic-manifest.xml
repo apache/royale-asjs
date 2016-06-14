@@ -37,7 +37,9 @@
     <component id="List" class="org.apache.flex.html.List"/>
     <component id="SimpleList" class="org.apache.flex.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>
+    <component id="CheckBoxIcon" class="org.apache.flex.html.accessories.CheckBoxIcon" />
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
+    <component id="RadioButtonIcon" class="org.apache.flex.html.accessories.RadioButtonIcon"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>

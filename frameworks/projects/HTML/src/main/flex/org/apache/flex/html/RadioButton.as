@@ -22,34 +22,35 @@ package org.apache.flex.html
     {
         import flash.display.DisplayObject;
         import flash.events.MouseEvent;
-        import flash.utils.Dictionary;            
+        import flash.utils.Dictionary;
     }
-	
+
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IValueToggleButtonModel;
     COMPILE::SWF
     {
-        import org.apache.flex.core.UIButtonBase;            
+        import org.apache.flex.core.UIButtonBase;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.accessories.RadioButtonIcon;
     }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.core.IUIBase;
-	
+
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
 	/**
 	 *  The RadioButton class is a component that displays a selectable Button. RadioButtons
 	 *  are typically used in groups, identified by the groupName property. RadioButton use
 	 *  the following beads:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -69,14 +70,14 @@ package org.apache.flex.html
 		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
 			super(upState, overState, downState, hitTestState);
-			
+
 			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
-		
+
 		protected static var dict:Dictionary = new Dictionary(true);
-		
+
 		private var _groupName:String;
-		
+
 		/**
 		 *  The name of the group. Only one RadioButton in a group is selected.
 		 *
@@ -93,7 +94,7 @@ package org.apache.flex.html
 		{
 			IValueToggleButtonModel(model).groupName = value;
 		}
-		
+
 		/**
 		 *  The string used as a label for the RadioButton.
 		 *
@@ -110,7 +111,7 @@ package org.apache.flex.html
 		{
 			IValueToggleButtonModel(model).text = value;
 		}
-		
+
 		/**
 		 *  Whether or not the RadioButton instance is selected. Setting this property
 		 *  causes the currently selected RadioButton in the same group to lose the
@@ -128,7 +129,7 @@ package org.apache.flex.html
 		public function set selected(selValue:Boolean):void
 		{
 			IValueToggleButtonModel(model).selected = selValue;
-			
+
 			// if this button is being selected, its value should become
 			// its group's selectedValue
 			if( selValue ) {
@@ -141,7 +142,7 @@ package org.apache.flex.html
 				}
 			}
 		}
-		
+
 		/**
 		 *  The value associated with the RadioButton. For example, RadioButtons with labels,
 		 *  "Red", "Green", and "Blue" might have the values 0, 1, and 2 respectively.
@@ -159,7 +160,7 @@ package org.apache.flex.html
 		{
 			IValueToggleButtonModel(model).value = newValue;
 		}
-		
+
 		/**
 		 *  The group's currently selected value.
 		 *
@@ -168,17 +169,17 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get selectedValue():Object 
+		public function get selectedValue():Object
 		{
 			return IValueToggleButtonModel(model).selectedValue;
 		}
-		public function set selectedValue(newValue:Object):void 
+		public function set selectedValue(newValue:Object):void
 		{
 			// a radio button is really selected when its value matches that of the group's value
 			IValueToggleButtonModel(model).selected = (newValue == value);
 			IValueToggleButtonModel(model).selectedValue = newValue;
 		}
-				
+
 		/**
 		 * @private
 		 */
@@ -189,9 +190,9 @@ package org.apache.flex.html
             // if this instance is selected, set the local selectedValue to
 			// this instance's value
 			if( selected ) selectedValue = value;
-			
+
 			else {
-			
+
 				// make sure this button's selectedValue is set from its group's selectedValue
 				// to keep it in sync with the rest of the buttons in its group.
 				for each(var rb:RadioButton in dict)
@@ -203,10 +204,10 @@ package org.apache.flex.html
 					}
 				}
 			}
-			
+
 			dict[this] = this;
 		}
-			
+
 		/**
 		 * @private
 		 */
@@ -219,15 +220,17 @@ package org.apache.flex.html
 			}
 		}
 	}
-    
+
     COMPILE::JS
     public class RadioButton extends UIBase
     {
         public static var radioCounter:int = 0;
-        
+
         private var input:HTMLInputElement;
         private var labelFor:HTMLLabelElement;
         private var textNode:Text;
+        private var icon:RadioButtonIcon;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLInputElement
@@ -235,47 +238,47 @@ package org.apache.flex.html
          * @flexjsignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
-        {            
-            input = document.createElement('input') as HTMLInputElement;
-            input.type = 'radio';
-            input.id = '_radio_' + RadioButton.radioCounter++;
-            
+        {
+            icon = new RadioButtonIcon()
+            icon.id = '_radio_' + RadioButton.radioCounter++;
+
+
             textNode = document.createTextNode('radio button') as Text;
-            
+
             labelFor = document.createElement('label') as HTMLLabelElement;
-            labelFor.appendChild(input);
+            labelFor.appendChild(icon.element);
             labelFor.appendChild(textNode);
-            
+
             element = labelFor as WrappedHTMLElement;
-            element.className = 'RadioButton';
-            typeNames = 'RadioButton';
-            
+
             positioner = element;
             positioner.style.position = 'relative';
-            
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
+
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
-            
+
+            className = 'RadioButton';
+            typeNames = 'RadioButton, RadioButtonIcon';
+
             return element;
-        }        
-        
-        override public function set id(value:String):void 
+        }
+
+        override public function set id(value:String):void
         {
             super.id = value;
             labelFor.id = value;
-            input.id = value;
+            icon.element.id = value;
         }
-        
+
         public function get groupName():String
         {
-            return input.name as String;
+            return (icon.element as HTMLInputElement).name as String;
         }
         public function set groupName(value:String):void
         {
-            input.name = value;
+            (icon.element as HTMLInputElement).name = value;
         }
-        
+
         public function get text():String
         {
             return textNode.nodeValue as String;
@@ -284,17 +287,17 @@ package org.apache.flex.html
         {
             textNode.nodeValue = value;
         }
-        
+
         /** @export */
         public function get selected():Boolean
         {
-            return input.checked;
+            return (icon.element as HTMLInputElement).checked;
         }
         public function set selected(value:Boolean):void
         {
-            input.checked = value;            
+            (icon.element as HTMLInputElement).checked = value;
         }
-        
+
         public function get value():Object
         {
             return input.value;
@@ -303,18 +306,18 @@ package org.apache.flex.html
         {
             input.value = v as String;
         }
-        
+
         public function get selectedValue():Object
         {
             var buttons:NodeList;
             var groupName:String;
             var i:int;
             var n:int;
-            
+
             groupName = input.name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
-            
+
             for (i = 0; i < n; i++) {
                 if (buttons[i].checked) {
                     return buttons[i].value;
@@ -322,7 +325,7 @@ package org.apache.flex.html
             }
             return null;
         }
-        
+
         /**
          * @flexjsignorecoercion Array
          */
@@ -332,7 +335,7 @@ package org.apache.flex.html
             var groupName:String;
             var i:int;
             var n:int;
-            
+
             groupName = input.name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
@@ -343,6 +346,6 @@ package org.apache.flex.html
                 }
             }
         }
-    }        
+    }
 
 }
