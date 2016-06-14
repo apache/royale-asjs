@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.ant.AntLaunchConfigurationType">
 <booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="true"/>
-<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"/>
+<listAttribute key='org.eclipse.debug.ui.favoriteGroups'>
+<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
+</listAttribute><listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES"/>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="PATH" value="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"/>
@@ -12,6 +14,6 @@
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
 <booleanAttribute key="org.eclipse.ui.externaltools.ATTR_HIDE_INTERNAL_TARGETS" value="true"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="$FLEXJS_HOME/ide/flashbuilder/antscripts.xml"/>
-<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-DprojectDir="&quot;{project_loc}&quot;"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS" value="-DprojectDir=&quot;{project_loc}&quot;"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>

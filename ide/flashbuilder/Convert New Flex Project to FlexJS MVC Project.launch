@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.ant.AntLaunchConfigurationType">
 <booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="true"/>
-<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"/>
+<listAttribute key='org.eclipse.debug.ui.favoriteGroups'>
+<listEntry value='org.eclipse.ui.externaltools.launchGroup'/>
+</listAttribute><listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES"/>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
 <mapEntry key="ANT_HOME" value="/Applications/Adobe Flash Builder 4.7/eclipse/plugins/org.apache.ant_1.8.2.v20110505-1300"/>
