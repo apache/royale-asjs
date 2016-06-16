@@ -16,25 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.TextButton;
 
 	/**
-	 * The change event is dispatched when the selectedDate is changed.
-	 */
-	[Event(name="change", type="org.apache.flex.events.Event")]
-
-	/**
-	 *  The DateChooser class is a component that displays a calendar.
+	 *  The DateHeaderButton class is used for the buttons in the DateChooser's
+	 *  heading areas.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooser extends UIBase
+	public class DateHeaderButton extends TextButton
 	{
 		/**
 		 *  constructor.
@@ -44,31 +39,10 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DateChooser()
+		public function DateHeaderButton()
 		{
 			super();
-			className = "DateChooser";
-
-			// fix the DateChooser's size
-			width = 280;
-			height = 240;
-		}
-
-		/**
-		 *  The currently selected date (or null if no date has been selected).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get selectedDate():Date
-		{
-			return IDateChooserModel(model).selectedDate;
-		}
-		public function set selectedDate(value:Date):void
-		{
-			IDateChooserModel(model).selectedDate = value;
+			className = "DateHeaderButton";
 		}
 	}
 }

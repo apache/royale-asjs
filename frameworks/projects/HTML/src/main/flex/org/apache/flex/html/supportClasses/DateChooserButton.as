@@ -19,11 +19,11 @@
 package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.html.TextButton;
-	
+
 	/**
 	 *  The DateChooserButton class is used for each button in the DateChooser. The
 	 *  button holds the day of the month the button is representing.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -33,7 +33,7 @@ package org.apache.flex.html.supportClasses
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -44,12 +44,12 @@ package org.apache.flex.html.supportClasses
 			super();
 			className = "DateChooserButton";
 		}
-		
+
 		private var _dayOfMonth:int;
-		
+
 		/**
 		 *  The day of the month the button represents.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

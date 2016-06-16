@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{	
+{
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
@@ -26,13 +26,13 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	
+
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
 	 *  The size of each element is determined either by setting TileLayout's columnWidth and rowHeight
 	 *  properties, or having the tile size determined by factoring the numColumns into the area assigned
 	 *  for the layout.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -42,7 +42,7 @@ package org.apache.flex.html.beads.layouts
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -51,12 +51,12 @@ package org.apache.flex.html.beads.layouts
 		public function TileLayout()
 		{
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -64,16 +64,16 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;			
+			_strand = value;
 		}
-		
+
 		private var _numColumns:Number = 4;
 		private var _columnWidth:Number = Number.NaN;
 		private var _rowHeight:Number = Number.NaN;
-		
+
 		/**
 		 *  The number of tiles to fit horizontally into the layout.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -87,12 +87,12 @@ package org.apache.flex.html.beads.layouts
 		{
 			_numColumns = value;
 		}
-		
+
 		/**
 		 *  The width of each column, in pixels. If left unspecified, the
 		 *  columnWidth is determined by dividing the numColumns into the
 		 *  strand's bounding box width.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -106,12 +106,12 @@ package org.apache.flex.html.beads.layouts
 		{
 			_columnWidth = value;
 		}
-		
+
 		/**
 		 *  The height of each row, in pixels. If left unspecified, the
 		 *  rowHeight is determine by dividing the possible number of rows
 		 *  into the strand's bounding box height.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -125,7 +125,7 @@ package org.apache.flex.html.beads.layouts
 		{
 			_rowHeight = value;
 		}
-		
+
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -137,31 +137,31 @@ package org.apache.flex.html.beads.layouts
 				var host:UIBase = _strand as UIBase;
 				var p:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
 				var area:UIBase = p.contentView as UIBase;
-				
+
 				var xpos:Number = 0;
 				var ypos:Number = 0;
 				var useWidth:Number = columnWidth;
 				var useHeight:Number = rowHeight;
 				var n:Number = area.numElements;
 				if (n == 0) return false;
-				
+
 				var realN:Number = n;
 				for(var j:int=0; j < n; j++)
 				{
 					var testChild:IUIBase = area.getElementAt(i) as IUIBase;
 					if (testChild && !testChild.visible) realN--;
 				}
-				
+
 				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN/numColumns);
 					useHeight = Math.floor(host.height / numRows);
 				}
-				
+
 				var maxWidth:Number = useWidth;
 				var maxHeight:Number = useHeight;
-				
+
 				for(var i:int=0; i < n; i++)
 				{
 					var child:IUIBase = area.getElementAt(i) as IUIBase;
@@ -170,28 +170,28 @@ package org.apache.flex.html.beads.layouts
 					child.height = useHeight;
 					child.x = xpos;
 					child.y = ypos;
-					
+
 					xpos += useWidth;
 					maxWidth = Math.max(maxWidth,xpos);
-					
+
 					var test:Number = (i+1)%numColumns;
-					
+
 					if (test == 0) {
 						xpos = 0;
 						ypos += useHeight;
 						maxHeight = Math.max(maxHeight,ypos);
-					} 
+					}
 				}
-				
+
 				maxWidth = Math.max(maxWidth, numColumns*useWidth);
 				maxHeight = Math.max(maxHeight, numRows*useHeight);
-				
+
 				// Only return true if the contentView needs to be larger; that new
 				// size is stored in the model.
 				var sizeChanged:Boolean = true;
-				
+
 				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-				
+
 				return sizeChanged;
 			}
 			COMPILE::JS
@@ -204,33 +204,35 @@ package org.apache.flex.html.beads.layouts
 				var ypos:Number;
 				var useWidth:Number;
 				var useHeight:Number;
-				
+
 				var host:UIBase = _strand as UIBase;
 				var viewBead:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
 				var contentView:IParentIUIBase = viewBead.contentView;
 				children = contentView.internalChildren();
 				n = children.length;
 				if (n === 0) return false;
-				
+
+				viewBead.contentView.width = host.width;
+
 				var realN:int = n;
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].flexjs_wrapper;
 					if (!child.visible) realN--;
 				}
-				
+
 				xpos = 0;
 				ypos = 0;
 				useWidth = columnWidth;
 				useHeight = rowHeight;
-				
+
 				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN / numColumns);
 					useHeight = Math.floor(host.height / numRows);
 				}
-				
+
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].flexjs_wrapper;

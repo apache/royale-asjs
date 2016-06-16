@@ -34,7 +34,7 @@ package org.apache.flex.html
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.accessories.CheckBoxIcon;
+		import org.apache.flex.html.supportClasses.CheckBoxIcon;
     }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;

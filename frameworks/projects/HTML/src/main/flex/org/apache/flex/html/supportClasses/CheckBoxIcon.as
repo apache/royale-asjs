@@ -16,34 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.accessories
+package org.apache.flex.html.supportClasses
 {
 	COMPILE::JS {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	/**
-	 *  The RadioButton class is a component that displays a selectable Button. RadioButtons
-	 *  are typically used in groups, identified by the groupName property. RadioButton use
-	 *  the following beads:
-	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class RadioButtonIcon
+	public class CheckBoxIcon
 	{
-		public function RadioButtonIcon()
+		public function CheckBoxIcon()
 		{
 			COMPILE::JS {
 				createElement();
 			}
 
-			className = 'RadioButtonIcon';
+			className = 'CheckBoxIcon';
 		}
 
 		COMPILE::JS {
@@ -53,9 +40,6 @@ package org.apache.flex.html.accessories
 
 		private var _className:String;
 
-		/**
-		 * @private
-		 */
 		public function get className():String
 		{
 			return _className;
@@ -71,9 +55,6 @@ package org.apache.flex.html.accessories
 
 		private var _id:String;
 
-		/**
-		 * @private
-		 */
 		public function get id():String
 		{
 			return _id;
@@ -96,7 +77,7 @@ package org.apache.flex.html.accessories
  		protected function createElement():WrappedHTMLElement
 		{
 			var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
-			input.type = 'radio';
+			input.type = 'checkbox';
 
 			element = input as WrappedHTMLElement;
 
