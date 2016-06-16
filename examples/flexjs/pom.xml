@@ -20,62 +20,62 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.examples</groupId>
-        <artifactId>examples</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>examples-flexjs</artifactId>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples</artifactId>
     <version>0.7.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  </parent>
 
-    <modules>
-        <module>ChartExample</module>
-        <module>CordovaCameraExample</module>
-        <module>CreateJSExample</module>
-        <module>DataBindingExample</module>
-        <module>DataBindingExample_as</module>
-        <module>DataBindingExample_Flat</module>
-        <module>DataGridExample</module>
-        <module>DesktopMap</module>
-        <!-- Ambiguous "MouseEvent" -->
-        <!--module>FlexJSStore</module-->
-        <!-- Ambiguous "MouseEvent" -->
-        <!--module>FlexJSStore_jquery</module-->
-        <!-- Ambiguous "MouseEvent" -->
-        <!--module>FlexWebsiteStatsViewer</module-->
-        <module>MapSearch</module>
-        <!-- Implicit coercion of a value with static type Event to a possibly unrelated type Event. -->
-        <!--module>MobileTrader</module-->
-        <!-- Ambiguous reference to IDataInput -->
-        <!--module>StorageExample</module-->
-        <module>TodoListSampleApp</module>
-        <module>TreeExample</module>
-    </modules>
+  <artifactId>examples-flexjs</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.adobe.flash.framework</groupId>
-            <artifactId>playerglobal</artifactId>
-            <version>20.0</version>
-            <type>swc</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Core</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>HTML</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-    </dependencies>
+  <modules>
+    <module>ChartExample</module>
+    <module>CordovaCameraExample</module>
+    <module>CreateJSExample</module>
+    <module>DataBindingExample</module>
+    <module>DataBindingExample_as</module>
+    <module>DataBindingExample_Flat</module>
+    <module>DataGridExample</module>
+    <module>DesktopMap</module>
+    <!-- Ambiguous "MouseEvent" -->
+    <!--module>FlexJSStore</module-->
+    <!-- Ambiguous "MouseEvent" -->
+    <!--module>FlexJSStore_jquery</module-->
+    <!-- Ambiguous "MouseEvent" -->
+    <!--module>FlexWebsiteStatsViewer</module-->
+    <module>MapSearch</module>
+    <!-- Implicit coercion of a value with static type Event to a possibly unrelated type Event. -->
+    <!--module>MobileTrader</module-->
+    <!-- Ambiguous reference to IDataInput -->
+    <!--module>StorageExample</module-->
+    <module>TodoListSampleApp</module>
+    <module>TreeExample</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>20.0</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
 
 </project>

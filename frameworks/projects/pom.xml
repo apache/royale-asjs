@@ -17,43 +17,44 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
-        <artifactId>frameworks</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>projects</artifactId>
+  <parent>
+    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <artifactId>frameworks</artifactId>
     <version>0.7.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  </parent>
 
-    <properties>
-        <air.version>20.0</air.version>
-    </properties>
+  <artifactId>projects</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <modules>
-        <module>Binding</module>
-        <module>Charts</module>
-        <module>Collections</module>
-        <module>Core</module>
-        <module>CreateJS</module>
-        <module>DragDrop</module>
-        <module>Effects</module>
-        <module>Flat</module>
-        <module>Formatters</module>
-        <module>GoogleMaps</module>
-        <module>Graphics</module>
-        <module>HTML</module>
-        <module>HTML5</module>
-        <module>JQuery</module>
-        <module>Mobile</module>
-        <module>Network</module>
-        <module>Reflection</module>
-        <module>Storage</module>
-        <module>XML</module>
-    </modules>
+  <properties>
+    <air.version>20.0</air.version>
+  </properties>
+
+  <modules>
+    <module>Binding</module>
+    <module>Charts</module>
+    <module>Collections</module>
+    <module>Core</module>
+    <module>CreateJS</module>
+    <module>DragDrop</module>
+    <module>Effects</module>
+    <module>Flat</module>
+    <module>Formatters</module>
+    <module>GoogleMaps</module>
+    <module>Graphics</module>
+    <module>HTML</module>
+    <module>HTML5</module>
+    <module>JQuery</module>
+    <module>Mobile</module>
+    <module>Network</module>
+    <module>Reflection</module>
+    <module>Storage</module>
+    <module>XML</module>
+  </modules>
 
 </project>

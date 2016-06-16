@@ -17,48 +17,49 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs</groupId>
-        <artifactId>flex-asjs</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
-    <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples</artifactId>
+  <parent>
+    <groupId>org.apache.flex.flexjs</groupId>
+    <artifactId>flex-asjs</artifactId>
     <version>0.7.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  </parent>
 
-    <modules>
-        <module>flexjs</module>
-        <module>native</module>
-    </modules>
+  <groupId>org.apache.flex.flexjs.examples</groupId>
+  <artifactId>examples</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.flex.flexjs.compiler</groupId>
-                    <artifactId>flexjs-maven-plugin</artifactId>
-                    <version>0.7.0-SNAPSHOT</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <targetPlayer>20.0</targetPlayer>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.flex.flexjs.compiler</groupId>
-                            <artifactId>compiler-jx</artifactId>
-                            <version>0.7.0-SNAPSHOT</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+  <modules>
+    <module>flexjs</module>
+    <module>native</module>
+  </modules>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.flex.flexjs.compiler</groupId>
+          <artifactId>flexjs-maven-plugin</artifactId>
+          <version>0.7.0-SNAPSHOT</version>
+          <extensions>true</extensions>
+          <configuration>
+            <targetPlayer>20.0</targetPlayer>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.flex.flexjs.compiler</groupId>
+              <artifactId>compiler-jx</artifactId>
+              <version>0.7.0-SNAPSHOT</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 
 </project>

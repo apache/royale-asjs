@@ -17,126 +17,127 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache</groupId>
-        <artifactId>apache</artifactId>
-        <version>17</version>
-    </parent>
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>17</version>
+  </parent>
 
-    <groupId>org.apache.flex.flexjs</groupId>
-    <artifactId>flex-asjs</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>org.apache.flex.flexjs</groupId>
+  <artifactId>flex-asjs</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-    <name>Apache Flex - ASJS</name>
-    <description>The Apache Flex ASJS Project</description>
+  <name>Apache Flex - ASJS</name>
+  <description>The Apache Flex ASJS Project</description>
 
-    <scm>
-        <connection>scm:git://git.apache.org/flex-asjs.git</connection>
-        <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
-        <url>https://github.com/apache/flex-asjs</url>
-    </scm>
+  <scm>
+    <connection>scm:git://git.apache.org/flex-asjs.git</connection>
+    <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
+    <url>https://github.com/apache/flex-asjs</url>
+  </scm>
 
-    <properties>
-        <java.version>1.6</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
-        <maven.version>3.3.1</maven.version>
+  <properties>
+    <java.version>1.6</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
+    <maven.version>3.3.1</maven.version>
 
-        <!-- URL of the ASF SonarQube server -->
-        <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
+    <!-- URL of the ASF SonarQube server -->
+    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
 
-        <flex.version>4.15.0</flex.version>
-        <flash.version>20.0</flash.version>
-        <air.version>20.0</air.version>
+    <flex.version>4.15.0</flex.version>
+    <flash.version>20.0</flash.version>
+    <air.version>20.0</air.version>
 
-        <!-- Tell sonar where the coverage reports are located -->
-        <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
-        <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
-    </properties>
+    <!-- Tell sonar where the coverage reports are located -->
+    <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+    <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+  </properties>
 
-    <modules>
-        <module>examples</module>
-        <module>frameworks</module>
-    </modules>
+  <modules>
+    <module>examples</module>
+    <module>frameworks</module>
+  </modules>
 
-    <!-- Only configure the site distribution as the rest is handled by the apache parent -->
-    <distributionManagement>
-        <site>
-            <id>website</id>
-            <url>scp://www.mycompany.com/www/docs/project/</url>
-        </site>
-    </distributionManagement>
+  <!-- Only configure the site distribution as the rest is handled by the apache parent -->
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>scp://www.mycompany.com/www/docs/project/</url>
+    </site>
+  </distributionManagement>
 
-    <issueManagement>
-        <system>Jira</system>
-        <url>https://issues.apache.org/jira/browse/FLEX</url>
-    </issueManagement>
+  <issueManagement>
+    <system>Jira</system>
+    <url>https://issues.apache.org/jira/browse/FLEX</url>
+  </issueManagement>
 
-    <mailingLists>
-        <mailingList>
-            <name>Apache Flex User List</name>
-            <subscribe>users-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
-            <post>users@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
-        </mailingList>
-        <mailingList>
-            <name>Apache Flex Developer List</name>
-            <subscribe>dev-subscribe@flex.apache.org</subscribe>
-            <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
-            <post>dev@flex.apache.org</post>
-            <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
-        </mailingList>
-    </mailingLists>
+  <mailingLists>
+    <mailingList>
+      <name>Apache Flex User List</name>
+      <subscribe>users-subscribe@flex.apache.org</subscribe>
+      <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
+      <post>users@flex.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Apache Flex Developer List</name>
+      <subscribe>dev-subscribe@flex.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
+      <post>dev@flex.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+    </mailingList>
+  </mailingLists>
 
-    <repositories>
-        <repository>
-            <id>apache-release</id>
-            <url>https://repository.apache.org/content/repositories/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>apache-snapshots</id>
-            <url>https://repository.apache.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+  <repositories>
+    <repository>
+      <id>apache-release</id>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>apache-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>apache-plugins-release</id>
-            <url>https://repository.apache.org/content/repositories/releases</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>apache-plugins-snapshots</id>
-            <url>https://repository.apache.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>apache-plugins-release</id>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>apache-plugins-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>
