@@ -20,7 +20,7 @@
 package mx.resources
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.system.ApplicationDomain;		
 }
@@ -74,7 +74,7 @@ public class ResourceBundle implements IResourceBundle
      *  Set by bootstrap loaders
      *  to allow for alternate search paths for resources
      */
-	COMPILE::AS3
+	COMPILE::SWF
     mx_internal static var backupApplicationDomain:ApplicationDomain;
 
     //--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ public class ResourceBundle implements IResourceBundle
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private static function getClassByName(name:String,
                                            domain:ApplicationDomain):Class
     {

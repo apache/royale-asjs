@@ -406,7 +406,7 @@ package org.apache.flex.core
 			//TODO:  Need to handle this case more gracefully
 			catch(e:Error)
 			{
-                COMPILE::AS3
+                COMPILE::SWF
                 {
                     trace(e.message);                        
                 }

@@ -77,7 +77,7 @@ package org.apache.flex.html.beads.controllers
 			
 			rangeModel = UIBase(value).model as IRangeModel;
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
                 spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);

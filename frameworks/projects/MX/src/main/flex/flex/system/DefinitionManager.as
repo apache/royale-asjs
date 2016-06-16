@@ -19,14 +19,14 @@
 
 package flex.system
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.system.ApplicationDomain;		
 }
 
 	public class DefinitionManager
 	{
-		COMPILE::AS3
+		COMPILE::SWF
 		public function DefinitionManager(appdom:ApplicationDomain = null)
 		{
 			if (appdom)
@@ -35,12 +35,12 @@ COMPILE::AS3
 				this.appdom = ApplicationDomain.currentDomain;
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		private var appdom:ApplicationDomain;
 		
 		public function hasDefinition(name:String):Boolean
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return appdom.hasDefinition(name);
 			}
@@ -60,7 +60,7 @@ COMPILE::AS3
 		
 		public function getDefinition(name:String):Object
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return appdom.getDefinition(name);
 			}

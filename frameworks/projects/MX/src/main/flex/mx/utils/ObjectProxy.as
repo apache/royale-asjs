@@ -22,7 +22,7 @@ package mx.utils
 
 import org.apache.flex.events.EventDispatcher;
 import org.apache.flex.reflection.getQualifiedClassName;
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.events.Event;
 import flash.utils.IDataInput;
@@ -40,7 +40,7 @@ import mx.core.IPropertyChangeNotifier;
 import mx.events.PropertyChangeEvent;
 import mx.events.PropertyChangeEventKind;
 
-COMPILE::AS3
+COMPILE::SWF
 {
 use namespace flash_proxy;
 use namespace object_proxy;
@@ -363,7 +363,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function getProperty(name:*):*
     {
         // if we have a data proxy for this then
@@ -429,7 +429,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function callProperty(name:*, ... rest):*
     {
         return _item[name].apply(_item, rest)
@@ -450,7 +450,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function deleteProperty(name:*):Boolean
     {
         var notifier:IPropertyChangeNotifier = IPropertyChangeNotifier(notifiers[name]);
@@ -506,7 +506,7 @@ public dynamic class ObjectProxy extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function hasProperty(name:*):Boolean
     {
         return(name in _item);
@@ -520,7 +520,7 @@ public dynamic class ObjectProxy extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function nextName(index:int):String
     {
         return propertyList[index -1];
@@ -529,7 +529,7 @@ public dynamic class ObjectProxy extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function nextNameIndex(index:int):int
     {
         if (index == 0)
@@ -550,7 +550,7 @@ public dynamic class ObjectProxy extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function nextValue(index:int):*
     {
         return _item[propertyList[index -1]];
@@ -570,7 +570,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function setProperty(name:*, value:*):void
     {
         var oldVal:* = _item[name];
@@ -704,7 +704,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function readExternal(input:IDataInput):void
     {
         var value:Object = input.readObject();
@@ -725,7 +725,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function writeExternal(output:IDataOutput):void
     {
         output.writeObject(_item);
@@ -771,7 +771,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function addEventListener(type:String, listener:Function,
                                      useCapture:Boolean = false,
                                      priority:int = 0,
@@ -807,7 +807,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function removeEventListener(type:String, listener:Function,
                                         useCapture:Boolean = false):void
     {
@@ -836,7 +836,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function dispatchEvent(event:Event):Boolean
     {
         return dispatcher.dispatchEvent(event);
@@ -862,7 +862,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function hasEventListener(type:String):Boolean
     {
         return dispatcher.hasEventListener(type);
@@ -888,7 +888,7 @@ public dynamic class ObjectProxy extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function willTrigger(type:String):Boolean
     {
         return dispatcher.willTrigger(type);

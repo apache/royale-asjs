@@ -20,7 +20,7 @@
 package mx.core
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.DisplayObject;
     import flash.display.InteractiveObject;
@@ -434,7 +434,7 @@ public class Application extends LayoutContainer
      * (Possibly null) reference to the View Source context menu item,
      * so that we can update it for runtime localization.
      */
-    COMPILE::AS3
+    COMPILE::SWF
     private var viewSourceCMI:ContextMenuItem;
         
     //--------------------------------------------------------------------------
@@ -659,7 +659,7 @@ public class Application extends LayoutContainer
      */
     override public function get id():String
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
         if (!super.id &&
             this == FlexGlobals.topLevelApplication && 
@@ -1048,7 +1048,7 @@ public class Application extends LayoutContainer
 
         var sm:ISystemManager = systemManager;
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        _url = LoaderUtil.normalizeURL(root.loaderInfo);
 	        _parameters = root.loaderInfo.parameters;
@@ -1087,7 +1087,7 @@ public class Application extends LayoutContainer
 
         // Setup the default context menu here. This allows the application
         // developer to override it in the initialize event, if desired.
-        COMPILE::AS3
+        COMPILE::SWF
         {
             initContextMenu();
         }
@@ -1096,7 +1096,7 @@ public class Application extends LayoutContainer
 
         addEventListener(Event.ADDED, addedHandler);
         
-        COMPILE::AS3
+        COMPILE::SWF
         {
         // Stick a timer here so that we will execute script every 1.5s
         // no matter what.
@@ -1328,7 +1328,7 @@ public class Application extends LayoutContainer
     {
         super.resourcesChanged();
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         // "View Source" on the context menu
         if (viewSourceCMI)
@@ -1452,7 +1452,7 @@ public class Application extends LayoutContainer
      *  @private
      *  Disable all the built-in items except "Print...".
      */
-    COMPILE::AS3
+    COMPILE::SWF
     private function initContextMenu():void
     {
         // context menu already set
@@ -1738,7 +1738,7 @@ public class Application extends LayoutContainer
      */
     private function initResizeBehavior():void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
         var version:Array = Capabilities.version.split(' ')[1].split(',');
         
@@ -1791,7 +1791,7 @@ public class Application extends LayoutContainer
      *  Called when the "View Source" item in the application's context menu is
      *  selected.
      */
-    COMPILE::AS3
+    COMPILE::SWF
     protected function menuItemSelectHandler(event:Event):void
     {
         navigateToURL(new URLRequest(_viewSourceURL), "_blank");

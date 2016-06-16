@@ -19,7 +19,7 @@
 
 package org.apache.flex.utils
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.system.Capabilities;
 	}
@@ -50,12 +50,12 @@ package org.apache.flex.utils
 			return _isIPad;
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		private static var _isAir:Boolean;
 		
 		public static function get isAir():Boolean
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return _isAir;					
 			}
@@ -73,7 +73,7 @@ package org.apache.flex.utils
 		
 		public static function get isFlash():Boolean
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return true;
 			}
@@ -87,7 +87,7 @@ package org.apache.flex.utils
 		
 		public static function get platform():String
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!platform)
 				{

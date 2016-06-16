@@ -19,7 +19,7 @@
 
 package org.apache.flex.utils
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.system.Capabilities;
 	}
@@ -32,7 +32,7 @@ package org.apache.flex.utils
 		
 		public static function get dpi():int
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return Capabilities.screenDPI;	
 			}
@@ -45,7 +45,7 @@ package org.apache.flex.utils
 
 		public static function get width():int
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return Capabilities.screenResolutionX;	
 			}
@@ -57,7 +57,7 @@ package org.apache.flex.utils
 
 		public static function get height():int
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				return Capabilities.screenResolutionY;	
 			}

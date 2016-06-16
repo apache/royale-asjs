@@ -40,3 +40,26 @@ ToggleSwitch
 	width: 40px;
 	height: 25px;
 }
+
+DatePicker {
+	IBeadView: ClassReference("org.apache.flex.mobile.beads.DatePickerView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
+}
+		
+.DatePicker_Month {
+	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+}
+
+.DatePicker_Day {
+	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+}
+
+.DatePicker_Year {
+	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+}

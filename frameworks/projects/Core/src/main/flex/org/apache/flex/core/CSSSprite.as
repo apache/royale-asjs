@@ -35,7 +35,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class CSSSprite extends Sprite implements IStyleableObject, IChild
 	{
         /**

@@ -30,7 +30,7 @@ import flex.events.EventPhase;
 import flex.ui.Keyboard;
 
 import org.apache.flex.events.Event;
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		
@@ -73,7 +73,7 @@ import flash.system.Capabilities;
 import flash.utils.Dictionary;
 */
 import flex.text.TextLineMetrics;
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.text.TextFormatAlign;		
 }
@@ -1706,7 +1706,7 @@ public class UIComponent extends Sprite
             if (UIComponentGlobals.callLaterSuspendCount == 0)
             {
                 var sm:ISystemManager = SystemManagerGlobals.topLevelSystemManagers[0];
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 if (sm && sm.topOfDisplayList)
                     sm.topOfDisplayList.invalidate();
@@ -1734,7 +1734,7 @@ public class UIComponent extends Sprite
         super();
         
         // Override  variables in superclasses.
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         focusRect = false; // We do our own focus drawing.
         // We are tab enabled by default if IFocusManagerComponent
@@ -2487,7 +2487,7 @@ public class UIComponent extends Sprite
         catch (e:Error)
         {
             // trace("UIComponent.get parent(): " + e);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;
@@ -5137,7 +5137,7 @@ public class UIComponent extends Sprite
 
             value.x = 0;
             value.y = 0;
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             value.scrollRect = null;
 			}
@@ -5148,7 +5148,7 @@ public class UIComponent extends Sprite
         {
             removeChild(_focusPane);
 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             _focusPane.mask = null;
 			}
@@ -7480,7 +7480,7 @@ public class UIComponent extends Sprite
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function stopDrag():void
     {
         super.stopDrag();
@@ -7596,7 +7596,7 @@ public class UIComponent extends Sprite
                 listeningForRender = true;
             }
 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             if (_systemManager.topOfDisplayList)
                 _systemManager.topOfDisplayList.invalidate();
@@ -8877,7 +8877,7 @@ public class UIComponent extends Sprite
                 listeningForRender = true;
             }
 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             // Force a "render" event to happen soon
             if (sm.topOfDisplayList)
@@ -9634,7 +9634,7 @@ public class UIComponent extends Sprite
      */
     public function measureText(text:String):TextLineMetrics
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			return TextLineMetrics.convert(determineTextFormatFromStyles().measureText(text));				
 		}
@@ -9662,7 +9662,7 @@ public class UIComponent extends Sprite
      */
     public function measureHTMLText(htmlText:String):TextLineMetrics
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			return TextLineMetrics.convert(determineTextFormatFromStyles().measureHTMLText(htmlText));				
 		}
@@ -10271,7 +10271,7 @@ public class UIComponent extends Sprite
                                   gradient:String = null, ratios:Array = null,
                                   hole:Object = null):void
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        var g:Graphics = graphics;
 	
@@ -11386,7 +11386,7 @@ public class UIComponent extends Sprite
         {
             var message:String = resourceManager.getString(
                 "core", "stateUndefined", [ stateName ]);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				throw new ArgumentError(message);
 			}
@@ -12055,7 +12055,7 @@ public class UIComponent extends Sprite
         {
             var message:String = resourceManager.getString(
                 "core", "badParameter", [ styleClient ]);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 	            throw new ArgumentError(message);
 			}
@@ -13178,7 +13178,7 @@ public class UIComponent extends Sprite
     {
         //reset systemManager in case we've been reparented to a new Window.
         //systemManager will be set on get systemManager()
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        if (event.eventPhase != EventPhase.AT_TARGET)
 	            return;
@@ -13200,7 +13200,7 @@ public class UIComponent extends Sprite
 		catch (e:Error)
 		{
 			// trace("UIComponent.get parent(): " + e);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;
@@ -13214,7 +13214,7 @@ public class UIComponent extends Sprite
      */
     private function removedHandler(event:flex.events.Event):void
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        if (event.eventPhase != EventPhase.AT_TARGET)
 	            return;
@@ -13236,7 +13236,7 @@ public class UIComponent extends Sprite
 		catch (e:Error)
 		{
 			// trace("UIComponent.get parent(): " + e);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;
@@ -13514,7 +13514,7 @@ public class UIComponent extends Sprite
 		catch (e:Error)
 		{
 			// trace("UIComponent.get parent(): " + e);
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;
@@ -13951,7 +13951,7 @@ public class UIComponent extends Sprite
             else
                 current = current.parent;
 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             if (current && current.scrollRect)
             {
@@ -14001,7 +14001,7 @@ public class UIComponent extends Sprite
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function dispatchEvent(event:flash.events.Event):Boolean
     {
         if (dispatchEventHook != null)
@@ -14021,7 +14021,7 @@ public class UIComponent extends Sprite
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function get mouseX():Number
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseX] === undefined)
@@ -14032,7 +14032,7 @@ public class UIComponent extends Sprite
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function get mouseY():Number
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseY] === undefined)

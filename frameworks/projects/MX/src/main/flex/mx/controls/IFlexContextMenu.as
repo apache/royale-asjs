@@ -33,7 +33,7 @@ package mx.controls
  */
 public interface IFlexContextMenu
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.InteractiveObject;		
 }

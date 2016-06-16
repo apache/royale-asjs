@@ -19,7 +19,7 @@
 
 package flex.display
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.Stage;
 }
@@ -30,7 +30,7 @@ COMPILE::JS
 	import org.apache.flex.core.WrappedHTMLElement;
 }
 
-COMPILE::AS3
+COMPILE::SWF
 public class TopOfDisplayList extends Stage
 {
 	public function TopOfDisplayList(stage:Stage)

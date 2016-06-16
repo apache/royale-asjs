@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.reflection
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.describeType;
 }
@@ -33,7 +33,7 @@ COMPILE::AS3
      */
     public function describeType(value:Object):TypeDefinition
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             var xml:XML = flash.utils.describeType(value);
             return new TypeDefinition(xml.@name, xml);

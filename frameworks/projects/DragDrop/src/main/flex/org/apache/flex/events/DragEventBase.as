@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.events.MouseEvent;
     }
@@ -35,7 +35,7 @@ package org.apache.flex.events
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class DragEventBase extends MouseEvent
 	{
         public function DragEventBase(type:String, bubbles:Boolean=false, cancelable:Boolean=false)

@@ -168,7 +168,7 @@ package org.apache.flex.mobile.beads
 				boundingBox.fill = fill;
 			}
 
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				boundingBox.drawRect(0, 0, boundingBox.width, boundingBox.height);
 				actualSwitch.drawRect(0, 0, actualSwitch.width, actualSwitch.height);
 			}

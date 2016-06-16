@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" >
     <fx:Script>
@@ -72,4 +72,4 @@ limitations under the License.
 	
 	<js:Image id="image" x="20" y="200" width="200" height="200" />
 
-</js:ViewBase>
+</js:View>

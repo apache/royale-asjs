@@ -24,7 +24,7 @@ COMPILE::LATER
 import flash.display.Stage;
 }
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.system.Capabilities;
 	import flash.display.DisplayObject;
@@ -132,7 +132,7 @@ public class RuntimeDPIProvider
 			var scX:Number = Display.width;
 			var scY:Number = Display.height;
 					
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 			// Use the stage width/height only when debugging, because Capabilities reports the computer resolution
 			if (Capabilities.isDebugger)

@@ -19,7 +19,7 @@
 
 package mx.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.Loader;
@@ -125,7 +125,7 @@ use namespace mx_internal;
     public static function normalizeURL(loaderInfo:Object):String
     {
         var url:String;
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (loaderInfo is LoaderInfo)
 			  url = loaderInfo.url;
@@ -402,7 +402,7 @@ use namespace mx_internal;
      * @return
      * encoded url that may be loaded with a URLRequest
      **/
-	COMPILE::AS3
+	COMPILE::SWF
     mx_internal static function OSToPlayerURI(url:String, local:Boolean):String 
     {
         
@@ -470,7 +470,7 @@ use namespace mx_internal;
      * 
      *  @return the parent module factory if available, null otherwise. 
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private static function getParentModuleFactory(moduleFactory:IFlexModuleFactory):IFlexModuleFactory    
     {
         var request:Request = new Request(Request.GET_PARENT_FLEX_MODULE_FACTORY_REQUEST);

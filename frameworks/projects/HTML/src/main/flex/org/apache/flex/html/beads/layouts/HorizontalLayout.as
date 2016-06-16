@@ -90,7 +90,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
                 var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
@@ -250,7 +250,7 @@ package org.apache.flex.html.beads.layouts
             }
 		}
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function setPositionAndHeight(child:IUIBase, top:Number, mt:Number, pt:Number,
                                              bottom:Number, mb:Number, pb:Number, h:Number,
                                              valign:*):void

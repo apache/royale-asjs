@@ -20,7 +20,7 @@
 package mx.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.ByteArray;
     import flash.utils.Dictionary;
@@ -132,7 +132,7 @@ public class ObjectUtil
      */ 
     public static function copy(value:Object):Object
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             var buffer:ByteArray = new ByteArray();
             buffer.writeObject(value);
@@ -679,7 +679,7 @@ public class ObjectUtil
 
                     var isArray:Boolean = value is Array;
                     var isDict:Boolean;
-                    COMPILE::AS3
+                    COMPILE::SWF
                     {
                         isDict = value is Dictionary;
                     }
@@ -871,7 +871,7 @@ public class ObjectUtil
                     }
                     else if (areBothByteArrays(a, b))
                     {
-                        COMPILE::AS3
+                        COMPILE::SWF
                         {
                             result = byteArrayCompare(a as ByteArray, b as ByteArray);                                
                         }
@@ -895,7 +895,7 @@ public class ObjectUtil
                         }
                         
                         // now that we know we have the same properties, let's compare the values
-						COMPILE::AS3
+						COMPILE::SWF
 						{
 							var propName:QName;								
 						}
@@ -936,7 +936,7 @@ public class ObjectUtil
     
     private static function isXMLNode(value:Object):Boolean
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return (value is XMLNode);
         }
@@ -948,7 +948,7 @@ public class ObjectUtil
     
     private static function areBothByteArrays(a:Object, b:Object):Boolean
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return (a is ByteArray) && (b is ByteArray)
         }
@@ -1092,7 +1092,7 @@ public class ObjectUtil
         }
 
         var isArray:Boolean = (obj is Array);
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         var isDict:Boolean  = (obj is Dictionary);
 		}
@@ -1134,7 +1134,7 @@ public class ObjectUtil
             numericIndex = isArray && !isNaN(Number(p));
         }
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			var allDone:Boolean = isArray || isDict || className == "Object";
 		}
@@ -1563,7 +1563,7 @@ public class ObjectUtil
     /**
      * @private
      */
-    COMPILE::AS3
+    COMPILE::SWF
     private static function byteArrayCompare(a:ByteArray, b:ByteArray):int
     {
         var result:int = 0;
@@ -1656,14 +1656,14 @@ public class ObjectUtil
 
 }
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.Dictionary;
 }
 
 class CircularReferenceManager
 {
-    COMPILE::AS3
+    COMPILE::SWF
     private var dict:Dictionary = new Dictionary(true);
     
     COMPILE::JS
@@ -1675,7 +1675,7 @@ class CircularReferenceManager
     
     public function put(obj:Object):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             dict[obj] = 1;
         }
@@ -1687,7 +1687,7 @@ class CircularReferenceManager
     
     public function contains(obj:Object):Boolean
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return (dict[obj] == 1);
         }

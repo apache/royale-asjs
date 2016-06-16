@@ -20,7 +20,7 @@
 package mx.events
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.InteractiveObject;
 }

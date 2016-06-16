@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.net.navigateToURL;
         import flash.net.URLRequest;            
@@ -48,7 +48,7 @@ package org.apache.flex.core
 		
         public static function open(url:String, options:String):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 navigateToURL(new URLRequest(url), options);                    
             }

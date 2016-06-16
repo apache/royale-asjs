@@ -23,8 +23,8 @@
 
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
-    <component id="ViewBaseDataBinding" class="org.apache.flex.binding.ViewBaseDataBinding"/>
-    <component id="MXMLBeadViewBaseDataBinding" class="org.apache.flex.binding.MXMLBeadViewBaseDataBinding"/>
+    <component id="ViewDataBinding" class="org.apache.flex.binding.ViewDataBinding"/>
+    <component id="MXMLBeadViewDataBinding" class="org.apache.flex.binding.MXMLBeadViewDataBinding"/>
     <component id="ApplicationDataBinding" class="org.apache.flex.binding.ApplicationDataBinding"/>
     <component id="ContainerDataBinding" class="org.apache.flex.binding.ContainerDataBinding"/>
 

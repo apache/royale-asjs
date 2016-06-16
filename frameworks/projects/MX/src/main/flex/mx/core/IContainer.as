@@ -36,7 +36,7 @@ import mx.managers.IFocusManager;
 public interface IContainer extends IUIComponent
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -61,7 +61,7 @@ COMPILE::LATER
 
 include "ISpriteInterface.as"
 include "IDisplayObjectContainerInterface.as"
-COMPILE::AS3
+COMPILE::SWF
 {
 include "IInteractiveObjectInterface.as"
 }

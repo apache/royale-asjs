@@ -41,6 +41,12 @@
                 <extensions>true</extensions>
                 <configuration>
                     <includeSources>true</includeSources>
+                    <includeFiles>
+                        <include-file>
+                            <name>js/out/*</name>
+                            <path>generated-sources/flexjs/*</path>
+                        </include-file>
+                    </includeFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -59,7 +65,7 @@
             <artifactId>airglobal</artifactId>
             <version>${air.version}</version>
             <type>swc</type>
-            <scope>external</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

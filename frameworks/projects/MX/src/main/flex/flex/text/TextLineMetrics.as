@@ -1,11 +1,11 @@
 package flex.text
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.text.TextLineMetrics;		
 }
 
-COMPILE::AS3
+COMPILE::SWF
 public class TextLineMetrics extends flash.text.TextLineMetrics
 {
 	public function TextLineMetrics(x:Number, width:Number, height:Number, ascent:Number, descent:Number, leading:Number)

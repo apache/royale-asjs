@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.graphics
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.graphics.Rect
 	}
@@ -46,7 +46,7 @@ package org.apache.flex.createjs.graphics
 	 *  @productversion FlexJS 0.0
 	 */
     
-    COMPILE::AS3
+    COMPILE::SWF
 	public class Rect extends org.apache.flex.core.graphics.Rect
 	{
 		// nothing special for SWF version.

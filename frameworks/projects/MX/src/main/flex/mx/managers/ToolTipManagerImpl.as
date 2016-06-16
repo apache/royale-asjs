@@ -19,7 +19,7 @@
 
 package mx.managers
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;		
 	import flash.events.TimerEvent;
@@ -702,7 +702,7 @@ public class ToolTipManagerImpl extends EventDispatcher
      */
     private function mouseIsOver(target:DisplayObject):Boolean
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (!target || !target.stage)
 				return false;

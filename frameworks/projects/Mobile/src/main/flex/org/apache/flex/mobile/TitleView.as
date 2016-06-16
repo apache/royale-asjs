@@ -25,12 +25,12 @@ package org.apache.flex.mobile
 	import org.apache.flex.html.Container;
 	
 	/**
-	 * The View class represents the area for a mobile app's primary
-	 * interface elements.
+	 * The TitleView class represents a view in a mobile app that has
+	 * a title and is typically used in a ViewManager.
 	 */
-	public class View extends Container implements IView
+	public class TitleView extends Container implements IViewManagerView
 	{
-		public function View()
+		public function TitleView()
 		{
 			super();
 			
@@ -49,7 +49,7 @@ package org.apache.flex.mobile
 			_title = value;
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		override public function toString():String
 		{
 			return _title;

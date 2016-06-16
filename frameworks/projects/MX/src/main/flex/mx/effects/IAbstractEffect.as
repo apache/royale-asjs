@@ -20,7 +20,7 @@
 package mx.effects
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.events.IEventDispatcher;		
 }

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.html.CheckBox;            
     }
@@ -39,7 +39,7 @@ package org.apache.flex.createjs
 	import org.apache.flex.core.graphics.IFill;
 	import org.apache.flex.core.graphics.SolidColor;
 	
-    COMPILE::AS3
+    COMPILE::SWF
 	public class CheckBox extends org.apache.flex.html.CheckBox
 	{			
 		/**

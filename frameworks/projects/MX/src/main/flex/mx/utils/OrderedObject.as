@@ -20,7 +20,7 @@ package mx.utils
 {
 
 import org.apache.flex.utils.Proxy;
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.utils.flash_proxy;
 import mx.utils.object_proxy;
@@ -77,7 +77,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     object_proxy var propertyList:Array;
 	COMPILE::JS
 	protected var propertyList:Array;
@@ -113,7 +113,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     object_proxy function getObjectProperty(name:*):*
     {
         return getProperty(name);
@@ -140,7 +140,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     object_proxy function setObjectProperty(name:*, value:*):void
     {
         setProperty(name, value);
@@ -166,7 +166,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function deleteProperty(name:*):Boolean
     {
         var deleted:Boolean = delete valueMap[name]; 
@@ -240,7 +240,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function hasProperty(name:*):Boolean
     {
         return(name in valueMap);
@@ -266,7 +266,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function nextName(index:int):String
     {
         return propertyList[index -1];
@@ -292,7 +292,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function nextValue(index:int):*
     {
         return valueMap[propertyList[index -1]];
@@ -311,7 +311,7 @@ public dynamic class OrderedObject extends Proxy
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function setProperty(name:*, value:*):void
     {
         var oldVal:* = valueMap[name];

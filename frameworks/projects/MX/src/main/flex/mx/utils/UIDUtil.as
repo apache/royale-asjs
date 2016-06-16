@@ -20,7 +20,7 @@
 package mx.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;		
@@ -70,7 +70,7 @@ public class UIDUtil
 		55, 56, 57, 65, 66, 67, 68, 69, 70];
 
     private static const DASH:int = 45;       // dash ascii
-	COMPILE::AS3
+	COMPILE::SWF
     private static const UIDBuffer:ByteArray = new ByteArray();       // static ByteArray used for UID generation to save memory allocation cost
 
     //--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private static var uidDictionary:Dictionary = new Dictionary(true);
 
     //--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ public class UIDUtil
 		var i:int;
 		var j:int;
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         UIDBuffer.position = 0;
 
@@ -203,7 +203,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public static function fromByteArray(ba:ByteArray):String
     {
         if (ba != null && ba.length >= 16 && ba.bytesAvailable >= 16)
@@ -284,7 +284,7 @@ public class UIDUtil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public static function toByteArray(uid:String):ByteArray
     {
         if (isUID(uid))
@@ -360,7 +360,7 @@ public class UIDUtil
         {
             try
             {
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 // We don't create uids for XMLLists, but if
                 // there's only a single XML node, we'll extract it.
@@ -469,7 +469,7 @@ public class UIDUtil
             case "f":
                 return 15;
             default:
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 return new uint(hex);
 				}

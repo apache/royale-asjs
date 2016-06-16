@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.display.Sprite;
 	}
@@ -110,7 +110,7 @@ package org.apache.flex.html.supportClasses
 			_dataField = value;
 		}
 
-		COMPILE::AS3
+		COMPILE::SWF
 		private var background:Sprite;
 
 		COMPILE::JS
@@ -119,7 +119,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -133,7 +133,7 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function updateRenderer():void
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				super.updateRenderer();
 

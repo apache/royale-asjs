@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObject;            
     }
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		function get track():DisplayObject;
 		
 		/**
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		function get thumb():DisplayObject;
 	}
 }

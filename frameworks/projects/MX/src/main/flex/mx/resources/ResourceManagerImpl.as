@@ -27,7 +27,7 @@ import org.apache.flex.events.Event;
 import org.apache.flex.events.EventDispatcher;
 import flex.system.DefinitionManager;
 import flex.system.I18NManager;
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.system.ApplicationDomain;		
 }
@@ -472,7 +472,7 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
 			compiledLocales[0] :
 			"en_US";
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			var applicationDomain:DefinitionManager = new DefinitionManager(info["currentDomain"]);				
 		}
@@ -1148,7 +1148,7 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
         if (getLocales().length > 0)
             return;
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        var applicationDomain:DefinitionManager =
 	            new DefinitionManager(ApplicationDomain.currentDomain);

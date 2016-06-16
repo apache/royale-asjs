@@ -226,7 +226,7 @@ public class SetEventHandler extends OverrideBase
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function addEventListener(
                                     type:String, listener:Function,
                                     useCapture:Boolean = false,

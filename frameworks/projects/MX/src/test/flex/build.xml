@@ -137,7 +137,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
-            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
             <arg value="-define=COMPILE::LATER,false" />
             <arg value="-define=CONFIG::performanceInstrumentation,false" />

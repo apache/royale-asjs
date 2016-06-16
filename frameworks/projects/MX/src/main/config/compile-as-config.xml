@@ -36,7 +36,7 @@
             <value>false</value>
         </define>
         <define>
-            <name>COMPILE::AS3</name>
+            <name>COMPILE::SWF</name>
             <value>true</value>
         </define>
         <define>

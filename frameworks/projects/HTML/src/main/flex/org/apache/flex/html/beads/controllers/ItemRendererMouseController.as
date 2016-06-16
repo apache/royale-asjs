@@ -21,7 +21,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
-COMPILE::AS3 {
+COMPILE::SWF {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
 }
@@ -76,7 +76,7 @@ COMPILE::JS {
 			_strand = value;
             renderer = value as ISelectableItemRenderer;
 			
-			COMPILE::AS3 {
+			COMPILE::SWF {
 	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 				renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
@@ -96,7 +96,7 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function rollOverHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
@@ -118,7 +118,7 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function rollOutHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
@@ -141,7 +141,7 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
@@ -169,7 +169,7 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;

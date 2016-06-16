@@ -20,7 +20,7 @@
 package mx.core
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.InteractiveObject;		
 }
@@ -220,7 +220,7 @@ public class UIComponentGlobals
 			if (UIComponentGlobals.callLaterSuspendCount == 0)
 			{
 				var sm:ISystemManager = SystemManagerGlobals.topLevelSystemManagers[0];
-				COMPILE::AS3
+				COMPILE::SWF
 				{
 					if (sm && sm.topOfDisplayList)
 						sm.topOfDisplayList.invalidate();

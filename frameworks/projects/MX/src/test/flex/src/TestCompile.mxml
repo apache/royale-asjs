@@ -37,8 +37,8 @@ limitations under the License.
         <js:SimpleValuesImpl />
     </js:valuesImpl>
 	<js:initialView>
-		<js:ViewBase>
+		<js:View>
 			<mx:UIComponent />
-		</js:ViewBase>
+		</js:View>
 	</js:initialView>
 </js:Application>

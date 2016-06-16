@@ -35,7 +35,7 @@ package org.apache.flex.html
     [DefaultProperty("mxmlContent")]
     
     /**
-     *  The MXMLBeadViewBase class extends BeadViewBase
+     *  The MXMLBeadView class extends ContainerView
      *  and adds support for databinding and specification
      *  of children in MXML.
      *  
@@ -44,7 +44,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBase extends ContainerView implements IStrand, ILayoutHost
+	public class MXMLBeadView extends ContainerView implements IStrand, ILayoutHost
 	{
         /**
          *  Constructor.
@@ -54,14 +54,14 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function MXMLBeadViewBase()
+		public function MXMLBeadView()
 		{
 			super();
 		}
 		
         [Bindable("strandChanged")]
         /**
-         *  An MXMLBeadViewBase doesn't create its children until it is added to
+         *  An MXMLBeadView doesn't create its children until it is added to
          *  the strand.
          *  
          *  @langversion 3.0
@@ -165,7 +165,7 @@ package org.apache.flex.html
             //TODO:  Need to handle this case more gracefully
             catch(e:Error)
             {
-                COMPILE::AS3
+                COMPILE::SWF
                 {
                     trace(e.message);                        
                 }

@@ -218,7 +218,7 @@ public class Watcher
 	            //   Error #1069: Property - not found on - and there is no default value
 	            //   Error #1507: - invalid null argument.
 	            // We allow any other errors to be thrown.
-				COMPILE::AS3
+				COMPILE::SWF
 				{
 	            if ((error.errorID != 1006) &&
 	                (error.errorID != 1009) &&

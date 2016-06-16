@@ -1,7 +1,7 @@
 package flex.text
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.text.TextField;		
 }
@@ -21,7 +21,7 @@ COMPILE::JS
 	import org.apache.flex.html.Label;
 }
 
-COMPILE::AS3
+COMPILE::SWF
 public class TextField extends flash.text.TextField
 {
 	public function TextField()

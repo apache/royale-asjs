@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
     import flash.display.DisplayObject;
     import flash.display.Sprite;
@@ -61,7 +61,7 @@ package org.apache.flex.core
         public function SimpleApplication()
         {
             super();
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (stage)
 				{
@@ -75,7 +75,7 @@ package org.apache.flex.core
 			}
         }
         
-		COMPILE::AS3
+		COMPILE::SWF
         private function initHandler(event:flash.events.Event):void
         {
 			start();

@@ -110,7 +110,7 @@ package org.apache.flex.createjs
 	 *  @productversion FlexJS 0.0
 	 */
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public class Application extends org.apache.flex.core.Application
 	{
 		// does nothing different for SWF side

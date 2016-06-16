@@ -39,7 +39,7 @@
 	</fx:Style>
 	
 	<js:initialView>
-		<js:ViewBase>
+		<js:View>
 			<js:Container x="50" y="50" width="400" height="400" className="ContainerBackground">
 				<js:beads>
 					<js:BasicLayout />
@@ -47,6 +47,6 @@
 				</js:beads>
 			</js:Container>
 			<js:Label id="output" x="500" y="50" text="roll here" />
-		</js:ViewBase>
+		</js:View>
 	</js:initialView>
 </js:Application>

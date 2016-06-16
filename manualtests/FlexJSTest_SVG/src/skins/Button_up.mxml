@@ -17,11 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic">
 	<js:Path x="0" y="300" width="200" height="100" data="M 100 350 q 150 -300 300 0" >
 		<js:fill>
 			<js:SolidColor color="#0000FF" alpha="0.5" />
 		</js:fill>
 	</js:Path>
-</js:ViewBase>
+</js:View>

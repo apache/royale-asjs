@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flex.display
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;		
 	import flash.display.DisplayObjectContainer;		

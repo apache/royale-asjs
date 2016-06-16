@@ -20,7 +20,7 @@
 package mx.managers
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;		
@@ -521,7 +521,7 @@ public interface ISystemManager extends IEventDispatcher, IChildList, IFlexModul
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	function get stage():Stage
 
 }

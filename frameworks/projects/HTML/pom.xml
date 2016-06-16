@@ -46,6 +46,11 @@
                             <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
                         </namespace>
                         <namespace>
+                            <type>as</type>
+                            <uri>library://ns.apache.org/flexjs/basic</uri>
+                            <manifest>${project.basedir}/src/main/resources/basic-as-manifest.xml</manifest>
+                        </namespace>
+                        <namespace>
                             <uri>library://ns.apache.org/flexjs/svg</uri>
                             <manifest>${project.basedir}/src/main/resources/svg-manifest.xml</manifest>
                         </namespace>
@@ -53,6 +58,16 @@
                     <includeClasses>
                         <includeClass>HTMLClasses</includeClass>
                     </includeClasses>
+                    <includeFiles>
+                        <include-file>
+                            <name>defaults.css</name>
+                            <path>../src/main/resources/defaults.css</path>
+                        </include-file>
+                        <include-file>
+                            <name>js/out/*</name>
+                            <path>generated-sources/flexjs/*</path>
+                        </include-file>
+                    </includeFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -71,7 +86,7 @@
             <artifactId>airglobal</artifactId>
             <version>${air.version}</version>
             <type>swc</type>
-            <scope>external</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

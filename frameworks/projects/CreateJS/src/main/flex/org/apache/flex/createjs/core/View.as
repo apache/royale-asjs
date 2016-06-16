@@ -67,7 +67,7 @@ package org.apache.flex.createjs.core
 	 *  @productversion FlexJS 0.0
 	 */
 		
-	COMPILE::AS3
+	COMPILE::SWF
 	public class View extends org.apache.flex.core.ViewBase
 	{
 		// nothing different for the SWF version

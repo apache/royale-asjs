@@ -22,7 +22,7 @@ package mx.utils
 
 import org.apache.flex.utils.Proxy;
 import org.apache.flex.reflection.TypeDefinition;
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.utils.flash_proxy;
 use namespace flash_proxy;
@@ -98,7 +98,7 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function getProperty(name:*):*
     {
         var result:* = cache[name];
@@ -129,7 +129,7 @@ public dynamic class DescribeTypeCacheRecord extends Proxy
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override flash_proxy function hasProperty(name:*):Boolean
     {
         if (name in cache)

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.text.TextFieldAutoSize;
         import flash.text.TextFieldType;
@@ -56,7 +56,7 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 textField = new CSSTextField();
                 textField.type = TextFieldType.DYNAMIC;
@@ -66,13 +66,13 @@ package org.apache.flex.html.supportClasses
             }
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		public var textField:CSSTextField;
 		
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -85,7 +85,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function adjustSize():void
 		{
 			var cy:Number = height/2;
@@ -107,7 +107,7 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function get text():String
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return textField.text;                    
             }
@@ -119,7 +119,7 @@ package org.apache.flex.html.supportClasses
 		
 		public function set text(value:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 textField.text = value;                    
             }

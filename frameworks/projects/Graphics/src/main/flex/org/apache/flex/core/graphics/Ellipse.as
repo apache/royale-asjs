@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core.graphics
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.geom.Point;
         import flash.geom.Rectangle;            
@@ -47,7 +47,7 @@ package org.apache.flex.core.graphics
 		 */
 		public function drawEllipse(xp:Number, yp:Number, width:Number, height:Number):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 graphics.clear();
                 applyStroke();

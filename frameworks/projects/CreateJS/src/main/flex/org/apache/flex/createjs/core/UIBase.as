@@ -55,7 +55,7 @@ package org.apache.flex.createjs.core
 	 *  @productversion FlexJS 0.0
 	 */
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public class UIBase extends org.apache.flex.core.UIBase
 	{
 		// nothing different for the SWF version

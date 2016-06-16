@@ -20,7 +20,7 @@
 package mx.automation
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObjectContainer;		
 }

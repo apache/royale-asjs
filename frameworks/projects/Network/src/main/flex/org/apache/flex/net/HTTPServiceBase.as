@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.events.EventDispatcher;            
     }
@@ -35,7 +35,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class HTTPServiceBase extends EventDispatcher
 	{
     }

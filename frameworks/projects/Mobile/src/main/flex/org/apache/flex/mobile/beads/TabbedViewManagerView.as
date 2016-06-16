@@ -39,7 +39,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TabbedViewManagerView extends ViewManagerView
+	public class TabbedViewManagerView extends ViewManagerViewBase
 	{
 		/**
 		 * Constructor.

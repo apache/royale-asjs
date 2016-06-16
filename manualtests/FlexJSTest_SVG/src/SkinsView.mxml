@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic" xmlns:skins="skins.*" xmlns:mx="library://ns.adobe.com/flex/mx"
 				initComplete="viewbase1_initCompleteHandler(event)" >
 	<fx:Script>
@@ -66,7 +66,7 @@ limitations under the License.
 		<js:State name="disabled"/>
 	</js:states>
 	<!--<js:beads>
-		<js:ViewBaseDataBinding />
+		<js:ViewDataBinding />
 	</js:beads>-->
 	<js:Container x="0" y="0" >
 		<js:Label text="MyButton" x="20" y="5" includeIn="{[up,down,over,disabled]}" />
@@ -100,4 +100,4 @@ limitations under the License.
 		
 	</js:Container>
 	
-</js:ViewBase>
+</js:View>

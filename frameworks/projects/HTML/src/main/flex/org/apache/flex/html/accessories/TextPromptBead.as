@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.text.TextFieldType;			
 		
@@ -90,7 +90,7 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 			
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				// listen for changes in text to hide or show the prompt
 				var model:Object = UIBase(_strand).model;
@@ -120,14 +120,14 @@ package org.apache.flex.html.accessories
 			}
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		private var promptField:CSSTextField;
 		private var promptAdded:Boolean;
 		
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		private function handleTextChange( event:Event ):void
 		{	
 			// see what the model currently has to determine if the prompt should be

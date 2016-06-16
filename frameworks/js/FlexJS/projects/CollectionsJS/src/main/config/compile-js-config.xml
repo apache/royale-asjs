@@ -21,15 +21,21 @@
     <compiler>
         <accessible>false</accessible>
         
-        <external-library-path>
-        </external-library-path>
-        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>true</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -41,7 +47,7 @@
 	  
         <locale/>
         
-        <library-path>
+        <library-path append="true">
             <!-- asjscompc won't 'link' these classes in, but will list their requires
              if these swcs are on the external-library-path then their requires
              will not be listed -->
@@ -70,7 +76,5 @@
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
         
-    <target-player>${playerglobal.version}</target-player>
-	
 
 </flex-config>

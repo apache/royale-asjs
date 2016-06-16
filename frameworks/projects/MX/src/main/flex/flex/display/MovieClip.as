@@ -27,7 +27,7 @@ package flex.display
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.display.MovieClip;
 	}
@@ -36,10 +36,10 @@ package flex.display
 		import flex.display.DisplayObjectContainer;
 	}
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public class MovieClip extends flash.display.MovieClip
 	{
-		COMPILE::AS3
+		COMPILE::SWF
 		private var _model:IBeadModel;
 		
 		/**
@@ -50,7 +50,7 @@ package flex.display
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		public function get model():Object
 		{
 			if (_model == null)
@@ -64,7 +64,7 @@ package flex.display
 		/**
 		 *  @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		public function set model(value:Object):void
 		{
 			if (_model != value)

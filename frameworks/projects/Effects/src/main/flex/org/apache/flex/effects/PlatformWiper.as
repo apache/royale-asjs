@@ -20,7 +20,7 @@
 package org.apache.flex.effects
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.DisplayObject;
     import flash.geom.Rectangle;            
@@ -91,7 +91,7 @@ public class PlatformWiper
      */
     public function set target(value:IUIBase):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             if (value == null)
                 DisplayObject(_target).scrollRect = null;
@@ -123,7 +123,7 @@ public class PlatformWiper
      */
     public function set visibleRect(value:Rectangle):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             DisplayObject(_target).scrollRect = value;                
         }

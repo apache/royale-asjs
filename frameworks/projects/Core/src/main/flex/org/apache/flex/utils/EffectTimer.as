@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.events.EventDispatcher;
     import flash.events.TimerEvent;
@@ -75,7 +75,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
     public function EffectTimer()
     {
 		interval = ValuesManager.valuesImpl.getValue(this, "effectTimerInterval");
-        COMPILE::AS3
+        COMPILE::SWF
         {
     		timer = new flash.utils.Timer(interval);
     		timer.addEventListener("timer", timerHandler);
@@ -84,7 +84,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
 
     private var interval:int;
     
-    COMPILE::AS3
+    COMPILE::SWF
 	private var timer:flash.utils.Timer;
     
     COMPILE::JS
@@ -92,7 +92,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
 	
 	public function start():int
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
     		timer.start();
     		return getTimer();
@@ -108,7 +108,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
 	
 	public function stop():void
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
     		timer.stop();
         }
@@ -119,7 +119,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
         }
 	}
 	
-    COMPILE::AS3
+    COMPILE::SWF
 	private function timerHandler(event:flash.events.TimerEvent):void
 	{
 		event.updateAfterEvent();

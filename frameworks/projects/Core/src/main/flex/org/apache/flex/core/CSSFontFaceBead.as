@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.Loader;
         import flash.system.LoaderContext;
@@ -71,7 +71,7 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 IEventDispatcher(ValuesManager.valuesImpl).addEventListener("init", initHandler);
                 IEventDispatcher(_strand).addEventListener("preinitialize", preinitHandler);
@@ -82,10 +82,10 @@ package org.apache.flex.core
             }
         }
             
-        COMPILE::AS3
+        COMPILE::SWF
         private var loaders:Array;
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function initHandler(event:ValueEvent):void
         {
             var fontFaces:Array = event.value as Array;
@@ -93,7 +93,7 @@ package org.apache.flex.core
                 requestFonts(fontFaces);
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function requestFonts(fontFaces:Array):void
         {
             if (!loaders)
@@ -122,20 +122,20 @@ package org.apache.flex.core
             }
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function completeHandler(event:flash.events.Event):void
         {
             removeTarget(event.target);
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function errorHandler(event:flash.events.Event):void
         {
             trace("error loading font from: ", event.target.name);
             removeTarget(event.target);
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function removeTarget(target:Object):void
         {
             var n:int = loaders.length;
@@ -151,7 +151,7 @@ package org.apache.flex.core
             }
         }
                 
-        COMPILE::AS3
+        COMPILE::SWF
         private function preinitHandler(event:org.apache.flex.events.Event):void
         {
             event.preventDefault();

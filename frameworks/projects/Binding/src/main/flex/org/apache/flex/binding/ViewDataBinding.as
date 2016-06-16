@@ -23,15 +23,14 @@ package org.apache.flex.binding
     import org.apache.flex.binding.PropertyWatcher;
     import org.apache.flex.binding.SimpleBinding;
     import org.apache.flex.binding.WatcherBase;
-    import org.apache.flex.core.DataBindingBase;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     
     /**
-     *  The ViewBaseDataBinding class implements databinding for
-     *  ViewBase instances.  Different classes can have
+     *  The ViewDataBinding class implements databinding for
+     *  View instances.  Different classes can have
      *  different databinding implementation that optimize for
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings
@@ -42,7 +41,7 @@ package org.apache.flex.binding
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadViewBaseDataBinding extends DataBindingBase implements IBead
+	public class ViewDataBinding implements IBead
 	{
         /**
          *  Constructor.
@@ -52,7 +51,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function MXMLBeadViewBaseDataBinding()
+		public function ViewDataBinding()
 		{
 			super();
 		}
@@ -80,6 +79,7 @@ package org.apache.flex.binding
             if (!("_bindings" in _strand))
                 return;
             var bindingData:Array = _strand["_bindings"];
+            var destObject:Object;
             var n:int = bindingData[0];
             var bindings:Array = [];
             var i:int;
@@ -98,14 +98,13 @@ package org.apache.flex.binding
                     binding = bindings[i];
                 if (binding.source is Array)
                 {
-                    if (binding.source[0] in _strand)
+                    if (binding.source[0] == "applicationModel")
                     {
                         if (binding.source.length == 2 && binding.destination.length == 2)
                         {
-                            var destObject:Object;
                             var destination:IStrand;
                             // can be simplebinding or constantbinding
-                            var modelWatcher:Object = watchers.watcherMap[binding.source[0]];
+                            var modelWatcher:Object = watchers.watcherMap["applicationModel"];
                             fieldWatcher = modelWatcher.children.watcherMap[binding.source[1]];
                             if (fieldWatcher.eventNames is String)
                             {
@@ -148,12 +147,12 @@ package org.apache.flex.binding
                                 {
                                     if (destObject)
                                     {
-                                        cb.destination = destObject;
-                                        _strand.addBead(cb);
+                                        sb.destination = destObject;
+                                        _strand.addBead(sb);
                                     }
                                     else
                                     {
-                                        deferredBindings[binding.destination[0]] = cb;
+                                        deferredBindings[binding.destination[0]] = sb;
                                         IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                                     }
                                 }
@@ -265,10 +264,7 @@ package org.apache.flex.binding
             var n:int = bindingData.length;
             var index:int = 0;
             var watcherData:Object;
-            // FalconJX adds an extra null to the data so make sure
-            // we have enough data for a complete watcher otherwise
-            // say we are done
-            while (index < n - 2)
+            while (index < n)
             {
                 var watcherIndex:int = bindingData[index++];
                 var type:int = bindingData[index++];

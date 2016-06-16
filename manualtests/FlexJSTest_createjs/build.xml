@@ -56,7 +56,7 @@
     property="GOOG_HOME"
     value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/createjs/out/bin/createjs.swc"/>
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/createjs/target/createjs.swc"/>
     
     <include file="${basedir}/../build_example.xml" />
 

@@ -21,15 +21,21 @@
     <compiler>
         <accessible>false</accessible>
 
-        <external-library-path>
-        </external-library-path>
-
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>true</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -40,9 +46,6 @@
         </keep-as3-metadata>
 	  
         <locale/>
-        
-        <library-path>
-        </library-path>
         
         <namespaces>
             <namespace>
@@ -75,7 +78,5 @@
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
     
-    <!--<target-player>${playerglobal.version}</target-player>-->
-	
 
 </flex-config>

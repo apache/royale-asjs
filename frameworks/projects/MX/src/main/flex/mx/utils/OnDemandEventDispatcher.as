@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.events.Event;	
 }
@@ -70,7 +70,7 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-		COMPILE::AS3
+		COMPILE::SWF
         public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
         {
             if (_dispatcher == null)
@@ -98,7 +98,7 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-		COMPILE::AS3
+		COMPILE::SWF
         public function dispatchEvent(event:Event):Boolean
         {
             if (_dispatcher != null)
@@ -136,7 +136,7 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-		COMPILE::AS3
+		COMPILE::SWF
         public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
         {
             if (_dispatcher != null)
@@ -157,7 +157,7 @@ COMPILE::JS
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-		COMPILE::AS3
+		COMPILE::SWF
         public function willTrigger(type:String):Boolean
         {
             if (_dispatcher != null)

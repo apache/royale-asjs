@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
@@ -330,7 +330,7 @@ package org.apache.flex.net
          */
 		public function get responseHeaders():Array
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (_responseHeaders && _responseHeaders.length > 0)
                 {
@@ -518,7 +518,7 @@ package org.apache.flex.net
          */
 		public var beads:Array;
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _beads:Vector.<IBead>;
         
         /**
@@ -529,7 +529,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -546,7 +546,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -565,7 +565,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -581,7 +581,7 @@ package org.apache.flex.net
 			return null;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
         private var urlLoader:URLLoader;
         
         /**
@@ -601,7 +601,7 @@ package org.apache.flex.net
                     addBead(bead);
             }
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (!urlLoader)
                     urlLoader = new URLLoader();
@@ -707,7 +707,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function statusHandler(event:HTTPStatusEvent):void
 		{
 			_status = event.status;
@@ -726,7 +726,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function ioErrorHandler(event:IOErrorEvent):void
 		{
 			dispatchEvent(new Event(event.type));
@@ -740,7 +740,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void
         {
             dispatchEvent(new Event(event.type));
@@ -773,7 +773,7 @@ package org.apache.flex.net
          */
         public function get data():String
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return urlLoader.data;                    
             }

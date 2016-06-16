@@ -20,7 +20,7 @@
 package mx.controls
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldAutoSize;
@@ -175,7 +175,7 @@ public class ToolTip extends UIComponent implements IToolTip, IFontContextCompon
     {
         super();
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 	        // InteractiveObject variables.
 	        // Make the ToolTip invisible to the mouse so that it doesn't
@@ -462,7 +462,7 @@ public class ToolTip extends UIComponent implements IToolTip, IFontContextCompon
         {
             textField = IUITextField(createInFontContext(UITextField));
 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 	            textField.autoSize = TextFieldAutoSize.LEFT;
 	            textField.mouseEnabled = false;

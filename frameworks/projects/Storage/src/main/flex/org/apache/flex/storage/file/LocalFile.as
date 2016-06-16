@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.storage.file
 {
-COMPILE::AS3 {
+COMPILE::SWF {
 	import flash.filesystem.File;
 }
 COMPILE::JS {
@@ -27,7 +27,7 @@ COMPILE::JS {
 /**
  * The File class provides access to a specific file on the device.
  */
-COMPILE::AS3
+COMPILE::SWF
 public class LocalFile
 {
 	public static const documentsDirectory:String = "documentsDirectory";

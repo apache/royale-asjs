@@ -20,7 +20,7 @@
 package mx.core
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		
@@ -772,7 +772,7 @@ public class UITextField extends TextField
         if (isEmpty)
             super.text = "Wj";
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			tlm = TextLineMetrics.convert(getLineMetrics(0));				
 		}
@@ -913,7 +913,7 @@ public class UITextField extends TextField
      *  @private
      *  Storage for the explicitHeight property.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private var _explicitHeight:Number;
 
     /**
@@ -924,7 +924,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function get explicitHeight():Number
     {
         return _explicitHeight;
@@ -933,7 +933,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function set explicitHeight(value:Number):void
     {
         _explicitHeight = value;
@@ -1031,7 +1031,7 @@ public class UITextField extends TextField
      *  @private
      *  Storage for the explicitWidth property.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private var _explicitWidth:Number;
 
     /**
@@ -1042,7 +1042,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function get explicitWidth():Number
     {
         return _explicitWidth;
@@ -1051,7 +1051,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function set explicitWidth(value:Number):void
     {
         _explicitWidth = value;
@@ -1354,7 +1354,7 @@ public class UITextField extends TextField
     {
         validateNow();
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// If we use device fonts, then the unscaled height is 
 			// textHeight * scaleX / scaleY
@@ -1436,7 +1436,7 @@ public class UITextField extends TextField
     {
         validateNow();
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// If we use device fonts, then the unscaled width is 
 			// textWidth * scaleX / scaleY
@@ -1614,7 +1614,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function get percentHeight():Number
     {
         return NaN;
@@ -1623,7 +1623,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
      public function set percentHeight(value:Number):void
      {
      }
@@ -1640,7 +1640,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	 COMPILE::AS3
+	 COMPILE::SWF
     public function get percentWidth():Number
     {
         return NaN;
@@ -1649,7 +1649,7 @@ public class UITextField extends TextField
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
      public function set percentWidth(value:Number):void
      {
      }
@@ -2057,7 +2057,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function setFocus():void
     {
         systemManager.topOfDisplayList.focus = this;
@@ -2421,7 +2421,7 @@ public class UITextField extends TextField
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function setColor(color:uint):void
     {
         explicitColor = color;
@@ -2751,7 +2751,7 @@ public class UITextField extends TextField
         return null;
     }
 
-	COMPILE::AS3
+	COMPILE::SWF
 	private var _beads:Vector.<IBead>;
 	
 	/**
@@ -2762,7 +2762,7 @@ public class UITextField extends TextField
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */ 
-	COMPILE::AS3
+	COMPILE::SWF
 	public function addBead(bead:IBead):void
 	{
 		if (!_beads)
@@ -2778,7 +2778,7 @@ public class UITextField extends TextField
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function getBeadByType(classOrInterface:Class):IBead
 	{
 		for each (var bead:IBead in _beads)
@@ -2797,7 +2797,7 @@ public class UITextField extends TextField
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function removeBead(value:IBead):IBead	
 	{
 		var n:int = _beads.length;
@@ -2821,7 +2821,7 @@ public class UITextField extends TextField
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get element():IFlexJSElement
 	{
 		return null;
@@ -2838,25 +2838,25 @@ public class UITextField extends TextField
 	 *  @flexjsignorecoercion Class
 	 *  @flexjsignorecoercion Number
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function addedToParent():void
 	{
 		// do nothing for now
 	}
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get topMostEventDispatcher():IEventDispatcher
 	{
 		return root as IEventDispatcher;
 	}
 
-	COMPILE::AS3
+	COMPILE::SWF
 	private var _topOfDisplayList:TopOfDisplayList;
 	
 	/**
 	 *  @flexjsignorecoercion flex.display.TopOfDisplayList
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get topOfDisplayList():TopOfDisplayList
 	{
 		if (!_topOfDisplayList)

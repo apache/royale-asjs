@@ -20,7 +20,7 @@
 package mx.preloaders
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.LoaderInfo;
@@ -258,7 +258,7 @@ public class Preloader extends Sprite
 
         this.applicationDomain = applicationDomain;
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			root.loaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);				
 		}
@@ -410,7 +410,7 @@ public class Preloader extends Sprite
      */
     private function getByteValues():Object
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			var li:LoaderInfo = root.loaderInfo;
 			var loaded:int = li.bytesLoaded;
@@ -662,7 +662,7 @@ public class Preloader extends Sprite
         if (displayClass)
             displayClass.removeEventListener(Event.COMPLETE, displayClassCompleteHandler);
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (root) 
             root.loaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);

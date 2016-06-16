@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.Bitmap;
         import flash.display.Loader;
@@ -62,9 +62,9 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var bitmap:Bitmap;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var loader:Loader;
 		
 		private var _model:IImageModel;
@@ -81,7 +81,7 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
                 IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);                    
@@ -98,7 +98,7 @@ package org.apache.flex.html.beads
 		 */
 		private function handleUrlChange(event:Event):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (_model.source) {
                     loader = new Loader();
@@ -126,7 +126,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function onComplete(event:Object):void
 		{
             var host:UIBase = UIBase(_strand);
@@ -161,7 +161,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function handleSizeChange(event:Object):void
 		{
             var host:UIBase = UIBase(_strand);

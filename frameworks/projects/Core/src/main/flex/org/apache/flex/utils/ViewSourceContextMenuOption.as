@@ -19,7 +19,7 @@
 package org.apache.flex.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.InteractiveObject;
     import flash.events.ContextMenuEvent;
@@ -71,7 +71,7 @@ public class ViewSourceContextMenuOption implements IBead
 	{
 		_strand = value;
 		
-        COMPILE::AS3
+        COMPILE::SWF
         {
     		var menuHost:InteractiveObject = InteractiveObject(value);
     		var cm:ContextMenu = ContextMenu(menuHost.contextMenu);
@@ -87,7 +87,7 @@ public class ViewSourceContextMenuOption implements IBead
         }
 	}
 	
-    COMPILE::AS3
+    COMPILE::SWF
 	private function viewSource(e:ContextMenuEvent):void
 	{
 		var urlRequest:URLRequest = new URLRequest("srcview/index.html");

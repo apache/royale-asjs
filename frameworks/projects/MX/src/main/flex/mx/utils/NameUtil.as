@@ -145,7 +145,7 @@ public class NameUtil
         }
         catch (e:Error)
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;

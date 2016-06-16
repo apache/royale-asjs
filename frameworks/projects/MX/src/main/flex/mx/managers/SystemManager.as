@@ -20,7 +20,7 @@
 package mx.managers
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -92,7 +92,7 @@ COMPILE::LATER
 import mx.utils.LoaderUtil;
 }
 import flex.display.ModuleInfo;
-COMPILE::AS3
+COMPILE::SWF
 {
 import flex.display.TopOfDisplayList;
 }
@@ -106,7 +106,7 @@ import org.apache.flex.events.IEventDispatcher;
 import org.apache.flex.geom.Rectangle;
 import org.apache.flex.core.IFlexJSElement;
 
-COMPILE::AS3
+COMPILE::SWF
 {
 import org.apache.flex.core.IBeadView;
 import org.apache.flex.core.IBead;
@@ -280,7 +280,7 @@ public class SystemManager extends MovieClip
 
         super();
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// Loaded SWFs don't get a stage right away
 			// and shouldn't override the main SWF's setting anyway.
@@ -292,7 +292,7 @@ public class SystemManager extends MovieClip
 			}				
 		}
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         // If we don't have a stage then we are not top-level,
         // unless there are no other top-level managers, in which
@@ -307,7 +307,7 @@ public class SystemManager extends MovieClip
         if (topLevel)
             SystemManagerGlobals.topLevelSystemManagers.push(this);
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// Make sure to stop the playhead on the current frame.
 			stop();				
@@ -316,7 +316,7 @@ public class SystemManager extends MovieClip
         // Listen for the last frame (param is 0-indexed) to be executed.
         //addFrameScript(totalFrames - 1, frameEndHandler);
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (root && root.loaderInfo)
 				root.loaderInfo.addEventListener(Event.INIT, initHandler);				
@@ -387,7 +387,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function deferredNextFrame():void
     {
         if (currentFrame + 1 > totalFrames)
@@ -478,7 +478,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private var _stage:Stage;
     
     /**
@@ -627,7 +627,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  get the main stage if we're loaded into another swf in the same sandbox
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function get stage():Stage
     {
         if (_stage)
@@ -1039,7 +1039,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function get explicitHeight():Number
     {
         return _explicitHeight;
@@ -1048,7 +1048,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function set explicitHeight(value:Number):void
     {
         _explicitHeight = value;
@@ -1074,7 +1074,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function get explicitWidth():Number
     {
         return _explicitWidth;
@@ -1083,7 +1083,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     public function set explicitWidth(value:Number):void
     {
         _explicitWidth = value;
@@ -1122,7 +1122,7 @@ public class SystemManager extends MovieClip
 
             value.x = 0;
             value.y = 0;
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             value.scrollRect = null;
 			}
@@ -1166,7 +1166,7 @@ public class SystemManager extends MovieClip
      */
     public function get measuredHeight():Number
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         return topLevelWindow ?
                topLevelWindow.getExplicitOrMeasuredHeight() :
@@ -1197,7 +1197,7 @@ public class SystemManager extends MovieClip
      */
     public function get measuredWidth():Number
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			return topLevelWindow ?
 				topLevelWindow.getExplicitOrMeasuredWidth() :
@@ -1481,7 +1481,7 @@ public class SystemManager extends MovieClip
      */
     public function get screen():Rectangle
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (!_screen)
             Stage_resizeHandler();
@@ -1678,7 +1678,7 @@ public class SystemManager extends MovieClip
      * @private
      *  Only create idle events if someone is listening.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function addEventListener(type:String, listener:Function,
                                               useCapture:Boolean = false,
                                               priority:int = 0,
@@ -1799,7 +1799,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function removeEventListener(type:String, listener:Function,
                                                  useCapture:Boolean = false):void
     {
@@ -2118,7 +2118,7 @@ public class SystemManager extends MovieClip
     {
         var mainClassName:String = info()["mainClassName"];
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (mainClassName == null)
 			{
@@ -2159,7 +2159,7 @@ public class SystemManager extends MovieClip
         if (runtimeDPIProviderClass)
             Singleton.registerClass("mx.core::RuntimeDPIProvider", runtimeDPIProviderClass);
         
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (isStageRoot)
         {
@@ -2178,7 +2178,7 @@ public class SystemManager extends MovieClip
         // Create an instance of the preloader and add it to the stage
         preloader = new Preloader();
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// Listen for preloader events
 			// preloader notifes when it is ok to go to frame2
@@ -2277,7 +2277,7 @@ public class SystemManager extends MovieClip
             Loader(parent).contentLoaderInfo.applicationDomain :
             info()["currentDomain"] as ApplicationDomain;
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         // Initialize the preloader.
         preloader.initialize(
@@ -2567,7 +2567,7 @@ public class SystemManager extends MovieClip
      */
     public function getDefinitionByName(name:String):Object
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         var domain:ApplicationDomain =
             !topLevel && parent is Loader ?
@@ -2747,7 +2747,7 @@ public class SystemManager extends MovieClip
             }
             catch (e:Error)
             {
-				COMPILE::AS3
+				COMPILE::SWF
 				{
 					if (!(e is SecurityError))
 						throw e;
@@ -2799,14 +2799,14 @@ public class SystemManager extends MovieClip
 
 			allSystemManagers[this] = this.loaderInfo.url;
 		}
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         root.loaderInfo.removeEventListener(Event.INIT, initHandler);
 		}
 
         if (!SystemManagerGlobals.info)
             SystemManagerGlobals.info = info();
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (!SystemManagerGlobals.parameters)
             SystemManagerGlobals.parameters = loaderInfo.parameters;
@@ -2830,7 +2830,7 @@ public class SystemManager extends MovieClip
         }
     }
 
-	COMPILE::AS3
+	COMPILE::SWF
     private function docFrameListener(event:Event):void
     {
         if (currentFrame == 2)
@@ -2843,7 +2843,7 @@ public class SystemManager extends MovieClip
         }
     }
 
-	COMPILE::AS3
+	COMPILE::SWF
     private function extraFrameListener(event:Event):void
     {
         if (lastFrame == currentFrame)
@@ -2863,7 +2863,7 @@ public class SystemManager extends MovieClip
      *  advance the playhead to the next frame.
      *  This will cause the framescript to run, which runs frameEndHandler().
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function preloader_preloaderDocFrameReadyHandler(event:Event):void
     {
         // Advance the next frame
@@ -2955,7 +2955,7 @@ public class SystemManager extends MovieClip
      *  When this function is called, we know that the application
      *  class has been defined and read in by the Player.
      */
-	COMPILE::AS3
+	COMPILE::SWF
 	mx_internal function docFrameHandler(event:Event = null):void
 	{
 		
@@ -2972,7 +2972,7 @@ public class SystemManager extends MovieClip
         preloader.removeEventListener(Event.COMPLETE,
                                    preloader_completeHandler);
         readyForKickOff = true;
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (currentFrame >= 2)
             kickOff();
@@ -3101,7 +3101,7 @@ public class SystemManager extends MovieClip
 
         initializeTopLevelWindow(null);
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			deferredNextFrame();				
 		}
@@ -3120,7 +3120,7 @@ public class SystemManager extends MovieClip
      *  handled by both Scroller and by Spark classes like TextArea or
      *  or List that include a Scroller in their skin. 
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function keyDownHandler(e:KeyboardEvent):void
     {
         if (!e.cancelable)
@@ -3154,7 +3154,7 @@ public class SystemManager extends MovieClip
      *  this for a few mouse events and not all of them (MOUSE_WHEEL and 
      *  MOUSE_DOWN).
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function mouseEventHandler(e:MouseEvent):void
     {
         if (!e.cancelable && e.eventPhase != EventPhase.BUBBLING_PHASE)
@@ -3183,7 +3183,7 @@ public class SystemManager extends MovieClip
         }
     }
 
-	COMPILE::AS3
+	COMPILE::SWF
     private function extraFrameHandler(event:Event = null):void
     {
         var frameList:Object = info()["frames"];
@@ -3205,7 +3205,7 @@ public class SystemManager extends MovieClip
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function nextFrameTimerHandler(event:TimerEvent):void
     {
         if (currentFrame + 1 <= framesLoaded)
@@ -3236,7 +3236,7 @@ public class SystemManager extends MovieClip
             addEventListener(MouseEvent.MOUSE_DOWN, mouseEventHandler, true, 1000);
         }
 		}
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (isTopLevelRoot() && stage)
         {
@@ -3287,7 +3287,7 @@ public class SystemManager extends MovieClip
             }
         }
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (isTopLevelRoot() && stage)
             stage.addEventListener(Event.RESIZE, Stage_resizeHandler, false, 0, true);
@@ -3391,7 +3391,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  Keep track of the size and position of the stage.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function Stage_resizeHandler(event:Event = null):void
     {   
         if (isDispatchingResizeEvent)
@@ -3531,7 +3531,7 @@ public class SystemManager extends MovieClip
         }
         catch (e:Error)
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is ArgumentError))
 					throw e;
@@ -3588,7 +3588,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function get mouseX():Number
     {
         if (_mouseX === undefined)
@@ -3599,7 +3599,7 @@ public class SystemManager extends MovieClip
     /**
      *  @private
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function get mouseY():Number
     {
         if (_mouseY === undefined)
@@ -3616,7 +3616,7 @@ public class SystemManager extends MovieClip
         // If the parent isn't rooted yet,
         // Or the root is the stage (which is the case in a second AIR window)
         // use the global system manager instance.
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if ((!localRoot || localRoot is Stage) && parent is IUIComponent)
 				localRoot = DisplayObjectContainer(IUIComponent(parent).systemManager);				
@@ -3650,7 +3650,7 @@ public class SystemManager extends MovieClip
         }   
         catch (e:Error) 
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (!(e is SecurityError))
 					throw e;
@@ -3679,7 +3679,7 @@ public class SystemManager extends MovieClip
      */
     public function getTopLevelRoot():DisplayObject
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			// work our say up the parent chain to the root. This way we
 			// don't have to rely on this object being added to the stage.
@@ -3901,7 +3901,7 @@ public class SystemManager extends MovieClip
      *  @private
      *  dispatch certain stage events from sandbox root
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function stageEventHandler(event:Event):void
     {
         if (event.target is Stage && mouseCatcher)
@@ -3936,7 +3936,7 @@ public class SystemManager extends MovieClip
 
 	public function get moduleInfo():ModuleInfo
 	{
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			return new ModuleInfo(loaderInfo);				
 		}
@@ -3946,13 +3946,13 @@ public class SystemManager extends MovieClip
 		}
 	}
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	private var _topOfDisplayList:TopOfDisplayList;
 	
 	/**
 	 *  @flexjsignorecoercion flex.display.TopOfDisplayList
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get topOfDisplayList():TopOfDisplayList
 	{
 		if (!_topOfDisplayList)
@@ -3970,7 +3970,7 @@ public class SystemManager extends MovieClip
 		SystemManagerGlobals.lastMouseEvent = event;
 	}
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	private var _beads:Vector.<IBead>;
 	
 	/**
@@ -3981,7 +3981,7 @@ public class SystemManager extends MovieClip
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */ 
-	COMPILE::AS3
+	COMPILE::SWF
 	public function addBead(bead:IBead):void
 	{
 		if (!_beads)
@@ -3997,7 +3997,7 @@ public class SystemManager extends MovieClip
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function getBeadByType(classOrInterface:Class):IBead
 	{
 		for each (var bead:IBead in _beads)
@@ -4016,7 +4016,7 @@ public class SystemManager extends MovieClip
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function removeBead(value:IBead):IBead	
 	{
 		var n:int = _beads.length;
@@ -4040,7 +4040,7 @@ public class SystemManager extends MovieClip
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get element():IFlexJSElement
 	{
 		return null;
@@ -4057,13 +4057,13 @@ public class SystemManager extends MovieClip
 	 *  @flexjsignorecoercion Class
 	 *  @flexjsignorecoercion Number
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public function addedToParent():void
 	{
 		// do nothing for now
 	}
 
-	COMPILE::AS3
+	COMPILE::SWF
 	public function get topMostEventDispatcher():IEventDispatcher
 	{
 		return this;

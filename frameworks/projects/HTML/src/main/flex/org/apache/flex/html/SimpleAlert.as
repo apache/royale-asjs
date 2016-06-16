@@ -121,7 +121,7 @@ package org.apache.flex.html
 		 */
 		static public function show(message:String, parent:Object):SimpleAlert
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var alert:SimpleAlert = new SimpleAlert();
                 alert.message = message;

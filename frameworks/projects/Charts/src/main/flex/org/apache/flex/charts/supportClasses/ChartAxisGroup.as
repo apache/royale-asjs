@@ -60,7 +60,7 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function removeAllElements():void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				this.removeChildren(0);
 			}
 			

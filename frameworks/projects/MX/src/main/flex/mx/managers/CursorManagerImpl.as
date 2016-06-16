@@ -20,7 +20,7 @@
 package mx.managers
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -615,7 +615,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
 					// create a Sprite to hold the cursor symbol
 					cursorHolder = new UIComponent() as Sprite;
 					cursorHolder.name = "cursorHolder";
-					COMPILE::AS3
+					COMPILE::SWF
 					{
 					cursorHolder.mouseEnabled = false;
 					cursorHolder.mouseChildren = false;
@@ -641,7 +641,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
                 
                 if (currentCursor)
                 {
-					COMPILE::AS3
+					COMPILE::SWF
 					{
 						if (currentCursor is InteractiveObject)
 							InteractiveObject(currentCursor).mouseEnabled = false;
@@ -780,7 +780,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
             const app:InteractiveObject = systemManager.document as InteractiveObject;
         	const sm:InteractiveObject = systemManager as InteractiveObject;
         	
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (app && app.contextMenu)
 					app.contextMenu.removeEventListener(ContextMenuEvent.MENU_SELECT, contextMenu_menuSelectHandler, true);

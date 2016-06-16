@@ -20,7 +20,7 @@
 package mx.core
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
@@ -555,7 +555,7 @@ public class Container extends UIComponent
     {
         super();
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         tabEnabled = false;
 		}
@@ -810,7 +810,7 @@ public class Container extends UIComponent
      *  @private
      *  Propagate to children.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function set doubleClickEnabled(value:Boolean):void
     {
         super.doubleClickEnabled = value;
@@ -2464,7 +2464,7 @@ public class Container extends UIComponent
      *  The mouseShieldChildren style is an inherting style
      *  that is used by the children views.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function addEventListener(
                                     type:String, listener:Function,
                                     useCapture:Boolean = false,
@@ -2506,7 +2506,7 @@ public class Container extends UIComponent
      *  $addEventListener to add event listeners without affecting the behavior 
      *  of the component.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     mx_internal function $addEventListener(
                             type:String, listener:Function,
                             useCapture:Boolean = false,
@@ -2521,7 +2521,7 @@ public class Container extends UIComponent
      *  @private
      *  Remove the mouse shield if we no longer listen to any mouse events
      */
-    COMPILE::AS3
+    COMPILE::SWF
     override public function removeEventListener(
                                     type:String, listener:Function,
                                     useCapture:Boolean = false):void
@@ -2561,7 +2561,7 @@ public class Container extends UIComponent
      *  $removeEventListener to remove event listeners without affecting the behavior 
      *  of the component.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     mx_internal function $removeEventListener(
                               type:String, listener:Function,
                               useCapture:Boolean = false):void
@@ -3039,7 +3039,7 @@ public class Container extends UIComponent
      */ 
     override public function addElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (! (element is DisplayObject) )
             throw ArgumentError(element + " is not supported in this Container");
@@ -3058,7 +3058,7 @@ public class Container extends UIComponent
      */
     override public function addElementAt(element:org.apache.flex.core.IVisualElement, index:int):org.apache.flex.core.IVisualElement
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (! (element is DisplayObject) )
 				throw ArgumentError(element + " is not supported in this Container");
@@ -3077,7 +3077,7 @@ public class Container extends UIComponent
      */
     override public function removeElement(element:org.apache.flex.core.IVisualElement):org.apache.flex.core.IVisualElement
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (! (element is DisplayObject) )
 				throw ArgumentError(element + " is not supported in this Container");
@@ -3125,7 +3125,7 @@ public class Container extends UIComponent
      */
     public function setElementIndex(element:org.apache.flex.core.IVisualElement, index:int):void
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 			if (! (element is DisplayObject) )
 				throw ArgumentError(element + " is not supported in this Container");

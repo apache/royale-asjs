@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     public interface IFlexJSElement
     {
         

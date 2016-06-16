@@ -52,7 +52,7 @@ package org.apache.flex.events
 		 */
 		public function ItemRemovedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 super(type, bubbles, cancelable);                    
             }

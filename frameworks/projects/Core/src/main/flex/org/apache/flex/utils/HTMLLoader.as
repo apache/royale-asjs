@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.html.HTMLLoader;
 	import org.apache.flex.events.utils.IHandlesOriginalEvent;
@@ -33,7 +33,7 @@ COMPILE::AS3
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::AS3
+COMPILE::SWF
 public class HTMLLoader extends flash.html.HTMLLoader implements IHandlesOriginalEvent
 {
     

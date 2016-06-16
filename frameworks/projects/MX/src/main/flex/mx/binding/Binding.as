@@ -360,7 +360,7 @@ public class Binding
         }
         catch(error:Error)
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				if (allowedErrors[error.errorID] == null)
 					throw error;					
@@ -456,7 +456,7 @@ public class Binding
 	            //   Error #1055: - has no properties.
 	            //   Error #1069: Property - not found on - and there is no default value
 	            // We allow any other errors to be thrown.
-				COMPILE::AS3
+				COMPILE::SWF
 				{
 					if ((error.errorID != 1006) &&
 						(error.errorID != 1009) &&

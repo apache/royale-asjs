@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
@@ -35,6 +35,7 @@ limitations under the License.
 		<![CDATA[
 						
       import XML;
+            private var quotedXML : XML =<root title="That's Entertainment"/>;
 
             private var xmlStr:String = '<?xml version="1.0" encoding="UTF-8" ?>'+
                 '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"'+
@@ -257,4 +258,4 @@ limitations under the License.
 		<js:TextButton text="Test" click="runTest()" />
 	</js:Container>
 	
-</js:ViewBase>
+</js:View>

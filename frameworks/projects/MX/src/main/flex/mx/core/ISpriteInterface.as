@@ -40,9 +40,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function get buttonMode():Boolean;
-    COMPILE::AS3
+    COMPILE::SWF
     function set buttonMode(value:Boolean):void;
 
     /**
@@ -53,7 +53,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function startDrag(lockCenter:Boolean = false, bounds:Rectangle = null):void;
 
     /**
@@ -64,7 +64,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function stopDrag():void;
 
     /**
@@ -75,7 +75,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function get dropTarget():DisplayObject;
 
     /**
@@ -86,9 +86,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function get hitArea():Sprite;
-    COMPILE::AS3
+    COMPILE::SWF
     function set hitArea(value:Sprite):void;
 
 
@@ -100,9 +100,9 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    COMPILE::AS3
+    COMPILE::SWF
     function get useHandCursor():Boolean;
-    COMPILE::AS3
+    COMPILE::SWF
     function set useHandCursor(value:Boolean):void;
 
 

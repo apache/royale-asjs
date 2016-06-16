@@ -55,7 +55,7 @@ package org.apache.flex.createjs.tween
 		 */
 		static public function get(value:Number) : Function
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				return null;
 			}
 				COMPILE::JS {
@@ -73,7 +73,7 @@ package org.apache.flex.createjs.tween
 		 */
 		static public function getPowIn(value:Number) : Function
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				return null;
 			}
 			COMPILE::JS {
@@ -91,7 +91,7 @@ package org.apache.flex.createjs.tween
 		 */
 		static public function getPowOut(value:Number) : Function
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				return null;
 			}
 				COMPILE::JS {
@@ -109,7 +109,7 @@ package org.apache.flex.createjs.tween
 		 */
 		static public function getPowInOut(value:Number) : Function
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				return null;
 			}
 			COMPILE::JS {

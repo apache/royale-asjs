@@ -28,7 +28,7 @@ package org.apache.flex.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class StringTrimmer
 	{
 		/**

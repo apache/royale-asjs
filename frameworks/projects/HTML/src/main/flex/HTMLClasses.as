@@ -33,18 +33,18 @@ internal class HTMLClasses
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.accessories.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.beads.AlertView; AlertView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.BackgroundImageBead; BackgroundImageBead;
 	}
 	import org.apache.flex.html.beads.ButtonBarView; ButtonBarView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.CheckBoxView; CheckBoxView;
 	    import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
 	}
     import org.apache.flex.html.beads.ContainerView; ContainerView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
 	    import org.apache.flex.html.beads.CSSButtonView; CSSButtonView;
@@ -58,12 +58,12 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ListView; ListView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
 	}
     import org.apache.flex.html.beads.PanelView; PanelView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 		import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
@@ -76,7 +76,7 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.SolidBackgroundBead; SolidBackgroundBead;
 	    import org.apache.flex.html.beads.SpinnerView; SpinnerView;
@@ -91,29 +91,30 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.models.ArraySelectionModel; ArraySelectionModel;
     import org.apache.flex.html.beads.models.RangeModel; RangeModel;
-	COMPILE::AS3
+    import org.apache.flex.html.beads.models.RangeModelExtended; RangeModelExtended;
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
 	}
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.models.ImageModel; ImageModel;
 	    import org.apache.flex.html.beads.models.ImageAndTextModel; ImageAndTextModel;
 	}
 	import org.apache.flex.html.beads.models.PanelModel; PanelModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	}
 	import org.apache.flex.html.beads.models.TextModel; TextModel;
     import org.apache.flex.html.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.flex.html.beads.models.ToggleButtonModel; ToggleButtonModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.models.ValueToggleButtonModel; ValueToggleButtonModel;
 	}
 	import org.apache.flex.html.beads.models.ViewportModel; ViewportModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.controllers.AlertController; AlertController;
 		import org.apache.flex.html.beads.controllers.ComboBoxController; ComboBoxController;
@@ -123,7 +124,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
 		import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
@@ -134,7 +135,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout; HorizontalLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
     	import org.apache.flex.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
@@ -152,24 +153,27 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;
+	import org.apache.flex.html.beads.DecrementButtonView; DecrementButtonView;
+	import org.apache.flex.html.beads.IncrementButtonView; IncrementButtonView;
+	import org.apache.flex.html.beads.RangeStepperView; RangeStepperView;
     import org.apache.flex.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.flex.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.flex.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.flex.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;
 	import org.apache.flex.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
+	import org.apache.flex.html.beads.controllers.RangeStepperMouseController; RangeStepperMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
 
-    import org.apache.flex.html.MXMLBeadViewBase; MXMLBeadViewBase;
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 
 	import org.apache.flex.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.HRuleView; HRuleView;
 		import org.apache.flex.html.beads.VRuleView; VRuleView;

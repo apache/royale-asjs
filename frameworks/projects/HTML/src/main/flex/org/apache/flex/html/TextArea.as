@@ -60,7 +60,7 @@ package org.apache.flex.html
          */
 		public function get text():String
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return ITextModel(model).text;                    
             }
@@ -76,7 +76,7 @@ package org.apache.flex.html
          */
 		public function set text(value:String):void
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 ITextModel(model).text = value;                    
             }

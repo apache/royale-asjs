@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.Sprite;
     }
@@ -34,7 +34,7 @@ package org.apache.flex.core
         import goog.events.EventTarget;
     }
 
-    COMPILE::AS3
+    COMPILE::SWF
     public class HTMLElementWrapper extends Sprite
     {
         /**

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObject;
         import flash.display.Sprite;
@@ -182,7 +182,7 @@ package org.apache.flex.core
 		{
 			super();
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 MouseEventConverter.setupInstanceConverters(this);
             }
@@ -283,7 +283,7 @@ package org.apache.flex.core
          */
 		public function set percentWidth(value:Number):void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				if (_percentWidth == value)
 					return;
 				
@@ -326,7 +326,7 @@ package org.apache.flex.core
          */
 		public function set percentHeight(value:Number):void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				if (_percentHeight == value)
 					return;
 				
@@ -361,7 +361,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         override public function get width():Number
 		{
 			var w:Number = _width;
@@ -396,7 +396,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function set width(value:Number):void
 		{
 			if (explicitWidth != value)
@@ -430,7 +430,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function get $width():Number
 		{
 			return super.width;
@@ -451,7 +451,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function get height():Number
 		{
 			var h:Number = _height;
@@ -486,7 +486,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function set height(value:Number):void
 		{
 			if (explicitHeight != value)
@@ -520,7 +520,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function get $height():Number
 		{
 			return super.height;
@@ -647,7 +647,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
         override public function set x(value:Number):void
         {
             super.x = _x = value;
@@ -687,7 +687,7 @@ package org.apache.flex.core
          */
         public function setX(value:Number):void
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				super.x = value;					
 			}
@@ -703,7 +703,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
         override public function set y(value:Number):void
         {
             super.y = _y = value;
@@ -743,7 +743,7 @@ package org.apache.flex.core
          */
         public function setY(value:Number):void
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				super.y = value;					
 			}
@@ -758,7 +758,7 @@ package org.apache.flex.core
 		 * @private
 		 */
         [Bindable("visibleChanged")]
-        COMPILE::AS3
+        COMPILE::SWF
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
@@ -825,7 +825,7 @@ package org.apache.flex.core
             return element.childNodes as Array;
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _model:IBeadModel;
 
         /**
@@ -836,7 +836,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function get model():Object
 		{
             if (_model == null)
@@ -850,7 +850,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function set model(value:Object):void
 		{
 			if (_model != value)
@@ -1019,7 +1019,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function get element():IFlexJSElement
         {
             return this;
@@ -1035,7 +1035,7 @@ package org.apache.flex.core
          */
 		public var beads:Array;
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _beads:Vector.<IBead>;
         
         /**
@@ -1070,7 +1070,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -1089,7 +1089,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -1116,7 +1116,7 @@ package org.apache.flex.core
          */
 		public function addElement(c:IVisualElement):IVisualElement
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (c is IUIBase)
                 {
@@ -1146,7 +1146,7 @@ package org.apache.flex.core
          */
         public function addElementAt(c:IVisualElement, index:int):IVisualElement
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (c is IUIBase)
                 {
@@ -1182,7 +1182,7 @@ package org.apache.flex.core
          */
         public function getElementAt(index:int):IVisualElement
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return getChildAt(index) as IVisualElement;
             }
@@ -1204,7 +1204,7 @@ package org.apache.flex.core
          */
         public function getElementIndex(c:IVisualElement):int
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (c is IUIBase)
                     return getChildIndex(IUIBase(c).element as DisplayObject);
@@ -1236,7 +1236,7 @@ package org.apache.flex.core
          */
         public function removeElement(c:IVisualElement):IVisualElement
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (c is IUIBase)
                     removeChild(IUIBase(c).element as DisplayObject);
@@ -1261,7 +1261,7 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return numChildren;
             }
@@ -1391,7 +1391,7 @@ package org.apache.flex.core
 			return measurementBead;
 		}
         
-        COMPILE::AS3
+        COMPILE::SWF
         private var _stageProxy:StageProxy;
         
         /**
@@ -1406,7 +1406,7 @@ package org.apache.flex.core
          */
 		public function get topMostEventDispatcher():IEventDispatcher
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (!_stageProxy)
                 {
@@ -1423,7 +1423,7 @@ package org.apache.flex.core
             }
         }
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function stageProxy_removedFromStageHandler(event:Event):void
         {
             _stageProxy = null;

@@ -779,6 +779,8 @@
             tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" overwrite="true"/>
         <copy file="${FLEXJS_HOME}/frameworks/air-config-template.xml"
             tofile="${FLEXJS_HOME}/frameworks/air-config.xml" overwrite="true"/>
+        <copy file="${FLEXJS_HOME}/frameworks/js-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/js-config.xml" overwrite="true"/>
         <replace file="${FLEXJS_HOME}/frameworks/flex-config.xml">
             <replacefilter token="@playerversion@"
                             value="${flash.sdk.version}"/>
@@ -788,6 +790,14 @@
                             value="libs/player"/>
         </replace>
         <replace file="${FLEXJS_HOME}/frameworks/air-config.xml" >
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="{airHome}/frameworks/libs"
+                            value="libs"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/frameworks/js-config.xml" >
             <replacefilter token="@playerversion@"
                             value="${flash.sdk.version}"/>
             <replacefilter token="@swfversion@"
@@ -940,6 +950,26 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             <replacefilter
             token="$ASJSC"
             value="${ASJSC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS MVC Project.launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS Project.launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>

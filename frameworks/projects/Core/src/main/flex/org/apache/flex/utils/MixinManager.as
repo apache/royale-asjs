@@ -19,7 +19,7 @@
 package org.apache.flex.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.system.ApplicationDomain;            
 }
@@ -70,7 +70,7 @@ public class MixinManager implements IBead
     {
         _strand = value;
         
-        COMPILE::AS3
+        COMPILE::SWF
         {
             var app:IFlexInfo = value as IFlexInfo;
             if (app)

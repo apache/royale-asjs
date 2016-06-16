@@ -20,7 +20,7 @@
 package mx.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.system.Capabilities;	
 }
@@ -303,7 +303,7 @@ public class Platform
      * */
     private static function computeOSVersionString(): String
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         var os: String = Capabilities.os;
         var osVersionMatch: Array;

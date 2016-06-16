@@ -20,7 +20,7 @@ package org.apache.flex.utils
 {
 
 	[ExcludeClass]
-	COMPILE::AS3
+	COMPILE::SWF
 	public class Language {}
 
     COMPILE::JS
@@ -428,60 +428,5 @@ package org.apache.flex.utils
 			}
 			return 0;
 		}
-
-		/**
-		 * The equivalent of Array.sort with various flags.  If only a compareFunction is given, the JS Array.sort is called by the compiler
-		 * @param	arr
-		 * @param	compareFunction
-		 * @param   opt
-		 */
-		public static function sort(arr:Array, compareFunction:Function = null, opt:int=0):void{
-			if (compareFunction == null)
-			{
-				if(opt & Array.NUMERIC)
-					arr.sort(compareNumberWhole);
-				else if (opt & Array.CASEINSENSITIVE)
-					arr.sort(compareStringCaseinsensitiveWhole);
-				else
-					arr.sort(compareStringWhole);
-			}
-			else
-				arr.sort(compareFunction);
-			if (opt & Array.DESCENDING)
-				arr.reverse();
-		}
-		private static function compareStringCaseinsensitiveWhole(a:Object, b:Object):int
-		{
-			var v:int = (a||zeroStr).toString().toLowerCase().localeCompare((b||zeroStr).toString().toLowerCase());
-			if (v != 0)
-			{
-				return v;
-			}
-			return 0;
-		}
-		
-		private static function compareStringWhole(a:Object, b:Object):int
-		{
-			var v:int = (a||zeroStr).toString().localeCompare((b||zeroStr).toString());
-			if (v != 0)
-			{
-				return v;
-			}
-			return 0;
-		}
-		
-		private static function compareNumberWhole(a:Object, b:Object):int
-		{
-			if (Number(a) > Number(b))
-			{
-				return 1;
-			}
-			else if (Number(a) < Number(b))
-			{
-				return -1;
-			}
-			return 0;
-		}
-
 	}
 }

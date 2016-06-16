@@ -32,7 +32,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     function get root():flash.display.DisplayObject;
 	COMPILE::JS
 	function get root():DisplayObject;
@@ -70,7 +70,7 @@
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     function get parent():flash.display.DisplayObjectContainer;
 	COMPILE::JS
 	function get parent():DisplayObjectContainer;

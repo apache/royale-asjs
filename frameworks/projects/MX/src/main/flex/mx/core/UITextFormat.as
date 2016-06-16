@@ -20,7 +20,7 @@
 package mx.core
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.text.TextFormat;
 	import flash.text.TextLineMetrics;		

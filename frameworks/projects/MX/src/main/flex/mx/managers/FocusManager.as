@@ -20,7 +20,7 @@
 package mx.managers
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
@@ -164,7 +164,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 		this.popup = popup;
 
         IMEEnabled = true;
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 		// Only <= IE8 supported focus cycling out of the SWF
         browserMode = Capabilities.playerType == "ActiveX" && !popup;
@@ -217,7 +217,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 
         // Make sure the SystemManager is running so it can tell us about
         // mouse clicks and stage size changes.
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 		try
 		{
@@ -614,7 +614,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      */
     public function getFocus():IFocusManagerComponent
     {
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         var stage:Stage = form.systemManager.stage;
         
@@ -645,7 +645,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // different than it does on device when using StageText.  In ADL, when
         // the focus is a StageText component, a TextField whose parent is the 
         // stage is assigned focus.  
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if ((!o && _lastFocus) || (o is TextField && o.parent == stage))
             return _lastFocus;
@@ -712,7 +712,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             // trace("FM " + this + " setting last focus " + target);
             _lastFocus = findFocusManagerComponent(i);
             
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 			if (Capabilities.hasIME)
             {
@@ -831,7 +831,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         if (activated)
         {
             dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_DEACTIVATE));
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             if (form.systemManager.stage)
                 form.systemManager.stage.focus = null;
@@ -910,7 +910,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // listen for focus changes, use weak references for the stage
 		// form.systemManager can be null if the form is created in a sandbox and 
 		// added as a child to the root system manager.
-		COMPILE::AS3
+		COMPILE::SWF
 		{
 		var sm:ISystemManager = form.systemManager;
 		if (sm)
@@ -980,7 +980,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // trace("FocusManager deactivating " + this);
         // trace("FocusManager deactivating = " + this._form.systemManager.loaderInfo.url);
          
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         // listen for focus changes
 		var sm:ISystemManager = form.systemManager;
@@ -1314,7 +1314,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             }
             else
             {
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 o.addEventListener("tabChildrenChange", tabChildrenChangeHandler);
                 checkChildren = doc.tabChildren;
@@ -1380,7 +1380,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         var p:DisplayObjectContainer = o.parent;
         while (p && p != s)
         {
-			COMPILE::AS3
+			COMPILE::SWF
 			{
             if (!p.tabChildren)
                 return false;
@@ -1724,7 +1724,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         {
 	        // if there is no passed in object, then get the object that has the focus
     	    var o:DisplayObject = fromObject; 
-			COMPILE::AS3
+			COMPILE::SWF
 			{
         	if (!o)
         		o = form.systemManager.stage.focus;
@@ -1817,7 +1817,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	COMPILE::AS3
+	COMPILE::SWF
     override public function toString():String
     {
         return Object(form).toString() + ".focusManager";
@@ -1858,7 +1858,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         
         // if it is truly parented, add it, otherwise it will get added when the top of the tree
         // gets parented.
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (target.stage)
         {
@@ -1933,7 +1933,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         {
             if (!dontRemoveTabChildrenHandler)
             {
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 o.removeEventListener("tabChildrenChange", tabChildrenChangeHandler);
 				}
@@ -1995,7 +1995,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // trace("FocusManager focusInHandler in  = " + this._form.systemManager.loaderInfo.url);
         // trace("FM " + this + " focusInHandler " + target);
 
-		COMPILE::AS3
+		COMPILE::SWF
 		{
         if (lastFocus && !isEnabledAndVisible(DisplayObject(lastFocus)) && DisplayObject(form).stage)
         {
@@ -2083,7 +2083,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @private
      *  Add or remove if tabbing properties change.
      */
-	COMPILE::AS3
+	COMPILE::SWF
     private function tabChildrenChangeHandler(event:Event):void
     {
         if (event.target != event.currentTarget)
@@ -2213,7 +2213,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                 // the focus somewhere else, so we set fauxFocus to the stage as a signal
                 // to the setFocusToNextObject logic that it shouldn't use the stage.focus
                 // as the starting point.
-				COMPILE::AS3
+				COMPILE::SWF
 				{
                 fauxFocus = sm.stage;
 				}
@@ -2275,7 +2275,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                 var o:DisplayObject = fauxFocus;
 				if (!o)
 				{
-					COMPILE::AS3
+					COMPILE::SWF
 					{
 					o = form.systemManager.stage.focus;
 					}
@@ -2407,7 +2407,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	 */
 	private function getBrowserFocusComponent(shiftKey:Boolean):InteractiveObject
 	{
-		COMPILE::AS3
+		COMPILE::SWF
 		{
     	var focusComponent:InteractiveObject = form.systemManager.stage.focus;
 		}
@@ -2431,7 +2431,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 
 }
 
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.display.DisplayObject;
 }

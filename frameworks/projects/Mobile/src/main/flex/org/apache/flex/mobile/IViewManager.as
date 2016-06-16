@@ -27,7 +27,7 @@ package org.apache.flex.mobile
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IViewManager extends IView
+	public interface IViewManager extends IViewManagerView
 	{
 		/**
 		 * The view that is currently active in the view manager.
@@ -37,6 +37,6 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get selectedView():IView;
+		function get selectedView():IViewManagerView;
 	}
 }

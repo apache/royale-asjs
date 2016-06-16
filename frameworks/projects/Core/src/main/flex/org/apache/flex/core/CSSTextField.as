@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.text.TextField;
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFormat;
@@ -37,7 +37,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class CSSTextField extends TextField
 	{
         /**

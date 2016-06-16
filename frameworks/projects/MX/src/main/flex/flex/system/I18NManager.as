@@ -1,6 +1,6 @@
 package flex.system
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	import flash.system.Capabilities;
 	}
@@ -13,7 +13,7 @@ package flex.system
 		
 		public static function get languages():Array
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				// Capabilities.languages was added in AIR 1.1,
 				// so this API may not exist.

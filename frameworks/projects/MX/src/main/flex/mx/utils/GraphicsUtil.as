@@ -20,7 +20,7 @@
 package mx.utils
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.Graphics;		
 }

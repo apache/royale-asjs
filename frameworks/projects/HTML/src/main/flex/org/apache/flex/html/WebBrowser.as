@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.events.Event;
 		import flash.html.HTMLLoader;
 		import flash.net.URLRequest;
@@ -53,7 +53,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public class WebBrowser extends UIBase implements IHandlesOriginalEvent
 	{
 		/**

@@ -20,7 +20,7 @@
 package mx.containers.utilityClasses
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.geom.Rectangle;

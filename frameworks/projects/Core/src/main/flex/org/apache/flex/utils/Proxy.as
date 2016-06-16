@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
@@ -42,7 +42,7 @@ COMPILE::JS
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::AS3
+COMPILE::SWF
 public dynamic class Proxy extends flash.utils.Proxy
 {
 	protected var valueMap:Object = {};

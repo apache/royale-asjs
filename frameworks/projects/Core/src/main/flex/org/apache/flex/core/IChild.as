@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObjectContainer;
     }
@@ -42,7 +42,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		COMPILE::AS3
+        COMPILE::SWF
         function get parent():DisplayObjectContainer;
         
 		/**

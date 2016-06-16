@@ -33,7 +33,7 @@ package org.apache.flex.createjs.core
 		import org.apache.flex.core.graphics.SolidColor;
     }
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.UIBase;
 	}
@@ -49,7 +49,7 @@ package org.apache.flex.createjs.core
 	 *  @productversion FlexJS 0.0
 	 */
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public class CreateJSBase extends org.apache.flex.core.UIBase
 	{
 		// does nothing for SWF version.

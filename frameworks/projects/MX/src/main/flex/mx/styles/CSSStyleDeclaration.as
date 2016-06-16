@@ -20,7 +20,7 @@
 package mx.styles
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;		
 }
@@ -1124,14 +1124,14 @@ public class CSSStyleDeclaration extends EventDispatcher
 }
 
 }
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.Dictionary;
 }
 
 class CloneManager
 {
-    COMPILE::AS3
+    COMPILE::SWF
     private var clones:Dictionary = new Dictionary(true);
     
     COMPILE::JS
@@ -1144,7 +1144,7 @@ class CloneManager
     
     public function put(o:Object):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             clones[o] = 1;                
         }
@@ -1159,7 +1159,7 @@ class CloneManager
     
     public function get iterator():Object
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return clones;
         }

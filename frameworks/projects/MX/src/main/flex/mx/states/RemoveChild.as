@@ -19,7 +19,7 @@
 
 package mx.states
 {
-COMPILE::AS3
+COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;		

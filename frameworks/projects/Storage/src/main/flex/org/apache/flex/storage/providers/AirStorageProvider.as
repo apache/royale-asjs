@@ -21,7 +21,7 @@ package org.apache.flex.storage.providers
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.filesystem.File;
 		import flash.filesystem.FileMode;
 		import flash.filesystem.FileStream;
@@ -102,7 +102,7 @@ package org.apache.flex.storage.providers
 		 */
 		public function readTextFromDataFile( fileName:String ) : void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
 				
 				if (!file.exists) {
@@ -144,7 +144,7 @@ package org.apache.flex.storage.providers
 		 */
 		public function openInputDataStream( fileName:String ) : void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
 				var stream:FileStream = new FileStream();
 				
@@ -181,7 +181,7 @@ package org.apache.flex.storage.providers
 		 */
 		public function writeTextToDataFile( fileName:String, text:String ) : void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
 				var stream:FileStream = new FileStream();
 				
@@ -224,7 +224,7 @@ package org.apache.flex.storage.providers
 		 */
 		public function openOutputDataStream( fileName:String ) : void
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				var file:File = File.applicationStorageDirectory.resolvePath(fileName);
 				var stream:FileStream = new FileStream();
 				
