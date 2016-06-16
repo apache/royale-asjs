@@ -930,6 +930,14 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug Build).launch">
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
         <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
             <replacefilter
             token="$COMPC"
