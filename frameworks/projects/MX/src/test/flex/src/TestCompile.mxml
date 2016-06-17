@@ -38,7 +38,7 @@ limitations under the License.
     </js:valuesImpl>
 	<js:initialView>
 		<js:View>
-			<mx:UIComponent />
+			<mx:Label text="Hello World" />
 		</js:View>
 	</js:initialView>
 </js:Application>

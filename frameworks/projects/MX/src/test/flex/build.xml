@@ -27,6 +27,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
     <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
     <property name="target.name" value="MX-${release.version}.swc" />
     
 	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
