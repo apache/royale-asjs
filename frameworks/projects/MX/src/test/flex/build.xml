@@ -137,6 +137,7 @@
             output="${basedir}/src/TestCompile.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="-accessible=false" />
             <arg value="-debug" />
             <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
@@ -168,6 +169,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="-accessible=false" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
