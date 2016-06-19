@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+
+package mx.modules
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class MXClasses
-{
-
-    import mx.core.UIComponent; UIComponent;
-    import mx.modules.IModule; IModule;
+    /**
+     *  An interface that marks a class as being a module.
+     * 
+     *  @see mx.modules.Module
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 4
+     */
+    public interface IModule
+    {
+        
+    }
 }
-
-}
-
