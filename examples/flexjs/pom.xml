@@ -47,6 +47,7 @@
     <!--module>FlexJSStore_jquery</module-->
     <!-- Ambiguous "MouseEvent" -->
     <!--module>FlexWebsiteStatsViewer</module-->
+    <module>HelloWorld</module>
     <module>MapSearch</module>
     <!-- Implicit coercion of a value with static type Event to a possibly unrelated type Event. -->
     <!--module>MobileTrader</module-->
