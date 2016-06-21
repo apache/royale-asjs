@@ -16,22 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.cordova.geolocation
 {
+	/**
+	 * Geolocation provides the interface to the Cordova Geolocation plugin.
+	 */
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class CordovaClasses
-{
-	import org.apache.cordova.camera.Camera; Camera;
-	import org.apache.cordova.Application; Application;
-	import org.apache.cordova.Weinre; Weinre;
-	import org.apache.cordova.geolocation.Geolocation; Geolocation;
+	[Mixin]
+	public class Geolocation
+	{
+		/**
+		 * Constructor
+		 */
+		public function Geolocation()
+		{
+		}
+
+		/**
+		 * Gets the device current location. If successful, the onSuccess function is
+		 * called with position parameter (see Cordova documentation). If failure, the
+		 * onError function is called with an error parameter (.code and .message members).
+		 */
+		public function getCurrentPosition(onSuccess:Function, onError:Function):void
+		{
+			COMPILE::JS {
+				// TODO: (pent) Cordova externs
+				navigator["geolocation"].getCurrentPosition(onSuccess, onError);
+			}
+		}
+	}
 }
-
-}
-
