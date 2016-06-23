@@ -41,18 +41,14 @@
     <module>DataBindingExample_Flat</module>
     <module>DataGridExample</module>
     <module>DesktopMap</module>
-    <!-- Ambiguous "MouseEvent" -->
-    <!--module>FlexJSStore</module-->
-    <!-- Ambiguous "MouseEvent" -->
-    <!--module>FlexJSStore_jquery</module-->
-    <!-- Ambiguous "MouseEvent" -->
-    <!--module>FlexWebsiteStatsViewer</module-->
+    <module>FlexJSStore</module>
+    <module>FlexJSStore_jquery</module>
+    <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
     <module>MapSearch</module>
-    <!-- Implicit coercion of a value with static type Event to a possibly unrelated type Event. -->
-    <!--module>MobileTrader</module-->
-    <!-- Ambiguous reference to IDataInput -->
-    <!--module>StorageExample</module-->
+    <module>MobileMap</module>
+    <module>MobileTrader</module>
+    <module>StorageExample</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
   </modules>
