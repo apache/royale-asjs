@@ -81,7 +81,7 @@
       <artifactId>airglobal</artifactId>
       <version>${air.version}</version>
       <type>swc</type>
-      <scope>provided</scope>
+      <scope>external</scope>
     </dependency>
 
     <dependency>
