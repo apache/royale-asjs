@@ -34,7 +34,7 @@
 
   <modules>
     <module>flexjs</module>
-    <module>native</module>
+    <!--module>native</module-->
   </modules>
 
   <build>

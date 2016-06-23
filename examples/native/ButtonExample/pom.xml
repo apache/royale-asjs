@@ -24,27 +24,29 @@
 
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples</artifactId>
+    <artifactId>examples-native</artifactId>
     <version>0.7.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>examples-native</artifactId>
+  <artifactId>ButtonExample</artifactId>
   <version>0.7.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>swf</packaging>
 
-  <modules>
-    <module>ButtonExample</module>
-    <module>USStatesMap</module>
-  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <version>0.7.0-SNAPSHOT</version>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>ButtonExample.as</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>20.0</version>
-      <type>swc</type>
-      <scope>external</scope>
-    </dependency>
   </dependencies>
 
 </project>
