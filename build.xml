@@ -617,6 +617,7 @@
                 <exclude name="**/VanillaSDK_POC/**" />
                 <exclude name="**/*.swc"/>
                 <exclude name="**/*.swf"/>
+                <exclude name="**/.plxarc"/>
             </fileset>
         </copy>
         
@@ -676,9 +677,10 @@
                 <exclude name="projects/air/**"/>
                 <exclude name="projects/spark/manifest.xml"/>
                 <exclude name="projects/*/bundles.properties"/>
-                <exclude name="projects/*/.settings/**"/>
-                <exclude name="projects/**/*.actionScriptProperties"/>
-                <exclude name="projects/**/*.flexLibProperties"/>
+                <exclude name="**/.settings/**"/>
+                <exclude name="**/*.actionScriptProperties"/>
+                <exclude name="**/*.flexLibProperties"/>
+                <exclude name="**/.plxarc"/>
                 <exclude name="projects/**/*.DS_Store"/>
             </fileset>
         </copy>
@@ -1440,6 +1442,7 @@
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
             </fileset>
         </rat:report>
     </target>
