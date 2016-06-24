@@ -279,6 +279,7 @@ Slider
 Spinner
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
 }
 
 
@@ -579,7 +580,6 @@ Slider
 
 Spinner
 {
-    IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.SpinnerMouseController");
 }
 

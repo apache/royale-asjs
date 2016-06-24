@@ -23,20 +23,20 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  The NumericStepper class is a component that displays a numeric
-	 *  value and up/down controls (using a org.apache.flex.html.Spinner) to 
+	 *  value and up/down controls (using a org.apache.flex.html.Spinner) to
 	 *  increase and decrease the value by specific amounts. The NumericStepper uses the following beads:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model for the component of type org.apache.flex.core.IRangeModel.
 	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
 	 *  org.apache.flex.core.IBeadController: handles the input events.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -56,7 +56,7 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
+
         [Bindable("valueChange")]
 		/**
 		 *  The current value of the control.
@@ -74,7 +74,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).value = newValue;
 		}
-		
+
 		/**
 		 *  The minimum value the control will display.
 		 *
@@ -91,7 +91,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).minimum = value;
 		}
-		
+
 		/**
 		 *  The maximum value the control will display.
 		 *
@@ -108,7 +108,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).maximum = value;
 		}
-		
+
 		/**
 		 *  The amount to increase or descrease the value. The value
 		 *  will not exceed the minimum or maximum value. The final
@@ -127,7 +127,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).stepSize = value;
 		}
-		
+
 		/**
 		 *  The modulus for the value. If this property is set,
 		 *  the value displayed with a muliple of the snapInterval.
@@ -145,13 +145,13 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).snapInterval = value;
 		}
-        
+
         COMPILE::JS
         private var input:TextInput;
-        
+
         COMPILE::JS
         private var spinner:Spinner;
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -161,41 +161,29 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
             positioner.style.position = 'relative';
-            
+
             input = new TextInput();
+            input.className = "NumericStepperInput";
+            input.typeNames = "NumericStepperInput";
             addElement(input);
             input.positioner.style.display = 'inline-block';
             input.positioner.style.width = '100px';
-            
+
             spinner = new Spinner();
-            spinner.positioner.style.display = 'inline-block';
-            spinner.positioner.style.height = '24px';
-            spinner.positioner.style.marginLeft = '-1px';
-            spinner.positioner.style.marginTop = '-1px';
             addElement(spinner);
-            
+
             /* TODO: ajh move to view and css */
-            spinner.incrementButton.positioner.style.display = 'block';
-            spinner.incrementButton.positioner.style.marginBottom = '-1px';
-            spinner.incrementButton.positioner.style.paddingTop = '1.5px';
-            spinner.incrementButton.positioner.style.paddingBottom = '2px';
-            spinner.incrementButton.positioner.style.fontSize = '7px';
-            spinner.decrementButton.positioner.style.marginTop = '0px';
-            spinner.decrementButton.positioner.style.display = 'block';
-            spinner.decrementButton.positioner.style.paddingTop = '2px';
-            spinner.decrementButton.positioner.style.paddingBottom = '1.5px';
-            spinner.decrementButton.positioner.style.fontSize = '7px';
             spinner.positioner.style.display = 'inline-block';
             goog.events.listen(spinner, 'valueChange',
                 spinnerChange);
-            
+
             element.flexjs_wrapper = this;
             className = 'NumericStepper';
-            
+
             input.text = String(spinner.value);
-            
+
             return element;
-        }        
+        }
 
         /**
          * @param event The input event.
@@ -208,7 +196,7 @@ package org.apache.flex.html
             input.text = String(spinner.value);
             dispatchEvent(new Event('valueChange'));
         };
-        
-        
+
+
 	}
 }

@@ -76,10 +76,10 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
+	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.SolidBackgroundBead; SolidBackgroundBead;
-	    import org.apache.flex.html.beads.SpinnerView; SpinnerView;
     	import org.apache.flex.html.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 		import org.apache.flex.html.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
     	import org.apache.flex.html.beads.TextAreaView; TextAreaView;

@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.DateHeaderButton;
 
     import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
@@ -65,6 +66,11 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			
+			COMPILE::SWF {
+				value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);
+				value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
+			}
 
 			// make sure there is a model.
 			model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
