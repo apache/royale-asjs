@@ -75,6 +75,7 @@
     
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
+        <ant dir="${basedir}/flexjs/CreateJSExample"/>
         <ant dir="${basedir}/flexjs/DataBindingExample"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_as"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
@@ -82,6 +83,7 @@
         <ant dir="${basedir}/flexjs/DesktopMap"/>
         <ant dir="${basedir}/flexjs/FlexJSStore"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery"/>
+        <ant dir="${basedir}/flexjs/HelloWorld"/>
         <ant dir="${basedir}/flexjs/MapSearch"/>
         <ant dir="${basedir}/flexjs/MobileMap"/>
         <ant dir="${basedir}/flexjs/MobileTrader"/>
@@ -105,6 +107,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/CreateJSExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_as" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
@@ -112,6 +115,7 @@
         <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="clean"/>
+        <ant dir="${basedir}/flexjs/HelloWorld" target="clean"/>
         <ant dir="${basedir}/flexjs/MapSearch" target="clean"/>
         <ant dir="${basedir}/flexjs/MobileTrader" target="clean"/>
         <ant dir="${basedir}/flexjs/MobileMap" target="clean"/>
