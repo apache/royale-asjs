@@ -86,7 +86,7 @@ package org.apache.flex.utils
          *
          *  @param value The value. 
          *
-         *  @return uint of the color. 
+         *  @return uint of the color. If value is "transparent" then uint.MAX_VALUE is returned.
          *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -103,6 +103,10 @@ package org.apache.flex.utils
             var c2:int;
             
             var stringValue:String = value as String;
+			if (stringValue == "transparent")
+			{
+				return uint.MAX_VALUE;
+			}
             if (stringValue.charAt(0) == '#')
             {
                 if (stringValue.length == 4)
