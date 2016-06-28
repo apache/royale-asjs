@@ -46,6 +46,19 @@
           <artifactId>flexjs-maven-plugin</artifactId>
           <version>0.7.0-SNAPSHOT</version>
           <extensions>true</extensions>
+          <executions>
+            <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
+            <execution>
+              <id>compile-javascript</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>compile-app</goal>
+              </goals>
+              <configuration>
+                <outputJavaScript>true</outputJavaScript>
+              </configuration>
+            </execution>
+          </executions>
           <configuration>
             <targetPlayer>20.0</targetPlayer>
           </configuration>
