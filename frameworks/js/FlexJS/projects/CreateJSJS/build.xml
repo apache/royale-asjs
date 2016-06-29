@@ -19,7 +19,7 @@
 -->
 
 
-<project name="CreateJS" default="main" basedir=".">
+<project name="CreateJSJS" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
