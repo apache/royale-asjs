@@ -101,6 +101,7 @@
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
     

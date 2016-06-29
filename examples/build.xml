@@ -81,6 +81,7 @@
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
         <ant dir="${basedir}/flexjs/DataGridExample"/>
         <ant dir="${basedir}/flexjs/DesktopMap"/>
+        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer"/>
         <ant dir="${basedir}/flexjs/FlexJSStore"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery"/>
         <ant dir="${basedir}/flexjs/HelloWorld"/>
@@ -113,6 +114,7 @@
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
         <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="clean"/>
         <ant dir="${basedir}/flexjs/HelloWorld" target="clean"/>
