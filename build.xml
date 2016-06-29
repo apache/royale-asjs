@@ -756,16 +756,17 @@
         </concat>
         
         <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/libs">
-            <fileset dir="${basedir}/frameworks/libs">
+        <copy todir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/frameworks">
                 <include name="**.swc"/>
             </fileset>
         </copy>
 
         <!-- copy all js again to pick up cross-compiled files -->
-        <copy todir="${basedir}/temp/frameworks/projects">
-            <fileset dir="${basedir}/frameworks/projects">
+        <copy todir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/frameworks">
                 <include name="**/**.js"/>
+                <exclude name="js/VanillaSDK/**" />
             </fileset>
         </copy>
 
