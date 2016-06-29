@@ -564,6 +564,8 @@
                 <include name="LICENSE.bin"/>
                 <include name="LICENSE.base"/>
                 <include name="NOTICE"/>
+                <include name="pom.xml"/>
+                <include name="settings-template.xml"/>
             </fileset>
         </copy>
          
