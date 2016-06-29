@@ -760,7 +760,7 @@
         <!-- frameworks/libs -->
         <copy todir="${basedir}/temp/frameworks">
             <fileset dir="${basedir}/frameworks">
-                <include name="**.swc"/>
+                <include name="**/*.swc"/>
             </fileset>
         </copy>
 
