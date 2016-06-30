@@ -43,7 +43,7 @@
       <artifactId>playerglobal</artifactId>
       <version>20.0</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

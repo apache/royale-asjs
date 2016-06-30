@@ -86,23 +86,7 @@
       <artifactId>airglobal</artifactId>
       <version>${air.version}</version>
       <type>swc</type>
-      <scope>external</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.flex.flexjs.externs</groupId>
-        <artifactId>flexjs-externs-js</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>extern</classifier>
-        <scope>external</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.flex.flexjs.externs</groupId>
-        <artifactId>flexjs-externs-gcl</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>extern</classifier>
-        <scope>provided</scope>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -110,7 +94,7 @@
       <artifactId>Core</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -124,7 +108,7 @@
       <artifactId>Binding</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -138,7 +122,7 @@
       <artifactId>Graphics</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -152,7 +136,7 @@
       <artifactId>Collections</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -160,6 +144,23 @@
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>extern</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.externs</groupId>
+      <artifactId>flexjs-externs-js</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>extern</classifier>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.externs</groupId>
+      <artifactId>flexjs-externs-gcl</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>extern</classifier>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 

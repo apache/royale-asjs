@@ -74,7 +74,7 @@
       <artifactId>airglobal</artifactId>
       <version>${air.version}</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -83,7 +83,7 @@
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>extern</classifier>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.externs</groupId>
@@ -91,7 +91,7 @@
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>extern</classifier>
-      <scope>provided</scope>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 

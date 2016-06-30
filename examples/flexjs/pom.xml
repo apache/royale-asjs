@@ -59,7 +59,7 @@
       <artifactId>playerglobal</artifactId>
       <version>${flash.version}</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
