@@ -148,7 +148,10 @@ internal class HTMLClasses
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
+	import org.apache.flex.html.supportClasses.DataGridButtonBarButtonItemRenderer; DataGridButtonBarButtonItemRenderer;
 
+	import org.apache.flex.html.DataGridButtonBarTextButton; DataGridButtonBarTextButton;
+	import org.apache.flex.html.DataGridButtonBar; DataGridButtonBar;
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;

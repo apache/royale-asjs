@@ -88,6 +88,7 @@ package org.apache.flex.html.beads
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
+			(contentView as UIBase).className = "ListDataGroup";
 			return contentView as IItemRendererParent;
 		}
 				

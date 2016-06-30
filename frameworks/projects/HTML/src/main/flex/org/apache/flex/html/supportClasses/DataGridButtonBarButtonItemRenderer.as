@@ -23,7 +23,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.DataGridButtonBarTextButton;
 	import org.apache.flex.html.beads.ITextItemRenderer;
 	import org.apache.flex.events.ItemClickedEvent;
 
@@ -37,7 +37,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonBarButtonItemRenderer extends UIItemRendererBase implements ITextItemRenderer
+	public class DataGridButtonBarButtonItemRenderer extends ButtonBarButtonItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -47,48 +47,9 @@ package org.apache.flex.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ButtonBarButtonItemRenderer()
+		public function DataGridButtonBarButtonItemRenderer()
 		{
 			super();
-		}
-		
-		protected var textButton:TextButton;
-		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function handleClickEvent(event:MouseEvent):void
-		{
-			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-			newEvent.multipleSelection = event.shiftKey;
-			newEvent.index = index;
-			newEvent.data = data;
-			dispatchEvent(newEvent);
-		}
-		
-		/**
-		 *  The string version of the data associated with the instance of the itemRenderer.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get text():String
-		{
-			return data as String;
-		}
-		public function set text(value:String):void
-		{
-			data = value;
 		}
 		
 		/**
@@ -102,11 +63,9 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-			
 			var added:Boolean = false;
 			if (textButton == null) {
-				textButton = new TextButton();
+				textButton = new DataGridButtonBarTextButton();
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.
@@ -114,32 +73,9 @@ package org.apache.flex.html.supportClasses
 				added = true;
 			}
 			
-			var valueAsString:String;
-			
-			if (value is String) {
-				valueAsString = value as String;
-			}
-			else if (value.hasOwnProperty("label")) {
-				valueAsString = String(value["label"]);
-			}
-			else if (value.hasOwnProperty("title")) {
-				valueAsString = String(value["title"]);
-			}
-			
-			if (valueAsString) textButton.text = valueAsString;
+			super.data = value;
 			
 			if (added) addElement(textButton);
-		}
-		
-		/**
-		 * @private
-		 */
-		override public function adjustSize():void
-		{
-			textButton.width = this.width;
-			textButton.height = this.height;
-			
-			updateRenderer();
 		}
 	}
 }

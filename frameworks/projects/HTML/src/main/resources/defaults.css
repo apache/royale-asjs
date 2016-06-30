@@ -117,6 +117,20 @@ DataGrid
 	border-width: 1px;
 }
 
+DataGridButtonBar
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ButtonBarView");			
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.ButtonBarLayout");
+	IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DataGridButtonBarButtonItemRenderer");
+	
+	border-style: none;
+}
+
 .DataGridColumn {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
