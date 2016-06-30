@@ -90,6 +90,7 @@
         <ant dir="${basedir}/flexjs/MobileTrader"/>
         <ant dir="${basedir}/flexjs/ChartExample"/>
         <ant dir="${basedir}/flexjs/StorageExample"/>
+        <ant dir="${basedir}/flexjs/StyleExample"/>
         <ant dir="${basedir}/flexjs/TodoListSampleApp"/>
         <ant dir="${basedir}/flexjs/TreeExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
@@ -123,6 +124,7 @@
         <ant dir="${basedir}/flexjs/MobileMap" target="clean"/>
         <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
         <ant dir="${basedir}/flexjs/StorageExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/StyleExample" target="clean"/>
         <ant dir="${basedir}/flexjs/TodoListSampleApp" target="clean"/>
         <ant dir="${basedir}/flexjs/TreeExample" target="clean"/>
         <ant dir="${basedir}/native/ButtonExample" target="clean"/>
