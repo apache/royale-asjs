@@ -74,19 +74,11 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>external</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>external</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>

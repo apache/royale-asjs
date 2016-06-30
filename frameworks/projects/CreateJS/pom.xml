@@ -73,14 +73,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.7.0-SNAPSHOT</version>
@@ -129,20 +121,17 @@
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>extern</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flex.flexjs.externs</groupId>
-      <artifactId>flexjs-externs-js</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>extern</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flex.flexjs.externs</groupId>
-      <artifactId>flexjs-externs-gcl</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>extern</classifier>
+      <!--
+        TODO: Checkout why this is needed
+        This is needed as currently maven has problems resolving flex scopes,
+        it is correctly included by this artifacts parent.
+      -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.flex.flexjs.externs</groupId>
+          <artifactId>flexjs-externs-js</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 

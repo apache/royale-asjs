@@ -41,6 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>FlexJSStore.mxml</mainClass>
+          <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
     </plugins>

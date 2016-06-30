@@ -41,6 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>FlexWebsiteStatsViewer.mxml</mainClass>
+          <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
     </plugins>
