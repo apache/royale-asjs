@@ -47,27 +47,22 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
-    <!-- URL of the ASF SonarQube server -->
-    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
-
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
 
+    <!-- URL of the ASF SonarQube server -->
+    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
     <!-- Tell sonar where the coverage reports are located -->
     <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
     <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
   </properties>
 
-  <modules>
-    <module>examples</module>
-    <module>frameworks</module>
-  </modules>
-
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
     <site>
       <id>website</id>
+      <!-- TODO: Set this to the correct url -->
       <url>scp://www.mycompany.com/www/docs/project/</url>
     </site>
   </distributionManagement>
@@ -93,6 +88,11 @@
       <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
     </mailingList>
   </mailingLists>
+
+  <modules>
+    <module>examples</module>
+    <module>frameworks</module>
+  </modules>
 
   <repositories>
     <repository>
