@@ -22,10 +22,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO: File not found: org.apache.flex.html.beads.CSSButtonView
-  -->
-
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -45,10 +41,11 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.as</mainClass>
+          <removeCirculars>true</removeCirculars>
           <defines>
             <define>
               <name>CONFIG::as_only</name>
-              <value>true</value>
+              <value>false</value>
             </define>
             <define>
               <name>CONFIG::js_only</name>
