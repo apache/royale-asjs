@@ -47,4 +47,14 @@
     </plugins>
   </build>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
 </project>

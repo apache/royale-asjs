@@ -22,6 +22,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--
+        TODO: JS Version is complaining about not finding cordova.js
+  -->
+
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -43,6 +47,23 @@
           <mainClass>CordovaCameraExample.mxml</mainClass>
         </configuration>
       </plugin>
+      <!--
+            Do the Cordova packaging of the javascript application
+      -->
+      <!--plugin>
+        <groupId>org.jboss.errai</groupId>
+        <artifactId>cordova-maven-plugin</artifactId>
+        <version>3.2.4.Final</version>
+        <executions>
+          <execution>
+            <id>build</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build-project</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin-->
     </plugins>
   </build>
 

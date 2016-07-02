@@ -23,7 +23,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: File not found: $
+        TODO: Initializer for 'width': percentage not allowed here: '100%'.
+        (Problems with setting percentage width and height values)
   -->
 
   <parent>
@@ -51,6 +52,14 @@
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>DragDrop</artifactId>
@@ -80,6 +89,15 @@
       <artifactId>Network</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.externs</groupId>
+      <artifactId>flexjs-externs-jquery</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>extern</classifier>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 

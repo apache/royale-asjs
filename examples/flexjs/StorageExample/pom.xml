@@ -23,7 +23,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: File not found: cordova
+        TODO: Initializer for 'width': percentage not allowed here: '100%'.
+        (Problems with setting percentage width and height values)
   -->
 
   <parent>

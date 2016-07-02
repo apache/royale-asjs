@@ -52,10 +52,27 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>CreateJS</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.externs</groupId>
+      <artifactId>flexjs-externs-createjs</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>extern</classifier>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
 

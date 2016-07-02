@@ -22,6 +22,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--
+        TODO:
+        Flash version:
+          TypeError: Error #1007: Instantiation attempted on a non-constructor.
+            at org.apache.flex.core::UIBase/get model()
+            at org.apache.flex.html::Label/set text()
+            at MyInitialView/get MXMLDescriptor()
+            at org.apache.flex.core::ContainerBase/addedToParent()
+            at org.apache.flex.core::Application/addElement()
+            at org.apache.flex.core::Application/initialize()
+            at org.apache.flex.core::Application/initHandler()
+
+        JS Version:
+          Language.js:74 Uncaught TypeError: Type Coercion failedv
+            @ Language.js:74q.cb
+            @ MyInitialView.js:75Yk
+            @ events.js:728el
+            @ HTMLElementWrapper.js:43Tk
+            @ events.js:852(anonymous function)
+            @ events.js:277
+  -->
+
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -58,6 +80,14 @@
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>

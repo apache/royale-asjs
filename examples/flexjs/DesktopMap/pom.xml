@@ -22,6 +22,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--
+        TODO:
+        Millions (115) of warning regarding @asreturns JSDoc tags
+  -->
+
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -59,12 +64,6 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>HTML</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>

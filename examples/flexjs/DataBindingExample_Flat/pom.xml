@@ -22,6 +22,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--
+        TODO:
+        Flash Version
+          Doesn't seem to have colors and CSS Styles and seems to be missing the graphic resources
+
+        JS Version
+          This attribute is unexpected. It will be ignored.
+            <flat:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+            (Complains about the "change" element)
+  -->
+
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -48,6 +59,14 @@
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Flat</artifactId>

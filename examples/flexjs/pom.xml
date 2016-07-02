@@ -33,8 +33,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>ChartExample</module>
-    <module>CordovaCameraExample</module>
+    <module>ChartExample</module><!-- OK -->
+    <module>CordovaCameraExample</module><!-- Needs to be packaged as Cordova application -->
     <module>CreateJSExample</module>
     <module>DataBindingExample</module>
     <module>DataBindingExample_as</module>
@@ -49,19 +49,12 @@
     <module>MobileMap</module>
     <module>MobileTrader</module>
     <module>StorageExample</module>
+    <module>StyleExample</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
   </modules>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
