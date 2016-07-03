@@ -28,9 +28,7 @@
           Doesn't seem to have colors and CSS Styles and seems to be missing the graphic resources
 
         JS Version
-          This attribute is unexpected. It will be ignored.
-            <flat:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
-            (Complains about the "change" element)
+          HTTPService.js:400Uncaught TypeError: this.g is not a function
   -->
 
   <parent>

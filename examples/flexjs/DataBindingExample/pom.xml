@@ -23,7 +23,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Binding of Radio Buttons doesn't seem to update the Labels and the "all data" TextField in JS version.
+        TODO: JavaScript errors
+        HTTPService.js:400 Uncaught TypeError: this.g is not a function
+        HTTPService.js:400 Uncaught TypeError: this.g is not a functionset
+        @ HTTPService.js:400R.g
+        @ HTMLElementWrapper.js:107X.start
+        @ Application.js:226(anonymous function) @ index.html:11
   -->
 
   <parent>

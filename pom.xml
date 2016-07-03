@@ -47,6 +47,7 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
+    <flex.debug>true</flex.debug>
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
@@ -93,6 +94,30 @@
     <module>examples</module>
     <module>frameworks</module>
   </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.flex.flexjs.compiler</groupId>
+          <artifactId>flexjs-maven-plugin</artifactId>
+          <version>0.7.0-SNAPSHOT</version>
+          <extensions>true</extensions>
+          <configuration>
+            <targetPlayer>${flash.version}</targetPlayer>
+            <debug>${flex.debug}</debug>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.flex.flexjs.compiler</groupId>
+              <artifactId>compiler-jx</artifactId>
+              <version>0.7.0-SNAPSHOT</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <repositories>
     <repository>

@@ -24,7 +24,8 @@
 
   <!--
         TODO:
-        Millions (115) of warning regarding @asreturns JSDoc tags
+        JavaScript Version:
+          MixinManager.js:46 Uncaught TypeError: Cannot read property 'mixins' of undefined
   -->
 
   <parent>

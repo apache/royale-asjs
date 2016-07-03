@@ -33,8 +33,8 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>ChartExample</module><!-- OK -->
-    <module>CordovaCameraExample</module><!-- Needs to be packaged as Cordova application -->
+    <module>ChartExample</module>
+    <module>CordovaCameraExample</module>
     <module>CreateJSExample</module>
     <module>DataBindingExample</module>
     <module>DataBindingExample_as</module>

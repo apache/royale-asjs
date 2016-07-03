@@ -35,13 +35,7 @@
             at org.apache.flex.core::Application/initHandler()
 
         JS Version:
-          Language.js:74 Uncaught TypeError: Type Coercion failedv
-            @ Language.js:74q.cb
-            @ MyInitialView.js:75Yk
-            @ events.js:728el
-            @ HTMLElementWrapper.js:43Tk
-            @ events.js:852(anonymous function)
-            @ events.js:277
+          DataBindingExample.js:87 Uncaught TypeError: this.service.g is not a function
   -->
 
   <parent>

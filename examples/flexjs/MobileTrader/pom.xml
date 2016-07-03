@@ -23,10 +23,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Initializer for 'width': percentage not allowed here: '100%'.
-        (Problems with setting percentage width and height values)
-
-        Access of possibly undefined property running through a reference with static type Timer.
+        TODO:
+        JavaScript Version:
+          ProductsModel.js:201 Uncaught TypeError: this.Pb.h is not a function
   -->
 
   <parent>

@@ -23,7 +23,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Millions (115) of warning regarding @asreturns JSDoc tags
+        TODO:
+        JavaScript Version:
+          base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
+          index.html:11 Uncaught ReferenceError: MapSearch is not defined
   -->
 
   <parent>

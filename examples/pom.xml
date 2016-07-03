@@ -59,16 +59,6 @@
               </configuration>
             </execution>
           </executions>
-          <configuration>
-            <targetPlayer>20.0</targetPlayer>
-          </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.flex.flexjs.compiler</groupId>
-              <artifactId>compiler-jx</artifactId>
-              <version>0.7.0-SNAPSHOT</version>
-            </dependency>
-          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>

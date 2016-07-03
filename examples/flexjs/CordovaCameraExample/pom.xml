@@ -23,7 +23,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: JS Version is complaining about not finding cordova.js
+        TODO: Needs to be packaged via cordova.
   -->
 
   <parent>
