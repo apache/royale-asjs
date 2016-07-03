@@ -88,11 +88,11 @@ public class BinaryData
         }
         COMPILE::JS
         {
-            var view:Int8Array;
+            var view:Uint8Array;
             
             growBuffer(1);
             
-            view = new Int8Array(ba, _position, 1);
+            view = new Uint8Array(ba, _position, 1);
             view[0] = byte;
             _position++;
         }
@@ -192,9 +192,9 @@ public class BinaryData
         }
         COMPILE::JS
         {
-            var view:Int8Array;
+            var view:Uint8Array;
             
-            view = new Int8Array(ba, _position, 1);
+            view = new Uint8Array(ba, _position, 1);
             _position++;
             return view[0];
         }
@@ -368,8 +368,8 @@ public class BinaryData
         COMPILE::JS
         {
             var newBuffer:ArrayBuffer;
-            var newView:Int8Array;
-            var view:Int8Array;
+            var newView:Uint8Array;
+            var view:Uint8Array;
             var i:int;
             var n:int;
             
@@ -377,8 +377,8 @@ public class BinaryData
             {
                 n = ba.byteLength;
                 newBuffer = new ArrayBuffer(n + extra);
-                newView = new Int8Array(newBuffer, 0, n);
-                view = new Int8Array(ba, 0, n);
+                newView = new Uint8Array(newBuffer, 0, n);
+                view = new Uint8Array(ba, 0, n);
                 for (i = 0; i < n; i++)
                 {
                     newView[i] = view[i];
