@@ -37,23 +37,31 @@ COMPILE::SWF
 public class BinaryData
 {
     /**
-     *  Constructor.
+     *  Constructor. The constructor takes an optional bytes argument.
+     *  In Flash this should be a ByteArray. In JS this should be an ArrayBuffer
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function BinaryData()
+    COMPILE::SWF
+	public function BinaryData(bytes:ByteArray = null)
 	{
-		
-	}
+        ba = bytes ? bytes : new ByteArray();
+    }
+
+    COMPILE::JS
+    public function BinaryData(bytes:ArrayBuffer = null)
+    {    
+        ba = bytes ? bytes : new ArrayBuffer(0);
+    }
 	
     COMPILE::SWF
-	private var ba:ByteArray = new ByteArray();
+	private var ba:ByteArray;
 	
     COMPILE::JS
-    private var ba:ArrayBuffer = new ArrayBuffer(0);
+    private var ba:ArrayBuffer;
     
     COMPILE::JS
     private var _position:int = 0;
@@ -88,11 +96,11 @@ public class BinaryData
         }
         COMPILE::JS
         {
-            var view:Int8Array;
+            var view:Uint8Array;
             
             growBuffer(1);
             
-            view = new Int8Array(ba, _position, 1);
+            view = new Uint8Array(ba, _position, 1);
             view[0] = byte;
             _position++;
         }
@@ -192,9 +200,9 @@ public class BinaryData
         }
         COMPILE::JS
         {
-            var view:Int8Array;
+            var view:Uint8Array;
             
-            view = new Int8Array(ba, _position, 1);
+            view = new Uint8Array(ba, _position, 1);
             _position++;
             return view[0];
         }
@@ -291,7 +299,34 @@ public class BinaryData
             return ba.byteLength;
         }
 	}
-	
+
+    public function set length(value:int):void
+    {
+        COMPILE::SWF
+        {
+            ba.length = value;
+        }
+
+        COMPILE::JS
+        {
+            setBufferSize(value);
+        }
+
+    }
+
+	COMPILE::JS
+    private function setBufferSize(newSize):void
+    {
+        var n:int = ba.byteLength;
+        var newBuffer:ArrayBuffer = new ArrayBuffer(newSize);
+        var newView:Uint8Array = new Uint8Array(newBuffer, 0, n);
+        var view:Uint8Array = new Uint8Array(ba, 0, n);
+        for (var i:int = 0; i < n; i++)
+        {
+            newView[i] = view[i];
+        }
+        ba = newBuffer;
+    }
     /**
      *  The total number of bytes remaining to be read.
      *  
@@ -368,8 +403,8 @@ public class BinaryData
         COMPILE::JS
         {
             var newBuffer:ArrayBuffer;
-            var newView:Int8Array;
-            var view:Int8Array;
+            var newView:Uint8Array;
+            var view:Uint8Array;
             var i:int;
             var n:int;
             
@@ -377,8 +412,8 @@ public class BinaryData
             {
                 n = ba.byteLength;
                 newBuffer = new ArrayBuffer(n + extra);
-                newView = new Int8Array(newBuffer, 0, n);
-                view = new Int8Array(ba, 0, n);
+                newView = new Uint8Array(newBuffer, 0, n);
+                view = new Uint8Array(ba, 0, n);
                 for (i = 0; i < n; i++)
                 {
                     newView[i] = view[i];
@@ -387,5 +422,191 @@ public class BinaryData
             }
         }
 	}
+
+    /**
+     *  Reads a UTF-8 string from the byte stream.
+     *  The string is assumed to be prefixed with an unsigned short indicating the length in bytes.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public function readUTF():String
+    {
+        COMPILE::SWF
+        {
+            return ba.readUTF();
+        }
+        // no need to do anything in AS
+        COMPILE::JS
+        {
+            //TODO Doing nothing about the length for now
+            return this.readUTFBytes(ba.byteLength);
+        }
+    }
+
+    /**
+     *  Reads a sequence of UTF-8 bytes specified by the length parameter from the byte stream and returns a string.
+     * 
+     *  @param An unsigned short indicating the length of the UTF-8 bytes.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public function readUTFBytes(length:uint):String
+    {
+        COMPILE::SWF
+        {
+            return ba.readUTFBytes(length);
+        }
+
+        COMPILE::JS
+        {
+            // Code taken from GC
+            // Use native implementations if/when available
+            var bytes:Uint8Array = new Uint8Array(ba,_position,length);
+            if('TextDecoder' in window)
+            {
+                var decoder:TextDecoder = new TextDecoder('utf-8');
+                return decoder.decode(bytes);
+            }
+
+            var out:Array = [];
+            var pos:int = 0;
+            var c:int = 0;
+            var c1:int;
+            var c2:int;
+            var c3:int;
+            var c4:int;
+            while (pos < bytes.length)
+            {
+                c1 = bytes[pos++];
+                if (c1 < 128) {
+                    out[c++] = String.fromCharCode(c1);
+                }
+                else if (c1 > 191 && c1 < 224)
+                {
+                    c2 = bytes[pos++];
+                    out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
+                }
+                else if (c1 > 239 && c1 < 365)
+                {
+                    // Surrogate Pair
+                    c2 = bytes[pos++];
+                    c3 = bytes[pos++];
+                    c4 = bytes[pos++];
+                    var u:int = ((c1 & 7) << 18 | (c2 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 0x10000;
+                    out[c++] = String.fromCharCode(0xD800 + (u >> 10));
+                    out[c++] = String.fromCharCode(0xDC00 + (u & 1023));
+                }
+                else
+                {
+                    c2 = bytes[pos++];
+                    c3 = bytes[pos++];
+                    out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+                }
+            }
+            return out.join('');
+        }
+    }
+
+
+    /**
+     *  Writes a UTF-8 string to the byte stream.
+     *  The length of the UTF-8 string in bytes is written first, as a 16-bit integer,
+     *  followed by the bytes representing the characters of the string. 
+     * 
+     *  @param The string value to be written.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public function writeUTF(value:String):void
+    {
+        COMPILE::SWF
+        {
+            return ba.writeUTF(value);
+        }
+
+        COMPILE::JS
+        {
+            //TODO Doing nothing about the length for now
+            return this.writeUTFBytes(value);
+        }
+    }
+
+    /**
+     *  Writes a UTF-8 string to the byte stream. Similar to the writeUTF() method,
+     *  but writeUTFBytes() does not prefix the string with a 16-bit length word.
+     * 
+     *  @param The string value to be written.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public function writeUTFBytes(str:String):void
+    {
+        COMPILE::SWF
+        {
+            ba.writeUTFBytes(str);
+        }
+
+        COMPILE::JS
+        {
+            // Code taken from GC
+            // Use native implementations if/when available
+            var bytes:Uint8Array;
+            if('TextEncoder' in window)
+            {
+                var encoder:TextEncoder = new TextEncoder('utf-8');
+                bytes = encoder.encode(str);
+                ba = bytes.buffer;
+                return;
+            }
+
+            var out:Array = [];
+            var p:int = 0;
+            var c:int;
+            for (var i:int = 0; i < str.length; i++)
+            {
+                c = str.charCodeAt(i);
+                if (c < 128)
+                {
+                    out[p++] = c;
+                }
+                else if (c < 2048)
+                {
+                    out[p++] = (c >> 6) | 192;
+                    out[p++] = (c & 63) | 128;
+                }
+                else if (((c & 0xFC00) == 0xD800) && (i + 1) < str.length &&
+                    ((str.charCodeAt(i + 1) & 0xFC00) == 0xDC00))
+                {
+                    // Surrogate Pair
+                    c = 0x10000 + ((c & 0x03FF) << 10) + (str.charCodeAt(++i) & 0x03FF);
+                    out[p++] = (c >> 18) | 240;
+                    out[p++] = ((c >> 12) & 63) | 128;
+                    out[p++] = ((c >> 6) & 63) | 128;
+                    out[p++] = (c & 63) | 128;
+                }
+                else
+                {
+                    out[p++] = (c >> 12) | 224;
+                    out[p++] = ((c >> 6) & 63) | 128;
+                    out[p++] = (c & 63) | 128;
+                }
+            }
+            bytes = new Uint8Array(out);
+            ba = bytes.buffer;
+
+        }
+    }
 }
 }
