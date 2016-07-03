@@ -45,39 +45,23 @@ public class BinaryData
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function BinaryData(bytes:Object = null)
+    COMPILE::SWF
+	public function BinaryData(bytes:ByteArray = null)
 	{
-        COMPILE::SWF
-        {
-            if(bytes)
-            {
-                if(!(bytes is ByteArray))
-                    throw new Error("BinaryData expects an ByteArray in the constructor");
-                ba = bytes as ByteArray;
-            }
-            else
-                ba = new ByteArray();
-        }
-    
-        COMPILE::JS
-        {
-            if(bytes)
-            {
-                if(!(bytes is ArrayBuffer))
-                    throw new Error("BinaryData expects an ArrayBuffer in the constructor");
-                ba = bytes as ArrayBuffer;
-            }
-            else
-                ba = new ArrayBuffer(0);
-        }
-		
-	}
+        ba = bytes ? bytes : new ByteArray();
+    }
+
+    COMPILE::JS
+    public function BinaryData(bytes:ArrayBuffer = null)
+    {    
+        ba = bytes ? bytes : new ArrayBuffer(0);
+    }
 	
     COMPILE::SWF
-	private var ba:ByteArray = new ByteArray();
+	private var ba:ByteArray;
 	
     COMPILE::JS
-    private var ba:ArrayBuffer = new ArrayBuffer(0);
+    private var ba:ArrayBuffer;
     
     COMPILE::JS
     private var _position:int = 0;
