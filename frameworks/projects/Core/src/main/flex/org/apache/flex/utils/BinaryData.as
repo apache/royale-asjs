@@ -37,15 +37,39 @@ COMPILE::SWF
 public class BinaryData
 {
     /**
-     *  Constructor.
+     *  Constructor. The constructor takes an optional bytes argument.
+     *  In Flash this should be a ByteArray. In JS this should be an ArrayBuffer
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function BinaryData()
+	public function BinaryData(bytes:Object = null)
 	{
+        COMPILE::SWF
+        {
+            if(bytes)
+            {
+                if(!(bytes is ByteArray))
+                    throw new Error("BinaryData expects an ByteArray in the constructor");
+                ba = bytes as ByteArray;
+            }
+            else
+                ba = new ByteArray();
+        }
+    
+        COMPILE::JS
+        {
+            if(bytes)
+            {
+                if(!(bytes is ArrayBuffer))
+                    throw new Error("BinaryData expects an ArrayBuffer in the constructor");
+                ba = bytes as ArrayBuffer;
+            }
+            else
+                ba = new ArrayBuffer(0);
+        }
 		
 	}
 	
@@ -291,7 +315,34 @@ public class BinaryData
             return ba.byteLength;
         }
 	}
-	
+
+    public function set length(value:int):void
+    {
+        COMPILE::SWF
+        {
+            ba.length = value;
+        }
+
+        COMPILE::JS
+        {
+            setBufferSize(value);
+        }
+
+    }
+
+	COMPILE::JS
+    private function setBufferSize(newSize):void
+    {
+        var n:int = ba.byteLength;
+        var newBuffer:ArrayBuffer = new ArrayBuffer(newSize);
+        var newView:Uint8Array = new Uint8Array(newBuffer, 0, n);
+        var view:Uint8Array = new Uint8Array(ba, 0, n);
+        for (var i:int = 0; i < n; i++)
+        {
+            newView[i] = view[i];
+        }
+        ba = newBuffer;
+    }
     /**
      *  The total number of bytes remaining to be read.
      *  
