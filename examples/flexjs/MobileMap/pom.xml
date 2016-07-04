@@ -24,6 +24,8 @@
 
   <!--
         TODO: Needs to be packaged with cordova
+
+        Seems to be a Flash build however requiring airglobal to build because of a dependency to air in GoogleMaps.
   -->
 
   <parent>

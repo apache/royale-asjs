@@ -75,6 +75,12 @@
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.adobe.air</groupId>
+      <artifactId>framework</artifactId>
+      <version>${air.version}</version>
+      <type>pom</type>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>

@@ -24,6 +24,8 @@
 
   <!--
         TODO:
+        No Flash Version built in ANT
+
         JavaScript Version:
           base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
             goog.inherits @ base.js:2189
@@ -66,6 +68,12 @@
       <version>${air.version}</version>
       <type>swc</type>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.air</groupId>
+      <artifactId>framework</artifactId>
+      <version>${air.version}</version>
+      <type>pom</type>
     </dependency>
 
     <dependency>
