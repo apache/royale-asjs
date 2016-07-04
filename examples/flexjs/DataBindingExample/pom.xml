@@ -22,15 +22,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO: JavaScript errors
-        HTTPService.js:400 Uncaught TypeError: this.g is not a function
-        HTTPService.js:400 Uncaught TypeError: this.g is not a functionset
-        @ HTTPService.js:400R.g
-        @ HTMLElementWrapper.js:107X.start
-        @ Application.js:226(anonymous function) @ index.html:11
-  -->
-
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>

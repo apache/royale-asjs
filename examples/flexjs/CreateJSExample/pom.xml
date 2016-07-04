@@ -23,19 +23,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Generated JavaScript produces errors:
-
-        base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefinedgoog.inherits
-        @ base.js:2189(anonymous function)
-        @ ApplicationDataBinding.js:39
-
-        ApplicationDataBinding.js:37 Uncaught TypeError: org.apache.flex.binding.ApplicationDataBinding.base is not a functionorg.apache.flex.binding.ApplicationDataBinding
-        @ ApplicationDataBinding.js:37org.apache.flex.utils.MXMLDataInterpreter.generateMXMLArray
-        @ MXMLDataInterpreter.js:123org.apache.flex.utils.MXMLDataInterpreter.generateMXMLProperties
-        @ MXMLDataInterpreter.js:321org.apache.flex.createjs.Application.generateMXMLAttributes
-        @ Application.js:127CreateJSExample
-        @ CreateJSExample.js:110(anonymous function)
-        @ index.html:71
+        TODO:
+        Flash version:
+          Blue ball doesn't move
   -->
 
   <parent>

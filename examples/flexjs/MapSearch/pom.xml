@@ -26,7 +26,12 @@
         TODO:
         JavaScript Version:
           base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
-          index.html:11 Uncaught ReferenceError: MapSearch is not defined
+            goog.inherits @ base.js:2189
+            (anonymous function) @ Marker.js:26
+          MixinManager.js:46 Uncaught TypeError: Cannot read property 'mixins' of undefined
+            set @ MixinManager.js:46org.apache.flex.core.HTMLElementWrapper.addBead @ HTMLElementWrapper.js:108
+            org.apache.flex.core.Application.start @ Application.js:226
+            (anonymous function) @ index.html:149
   -->
 
   <parent>

@@ -26,16 +26,17 @@
         TODO:
         Flash version:
           TypeError: Error #1007: Instantiation attempted on a non-constructor.
-            at org.apache.flex.core::UIBase/get model()
-            at org.apache.flex.html::Label/set text()
-            at MyInitialView/get MXMLDescriptor()
-            at org.apache.flex.core::ContainerBase/addedToParent()
-            at org.apache.flex.core::Application/addElement()
-            at org.apache.flex.core::Application/initialize()
-            at org.apache.flex.core::Application/initHandler()
+          	at org.apache.flex.core::UIBase/get model()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/UIBase.as:815]
+          	at org.apache.flex.html::Label/set text()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/HTML/src/main/flex/org/apache/flex/html/Label.as:91]
+          	at MyInitialView/get MXMLDescriptor()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/flexjs/DataBindingExample_as/src/MyInitialView.as:143]
+          	at org.apache.flex.core::ContainerBase/addedToParent()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/ContainerBase.as:207]
+          	at org.apache.flex.core::Application/addElement()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:424]
+          	at org.apache.flex.core::Application/initialize()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:183]
+          	at org.apache.flex.core::Application/initHandler()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:147]
 
         JS Version:
-          DataBindingExample.js:87 Uncaught TypeError: this.service.g is not a function
+          - Checkbox binding doesn't seem to work. Details field is always visible
+          - RadioButton changes only change the value-output not the title-label.
   -->
 
   <parent>

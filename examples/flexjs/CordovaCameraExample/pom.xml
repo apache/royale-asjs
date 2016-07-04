@@ -23,7 +23,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Needs to be packaged via cordova.
+        TODO: Needs to be packaged via Cordova.
   -->
 
   <parent>

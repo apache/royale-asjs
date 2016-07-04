@@ -24,8 +24,11 @@
 
   <!--
         TODO:
-        JavaScript Version:
-          MixinManager.js:46 Uncaught TypeError: Cannot read property 'mixins' of undefined
+          JavaScript Version:
+            MixinManager.js:46 Uncaught TypeError: Cannot read property 'mixins' of undefined
+            set @ MixinManager.js:46org.apache.flex.core.HTMLElementWrapper.addBead @ HTMLElementWrapper.js:108
+            org.apache.flex.core.Application.start @ Application.js:226
+            (anonymous function) @ index.html:148
   -->
 
   <parent>

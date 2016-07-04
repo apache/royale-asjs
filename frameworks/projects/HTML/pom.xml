@@ -79,7 +79,6 @@
       <artifactId>Core</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -93,7 +92,6 @@
       <artifactId>Binding</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -107,7 +105,6 @@
       <artifactId>Graphics</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -121,7 +118,6 @@
       <artifactId>Collections</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>

@@ -24,9 +24,16 @@
 
   <!--
         TODO:
+        Flash Version:
+          - Missing CSS and Resources
+          - Error #2044: Unhandled IOErrorEvent:. text=Error #2036: Load Never Completed.
+
         JavaScript Version:
-          base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
-          index.html:15 Uncaught ReferenceError: FlexJSStore is not defined
+          Got these warnings in the build:
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/flexjs/FlexJSStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/flexjs/FlexJSStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/flexjs/FlexJSStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+
   -->
 
   <parent>

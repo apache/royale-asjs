@@ -24,11 +24,8 @@
 
   <!--
         TODO:
-        Flash Version
-          Doesn't seem to have colors and CSS Styles and seems to be missing the graphic resources
-
-        JS Version
-          HTTPService.js:400Uncaught TypeError: this.g is not a function
+          Flash version:
+            Missing Resources
   -->
 
   <parent>

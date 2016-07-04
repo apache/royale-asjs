@@ -24,9 +24,8 @@
 
   <!--
       TODO:
-      JavaScript Version:
-        base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
-        index.html:11 Uncaught ReferenceError: TodoListSampleApp is not defined
+        JavaScript Version:
+          Layout problems in the grid
   -->
 
   <parent>
