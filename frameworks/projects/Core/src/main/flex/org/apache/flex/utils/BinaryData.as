@@ -320,11 +320,8 @@ public class BinaryData
         var n:int = ba.byteLength;
         var newBuffer:ArrayBuffer = new ArrayBuffer(newSize);
         var newView:Uint8Array = new Uint8Array(newBuffer, 0, n);
-        var view:Uint8Array = new Uint8Array(ba, 0, n);
-        for (var i:int = 0; i < n; i++)
-        {
-            newView[i] = view[i];
-        }
+        var view:Uint8Array = new Uint8Array(ba, 0, Math.min(newSize,n));
+        newView.set(view);
         ba = newBuffer;
     }
     /**
