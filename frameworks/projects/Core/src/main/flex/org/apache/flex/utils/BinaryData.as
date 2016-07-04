@@ -379,6 +379,10 @@ public class BinaryData
         }
 	}
 	
+    public function doNothing():void
+    {
+        var b:String = "bla";
+    }
     /**
      *  A method to extend the size of the binary data
      *  so you can write more bytes to it.  Not all

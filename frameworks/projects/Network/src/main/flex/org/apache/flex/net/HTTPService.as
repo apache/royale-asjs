@@ -25,7 +25,6 @@ package org.apache.flex.net
         import flash.net.URLLoader;
         import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
-        import flash.net.URLRequestMethod;        
     }
     COMPILE::JS
     {
@@ -35,7 +34,7 @@ package org.apache.flex.net
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.net.HTTPConstants;
 	
     //--------------------------------------
     //  Events
@@ -103,92 +102,6 @@ package org.apache.flex.net
 	public class HTTPService extends HTTPServiceBase implements IStrand, IBead
 	{
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_GET
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_GET:String = "GET";
-        
-        /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_POST
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_POST:String = "POST";
-        
-        /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_PUT
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_PUT:String = "PUT";
-
-        /**
-         *  @copy org.apache.flex.net.BinaryUploader#HTTP_METHOD_DELETE
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_DELETE:String = "DELETE";
-		
-        /**
-         *  Dispatched when the request is complete.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const EVENT_COMPLETE:String = "complete";
-        
-        /**
-         *  Dispatched if an error occurs in the server communication.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const EVENT_IO_ERROR:String = "ioError";
-        
-        /**
-         *  Dispatched when an httpStatus code is received from the server.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const EVENT_HTTP_STATUS:String = "httpStatus";
-        
-        /**
-         *  Dispatched if Adobe AIR is able to detect and return the status 
-         *  code for the request.  Unlike the httpStatus event, the httpResponseStatus 
-         *  event is delivered before any response data. Also, the httpResponseStatus 
-         *  event includes values for the responseHeaders and responseURL properties 
-         *  (which are undefined for an httpStatus event. Note that the 
-         *  httpResponseStatus event (if any) will be sent before 
-         *  (and in addition to) any complete or error event.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const EVENT_HTTP_RESPONSE_STATUS:String = "httpResponseStatus";
-        
-        /**
          *  Constructor.
          *  
          *  @langversion 3.0
@@ -197,7 +110,7 @@ package org.apache.flex.net
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-		public function HTTPService()
+        public function HTTPService()
 		{
 			super();
             
@@ -290,7 +203,7 @@ package org.apache.flex.net
 			}
 		}
 		
-		private var _method:String = HTTP_METHOD_GET;
+		private var _method:String = HTTPConstants.GET;
 
         /**
          *  @copy org.apache.flex.net.BinaryUploader#method
@@ -622,14 +535,14 @@ package org.apache.flex.net
                             sawContentType = true;
                     }
                 }
-                if (method != HTTP_METHOD_GET && !sawContentType && contentData != null)
+                if (method != HTTPConstants.GET && !sawContentType && contentData != null)
                 {
                     urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                     request.requestHeaders.push(urlHeader);
                 }
                 if (contentData)
                 {
-                    if (method == HTTP_METHOD_GET)
+                    if (method == HTTPConstants.GET)
                     {
                         if (url.indexOf("?") != -1)
                             url += contentData;
@@ -655,7 +568,7 @@ package org.apache.flex.net
                 
                 var contentData:String = null;
                 if (_contentData != null) {
-                    if (_method === HTTP_METHOD_GET) {
+                    if (_method === HTTPConstants.GET) {
                         if (url.indexOf('?') !== -1) {
                             url += _contentData;
                         } else {
@@ -682,7 +595,7 @@ package org.apache.flex.net
                     }
                 }
                 
-                if (_method !== HTTP_METHOD_GET &&
+                if (_method !== HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
                         HTTPHeader.CONTENT_TYPE, _contentType);
