@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net.url
+package org.apache.flex.net
 {   
     
     
@@ -24,8 +24,6 @@ package org.apache.flex.net.url
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ProgressEvent;
-    import org.apache.flex.net.HTTPConstants;
-    import org.apache.flex.net.HTTPUtils;
     import org.apache.flex.utils.BinaryData;
 
     COMPILE::SWF
@@ -73,7 +71,7 @@ package org.apache.flex.net.url
                 }
         }
 
-        public function load(urlRequest:org.apache.flex.net.url.URLRequest):void
+        public function load(urlRequest:org.apache.flex.net.URLRequest):void
         {
             COMPILE::JS {
                 xhr = new XMLHttpRequest();

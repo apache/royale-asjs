@@ -487,7 +487,7 @@ package org.apache.flex.net
 		}
 
         COMPILE::SWF
-        private var urlLoader:URLLoader;
+        private var urlLoader:flash.net.URLLoader;
         
         /**
          *  Starts the upload to the server.  Events
@@ -503,8 +503,8 @@ package org.apache.flex.net
             COMPILE::SWF
             {
                 if (!urlLoader)
-                    urlLoader = new URLLoader();
-                var request:URLRequest = new URLRequest(url);
+                    urlLoader = new flash.net.URLLoader();
+                var request:flash.net.URLRequest = new flash.net.URLRequest(url);
                 request.method = method;
                 if ("idleTimeout" in request)
                 {

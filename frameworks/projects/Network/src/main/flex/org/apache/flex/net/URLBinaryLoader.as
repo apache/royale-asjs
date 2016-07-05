@@ -16,27 +16,60 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net.url
+package org.apache.flex.net
 {    
     
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ProgressEvent;
-    import org.apache.flex.net.HTTPConstants;
     import org.apache.flex.utils.BinaryData;
 
-   public class BinaryURLLoader extends EventDispatcher
+
+	/**
+	 *  The BinaryUploader class is a relatively low-level class designed to get
+	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.  
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.7.0
+	 */
+   public class URLBinaryLoader extends URLLoader
     {
         
+	   /**
+		*  The binary result of the request.
+		*  
+		*  @langversion 3.0
+		*  @playerversion Flash 10.2
+		*  @playerversion AIR 2.6
+		*  @productversion FlexJS 0.7.0
+		*/        
         public var data:BinaryData;
         
         private var stream:URLStream;
         
+		/**
+		 *  The number of bytes loaded so far.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
         public var bytesLoaded:uint = 0;
         
+		/**
+		 *  The total number of bytes (if avaailable).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
         public var bytesTotal:uint = 0;
         
-        public function BinaryURLLoader(request:URLRequest = null)
+        public function URLBinaryLoader(request:URLRequest = null)
         {
             super();
             stream = new URLStream();

@@ -23,7 +23,6 @@ package org.apache.flex.net
         import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
         import flash.net.URLLoader;
-        import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
     }
     COMPILE::JS
@@ -495,7 +494,7 @@ package org.apache.flex.net
 		}
 
         COMPILE::SWF
-        private var urlLoader:URLLoader;
+        private var urlLoader:flash.net.URLLoader;
         
         /**
          *  Sends the headers and contentData to the server.
@@ -517,8 +516,8 @@ package org.apache.flex.net
             COMPILE::SWF
             {
                 if (!urlLoader)
-                    urlLoader = new URLLoader();
-                var request:URLRequest = new URLRequest(url);
+                    urlLoader = new flash.net.URLLoader();
+                var request:flash.net.URLRequest = new flash.net.URLRequest(url);
                 request.method = method;
                 if ("idleTimeout" in request)
                 {

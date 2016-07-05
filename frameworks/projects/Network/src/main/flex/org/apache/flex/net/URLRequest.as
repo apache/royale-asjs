@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net.url
+package org.apache.flex.net
 {
     public final class URLRequest extends Object
     {

@@ -28,7 +28,7 @@ package
  */
 internal class NetworkClasses
 {	
-    import org.apache.flex.net.url.BinaryURLLoader; BinaryURLLoader;
+    import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
 }
 
 }
