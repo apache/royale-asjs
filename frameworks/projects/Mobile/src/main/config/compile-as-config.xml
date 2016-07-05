@@ -41,6 +41,7 @@
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>Mixin</name>
         </keep-as3-metadata>
 	  
         <locale/>
