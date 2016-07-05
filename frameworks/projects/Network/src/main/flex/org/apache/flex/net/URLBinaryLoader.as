@@ -22,6 +22,7 @@ package org.apache.flex.net
     import org.apache.flex.events.Event;
     import org.apache.flex.events.ProgressEvent;
     import org.apache.flex.utils.BinaryData;
+    import org.apache.flex.utils.Endian;
 
 
 	/**
@@ -45,7 +46,28 @@ package org.apache.flex.net
 		*  @productversion FlexJS 0.7.0
 		*/        
         public var data:BinaryData;
-        
+
+		/**
+		 *  The status of the request.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var status:String;
+		
+		/**
+		 *  Indicates the byte order for the data.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var endian:String = Endian.BIG_ENDIAN;
+		
+
         private var stream:URLStream;
         
 		/**

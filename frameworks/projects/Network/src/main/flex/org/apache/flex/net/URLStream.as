@@ -25,6 +25,7 @@ package org.apache.flex.net
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ProgressEvent;
     import org.apache.flex.utils.BinaryData;
+    import org.apache.flex.utils.Endian;
 
     COMPILE::SWF
     {
@@ -134,7 +135,7 @@ package org.apache.flex.net
                 dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
 				if(onComplete)
 					onComplete();
-				cleanupHandlers();
+				cleanupCallbacks();
             }else if (xhr.readyState==4&&xhr.status==404){
                 //                    dispatchEvent(new IOErrorEvent(IOErrorEvent.IO_ERROR));
             }
@@ -156,6 +157,17 @@ package org.apache.flex.net
 			cleanupCallbacks();
 
         }
+		
+		/**
+		 *  Indicates the byte order for the data.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var endian:String = Endian.LITTLE_ENDIAN;
+
 		private function cleanupCallbacks():void
 		{
 			onComplete = null;
