@@ -107,6 +107,9 @@ package org.apache.flex.net
         protected function flash_complete(event:flash.events.Event):void
         {
             dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+			if(onComplete)
+				onComplete();
+			cleanupCallbacks();
         }
         COMPILE::SWF
         protected function flash_progress(event:flash.events.ProgressEvent):void
@@ -129,6 +132,9 @@ package org.apache.flex.net
             if (xhr.readyState == 4 && xhr.status == 200)
             {
                 dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+				if(onComplete)
+					onComplete();
+				cleanupHandlers();
             }else if (xhr.readyState==4&&xhr.status==404){
                 //                    dispatchEvent(new IOErrorEvent(IOErrorEvent.IO_ERROR));
             }
@@ -146,9 +152,87 @@ package org.apache.flex.net
             }
 
             //TODO send an event that it's been aborted
+
+			cleanupCallbacks();
+
         }
+		private function cleanupCallbacks():void
+		{
+			onComplete = null;
+			onError = null;
+			onProgress = null;
+		}
+		/**
+		 *  Callback for complete event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
         public var onComplete:Function;
+		
+		/**
+		 *  Callback for error event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
         public var onError:Function;
-    }
+		
+		/**
+		 *  Callback for progress event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onProgress:Function;
+		
+		/**
+		 *  Convenience function for complete event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function complete(callback:Function):org.apache.flex.net.URLStream
+		{
+			onComplete = callback;
+			return this;
+		}
+		
+		/**
+		 *  Convenience function for error event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function error(callback:Function):org.apache.flex.net.URLStream
+		{
+			onError = callback;
+			return this;
+		}
+
+		/**
+		 *  Convenience function for progress event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function progress(callback:Function):org.apache.flex.net.URLStream
+		{
+			onProgress = callback;
+			return this;
+		}
+}
 }
 

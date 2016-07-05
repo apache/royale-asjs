@@ -86,5 +86,83 @@ package org.apache.flex.net
 		{
 			throw new Error("URLLoader should not be instantiated. Use a derived class instead.")
 		}
+		
+		protected function cleanupCallbacks():void
+		{
+			onComplete = null;
+			onError = null;
+			onProgress = null;
+		}
+		/**
+		 *  Callback for complete event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onComplete:Function;
+		
+		/**
+		 *  Callback for error event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onError:Function;
+		
+		/**
+		 *  Callback for progress event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onProgress:Function;
+		
+		/**
+		 *  Convenience function for complete event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function complete(callback:Function):URLLoader
+		{
+			onComplete = callback;
+			return this;
+		}
+		
+		/**
+		 *  Convenience function for error event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function error(callback:Function):URLLoader
+		{
+			onError = callback;
+			return this;
+		}
+		
+		/**
+		 *  Convenience function for progress event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function progress(callback:Function):URLLoader
+		{
+			onProgress = callback;
+			return this;
+		}
 	}
 }

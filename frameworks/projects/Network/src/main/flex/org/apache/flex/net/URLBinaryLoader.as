@@ -20,7 +20,6 @@ package org.apache.flex.net
 {    
     
     import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ProgressEvent;
     import org.apache.flex.utils.BinaryData;
 
@@ -73,43 +72,63 @@ package org.apache.flex.net
         {
             super();
             stream = new URLStream();
-            stream.addEventListener(HTTPConstants.COMPLETE, onComplete);
+            stream.addEventListener(HTTPConstants.COMPLETE, completeHandler);
         }
         
+		/**
+		 *  Makes the URL request.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
         public function load(request:URLRequest):void
         {
             stream.load(request);
         }
         
+		/**
+		 *  Cancels the URL request
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
         public function close():void
         {
             stream.close();
+			//TODO do we need a callback for camceling?
         }
         
-        private function redirectEvent(event:Event):void
-        {
-            dispatchEvent(event);
-        }
-        
-        private function onComplete(event:Event):void
+        private function completeHandler(event:Event):void
         {
             data = stream.response;
             if (data)
             {
                 dispatchEvent(event);
+				if(onComplete)
+					onComplete(this);
+
             }
             else
             {
                 // TODO dipatch error event?
                 dispatchEvent(new Event(HTTPConstants.IO_ERROR));
+				if(onError)
+					onError(this);
             }
+			cleanupCallbacks();
         }
         
-        private function onProgress(event:ProgressEvent):void
+        private function progressHandler(event:ProgressEvent):void
         {
             this.bytesLoaded = event.current
             this.bytesTotal = event.total;
             dispatchEvent(event);
+			if(onProgress)
+				onProgress(this);
         }
     }
 }
