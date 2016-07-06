@@ -47,6 +47,16 @@ package org.apache.flex.utils
 		 *  @productversion FlexJS 0.7.0
 		 */
 		public static const LITTLE_ENDIAN:String = "littleEndian";
-		
+
+		/**
+		 *  Uses the default endianness on the system.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
+		public static const DEFAULT:String = "default";
+
 	}
 }

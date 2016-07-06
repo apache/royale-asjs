@@ -56,7 +56,37 @@ public class BinaryData
     {    
         ba = bytes ? bytes : new ArrayBuffer(0);
     }
+
+	private var _endian:String = Endian.DEFAULT;
+
+	/**
+	 *  Indicates the byte order for the data.
+	 *  The default is "default" which in Javascript is machine dependent.
+	 *  To ensure portable bytes, set the endian to big or little as appropriate.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.7.0
+	 */        
+	public function get endian():String
+	{
+		return _endian;
+	}
 	
+	public function set endian(value:String):void
+	{
+		_endian = value;
+		
+		COMPILE::SWF
+		{
+			if(value == Endian.DEFAULT)
+				ba.endian = Endian.BIG_ENDIAN;
+			else
+				ba.endian = value;
+		}
+	}
+
     COMPILE::SWF
 	private var ba:ByteArray;
 	
@@ -125,9 +155,16 @@ public class BinaryData
             var view:Int16Array;
             
             growBuffer(2);
-            
-            view = new Int16Array(ba, _position, 1);
-            view[0] = short;
+			if(_endian == Endian.DEFAULT)
+			{
+	            view = new Int16Array(ba, _position, 1);
+    	        view[0] = short;
+			}
+			else
+			{
+				var dv:DataView = new DataView(ba);
+				dv.setInt16(_position,short,_endian == Endian.LITTLE_ENDIAN);
+			}
             _position += 2;
         }
 	}
@@ -149,12 +186,19 @@ public class BinaryData
         COMPILE::JS
         {
             var view:Uint32Array;
-            
+			
             growBuffer(4);
-            
-            view = new Uint32Array(ba, _position, 1);
-            view[0] = unsigned;
-            _position += 4;
+            if(_endian == Endian.DEFAULT)
+			{
+				view = new Uint32Array(ba, _position, 1);
+				view[0] = unsigned;
+			}
+			else
+			{
+				var dv:DataView = new DataView(ba);
+				dv.setUint32(_position,unsigned,_endian == Endian.LITTLE_ENDIAN);
+			}
+			_position += 4;
         }
 	}
 
@@ -166,7 +210,7 @@ public class BinaryData
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeInt(integer:uint):void
+	public function writeInt(integer:int):void
 	{
         COMPILE::SWF
         {
@@ -175,11 +219,19 @@ public class BinaryData
         COMPILE::JS
         {
             var view:Int32Array;
-            
+			
             growBuffer(4);
-            
-            view = new Int32Array(ba, _position, 1);
-            view[0] = integer;
+			
+			if(_endian == Endian.DEFAULT)
+			{
+            	view = new Int32Array(ba, _position, 1);
+            	view[0] = integer;
+			}
+			else
+			{
+				var dv:DataView = new DataView(ba);
+				dv.setInt32(_position,integer,_endian == Endian.LITTLE_ENDIAN);
+			}
             _position += 4;
         }
 	}
@@ -226,9 +278,17 @@ public class BinaryData
         {
             var view:Int16Array;
             
-            view = new Int16Array(ba, _position, 1);
-            _position += 2;
-            return view[0];
+			if(_endian == Endian.DEFAULT)
+			{
+	            view = new Int16Array(ba, _position, 1);
+    	        _position += 2;
+				return view[0];
+			}
+			
+			var dv:DataView = new DataView(ba);
+			var i:int = dv.getInt16(_position,_endian == Endian.LITTLE_ENDIAN);
+			_position += 2;
+			return i;
         }
 	}
 	
@@ -250,9 +310,16 @@ public class BinaryData
         {
             var view:Uint32Array;
             
-            view = new Uint32Array(ba, _position, 1);
-            _position += 4;
-            return view[0];
+			if(_endian == Endian.DEFAULT)
+			{
+				view = new Uint32Array(ba, _position, 1);
+				_position += 4;
+				return view[0];
+			}
+			var dv:DataView = new DataView(ba);
+			var i:uint = dv.getUint32(_position,_endian == Endian.LITTLE_ENDIAN);
+			_position += 4;
+			return i;
         }
 	}
 	
@@ -273,10 +340,18 @@ public class BinaryData
         COMPILE::JS
         {
             var view:Int32Array;
-            
-            view = new Int32Array(ba, _position, 1);
-            _position += 4;
-            return view[0];
+			
+			if(_endian == Endian.DEFAULT)
+			{
+				view = new Int32Array(ba, _position, 1);
+				_position += 4;
+				return view[0];
+			}
+			var dv:DataView = new DataView(ba);
+			var i:uint = dv.getInt32(_position,_endian == Endian.LITTLE_ENDIAN);
+			_position += 4;
+			return i;
+
         }
 	}
 

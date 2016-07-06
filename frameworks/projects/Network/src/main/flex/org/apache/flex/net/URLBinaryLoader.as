@@ -65,7 +65,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */        
-		public var endian:String = Endian.BIG_ENDIAN;
+		public var endian:String = Endian.DEFAULT;
 		
 
         private var stream:URLStream;

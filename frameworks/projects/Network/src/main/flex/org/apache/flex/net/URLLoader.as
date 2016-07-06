@@ -84,7 +84,6 @@ package org.apache.flex.net
 	{
 		public function URLLoader()
 		{
-			throw new Error("URLLoader should not be instantiated. Use a derived class instead.")
 		}
 		
 		protected function cleanupCallbacks():void
