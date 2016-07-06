@@ -16,20 +16,45 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{   
+package org.apache.flex.events
+{
+    
+    /**
+     *  The StringEvent class is used for dispatching an event
+	 *  that has a string payload
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	public class StringEvent extends Event
+	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function StringEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
+									payload:String = null)
+		{
+			super(type, bubbles, cancelable);
+            
+			this.payload = payload;
+		}
+		
+        /**
+         *  The value.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public var payload:String;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class NetworkClasses
-{	
-    import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
-	import org.apache.flex.net.HTTPConstants; HTTPConstants;
+	}
 }
-
-}
-

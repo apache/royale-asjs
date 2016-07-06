@@ -56,7 +56,17 @@ package org.apache.flex.net
          */
         public static const DELETE:String = "DELETE";
         
-        /**
+		/**
+		 *  Dispatched when the connection is opened.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const OPEN:String = "open";
+
+		/**
          *  Dispatched when the request is complete.
          *  
          *  @langversion 3.0
@@ -75,7 +85,17 @@ package org.apache.flex.net
          *  @productversion FlexJS 0.0
          */
         public static const IO_ERROR:String = "ioError";
-        
+
+		/**
+		 *  Dispatched if a security error occurs in the server communication.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const SECURITY_ERROR:String = "securityError";
+
         /**
          *  Dispatched when an httpStatus code is received from the server.
          *  
