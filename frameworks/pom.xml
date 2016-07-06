@@ -33,6 +33,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>fontsrc</module>
     <module>projects</module>
   </modules>
 
