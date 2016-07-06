@@ -16,31 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.flex.utils
 {
-    public class HTTPUtils
-    {
-        public function HTTPUtils()
-        {
-        }
-		public static function encodeUrlVariables(data:Object):String
-        {
-            if(!data)
-                return "";
-            var b:Array = [];
-            var x:String;
-            for(x in data)
-            {
-                b.push(encodeURI(x));
-                b.push("=");
-                b.push(encodeURI(data[x]));
-                b.push("&");
-            }
-            if(b.length)
-                b.pop()
-            return b.join("");
-        }
-		
+	COMPILE::SWF
+	{
+		import flash.external.ExternalInterface;
+	}
 
-    }
+	/**
+	 *  The BrowserUtils class has convenience methods abstracting differences
+	 *  in executing browser code in Flash and HTML.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.7.0
+	 */
+	public class BrowserUtils
+	{
+		/**
+		 *  evals arbitrary javascript code in the current browser context
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
+		public static function executeJS(str:String):*
+		{
+			COMPILE::SWF
+			{
+				return ExternalInterface.call('eval', str);
+			}
+			
+			COMPILE::JS
+			{
+				return eval(str);
+			}
+	
+		}
+		public function BrowserUtils()
+		{
+		}
+	}
 }
