@@ -36,7 +36,14 @@
 
         JS Version:
           - Checkbox binding doesn't seem to work. Details field is always visible
-          - RadioButton changes only change the value-output not the title-label.
+          - When changing the radio-button selection errors are logged in the console:
+              Language.js:74 Uncaught TypeError: Type Coercion failed
+                org.apache.flex.utils.Language.as @ Language.js:74
+                MyInitialView.radioChanged @ MyInitialView.js:75
+                goog.events.fireListener @ events.js:728
+                org.apache.flex.core.HTMLElementWrapper.fireListenerOverride @ HTMLElementWrapper.js:43
+                goog.events.handleBrowserEvent_ @ events.js:852
+                (anonymous function) @ events.js:277
   -->
 
   <parent>
@@ -54,7 +61,6 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.as</mainClass>
@@ -70,6 +76,14 @@
             </define>
           </defines>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

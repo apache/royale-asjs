@@ -41,11 +41,14 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>CordovaCameraExample.mxml</mainClass>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
       </plugin>
       <!--
             Do the Cordova packaging of the javascript application
@@ -74,12 +77,6 @@
       <version>${air.version}</version>
       <type>swc</type>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.air</groupId>
-      <artifactId>framework</artifactId>
-      <version>${air.version}</version>
-      <type>pom</type>
     </dependency>
 
     <dependency>

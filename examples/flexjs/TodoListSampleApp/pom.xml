@@ -43,12 +43,19 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>TodoListSampleApp.mxml</mainClass>
           <removeCirculars>true</removeCirculars>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

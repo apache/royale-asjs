@@ -119,6 +119,15 @@
     </pluginManagement>
   </build>
 
+  <profiles>
+    <profile>
+      <id>release</id>
+      <properties>
+        <flex.debug>false</flex.debug>
+      </properties>
+    </profile>
+  </profiles>
+
   <repositories>
     <repository>
       <id>apache-release</id>

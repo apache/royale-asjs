@@ -22,6 +22,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--
+        TODO:
+          JavaScript version:
+            When changing the radio-button selection errors are logged in the console:
+              Language.js:74 Uncaught TypeError: Type Coercion failed
+                org.apache.flex.utils.Language.as @ Language.js:74
+                MyInitialView.radioChanged @ MyInitialView.js:307
+                MyInitialView.$EH4 @ MyInitialView.js:415
+                goog.events.fireListener @ events.js:728
+                org.apache.flex.core.HTMLElementWrapper.fireListenerOverride @ HTMLElementWrapper.js:43
+                goog.events.handleBrowserEvent_ @ events.js:852
+                (anonymous function) @ events.js:277
+  -->
+
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
@@ -37,12 +51,19 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
           <removeCirculars>true</removeCirculars>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

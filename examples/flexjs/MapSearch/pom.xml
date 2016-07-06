@@ -24,7 +24,7 @@
 
   <!--
         TODO:
-        No Flash Version built in ANT
+          No Flash Version built in ANT
 
         JavaScript Version:
           base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
@@ -51,12 +51,19 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>MapSearch.mxml</mainClass>
           <removeCirculars>true</removeCirculars>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -68,12 +75,6 @@
       <version>${air.version}</version>
       <type>swc</type>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.air</groupId>
-      <artifactId>framework</artifactId>
-      <version>${air.version}</version>
-      <type>pom</type>
     </dependency>
 
     <dependency>
