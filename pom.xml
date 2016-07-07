@@ -91,6 +91,7 @@
   </mailingLists>
 
   <modules>
+    <module>distribution</module>
     <module>examples</module>
     <module>frameworks</module>
   </modules>
