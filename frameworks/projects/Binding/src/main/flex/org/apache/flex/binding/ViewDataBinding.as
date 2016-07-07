@@ -264,7 +264,10 @@ package org.apache.flex.binding
             var n:int = bindingData.length;
             var index:int = 0;
             var watcherData:Object;
-            while (index < n)
+            // FalconJX adds an extra null to the data so make sure
+            // we have enough data for a complete watcher otherwise
+            // say we are done
+            while (index < n - 2)
             {
                 var watcherIndex:int = bindingData[index++];
                 var type:int = bindingData[index++];
