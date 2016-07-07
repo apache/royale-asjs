@@ -31,6 +31,7 @@ internal class CollectionsClasses
 	import org.apache.flex.collections.FlattenedList; FlattenedList;
 	import org.apache.flex.collections.HierarchicalData; HierarchicalData;
 	import org.apache.flex.collections.LazyCollection; LazyCollection;
+	import org.apache.flex.collections.Collection; Collection;
 }
 
 }
