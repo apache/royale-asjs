@@ -59,6 +59,14 @@ COMPILE::SWF
 public class Timer extends flash.utils.Timer
 {
     /**
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public static const TIMER:String = "timer";
+    /**
      *  Constructor.
      * 
      *  @param delay The number of milliseconds 
@@ -90,6 +98,15 @@ public class Timer extends flash.utils.Timer
 COMPILE::JS
 public class Timer extends EventDispatcher
 {
+    
+    /**
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public static const TIMER:String = "timer";
     /**
      *  Constructor.
      * 
