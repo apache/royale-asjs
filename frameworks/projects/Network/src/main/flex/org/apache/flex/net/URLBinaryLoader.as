@@ -90,7 +90,7 @@ package org.apache.flex.net
 		 */        
         public var bytesTotal:uint = 0;
         
-        public function URLBinaryLoader(request:URLRequest = null)
+        public function URLBinaryLoader()
         {
             super();
             stream = new URLStream();

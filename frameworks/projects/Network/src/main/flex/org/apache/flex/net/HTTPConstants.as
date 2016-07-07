@@ -84,10 +84,20 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static const IO_ERROR:String = "ioError";
+        public static const COMMUNICATION_ERROR:String = "communicationError";
 
 		/**
-		 *  Dispatched if a security error occurs in the server communication.
+		 *  Detail of an error occurring in the server communication. (Flash only)
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const IO_ERROR:String = "ioError";
+
+		/**
+		 *  Detail of a security error occurs in the server communication. (Flash only)
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

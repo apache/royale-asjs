@@ -20,15 +20,15 @@ package org.apache.flex.events
 {
     
     /**
-     *  The StringEvent class is used for dispatching an event
-	 *  that has a string payload
+     *  The DetailEvent class is used for dispatching an event
+	 *  that has a string with more information
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class StringEvent extends Event
+	public class DetailEvent extends Event
 	{
         /**
          *  Constructor.
@@ -38,23 +38,23 @@ package org.apache.flex.events
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function StringEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
-									payload:String = null)
+		public function DetailEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
+									detail:String = null)
 		{
 			super(type, bubbles, cancelable);
             
-			this.payload = payload;
+			this.detail = detail;
 		}
 		
         /**
-         *  The value.
+         *  The detail.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public var payload:String;
+		public var detail:String;
 
 	}
 }

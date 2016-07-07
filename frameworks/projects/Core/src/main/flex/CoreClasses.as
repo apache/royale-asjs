@@ -103,7 +103,7 @@ internal class CoreClasses
     import org.apache.flex.events.EventDispatcher; EventDispatcher;
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
-	import org.apache.flex.events.StringEvent; StringEvent;
+	import org.apache.flex.events.DetailEvent; DetailEvent;
 	import org.apache.flex.events.ValueEvent; ValueEvent;
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
     import org.apache.flex.geom.Point; Point;

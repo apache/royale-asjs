@@ -21,6 +21,11 @@ package org.apache.flex.net
     
     
     
+    import flash.events.HTTPStatusEvent;
+    import flash.events.SecurityErrorEvent;
+    import flash.events.StatusEvent;
+    
+    import org.apache.flex.events.DetailEvent;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.ProgressEvent;
@@ -58,6 +63,26 @@ package org.apache.flex.net
             super();
         }
         
+		/**
+		 *  The number of bytes loaded so far.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var bytesLoaded:uint = 0;
+		
+		/**
+		 *  The total number of bytes (if avaailable).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var bytesTotal:uint = 0;
+
         public function get response():BinaryData
         {
             COMPILE::JS
@@ -76,7 +101,7 @@ package org.apache.flex.net
         {
             COMPILE::JS {
                 xhr = new XMLHttpRequest();
-                xhr.open("POST", urlRequest.url);
+                xhr.open(urlRequest.method, urlRequest.url);
                 xhr.responseType = "arraybuffer";
                 xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
                 xhr.addEventListener("progress", xhr_progress, false);
@@ -91,55 +116,119 @@ package org.apache.flex.net
                 req.requestHeaders.push(hdr);
                 req.data = new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
                 req.method = HTTPConstants.POST;
+				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, flash_status);
+				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_STATUS, flash_status);
                 flashUrlStream.addEventListener(flash.events.ProgressEvent.PROGRESS, flash_progress);
                 flashUrlStream.addEventListener(flash.events.Event.COMPLETE, flash_complete);
                 flashUrlStream.addEventListener(IOErrorEvent.IO_ERROR, flash_onIoError);
+				flashUrlStream.addEventListener(SecurityErrorEvent.SECURITY_ERROR, flash_onSecurityError);
                 flashUrlStream.load(req);
             }
         }
-        
+        COMPILE::SWF
+		private function flash_status(ev:StatusEvent):void
+		{
+			setStatus(parseInt(ev.code,10));
+		}
+		
         COMPILE::SWF 
         protected function flash_onIoError(event:IOErrorEvent):void
         {
-            trace("io error: " + event.text);
-        }            
+			dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,HTTPConstants.IO_ERROR));
+			//Is there useful text?
+            //trace("io error: " + event.text);
+			if(onError)
+				onError(this);
+			cleanupCallbacks();
+        }
+		
+		COMPILE::SWF
+		private function flash_onSecurityError(ev:flash.events.Event):void
+		{
+			dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,HTTPConstants.SECURITY_ERROR));
+			if(onError)
+				onError(this);
+			cleanupCallbacks();
+		}
             
         COMPILE::SWF
         protected function flash_complete(event:flash.events.Event):void
         {
             dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
 			if(onComplete)
-				onComplete();
+				onComplete(this);
 			cleanupCallbacks();
         }
         COMPILE::SWF
-        protected function flash_progress(event:flash.events.ProgressEvent):void
+        protected function flash_progress(ev:flash.events.ProgressEvent):void
         {
-            var progressEvent:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
-            progressEvent.current = event.bytesLoaded;
-            progressEvent.total = event.bytesTotal;
-            dispatchEvent(progressEvent);
+            var progEv:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
+			
+			progEv.current = bytesLoaded = ev.bytesLoaded;
+			progEv.total = bytesTotal = ev.bytesTotal;
+            dispatchEvent(progEv);
+			if(onProgress)
+				onProgress(this);
         }
         
-        
+        COMPILE::JS
         private function xhr_progress(e:Object):void 
         {
-            dispatchEvent(new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS, false, false, e.loaded, e.total));
+			var progEv:ProgressEvent = new ProgressEvent(ProgressEvent.PROGRESS);
+			progEv.current = bytesLoaded = e.loaded;
+			progEv.total = bytesTotal = e.total;
+			
+            dispatchEvent(progEv);
+			if(onProgress)
+				onProgress(this);
         }
         
         COMPILE::JS
         private function xhr_onreadystatechange(e:*):void
         {
-            if (xhr.readyState == 4 && xhr.status == 200)
-            {
-                dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+			setStatus(xhr.status);
+			//we only need to deal with the status when it's done.
+			if(xhr.readyState != 4)
+				return;
+			if(xhr.status == 0)
+			{
+				//Error. We don't know if there's a network error or a CORS error so there's no detail
+				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR));
+				if(onError)
+					onError(this);
+			}
+			else if(xhr.status < 200)
+			{
+				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+				if(onError)
+					onError(this);
+			}
+			else if(xhr.status < 300)
+			{
+				dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
 				if(onComplete)
 					onComplete();
-				cleanupCallbacks();
-            }else if (xhr.readyState==4&&xhr.status==404){
-                //                    dispatchEvent(new IOErrorEvent(IOErrorEvent.IO_ERROR));
-            }
+				
+			}
+			else
+			{
+				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+				if(onError)
+					onError(this);
+			}
+			cleanupCallbacks();
         }
+		
+		private function setStatus(value:int):void
+		{
+			if(value != requestStatus)
+			{
+				requestStatus = value;
+				dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+value));
+				if(onStatus)
+					onStatus(this);
+			}
+		}
 
         public function close():void
         {
@@ -157,7 +246,17 @@ package org.apache.flex.net
 			cleanupCallbacks();
 
         }
-		
+
+		/**
+		 *  Indicates the status of the request.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var requestStatus:int = 0;
+
 		/**
 		 *  Indicates the byte order for the data.
 		 *  
@@ -173,6 +272,7 @@ package org.apache.flex.net
 			onComplete = null;
 			onError = null;
 			onProgress = null;
+			onStatus = null;
 		}
 		/**
 		 *  Callback for complete event.
@@ -203,7 +303,17 @@ package org.apache.flex.net
 		 *  @productversion FlexJS 0.7.0
 		 */		
 		public var onProgress:Function;
-		
+
+		/**
+		 *  Callback for status event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onStatus:Function;
+
 		/**
 		 *  Convenience function for complete event to allow chaining.
 		 *  
@@ -243,6 +353,19 @@ package org.apache.flex.net
 		public function progress(callback:Function):org.apache.flex.net.URLStream
 		{
 			onProgress = callback;
+			return this;
+		}
+		/**
+		 *  Convenience function for status event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function status(callback:Function):org.apache.flex.net.URLStream
+		{
+			onStatus = callback;
 			return this;
 		}
 }
