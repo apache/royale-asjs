@@ -85,6 +85,23 @@ under the License.
         <include>org.apache.flex.flexjs.externs:*:swc</include>
       </includes>
     </dependencySet>
+
+    <!-- Copy the fonts -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/fonts</outputDirectory>
+      <includes>
+        <include>org.apache.flex.flexjs.framework:Fonts:swf</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/fonts</outputDirectory>
+      <unpack>true</unpack>
+      <includes>
+        <include>org.apache.flex.flexjs.framework:Fonts:war</include>
+      </includes>
+    </dependencySet>
   </dependencySets>
 
   <fileSets>

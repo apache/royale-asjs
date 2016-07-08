@@ -35,6 +35,12 @@
   <name>Apache Flex - ASJS</name>
   <description>The Apache Flex ASJS Project</description>
 
+  <!--
+        This build builds only the framework libraries per default.
+        - In order to build the examples, activate the "build-examples" profile
+        - In order to assemble a distribution, activate the "build-distribution" profile.
+  -->
+
   <scm>
     <connection>scm:git://git.apache.org/flex-asjs.git</connection>
     <developerConnection>scm:git://git.apache.org/flex-asjs.git</developerConnection>
@@ -91,8 +97,6 @@
   </mailingLists>
 
   <modules>
-    <module>distribution</module>
-    <module>examples</module>
     <module>frameworks</module>
   </modules>
 
@@ -107,6 +111,14 @@
           <configuration>
             <targetPlayer>${flash.version}</targetPlayer>
             <debug>${flex.debug}</debug>
+            <keepAs3Metadata>
+              <name>Bindable</name>
+              <name>Managed</name>
+              <name>ChangeEvent</name>
+              <name>NonCommittingChangeEvent</name>
+              <name>Transient</name>
+              <name>Mixin</name>
+            </keepAs3Metadata>
           </configuration>
           <dependencies>
             <dependency>
@@ -126,6 +138,20 @@
       <properties>
         <flex.debug>false</flex.debug>
       </properties>
+    </profile>
+
+    <profile>
+      <id>build-examples</id>
+      <modules>
+        <module>examples</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>build-distribution</id>
+      <modules>
+        <module>distribution</module>
+      </modules>
     </profile>
   </profiles>
 
