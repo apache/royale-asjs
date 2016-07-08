@@ -125,11 +125,12 @@ internal class CoreClasses
 	{
 	    import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     	import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;
-	    import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 		import org.apache.flex.utils.HTMLLoader; HTMLLoader;
 }
 	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
 	import org.apache.flex.utils.Endian; Endian;
+	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
+	import org.apache.flex.utils.StringUtil; StringUtil;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIUtils; UIUtils;
 
