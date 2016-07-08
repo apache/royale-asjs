@@ -118,7 +118,7 @@ under the License.
 
     <!-- Copy the bin scripts -->
     <fileSet>
-      <directory>src/bin</directory>
+      <directory>src/main/resources/bin</directory>
       <outputDirectory>bin</outputDirectory>
       <includes>
         <include>**</include>
@@ -127,7 +127,7 @@ under the License.
 
     <!-- Copy the js scripts -->
     <fileSet>
-      <directory>../js/bin</directory>
+      <directory>src/main/resources/js/bin</directory>
       <outputDirectory>js/bin</outputDirectory>
       <includes>
         <include>**</include>

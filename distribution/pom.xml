@@ -34,8 +34,6 @@
   <description>The Apache Flex: FlexJS distribution, source and binary, in zip and tar.gz formats.</description>
 
   <properties>
-    <!-- TODO: Remove this property to avoid an unneeded packaging run later on -->
-    <distributionTargetFolder>target/distribution</distributionTargetFolder>
     <distributionFileName>apache-flex-flexjs-${project.version}</distributionFileName>
   </properties>
 
@@ -430,7 +428,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -447,7 +445,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
     </plugins>
   </build>
 

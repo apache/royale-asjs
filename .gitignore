@@ -122,7 +122,6 @@ _ReSharper*/
 html-template
 
 #VF2JS generated files
-bin
 vf2js/frameworks/js/
 
 #FlexJS generated files
