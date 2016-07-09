@@ -70,7 +70,7 @@
             <argument>-a</argument>
             <argument>Flat-UI-Icons</argument>
             <argument>-o</argument>
-            <argument>${basedir}/target/${artifactId}-${version}.swf</argument>
+            <argument>${basedir}/target/${project.artifactId}-${project.version}.swf</argument>
             <argument>${basedir}/target/downloads/Flat-UI-${flat-ui.version}/fonts/glyphicons/flat-ui-icons-regular.ttf</argument>
           </arguments>
           <includePluginDependencies>true</includePluginDependencies>
@@ -131,7 +131,7 @@
         <configuration>
           <artifacts>
             <artifact>
-              <file>${basedir}/target/${artifactId}-${version}.swf</file>
+              <file>${basedir}/target/${project.artifactId}-${project.version}.swf</file>
               <type>swf</type>
             </artifact>
           </artifacts>

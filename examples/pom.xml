@@ -94,7 +94,7 @@
           <configuration>
             <artifacts>
               <artifact>
-                <file>${basedir}/target/${artifactId}-${version}.war</file>
+                <file>${basedir}/target/${project.artifactId}-${project.version}.war</file>
                 <type>war</type>
               </artifact>
             </artifacts>
