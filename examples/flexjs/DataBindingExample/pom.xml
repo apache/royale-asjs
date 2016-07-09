@@ -43,7 +43,7 @@
   </parent>
 
   <artifactId>DataBindingExample</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>0.7.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <build>
