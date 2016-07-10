@@ -42,6 +42,10 @@ public class Rectangle extends flash.geom.Rectangle
     {
         super(x, y, width, height);
     }
+	override public function clone():org.apache.flex.geom.Rectangle
+	{
+		return new org.apache.flex.geom.Rectangle(left,top,width,height);
+	}
 }
 
 /**
@@ -89,6 +93,10 @@ public class Rectangle
     {
         height = value - top;
     }
+	public function clone():Rectangle
+	{
+		return new Rectangle(left,top,width,height);
+	}
 }
 
 
