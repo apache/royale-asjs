@@ -42,6 +42,10 @@ public class Point extends flash.geom.Point
     {
         super(x, y);
     }
+	override public function clone():org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(x,y);
+	}
 }
 
 /**
@@ -67,6 +71,10 @@ public class Point
     
     public var x:Number;
     public var y:Number;
+	public function clone():Point
+	{
+		return new Point(x,y);
+	}
 }
 
 }
