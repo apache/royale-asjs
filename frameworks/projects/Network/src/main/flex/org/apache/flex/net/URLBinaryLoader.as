@@ -19,6 +19,7 @@
 package org.apache.flex.net
 {    
     
+    import org.apache.flex.events.DetailEvent;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.ProgressEvent;
     import org.apache.flex.utils.BinaryData;
@@ -47,16 +48,6 @@ package org.apache.flex.net
 		*/        
         public var data:BinaryData;
 
-		/**
-		 *  The status of the request.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
-		 */        
-		public var status:String;
-		
 		/**
 		 *  Indicates the byte order for the data.
 		 *  
@@ -94,7 +85,36 @@ package org.apache.flex.net
         {
             super();
             stream = new URLStream();
-            stream.addEventListener(HTTPConstants.COMPLETE, completeHandler);
+			stream.onProgress = function(stream:URLStream):void
+			{
+				bytesLoaded = stream.bytesLoaded;
+				bytesTotal = stream.bytesTotal;
+				dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal));
+				if(onProgress)
+					onProgress(this);
+			}
+			stream.onStatus = function(stream:URLStream):void
+			{
+				requestStatus = stream.requestStatus;
+				dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+requestStatus));
+				if(onStatus)
+					onStatus(this);
+
+			}
+			stream.onError = function(stream:URLStream):void
+			{
+				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+				if(onError)
+					onError(this);
+				cleanupCallbacks();
+			}
+			stream.onComplete = function(stream:URLStream):void
+			{
+				dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+				if(onComplete)
+					onComplete();
+				cleanupCallbacks();
+			}
         }
         
 		/**

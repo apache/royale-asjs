@@ -18,13 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {   
-    
-    
-    
-    import flash.events.HTTPStatusEvent;
-    import flash.events.SecurityErrorEvent;
-    import flash.events.StatusEvent;
-    
     import org.apache.flex.events.DetailEvent;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
@@ -34,18 +27,19 @@ package org.apache.flex.net
 
     COMPILE::SWF
     {
-        import flash.net.URLRequestHeader;
+		import flash.events.Event;
+		import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
+		import flash.events.ProgressEvent;
+		import flash.events.SecurityErrorEvent;
+		import flash.events.StatusEvent;
+		import flash.net.URLRequest;
+		import flash.net.URLRequestHeader;
+		import flash.net.URLStream;
         import flash.net.URLVariables;
-        import flash.events.Event;
-        import flash.events.ProgressEvent;
-        import flash.net.URLRequest;
-        import flash.net.URLStream;
         import flash.utils.ByteArray;
     }
         
-    
-    
     public class URLStream extends EventDispatcher
     {
         COMPILE::JS 

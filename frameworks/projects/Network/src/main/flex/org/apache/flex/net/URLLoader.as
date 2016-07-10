@@ -43,7 +43,7 @@ package org.apache.flex.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="ioError", type="org.apache.flex.events.Event")]
+	[Event(name="communicationError", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  Dispatched when an httpStatus code is received from the server.
@@ -54,22 +54,6 @@ package org.apache.flex.net
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
-	
-	/**
-	 *  Dispatched if Adobe AIR is able to detect and return the status 
-	 *  code for the request.  Unlike the httpStatus event, the httpResponseStatus 
-	 *  event is delivered before any response data. Also, the httpResponseStatus 
-	 *  event includes values for the responseHeaders and responseURL properties 
-	 *  (which are undefined for an httpStatus event. Note that the 
-	 *  httpResponseStatus event (if any) will be sent before 
-	 *  (and in addition to) any complete or error event.
-	 * 
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The URLLoader class is a base class for the specific flavors of loaders such as binary,
@@ -86,11 +70,23 @@ package org.apache.flex.net
 		{
 		}
 		
+		/**
+		 *  The status of the request.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */        
+		public var requestStatus:int;
+		
+		
 		protected function cleanupCallbacks():void
 		{
 			onComplete = null;
 			onError = null;
 			onProgress = null;
+			onStatus = null;
 		}
 		/**
 		 *  Callback for complete event.
@@ -121,6 +117,16 @@ package org.apache.flex.net
 		 *  @productversion FlexJS 0.7.0
 		 */		
 		public var onProgress:Function;
+		
+		/**
+		 *  Callback for status event.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public var onStatus:Function;
 		
 		/**
 		 *  Convenience function for complete event to allow chaining.
@@ -163,5 +169,20 @@ package org.apache.flex.net
 			onProgress = callback;
 			return this;
 		}
+		
+		/**
+		 *  Convenience function for status event to allow chaining.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */		
+		public function status(callback:Function):URLLoader
+		{
+			onStatus = callback;
+			return this;
+		}
+
 	}
 }
