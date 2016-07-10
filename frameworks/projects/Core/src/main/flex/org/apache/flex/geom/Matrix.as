@@ -22,6 +22,7 @@ package org.apache.flex.geom
 	COMPILE::SWF
 	{
 		import flash.geom.Matrix;
+		import flash.geom.Point;
 	}
 
 	COMPILE::SWF
@@ -35,6 +36,16 @@ package org.apache.flex.geom
 		{
 			return new org.apache.flex.geom.Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
 		}
+		override public function deltaTransformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
+		{
+			return super.deltaTransformPoint(point) as org.apache.flex.geom.Point;
+		}
+		
+		override public function transformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
+		{
+			return super.transformPoint(point) as org.apache.flex.geom.Point;
+		}
+
 
 	}
 	COMPILE::JS
