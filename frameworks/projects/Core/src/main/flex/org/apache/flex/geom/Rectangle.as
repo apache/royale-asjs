@@ -47,6 +47,15 @@ public class Rectangle extends flash.geom.Rectangle
 	{
 		return new org.apache.flex.geom.Rectangle(x,y,width,height);
 	}
+	override public function intersection(toIntersect:flash.geom.Rectangle):org.apache.flex.geom.Rectangle
+	{
+		return super.intersection(toIntersect) as org.apache.flex.geom.Rectangle;
+	}
+	override public function union(toUnion:flash.geom.Rectangle):org.apache.flex.geom.Rectangle
+	{
+		return super.union(toUnion) as org.apache.flex.geom.Rectangle;
+	}
+
 
 }
 
