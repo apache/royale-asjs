@@ -31,7 +31,7 @@ package org.apache.flex.utils
 	 *  @productversion Flex 3
 	 *  @productversion FlexJS 0.0
 	 */
-	public class StringUtil extends StringTrimmer
+	public class StringUtil
 	{
 		public function StringUtil()
 		{
@@ -180,6 +180,86 @@ package org.apache.flex.utils
 			return String.fromCharCode.apply(null, charCodes);
 		}
 		
+        /**
+         *  Removes all whitespace characters from the beginning and end
+         *  of the specified string.
+         *
+         *  @param str The String whose whitespace should be trimmed. 
+         *
+         *  @return Updated String where whitespace was removed from the 
+         *  beginning and end. 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static function trim(str:String):String
+        {
+            return StringTrimmer.trim(str);
+        }
+        
+        /**
+         *  Removes all whitespace characters from the beginning and end
+         *  of each element in an Array, where the Array is stored as a String. 
+         *
+         *  @param value The String whose whitespace should be trimmed. 
+         *
+         *  @param separator The String that delimits each Array element in the string.
+         *
+         *  @return Array where whitespace was removed from the 
+         *  beginning and end of each element. 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static function splitAndTrim(value:String, delimiter:String):Array
+        {
+            return StringTrimmer.splitAndTrim(value,delimiter);
+        }
+        
+        /**
+         *  Removes all whitespace characters from the beginning and end
+         *  of each element in an Array, where the Array is stored as a String. 
+         *
+         *  @param value The String whose whitespace should be trimmed. 
+         *
+         *  @param separator The String that delimits each Array element in the string.
+         *
+         *  @return Updated String where whitespace was removed from the 
+         *  beginning and end of each element. 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static function trimArrayElements(value:String, delimiter:String):String
+        {
+            return StringTrimmer.trimArrayElements(value,delimiter);
+        }
+        
+        /**
+         *  Returns <code>true</code> if the specified string is
+         *  a single space, tab, carriage return, newline, or formfeed character.
+         *
+         *  @param str The String that is is being queried. 
+         *
+         *  @return <code>true</code> if the specified string is
+         *  a single space, tab, carriage return, newline, or formfeed character.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static function isWhitespace(character:String):Boolean
+        {
+            return StringTrimmer.isWhitespace(character);
+        }
+
 		/**
 		 *  @private
 		 *  Helper method used by restrict() to test each character
