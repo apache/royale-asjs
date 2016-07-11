@@ -32,7 +32,6 @@ package org.apache.flex.net
         import flash.events.IOErrorEvent;
 		import flash.events.ProgressEvent;
 		import flash.events.SecurityErrorEvent;
-		import flash.events.StatusEvent;
 		import flash.net.URLRequest;
 		import flash.net.URLRequestHeader;
 		import flash.net.URLStream;
@@ -120,9 +119,9 @@ package org.apache.flex.net
             }
         }
         COMPILE::SWF
-		private function flash_status(ev:StatusEvent):void
+		private function flash_status(ev:HTTPStatusEvent):void
 		{
-			setStatus(parseInt(ev.code,10));
+			setStatus(ev.status);
 		}
 		
         COMPILE::SWF 
