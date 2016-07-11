@@ -132,9 +132,9 @@ package org.apache.flex.createjs.tween
 		
 		/**
 		 * @private
-		 * @flexignorecoercion createjs.Shape
-		 * @flexignorecoercion createjs.Tween
-		 * @flexignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 * @flexjsignorecoercion createjs.Shape
+		 * @flexjsignorecoercion createjs.Tween
+		 * @flexjsignorecoercion org.apache.flex.createjs.core.CreateJSBase
 		 */
 		override public function createTweenOptions():Object
 		{
@@ -170,9 +170,9 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
-		 *  @flexignorecoercion createjs.Shape
-		 *  @flexignorecoercion createjs.Tween
-		 *  @flexignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 *  @flexjsignorecoercion createjs.Shape
+		 *  @flexjsignorecoercion createjs.Tween
+		 *  @flexjsignorecoercion org.apache.flex.createjs.core.CreateJSBase
 		 */
 		override public function play():void
 		{
