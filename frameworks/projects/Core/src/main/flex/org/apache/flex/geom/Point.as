@@ -49,7 +49,7 @@ public class Point extends flash.geom.Point
 	}
 	override public function subtract(v:flash.geom.Point):org.apache.flex.geom.Point
 	{
-		return (super.subtract(v));
+		return org.apache.flex.geom.Point(super.subtract(v));
 	}
 	
 	override public function add(v:flash.geom.Point):org.apache.flex.geom.Point
