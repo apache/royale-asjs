@@ -38,12 +38,12 @@ package org.apache.flex.geom
 		}
 		override public function deltaTransformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
 		{
-			return super.deltaTransformPoint(point) as org.apache.flex.geom.Point;
+			return org.apache.flex.geom.Point(super.deltaTransformPoint(point));
 		}
 		
 		override public function transformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
 		{
-			return super.transformPoint(point) as org.apache.flex.geom.Point;
+			return org.apache.flex.geom.Point(super.transformPoint(point));
 		}
 
 

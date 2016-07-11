@@ -61,17 +61,6 @@ package org.apache.flex.geom
 			var al:Number = a.length;
 			var bl:Number = b.length;
 			dot = dot / (al * bl);
-			/*if(watson(3109405))
-			{
-			if(dot < -1)
-			{
-			dot = -1;
-			}
-			if(dot > 1)
-			{
-			dot = 1;
-			}
-			}*/
 			return Math.acos(dot);
 		}
 		

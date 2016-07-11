@@ -49,27 +49,27 @@ public class Point extends flash.geom.Point
 	}
 	override public function subtract(v:flash.geom.Point):org.apache.flex.geom.Point
 	{
-		return super.subtract(v) as org.apache.flex.geom.Point;
+		return (super.subtract(v));
 	}
 	
 	override public function add(v:flash.geom.Point):org.apache.flex.geom.Point
 	{
-		return super.add(v) as org.apache.flex.geom.Point;
+		return org.apache.flex.geom.Point(super.add(v));
 	}
 
 	public static function interpolate(pt1:org.apache.flex.geom.Point, pt2:org.apache.flex.geom.Point, f:Number):org.apache.flex.geom.Point
 	{
-		return flash.geom.Point.interpolate(pt1,pt2,f) as org.apache.flex.geom.Point;
+		return org.apache.flex.geom.Point(flash.geom.Point.interpolate(pt1,pt2,f));
 	}
 	
-	public static function distance(pt1:org.apache.flex.geom.Point, pt2:org.apache.flex.geom.Point):Number
+	public static function distance(pt1:flash.geom.Point, pt2:flash.geom.Point):Number
 	{
 		return flash.geom.Point.distance(pt1,pt2);
 	}
 	
 	public static function polar(len:Number, angle:Number):org.apache.flex.geom.Point
 	{
-		return flash.geom.Point.polar(len,angle) as org.apache.flex.geom.Point;
+		return org.apache.flex.geom.Point(flash.geom.Point.polar(len,angle));
 	}
 
 }
