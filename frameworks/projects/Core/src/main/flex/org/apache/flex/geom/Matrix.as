@@ -32,16 +32,16 @@ package org.apache.flex.geom
 		{
 			super(a,b,c,d,tx,ty);
 		}
-		override public function clone():org.apache.flex.geom.Matrix
+		override public function clone():flash.geom.Matrix
 		{
 			return new org.apache.flex.geom.Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
 		}
-		override public function deltaTransformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
+		override public function deltaTransformPoint(point:flash.geom.Point):flash.geom.Point
 		{
 			return org.apache.flex.geom.Point(super.deltaTransformPoint(point));
 		}
 		
-		override public function transformPoint(point:flash.geom.Point):org.apache.flex.geom.Point
+		override public function transformPoint(point:flash.geom.Point):flash.geom.Point
 		{
 			return org.apache.flex.geom.Point(super.transformPoint(point));
 		}

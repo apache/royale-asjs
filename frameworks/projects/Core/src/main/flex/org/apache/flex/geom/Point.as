@@ -43,16 +43,16 @@ public class Point extends flash.geom.Point
     {
         super(x, y);
     }
-	override public function clone():org.apache.flex.geom.Point
+	override public function clone():flash.geom.Point
 	{
 		return new org.apache.flex.geom.Point(x,y);
 	}
-	override public function subtract(v:flash.geom.Point):org.apache.flex.geom.Point
+	override public function subtract(v:flash.geom.Point):flash.geom.Point
 	{
 		return org.apache.flex.geom.Point(super.subtract(v));
 	}
 	
-	override public function add(v:flash.geom.Point):org.apache.flex.geom.Point
+	override public function add(v:flash.geom.Point):flash.geom.Point
 	{
 		return org.apache.flex.geom.Point(super.add(v));
 	}
