@@ -30,7 +30,7 @@ package org.apache.flex.geom
 		{
 			super(x,y,z,w);
 		}
-		override public function clone():org.apache.flex.geom.Vector3D
+		override public function clone():flash.geom.Vector3D
 		{
 			return new org.apache.flex.geom.Vector3D(this.x,this.y,this.z,this.w);
 		}
