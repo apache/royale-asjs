@@ -56,6 +56,21 @@ public class BinaryData
     {    
         ba = bytes ? bytes : new ArrayBuffer(0);
     }
+	
+	/**
+	 *  Utility method to create a BinaryData object from a string.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.7.0
+	 */        
+	public static function fromString(str:String):BinaryData
+	{
+		var bd:BinaryData = new BinaryData();
+		bd.writeUTFBytes(str);
+		return bd;
+	}
 
 	private var _endian:String = Endian.DEFAULT;
 
@@ -285,7 +300,30 @@ public class BinaryData
 	{
 		private var typedArray:Uint8Array;
 	}
-	 
+
+	/**
+	 *  Writes a byte of binary data at the specified index. Does not change the <code>position</code> property.
+	 *  This is a method for optimzed writes with no range checking.
+	 *  If the specified index is out of range, it can throw an error.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public function writeByteAt(idx:uint,byte:int):void
+	{
+		COMPILE::SWF
+			{
+				ba[idx] = byte;
+			}
+			COMPILE::JS
+			{
+				if(typedArray == null)
+					typedArray = new Uint8Array(ba);
+				typedArray[idx] = byte;
+			}
+	}
 	
     /**
      *  Read a short int of binary data at the current position
