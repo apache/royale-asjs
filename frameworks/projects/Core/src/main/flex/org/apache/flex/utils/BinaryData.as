@@ -259,6 +259,33 @@ public class BinaryData
             return view[0];
         }
 	}
+
+	/**
+	 *  Read a byte of binary data at the specified index. Does not change the <code>position</code> property.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public function readByteAt(idx:uint):int
+	{
+		COMPILE::SWF
+		{
+			return ba[idx];
+		}
+		COMPILE::JS
+		{
+			if(typedArray == null)
+				typedArray = new Uint8Array(ba);
+			return typedArray[idx];
+		}
+	}
+	COMPILE::JS
+	{
+		private var typedArray:Uint8Array;
+	}
+	 
 	
     /**
      *  Read a short int of binary data at the current position
@@ -398,6 +425,7 @@ public class BinaryData
         var view:Uint8Array = new Uint8Array(ba, 0, Math.min(newSize,n));
         newView.set(view);
         ba = newBuffer;
+		typedArray = null;
     }
     /**
      *  The total number of bytes remaining to be read.
@@ -491,6 +519,7 @@ public class BinaryData
                     newView[i] = view[i];
                 }
                 ba = newBuffer;
+				typedArray = null;
             }
         }
 	}
@@ -640,6 +669,7 @@ public class BinaryData
                 var encoder:TextEncoder = new TextEncoder('utf-8');
                 bytes = encoder.encode(str);
                 ba = bytes.buffer;
+				typedArray = null;
                 return;
             }
 
@@ -677,7 +707,7 @@ public class BinaryData
             }
             bytes = new Uint8Array(out);
             ba = bytes.buffer;
-
+			typedArray = null;
         }
     }
 }
