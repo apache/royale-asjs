@@ -19,74 +19,16 @@
 package org.apache.flex.geom
 {
 
-COMPILE::SWF
-{
-    import flash.geom.Point;
-}
 
 /**
  *  The Point class is a utility class for holding x and y values, not that you
  *  can't use it to hold a width and height value.  
  *  
- *  The ActionScript version simply wraps flash.geom.Point to enable cross
- *  compilation.
- * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::SWF
-public class Point extends flash.geom.Point
-{
-    public function Point(x:Number = 0, y:Number = 0)
-    {
-        super(x, y);
-    }
-	override public function clone():flash.geom.Point
-	{
-		return new org.apache.flex.geom.Point(x,y);
-	}
-	override public function subtract(v:flash.geom.Point):flash.geom.Point
-	{
-		return org.apache.flex.geom.Point(super.subtract(v));
-	}
-	
-	override public function add(v:flash.geom.Point):flash.geom.Point
-	{
-		return org.apache.flex.geom.Point(super.add(v));
-	}
-
-	public static function interpolate(pt1:org.apache.flex.geom.Point, pt2:org.apache.flex.geom.Point, f:Number):org.apache.flex.geom.Point
-	{
-		return org.apache.flex.geom.Point(flash.geom.Point.interpolate(pt1,pt2,f));
-	}
-	
-	public static function distance(pt1:flash.geom.Point, pt2:flash.geom.Point):Number
-	{
-		return flash.geom.Point.distance(pt1,pt2);
-	}
-	
-	public static function polar(len:Number, angle:Number):org.apache.flex.geom.Point
-	{
-		return org.apache.flex.geom.Point(flash.geom.Point.polar(len,angle));
-	}
-
-}
-
-/**
- *  The Point class is a utility class for holding x and y values, not that you
- *  can't use it to hold a width and height value.  
- *  
- *  The ActionScript version simply wraps flash.geom.Point to enable cross
- *  compilation.
- * 
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
- */
-COMPILE::JS
 public class Point
 {
     public function Point(x:Number = 0, y:Number = 0)

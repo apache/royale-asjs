@@ -19,36 +19,6 @@
 package org.apache.flex.geom
 {
 
-	COMPILE::SWF
-	{
-		import flash.geom.Matrix;
-		import flash.geom.Point;
-	}
-
-	COMPILE::SWF
-	public class Matrix extends flash.geom.Matrix
-	{
-		public function Matrix(a:Number = 1, b:Number = 0, c:Number = 0, d:Number = 1, tx:Number = 0, ty:Number = 0)
-		{
-			super(a,b,c,d,tx,ty);
-		}
-		override public function clone():flash.geom.Matrix
-		{
-			return new org.apache.flex.geom.Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
-		}
-		override public function deltaTransformPoint(point:flash.geom.Point):flash.geom.Point
-		{
-			return org.apache.flex.geom.Point(super.deltaTransformPoint(point));
-		}
-		
-		override public function transformPoint(point:flash.geom.Point):flash.geom.Point
-		{
-			return org.apache.flex.geom.Point(super.transformPoint(point));
-		}
-
-
-	}
-	COMPILE::JS
 	public class Matrix
 	{
 		public function Matrix(a:Number = 1, b:Number = 0, c:Number = 0, d:Number = 1, tx:Number = 0, ty:Number = 0)
@@ -70,32 +40,32 @@ package org.apache.flex.geom
 
 		public function clone():Matrix
 		{
-			return new Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
+			return new Matrix(a, b, c, d, tx, ty);
 		}
 		
 		public function concat(m:Matrix):void
 		{
-			var result_a:Number = this.a * m.a;
+			var result_a:Number = a * m.a;
 			var result_b:Number = 0.0;
 			var result_c:Number = 0.0;
-			var result_d:Number = this.d * m.d;
-			var result_tx:Number = this.tx * m.a + m.tx;
-			var result_ty:Number = this.ty * m.d + m.ty;
-			if (this.b != 0.0 || this.c != 0.0 || m.b != 0.0 || m.c != 0.0)
+			var result_d:Number = d * m.d;
+			var result_tx:Number = tx * m.a + m.tx;
+			var result_ty:Number = ty * m.d + m.ty;
+			if (b != 0.0 || c != 0.0 || m.b != 0.0 || m.c != 0.0)
 			{
-				result_a = result_a + this.b * m.c;
-				result_d = result_d + this.c * m.b;
-				result_b = result_b + (this.a * m.b + this.b * m.d);
-				result_c = result_c + (this.c * m.a + this.d * m.c);
-				result_tx = result_tx + this.ty * m.c;
-				result_ty = result_ty + this.tx * m.b;
+				result_a = result_a + b * m.c;
+				result_d = result_d + c * m.b;
+				result_b = result_b + (a * m.b + b * m.d);
+				result_c = result_c + (c * m.a + d * m.c);
+				result_tx = result_tx + ty * m.c;
+				result_ty = result_ty + tx * m.b;
 			}
-			this.a = result_a;
-			this.b = result_b;
-			this.c = result_c;
-			this.d = result_d;
-			this.tx = result_tx;
-			this.ty = result_ty;
+			a = result_a;
+			b = result_b;
+			c = result_c;
+			d = result_d;
+			tx = result_tx;
+			ty = result_ty;
 		}
 		
 		public function invert():void
@@ -106,128 +76,128 @@ package org.apache.flex.geom
 			var a3:* = NaN;
 			var det:* = NaN;
 			var result_ty:* = NaN;
-			if (this.b == 0.0 && this.c == 0.0)
+			if (b == 0.0 && c == 0.0)
 			{
-				this.a = 1 / this.a;
-				this.d = 1 / this.d;
-				this.b = this.c = 0.0;
-				this.tx = -this.a * this.tx;
-				this.ty = -this.d * this.ty;
+				a = 1 / a;
+				d = 1 / d;
+				b = c = 0.0;
+				tx = -a * tx;
+				ty = -d * ty;
 			}
 			else
 			{
-				a0 = this.a;
-				a1 = this.b;
-				a2 = this.c;
-				a3 = this.d;
+				a0 = a;
+				a1 = b;
+				a2 = c;
+				a3 = d;
 				det = a0 * a3 - a1 * a2;
 				if (det == 0.0)
 				{
-					this.identity();
+					identity();
 					return;
 				}
 				det = 1 / det;
-				this.a = a3 * det;
-				this.b = -a1 * det;
-				this.c = -a2 * det;
-				this.d = a0 * det;
-				result_ty = -(this.b * this.tx + this.d * this.ty);
-				this.tx = -(this.a * this.tx + this.c * this.ty);
-				this.ty = result_ty;
+				a = a3 * det;
+				b = -a1 * det;
+				c = -a2 * det;
+				d = a0 * det;
+				result_ty = -(b * tx + d * ty);
+				tx = -(a * tx + c * ty);
+				ty = result_ty;
 			}
 		}
 		
 		public function identity():void
 		{
-			this.a = this.d = 1;
-			this.b = this.c = 0.0;
-			this.tx = this.ty = 0.0;
+			a = d = 1;
+			b = c = 0.0;
+			tx = ty = 0.0;
 		}
 		
 		public function createBox(scaleX:Number, scaleY:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
 		{
 			var u:Number = Math.cos(rotation);
 			var v:Number = Math.sin(rotation);
-			this.a = u * scaleX;
-			this.b = v * scaleY;
-			this.c = -v * scaleX;
-			this.d = u * scaleY;
-			this.tx = tx;
-			this.ty = ty;
+			a = u * scaleX;
+			b = v * scaleY;
+			c = -v * scaleX;
+			d = u * scaleY;
+			tx = tx;
+			ty = ty;
 		}
 		
 		public function createGradientBox(width:Number, height:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
 		{
-			this.createBox(width / 1638.4, height / 1638.4, rotation, tx + width / 2, ty + height / 2);
+			createBox(width / 1638.4, height / 1638.4, rotation, tx + width / 2, ty + height / 2);
 		}
 		
 		public function rotate(angle:Number):void
 		{
 			var u:Number = Math.cos(angle);
 			var v:Number = Math.sin(angle);
-			var result_a:Number = u * this.a - v * this.b;
-			var result_b:Number = v * this.a + u * this.b;
-			var result_c:Number = u * this.c - v * this.d;
-			var result_d:Number = v * this.c + u * this.d;
-			var result_tx:Number = u * this.tx - v * this.ty;
-			var result_ty:Number = v * this.tx + u * this.ty;
-			this.a = result_a;
-			this.b = result_b;
-			this.c = result_c;
-			this.d = result_d;
-			this.tx = result_tx;
-			this.ty = result_ty;
+			var result_a:Number = u * a - v * b;
+			var result_b:Number = v * a + u * b;
+			var result_c:Number = u * c - v * d;
+			var result_d:Number = v * c + u * d;
+			var result_tx:Number = u * tx - v * ty;
+			var result_ty:Number = v * tx + u * ty;
+			a = result_a;
+			b = result_b;
+			c = result_c;
+			d = result_d;
+			tx = result_tx;
+			ty = result_ty;
 		}
 		
 		public function translate(dx:Number, dy:Number):void
 		{
-			this.tx = this.tx + dx;
-			this.ty = this.ty + dy;
+			tx = tx + dx;
+			ty = ty + dy;
 		}
 		
 		public function scale(sx:Number, sy:Number):void
 		{
-			this.a = this.a * sx;
-			this.b = this.b * sy;
-			this.c = this.c * sx;
-			this.d = this.d * sy;
-			this.tx = this.tx * sx;
-			this.ty = this.ty * sy;
+			a = a * sx;
+			b = b * sy;
+			c = c * sx;
+			d = d * sy;
+			tx = tx * sx;
+			ty = ty * sy;
 		}
 		
 		public function deltaTransformPoint(point:Point):Point
 		{
-			return new Point(this.a * point.x + this.c * point.y, this.d * point.y + this.b * point.x);
+			return new Point(a * point.x + c * point.y, d * point.y + b * point.x);
 		}
 		
 		public function transformPoint(point:Point):Point
 		{
-			return new Point(this.a * point.x + this.c * point.y + this.tx, this.d * point.y + this.b * point.x + this.ty);
+			return new Point(a * point.x + c * point.y + tx, d * point.y + b * point.x + ty);
 		}
 		
 		public function toString():String
 		{
-			return "(a=" + this.a + ", b=" + this.b + ", c=" + this.c + ", d=" + this.d + ", tx=" + this.tx + ", ty=" + this.ty + ")";
+			return "(a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", tx=" + tx + ", ty=" + ty + ")";
 		}
 		
 		public function copyFrom(sourceMatrix:Matrix):void
 		{
-			this.a = sourceMatrix.a;
-			this.b = sourceMatrix.b;
-			this.c = sourceMatrix.c;
-			this.d = sourceMatrix.d;
-			this.tx = sourceMatrix.tx;
-			this.ty = sourceMatrix.ty;
+			a = sourceMatrix.a;
+			b = sourceMatrix.b;
+			c = sourceMatrix.c;
+			d = sourceMatrix.d;
+			tx = sourceMatrix.tx;
+			ty = sourceMatrix.ty;
 		}
 		
 		public function setTo(aa:Number, ba:Number, ca:Number, da:Number, txa:Number, tya:Number):void
 		{
-			this.a = aa;
-			this.b = ba;
-			this.c = ca;
-			this.d = da;
-			this.tx = txa;
-			this.ty = tya;
+			a = aa;
+			b = ba;
+			c = ca;
+			d = da;
+			tx = txa;
+			ty = tya;
 		}
 		
 		public function copyRowTo(row:uint, vector3D:Vector3D):void
@@ -237,9 +207,9 @@ package org.apache.flex.geom
 				case 0: 
 					break;
 				case 1: 
-					vector3D.x = this.b;
-					vector3D.y = this.d;
-					vector3D.z = this.ty;
+					vector3D.x = b;
+					vector3D.y = d;
+					vector3D.z = ty;
 					break;
 				case 2: 
 				case 3: 
@@ -248,9 +218,9 @@ package org.apache.flex.geom
 					vector3D.z = 1;
 					break;
 				default: 
-					vector3D.x = this.a;
-					vector3D.y = this.c;
-					vector3D.z = this.tx;
+					vector3D.x = a;
+					vector3D.y = c;
+					vector3D.z = tx;
 			}
 		}
 		
@@ -261,19 +231,19 @@ package org.apache.flex.geom
 				case 0: 
 					break;
 				case 1: 
-					vector3D.x = this.c;
-					vector3D.y = this.d;
+					vector3D.x = c;
+					vector3D.y = d;
 					vector3D.z = 0;
 					break;
 				case 2: 
 				case 3: 
-					vector3D.x = this.tx;
-					vector3D.y = this.ty;
+					vector3D.x = tx;
+					vector3D.y = ty;
 					vector3D.z = 1;
 					break;
 				default: 
-					vector3D.x = this.a;
-					vector3D.y = this.b;
+					vector3D.x = a;
+					vector3D.y = b;
 					vector3D.z = 0;
 			}
 		}
@@ -286,14 +256,14 @@ package org.apache.flex.geom
 					break;
 				case 1: 
 				case 2: 
-					this.b = vector3D.x;
-					this.d = vector3D.y;
-					this.ty = vector3D.z;
+					b = vector3D.x;
+					d = vector3D.y;
+					ty = vector3D.z;
 					break;
 				default: 
-					this.a = vector3D.x;
-					this.c = vector3D.y;
-					this.tx = vector3D.z;
+					a = vector3D.x;
+					c = vector3D.y;
+					tx = vector3D.z;
 			}
 		}
 		
@@ -305,14 +275,14 @@ package org.apache.flex.geom
 					break;
 				case 1: 
 				case 2: 
-					this.b = vector3D.x;
-					this.d = vector3D.y;
-					this.ty = vector3D.z;
+					b = vector3D.x;
+					d = vector3D.y;
+					ty = vector3D.z;
 					break;
 				default: 
-					this.a = vector3D.x;
-					this.c = vector3D.y;
-					this.tx = vector3D.z;
+					a = vector3D.x;
+					c = vector3D.y;
+					tx = vector3D.z;
 			}
 		}
 	}

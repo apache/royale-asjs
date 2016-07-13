@@ -19,59 +19,15 @@
 package org.apache.flex.geom
 {
 
-COMPILE::SWF
-{
-    import flash.geom.Rectangle;
-}
-
 /**
  *  The Rectangle class is a utility class for holding four coordinates of
  *  a rectangle
  *  
- *  The ActionScript version simply wraps flash.geom.Rectangle to enable cross
- *  compilation.
- * 
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-COMPILE::SWF
-public class Rectangle extends flash.geom.Rectangle
-{
-    public function Rectangle(x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0)
-    {
-        super(x, y, width, height);
-    }
-	override public function clone():flash.geom.Rectangle
-	{
-		return new org.apache.flex.geom.Rectangle(x,y,width,height);
-	}
-	override public function intersection(toIntersect:flash.geom.Rectangle):flash.geom.Rectangle
-	{
-		return org.apache.flex.geom.Rectangle(super.intersection(toIntersect));
-	}
-	override public function union(toUnion:flash.geom.Rectangle):flash.geom.Rectangle
-	{
-		return org.apache.flex.geom.Rectangle(super.union(toUnion));
-	}
-
-
-}
-
-/**
- *  The Rectangle class is a utility class for holding four coordinates of
- *  a rectangle
- *  
- *  The ActionScript version simply wraps flash.geom.Rectangle to enable cross
- *  compilation.
- * 
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
- */
-COMPILE::JS
 public class Rectangle
 {
     public function Rectangle(x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0)
