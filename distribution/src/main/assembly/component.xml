@@ -36,13 +36,23 @@ under the License.
     <!-- Everything else should go to the lib/ext directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>lib/ext</outputDirectory>
+      <outputDirectory>lib/external</outputDirectory>
       <excludes>
+        <exclude>org.apache.flex.flexjs.framework:*</exclude>
+        <exclude>org.apache.flex.flexjs.externs:*</exclude>
         <exclude>org.apache.flex.flexjs.compiler:*</exclude>
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
         <exclude>*:org.json:jar</exclude>
       </excludes>
+    </dependencySet>
+    <!-- Put the externs swcs into the externs directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>externs</outputDirectory>
+      <includes>
+        <include>org.apache.flex.flexjs.externs:*</include>
+      </includes>
     </dependencySet>
     <!-- Put the framework swcs into the frameworks/libs directory -->
     <dependencySet>
@@ -54,6 +64,23 @@ under the License.
       <excludes>
         <exclude>org.apache.flex.flexjs.framework:*:swc:extern</exclude>
       </excludes>
+    </dependencySet>
+    <!-- Put the playerglobal swc into the frameworks/libs/player directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/libs/player/${flashVersion}</outputDirectory>
+      <includes>
+        <include>com.adobe.flash.framework:playerglobal:swc</include>
+      </includes>
+      <outputFileNameMapping>playerglobal.swc</outputFileNameMapping>
+    </dependencySet>
+    <!-- Put the air swcs into the frameworks/libs/air directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/libs/air</outputDirectory>
+      <includes>
+        <include>com.adobe.air.framework:*:swc</include>
+      </includes>
     </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
@@ -93,6 +120,7 @@ under the License.
       <includes>
         <include>org.apache.flex.flexjs.framework:Fonts:swf</include>
       </includes>
+      <outputFileNameMapping>flat-ui-icons-regular.swf</outputFileNameMapping>
     </dependencySet>
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
@@ -133,5 +161,127 @@ under the License.
         <include>**</include>
       </includes>
     </fileSet>
+
+    <!-- Copy the configurations -->
+    <fileSet>
+      <directory>src/main/resources/frameworks</directory>
+      <outputDirectory>frameworks</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
   </fileSets>
+  <files>
+    <!-- Copy the manifests -->
+    <file>
+      <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-binding.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Charts/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-charts.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Collections/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-collections.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Core/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-core.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/CreateJS/src/main/resources/createjs-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>createjs-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/DragDrop/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-dragdrop.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Effects/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-effects.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Flat/src/main/resources/flat-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>flat-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Flat/src/main/resources/flat-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>flat-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Formatters/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-formatters.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/GoogleMaps/src/main/resources/google-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>google-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Graphics/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-graphics.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-html.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-html.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>html5-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/JQuery/src/main/resources/jquery-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>jquery-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Mobile/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-mobile.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Mobile/src/main/resources/cordova-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>cordova-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Network/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-network.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Storage/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-storage.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/XML/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-xml.xml</destName>
+    </file>
+  </files>
 </component>
