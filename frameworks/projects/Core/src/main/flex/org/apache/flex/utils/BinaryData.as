@@ -72,6 +72,42 @@ public class BinaryData
 		return bd;
 	}
 
+    /**
+     *  Gets a reference to the internal array of bytes.
+     *  On the Flash side, this is  a ByteArray.
+     *  On the JS side, it's a Uint8Array.
+     *  This is primarily used for indexed access to the bytes, and internally
+     *  where the platform-specific implementation is significant.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+     COMPILE::SWF
+     public function get array():ByteArray
+     {
+        return ba;
+     }
+
+    /**
+     *  Gets a reference to the internal array of bytes.
+     *  On the Flash side, this is  a ByteArray.
+     *  On the JS side, it's a Uint8Array.
+     *  This is primarily used for indexed access to the bytes, and internally
+     *  where the platform-specific implementation is significant.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+     COMPILE::JS
+     public function get array():Uint8Array
+     {
+        return getTypedArray();
+     }
+
 	private var _endian:String = Endian.DEFAULT;
 
 	/**
@@ -291,15 +327,22 @@ public class BinaryData
 		}
 		COMPILE::JS
 		{
-			if(typedArray == null)
-				typedArray = new Uint8Array(ba);
-			return typedArray[idx];
+			return getTypedArray()[idx];
 		}
 	}
 	COMPILE::JS
 	{
-		private var typedArray:Uint8Array;
+		private var _typedArray:Uint8Array;
 	}
+    COMPILE::JS
+    {
+        private function getTypedArray():Uint8Array
+        {
+            if(_typedArray == null)
+                _typedArray = new Uint8Array(ba);
+                return _typedArray;
+        }
+    }
 
 	/**
 	 *  Writes a byte of binary data at the specified index. Does not change the <code>position</code> property.
@@ -319,9 +362,7 @@ public class BinaryData
 			}
 			COMPILE::JS
 			{
-				if(typedArray == null)
-					typedArray = new Uint8Array(ba);
-				typedArray[idx] = byte;
+				getTypedArray()[idx] = byte;
 			}
 	}
 	
@@ -463,7 +504,7 @@ public class BinaryData
         var view:Uint8Array = new Uint8Array(ba, 0, Math.min(newSize,n));
         newView.set(view);
         ba = newBuffer;
-		typedArray = null;
+		_typedArray = null;
     }
     /**
      *  The total number of bytes remaining to be read.
@@ -557,7 +598,7 @@ public class BinaryData
                     newView[i] = view[i];
                 }
                 ba = newBuffer;
-				typedArray = null;
+				_typedArray = null;
             }
         }
 	}
@@ -707,7 +748,7 @@ public class BinaryData
                 var encoder:TextEncoder = new TextEncoder('utf-8');
                 bytes = encoder.encode(str);
                 ba = bytes.buffer;
-				typedArray = null;
+				_typedArray = null;
                 return;
             }
 
@@ -745,7 +786,7 @@ public class BinaryData
             }
             bytes = new Uint8Array(out);
             ba = bytes.buffer;
-			typedArray = null;
+			_typedArray = null;
         }
     }
 }
