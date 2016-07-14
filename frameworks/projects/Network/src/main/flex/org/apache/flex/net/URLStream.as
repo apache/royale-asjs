@@ -108,7 +108,7 @@ package org.apache.flex.net
                 var hdr:URLRequestHeader = new URLRequestHeader("Content-type", urlRequest.contentType);
                 req.requestHeaders.push(hdr);
                 req.data = new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
-                req.method = HTTPConstants.POST;
+                req.method = urlRequest.method;
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, flash_status);
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_STATUS, flash_status);
                 flashUrlStream.addEventListener(flash.events.ProgressEvent.PROGRESS, flash_progress);

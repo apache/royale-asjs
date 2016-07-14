@@ -85,38 +85,49 @@ package org.apache.flex.net
         {
             super();
             stream = new URLStream();
-			stream.onProgress = function(stream:URLStream):void
-			{
-				bytesLoaded = stream.bytesLoaded;
-				bytesTotal = stream.bytesTotal;
-				dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal));
-				if(onProgress)
-					onProgress(this);
-			}
-			stream.onStatus = function(stream:URLStream):void
-			{
-				requestStatus = stream.requestStatus;
-				dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+requestStatus));
-				if(onStatus)
-					onStatus(this);
-
-			}
-			stream.onError = function(stream:URLStream):void
-			{
-				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
-				if(onError)
-					onError(this);
-				cleanupCallbacks();
-			}
-			stream.onComplete = function(stream:URLStream):void
-			{
-				dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
-				if(onComplete)
-					onComplete();
-				cleanupCallbacks();
-			}
+        }
+        private function progressFunction(stream:URLStream):void
+        {
+            bytesLoaded = stream.bytesLoaded;
+            bytesTotal = stream.bytesTotal;
+            dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal));
+            if(onProgress)
+                onProgress(this);
         }
         
+        private function statusFunction(stream:URLStream):void
+        {
+            requestStatus = stream.requestStatus;
+            dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+requestStatus));
+            if(onStatus)
+                onStatus(this);
+        }
+        
+        private function errorFunction(stream:URLStream):void
+        {
+            dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+            if(onError)
+                onError(this);
+            cleanupCallbacks();
+        }
+        
+        private function completeFunction(stream:URLStream):void
+        {
+			data = stream.response;
+            dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+            if(onComplete)
+                onComplete(this);
+            cleanupCallbacks();
+        }
+        
+        private function setupCallbacks():void
+        {
+            stream.onProgress = progressFunction;
+
+            stream.onStatus = statusFunction;
+            stream.onError = errorFunction;
+            stream.onComplete = completeFunction;
+        }
 		/**
 		 *  Makes the URL request.
 		 *  
@@ -127,6 +138,7 @@ package org.apache.flex.net
 		 */        
         public function load(request:URLRequest):void
         {
+            setupCallbacks();
             stream.load(request);
         }
         
