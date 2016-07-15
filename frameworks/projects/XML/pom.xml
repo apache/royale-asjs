@@ -72,6 +72,19 @@
       <type>swc</type>
       <classifier>extern</classifier>
     </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>extern</classifier>
+    </dependency>
   </dependencies>
 
 </project>
