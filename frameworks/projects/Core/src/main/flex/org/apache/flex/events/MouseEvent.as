@@ -57,6 +57,7 @@ package org.apache.flex.events
 		public static const ROLL_OVER:String = platformConstant("rollOver");
 		public static const ROLL_OUT:String = platformConstant("rollOut");
         public static const CLICK:String = "click";
+		public static const DOUBLE_CLICK:String = "doubleClick";
 
          /**
          *  Constructor.
@@ -149,6 +150,7 @@ package org.apache.flex.events
 		public static const ROLL_OVER:String = platformConstant("rollOver");
 		public static const ROLL_OUT:String = platformConstant("rollOut");
 		public static const CLICK:String = "click";
+		public static const DOUBLE_CLICK:String = "dblclick";
 
 		/**
 		 *  Constructor.
