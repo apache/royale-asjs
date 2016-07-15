@@ -46,6 +46,7 @@
     <module>HTML</module>
     <module>HTML5</module>
     <module>JQuery</module>
+    <module>Language</module>
     <module>Mobile</module>
     <module>Network</module>
     <module>Reflection</module>
