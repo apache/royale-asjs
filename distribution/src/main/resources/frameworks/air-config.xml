@@ -90,6 +90,7 @@
         <implicit-import>org.apache.flex.core.IFactory</implicit-import>
       </imports>
     </mxml>
+
     <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
     <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
     <binding-value-change-event-type>valueChange</binding-value-change-event-type>
@@ -147,14 +148,14 @@
         <uri>library://ns.apache.org/flexjs/basic</uri>
         <manifest>manifests/basic-manifest-network.xml</manifest>
       </namespace>
-      <!--namespace>
+      <namespace>
         <uri>library://ns.apache.org/flexjs/basic</uri>
         <manifest>manifests/basic-manifest-storage.xml</manifest>
-      </namespace-->
-      <!--namespace>
+      </namespace>
+      <namespace>
         <uri>library://ns.apache.org/flexjs/basic</uri>
         <manifest>manifests/basic-manifest-xml.xml</manifest>
-      </namespace-->
+      </namespace>
       <namespace>
         <uri>library://ns.apache.org/flexjs/cordova</uri>
         <manifest>manifests/cordova-manifest.xml</manifest>
@@ -179,10 +180,10 @@
         <uri>library://ns.apache.org/flexjs/jquery</uri>
         <manifest>manifests/jquery-manifest.xml</manifest>
       </namespace>
-      <!--namespace>
+      <namespace>
         <uri>library://ns.apache.org/flexjs/svg</uri>
         <manifest>manifests/svg-manifest.xml</manifest>
-      </namespace-->
+      </namespace>
     </namespaces>
 
     <!-- Enable post-link SWF optimization. -->
