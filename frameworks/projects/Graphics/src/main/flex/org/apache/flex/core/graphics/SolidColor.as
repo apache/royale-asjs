@@ -23,6 +23,30 @@ package org.apache.flex.core.graphics
 	public class SolidColor implements IFill
 	{
 		
+		/**
+		 *  Constructor.
+		 *
+		 *  @param color Specifies the color.
+		 *  The default value is 0x000000 (black).
+		 *
+		 *  @param alpha Specifies the level of transparency.
+		 *  Valid values range from 0.0 (completely transparent)
+		 *  to 1.0 (completely opaque).
+		 *  The default value is 1.0.
+	 	 *  
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+	 	 *  @playerversion AIR 1.1
+	 	 *  @productversion Flex 3
+	 	 */
+		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
+	 	{
+			super();
+
+			this.color = color;
+			this.alpha = alpha;
+		}
+
 		//----------------------------------
 		//  alpha
 		//----------------------------------
