@@ -19,19 +19,20 @@
 package org.apache.flex.html.beads
 {
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IAlertModel;
+    import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IMeasurementBead;
     import org.apache.flex.core.IParent;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.MouseEvent;
     import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.Label;
-	import org.apache.flex.html.TextButton;
+    import org.apache.flex.html.Label;
+    import org.apache.flex.html.TextButton;
     import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
@@ -140,7 +141,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleOK(event:Event):void
+		private function handleOK(event:MouseEvent):void
 		{
 			var newEvent:Event = new Event("close");
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
