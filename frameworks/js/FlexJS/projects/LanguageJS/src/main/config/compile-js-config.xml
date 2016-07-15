@@ -20,7 +20,7 @@
 
     <compiler>
         <accessible>false</accessible>
-        
+
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -46,41 +46,31 @@
         </keep-as3-metadata>
 	  
         <locale/>
-        
+
         <!-- overwrite the default library-path setting -->
         <library-path>
-            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-             if these swcs are on the external-library-path then their requires
-             will not be listed -->
-            <path-element>../../../../../libs/CoreJS.swc</path-element>
-            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+          <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
         </library-path>
         
-        <namespaces>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../../../../../../../projects/Formatters/src/main/resources/basic-manifest.xml</manifest>
-            </namespace>
-        </namespaces>
-
         <source-path>
-            <path-element>../../../../../../../projects/Formatters/src/main/flex</path-element>
+          <path-element>../../../../../../../projects/Language/src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
+        
+        <!-- Use of the instanceof operator. -->
+        <warn-instance-of-changes>false</warn-instance-of-changes>
     </compiler>
     
     <include-file>
     </include-file>
 
+    <include-sources>
+    </include-sources>
+    
     <include-classes>
-        <class>FormattersClasses</class>
+        <class>LanguageClasses</class>
     </include-classes>
     
-    <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
-    </include-namespaces>
-        
 
 </flex-config>

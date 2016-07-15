@@ -148,13 +148,6 @@ internal class CoreClasses
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
-
-	COMPILE::JS
-	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-	}
 }
 
 }

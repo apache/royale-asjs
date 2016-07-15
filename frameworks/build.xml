@@ -76,6 +76,7 @@
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
+        <antcall target="Language"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
@@ -135,6 +136,7 @@
         <ant dir="${basedir}/projects/HTML" target="clean"/>
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
+        <ant dir="${basedir}/projects/Language" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
@@ -217,6 +219,10 @@
 
     <target name="JQuery" description="Clean build of JQuery.swc">
         <ant dir="${basedir}/projects/JQuery"/>
+    </target>
+
+    <target name="Language" description="Clean build of Language.swc">
+        <ant dir="${basedir}/projects/Language"/>
     </target>
 
     <target name="Mobile" description="Clean build of Mobile.swc">
