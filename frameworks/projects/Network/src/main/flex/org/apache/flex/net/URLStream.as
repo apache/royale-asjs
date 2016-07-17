@@ -200,7 +200,7 @@ package org.apache.flex.net
 			{
 				dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
 				if(onComplete)
-					onComplete();
+					onComplete(this);
 				
 			}
 			else
