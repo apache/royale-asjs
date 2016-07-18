@@ -62,7 +62,7 @@ FABridge.js
 frameworks/projects/spark/manifest.xml
 env.properties
 local.properties
-flex-sdk-description.xml
+/flex-sdk-description.xml
 
 #OS junk files
 [Tt]humbs.db

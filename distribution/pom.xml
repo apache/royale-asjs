@@ -37,6 +37,9 @@
     <distributionFileName>apache-flex-flexjs-${project.version}</distributionFileName>
     <flashVersion>${flash.version}</flashVersion>
     <airVersion>${air.version}</airVersion>
+
+    <timestamp>${maven.build.timestamp}</timestamp>
+    <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
   </properties>
 
   <dependencies>

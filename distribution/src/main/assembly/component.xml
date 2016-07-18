@@ -39,7 +39,7 @@ under the License.
       <outputDirectory>lib/external</outputDirectory>
       <excludes>
         <exclude>org.apache.flex.flexjs.framework:*</exclude>
-        <exclude>org.apache.flex.flexjs.externs:*</exclude>
+        <exclude>org.apache.flex.flexjs.typedefs:*</exclude>
         <exclude>org.apache.flex.flexjs.compiler:*</exclude>
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
@@ -51,7 +51,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>externs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.externs:*</include>
+        <include>org.apache.flex.flexjs.typedefs:*</include>
       </includes>
     </dependencySet>
     <!-- Put the framework swcs into the frameworks/libs directory -->
@@ -62,7 +62,7 @@ under the License.
         <include>org.apache.flex.flexjs.framework:*:swc</include>
       </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.framework:*:swc:extern</exclude>
+        <exclude>org.apache.flex.flexjs.framework:*:swc:typedefs</exclude>
       </excludes>
     </dependencySet>
     <!-- Put the playerglobal swc into the frameworks/libs/player directory -->
@@ -87,7 +87,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/js/FlexJS/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:*:swc:extern</include>
+        <include>org.apache.flex.flexjs.framework:*:swc:typedefs</include>
       </includes>
     </dependencySet>
 
@@ -109,7 +109,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.externs:*:swc</include>
+        <include>org.apache.flex.flexjs.typedefs:*:swc</include>
       </includes>
     </dependencySet>
 
@@ -170,6 +170,17 @@ under the License.
         <include>**</include>
       </includes>
     </fileSet>
+
+    <!-- Copy the sdk descriptor -->
+    <fileSet>
+      <directory>src/main/resources</directory>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>flex-sdk-description.xml</include>
+      </includes>
+      <filtered>true</filtered>
+    </fileSet>
+
   </fileSets>
   <files>
     <!-- Copy the manifests -->
