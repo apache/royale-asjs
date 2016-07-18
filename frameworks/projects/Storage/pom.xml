@@ -76,15 +76,15 @@
       <artifactId>Core</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>extern</classifier>
+      <classifier>typedefs</classifier>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.flex.flexjs.externs</groupId>
-      <artifactId>flexjs-externs-cordova</artifactId>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-cordova</artifactId>
       <version>0.7.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>extern</classifier>
+      <classifier>typedefs</classifier>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
