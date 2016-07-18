@@ -37,6 +37,9 @@ package org.apache.flex.core.graphics
 		{
 			_radius = value;
 		}
+		
+		COMPILE::JS
+		private var _circle:WrappedHTMLElement;
 
 		/**
 		 *  Draw the circle.
@@ -64,25 +67,28 @@ package org.apache.flex.core.graphics
             COMPILE::JS                
             {
                 var style:String = getStyleStr();
-                var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-                circle.flexjs_wrapper = this;
-                circle.setAttribute('style', style);
+
+				if (_circle == null) {
+					_circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+					_circle.flexjs_wrapper = this;
+					element.appendChild(_circle);
+				}
+				_circle.setAttribute('style', style);
                 if (stroke)
                 {
-                    circle.setAttribute('cx', String(radius + stroke.weight));
-                    circle.setAttribute('cy', String(radius + stroke.weight));
+					_circle.setAttribute('cx', String(radius + stroke.weight));
+					_circle.setAttribute('cy', String(radius + stroke.weight));
                 }
                 else
                 {
-                    circle.setAttribute('cx', String(radius));
-                    circle.setAttribute('cy', String(radius));
+					_circle.setAttribute('cx', String(radius));
+					_circle.setAttribute('cy', String(radius));
                 }
                 
-                circle.setAttribute('rx', String(radius));
-                circle.setAttribute('ry', String(radius));
-                element.appendChild(circle);
+				_circle.setAttribute('rx', String(radius));
+				_circle.setAttribute('ry', String(radius));
                 
-                resize(x-radius, y-radius, (circle as SVGCircleElement).getBBox());
+                resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
 
             }
 		}

@@ -41,6 +41,9 @@ package org.apache.flex.core.graphics
 		{
 			_data = value;
 		}
+		
+		COMPILE::JS
+		private var _path:WrappedHTMLElement;
 
 		/**
 		 *  Draw the path.
@@ -76,13 +79,15 @@ package org.apache.flex.core.graphics
             {
                 if (data == null || data.length === 0) return;
                 var style:String = getStyleStr();
-                var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
-                path.flexjs_wrapper = this;
-                path.setAttribute('style', style);
-                path.setAttribute('d', data);
-                element.appendChild(path);
+				if (_path == null) {
+                	_path = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
+					_path.flexjs_wrapper = this;
+					element.appendChild(_path);
+				}
+				_path.setAttribute('style', style);
+				_path.setAttribute('d', data);
 
-                resize(x, y, path['getBBox']());
+                resize(x, y, _path['getBBox']());
 
             }
 		}

@@ -28,6 +28,8 @@ package org.apache.flex.core.graphics
 
 	public class Rect extends GraphicShape
 	{
+		COMPILE::JS
+		private var _rect:WrappedHTMLElement;
 		
 		/**
 		 *  Draw the rectangle.
@@ -55,24 +57,27 @@ package org.apache.flex.core.graphics
             COMPILE::JS
             {
                 var style:String = this.getStyleStr();
-                var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
-                rect.flexjs_wrapper = this;
-                rect.setAttribute('style', style);
+				
+				if (_rect == null) {
+                	_rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+                	_rect.flexjs_wrapper = this;
+					element.appendChild(_rect);
+				}
+                _rect.setAttribute('style', style);
                 if (stroke)
                 {
-                    rect.setAttribute('x', String(stroke.weight / 2) + 'px');
-                    rect.setAttribute('y', String(stroke.weight / 2) + 'px');
+					_rect.setAttribute('x', String(stroke.weight / 2) + 'px');
+					_rect.setAttribute('y', String(stroke.weight / 2) + 'px');
                 }
                 else
                 {
-                    rect.setAttribute('x', '0' + 'px');
-                    rect.setAttribute('y', '0' + 'px');
+					_rect.setAttribute('x', '0' + 'px');
+					_rect.setAttribute('y', '0' + 'px');
                 }
-                rect.setAttribute('width', String(width) + 'px');
-                rect.setAttribute('height', String(height) + 'px');
-                element.appendChild(rect);
+				_rect.setAttribute('width', String(width) + 'px');
+				_rect.setAttribute('height', String(height) + 'px');
                 
-                resize(x, y, rect['getBBox']());
+                resize(x, y, _rect['getBBox']());
             }
 		}
 		
