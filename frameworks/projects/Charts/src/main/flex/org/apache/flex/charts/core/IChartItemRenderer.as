@@ -44,6 +44,17 @@ package org.apache.flex.charts.core
 		function set series(value:IChartSeries):void;
 		
 		/**
+		 *  The index of this itemRenderer instance with its series.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function get index():int;
+		function set index(value:int):void;
+		
+		/**
 		 *  The name of the field containing the X-axis value found
 		 *  in the data property.
 		 *

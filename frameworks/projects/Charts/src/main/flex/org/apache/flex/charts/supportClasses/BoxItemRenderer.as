@@ -234,16 +234,14 @@ package org.apache.flex.charts.supportClasses
 		private var hoverFill:IFill;
 		
 		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			
+		{			
 			if (down||selected||hovered) {
 				if (hoverFill == null) {
 					if(fill is SolidColor)
 					{
 						hoverFill = new SolidColor();
 						(hoverFill as SolidColor).color = (fill as SolidColor).color;
-						(hoverFill as SolidColor).alpha = 0.5;
+						(hoverFill as SolidColor).alpha = 0.65;
 					}
 					else if(fill is LinearGradient)
 					{
@@ -251,7 +249,7 @@ package org.apache.flex.charts.supportClasses
 						(hoverFill as LinearGradient).entries = (fill as LinearGradient).entries;
 						for (var i:int=0; i<(hoverFill as LinearGradient).entries; i++)
 						{
-							(hoverFill as LinearGradient).entries[i].alpha = 0.5;
+							(hoverFill as LinearGradient).entries[i].alpha = 0.65;
 						}
 					}
 					
