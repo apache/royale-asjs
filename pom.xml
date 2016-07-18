@@ -28,7 +28,7 @@
   </parent>
 
   <groupId>org.apache.flex.flexjs</groupId>
-  <artifactId>flex-asjs</artifactId>
+  <artifactId>flexjs-framework</artifactId>
   <version>0.7.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
