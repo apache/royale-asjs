@@ -44,6 +44,7 @@ under the License.
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
         <exclude>*:org.json:jar</exclude>
+        <exclude>*:*:pom</exclude>
       </excludes>
     </dependencySet>
     <!-- Put the externs swcs into the externs directory -->
