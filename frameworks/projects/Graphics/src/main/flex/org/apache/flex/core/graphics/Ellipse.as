@@ -31,6 +31,9 @@ package org.apache.flex.core.graphics
 	public class Ellipse extends GraphicShape
 	{
 		
+		COMPILE::JS
+		private var _ellipse:WrappedHTMLElement;
+		
 		/**
 		 *  Draw the ellipse.
 		 *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
@@ -58,24 +61,26 @@ package org.apache.flex.core.graphics
             COMPILE::JS
             {
                 var style:String = getStyleStr();
-                var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-                ellipse.flexjs_wrapper = this;
-                ellipse.setAttribute('style', style);
+				if (_ellipse == null) {
+					_ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+					_ellipse.flexjs_wrapper = this;
+					element.appendChild(_ellipse);
+				}
+				_ellipse.setAttribute('style', style);
                 if (stroke)
                 {
-                    ellipse.setAttribute('cx', String(width / 2 + stroke.weight));
-                    ellipse.setAttribute('cy', String(height / 2 + stroke.weight));
+					_ellipse.setAttribute('cx', String(width / 2 + stroke.weight));
+					_ellipse.setAttribute('cy', String(height / 2 + stroke.weight));
                 }
                 else
                 {
-                    ellipse.setAttribute('cx', String(width / 2));
-                    ellipse.setAttribute('cy', String(height / 2));
+					_ellipse.setAttribute('cx', String(width / 2));
+					_ellipse.setAttribute('cy', String(height / 2));
                 }
-                ellipse.setAttribute('rx', String(width / 2));
-                ellipse.setAttribute('ry', String(height / 2));
-                element.appendChild(ellipse);
+				_ellipse.setAttribute('rx', String(width / 2));
+				_ellipse.setAttribute('ry', String(height / 2));
                 
-                resize(x, y, (ellipse as SVGEllipseElement).getBBox());
+                resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
 
             }
 		}

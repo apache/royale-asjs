@@ -64,6 +64,9 @@ package org.apache.flex.core.graphics
         COMPILE::SWF
 		private var _textField:CSSTextField;
 		
+		COMPILE::JS
+		private var _text:WrappedHTMLElement;
+		
 		/**
 		 *  @copy org.apache.flex.core.ITextModel#textField
 		 *  
@@ -115,16 +118,21 @@ package org.apache.flex.core.graphics
             COMPILE::JS
             {
                 var style:String = this.getStyleStr();
-                var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
-                text.flexjs_wrapper = this;
-                text.setAttribute('style', style);
-                text.setAttribute('x', String(xt) + 'px');
-                text.setAttribute('y', String(yt) + 'px');
-                var textNode:Text = document.createTextNode(value) as Text;
-                text.appendChild(textNode as Node);
-                element.appendChild(text);
+				if (_text == null) {
+                	_text = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                	_text.flexjs_wrapper = this;
+					element.appendChild(_text);
+				}
+				else {
+					_text.removeChild(_text.childNodes[0]);
+				}
+                _text.setAttribute('style', style);
+                _text.setAttribute('x', String(xt) + 'px');
+                _text.setAttribute('y', String(yt) + 'px');
+				var textNode:Text = document.createTextNode(value) as Text;
+				_text.appendChild(textNode as Node);
                 
-                resize(x, y, (text as SVGLocatable).getBBox());
+                resize(x, y, (_text as SVGLocatable).getBBox());
 
             }
 		}
