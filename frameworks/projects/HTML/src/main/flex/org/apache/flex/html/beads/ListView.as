@@ -61,7 +61,7 @@ package org.apache.flex.html.beads
 		{
 		}
 						
-		private var listModel:ISelectionModel;
+		protected var listModel:ISelectionModel;
 		
 		private var _border:Border;
 		
@@ -139,7 +139,7 @@ package org.apache.flex.html.beads
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
 		
-		private var lastSelectedIndex:int = -1;
+		protected var lastSelectedIndex:int = -1;
 		
 		/**
 		 * @private
@@ -160,7 +160,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function selectionChangeHandler(event:Event):void
+		protected function selectionChangeHandler(event:Event):void
 		{
 			if (lastSelectedIndex != -1)
 			{
@@ -175,12 +175,12 @@ package org.apache.flex.html.beads
             lastSelectedIndex = listModel.selectedIndex;
 		}
 		
-		private var lastRollOverIndex:int = -1;
+		protected var lastRollOverIndex:int = -1;
 		
 		/**
 		 * @private
 		 */
-		private function rollOverIndexChangeHandler(event:Event):void
+		protected function rollOverIndexChangeHandler(event:Event):void
 		{
 			if (lastRollOverIndex != -1)
 			{

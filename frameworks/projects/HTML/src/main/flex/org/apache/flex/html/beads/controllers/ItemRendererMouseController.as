@@ -99,7 +99,7 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function rollOverHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOver",true));
@@ -109,7 +109,7 @@ COMPILE::JS {
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target) {
 				target.dispatchEvent(new Event("itemRollOver",true));
 			}
@@ -121,7 +121,7 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function rollOutHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOut",true));
@@ -131,7 +131,7 @@ COMPILE::JS {
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.target as ISelectableItemRenderer;
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOut",true));
