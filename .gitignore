@@ -16,7 +16,7 @@
 *.iws
 
 # building
-target
+target/
 [Bb]uild/
 null
 tmp

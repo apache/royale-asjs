@@ -28,7 +28,7 @@
   </parent>
 
   <groupId>org.apache.flex.flexjs</groupId>
-  <artifactId>flexjs-framework</artifactId>
+  <artifactId>flexjs-framework-parent</artifactId>
   <version>0.7.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -130,6 +130,62 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <!-- Check if all source files have the required apache license headers -->
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.12</version>
+        <executions>
+          <execution>
+            <id>license-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <!--
+              As the examples and distribution are not build in every case, we
+              have to exclude them. This skips the checks if they are not included
+              but if they are included, the checks inside distribution and examples
+              kick in and do the checks.
+            -->
+            <exclude>distribution/**</exclude>
+            <exclude>examples/**</exclude>
+            <!-- JSON files can't contain comments -->
+            <exclude>**/*.json</exclude>
+
+            <!-- Stuff that needs to be removed -->
+            <exclude>fxg2svg/**</exclude>
+            <exclude>vf2js/**</exclude>
+            <!-- frameworks/fb.properties contains Alex' path entries and should be removed -->
+            <exclude>fb.properties</exclude>
+            <!-- Should probably also be removed -->
+            <exclude>js/*jshint*</exclude>
+            <!-- If checked in, they should have apache headers -->
+            <exclude>**/.settings/**</exclude>
+            <!-- Examples needs to be fixed -->
+            <exclude>native/**</exclude>
+          </excludes>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>1.6</version>
+            <exclusions>
+              <exclusion>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
