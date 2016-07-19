@@ -30,7 +30,7 @@
   <artifactId>distribution</artifactId>
   <packaging>pom</packaging>
 
-  <name>Apache Flex: FlexJS Distribution</name>
+  <name>Apache Flex - FlexJS: Distribution</name>
   <description>The Apache Flex: FlexJS distribution, source and binary, in zip and tar.gz formats.</description>
 
   <properties>

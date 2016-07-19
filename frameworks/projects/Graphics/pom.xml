@@ -31,6 +31,8 @@
   <version>0.7.0-SNAPSHOT</version>
   <packaging>swc</packaging>
 
+  <name>Apache Flex - FlexJS: Framework: Libs: Graphics</name>
+
   <build>
     <sourceDirectory>src/main/flex</sourceDirectory>
     <plugins>

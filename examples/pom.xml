@@ -32,6 +32,8 @@
   <version>0.7.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>Apache Flex - FlexJS: Examples</name>
+
   <modules>
     <module>flexjs</module>
     <!--module>native</module-->

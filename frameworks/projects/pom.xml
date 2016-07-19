@@ -31,6 +31,8 @@
   <version>0.7.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>Apache Flex - FlexJS: Framework: Libs</name>
+
   <modules>
     <module>Binding</module>
     <module>Charts</module>

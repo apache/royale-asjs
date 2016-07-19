@@ -45,6 +45,8 @@
   <version>0.7.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
+  <name>Apache Flex - FlexJS: Examples: FlexJS: FlexJSStore</name>
+
   <build>
     <plugins>
       <plugin>
