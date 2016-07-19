@@ -254,6 +254,7 @@ package org.apache.flex.html
 
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+			(icon.element as WrappedHTMLElement).flexjs_wrapper = this;
 
             className = 'RadioButton';
             typeNames = 'RadioButton, RadioButtonIcon';

@@ -155,6 +155,7 @@ package org.apache.flex.html
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
+			_icon.element.flexjs_wrapper = this;
 
             className = 'CheckBox';
             typeNames = 'CheckBox, CheckBoxIcon';
