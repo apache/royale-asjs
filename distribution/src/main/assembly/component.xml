@@ -66,23 +66,6 @@ under the License.
         <exclude>org.apache.flex.flexjs.framework:*:swc:typedefs</exclude>
       </excludes>
     </dependencySet>
-    <!-- Put the playerglobal swc into the frameworks/libs/player directory -->
-    <dependencySet>
-      <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/libs/player/${flashVersion}</outputDirectory>
-      <includes>
-        <include>com.adobe.flash.framework:playerglobal:swc</include>
-      </includes>
-      <outputFileNameMapping>playerglobal.swc</outputFileNameMapping>
-    </dependencySet>
-    <!-- Put the air swcs into the frameworks/libs/air directory -->
-    <dependencySet>
-      <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/libs/air</outputDirectory>
-      <includes>
-        <include>com.adobe.air.framework:*:swc</include>
-      </includes>
-    </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
