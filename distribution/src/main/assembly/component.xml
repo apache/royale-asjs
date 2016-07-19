@@ -182,7 +182,30 @@ under the License.
       <filtered>true</filtered>
     </fileSet>
 
+    <!-- Copy the SWFObject templates -->
+    <fileSet>
+      <outputDirectory>templates/swfobject</outputDirectory>
+      <directory>target/swfobject-temp/META-INF/resources/webjars/swfobject/2.2</directory>
+      <includes>
+        <include>*</include>
+      </includes>
+      <excludes>
+        <exclude>src/**</exclude>
+        <exclude>index.html</exclude>
+        <exclude>index_dynamic.html</exclude>
+        <exclude>test.swf</exclude>
+      </excludes>
+    </fileSet>
+    <!-- Copy our custom index.html template as well as the history code -->
+    <fileSet>
+      <directory>src/main/resources/templates/swfobject</directory>
+      <outputDirectory>templates/swfobject</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
   </fileSets>
+
   <files>
     <!-- Copy the manifests -->
     <file>

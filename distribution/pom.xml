@@ -413,6 +413,13 @@
       <version>${air.version}</version>
       <type>pom</type>
     </dependency>
+
+    <!-- SWFObject -->
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>swfobject</artifactId>
+      <version>2.2</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -429,37 +436,31 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.10</version>
         <executions>
           <execution>
-            <id>test-compile</id>
+            <id>unpack-swfobject</id>
+            <phase>package</phase>
             <goals>
-              <goal>testCompile</goal>
+              <goal>unpack</goal>
             </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.webjars</groupId>
+                  <artifactId>swfobject</artifactId>
+                  <version>2.2</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/swfobject-temp</outputDirectory>
+                  <includes>META-INF/resources/webjars/swfobject/*/**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemProperties>
-            <property>
-              <name>basedir</name>
-              <value>${basedir}</value>
-            </property>
-          </systemProperties>
-        </configuration>
-        <executions>
-          <execution>
-            <id>test</id>
-            <goals>
-              <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!--plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -476,7 +477,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin-->
+      </plugin>
     </plugins>
   </build>
 
