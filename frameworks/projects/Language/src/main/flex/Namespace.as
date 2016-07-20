@@ -21,6 +21,10 @@ package
 	public class Namespace
 	{
 		COMPILE::JS
+		{
+			import org.apache.flex.utils.Language;
+		}
+		COMPILE::JS
     	public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)
 		{
 			/*
@@ -62,10 +66,9 @@ package
 					_prefix = (uriVal as Namespace).prefix;
 					_uri = (uriVal as Namespace).uri;
 				}
-				else if(uriVal is QName)
+				else if(isQName(uriVal ))
 				{
-					if((uriVal as QName).uri)
-						_uri = (uriVal as QName).uri;
+					_uri = uriVal.uri ? uriVal.uri : _uri;
 				}
 				else {
 					_uri = uriVal.toString();
@@ -76,10 +79,10 @@ package
 			else if(uriValue)
 			{
 				// something is specified as the URI otherwise fall through and leave both the prefix and uri blank
-				if(uriValue is QName)
+				if(isQName(uriValue ))
 				{
-					if((uriValue as QName).uri)
-						_uri = (uriValue as QName).uri;
+					if(uriValue.uri)
+						_uri = uriValue.uri;
 				}
 				else {
 					_uri = uriValue.toString();
@@ -96,6 +99,16 @@ package
 					_prefix = prefixOrUri.toString();
 
 			}
+		}
+
+		// Using this instead of simply using "is QName" because "is QName" causes a circular dependency.
+		private function isQName(val:Object):Boolean
+		{
+			if(val==null)
+				return false;
+			if(val.hasOwnProperty("uri") && val.hasOwnProperty("localName") && val.hasOwnProperty("prefix"))
+				return true;
+			return false;
 		}
 
 		private var _uri:String = "";
