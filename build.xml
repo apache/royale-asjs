@@ -322,6 +322,30 @@
             unless="FALCONJX_HOME"/>
     </target>
 
+    <target name="check-typedef-home" unless="FLEXJS_TYPEDEFS_HOME"
+        description="Check FALCON_HOME is a directory.">
+        
+        <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
+        
+        <available file="${env.FLEXJS_TYPEDEFS_HOME}/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${env.FLEXJS_TYPEDEFS_HOME}"/>
+        
+        <available file="${basedir}/../flex-typedefs/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}/../flex-typedefs"/>
+        
+        <available file="${basedir}/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}"/>
+        
+        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the flex-typedefs repo"
+        unless="FLEXJS_TYPEDEFS_HOME"/>
+    </target>
+
     <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
@@ -366,7 +390,7 @@
     <target name="copy-externs" description="Copy extern swcs into this folder">
         <mkdir dir="${basedir}/js/libs" />
         <copy todir="${basedir}/js/libs" flatten="true">
-            <fileset dir="${FALCONJX_HOME}/../externs">
+            <fileset dir="${FLEXJS_TYPEDEFS_HOME}">
                 <include name="**/*.swc"/>
             </fileset>
         </copy>
@@ -1612,6 +1636,7 @@
         <antcall target="warn-before-clone" />
         <antcall target="clone-flex-asjs" />
         <antcall target="clone-flex-falcon" />
+        <antcall target="clone-flex-typedefs" />
         <antcall target="clone-flex-flexunit" />
         <antcall target="clone-flex-sdk" />
         <antcall target="clone-flex-tlf" />
@@ -1659,6 +1684,25 @@
             <arg value="flex-falcon" />
         </exec>
         <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-falcon">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-typedefs">
+        <available file="${base.folder.name}/flex-typedefs"
+        type="dir"
+        property="flex-typedefs-exists"/>
+    </target>
+
+    <target name="clone-flex-typedefs" depends="check-flex-typedefs" unless="flex-typedefs-exists">
+        <echo>cloning flex-typedefs repo into ${base.folder.name}/flex-typedefs</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-typedefs.git" />
+            <arg value="flex-typedefs" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
@@ -1758,6 +1802,7 @@
         <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
         <ant dir="${base.folder.name}/flex-falcon" target="all" />
+        <ant dir="${base.folder.name}/flex-typedefs" />
         <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     
