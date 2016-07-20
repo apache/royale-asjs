@@ -22,34 +22,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO:
-          JavaScript version:
-            When clicking on one of the bars, I get an error in the log:
-              EventDispatcher.js:48 Uncaught TypeError: Cannot read property 'flexjs_wrapper' of undefined
-                org.apache.flex.core.UIBase.getElementAt @ UIBase.js:416
-                org.apache.flex.html.supportClasses.DataGroup.getItemRendererForIndex @ DataGroup.js:82
-                org.apache.flex.html.beads.ListView.selectionChangeHandler @ ListView.js:96
-                goog.events.EventTarget.fireListeners @ eventtarget.js:284
-                goog.events.EventTarget.dispatchEventInternal_ @ eventtarget.js:381
-                goog.events.EventTarget.dispatchEvent @ eventtarget.js:196
-                childCtor.base @ base.js:2219org.apache.flex.events.EventDispatcher.dispatchEvent @ EventDispatcher.js:45
-                set @ ArraySelectionModel.js:125
-                org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController.selectedHandler @ ListSingleSelectionMouseController.js:85
-                goog.events.EventTarget.fireListeners @ eventtarget.js:284
-                goog.events.EventTarget.dispatchEventInternal_ @ eventtarget.js:381
-                goog.events.EventTarget.dispatchEvent @ eventtarget.js:196
-                childCtor.base @ base.js:2219
-                org.apache.flex.events.EventDispatcher.dispatchEvent @ EventDispatcher.js:45
-                childCtor.base @ base.js:2219
-                org.apache.flex.core.HTMLElementWrapper.dispatchEvent @ HTMLElementWrapper.js:222
-                org.apache.flex.html.beads.controllers.ItemRendererMouseController.handleMouseUp @ ItemRendererMouseController.js:98
-                goog.events.fireListener @ events.js:728
-                org.apache.flex.core.HTMLElementWrapper.fireListenerOverride @ HTMLElementWrapper.js:45
-                goog.events.handleBrowserEvent_ @ events.js:852
-                (anonymous function) @ events.js:277
-  -->
-
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>

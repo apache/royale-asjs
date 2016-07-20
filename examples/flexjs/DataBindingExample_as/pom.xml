@@ -36,14 +36,6 @@
 
         JS Version:
           - Checkbox binding doesn't seem to work. Details field is always visible
-          - When changing the radio-button selection errors are logged in the console:
-              Language.js:74 Uncaught TypeError: Type Coercion failed
-                org.apache.flex.utils.Language.as @ Language.js:74
-                MyInitialView.radioChanged @ MyInitialView.js:75
-                goog.events.fireListener @ events.js:728
-                org.apache.flex.core.HTMLElementWrapper.fireListenerOverride @ HTMLElementWrapper.js:43
-                goog.events.handleBrowserEvent_ @ events.js:852
-                (anonymous function) @ events.js:277
   -->
 
   <parent>
