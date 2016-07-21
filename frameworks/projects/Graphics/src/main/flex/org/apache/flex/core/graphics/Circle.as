@@ -93,7 +93,7 @@ package org.apache.flex.core.graphics
             }
 		}
 		
-		override public function addedToParent():void
+		override protected function draw():void
 		{
 			drawCircle(0, 0, radius);
 		}

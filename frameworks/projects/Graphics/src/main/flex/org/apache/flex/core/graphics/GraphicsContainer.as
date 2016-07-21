@@ -24,12 +24,12 @@ package org.apache.flex.core.graphics
         import flash.text.TextFieldType;
 
         import org.apache.flex.core.CSSTextField;
+        import org.apache.flex.core.graphics.utils.PathHelper;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-	import org.apache.flex.core.graphics.utils.PathHelper;
 
 	/**
 	 * GraphicsContainer is a surface on which you can
