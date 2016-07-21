@@ -25,8 +25,11 @@ package org.apache.flex.svg
     }
 
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.graphics.IGraphicShape;
 
-	public class GraphicShape extends UIBase
+	public class GraphicShape extends UIBase implements IGraphicShape
 	{
 		private var _fill:IFill;
 		private var _stroke:IStroke;

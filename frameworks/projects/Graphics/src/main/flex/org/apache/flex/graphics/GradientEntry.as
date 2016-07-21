@@ -110,7 +110,7 @@ package org.apache.flex.graphics
 		/**
 		 * Begin drawing the fill on the given shape's graphic object
 		 */
-		public function begin(s:GraphicShape):void
+		public function begin(s:IGraphicShape):void
 		{
             COMPILE::SWF
             {
@@ -121,7 +121,7 @@ package org.apache.flex.graphics
 		/**
 		 * End the fill
 		 */
-		public function end(s:GraphicShape):void
+		public function end(s:IGraphicShape):void
 		{
             COMPILE::SWF
             {

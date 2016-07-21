@@ -104,7 +104,7 @@ package org.apache.flex.graphics
 		}
 		
         COMPILE::SWF
-		public function apply(s:GraphicShape):void
+		public function apply(s:IGraphicShape):void
 		{
 			s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
 		}
@@ -112,11 +112,11 @@ package org.apache.flex.graphics
         /**
          * addStrokeAttrib()
          * 
-         * @param value The GraphicShape object on which the stroke must be added.
+         * @param value The IGraphicShape object on which the stroke must be added.
          * @return {string}
          */
         COMPILE::JS
-        public function addStrokeAttrib(value:GraphicShape):String
+        public function addStrokeAttrib(value:IGraphicShape):String
         {
             var strokeColor:String = Number(color).toString(16);
             if (strokeColor.length == 1) strokeColor = '00' + strokeColor;

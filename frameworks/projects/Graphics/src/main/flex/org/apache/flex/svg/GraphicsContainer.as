@@ -14,6 +14,9 @@
 
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
+
     COMPILE::SWF
     {
         import flash.display.GraphicsPath;

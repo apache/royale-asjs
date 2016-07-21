@@ -106,13 +106,13 @@ package org.apache.flex.graphics
 		}
 		
         COMPILE::SWF
-		public function begin(s:GraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
+		public function begin(s:IGraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			s.graphics.beginFill(color,alpha);
 		}
 		
         COMPILE::SWF
-		public function end(s:GraphicShape):void
+		public function end(s:IGraphicShape):void
 		{
 			s.graphics.endFill();
 		}
@@ -120,11 +120,11 @@ package org.apache.flex.graphics
         /**
          * addFillAttrib()
          *
-         * @param value The GraphicShape object on which the fill must be added.
+         * @param value The IGraphicShape object on which the fill must be added.
          * @return {string}
          */
         COMPILE::JS
-        public function addFillAttrib(value:GraphicShape):String
+        public function addFillAttrib(value:IGraphicShape):String
         {
             var color:String = Number(this.color).toString(16);
             if (color.length == 1) color = '00' + color;

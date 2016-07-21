@@ -23,10 +23,10 @@ package org.apache.flex.graphics
 	public interface IFill
 	{
         COMPILE::SWF
-		function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
+		function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
         COMPILE::SWF
-		function end(s:GraphicShape):void;
+		function end(s:IGraphicShape):void;
         COMPILE::JS
-        function addFillAttrib(s:GraphicShape):String;
+        function addFillAttrib(s:IGraphicShape):String;
 	}
 }

@@ -17,13 +17,13 @@ package org.apache.flex.graphics
 	public interface IStroke
 	{
         COMPILE::SWF
-		function apply(s:GraphicShape):void;
+		function apply(s:IGraphicShape):void;
         
         COMPILE::JS
         function get weight():Number;
         
         COMPILE::JS
-        function addStrokeAttrib(s:GraphicShape):String;
+        function addStrokeAttrib(s:IGraphicShape):String;
 
 	}
 }
