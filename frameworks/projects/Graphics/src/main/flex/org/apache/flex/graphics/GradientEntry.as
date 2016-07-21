@@ -12,31 +12,34 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
-    COMPILE::SWF
-    {
-        import flash.display.CapsStyle;
-        import flash.display.JointStyle;            
-    }
-
-	public class SolidColorStroke implements IStroke
+	public class GradientEntry
 	{
 		
 		//----------------------------------
 		//  alpha
 		//----------------------------------
-		private var _alpha:Number = 1.0;
 		
+		private var _alpha:Number = 1.0;
 		//----------------------------------
 		//  color
 		//----------------------------------
-		private var _color:uint = 0x000000;
 		
+		private var _color:uint = 0x000000;
 		//----------------------------------
-		//  weight
+		//  ratio
 		//----------------------------------
-		private var _weight:Number = 1;
+		
+		private var _ratio:Number = 0x000000;
+		
+		
+		public function GradientEntry(alpha:Number = 1.0, color:uint = 0x000000, ratio:Number = 1.0)
+		{
+			_alpha = alpha;
+			_color = color;
+			_ratio = ratio;
+		}
 		
 		/**
 		 *  The transparency of a color.
@@ -84,47 +87,47 @@ package org.apache.flex.core.graphics
 				_color = value;
 			}
 		}
-
-		public function get weight():Number
-		{
-			return _weight;
-		}
-
+		
 		/**
-		 *  A color value. 
+		 *  Where in the graphical element, as a percentage from 0.0 to 1.0,
+     	 *  Flex samples the associated color at 100%.  
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.3
+	     *  @productversion FlexJS 0.3
 		 */
-		public function set weight(value:Number):void
+		public function get ratio():Number
 		{
-			_weight = value;
+			return _ratio;
+		}
+
+		public function set ratio(value:Number):void
+		{
+			_ratio = value;
 		}
 		
-        COMPILE::SWF
-		public function apply(s:GraphicShape):void
+		/**
+		 * Begin drawing the fill on the given shape's graphic object
+		 */
+		public function begin(s:GraphicShape):void
 		{
-			s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
+            COMPILE::SWF
+            {
+                s.graphics.beginFill(color,alpha);                    
+            }
 		}
 		
-        /**
-         * addStrokeAttrib()
-         * 
-         * @param value The GraphicShape object on which the stroke must be added.
-         * @return {string}
-         */
-        COMPILE::JS
-        public function addStrokeAttrib(value:GraphicShape):String
-        {
-            var strokeColor:String = Number(color).toString(16);
-            if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-            return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
-                String(weight) + ';stroke-opacity:' + String(alpha);
-        };
+		/**
+		 * End the fill
+		 */
+		public function end(s:GraphicShape):void
+		{
+            COMPILE::SWF
+            {
+    			s.graphics.endFill();
+            }
+		}
 
 	}
 }

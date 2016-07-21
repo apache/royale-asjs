@@ -22,8 +22,8 @@ limitations under the License.
 				initComplete="viewbase1_initCompleteHandler(event)" >
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.core.graphics.Rect;
-			import org.apache.flex.core.graphics.SolidColor;
+			import org.apache.flex.svg.Rect;
+			import org.apache.flex.graphics.SolidColor;
 			import org.apache.flex.events.Event;
 			import org.apache.flex.events.MouseEvent;
 			

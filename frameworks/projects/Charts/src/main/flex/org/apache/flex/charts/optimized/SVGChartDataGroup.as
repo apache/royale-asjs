@@ -26,7 +26,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.svg.GraphicsContainer;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Point;
 	

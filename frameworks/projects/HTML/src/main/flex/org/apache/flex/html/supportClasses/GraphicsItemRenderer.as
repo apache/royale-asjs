@@ -20,7 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.svg.GraphicsContainer;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
     COMPILE::SWF
     {

@@ -19,7 +19,7 @@
 package org.apache.flex.charts.core
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.graphics.IStroke;
 	
 	public interface IAxisBead extends IBead
 	{

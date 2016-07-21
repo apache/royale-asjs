@@ -26,10 +26,10 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel;

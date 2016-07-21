@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics.utils
+package org.apache.flex.graphics.utils
 {
 	import flash.events.Event;
 	import flash.geom.Matrix;
@@ -21,7 +21,7 @@ package org.apache.flex.core.graphics.utils
 	import flash.geom.Vector3D;
 	import flash.system.Capabilities;
 	
-	import org.apache.flex.core.graphics.utils.IAssetLayoutFeatures;
+	import org.apache.flex.graphics.utils.IAssetLayoutFeatures;
 	
 	
 	/**

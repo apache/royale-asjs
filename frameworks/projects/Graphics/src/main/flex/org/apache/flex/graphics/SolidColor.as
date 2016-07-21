@@ -12,11 +12,41 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
-	public class GradientEntry
+    COMPILE::SWF
+    {
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
+    }
+
+	public class SolidColor implements IFill
 	{
 		
+		/**
+		 *  Constructor.
+		 *
+		 *  @param color Specifies the color.
+		 *  The default value is 0x000000 (black).
+		 *
+		 *  @param alpha Specifies the level of transparency.
+		 *  Valid values range from 0.0 (completely transparent)
+		 *  to 1.0 (completely opaque).
+		 *  The default value is 1.0.
+	 	 *  
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+	 	 *  @playerversion AIR 1.1
+	 	 *  @productversion Flex 3
+	 	 */
+		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
+	 	{
+			super();
+
+			this.color = color;
+			this.alpha = alpha;
+		}
+
 		//----------------------------------
 		//  alpha
 		//----------------------------------
@@ -27,19 +57,6 @@ package org.apache.flex.core.graphics
 		//----------------------------------
 		
 		private var _color:uint = 0x000000;
-		//----------------------------------
-		//  ratio
-		//----------------------------------
-		
-		private var _ratio:Number = 0x000000;
-		
-		
-		public function GradientEntry(alpha:Number = 1.0, color:uint = 0x000000, ratio:Number = 1.0)
-		{
-			_alpha = alpha;
-			_color = color;
-			_ratio = ratio;
-		}
 		
 		/**
 		 *  The transparency of a color.
@@ -88,46 +105,32 @@ package org.apache.flex.core.graphics
 			}
 		}
 		
-		/**
-		 *  Where in the graphical element, as a percentage from 0.0 to 1.0,
-     	 *  Flex samples the associated color at 100%.  
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-	     *  @productversion FlexJS 0.3
-		 */
-		public function get ratio():Number
+        COMPILE::SWF
+		public function begin(s:GraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
 		{
-			return _ratio;
-		}
-
-		public function set ratio(value:Number):void
-		{
-			_ratio = value;
+			s.graphics.beginFill(color,alpha);
 		}
 		
-		/**
-		 * Begin drawing the fill on the given shape's graphic object
-		 */
-		public function begin(s:GraphicShape):void
-		{
-            COMPILE::SWF
-            {
-                s.graphics.beginFill(color,alpha);                    
-            }
-		}
-		
-		/**
-		 * End the fill
-		 */
+        COMPILE::SWF
 		public function end(s:GraphicShape):void
 		{
-            COMPILE::SWF
-            {
-    			s.graphics.endFill();
-            }
+			s.graphics.endFill();
 		}
-
+        
+        /**
+         * addFillAttrib()
+         *
+         * @param value The GraphicShape object on which the fill must be added.
+         * @return {string}
+         */
+        COMPILE::JS
+        public function addFillAttrib(value:GraphicShape):String
+        {
+            var color:String = Number(this.color).toString(16);
+            if (color.length == 1) color = '00' + color;
+            if (color.length == 2) color = '00' + color;
+            if (color.length == 4) color = '00' + color;
+            return 'fill:#' + String(color) + ';fill-opacity:' + String(alpha);
+        }
 	}
 }

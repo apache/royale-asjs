@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.svg
 {
     COMPILE::SWF
     {
         import flash.display.GraphicsPath;
         import flash.geom.Point;
         import flash.geom.Rectangle;
+        import org.apache.flex.graphics.utils.PathHelper;
     }
 	COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	import org.apache.flex.core.graphics.utils.PathHelper;
 
 	public class Path extends GraphicShape
 	{

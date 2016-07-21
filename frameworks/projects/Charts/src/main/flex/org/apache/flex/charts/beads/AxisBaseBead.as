@@ -22,11 +22,11 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IAxisGroup;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 	
 	/**
 	 * The AxisBaseBead is the base class for the chart axis beads.

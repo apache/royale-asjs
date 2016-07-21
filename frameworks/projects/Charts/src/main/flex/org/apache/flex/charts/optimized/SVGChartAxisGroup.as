@@ -19,9 +19,9 @@
 package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
 	
 	/**
 	 * The SVGChartAxisGroup provides a GraphicsContainer whose drawing functions

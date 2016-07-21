@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.svg
 {
     COMPILE::SWF
     {
@@ -24,7 +24,7 @@ package org.apache.flex.core.graphics
         import flash.text.TextFieldType;
 
         import org.apache.flex.core.CSSTextField;
-        import org.apache.flex.core.graphics.utils.PathHelper;
+        import org.apache.flex.graphics.utils.PathHelper;
     }
     COMPILE::JS
     {

@@ -36,8 +36,8 @@ package org.apache.flex.createjs
     }
 	
 	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.SolidColor;
 	
     COMPILE::SWF
 	public class CheckBox extends org.apache.flex.html.CheckBox

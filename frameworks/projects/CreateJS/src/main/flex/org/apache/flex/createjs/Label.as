@@ -33,8 +33,8 @@ package org.apache.flex.createjs
     }
 	
 	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.SolidColor;
 	
 	/**
 	 * The Label class provides a static text string which may be colored.

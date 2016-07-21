@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
-	import org.apache.flex.core.graphics.utils.CompoundTransform;
+	import org.apache.flex.graphics.utils.CompoundTransform;
 
 	public class GradientBase
 	{

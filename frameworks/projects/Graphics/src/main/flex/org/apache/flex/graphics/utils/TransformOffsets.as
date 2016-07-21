@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics.utils
+package org.apache.flex.graphics.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

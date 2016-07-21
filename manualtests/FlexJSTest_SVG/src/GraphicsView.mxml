@@ -24,15 +24,15 @@ limitations under the License.
 			   >
     <fx:Script>
         <![CDATA[            
-			import org.apache.flex.core.graphics.Circle;
-			import org.apache.flex.core.graphics.Ellipse;
-			import org.apache.flex.core.graphics.GradientEntry;
-			import org.apache.flex.core.graphics.GraphicsContainer;
-			import org.apache.flex.core.graphics.LinearGradient;
-			import org.apache.flex.core.graphics.Path;
-			import org.apache.flex.core.graphics.Rect;
-			import org.apache.flex.core.graphics.SolidColor;
-			import org.apache.flex.core.graphics.SolidColorStroke;
+			import org.apache.flex.svg.Circle;
+			import org.apache.flex.svg.Ellipse;
+			import org.apache.flex.graphics.GradientEntry;
+			import org.apache.flex.svg.GraphicsContainer;
+			import org.apache.flex.svg.LinearGradient;
+			import org.apache.flex.svg.Path;
+			import org.apache.flex.svg.Rect;
+			import org.apache.flex.graphics.SolidColor;
+			import org.apache.flex.graphics.SolidColorStroke;
 			import org.apache.flex.events.Event;
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void

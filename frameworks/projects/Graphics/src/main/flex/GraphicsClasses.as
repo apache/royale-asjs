@@ -28,16 +28,16 @@ package
 internal class GraphicsClasses
 {	
 
-	import org.apache.flex.core.graphics.GraphicShape; GraphicShape;
-	import org.apache.flex.core.graphics.Rect; Rect;
-	import org.apache.flex.core.graphics.Ellipse; Ellipse;
-	import org.apache.flex.core.graphics.Circle; Circle;
-	import org.apache.flex.core.graphics.Path; Path;
-	import org.apache.flex.core.graphics.SolidColor; SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke; SolidColorStroke;
-	import org.apache.flex.core.graphics.Text; Text;
-	import org.apache.flex.core.graphics.GraphicsContainer; GraphicsContainer;
-	import org.apache.flex.core.graphics.LinearGradient; LinearGradient;
+	import org.apache.flex.svg.GraphicShape; GraphicShape;
+	import org.apache.flex.svg.Rect; Rect;
+	import org.apache.flex.svg.Ellipse; Ellipse;
+	import org.apache.flex.svg.Circle; Circle;
+	import org.apache.flex.svg.Path; Path;
+	import org.apache.flex.graphics.SolidColor; SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
+	import org.apache.flex.svg.Text; Text;
+	import org.apache.flex.svg.GraphicsContainer; GraphicsContainer;
+	import org.apache.flex.svg.LinearGradient; LinearGradient;
 }
 
 }
