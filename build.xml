@@ -322,7 +322,7 @@
             unless="FALCONJX_HOME"/>
     </target>
 
-    <target name="check-typedef-home" unless="FLEXJS_TYPEDEFS_HOME"
+    <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
         description="Check FALCON_HOME is a directory.">
         
         <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
@@ -387,7 +387,7 @@
         <ant dir="${basedir}/frameworks" target="node-config" />
     </target>
 	
-    <target name="copy-externs" description="Copy extern swcs into this folder">
+    <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
         <mkdir dir="${basedir}/js/libs" />
         <copy todir="${basedir}/js/libs" flatten="true">
             <fileset dir="${FLEXJS_TYPEDEFS_HOME}">
