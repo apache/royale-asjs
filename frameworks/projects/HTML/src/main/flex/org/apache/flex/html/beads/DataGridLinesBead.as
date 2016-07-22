@@ -179,7 +179,7 @@ package org.apache.flex.html.beads
 			columnWidth = (columns[0] as DataGridColumn).columnWidth;
 			var xpos:Number = isNaN(columnWidth) ? _area.width / columns.length : columnWidth;
 			
-			_overlay.removeAllElements();
+			_overlay.clear();
 			
 			// draw the verticals
 			for (var i:int=1; i < columns.length; i++) {

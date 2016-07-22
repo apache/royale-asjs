@@ -54,6 +54,19 @@ package org.apache.flex.svg
 		 */
 		public function removeAllElements():void
 		{
+            clear();
+        }
+        
+        /**
+         *  Clears all of the drawn path data.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7.0
+         */
+        public function clear():void
+        {
             COMPILE::SWF
             {
                 graphics.clear();
@@ -65,7 +78,7 @@ package org.apache.flex.svg
                     svg.removeChild(svg.lastChild);
                 }
             }
-		}
+        }
 
 		/**
 		 *  Draw the rectangle.
