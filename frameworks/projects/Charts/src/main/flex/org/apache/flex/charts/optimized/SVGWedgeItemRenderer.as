@@ -19,7 +19,7 @@
 package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
 	import org.apache.flex.svg.Path;
@@ -28,7 +28,7 @@ package org.apache.flex.charts.optimized
 	
 	/**
 	 *  The SVGWedgeItemRenderer draws its graphics directly into a SVGChartDataGroup
-	 *  (a GraphicsContainer).
+	 *  (a CompoundGraphic).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -237,7 +237,7 @@ package org.apache.flex.charts.optimized
 								  radius:Number, yRadius:Number = NaN,
 								  continueFlag:Boolean = false):void
 		{			
-			var graphicsContainer:GraphicsContainer = this.itemRendererParent as GraphicsContainer;
+			var graphicsContainer:CompoundGraphic = this.itemRendererParent as CompoundGraphic;
 			
 			var x1:Number = x + radius * Math.cos(startAngle);
 			var y1:Number = y + radius * Math.sin(startAngle);

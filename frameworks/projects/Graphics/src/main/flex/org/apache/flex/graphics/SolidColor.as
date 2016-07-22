@@ -14,6 +14,8 @@
 
 package org.apache.flex.graphics
 {
+	import org.apache.flex.utils.CSSUtils;
+
     COMPILE::SWF
     {
         import flash.geom.Point;
@@ -126,11 +128,7 @@ package org.apache.flex.graphics
         COMPILE::JS
         public function addFillAttrib(value:IGraphicShape):String
         {
-            var color:String = Number(this.color).toString(16);
-            if (color.length == 1) color = '00' + color;
-            if (color.length == 2) color = '00' + color;
-            if (color.length == 4) color = '00' + color;
-            return 'fill:#' + String(color) + ';fill-opacity:' + String(alpha);
+            return 'fill:' + CSSUtils.attributeFromColor(color) + ';fill-opacity:' + String(alpha);
         }
 	}
 }

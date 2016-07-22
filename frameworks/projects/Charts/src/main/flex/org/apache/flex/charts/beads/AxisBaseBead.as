@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -22,7 +23,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IAxisGroup;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
 	import org.apache.flex.graphics.SolidColor;
@@ -67,7 +68,7 @@ package org.apache.flex.charts.beads
 		}
 		
 		private var _strand:IStrand;
-		private var wrapper:GraphicsContainer;
+		private var wrapper:CompoundGraphic;
 		private var _axisGroup:IAxisGroup;
 	
 		private var _placement:String = "unset";
@@ -160,7 +161,7 @@ package org.apache.flex.charts.beads
 		{
 			_axisGroup = value;
 			
-			wrapper = new GraphicsContainer();
+			wrapper = new CompoundGraphic();
 			UIBase(_axisGroup).addElement(wrapper);
 			wrapper.x = 0;
 			wrapper.y = 0;

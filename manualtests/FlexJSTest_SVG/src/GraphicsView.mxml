@@ -27,7 +27,7 @@ limitations under the License.
 			import org.apache.flex.svg.Circle;
 			import org.apache.flex.svg.Ellipse;
 			import org.apache.flex.graphics.GradientEntry;
-			import org.apache.flex.svg.GraphicsContainer;
+			import org.apache.flex.svg.CompoundGraphic;
 			import org.apache.flex.svg.LinearGradient;
 			import org.apache.flex.svg.Path;
 			import org.apache.flex.svg.Rect;
@@ -38,7 +38,7 @@ limitations under the License.
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
 				//drawIndividualShapes();
-				//drawOnGraphicsContainer();
+				//drawOnCompoundGraphic();
 			}
 			
 			private function drawIndividualShapes():void
@@ -198,9 +198,9 @@ limitations under the License.
 				this.addElement(path4);
 			}
 			
-			private function drawOnGraphicsContainer():void
+			private function drawOnCompoundGraphic():void
 			{
-				var container:GraphicsContainer = new GraphicsContainer();
+				var container:CompoundGraphic = new CompoundGraphic();
 				
 /*				var fill:SolidColor = new SolidColor();
 				fill.color = 0xFF0000;

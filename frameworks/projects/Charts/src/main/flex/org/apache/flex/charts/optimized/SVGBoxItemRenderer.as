@@ -20,7 +20,7 @@ package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
 	import org.apache.flex.graphics.SolidColor;
@@ -30,7 +30,7 @@ package org.apache.flex.charts.optimized
 	
 	/**
 	 *  The SVGBoxItemRenderer draws its graphics directly into a SVGChartDataGroup
-	 *  (GraphicsContainer).
+	 *  (CompoundGraphic).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

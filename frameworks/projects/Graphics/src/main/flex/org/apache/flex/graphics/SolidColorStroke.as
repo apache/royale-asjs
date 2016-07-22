@@ -14,6 +14,8 @@
 
 package org.apache.flex.graphics
 {
+	import org.apache.flex.utils.CSSUtils;
+
     COMPILE::SWF
     {
         import flash.display.CapsStyle;
@@ -118,11 +120,7 @@ package org.apache.flex.graphics
         COMPILE::JS
         public function addStrokeAttrib(value:IGraphicShape):String
         {
-            var strokeColor:String = Number(color).toString(16);
-            if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-            return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
+            return 'stroke:' + CSSUtils.attributeFromColor(color) + ';stroke-width:' +
                 String(weight) + ';stroke-opacity:' + String(alpha);
         };
 

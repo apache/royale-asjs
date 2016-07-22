@@ -26,7 +26,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Point;
 	
@@ -40,7 +40,7 @@ package org.apache.flex.charts.optimized
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SVGChartDataGroup extends GraphicsContainer implements IItemRendererParent, IContentView, IChartDataGroup
+	public class SVGChartDataGroup extends CompoundGraphic implements IItemRendererParent, IContentView, IChartDataGroup
 	{
 		/**
 		 *  constructor.

@@ -26,7 +26,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.graphics.IStroke;
 	import org.apache.flex.graphics.SolidColor;
 	import org.apache.flex.graphics.SolidColorStroke;
@@ -80,7 +80,7 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			
-			_overlay = new GraphicsContainer();
+			_overlay = new CompoundGraphic();
 			
 			IEventDispatcher(_strand).addEventListener("beadsAdded", handleBeadsAdded);
 		}
@@ -104,7 +104,7 @@ package org.apache.flex.html.beads
 			_stroke = value;
 		}
 		
-		private var _overlay:GraphicsContainer;
+		private var _overlay:CompoundGraphic;
 		private var _area:UIBase;
 		
 		/**

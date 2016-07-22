@@ -14,8 +14,9 @@
 
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.ICompoundGraphic;
+	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
 
     COMPILE::SWF
     {
@@ -35,15 +36,34 @@ package org.apache.flex.svg
     }
 
 	/**
-	 * GraphicsContainer is a surface on which you can
+	 * CompoundGraphic is a surface on which you can
 	 * draw various graphic elements such as Rect, Circle,
 	 * Ellipse, Path etc.
 	 * Use this class if you want to draw multiple graphic
 	 * shapes on a single container.
 	 *
 	 */
-	public class GraphicsContainer extends GraphicShape
+	public class CompoundGraphic extends GraphicShape implements ICompoundGraphic
 	{
+        private var _textColor:IFill;
+
+        public function get textColor():IFill
+        {
+            return _textColor;
+        }
+        /**
+         *  The color of the text.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion FlexJS 0.0
+         */
+        public function set textColor(value:IFill):void
+        {
+            _textColor = value;
+        }
+
 		/**
 		 *  Removes all of the drawn elements of the container.
 		 *
@@ -116,21 +136,6 @@ package org.apache.flex.svg
                 rect.setAttribute('height', String(height) + 'px');
                 element.appendChild(rect);
             }
-		}
-
-        COMPILE::SWF
-		public function createRect(x:Number, y:Number, width:Number, height:Number):void
-		{
-			var color:uint = (fill as SolidColor).color;
-			var alpha:uint = (fill as SolidColor).alpha;
-
-			var shape:Sprite = new Sprite();
-			shape.graphics.beginFill(color,alpha);
-			shape.graphics.drawRect(0, 0, width, height);
-			shape.graphics.endFill();
-			shape.x = x;
-			shape.y = y;
-			addChild(shape);
 		}
 
 		/**
@@ -286,10 +291,10 @@ package org.apache.flex.svg
                 textField.autoSize = "left";
                 textField.text = value;
 
-                var lineColor:SolidColorStroke = stroke as SolidColorStroke;
-                if (lineColor) {
-                    textField.textColor = lineColor.color;
-                    textField.alpha = lineColor.alpha;
+                var color:SolidColor = textColor as SolidColor;
+                if (color) {
+                    textField.textColor = color.color;
+                    textField.alpha = color.alpha;
                 }
 
                 textField.x = x;
@@ -300,7 +305,7 @@ package org.apache.flex.svg
             }
             COMPILE::JS
             {
-                var style:String = getStyleStr();
+                var style:String = getTxtStyleStr();
                 var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
                 text.flexjs_wrapper = this;
                 text.style.left = x;
@@ -314,5 +319,39 @@ package org.apache.flex.svg
                 return text;
             }
 		}
+
+                /**
+         * @return {string} The style attribute.
+         */
+        COMPILE::JS
+        public function getTxtStyleStr():String
+        {
+            var fillStr:String;
+            if (textColor)
+            {
+                fillStr = textColor.addFillAttrib(this);
+            }
+            else
+            {
+                fillStr = 'fill:none';
+            }
+            return fillStr;
+
+            // Not supporting text strokes for now.
+/*
+            var strokeStr:String;
+            if (stroke)
+            {
+                strokeStr = stroke.addStrokeAttrib(this);
+            }
+            else
+            {
+                strokeStr = 'stroke:none';
+            }
+            return fillStr + ';' + strokeStr;
+*/
+
+        }
+
 	}
 }

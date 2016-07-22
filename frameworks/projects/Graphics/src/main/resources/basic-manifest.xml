@@ -25,7 +25,7 @@
 	<component id="Ellipse" class="org.apache.flex.svg.Ellipse" />
 	<component id="Path" class="org.apache.flex.svg.Path" />
 	<component id="Rect" class="org.apache.flex.svg.Rect" />
-	<component id="GraphicsContainer" class="org.apache.flex.svg.GraphicsContainer" />
+	<component id="CompoundGraphic" class="org.apache.flex.svg.CompoundGraphic" />
     <component id="GradientEntry" class="org.apache.flex.graphics.GradientEntry" />
     <component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
     <component id="SolidColor" class="org.apache.flex.graphics.SolidColor" />

@@ -36,7 +36,7 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.SolidColor; SolidColor;
 	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
 	import org.apache.flex.svg.Text; Text;
-	import org.apache.flex.svg.GraphicsContainer; GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 	import org.apache.flex.svg.LinearGradient; LinearGradient;
 }
 
