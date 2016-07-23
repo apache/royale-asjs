@@ -1110,7 +1110,11 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         if (prependLength) {
             var temp:Uint8Array = new Uint8Array(bytes.length + 2);
             temp.set(bytes , 2);
-            new Uint16Array(temp.buffer,0,2)[0] = bytes.length;
+            var len:uint = bytes.length;
+            //preconvert to alternate endian if needed
+            new Uint16Array(temp.buffer,0,2)[0] =
+                    (_endian == Endian.defaultEndian) ?
+                            len : ((len & 0xff) >> 8) | (len << 8);
             bytes = temp;
         }
         return bytes;
