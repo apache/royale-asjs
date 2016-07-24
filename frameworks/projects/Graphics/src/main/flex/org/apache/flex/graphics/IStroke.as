@@ -25,5 +25,12 @@ package org.apache.flex.graphics
         COMPILE::JS
         function addStrokeAttrib(s:IGraphicShape):String;
 
+        function get lineCap():String;
+        function set lineCap(val:String):void;
+        function get lineJoin():String;
+        function set lineJoin(val:String):void;
+        function get miterLimit():Number;
+        function set miterLimit(val:Number):void;
+
 	}
 }
