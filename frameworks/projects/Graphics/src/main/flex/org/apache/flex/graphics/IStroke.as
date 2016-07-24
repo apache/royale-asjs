@@ -31,6 +31,8 @@ package org.apache.flex.graphics
         function set lineJoin(val:String):void;
         function get miterLimit():Number;
         function set miterLimit(val:Number):void;
+        function get lineDash():Array;
+        function set lineDash(val:Array):void;
 
 	}
 }

@@ -19,13 +19,16 @@ package org.apache.flex.graphics
     COMPILE::SWF
     {
         import flash.display.CapsStyle;
-        import flash.display.JointStyle;            
+        import flash.display.JointStyle;
     }
 
     public class SolidColorStroke implements IStroke
     {
-        public function SolidColorStroke()
+        public function SolidColorStroke(color:uint = 0x000000,weight:Number = 1, alpha:Number = 1.0)
         {
+            _color = isNaN(color) ? 0 : color;
+            _weight = isNaN(weight) ? 1 : weight;
+            _alpha = isNaN(alpha) ? 1 : alpha;
             COMPILE::SWF
             {
                 _lineCap = "none";
@@ -131,11 +134,32 @@ package org.apache.flex.graphics
         COMPILE::JS
         public function addStrokeAttrib(value:IGraphicShape):String
         {
-            return 'stroke:' + CSSUtils.attributeFromColor(color) + ';stroke-width:' +
-                String(weight) + ';stroke-opacity:' + String(alpha);
+            var att:Array = [];
+            att.push('stroke:' + CSSUtils.attributeFromColor(color));
+            att.push('stroke-width:' + String(weight));
+            att.push('stroke-opacity:' + String(alpha));
+            att.push('stroke-linecap:' + lineCap);
+            att.push('stroke-linejoin:' + lineJoin);
+            att.push('stroke-miterlimit:' + String(miterLimit));
+            if(lineDash && lineDash.length)
+                att.push('stroke-dasharray:' + lineDash.join(","));
+            return att.join(";");
         };
 
         private var _lineCap:String;
+        /**
+         *  The cap type on line segments.
+         *  Possible values are butt round and square. 
+         *  
+         *  @default butt
+         *
+         *  @see org.apache.flex.graphics.LineStyle
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.3
+         */        
         public function get lineCap():String
         {
             return _lineCap;
@@ -161,6 +185,20 @@ package org.apache.flex.graphics
 
         }
         private var _lineJoin:String = "miter";
+
+        /**
+         *  The join type of two segments.
+         *  Possible values are miter round and bevel. 
+         *  
+         *  @default miter
+         *
+         *  @see org.apache.flex.graphics.LineStyle
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7
+         */        
         public function get lineJoin():String
         {
             return _lineJoin;
@@ -170,6 +208,16 @@ package org.apache.flex.graphics
             _lineJoin = val;
         }
         private var _miterLimit:Number = 4;
+        /**
+         *  The miter limit at the join of two segments.
+         *  
+         *  @default 4
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7
+         */        
         public function get miterLimit():Number
         {
             return _miterLimit;
@@ -177,6 +225,26 @@ package org.apache.flex.graphics
         public function set miterLimit(val:Number):void
         {
             _miterLimit = val;
+        }
+
+        private var _lineDash:Array;
+        /**
+         *  An array describing the pattern of line dashes.
+         *  
+         *  @default [none]
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7
+         */        
+        public function get lineDash():Array
+        {
+            return _lineDash;
+        }
+        public function set lineDash(val:Array):void
+        {
+            _lineDash = val;
         }
 
     }
