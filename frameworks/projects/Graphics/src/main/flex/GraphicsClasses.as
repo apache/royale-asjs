@@ -28,6 +28,7 @@ package
 internal class GraphicsClasses
 {	
 
+	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
 	import org.apache.flex.svg.GraphicShape; GraphicShape;
 	import org.apache.flex.svg.Rect; Rect;
 	import org.apache.flex.svg.Ellipse; Ellipse;

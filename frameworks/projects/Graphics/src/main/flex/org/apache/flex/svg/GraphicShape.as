@@ -76,17 +76,26 @@ package org.apache.flex.svg
 		 */
         public function GraphicShape()
         {
-            COMPILE::JS
-            {
-                element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
-                element.flexjs_wrapper = this;
-                element.style.left = 0;
-                element.style.top = 0;
-                //element.offsetParent = null;
-                positioner = element;
-                positioner.style.position = 'relative';
-            }
+			super();
         }
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
+			element.flexjs_wrapper = this;
+			element.style.left = 0;
+			element.style.top = 0;
+			//element.offsetParent = null;
+			positioner = element;
+			positioner.style.position = 'relative';
+			
+			return element;
+		}
+
 
         COMPILE::SWF
 		protected function applyStroke():void

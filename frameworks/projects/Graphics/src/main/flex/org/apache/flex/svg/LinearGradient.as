@@ -18,6 +18,7 @@ package org.apache.flex.svg
 	import org.apache.flex.graphics.GradientEntry;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IGraphicShape;
+	import org.apache.flex.utils.CSSUtils;
 
     COMPILE::SWF
     {
@@ -103,11 +104,8 @@ package org.apache.flex.svg
                 //Set Offset
                 stop.setAttribute('offset', String(gradientEntry.ratio * 100) + '%');
                 //Set Color
-                var color:String = Number(gradientEntry.color).toString(16);
-                if (color.length == 1) color = '00' + color;
-                if (color.length == 2) color = '00' + color;
-                if (color.length == 4) color = '00' + color;
-                stop.setAttribute('stop-color', '#' + String(color));
+				CSSUtils.attributeFromColor(gradientEntry.color)
+                stop.setAttribute('stop-color', CSSUtils.attributeFromColor(gradientEntry.color));
                 //Set Alpha
                 stop.setAttribute('stop-opacity', String(gradientEntry.alpha));
                 
