@@ -158,7 +158,7 @@ under the License.
     <!-- Copy the sdk descriptor -->
     <fileSet>
       <directory>src/main/resources</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory></outputDirectory>
       <includes>
         <include>flex-sdk-description.xml</include>
       </includes>
