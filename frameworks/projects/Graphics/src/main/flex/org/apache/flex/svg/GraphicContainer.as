@@ -58,7 +58,7 @@ package org.apache.flex.svg
 		 */
 		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
 		{
-			if(c is GraphicShape)
+			if(c is GraphicShape || c is DOMWrapper)
 				super.addElement(c, dispatchEvent);
 			else 
 				throw new Error("Only svg elements can be added to svg containers");
@@ -69,7 +69,7 @@ package org.apache.flex.svg
 		 */
 		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
 		{
-			if(c is GraphicShape)
+			if(c is GraphicShape || c is DOMWrapper)
 				super.addElementAt(c, index, dispatchEvent);
 			else 
 				throw new Error("Only svg elements can be added to svg containers");
