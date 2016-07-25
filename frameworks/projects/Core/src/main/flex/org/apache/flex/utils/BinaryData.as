@@ -112,7 +112,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         return getTypedArray();
     }
     COMPILE::JS
-    private var _endian:String = Endian.defaultEndian;
+    private var _endian:String = Endian.BIG_ENDIAN;
+
+    COMPILE::JS
+    private var _sysEndian:Boolean = _endian == Endian.systemEndian;
 
     /**
      *  Indicates the byte order for the data.
@@ -142,6 +145,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         if (value == Endian.BIG_ENDIAN || Endian.LITTLE_ENDIAN) {
             COMPILE::JS {
                 _endian = value;
+                _sysEndian = value == Endian.systemEndian;
             }
             COMPILE::SWF {
                 ba.endian = value;
@@ -267,19 +271,11 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Int16Array;
-
+            if (!_sysEndian) {
+                short = (((short & 0xff00) >>> 8) | ((short & 0xff) <<8 ));
+            }
             ensureWritableBytes(2);
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Int16Array(ba, _position, 1);
-                view[0] = short;
-            }
-            else
-            {
-                var dv:DataView = new DataView(ba);
-                dv.setInt16(_position,short,_endian == Endian.LITTLE_ENDIAN);
-            }
+            new Int16Array(ba, _position, 1)[0] = short;
             _position += 2;
         }
     }
@@ -300,19 +296,11 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Uint32Array;
-
+            if (!_sysEndian) {
+                unsigned = ((unsigned & 0xff000000) >>> 24) | ((unsigned & 0x00ff0000) >> 8) | ((unsigned & 0x0000ff00) << 8) | (unsigned << 24);
+            }
             ensureWritableBytes(4);
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Uint32Array(ba, _position, 1);
-                view[0] = unsigned;
-            }
-            else
-            {
-                var dv:DataView = new DataView(ba);
-                dv.setUint32(_position,unsigned,_endian == Endian.LITTLE_ENDIAN);
-            }
+            new Uint32Array(ba, _position, 1)[0] = unsigned;
             _position += 4;
         }
     }
@@ -325,28 +313,19 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public function writeInt(integer:int):void
+    public function writeInt(val:int):void
     {
         COMPILE::SWF
         {
-            ba.writeInt(integer);
+            ba.writeInt(val);
         }
         COMPILE::JS
         {
-            var view:Int32Array;
-
+            if (!_sysEndian) {
+                val = (((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24)) >> 0;
+            }
             ensureWritableBytes(4);
-
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Int32Array(ba, _position, 1);
-                view[0] = integer;
-            }
-            else
-            {
-                var dv:DataView = new DataView(ba);
-                dv.setInt32(_position,integer,_endian == Endian.LITTLE_ENDIAN);
-            }
+            new Int32Array(ba, _position, 1)[0] = val;
             _position += 4;
         }
     }
@@ -370,7 +349,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
             ensureWritableBytes(4);
 
-            if(_endian == Endian.defaultEndian)
+            if(_sysEndian)
             {
                 view = new Float32Array(ba, _position, 1);
                 view[0] = value;
@@ -402,7 +381,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
             ensureWritableBytes(8);
 
-            if(_endian == Endian.defaultEndian)
+            if(_sysEndian)
             {
                 view = new Float64Array(ba, _position, 1);
                 view[0] = value;
@@ -453,10 +432,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-
-            var view:Int8Array;
-
-            view = new Int8Array(ba, _position, 1);
+            var view:Int8Array = new Int8Array(ba, _position, 1);
             _position++;
             return view[0];
         }
@@ -476,9 +452,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Uint8Array;
-
-            view = new Uint8Array(ba, _position, 1);
+            var view:Uint8Array = new Uint8Array(ba, _position, 1);
             _position++;
             return view[0];
         }
@@ -595,19 +569,13 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Int16Array;
-
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Int16Array(ba, _position, 1);
-                _position += 2;
-                return view[0];
+            var ret:int = new Int16Array(ba, _position, 1)[0];
+            if (!_sysEndian) {
+                //special case conversion for short int return value to 32 bit int
+                ret = ((((ret & 0xff00) >> 8) | ((ret & 0xff) << 8)) << 16) >> 16;
             }
-
-            var dv:DataView = new DataView(ba);
-            var i:int = dv.getInt16(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 2;
-            return i;
+            return ret;
         }
     }
 
@@ -627,18 +595,12 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Uint32Array;
-
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Uint32Array(ba, _position, 1);
-                _position += 4;
-                return view[0];
+            var ret:uint = new Uint32Array(ba, _position, 1)[0];
+            if (!_sysEndian) {
+                ret = (((ret & 0xff000000) >>> 24) | ((ret & 0x00ff0000) >>> 8) | ((ret & 0x0000ff00) << 8) | (ret << 24)) >>> 0;
             }
-            var dv:DataView = new DataView(ba);
-            var i:uint = dv.getUint32(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
-            return i;
+            return ret;
         }
     }
 
@@ -657,18 +619,13 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Uint16Array;
 
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Uint16Array(ba, _position, 1);
-                _position += 2;
-                return view[0];
+            var ret:uint = new Uint16Array(ba, _position, 1)[0];
+            if (!_sysEndian) {
+                ret = ((ret & 0xff00) >> 8 ) | ((ret & 0xff) << 8);
             }
-            var dv:DataView = new DataView(ba);
-            var i:uint = dv.getUint16(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 2;
-            return i;
+            return ret;
         }
     }
 
@@ -688,19 +645,12 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Int32Array;
-
-            if(_endian == Endian.defaultEndian)
-            {
-                view = new Int32Array(ba, _position, 1);
-                _position += 4;
-                return view[0];
+            var ret:int = new Int32Array(ba, _position, 1)[0];
+            if (!_sysEndian) {
+                ret = (((ret & 0xff000000) >>> 24) | ((ret & 0x00ff0000) >>> 8) | ((ret & 0x0000ff00) << 8) | (ret << 24)) >> 0;
             }
-            var dv:DataView = new DataView(ba);
-            var i:uint = dv.getInt32(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
-            return i;
-
+            return ret;
         }
     }
 
@@ -720,7 +670,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         COMPILE::JS {
             var view:Float32Array;
 
-            if(_endian == Endian.defaultEndian)
+            if(_sysEndian)
             {
                 view = new Float32Array(ba, _position, 1);
                 _position += 4;
@@ -750,7 +700,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         COMPILE::JS {
             var view:Float64Array;
 
-            if(_endian == Endian.defaultEndian)
+            if(_sysEndian)
             {
                 view = new Float64Array(ba, _position, 1);
                 _position += 8;
@@ -991,11 +941,12 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
     }
 
-	
+
     /**
      *  Writes a UTF-8 string to the byte stream.
      *  The length of the UTF-8 string in bytes is written first, as a 16-bit integer,
      *  followed by the bytes representing the characters of the string.
+     *  If the byte length of the string is larger than 65535 this will throw a RangeError
      *
      *  @param The string value to be written.
      *
@@ -1108,13 +1059,17 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             bytes = new Uint8Array(out);
         }
         if (prependLength) {
+            var len:uint = bytes.length;
+            if (len > 0xffff) {
+                //throw error, similar to swf ByteArray behavior:
+                throw new RangeError("UTF max string length of 65535 bytes exceeded : BinaryData.writeUTF");
+            }
             var temp:Uint8Array = new Uint8Array(bytes.length + 2);
             temp.set(bytes , 2);
-            var len:uint = bytes.length;
-            //preconvert to alternate endian if needed
-            new Uint16Array(temp.buffer,0,2)[0] =
-                    (_endian == Endian.defaultEndian) ?
-                            len : ((len & 0xff) >> 8) | (len << 8);
+            //pre-convert to alternate endian if needed
+            new Uint16Array(temp.buffer,0,1)[0] =
+                    _sysEndian ? len : (((len & 0xff00) >> 8) | ((len & 0xff) << 8));
+
             bytes = temp;
         }
         return bytes;
