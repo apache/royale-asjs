@@ -56,6 +56,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     public function BinaryData(bytes:ArrayBuffer = null)
     {
         ba = bytes ? bytes : new ArrayBuffer(0);
+        _len = ba.byteLength;
     }
 
     /**
@@ -481,9 +482,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
             //do we need to check offset and length and sanitize or throw an error?
 
-            if (length == 0) length = ba.byteLength - _position ;
+            if (length == 0) length = _len - _position ;
             //extend the destination length if necessary
-            var extra:int = offset + length - destination.ba.byteLength;
+            var extra:int = offset + length - destination._len;
             if (extra > 0)
                 destination.growBuffer(extra);
             var src:Uint8Array = new Uint8Array(ba, _position,length);
@@ -546,7 +547,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            if (idx >= ba.byteLength) {
+            if (idx >= _len) {
                 setBufferSize(idx+1);
             }
             getTypedArray()[idx] = byte;
@@ -713,6 +714,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
     }
 
+    COMPILE::JS
+    private var _len:uint;
+
 
     public function get length():int
     {
@@ -722,7 +726,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return ba.byteLength;
+            return _len;;
         }
     }
 
@@ -743,7 +747,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     COMPILE::JS
     protected function setBufferSize(newSize):void
     {
-        var n:uint = ba.byteLength;
+        var n:uint = _len;
         if (n != newSize) {
             //note: ArrayBuffer.slice could be better for buffer size reduction
             //looks like it is only IE11+, so not using it here
@@ -754,6 +758,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             ba = newView.buffer;
             if (_position > newSize) _position = newSize;
             _typedArray = newView;
+            _len = newSize;
         }
     }
     /**
@@ -772,7 +777,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return ba.byteLength - _position;
+            return _len - _position;
         }
     }
 
@@ -837,13 +842,13 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
         COMPILE::JS
         {
-            setBufferSize(ba.byteLength + extra);
+            setBufferSize(_len + extra);
         }
     }
 
     COMPILE::JS
     protected function ensureWritableBytes(len:uint):void{
-        if (_position + len > ba.byteLength) {
+        if (_position + len > _len) {
             setBufferSize( _position + len );
         }
     }
@@ -998,7 +1003,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     private function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
         var newContentLength:uint = newBytes.length;
         var dest:Uint8Array;
-        if (offset + newContentLength > ba.byteLength) {
+        if (offset + newContentLength > _len) {
             dest = new Uint8Array(offset + newContentLength);
             dest.set(new Uint8Array(ba, 0, offset));
             dest.set(newBytes, offset);
