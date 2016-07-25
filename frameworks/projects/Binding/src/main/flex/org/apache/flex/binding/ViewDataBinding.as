@@ -331,7 +331,21 @@ package org.apache.flex.binding
                 if (_strand[p] != null)
                 {
                     var destination:IStrand = _strand[p] as IStrand;
-                    destination.addBead(deferredBindings[p]);
+					if (destination)
+	                    destination.addBead(deferredBindings[p]);
+					else
+					{
+						var destObject:Object = _strand[p];
+						if (destObject)
+						{
+							deferredBindings[p].destination = destObject;
+							_strand.addBead(deferredBindings[p]);
+						}
+						else
+						{
+							trace("unexpected condition in deferredBindingsHandler");
+						}
+					}
                     delete deferredBindings[p];
                 }
             }
