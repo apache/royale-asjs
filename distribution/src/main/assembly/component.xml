@@ -252,6 +252,11 @@ under the License.
       <destName>basic-manifest-graphics.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Graphics/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest-graphics.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/HTML/src/main/resources/basic-as-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-as-manifest-html.xml</destName>
@@ -264,7 +269,7 @@ under the License.
     <file>
       <source>../frameworks/projects/HTML/src/main/resources/svg-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>svg-manifest.xml</destName>
+      <destName>svg-manifest-html.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</source>
