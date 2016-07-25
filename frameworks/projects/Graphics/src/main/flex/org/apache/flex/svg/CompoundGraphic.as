@@ -14,9 +14,11 @@
 
 package org.apache.flex.svg
 {
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
+    import org.apache.flex.graphics.ICompoundGraphic;
+    import org.apache.flex.graphics.IFill;
+    import org.apache.flex.graphics.IStroke;
+    import org.apache.flex.graphics.PathBuilder;
+    import org.apache.flex.graphics.SolidColor;
 
     COMPILE::SWF
     {
@@ -35,21 +37,21 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	/**
-	 * CompoundGraphic is a surface on which you can
-	 * draw various graphic elements such as Rect, Circle,
-	 * Ellipse, Path etc.
-	 * Use this class if you want to draw multiple graphic
-	 * shapes on a single container.
-	 *
-	 */
-	public class CompoundGraphic extends GraphicShape implements ICompoundGraphic
-	{
-        private var _textColor:IFill;
+    /**
+     * CompoundGraphic is a surface on which you can
+     * draw various graphic elements such as Rect, Circle,
+     * Ellipse, Path etc.
+     * Use this class if you want to draw multiple graphic
+     * shapes on a single container.
+     *
+     */
+    public class CompoundGraphic extends GraphicShape implements ICompoundGraphic
+    {
+        private var _textFill:IFill;
 
-        public function get textColor():IFill
+        public function get textFill():IFill
         {
-            return _textColor;
+            return _textFill;
         }
         /**
          *  The color of the text.
@@ -59,21 +61,40 @@ package org.apache.flex.svg
          *  @playerversion AIR 1.1
          *  @productversion FlexJS 0.0
          */
-        public function set textColor(value:IFill):void
+        public function set textFill(value:IFill):void
         {
-            _textColor = value;
+            _textFill = value;
         }
 
-		/**
-		 *  Removes all of the drawn elements of the container.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0.3
-		 */
-		public function removeAllElements():void
-		{
+        private var _textStroke:IStroke;
+
+        public function get textStroke():IStroke
+        {
+            return _textStroke;
+        }
+        /**
+         *  The stroke color of the text.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion FlexJS 0.0
+         */
+        public function set textStroke(value:IStroke):void
+        {
+            _textStroke = value;
+        }
+
+        /**
+         *  Removes all of the drawn elements of the container.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0.3
+         */
+        public function removeAllElements():void
+        {
             clear();
         }
         
@@ -100,21 +121,21 @@ package org.apache.flex.svg
             }
         }
 
-		/**
-		 *  Draw the rectangle.
-		 *  @param x The x position of the top-left corner of the rectangle.
-		 *  @param y The y position of the top-left corner.
-		 *  @param width The width of the rectangle.
-		 *  @param height The height of the rectangle.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0.3
+        /**
+         *  Draw the rectangle.
+         *  @param x The x position of the top-left corner of the rectangle.
+         *  @param y The y position of the top-left corner.
+         *  @param width The width of the rectangle.
+         *  @param height The height of the rectangle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0.3
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		public function drawRect(x:Number, y:Number, width:Number, height:Number):void
-		{
+         */
+        public function drawRect(x:Number, y:Number, width:Number, height:Number):void
+        {
             COMPILE::SWF
             {
                 applyStroke();
@@ -136,23 +157,23 @@ package org.apache.flex.svg
                 rect.setAttribute('height', String(height) + 'px');
                 element.appendChild(rect);
             }
-		}
+        }
 
-		/**
-		 *  Draw the ellipse.
-		 *  @param x The x position of the top-left corner of the bounding box of the ellipse.
-		 *  @param y The y position of the top-left corner of the bounding box of the ellipse.
-		 *  @param width The width of the ellipse.
-		 *  @param height The height of the ellipse.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0.3
+        /**
+         *  Draw the ellipse.
+         *  @param x The x position of the top-left corner of the bounding box of the ellipse.
+         *  @param y The y position of the top-left corner of the bounding box of the ellipse.
+         *  @param width The width of the ellipse.
+         *  @param height The height of the ellipse.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0.3
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
-		{
+         */
+        public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
+        {
             COMPILE::SWF
             {
                 applyStroke();
@@ -174,22 +195,22 @@ package org.apache.flex.svg
                 ellipse.setAttribute('ry', String(height / 2));
                 element.appendChild(ellipse);
             }
-		}
+        }
 
-		/**
-		 *  Draw the circle.
-		 *  @param x The x location of the center of the circle
-		 *  @param y The y location of the center of the circle.
-		 *  @param radius The radius of the circle.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+        /**
+         *  Draw the circle.
+         *  @param x The x location of the center of the circle
+         *  @param y The y location of the center of the circle.
+         *  @param radius The radius of the circle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		public function drawCircle(x:Number, y:Number, radius:Number):void
-		{
+         */
+        public function drawCircle(x:Number, y:Number, radius:Number):void
+        {
             COMPILE::SWF
             {
                 applyStroke();
@@ -212,26 +233,26 @@ package org.apache.flex.svg
                 element.appendChild(circle);
 
             }
-		}
+        }
 
-		/**
-		 *  Draw the path.
-		 *  @param data A string containing a compact represention of the path segments.
-		 *  The value is a space-delimited string describing each path segment. Each
-		 *  segment entry has a single character which denotes the segment type and
-		 *  two or more segment parameters.
-		 *
-		 *  If the segment command is upper-case, the parameters are absolute values.
-		 *  If the segment command is lower-case, the parameters are relative values.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+        /**
+         *  Draw the path.
+         *  @param data A string containing a compact represention of the path segments.
+         *  The value is a space-delimited string describing each path segment. Each
+         *  segment entry has a single character which denotes the segment type and
+         *  two or more segment parameters.
+         *
+         *  If the segment command is upper-case, the parameters are absolute values.
+         *  If the segment command is lower-case, the parameters are relative values.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		public function drawPath(data:String):void
-		{
+         */
+        public function drawPath(data:String):void
+        {
             COMPILE::SWF
             {
                 applyStroke();
@@ -252,34 +273,187 @@ package org.apache.flex.svg
                 path.setAttribute('d', data);
                 element.appendChild(path);
             }
-		}
+        }
 
-		public function drawLine():void
-		{
+        public function drawLine():void
+        {
 
-		}
+        }
 
-		public function drawPolygon():void
-		{
+        public function drawPolygon():void
+        {
 
-		}
+        }
 
-		/**
-		 *  Draw a string of characters.
-		 *  @param value The string to draw.
-		 *  @param x The x location of the center of the circle
-		 *  @param y The y location of the center of the circle.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+
+        /**
+         * Draws a rounded rectangle using the size of a radius to draw the rounded corners. 
+         * You must set the line style, fill, or both 
+         * on the Graphics object before 
+         * you call the <code>drawRoundRectComplex()</code> method 
+         * by calling the <code>linestyle()</code>, 
+         * <code>lineGradientStyle()</code>, <code>beginFill()</code>, 
+         * <code>beginGradientFill()</code>, or 
+         * <code>beginBitmapFill()</code> method.
+         * 
+         * @param graphics The Graphics object that draws the rounded rectangle.
+         *
+         * @param x The horizontal position relative to the 
+         * registration point of the parent display object, in pixels.
+         * 
+         * @param y The vertical position relative to the 
+         * registration point of the parent display object, in pixels.
+         * 
+         * @param width The width of the round rectangle, in pixels.
+         * 
+         * @param height The height of the round rectangle, in pixels.
+         * 
+         * @param topLeftRadius The radius of the upper-left corner, in pixels.
+         * 
+         * @param topRightRadius The radius of the upper-right corner, in pixels.
+         * 
+         * @param bottomLeftRadius The radius of the bottom-left corner, in pixels.
+         * 
+         * @param bottomRightRadius The radius of the bottom-right corner, in pixels.
+         *
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function drawRoundRectComplex(x:Number, y:Number, 
+                                                    width:Number, height:Number, 
+                                                    topLeftRadius:Number, topRightRadius:Number, 
+                                                    bottomLeftRadius:Number, bottomRightRadius:Number):void
+        {
+            COMPILE::SWF
+            {
+                applyStroke();
+                beginFill(new Rectangle(x,y,width,height), new Point(x,y));
+                graphics.drawRoundRectComplex(x,y,width,height,topLeftRadius,topRightRadius,bottomLeftRadius,bottomRightRadius);
+                endFill();
+            }
+            COMPILE::JS
+            {
+                var builder:PathBuilder = new PathBuilder();
+                builder.drawRoundRectComplex(x, y, width, height, topLeftRadius, topRightRadius, bottomLeftRadius, bottomRightRadius);
+                drawPath(builder.getPathString());
+            }
+
+
+    }
+    
+    /**
+     * Draws a rounded rectangle using the size of individual x and y radii to 
+     * draw the rounded corners. 
+     * You must set the line style, fill, or both 
+     * on the Graphics object before 
+     * you call the <code>drawRoundRectComplex2()</code> method 
+     * by calling the <code>linestyle()</code>, 
+     * <code>lineGradientStyle()</code>, <code>beginFill()</code>, 
+     * <code>beginGradientFill()</code>, or 
+     * <code>beginBitmapFill()</code> method.
+     * 
+     * @param graphics The Graphics object that draws the rounded rectangle.
+     *
+     * @param x The horizontal position relative to the 
+     * registration point of the parent display object, in pixels.
+     * 
+     * @param y The vertical position relative to the 
+     * registration point of the parent display object, in pixels.
+     * 
+     * @param width The width of the round rectangle, in pixels.
+     * 
+     * @param height The height of the round rectangle, in pixels.
+     * 
+     * @param radiusX The default radiusX to use, if corner-specific values are not specified.
+     * This value must be specified.
+     * 
+     * @param radiusY The default radiusY to use, if corner-specific values are not specified. 
+     * If 0, the value of radiusX is used.
+     * 
+     * @param topLeftRadiusX The x radius of the upper-left corner, in pixels. If NaN, 
+     * the value of radiusX is used.
+     * 
+     * @param topLeftRadiusY The y radius of the upper-left corner, in pixels. If NaN,
+     * the value of topLeftRadiusX is used.
+     * 
+     * @param topRightRadiusX The x radius of the upper-right corner, in pixels. If NaN,
+     * the value of radiusX is used.
+     * 
+     * @param topRightRadiusY The y radius of the upper-right corner, in pixels. If NaN,
+     * the value of topRightRadiusX is used.
+     * 
+     * @param bottomLeftRadiusX The x radius of the bottom-left corner, in pixels. If NaN,
+     * the value of radiusX is used.
+     * 
+     * @param bottomLeftRadiusY The y radius of the bottom-left corner, in pixels. If NaN,
+     * the value of bottomLeftRadiusX is used.
+     * 
+     * @param bottomRightRadiusX The x radius of the bottom-right corner, in pixels. If NaN,
+     * the value of radiusX is used.
+     * 
+     * @param bottomRightRadiusY The y radius of the bottom-right corner, in pixels. If NaN,
+     * the value of bottomRightRadiusX is used.
+     * 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function drawRoundRectComplex2(x:Number, y:Number, 
+                                                width:Number, height:Number, 
+                                                radiusX:Number, radiusY:Number,
+                                                topLeftRadiusX:Number, topLeftRadiusY:Number,
+                                                topRightRadiusX:Number, topRightRadiusY:Number,
+                                                bottomLeftRadiusX:Number, bottomLeftRadiusY:Number,
+                                                bottomRightRadiusX:Number, bottomRightRadiusY:Number):void
+    {
+        var builder:PathBuilder = new PathBuilder();
+        builder.drawRoundRectComplex2(x, y, width, height, radiusX, radiusY,topLeftRadiusX, topLeftRadiusY,topRightRadiusX, topRightRadiusY,bottomLeftRadiusX, bottomLeftRadiusY,bottomRightRadiusX, bottomRightRadiusY);
+
+        COMPILE::SWF
+        {
+            applyStroke();
+            beginFill(new Rectangle(x,y,width,height), new Point(x,y));
+            builder.draw(graphics);
+            endFill();
+        }
+        COMPILE::JS
+        {
+            drawPath(builder.getPathString());
+        }
+    }
+    
+        /*
+        What about these?
+        beginBitmapFill
+        beginFill
+        beginGradientFill
+        beginShaderFill
+        drawGraphicsData
+        drawRoundRect
+        drawTriangles
+        */
+
+        /**
+         *  Draw a string of characters.
+         *  @param value The string to draw.
+         *  @param x The x location of the center of the circle
+         *  @param y The y location of the center of the circle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion Text
          *  @flexjsignorecoercion Node
-		 */
-		public function drawText(value:String, x:Number, y:Number):Object
-		{
+         */
+        public function drawText(value:String, x:Number, y:Number):Object
+        {
             COMPILE::SWF
             {
                 var textField:CSSTextField = new CSSTextField();
@@ -291,7 +465,7 @@ package org.apache.flex.svg
                 textField.autoSize = "left";
                 textField.text = value;
 
-                var color:SolidColor = textColor as SolidColor;
+                var color:SolidColor = textFill as SolidColor;
                 if (color) {
                     textField.textColor = color.color;
                     textField.alpha = color.alpha;
@@ -318,7 +492,7 @@ package org.apache.flex.svg
                 element.appendChild(text);
                 return text;
             }
-		}
+        }
 
                 /**
          * @return {string} The style attribute.
@@ -327,31 +501,28 @@ package org.apache.flex.svg
         public function getTxtStyleStr():String
         {
             var fillStr:String;
-            if (textColor)
+            if (textFill)
             {
-                fillStr = textColor.addFillAttrib(this);
+                fillStr = textFill.addFillAttrib(this);
             }
             else
             {
                 fillStr = 'fill:none';
             }
-            return fillStr;
 
-            // Not supporting text strokes for now.
-/*
             var strokeStr:String;
-            if (stroke)
+            if (textStroke)
             {
-                strokeStr = stroke.addStrokeAttrib(this);
+                strokeStr = textStroke.addStrokeAttrib(this);
             }
             else
             {
                 strokeStr = 'stroke:none';
             }
             return fillStr + ';' + strokeStr;
-*/
+
 
         }
 
-	}
+    }
 }

@@ -22,7 +22,9 @@ package org.apache.flex.graphics
 		function drawCircle(x:Number, y:Number, radius:Number):void;
 		function drawPath(data:String):void;
 		function drawText(value:String, x:Number, y:Number):Object;
-		function get textColor():IFill;
-		function set textColor(value:IFill):void;
+		function get textFill():IFill;
+		function set textFill(value:IFill):void;
+		function get textStroke():IStroke;
+		function set textStroke(value:IStroke):void;
 	}
 }
