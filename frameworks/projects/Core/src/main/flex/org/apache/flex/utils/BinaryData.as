@@ -18,59 +18,60 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
+
 COMPILE::SWF
 {
     import flash.utils.ByteArray;
 }
 
-    
+
 /**
  *  The BinaryData class is a class that represents binary data.  The way
  *  browsers handle binary data varies.  This class abstracts those
- *  differences..  
- *  
+ *  differences..
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class BinaryData
+public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 {
     /**
      *  Constructor. The constructor takes an optional bytes argument.
      *  In Flash this should be a ByteArray. In JS this should be an ArrayBuffer
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public function BinaryData(bytes:ByteArray = null)
-	{
+    public function BinaryData(bytes:ByteArray = null)
+    {
         ba = bytes ? bytes : new ByteArray();
     }
 
     COMPILE::JS
     public function BinaryData(bytes:ArrayBuffer = null)
-    {    
+    {
         ba = bytes ? bytes : new ArrayBuffer(0);
     }
-	
-	/**
-	 *  Utility method to create a BinaryData object from a string.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7.0
-	 */        
-	public static function fromString(str:String):BinaryData
-	{
-		var bd:BinaryData = new BinaryData();
-		bd.writeUTFBytes(str);
-		return bd;
-	}
+
+    /**
+     *  Utility method to create a BinaryData object from a string.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public static function fromString(str:String):BinaryData
+    {
+        var bd:BinaryData = new BinaryData();
+        bd.writeUTFBytes(str);
+        return bd;
+    }
 
     /**
      *  Gets a reference to the internal array of bytes.
@@ -78,408 +79,702 @@ public class BinaryData
      *  On the JS side, it's a Uint8Array.
      *  This is primarily used for indexed access to the bytes, and internally
      *  where the platform-specific implementation is significant.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.7.0
      */
-     COMPILE::SWF
-     public function get array():ByteArray
-     {
+    COMPILE::SWF
+    public function get array():ByteArray
+    {
         return ba;
-     }
+    }
 
     /**
      *  Gets a reference to the internal array of bytes.
      *  On the Flash side, this is  a ByteArray.
      *  On the JS side, it's a Uint8Array.
-     *  This is primarily used for indexed access to the bytes, and internally
-     *  where the platform-specific implementation is significant.
-     *  
+     *  This is primarily used for indexed (Array) access to the bytes, particularly
+     *  where platform-specific performance optimization is required.
+     *  To maintain cross-target consistency, you should not alter the length
+     *  of the ByteArray in any swf specific code, assume its length is fixed
+     *  (even though it is not).
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.7.0
      */
-     COMPILE::JS
-     public function get array():Uint8Array
-     {
+    COMPILE::JS
+    public function get array():Uint8Array
+    {
         return getTypedArray();
-     }
+    }
+    COMPILE::JS
+    private var _endian:String = Endian.defaultEndian;
 
-	private var _endian:String = Endian.DEFAULT;
+    /**
+     *  Indicates the byte order for the data.
+     *  The default is the target default which in Javascript is machine dependent.
+     *  It is possible to check the default Endianness of the target platform at runtime with
+     *  <code>org.apache.flex.utils.Endian.defaultEndian</code>
+     *  To ensure portable bytes, set the endian to Endian.BIG_ENDIAN or Endian.LITTLE_ENDIAN as appropriate.
+     *  Setting to values other than Endian.BIG_ENDIAN or Endian.LITTLE_ENDIAN is ignored.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
+    public function get endian():String
+    {
+        COMPILE::SWF {
+            return ba.endian;
+        }
+        COMPILE::JS {
+            return _endian;
+        }
+    }
 
-	/**
-	 *  Indicates the byte order for the data.
-	 *  The default is "default" which in Javascript is machine dependent.
-	 *  To ensure portable bytes, set the endian to big or little as appropriate.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.7.0
-	 */        
-	public function get endian():String
-	{
-		return _endian;
-	}
-	
-	public function set endian(value:String):void
-	{
-		_endian = value;
-		
-		COMPILE::SWF
-		{
-			if(value == Endian.DEFAULT)
-				ba.endian = Endian.BIG_ENDIAN;
-			else
-				ba.endian = value;
-		}
-	}
+    public function set endian(value:String):void
+    {
+        if (value == Endian.BIG_ENDIAN || Endian.LITTLE_ENDIAN) {
+            COMPILE::JS {
+                _endian = value;
+            }
+            COMPILE::SWF {
+                ba.endian = value;
+            }
+        }
+    }
 
     COMPILE::SWF
-	private var ba:ByteArray;
-	
+    private var ba:ByteArray;
+
     COMPILE::JS
     private var ba:ArrayBuffer;
-    
+
     COMPILE::JS
     private var _position:int = 0;
-    
-	/**
-	 * Get the platform-specific data for sending.
-	 * Generally only used by the network services.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-	 */
-	public function get data():Object
-	{
-		return ba;
-	}
-	
+
     /**
-     *  Write a byte of binary data at the current position
-     *  
+     * Get the platform-specific data for sending.
+     * Generally only used by the network services.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeByte(byte:int):void
-	{
+    public function get data():Object
+    {
+        return ba;
+    }
+
+    /**
+     *  Write a Boolean value (as a single byte) at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function writeBoolean(value:Boolean):void
+    {
         COMPILE::SWF
         {
-            ba.writeByte(byte);                
+            ba.writeBoolean(value);
+        }
+
+        COMPILE::JS
+        {
+            writeByte(value ? 1 :0);
+        }
+    }
+
+    /**
+     *  Write a byte of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function writeByte(byte:int):void
+    {
+        COMPILE::SWF
+        {
+            ba.writeByte(byte);
         }
         COMPILE::JS
         {
             var view:Uint8Array;
-            
-            growBuffer(1);
-            
+
+            ensureWritableBytes(1);
+
             view = new Uint8Array(ba, _position, 1);
             view[0] = byte;
             _position++;
         }
-	}
-	
+    }
     /**
-     *  Write a short integer of binary data at the current position
-     *  
+     *  Writes a sequence of <code>length</code> bytes from the <code>source</code> BinaryData, starting
+     *  at <code>offset</code> (zero-based index) bytes into the source BinaryData. If length
+     *  is omitted or is zero, it will represent the entire length of the source
+     *  starting from offset. If offset is omitted also, it defaults to zero.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeShort(short:int):void
-	{
+    public function writeBytes(source:BinaryData, offset:uint = 0, length:uint = 0):void
+    {
         COMPILE::SWF
         {
-            ba.writeShort(short);                
+            ba.writeBytes(source.ba,offset,length);
+        }
+
+        COMPILE::JS
+        {
+
+            if (length == 0) length = source.length - offset ;
+
+            ensureWritableBytes(length);
+
+            var dest:Uint8Array = new Uint8Array(ba, _position, length);
+            var src:Uint8Array = new Uint8Array(source.ba, offset,length);
+            dest.set(src);
+            _position += length;
+        }
+
+    }
+
+    /**
+     *  Write a short integer of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function writeShort(short:int):void
+    {
+        COMPILE::SWF
+        {
+            ba.writeShort(short);
         }
         COMPILE::JS
         {
             var view:Int16Array;
-            
-            growBuffer(2);
-			if(_endian == Endian.DEFAULT)
-			{
-	            view = new Int16Array(ba, _position, 1);
-    	        view[0] = short;
-			}
-			else
-			{
-				var dv:DataView = new DataView(ba);
-				dv.setInt16(_position,short,_endian == Endian.LITTLE_ENDIAN);
-			}
+
+            ensureWritableBytes(2);
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Int16Array(ba, _position, 1);
+                view[0] = short;
+            }
+            else
+            {
+                var dv:DataView = new DataView(ba);
+                dv.setInt16(_position,short,_endian == Endian.LITTLE_ENDIAN);
+            }
             _position += 2;
         }
-	}
-	
+    }
+
     /**
-     *  Write an unsigned int of binary data at the current position
-     *  
+     *  Write an unsigned int (32 bits) of binary data at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeUnsignedInt(unsigned:uint):void
-	{
+    public function writeUnsignedInt(unsigned:uint):void
+    {
         COMPILE::SWF
         {
-            ba.writeUnsignedInt(unsigned);                
+            ba.writeUnsignedInt(unsigned);
         }
         COMPILE::JS
         {
             var view:Uint32Array;
-			
-            growBuffer(4);
-            if(_endian == Endian.DEFAULT)
-			{
-				view = new Uint32Array(ba, _position, 1);
-				view[0] = unsigned;
-			}
-			else
-			{
-				var dv:DataView = new DataView(ba);
-				dv.setUint32(_position,unsigned,_endian == Endian.LITTLE_ENDIAN);
-			}
-			_position += 4;
+
+            ensureWritableBytes(4);
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Uint32Array(ba, _position, 1);
+                view[0] = unsigned;
+            }
+            else
+            {
+                var dv:DataView = new DataView(ba);
+                dv.setUint32(_position,unsigned,_endian == Endian.LITTLE_ENDIAN);
+            }
+            _position += 4;
         }
-	}
+    }
 
     /**
-     *  Write a signed int of binary data at the current position
-     *  
+     *  Write a signed int (32 bits) of binary data at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function writeInt(integer:int):void
-	{
+    public function writeInt(integer:int):void
+    {
         COMPILE::SWF
         {
-            ba.writeInt(integer);                
+            ba.writeInt(integer);
         }
         COMPILE::JS
         {
             var view:Int32Array;
-			
-            growBuffer(4);
-			
-			if(_endian == Endian.DEFAULT)
-			{
-            	view = new Int32Array(ba, _position, 1);
-            	view[0] = integer;
-			}
-			else
-			{
-				var dv:DataView = new DataView(ba);
-				dv.setInt32(_position,integer,_endian == Endian.LITTLE_ENDIAN);
-			}
+
+            ensureWritableBytes(4);
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Int32Array(ba, _position, 1);
+                view[0] = integer;
+            }
+            else
+            {
+                var dv:DataView = new DataView(ba);
+                dv.setInt32(_position,integer,_endian == Endian.LITTLE_ENDIAN);
+            }
             _position += 4;
         }
-	}
+    }
 
     /**
-     *  Read a byte of binary data at the current position
-     *  
+     *  Writes an IEEE 754 single-precision (32-bit) floating-point number to the
+     *  BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function readByte():int
-	{
+    public function writeFloat(value:Number):void
+    {
+        COMPILE::SWF {
+            return ba.writeFloat(value);
+        }
+        COMPILE::JS {
+            var view:Float32Array;
+
+            ensureWritableBytes(4);
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Float32Array(ba, _position, 1);
+                view[0] = value;
+            }
+            else
+            {
+                var dv:DataView = new DataView(ba);
+                dv.setFloat32(_position,value,_endian == Endian.LITTLE_ENDIAN);
+            }
+            _position += 4;
+        }
+    }
+    /**
+     *  Writes an IEEE 754 double-precision (64-bit) floating-point number to the
+     *  BinaryData at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function writeDouble(value:Number):void
+    {
+        COMPILE::SWF {
+            return ba.writeDouble(value);
+        }
+        COMPILE::JS {
+            var view:Float64Array;
+
+            ensureWritableBytes(8);
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Float64Array(ba, _position, 1);
+                view[0] = value;
+            }
+            else
+            {
+                var dv:DataView = new DataView(ba);
+                dv.setFloat64(_position,value,_endian == Endian.LITTLE_ENDIAN);
+            }
+            _position += 8;
+        }
+    }
+    /**
+     *  Reads a Boolean value (as a single byte) at the current position.
+     *  returns true if the byte was non-zero, false otherwise
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+
+    public function readBoolean():Boolean
+    {
         COMPILE::SWF
         {
-            return ba.readByte();                
+            return ba.readBoolean();
+        }
+        COMPILE::JS
+        {
+            return Boolean(readUnsignedByte());
+        }
+    }
+
+    /**
+     *  Read a signed byte of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readByte():int
+    {
+        COMPILE::SWF
+        {
+            return ba.readByte();
+        }
+        COMPILE::JS
+        {
+
+            var view:Int8Array;
+
+            view = new Int8Array(ba, _position, 1);
+            _position++;
+            return view[0];
+        }
+    }
+    /**
+     *  Read an unsigned byte of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readUnsignedByte():uint {
+        COMPILE::SWF
+        {
+            return ba.readUnsignedByte();
         }
         COMPILE::JS
         {
             var view:Uint8Array;
-            
+
             view = new Uint8Array(ba, _position, 1);
             _position++;
             return view[0];
         }
-	}
-
-	/**
-	 *  Read a byte of binary data at the specified index. Does not change the <code>position</code> property.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public function readByteAt(idx:uint):int
-	{
-		COMPILE::SWF
-		{
-			return ba[idx];
-		}
-		COMPILE::JS
-		{
-			return getTypedArray()[idx];
-		}
-	}
-	COMPILE::JS
-	{
-		private var _typedArray:Uint8Array;
-	}
-    COMPILE::JS
-    {
-        private function getTypedArray():Uint8Array
-        {
-            if(_typedArray == null)
-                _typedArray = new Uint8Array(ba);
-                return _typedArray;
-        }
     }
 
-	/**
-	 *  Writes a byte of binary data at the specified index. Does not change the <code>position</code> property.
-	 *  This is a method for optimzed writes with no range checking.
-	 *  If the specified index is out of range, it can throw an error.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public function writeByteAt(idx:uint,byte:int):void
-	{
-		COMPILE::SWF
-			{
-				ba[idx] = byte;
-			}
-			COMPILE::JS
-			{
-				getTypedArray()[idx] = byte;
-			}
-	}
-	
     /**
-     *  Read a short int of binary data at the current position
-     *  
+     *  Reads the number of data bytes, specified by the length parameter, from the BinaryData.
+     *  The bytes are read into the BinaryData object specified by the destination parameter,
+     *  and the bytes are written into the destination BinaryData starting at the position specified by offset.
+     *  If length is omitted or is zero, all bytes are read following offset to the end of this BinaryData.
+     *  If offset is also omitted, it defaults to zero.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function readShort():int
-	{
+    public function readBytes(destination:BinaryData, offset:uint = 0, length:uint = 0):void
+    {
         COMPILE::SWF
         {
-            return ba.readShort();                
+            ba.readBytes(destination.ba,offset,length);
+        }
+
+        COMPILE::JS
+        {
+            //do we need to check offset and length and sanitize or throw an error?
+
+            if (length == 0) length = ba.byteLength - _position ;
+            //extend the destination length if necessary
+            var extra:int = offset + length - destination.ba.byteLength;
+            if (extra > 0)
+                destination.growBuffer(extra);
+            var src:Uint8Array = new Uint8Array(ba, _position,length);
+            var dest:Uint8Array = new Uint8Array(destination.ba, offset, length);
+
+            dest.set(src);
+            //todo: check position behavior vs. flash implementation (do either or both advance their internal position) :
+            _position+=length;
+        }
+
+    }
+
+    /**
+     *  Read a byte of binary data at the specified index. Does not change the <code>position</code> property.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readByteAt(idx:uint):int
+    {
+        COMPILE::SWF
+        {
+            return ba[idx];
+        }
+        COMPILE::JS
+        {
+            return getTypedArray()[idx];
+        }
+    }
+
+    COMPILE::JS
+    private var _typedArray:Uint8Array;
+
+    COMPILE::JS
+    private function getTypedArray():Uint8Array
+    {
+        if(_typedArray == null)
+            _typedArray = new Uint8Array(ba);
+        return _typedArray;
+    }
+
+
+    /**
+     *  Writes a byte of binary data at the specified index. Does not change the <code>position</code> property.
+     *  This is a method for optimzed writes with no range checking.
+     *  If the specified index is out of range, it can throw an error.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function writeByteAt(idx:uint,byte:int):void
+    {
+        COMPILE::SWF
+        {
+            ba[idx] = byte;
+        }
+        COMPILE::JS
+        {
+            if (idx >= ba.byteLength) {
+                setBufferSize(idx+1);
+            }
+            getTypedArray()[idx] = byte;
+        }
+    }
+
+    /**
+     *  Read a short int of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readShort():int
+    {
+        COMPILE::SWF
+        {
+            return ba.readShort();
         }
         COMPILE::JS
         {
             var view:Int16Array;
-            
-			if(_endian == Endian.DEFAULT)
-			{
-	            view = new Int16Array(ba, _position, 1);
-    	        _position += 2;
-				return view[0];
-			}
-			
-			var dv:DataView = new DataView(ba);
-			var i:int = dv.getInt16(_position,_endian == Endian.LITTLE_ENDIAN);
-			_position += 2;
-			return i;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Int16Array(ba, _position, 1);
+                _position += 2;
+                return view[0];
+            }
+
+            var dv:DataView = new DataView(ba);
+            var i:int = dv.getInt16(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 2;
+            return i;
         }
-	}
-	
+    }
+
     /**
      *  Read an unsigned int of binary data at the current position
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function readUnsignedInt():uint
-	{
+    public function readUnsignedInt():uint
+    {
         COMPILE::SWF
         {
-            return ba.readUnsignedInt();                
+            return ba.readUnsignedInt();
         }
         COMPILE::JS
         {
             var view:Uint32Array;
-            
-			if(_endian == Endian.DEFAULT)
-			{
-				view = new Uint32Array(ba, _position, 1);
-				_position += 4;
-				return view[0];
-			}
-			var dv:DataView = new DataView(ba);
-			var i:uint = dv.getUint32(_position,_endian == Endian.LITTLE_ENDIAN);
-			_position += 4;
-			return i;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Uint32Array(ba, _position, 1);
+                _position += 4;
+                return view[0];
+            }
+            var dv:DataView = new DataView(ba);
+            var i:uint = dv.getUint32(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 4;
+            return i;
         }
-	}
-	
+    }
+
+    /**
+     *  Read an unsigned short (16bit) of binary data at the current position
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readUnsignedShort():uint {
+        COMPILE::SWF
+        {
+            return ba.readUnsignedShort();
+        }
+        COMPILE::JS
+        {
+            var view:Uint16Array;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Uint16Array(ba, _position, 1);
+                _position += 2;
+                return view[0];
+            }
+            var dv:DataView = new DataView(ba);
+            var i:uint = dv.getUint16(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 2;
+            return i;
+        }
+    }
+
     /**
      *  Read a signed int of binary data at the current position
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     public function readInt():int
-	{
+    {
         COMPILE::SWF
         {
-            return ba.readInt();                
+            return ba.readInt();
         }
         COMPILE::JS
         {
             var view:Int32Array;
-			
-			if(_endian == Endian.DEFAULT)
-			{
-				view = new Int32Array(ba, _position, 1);
-				_position += 4;
-				return view[0];
-			}
-			var dv:DataView = new DataView(ba);
-			var i:uint = dv.getInt32(_position,_endian == Endian.LITTLE_ENDIAN);
-			_position += 4;
-			return i;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Int32Array(ba, _position, 1);
+                _position += 4;
+                return view[0];
+            }
+            var dv:DataView = new DataView(ba);
+            var i:uint = dv.getInt32(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 4;
+            return i;
 
         }
-	}
+    }
 
     /**
-     *  The total number of bytes of data.
-     *  
+     *  Reads an IEEE 754 single-precision (32-bit) floating-point number from the BinaryData.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function get length():int
-	{
+    public function readFloat():Number
+    {
+        COMPILE::SWF {
+            return ba.readFloat();
+        }
+        COMPILE::JS {
+            var view:Float32Array;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Float32Array(ba, _position, 1);
+                _position += 4;
+                return view[0];
+            }
+            var dv:DataView = new DataView(ba);
+            var i:Number = dv.getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 4;
+            return i;
+        }
+
+    }
+
+    /**
+     *  Reads an IEEE 754 double-precision (64-bit) floating-point number from the BinaryData.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function readDouble():Number
+    {
+        COMPILE::SWF {
+            return ba.readDouble();
+        }
+        COMPILE::JS {
+            var view:Float64Array;
+
+            if(_endian == Endian.defaultEndian)
+            {
+                view = new Float64Array(ba, _position, 1);
+                _position += 8;
+                return view[0];
+            }
+            var dv:DataView = new DataView(ba);
+            var i:Number = dv.getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
+            _position += 8;
+            return i;
+        }
+    }
+
+
+    public function get length():int
+    {
         COMPILE::SWF
         {
-            return ba.length;                
+            return ba.length;
         }
         COMPILE::JS
         {
             return ba.byteLength;
         }
-	}
+    }
 
     public function set length(value:int):void
     {
@@ -495,62 +790,69 @@ public class BinaryData
 
     }
 
-	COMPILE::JS
-    private function setBufferSize(newSize):void
+    COMPILE::JS
+    protected function setBufferSize(newSize):void
     {
-        var n:int = ba.byteLength;
-        var newBuffer:ArrayBuffer = new ArrayBuffer(newSize);
-        var newView:Uint8Array = new Uint8Array(newBuffer, 0, n);
-        var view:Uint8Array = new Uint8Array(ba, 0, Math.min(newSize,n));
-        newView.set(view);
-        ba = newBuffer;
-		_typedArray = null;
+        var n:uint = ba.byteLength;
+        if (n != newSize) {
+            //note: ArrayBuffer.slice could be better for buffer size reduction
+            //looks like it is only IE11+, so not using it here
+
+            var newView:Uint8Array = new Uint8Array(newSize);
+            var oldView:Uint8Array = new Uint8Array(ba, 0, Math.min(newSize,n));
+            newView.set(oldView);
+            ba = newView.buffer;
+            if (_position > newSize) _position = newSize;
+            _typedArray = newView;
+        }
     }
     /**
      *  The total number of bytes remaining to be read.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function get bytesAvailable():int
-	{
+    public function get bytesAvailable():uint
+    {
         COMPILE::SWF
         {
-            return ba.bytesAvailable;                
+            return ba.bytesAvailable;
         }
         COMPILE::JS
         {
-            return ba.byteLength - position;
+            return ba.byteLength - _position;
         }
-	}
+    }
 
     /**
-     *  The total number of bytes remaining to be read.
-     *  
+
+     *  Moves, or returns the current position, in bytes, of the pointer into the BinaryData object.
+     *  This is the point at which the next call to a read method starts reading or a write method starts writing.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function get position():int
-	{
+    public function get position():uint
+    {
         COMPILE::SWF
         {
-            return ba.position;                
+            return ba.position;
         }
         COMPILE::JS
         {
             return _position;
         }
-	}
-	
+    }
+
     /**
      *  @private
      */
-	public function set position(value:int):void
-	{
+    public function set position(value:uint):void
+    {
         COMPILE::SWF
         {
             ba.position = value;
@@ -559,54 +861,48 @@ public class BinaryData
         {
             _position = value;
         }
-	}
-	
+    }
+
     /**
-     *  A method to extend the size of the binary data
-     *  so you can write more bytes to it.  Not all
+     *  A convenience method to extend the length of the BinaryData
+     *  so you can efficiently write more bytes to it. Not all
      *  browsers have a way to auto-resize a binary
      *  data as you write data to the binary data buffer
-     *  and resizing in large chunks in generally more
+     *  and resizing in large chunks is generally more
      *  efficient anyway.
-     * 
+     *
      *  @param extra The number of additional bytes.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public function growBuffer(extra:int):void
-	{
-		// no need to do anything in AS
+    public function growBuffer(extra:uint):void
+    {
+        COMPILE::SWF
+        {
+            ba.length += extra;
+        }
+
         COMPILE::JS
         {
-            var newBuffer:ArrayBuffer;
-            var newView:Uint8Array;
-            var view:Uint8Array;
-            var i:int;
-            var n:int;
-            
-            if (_position >= ba.byteLength)
-            {
-                n = ba.byteLength;
-                newBuffer = new ArrayBuffer(n + extra);
-                newView = new Uint8Array(newBuffer, 0, n);
-                view = new Uint8Array(ba, 0, n);
-                for (i = 0; i < n; i++)
-                {
-                    newView[i] = view[i];
-                }
-                ba = newBuffer;
-				_typedArray = null;
-            }
+            setBufferSize(ba.byteLength + extra);
         }
-	}
+    }
+
+    COMPILE::JS
+    protected function ensureWritableBytes(len:uint):void{
+        if (_position + len > ba.byteLength) {
+            setBufferSize( _position + len );
+        }
+    }
+
 
     /**
      *  Reads a UTF-8 string from the byte stream.
      *  The string is assumed to be prefixed with an unsigned short indicating the length in bytes.
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -618,19 +914,19 @@ public class BinaryData
         {
             return ba.readUTF();
         }
-        // no need to do anything in AS
+
         COMPILE::JS
         {
-            //TODO Doing nothing about the length for now
-            return this.readUTFBytes(ba.byteLength);
+            var bytes:uint = readUnsignedShort();
+            return this.readUTFBytes(bytes);
         }
     }
 
     /**
      *  Reads a sequence of UTF-8 bytes specified by the length parameter from the byte stream and returns a string.
-     * 
+     *
      *  @param An unsigned short indicating the length of the UTF-8 bytes.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -651,6 +947,7 @@ public class BinaryData
             if('TextDecoder' in window)
             {
                 var decoder:TextDecoder = new TextDecoder('utf-8');
+                _position += length;
                 return decoder.decode(bytes);
             }
 
@@ -689,18 +986,19 @@ public class BinaryData
                     out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
                 }
             }
+            _position += length;
             return out.join('');
         }
     }
 
-
+	
     /**
      *  Writes a UTF-8 string to the byte stream.
      *  The length of the UTF-8 string in bytes is written first, as a 16-bit integer,
-     *  followed by the bytes representing the characters of the string. 
-     * 
+     *  followed by the bytes representing the characters of the string.
+     *
      *  @param The string value to be written.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -710,22 +1008,22 @@ public class BinaryData
     {
         COMPILE::SWF
         {
-            return ba.writeUTF(value);
+            ba.writeUTF(value);
         }
 
         COMPILE::JS
         {
-            //TODO Doing nothing about the length for now
-            return this.writeUTFBytes(value);
+            var utcBytes:Uint8Array = getUTFBytes(value , true);
+            _position =  mergeInToArrayBuffer (_position,utcBytes);
         }
     }
 
     /**
      *  Writes a UTF-8 string to the byte stream. Similar to the writeUTF() method,
      *  but writeUTFBytes() does not prefix the string with a 16-bit length word.
-     * 
+     *
      *  @param The string value to be written.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -740,18 +1038,38 @@ public class BinaryData
 
         COMPILE::JS
         {
-            // Code taken from GC
-            // Use native implementations if/when available
-            var bytes:Uint8Array;
-            if('TextEncoder' in window)
-            {
-                var encoder:TextEncoder = new TextEncoder('utf-8');
-                bytes = encoder.encode(str);
-                ba = bytes.buffer;
-				_typedArray = null;
-                return;
-            }
+            var utcBytes:Uint8Array = getUTFBytes(str , false);
+            _position = mergeInToArrayBuffer (_position , utcBytes);
+        }
+    }
 
+    COMPILE::JS
+    private function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
+        var newContentLength:uint = newBytes.length;
+        var dest:Uint8Array;
+        if (offset + newContentLength > ba.byteLength) {
+            dest = new Uint8Array(offset + newContentLength);
+            dest.set(new Uint8Array(ba, 0, offset));
+            dest.set(newBytes, offset);
+            ba = dest.buffer;
+            _typedArray = dest;
+        } else {
+            dest = new Uint8Array(ba, offset, newContentLength);
+            dest.set(newBytes);
+        }
+        return offset + newContentLength;
+    }
+
+    COMPILE::JS
+    private function getUTFBytes(str:String, prependLength:Boolean):Uint8Array {
+        // Code taken from GC
+        // Use native implementations if/when available
+        var bytes:Uint8Array;
+        if('TextEncoder' in window)
+        {
+            var encoder:TextEncoder = new TextEncoder('utf-8');
+            bytes = encoder.encode(str);
+        } else {
             var out:Array = [];
             var p:int = 0;
             var c:int;
@@ -765,10 +1083,12 @@ public class BinaryData
                 else if (c < 2048)
                 {
                     out[p++] = (c >> 6) | 192;
+
+
                     out[p++] = (c & 63) | 128;
                 }
                 else if (((c & 0xFC00) == 0xD800) && (i + 1) < str.length &&
-                    ((str.charCodeAt(i + 1) & 0xFC00) == 0xDC00))
+                        ((str.charCodeAt(i + 1) & 0xFC00) == 0xDC00))
                 {
                     // Surrogate Pair
                     c = 0x10000 + ((c & 0x03FF) << 10) + (str.charCodeAt(++i) & 0x03FF);
@@ -784,10 +1104,17 @@ public class BinaryData
                     out[p++] = (c & 63) | 128;
                 }
             }
+
             bytes = new Uint8Array(out);
-            ba = bytes.buffer;
-			_typedArray = null;
         }
+        if (prependLength) {
+            var temp:Uint8Array = new Uint8Array(bytes.length + 2);
+            temp.set(bytes , 2);
+            new Uint16Array(temp.buffer,0,2)[0] = bytes.length;
+            bytes = temp;
+        }
+        return bytes;
     }
+
 }
 }

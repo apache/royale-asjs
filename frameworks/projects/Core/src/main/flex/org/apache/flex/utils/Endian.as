@@ -49,14 +49,52 @@ package org.apache.flex.utils
 		public static const LITTLE_ENDIAN:String = "littleEndian";
 
 		/**
-		 *  Uses the default endianness on the system.
-		 *  
+		 *  Indicates an unknown default endianness (when using BinaryData).
+		 *  You cannot use this value to set the endian value of a BinaryData
+		 *  It is used to check the defaultEndian value for an unexpected result
+		 *
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-		public static const DEFAULT:String = "default";
+		public static const UNKNOWN_ENDIAN:String = "unknownEndian";
+
+
+
+		/**
+		 *  Indicates the default endianness on the system.
+		 *  In swf targets this is always BIG_ENDIAN. When targeting
+		 *  javascript it may differ depending on the target environment.
+		 *
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
+		public static function get defaultEndian():String {
+			COMPILE::SWF {
+				return BIG_ENDIAN;
+			}
+			COMPILE::JS {
+				return _defaultEndian;
+			}
+		}
+
+
+		COMPILE::JS
+		private static function _detectDefaultEndian():String{
+            delete Endian["_detectDefaultEndian"];
+			var tester:Uint8Array = new Uint8Array([102,108,101,120]);
+			var checker:Uint32Array = new Uint32Array(tester.buffer);
+			var check:uint = checker[0];
+			return (check == 1718379896) ? BIG_ENDIAN : (check == 2019912806) ? LITTLE_ENDIAN : UNKNOWN_ENDIAN;
+		}
+
+		COMPILE::JS
+		private static var _defaultEndian:String = _detectDefaultEndian();
 
 	}
 }
