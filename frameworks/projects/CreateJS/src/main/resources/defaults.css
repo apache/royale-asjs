@@ -19,6 +19,12 @@
 
 @namespace createjs "library://ns.apache.org/flexjs/createjs";
 
+global
+{
+	IEffectTimer: ClassReference("org.apache.flex.utils.EffectTimer");
+	effectTimerInterval: 10;
+}
+
 createjs|TextButton
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
