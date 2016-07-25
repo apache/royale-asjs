@@ -72,7 +72,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>-->
 	<js:Container x="0" y="0" >
-		<js:Label text="MyButton" x="20" y="5" includeIn="{[up,down,over,disabled]}" />
+		<js:Label text="MyButton" x="20" y="10" includeIn="{[up,down,over,disabled]}" selectable="true"/>
 		
 		<js:Rect id="fill_up" width="100" height="30" includeIn="up" >
 			<js:stroke>
@@ -100,7 +100,7 @@ limitations under the License.
 				<js:SolidColor color="#16A085" alpha="1.0" />
 			</js:fill>
 		</js:Rect>
-		
+		<js:TextButton x="50" y="100" text="Just a button"/>
 	</js:Container>
 	
 </js:View>

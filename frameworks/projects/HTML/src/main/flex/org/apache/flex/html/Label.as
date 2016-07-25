@@ -134,6 +134,28 @@ package org.apache.flex.html
                 this.dispatchEvent('textChange');
             }
 		}
+        private var _selectable:Boolean;
+
+        public function get selectable():Boolean
+        {
+            return _selectable;
+        }
+        public function set selectable(value:Boolean):void
+        {
+            if(value != _selectable)
+            {
+                _selectable = value;
+                COMPILE::JS
+                {
+                    if(element)
+                    {
+                        element.style.cursor = _selectable ? "auto" : "default";
+                        element.style.pointerEvents = _selectable ? "auto" : "none";
+                    }
+                }
+            }
+
+        }
 
 
         /**
@@ -157,6 +179,11 @@ package org.apache.flex.html
             positioner = element;
             element.flexjs_wrapper = this;
             element.style.whiteSpace = "nowrap";
+            if(!selectable)
+            {
+                element.style.cursor = "default";
+                element.style.pointerEvents = "none";
+            }
 
             className = "Label";
             typeNames = "Label";
