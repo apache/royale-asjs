@@ -54,6 +54,9 @@ package org.apache.flex.utils
 		 *  In swf targets this is always BIG_ENDIAN. When targeting
 		 *  javascript it may differ depending on the target environment,
 		 *  but is Endian.LITTLE_ENDIAN for most machines/browsers.
+		 *  In theory, the native support classes for javascript should
+		 *  have better performance when working with binary data
+		 *  for integers and numbers represented with this endianness.
 		 *
 		 *
 		 *  @langversion 3.0
@@ -72,16 +75,13 @@ package org.apache.flex.utils
 
 
 		COMPILE::JS
-		private static function _detectSystemEndian():String{
-            delete Endian["_detectSystemEndian"];
-			var tester:Uint8Array = new Uint8Array([102,108,101,120]);
-			var checker:Uint32Array = new Uint32Array(tester.buffer);
-			var check:uint = checker[0];
-			return (check == 1718379896) ? BIG_ENDIAN : LITTLE_ENDIAN ;
-		}
-
-		COMPILE::JS
-		private static var _sysEndian:String = _detectSystemEndian();
+		private static var _sysEndian:String =
+				function():String {
+					var tester:Uint8Array = new Uint8Array([102,108,101,120]);
+					var checker:Uint32Array = new Uint32Array(tester.buffer);
+					var check:uint = checker[0];
+					return (check == 1718379896) ? BIG_ENDIAN : LITTLE_ENDIAN ;
+				}();
 
 	}
 }

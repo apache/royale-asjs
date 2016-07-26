@@ -62,6 +62,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Utility method to create a BinaryData object from a string.
      *
+     *  @param {String} str The string to convert to BinaryData as UTF-8 bytes.
+     *  @return {BinaryData} The BinaryData instance from the UTF-8 bytes of the string.     *
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -78,13 +81,19 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  Gets a reference to the internal array of bytes.
      *  On the Flash side, this is  a ByteArray.
      *  On the JS side, it's a Uint8Array.
-     *  This is primarily used for indexed access to the bytes, and internally
-     *  where the platform-specific implementation is significant.
+     *  This is primarily used for indexed access to the bytes, and particularly
+     *  where platform-specific performance optimization is required.
+     *  To maintain cross-target consistency, you should not alter the length
+     *  of the ByteArray in any swf specific code, you should assume its length is fixed
+     *  (even though it is not).
+     *
+     *  @return {ByteArray} The BinaryData backing array as ByteArray on flash.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.7.0
+
      */
     COMPILE::SWF
     public function get array():ByteArray
@@ -102,6 +111,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  of the ByteArray in any swf specific code, assume its length is fixed
      *  (even though it is not).
      *
+     *  @return {Uint8Array} The BinaryData backing array as Uint8Array in javascript.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -112,6 +123,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     {
         return getTypedArray();
     }
+
+
     COMPILE::JS
     private var _endian:String = Endian.BIG_ENDIAN;
 
@@ -180,6 +193,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Write a Boolean value (as a single byte) at the current position
      *
+     *  @param {Boolean} value The boolean value to write into the BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -201,6 +216,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Write a byte of binary data at the current position
      *
+     *  @param {int} byte The value to write into the BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -214,12 +231,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            var view:Uint8Array;
-
-            ensureWritableBytes(1);
-
-            view = new Uint8Array(ba, _position, 1);
-            view[0] = byte;
+            if (_position + 1 > _len) {
+                setBufferSize(_position + 1);
+            }
+            new Uint8Array(ba, _position, 1)[0] = byte;
             _position++;
         }
     }
@@ -228,6 +243,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  at <code>offset</code> (zero-based index) bytes into the source BinaryData. If length
      *  is omitted or is zero, it will represent the entire length of the source
      *  starting from offset. If offset is omitted also, it defaults to zero.
+     *
+     *  @param {BinaryData} source The source BinaryData to write from at the current position
+     *  @param {uint} offset The optional offset value of the starting bytes to write inside source
+     *  @param {uint} length The optional length value of the bytes to write from offset in source
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -245,9 +264,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
 
             if (length == 0) length = source.length - offset ;
-
-            ensureWritableBytes(length);
-
+            if (_position + length > _len) {
+                setBufferSize(_position + length);
+            }
             var dest:Uint8Array = new Uint8Array(ba, _position, length);
             var src:Uint8Array = new Uint8Array(source.ba, offset,length);
             dest.set(src);
@@ -257,7 +276,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
-     *  Write a short integer of binary data at the current position
+     *  Write a short integer (16 bits, typically represented by a 32 bit int parameter between -32768 and 65535)
+     *  of binary data at the current position
+     *
+     *  @param {int} short The value to write into the BinaryData at the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -275,7 +297,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (!_sysEndian) {
                 short = (((short & 0xff00) >>> 8) | ((short & 0xff) <<8 ));
             }
-            ensureWritableBytes(2);
+            if (_position + 2 > _len) {
+                setBufferSize(_position + 2);
+            }
             new Int16Array(ba, _position, 1)[0] = short;
             _position += 2;
         }
@@ -284,30 +308,36 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Write an unsigned int (32 bits) of binary data at the current position
      *
+     *  @param {uint} val The value to write into the BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public function writeUnsignedInt(unsigned:uint):void
+    public function writeUnsignedInt(val:uint):void
     {
         COMPILE::SWF
         {
-            ba.writeUnsignedInt(unsigned);
+            ba.writeUnsignedInt(val);
         }
         COMPILE::JS
         {
             if (!_sysEndian) {
-                unsigned = ((unsigned & 0xff000000) >>> 24) | ((unsigned & 0x00ff0000) >> 8) | ((unsigned & 0x0000ff00) << 8) | (unsigned << 24);
+                val = ((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24);
             }
-            ensureWritableBytes(4);
-            new Uint32Array(ba, _position, 1)[0] = unsigned;
+            if (_position + 4 > _len) {
+                setBufferSize(_position + 4);
+            }
+            new Uint32Array(ba, _position, 1)[0] = val;
             _position += 4;
         }
     }
 
     /**
      *  Write a signed int (32 bits) of binary data at the current position
+     *
+     *  @param {int} val The value to write into the BinaryData at the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -325,7 +355,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             if (!_sysEndian) {
                 val = (((val & 0xff000000) >>> 24) | ((val & 0x00ff0000) >> 8) | ((val & 0x0000ff00) << 8) | (val << 24)) >> 0;
             }
-            ensureWritableBytes(4);
+            if (_position + 4 > _len) {
+                setBufferSize(_position + 4);
+            }
             new Int32Array(ba, _position, 1)[0] = val;
             _position += 4;
         }
@@ -335,30 +367,30 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  Writes an IEEE 754 single-precision (32-bit) floating-point number to the
      *  BinaryData at the current position
      *
+     *  @param {Number} val The value to write into the BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public function writeFloat(value:Number):void
+    public function writeFloat(val:Number):void
     {
         COMPILE::SWF {
-            return ba.writeFloat(value);
+            return ba.writeFloat(val);
         }
         COMPILE::JS {
-            var view:Float32Array;
-
-            ensureWritableBytes(4);
+            if (_position + 4 > _len) {
+                setBufferSize(_position + 4);
+            }
 
             if(_sysEndian)
             {
-                view = new Float32Array(ba, _position, 1);
-                view[0] = value;
+                new Float32Array(ba, _position, 1)[0] = val;
             }
             else
             {
-                var dv:DataView = new DataView(ba);
-                dv.setFloat32(_position,value,_endian == Endian.LITTLE_ENDIAN);
+                new DataView(ba).setFloat32(_position,val,_endian == Endian.LITTLE_ENDIAN);
             }
             _position += 4;
         }
@@ -367,37 +399,34 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  Writes an IEEE 754 double-precision (64-bit) floating-point number to the
      *  BinaryData at the current position
      *
+     *  @param {Number} val The value to write into the BinaryData at the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public function writeDouble(value:Number):void
+    public function writeDouble(val:Number):void
     {
         COMPILE::SWF {
-            return ba.writeDouble(value);
+            return ba.writeDouble(val);
         }
         COMPILE::JS {
-            var view:Float64Array;
-
-            ensureWritableBytes(8);
-
+            if (_position + 8 > _len) {
+                setBufferSize(_position + 8);
+            }
             if(_sysEndian)
-            {
-                view = new Float64Array(ba, _position, 1);
-                view[0] = value;
-            }
+                new Float64Array(ba, _position, 1)[0] = val;
             else
-            {
-                var dv:DataView = new DataView(ba);
-                dv.setFloat64(_position,value,_endian == Endian.LITTLE_ENDIAN);
-            }
+                new DataView(ba).setFloat64(_position,val,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
         }
     }
     /**
      *  Reads a Boolean value (as a single byte) at the current position.
      *  returns true if the byte was non-zero, false otherwise
+     *
+     *  @return {Boolean} The boolean value read from the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -420,6 +449,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Read a signed byte of binary data at the current position
      *
+     *  @return {int} An int value in the range -128 to 127, read from the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -440,6 +471,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
     /**
      *  Read an unsigned byte of binary data at the current position
+     *
+     *  @return {uint} An uint value in the range 0 to 255, read from the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -463,8 +496,12 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  Reads the number of data bytes, specified by the length parameter, from the BinaryData.
      *  The bytes are read into the BinaryData object specified by the destination parameter,
      *  and the bytes are written into the destination BinaryData starting at the position specified by offset.
-     *  If length is omitted or is zero, all bytes are read following offset to the end of this BinaryData.
-     *  If offset is also omitted, it defaults to zero.
+     *  If length is omitted or is zero, all bytes are read following the current position to the end
+     *  of this BinaryData. If offset is also omitted, it defaults to zero.
+     *
+     *  @param {BinaryData} destination The destination BinaryData to write bytes into from the current position
+     *  @param {uint} offset The optional offset value of the starting bytes to write inside destination
+     *  @param {uint} length The optional length value of the bytes to read
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -499,13 +536,16 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
     /**
      *  Read a byte of binary data at the specified index. Does not change the <code>position</code> property.
+     *  If an index is out of range (beyond the current length) this will return zero.
+     *
+     *  @return {uint} A byte value in the range 0-255 from the index
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public function readByteAt(idx:uint):int
+    public function readByteAt(idx:uint):uint
     {
         COMPILE::SWF
         {
@@ -513,7 +553,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return getTypedArray()[idx];
+            return getTypedArray()[idx] >> 0;
         }
     }
 
@@ -557,6 +597,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Read a short int of binary data at the current position
      *
+     *  @return {int} An int value in the range -32768 to 32767, read from the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -581,7 +623,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
-     *  Read an unsigned int of binary data at the current position
+     *  Read an unsigned int (32bit) of binary data at the current position
+     *
+     *  @return {uint} A uint value, read from the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -608,6 +652,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Read an unsigned short (16bit) of binary data at the current position
      *
+     *  @return {uint} A uint value in the range 0 to 65535, read from the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -631,7 +677,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
-     *  Read a signed int of binary data at the current position
+     *  Read a signed int (32bit) of binary data at the current position
+     *
+     *  @return {int} An int value, read from the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -658,6 +706,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     /**
      *  Reads an IEEE 754 single-precision (32-bit) floating-point number from the BinaryData.
      *
+     *  @return {Number} A Number value, read from the current position
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -669,24 +719,21 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readFloat();
         }
         COMPILE::JS {
-            var view:Float32Array;
-
+            var ret :Number;
             if(_sysEndian)
             {
-                view = new Float32Array(ba, _position, 1);
-                _position += 4;
-                return view[0];
-            }
-            var dv:DataView = new DataView(ba);
-            var i:Number = dv.getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
+                ret = new Float32Array(ba, _position, 1)[0];
+            }  else ret = new DataView(ba).getFloat32(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 4;
-            return i;
+            return ret;
         }
 
     }
 
     /**
      *  Reads an IEEE 754 double-precision (64-bit) floating-point number from the BinaryData.
+     *
+     *  @return {Number} A Number value, read from the current position
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -699,25 +746,29 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
             return ba.readDouble();
         }
         COMPILE::JS {
-            var view:Float64Array;
-
+            var ret : Number;
             if(_sysEndian)
-            {
-                view = new Float64Array(ba, _position, 1);
-                _position += 8;
-                return view[0];
-            }
-            var dv:DataView = new DataView(ba);
-            var i:Number = dv.getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
+                ret = new Float64Array(ba, _position, 1)[0];
+            else ret = new DataView(ba).getFloat64(_position,_endian == Endian.LITTLE_ENDIAN);
             _position += 8;
-            return i;
+            return ret;
         }
     }
 
     COMPILE::JS
     private var _len:uint;
 
-
+    /**
+     *  The length of this BinaryData, in bytes.
+     *  If the length is set to a value that is larger than the current length, the right side
+     *  of the BinaryData is filled with zeros.
+     *  If the length is set to a value that is smaller than the current length, the BinaryData is truncated.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.7.0
+     */
     public function get length():int
     {
         COMPILE::SWF
@@ -762,7 +813,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
     }
     /**
-     *  The total number of bytes remaining to be read.
+     *  The total number of bytes available to read from the current position.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -777,7 +828,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return _len - _position;
+            return _position < _len ? _len - _position : 0;
         }
     }
 
@@ -785,6 +836,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
      *  Moves, or returns the current position, in bytes, of the pointer into the BinaryData object.
      *  This is the point at which the next call to a read method starts reading or a write method starts writing.
+     *
+     *  Setting the position beyond the end of the current length value is possible and will increase the length
+     *  during write operations, but will throw an error during read operations.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -824,7 +878,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  browsers have a way to auto-resize a binary
      *  data as you write data to the binary data buffer
      *  and resizing in large chunks is generally more
-     *  efficient anyway.
+     *  efficient anyway. Preallocating bytes to write into
+     *  is also more efficient on the swf target.
      *
      *  @param extra The number of additional bytes.
      *
@@ -846,17 +901,13 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
     }
 
-    COMPILE::JS
-    protected function ensureWritableBytes(len:uint):void{
-        if (_position + len > _len) {
-            setBufferSize( _position + len );
-        }
-    }
-
 
     /**
-     *  Reads a UTF-8 string from the byte stream.
+     *  Reads a UTF-8 string from the BinaryData.
      *  The string is assumed to be prefixed with an unsigned short indicating the length in bytes.
+     *  The <code>position</code> is advanced to the first byte following the string's bytes.
+     *
+     *  @return {String} The utf-8 decoded string
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -878,9 +929,11 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
-     *  Reads a sequence of UTF-8 bytes specified by the length parameter from the byte stream and returns a string.
+     *  Reads a sequence of UTF-8 bytes specified by the length parameter
+     *  from the BinaryData and returns a string.
+     *  The <code>position</code> is advanced to the first byte following the string's bytes.
      *
-     *  @param An unsigned short indicating the length of the UTF-8 bytes.
+     *  @param {uint} length An unsigned short indicating the length of the UTF-8 bytes.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -949,36 +1002,40 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
     /**
      *  Writes a UTF-8 string to the byte stream.
-     *  The length of the UTF-8 string in bytes is written first, as a 16-bit integer,
+     *  The length of the UTF-8 string in bytes is written first, as a 16-bit unsigned integer,
      *  followed by the bytes representing the characters of the string.
      *  If the byte length of the string is larger than 65535 this will throw a RangeError
+     *  The <code>position</code> is advanced to the first byte following the string's bytes.
      *
-     *  @param The string value to be written.
+     *  @param {String} str The string value to be written.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.7.0
      */
-    public function writeUTF(value:String):void
+    public function writeUTF(str:String):void
     {
         COMPILE::SWF
         {
-            ba.writeUTF(value);
+            ba.writeUTF(str);
         }
 
         COMPILE::JS
         {
-            var utcBytes:Uint8Array = getUTFBytes(value , true);
+            var utcBytes:Uint8Array = getUTFBytes(str , true);
             _position =  mergeInToArrayBuffer (_position,utcBytes);
         }
     }
 
     /**
-     *  Writes a UTF-8 string to the byte stream. Similar to the writeUTF() method,
-     *  but writeUTFBytes() does not prefix the string with a 16-bit length word.
+     *  Writes a UTF-8 string to the BinaryData. Similar to the writeUTF() method,
+     *  but writeUTFBytes() does not prefix the string with a 16-bit length word, and
+     *  therefore also permits strings longer than 65535 bytes (note: byte length will not
+     *  necessarily be the same as string length because some characters can be
+     *  multibyte characters).
      *
-     *  @param The string value to be written.
+     *  @param {String} str The string value to be written.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
