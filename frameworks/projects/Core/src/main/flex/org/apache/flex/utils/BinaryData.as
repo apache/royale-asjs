@@ -133,10 +133,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
     /**
      *  Indicates the byte order for the data.
-     *  The default is the target default which in Javascript is machine dependent.
-     *  It is possible to check the default Endianness of the target platform at runtime with
-     *  <code>org.apache.flex.utils.Endian.defaultEndian</code>
-     *  To ensure portable bytes, set the endian to Endian.BIG_ENDIAN or Endian.LITTLE_ENDIAN as appropriate.
+     *  The default is Endian BIG_ENDIAN.
+     *  It is possible to check the default system Endianness of the target platform at runtime with
+     *  <code>org.apache.flex.utils.Endian.systemEndian</code>.
      *  Setting to values other than Endian.BIG_ENDIAN or Endian.LITTLE_ENDIAN is ignored.
      *
      *  @langversion 3.0
