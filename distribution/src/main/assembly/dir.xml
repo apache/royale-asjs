@@ -27,5 +27,6 @@ under the License.
     <componentDescriptor>src/main/assembly/component.xml</componentDescriptor>
     <componentDescriptor>src/main/assembly/component-flash.xml</componentDescriptor>
     <componentDescriptor>src/main/assembly/component-air.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-fontkit.xml</componentDescriptor>
   </componentDescriptors>
 </assembly>

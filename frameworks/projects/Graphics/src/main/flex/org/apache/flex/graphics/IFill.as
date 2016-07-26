@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
     COMPILE::SWF
     {
@@ -23,10 +23,10 @@ package org.apache.flex.core.graphics
 	public interface IFill
 	{
         COMPILE::SWF
-		function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
+		function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
         COMPILE::SWF
-		function end(s:GraphicShape):void;
+		function end(s:IGraphicShape):void;
         COMPILE::JS
-        function addFillAttrib(s:GraphicShape):String;
+        function addFillAttrib(s:IGraphicShape):String;
 	}
 }

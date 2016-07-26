@@ -20,11 +20,11 @@ package org.apache.flex.charts.supportClasses
 {	
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.LinearGradient;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.svg.Path;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.svg.LinearGradient;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**

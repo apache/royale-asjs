@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core.graphics
+package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.SolidColor;
+
     COMPILE::SWF
     {
         import flash.text.TextFieldType;        
@@ -106,7 +108,7 @@ package org.apache.flex.core.graphics
                 textField.autoSize = "left";
                 textField.text = value;
                 
-                var color:SolidColorStroke = stroke as SolidColorStroke;
+                var color:SolidColor = fill as SolidColor;
                 if (color) {
                     textField.textColor = color.color;
                     textField.alpha = color.alpha;

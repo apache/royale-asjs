@@ -12,31 +12,53 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
+	import org.apache.flex.utils.CSSUtils;
+
     COMPILE::SWF
     {
-        import flash.display.CapsStyle;
-        import flash.display.JointStyle;            
+        import flash.geom.Point;
+        import flash.geom.Rectangle;            
     }
 
-	public class SolidColorStroke implements IStroke
+	public class SolidColor implements IFill
 	{
 		
+		/**
+		 *  Constructor.
+		 *
+		 *  @param color Specifies the color.
+		 *  The default value is 0x000000 (black).
+		 *
+		 *  @param alpha Specifies the level of transparency.
+		 *  Valid values range from 0.0 (completely transparent)
+		 *  to 1.0 (completely opaque).
+		 *  The default value is 1.0.
+	 	 *  
+	 	 *  @langversion 3.0
+	 	 *  @playerversion Flash 9
+	 	 *  @playerversion AIR 1.1
+	 	 *  @productversion Flex 3
+	 	 */
+		public function SolidColor(color:uint = 0x000000, alpha:Number = 1.0)
+	 	{
+			super();
+
+			this.color = color;
+			this.alpha = alpha;
+		}
+
 		//----------------------------------
 		//  alpha
 		//----------------------------------
-		private var _alpha:Number = 1.0;
 		
+		private var _alpha:Number = 1.0;
 		//----------------------------------
 		//  color
 		//----------------------------------
-		private var _color:uint = 0x000000;
 		
-		//----------------------------------
-		//  weight
-		//----------------------------------
-		private var _weight:Number = 1;
+		private var _color:uint = 0x000000;
 		
 		/**
 		 *  The transparency of a color.
@@ -84,47 +106,29 @@ package org.apache.flex.core.graphics
 				_color = value;
 			}
 		}
-
-		public function get weight():Number
+		
+        COMPILE::SWF
+		public function begin(s:IGraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
 		{
-			return _weight;
-		}
-
-		/**
-		 *  A color value. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.3
-		 */
-		public function set weight(value:Number):void
-		{
-			_weight = value;
+			s.graphics.beginFill(color,alpha);
 		}
 		
         COMPILE::SWF
-		public function apply(s:GraphicShape):void
+		public function end(s:IGraphicShape):void
 		{
-			s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
+			s.graphics.endFill();
 		}
-		
+        
         /**
-         * addStrokeAttrib()
-         * 
-         * @param value The GraphicShape object on which the stroke must be added.
+         * addFillAttrib()
+         *
+         * @param value The IGraphicShape object on which the fill must be added.
          * @return {string}
          */
         COMPILE::JS
-        public function addStrokeAttrib(value:GraphicShape):String
+        public function addFillAttrib(value:IGraphicShape):String
         {
-            var strokeColor:String = Number(color).toString(16);
-            if (strokeColor.length == 1) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 2) strokeColor = '00' + strokeColor;
-            if (strokeColor.length == 4) strokeColor = '00' + strokeColor;
-            return 'stroke:#' + String(strokeColor) + ';stroke-width:' +
-                String(weight) + ';stroke-opacity:' + String(alpha);
-        };
-
+            return 'fill:' + CSSUtils.attributeFromColor(color) + ';fill-opacity:' + String(alpha);
+        }
 	}
 }

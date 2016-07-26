@@ -28,6 +28,13 @@ package org.apache.flex.createjs.tween
 		import createjs.Ticker;
 	}
 		
+	COMPILE::SWF {
+		import org.apache.flex.effects.IEffect;
+		import org.apache.flex.effects.Parallel;
+		import org.apache.flex.effects.Fade;
+		import org.apache.flex.effects.Move;
+	}
+		
     /**
      * The Tween effect animates an object from one place to another; it can also
 	 * fade and object in and out by adjusting the object's alpha value. Once the
@@ -53,6 +60,10 @@ package org.apache.flex.createjs.tween
         public function Tween(target:Object=null)
 		{
 			super(target);
+			
+			COMPILE::SWF {
+				_parallel = new Parallel();
+			}
 		}
 		
 		/**
@@ -123,12 +134,41 @@ package org.apache.flex.createjs.tween
 		
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.document = document;	
+			this.document = document;
+			
+			COMPILE::SWF {
+				var move:Move = new Move();
+				move.setDocument(document);
+				move.target = this.target;
+				move.xFrom = this.xFrom;
+				move.xTo = this.xTo;
+				move.yFrom = this.yFrom;
+				move.yTo = this.yTo;
+				
+				var fade:Fade = new Fade();
+				fade.setDocument(document);
+				fade.target = this.target;
+				fade.alphaFrom = this.alphaFrom;
+				fade.alphaTo = this.alphaTo;
+				
+				_parallel.setDocument(document);
+				_parallel.addChild(move);
+				_parallel.addChild(fade);
+			}
 		}
 		
 		
 		COMPILE::JS
 		private var _tween:createjs.Tween;
+		
+		COMPILE::SWF
+		private var _parallel:Parallel;
+		
+		COMPILE::SWF
+		public function internalEffect():IEffect
+		{
+			return _parallel;
+		}
 		
 		/**
 		 * @private
@@ -188,6 +228,9 @@ package org.apache.flex.createjs.tween
 				
 				var stage:createjs.Stage = element.getStage();
 				createjs.Ticker.addEventListener("tick", stage);
+			}
+			COMPILE::SWF {
+				_parallel.play();
 			}
 		}
 	}

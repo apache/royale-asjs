@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.svg
 {
 	COMPILE::SWF
     {
@@ -25,8 +25,11 @@ package org.apache.flex.core.graphics
     }
 
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.graphics.IGraphicShape;
 
-	public class GraphicShape extends UIBase
+	public class GraphicShape extends UIBase implements IGraphicShape
 	{
 		private var _fill:IFill;
 		private var _stroke:IStroke;
@@ -73,17 +76,26 @@ package org.apache.flex.core.graphics
 		 */
         public function GraphicShape()
         {
-            COMPILE::JS
-            {
-                element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
-                element.flexjs_wrapper = this;
-                element.style.left = 0;
-                element.style.top = 0;
-                //element.offsetParent = null;
-                positioner = element;
-                positioner.style.position = 'relative';
-            }
+			super();
         }
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
+			element.flexjs_wrapper = this;
+			element.style.left = 0;
+			element.style.top = 0;
+			//element.offsetParent = null;
+			positioner = element;
+			positioner.style.position = 'relative';
+			
+			return element;
+		}
+
 
         COMPILE::SWF
 		protected function applyStroke():void

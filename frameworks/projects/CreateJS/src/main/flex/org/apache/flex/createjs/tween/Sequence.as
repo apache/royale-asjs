@@ -28,6 +28,16 @@ package org.apache.flex.createjs.tween
 		import createjs.Ticker;
 	}
 		
+	COMPILE::SWF {
+		import org.apache.flex.core.IUIBase;
+		import org.apache.flex.events.Event;
+		import org.apache.flex.effects.IEffect;
+		import org.apache.flex.effects.Sequence;
+		import org.apache.flex.effects.Parallel;
+		import org.apache.flex.effects.Fade;
+		import org.apache.flex.effects.Move;
+	}
+		
 	[DefaultProperty("tweens")]
 		
     /**
@@ -53,6 +63,10 @@ package org.apache.flex.createjs.tween
 			super(target);
 			
 			_tweens = [];
+			
+			COMPILE::SWF {
+				_sequence = new org.apache.flex.effects.Sequence();
+			}
 		}
 		
 		private var _tweens:Array;
@@ -60,6 +74,8 @@ package org.apache.flex.createjs.tween
 		public function set tweens(value:Array):void
 		{
 			_tweens = value;
+			
+			
 		}
 		public function get tweens():Array
 		{
@@ -74,6 +90,15 @@ package org.apache.flex.createjs.tween
 		COMPILE::JS
 		private var _tween:createjs.Tween;
 		
+		COMPILE::SWF
+		private var _sequence:org.apache.flex.effects.Sequence;
+		
+		COMPILE::SWF
+		public function internalEffect():IEffect
+		{
+			return _sequence;
+		}
+		
 		/**
 		 *  @private
 		 *  The document.
@@ -83,6 +108,17 @@ package org.apache.flex.createjs.tween
 		public function setDocument(document:Object, id:String = null):void
 		{
 			this.document = document;	
+			
+			COMPILE::SWF {
+				_sequence.setDocument(document);
+
+				for (var i:int=0; i < _tweens.length; i++) {
+					var tween:Tween = _tweens[i];
+					var para:IEffect = tween.internalEffect();
+					
+					_sequence.addChild(para);
+				}
+			}
 		}
 		
 		/**
@@ -118,6 +154,22 @@ package org.apache.flex.createjs.tween
 				_tween.setPaused(false);
 				var stage:createjs.Stage = element.getStage();
 				createjs.Ticker.addEventListener("tick", stage);
+			}
+				
+			COMPILE::SWF {
+				_sequence.addEventListener("effectEnd", effectEndHandler);
+				_sequence.play();
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		private function effectEndHandler(event:Event):void
+		{
+			if (loop) {
+				_sequence.play();
 			}
 		}
 	}

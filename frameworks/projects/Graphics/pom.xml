@@ -47,6 +47,10 @@
               <uri>library://ns.apache.org/flexjs/basic</uri>
               <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
+            <namespace>
+              <uri>library://ns.apache.org/flexjs/svg</uri>
+              <manifest>${project.basedir}/src/main/resources/svg-manifest.xml</manifest>
+            </namespace>
           </namespaces>
           <includeClasses>
             <includeClass>GraphicsClasses</includeClass>

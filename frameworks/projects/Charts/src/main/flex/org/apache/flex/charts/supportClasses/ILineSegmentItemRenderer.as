@@ -19,7 +19,7 @@
 package org.apache.flex.charts.supportClasses
 {
 	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.graphics.IStroke;
 	
 	/**
 	 *  The ILineSegmentItemRenderer interface must be implemented by any class that

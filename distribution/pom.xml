@@ -401,19 +401,6 @@
       <type>war</type>
     </dependency>
 
-    <dependency>
-      <groupId>com.adobe.flash</groupId>
-      <artifactId>framework</artifactId>
-      <version>${flash.version}</version>
-      <type>pom</type>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.air</groupId>
-      <artifactId>framework</artifactId>
-      <version>${air.version}</version>
-      <type>pom</type>
-    </dependency>
-
     <!-- SWFObject -->
     <dependency>
       <groupId>org.webjars</groupId>
@@ -471,6 +458,9 @@
               <goal>single</goal>
             </goals>
             <configuration>
+              <filters>
+                <filter>src/main/assembly/filter.properties</filter>
+              </filters>
               <descriptors>
                 <descriptor>src/main/assembly/bin.xml</descriptor>
               </descriptors>
@@ -483,12 +473,113 @@
 
   <profiles>
     <profile>
+      <id>apache-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>make-src-assembly</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>src/main/assembly/src.xml</descriptor>
+                  </descriptors>
+                  <tarLongFileMode>gnu</tarLongFileMode>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>create-distribution-in-folder</id>
       <activation>
         <property>
           <name>distributionTargetFolder</name>
         </property>
       </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.adobe.flash</groupId>
+          <artifactId>framework</artifactId>
+          <version>${flash.version}</version>
+          <type>pom</type>
+        </dependency>
+
+        <dependency>
+          <groupId>com.adobe.air</groupId>
+          <artifactId>compiler</artifactId>
+          <version>${air.version}</version>
+          <type>pom</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.compiler</groupId>
+          <artifactId>adt</artifactId>
+          <version>${air.version}</version>
+          <classifier>android</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.compiler</groupId>
+          <artifactId>adt</artifactId>
+          <version>${air.version}</version>
+          <classifier>desktop</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.compiler</groupId>
+          <artifactId>adt</artifactId>
+          <version>${air.version}</version>
+          <classifier>ios</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air</groupId>
+          <artifactId>runtime</artifactId>
+          <version>${air.version}</version>
+          <type>pom</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air</groupId>
+          <artifactId>framework</artifactId>
+          <version>${air.version}</version>
+          <type>pom</type>
+        </dependency>
+
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>air</artifactId>
+          <version>${air.version}</version>
+          <classifier>android</classifier>
+          <type>zip</type>
+        </dependency>
+
+        <dependency>
+          <groupId>com.adobe</groupId>
+          <artifactId>fontkit</artifactId>
+          <version>1.0</version>
+        </dependency>
+
+        <dependency>
+          <groupId>com.adobe.air</groupId>
+          <artifactId>templates</artifactId>
+          <version>${air.version}</version>
+          <type>jar</type>
+        </dependency>
+
+        <dependency>
+          <groupId>com.adobe.air</groupId>
+          <artifactId>misc</artifactId>
+          <version>${air.version}</version>
+          <type>zip</type>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -536,29 +627,79 @@
       </build>
     </profile>
     <profile>
-      <id>apache-release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>make-src-assembly</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <descriptors>
-                    <descriptor>src/main/assembly/src.xml</descriptor>
-                  </descriptors>
-                  <tarLongFileMode>gnu</tarLongFileMode>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+        <property>
+          <name>distributionTargetFolder</name>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>adl</artifactId>
+          <version>${air.version}</version>
+          <classifier>win</classifier>
+          <type>exe</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.compiler</groupId>
+          <artifactId>adt</artifactId>
+          <version>${air.version}</version>
+          <classifier>win</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>air</artifactId>
+          <version>${air.version}</version>
+          <classifier>win</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>air-captive</artifactId>
+          <version>${air.version}</version>
+          <classifier>mac</classifier>
+          <type>zip</type>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>Mac</family>
+        </os>
+        <property>
+          <name>distributionTargetFolder</name>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>adl</artifactId>
+          <version>${air.version}</version>
+          <classifier>mac</classifier>
+          <type>exe</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>air</artifactId>
+          <version>${air.version}</version>
+          <classifier>mac</classifier>
+          <type>zip</type>
+        </dependency>
+        <dependency>
+          <groupId>com.adobe.air.runtime</groupId>
+          <artifactId>air-captive</artifactId>
+          <version>${air.version}</version>
+          <classifier>mac</classifier>
+          <type>zip</type>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>

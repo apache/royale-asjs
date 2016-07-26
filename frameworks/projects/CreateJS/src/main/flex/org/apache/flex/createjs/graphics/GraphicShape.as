@@ -20,7 +20,7 @@ package org.apache.flex.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.core.graphics.GraphicShape
+		import org.apache.flex.svg.GraphicShape
 	}
 		
     COMPILE::JS
@@ -32,8 +32,8 @@ package org.apache.flex.createjs.graphics
         import org.apache.flex.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
 	
 	/**
 	 * This is the base class for CreateJS graphic shape components such as
@@ -46,7 +46,7 @@ package org.apache.flex.createjs.graphics
 	 */
     
     COMPILE::SWF
-	public class GraphicShape extends org.apache.flex.core.graphics.GraphicShape
+	public class GraphicShape extends org.apache.flex.svg.GraphicShape
 	{
 		// nothing special for SWF version.
 	}

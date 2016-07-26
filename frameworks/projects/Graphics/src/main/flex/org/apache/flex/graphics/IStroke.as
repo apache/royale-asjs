@@ -12,18 +12,27 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.graphics
 {
 	public interface IStroke
 	{
         COMPILE::SWF
-		function apply(s:GraphicShape):void;
+		function apply(s:IGraphicShape):void;
         
         COMPILE::JS
         function get weight():Number;
         
         COMPILE::JS
-        function addStrokeAttrib(s:GraphicShape):String;
+        function addStrokeAttrib(s:IGraphicShape):String;
+
+        function get lineCap():String;
+        function set lineCap(val:String):void;
+        function get lineJoin():String;
+        function set lineJoin(val:String):void;
+        function get miterLimit():Number;
+        function set miterLimit(val:Number):void;
+        function get lineDash():Array;
+        function set lineDash(val:Array):void;
 
 	}
 }

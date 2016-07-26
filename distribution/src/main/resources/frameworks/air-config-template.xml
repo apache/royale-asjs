@@ -181,7 +181,11 @@
       </namespace>
       <namespace>
         <uri>library://ns.apache.org/flexjs/svg</uri>
-        <manifest>manifests/svg-manifest.xml</manifest>
+        <manifest>manifests/svg-manifest-html.xml</manifest>
+      </namespace>
+      <namespace>
+        <uri>library://ns.apache.org/flexjs/svg</uri>
+        <manifest>manifests/svg-manifest-graphics.xml</manifest>
       </namespace>
     </namespaces>
 

@@ -12,8 +12,14 @@
  * limitations under the License.
  */
 
-package org.apache.flex.core.graphics
+package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.GradientBase;
+	import org.apache.flex.graphics.GradientEntry;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IGraphicShape;
+	import org.apache.flex.utils.CSSUtils;
+
     COMPILE::SWF
     {
         import flash.display.GradientType;
@@ -45,7 +51,7 @@ package org.apache.flex.core.graphics
 		}
 		
         COMPILE::SWF
-		public function begin(s:GraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
+		public function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
 		{
 			commonMatrix.identity();
 			commonMatrix.createGradientBox(targetBounds.width,targetBounds.height,toRad(this.rotation),targetOrigin.x, targetOrigin.y);
@@ -56,7 +62,7 @@ package org.apache.flex.core.graphics
 		}
 		
         COMPILE::SWF
-		public function end(s:GraphicShape):void
+		public function end(s:IGraphicShape):void
 		{
 			s.graphics.endFill();
 		}
@@ -64,12 +70,12 @@ package org.apache.flex.core.graphics
         /**
          * addFillAttrib()
          *
-         * @param value The GraphicShape object on which the fill must be added.
+         * @param value The IGraphicShape object on which the fill must be added.
          * @return {string}
          * @flexjsignorecoercion Node
          */
         COMPILE::JS
-        public function addFillAttrib(value:GraphicShape):String 
+        public function addFillAttrib(value:IGraphicShape):String 
         {
             //Create and add a linear gradient def
             var svgNS:String = value.element.namespaceURI;
@@ -98,11 +104,8 @@ package org.apache.flex.core.graphics
                 //Set Offset
                 stop.setAttribute('offset', String(gradientEntry.ratio * 100) + '%');
                 //Set Color
-                var color:String = Number(gradientEntry.color).toString(16);
-                if (color.length == 1) color = '00' + color;
-                if (color.length == 2) color = '00' + color;
-                if (color.length == 4) color = '00' + color;
-                stop.setAttribute('stop-color', '#' + String(color));
+				CSSUtils.attributeFromColor(gradientEntry.color)
+                stop.setAttribute('stop-color', CSSUtils.attributeFromColor(gradientEntry.color));
                 //Set Alpha
                 stop.setAttribute('stop-opacity', String(gradientEntry.alpha));
                 

@@ -20,7 +20,7 @@ package org.apache.flex.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.core.graphics.Rect
+		import org.apache.flex.svg.Rect
 	}
 		
     COMPILE::JS
@@ -33,9 +33,9 @@ package org.apache.flex.createjs.graphics
         import org.apache.flex.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 	
 	/**
 	 * Creates a rectangle.
@@ -47,7 +47,7 @@ package org.apache.flex.createjs.graphics
 	 */
     
     COMPILE::SWF
-	public class Rect extends org.apache.flex.core.graphics.Rect
+	public class Rect extends org.apache.flex.svg.Rect
 	{
 		// nothing special for SWF version.
 	}
