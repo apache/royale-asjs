@@ -279,6 +279,21 @@ package org.apache.flex.svg
 
         /**
          *  Draw the path.
+         *  @param data A PathBuilder object containing a vector of drawing commands.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        public function drawPathCommands(data:PathBuilder):void
+        {
+            drawStringPath(data.getPathString());
+        }
+        
+        /**
+         *  Draw the path.
          *  @param data A string containing a compact represention of the path segments.
          *  The value is a space-delimited string describing each path segment. Each
          *  segment entry has a single character which denotes the segment type and
@@ -293,7 +308,7 @@ package org.apache.flex.svg
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        public function drawPath(data:String):void
+        public function drawStringPath(data:String):void
         {
             COMPILE::SWF
             {
@@ -380,7 +395,7 @@ package org.apache.flex.svg
             {
                 var builder:PathBuilder = new PathBuilder();
                 builder.drawRoundRectComplex(x, y, width, height, topLeftRadius, topRightRadius, bottomLeftRadius, bottomRightRadius);
-                drawPath(builder.getPathString());
+                drawStringPath(builder.getPathString());
             }
 
 
@@ -465,7 +480,7 @@ package org.apache.flex.svg
         }
         COMPILE::JS
         {
-            drawPath(builder.getPathString());
+            drawStringPath(builder.getPathString());
         }
     }
 

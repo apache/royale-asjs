@@ -149,7 +149,7 @@ package org.apache.flex.charts.supportClasses
 			tickPath.height = this.height;
 			addElement(tickPath);
 			tickPath.stroke = tickStroke;
-			tickPath.drawPath( 0, 0, marks );
+			tickPath.drawStringPath( 0, 0, marks );
 		}
 		
 		/**
@@ -175,8 +175,8 @@ package org.apache.flex.charts.supportClasses
 			axisPath.height = this.height;
 			addElement(axisPath);
 			axisPath.stroke = lineStroke;
-			var pathLine:String = "M " + String(originX) + " " + String(originY) + " l "+String(width)+" "+String(height);
-			axisPath.drawPath(0, 0, pathLine);
+			var pathLine:String = "M " + originX + " " + originY + " l "+width+" "+height;
+			axisPath.drawStringPath(0, 0, pathLine);
 		}
 	}
 }

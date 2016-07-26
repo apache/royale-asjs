@@ -14,7 +14,10 @@
 
 package org.apache.flex.graphics
 {
-    import flash.display.Graphics;
+    COMPILE::SWF
+	{
+		import flash.display.Graphics;
+	}
 
     public class PathBuilder
     {

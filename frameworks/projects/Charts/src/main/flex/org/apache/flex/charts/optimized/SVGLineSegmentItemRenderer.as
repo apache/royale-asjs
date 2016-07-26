@@ -198,7 +198,7 @@ package org.apache.flex.charts.optimized
 					else pathString += "L "+point.x+" "+point.y+" ";
 				}
 				
-				graphicsContainer.drawPath(pathString);
+				graphicsContainer.drawStringPath(pathString);
 			}
 		}
 	}

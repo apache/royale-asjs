@@ -249,7 +249,7 @@ package org.apache.flex.charts.optimized
 			
 			graphicsContainer.fill = fill;
 			graphicsContainer.stroke = stroke;
-			graphicsContainer.drawPath(pathString);
+			graphicsContainer.drawStringPath(pathString);
 		}
 		
 		/*

@@ -115,7 +115,7 @@ package org.apache.flex.charts.optimized
 		public function drawTickMarks( originX:Number, originY:Number, width:Number, height:Number, marks:String, tickStroke:IStroke ):void
 		{
 			stroke = tickStroke;
-			drawPath(marks);
+			drawStringPath(marks);
 		}
 		
 		/**
@@ -136,7 +136,7 @@ package org.apache.flex.charts.optimized
 		{
 			stroke = lineStroke;
 			var pathLine:String = "M " + String(originX) + " " + String(originY) + " l "+String(width)+" "+String(height);
-			drawPath(pathLine);
+			drawStringPath(pathLine);
 		}
 	}
 }

@@ -20,7 +20,8 @@ package org.apache.flex.graphics
 		function drawRect(x:Number, y:Number, width:Number, height:Number):void;
 		function drawEllipse(x:Number, y:Number, width:Number, height:Number):void;
 		function drawCircle(x:Number, y:Number, radius:Number):void;
-		function drawPath(data:String):void;
+		function drawStringPath(data:String):void;
+		function drawPathCommands(data:PathBuilder):void
 		function drawText(value:String, x:Number, y:Number):Object;
 		function get textFill():IFill;
 		function set textFill(value:IFill):void;

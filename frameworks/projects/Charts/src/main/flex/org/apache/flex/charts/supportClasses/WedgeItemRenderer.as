@@ -317,7 +317,7 @@ package org.apache.flex.charts.supportClasses
 				filledPath.fill = fill;
 			}
 			
-			filledPath.drawPath(0, 0, filledPath.data);
+			filledPath.drawStringPath(0, 0, filledPath.data);
 		}
 		
 		/*

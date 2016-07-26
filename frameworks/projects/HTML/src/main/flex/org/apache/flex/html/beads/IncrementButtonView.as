@@ -88,7 +88,7 @@ package org.apache.flex.html.beads
 			_arrow.setWidthAndHeight(xm, ym, true);
 			_arrow.y = 2;
 			_arrow.x = 0;
-			_arrow.drawPath(0, 0, "M "+String(xm)+" 2 L "+String(xm-8)+" "+String(ym)+" L "+String(xm+8)+" "+String(ym)+" Z");
+			_arrow.drawStringPath(0, 0, "M "+xm+" 2 L "+(xm-8)+" "+ym+" L "+(xm+8)+" "+ym+" Z");
 		}
 	}
 }
