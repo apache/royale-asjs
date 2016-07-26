@@ -13,10 +13,10 @@
  */
  package org.apache.flex.graphics
 {
-	COMPILE::SWF
-	{
-		import flash.display.Graphics;
-	}
+    COMPILE::SWF
+    {
+        import flash.display.Graphics;
+    }
     public class MoveTo implements IPathCommand
     {
         public function MoveTo(x:Number, y:Number)

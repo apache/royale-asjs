@@ -145,18 +145,60 @@ package org.apache.flex.svg
             }
             COMPILE::JS
             {
+                drawRoundRect(x, y, width, height, NaN);
+            }
+        }
+
+        /**
+         *  Draws a rounded rectangle.
+         *  Note: The radius values are different than the Flash API of the same name. Flash uses diameter instead of radius.
+         *  @param x The x position of the top-left corner of the rectangle.
+         *  @param y The y position of the top-left corner.
+         *  @param width The width of the rectangle.
+         *  @param height The height of the rectangle.
+         *  @param radiusX The horizontal radius of the rounded corners (in pixels).
+         *  @param radiusY The vertical radius of the rounded corners (in pixels). Optional; if no value is specified, the default value matches that provided for the <code>radiusX</code> parameter.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0.3
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number = NaN):void
+        {
+            COMPILE::SWF
+            {
+                applyStroke();
+                beginFill(new Rectangle(x,y,width,height), new Point(x,y));
+                radiusX *=2;
+                radiusY = isNaN(radiusY) ? radiusY : radiusY*2;
+                graphics.drawRoundRect(x,y,width,height,radiusX,radiusY);
+                endFill();
+            }
+            COMPILE::JS
+            {
+                if(isNaN(radiusY))
+                    radiusY = radiusX;
+
                 var style:String = getStyleStr();
                 var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
                 rect.flexjs_wrapper = this;
                 rect.style.left = x;
                 rect.style.top = y;
                 rect.setAttribute('style', style);
-                rect.setAttribute('x', String(x) + 'px');
-                rect.setAttribute('y', String(y) + 'px');
-                rect.setAttribute('width', String(width) + 'px');
-                rect.setAttribute('height', String(height) + 'px');
+                rect.setAttribute('x', x);
+                rect.setAttribute('y', y);
+                rect.setAttribute('width', width);
+                rect.setAttribute('height', height);
+                if(!isNaN(radiusX))
+                {
+                    rect.setAttribute('rx', radiusX);
+                    rect.setAttribute('ry', radiusY);
+                }
                 element.appendChild(rect);
             }
+
         }
 
         /**
@@ -189,10 +231,10 @@ package org.apache.flex.svg
                 ellipse.style.left = x;
                 ellipse.style.top = y;
                 ellipse.setAttribute('style', style);
-                ellipse.setAttribute('cx', String(x + width / 2));
-                ellipse.setAttribute('cy', String(y + height / 2));
-                ellipse.setAttribute('rx', String(width / 2));
-                ellipse.setAttribute('ry', String(height / 2));
+                ellipse.setAttribute('cx', x + width / 2);
+                ellipse.setAttribute('cy', y + height / 2);
+                ellipse.setAttribute('rx', width / 2);
+                ellipse.setAttribute('ry', height / 2);
                 element.appendChild(ellipse);
             }
         }
@@ -226,10 +268,10 @@ package org.apache.flex.svg
                 circle.style.left = x;
                 circle.style.top = y;
                 circle.setAttribute('style', style);
-                circle.setAttribute('cx', String(x));
-                circle.setAttribute('cy', String(y));
-                circle.setAttribute('rx', String(radius));
-                circle.setAttribute('ry', String(radius));
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('rx', radius);
+                circle.setAttribute('ry', radius);
                 element.appendChild(circle);
 
             }
@@ -426,7 +468,7 @@ package org.apache.flex.svg
             drawPath(builder.getPathString());
         }
     }
-    
+
         /*
         What about these?
         beginBitmapFill
@@ -485,8 +527,8 @@ package org.apache.flex.svg
                 text.style.left = x;
                 text.style.top = y;
                 text.setAttribute('style', style);
-                text.setAttribute('x', String(x) + 'px');
-                text.setAttribute('y', String(y + 15) + 'px');
+                text.setAttribute('x', x);
+                text.setAttribute('y', y + 15);
                 var textNode:Text = document.createTextNode(value) as Text;
                 text.appendChild(textNode as Node);
                 element.appendChild(text);

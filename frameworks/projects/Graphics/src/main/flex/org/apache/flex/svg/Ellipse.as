@@ -28,28 +28,84 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	public class Ellipse extends GraphicShape
-	{
-		
-		COMPILE::JS
-		private var _ellipse:WrappedHTMLElement;
-		
+    public class Ellipse extends GraphicShape
+    {
 		/**
-		 *  Draw the ellipse.
-		 *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
-		 *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
-		 *  @param width The width of the ellipse.
-		 *  @param height The height of the ellipse.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.7
+		 */
+		public function Ellipse(cx:Number=0, cy:Number=0, rx:Number=0, ry:Number=0)
+		{
+			x = cx;
+			y = cy;
+			this.rx = rx;
+			this.ry = ry;
+		}
+		
+		private var _rx:Number;
+
+		/**
+		 * The horizontal radius of the ellipse.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.7
+		 */
+		public function get rx():Number
+		{
+			return _rx;
+		}
+
+		public function set rx(value:Number):void
+		{
+			_rx = value;
+		}
+
+		private var _ry:Number;
+
+		/**
+		 * The vertical radius of the ellipse.
+		 * 
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion FlexJS 0.7
+		 */
+		public function get ry():Number
+		{
+			return _ry;
+		}
+
+		public function set ry(value:Number):void
+		{
+			_ry = value;
+		}
+
+        
+        COMPILE::JS
+        private var _ellipse:WrappedHTMLElement;
+        
+        /**
+         *  Draw the ellipse.
+         *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
+         *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
+         *  @param width The width of the ellipse.
+         *  @param height The height of the ellipse.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion SVGEllipseElement
-		 */
-		public function drawEllipse(xp:Number, yp:Number, width:Number, height:Number):void
-		{
+         */
+        public function drawEllipse(xp:Number, yp:Number):void
+        {
             COMPILE::SWF
             {
                 graphics.clear();
@@ -61,34 +117,34 @@ package org.apache.flex.svg
             COMPILE::JS
             {
                 var style:String = getStyleStr();
-				if (_ellipse == null) {
-					_ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-					_ellipse.flexjs_wrapper = this;
-					element.appendChild(_ellipse);
-				}
-				_ellipse.setAttribute('style', style);
+                if (_ellipse == null) {
+                    _ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                    _ellipse.flexjs_wrapper = this;
+                    element.appendChild(_ellipse);
+                }
+                _ellipse.setAttribute('style', style);
                 if (stroke)
                 {
-					_ellipse.setAttribute('cx', String(width / 2 + stroke.weight));
-					_ellipse.setAttribute('cy', String(height / 2 + stroke.weight));
+                    _ellipse.setAttribute('cx', width / 2 + stroke.weight);
+                    _ellipse.setAttribute('cy', height / 2 + stroke.weight);
                 }
                 else
                 {
-					_ellipse.setAttribute('cx', String(width / 2));
-					_ellipse.setAttribute('cy', String(height / 2));
+                    _ellipse.setAttribute('cx', width / 2);
+                    _ellipse.setAttribute('cy', height / 2);
                 }
-				_ellipse.setAttribute('rx', String(width / 2));
-				_ellipse.setAttribute('ry', String(height / 2));
+                _ellipse.setAttribute('rx', width / 2);
+                _ellipse.setAttribute('ry', height / 2);
                 
                 resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
 
             }
-		}
-		
-		override protected function draw():void
-		{
-			drawEllipse(0, 0, width, height);	
-		}
-		
-	}
+        }
+        
+        override protected function draw():void
+        {
+            drawEllipse(0, 0);    
+        }
+        
+    }
 }

@@ -129,8 +129,8 @@ package org.apache.flex.svg
 					_text.removeChild(_text.childNodes[0]);
 				}
                 _text.setAttribute('style', style);
-                _text.setAttribute('x', String(xt) + 'px');
-                _text.setAttribute('y', String(yt) + 'px');
+                _text.setAttribute('x', xt);
+                _text.setAttribute('y', yt);
 				var textNode:Text = document.createTextNode(value) as Text;
 				_text.appendChild(textNode as Node);
                 

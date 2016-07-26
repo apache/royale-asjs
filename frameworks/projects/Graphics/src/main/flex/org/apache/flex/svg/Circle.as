@@ -24,38 +24,53 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	public class Circle extends GraphicShape
-	{
-		private var _radius:Number;
-
-		public function get radius():Number
-		{
-			return _radius;
-		}
-
-		public function set radius(value:Number):void
-		{
-			_radius = value;
-		}
-		
-		COMPILE::JS
-		private var _circle:WrappedHTMLElement;
-
+    public class Circle extends GraphicShape
+    {
 		/**
-		 *  Draw the circle.
-		 *  @param cx The x location of the center of the circle
-		 *  @param cy The y location of the center of the circle.
-		 *  @param radius The radius of the circle.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.7
+		 */
+        public function Circle(cx:Number=0, cy:Number=0, r:Number=0)
+        {
+            x = cx;
+            y = cy;
+            radius = r;
+        }
+
+        private var _radius:Number;
+
+        public function get radius():Number
+        {
+            return _radius;
+        }
+
+        public function set radius(value:Number):void
+        {
+            _radius = value;
+        }
+        
+        COMPILE::JS
+        private var _circle:WrappedHTMLElement;
+
+        /**
+         *  Draw the circle.
+         *  @param cx The x location of the center of the circle
+         *  @param cy The y location of the center of the circle.
+         *  @param radius The radius of the circle.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion SVGCircleElement
-		 */
-		public function drawCircle(cx:Number, cy:Number, radius:Number):void
-		{
+         */
+        public function drawCircle(cx:Number, cy:Number, radius):void
+        {
             COMPILE::SWF
             {
                 graphics.clear();
@@ -68,35 +83,34 @@ package org.apache.flex.svg
             {
                 var style:String = getStyleStr();
 
-				if (_circle == null) {
-					_circle = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
-					_circle.flexjs_wrapper = this;
-					element.appendChild(_circle);
-				}
-				_circle.setAttribute('style', style);
+                if (_circle == null) {
+                    _circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle') as WrappedHTMLElement;
+                    _circle.flexjs_wrapper = this;
+                    element.appendChild(_circle);
+                }
+                _circle.setAttribute('style', style);
                 if (stroke)
                 {
-					_circle.setAttribute('cx', String(radius + stroke.weight));
-					_circle.setAttribute('cy', String(radius + stroke.weight));
+                    _circle.setAttribute('cx', radius + stroke.weight);
+                    _circle.setAttribute('cy', radius + stroke.weight);
                 }
                 else
                 {
-					_circle.setAttribute('cx', String(radius));
-					_circle.setAttribute('cy', String(radius));
+                    _circle.setAttribute('cx', radius);
+                    _circle.setAttribute('cy', radius);
                 }
                 
-				_circle.setAttribute('rx', String(radius));
-				_circle.setAttribute('ry', String(radius));
+                _circle.setAttribute('r', radius);
                 
                 resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
 
             }
-		}
-		
-		override protected function draw():void
-		{
-			drawCircle(0, 0, radius);
-		}
-		
-	}
+        }
+        
+        override protected function draw():void
+        {
+            drawCircle(0, 0, radius);
+        }
+        
+    }
 }

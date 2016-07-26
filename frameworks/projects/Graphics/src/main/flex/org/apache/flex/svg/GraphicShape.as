@@ -188,10 +188,10 @@ package org.apache.flex.svg
             var useHeight:Number = Math.max(this.height, bbox.height);
 
             element.style.position = 'absolute';
-            if (!isNaN(x)) element.style.top = String(x) + 'px';
-            if (!isNaN(y)) element.style.left = String(y) + 'px';
-            element.style.width = String(useWidth) + 'px';
-            element.style.height = String(useHeight) + 'px';
+            if (!isNaN(x)) element.style.top = x;
+            if (!isNaN(y)) element.style.left = y;
+            element.style.width = useWidth;
+            element.style.height = useHeight;
             element.style.left = x;
             element.style.top = y;
         }

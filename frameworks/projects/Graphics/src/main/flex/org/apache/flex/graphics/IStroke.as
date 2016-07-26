@@ -14,10 +14,10 @@
 
 package org.apache.flex.graphics
 {
-	public interface IStroke
-	{
+    public interface IStroke
+    {
         COMPILE::SWF
-		function apply(s:IGraphicShape):void;
+        function apply(s:IGraphicShape):void;
         
         COMPILE::JS
         function get weight():Number;
@@ -34,5 +34,5 @@ package org.apache.flex.graphics
         function get lineDash():Array;
         function set lineDash(val:Array):void;
 
-	}
+    }
 }

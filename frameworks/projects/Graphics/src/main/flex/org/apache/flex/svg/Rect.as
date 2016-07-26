@@ -16,8 +16,6 @@ package org.apache.flex.svg
 {
     COMPILE::SWF
     {
-        import flash.display.CapsStyle;
-        import flash.display.JointStyle;
         import flash.geom.Point;
         import flash.geom.Rectangle;            
     }
@@ -28,9 +26,68 @@ package org.apache.flex.svg
 
 	public class Rect extends GraphicShape
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7
+		 */
+		public function Rect(x:Number=0, y:Number=0, width:Number=0, height:Number=0,rx:Number=NaN,ry:Number=NaN)
+		{
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			this.rx = rx;
+			this.ry = ry;
+		}
+
 		COMPILE::JS
 		private var _rect:WrappedHTMLElement;
 		
+		private var _rx:Number;
+
+		/**
+		 * The x axis radius for rounded corners 
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7
+		 */
+		public function get rx():Number
+		{
+			return _rx;
+		}
+
+		public function set rx(value:Number):void
+		{
+			_rx = value;
+		}
+
+		private var _ry:Number;
+
+		/**
+		 * The y axis radius for rounded corners 
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7
+		 * 
+		 */
+		public function get ry():Number
+		{
+			return _ry;
+		}
+
+		public function set ry(value:Number):void
+		{
+			_ry = value;
+		}
+
 		/**
 		 *  Draw the rectangle.
 		 *  @param xp The x position of the top-left corner of the rectangle.
@@ -51,7 +108,14 @@ package org.apache.flex.svg
                 graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
-                graphics.drawRect(xp, yp, width, height);
+                if(isNaN(rx))
+                    graphics.drawRect(x, y, width, height);
+                else
+                {
+                    var dx:Number = rx*2;
+                    var dy:Number = isNaN(ry) ? ry : ry*2;
+                    graphics.drawRoundRect(x, y, width, height,dx ,dy);
+                }
                 endFill();                    
             }
             COMPILE::JS
@@ -66,16 +130,16 @@ package org.apache.flex.svg
                 _rect.setAttribute('style', style);
                 if (stroke)
                 {
-					_rect.setAttribute('x', String(stroke.weight / 2) + 'px');
-					_rect.setAttribute('y', String(stroke.weight / 2) + 'px');
+					_rect.setAttribute('x', stroke.weight / 2);
+					_rect.setAttribute('y', stroke.weight / 2);
                 }
                 else
                 {
-					_rect.setAttribute('x', '0' + 'px');
-					_rect.setAttribute('y', '0' + 'px');
+					_rect.setAttribute('x', 0);
+					_rect.setAttribute('y', 0);
                 }
-				_rect.setAttribute('width', String(width) + 'px');
-				_rect.setAttribute('height', String(height) + 'px');
+				_rect.setAttribute('width', width);
+				_rect.setAttribute('height', height);
                 
                 resize(x, y, _rect['getBBox']());
             }
