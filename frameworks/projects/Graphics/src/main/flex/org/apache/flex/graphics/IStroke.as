@@ -33,6 +33,7 @@ package org.apache.flex.graphics
         function set miterLimit(val:Number):void;
         function get lineDash():Array;
         function set lineDash(val:Array):void;
+		function setLineStyle(weight:Number=NaN,color:uint=0,alpha:Number = NaN,caps:String = null, joints:String = null, miterLimit:Number = NaN):void
 
     }
 }

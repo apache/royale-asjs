@@ -134,13 +134,14 @@ package org.apache.flex.graphics
         COMPILE::JS
         public function addStrokeAttrib(value:IGraphicShape):String
         {
-            var att:Array = [];
-            att.push('stroke:' + CSSUtils.attributeFromColor(color));
-            att.push('stroke-width:' + String(weight));
-            att.push('stroke-opacity:' + String(alpha));
-            att.push('stroke-linecap:' + lineCap);
-            att.push('stroke-linejoin:' + lineJoin);
-            att.push('stroke-miterlimit:' + String(miterLimit));
+            var att:Array = [
+                'stroke:' + CSSUtils.attributeFromColor(color),
+                'stroke-width:' + weight,
+                'stroke-opacity:' + alpha,
+                'stroke-linecap:' + lineCap,
+                'stroke-linejoin:' + lineJoin,
+                'stroke-miterlimit:' + miterLimit
+            ];
             if(lineDash && lineDash.length)
                 att.push('stroke-dasharray:' + lineDash.join(","));
             return att.join(";");
@@ -246,6 +247,21 @@ package org.apache.flex.graphics
         {
             _lineDash = val;
         }
+		
+		public function setLineStyle(weight:Number=NaN,color:uint=0,alpha:Number = NaN,caps:String = null, joints:String = null, miterLimit:Number = NaN):void
+		{
+			if(!isNaN(weight))
+				_weight = weight;
+			_color = color;
+			if(!isNaN(alpha))
+				_alpha = alpha;
+			if(caps)
+				_lineCap = caps;
+			if(joints)
+				_lineJoin = joints;
+			if(!isNaN(miterLimit))
+				_miterLimit = miterLimit;
+		}
 
     }
 }

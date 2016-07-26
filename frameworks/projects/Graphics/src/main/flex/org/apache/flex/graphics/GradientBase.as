@@ -50,7 +50,7 @@ package org.apache.flex.graphics
          */
         public function get newId():String
         {
-            return 'gradient' + String(Math.floor((Math.random() * 100000) + 1));
+            return 'gradient' + Math.floor((Math.random() * 100000) + 1);
         }
 
 		/**

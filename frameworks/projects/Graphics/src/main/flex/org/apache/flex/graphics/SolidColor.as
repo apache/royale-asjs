@@ -128,7 +128,7 @@ package org.apache.flex.graphics
         COMPILE::JS
         public function addFillAttrib(value:IGraphicShape):String
         {
-            return 'fill:' + CSSUtils.attributeFromColor(color) + ';fill-opacity:' + String(alpha);
+            return 'fill:' + CSSUtils.attributeFromColor(color) + ';fill-opacity:' + alpha;
         }
 	}
 }

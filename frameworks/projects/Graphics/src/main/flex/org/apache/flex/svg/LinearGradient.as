@@ -102,12 +102,12 @@ package org.apache.flex.svg
                 var gradientEntry:GradientEntry = entries[i];
                 var stop:HTMLElement = document.createElementNS(svgNS, 'stop') as HTMLElement;
                 //Set Offset
-                stop.setAttribute('offset', String(gradientEntry.ratio * 100) + '%');
+                stop.setAttribute('offset', "" + (gradientEntry.ratio * 100) + '%');
                 //Set Color
 				CSSUtils.attributeFromColor(gradientEntry.color)
                 stop.setAttribute('stop-color', CSSUtils.attributeFromColor(gradientEntry.color));
                 //Set Alpha
-                stop.setAttribute('stop-opacity', String(gradientEntry.alpha));
+                stop.setAttribute('stop-opacity', gradientEntry.alpha);
                 
                 grad.appendChild(stop);
             }
