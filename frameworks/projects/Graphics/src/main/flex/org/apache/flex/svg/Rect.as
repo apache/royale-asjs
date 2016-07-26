@@ -14,6 +14,8 @@
 
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.IRect;
+
     COMPILE::SWF
     {
         import flash.geom.Point;
@@ -24,7 +26,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	public class Rect extends GraphicShape
+	public class Rect extends GraphicShape implements IRect
 	{
 		/**
 		 *  constructor.

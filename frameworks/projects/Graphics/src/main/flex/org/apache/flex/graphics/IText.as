@@ -13,17 +13,8 @@
  */
 package org.apache.flex.graphics
 {
-	COMPILE::SWF
+	public interface IText extends IGraphicShape
 	{
-		import flash.display.Graphics;
-	}
-
-	public interface IPathCommand
-	{
-		function toString():String;
-		COMPILE::SWF
-		function execute(g:Graphics):void;
-		COMPILE::JS
-		function execute(ctx:Object):void;
+		
 	}
 }

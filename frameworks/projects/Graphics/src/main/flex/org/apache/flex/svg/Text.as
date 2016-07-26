@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.IText;
 	import org.apache.flex.graphics.SolidColor;
 
     COMPILE::SWF
@@ -41,7 +42,7 @@ package org.apache.flex.svg
      *  // TODO (aharui) ignore imports of external linkage interfaces?
      *  @flexjsignoreimport SVGLocatable
 	 */
-	public class Text extends GraphicShape
+	public class Text extends GraphicShape implements IText
 	{
 		/**
 		 *  constructor.

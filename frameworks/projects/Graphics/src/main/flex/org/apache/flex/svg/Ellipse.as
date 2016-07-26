@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.IEllipse;
+
     COMPILE::SWF
     {
         import flash.geom.Point;
@@ -28,7 +30,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Ellipse extends GraphicShape
+    public class Ellipse extends GraphicShape implements IEllipse
     {
 		/**
 		 *  constructor.

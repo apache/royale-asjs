@@ -40,9 +40,6 @@ internal class GraphicsClasses
 	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 	import org.apache.flex.svg.LinearGradient; LinearGradient;
 	import org.apache.flex.graphics.CubicCurve; CubicCurve;
-	import org.apache.flex.graphics.ICompoundGraphic; ICompoundGraphic;
-	import org.apache.flex.graphics.IGraphicShape; IGraphicShape;
-	import org.apache.flex.graphics.IPathCommand; IPathCommand;
 	import org.apache.flex.graphics.LineStyle; LineStyle;
 	import org.apache.flex.graphics.LineTo; LineTo;
 	import org.apache.flex.graphics.MoveTo; MoveTo;

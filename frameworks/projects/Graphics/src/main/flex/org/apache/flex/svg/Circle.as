@@ -14,6 +14,8 @@
 
 package org.apache.flex.svg
 {
+	import org.apache.flex.graphics.ICircle;
+
     COMPILE::SWF
     {
         import flash.geom.Point;
@@ -24,7 +26,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Circle extends GraphicShape
+    public class Circle extends GraphicShape implements ICircle
     {
 		/**
 		 *  constructor.

@@ -14,6 +14,7 @@
 
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IPath;
     import org.apache.flex.graphics.PathBuilder;
 
     COMPILE::SWF
@@ -29,7 +30,7 @@ package org.apache.flex.svg
     }
 
 
-    public class Path extends GraphicShape
+    public class Path extends GraphicShape implements IPath
     {
 
         private var _data:String;
