@@ -25,6 +25,7 @@ package org.apache.flex.html.accessories
 	COMPILE::SWF
 	{
 		import flash.events.TextEvent;
+		import flash.text.TextField;
 		
 		import org.apache.flex.core.CSSTextField;			
 	}
@@ -141,7 +142,7 @@ package org.apache.flex.html.accessories
 				textField.maxChars = maxChars;
 				// listen for changes to this textField and prevent non-numeric values, such
 				// as 34.09.94
-				textField.addEventListener(TextEvent.TEXT_INPUT, handleTextInput);
+				textField.textField.addEventListener(TextEvent.TEXT_INPUT, handleTextInput);
 			}
 			else {
 				throw new Error("NumericOnlyTextInputBead requires strand to have an ITextFieldView bead");
@@ -155,8 +156,8 @@ package org.apache.flex.html.accessories
 		private function handleTextInput(event:TextEvent):void
 		{
 			var insert:String = event.text;
-			var caretIndex:int = (event.target as CSSTextField).caretIndex;
-			var current:String = (event.target as CSSTextField).text;
+			var caretIndex:int = (event.target as TextField).caretIndex;
+			var current:String = (event.target as TextField).text;
 			var value:String = current.substring(0,caretIndex) + insert + current.substr(caretIndex);
 			var n:Number = Number(value);
 			if (isNaN(n)) event.preventDefault();

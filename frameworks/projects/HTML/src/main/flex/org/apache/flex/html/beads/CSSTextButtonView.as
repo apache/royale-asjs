@@ -33,6 +33,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -146,10 +147,10 @@ package org.apache.flex.html.beads
 			var sw:uint = IUIBase(_strand).width;
 			var sh:uint = IUIBase(_strand).height;
 			
-			textField.defaultTextFormat.leftMargin = 0;
-			textField.defaultTextFormat.rightMargin = 0;
+			textField.textField.defaultTextFormat.leftMargin = 0;
+			textField.textField.defaultTextFormat.rightMargin = 0;
             // set it again so it gets noticed
-			textField.defaultTextFormat = textField.defaultTextFormat;
+			textField.textField.defaultTextFormat = textField.textField.defaultTextFormat;
             
 			var borderColor:uint;
 			var borderThickness:uint;
