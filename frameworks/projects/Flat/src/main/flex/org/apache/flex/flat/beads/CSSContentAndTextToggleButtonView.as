@@ -129,8 +129,8 @@ package org.apache.flex.flat.beads
                 var icon:StyleableCSSTextField = new StyleableCSSTextField();
                 icon.name = "icon";
                 icon.className = className + suffixMap[p];
-                s.addChild(icon);
-                s.addChild(tf);
+                s.addChild(icon.textField);
+                s.addChild(tf.textField);
             }
             
 			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;

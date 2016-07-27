@@ -67,9 +67,9 @@ package org.apache.flex.html.beads
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
 			overTextField = new CSSTextField();
-            upSprite.addChild(upTextField);
-            overSprite.addChild(overTextField);
-            downSprite.addChild(downTextField);
+            upSprite.addChild(upTextField.textField);
+            overSprite.addChild(overTextField.textField);
+            downSprite.addChild(downTextField.textField);
             upTextField.parentDrawsBackground = true;
             downTextField.parentDrawsBackground = true;
             overTextField.parentDrawsBackground = true;

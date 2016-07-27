@@ -128,10 +128,10 @@ package org.apache.flex.html.beads
             layout.layout();    
         }
         
-		protected var _decrement:DisplayObject;
-		protected var _increment:DisplayObject;
-		protected var _track:DisplayObject;
-		protected var _thumb:DisplayObject;
+		protected var _decrement:Button;
+		protected var _increment:Button;
+		protected var _track:Button;
+		protected var _thumb:Button;
 		
         /**
          *  @copy org.apache.flex.html.beads.IScrollBarView#decrement
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get decrement():DisplayObject
+		public function get decrement():Button
 		{
 			return _decrement;
 		}
@@ -154,7 +154,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get increment():DisplayObject
+		public function get increment():Button
 		{
 			return _increment;
 		}
@@ -167,7 +167,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get track():DisplayObject
+		public function get track():Button
 		{
 			return _track;
 		}
@@ -180,7 +180,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get thumb():DisplayObject
+		public function get thumb():Button
 		{
 			return _thumb;
 		}

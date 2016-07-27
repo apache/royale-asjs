@@ -70,8 +70,8 @@ COMPILE::JS {
 		}
 
 		COMPILE::SWF {
-		private var _decrement:DisplayObject;
-		private var _increment:DisplayObject;
+		private var _decrement:Button;
+		private var _increment:Button;
 		}
 
 		/**
@@ -88,19 +88,21 @@ COMPILE::JS {
 
             COMPILE::SWF {
 				_increment = new Button();
-				Button(_increment).addBead(new UpArrowButtonView());
-				Button(_increment).addBead(new ButtonAutoRepeatController());
+				var i:Button = _increment
+				i.addBead(new UpArrowButtonView());
+				i.addBead(new ButtonAutoRepeatController());
 				_decrement = new Button();
-				Button(_decrement).addBead(new DownArrowButtonView());
-				Button(_decrement).addBead(new ButtonAutoRepeatController());
+				var d:Button = _decrement
+				d.addBead(new DownArrowButtonView());
+				d.addBead(new ButtonAutoRepeatController());
 
-				Button(_increment).x = 0;
-				Button(_increment).y = 0;
-				Button(_decrement).x = 0;
-				Button(_decrement).y = Button(_increment).height;
+				i.x = 0;
+				i.y = 0;
+				d.x = 0;
+				d.y = i.height;
 
-				UIBase(_strand).addChild(_decrement);
-				UIBase(_strand).addChild(_increment);
+				UIBase(_strand).sprite.addChild(d.button);
+				UIBase(_strand).sprite.addChild(i.button);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 
 				IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
@@ -132,7 +134,7 @@ COMPILE::JS {
 		 *  @productversion FlexJS 0.0
 		 */
 		COMPILE::SWF
-		public function get decrement():DisplayObject
+		public function get decrement():Button
 		{
 			return _decrement;
 		}
@@ -151,7 +153,7 @@ COMPILE::JS {
 		 *  @productversion FlexJS 0.0
 		 */
 		COMPILE::SWF
-		public function get increment():DisplayObject
+		public function get increment():Button
 		{
 			return _increment;
 		}

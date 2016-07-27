@@ -277,6 +277,50 @@ package org.apache.flex.core
             _textField.name = value;
         }
 
+        public function get background():Boolean
+        {
+            return _textField.background;
+        }
+
+        public function set background(value:Boolean):void
+        {
+            _textField.background = value;
+        }
+
+        public function get backgroundColor():uint
+        {
+            return _textField.backgroundColor;
+        }
+
+        public function set backgroundColor(value:uint):void
+        {
+            _textField.backgroundColor = value;
+        }
+
+        public function get border():Boolean
+        {
+            return _textField.border;
+        }
+
+        public function set border(value:Boolean):void
+        {
+            _textField.border = value;
+        }
+
+        public function get borderColor():uint
+        {
+            return _textField.borderColor;
+        }
+
+        public function set borderColor(value:uint):void
+        {
+            _textField.borderColor = value;
+        }
+
+        public function get numLines():int
+        {
+            return _textField.numLines;
+        }
 
         /**
          *  @private

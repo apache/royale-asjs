@@ -72,24 +72,26 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-			UIBase(value).setWidth(ScrollBarView.FullSize, true);
+            var v:UIBase = UIBase(value);
+			v.setWidth(ScrollBarView.FullSize, true);
             
             // TODO: (aharui) put in values impl
 			_increment = new Button();
-			Button(_increment).addBead(new DownArrowButtonView());
-            Button(_increment).addBead(new ButtonAutoRepeatController());
+
+			_increment.addBead(new DownArrowButtonView());
+            _increment.addBead(new ButtonAutoRepeatController());
 			_decrement = new Button();
-			Button(_decrement).addBead(new UpArrowButtonView());
-            Button(_decrement).addBead(new ButtonAutoRepeatController());
+			_decrement.addBead(new UpArrowButtonView());
+            _decrement.addBead(new ButtonAutoRepeatController());
 			_track = new Button();				
-			Button(_track).addBead(new VScrollBarTrackView());
+			_track.addBead(new VScrollBarTrackView());
 			_thumb = new Button();				
-			Button(_thumb).addBead(new VScrollBarThumbView());
+			_thumb.addBead(new VScrollBarThumbView());
             
-            UIBase(value).addChild(_decrement);
-            UIBase(value).addChild(_increment);
-            UIBase(value).addChild(_track);
-            UIBase(value).addChild(_thumb);
+            v.sprite.addChild(_decrement.button);
+            v.sprite.addChild(_increment.button);
+            v.sprite.addChild(_track.button);
+            v.sprite.addChild(_thumb.button);
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             

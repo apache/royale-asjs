@@ -75,7 +75,7 @@ package org.apache.flex.html.beads
 		private function changeHandler(event:Event):void
 		{
             var host:UIBase = UIBase(_strand);
-            var g:Graphics = host.graphics;
+            var g:Graphics = host.sprite.graphics;
             var w:Number = host.width;
             var h:Number = host.height;
             var state:String;
@@ -85,7 +85,7 @@ package org.apache.flex.html.beads
 			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
             
-            CSSBorderUtils.draw(g, w, h, host, state, false, false);
+            CSSBorderUtils.draw(g, w, h, host.sprite, state, false, false);
 		}
 	}
 }

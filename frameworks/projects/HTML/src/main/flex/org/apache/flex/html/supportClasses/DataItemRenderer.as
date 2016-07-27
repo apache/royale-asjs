@@ -126,7 +126,7 @@ package org.apache.flex.html.supportClasses
 			super.addedToParent();
 
 			background = new Sprite();
-			addChild(background);
+			sprite.addChild(background);
 		}
 
 		/**

@@ -30,6 +30,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.Button;
 
     /**
      *  The TextButtonView class is the default view for
@@ -94,6 +95,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			var button:SimpleButton = Button(value).button;
 			textModel = value.getBeadByType(ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
@@ -101,10 +103,10 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upTextField;
-			SimpleButton(value).downState = downTextField;
-			SimpleButton(value).overState = overTextField;
-			SimpleButton(value).hitTestState = shape;
+			button.upState = upTextField.textField;
+			button.downState = downTextField.textField;
+			button.overState = overTextField.textField;
+			button.hitTestState = shape;
 			upTextField.styleParent = value;
 			downTextField.styleParent = value;
 			overTextField.styleParent = value;

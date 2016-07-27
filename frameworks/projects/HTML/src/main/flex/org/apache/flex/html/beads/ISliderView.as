@@ -20,7 +20,7 @@ package org.apache.flex.html.beads
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;            
+		import org.apache.flex.html.Button;
     }
 	import org.apache.flex.core.IBead;
 	
@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
         COMPILE::SWF
-		function get track():DisplayObject;
+		function get track():Button;
 		
 		/**
 		 *  The component used for the thumb button of the org.apache.flex.html.Slider.
@@ -55,6 +55,6 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
         COMPILE::SWF
-		function get thumb():DisplayObject;
+		function get thumb():Button;
 	}
 }

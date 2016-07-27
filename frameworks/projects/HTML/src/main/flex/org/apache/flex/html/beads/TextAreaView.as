@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
 	import org.apache.flex.core.IBead;
@@ -116,10 +117,10 @@ package org.apache.flex.html.beads
 			var vb:VScrollBar = vScrollBar;
 			
 			// Default size
-			var ww:Number = DisplayObject(host).width;
-			if( isNaN(ww) || ww == 0 ) DisplayObject(host).width = 100;
-			var hh:Number = DisplayObject(host).height;
-			if( isNaN(hh) || hh == 0 ) DisplayObject(host).height = 42;
+			var ww:Number = host.width;
+			if( isNaN(ww) || ww == 0 ) host.width = 100;
+			var hh:Number = host.height;
+			if( isNaN(hh) || hh == 0 ) host.height = 42;
 			
 			// for input, listen for changes to the _textField and update
 			// the model
@@ -152,19 +153,20 @@ package org.apache.flex.html.beads
 		
 		private function textScrollHandler(event:Event):void
 		{
-			var visibleLines:int = textField.bottomScrollV - textField.scrollV + 1;
+			var tf:TextField = textField.textField;
+			var visibleLines:int = tf.bottomScrollV - tf.scrollV + 1;
 			var scrollableLines:int = textField.numLines - visibleLines + 1;
 			var vsbm:ScrollBarModel = ScrollBarModel(vScrollBar.model);
 			vsbm.minimum = 0;
 			vsbm.maximum = textField.numLines+1;
-			vsbm.value = textField.scrollV;
+			vsbm.value = tf.scrollV;
 			vsbm.pageSize = visibleLines;
 			vsbm.pageStepSize = visibleLines;
 		}
 		
 		private function sizeChangedHandler(event:Event):void
 		{
-			var ww:Number = DisplayObject(host).width;
+			var ww:Number = host.width;
             if( !isNaN(ww) && ww > 0 )
                 _border.width = ww;
             
@@ -172,7 +174,7 @@ package org.apache.flex.html.beads
 			if( !isNaN(ww) && ww > 0 )
 				textField.width = ww;
 			
-			var hh:Number = DisplayObject(host).height;
+			var hh:Number = host.height;
 			if( !isNaN(hh) && hh > 0 ) 
             {
 				textField.height = hh;
@@ -188,7 +190,7 @@ package org.apache.flex.html.beads
 		private function scrollHandler(event:Event):void
 		{
 			var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-			textField.scrollV = vpos;
+			textField.textField.scrollV = vpos;
 		}
 		
         /**
