@@ -14,45 +14,25 @@
 package org.apache.flex.svg
 {
     import org.apache.flex.core.ContainerBase;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.events.Event;
+    import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.graphics.ITransformHost;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.core.IContainer;
+		import org.apache.flex.core.UIBase;
 	}
 
-    public class GraphicContainer extends ContainerBase
+	[DefaultProperty("mxmlContent")]
+
+	COMPILE::SWF
+    public class GraphicContainer extends ContainerBase implements ITransformHost
     {
         public function GraphicContainer()
         {
             super();
         }
 
-		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
-			
-			positioner = element;
-			
-			// absolute positioned children need a non-null
-			// position value in the parent.  It might
-			// get set to 'absolute' if the container is
-			// also absolutely positioned
-			positioner.style.position = 'relative';
-			element.flexjs_wrapper = this;
-			
-			/*addEventListener('childrenAdded',
-			runLayoutHandler);
-			addEventListener('elementRemoved',
-			runLayoutHandler);*/
-			
-			return element;
-		}
 		/**
 		 *  @private
 		 */
@@ -74,6 +54,185 @@ package org.apache.flex.svg
 			else 
 				throw new Error("Only svg elements can be added to svg containers");
 		}
+		
+		public function get transformElement():IFlexJSElement
+		{
+			return element;
+		}
 
     }
+	
+	COMPILE::JS
+	public class GraphicContainer extends UIBase implements ITransformHost, IContainer
+	{
+		private var graphicGroup:ContainerBase;
+		
+		public function GraphicContainer()
+		{
+			super();
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		override protected function createElement():org.apache.flex.core.WrappedHTMLElement
+		{
+			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.flex.core.WrappedHTMLElement;
+			
+			positioner = element;
+			
+			// absolute positioned children need a non-null
+			// position value in the parent.  It might
+			// get set to 'absolute' if the container is
+			// also absolutely positioned
+			positioner.style.position = 'relative';
+			element.flexjs_wrapper = this;
+			
+			graphicGroup = new GraphicGroup();
+			addElement(graphicGroup);
+			return element;
+		}
+
+		
+		public function get transformElement():org.apache.flex.core.WrappedHTMLElement
+		{
+			return graphicGroup.element;
+		}
+
+		/**
+		 *  @copy org.apache.flex.core.IParent#getElementAt()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function getElementAt(index:int):Object
+		{
+			return graphicGroup.getElementAt(index);
+		}        
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#addElement()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			if(!(c is GraphicShape))
+			{
+				throw new Error("Only svg elements can be added to svg containers");
+			}
+			graphicGroup.addElement(c, dispatchEvent);
+			if (dispatchEvent)
+				this.dispatchEvent(new Event("childrenAdded"));
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#addElementAt()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		{
+			if(!(c is GraphicShape))
+			{
+				throw new Error("Only svg elements can be added to svg containers");
+			}
+			graphicGroup.addElementAt(c, index, dispatchEvent);
+			if (dispatchEvent)
+				this.dispatchEvent(new Event("childrenAdded"));
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#removeElement()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		{
+			graphicGroup.removeElement(c, dispatchEvent);
+			if (dispatchEvent)
+				this.dispatchEvent(new Event("childrenRemoved"));
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IContainer#childrenAdded()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function childrenAdded():void
+		{
+			dispatchEvent(new Event("childrenAdded"));
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#getElementIndex()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function getElementIndex(c:Object):int
+		{
+			return graphicGroup.getElementIndex(c);
+		}
+		
+		
+		/**
+		 *  The number of elements in the parent.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function get numElements():int
+		{
+			return graphicGroup.numElements;
+		}
+	}
+}
+
+import org.apache.flex.core.ContainerBase;
+
+class GraphicGroup extends ContainerBase
+{
+	COMPILE::JS
+	/**
+	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+	 */
+	override protected function createElement():org.apache.flex.core.WrappedHTMLElement
+	{
+		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.flex.core.WrappedHTMLElement;
+		
+		positioner = element;
+		
+		// absolute positioned children need a non-null
+		// position value in the parent.  It might
+		// get set to 'absolute' if the container is
+		// also absolutely positioned
+		positioner.style.position = 'relative';
+		element.flexjs_wrapper = this;
+		
+		/*addEventListener('childrenAdded',
+		runLayoutHandler);
+		addEventListener('elementRemoved',
+		runLayoutHandler);*/
+		
+		return element;
+	}
 }

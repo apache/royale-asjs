@@ -16,32 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.graphics
 {
+	import org.apache.flex.core.IBead;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class GraphicsClasses
-{	
-
-	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
-	import org.apache.flex.svg.GraphicShape; GraphicShape;
-	import org.apache.flex.svg.Rect; Rect;
-	import org.apache.flex.svg.Ellipse; Ellipse;
-	import org.apache.flex.svg.Circle; Circle;
-	import org.apache.flex.svg.Path; Path;
-	import org.apache.flex.graphics.SolidColor; SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
-	import org.apache.flex.svg.Text; Text;
-	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
-	import org.apache.flex.svg.LinearGradient; LinearGradient;
-	import org.apache.flex.graphics.TransformModel; TransformModel;
-	import org.apache.flex.svg.TransformBead; TransformBead;
+	/**
+	 *  The IBeadTransform interface is the basic interface for the 
+	 *  container views that transform drawable objects that implement ITransformHost
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public interface IBeadTransform extends IBead
+	{
+		
+		/**
+		 *  Transform the ITransformHost. The implementor of this method should
+		 *  have concrete knowledge of ITransformHost implementor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function transform():void;
+	}
 }
-
-}
-
