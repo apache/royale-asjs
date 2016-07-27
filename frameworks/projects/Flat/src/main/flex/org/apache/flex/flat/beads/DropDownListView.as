@@ -22,7 +22,6 @@ package org.apache.flex.flat.beads
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
 	import flash.display.Shape;
-	import flash.display.SimpleButton;
 	import flash.display.Sprite;
 	import flash.text.TextFieldType;
 	
@@ -37,9 +36,11 @@ package org.apache.flex.flat.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IDropDownListView;
+    import org.apache.flex.html.Button;
 	import org.apache.flex.utils.CSSUtils;
     
     /**
@@ -76,9 +77,9 @@ package org.apache.flex.flat.beads
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
 			overTextField = new CSSTextField();
-            upSprite.addChild(upTextField);
-            overSprite.addChild(overTextField);
-            downSprite.addChild(downTextField);
+            upSprite.sprite.addChild(upTextField.textField);
+            overSprite.sprite.addChild(overTextField.textField);
+            downSprite.sprite.addChild(downTextField.textField);
 			upTextField.selectable = false;
             upTextField.parentDrawsBackground = true;
             upTextField.parentHandlesPadding = true;
@@ -102,9 +103,9 @@ package org.apache.flex.flat.beads
             overArrows.className = 'dropdown-caret';
             downArrows = new CSSShape();
             downArrows.className = 'dropdown-caret';
-            upSprite.addChild(upArrows);
-			overSprite.addChild(overArrows);
-			downSprite.addChild(downArrows);
+            upSprite.sprite.addChild(upArrows.shape);
+			overSprite.sprite.addChild(overArrows.shape);
+			downSprite.sprite.addChild(downArrows.shape);
 
 		}
 
@@ -123,7 +124,9 @@ package org.apache.flex.flat.beads
          */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;;
+			super.strand = value;
+
+            var b:Button = Button(value);
             selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
@@ -131,10 +134,10 @@ package org.apache.flex.flat.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+			b.button.upState = upSprite.sprite;
+			b.button.downState = downSprite.sprite;
+			b.button.overState = overSprite.sprite;
+			b.button.hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				selectionChangeHandler(null);
             else
@@ -162,8 +165,8 @@ package org.apache.flex.flat.beads
 		
         private function changeHandler(event:Event):void
         {
-            var ww:Number = DisplayObject(_strand).width;
-            var hh:Number = DisplayObject(_strand).height;
+            var ww:Number = IUIBase(_strand).width;
+            var hh:Number = IUIBase(_strand).height;
             var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding");
             var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-left");
             var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand,"padding-right");
@@ -291,8 +294,8 @@ package org.apache.flex.flat.beads
                 _popUpVisible = value;
                 if (value)
                 {
-					var root:Object = DisplayObject(_strand).root;
-					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
+					var root:Object = UIBase(_strand).sprite.root;
+					var host:DisplayObjectContainer = UIBase(_strand).sprite.parent;
                     while (host && !(host is IPopUpHost))
                         host = host.parent;
                     if (host)

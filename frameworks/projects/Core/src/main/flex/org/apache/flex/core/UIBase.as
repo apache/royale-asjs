@@ -1234,7 +1234,7 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                return sprite.numChildren;
+                return _elements ? _elements.length : 0;
             }
             COMPILE::JS
             {
