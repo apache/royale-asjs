@@ -16,6 +16,7 @@ package org.apache.flex.svg
 {
 	COMPILE::SWF
     {
+		import flash.display.Graphics;
         import flash.geom.Point;
         import flash.geom.Rectangle;
     }
@@ -102,7 +103,7 @@ package org.apache.flex.svg
 		{
 			if(stroke)
 			{
-				stroke.apply(this);
+				stroke.apply(sprite.graphics);
 			}
 		}
 
@@ -111,7 +112,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.begin(this, targetBounds,targetOrigin);
+				fill.begin(sprite.graphics, targetBounds,targetOrigin);
 			}
 		}
 
@@ -120,7 +121,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.end(this);
+				fill.end(sprite.graphics);
 			}
 		}
 

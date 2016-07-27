@@ -23,6 +23,7 @@ package org.apache.flex.svg
     COMPILE::SWF
     {
         import flash.display.GradientType;
+        import flash.display.Graphics;
         import flash.display.InterpolationMethod;
         import flash.display.SpreadMethod;
         import flash.geom.Matrix;
@@ -51,20 +52,20 @@ package org.apache.flex.svg
 		}
 		
         COMPILE::SWF
-		public function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
+		public function begin(g:Graphics,targetBounds:Rectangle, targetOrigin:Point):void
 		{
 			commonMatrix.identity();
 			commonMatrix.createGradientBox(targetBounds.width,targetBounds.height,toRad(this.rotation),targetOrigin.x, targetOrigin.y);
 			
-			s.graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios,
+			g.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios,
 				commonMatrix, SpreadMethod.PAD, InterpolationMethod.RGB);
 			
 		}
 		
         COMPILE::SWF
-		public function end(s:IGraphicShape):void
+		public function end(g:Graphics):void
 		{
-			s.graphics.endFill();
+			g.endFill();
 		}
         
         /**

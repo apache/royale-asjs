@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::SWF
-    {
-        import flash.display.DisplayObjectContainer;
-    }
     
     /**
      *  The IChild interface is the basic interface for a 
@@ -34,16 +30,6 @@ package org.apache.flex.core
      */
     public interface IChild
 	{
-        /**
-         *  The parent.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        function get parent():DisplayObjectContainer;
         
         /**
          *  The parent.
@@ -53,7 +39,6 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::JS
         function get parent():IUIBase;
 	}
 }

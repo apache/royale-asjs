@@ -110,7 +110,8 @@ package org.apache.flex.svg
         {
             COMPILE::SWF
             {
-                graphics.clear();
+                sprite.graphics.clear();
+                sprite.removeChildren();
             }
             COMPILE::JS
             {
@@ -140,7 +141,7 @@ package org.apache.flex.svg
             {
                 applyStroke();
                 beginFill(new Rectangle(x, y, width, height), new Point(x,y) );
-                graphics.drawRect(x, y, width, height);
+                sprite.graphics.drawRect(x, y, width, height);
                 endFill();
             }
             COMPILE::JS
@@ -173,7 +174,7 @@ package org.apache.flex.svg
                 beginFill(new Rectangle(x,y,width,height), new Point(x,y));
                 radiusX *=2;
                 radiusY = isNaN(radiusY) ? radiusY : radiusY*2;
-                graphics.drawRoundRect(x,y,width,height,radiusX,radiusY);
+                sprite.graphics.drawRoundRect(x,y,width,height,radiusX,radiusY);
                 endFill();
             }
             COMPILE::JS
@@ -220,7 +221,7 @@ package org.apache.flex.svg
             {
                 applyStroke();
                 beginFill(new Rectangle(x,y,width,height), new Point(x,y));
-                graphics.drawEllipse(x,y,width,height);
+                sprite.graphics.drawEllipse(x,y,width,height);
                 endFill();
             }
             COMPILE::JS
@@ -257,7 +258,7 @@ package org.apache.flex.svg
             {
                 applyStroke();
                 beginFill(new Rectangle(x,y,radius*2, radius*2),new Point(x-radius,y-radius));
-                graphics.drawCircle(x,y,radius);
+                sprite.graphics.drawCircle(x,y,radius);
                 endFill();
             }
             COMPILE::JS
@@ -316,7 +317,7 @@ package org.apache.flex.svg
                 var bounds:Rectangle = PathHelper.getBounds(data);
                 beginFill(bounds,bounds.topLeft);
                 var graphicsPath:GraphicsPath = PathHelper.getSegments(data);
-                graphics.drawPath(graphicsPath.commands, graphicsPath.data);
+                sprite.graphics.drawPath(graphicsPath.commands, graphicsPath.data);
                 endFill();
             }
             COMPILE::JS
@@ -353,8 +354,6 @@ package org.apache.flex.svg
          * <code>beginGradientFill()</code>, or 
          * <code>beginBitmapFill()</code> method.
          * 
-         * @param graphics The Graphics object that draws the rounded rectangle.
-         *
          * @param x The horizontal position relative to the 
          * registration point of the parent display object, in pixels.
          * 
@@ -388,7 +387,7 @@ package org.apache.flex.svg
             {
                 applyStroke();
                 beginFill(new Rectangle(x,y,width,height), new Point(x,y));
-                graphics.drawRoundRectComplex(x,y,width,height,topLeftRadius,topRightRadius,bottomLeftRadius,bottomRightRadius);
+                sprite.graphics.drawRoundRectComplex(x,y,width,height,topLeftRadius,topRightRadius,bottomLeftRadius,bottomRightRadius);
                 endFill();
             }
             COMPILE::JS
@@ -475,7 +474,7 @@ package org.apache.flex.svg
         {
             applyStroke();
             beginFill(new Rectangle(x,y,width,height), new Point(x,y));
-            builder.draw(graphics);
+            builder.draw(sprite.graphics);
             endFill();
         }
         COMPILE::JS
@@ -514,7 +513,7 @@ package org.apache.flex.svg
             COMPILE::SWF
             {
                 var textField:CSSTextField = new CSSTextField();
-                addChild(textField);
+                sprite.addChild(textField.textField);
 
                 textField.selectable = false;
                 textField.type = TextFieldType.DYNAMIC;

@@ -18,13 +18,13 @@ package org.apache.flex.graphics
 
 	COMPILE::SWF
 	{
-		import flash.display.Graphics;
+		import flash.display.Sprite;
 	}
 
 	public interface IGraphicShape extends IUIBase
 	{
 		COMPILE::SWF
-		function get graphics():Graphics;
+		function get sprite():Sprite;
 		
 	}
 }

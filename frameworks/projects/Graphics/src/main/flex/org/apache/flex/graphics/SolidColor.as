@@ -18,6 +18,7 @@ package org.apache.flex.graphics
 
     COMPILE::SWF
     {
+		import flash.display.Graphics;
         import flash.geom.Point;
         import flash.geom.Rectangle;            
     }
@@ -108,15 +109,15 @@ package org.apache.flex.graphics
 		}
 		
         COMPILE::SWF
-		public function begin(s:IGraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
+		public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
 		{
-			s.graphics.beginFill(color,alpha);
+			g.beginFill(color,alpha);
 		}
 		
         COMPILE::SWF
-		public function end(s:IGraphicShape):void
+		public function end(g:Graphics):void
 		{
-			s.graphics.endFill();
+			g.endFill();
 		}
         
         /**

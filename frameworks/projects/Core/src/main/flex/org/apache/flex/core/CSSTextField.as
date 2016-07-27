@@ -22,6 +22,8 @@ package org.apache.flex.core
 		import flash.text.TextField;
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFormat;
+        import org.apache.flex.events.Event;        
+        import org.apache.flex.events.EventDispatcher;
 	}
 
     import org.apache.flex.core.ValuesManager;
@@ -38,7 +40,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSTextField extends TextField
+	public class CSSTextField extends EventDispatcher
 	{
         /**
          *  Constructor.
@@ -50,8 +52,231 @@ package org.apache.flex.core
          */
 		public function CSSTextField()
 		{
-			super();
+			_textField = new TextField();
 		}
+
+        private var _textField:TextField;
+        
+        public function get textField():TextField
+        {
+            return _textField;
+        }
+        
+        public function set textField(value:TextField):void
+        {
+            _textField = value;
+        }
+
+        private var _parent:IUIBase;
+        public function get parent():IUIBase
+        {
+            return _parent;
+        }
+        public function set parent(val:IUIBase):void
+        {
+            _parent = val;
+        }
+
+        public function get width():Number
+        {
+            return _textField.width;
+        }
+
+        public function set width(value:Number):void
+        {
+            _textField.width = value;
+        }
+
+        public function get height():Number
+        {
+            return _textField.height;
+        }
+
+        public function set height(value:Number):void
+        {
+            _textField.height = value;
+        }
+
+        public function get x():Number
+        {
+            return _textField.x;
+        }
+
+        public function set x(value:Number):void
+        {
+            _textField.x = value;
+        }
+
+        public function get y():Number
+        {
+            return _textField.y;
+        }
+
+        public function set y(value:Number):void
+        {
+            _textField.y = value;
+        }
+
+        public function get visible():Boolean
+        {
+            return _textField.visible;
+        }
+
+        public function set visible(value:Boolean):void
+        {
+            _textField.visible = value;
+        }
+
+        public function get alpha():Number
+        {
+            return _textField.alpha;
+        }
+
+        public function set alpha(value:Number):void
+        {
+            _textField.alpha = value;
+        }
+
+        public function get embedFonts():Boolean
+        {
+            return _textField.embedFonts;
+        }
+
+        public function set embedFonts(value:Boolean):void
+        {
+            _textField.embedFonts = value;
+        }
+
+        public function get selectable():Boolean
+        {
+            return _textField.selectable;
+        }
+
+        public function set selectable(value:Boolean):void
+        {
+            _textField.selectable = value;
+        }
+
+        public function get type():String
+        {
+            return _textField.type;
+        }
+
+        public function set type(value:String):void
+        {
+            _textField.type = value;
+        }
+
+        public function get mouseEnabled():Boolean
+        {
+            return _textField.mouseEnabled;
+        }
+
+        public function set mouseEnabled(value:Boolean):void
+        {
+            _textField.mouseEnabled = value;
+        }
+
+        public function get autoSize():String
+        {
+            return _textField.autoSize;
+        }
+
+        public function set autoSize(value:String):void
+        {
+            _textField.autoSize = value;
+        }
+
+        public function get textColor():uint
+        {
+            return _textField.textColor;
+        }
+
+        public function set textColor(value:uint):void
+        {
+            _textField.textColor = value;
+        }
+
+        public function get textWidth():Number
+        {
+            return _textField.textWidth;
+        }
+
+        public function get textHeight():Number
+        {
+            return _textField.textHeight;
+        }
+
+        public function get wordWrap():Boolean
+        {
+            return _textField.wordWrap;
+        }
+
+        public function set wordWrap(value:Boolean):void
+        {
+            _textField.wordWrap = value;
+        }
+
+        public function get multiline():Boolean
+        {
+            return _textField.multiline;
+        }
+
+        public function set multiline(value:Boolean):void
+        {
+            _textField.multiline = value;
+        }
+
+        public function get restrict():String
+        {
+            return _textField.restrict;
+        }
+
+        public function set restrict(value:String):void
+        {
+            _textField.restrict = value;
+        }
+
+        public function get maxChars():int
+        {
+            return _textField.maxChars;
+        }
+
+        public function set maxChars(value:int):void
+        {
+            _textField.maxChars = value;
+        }
+
+        public function get displayAsPassword():Boolean
+        {
+            return _textField.displayAsPassword;
+        }
+
+        public function set displayAsPassword(value:Boolean):void
+        {
+            _textField.displayAsPassword = value;
+        }
+
+        public function get htmlText():String
+        {
+            return _textField.htmlText;
+        }
+
+        public function set htmlText(value:String):void
+        {
+            _textField.htmlText = value;
+        }
+
+        public function get name():String
+        {
+            return _textField.name;
+        }
+
+        public function set name(value:String):void
+        {
+            _textField.name = value;
+        }
+
 
         /**
          *  @private
@@ -104,7 +329,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		override public function set text(value:String):void
+		public function set text(value:String):void
 		{
 			var sp:Object = parent;
 			if (styleParent)
@@ -127,26 +352,31 @@ package org.apache.flex.core
             var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align", styleState);
             if (align == "center")
 			{
-				autoSize = TextFieldAutoSize.NONE;
+				textField.autoSize = TextFieldAutoSize.NONE;
                 tf.align = "center";
 			}
             else if (align == "right")
 			{
                 tf.align = "right";
-				autoSize = TextFieldAutoSize.NONE;
+				textField.autoSize = TextFieldAutoSize.NONE;
 			}
             if (!parentDrawsBackground)
             {
                 var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
                 if (backgroundColor != null)
                 {
-                    this.background = true;
-                    this.backgroundColor = CSSUtils.toColor(backgroundColor);
+                    textField.background = true;
+                    textField.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
             }
-			defaultTextFormat = tf;
-			super.text = value;
+			textField.defaultTextFormat = tf;
+			textField.text = value;
 		}
+
+        public function get text():String
+        {
+            return textField.text;
+        }
 
         private function updateStyles(event:Event):void
         {

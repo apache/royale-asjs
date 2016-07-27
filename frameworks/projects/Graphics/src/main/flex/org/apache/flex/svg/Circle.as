@@ -18,6 +18,7 @@ package org.apache.flex.svg
 
     COMPILE::SWF
     {
+        import flash.display.Graphics;
         import flash.geom.Point;
         import flash.geom.Rectangle;            
     }
@@ -75,10 +76,10 @@ package org.apache.flex.svg
         {
             COMPILE::SWF
             {
-                graphics.clear();
+                sprite.graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(cx,cy,radius*2, radius*2),new Point(cx-radius,cy-radius));
-                graphics.drawCircle(cx,cy,radius);
+                sprite.graphics.drawCircle(cx,cy,radius);
                 endFill();
             }
             COMPILE::JS                

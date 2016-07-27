@@ -132,10 +132,10 @@ package org.apache.flex.html.beads
 			drawButton( downSprite, "down", 18, 18 );
 			
 			button = new Button();
-            button.upState = upSprite;
-            button.overState = overSprite;
-            button.downState = downSprite;
-			DisplayObjectContainer(strand).addChild(button);
+            button.button.upState = upSprite;
+            button.button.overState = overSprite;
+            button.button.downState = downSprite;
+			HTMLElementWrapper(strand).sprite.addChild(button.button);
 			button.width = 18;
 			button.height = 18;
 			button.x = textInput.width;

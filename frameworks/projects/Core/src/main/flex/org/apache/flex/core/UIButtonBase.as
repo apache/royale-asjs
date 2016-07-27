@@ -29,7 +29,8 @@ package org.apache.flex.core
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
     import org.apache.flex.events.utils.MouseEventConverter;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.events.IEventDispatcher;
 	
     //--------------------------------------
     //  Events
@@ -58,7 +59,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	COMPILE::SWF
-	public class UIButtonBase extends SimpleButton implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
+	public class UIButtonBase extends EventDispatcher implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
 	{
         /**
          *  Constructor.
@@ -70,21 +71,54 @@ package org.apache.flex.core
          */
 		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
-			super(upState, overState, downState, hitTestState);
+            _button = new SimpleButton(upState, overState, downState, hitTestState);
+//			super(upState, overState, downState, hitTestState);
 			// mouseChildren = true;
 			// mouseEnabled = true;
             MouseEventConverter.setupInstanceConverters(this);
 		}
-				
+
+        private var _button:SimpleButton;
+
+        public function get button():SimpleButton
+        {
+            return _button;
+        }
+        public function set button(val:SimpleButton):void
+        {
+            _button = val;
+        }
+
+        private var _parent:IUIBase;
+        public function get parent():IUIBase
+        {
+            return _parent;
+        }
+        public function set parent(val:IUIBase):void
+        {
+            _parent = val;
+        }
+
+        public function get alpha():Number
+        {
+            return _button.alpha;
+        }
+
+        public function set alpha(value:Number):void
+        {
+            _button.alpha = value;
+        }
+
+
         private var _x:Number;
         
 		/**
 		 *  @private
 		 */
-		override public function set x(value:Number):void
+		public function set x(value:Number):void
 		{
-			if (super.x != value) {
-				super.x = _x = value;
+			if (button.x != value) {
+				button.x = _x = value;
                 if (!style)
                     style = { left: value };
                 else
@@ -92,16 +126,20 @@ package org.apache.flex.core
 				dispatchEvent(new Event("xChanged"));
 			}
 		}
+        public function get x():Number
+        {
+            return _x;
+        }
 		
         private var _y:Number;
 
         /**
 		 *  @private
 		 */
-		override public function set y(value:Number):void
+		public function set y(value:Number):void
 		{
-			if (super.y != value) {
-				super.y = _y = value;
+			if (button.y != value) {
+				button.y = _y = value;
                 if (!style)
                     style = { top: value };
                 else
@@ -109,6 +147,11 @@ package org.apache.flex.core
 				dispatchEvent(new Event("yChanged"));
 			}
 		}
+
+        public function get y():Number
+        {
+            return _y;
+        }
 		
 		/**
 		 *  Retrieve the low-level bounding box y.
@@ -120,7 +163,7 @@ package org.apache.flex.core
 		 */
 		protected function get $y():Number
 		{
-			return super.y;
+			return button.y;
 		}
 		
 		private var _explicitWidth:Number;
@@ -287,7 +330,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		override public function get width():Number
+		public function get width():Number
 		{
 			if (isNaN(explicitWidth))
 			{
@@ -302,7 +345,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		override public function set width(value:Number):void
+		public function set width(value:Number):void
 		{
 			if (explicitWidth != value)
 			{
@@ -323,7 +366,7 @@ package org.apache.flex.core
          */
 		public function get $width():Number
 		{
-			return super.width;
+			return button.width;
 		}
 		
 		private var _height:Number;
@@ -338,7 +381,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		override public function get height():Number
+		public function get height():Number
 		{
 			if (isNaN(explicitHeight))
 			{
@@ -353,7 +396,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		override public function set height(value:Number):void
+		public function set height(value:Number):void
 		{
 			if (explicitHeight != value)
 			{
@@ -374,7 +417,7 @@ package org.apache.flex.core
          */
 		public function get $height():Number
 		{
-			return super.height;
+			return button.height;
 		}
 
         /**
@@ -462,7 +505,7 @@ package org.apache.flex.core
          */
         public function setX(value:Number):void
         {
-            super.x = value;
+            button.x = value;
         }
                 
         /**
@@ -475,19 +518,24 @@ package org.apache.flex.core
          */
         public function setY(value:Number):void
         {
-            super.y = value;
+            button.y = value;
         }
         
 		/**
 		 * @private
 		 */
         [Bindable("visibleChanged")]
-		override public function set visible(value:Boolean):void
+		public function set visible(value:Boolean):void
 		{
-			super.visible = value;
+			button.visible = value;
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
 		}
+
+        public function get visible():Boolean
+        {
+            return button.visible;
+        }
         
         /**
          *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent

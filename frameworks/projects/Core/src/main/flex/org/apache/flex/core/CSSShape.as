@@ -24,6 +24,8 @@ package org.apache.flex.core
     import org.apache.flex.core.IChild;
     import org.apache.flex.events.Event;
     import org.apache.flex.utils.CSSBorderUtils;
+    import org.apache.flex.events.Event;        
+    import org.apache.flex.events.EventDispatcher;
     
     /**
      *  The Border class is a class used internally by many
@@ -36,7 +38,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSShape extends Shape implements IStyleableObject, IChild
+	public class CSSShape extends EventDispatcher implements IStyleableObject, IChild
 	{
         /**
          *  Constructor.
@@ -48,9 +50,89 @@ package org.apache.flex.core
          */
 		public function CSSShape()
 		{
-			super();
-		}		
-        
+			_shape = new Shape();
+		}
+
+        private var _shape:Shape;
+
+        public function get shape():Shape
+        {
+            return _shape;
+        }
+        public function set shape(val:Shape):void
+        {
+            _shape = val;
+        }
+
+        private var _parent:IUIBase;
+        public function get parent():IUIBase
+        {
+            return _parent;
+        }
+        public function set parent(val:IUIBase):void
+        {
+            _parent = val;
+        }
+
+        public function get width():Number
+        {
+            return _shape.width;
+        }
+
+        public function set width(value:Number):void
+        {
+            _shape.width = value;
+        }
+
+        public function get height():Number
+        {
+            return _shape.height;
+        }
+
+        public function set height(value:Number):void
+        {
+            _shape.height = value;
+        }
+
+        public function get x():Number
+        {
+            return _shape.x;
+        }
+
+        public function set x(value:Number):void
+        {
+            _shape.x = value;
+        }
+
+        public function get y():Number
+        {
+            return _shape.y;
+        }
+
+        public function set y(value:Number):void
+        {
+            _shape.y = value;
+        }        
+
+        public function get visible():Boolean
+        {
+            return _shape.visible;
+        }
+
+        public function set visible(value:Boolean):void
+        {
+            _shape.visible = value;
+        }
+        public function get alpha():Number
+        {
+            return _shape.alpha;
+        }
+
+        public function set alpha(value:Number):void
+        {
+            _shape.alpha = value;
+        }        
+
         private var _id:String;
         
         /**
@@ -157,7 +239,7 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-            CSSBorderUtils.draw(this.graphics, w, h, this, state, true);            
+            CSSBorderUtils.draw(shape.graphics, w, h, shape, state, true);            
         }
    	}
 }

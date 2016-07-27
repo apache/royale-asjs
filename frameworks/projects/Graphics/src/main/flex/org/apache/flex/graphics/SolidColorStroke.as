@@ -19,6 +19,7 @@ package org.apache.flex.graphics
     COMPILE::SWF
     {
         import flash.display.CapsStyle;
+        import flash.display.Graphics;
         import flash.display.JointStyle;
     }
 
@@ -120,9 +121,9 @@ package org.apache.flex.graphics
         }
         
         COMPILE::SWF
-        public function apply(s:IGraphicShape):void
+        public function apply(g:Graphics):void
         {
-            s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
+            g.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
         }
         
         /**

@@ -81,9 +81,9 @@ package org.apache.flex.html.beads
 			upTextField.autoSize = "left";
 			downTextField.autoSize = "left";
 			overTextField.autoSize = "left";
-			upSprite.addChild(upTextField);
-			downSprite.addChild(downTextField);
-			overSprite.addChild(overTextField);
+			upSprite.addChild(upTextField.textField);
+			downSprite.addChild(downTextField.textField);
+			overSprite.addChild(overTextField.textField);
 		}
 		
 		private var textModel:ImageAndTextModel;
@@ -142,10 +142,10 @@ package org.apache.flex.html.beads
             updateHitArea();
         }
         
-		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
+		private function setupSkin(sprite:Sprite, textField:CSSTextField, state:String = null):void
 		{
-			var sw:uint = DisplayObject(_strand).width;
-			var sh:uint = DisplayObject(_strand).height;
+			var sw:uint = IUIBase(_strand).width;
+			var sh:uint = IUIBase(_strand).height;
 			
 			textField.defaultTextFormat.leftMargin = 0;
 			textField.defaultTextFormat.rightMargin = 0;

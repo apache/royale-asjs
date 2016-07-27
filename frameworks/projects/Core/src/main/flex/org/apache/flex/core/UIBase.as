@@ -1087,13 +1087,16 @@ package org.apache.flex.core
 		{
             COMPILE::SWF
             {
+                if(_elements == null)
+                    _elements = [];
+                _elements[_elements.length] = c;
+                sprite.addChild(c.sprite);
+                c.parent = this;
                 if (c is IUIBase)
                 {
-                    addChild(IUIBase(c).element as DisplayObject);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChild(c as DisplayObject);
+                    
             }
             COMPILE::JS
             {
@@ -1114,13 +1117,17 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
+                if(_elements == null)
+                    _elements = [];
+                _elements.splice(index,0,c);
+
+                sprite.addChildAt(c.sprite,index);
+                c.parent = this;
+
                 if (c is IUIBase)
                 {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS
             {
@@ -1148,7 +1155,9 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                return getChildAt(index);
+                if(_elements == null)
+                    return null;
+                return _elements[index];
             }
             COMPILE::JS
             {
@@ -1169,10 +1178,9 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                if (c is IUIBase)
-                    return getChildIndex(IUIBase(c).element as DisplayObject);
-                else
-                    return getChildIndex(c as DisplayObject);
+                if(_elements == null)
+                    return -1;
+                return _elements.indexOf(c);
             }
             COMPILE::JS
             {
@@ -1199,10 +1207,14 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                if (c is IUIBase)
-                    removeChild(IUIBase(c).element as DisplayObject);
-                else
-                    removeChild(c as DisplayObject);
+                if(_elements)
+                {
+                    var idx:int = _elements.indexOf(c);
+                    if(idx>=0)
+                        _elements.splice(idx,1);
+                    c.parent = null;
+                }
+                sprite.removeChild(c.sprite as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1222,7 +1234,7 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                return numChildren;
+                return sprite.numChildren;
             }
             COMPILE::JS
             {
@@ -1369,7 +1381,7 @@ package org.apache.flex.core
             {
                 if (!_stageProxy)
                 {
-                    _stageProxy = new StageProxy(stage);
+                    _stageProxy = new StageProxy(sprite.stage);
                     _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
                 }
                 
@@ -1436,7 +1448,6 @@ package org.apache.flex.core
             return positioner;
         }
         
-        
         /**
          * The HTMLElement used to position the component.
          * @flexjsignorecoercion String
@@ -1478,6 +1489,6 @@ package org.apache.flex.core
             var wrapper:IUIBase = p ? p.flexjs_wrapper as IUIBase : null;
             return wrapper;
         }
-        
+
 	}
 }

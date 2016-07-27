@@ -26,17 +26,36 @@ package org.apache.flex.core
     COMPILE::JS
     {
         import window.Event;
-        import org.apache.flex.events.Event;        
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.events.ElementEvents;
-        import org.apache.flex.events.EventDispatcher;
         import goog.events;
         import goog.events.EventTarget;
     }
+    import org.apache.flex.events.Event;        
+    import org.apache.flex.events.EventDispatcher;
 
     COMPILE::SWF
-    public class HTMLElementWrapper extends Sprite
+    public class HTMLElementWrapper extends EventDispatcher
     {
+        public function HTMLElementWrapper()
+        {
+            _sprite = new Sprite();
+        }
+
+        private var _sprite:Sprite;
+        
+        public function get sprite():Sprite
+        {
+            return _sprite;
+        }
+        
+        public function set sprite(value:Sprite):void
+        {
+            _sprite = value;
+        }
+
+        protected var _elements:Array;
+
         /**
          * "abstract" method so we can override in JS
          * @param bead The new bead.
@@ -44,6 +63,77 @@ package org.apache.flex.core
         public function addBead(bead:IBead):void
         {            
         }
+
+        private var _parent:IUIBase;
+        public function get parent():IUIBase
+        {
+            return _parent;
+        }
+        public function set parent(val:IUIBase):void
+        {
+            _parent = val;
+        }
+
+        public function get width():Number
+        {
+            return _sprite.width;
+        }
+
+        public function set width(value:Number):void
+        {
+            _sprite.width = value;
+        }
+
+        public function get height():Number
+        {
+            return _sprite.height;
+        }
+
+        public function set height(value:Number):void
+        {
+            _sprite.height = value;
+        }
+
+        public function get x():Number
+        {
+            return _sprite.x;
+        }
+
+        public function set x(value:Number):void
+        {
+            _sprite.x = value;
+        }
+
+        public function get y():Number
+        {
+            return _sprite.y;
+        }
+
+        public function set y(value:Number):void
+        {
+            _sprite.y = value;
+        }        
+
+        public function get visible():Boolean
+        {
+            return _sprite.visible;
+        }
+
+        public function set visible(value:Boolean):void
+        {
+            _sprite.visible = value;
+        }        
+
+        public function get alpha():Number
+        {
+            return _sprite.alpha;
+        }
+
+        public function set alpha(value:Number):void
+        {
+            _sprite.alpha = value;
+        }        
+
     }
     
 	COMPILE::JS

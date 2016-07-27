@@ -98,14 +98,14 @@ package org.apache.flex.svg
         {
             COMPILE::SWF
             {
-                graphics.clear();
+                sprite.graphics.clear();
                 applyStroke();
                 var bounds:Rectangle = PathHelper.getBounds(data);
                 this.width = bounds.width;
                 this.height = bounds.height;
                 beginFill(bounds,new Point(bounds.left + xp, bounds.top + yp) );
                 var graphicsPath:GraphicsPath = PathHelper.getSegments(data,xp,yp);
-                graphics.drawPath(graphicsPath.commands, graphicsPath.data);
+                sprite.graphics.drawPath(graphicsPath.commands, graphicsPath.data);
                 endFill();
             }
             COMPILE::JS
