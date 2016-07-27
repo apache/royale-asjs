@@ -407,6 +407,8 @@ package org.apache.flex.core
             return null;
         }
 
+        private var _elements:Array;
+
         /**
          *  @copy org.apache.flex.core.IParent#addElement()
          *
@@ -417,14 +419,17 @@ package org.apache.flex.core
          */
         public function addElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    _elements = [];
+                _elements[_elements.length] = c;
+                this.addChild(c.sprite);
+                c.parent = this;
                 if (c is IUIBase)
                 {
-                    addChild(IUIBase(c).element as DisplayObject);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChild(c as DisplayObject);
             }
             COMPILE::JS {
                 this.element.appendChild(c.element);
@@ -442,14 +447,19 @@ package org.apache.flex.core
          */
         public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    _elements = [];
+                _elements.splice(index,0,c);
+
+                this.addChildAt(c.sprite,index);
+                c.parent = this;
+
                 if (c is IUIBase)
                 {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
@@ -475,10 +485,14 @@ package org.apache.flex.core
          */
         public function getElementAt(index:int):Object
         {
-            COMPILE::SWF {
-                return getChildAt(index);
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    return null;
+                return _elements[index];
             }
-            COMPILE::JS {
+            COMPILE::JS
+            {
                 var children:NodeList = internalChildren();
                 return children[index].flexjs_wrapper;
             }
@@ -494,11 +508,11 @@ package org.apache.flex.core
          */
         public function getElementIndex(c:Object):int
         {
-            COMPILE::SWF {
-                if (c is IUIBase)
-                    return getChildIndex(IUIBase(c).element as DisplayObject);
-
-                return getChildIndex(c as DisplayObject);
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    return -1;
+                return _elements.indexOf(c);
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
@@ -522,15 +536,19 @@ package org.apache.flex.core
          */
         public function removeElement(c:Object, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
-                if (c is IUIBase)
+            COMPILE::SWF
+            {
+                if(_elements)
                 {
-                    removeChild(IUIBase(c).element as DisplayObject);
+                    var idx:int = _elements.indexOf(c);
+                    if(idx>=0)
+                        _elements.splice(idx,1);
+                    c.parent = null;
                 }
-                else
-                    removeChild(c as DisplayObject);
+                this.removeChild(c.sprite as DisplayObject);
             }
-            COMPILE::JS {
+            COMPILE::JS
+            {
                 element.removeChild(c.element);
             }
         }
@@ -545,10 +563,12 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            COMPILE::SWF {
-                return numChildren;
+            COMPILE::SWF
+            {
+                return _elements ? _elements.length : 0;
             }
-            COMPILE::JS {
+            COMPILE::JS
+            {
                 var children:NodeList = internalChildren();
                 return children.length;
             }

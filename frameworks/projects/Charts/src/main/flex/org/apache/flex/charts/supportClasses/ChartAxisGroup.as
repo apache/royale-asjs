@@ -60,11 +60,13 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function removeAllElements():void
 		{
-			COMPILE::SWF {
-				this.removeChildren(0);
+			COMPILE::SWF
+			{
+				sprite.removeChildren(0);
 			}
 			
-			COMPILE::JS {
+			COMPILE::JS
+			{
 				var svg:Object = this.element;
 				while (svg.lastChild) {
 					svg.removeChild(svg.lastChild);

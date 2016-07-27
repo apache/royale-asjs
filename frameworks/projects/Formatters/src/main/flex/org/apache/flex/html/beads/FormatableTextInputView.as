@@ -85,7 +85,7 @@ package org.apache.flex.html.beads
 			
 			// move the cursor to the end
 			var l:int = this.textField.text.length;
-			this.textField.setSelection(l,l);
+			this.textField.textField.setSelection(l,l);
 		}
 	}
 }
