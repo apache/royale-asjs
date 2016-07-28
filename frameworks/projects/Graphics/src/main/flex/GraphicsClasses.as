@@ -40,6 +40,7 @@ internal class GraphicsClasses
 	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 	import org.apache.flex.svg.LinearGradient; LinearGradient;
 	import org.apache.flex.graphics.TransformModel; TransformModel;
+	import org.apache.flex.graphics.TransformRotateModel; TransformRotateModel;
 	import org.apache.flex.svg.TransformBead; TransformBead;
 }
 
