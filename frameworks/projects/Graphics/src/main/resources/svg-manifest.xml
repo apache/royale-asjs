@@ -27,5 +27,5 @@
 	<component id="CompoundGraphic" class="org.apache.flex.svg.CompoundGraphic" />
 	<component id="GraphicContainer" class="org.apache.flex.svg.GraphicContainer" />
 	<component id="TransformBead" class="org.apache.flex.svg.TransformBead" />
-  	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
+	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
 </componentPackage>
