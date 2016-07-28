@@ -1,22 +1,21 @@
 package org.apache.flex.svg
 {
+	import org.apache.flex.core.IBeadTransform;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ITransformHost;
 	import org.apache.flex.core.ITransformModel;
+	import org.apache.flex.core.TransformModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.core.IBeadTransform;
-	import org.apache.flex.core.ITransformHost;
 
 	COMPILE::SWF {
 		import flash.display.Sprite;
 		import flash.geom.Matrix;
 	}
 	
-	
 	public class TransformBead implements IBeadTransform
 	{
 		private var _strand:IStrand;
-		private var transformModel:ITransformModel;
 		
 		public function TransformBead()
 		{
@@ -32,25 +31,20 @@ package org.apache.flex.svg
 		 */		
 		public function set strand(value:IStrand):void
 		{
-			if (!(value is GraphicContainer))
-			{
-				throw new Error("This bead only works with svg GraphicContainers");
-				return;
-			}
 			_strand = value;
-			transformModel = value.getBeadByType(ITransformModel) as ITransformModel;
-			if (!transformModel)
-			{
-				throw new Error("An ITransformModel needs to be defined.");
-				return;
-			}
-			transformModel.addEventListener(Event.CHANGE, changeHandler);
-			if (transformModel.matrix)
+			host.addEventListener(TransformModel.CHANGE, changeHandler);
+			var model:ITransformModel = transformModel;
+			if (model && model.matrix)
 			{
 				transform();
 			}
 		}
 		
+		public function get transformModel():ITransformModel
+		{
+			return host.getBeadByType(ITransformModel) as ITransformModel;
+		}
+				
 		COMPILE::SWF
 		public function transform():void
 		{

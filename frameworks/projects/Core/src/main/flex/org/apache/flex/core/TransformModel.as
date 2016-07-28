@@ -6,7 +6,11 @@ package org.apache.flex.core
 	
 	public class TransformModel extends EventDispatcher implements ITransformModel
 	{
+		
+		public static const CHANGE:String = "transferModelChange";
+		
 		private var _matrix:Matrix;
+		private var _strand:IStrand;
 		
 		public function TransformModel()
 		{
@@ -17,13 +21,30 @@ package org.apache.flex.core
 			return _matrix;
 		}
 
+		private function dispatchModelChangeEvent():void
+		{
+			host.dispatchEvent(new Event(CHANGE));
+		}
+		
+		private function get host():ITransformHost
+		{
+			return _strand as ITransformHost;
+		}
+		
 		public function set matrix(value:Matrix):void
 		{
 			_matrix = value;
-			dispatchEvent(new Event(Event.CHANGE));
+			if (_strand)
+			{
+				dispatchModelChangeEvent();
+			}
 		}
 		
-		public function set strand(value:IStrand):void {}
+		public function set strand(value:IStrand):void 
+		{
+			_strand = value;
+			dispatchModelChangeEvent();
+		}
 
 	}
 }
