@@ -33,11 +33,38 @@ package org.apache.flex.utils
 	{
 
 		/**
+		 *  Gets the bounding box of an object relative to the screen ignoring any scrolling.
+		 * 
+		 *  @param obj The object to test.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
+		 */
+		public static function getScreenBoundingRect(obj:IUIBase):Rectangle
+		{
+			COMPILE::SWF
+			{
+				return Rectangle.fromObject(obj.$displayObject.getBounds(obj.$displayObject.stage));
+			}
+
+			COMPILE::JS
+			{
+				var r:Object = obj.element.getBoundingClientRect();
+				var bounds:Rectangle = new Rectangle(r.x, r.y, r.width, r.height);
+				bounds.x -= window.pageXOffset;
+				bounds.y -= window.pageYOffset;
+				return bounds;
+			}
+		}
+
+		/**
 		 *  Evaluates the bounding box of two objects to see if thier bounding boxes overlap.
 		 * 
-		 *  @param x The x coordinate to test against this object.
-		 *  @param y The y coordinate to test against this object.
-		 *  @param obj The object to test.
+		 *  @param obj1 The object to test.
+		 *  @param obj2 The object to test against.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

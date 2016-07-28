@@ -62,7 +62,7 @@ package org.apache.flex.utils
 		{
             COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(new flash.geom.Point(pt.x,pt.y));
+                var fpt:flash.geom.Point = DisplayObject(local.$displayObject).globalToLocal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
@@ -103,7 +103,7 @@ package org.apache.flex.utils
         {
             COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(new flash.geom.Point(pt.x,pt.y));
+                var fpt:flash.geom.Point = DisplayObject(local.$displayObject).localToGlobal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS

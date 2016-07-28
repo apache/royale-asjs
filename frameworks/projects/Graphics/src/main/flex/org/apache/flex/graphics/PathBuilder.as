@@ -85,6 +85,14 @@ package org.apache.flex.graphics
         {
             commands.push(new CubicCurve(controlX1, controlY1, controlX2, controlY2, anchorX, anchorY));
         }
+        public function drawRect(x:Number,y:Number,width:Number,height:Number):void
+        {
+            commands.push(new MoveTo(x,y));
+            commands.push(new LineTo(x+width,y));
+            commands.push(new LineTo(x+width,y+height));
+            commands.push(new LineTo(x,y+height));
+            commands.push(new LineTo(x,y));
+        }
 
         public function drawRoundRectComplex(x:Number, y:Number, 
                                                     width:Number, height:Number, 
