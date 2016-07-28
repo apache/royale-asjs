@@ -33,28 +33,6 @@ package org.apache.flex.svg
             super();
         }
 
-		/**
-		 *  @private
-		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
-		{
-			if(c is GraphicShape)
-				super.addElement(c, dispatchEvent);
-			else 
-				throw new Error("Only svg elements can be added to svg containers");
-		}
-		
-		/**
-		 *  @private
-		 */
-		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
-		{
-			if(c is GraphicShape)
-				super.addElementAt(c, index, dispatchEvent);
-			else 
-				throw new Error("Only svg elements can be added to svg containers");
-		}
-		
 		public function get transformElement():IFlexJSElement
 		{
 			return element;
@@ -89,7 +67,7 @@ package org.apache.flex.svg
 			element.flexjs_wrapper = this;
 			
 			graphicGroup = new GraphicGroup();
-			addElement(graphicGroup);
+			super.addElement(graphicGroup);
 			return element;
 		}
 
@@ -122,10 +100,6 @@ package org.apache.flex.svg
 		 */
 		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
 		{
-			if(!(c is GraphicShape))
-			{
-				throw new Error("Only svg elements can be added to svg containers");
-			}
 			graphicGroup.addElement(c, dispatchEvent);
 			if (dispatchEvent)
 				this.dispatchEvent(new Event("childrenAdded"));
@@ -141,10 +115,6 @@ package org.apache.flex.svg
 		 */
 		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
 		{
-			if(!(c is GraphicShape))
-			{
-				throw new Error("Only svg elements can be added to svg containers");
-			}
 			graphicGroup.addElementAt(c, index, dispatchEvent);
 			if (dispatchEvent)
 				this.dispatchEvent(new Event("childrenAdded"));

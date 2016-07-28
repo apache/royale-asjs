@@ -59,14 +59,17 @@ package org.apache.flex.svg
 			var flashMatrix:flash.geom.Matrix = new flash.geom.Matrix(fjsm.a, fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty);
 			element.transform.matrix = flashMatrix;
 		}
-		
+		/**
+		 * @flexjsignorecoercion HTMLElement
+		 */
 		COMPILE::JS
 		public function transform():void
 		{
 			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
+			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
 			var fjsm:org.apache.flex.geom.Matrix = transformModel.matrix;
-			var elem:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
-			element.setAttribute("transform", "matrix(" +elem.join(",") + ")";
+			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
+			element.setAttribute("transform", "matrix(" +matrixArray.join(",") + ")";
 		}
 		
 		private function changeHandler(e:Event):void
