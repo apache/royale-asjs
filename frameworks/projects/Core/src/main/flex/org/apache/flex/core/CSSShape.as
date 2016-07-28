@@ -55,11 +55,11 @@ package org.apache.flex.core
 
         private var _shape:Shape;
 
-        public function get shape():Shape
+        public function get $shape():Shape
         {
             return _shape;
         }
-        public function set shape(val:Shape):void
+        public function set $shape(val:Shape):void
         {
             _shape = val;
         }
@@ -239,7 +239,7 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-            CSSBorderUtils.draw(shape.graphics, w, h, shape, state, true);            
+            CSSBorderUtils.draw(_shape.graphics, w, h, _shape, state, true);            
         }
    	}
 }

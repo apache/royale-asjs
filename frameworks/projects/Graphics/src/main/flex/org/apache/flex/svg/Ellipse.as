@@ -129,10 +129,10 @@ package org.apache.flex.svg
         {
             COMPILE::SWF
             {
-                sprite.graphics.clear();
+                $sprite.graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
-                sprite.graphics.drawEllipse(xp,yp,width,height);
+                $sprite.graphics.drawEllipse(xp,yp,width,height);
                 endFill();                    
             }
             COMPILE::JS

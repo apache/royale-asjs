@@ -116,6 +116,7 @@ internal class CoreClasses
 	}
 	import org.apache.flex.utils.ColorUtil; ColorUtil;
     import org.apache.flex.utils.CSSContainerUtils; CSSContainerUtils;
+    import org.apache.flex.utils.DisplayUtils; DisplayUtils;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;

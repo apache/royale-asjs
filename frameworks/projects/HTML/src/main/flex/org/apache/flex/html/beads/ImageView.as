@@ -131,12 +131,12 @@ package org.apache.flex.html.beads
 		{
             var host:UIBase = UIBase(_strand);
 			if (bitmap) {
-				host.sprite.removeChild(bitmap);
+				host.$sprite.removeChild(bitmap);
 			}
 			
 			bitmap = Bitmap(LoaderInfo(event.target).content);
 			
-			host.sprite.addChild(bitmap);
+			host.$sprite.addChild(bitmap);
 			
             if (host.isWidthSizedToContent())
             {

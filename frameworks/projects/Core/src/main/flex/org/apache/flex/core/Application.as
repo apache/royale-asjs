@@ -424,7 +424,7 @@ package org.apache.flex.core
                 if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
-                this.addChild(c.sprite);
+                this.addChild(c.$sprite);
                 c.parent = this;
                 if (c is IUIBase)
                 {
@@ -453,7 +453,7 @@ package org.apache.flex.core
                     _elements = [];
                 _elements.splice(index,0,c);
 
-                this.addChildAt(c.sprite,index);
+                this.addChildAt(c.$sprite,index);
                 c.parent = this;
 
                 if (c is IUIBase)
@@ -545,7 +545,7 @@ package org.apache.flex.core
                         _elements.splice(idx,1);
                     c.parent = null;
                 }
-                this.removeChild(c.sprite as DisplayObject);
+                this.removeChild(c.$sprite as DisplayObject);
             }
             COMPILE::JS
             {

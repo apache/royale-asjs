@@ -91,10 +91,10 @@ package org.apache.flex.html.beads
             var th:Button = _thumb;
 			th.addBead(new HScrollBarThumbView());
             
-            v.sprite.addChild(d.button);
-            v.sprite.addChild(i.button);
-            v.sprite.addChild(tr.button);
-            v.sprite.addChild(th.button);
+            v.$sprite.addChild(d.$button);
+            v.$sprite.addChild(i.$button);
+            v.$sprite.addChild(tr.$button);
+            v.$sprite.addChild(th.$button);
             
             IEventDispatcher(_strand).addEventListener("widthChanged", changeHandler);
 

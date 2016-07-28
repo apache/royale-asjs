@@ -77,7 +77,7 @@ package org.apache.flex.html.supportClasses
 		{
 			super.addedToParent();
 			
-			sprite.addChild(textField.textField);
+			$sprite.addChild(textField.$textField);
 
 			adjustSize();
 		}

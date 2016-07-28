@@ -80,13 +80,18 @@ package org.apache.flex.core
 
         private var _button:SimpleButton;
 
-        public function get button():SimpleButton
+        public function get $button():SimpleButton
         {
             return _button;
         }
-        public function set button(val:SimpleButton):void
+        public function set $button(val:SimpleButton):void
         {
             _button = val;
+        }
+
+        public function get $displayObject():DisplayObject
+        {
+            return _button;
         }
 
         private var _parent:IUIBase;
@@ -117,8 +122,8 @@ package org.apache.flex.core
 		 */
 		public function set x(value:Number):void
 		{
-			if (button.x != value) {
-				button.x = _x = value;
+			if (_button.x != value) {
+				_button.x = _x = value;
                 if (!style)
                     style = { left: value };
                 else
@@ -138,8 +143,8 @@ package org.apache.flex.core
 		 */
 		public function set y(value:Number):void
 		{
-			if (button.y != value) {
-				button.y = _y = value;
+			if (_button.y != value) {
+				_button.y = _y = value;
                 if (!style)
                     style = { top: value };
                 else
@@ -163,7 +168,7 @@ package org.apache.flex.core
 		 */
 		protected function get $y():Number
 		{
-			return button.y;
+			return _button.y;
 		}
 		
 		private var _explicitWidth:Number;
@@ -366,7 +371,7 @@ package org.apache.flex.core
          */
 		public function get $width():Number
 		{
-			return button.width;
+			return _button.width;
 		}
 		
 		private var _height:Number;
@@ -417,7 +422,7 @@ package org.apache.flex.core
          */
 		public function get $height():Number
 		{
-			return button.height;
+			return _button.height;
 		}
 
         /**
@@ -505,7 +510,7 @@ package org.apache.flex.core
          */
         public function setX(value:Number):void
         {
-            button.x = value;
+            _button.x = value;
         }
                 
         /**
@@ -518,7 +523,7 @@ package org.apache.flex.core
          */
         public function setY(value:Number):void
         {
-            button.y = value;
+            _button.y = value;
         }
         
 		/**
@@ -527,14 +532,14 @@ package org.apache.flex.core
         [Bindable("visibleChanged")]
 		public function set visible(value:Boolean):void
 		{
-			button.visible = value;
+			_button.visible = value;
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
 		}
 
         public function get visible():Boolean
         {
-            return button.visible;
+            return _button.visible;
         }
         
         /**

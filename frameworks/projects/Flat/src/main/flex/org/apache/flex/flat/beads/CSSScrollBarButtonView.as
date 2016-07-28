@@ -66,9 +66,9 @@ package org.apache.flex.flat.beads
             downArrowShape = new CSSShape();
             overArrowShape = new CSSShape();
             overArrowShape.state = "hover";
-            upSprite.addChild(upArrowShape.shape);
-            downSprite.addChild(downArrowShape.shape);
-            overSprite.addChild(overArrowShape.shape);
+            upSprite.addChild(upArrowShape.$shape);
+            downSprite.addChild(downArrowShape.$shape);
+            overSprite.addChild(overArrowShape.$shape);
 		}
 		
 		private var textModel:ITextModel;

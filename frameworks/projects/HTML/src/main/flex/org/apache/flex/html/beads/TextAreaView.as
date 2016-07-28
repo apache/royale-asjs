@@ -124,7 +124,7 @@ package org.apache.flex.html.beads
 			
 			// for input, listen for changes to the _textField and update
 			// the model
-			textField.addEventListener(Event.SCROLL, textScrollHandler);
+			textField.$textField.addEventListener(Event.SCROLL, textScrollHandler);
 			
 			IEventDispatcher(host).addEventListener("widthChanged", sizeChangedHandler);
 			IEventDispatcher(host).addEventListener("heightChanged", sizeChangedHandler);
@@ -153,7 +153,7 @@ package org.apache.flex.html.beads
 		
 		private function textScrollHandler(event:Event):void
 		{
-			var tf:TextField = textField.textField;
+			var tf:TextField = textField.$textField;
 			var visibleLines:int = tf.bottomScrollV - tf.scrollV + 1;
 			var scrollableLines:int = textField.numLines - visibleLines + 1;
 			var vsbm:ScrollBarModel = ScrollBarModel(vScrollBar.model);
@@ -190,7 +190,7 @@ package org.apache.flex.html.beads
 		private function scrollHandler(event:Event):void
 		{
 			var vpos:Number = IScrollBarModel(vScrollBar.model).value;
-			textField.textField.scrollV = vpos;
+			textField.$textField.scrollV = vpos;
 		}
 		
         /**

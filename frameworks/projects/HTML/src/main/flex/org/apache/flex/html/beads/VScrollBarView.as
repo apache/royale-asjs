@@ -88,10 +88,10 @@ package org.apache.flex.html.beads
 			_thumb = new Button();				
 			_thumb.addBead(new VScrollBarThumbView());
             
-            v.sprite.addChild(_decrement.button);
-            v.sprite.addChild(_increment.button);
-            v.sprite.addChild(_track.button);
-            v.sprite.addChild(_thumb.button);
+            v.$sprite.addChild(_decrement.$button);
+            v.$sprite.addChild(_increment.$button);
+            v.$sprite.addChild(_track.$button);
+            v.$sprite.addChild(_thumb.$button);
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             

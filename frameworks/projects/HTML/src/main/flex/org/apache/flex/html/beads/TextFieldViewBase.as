@@ -95,7 +95,7 @@ package org.apache.flex.html.beads
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
-			UIBase(value).sprite.addChild(_textField.textField);
+			UIBase(value).$sprite.addChild(_textField.$textField);
 			if (_textModel.text !== null)
 				text = _textModel.text;
 			if (_textModel.html !== null)
@@ -277,7 +277,7 @@ package org.apache.flex.html.beads
                 }
                 c = input.indexOf("<span", c1);
             }
-            _textField.textField.styleSheet = ss;   
+            _textField.$textField.styleSheet = ss;   
             _textField.htmlText = input;
         }
         

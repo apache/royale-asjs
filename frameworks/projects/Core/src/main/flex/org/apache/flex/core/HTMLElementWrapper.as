@@ -20,6 +20,7 @@ package org.apache.flex.core
 {
     COMPILE::SWF
     {
+        import flash.display.DisplayObject;
         import flash.display.Sprite;
     }
         
@@ -44,14 +45,19 @@ package org.apache.flex.core
 
         private var _sprite:Sprite;
         
-        public function get sprite():Sprite
+        public function get $sprite():Sprite
         {
             return _sprite;
         }
         
-        public function set sprite(value:Sprite):void
+        public function set $sprite(value:Sprite):void
         {
             _sprite = value;
+        }
+
+        public function get $displayObject():DisplayObject
+        {
+            return _sprite;
         }
 
         protected var _elements:Array;

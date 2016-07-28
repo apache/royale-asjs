@@ -96,10 +96,10 @@ package org.apache.flex.mobile.beads
 			var model:IEventDispatcher = host.model as IEventDispatcher;
 			model.addEventListener("urlChanged", loadPage);
 
-			stageWebView.stage = host.sprite.stage;
+			stageWebView.stage = host.$sprite.stage;
 			
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = host.sprite.localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 
@@ -118,7 +118,7 @@ package org.apache.flex.mobile.beads
 		private function handleSizeChange(event:org.apache.flex.events.Event):void
 		{
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = host.sprite.localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 

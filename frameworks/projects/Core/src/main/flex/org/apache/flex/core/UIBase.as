@@ -1090,7 +1090,7 @@ package org.apache.flex.core
                 if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
-                sprite.addChild(c.sprite);
+                $sprite.addChild(c.$sprite);
                 c.parent = this;
                 if (c is IUIBase)
                 {
@@ -1121,7 +1121,7 @@ package org.apache.flex.core
                     _elements = [];
                 _elements.splice(index,0,c);
 
-                sprite.addChildAt(c.sprite,index);
+                $sprite.addChildAt(c.$sprite,index);
                 c.parent = this;
 
                 if (c is IUIBase)
@@ -1214,7 +1214,7 @@ package org.apache.flex.core
                         _elements.splice(idx,1);
                     c.parent = null;
                 }
-                sprite.removeChild(c.sprite as DisplayObject);
+                $sprite.removeChild(c.$sprite as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1381,7 +1381,7 @@ package org.apache.flex.core
             {
                 if (!_stageProxy)
                 {
-                    _stageProxy = new StageProxy(sprite.stage);
+                    _stageProxy = new StageProxy($sprite.stage);
                     _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
                 }
                 

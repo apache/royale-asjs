@@ -103,7 +103,7 @@ package org.apache.flex.svg
 		{
 			if(stroke)
 			{
-				stroke.apply(sprite.graphics);
+				stroke.apply($sprite.graphics);
 			}
 		}
 
@@ -112,7 +112,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.begin(sprite.graphics, targetBounds,targetOrigin);
+				fill.begin($sprite.graphics, targetBounds,targetOrigin);
 			}
 		}
 
@@ -121,7 +121,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.end(sprite.graphics);
+				fill.end($sprite.graphics);
 			}
 		}
 

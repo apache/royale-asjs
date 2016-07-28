@@ -76,8 +76,8 @@ package org.apache.flex.html.beads.controllers
          */
 		override protected function thumbMouseDownHandler(event:MouseEvent):void
 		{
-			sbView.thumb.button.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
-			sbView.thumb.button.stage.addEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);
+			sbView.thumb.$button.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
+			sbView.thumb.$button.stage.addEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);
 			thumbDownX = event.screenX;
 			lastThumbX = sbView.thumb.x;
 		}
@@ -94,8 +94,8 @@ package org.apache.flex.html.beads.controllers
 		
 		private function thumbMouseUpHandler(event:MouseEvent):void
 		{
-			sbView.thumb.button.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
-			sbView.thumb.button.stage.removeEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);			
+			sbView.thumb.$button.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
+			sbView.thumb.$button.stage.removeEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);			
 		}
 	}
 }

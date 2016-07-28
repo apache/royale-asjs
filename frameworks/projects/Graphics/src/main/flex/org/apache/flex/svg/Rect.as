@@ -107,16 +107,16 @@ package org.apache.flex.svg
 		{
             COMPILE::SWF
             {
-                sprite.graphics.clear();
+                $sprite.graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
                 if(isNaN(rx))
-                    sprite.graphics.drawRect(x, y, width, height);
+                    $sprite.graphics.drawRect(x, y, width, height);
                 else
                 {
                     var dx:Number = rx*2;
                     var dy:Number = isNaN(ry) ? ry : ry*2;
-                    sprite.graphics.drawRoundRect(x, y, width, height,dx ,dy);
+                    $sprite.graphics.drawRoundRect(x, y, width, height,dx ,dy);
                 }
                 endFill();                    
             }

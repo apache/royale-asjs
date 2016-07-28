@@ -82,9 +82,9 @@ package org.apache.flex.html.beads
 			upTextField.autoSize = "left";
 			downTextField.autoSize = "left";
 			overTextField.autoSize = "left";
-			upSprite.addChild(upTextField.textField);
-			downSprite.addChild(downTextField.textField);
-			overSprite.addChild(overTextField.textField);
+			upSprite.addChild(upTextField.$textField);
+			downSprite.addChild(downTextField.$textField);
+			overSprite.addChild(overTextField.$textField);
 		}
 		
 		private var textModel:ITextModel;
@@ -147,10 +147,10 @@ package org.apache.flex.html.beads
 			var sw:uint = IUIBase(_strand).width;
 			var sh:uint = IUIBase(_strand).height;
 			
-			textField.textField.defaultTextFormat.leftMargin = 0;
-			textField.textField.defaultTextFormat.rightMargin = 0;
+			textField.$textField.defaultTextFormat.leftMargin = 0;
+			textField.$textField.defaultTextFormat.rightMargin = 0;
             // set it again so it gets noticed
-			textField.textField.defaultTextFormat = textField.textField.defaultTextFormat;
+			textField.$textField.defaultTextFormat = textField.$textField.defaultTextFormat;
             
 			var borderColor:uint;
 			var borderThickness:uint;

@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
 	COMPILE::SWF {
+        import flash.display.DisplayObject;
 		import flash.text.TextField;
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFormat;
@@ -57,14 +58,19 @@ package org.apache.flex.core
 
         private var _textField:TextField;
         
-        public function get textField():TextField
+        public function get $textField():TextField
         {
             return _textField;
         }
         
-        public function set textField(value:TextField):void
+        public function set $textField(value:TextField):void
         {
             _textField = value;
+        }
+
+        public function get $displayObject():DisplayObject
+        {
+            return _textField;
         }
 
         private var _parent:IUIBase;
@@ -396,30 +402,30 @@ package org.apache.flex.core
             var align:Object = ValuesManager.valuesImpl.getValue(sp, "text-align", styleState);
             if (align == "center")
 			{
-				textField.autoSize = TextFieldAutoSize.NONE;
+				_textField.autoSize = TextFieldAutoSize.NONE;
                 tf.align = "center";
 			}
             else if (align == "right")
 			{
                 tf.align = "right";
-				textField.autoSize = TextFieldAutoSize.NONE;
+				_textField.autoSize = TextFieldAutoSize.NONE;
 			}
             if (!parentDrawsBackground)
             {
                 var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
                 if (backgroundColor != null)
                 {
-                    textField.background = true;
-                    textField.backgroundColor = CSSUtils.toColor(backgroundColor);
+                    _textField.background = true;
+                    _textField.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
             }
-			textField.defaultTextFormat = tf;
-			textField.text = value;
+			_textField.defaultTextFormat = tf;
+			_textField.text = value;
 		}
 
         public function get text():String
         {
-            return textField.text;
+            return _textField.text;
         }
 
         private function updateStyles(event:Event):void

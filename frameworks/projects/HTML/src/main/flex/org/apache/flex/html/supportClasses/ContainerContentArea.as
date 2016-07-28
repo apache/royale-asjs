@@ -66,7 +66,7 @@ package org.apache.flex.html.supportClasses
 		{
 			COMPILE::SWF
 			{
-				sprite.removeChildren(0);
+				$sprite.removeChildren(0);
 			}
 			COMPILE::JS
 			{

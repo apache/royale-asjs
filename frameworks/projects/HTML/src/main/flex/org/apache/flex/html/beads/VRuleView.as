@@ -78,10 +78,10 @@ package org.apache.flex.html.beads
 		private function handleSizeChange(event:Object):void
 		{
 			var ui:UIBase = _strand as UIBase;
-            ui.sprite.graphics.clear();
-            ui.sprite.graphics.beginFill(0);
-            ui.sprite.graphics.drawRect(0, 0, 1, ui.height);
-            ui.sprite.graphics.endFill();
+            ui.$sprite.graphics.clear();
+            ui.$sprite.graphics.beginFill(0);
+            ui.$sprite.graphics.drawRect(0, 0, 1, ui.height);
+            ui.$sprite.graphics.endFill();
 		}
 	}
 }

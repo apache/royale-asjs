@@ -76,10 +76,10 @@ package org.apache.flex.svg
         {
             COMPILE::SWF
             {
-                sprite.graphics.clear();
+                $sprite.graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(cx,cy,radius*2, radius*2),new Point(cx-radius,cy-radius));
-                sprite.graphics.drawCircle(cx+radius,cy+radius,radius);
+                $sprite.graphics.drawCircle(cx+radius,cy+radius,radius);
                 endFill();
             }
             COMPILE::JS                

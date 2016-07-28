@@ -77,8 +77,8 @@ package org.apache.flex.html.beads
 			_thumb = new Button();
 			_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
 			
-			s.sprite.addChild(_track.button);
-			s.sprite.addChild(_thumb.button);
+			s.$sprite.addChild(_track.$button);
+			s.$sprite.addChild(_thumb.$button);
 			
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);

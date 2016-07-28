@@ -101,8 +101,8 @@ COMPILE::JS {
 				d.x = 0;
 				d.y = i.height;
 
-				UIBase(_strand).sprite.addChild(d.button);
-				UIBase(_strand).sprite.addChild(i.button);
+				UIBase(_strand).$sprite.addChild(d.$button);
+				UIBase(_strand).$sprite.addChild(i.$button);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 
 				IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);

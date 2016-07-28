@@ -19,6 +19,10 @@
 package org.apache.flex.core
 {
     import org.apache.flex.events.IEventDispatcher;
+    COMPILE::SWF
+    {
+        import flash.display.DisplayObject;
+    }
 
     /**
      *  The IUIBase interface is the basic interface for user interface components.
@@ -30,6 +34,13 @@ package org.apache.flex.core
      */
 	public interface IUIBase extends IStrand, IEventDispatcher
 	{
+
+        /**
+         *  
+         *  @private
+         */
+        COMPILE::SWF
+        function get $displayObject():DisplayObject;
         /**
          *  Each IUIBase has an element that is actually added to
          *  the platform's display list DOM.  It may not be the actual

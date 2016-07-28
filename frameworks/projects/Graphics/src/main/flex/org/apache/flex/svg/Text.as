@@ -59,7 +59,7 @@ package org.apache.flex.svg
             COMPILE::SWF
             {
                 _textField = new CSSTextField();
-                sprite.addChild(_textField.textField);
+                $sprite.addChild(_textField.$textField);
             }
 		}
 		

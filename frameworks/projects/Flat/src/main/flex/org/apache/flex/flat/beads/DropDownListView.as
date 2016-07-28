@@ -77,9 +77,9 @@ package org.apache.flex.flat.beads
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
 			overTextField = new CSSTextField();
-            upSprite.sprite.addChild(upTextField.textField);
-            overSprite.sprite.addChild(overTextField.textField);
-            downSprite.sprite.addChild(downTextField.textField);
+            upSprite.$sprite.addChild(upTextField.$textField);
+            overSprite.$sprite.addChild(overTextField.$textField);
+            downSprite.$sprite.addChild(downTextField.$textField);
 			upTextField.selectable = false;
             upTextField.parentDrawsBackground = true;
             upTextField.parentHandlesPadding = true;
@@ -103,9 +103,9 @@ package org.apache.flex.flat.beads
             overArrows.className = 'dropdown-caret';
             downArrows = new CSSShape();
             downArrows.className = 'dropdown-caret';
-            upSprite.sprite.addChild(upArrows.shape);
-			overSprite.sprite.addChild(overArrows.shape);
-			downSprite.sprite.addChild(downArrows.shape);
+            upSprite.$sprite.addChild(upArrows.$shape);
+			overSprite.$sprite.addChild(overArrows.$shape);
+			downSprite.$sprite.addChild(downArrows.$shape);
 
 		}
 
@@ -134,10 +134,10 @@ package org.apache.flex.flat.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			b.button.upState = upSprite.sprite;
-			b.button.downState = downSprite.sprite;
-			b.button.overState = overSprite.sprite;
-			b.button.hitTestState = shape;
+			b.$button.upState = upSprite.$sprite;
+			b.$button.downState = downSprite.$sprite;
+			b.$button.overState = overSprite.$sprite;
+			b.$button.hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				selectionChangeHandler(null);
             else
@@ -294,8 +294,8 @@ package org.apache.flex.flat.beads
                 _popUpVisible = value;
                 if (value)
                 {
-					var root:Object = UIBase(_strand).sprite.root;
-					var host:DisplayObjectContainer = UIBase(_strand).sprite.parent;
+					var root:Object = UIBase(_strand).$sprite.root;
+					var host:DisplayObjectContainer = UIBase(_strand).$sprite.parent;
                     while (host && !(host is IPopUpHost))
                         host = host.parent;
                     if (host)
