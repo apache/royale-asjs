@@ -38,6 +38,9 @@
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
     <component id="TransformModel" class="org.apache.flex.core.TransformModel" />
     <component id="TransformRotateModel" class="org.apache.flex.core.TransformRotateModel" />
+    <component id="TransformCompoundModel" class="org.apache.flex.core.TransformCompoundModel" />
+    <component id="TransformMoveXModel" class="org.apache.flex.core.TransformMoveXModel" />
+    <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>

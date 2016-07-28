@@ -151,7 +151,10 @@ internal class CoreClasses
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
 	import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
 	import org.apache.flex.core.TransformModel; TransformModel;
+	import org.apache.flex.core.TransformCompoundModel; TransformCompoundModel;
 	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;
+	import org.apache.flex.core.TransformMoveXModel; TransformMoveXModel;
+	import org.apache.flex.core.TransformMoveYModel; TransformMoveYModel;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
