@@ -47,6 +47,7 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
 	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
 	
+	import org.apache.flex.svg.TransformBead; TransformBead;
 }
 
 }

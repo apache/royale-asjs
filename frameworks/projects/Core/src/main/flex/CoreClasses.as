@@ -40,7 +40,8 @@ internal class CoreClasses
     import org.apache.flex.core.IAlertModel; IAlertModel;
     import org.apache.flex.core.IBead; IBead;
     import org.apache.flex.core.IBeadController; IBeadController;
-    import org.apache.flex.core.IBeadLayout; IBeadLayout;
+	import org.apache.flex.core.IBeadLayout; IBeadLayout;
+	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
     import org.apache.flex.core.IBeadView; IBeadView;
 	COMPILE::SWF
@@ -67,6 +68,8 @@ internal class CoreClasses
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
     import org.apache.flex.core.IPopUp; IPopUp;
     import org.apache.flex.core.IRangeModel; IRangeModel;
+	import org.apache.flex.core.ITransformModel; ITransformModel;
+	import org.apache.flex.core.ITransformHost; ITransformHost;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
 	COMPILE::SWF
 	{
@@ -147,7 +150,9 @@ internal class CoreClasses
     import org.apache.flex.core.IDataGridModel; IDataGridModel;
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
-    import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.TransformModel; TransformModel;
+	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;

@@ -36,6 +36,8 @@
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
+    <component id="TransformModel" class="org.apache.flex.core.TransformModel" />
+    <component id="TransformRotateModel" class="org.apache.flex.core.TransformRotateModel" />
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>
