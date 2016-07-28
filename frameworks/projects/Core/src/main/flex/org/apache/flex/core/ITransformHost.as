@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import org.apache.flex.events.IEventDispatcher;
 	
 	
 
@@ -30,7 +31,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface ITransformHost extends IStrand
+	public interface ITransformHost extends IStrand, IEventDispatcher
 	{
 		/**
 		 *  Each ITransformHost has an element that is actually added to
