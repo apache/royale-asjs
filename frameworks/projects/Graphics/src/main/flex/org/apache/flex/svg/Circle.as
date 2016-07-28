@@ -79,7 +79,7 @@ package org.apache.flex.svg
                 sprite.graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(cx,cy,radius*2, radius*2),new Point(cx-radius,cy-radius));
-                sprite.graphics.drawCircle(cx,cy,radius);
+                sprite.graphics.drawCircle(cx+radius,cy+radius,radius);
                 endFill();
             }
             COMPILE::JS                
