@@ -1,7 +1,5 @@
-package org.apache.flex.graphics
+package org.apache.flex.core
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITransformModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.geom.Matrix;

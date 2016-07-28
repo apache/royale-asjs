@@ -4,8 +4,8 @@ package org.apache.flex.svg
 	import org.apache.flex.core.ITransformModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.graphics.IBeadTransform;
-	import org.apache.flex.graphics.ITransformHost;
+	import org.apache.flex.core.IBeadTransform;
+	import org.apache.flex.core.ITransformHost;
 
 	COMPILE::SWF {
 		import flash.display.Sprite;

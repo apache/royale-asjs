@@ -1,4 +1,4 @@
-package org.apache.flex.graphics
+package org.apache.flex.core
 {
 	import org.apache.flex.geom.Matrix;
 	

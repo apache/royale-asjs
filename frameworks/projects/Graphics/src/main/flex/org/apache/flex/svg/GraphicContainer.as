@@ -15,7 +15,7 @@ package org.apache.flex.svg
 {
     import org.apache.flex.core.ContainerBase;
     import org.apache.flex.core.IFlexJSElement;
-    import org.apache.flex.graphics.ITransformHost;
+    import org.apache.flex.core.ITransformHost;
 
 	COMPILE::JS
 	{

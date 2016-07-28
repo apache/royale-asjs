@@ -16,31 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.graphics
+package org.apache.flex.core
 {
-	import org.apache.flex.core.IBead;
+	
+	
 
 	/**
-	 *  The IBeadTransform interface is the basic interface for the 
-	 *  container views that transform drawable objects that implement ITransformHost
+	 *  The ITransformHost interface is the basic interface for the 
+	 *  container views that have an IBeadTransform.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IBeadTransform extends IBead
+	public interface ITransformHost extends IStrand
 	{
-		
 		/**
-		 *  Transform the ITransformHost. The implementor of this method should
-		 *  have concrete knowledge of ITransformHost implementor.
+		 *  Each ITransformHost has an element that is actually added to
+		 *  the platform's display list DOM.  It may not be the actual
+		 *  component itself.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function transform():void;
+		COMPILE::SWF
+		function get transformElement():IFlexJSElement;
+		
+		/**
+		 *  Each ITransformHost has an element that is actually added to
+		 *  the platform's display list DOM.  It may not be the actual
+		 *  component itself.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::JS
+		function get transformElement():org.apache.flex.core.WrappedHTMLElement;
+		
 	}
 }
