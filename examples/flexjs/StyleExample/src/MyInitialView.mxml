@@ -396,10 +396,10 @@ limitations under the License.
 		
 		<js:CheckBox text="Check Me, please!" />
 		<js:Spacer height="20" />
-		<js:RadioButton text="Apples" groupName="fruits" />
-		<js:RadioButton text="Oranges" groupName="fruits" />
-		<js:RadioButton text="Grapes" groupName="fruits" />
-		<js:RadioButton text="Bananas" groupName="fruits" />
+		<js:RadioButton text="Apples" groupName="fruits" value="1" selected="true" />
+		<js:RadioButton text="Oranges" groupName="fruits" value="2" />
+		<js:RadioButton text="Grapes" groupName="fruits" value="3" />
+		<js:RadioButton text="Bananas" groupName="fruits" value="4" />
 	
 		<js:Spacer height="10" />
 		<js:Label id="output" text="An Example of a Label" />
