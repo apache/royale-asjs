@@ -89,7 +89,7 @@ package org.apache.flex.utils
 		{
 			COMPILE::SWF
 			{
-				if (!platform)
+				if (!_platform)
 				{
 					var cap: Class = Capabilities;
 					var version:  String = Capabilities.version;

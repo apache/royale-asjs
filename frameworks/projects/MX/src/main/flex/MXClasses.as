@@ -28,8 +28,11 @@ package
 internal class MXClasses
 {
 
+    import flashx.textLayout.compose.ISWFContext; ISWFContext;
     import mx.core.UIComponent; UIComponent;
     import mx.modules.IModule; IModule;
+    import mx.preloaders.DownloadProgressBar; DownloadProgressBar;
+	import mx.managers.systemClasses.ChildManager; ChildManager;
 }
 
 }

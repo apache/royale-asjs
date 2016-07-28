@@ -54,6 +54,12 @@ package flex.display
 			return loaderInfo.url;
 		}
 		
+		COMPILE::SWF
+		public function get parameters():Object
+		{
+			return loaderInfo.parameters;
+		}
+		
 		COMPILE::JS
 		public function get height():Number
 		{
@@ -71,5 +77,34 @@ package flex.display
 		{
 			return document.URL;
 		}
+		
+		COMPILE::JS
+		private var _parameters:Object;
+		
+		COMPILE::JS
+		public function get parameters():Object
+		{
+			if (!_parameters)
+				_parameters = makeParameters(document.URL);
+			return _parameters;
+		}
+		
+		COMPILE::JS
+		private function makeParameters(url:String):Object
+		{
+			if (url == null || url.length == 0)
+				return {};
+			
+			url = url.substring(1); // remove leading ?
+			var parts:Array = url.split("&");
+			var parms:Object = {};
+			for each (var part:String in parts)
+			{
+				var subParts:Array = part.split("=");
+				parms[subParts[0]] = subParts[1];
+			}
+			return parms;
+		}
+
 	}
 }

@@ -40,7 +40,7 @@ COMPILE::JS
 	import flex.display.MovieClip;
 	import flex.display.Sprite;
 	import flex.events.Event;
-	import flex.events.IEventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
 	import flex.events.IOErrorEvent;
 	import flex.events.ProgressEvent;
 	import flex.events.TimerEvent;
@@ -377,6 +377,7 @@ public class Preloader extends Sprite
             rslDone = true;
         }
 		}
+		rslDone = true;
     }
     
     /**

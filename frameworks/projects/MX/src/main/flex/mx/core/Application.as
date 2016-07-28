@@ -49,6 +49,8 @@ import mx.managers.FocusManager;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
 import mx.managers.ISystemManager;
+// force-link this here. In flex-sdk, it gets dragged in by Effect.
+import mx.managers.LayoutManager; LayoutManager; 
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
@@ -1048,16 +1050,8 @@ public class Application extends LayoutContainer
 
         var sm:ISystemManager = systemManager;
         
-		COMPILE::SWF
-		{
-	        _url = LoaderUtil.normalizeURL(root.loaderInfo);
-	        _parameters = root.loaderInfo.parameters;
-		}
-		COMPILE::JS
-		{
-			_url = LoaderUtil.normalizeURL(window.location.href);
-			_parameters = makeParameters(window.location.search);			
-		}
+        _url = LoaderUtil.normalizeURL(sm.moduleInfo);
+        _parameters = sm.moduleInfo.parameters;
 		
         initManagers(sm);
         _descriptor = null;
@@ -1884,22 +1878,6 @@ public class Application extends LayoutContainer
         invalidateDisplayList();      
     }
 	
-	COMPILE::JS
-	private function makeParameters(url:String):Object
-	{
-		if (url == null || url.length == 0)
-			return {};
-		
-		url = url.substring(1); // remove leading ?
-		var parts:Array = url.split("&");
-		var parms:Object = {};
-		for each (var part:String in parts)
-		{
-			var subParts:Array = part.split("=");
-			parms[subParts[0]] = subParts[1];
-		}
-		return parms;
-	}
 }
 
 }

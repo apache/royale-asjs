@@ -14964,6 +14964,18 @@ public class UIComponent extends Sprite
 		return NameUtil.displayObjectToString(this);
 	}	
 
+	COMPILE::SWF
+	override public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
+	{
+		super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		super.addEventListener(type, flashListener, true, 9999);
+	}
+	
+	COMPILE::SWF
+	private function flashListener(e:flash.events.Event):void
+	{
+		trace(e.type, e.target);
+	}
 }
 
 }

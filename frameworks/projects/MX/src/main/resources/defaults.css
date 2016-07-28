@@ -1,0 +1,288 @@
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+
+@namespace "library://ns.adobe.com/flex/mx";
+
+/* Global style declaration */
+global
+{
+    /* framework styles */
+    accentColor: #0099FF;
+    alignmentBaseline: "useDominantBaseline";
+	backgroundAlpha: 1.0; /* this runs the opacity of nearly every square piece of the components */
+	/* backgroundDisabledColor: #DDDDDD; */
+	backgroundSize: "auto";
+    baselineShift: 0;
+	bevel: true;
+    blockProgression: "tb";
+	borderAlpha: 1.0;
+  	borderCapColor: #919999;
+	borderColor: #696969;
+	borderSides: "left top right bottom";
+	borderStyle: "inset";
+	borderThickness: 1;
+    borderVisible: true;
+    breakOpportunity: "auto";
+	buttonColor: #6F7777;
+    caretColor: #0167FF;
+    cffHinting: "horizontalStem";
+    chromeColor: #CCCCCC;
+	closeDuration: 50;
+	color: #000000;
+    columnCount: "auto";
+    columnGap: 20;
+    columnWidth: "auto";
+    contentBackgroundAlpha: 1;
+    contentBackgroundColor: #FFFFFF;
+	cornerRadius: 2;
+    digitCase: "default";
+    digitWidth: "default";
+    direction: "ltr";
+    disabledAlpha: 0.5;
+	disabledColor: #AAB3B3;
+	disabledIconColor: #999999;
+    dominantBaseline: "auto";
+	dropShadowColor: #000000;
+    dropShadowVisible: false;
+	embedFonts: false;
+	errorColor: #FE0000;
+	fillAlphas: 0.6, 0.4, 0.75, 0.65; /* last pair are for OVER state */
+	fillColor: #FFFFFF; /* kill this?? */
+	fillColors: #FFFFFF, #CCCCCC, #FFFFFF, #EEEEEE;
+	filled: true;
+    firstBaselineOffset: "auto";
+	focusAlpha: 0.55;
+	focusBlendMode: "normal";
+    focusColor: #70B2EE;
+	focusRoundedCorners: "tl tr bl br";
+	/** COMPILE::LATER
+	focusSkin: ClassReference("mx.skins.halo.HaloFocusRect");
+	**/
+	focusThickness: 2;
+    focusedTextSelectionColor: #A8C6EE;
+	fontAntiAliasType: "advanced";
+	fontFamily: "Arial";
+	fontGridFitType: "pixel";
+    fontLookup: "embeddedCFF";
+	fontSharpness: 0;
+	fontSize: 12;
+	fontStyle: "normal";
+	fontThickness: 0;
+	fontWeight: "normal";
+	/* footerColors: #E7E7E7, #C7C7C7; */
+	/* headerColors: #E7E7E7, #D9D9D9; */
+	/* headerHeight: 28; */
+	highlightAlphas: 0.3, 0; /* use this to control the 'light' cast on the components */
+	horizontalAlign: "left";
+	horizontalGap: 8;
+	horizontalGridLineColor: #F7F7F7;
+	horizontalGridLines: false;
+	iconColor: #111111;
+    iconPlacement: "left";
+    inactiveTextSelectionColor: #E8E8E8;
+	indentation: 17;
+	indicatorGap: 14;
+    interactionMode: "mouse";
+    justificationRule: "auto";
+    justificationStyle: "auto";
+	kerning: "default";
+    layoutDirection: "ltr";
+	leading: 2;
+    leadingModel: "auto";
+    ligatureLevel: "common";
+	letterSpacing: 0;
+    lineBreak: "toFit";
+    lineHeight: "120%";
+    lineThrough: false;
+    locale: "en";
+	modalTransparency: 0.5;
+	modalTransparencyBlur: 3;
+	modalTransparencyColor: #DDDDDD;
+	modalTransparencyDuration: 100;
+	openDuration: 1;
+	paddingBottom: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+	paddingTop: 0;
+	paragraphEndIndent: 0;
+	paragraphSpaceAfter: 0;
+	paragraphSpaceBefore: 0;
+	paragraphStartIndent: 0;
+    renderingMode: "cff";
+	repeatDelay: 500;
+	repeatInterval: 35;
+	rollOverColor: #CEDBEF;
+	roundedBottomCorners: true;
+    selectionColor: #A8C6EE;
+	selectionDisabledColor: #DDDDDD;
+	selectionDuration: 250;
+  	shadowCapColor: #D5DDDD;
+  	shadowColor: #EEEEEE;
+	shadowDirection: "center";
+	shadowDistance: 2;
+	stroked: false;
+	strokeWidth: 1;
+    symbolColor: #000000;
+	tabStops: ClassReference(null);
+	textAlign: "start";
+    textAlignLast: "start";
+    textAlpha: 1.0;
+	textDecoration: "none";
+	textFieldClass: ClassReference("mx.core.UITextField");
+	textIndent: 0;
+	textJustify: "interWord";
+	textRollOverColor: 0;
+    textRotation: "auto";
+	textSelectedColor: 0;
+	themeColor: #70B2EE;	
+	/*
+	//themeColor: #80FF4D;		// haloGreen
+	//themeColor: #FFB600;		// haloOrange
+	//themeColor: #AECAD9;		// haloSilver
+	*/
+    trackingLeft: 0;
+    trackingRight: 0;
+    typographicCase: "default";
+    unfocusedTextSelectionColor: #E8E8E8;
+    showErrorSkin: true;
+    showErrorTip: true;
+	useRollOver: true;
+	version: "4.0.0";
+	verticalAlign: "top";
+	verticalGap: 6;
+	verticalGridLineColor: #D5DDDD;
+	verticalGridLines: true;
+    whiteSpaceCollapse: "collapse";
+
+    
+    /* spark styles */
+
+    /* Looks */
+    backgroundImageFillMode : "scale";
+    borderWeight : 1;
+    
+    /* Behaviors */
+    autoThumbVisibility: true;
+    fixedThumbSize: false;
+    fullScreenHideControlsDelay: 3000;
+    horizontalScrollPolicy: "auto";
+    liveDragging: true;
+    rollOverOpenDelay: 200;
+    slideDuration: 300;
+    smoothScrolling: true;
+    verticalScrollPolicy: "auto";
+
+}
+
+/*
+//------------------------------
+//  CursorManager
+//------------------------------
+
+COMPILE::LATER
+CursorManager
+{
+	busyCursor: ClassReference("mx.skins.halo.BusyCursor");
+	busyCursorBackground: Embed(source="Assets.swf",symbol="mx.skins.cursor.BusyCursor");
+}
+*/
+
+/*
+//------------------------------
+//  DragManager
+//------------------------------
+
+COMPILE::LATER
+DragManager
+{
+	copyCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragCopy");
+	defaultDragImageSkin: ClassReference("mx.skins.halo.DefaultDragImage");
+	linkCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragLink");
+	moveCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragMove");
+	rejectCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragReject");
+}
+*/
+
+/*
+//------------------------------
+//  .errorTip
+//------------------------------
+*/
+
+.errorTip
+{
+	borderColor: #CE2929;
+	borderStyle: "errorTipRight";
+	color: #FFFFFF;
+	fontSize: 10;
+	fontWeight: "bold";
+	shadowColor: #000000;
+	paddingBottom: 4;
+	paddingLeft: 4;
+	paddingRight: 4;
+	paddingTop: 4;
+}
+
+/*
+//------------------------------
+//  .headerDragProxyStyle
+//------------------------------
+*/
+
+.headerDragProxyStyle
+{
+	fontWeight: "bold";
+}
+
+/*
+//------------------------------
+//  SWFLoader
+//------------------------------
+
+COMPILE::LATER
+SWFLoader
+{
+	brokenImageBorderSkin: ClassReference("mx.skins.halo.BrokenImageBorderSkin");
+	brokenImageSkin: Embed(source="Assets.swf",symbol="__brokenImage");
+}
+*/
+
+/*
+//------------------------------
+//  ToolTip
+//------------------------------
+
+COMPILE::LATER
+ToolTip
+{
+	backgroundColor: #FFFFCC;
+	backgroundAlpha: 0.95;
+	borderColor: #919999;
+	borderSkin: ClassReference("mx.skins.halo.ToolTipBorder");
+	borderStyle: "toolTip";
+	cornerRadius: 2;
+	fontSize: 10;
+	paddingBottom: 2;
+	paddingLeft: 4;
+	paddingRight: 4;
+	paddingTop: 2;
+}
+*/
+
+

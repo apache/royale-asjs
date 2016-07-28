@@ -25,10 +25,10 @@ COMPILE::SWF
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
+	import flash.display.Loader;
+	import flash.display.LoaderInfo;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.display.LoaderInfo;
-	import flash.display.Loader;
 	import flash.display.Stage;
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
@@ -39,12 +39,14 @@ COMPILE::SWF
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import flash.ui.Keyboard;
 	import flash.geom.Point;
 	import flash.system.ApplicationDomain;
 	import flash.text.Font;
 	import flash.text.TextFormat;
-	import flash.utils.Dictionary;		
+	import flash.ui.Keyboard;
+	import flash.utils.Dictionary;
+	
+	import flex.events.FlashEventConverter;
 }
 COMPILE::JS
 {
@@ -1695,6 +1697,7 @@ public class SystemManager extends MovieClip
                     // Use weak listener because we don't always know when we
                     // no longer need this listener
                     stage.addEventListener(type, stageEventHandler, false, 0, true);
+					stage.addEventListener(type, flashListener, true, 9999);
                 }
             }
             catch (error:SecurityError)
@@ -1726,10 +1729,12 @@ public class SystemManager extends MovieClip
                 if (stage)
                 {
                     stage.addEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler, false, 0, true);
+					stage.addEventListener(type, flashListener, false, 9999);
                 }
                 else
                 {
                     super.addEventListener(Event.MOUSE_LEAVE, mouseLeaveHandler, false, 0, true);
+					super.addEventListener(type, flashListener, true, 9999);
                 }
             }
             catch (error:SecurityError)
@@ -1750,9 +1755,15 @@ public class SystemManager extends MovieClip
             try
             {
                 if (stage)
+				{
                     stage.addEventListener(type, listener, useCapture, priority, useWeakReference);
+					stage.addEventListener(type, flashListener, false, 9999);
+				}
                 else
+				{
                     super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+					super.addEventListener(type, flashListener, true, 9999);
+				}
             }
             catch (error:SecurityError)
             {
@@ -1785,8 +1796,15 @@ public class SystemManager extends MovieClip
 		
 
         super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		super.addEventListener(type, flashListener, true, 9999);
     }
 
+	COMPILE::SWF
+	private function flashListener(e:flash.events.Event):void
+	{
+		trace(e.type, e.target);
+	}
+	
     /**
      *  @private
      */
@@ -2295,6 +2313,21 @@ public class SystemManager extends MovieClip
             resourceModuleURLs,
             domain);
 		}
+		}
+		COMPILE::SWF
+		{
+			// Initialize the preloader.
+			preloader.initialize(
+				usePreloader,
+				preloaderDisplayClass,
+				preloaderBackgroundColor,
+				preloaderBackgroundAlpha,
+				preloaderBackgroundImage,
+				preloaderBackgroundSize,
+				isStageRoot ? stage.stageWidth : loaderInfo.width,
+				isStageRoot ? stage.stageHeight : loaderInfo.height,
+				null,
+				null);
 		}
 		
 		COMPILE::JS
@@ -2912,6 +2945,10 @@ public class SystemManager extends MovieClip
 		}
         // Add the application as child 1.
         noTopMostIndex = noTopMostIndex + 1;
+		COMPILE::SWF
+		{
+			FlashEventConverter.removeAllConverters(app as DisplayObject);
+		}			
         super.addChildAt(DisplayObject(app), 1);
 
         CONFIG::performanceInstrumentation
@@ -3243,6 +3280,7 @@ public class SystemManager extends MovieClip
             stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler, false, 1000);
             stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseEventHandler, false, 1000);
             stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseEventHandler, false, 1000);
+			FlashEventConverter.setupAllConverters(this);
         }
 		}
         

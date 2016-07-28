@@ -19,8 +19,12 @@
 
 package flex.display
 {
+	import org.apache.flex.events.EventDispatcher;
+
 COMPILE::SWF
 {
+	import flash.display.DisplayObject;
+	import flash.display.InteractiveObject;
 	import flash.display.Stage;
 }
 COMPILE::JS
@@ -31,7 +35,7 @@ COMPILE::JS
 }
 
 COMPILE::SWF
-public class TopOfDisplayList extends Stage
+public class TopOfDisplayList extends EventDispatcher
 {
 	public function TopOfDisplayList(stage:Stage)
 	{
@@ -39,14 +43,38 @@ public class TopOfDisplayList extends Stage
 		_stage = stage;
 	}
 	
-	override public function get width():Number
+	public function get width():Number
 	{
 		return _stage.stageWidth;
 	}
 	
-	override public function get height():Number
+	public function get height():Number
 	{
 		return _stage.stageHeight;
+	}
+	
+	public function getChildAt(index:int):flash.display.DisplayObject
+	{
+		return _stage.getChildAt(index);
+	}
+	
+	/**
+	 */
+	public function get focus():flash.display.InteractiveObject
+	{
+		return _stage.focus;
+	}
+	
+	/**
+	 */
+	public function set focus(value:flash.display.InteractiveObject):void
+	{
+		_stage.focus = value;
+	}
+	
+	public function invalidate():void
+	{
+		_stage.invalidate();
 	}
 	
 	private var _stage:Stage;
