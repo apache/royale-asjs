@@ -2,19 +2,19 @@ package org.apache.flex.core
 {
 	import org.apache.flex.geom.Matrix;
 
+	[DefaultProperty("transformModels")]
 	public class TransformCompoundModel extends TransformModel
 	{
-		private var _tranformModels:Array;
+		private var _transformModels:Array;
 
-		[DefaultProperty("transformModels")]
-		public function get tranformModels():Array
+		public function get transformModels():Array
 		{
-			return _tranformModels;
+			return _transformModels;
 		}
 
-		public function set tranformModels(value:Array):void
+		public function set transformModels(value:Array):void
 		{
-			_tranformModels = value;
+			_transformModels = value;
 			if (value && value.length > 0)
 			{
 				var length:int = value.length;

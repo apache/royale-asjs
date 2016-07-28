@@ -155,6 +155,7 @@ internal class CoreClasses
 	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;
 	import org.apache.flex.core.TransformMoveXModel; TransformMoveXModel;
 	import org.apache.flex.core.TransformMoveYModel; TransformMoveYModel;
+	import org.apache.flex.core.TransformScaleModel; TransformScaleModel;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;

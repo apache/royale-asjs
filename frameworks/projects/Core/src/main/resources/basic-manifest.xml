@@ -41,6 +41,7 @@
     <component id="TransformCompoundModel" class="org.apache.flex.core.TransformCompoundModel" />
     <component id="TransformMoveXModel" class="org.apache.flex.core.TransformMoveXModel" />
     <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
+    <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>
