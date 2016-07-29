@@ -18,27 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    
+COMPILE::SWF
+{
+	import flash.display.Sprite;
+}
+
     /**
-     *  The IChild interface is the basic interface for a 
-     *  component that is parented by another component.
-     * 
+     *  Interface for bootstrapping SWF Applications.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public interface IChild
+	public interface ISWFApplication
 	{
-        
         /**
-         *  The parent.
-         * 
+         *  Pass in the root of the SWF.
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function get parent():IParent;
-	}
+		COMPILE::SWF
+		function setRoot(root:Sprite):void;
+        
+    }
 }

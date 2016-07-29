@@ -83,7 +83,7 @@ COMPILE::SWF
             app = value as Application;
             COMPILE::SWF
             {
-                app.stage.addEventListener("resize", resizeHandler);
+                app.$sprite.stage.addEventListener("resize", resizeHandler);
                 if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
                 {
                     // Get application name.  This assumes that the wrapper is using an
@@ -115,12 +115,12 @@ COMPILE::SWF
             {
                 var initialView:UIBase = app.initialView as UIBase;
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                    initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
-                        Math.max(minHeight, app.stage.stageHeight), true);
+                    initialView.setWidthAndHeight(Math.max(minWidth, app.$sprite.stage.stageWidth), 
+                        Math.max(minHeight, app.$sprite.stage.stageHeight), true);
                 else if (!isNaN(initialView.percentWidth))
-                    initialView.setWidth(Math.max(minWidth, app.stage.stageWidth));
+                    initialView.setWidth(Math.max(minWidth, app.$sprite.stage.stageWidth));
                 else if (!isNaN(initialView.percentHeight))
-                    initialView.setHeight(Math.max(minHeight, app.stage.stageHeight));
+                    initialView.setHeight(Math.max(minHeight, app.$sprite.stage.stageHeight));
             }
             COMPILE::JS
             {

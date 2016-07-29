@@ -28,10 +28,7 @@ package org.apache.flex.core
     COMPILE::SWF {
         import flash.display.DisplayObject;
         import flash.display.Sprite;
-        import flash.display.StageAlign;
-        import flash.display.StageQuality;
-        import flash.display.StageScaleMode;
-        import flash.events.Event;
+		import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
     }
@@ -89,6 +86,18 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+	
+	/**
+	 *  A SWF application must be bootstrapped by a Flash Sprite.
+	 *  The factory class is the default bootstrap.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	[Frame(factoryClass="org.apache.flex.core.ApplicationFactory")]
+
     /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
@@ -103,7 +112,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IUIBase
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication
     {
         /**
          *  Constructor.
@@ -116,27 +125,29 @@ package org.apache.flex.core
         public function Application()
         {
             super();
-
-            COMPILE::SWF {
-    			if (stage)
-    			{
-    				stage.align = StageAlign.TOP_LEFT;
-    				stage.scaleMode = StageScaleMode.NO_SCALE;
-                    // should be opt-in
-    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-    			}
-
-                loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-            }
         }
 
+		/**
+		 *  Application wraps the root object.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::SWF
+		public function setRoot(r:Sprite):void
+		{
+			$sprite = r;	
+			MouseEventConverter.setupAllConverters(r.stage);
+			initHandler();
+		}
+		
         COMPILE::SWF
-        private function initHandler(event:flash.events.Event):void
+        private function initHandler():void
         {
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
-
-            MouseEventConverter.setupAllConverters(stage);
 
             for each (var bead:IBead in beads)
                 addBead(bead);
@@ -168,11 +179,10 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IBead
          */
-        COMPILE::SWF
         protected function initialize():void
         {
-
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
 
             dispatchEvent(new org.apache.flex.events.Event("initialize"));
@@ -181,28 +191,44 @@ package org.apache.flex.core
             {
                 initialView.applicationModel =  model;
         	    this.addElement(initialView);
+				
+				COMPILE::SWF
+				{	
                 // if someone has installed a resize listener, fake an event to run it now
-                if (stage.hasEventListener("resize"))
-                    stage.dispatchEvent(new flash.events.Event("resize"));
+                if ($sprite.stage.hasEventListener("resize"))
+					$sprite.stage.dispatchEvent(new flash.events.Event("resize"));
                 else if (initialView is ILayoutChild)
                 {
                     var ilc:ILayoutChild = initialView as ILayoutChild;
                     // otherwise, size once like this
                     if (!isNaN(ilc.percentWidth) && !isNaN(ilc.percentHeight))
-                        ilc.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
+                        ilc.setWidthAndHeight($sprite.stage.stageWidth, $sprite.stage.stageHeight, true);
                     else if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth(stage.stageWidth);
+                        ilc.setWidth($sprite.stage.stageWidth);
                     else if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(stage.stageHeight);
+                        ilc.setHeight($sprite.stage.stageHeight);
                 }
+				}
+				COMPILE::JS
+				{	
+				var baseView:UIBase = initialView as UIBase;
+				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
+					this.element.style.height = window.innerHeight.toString() + 'px';
+					this.element.style.width = window.innerWidth.toString() + 'px';
+					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+				}
+				}
+				COMPILE::SWF
+				{
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {
                     var backgroundColor:uint = ValuesManager.valuesImpl.convertColor(bgColor);
-                    graphics.beginFill(backgroundColor);
-                    graphics.drawRect(0, 0, initialView.width, initialView.height);
-                    graphics.endFill();
+					$sprite.graphics.beginFill(backgroundColor);
+					$sprite.graphics.drawRect(0, 0, initialView.width, initialView.height);
+					$sprite.graphics.endFill();
                 }
+				}
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
             }
             dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
@@ -356,7 +382,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         COMPILE::SWF
-        public function addBead(bead:IBead):void
+        override public function addBead(bead:IBead):void
         {
             if (!_beads)
                 _beads = new Vector.<IBead>;
@@ -424,7 +450,7 @@ package org.apache.flex.core
                 if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
-                this.addChild(c.$sprite);
+				$sprite.addChild(c.$sprite);
                 c.parent = this;
                 if (c is IUIBase)
                 {
@@ -453,7 +479,7 @@ package org.apache.flex.core
                     _elements = [];
                 _elements.splice(index,0,c);
 
-                this.addChildAt(c.$sprite,index);
+				$sprite.addChildAt(c.$sprite,index);
                 c.parent = this;
 
                 if (c is IUIBase)
@@ -545,7 +571,7 @@ package org.apache.flex.core
                         _elements.splice(idx,1);
                     c.parent = null;
                 }
-                this.removeChild(c.$sprite as DisplayObject);
+				$sprite.removeChild(c.$sprite as DisplayObject);
             }
             COMPILE::JS
             {
@@ -627,167 +653,5 @@ package org.apache.flex.core
 			}
 		}
 		
-		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IBead
-		 */
-		COMPILE::JS
-		protected function initialize():void
-		{
-			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
-			
-			dispatchEvent('initialize');
-			
-			initialView.applicationModel = model;
-			addElement(initialView);
-			
-			if (initialView)
-			{
-				var baseView:UIBase = initialView as UIBase;
-				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
-					this.element.style.height = window.innerHeight.toString() + 'px';
-					this.element.style.width = window.innerWidth.toString() + 'px';
-					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
-				}
-				
-				dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
-			}
-			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
-		}
-		
-		COMPILE::SWF
-		public function get $displayObject():DisplayObject
-		{
-			return this;
-		}
-		
-		public function addedToParent():void
-		{
-			// Nothing to do now
-		}
-		COMPILE::SWF
-		public function get element():IFlexJSElement
-		{
-			// for now until this is refactored return null so it compiles
-			return null;
-		}
-		
-		COMPILE::SWF
-		private var _stageProxy:StageProxy;
-		
-		/**
-		 *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
-		 */
-		public function get topMostEventDispatcher():IEventDispatcher
-		{
-			COMPILE::SWF
-			{
-				if (!_stageProxy)
-				{
-					_stageProxy = new StageProxy(stage);
-					_stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
-				}
-				
-				return _stageProxy;
-			}
-			COMPILE::JS
-			{
-				var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
-				return e.flexjs_wrapper as IEventDispatcher;
-			}
-		}
-		COMPILE::SWF
-		private function stageProxy_removedFromStageHandler(event:flash.events.Event):void
-		{
-			_stageProxy = null;
-		}
-		COMPILE::JS
-		public function get alpha():Number
-		{
-			// TODO Auto Generated method stub
-			return 0;
-		}
-		COMPILE::JS
-		public function set alpha(value:Number):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		COMPILE::JS
-		public function get height():Number
-		{
-			// TODO Auto Generated method stub
-			return 0;
-		}
-		COMPILE::JS
-		public function set height(value:Number):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		COMPILE::JS
-		public function get visible():Boolean
-		{
-			// TODO Auto Generated method stub
-			return false;
-		}
-		COMPILE::JS
-		public function set visible(value:Boolean):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		COMPILE::JS
-		public function get width():Number
-		{
-			// TODO Auto Generated method stub
-			return 0;
-		}
-		COMPILE::JS
-		public function set width(value:Number):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		COMPILE::JS
-		public function get x():Number
-		{
-			// TODO Auto Generated method stub
-			return 0;
-		}
-		COMPILE::JS
-		public function set x(value:Number):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		COMPILE::JS
-		public function get y():Number
-		{
-			// TODO Auto Generated method stub
-			return 0;
-		}
-		COMPILE::JS
-		public function set y(value:Number):void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-
-        COMPILE::JS
-        public function get positioner():WrappedHTMLElement
-        {
-            // TODO Auto Generated method stub
-            return null
-        }
-
-		
-		
-	}
+    }
 }

@@ -30,6 +30,7 @@ internal class CoreClasses
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
+		import org.apache.flex.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;
 		import org.apache.flex.core.CSSTextField; CSSTextField;

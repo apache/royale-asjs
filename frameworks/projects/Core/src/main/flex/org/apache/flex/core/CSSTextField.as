@@ -84,12 +84,12 @@ package org.apache.flex.core
             return _textField;
         }
 
-        private var _parent:IUIBase;
-        public function get parent():IUIBase
+        private var _parent:IParent;
+        public function get parent():IParent
         {
             return _parent;
         }
-        public function set parent(val:IUIBase):void
+        public function set parent(val:IParent):void
         {
             _parent = val;
         }

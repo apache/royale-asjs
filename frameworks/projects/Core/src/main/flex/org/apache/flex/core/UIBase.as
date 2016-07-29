@@ -1466,13 +1466,13 @@ package org.apache.flex.core
         /**
          * @param value The event containing new style properties.
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion org.apache.flex.core.IUIBase
+         * @flexjsignorecoercion org.apache.flex.core.IParent
          */
         COMPILE::JS
-        public function get parent():IUIBase
+        public function get parent():IParent
         {
             var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
-            var wrapper:IUIBase = p ? p.flexjs_wrapper as IUIBase : null;
+            var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
             return wrapper;
         }
 

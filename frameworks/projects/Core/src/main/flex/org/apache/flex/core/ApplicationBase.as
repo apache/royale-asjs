@@ -19,7 +19,6 @@
 package org.apache.flex.core
 {
     COMPILE::SWF {
-        import flash.display.Sprite;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
     }
@@ -34,7 +33,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class ApplicationBase extends Sprite implements IFlexInfo
+	public class ApplicationBase extends HTMLElementWrapper implements IFlexInfo
 	{
         /**
          *  Constructor.

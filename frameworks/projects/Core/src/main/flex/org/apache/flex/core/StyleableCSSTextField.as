@@ -66,10 +66,10 @@ package org.apache.flex.core
          */
         public var CSSParent:Object;
         
-        override public function get parent():IUIBase
+        override public function get parent():IParent
         {
             if (CSSParent)
-                return CSSParent as IUIBase;
+                return CSSParent as IParent;
             
             return super.parent;
         }
