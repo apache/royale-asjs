@@ -36,6 +36,7 @@ COMPILE::SWF {
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -124,8 +125,8 @@ COMPILE::SWF {
                     if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
                     {
                         host.setWidth(loader.content.width);
-                        if (host.parent)
-                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                        if (host.parent is IEventDispatcher)
+                            IEventDispatcher(host.parent).dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
                     }
                     else
                         loader.content.width = host.width;
@@ -133,8 +134,8 @@ COMPILE::SWF {
                     if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
                     {
                         host.setHeight(loader.content.height);
-                        if (host.parent)
-                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                        if (host.parent is IEventDispatcher)
+                            IEventDispatcher(host.parent).dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
                     }
                     else
                         loader.content.height = host.height;

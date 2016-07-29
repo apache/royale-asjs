@@ -141,8 +141,8 @@ package org.apache.flex.html.beads
             if (host.isWidthSizedToContent())
             {
                 host.dispatchEvent(new Event("widthChanged"));
-                if (host.parent)
-                    host.parent.dispatchEvent(new Event("layoutNeeded"));
+                if (host.parent is IEventDispatcher)
+                    IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
             }
             else
                 bitmap.width = host.width;
@@ -150,8 +150,8 @@ package org.apache.flex.html.beads
             if (host.isHeightSizedToContent())
             {
                 host.dispatchEvent(new Event("heightChanged"));
-                if (host.parent)
-                    host.parent.dispatchEvent(new Event("layoutNeeded"));
+                if (host.parent is IEventDispatcher)
+                    IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
             }
             else
                 bitmap.height = host.height;
@@ -177,7 +177,7 @@ package org.apache.flex.html.beads
         private function loadHandler(event:Object):void
         {
             var host:UIBase = UIBase(_strand);
-            host.parent.dispatchEvent(new Event("layoutNeeded"));
+            IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
         }
         
         /**
