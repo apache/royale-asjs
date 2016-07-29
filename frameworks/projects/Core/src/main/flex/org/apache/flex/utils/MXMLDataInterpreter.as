@@ -32,11 +32,11 @@ import org.apache.flex.core.IParent;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.IEventDispatcher;
+import org.apache.flex.core.IChild;        
 
 COMPILE::JS
 {
     import goog.bind;
-    import org.apache.flex.core.IUIBase;        
 }
 
 /**
@@ -295,12 +295,12 @@ public class MXMLDataInterpreter
         }
         COMPILE::SWF
         {
-            if (parent && comp is DisplayObject)
+            if (parent && comp is IChild)
                 parent.addElement(comp, !(parent is IContainer));
         }
         COMPILE::JS
         {
-            if (parent && comp is IUIBase)
+            if (parent && comp is IChild)
                 parent.addElement(comp, !(parent is IContainer));
         }
         
