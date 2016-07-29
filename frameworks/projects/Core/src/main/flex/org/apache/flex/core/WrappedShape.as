@@ -19,25 +19,12 @@
 package org.apache.flex.core
 {
     COMPILE::SWF
-    public interface IFlexJSElement
     {
-        //--------------------------------------
-        //   Property
-        //--------------------------------------
-
-        /**
-         *  A pointer back to the instance that wrapped this element.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.7
-         */
-        //function get flexjs_wrapper():Object;
+        import flash.display.Shape;            
     }
 
-	COMPILE::JS
-	public interface IFlexJSElement
+	COMPILE::SWF
+	public class WrappedShape extends Shape implements IFlexJSElement
 	{
 
 		//--------------------------------------
@@ -52,6 +39,6 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		//function get flexjs_wrapper():Object;
+		public var flexjs_wrapper:Object;
 	}
 }

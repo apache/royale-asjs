@@ -457,14 +457,6 @@ package org.apache.flex.html.supportClasses
                 backgroundColor = selectedColor;
         }
         
-		/**
-		 * @private
-		 */
-        public function get element():IFlexJSElement
-        {
-            return this;
-        }
-
         // beads declared in MXML are added to the strand.
         // from AS, just call addBead()
         public var beads:Array;

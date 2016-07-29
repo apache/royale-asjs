@@ -40,22 +40,31 @@ package org.apache.flex.core
     {
         public function HTMLElementWrapper()
         {
-            _sprite = new Sprite();
+            _sprite = new WrappedSprite();
+            _sprite.flexjs_wrapper = this;
         }
 
-        private var _sprite:Sprite;
+        private var _sprite:WrappedSprite;
         
         public function get $sprite():Sprite
         {
             return _sprite;
         }
         
-        public function set $sprite(value:Sprite):void
+        public function get $displayObject():DisplayObject
         {
-            _sprite = value;
+            return _sprite;
         }
 
-        public function get $displayObject():DisplayObject
+        /**
+         *  Returns the IFlexJSElement which wraps the Display Object
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get element():IFlexJSElement
         {
             return _sprite;
         }

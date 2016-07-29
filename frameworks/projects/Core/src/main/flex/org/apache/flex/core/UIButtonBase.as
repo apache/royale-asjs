@@ -59,7 +59,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	COMPILE::SWF
-	public class UIButtonBase extends EventDispatcher implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
+	public class UIButtonBase extends EventDispatcher implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild
 	{
         /**
          *  Constructor.
@@ -71,25 +71,36 @@ package org.apache.flex.core
          */
 		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
 		{
-            _button = new SimpleButton(upState, overState, downState, hitTestState);
-//			super(upState, overState, downState, hitTestState);
+            _button = new WrappedSimpleButton(upState, overState, downState, hitTestState);
+            _button.flexjs_wrapper = this;
+
+
 			// mouseChildren = true;
 			// mouseEnabled = true;
             MouseEventConverter.setupInstanceConverters(this);
 		}
 
-        private var _button:SimpleButton;
+        private var _button:WrappedSimpleButton;
 
         public function get $button():SimpleButton
         {
             return _button;
         }
-        public function set $button(val:SimpleButton):void
-        {
-            _button = val;
-        }
 
         public function get $displayObject():DisplayObject
+        {
+            return _button;
+        }
+
+        /**
+         *  @copy org.apache.flex.core.HTMLElementWrapper#element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get element():IFlexJSElement
         {
             return _button;
         }
@@ -741,19 +752,6 @@ package org.apache.flex.core
 			}
 		}
         
-        /**
-         *  @copy org.apache.flex.core.UIBase#element
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get element():IFlexJSElement
-        {
-            return this;
-        }
-
         /**
          *  @copy org.apache.flex.core.UIBase#beads
          *  

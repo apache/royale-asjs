@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    import flash.display.DisplayObject;
     import flash.display.Graphics;
     import flash.display.Shape;
     
@@ -50,18 +51,32 @@ package org.apache.flex.core
          */
 		public function CSSShape()
 		{
-			_shape = new Shape();
+			_shape = new WrappedShape();
+            _shape.flexjs_wrapper = this;
 		}
 
-        private var _shape:Shape;
+        private var _shape:WrappedShape;
+        public function get $diplayObject():DisplayObject
+        {
+            return _shape;
+        }
 
         public function get $shape():Shape
         {
             return _shape;
         }
-        public function set $shape(val:Shape):void
+
+        /**
+         *  @copy org.apache.flex.core.HTMLElementWrapper#element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get element():IFlexJSElement
         {
-            _shape = val;
+            return _shape;
         }
 
         private var _parent:IUIBase;

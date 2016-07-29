@@ -53,22 +53,33 @@ package org.apache.flex.core
          */
 		public function CSSTextField()
 		{
-			_textField = new TextField();
+			_textField = new WrappedTextField();
+            _textField.flexjs_wrapper = this;
+
 		}
 
-        private var _textField:TextField;
+        private var _textField:WrappedTextField;
         
         public function get $textField():TextField
         {
             return _textField;
         }
         
-        public function set $textField(value:TextField):void
-        {
-            _textField = value;
-        }
 
         public function get $displayObject():DisplayObject
+        {
+            return _textField;
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.HTMLElementWrapper#element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get element():IFlexJSElement
         {
             return _textField;
         }
