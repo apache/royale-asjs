@@ -23,7 +23,7 @@ package org.apache.flex.core
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.utils.MXMLDataInterpreter;
-	import org.apache.flex.utils.Timer;
+    import org.apache.flex.utils.Timer;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -103,7 +103,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IUIBase
     {
         /**
          *  Constructor.
@@ -653,5 +653,141 @@ package org.apache.flex.core
 			}
 			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
 		}
-    }
+		
+		COMPILE::SWF
+		public function get $displayObject():DisplayObject
+		{
+			return this;
+		}
+		
+		public function addedToParent():void
+		{
+			// Nothing to do now
+		}
+		COMPILE::SWF
+		public function get element():IFlexJSElement
+		{
+			// for now until this is refactored return null so it compiles
+			return null;
+		}
+		
+		COMPILE::SWF
+		private var _stageProxy:StageProxy;
+		
+		/**
+		 *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
+		 */
+		public function get topMostEventDispatcher():IEventDispatcher
+		{
+			COMPILE::SWF
+			{
+				if (!_stageProxy)
+				{
+					_stageProxy = new StageProxy(stage);
+					_stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
+				}
+				
+				return _stageProxy;
+			}
+			COMPILE::JS
+			{
+				var e:WrappedHTMLElement = document.body as WrappedHTMLElement;
+				return e.flexjs_wrapper as IEventDispatcher;
+			}
+		}
+		COMPILE::SWF
+		private function stageProxy_removedFromStageHandler(event:flash.events.Event):void
+		{
+			_stageProxy = null;
+		}
+		COMPILE::JS
+		public function get alpha():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+		COMPILE::JS
+		public function set alpha(value:Number):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		COMPILE::JS
+		public function get height():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+		COMPILE::JS
+		public function set height(value:Number):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		COMPILE::JS
+		public function get visible():Boolean
+		{
+			// TODO Auto Generated method stub
+			return false;
+		}
+		COMPILE::JS
+		public function set visible(value:Boolean):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		COMPILE::JS
+		public function get width():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+		COMPILE::JS
+		public function set width(value:Number):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		COMPILE::JS
+		public function get x():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+		COMPILE::JS
+		public function set x(value:Number):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+		COMPILE::JS
+		public function get y():Number
+		{
+			// TODO Auto Generated method stub
+			return 0;
+		}
+		COMPILE::JS
+		public function set y(value:Number):void
+		{
+			// TODO Auto Generated method stub
+			
+		}
+
+        COMPILE::JS
+        public function get positioner():WrappedHTMLElement
+        {
+            // TODO Auto Generated method stub
+            return null
+        }
+
+		
+		
+	}
 }
