@@ -79,12 +79,12 @@ package org.apache.flex.core
         {            
         }
 
-        private var _parent:IParent;
-        public function get parent():IParent
+        private var _parent:IUIBase;
+        public function get parent():IUIBase
         {
             return _parent;
         }
-        public function set parent(val:IParent):void
+        public function set parent(val:IUIBase):void
         {
             _parent = val;
         }
