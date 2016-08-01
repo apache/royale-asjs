@@ -81,7 +81,8 @@ package org.apache.flex.svg
 			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
 			var fjsm:org.apache.flex.geom.IMatrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
-			element.setAttribute("transform", "matrix(" +matrixArray.join(",") + ")";
+			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
+			element.setAttribute("transform", transformStr);
 		}
 		
 		private function changeHandler(e:Event):void
