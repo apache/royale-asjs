@@ -254,7 +254,7 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-            CSSBorderUtils.draw(_shape.graphics, w, h, _shape, state, true);            
+            CSSBorderUtils.draw(_shape.graphics, w, h, this, state, true);            
         }
    	}
 }

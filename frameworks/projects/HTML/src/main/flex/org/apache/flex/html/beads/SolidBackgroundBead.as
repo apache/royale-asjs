@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+    import flash.display.Graphics;
     import flash.display.Sprite;
-	import flash.display.Graphics;
-	
-	import org.apache.flex.core.IBead;
+    
+    import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 
     /**
      *  The SolidBackgroundBead class draws a solid filled background.
@@ -177,7 +177,7 @@ package org.apache.flex.html.beads
         
 		private function changeHandler(event:Event):void
 		{
-            var g:Graphics = Sprite(host).graphics;
+            var g:Graphics = (host.$displayObject as Object).graphics as Graphics;
             var w:Number = host.width;
             var h:Number = host.height;
 			

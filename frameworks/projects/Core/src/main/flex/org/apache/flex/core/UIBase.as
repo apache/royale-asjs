@@ -1076,7 +1076,7 @@ package org.apache.flex.core
                 if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
-                $sprite.addChild(c.$sprite);
+                $sprite.addChild(c.$displayObject);
                 c.parent = this;
                 if (c is IUIBase)
                 {

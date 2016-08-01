@@ -127,7 +127,7 @@ package org.apache.flex.html.beads
 		    CSSBorderUtils.draw(sprite.graphics, 
 					DisplayObject(_strand).width + pl + pr, 
 					DisplayObject(_strand).height + pt + pb,
-                    _strand as DisplayObject,
+                    _strand,
                     state, true);
 		}
 		
