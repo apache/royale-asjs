@@ -18,12 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-<<<<<<< HEAD
-    import flash.display.DisplayObject;
-=======
     COMPILE::SWF
     {
->>>>>>> refactor again so UIHTMLElementWrapper is the base for all exposed components, but CSSShape and friend are simple subclasses of Flash display objects and are directly added to the display list
     import flash.display.Graphics;
     import flash.display.Sprite;
     }
@@ -164,145 +160,8 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-<<<<<<< HEAD
-            CSSBorderUtils.draw($sprite.graphics, w, h,this, state, true);            
-=======
             CSSBorderUtils.draw(graphics, w, h, this, state, true);            
->>>>>>> refactor again so UIHTMLElementWrapper is the base for all exposed components, but CSSShape and friend are simple subclasses of Flash display objects and are directly added to the display list
         }
-		
-		/**
-		 *  @copy org.apache.flex.core.IParent#addElement()
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
-		{
-			if(_elements == null)
-				_elements = [];
-			_elements[_elements.length] = c;
-			$sprite.addChild(c.$displayObject);
-			c.parent = this;
-			if (c is IUIBase)
-			{
-				IUIBase(c).addedToParent();
-			}
-			
-		}
-		
-		/**
-		 *  @copy org.apache.flex.core.IParent#addElementAt()
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
-		{
-			if(_elements == null)
-				_elements = [];
-			_elements.splice(index,0,c);
-			
-			$sprite.addChildAt(c.$displayObject,index);
-			c.parent = this;
-			if (c is IUIBase)
-			{
-				IUIBase(c).addedToParent();
-			}
-		}
-		
-		/**
-		 *  @copy org.apache.flex.core.IParent#getElementAt()
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getElementAt(index:int):Object
-		{
-			if(_elements == null)
-				return null;
-			return _elements[index];
-		}        
-		
-		private var _elements:Array;
-		/**
-		 *  @copy org.apache.flex.core.IParent#getElementIndex()
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getElementIndex(c:Object):int
-		{
-			if(_elements == null)
-				return -1;
-			return _elements.indexOf(c);
-		}
-		
-		/**
-		 *  @copy org.apache.flex.core.IParent#removeElement()
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function removeElement(c:Object, dispatchEvent:Boolean = true):void
-		{
-			if(_elements)
-			{
-				var idx:int = _elements.indexOf(c);
-				if(idx>=0)
-					_elements.splice(idx,1);
-				c.parent = null;
-			}
-			$sprite.removeChild(c.$displayObject);
-		}
-		
-		/**
-		 *  @copy org.apache.flex.core.IParent#numElements
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get numElements():int
-		{
-			return _elements ? _elements.length : 0;
-		}
-		
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			// TODO Auto Generated method stub
-			return null;
-		}
-		
-		public function removeBead(bead:IBead):IBead
-		{
-			// TODO Auto Generated method stub
-			return null;
-		}
-		
-		public function addedToParent():void
-		{
-			// TODO Auto Generated method stub
-			
-		}
-		
-		public function get topMostEventDispatcher():IEventDispatcher
-		{
-			// TODO Auto Generated method stub
-			return null;
-		}
-		
 
 	}
 }
