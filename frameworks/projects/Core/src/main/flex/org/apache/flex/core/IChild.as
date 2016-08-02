@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    
+COMPILE::SWF
+{
+    import flash.display.DisplayObject;       
+}
     /**
      *  The IChild interface is the basic interface for a 
      *  component that is parented by another component.
@@ -40,5 +43,15 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get parent():IParent;
+        
+        COMPILE::SWF
+        function get $displayObject():DisplayObject;
+        
+        COMPILE::JS
+        function get element():IFlexJSElement;
+
+        COMPILE::JS
+        function get positioner():WrappedHTMLElement;
+        
 	}
 }

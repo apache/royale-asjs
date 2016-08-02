@@ -89,12 +89,12 @@ package org.apache.flex.html.beads
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 
 					var host:UIBase = UIBase(_strand);
 					if (bitmap) {
-						host.$sprite.removeChild(bitmap);
+						host.$displayObjectContainer.removeChild(bitmap);
 					}
 					
 					bitmap = Bitmap(LoaderInfo(e.target).content);
 					
-					host.$sprite.addChildAt(bitmap,0);
+					host.$displayObjectContainer.addChildAt(bitmap,0);
 					
 					if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
 						host.setWidth(loader.content.width);

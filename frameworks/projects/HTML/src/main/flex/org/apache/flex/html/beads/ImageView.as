@@ -95,6 +95,7 @@ package org.apache.flex.html.beads
 		
 		/**
 		 * @private
+         * @flexjsignorecoercion HTMLImageELement
 		 */
 		private function handleUrlChange(event:Event):void
 		{
@@ -114,7 +115,7 @@ package org.apache.flex.html.beads
             {
 				if (_model.source) {
 	                var host:IUIBase = _strand as IUIBase;
-	                host.element.addEventListener('load',
+	                (host.element as HTMLImageElement).addEventListener('load',
 	                    loadHandler, false);
 	                host.addEventListener('sizeChanged',
 	                    sizeChangedHandler);

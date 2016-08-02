@@ -21,6 +21,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
@@ -141,7 +142,7 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(value:Object, dispatchEvent:Boolean = true):void
+		override public function addElement(value:IChild, dispatchEvent:Boolean = true):void
 		{
 			_children.push(value);
 			
@@ -160,7 +161,7 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(value:Object, index:int, dispatchEvent:Boolean = true):void
+		override public function addElementAt(value:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			if (index >= _children.length) _children.push(value);
 			else _children.splice(index, 0, value);

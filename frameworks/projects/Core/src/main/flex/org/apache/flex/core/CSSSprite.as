@@ -18,8 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+<<<<<<< HEAD
     import flash.display.DisplayObject;
+=======
+    COMPILE::SWF
+    {
+>>>>>>> refactor again so UIHTMLElementWrapper is the base for all exposed components, but CSSShape and friend are simple subclasses of Flash display objects and are directly added to the display list
     import flash.display.Graphics;
+    import flash.display.Sprite;
+    }
     
     import org.apache.flex.core.IChild;
     import org.apache.flex.events.Event;
@@ -37,7 +44,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSSprite extends HTMLElementWrapper implements IStyleableObject, IChild, IParentIUIBase
+	public class CSSSprite extends Sprite implements IStyleableObject
 	{
         /**
          *  Constructor.
@@ -49,7 +56,6 @@ package org.apache.flex.core
          */
 		public function CSSSprite()
 		{
-			super();
 		}		
         
         private var _id:String;
@@ -158,7 +164,11 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
+<<<<<<< HEAD
             CSSBorderUtils.draw($sprite.graphics, w, h,this, state, true);            
+=======
+            CSSBorderUtils.draw(graphics, w, h, this, state, true);            
+>>>>>>> refactor again so UIHTMLElementWrapper is the base for all exposed components, but CSSShape and friend are simple subclasses of Flash display objects and are directly added to the display list
         }
 		
 		/**

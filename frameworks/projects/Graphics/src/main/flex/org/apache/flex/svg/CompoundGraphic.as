@@ -513,7 +513,7 @@ package org.apache.flex.svg
             COMPILE::SWF
             {
                 var textField:CSSTextField = new CSSTextField();
-                $sprite.addChild(textField.$textField);
+                $sprite.addChild(textField);
 
                 textField.selectable = false;
                 textField.type = TextFieldType.DYNAMIC;

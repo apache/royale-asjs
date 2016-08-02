@@ -28,9 +28,9 @@ package org.apache.flex.core
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-    import org.apache.flex.events.utils.MouseEventConverter;
 	import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.utils.MouseEventConverter;
 	
     //--------------------------------------
     //  Events
@@ -49,8 +49,9 @@ package org.apache.flex.core
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
-     *  The UIButtonBase class is the base class for most Buttons in a FlexJS
-     *  application.  In Flash, these buttons extend SimpleButton and therefore
+     *  The UIHTMLElementWrapper class is the base class for most Buttons
+     *  and other UI objects in a FlexJS application that do not have children.  
+     *  In Flash, these buttons extend SimpleButton and therefore
      *  do not support all of the Sprite APIs.
      *  
      *  @langversion 3.0
@@ -59,7 +60,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	COMPILE::SWF
-	public class UIButtonBase extends EventDispatcher implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild
+	public class UIButtonBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild
 	{
         /**
          *  Constructor.
@@ -69,17 +70,19 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+		public function UIButtonBase()
 		{
-            _button = new WrappedSimpleButton(upState, overState, downState, hitTestState);
-            _button.flexjs_wrapper = this;
-
-
 			// mouseChildren = true;
 			// mouseEnabled = true;
             MouseEventConverter.setupInstanceConverters(this);
 		}
 
+        protected function createElement():IFlexJSElement
+        {
+            element = _button = new WrappedSimpleButton();
+            _button.flexjs_wrapper = this;
+            return element;
+        }
         private var _button:WrappedSimpleButton;
 
         public function get $button():SimpleButton
@@ -87,51 +90,12 @@ package org.apache.flex.core
             return _button;
         }
 
-        public function get $displayObject():DisplayObject
-        {
-            return _button;
-        }
-
-        /**
-         *  @copy org.apache.flex.core.HTMLElementWrapper#element
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get element():IFlexJSElement
-        {
-            return _button;
-        }
-
-        private var _parent:IParent;
-        public function get parent():IParent
-        {
-            return _parent;
-        }
-        public function set parent(val:IParent):void
-        {
-            _parent = val;
-        }
-
-        public function get alpha():Number
-        {
-            return _button.alpha;
-        }
-
-        public function set alpha(value:Number):void
-        {
-            _button.alpha = value;
-        }
-
-
         private var _x:Number;
         
 		/**
 		 *  @private
 		 */
-		public function set x(value:Number):void
+		override public function set x(value:Number):void
 		{
 			if (_button.x != value) {
 				_button.x = _x = value;
@@ -142,17 +106,13 @@ package org.apache.flex.core
 				dispatchEvent(new Event("xChanged"));
 			}
 		}
-        public function get x():Number
-        {
-            return _x;
-        }
 		
         private var _y:Number;
-
+        
         /**
 		 *  @private
 		 */
-		public function set y(value:Number):void
+		override public function set y(value:Number):void
 		{
 			if (_button.y != value) {
 				_button.y = _y = value;
@@ -164,11 +124,6 @@ package org.apache.flex.core
 			}
 		}
 
-        public function get y():Number
-        {
-            return _y;
-        }
-		
 		/**
 		 *  Retrieve the low-level bounding box y.
 		 *  
@@ -346,7 +301,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get width():Number
+		override public function get width():Number
 		{
 			if (isNaN(explicitWidth))
 			{
@@ -361,7 +316,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		public function set width(value:Number):void
+		override public function set width(value:Number):void
 		{
 			if (explicitWidth != value)
 			{
@@ -397,7 +352,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get height():Number
+		override public function get height():Number
 		{
 			if (isNaN(explicitHeight))
 			{
@@ -412,7 +367,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		public function set height(value:Number):void
+		override public function set height(value:Number):void
 		{
 			if (explicitHeight != value)
 			{
@@ -541,14 +496,14 @@ package org.apache.flex.core
 		 * @private
 		 */
         [Bindable("visibleChanged")]
-		public function set visible(value:Boolean):void
+		override public function set visible(value:Boolean):void
 		{
 			_button.visible = value;
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
 		}
 
-        public function get visible():Boolean
+        override public function get visible():Boolean
         {
             return _button.visible;
         }
@@ -566,38 +521,6 @@ package org.apache.flex.core
             return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
         
-        private var _model:IBeadModel;
-
-        /**
-         *  @copy org.apache.flex.core.UIBase#model
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get model():Object
-        {
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-            return _model;
-        }
-
-        /**
-         *  @private
-         */
-        public function set model(value:Object):void
-        {
-            if (_model != value)
-            {
-                addBead(value as IBead);
-                dispatchEvent(new Event("modelChanged"));
-            }
-        }
-		
         private var _view:IBeadView;
         
         /**
@@ -772,57 +695,12 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function addBead(bead:IBead):void
+		override public function addBead(bead:IBead):void
 		{
-			if (!strand)
-				strand = new Vector.<IBead>;
-			strand.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
-            else if (bead is IBeadView)
+            super.addBead(bead);
+            if (bead is IBeadView)
                 _view = bead as IBeadView;
 			bead.strand = this;
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in strand)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = strand.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = strand[i];
-				if (bead == value)
-				{
-					strand.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
 		}
 		
         /**

@@ -19,6 +19,7 @@
 package org.apache.flex.mobile.models
 {
 	import org.apache.flex.core.IBeadModel;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
@@ -98,7 +99,7 @@ package org.apache.flex.mobile.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function pushView(value:Object):void
+		public function pushView(value:IChild):void
 		{
 			_views.push(value);
 			_selectedIndex = _views.length - 1;
@@ -114,7 +115,7 @@ package org.apache.flex.mobile.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function popView():Object
+		public function popView():IChild
 		{
 			if (_views.length > 1) {
 				var discard:Object = _views.pop();

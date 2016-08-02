@@ -24,9 +24,8 @@ package org.apache.flex.core
     
     import org.apache.flex.core.IChild;
     import org.apache.flex.events.Event;
-    import org.apache.flex.utils.CSSBorderUtils;
-    import org.apache.flex.events.Event;        
     import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.utils.CSSBorderUtils;
     
     /**
      *  The Border class is a class used internally by many
@@ -39,7 +38,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSShape extends EventDispatcher implements IStyleableObject, IChild
+	public class CSSShape extends Shape implements IStyleableObject
 	{
         /**
          *  Constructor.
@@ -51,102 +50,7 @@ package org.apache.flex.core
          */
 		public function CSSShape()
 		{
-			_shape = new WrappedShape();
-            _shape.flexjs_wrapper = this;
 		}
-
-        private var _shape:WrappedShape;
-        public function get $diplayObject():DisplayObject
-        {
-            return _shape;
-        }
-
-        public function get $shape():Shape
-        {
-            return _shape;
-        }
-
-        /**
-         *  @copy org.apache.flex.core.HTMLElementWrapper#element
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get element():IFlexJSElement
-        {
-            return _shape;
-        }
-
-        private var _parent:IParent;
-        public function get parent():IParent
-        {
-            return _parent;
-        }
-        public function set parent(val:IParent):void
-        {
-            _parent = val;
-        }
-
-        public function get width():Number
-        {
-            return _shape.width;
-        }
-
-        public function set width(value:Number):void
-        {
-            _shape.width = value;
-        }
-
-        public function get height():Number
-        {
-            return _shape.height;
-        }
-
-        public function set height(value:Number):void
-        {
-            _shape.height = value;
-        }
-
-        public function get x():Number
-        {
-            return _shape.x;
-        }
-
-        public function set x(value:Number):void
-        {
-            _shape.x = value;
-        }
-
-        public function get y():Number
-        {
-            return _shape.y;
-        }
-
-        public function set y(value:Number):void
-        {
-            _shape.y = value;
-        }        
-
-        public function get visible():Boolean
-        {
-            return _shape.visible;
-        }
-
-        public function set visible(value:Boolean):void
-        {
-            _shape.visible = value;
-        }
-        public function get alpha():Number
-        {
-            return _shape.alpha;
-        }
-
-        public function set alpha(value:Number):void
-        {
-            _shape.alpha = value;
-        }        
 
         private var _id:String;
         
@@ -254,7 +158,7 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-            CSSBorderUtils.draw(_shape.graphics, w, h, this, state, true);            
+            CSSBorderUtils.draw(graphics, w, h, this, state, true);            
         }
    	}
 }

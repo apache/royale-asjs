@@ -18,12 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::SWF
-    {
-        import flash.display.DisplayObject;
-        import flash.display.Sprite;
-    }
-        
     COMPILE::JS
     {
         import window.Event;
@@ -36,119 +30,98 @@ package org.apache.flex.core
     import org.apache.flex.events.EventDispatcher;
 
     COMPILE::SWF
-    public class HTMLElementWrapper extends EventDispatcher
+    public class HTMLElementWrapper extends EventDispatcher implements IStrand
     {
         public function HTMLElementWrapper()
         {
-            _sprite = new WrappedSprite();
-            _sprite.flexjs_wrapper = this;
         }
 
-        private var _sprite:WrappedSprite;
+        //--------------------------------------
+        //   Property
+        //--------------------------------------
         
-        public function get $sprite():Sprite
-        {
-            return _sprite;
-        }
+        protected var _element:IFlexJSElement;
         
-        public function get $displayObject():DisplayObject
-        {
-            return _sprite;
-        }
-
-        /**
-         *  Returns the IFlexJSElement which wraps the Display Object
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
         public function get element():IFlexJSElement
         {
-            return _sprite;
+            return _element;
         }
-
-        protected var _elements:Array;
-
+        
+        public function set element(value:IFlexJSElement):void
+        {
+            _element = value;
+        }
+        
+        protected var _beads:Vector.<IBead>;
+        
+        //--------------------------------------
+        //   Function
+        //--------------------------------------
+        
         /**
-         * "abstract" method so we can override in JS
          * @param bead The new bead.
          */
         public function addBead(bead:IBead):void
-        {            
+        {
+            if (!_beads)
+            {
+                _beads = new Vector.<IBead>();
+            }
+            
+            _beads.push(bead);
+            bead.strand = this;
         }
-
-        private var _parent:IParent;
-        public function get parent():IParent
+        
+        /**
+         * @param classOrInterface The requested bead type.
+         * @return The bead.
+         */
+        public function getBeadByType(classOrInterface:Class):IBead
         {
-            return _parent;
+            var bead:IBead, i:uint, n:uint;
+            
+            if (!_beads) return null;
+            
+            n = _beads.length;
+            
+            for (i = 0; i < n; i++)
+            {
+                bead = _beads[i];
+                
+                if (bead is classOrInterface)
+                {
+                    return bead;
+                }
+            }
+            
+            return null;
         }
-        public function set parent(val:IParent):void
+        
+        /**
+         * @param bead The bead to remove.
+         * @return The bead.
+         */
+        public function removeBead(bead:IBead):IBead
         {
-            _parent = val;
+            var i:uint, n:uint, value:Object;
+            
+            n = _beads.length;
+            
+            for (i = 0; i < n; i++)
+            {
+                value = _beads[i];
+                
+                if (bead === value)
+                {
+                    _beads.splice(i, 1);
+                    
+                    return bead;
+                }
+            }
+            
+            return null;
         }
-
-        public function get width():Number
-        {
-            return _sprite.width;
-        }
-
-        public function set width(value:Number):void
-        {
-            _sprite.width = value;
-        }
-
-        public function get height():Number
-        {
-            return _sprite.height;
-        }
-
-        public function set height(value:Number):void
-        {
-            _sprite.height = value;
-        }
-
-        public function get x():Number
-        {
-            return _sprite.x;
-        }
-
-        public function set x(value:Number):void
-        {
-            _sprite.x = value;
-        }
-
-        public function get y():Number
-        {
-            return _sprite.y;
-        }
-
-        public function set y(value:Number):void
-        {
-            _sprite.y = value;
-        }        
-
-        public function get visible():Boolean
-        {
-            return _sprite.visible;
-        }
-
-        public function set visible(value:Boolean):void
-        {
-            _sprite.visible = value;
-        }        
-
-        public function get alpha():Number
-        {
-            return _sprite.alpha;
-        }
-
-        public function set alpha(value:Number):void
-        {
-            _sprite.alpha = value;
-        }        
-
+        
     }
     
 	COMPILE::JS
@@ -198,7 +171,10 @@ package org.apache.flex.core
 		//   Property
 		//--------------------------------------
 
-		private var _element:WrappedHTMLElement;
+        /**
+         * An optimization to skip the getter of the element property
+         */
+		protected var _element:WrappedHTMLElement;
         
         public function get element():WrappedHTMLElement
         {
@@ -210,36 +186,6 @@ package org.apache.flex.core
             _element = value;
         }
         
-        /**
-         * allow access from overrides
-         */
-		protected var _model:IBeadModel;
-        
-        /**
-         * @flexjsignorecoercion Class 
-         * @flexjsignorecoercion org.apache.flex.core.IBeadModel 
-         */
-        public function get model():Object
-        {
-            if (_model == null) 
-            {
-                // addbead will set _model
-                var m:Class = org.apache.flex.core.ValuesManager.valuesImpl.
-                        getValue(this, 'iBeadModel') as Class;
-                var b:IBeadModel = new m() as IBeadModel;
-                addBead(b);
-            }
-            return _model;
-        }
-        
-        public function set model(value:Object):void
-        {
-            if (_model != value)
-            {
-                addBead(value as IBead);
-                dispatchEvent(new org.apache.flex.events.Event("modelChanged"));
-            }
-        }
 
 		protected var _beads:Vector.<IBead>;
         
@@ -258,12 +204,6 @@ package org.apache.flex.core
 			}
 
 			_beads.push(bead);
-
-			if (bead is IBeadModel)
-			{
-				_model = bead as IBeadModel;
-			}
-
 			bead.strand = this;
 		}
 

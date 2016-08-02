@@ -44,7 +44,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IFlexJSElement
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase
 	{
 		/**
 		 *  constructor.
@@ -548,5 +548,10 @@ package org.apache.flex.html.supportClasses
             return IUIBase(parent).topMostEventDispatcher;
         }
 
+        public function get $displayObject():DisplayObject
+        {
+            return this;
+        }
+        
     }
 }

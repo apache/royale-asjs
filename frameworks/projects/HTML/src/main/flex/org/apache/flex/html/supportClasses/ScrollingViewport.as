@@ -137,11 +137,14 @@ package org.apache.flex.html.supportClasses
             }
         }
 
+        /**
+         * @flexjsignorecoercion HTMLElement 
+         */
         COMPILE::JS
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            contentView.element.style.overflow = 'auto';
+            (contentView.element as HTMLElement).style.overflow = 'auto';
         }
 
         private var viewportWidth:Number;

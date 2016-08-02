@@ -138,7 +138,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
+	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild
 	{
         /**
          *  Constructor.
@@ -157,10 +157,13 @@ package org.apache.flex.core
                 MouseEventConverter.setupInstanceConverters(this);
             }
             
-            COMPILE::JS
-            {
-                createElement();
-            }
+            createElement();
+        }
+        
+        COMPILE::SWF
+        public function get $sprite():Sprite
+        {
+            return $displayObject as Sprite;
         }
         
 		private var _explicitWidth:Number;
@@ -794,42 +797,7 @@ package org.apache.flex.core
         {
             return element.childNodes as Array;
         }
-        
-        COMPILE::SWF
-		private var _model:IBeadModel;
-
-        /**
-         *  An IBeadModel that serves as the data model for the component.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        public function get model():Object
-		{
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-			return _model;
-		}
-
-        /**
-         *  @private
-         */
-        COMPILE::SWF
-		public function set model(value:Object):void
-		{
-			if (_model != value)
-			{
-				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
-			}
-		}
-		
+        		
         private var _view:IBeadView;
         
         /**
@@ -1004,63 +972,19 @@ package org.apache.flex.core
          */        
 		override public function addBead(bead:IBead):void
 		{
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
-            else if (bead is IBeadView)
+            super.addBead(bead);
+            if (bead is IBeadView)
                 _view = bead as IBeadView;
-			bead.strand = this;
 			
 			if (bead is IBeadView) {
 				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));
 			}
 		}
 		
-        /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
 		
-        /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
-		}
-		
+        // maintain this or just calculate it from the displayobject children on demand?
+        private var _elements:Array;
+        
         /**
          *  @copy org.apache.flex.core.IParent#addElement()
          * 
@@ -1068,16 +992,16 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
             COMPILE::SWF
             {
                 if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
-                $sprite.addChild(c.$displayObject);
-                c.parent = this;
+                $displayObjectContainer.addChild(c.$displayObject);
                 if (c is IUIBase)
                 {
                     IUIBase(c).addedToParent();
@@ -1087,7 +1011,7 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 element.appendChild(c.positioner);
-                c.addedToParent();
+                (c as IUIBase).addedToParent();
             }
 		}
         
@@ -1098,8 +1022,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF
             {
@@ -1107,12 +1032,11 @@ package org.apache.flex.core
                     _elements = [];
                 _elements.splice(index,0,c);
 
-                $sprite.addChildAt(c.$sprite,index);
-                c.parent = this;
+                $displayObjectContainer.addChildAt(c.$displayObject,index);
 
                 if (c is IUIBase)
                 {
-                    IUIBase(c).addedToParent();
+                    (c as IUIBase).addedToParent();
                 }
             }
             COMPILE::JS
@@ -1124,7 +1048,7 @@ package org.apache.flex.core
                 {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    c.addedToParent();
+                    (c as IUIBase).addedToParent();
                 }
             }
         }
@@ -1137,7 +1061,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IChild
         {
             COMPILE::SWF
             {
@@ -1160,7 +1084,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IChild):int
         {
             COMPILE::SWF
             {
@@ -1188,8 +1112,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF
             {
@@ -1198,13 +1123,12 @@ package org.apache.flex.core
                     var idx:int = _elements.indexOf(c);
                     if(idx>=0)
                         _elements.splice(idx,1);
-                    c.parent = null;
                 }
-                $sprite.removeChild(c.$sprite as DisplayObject);
+                $displayObjectContainer.removeChild(c.$displayObject as DisplayObject);
             }
             COMPILE::JS
             {
-                element.removeChild(c.element);
+                element.removeChild(c.element as HTMLElement);
             }
         }
 		
@@ -1367,7 +1291,7 @@ package org.apache.flex.core
             {
                 if (!_stageProxy)
                 {
-                    _stageProxy = new StageProxy($sprite.stage);
+                    _stageProxy = new StageProxy($displayObject.stage);
                     _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
                 }
                 
@@ -1394,44 +1318,31 @@ package org.apache.flex.core
             dispatchEvent(event);
         }
         
-        COMPILE::JS
-        private var _positioner:WrappedHTMLElement;
-        
-        /**
-         * The HTMLElement used to position the component.
-         */
-        COMPILE::JS
-        public function get positioner():WrappedHTMLElement
-        {
-            return _positioner;
-        }
-        
-        /**
-         * @private
-         */
-        COMPILE::JS
-        public function set positioner(value:WrappedHTMLElement):void
-        {
-            _positioner = value;
-        }
-        
         /**
          * @return The actual element to be parented.
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
-        COMPILE::JS
-        protected function createElement():WrappedHTMLElement
+        protected function createElement():IFlexJSElement
         {
-            if (element == null)
-                element = document.createElement('div') as WrappedHTMLElement;
-            if (positioner == null)
-                positioner = element;
-            positioner.style.display = 'block';
-            positioner.style.position = 'relative';
-            
-            element.flexjs_wrapper = this;
-            
-            return positioner;
+			COMPILE::SWF
+			{
+				element = new WrappedSprite();
+				element.flexjs_wrapper = this;
+                return element;
+			}
+			COMPILE::JS
+			{
+	            if (element == null)
+	                element = document.createElement('div') as WrappedHTMLElement;
+	            if (positioner == null)
+	                positioner = element;
+	            positioner.style.display = 'block';
+	            positioner.style.position = 'relative';
+	            
+	            element.flexjs_wrapper = this;
+	            
+	            return positioner;
+			}
         }
         
         /**
@@ -1462,19 +1373,6 @@ package org.apache.flex.core
             newStyle[value.propertyName] = value.newValue;
             ValuesManager.valuesImpl.applyStyles(this, newStyle);
         };
-
-        /**
-         * @param value The event containing new style properties.
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion org.apache.flex.core.IParent
-         */
-        COMPILE::JS
-        public function get parent():IParent
-        {
-            var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
-            var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
-            return wrapper;
-        }
 
 	}
 }

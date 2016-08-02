@@ -52,7 +52,7 @@ package org.apache.flex.utils
 
 			COMPILE::JS
 			{
-				var r:Object = obj.element.getBoundingClientRect();
+				var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
 				var bounds:Rectangle = new Rectangle(r.x, r.y, r.width, r.height);
 				bounds.x -= window.pageXOffset;
 				bounds.y -= window.pageYOffset;
@@ -81,8 +81,8 @@ package org.apache.flex.utils
 
 			COMPILE::JS
 			{
-				var r1:Object = obj1.element.getBoundingClientRect();
-				var r2:Object = obj2.element.getBoundingClientRect();
+				var r1:Object = (obj1.element as HTMLElement).getBoundingClientRect();
+				var r2:Object = (obj2.element as HTMLElement).getBoundingClientRect();
 				var bounds1:Rectangle = new Rectangle(r1.x, r1.y, r1.width, r1.height);
 				var bounds2:Rectangle = new Rectangle(r2.x, r2.y, r2.width, r2.height);
 
@@ -115,7 +115,7 @@ package org.apache.flex.utils
 
 			COMPILE::JS
 			{
-				var result:Array = examineElementsUnderPoint(x,y,obj.element);
+				var result:Array = examineElementsUnderPoint(x,y,obj.element as HTMLElement);
 				return result.length > 0;
 			}
 		}

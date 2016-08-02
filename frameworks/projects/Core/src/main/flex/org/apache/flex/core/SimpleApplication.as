@@ -75,9 +75,9 @@ package org.apache.flex.core
 		}
         
 		COMPILE::SWF
-        public function setRoot(r:Sprite):void
+        public function setRoot(r:WrappedMovieClip):void
         {
-			$sprite = r;
+			element = r;
 			start();
         }
         

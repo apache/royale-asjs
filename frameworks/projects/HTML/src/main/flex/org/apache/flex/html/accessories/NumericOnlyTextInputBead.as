@@ -142,7 +142,7 @@ package org.apache.flex.html.accessories
 				textField.maxChars = maxChars;
 				// listen for changes to this textField and prevent non-numeric values, such
 				// as 34.09.94
-				textField.$textField.addEventListener(TextEvent.TEXT_INPUT, handleTextInput);
+				textField.addEventListener(TextEvent.TEXT_INPUT, handleTextInput);
 			}
 			else {
 				throw new Error("NumericOnlyTextInputBead requires strand to have an ITextFieldView bead");

@@ -135,11 +135,11 @@ package org.apache.flex.html.accessories
 			var model:Object = UIBase(_strand).model;
 			
 			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) UIBase(_strand).$sprite.removeChild(promptField.$textField);
+				if (promptAdded) UIBase(_strand).$displayObjectContainer.removeChild(promptField);
 				promptAdded = false;
 			}
 			else {
-				if (!promptAdded) UIBase(_strand).$sprite.addChild(promptField.$textField);
+				if (!promptAdded) UIBase(_strand).$displayObjectContainer.addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
 			}

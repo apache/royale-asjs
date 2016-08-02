@@ -82,9 +82,9 @@ package org.apache.flex.html.beads
 			upTextField.autoSize = "left";
 			downTextField.autoSize = "left";
 			overTextField.autoSize = "left";
-			upSprite.addChild(upTextField.$textField);
-			downSprite.addChild(downTextField.$textField);
-			overSprite.addChild(overTextField.$textField);
+			upSprite.addChild(upTextField);
+			downSprite.addChild(downTextField);
+			overSprite.addChild(overTextField);
 		}
 		
 		private var textModel:ImageAndTextModel;
@@ -148,10 +148,10 @@ package org.apache.flex.html.beads
 			var sw:uint = IUIBase(_strand).width;
 			var sh:uint = IUIBase(_strand).height;
 			
-			textField.$textField.defaultTextFormat.leftMargin = 0;
-			textField.$textField.defaultTextFormat.rightMargin = 0;
+			textField.defaultTextFormat.leftMargin = 0;
+			textField.defaultTextFormat.rightMargin = 0;
             // set it again so it gets noticed
-			textField.$textField.defaultTextFormat = textField.$textField.defaultTextFormat;
+			textField.defaultTextFormat = textField.defaultTextFormat;
             
 			var borderColor:uint;
 			var borderThickness:uint;
@@ -243,7 +243,7 @@ package org.apache.flex.html.beads
             {
                 var loader:Loader = new Loader();
                 sprite.addChildAt(loader, 0);
-                sprite.addChild(textField.$textField);
+                sprite.addChild(textField);
                 var url:String = backgroundImage as String;
                 loader.load(new URLRequest(url));
                 loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 

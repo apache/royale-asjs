@@ -168,6 +168,7 @@ public class MXMLDataInterpreter
     
     /**
      * @flexjsignorecoercion Function 
+     * @flexjsignorecoercion org.apache.flex.core.IChild 
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -296,12 +297,12 @@ public class MXMLDataInterpreter
         COMPILE::SWF
         {
             if (parent && comp is IChild)
-                parent.addElement(comp, !(parent is IContainer));
+                parent.addElement(comp as IChild, !(parent is IContainer));
         }
         COMPILE::JS
         {
             if (parent && comp is IChild)
-                parent.addElement(comp, !(parent is IContainer));
+                parent.addElement(comp as IChild, !(parent is IContainer));
         }
         
         if (children)

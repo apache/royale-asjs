@@ -337,6 +337,7 @@ package org.apache.flex.events
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
          *  @flexjsignorecoercion window.Event
          */
         public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
@@ -347,7 +348,7 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                (target as IUIBase).element.dispatchEvent(event as window.Event);
+                ((target as IUIBase).element as IEventDispatcher).dispatchEvent(event as window.Event);
             }
         }
 

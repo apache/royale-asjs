@@ -19,7 +19,6 @@
 package org.apache.flex.core
 {
     COMPILE::SWF {
-        import flash.display.MovieClip;
 		import flash.display.StageAlign;
 		import flash.display.StageQuality;
 		import flash.display.StageScaleMode;
@@ -37,7 +36,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class ApplicationFactory extends MovieClip
+	public class ApplicationFactory extends WrappedMovieClip
 	{
         /**
          *  Constructor.

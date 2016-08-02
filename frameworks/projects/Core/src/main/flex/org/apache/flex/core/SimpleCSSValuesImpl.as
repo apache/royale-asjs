@@ -706,6 +706,7 @@ package org.apache.flex.core
         /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
+         * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void
@@ -734,7 +735,7 @@ package org.apache.flex.core
                     if (p.indexOf('url') !== 0)
                         value = 'url(' + value + ')';
                 }
-                thisObject.element.style[p] = value;
+                (thisObject.element as HTMLElement).style[p] = value;
             }
         }
 	}

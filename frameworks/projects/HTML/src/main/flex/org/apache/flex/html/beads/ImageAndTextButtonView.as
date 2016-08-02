@@ -141,7 +141,7 @@ package org.apache.flex.html.beads
 			{
 				var loader:Loader = new Loader();
 				sprite.addChildAt(loader, 0);
-                sprite.addChild(textField.$textField);
+                sprite.addChild(textField);
 				var url:String = backgroundImage as String;
 				loader.load(new URLRequest(url));
 				loader.contentLoaderInfo.addEventListener(flash.events.Event.COMPLETE, function (e:flash.events.Event):void { 

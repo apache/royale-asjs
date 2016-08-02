@@ -76,7 +76,7 @@ package org.apache.flex.html.beads
 				var icon:Shape = new Shape();
 				icon.name = "icon";
 				s.addChild(icon);
-				s.addChild(tf.$textField);
+				s.addChild(tf);
 			}
 		}
 		

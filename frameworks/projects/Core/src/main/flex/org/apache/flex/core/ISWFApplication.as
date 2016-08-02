@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-COMPILE::SWF
-{
-	import flash.display.Sprite;
-}
 
     /**
      *  Interface for bootstrapping SWF Applications.
@@ -42,7 +38,7 @@ COMPILE::SWF
          *  @productversion FlexJS 0.0
          */
 		COMPILE::SWF
-		function setRoot(root:Sprite):void;
+		function setRoot(root:WrappedMovieClip):void;
         
     }
 }

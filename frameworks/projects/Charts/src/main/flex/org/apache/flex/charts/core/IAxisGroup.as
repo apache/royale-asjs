@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
 
@@ -30,7 +31,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IAxisGroup
+	public interface IAxisGroup extends IChild
 	{
 		function removeAllElements():void;
 		

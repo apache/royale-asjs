@@ -70,7 +70,7 @@ package org.apache.flex.html.beads.controllers
 			
 			var viewBead:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
 			textField = viewBead.textField;
-			textField.$textField.addEventListener("change", inputChangeHandler);
+			textField.addEventListener("change", inputChangeHandler);
 		}
 		
 		/**

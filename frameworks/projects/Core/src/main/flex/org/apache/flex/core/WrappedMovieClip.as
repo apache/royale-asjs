@@ -18,21 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::SWF
-    {
-        import flash.display.DisplayObject;            
-        import flash.display.SimpleButton;            
-    }
+	COMPILE::SWF
+	{
+	    import flash.display.MovieClip;
+	}
 
 	COMPILE::SWF
-	public class WrappedSimpleButton extends SimpleButton implements IFlexJSElement
+	public class WrappedMovieClip extends MovieClip implements IFlexJSElement
 	{
-        public function WrappedSimpleButton(upState:DisplayObject = null, overState:DisplayObject = null, downState:DisplayObject = null, hitTestState:DisplayObject = null)
-        {
-            super(upState, overState, downState, hitTestState)
-
-        }
-
         private var _flexjs_wrapper:HTMLElementWrapper;
         
         //--------------------------------------

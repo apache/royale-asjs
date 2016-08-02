@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
 	COMPILE::JS
-	public class WrappedHTMLElement extends HTMLElement
+	public class WrappedHTMLElement extends HTMLElement implements IFlexJSElement
 	{
 
 		//--------------------------------------

@@ -30,18 +30,20 @@ package org.apache.flex.flat.beads
 	import org.apache.flex.core.CSSSprite;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.html.beads.IDropDownListView;
-    import org.apache.flex.html.Button;
 	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.UIUtils;
     
     /**
      *  The DropDownListView class is the default view for
@@ -77,9 +79,9 @@ package org.apache.flex.flat.beads
 			upTextField = new CSSTextField();
 			downTextField = new CSSTextField();
 			overTextField = new CSSTextField();
-            upSprite.$sprite.addChild(upTextField.$textField);
-            overSprite.$sprite.addChild(overTextField.$textField);
-            downSprite.$sprite.addChild(downTextField.$textField);
+            upSprite.addChild(upTextField);
+            overSprite.addChild(overTextField);
+            downSprite.addChild(downTextField);
 			upTextField.selectable = false;
             upTextField.parentDrawsBackground = true;
             upTextField.parentHandlesPadding = true;
@@ -103,9 +105,9 @@ package org.apache.flex.flat.beads
             overArrows.className = 'dropdown-caret';
             downArrows = new CSSShape();
             downArrows.className = 'dropdown-caret';
-            upSprite.$sprite.addChild(upArrows.$shape);
-			overSprite.$sprite.addChild(overArrows.$shape);
-			downSprite.$sprite.addChild(downArrows.$shape);
+            upSprite.addChild(upArrows);
+			overSprite.addChild(overArrows);
+			downSprite.addChild(downArrows);
 
 		}
 
@@ -134,9 +136,9 @@ package org.apache.flex.flat.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			b.$button.upState = upSprite.$sprite;
-			b.$button.downState = downSprite.$sprite;
-			b.$button.overState = overSprite.$sprite;
+			b.$button.upState = upSprite;
+			b.$button.downState = downSprite;
+			b.$button.overState = overSprite;
 			b.$button.hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				selectionChangeHandler(null);
@@ -289,21 +291,19 @@ package org.apache.flex.flat.beads
          */
         public function set popUpVisible(value:Boolean):void
         {
+            var host:IPopUpHost;
             if (value != _popUpVisible)
             {
                 _popUpVisible = value;
                 if (value)
                 {
-					var root:Object = UIBase(_strand).$sprite.root;
-					var host:DisplayObjectContainer = UIBase(_strand).$sprite.parent;
-                    while (host && !(host is IPopUpHost))
-                        host = host.parent;
-                    if (host)
-                        IPopUpHost(host).addElement(popUp);
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).addElement(popUp as IChild);
                 }
                 else
                 {
-                    DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).removeElement(popUp as IChild);
                 }
             }
         }
