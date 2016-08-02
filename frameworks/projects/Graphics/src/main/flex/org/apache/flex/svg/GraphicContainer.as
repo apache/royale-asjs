@@ -181,10 +181,10 @@ import org.apache.flex.core.ContainerBase;
 
 class GraphicGroup extends ContainerBase
 {
-	COMPILE::JS
 	/**
 	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 	 */
+	COMPILE::JS
 	override protected function createElement():org.apache.flex.core.WrappedHTMLElement
 	{
 		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.flex.core.WrappedHTMLElement;
