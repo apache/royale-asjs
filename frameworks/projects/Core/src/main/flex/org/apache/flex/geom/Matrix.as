@@ -19,7 +19,7 @@
 package org.apache.flex.geom
 {
 
-	public class Matrix
+	public class Matrix implements IMatrix
 	{
 		public function Matrix(a:Number = 1, b:Number = 0, c:Number = 0, d:Number = 1, tx:Number = 0, ty:Number = 0)
 		{
@@ -31,14 +31,74 @@ package org.apache.flex.geom
 			this.ty = ty;
 
 		}
-		public var a:Number;
-		public var b:Number;
-		public var c:Number;
-		public var d:Number;
-		public var tx:Number;
-		public var ty:Number;
+		private var _a:Number;
+		private var _b:Number;
+		private var _c:Number;
+		private var _d:Number;
+		private var _tx:Number;
+		private var _ty:Number;
 
-		public function clone():Matrix
+		public function get ty():Number
+		{
+			return _ty;
+		}
+
+		public function set ty(value:Number):void
+		{
+			_ty = value;
+		}
+
+		public function get tx():Number
+		{
+			return _tx;
+		}
+
+		public function set tx(value:Number):void
+		{
+			_tx = value;
+		}
+
+		public function get d():Number
+		{
+			return _d;
+		}
+
+		public function set d(value:Number):void
+		{
+			_d = value;
+		}
+
+		public function get c():Number
+		{
+			return _c;
+		}
+
+		public function set c(value:Number):void
+		{
+			_c = value;
+		}
+
+		public function get b():Number
+		{
+			return _b;
+		}
+
+		public function set b(value:Number):void
+		{
+			_b = value;
+		}
+
+		public function get a():Number
+		{
+			return _a;
+		}
+
+		public function set a(value:Number):void
+		{
+			_a = value;
+		}
+
+		public function clone():IMatrix
 		{
 			return new Matrix(a, b, c, d, tx, ty);
 		}

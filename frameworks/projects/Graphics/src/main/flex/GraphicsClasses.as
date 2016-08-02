@@ -38,6 +38,7 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
 	import org.apache.flex.svg.Text; Text;
 	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
+	import org.apache.flex.svg.TransformBead; TransformBead;
 	import org.apache.flex.svg.LinearGradient; LinearGradient;
 	import org.apache.flex.graphics.CubicCurve; CubicCurve;
 	import org.apache.flex.graphics.LineStyle; LineStyle;
@@ -47,7 +48,6 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
 	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
 	
-	import org.apache.flex.svg.TransformBead; TransformBead;
 }
 
 }

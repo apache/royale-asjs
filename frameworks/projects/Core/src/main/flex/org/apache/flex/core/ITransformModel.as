@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Matrix;
+	import org.apache.flex.geom.IMatrix;
 	
     /**
      *  The ITransformModel interface describes the minimum set of properties
@@ -40,8 +40,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get matrix():Matrix;
-		function set matrix(value:Matrix):void;
+		function get matrix():IMatrix;
+		function set matrix(value:IMatrix):void;
 		
 	}
 }
