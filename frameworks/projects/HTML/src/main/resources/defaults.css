@@ -617,11 +617,13 @@ TextButton
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
 }
 
+/*
 TextFieldItemRenderer
 {
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
+*/
 
 TextInput
 {
