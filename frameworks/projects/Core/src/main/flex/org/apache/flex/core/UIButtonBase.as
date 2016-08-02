@@ -75,6 +75,7 @@ package org.apache.flex.core
 			// mouseChildren = true;
 			// mouseEnabled = true;
             MouseEventConverter.setupInstanceConverters(this);
+            createElement();
 		}
 
         protected function createElement():IFlexJSElement

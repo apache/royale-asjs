@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.events.Event;
@@ -123,10 +124,11 @@ package org.apache.flex.html.beads
 			hitArea.graphics.drawRect(0,0,upSprite.width, upSprite.height);
 			hitArea.graphics.endFill();
 			
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = hitArea;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upSprite;
+            button.downState = downSprite;
+            button.overState = overSprite;
+            button.hitTestState = hitArea;
 			
 			if (toggleButtonModel.text !== null)
 				text = toggleButtonModel.text;
@@ -224,15 +226,16 @@ package org.apache.flex.html.beads
 			
 			layoutControl();
 			
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
 			if( value ) {
-				SimpleButton(_strand).upState = upAndSelectedSprite;
-				SimpleButton(_strand).downState = downAndSelectedSprite;
-				SimpleButton(_strand).overState = overAndSelectedSprite;
+                button.upState = upAndSelectedSprite;
+                button.downState = downAndSelectedSprite;
+                button.overState = overAndSelectedSprite;
 				
 			} else {
-				SimpleButton(_strand).upState = upSprite;
-				SimpleButton(_strand).downState = downSprite;
-				SimpleButton(_strand).overState = overSprite;
+                button.upState = upSprite;
+                button.downState = downSprite;
+                button.overState = overSprite;
 			}
 		}
 		

@@ -147,7 +147,7 @@ package org.apache.flex.core
                 }
             }
 			defaultTextFormat = tf;
-			text = value;
+			super.text = value;
 		}
 
         private function updateStyles(event:Event):void
