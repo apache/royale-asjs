@@ -23,9 +23,10 @@ package org.apache.flex.html.beads
 	import flash.display.SimpleButton;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
@@ -131,8 +132,9 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangeHandler(event:Event):void
 		{
-			upTextField.width = downTextField.width = overTextField.width = DisplayObject(_strand).width;
-			upTextField.height= downTextField.height= overTextField.height= DisplayObject(_strand).height;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+			upTextField.width = downTextField.width = overTextField.width = button.width;
+			upTextField.height= downTextField.height= overTextField.height= button.height;
 		}
 		
         /**

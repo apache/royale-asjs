@@ -226,7 +226,7 @@ package org.apache.flex.html.beads
 			
 			layoutControl();
 			
-            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
 			if( value ) {
                 button.upState = upAndSelectedSprite;
                 button.downState = downAndSelectedSprite;

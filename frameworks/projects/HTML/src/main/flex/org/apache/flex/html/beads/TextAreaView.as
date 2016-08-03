@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import flash.text.TextField;
@@ -170,7 +169,7 @@ package org.apache.flex.html.beads
             if( !isNaN(ww) && ww > 0 )
                 _border.width = ww;
             
-            ww -= DisplayObject(vScrollBar).width;
+            ww -= vScrollBar.width;
 			if( !isNaN(ww) && ww > 0 )
 				textField.width = ww;
 			
@@ -181,7 +180,7 @@ package org.apache.flex.html.beads
 				_border.height = hh;
 			}
 			
-			var sb:DisplayObject = DisplayObject(vScrollBar);
+			var sb:VScrollBar = vScrollBar;
 			sb.y = 1;
 			sb.x = textField.width - 1;
 			sb.height = textField.height;

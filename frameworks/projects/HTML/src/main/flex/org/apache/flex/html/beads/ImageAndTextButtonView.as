@@ -31,11 +31,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IStrandWithModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.models.ImageAndTextModel;
-    import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.SolidBorderUtil;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -97,10 +98,11 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upSprite;
+			button.downState = downSprite;
+			button.overState = overSprite;
+			button.hitTestState = shape;
 			
 			setupBackground(upSprite, upTextField, 0xCCCCCC);
 			setupBackground(overSprite, overTextField, 0xFFCCCC, "hover");

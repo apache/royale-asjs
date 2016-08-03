@@ -33,13 +33,13 @@ package org.apache.flex.events
             'keyup': 1,
             'keydown': 1,
             'load': 1,
-            'mouseover': 1,
-            'mouseout': 1,
-            'mouseup': 1,
-            'mousedown': 1,
-            'mousemove': 1,
-            'rollover': 1,
-            'rollout': 1
+            'mouseOver': 1,
+            'mouseOut': 1,
+            'mouseUp': 1,
+            'mouseDown': 1,
+            'mouseMove': 1,
+            'rollOver': 1,
+            'rollOut': 1
         };
 	}
 

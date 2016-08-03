@@ -152,12 +152,12 @@ package org.apache.flex.core
 		{
 			super();
             
+            createElement();
+            
             COMPILE::SWF
             {
                 MouseEventConverter.setupInstanceConverters(this);
-            }
-            
-            createElement();
+            }                
         }
         
         COMPILE::SWF

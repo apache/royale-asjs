@@ -18,16 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import flash.display.DisplayObject;
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
-    import flash.display.DisplayObject;
-
-    import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.IBeadView;
+	
+	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;	
+	import org.apache.flex.events.IEventDispatcher;
 	
     /**
      *  The VScrollBarThumbView class is the view for
@@ -54,7 +56,7 @@ package org.apache.flex.html.beads
 		
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
-            var hh:Number = DisplayObject(_strand).height;
+            var hh:Number = IUIBase(_strand).height;
             g.clear();
 			g.lineStyle(1);
 			g.beginFill(bgColor);
@@ -88,19 +90,21 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upView;
+			button.downState = downView;
+			button.overState = overView;
+			button.hitTestState = shape;
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangedHandler);
 		}
 
         private function heightChangedHandler(event:Event):void
         {
-			DisplayObject(_strand).scaleY = 1.0;
-			DisplayObject(_strand).scaleX = 1.0;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+			button.scaleY = 1.0;
+			button.scaleX = 1.0;
 			
-            var hh:Number = DisplayObject(_strand).height;
+            var hh:Number = button.height;
             drawView(upView.graphics, 0xc8c8c8);
             drawView(downView.graphics, 0xc8c8c8);
             drawView(overView.graphics, 0xb8b8b8);
