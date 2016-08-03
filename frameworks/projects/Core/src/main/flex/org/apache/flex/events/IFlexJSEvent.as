@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
-
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
@@ -20,70 +19,30 @@
 package org.apache.flex.events
 {
 
-	import org.apache.flex.events.CustomEvent;
-	import org.apache.flex.events.IFlexJSEvent;
-	
 	/**
-	 * The ItemRemovedEvent is dispatched by IItemRendererParent objects whenenver an
-	 * itemRenderer is removed.
+	 * This class simply wraps flash.events.Event so that
+	 * no flash packages are needed on the JS side.
+	 * At runtime, this class is not always the event object
+	 * that is dispatched.  In most cases we are dispatching
+	 * DOMEvents instead, so as long as you don't actually
+	 * check the typeof(event) it will work
 	 *
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
 	 * @productversion FlexJS 0.0
 	 */
-	public class ItemRemovedEvent extends CustomEvent
+	public interface IFlexJSEvent
 	{
 
-		//--------------------------------------
-		//   Constructor
-		//--------------------------------------
-
 		/**
-		 * Constructor.
-		 *
-		 * @param type The name of the event.
-		 * @param bubbles Whether the event bubbles.
-		 * @param cancelable Whether the event can be canceled.
+		 * Create a copy/clone of the Event object.
 		 *
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
 		 * @productversion FlexJS 0.0
 		 */
-		public function ItemRemovedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
-		{
-            COMPILE::SWF
-            {
-                super(type, bubbles, cancelable);                    
-            }
-            COMPILE::JS
-            {
-                super(type);
-            }
-			
-			item = null;
-		}
-		
-		/**
-		 * The item being removed.
-		 *
-		 * @export
-		 * @langversion 3.0
-		 * @playerversion Flash 10.2
-		 * @playerversion AIR 2.6
-		 * @productversion FlexJS 0.0
-		 */
-		public var item:Object;
-		
-		/**
-		 * @private
-		 */
-		override public function cloneEvent():IFlexJSEvent
-		{
-			var newEvent:ItemRemovedEvent = new ItemRemovedEvent(type);
-			newEvent.item = item;
-			return newEvent;
-		}
+		function cloneEvent():IFlexJSEvent;
 	}
 }

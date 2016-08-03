@@ -23,6 +23,24 @@ package org.apache.flex.events
 	COMPILE::SWF
 	public class ElementEvents
 	{
+        //--------------------------------------
+        //   Static Property
+        //--------------------------------------
+        
+        static public const elementEvents:Object = {
+            'click': 1,
+            'change': 1,
+            'keyup': 1,
+            'keydown': 1,
+            'load': 1,
+            'mouseover': 1,
+            'mouseout': 1,
+            'mouseup': 1,
+            'mousedown': 1,
+            'mousemove': 1,
+            'rollover': 1,
+            'rollout': 1
+        };
 	}
 
 	COMPILE::JS

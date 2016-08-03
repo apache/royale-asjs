@@ -26,7 +26,15 @@ package org.apache.flex.core
         import goog.events;
         import goog.events.EventTarget;
     }
-    import org.apache.flex.events.Event;        
+    COMPILE::SWF
+    {
+        import flash.events.Event;
+        import flash.events.IEventDispatcher;
+        import org.apache.flex.events.ElementEvents;
+        import org.apache.flex.events.IFlexJSEvent;
+    }
+    
+    import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
 
     COMPILE::SWF
@@ -122,6 +130,40 @@ package org.apache.flex.core
             return null;
         }
         
+        override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, priority:int = 0, weak:Boolean = false):void
+        {
+            var source:IEventDispatcher = getActualDispatcher_(type) as IEventDispatcher;
+            if (source != this)
+                source.addEventListener(type, forwarder, opt_capture);
+            
+            super.addEventListener(type, handler, opt_capture);
+        }
+        
+        override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false):void
+        {
+            var source:IEventDispatcher = getActualDispatcher_(type) as IEventDispatcher;
+            if (source != this)
+                source.removeEventListener(type, handler, opt_capture);
+            
+            super.removeEventListener(type, handler, opt_capture);
+        }
+        
+        private function getActualDispatcher_(type:String):IEventDispatcher
+        {
+            var source:IEventDispatcher = this;
+            if (ElementEvents.elementEvents[type]) {
+                // mouse and keyboard events also dispatch off the element.
+                source = this.element as IEventDispatcher;
+            }
+            return source;
+        }
+        
+        private function forwarder(event:flash.events.Event):void
+        {
+            if (event is IFlexJSEvent)
+                event = IFlexJSEvent(event).cloneEvent() as flash.events.Event;
+            dispatchEvent(event);
+        }
     }
     
 	COMPILE::JS
