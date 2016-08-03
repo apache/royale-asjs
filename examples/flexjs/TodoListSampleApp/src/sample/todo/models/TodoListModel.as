@@ -17,26 +17,98 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package sample.todo.models {
+    import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
 
     public class TodoListModel extends EventDispatcher {
         public function TodoListModel() {
             super();
+			_filterFunction();
+			
+			addTodo("Get something").selected = true;
+			addTodo("Do this").selected = true;
+			addTodo("Do that");
         }
+		
+		private function titleChangeHandler(event:Event):void
+		{
+			dispatchEvent(new Event("todoListChanged"));
+		}
+		
+		private function selectChangeHandler(event:Event):void
+		{
+			dispatchEvent(new Event("todoListChanged"));
+		}
+		
+		private function removeHandler(event:Event):void
+		{
+			var item:TodoListItem = event.target as TodoListItem;
+			removeItem(item);
+		}
 
-        private var _todos:Array = [
-            {title: "Get something", selected: true},
-            {title: "Do this", selected: true},
-            {title: "Do that", selected: false}
-        ];
+        private var _todos:Array = [];
+		
+		private var _filteredList:Array = [];
+		private var _filterFunction:Function = showAllTodos;
 
-        [Bindable]
+        [Bindable("todoListChanged")]
         public function get todos():Array {
-            return _todos;
+			return _filteredList;
         }
 
         public function set todos(value:Array):void {
             _todos = value;
+			_filterFunction();
+			dispatchEvent(new Event("todoListChanged"));
         }
+
+        public function addTodo(value:String):TodoListItem
+        {
+			var item:TodoListItem = new TodoListItem(value, false);
+			item.addEventListener("titleChanged", titleChangeHandler);
+			item.addEventListener("selectedChanged", titleChangeHandler);
+			item.addEventListener("removeItem", removeHandler);
+			_todos.push(item);
+			
+			_filterFunction();
+			
+			return item;
+        }
+		
+		public function showAllTodos() : void {
+			_filteredList = _todos.slice();
+			dispatchEvent(new Event("todoListChanged"));
+			_filterFunction = showAllTodos;
+		}
+		
+		public function showActiveTodos() : void {
+			_filteredList = [];
+			for (var i:int=0; i < _todos.length; i++) {
+				if (!_todos[i].selected) {
+					_filteredList.push(_todos[i]);
+				}
+			}
+			dispatchEvent(new Event("todoListChanged"));
+			_filterFunction = showActiveTodos;
+		}
+		
+		public function showCompletedTodos() : void {
+			_filteredList = [];
+			for (var i:int=0; i < _todos.length; i++) {
+				if (_todos[i].selected) {
+					_filteredList.push(_todos[i]);
+				}
+			}
+			dispatchEvent(new Event("todoListChanged"));
+			_filterFunction = showCompletedTodos;
+		}
+		
+		public function removeItem(item:Object) : void {
+			var index:int = _todos.indexOf(item);
+			if (index >= 0) {
+				_todos.splice(index,1);
+			}
+			_filterFunction();
+		}
     }
 }
