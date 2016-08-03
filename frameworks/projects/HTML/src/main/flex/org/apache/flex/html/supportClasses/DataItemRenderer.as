@@ -148,10 +148,12 @@ package org.apache.flex.html.supportClasses
 			COMPILE::JS
 			{
 				if (selected) {
-					element.className = "StringItemRenderer selected";
+					element.className = element.className + " selected";
 				}
 				else {
-					element.className = "StringItemRenderer";
+					if (element.className.endsWith(" selected")) {
+						element.className = element.className.replace(" selected", "");
+					}
 				}
 			}
 		}
