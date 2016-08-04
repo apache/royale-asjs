@@ -201,6 +201,17 @@ package
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
+			var propNum:Number = parseInt(propertyName,10);
+			if(propNum.toString() == propertyName)
+			{
+				if(propNum >= 0 && propNum < _xmlArray.length)
+				{
+					retVal.appendChild(_xmlArray[propNum]);
+					retVal.targetObject = _xmlArray[propNum];
+				}
+				return retVal;
+			}
+
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
