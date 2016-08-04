@@ -787,7 +787,7 @@ package
 					if(name.matches(_children[i].name()))
 						list.appendChild(_children[i]);
 
-					list.concat(_children[i].descendants());
+					list.concat(_children[i].descendants(name));
 				} 
 			}
 			return list;
