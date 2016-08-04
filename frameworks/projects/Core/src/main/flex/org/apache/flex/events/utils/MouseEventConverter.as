@@ -150,10 +150,10 @@ package org.apache.flex.events.utils
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static function setupAllConverters(target:IEventDispatcher):void
+        public static function setupAllConverters(target:IEventDispatcher, capture:Boolean = true):void
         {
             for each (var eventType:String in allConvertedEvents)
-                target.addEventListener(eventType, eventHandler, true, 9999);
+                target.addEventListener(eventType, eventHandler, capture, 9999);
         }
 
         /**

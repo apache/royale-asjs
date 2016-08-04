@@ -109,6 +109,8 @@ package org.apache.flex.core
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
+            if (sp is IFlexJSElement)
+                sp = sp.flexjs_wrapper;
 			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);

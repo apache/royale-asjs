@@ -141,6 +141,7 @@ package org.apache.flex.core
 		{
 			element = r;	
 			MouseEventConverter.setupAllConverters(r.stage);
+            MouseEventConverter.setupAllConverters(r.stage, false);
 			initHandler();
 		}
 		
