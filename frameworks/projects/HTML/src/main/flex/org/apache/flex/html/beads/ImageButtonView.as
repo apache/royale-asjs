@@ -29,8 +29,6 @@ COMPILE::SWF {
 
 	import org.apache.flex.core.UIButtonBase;
 }
-
-    import flash.display.SimpleButton;
     
     import org.apache.flex.core.BeadViewBase;
     import org.apache.flex.core.IBead;
