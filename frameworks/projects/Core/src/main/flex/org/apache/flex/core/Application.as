@@ -522,6 +522,7 @@ package org.apache.flex.core
 			element = document.getElementsByTagName('body')[0];
 			element.flexjs_wrapper = this;
 			element.className = 'Application';
+            positioner = element;
 			
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
