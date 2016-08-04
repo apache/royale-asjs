@@ -48,15 +48,40 @@ package org.apache.flex.utils
 		 */
 		public static const LITTLE_ENDIAN:String = "littleEndian";
 
+
 		/**
-		 *  Uses the default endianness on the system.
-		 *  
+		 *  Indicates the default endianness on the system.
+		 *  In swf targets this is always BIG_ENDIAN. When targeting
+		 *  javascript it may differ depending on the target environment,
+		 *  but is Endian.LITTLE_ENDIAN for most machines/browsers.
+		 *  In theory, the native support classes for javascript should
+		 *  have better performance when working with binary data
+		 *  for integers and numbers represented with this endianness.
+		 *
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-		public static const DEFAULT:String = "default";
+		public static function get systemEndian():String {
+			COMPILE::SWF {
+				return BIG_ENDIAN;
+			}
+			COMPILE::JS {
+				return _sysEndian;
+			}
+		}
+
+
+		COMPILE::JS
+		private static var _sysEndian:String =
+				function():String {
+					var tester:Uint8Array = new Uint8Array([102,108,101,120]);
+					var checker:Uint32Array = new Uint32Array(tester.buffer);
+					var check:uint = checker[0];
+					return (check == 1718379896) ? BIG_ENDIAN : LITTLE_ENDIAN ;
+				}();
 
 	}
 }

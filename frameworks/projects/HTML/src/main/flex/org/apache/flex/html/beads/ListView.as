@@ -165,12 +165,12 @@ package org.apache.flex.html.beads
 			if (lastSelectedIndex != -1)
 			{
 				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
-                ir.selected = false;
+                if (ir != null) ir.selected = false;
 			}
 			if (listModel.selectedIndex != -1)
 			{
 	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
-	            ir.selected = true;
+	            if (ir != null) ir.selected = true;
 			}
             lastSelectedIndex = listModel.selectedIndex;
 		}

@@ -57,6 +57,7 @@ package sample.todo.controllers {
 			// still need to change model a view get the changes
 			var todoModel:TodoListModel = app.model as TodoListModel;
 			//todoModel.todos.push({title: evt.todo, selected: false});
+			todoModel.addTodo(evt.todo);
 		}
 	}
 }
