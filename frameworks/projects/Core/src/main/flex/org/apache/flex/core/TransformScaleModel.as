@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.geom.MeagerMatrix;
+	import org.apache.flex.geom.Matrix;
 
 	public class TransformScaleModel extends TransformModel
 	{
@@ -35,7 +35,7 @@ package org.apache.flex.core
 		public function set scale(value:Number):void
 		{
 			_scale = value;
-			matrix = new MeagerMatrix(scale, 0, 0, scale, 0, 0);
+			matrix = new Matrix(scale, 0, 0, scale, 0, 0);
 		}
 
 	}

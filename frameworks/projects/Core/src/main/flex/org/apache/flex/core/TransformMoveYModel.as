@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.geom.MeagerMatrix;
+	import org.apache.flex.geom.Matrix;
 
 	public class TransformMoveYModel extends TransformModel
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.core
 		public function set y(value:Number):void
 		{
 			_y = value;
-			matrix = new MeagerMatrix(1, 0, 0, 1, 0, y);
+			matrix = new Matrix(1, 0, 0, 1, 0, y);
 		}
 
 	}
