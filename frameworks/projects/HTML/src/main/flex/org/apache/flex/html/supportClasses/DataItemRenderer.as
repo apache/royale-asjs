@@ -138,23 +138,19 @@ package org.apache.flex.html.supportClasses
 			{
 				super.updateRenderer();
 
-				var color:uint = ValuesManager.valuesImpl.getValue(this, "background-color", "selected");
-
 				background.graphics.clear();
-				background.graphics.beginFill(color, (down||selected||hovered)?1:0);
+				background.graphics.beginFill(useColor, (down||selected||hovered)?1:0);
 				background.graphics.drawRect(0, 0, width, height);
 				background.graphics.endFill();
 			}
 			COMPILE::JS
 			{
-				if (selected) {
-					element.className = element.className + " selected";
-				}
-				else {
-					if (element.className.endsWith(" selected")) {
-						element.className = element.className.replace(" selected", "");
-					}
-				}
+				if (selected)
+					element.style.backgroundColor = '#9C9C9C';
+				else if (hovered)
+					element.style.backgroundColor = '#ECECEC';
+				else
+					element.style.backgroundColor = null;
 			}
 		}
 
