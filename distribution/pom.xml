@@ -662,7 +662,7 @@
           <groupId>com.adobe.air.runtime</groupId>
           <artifactId>air-captive</artifactId>
           <version>${air.version}</version>
-          <classifier>mac</classifier>
+          <classifier>win</classifier>
           <type>zip</type>
         </dependency>
       </dependencies>
