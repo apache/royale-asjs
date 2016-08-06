@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+	COMPILE::JS
 	public class XMLList
 	{
-		COMPILE::JS
 		public function XMLList()
 		{
 			addIndex(0);
 		}
-		COMPILE::JS
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -108,7 +107,6 @@ package
 			  b. Call the [[Put]] method of x[0] with arguments P and V
 			4. Return
 		*/
-		COMPILE::JS
 		private function addIndex(idx:int):void
 		{
 			var idxStr:String = "" + idx;
@@ -127,7 +125,6 @@ package
 			);
 		}
 		
-		COMPILE::JS
 		public function appendChild(child:XML):void
 		{
 			_xmlArray[_xmlArray.length] = child;
@@ -158,7 +155,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function attribute(attributeName:*):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -177,7 +173,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function attributes():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -197,7 +192,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -221,13 +215,20 @@ package
 			}
 			return retVal;
 		}
+
+		public function childIndex():int
+		{
+			if(_xmlArray.length == 1)
+				return _xmlArray[0].childIndex();
+
+			throw new Error("childIndex can only be called on an XMLList with one item.");
+		}
 		/**
 		 * Calls the children() method of each XML object and returns an XMLList object that contains the results.
 		 * 
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function children():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -246,7 +247,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function comments():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -260,7 +260,6 @@ package
 			return retVal;
 		}
 		
-		COMPILE::JS
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
@@ -293,8 +292,7 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
-		public function contains(value:XML):Boolean
+		public function contains(value:*):Boolean
 		{
 			
 			var len:int = _xmlArray.length;
@@ -312,7 +310,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function copy():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -330,7 +327,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function descendants(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -351,7 +347,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function elements(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -365,7 +360,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function elementNames():Array
 		{
 			var retVal:Array = [];
@@ -376,7 +370,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function equals(list:*):Boolean
 		{
 			/*
@@ -403,7 +396,6 @@ package
 			*/
 			return false;
 		}
-		COMPILE::JS
 		public function filter(callback:Function):XMLList
 		{
 			var list:XMLList = new XMLList();
@@ -417,7 +409,6 @@ package
 			return list;
 		}
 		
-		COMPILE::JS
 		public function hasComplexContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return true.
@@ -432,7 +423,6 @@ package
 			return false;
 		}
 
-		COMPILE::JS
 		override public function hasOwnProperty(propertyName:*):Boolean
 		{
 			/*
@@ -465,7 +455,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function hasSimpleContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return false.
@@ -486,13 +475,11 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function length():int
 		{
 			return _xmlArray.length;
 		}
 		
-		COMPILE::JS
 		public function name():QName
 		{
 			if(_xmlArray.length == 1)
@@ -506,7 +493,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function normalize():XMLList
 		{
 			/*
@@ -537,7 +523,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function parent():Object
 		{
 			if(_xmlArray.length == 0)
@@ -552,7 +537,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function plus(rightHand:*):*
 		{
 			/*
@@ -604,7 +588,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function processingInstructions(name:String = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -625,7 +608,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function removeChild(child:*):void
 		{
 			var i:int;
@@ -651,13 +633,11 @@ package
 			}
 		}
 
-		COMPILE::JS
 		public function removeChildAt(idx:int):void
 		{
 			if(idx >= 0 && idx < _xmlArray.length)
 				_xmlArray.splice(idx,1);
 		}
-		COMPILE::JS
 		private function replaceChildAt(idx:int,child:*):void
 		{
 			var i:int;
@@ -720,7 +700,6 @@ package
 			return _targetProperty;
 		}
 		
-		COMPILE::JS
 		public function setAttribute(attr:*,value:String):void
 		{
 			var len:int = _xmlArray.length;
@@ -730,7 +709,6 @@ package
 		}
 
 
-		COMPILE::JS
 		public function setChild(elementName:*, elements:Object):void
 		{
 			if(_xmlArray.length == 1)
@@ -743,7 +721,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function text():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -763,7 +740,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		override public function toLocaleString():String
 		{
 			var retVal:Array = [];
@@ -783,7 +759,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function toString():String
 		{
 			var retVal:Array = [];
@@ -803,7 +778,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function toXMLString():String
 		{
 			var retVal:Array = [];
@@ -823,10 +797,122 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		override public function valueOf():*
 		{
-			return this;
+			if(_xmlArray.length == 0)
+				return "";
+			if(_xmlArray.length == 1)
+				return _xmlArray[0].valueOf();
+
+			return this.toString();
+		}
+
+		////////////////////////////////////////////////////////////////
+		///
+		///
+		/// METHODS to allow XML to behave as if it's a string or number
+		/// 
+		///
+		////////////////////////////////////////////////////////////////
+		
+		public function anchor(name:String):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].anchor(name) : "";
+		}
+		public function charAt(index:Number):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].charAt(index) : "";
+		}
+		public function charCodeAt(index:Number):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].charCodeAt(index) : -1;
+		}
+		public function codePointAt(pos:Number):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].codePointAt(pos): -1;
+		}
+/*
+		public function concat(... args):Array
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].concat(args) : null;
+		}
+*/
+
+		public function indexOf(searchValue:String,fromIndex:Number=0):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].indexOf(searchValue,fromIndex) : -1;
+		}
+		public function lastIndexOf(searchValue:String,fromIndex:Number=0):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].lastIndexOf(searchValue,fromIndex) : -1;
+		}
+		public function localeCompare(compareString:String,locales:*=undefined, options:*=undefined):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].localeCompare(compareString,locales,options) : NaN;
+		}
+		public function match(regexp:*):Array
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].match(regexp) : null;
+		}
+		public function replace(regexp:*,withStr:*):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].replace(regexp,withStr) : null;
+		}
+		public function search(regexp:*):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].search(regexp) : -1;
+		}
+		public function slice(beginSlice:Number, endSlice:*=undefined):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].slice(beginSlice,endSlice) : null;
+		}
+		public function split(separator:*=undefined,limit:*=undefined):Array
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].split(separator,limit) : null;
+		}
+		public function substr(start:Number, length:*=undefined):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].substr(start,length) : null;
+		}
+		public function substring(indexStart:Number, indexEnd:*=undefined):String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].substring(indexStart,indexEnd) :null;
+		}
+		public function toLocaleLowerCase():String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toLocaleLowerCase() : null;
+		}
+		public function toLocaleUpperCase():String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toLocaleUpperCase() : null;
+		}
+		public function toLowerCase():String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toLowerCase() : null;
+		}
+		public function toUpperCase():String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toUpperCase() : null;
+		}
+		public function trim():String
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].trim() : null;
+		}
+
+		// Number methods
+		
+		
+		public function toExponential(fractionDigits:*=undefined):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toExponential(fractionDigits) : NaN;
+		}
+		public function toFixed(digits:*=undefined):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toFixed(digits) : NaN;
+		}
+		public function toPrecision(precision:*=undefined):Number
+		{
+			return _xmlArray.length == 1 ? _xmlArray[0].toPrecision(precision) : NaN;
 		}
 	}
 }

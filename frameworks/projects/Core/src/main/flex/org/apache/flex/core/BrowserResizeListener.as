@@ -91,9 +91,9 @@ COMPILE::SWF
                     var appName:String = getQualifiedClassName(app);
                     var js:String = "var o = document.getElementById('" + appName + "');";
                     if (!isNaN(minWidth))
-                        js += "o.style.minWidth = '" + minWidth.toString() + "px';";
+                        js += "o.style.minWidth = '" + minWidth + "px';";
                     if (!isNaN(minHeight))
-                        js += "o.style.minHeight = '" + minHeight.toString() + "px';"
+                        js += "o.style.minHeight = '" + minHeight + "px';"
                     ExternalInterface.call("eval", js); 
                 }                    
             }
@@ -102,9 +102,9 @@ COMPILE::SWF
                 window.addEventListener('resize',
                     this.resizeHandler, false);
                 if (!isNaN(this.minWidth))
-                    document.body.style.minWidth = this.minWidth.toString() + 'px';
+                    document.body.style.minWidth = this.minWidth + 'px';
                 if (!isNaN(this.minHeight))
-                    document.body.style.minHeight = this.minHeight.toString() + 'px';
+                    document.body.style.minHeight = this.minHeight + 'px';
                 document.body.style.overflow = 'auto';
             }
         }
@@ -127,8 +127,8 @@ COMPILE::SWF
                 var initialView:UIBase = app.initialView as UIBase;
                 var element:HTMLElement = app.element;
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
-                    element.style.height = window.innerHeight.toString() + 'px';
-                    element.style.width = window.innerWidth.toString() + 'px';
+                    element.style.height = window.innerHeight + 'px';
+                    element.style.width = window.innerWidth + 'px';
                     initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
                 }
             }
