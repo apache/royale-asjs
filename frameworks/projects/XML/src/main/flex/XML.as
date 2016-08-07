@@ -307,6 +307,7 @@ package
 
 		public function XML(xml:String = null)
 		{
+			_origStr = xml;
 			_children = [];
 			if(xml)
 			{
@@ -369,6 +370,7 @@ package
 		private var _encoding:String;
 		private var _appliedNamespace:Namespace;
 		private var _namespaces:Array = [];
+		private var _origStr:String;
 
 
 		/**

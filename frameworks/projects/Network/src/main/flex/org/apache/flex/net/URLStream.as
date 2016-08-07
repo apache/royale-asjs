@@ -93,6 +93,7 @@ package org.apache.flex.net
         public function load(urlRequest:org.apache.flex.net.URLRequest):void
         {
             COMPILE::JS {
+            	requestStatus = 0;
                 xhr = new XMLHttpRequest();
                 xhr.open(urlRequest.method, urlRequest.url);
                 xhr.responseType = "arraybuffer";
