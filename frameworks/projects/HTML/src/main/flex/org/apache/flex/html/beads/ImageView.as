@@ -29,6 +29,7 @@ package org.apache.flex.html.beads
     COMPILE::JS
     {
         import goog.events;
+        import org.apache.flex.utils.URLUtils;
     }
 	
 	import org.apache.flex.core.BeadViewBase;
@@ -39,6 +40,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.BinaryData;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
@@ -68,6 +70,7 @@ package org.apache.flex.html.beads
 		private var loader:Loader;
 		
 		private var _model:IImageModel;
+        private var _objectURL:String;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -101,25 +104,40 @@ package org.apache.flex.html.beads
 		{
             COMPILE::SWF
             {
-                if (_model.source) {
+                if (_model.url || model.binary) {
                     loader = new Loader();
                     loader.contentLoaderInfo.addEventListener("complete",onComplete);
                     loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
                         trace(e);
                         e.preventDefault();
                     });
-                    loader.load(new URLRequest(_model.source));
+                    if(model.url)
+                        loader.load(new URLRequest(_model.url));
+                    else
+                    loader.loadBytes(_model.binary.array);
                 }                    
             }
             COMPILE::JS
             {
-				if (_model.source) {
+				if (_model.url || model.binary) {
 	                var host:IUIBase = _strand as IUIBase;
 	                (host.element as HTMLImageElement).addEventListener('load',
 	                    loadHandler, false);
 	                host.addEventListener('sizeChanged',
 	                    sizeChangedHandler);
-	                (host.element as HTMLImageElement).src = _model.source;
+                    var urlStr:String = _model.url;
+
+                    if(_model.binary)
+                    {
+                        if(_objectURL)
+                            URLUtils.revokeObjectURL(_objectURL);
+                    var blob:Blob = new Blob([_model.binary.array]);
+// I don't think we need to specify the type.
+//                    var blob = new Blob([response], {type: "image/png"});
+                    _objectURL = URLUtils.createObjectURL(blob);
+                        urlStr = _objectURL
+                    }
+	                (host.element as HTMLImageElement).src = urlStr;
 				}
             }
 		}

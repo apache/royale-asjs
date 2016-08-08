@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.models
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+    import org.apache.flex.utils.BinaryData;
 	
 	/**
 	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.Image
@@ -62,26 +63,55 @@ package org.apache.flex.html.beads.models
 			_strand = value;
 		}
 		
-		private var _source:String;
+		private var _url:String;
 		
 		/**
-		 *  The source of the image.
+		 *  The url of the image.
 		 * 
-		 *  @copy org.apache.flex.core.IImageModel#source
+		 *  @copy org.apache.flex.core.IImageModel#url
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get source():String
+		public function get url():String
 		{
-			return _source;
+			return _url;
 		}
-		public function set source(value:String):void
+		public function set url(value:String):void
 		{
-			if (value != _source) {
-				_source = value;
+			if (value != _url) {
+				_url = value;
+				if(value)
+					_binary = null;
+				dispatchEvent( new Event("urlChanged") );
+			}
+		}
+
+		private var _binary:BinaryData;
+		
+		/**
+		 *  The BinaryData of the image.
+		 *  This is used to set the image using binary content retrieved using HTTP requests or File APIs.
+		 * 
+		 *  @copy org.apache.flex.core.IImageModel#binary
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get binary():BinaryData
+		{
+			return _binary;
+		}
+		public function set binary(value:BinaryData):void
+		{
+			if (value != _binary) {
+				_binary = value;
+				if(value)
+					_url = "";
 				dispatchEvent( new Event("urlChanged") );
 			}
 		}

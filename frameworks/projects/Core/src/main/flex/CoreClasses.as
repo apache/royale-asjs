@@ -141,6 +141,7 @@ internal class CoreClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
+	import org.apache.flex.utils.URLUtils; URLUtils;
 
 	import org.apache.flex.core.ClassFactory; ClassFactory;
     import org.apache.flex.states.AddItems; AddItems;

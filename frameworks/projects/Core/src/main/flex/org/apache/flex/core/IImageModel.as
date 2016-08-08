@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.BinaryData;
 
     /**
      *  The IImageModel interface describes the minimum set of properties
@@ -42,7 +43,19 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get source():String;
-		function set source(value:String):void;
+		function get url():String;
+		function set url(value:String):void;
+
+        /**
+         *  The BinaryData of the image.
+         *  This is used to set the image using binary content retrieved using HTTP requests or File APIs.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7
+         */
+        function get binary():BinaryData;
+        function set binary(value:BinaryData):void;
 	}
 }
