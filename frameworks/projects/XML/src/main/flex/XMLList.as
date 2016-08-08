@@ -218,7 +218,7 @@ package
 
 		public function childIndex():int
 		{
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				return _xmlArray[0].childIndex();
 
 			throw new Error("childIndex can only be called on an XMLList with one item.");
@@ -412,7 +412,7 @@ package
 		public function hasComplexContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return true.
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return false;
 			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
@@ -458,7 +458,7 @@ package
 		public function hasSimpleContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return false.
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return true;
 			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
@@ -482,7 +482,7 @@ package
 		
 		public function name():QName
 		{
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				return _xmlArray[0].name();
 			return null;
 		}
@@ -525,7 +525,7 @@ package
 		 */
 		public function parent():Object
 		{
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return undefined;
 			var retVal:XML = _xmlArray[0].parent();
 			var len:int = _xmlArray.length;
@@ -711,7 +711,7 @@ package
 
 		public function setChild(elementName:*, elements:Object):void
 		{
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				_xmlArray[0].setChild(elementName,elements);
 
 		}
@@ -799,9 +799,9 @@ package
 		 */
 		override public function valueOf():*
 		{
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return "";
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				return _xmlArray[0].valueOf();
 
 			return this.toString();
@@ -817,86 +817,86 @@ package
 		
 		public function anchor(name:String):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].anchor(name) : "";
+			return isSingle() ? _xmlArray[0].anchor(name) : "";
 		}
 		public function charAt(index:Number):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].charAt(index) : "";
+			return isSingle() ? _xmlArray[0].charAt(index) : "";
 		}
 		public function charCodeAt(index:Number):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].charCodeAt(index) : -1;
+			return isSingle() ? _xmlArray[0].charCodeAt(index) : -1;
 		}
 		public function codePointAt(pos:Number):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].codePointAt(pos): -1;
+			return isSingle() ? _xmlArray[0].codePointAt(pos): -1;
 		}
 /*
 		public function concat(... args):Array
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].concat(args) : null;
+			return isSingle() ? _xmlArray[0].concat(args) : null;
 		}
 */
 
 		public function indexOf(searchValue:String,fromIndex:Number=0):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].indexOf(searchValue,fromIndex) : -1;
+			return isSingle() ? _xmlArray[0].indexOf(searchValue,fromIndex) : -1;
 		}
 		public function lastIndexOf(searchValue:String,fromIndex:Number=0):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].lastIndexOf(searchValue,fromIndex) : -1;
+			return isSingle() ? _xmlArray[0].lastIndexOf(searchValue,fromIndex) : -1;
 		}
 		public function localeCompare(compareString:String,locales:*=undefined, options:*=undefined):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].localeCompare(compareString,locales,options) : NaN;
+			return isSingle() ? _xmlArray[0].localeCompare(compareString,locales,options) : NaN;
 		}
 		public function match(regexp:*):Array
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].match(regexp) : null;
+			return isSingle() ? _xmlArray[0].match(regexp) : null;
 		}
 		public function replace(regexp:*,withStr:*):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].replace(regexp,withStr) : null;
+			return isSingle() ? _xmlArray[0].replace(regexp,withStr) : null;
 		}
 		public function search(regexp:*):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].search(regexp) : -1;
+			return isSingle() ? _xmlArray[0].search(regexp) : -1;
 		}
 		public function slice(beginSlice:Number, endSlice:*=undefined):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].slice(beginSlice,endSlice) : null;
+			return isSingle() ? _xmlArray[0].slice(beginSlice,endSlice) : null;
 		}
 		public function split(separator:*=undefined,limit:*=undefined):Array
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].split(separator,limit) : null;
+			return isSingle() ? _xmlArray[0].split(separator,limit) : null;
 		}
 		public function substr(start:Number, length:*=undefined):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].substr(start,length) : null;
+			return isSingle() ? _xmlArray[0].substr(start,length) : null;
 		}
 		public function substring(indexStart:Number, indexEnd:*=undefined):String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].substring(indexStart,indexEnd) :null;
+			return isSingle() ? _xmlArray[0].substring(indexStart,indexEnd) :null;
 		}
 		public function toLocaleLowerCase():String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toLocaleLowerCase() : null;
+			return isSingle() ? _xmlArray[0].toLocaleLowerCase() : null;
 		}
 		public function toLocaleUpperCase():String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toLocaleUpperCase() : null;
+			return isSingle() ? _xmlArray[0].toLocaleUpperCase() : null;
 		}
 		public function toLowerCase():String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toLowerCase() : null;
+			return isSingle() ? _xmlArray[0].toLowerCase() : null;
 		}
 		public function toUpperCase():String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toUpperCase() : null;
+			return isSingle() ? _xmlArray[0].toUpperCase() : null;
 		}
 		public function trim():String
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].trim() : null;
+			return isSingle() ? _xmlArray[0].trim() : null;
 		}
 
 		// Number methods
@@ -904,15 +904,23 @@ package
 		
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toExponential(fractionDigits) : NaN;
+			return isSingle() ? _xmlArray[0].toExponential(fractionDigits) : NaN;
 		}
 		public function toFixed(digits:*=undefined):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toFixed(digits) : NaN;
+			return isSingle() ? _xmlArray[0].toFixed(digits) : NaN;
 		}
 		public function toPrecision(precision:*=undefined):Number
 		{
-			return _xmlArray.length == 1 ? _xmlArray[0].toPrecision(precision) : NaN;
+			return isSingle() ? _xmlArray[0].toPrecision(precision) : NaN;
+		}
+		private function isEmpty():Boolean
+		{
+			return _xmlArray.length == 0;
+		}
+		private function isSingle():Boolean
+		{
+			return _xmlArray.length == 1;
 		}
 	}
 }

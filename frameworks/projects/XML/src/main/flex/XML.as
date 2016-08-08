@@ -1605,7 +1605,7 @@ package
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
 			{
 				// Changing this to pretend we're a string
-				return this.toString().replace(propertyName,value);
+				return s().replace(propertyName,value);
 				//return this;
 			}
 			if(value === null || value === undefined)
@@ -2375,103 +2375,119 @@ package
 		
 		public function charAt(index:Number):String
 		{
-			return this.toString().charAt(index);
+			return s().charAt(index);
 		}
 		public function charCodeAt(index:Number):Number
 		{
-			return this.toString().charCodeAt(index);
+			return s().charCodeAt(index);
 		}
 		public function codePointAt(pos:Number):Number
 		{
-			return this.toString().codePointAt(pos);
+			return s().codePointAt(pos);
 		}
 /*
 		public function concat(... args):Array
 		{
-			return this.toString().concat(args);
+			return s().concat(args);
 		}
 */
 
 		public function indexOf(searchValue:String,fromIndex:Number=0):Number
 		{
-			return this.toString().indexOf(searchValue,fromIndex);
+			return s().indexOf(searchValue,fromIndex);
 		}
 		public function lastIndexOf(searchValue:String,fromIndex:Number=0):Number
 		{
-			return this.toString().lastIndexOf(searchValue,fromIndex);
+			return s().lastIndexOf(searchValue,fromIndex);
 		}
 		public function localeCompare(compareString:String,locales:*=undefined, options:*=undefined):Number
 		{
-			return this.toString().localeCompare(compareString,locales,options);
+			return s().localeCompare(compareString,locales,options);
 		}
 		public function match(regexp:*):Array
 		{
-			return this.toString().match(regexp);
+			return s().match(regexp);
 		}
 /*
 Moved this logic (partially) into the other replace method
 
 		public function replace(regexp:*,withStr:*):String
 		{
-			return this.toString().replace(regexp,withStr);
+			return s().replace(regexp,withStr);
 		}
 */
 		public function search(regexp:*):Number
 		{
-			return this.toString().search(regexp);
+			return s().search(regexp);
 		}
 		public function slice(beginSlice:Number, endSlice:*=undefined):String
 		{
-			return this.toString().slice(beginSlice,endSlice);
+			return s().slice(beginSlice,endSlice);
 		}
 		public function split(separator:*=undefined,limit:*=undefined):Array
 		{
-			return this.toString().split(separator,limit);
+			return s().split(separator,limit);
 		}
 		public function substr(start:Number, length:*=undefined):String
 		{
-			return this.toString().substr(start,length);
+			return s().substr(start,length);
 		}
 		public function substring(indexStart:Number, indexEnd:*=undefined):String
 		{
-			return this.toString().substring(indexStart,indexEnd);
+			return s().substring(indexStart,indexEnd);
 		}
 		public function toLocaleLowerCase():String
 		{
-			return this.toString().toLocaleLowerCase();
+			return s().toLocaleLowerCase();
 		}
 		public function toLocaleUpperCase():String
 		{
-			return this.toString().toLocaleUpperCase();
+			return s().toLocaleUpperCase();
 		}
 		public function toLowerCase():String
 		{
-			return this.toString().toLowerCase();
+			return s().toLowerCase();
 		}
 		public function toUpperCase():String
 		{
-			return this.toString().toUpperCase();
+			return s().toUpperCase();
 		}
 		public function trim():String
 		{
-			return this.toString().trim();
+			return s().trim();
 		}
 
 		// Number methods
 		
-		
+        /**
+         * @flexjsignorecoercion Number
+        */
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
-			return this.valueOf().toExponential(fractionDigits);
+			return v().toExponential(fractionDigits) as Number;
 		}
+        /**
+         * @flexjsignorecoercion Number
+        */
 		public function toFixed(digits:*=undefined):Number
 		{
-			return this.valueOf().toFixed(digits);
+			return v().toFixed(digits) as Number;
 		}
+        /**
+         * @flexjsignorecoercion Number
+        */
 		public function toPrecision(precision:*=undefined):Number
 		{
-			return this.valueOf().toPrecision(precision);
-		}		
+			return v().toPrecision(precision) as Number;
+		}
+		private function s():String
+		{
+			return this.toString();
+		}
+		private function v():Number
+		{
+			return Number(s());
+		}
 	}
 }
 
