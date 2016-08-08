@@ -46,12 +46,12 @@ package org.apache.flex.geom
 		public function concat(m:Matrix):void
 		{
 			var result_a:Number = a * m.a;
-			var result_b:Number = 0.0;
-			var result_c:Number = 0.0;
+			var result_b:Number = 0;
+			var result_c:Number = 0;
 			var result_d:Number = d * m.d;
 			var result_tx:Number = tx * m.a + m.tx;
 			var result_ty:Number = ty * m.d + m.ty;
-			if (b != 0.0 || c != 0.0 || m.b != 0.0 || m.c != 0.0)
+			if (b != 0 || c != 0 || m.b != 0 || m.c != 0)
 			{
 				result_a = result_a + b * m.c;
 				result_d = result_d + c * m.b;
@@ -70,13 +70,7 @@ package org.apache.flex.geom
 		
 		public function invert():void
 		{
-			var a0:* = NaN;
-			var a1:* = NaN;
-			var a2:* = NaN;
-			var a3:* = NaN;
-			var det:* = NaN;
-			var result_ty:* = NaN;
-			if (b == 0.0 && c == 0.0)
+			if (b == 0 && c == 0)
 			{
 				a = 1 / a;
 				d = 1 / d;
@@ -86,12 +80,12 @@ package org.apache.flex.geom
 			}
 			else
 			{
-				a0 = a;
-				a1 = b;
-				a2 = c;
-				a3 = d;
-				det = a0 * a3 - a1 * a2;
-				if (det == 0.0)
+				var a0:Number = a;
+				var a1:Number = b;
+				var a2:Number = c;
+				var a3:Number = d;
+				var det:Number = a0 * a3 - a1 * a2;
+				if (det == 0)
 				{
 					identity();
 					return;
@@ -101,7 +95,7 @@ package org.apache.flex.geom
 				b = -a1 * det;
 				c = -a2 * det;
 				d = a0 * det;
-				result_ty = -(b * tx + d * ty);
+				var result_ty:Number = -(b * tx + d * ty);
 				tx = -(a * tx + c * ty);
 				ty = result_ty;
 			}
@@ -110,25 +104,8 @@ package org.apache.flex.geom
 		public function identity():void
 		{
 			a = d = 1;
-			b = c = 0.0;
-			tx = ty = 0.0;
-		}
-		
-		public function createBox(scaleX:Number, scaleY:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
-		{
-			var u:Number = Math.cos(rotation);
-			var v:Number = Math.sin(rotation);
-			a = u * scaleX;
-			b = v * scaleY;
-			c = -v * scaleX;
-			d = u * scaleY;
-			tx = tx;
-			ty = ty;
-		}
-		
-		public function createGradientBox(width:Number, height:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
-		{
-			createBox(width / 1638.4, height / 1638.4, rotation, tx + width / 2, ty + height / 2);
+			b = c = 0;
+			tx = ty = 0;
 		}
 		
 		public function rotate(angle:Number):void
@@ -190,100 +167,5 @@ package org.apache.flex.geom
 			ty = sourceMatrix.ty;
 		}
 		
-		public function setTo(aa:Number, ba:Number, ca:Number, da:Number, txa:Number, tya:Number):void
-		{
-			a = aa;
-			b = ba;
-			c = ca;
-			d = da;
-			tx = txa;
-			ty = tya;
-		}
-		
-		public function copyRowTo(row:uint, vector3D:Vector3D):void
-		{
-			switch (row)
-			{
-				case 0: 
-					break;
-				case 1: 
-					vector3D.x = b;
-					vector3D.y = d;
-					vector3D.z = ty;
-					break;
-				case 2: 
-				case 3: 
-					vector3D.x = 0;
-					vector3D.y = 0;
-					vector3D.z = 1;
-					break;
-				default: 
-					vector3D.x = a;
-					vector3D.y = c;
-					vector3D.z = tx;
-			}
-		}
-		
-		public function copyColumnTo(column:uint, vector3D:Vector3D):void
-		{
-			switch (column)
-			{
-				case 0: 
-					break;
-				case 1: 
-					vector3D.x = c;
-					vector3D.y = d;
-					vector3D.z = 0;
-					break;
-				case 2: 
-				case 3: 
-					vector3D.x = tx;
-					vector3D.y = ty;
-					vector3D.z = 1;
-					break;
-				default: 
-					vector3D.x = a;
-					vector3D.y = b;
-					vector3D.z = 0;
-			}
-		}
-		
-		public function copyRowFrom(row:uint, vector3D:Vector3D):void
-		{
-			switch (row)
-			{
-				case 0: 
-					break;
-				case 1: 
-				case 2: 
-					b = vector3D.x;
-					d = vector3D.y;
-					ty = vector3D.z;
-					break;
-				default: 
-					a = vector3D.x;
-					c = vector3D.y;
-					tx = vector3D.z;
-			}
-		}
-		
-		public function copyColumnFrom(column:uint, vector3D:Vector3D):void
-		{
-			switch (column)
-			{
-				case 0: 
-					break;
-				case 1: 
-				case 2: 
-					b = vector3D.x;
-					d = vector3D.y;
-					ty = vector3D.z;
-					break;
-				default: 
-					a = vector3D.x;
-					c = vector3D.y;
-					tx = vector3D.z;
-			}
-		}
 	}
 }
