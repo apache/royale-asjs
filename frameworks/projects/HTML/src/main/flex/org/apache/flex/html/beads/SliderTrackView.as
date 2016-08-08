@@ -36,7 +36,6 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.core.IChild;
-	import flash.display.SimpleButton;
 	
 	/**
 	 *  The SliderTrackView class creates the track area for the org.apache.flex.html.Slider

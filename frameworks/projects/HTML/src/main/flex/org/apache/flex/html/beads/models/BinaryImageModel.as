@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.models
 {
-	import org.apache.flex.core.IImageModel;
+	import org.apache.flex.core.IBinaryImageModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
@@ -33,7 +33,7 @@ package org.apache.flex.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageModel extends EventDispatcher implements IImageModel
+	public class BinaryImageModel extends ImageModel implements IBinaryImageModel
 	{
 		/**
 		 *  constructor.
@@ -41,49 +41,45 @@ package org.apache.flex.html.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.7
 		 */
-		public function ImageModel()
+		public function BinaryImageModel()
 		{
 			super();
 		}
+
+		private var _binary:BinaryData;
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
+		override public function set url(value:String):void
 		{
-			_strand = value;
+			if (value && value != _url)
+				_binary = null;
+
+			super.url = value;
 		}
-		
-		protected var _url:String;
-		
+
 		/**
-		 *  The url of the image.
+		 *  The BinaryData of the image.
+		 *  This is used to set the image using binary content retrieved using HTTP requests or File APIs.
 		 * 
-		 *  @copy org.apache.flex.core.IImageModel#url
+		 *  @copy org.apache.flex.core.IImageModel#binary
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get url():String
+		public function get binary():BinaryData
 		{
-			return _url;
+			return _binary;
 		}
-		public function set url(value:String):void
+		public function set binary(value:BinaryData):void
 		{
-			if (value != _url) {
-				_url = value;
-				dispatchEvent( new Event("urlChanged") );
+			if (value != _binary) {
+				_binary = value;
+				if(value)
+					_url = "";
+				dispatchEvent( new Event("binaryChanged") );
 			}
 		}
 	}

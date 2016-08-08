@@ -57,6 +57,7 @@ internal class CoreClasses
     import org.apache.flex.core.IContentView; IContentView;
 	import org.apache.flex.core.IContentViewHost; IContentViewHost;
     import org.apache.flex.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
+    import org.apache.flex.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.flex.core.IDocument; IDocument;
     import org.apache.flex.core.IFormatBead; IFormatBead;
     import org.apache.flex.core.IImageModel; IImageModel;
@@ -132,7 +133,7 @@ internal class CoreClasses
 	    import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     	import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;
 		import org.apache.flex.utils.HTMLLoader; HTMLLoader;
-}
+	}
 	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
 	import org.apache.flex.utils.Endian; Endian;
     import org.apache.flex.utils.StringPadder; StringPadder;
@@ -141,7 +142,10 @@ internal class CoreClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
-	import org.apache.flex.utils.URLUtils; URLUtils;
+	COMPILE::JS
+	{
+		import org.apache.flex.utils.URLUtils; URLUtils;
+	}
 
 	import org.apache.flex.core.ClassFactory; ClassFactory;
     import org.apache.flex.states.AddItems; AddItems;

@@ -65,12 +65,11 @@ package org.apache.flex.html.beads
 		}
 		
         COMPILE::SWF
-		private var bitmap:Bitmap;
+		protected var bitmap:Bitmap;
         COMPILE::SWF
-		private var loader:Loader;
+		protected var loader:Loader;
 		
-		private var _model:IImageModel;
-        private var _objectURL:String;
+		protected var _model:IImageModel;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -90,9 +89,8 @@ package org.apache.flex.html.beads
                 IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);                    
             }
 			
-			_model = value.getBeadByType(IImageModel) as IImageModel;
-			_model.addEventListener("urlChanged",handleUrlChange);
-			
+            _model = value.getBeadByType(IImageModel) as IImageModel;
+            _model.addEventListener("urlChanged",handleUrlChange);
 			handleUrlChange(null);
 		}
 		
@@ -100,47 +98,44 @@ package org.apache.flex.html.beads
 		 * @private
          * @flexjsignorecoercion HTMLImageELement
 		 */
-		private function handleUrlChange(event:Event):void
+		protected function handleUrlChange(event:Event):void
 		{
             COMPILE::SWF
             {
-                if (_model.url || model.binary) {
-                    loader = new Loader();
-                    loader.contentLoaderInfo.addEventListener("complete",onComplete);
-                    loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
-                        trace(e);
-                        e.preventDefault();
-                    });
-                    if(model.url)
-                        loader.load(new URLRequest(_model.url));
-                    else
-                    loader.loadBytes(_model.binary.array);
+                if (_model.url) {
+                    setupLoader();
+                    loader.load(new URLRequest(_model.url));
                 }                    
             }
             COMPILE::JS
             {
-				if (_model.url || model.binary) {
-	                var host:IUIBase = _strand as IUIBase;
-	                (host.element as HTMLImageElement).addEventListener('load',
-	                    loadHandler, false);
-	                host.addEventListener('sizeChanged',
-	                    sizeChangedHandler);
-                    var urlStr:String = _model.url;
-
-                    if(_model.binary)
-                    {
-                        if(_objectURL)
-                            URLUtils.revokeObjectURL(_objectURL);
-                    var blob:Blob = new Blob([_model.binary.array]);
-// I don't think we need to specify the type.
-//                    var blob = new Blob([response], {type: "image/png"});
-                    _objectURL = URLUtils.createObjectURL(blob);
-                        urlStr = _objectURL
-                    }
-	                (host.element as HTMLImageElement).src = urlStr;
+				if (_model.url) {
+                    setupLoader();
+	                (host.element as HTMLImageElement).src = _model.url;
 				}
             }
 		}
+
+        COMPILE::SWF
+        protected function setupLoader():void
+        {
+            loader = new Loader();
+            loader.contentLoaderInfo.addEventListener("complete",onComplete);
+            loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
+                trace(e);
+                e.preventDefault();
+            });
+        }
+
+        COMPILE::JS
+        protected function setupLoader():void
+        {
+            var host:IUIBase = _strand as IUIBase;
+            (host.element as HTMLImageElement).addEventListener('load',
+                loadHandler, false);
+            host.addEventListener('sizeChanged',
+                sizeChangedHandler);
+        }
 		
 		/**
 		 * @private

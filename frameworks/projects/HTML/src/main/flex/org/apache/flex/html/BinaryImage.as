@@ -24,8 +24,8 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
-        import org.apache.flex.html.beads.models.ImageModel;
-        import org.apache.flex.html.beads.ImageView;
+        import org.apache.flex.html.beads.models.BinaryImageView;
+        import org.apache.flex.html.beads.BinaryImageView;
     }
 	
 	/**
@@ -40,7 +40,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Image extends UIBase
+	public class BinaryImage extends Image
 	{
 		/**
 		 *  constructor.
@@ -50,13 +50,13 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Image()
+		public function BinaryImage()
 		{
 			super();
 		}
 		
 		/**
-		 *  The location of the bitmap, usually a URL.
+		 *  The binary bitmap data.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -64,15 +64,15 @@ package org.apache.flex.html
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.IImageModel
 		 */
-		public function get url():String
+		public function get binary():BinaryData
 		{
-			return (model as IImageModel).url;
+			return (model as IImageModel).binary;
 		}
-		public function set url(value:String):void
+		public function set binary(value:BinaryData):void
 		{
-			(model as IImageModel).url = value;
+			(model as IImageModel).binary = value;
 		}
-
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -80,26 +80,13 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
         	createElementInternal();
-            model = new
-                ImageModel();
             
-            addBead(new
-                ImageView());
+            model = new BinaryImageModel();
+            
+            addBead(new BinaryImageView());
             
             return element;
-        }
-        
-        COMPILE::JS
-        protected function createElementInternal():void
-        {
-            element = document.createElement('img') as WrappedHTMLElement;
-            element.className = 'Image';
-            typeNames = 'Image';
-            
-            positioner = element;
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-        }
+        }        
 
 	}
 }

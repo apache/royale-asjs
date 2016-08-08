@@ -34,7 +34,6 @@ package org.apache.flex.html.beads
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.core.IChild;
-    import flash.display.SimpleButton;
 	
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
