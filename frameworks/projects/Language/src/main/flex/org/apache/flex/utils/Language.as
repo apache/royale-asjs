@@ -105,6 +105,17 @@ package org.apache.flex.utils
 		}
 
 		/**
+		 * int()
+		 *
+		 * @param value The value to be cast.
+		 * @return {string}
+		 */
+		static public function string(value:*):String
+		{
+			return value == null ? null : value.toString();
+		}
+
+		/**
 		 * is()
 		 *
 		 * @param leftOperand The lefthand operand of the
