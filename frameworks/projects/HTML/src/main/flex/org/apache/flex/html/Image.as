@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+	import org.apache.flex.core.IImage;
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.utils.BinaryData;
@@ -40,7 +41,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Image extends UIBase
+	public class Image extends UIBase implements IImage
 	{
 		/**
 		 *  constructor.
@@ -89,6 +90,9 @@ package org.apache.flex.html
             return element;
         }
         
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
         COMPILE::JS
         protected function createElementInternal():void
         {

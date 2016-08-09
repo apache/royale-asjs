@@ -18,13 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IImageModel;
+	import org.apache.flex.core.IBinaryImage;
+	import org.apache.flex.core.IBinaryImageModel;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.utils.BinaryData;
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
-        import org.apache.flex.html.beads.models.BinaryImageView;
+        import org.apache.flex.html.beads.models.BinaryImageModel;
         import org.apache.flex.html.beads.BinaryImageView;
     }
 	
@@ -40,7 +41,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BinaryImage extends Image
+	public class BinaryImage extends Image implements IBinaryImage
 	{
 		/**
 		 *  constructor.
@@ -66,11 +67,11 @@ package org.apache.flex.html
 		 */
 		public function get binary():BinaryData
 		{
-			return (model as IImageModel).binary;
+			return (model as IBinaryImageModel).binary;
 		}
 		public function set binary(value:BinaryData):void
 		{
-			(model as IImageModel).binary = value;
+			(model as IBinaryImageModel).binary = value;
 		}
         
         /**

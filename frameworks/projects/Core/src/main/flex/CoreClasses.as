@@ -45,6 +45,7 @@ internal class CoreClasses
 	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
     import org.apache.flex.core.IBeadView; IBeadView;
+    import org.apache.flex.core.IBinaryImage; IBinaryImage;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IBorderModel; IBorderModel;
@@ -60,6 +61,7 @@ internal class CoreClasses
     import org.apache.flex.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.flex.core.IDocument; IDocument;
     import org.apache.flex.core.IFormatBead; IFormatBead;
+    import org.apache.flex.core.IImage; IImage;
     import org.apache.flex.core.IImageModel; IImageModel;
     import org.apache.flex.core.IItemRendererProvider; IItemRendererProvider;
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
