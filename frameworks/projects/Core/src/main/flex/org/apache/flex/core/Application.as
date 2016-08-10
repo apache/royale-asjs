@@ -113,7 +113,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost
     {
         /**
          *  Constructor.
@@ -139,7 +139,8 @@ package org.apache.flex.core
 		COMPILE::SWF
 		public function setRoot(r:WrappedMovieClip):void
 		{
-			element = r;	
+			element = r;
+			element.flexjs_wrapper = this;
 			MouseEventConverter.setupAllConverters(r.stage);
             MouseEventConverter.setupAllConverters(r.stage, false);
 			initHandler();
