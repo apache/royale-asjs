@@ -20,12 +20,12 @@ package org.apache.flex.core
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;            
+        import flash.display.DisplayObject;
         import flash.display.SimpleButton;            
     }
 
 	COMPILE::SWF
-	public class WrappedSimpleButton extends SimpleButton implements IFlexJSElement
+	public class WrappedSimpleButton extends SimpleButton implements IFlexJSElement, IRenderedObject
 	{
         public function WrappedSimpleButton(upState:DisplayObject = null, overState:DisplayObject = null, downState:DisplayObject = null, hitTestState:DisplayObject = null)
         {
@@ -55,5 +55,11 @@ package org.apache.flex.core
         {
             _flexjs_wrapper = value;
         }
+		
+		public function get $displayObject():DisplayObject
+		{
+			return this;
+		}
+		
 	}
 }

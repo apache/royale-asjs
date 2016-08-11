@@ -18,13 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import flash.display.DisplayObject;
+
 	COMPILE::SWF
 	{
 	    import flash.display.MovieClip;
 	}
 
 	COMPILE::SWF
-	public class WrappedMovieClip extends MovieClip implements IFlexJSElement
+	public class WrappedMovieClip extends MovieClip implements IFlexJSElement, IRenderedObject
 	{
         private var _flexjs_wrapper:ElementWrapper;
         
@@ -48,5 +50,11 @@ package org.apache.flex.core
         {
             _flexjs_wrapper = value;
         }
+		
+		public function get $displayObject():DisplayObject
+		{
+			return this;
+		}
+
 	}
 }

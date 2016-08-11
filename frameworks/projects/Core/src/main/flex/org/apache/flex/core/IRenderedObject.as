@@ -18,44 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import flash.display.DisplayObject;
-
-	COMPILE::SWF
+COMPILE::SWF
+{
+    import flash.display.DisplayObject;       
+}
+    /**
+     *  The IRenderedObject interface is the basic interface for a 
+     *  component that has been rendered.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public interface IRenderedObject
 	{
-	    import flash.display.Sprite;
-	}
-
-	COMPILE::SWF
-	public class WrappedSprite extends Sprite implements IFlexJSElement, IRenderedObject
-	{
-
-        private var _flexjs_wrapper:ElementWrapper;
         
-        //--------------------------------------
-        //   Property
-        //--------------------------------------
+        COMPILE::SWF
+        function get $displayObject():DisplayObject;
         
-        /**
-         *  A pointer back to the instance that wrapped this element.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get flexjs_wrapper():ElementWrapper
-        {
-            return _flexjs_wrapper;
-        }
-        public function set flexjs_wrapper(value:ElementWrapper):void
-        {
-            _flexjs_wrapper = value;
-        }
-		
-		public function get $displayObject():DisplayObject
-		{
-			return this;
-		}
-		
+        COMPILE::JS
+        function get element():IFlexJSElement;
+
 	}
 }

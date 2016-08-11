@@ -113,7 +113,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost, IRenderedObject
     {
         /**
          *  Constructor.

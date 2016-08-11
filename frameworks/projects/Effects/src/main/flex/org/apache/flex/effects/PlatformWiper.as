@@ -22,13 +22,14 @@ package org.apache.flex.effects
 
 COMPILE::SWF
 {
-    import flash.display.DisplayObject;
     import flash.geom.Rectangle;
 }
 
 import org.apache.flex.geom.Rectangle;
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
+import org.apache.flex.core.IRenderedObject;
+
 
 /**
  *  Helper class for Wipe effects.
@@ -91,7 +92,7 @@ public class PlatformWiper
         COMPILE::SWF
         {
             if (value == null)
-                DisplayObject(_target).scrollRect = null;
+                (_target as IRenderedObject).$displayObject.scrollRect = null;
             _target = value;                
         }
         COMPILE::JS
@@ -122,7 +123,7 @@ public class PlatformWiper
     {
         COMPILE::SWF
         {
-            DisplayObject(_target).scrollRect = new flash.geom.Rectangle(value.x,value.y,value.width,value.height);                
+            (_target as IRenderedObject).$displayObject.scrollRect = new flash.geom.Rectangle(value.x,value.y,value.width,value.height);                
         }
         COMPILE::JS
         {

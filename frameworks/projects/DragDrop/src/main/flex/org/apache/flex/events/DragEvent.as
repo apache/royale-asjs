@@ -340,7 +340,7 @@ package org.apache.flex.events
          *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
          *  @flexjsignorecoercion window.Event
          */
-        public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
+        public static function dispatchDragEvent(event:DragEvent, target:Object):void
         {
             COMPILE::SWF
             {
