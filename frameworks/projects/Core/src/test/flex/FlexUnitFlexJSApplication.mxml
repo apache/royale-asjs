@@ -41,7 +41,8 @@ limitations under the License.
         ]]>
     </fx:Script>
     <js:valuesImpl>
-        <js:SimpleValuesImpl />
+        <!-- for such a simple app, we just set values to an empty array so it thinks it doesn't have any values -->
+        <js:SimpleValuesImpl values="[]"/>
     </js:valuesImpl>
 
 </js:Application>
