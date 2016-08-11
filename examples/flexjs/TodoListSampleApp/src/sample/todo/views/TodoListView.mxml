@@ -20,7 +20,8 @@ limitations under the License.
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
                 xmlns:js="library://ns.apache.org/flexjs/basic"
                 xmlns:svg="library://ns.apache.org/flexjs/svg"
-				initComplete="setup()">
+				initComplete="setup()" 
+				xmlns:renderers="sample.todo.renderers.*">
 
     <fx:Script>
 		<![CDATA[
@@ -49,6 +50,13 @@ limitations under the License.
 				dispatchEvent(logEvent);
 				
 				todoInput.text = "";
+			}
+			
+			private function forwardEvent(event:TodoListEvent):void
+			{
+				var newEvent:TodoListEvent = new TodoListEvent(event.type);
+				newEvent.item = event.item;
+				dispatchEvent(newEvent);
 			}
 			
 			private function updateStatus(event:org.apache.flex.events.Event):void {
@@ -106,6 +114,10 @@ limitations under the License.
                     itemRenderer="sample.todo.renderers.TodoItemRenderer"
 					dataProvider="{TodoListModel(applicationModel).todos}"
                     width="100%" height="400">
+			<js:beads>
+				<renderers:TodoListItemRendererFactory itemChecked="forwardEvent(event)" 
+													   itemRemoveRequest="forwardEvent(event)" />
+			</js:beads>
         </js:List>
 
         <js:Container>

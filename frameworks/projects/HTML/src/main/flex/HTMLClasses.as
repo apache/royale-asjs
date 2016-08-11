@@ -146,6 +146,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
+	import org.apache.flex.html.beads.DataItemRendererFactoryAndEventDispatcherForArrayData; DataItemRendererFactoryAndEventDispatcherForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;

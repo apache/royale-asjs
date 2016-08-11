@@ -24,29 +24,11 @@ package sample.todo.models {
         public function TodoListModel() {
             super();
 			_filterFunction();
-			
-			addTodo("Get something").selected = true;
-			addTodo("Do this").selected = true;
-			addTodo("Do that");
         }
-		
-		private function titleChangeHandler(event:Event):void
-		{
-			dispatchEvent(new Event("todoListChanged"));
-		}
-		
-		private function selectChangeHandler(event:Event):void
-		{
-			dispatchEvent(new Event("todoListChanged"));
-		}
-		
-		private function removeHandler(event:Event):void
-		{
-			var item:TodoListItem = event.target as TodoListItem;
-			removeItem(item);
-		}
 
-        private var _todos:Array = [];
+        private var _todos:Array = [{title:"Get something", selected:true},
+			{title:"Do this", selected:true},
+			{title:"Do that", selected:false}];
 		
 		private var _filteredList:Array = [];
 		private var _filterFunction:Function = showAllTodos;
@@ -62,12 +44,9 @@ package sample.todo.models {
 			dispatchEvent(new Event("todoListChanged"));
         }
 
-        public function addTodo(value:String):TodoListItem
+        public function addTodo(value:String):Object
         {
-			var item:TodoListItem = new TodoListItem(value, false);
-			item.addEventListener("titleChanged", titleChangeHandler);
-			item.addEventListener("selectedChanged", titleChangeHandler);
-			item.addEventListener("removeItem", removeHandler);
+			var item:Object = {title:value, selected:false};
 			_todos.push(item);
 			
 			_filterFunction();
@@ -101,6 +80,12 @@ package sample.todo.models {
 			}
 			dispatchEvent(new Event("todoListChanged"));
 			_filterFunction = showCompletedTodos;
+		}
+		
+		public function toggleItemCheck(item:Object) : void {
+			item.selected = !item.selected;
+			_filterFunction();
+			dispatchEvent(new Event("todoListChanged"));
 		}
 		
 		public function removeItem(item:Object) : void {

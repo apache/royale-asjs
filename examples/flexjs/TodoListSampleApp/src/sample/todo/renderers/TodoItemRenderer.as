@@ -24,9 +24,9 @@ package sample.todo.renderers {
     import org.apache.flex.html.CheckBox;
     import org.apache.flex.html.Label;
     import org.apache.flex.html.supportClasses.DataItemRenderer;
-
-	[Event("checked","org.apache.flex.events.Event")]
-	[Event("remove","org.apache.flex.events.Event")]
+    
+	[Event("checkChanged","org.apache.flex.events.Event")]
+	[Event("removeRequest","org.apache.flex.events.Event")]
 
     public class TodoItemRenderer extends DataItemRenderer {
 		
@@ -79,12 +79,12 @@ package sample.todo.renderers {
 
 		private function checkBoxChange(event:Event):void
 		{
-			data.selected = !data.selected;
+			dispatchEvent(new Event("checkChanged"));
 		}
 
 		private function removeClick(event:MouseEvent):void
 		{
-			data.remove();
+			dispatchEvent(new Event("removeRequest"));
 		}
     }
 }

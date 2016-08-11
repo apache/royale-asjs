@@ -29,7 +29,7 @@
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler/lib">
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
