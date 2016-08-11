@@ -114,8 +114,11 @@ COMPILE::SWF
                 // addbead will set _model
                 var m:Class = org.apache.flex.core.ValuesManager.valuesImpl.
                     getValue(this, 'iBeadModel') as Class;
-                var b:IBeadModel = new m() as IBeadModel;
-                addBead(b);
+                if (m)
+                {
+                    var b:IBeadModel = new m() as IBeadModel;
+                    addBead(b);
+                }
             }
             return _model;
         }
