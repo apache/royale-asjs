@@ -24,7 +24,7 @@ package org.apache.flex.net
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.HTMLElementWrapper;
+        import org.apache.flex.core.ElementWrapper;
     }
     
     /**
@@ -41,7 +41,7 @@ package org.apache.flex.net
     }
 
     COMPILE::JS
-    public class HTTPServiceBase extends HTMLElementWrapper
+    public class HTTPServiceBase extends ElementWrapper
     {
     }
 }

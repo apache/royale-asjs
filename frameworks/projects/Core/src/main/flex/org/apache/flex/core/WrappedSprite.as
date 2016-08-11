@@ -27,7 +27,7 @@ package org.apache.flex.core
 	public class WrappedSprite extends Sprite implements IFlexJSElement
 	{
 
-        private var _flexjs_wrapper:HTMLElementWrapper;
+        private var _flexjs_wrapper:ElementWrapper;
         
         //--------------------------------------
         //   Property
@@ -41,11 +41,11 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get flexjs_wrapper():HTMLElementWrapper
+        public function get flexjs_wrapper():ElementWrapper
         {
             return _flexjs_wrapper;
         }
-        public function set flexjs_wrapper(value:HTMLElementWrapper):void
+        public function set flexjs_wrapper(value:ElementWrapper):void
         {
             _flexjs_wrapper = value;
         }

@@ -23,7 +23,7 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.HTMLElementWrapper;
+	import org.apache.flex.core.ElementWrapper;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IPopUpHost;

@@ -63,7 +63,7 @@ COMPILE::SWF
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIHTMLElementWrapper extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher
+	public class UIHTMLElementWrapper extends ElementWrapper implements IStrandWithModel, IEventDispatcher
 	{
         /**
          *  Constructor.

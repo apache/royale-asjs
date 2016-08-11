@@ -38,9 +38,9 @@ package org.apache.flex.core
     import org.apache.flex.events.EventDispatcher;
 
     COMPILE::SWF
-    public class HTMLElementWrapper extends EventDispatcher implements IStrand
+    public class ElementWrapper extends EventDispatcher implements IStrand
     {
-        public function HTMLElementWrapper()
+        public function ElementWrapper()
         {
         }
 
@@ -167,7 +167,7 @@ package org.apache.flex.core
     }
     
 	COMPILE::JS
-	public class HTMLElementWrapper extends EventDispatcher implements IStrand
+	public class ElementWrapper extends EventDispatcher implements IStrand
 	{
 
 		//--------------------------------------
@@ -183,7 +183,7 @@ package org.apache.flex.core
 		{
 			var e:BrowserEvent = new BrowserEvent();
 			e.wrappedEvent = eventObject;
-			return HTMLElementWrapper.googFireListener(listener, e);
+			return ElementWrapper.googFireListener(listener, e);
 		}
 
         /**
@@ -191,8 +191,8 @@ package org.apache.flex.core
          */
 		static public function installOverride():Boolean
 		{
-			HTMLElementWrapper.googFireListener = goog.events.fireListener;
-			goog.events.fireListener = HTMLElementWrapper.fireListenerOverride;
+			ElementWrapper.googFireListener = goog.events.fireListener;
+			goog.events.fireListener = ElementWrapper.fireListenerOverride;
 			return true;
 		}
 
