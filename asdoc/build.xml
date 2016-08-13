@@ -79,7 +79,7 @@
             <external-library-path dir="${env.AIR_HOME}/frameworks/libs/air">
                 <include name="airglobal.swc"/>
             </external-library-path>
-            <external-library-path dir="${env.FALCONJX_HOME}/../externs/google_maps/target">
+            <external-library-path dir="${FLEXJS_HOME}/js/libs">
                 <include name="google_maps.swc"/>
             </external-library-path>
             
