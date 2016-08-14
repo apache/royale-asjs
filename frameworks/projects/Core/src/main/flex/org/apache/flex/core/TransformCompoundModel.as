@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.geom.IMatrix;
+	import org.apache.flex.geom.Matrix;
 
 	[DefaultProperty("transformModels")]
 	public class TransformCompoundModel extends TransformModel
@@ -28,10 +28,10 @@ package org.apache.flex.core
 			if (value && value.length > 0)
 			{
 				var length:int = value.length;
-				var product:IMatrix = (value[0] as ITransformModel).matrix.clone();
+				var product:Matrix = (value[0] as ITransformModel).matrix.clone();
 				for (var i:int = 1; i < length; i++)
 				{
-					var current:IMatrix = (value[i] as ITransformModel).matrix;
+					var current:Matrix = (value[i] as ITransformModel).matrix;
 					concat(product, current);
 				}
 				matrix = product;
@@ -41,7 +41,7 @@ package org.apache.flex.core
 			}
 		}
 		
-		private function concat(product:IMatrix, factor:IMatrix):void
+		private function concat(product:Matrix, factor:Matrix):void
 		{
 			var result_a:Number = product.a * factor.a;
 			var result_b:Number = 0.0;

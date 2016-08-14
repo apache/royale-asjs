@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.geom.MeagerMatrix;
+	import org.apache.flex.geom.Matrix;
 	
 	
 	public class TransformRotateModel extends TransformModel
@@ -38,7 +38,7 @@ package org.apache.flex.core
 		{
 			_angle = value;
 			var radians:Number = value * Math.PI/180;
-			matrix = new MeagerMatrix(Math.cos(radians), Math.sin(radians), -Math.sin(radians), Math.cos(radians));
+			matrix = new Matrix(Math.cos(radians), Math.sin(radians), -Math.sin(radians), Math.cos(radians));
 		}
 
 

@@ -20,21 +20,21 @@ package org.apache.flex.core
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.geom.IMatrix;
+	import org.apache.flex.geom.Matrix;
 	
 	public class TransformModel extends EventDispatcher implements ITransformModel
 	{
 		
 		public static const CHANGE:String = "transferModelChange";
 		
-		private var _matrix:IMatrix;
+		private var _matrix:Matrix;
 		private var _strand:IStrand;
 		
 		public function TransformModel()
 		{
 		}
 		
-		public function get matrix():IMatrix
+		public function get matrix():Matrix
 		{
 			return _matrix;
 		}
@@ -49,7 +49,7 @@ package org.apache.flex.core
 			return _strand as ITransformHost;
 		}
 		
-		public function set matrix(value:IMatrix):void
+		public function set matrix(value:Matrix):void
 		{
 			_matrix = value;
 			if (_strand)

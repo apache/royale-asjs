@@ -24,7 +24,7 @@ package org.apache.flex.svg
 	import org.apache.flex.core.ITransformModel;
 	import org.apache.flex.core.TransformModel;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.geom.IMatrix;
+	import org.apache.flex.geom.Matrix;
 
 	COMPILE::SWF {
 		import flash.display.Sprite;
@@ -67,7 +67,7 @@ package org.apache.flex.svg
 		public function transform():void
 		{
 			var element:Sprite = host.transformElement as Sprite;
-			var fjsm:org.apache.flex.geom.IMatrix = transformModel.matrix;
+			var fjsm:org.apache.flex.geom.Matrix = transformModel.matrix;
 			var flashMatrix:flash.geom.Matrix = new flash.geom.Matrix(fjsm.a, fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty);
 			element.transform.matrix = flashMatrix;
 		}
@@ -79,7 +79,7 @@ package org.apache.flex.svg
 		{
 			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
 			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
-			var fjsm:org.apache.flex.geom.IMatrix = transformModel.matrix;
+			var fjsm:org.apache.flex.geom.Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
 			element.setAttribute("transform", transformStr);
