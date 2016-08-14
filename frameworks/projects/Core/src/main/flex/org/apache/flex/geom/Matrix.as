@@ -38,133 +38,225 @@ package org.apache.flex.geom
 		public var tx:Number;
 		public var ty:Number;
 
+		/**
+		 *	Returns a copy of the Matrix
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
 		public function clone():Matrix
 		{
 			return new Matrix(a, b, c, d, tx, ty);
 		}
 		
-		public function concat(m:Matrix):void
+		/**
+		 *  Adds the Matrix the current one
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function concat(m:Matrix):Matrix
 		{
-			var result_a:Number = a * m.a;
-			var result_b:Number = 0;
-			var result_c:Number = 0;
-			var result_d:Number = d * m.d;
-			var result_tx:Number = tx * m.a + m.tx;
-			var result_ty:Number = ty * m.d + m.ty;
-			if (b != 0 || c != 0 || m.b != 0 || m.c != 0)
-			{
-				result_a = result_a + b * m.c;
-				result_d = result_d + c * m.b;
-				result_b = result_b + (a * m.b + b * m.d);
-				result_c = result_c + (c * m.a + d * m.c);
-				result_tx = result_tx + ty * m.c;
-				result_ty = result_ty + tx * m.b;
-			}
-			a = result_a;
-			b = result_b;
-			c = result_c;
-			d = result_d;
-			tx = result_tx;
-			ty = result_ty;
+			var newa:Number = a * m.a + b * m.c;
+			b = a * m.b + b * m.d;
+			a = newa;
+			
+			var newc:Number = c * m.a + d * m.c;
+			d = c * m.b + d * m.d;
+			c = newc;
+			
+			var newtx:Number = tx * m.a + ty * m.c + m.tx;
+			ty = tx * m.b + ty * m.d + m.ty;
+			tx = newtx;
+			return this;
+		}
+
+		/**
+		 *  Calculates the Matrix determinant
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function determinant():Number
+		{
+			return a * d - b * c;
 		}
 		
-		public function invert():void
+		/**
+		 *  Inverts the Matrix.
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function invert():Matrix
 		{
+			// if b and c are both 0, we can simplify this.
 			if (b == 0 && c == 0)
 			{
 				a = 1 / a;
 				d = 1 / d;
-				b = c = 0.0;
-				tx = -a * tx;
-				ty = -d * ty;
+				tx *= -a;
+				ty *= -d;
 			}
 			else
 			{
-				var a0:Number = a;
-				var a1:Number = b;
-				var a2:Number = c;
-				var a3:Number = d;
-				var det:Number = a0 * a3 - a1 * a2;
+				var det:Number = determinant();
 				if (det == 0)
 				{
 					identity();
-					return;
+					return this;
 				}
 				det = 1 / det;
-				a = a3 * det;
-				b = -a1 * det;
-				c = -a2 * det;
-				d = a0 * det;
-				var result_ty:Number = -(b * tx + d * ty);
-				tx = -(a * tx + c * ty);
-				ty = result_ty;
+				var newa:Number = d * det;
+				d = a * det;
+				a = newa;
+				b *= -det;
+				c *= -det;
+			
+				var newtx:Number = - a * tx - c * ty;
+				ty = - b * tx - d * ty;
+				tx = newtx;
 			}
+			return this;
 		}
 		
-		public function identity():void
+		/**
+		 *  Resets the matrix to the default values.
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function identity():Matrix
 		{
 			a = d = 1;
-			b = c = 0;
-			tx = ty = 0;
+			b = c = tx = ty = 0;
+			return this;
 		}
 		
-		public function rotate(angle:Number):void
+		/**
+		 *  Rotates the Matrix by the specified value.
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function rotate(angle:Number):Matrix
 		{
-			var u:Number = Math.cos(angle);
-			var v:Number = Math.sin(angle);
-			var result_a:Number = u * a - v * b;
-			var result_b:Number = v * a + u * b;
-			var result_c:Number = u * c - v * d;
-			var result_d:Number = v * c + u * d;
-			var result_tx:Number = u * tx - v * ty;
-			var result_ty:Number = v * tx + u * ty;
-			a = result_a;
-			b = result_b;
-			c = result_c;
-			d = result_d;
-			tx = result_tx;
-			ty = result_ty;
+			var cos:Number = Math.cos(angle);
+			var sin:Number = Math.sin(angle);
+			
+			var newa:Number = a * cos - b * sin;
+			b = a * sin + b * cos;
+			a = newa;
+		
+			var newc:Number = c * cos - d * sin;
+			d = c * sin + d * cos;
+			c = newc;
+		
+			var newtx:Number = tx * cos - ty * sin;
+			ty = tx * sin + ty * cos;
+			tx = newtx;
+			return this;
 		}
 		
-		public function translate(dx:Number, dy:Number):void
+		/**
+		 *  Moves the Matrix by the specified amount
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function translate(x:Number, y:Number):Matrix
 		{
-			tx = tx + dx;
-			ty = ty + dy;
+			tx += x;
+			ty += y;
+			return this;
 		}
 		
-		public function scale(sx:Number, sy:Number):void
+		/**
+		 *  Scales the Matrix by the specified amount.
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function scale(x:Number, y:Number):Matrix
 		{
-			a = a * sx;
-			b = b * sy;
-			c = c * sx;
-			d = d * sy;
-			tx = tx * sx;
-			ty = ty * sy;
+			a *= x;
+			b *= y;
+			c *= x;
+			d *= y;
+			tx *= x;
+			ty *= y;
+			return this;
 		}
 		
+		/**
+		 *  Uses the Matrix to transform the point without the translation values.
+		 *  Returns a new Point. The original Point is unchanged.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
 		public function deltaTransformPoint(point:Point):Point
 		{
 			return new Point(a * point.x + c * point.y, d * point.y + b * point.x);
 		}
 		
+		/**
+		 *  Uses the Matrix to transform the point including the translation values.
+		 *  Returns a new Point. The original Point is unchanged.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
 		public function transformPoint(point:Point):Point
 		{
 			return new Point(a * point.x + c * point.y + tx, d * point.y + b * point.x + ty);
 		}
 		
+		/**
+		 *  Returns a string representation of the Matrix.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
 		public function toString():String
 		{
 			return "(a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", tx=" + tx + ", ty=" + ty + ")";
 		}
 		
-		public function copyFrom(sourceMatrix:Matrix):void
+		/**
+		 *  Copies the values from another Matrix.
+		 *  Returns the matrix so the methods can be chained.
+	     *  @langversion 3.0
+	     *  @playerversion Flash 10.2
+	     *  @playerversion AIR 2.6
+	     *  @productversion FlexJS 0.7
+		 */
+		public function copyFrom(source:Matrix):Matrix
 		{
-			a = sourceMatrix.a;
-			b = sourceMatrix.b;
-			c = sourceMatrix.c;
-			d = sourceMatrix.d;
-			tx = sourceMatrix.tx;
-			ty = sourceMatrix.ty;
+			a = source.a;
+			b = source.b;
+			c = source.c;
+			d = source.d;
+			tx = source.tx;
+			ty = source.ty;
+			return this;
 		}
 		
 	}
