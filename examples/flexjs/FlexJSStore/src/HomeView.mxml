@@ -41,7 +41,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 
 			public function updateMapImage():void
 			{
-				mapImage.source = ValuesManager.valuesImpl.getValue(mapCanvas, 'dottedMap');
+				mapImage.url = ValuesManager.valuesImpl.getValue(mapCanvas, 'dottedMap');
 			}
 		]]>
 	</fx:Script>
@@ -150,7 +150,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 					<js:HContainer style="left:10;top:43" width="100%" height="100%">
 						<js:VContainer width="33%" height="100%">
 							<js:Container width="100%">
-								<js:Image id="image1" source="assets/akotter.jpg" style="margin:auto;verticalCenter:0"/>
+								<js:Image id="image1" url="assets/akotter.jpg" style="margin:auto;verticalCenter:0"/>
 							</js:Container>
 							
 							<js:Container width="100%">
@@ -161,7 +161,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 						
 						<js:VContainer width="33%" height="100%">							
 							<js:Container width="100%">
-								<js:Image id="image2" style="margin:auto;verticalCenter:0" source="assets/bcrater.jpg"/>
+								<js:Image id="image2" style="margin:auto;verticalCenter:0" url="assets/bcrater.jpg"/>
 							</js:Container>
 							
 							<js:Container width="100%">
@@ -172,7 +172,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 						
 						<js:VContainer width="33%" height="100%">
 							<js:Container width="100%">
-								<js:Image id="image3" style="margin:auto;verticalCenter:0" source="assets/jproctor.jpg"/>
+								<js:Image id="image3" style="margin:auto;verticalCenter:0" url="assets/jproctor.jpg"/>
 							</js:Container>
 							
 							<js:Container width="100%">

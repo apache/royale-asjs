@@ -91,7 +91,7 @@ limitations under the License.
             </js:style>
             <js:Container style="left:0px;right:0px">
 
-                <js:Image id="img" width="101" height="101" source="{product.image}"/>
+                <js:Image id="img" width="101" height="101" url="{product.image}"/>
 
                 <js:VContainer id="descr" >
                     <js:style>
