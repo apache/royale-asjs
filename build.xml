@@ -342,6 +342,12 @@
         property="FLEXJS_TYPEDEFS_HOME"
         value="${basedir}"/>
         
+        <echo>basedir is ${basedir}</echo>
+        <available file="${basedir}/../falconjx/js/libs/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}/../falconjx/js/libs"/>
+        
         <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the flex-typedefs repo"
         unless="FLEXJS_TYPEDEFS_HOME"/>
     </target>

@@ -157,6 +157,8 @@
             <exclude>examples/**</exclude>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
+            <!-- This is appended to the LICENSE file for binary packages-->
+            <exclude>LICENSE.bin</exclude>
 
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
