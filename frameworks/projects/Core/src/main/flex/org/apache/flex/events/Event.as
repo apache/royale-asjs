@@ -118,6 +118,19 @@ package org.apache.flex.events
                 if (IFlexJSElement(target).flexjs_wrapper === potentialTarget) return true;
             return false;
         }
+
+        /**
+         * defaultPrevented is true if <code>preventDefault()</code> was called.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function get defaultPrevented():Boolean
+        {
+        	return isDefaultPrevented();
+        }
         
 	}
 
@@ -151,6 +164,11 @@ package org.apache.flex.events
 		public function cloneEvent():IFlexJSEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
+		}
+
+		public function isDefaultPrevented():Boolean
+		{
+			return defaultPrevented;
 		}
         
         /**
