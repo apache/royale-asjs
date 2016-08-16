@@ -20,16 +20,16 @@ package sample.todo.controllers {
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.events.Event;
-	
+
 	import sample.todo.events.TodoListEvent;
 	import sample.todo.models.TodoListModel;
 
 	public class TodoListController implements IDocument {
-		private var app:TodoListSampleApp;
+		private var app:Application;
 
 		public function TodoListController(app:Application = null) {
 			if (app != null) {
-				app = app as TodoListSampleApp;
+				this.app = app;
 			}
 		}
 
@@ -37,7 +37,7 @@ package sample.todo.controllers {
 		 *
 		 */
 		public function setDocument(document:Object, id:String = null):void {
-			app = document as TodoListSampleApp;
+			app = document as Application;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 
@@ -61,12 +61,12 @@ package sample.todo.controllers {
 			//todoModel.todos.push({title: evt.todo, selected: false});
 			todoModel.addTodo(evt.todo);
 		}
-		
+
 		public function handleItemChecked(event:TodoListEvent):void {
 			var model: TodoListModel = app.model as TodoListModel;
 			model.toggleItemCheck(event.item);
 		}
-		
+
 		public function handleItemRemove(event:TodoListEvent):void {
 			var model: TodoListModel = app.model as TodoListModel;
 			model.removeItem(event.item);
