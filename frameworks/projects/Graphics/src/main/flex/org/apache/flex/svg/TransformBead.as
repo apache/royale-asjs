@@ -79,6 +79,8 @@ package org.apache.flex.svg
 		{
 			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
 			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
+			(element.parentNode as HTMLElement).setAttribute("pointer-events", "none");
+			element.setAttribute("pointer-events", "all");
 			var fjsm:org.apache.flex.geom.Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
