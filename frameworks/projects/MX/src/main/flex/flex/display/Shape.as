@@ -19,12 +19,12 @@
 
 package flex.display
 {	
-	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
 	import mx.managers.SystemManagerGlobals;
 	
-	public class Shape extends GraphicsContainer
+	public class Shape extends CompoundGraphic
 	{
 		COMPILE::JS
 		private var _name:String;

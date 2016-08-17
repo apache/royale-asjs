@@ -14026,7 +14026,7 @@ public class UIComponent extends Sprite
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseX] === undefined)
             return super.mouseX;
-        return globalToLocal(new Point(root[fakeMouseX], 0)).x;
+        return PointUtils.globalToLocal(new Point(root[fakeMouseX], 0), this).x;
     }
 
     /**
@@ -14037,7 +14037,7 @@ public class UIComponent extends Sprite
     {
         if (!root || root is TopOfDisplayList || root[fakeMouseY] === undefined)
             return super.mouseY;
-        return globalToLocal(new Point(0, root[fakeMouseY])).y;
+        return PointUtils.globalToLocal(new Point(0, root[fakeMouseY]), this).y;
     }
 
 

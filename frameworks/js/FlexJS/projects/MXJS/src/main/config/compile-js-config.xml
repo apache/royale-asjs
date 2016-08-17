@@ -21,9 +21,6 @@
     <compiler>
         <accessible>false</accessible>
         
-        <external-library-path>
-        </external-library-path>
-        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -61,11 +58,13 @@
         <locale/>
         
         <library-path>
+            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
             <path-element>../../../../../libs/BindingJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
@@ -99,8 +98,5 @@
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/mx</uri>
     </include-namespaces>
-        
-    <target-player>${playerglobal.version}</target-player>
-	
-
+    
 </flex-config>

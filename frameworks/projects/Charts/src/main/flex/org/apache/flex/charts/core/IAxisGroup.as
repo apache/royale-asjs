@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
 	import org.apache.flex.core.IVisualElement;
 
 	/**

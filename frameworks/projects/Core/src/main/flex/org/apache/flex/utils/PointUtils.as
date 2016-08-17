@@ -58,7 +58,7 @@ package org.apache.flex.utils
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLElement
 		 */
-		public static function globalToLocal( pt:flash.geom.Point, local:Object ):org.apache.flex.geom.Point
+		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
             COMPILE::SWF
             {

@@ -367,18 +367,6 @@ public class TextField extends Label
 		return null;
 	}
 	
-	private var _selectable:Boolean;
-	public function get selectable():Boolean
-	{
-		trace("TextField.selectable not implemented");
-		return _selectable;
-	}
-	public function set selectable(value:Boolean):void
-	{
-		_selectable = value;
-		trace("TextField.selectable not implemented");
-	}
-	
 	public function get selectionBeginIndex():int
 	{
 		trace("TextField.selectionBeginIndex not implemented");

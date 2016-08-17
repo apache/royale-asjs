@@ -184,7 +184,7 @@ package org.apache.flex.html.beads
 			dayContainer = new Container();
 			var tileLayout:TileLayout = new TileLayout();
 			dayContainer.addBead(tileLayout);
-            UIBase(_strand).addElement(dayContainer, false);
+            UIBase(_strand).addElement(dayContainer);
 			tileLayout.numColumns = 7;
 
 			// the calendar has 7 columns with 6 rows, the first row are the day names

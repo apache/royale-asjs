@@ -16,6 +16,7 @@ package org.apache.flex.svg
     import org.apache.flex.core.ContainerBase;
     import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.ITransformHost;
+    import org.apache.flex.core.IVisualElement;
 
 	COMPILE::JS
 	{
@@ -85,7 +86,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function getElementAt(index:int):Object
+		override public function getElementAt(index:int):IVisualElement
 		{
 			return graphicGroup.getElementAt(index);
 		}        
@@ -98,11 +99,11 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function addElement(c:IVisualElement):IVisualElement
 		{
-			graphicGroup.addElement(c, dispatchEvent);
-			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenAdded"));
+			graphicGroup.addElement(c);
+			this.dispatchEvent(new Event("childrenAdded"));
+			return c;
 		}
 		
 		/**
@@ -113,11 +114,11 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		override public function addElementAt(c:IVisualElement, index:int):IVisualElement
 		{
-			graphicGroup.addElementAt(c, index, dispatchEvent);
-			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenAdded"));
+			graphicGroup.addElementAt(c, index);
+			this.dispatchEvent(new Event("childrenAdded"));
+			return c;
 		}
 		
 		/**
@@ -128,11 +129,11 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function removeElement(c:IVisualElement):IVisualElement
 		{
-			graphicGroup.removeElement(c, dispatchEvent);
-			if (dispatchEvent)
-				this.dispatchEvent(new Event("childrenRemoved"));
+			graphicGroup.removeElement(c);
+			this.dispatchEvent(new Event("childrenRemoved"));
+			return c;
 		}
 		
 		/**
@@ -156,7 +157,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function getElementIndex(c:Object):int
+		override public function getElementIndex(c:IVisualElement):int
 		{
 			return graphicGroup.getElementIndex(c);
 		}
@@ -174,6 +175,49 @@ package org.apache.flex.svg
 		{
 			return graphicGroup.numElements;
 		}
+
+		/**
+		 *  @copy org.apache.flex.core.IParent#addElement()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function addElementNoChangeEvent(c:IVisualElement):IVisualElement
+		{
+			graphicGroup.addElement(c);
+			return c;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#addElementAt()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function addElementAtNoChangeEvent(c:IVisualElement, index:int):IVisualElement
+		{
+			graphicGroup.addElementAt(c, index);
+			return c;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IParent#removeElement()
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function removeElementNoChangeEvent(c:IVisualElement):IVisualElement
+		{
+			graphicGroup.removeElement(c);
+			return c;
+		}
+		
 	}
 }
 

@@ -19,14 +19,15 @@
 
 package flex.display
 {
-	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.svg.CompoundGraphic;
+	import org.apache.flex.graphics.SolidColor;
+    import org.apache.flex.graphics.PathBuilder;
 	
 	public class Graphics
 	{
-		private var host:GraphicsContainer;
+		private var host:CompoundGraphic;
 		
-		public function Graphics(host:GraphicsContainer)
+		public function Graphics(host:CompoundGraphic)
 		{
 			this.host = host;
 		}
@@ -64,19 +65,20 @@ package flex.display
 		
 		public function lineTo(x:Number, y:Number):void
 		{
-			var path:String = "M " + lastX.toString() + " " + lastY.toString();
-			path += "L " + x.toString() + " " + y.toString();
-			host.drawPath(path);
+            var path:PathBuilder = new PathBuilder();
+            path.moveTo(lastX, lastY);
+            path.lineTo(x, y);
+			host.drawPathCommands(path);
 			lastX = x;
 			lastY = y;
 		}
 		
 		public function curveTo(mx:Number, my:Number, x:Number, y:Number):void
 		{
-			var path:String = "M " + lastX.toString() + " " + lastY.toString();
-			path += "Q " + mx.toString() + " " + my.toString() + " "
-						+ x.toString() + " " + y.toString();
-			host.drawPath(path);
+            var path:PathBuilder = new PathBuilder();
+            path.moveTo(lastX, lastY);
+            path.quadraticCurveTo(mx, my, x, y);
+			host.drawPathCommands(path);
 			lastX = x;
 			lastY = y;
 		}

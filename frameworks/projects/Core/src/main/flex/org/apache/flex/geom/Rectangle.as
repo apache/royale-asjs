@@ -255,6 +255,16 @@ public class Rectangle
 		width = widtha;
 		height = heighta;
 	}
+	
+       
+    /**
+     *  Convert rectangles of other types to this Rectangle type.
+     */
+    public static function convert(obj:Object):org.apache.flex.geom.Rectangle
+    {
+        return new org.apache.flex.geom.Rectangle(obj.x, obj.y, obj.width, obj.height);
+    }
+
 }
 
 
