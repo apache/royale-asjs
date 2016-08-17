@@ -27,6 +27,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	
 	/**
@@ -112,7 +113,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function dayButtonClickHandler(event:Event):void
+		private function dayButtonClickHandler(event:MouseEvent):void
 		{
 			var dateButton:DateChooserButton = event.target as DateChooserButton;
 			if (dateButton.dayOfMonth > 0) {

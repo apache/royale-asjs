@@ -52,7 +52,7 @@ package org.apache.flex.html.supportClasses
 			super();
 		}
 		
-		private var textButton:TextButton;
+		protected var textButton:TextButton;
 		
 		/**
 		 * @private
@@ -65,7 +65,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		private function handleClickEvent(event:MouseEvent):void
+		protected function handleClickEvent(event:MouseEvent):void
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 			newEvent.multipleSelection = event.shiftKey;

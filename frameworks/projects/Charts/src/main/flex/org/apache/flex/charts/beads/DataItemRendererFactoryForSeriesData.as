@@ -118,6 +118,7 @@ package org.apache.flex.charts.beads
 						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
 						dataGroup.addElement(ir);
 						ir.itemRendererParent = dataGroup;
+						ir.index = i;
 						ir.data = dp[i];
 						ir.series = chartSeries;
 					}

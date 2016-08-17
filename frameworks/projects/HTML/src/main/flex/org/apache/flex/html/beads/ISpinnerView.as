@@ -20,15 +20,19 @@ package org.apache.flex.html.beads
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;            
+        import flash.display.DisplayObject;
     }
-	
+    COMPILE::JS
+    {
+    	import org.apache.flex.html.supportClasses.SpinnerButton;
+    }
+
 	import org.apache.flex.core.IBead;
-	
+
 	/**
 	 *  The ISpinnerView interface provides the protocol for any bead that
 	 *  creates the visual parts for a org.apache.flex.html.Spinner control.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -46,7 +50,9 @@ package org.apache.flex.html.beads
 		 */
         COMPILE::SWF
 		function get increment():DisplayObject;
-		
+		COMPILE::JS
+		function get increment():SpinnerButton;
+
 		/**
 		 *  The component used to decrement the org.apache.flex.html.Spinner value.
 		 *
@@ -57,5 +63,7 @@ package org.apache.flex.html.beads
 		 */
         COMPILE::SWF
 		function get decrement():DisplayObject;
+		COMPILE::JS
+		function get decrement():SpinnerButton;
 	}
 }

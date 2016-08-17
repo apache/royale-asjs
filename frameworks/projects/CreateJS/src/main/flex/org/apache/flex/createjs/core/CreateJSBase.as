@@ -28,9 +28,9 @@ package org.apache.flex.createjs.core
         import org.apache.flex.createjs.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
 		
-		import org.apache.flex.core.graphics.IFill;
-		import org.apache.flex.core.graphics.IStroke;
-		import org.apache.flex.core.graphics.SolidColor;
+		import org.apache.flex.graphics.IFill;
+		import org.apache.flex.graphics.IStroke;
+		import org.apache.flex.graphics.SolidColor;
     }
 	
 	COMPILE::SWF

@@ -131,7 +131,7 @@ package org.apache.flex.core
         COMPILE::SWF
         private function errorHandler(event:flash.events.Event):void
         {
-            trace("error loading font from: ", event.target.name);
+            trace("error loading font from: ", event.target.loader.name);
             removeTarget(event.target);
         }
         

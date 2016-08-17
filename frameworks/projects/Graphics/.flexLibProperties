@@ -18,7 +18,10 @@
 
 -->
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="org.apache.flex.svg.TransformBead"/>
+    <classEntry path="org.apache.flex.graphics.ITransformHost"/>
+  </includeClasses>
   <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>

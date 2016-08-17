@@ -47,7 +47,9 @@
 	  
         <locale/>
         
-        <library-path append="true">
+        <!-- overwrite the default library-path setting -->
+        <library-path>
+            <path-element>../../../../../../../../js/libs/GCL.swc</path-element>
             <!-- asjscompc won't 'link' these classes in, but will list their requires
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->

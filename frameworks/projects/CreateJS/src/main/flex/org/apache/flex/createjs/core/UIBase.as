@@ -34,6 +34,7 @@ package org.apache.flex.createjs.core
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.utils.CSSUtils;
 	
     COMPILE::JS
     {
@@ -716,11 +717,12 @@ package org.apache.flex.createjs.core
 			// ideally, for CreateJS, we convert the color value and alpha into the
 			// format: "rgba(red,green,blue,alpha)" such as "rgba(255,0,0,1.0)"
 			// but for now we'll make it easy
-			var color:String = Number(value).toString(16);
-			if (color.length == 1) color = '00' + color;
-			if (color.length == 2) color = '00' + color;
-			if (color.length == 4) color = '00' + color;
-			return "#"+color;
+			if(alpha < 1)
+			{
+				// we should be doing something else...
+				return CSSUtils.attributeFromColor(value);
+			}
+			return CSSUtils.attributeFromColor(value);
 		}
 
 	}

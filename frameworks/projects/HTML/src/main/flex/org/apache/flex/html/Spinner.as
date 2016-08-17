@@ -20,23 +20,23 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
+
     COMPILE::JS
     {
-        import org.apache.flex.html.beads.controllers.SpinnerMouseController;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  The Spinner class is a component that displays a control for incrementing a value
-	 *  and a control for decrementing a value. The org.apache.flex.html.NumericStepper 
+	 *  and a control for decrementing a value. The org.apache.flex.html.NumericStepper
 	 *  uses a Spinner as part of the component. Spinner uses the following beads:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: an IRangeModel to hold the properties.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Spinner.
 	 *  org.apache.flex.core.IBeadController: a bead that handles the input events.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -55,10 +55,10 @@ package org.apache.flex.html
 		public function Spinner()
 		{
 			super();
-			
+
 			className = "Spinner";
 		}
-		
+
 		/**
 		 *  The current value of the Spinner.
 		 *
@@ -75,7 +75,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).value = newValue;
 		}
-		
+
 		/**
 		 *  The minimum value of the Spinner.
 		 *
@@ -92,7 +92,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).minimum = value;
 		}
-		
+
 		/**
 		 *  The maximum value of the Spinner.
 		 *
@@ -109,7 +109,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).maximum = value;
 		}
-		
+
 		/**
 		 *  The modulus for the value. If this property is set,
 		 *  the value displayed with a muliple of the snapInterval.
@@ -127,7 +127,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).snapInterval = value;
 		}
-		
+
 		/**
 		 *  The amount to increase or descrease the value. The value
 		 *  will not exceed the minimum or maximum value. The final
@@ -146,16 +146,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).stepSize = value;
 		}
-		
-        COMPILE::JS
-        public var incrementButton:TextButton;
-        
-        COMPILE::JS
-        public var decrementButton:TextButton;
-        
-        COMPILE::JS
-        private var controller:SpinnerMouseController;
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -165,23 +156,11 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
             positioner.style.position = 'relative';
-            
+
             element.style.verticalAlign = 'middle';
-            
-            incrementButton = new TextButton();
-            incrementButton.text = '\u25B2';
-            addElement(incrementButton);
-            
-            decrementButton = new TextButton();
-            decrementButton.text = '\u25BC';
-            addElement(decrementButton);
-            
-            controller = new SpinnerMouseController();
-            addBead(controller);
-            
             element.flexjs_wrapper = this;
-            
+
             return element;
-        }        
+        }
 	}
 }

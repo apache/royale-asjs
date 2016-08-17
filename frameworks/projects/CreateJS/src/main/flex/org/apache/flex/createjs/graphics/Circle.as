@@ -20,7 +20,7 @@ package org.apache.flex.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.core.graphics.Circle
+		import org.apache.flex.svg.Circle
 	}
 
     COMPILE::JS
@@ -32,9 +32,9 @@ package org.apache.flex.createjs.graphics
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 
 	/**
 	 * Creates a circle.
@@ -46,7 +46,7 @@ package org.apache.flex.createjs.graphics
 	 */
 
     COMPILE::SWF
-	public class Circle extends org.apache.flex.core.graphics.Circle
+	public class Circle extends org.apache.flex.svg.Circle
 	{
 		// nothing special for SWF version.
 	}

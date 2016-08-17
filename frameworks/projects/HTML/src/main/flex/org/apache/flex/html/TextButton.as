@@ -128,6 +128,7 @@ package org.apache.flex.html
 		override protected function createElement():WrappedHTMLElement
 		{
 			var element:WrappedHTMLElement = super.createElement();
+			className = "TextButton";
 			typeNames = "TextButton";
 			return element;
 		}

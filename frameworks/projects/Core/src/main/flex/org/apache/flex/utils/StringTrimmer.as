@@ -28,7 +28,6 @@ package org.apache.flex.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-    COMPILE::SWF
 	public class StringTrimmer
 	{
 		/**
@@ -53,6 +52,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          */
+		COMPILE::SWF
         public static function trim(str:String):String
         {
             if (str == null) return '';
@@ -70,6 +70,13 @@ package org.apache.flex.utils
             else
                 return "";
         }
+		
+		COMPILE::JS
+		public static function trim(str:String):String
+		{
+			if (str == null) return '';
+			return str.trim();
+		}
 
         /**
          *  Removes all whitespace characters from the beginning and end

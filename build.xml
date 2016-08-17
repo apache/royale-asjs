@@ -322,6 +322,36 @@
             unless="FALCONJX_HOME"/>
     </target>
 
+    <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
+        description="Check FALCON_HOME is a directory.">
+        
+        <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
+        
+        <available file="${env.FLEXJS_TYPEDEFS_HOME}/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${env.FLEXJS_TYPEDEFS_HOME}"/>
+        
+        <available file="${basedir}/../flex-typedefs/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}/../flex-typedefs"/>
+        
+        <available file="${basedir}/js/target/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}"/>
+        
+        <echo>basedir is ${basedir}</echo>
+        <available file="${basedir}/../falconjx/js/libs/js.swc"
+        type="file"
+        property="FLEXJS_TYPEDEFS_HOME"
+        value="${basedir}/../falconjx/js/libs"/>
+        
+        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the flex-typedefs repo"
+        unless="FLEXJS_TYPEDEFS_HOME"/>
+    </target>
+
     <target name="create-description" description="Generate flex-sdk-description.xml" unless="airsdk.found">
         <tstamp>
         	<format property="build.number.date" pattern="yyyyMMdd" />
@@ -363,10 +393,10 @@
         <ant dir="${basedir}/frameworks" target="node-config" />
     </target>
 	
-    <target name="copy-externs" description="Copy extern swcs into this folder">
+    <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
         <mkdir dir="${basedir}/js/libs" />
         <copy todir="${basedir}/js/libs" flatten="true">
-            <fileset dir="${FALCONJX_HOME}/../externs">
+            <fileset dir="${FLEXJS_TYPEDEFS_HOME}">
                 <include name="**/*.swc"/>
             </fileset>
         </copy>
@@ -564,6 +594,8 @@
                 <include name="LICENSE.bin"/>
                 <include name="LICENSE.base"/>
                 <include name="NOTICE"/>
+                <include name="pom.xml"/>
+                <include name="settings-template.xml"/>
             </fileset>
         </copy>
          
@@ -617,6 +649,7 @@
                 <exclude name="**/VanillaSDK_POC/**" />
                 <exclude name="**/*.swc"/>
                 <exclude name="**/*.swf"/>
+                <exclude name="**/.plxarc"/>
             </fileset>
         </copy>
         
@@ -676,9 +709,10 @@
                 <exclude name="projects/air/**"/>
                 <exclude name="projects/spark/manifest.xml"/>
                 <exclude name="projects/*/bundles.properties"/>
-                <exclude name="projects/*/.settings/**"/>
-                <exclude name="projects/**/*.actionScriptProperties"/>
-                <exclude name="projects/**/*.flexLibProperties"/>
+                <exclude name="**/.settings/**"/>
+                <exclude name="**/*.actionScriptProperties"/>
+                <exclude name="**/*.flexLibProperties"/>
+                <exclude name="**/.plxarc"/>
                 <exclude name="projects/**/*.DS_Store"/>
             </fileset>
         </copy>
@@ -754,16 +788,17 @@
         </concat>
         
         <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks/libs">
-            <fileset dir="${basedir}/frameworks/libs">
-                <include name="**.swc"/>
+        <copy todir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/frameworks">
+                <include name="**/*.swc"/>
             </fileset>
         </copy>
 
         <!-- copy all js again to pick up cross-compiled files -->
-        <copy todir="${basedir}/temp/frameworks/projects">
-            <fileset dir="${basedir}/frameworks/projects">
+        <copy todir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/frameworks">
                 <include name="**/**.js"/>
+                <exclude name="js/VanillaSDK/**" />
             </fileset>
         </copy>
 
@@ -1440,6 +1475,7 @@
                 <!--          JSHint properties file           -->
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
             </fileset>
         </rat:report>
     </target>
@@ -1606,6 +1642,7 @@
         <antcall target="warn-before-clone" />
         <antcall target="clone-flex-asjs" />
         <antcall target="clone-flex-falcon" />
+        <antcall target="clone-flex-typedefs" />
         <antcall target="clone-flex-flexunit" />
         <antcall target="clone-flex-sdk" />
         <antcall target="clone-flex-tlf" />
@@ -1653,6 +1690,25 @@
             <arg value="flex-falcon" />
         </exec>
         <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-falcon">
+            <arg value="checkout" />
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <target name="check-flex-typedefs">
+        <available file="${base.folder.name}/flex-typedefs"
+        type="dir"
+        property="flex-typedefs-exists"/>
+    </target>
+
+    <target name="clone-flex-typedefs" depends="check-flex-typedefs" unless="flex-typedefs-exists">
+        <echo>cloning flex-typedefs repo into ${base.folder.name}/flex-typedefs</echo>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}">
+            <arg value="clone" />
+            <arg value="https://git-wip-us.apache.org/repos/asf/flex-typedefs.git" />
+            <arg value="flex-typedefs" />
+        </exec>
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
@@ -1752,6 +1808,7 @@
         <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
         <ant dir="${base.folder.name}/flex-falcon" target="all" />
+        <ant dir="${base.folder.name}/flex-typedefs" />
         <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     

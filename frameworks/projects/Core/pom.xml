@@ -19,87 +19,48 @@
 -->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
-        <artifactId>projects</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>Core</artifactId>
+  <parent>
+    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <artifactId>projects</artifactId>
     <version>0.7.0-SNAPSHOT</version>
-    <packaging>swc</packaging>
+  </parent>
 
-    <build>
-        <sourceDirectory>src/main/flex</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.flex.flexjs.compiler</groupId>
-                <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.7.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <namespaces>
-                        <namespace>
-                            <uri>library://ns.apache.org/flexjs/basic</uri>
-                            <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
-                        </namespace>
-                    </namespaces>
-                    <includeClasses>
-                        <includeClass>CoreClasses</includeClass>
-                    </includeClasses>
-                    <includeFiles>
-                        <include-file>
-                            <name>js/out/*</name>
-                            <path>generated-sources/flexjs/*</path>
-                        </include-file>
-                    </includeFiles>
-                    <skipExtern>false</skipExtern>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.flex.flexjs.compiler</groupId>
-                        <artifactId>compiler-jx</artifactId>
-                        <version>0.7.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
+  <artifactId>Core</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swc</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.adobe.air.framework</groupId>
-            <artifactId>airglobal</artifactId>
-            <version>${air.version}</version>
-            <type>swc</type>
-            <scope>provided</scope>
-        </dependency>
+  <name>Apache Flex - FlexJS: Framework: Libs: Core</name>
 
-        <dependency>
-            <groupId>org.apache.flex.flexjs.externs</groupId>
-            <artifactId>flexjs-externs-js</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <classifier>extern</classifier>
-            <scope>external</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.externs</groupId>
-            <artifactId>flexjs-externs-gcl</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <classifier>extern</classifier>
-            <scope>external</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.externs</groupId>
-            <artifactId>flexjs-externs-gcl</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <classifier>extern</classifier>
-        </dependency>
-    </dependencies>
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <version>0.7.0-SNAPSHOT</version>
+        <extensions>true</extensions>
+        <configuration>
+          <namespaces>
+            <namespace>
+              <uri>library://ns.apache.org/flexjs/basic</uri>
+              <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <includeClasses>
+            <includeClass>CoreClasses</includeClass>
+          </includeClasses>
+          <includeFiles>
+            <include-file>
+              <name>js/out/*</name>
+              <path>generated-sources/flexjs/*</path>
+            </include-file>
+          </includeFiles>
+          <skipExtern>false</skipExtern>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

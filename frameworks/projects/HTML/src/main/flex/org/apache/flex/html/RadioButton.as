@@ -35,7 +35,7 @@ package org.apache.flex.html
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.accessories.RadioButtonIcon;
+        import org.apache.flex.html.supportClasses.RadioButtonIcon;
     }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
@@ -226,7 +226,6 @@ package org.apache.flex.html
     {
         public static var radioCounter:int = 0;
 
-        private var input:HTMLInputElement;
         private var labelFor:HTMLLabelElement;
         private var textNode:Text;
         private var icon:RadioButtonIcon;
@@ -242,7 +241,6 @@ package org.apache.flex.html
             icon = new RadioButtonIcon()
             icon.id = '_radio_' + RadioButton.radioCounter++;
 
-
             textNode = document.createTextNode('radio button') as Text;
 
             labelFor = document.createElement('label') as HTMLLabelElement;
@@ -256,6 +254,7 @@ package org.apache.flex.html
 
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+			(icon.element as WrappedHTMLElement).flexjs_wrapper = this;
 
             className = 'RadioButton';
             typeNames = 'RadioButton, RadioButtonIcon';
@@ -300,11 +299,11 @@ package org.apache.flex.html
 
         public function get value():Object
         {
-            return input.value;
+            return (icon.element as HTMLInputElement).value;
         }
         public function set value(v:Object):void
         {
-            input.value = v as String;
+            (icon.element as HTMLInputElement).value = v as String;
         }
 
         public function get selectedValue():Object
@@ -314,7 +313,7 @@ package org.apache.flex.html
             var i:int;
             var n:int;
 
-            groupName = input.name as String;
+            groupName = (icon.element as HTMLInputElement).name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
 
@@ -336,7 +335,7 @@ package org.apache.flex.html
             var i:int;
             var n:int;
 
-            groupName = input.name as String;
+            groupName = (icon.element as HTMLInputElement).name as String;
             buttons = document.getElementsByName(groupName);
             n = buttons.length;
             for (i = 0; i < n; i++) {

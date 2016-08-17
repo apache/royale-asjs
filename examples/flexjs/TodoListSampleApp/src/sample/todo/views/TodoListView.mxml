@@ -19,69 +19,112 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
                 xmlns:js="library://ns.apache.org/flexjs/basic"
-                xmlns:svg="library://ns.apache.org/flexjs/svg">
+                xmlns:svg="library://ns.apache.org/flexjs/svg"
+				initComplete="setup()" 
+				xmlns:renderers="sample.todo.renderers.*">
 
     <fx:Script>
 		<![CDATA[
-        import sample.todo.events.TodoListEvent;
-
-        /**
-         * add to the list the text entered by the user, in the text box,
-         * as a new todo list item
-         */
-        public function logTodo():void {
-            var logEvent:TodoListEvent = new TodoListEvent(TodoListEvent.LOG_TODO);
-            logEvent.todo = todoInput.text;
-            dispatchEvent(logEvent);
-
-            //todoList.width = Math.random() * 200; // to show changes vía ENTER key
-        }
-
-        /**
-         * show all todos
-         */
-        private function showAll():void {
-        }
-
-        /**
-         * show active todos
-         */
-        private function showActive():void {
-        }
-
-        /**
-         * show completed todos
-         */
-        private function showCompleted():void {
-        }
+			import org.apache.flex.events.Event;
+			import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
+			
+			import sample.todo.events.TodoListEvent;
+			import sample.todo.models.TodoListModel;
+			import sample.todo.renderers.TodoItemRenderer;
+			
+			private function setup():void {
+				// Listening for events on the model will update the UI. Functions like
+				// showActive() change the model which results in this event being
+				// dispatched.
+				(applicationModel as TodoListModel).addEventListener("todoListChanged", updateStatus);
+				updateStatus(null);
+			}
+			
+			/**
+			 * add to the list the text entered by the user, in the text box,
+			 * as a new todo list item
+			 */
+			public function logTodo():void {
+				var logEvent:TodoListEvent = new TodoListEvent(TodoListEvent.LOG_TODO);
+				logEvent.todo = todoInput.text;
+				dispatchEvent(logEvent);
+				
+				todoInput.text = "";
+			}
+			
+			private function forwardEvent(event:TodoListEvent):void
+			{
+				var newEvent:TodoListEvent = new TodoListEvent(event.type);
+				newEvent.item = event.item;
+				dispatchEvent(newEvent);
+			}
+			
+			private function updateStatus(event:org.apache.flex.events.Event):void {
+				var numberLeft:Number = 0;
+				
+				var model: TodoListModel = applicationModel as TodoListModel;
+				var list: Array = model.todos;
+				for (var i:int=0; i < list.length; i++) {
+					var item:Object = list[i];
+					numberLeft += item.selected ? 0 : 1;
+				}
+				
+				statusLabel.text = numberLeft + " items left";
+			}
+			
+			/**
+			 * show all todos
+			 */
+			private function showAll():void {
+				(applicationModel as TodoListModel).showAllTodos();
+			}
+			
+			/**
+			 * show active todos
+			 */
+			private function showActive():void {
+				(applicationModel as TodoListModel).showActiveTodos();
+			}
+			
+			/**
+			 * show completed todos
+			 */
+			private function showCompleted():void {
+				(applicationModel as TodoListModel).showCompletedTodos();
+			}
         ]]>
 	</fx:Script>
+	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
 
     <js:Panel title="FlexJS TODO List" width="600">
         <js:beads>
             <js:VerticalLayout/>
         </js:beads>
 
-        <js:TextInput id="todoInput"
-                         width="300"
-                         change="logTodo()"/>
+		<js:HContainer width="100%">
+        	<js:TextInput id="todoInput"
+                         width="85%"/>
+            <js:TextButton text="Enter" click="logTodo()" width="15%" />
+        </js:HContainer>
 
         <js:List id="todoList"
                     itemRenderer="sample.todo.renderers.TodoItemRenderer"
-                    width="300" height="400">
-            <!-- dataProvider="{TodoListModel(applicationModel).todos}" -->
-            <js:beads>
-                <js:ConstantBinding sourceID="applicationModel"
-                                       sourcePropertyName="todos"
-                                       destinationPropertyName="dataProvider"/>
-            </js:beads>
+					dataProvider="{TodoListModel(applicationModel).todos}"
+                    width="100%" height="400">
+			<js:beads>
+				<renderers:TodoListItemRendererFactory itemChecked="forwardEvent(event)" 
+													   itemRemoveRequest="forwardEvent(event)" />
+			</js:beads>
         </js:List>
 
         <js:Container>
             <js:beads>
                 <js:HorizontalLayout/>
             </js:beads>
-            <js:Label id="statusLabel" text="N items left"/>
+            <js:Label id="statusLabel" text="N items left" width="295"/>
             <svg:TextButton text="All" width="100" height="30" click="showAll()" />
             <svg:TextButton text="Active" width="100" height="30" click="showActive()" />
             <svg:TextButton text="Completed" width="100" height="30" click="showCompleted()" />
@@ -101,7 +144,8 @@ limitations under the License.
         }
 
         renderers|TodoItemRenderer {
-            height: 40;
+			backgroundColor: #FFFFFF;
+            height: 40px;
             IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
         }
     </fx:Style>

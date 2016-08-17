@@ -20,45 +20,96 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.examples</groupId>
-        <artifactId>examples-flexjs</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
+  <!--
+        TODO:
+          Flash version:
+            Missing Resources
 
-    <artifactId>DataBindingExample_Flat</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+            When scrolling in the detail view I get the following error:
+              TypeError: Error #1034: Type Coercion failed: cannot convert flash.events::MouseEvent@6878a7ed8b1 to org.apache.flex.events.MouseEvent.
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.flex.flexjs.compiler</groupId>
-                <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.7.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <mainClass>DataBindingExample.mxml</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  -->
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Flat</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Network</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-    </dependencies>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-flexjs</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>DataBindingExample_Flat</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: FlexJS: DataBindingExample_Flat</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>DataBindingExample.mxml</mainClass>
+          <removeCirculars>true</removeCirculars>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <!--
+                Add the content of the 'Fonts' artifact inside a 'fonts' directory,
+                making the font definitions available to the JavaScript application.
+           -->
+          <overlays>
+            <overlay>
+              <id>add-font-resources</id>
+              <groupId>org.apache.flex.flexjs.framework</groupId>
+              <artifactId>Fonts</artifactId>
+              <targetPath>fonts</targetPath>
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Flat</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+
+    <!-- This dependency is needed by the war plugin to add the overlay -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Fonts</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>war</type>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 
 </project>

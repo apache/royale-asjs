@@ -20,7 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.graphics.GraphicsContainer;
+	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 	
@@ -33,7 +33,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class GraphicsItemRenderer extends GraphicsContainer implements ISelectableItemRenderer
+	public class GraphicsItemRenderer extends CompoundGraphic implements ISelectableItemRenderer
 	{
 		/**
 		 *  Constructor.

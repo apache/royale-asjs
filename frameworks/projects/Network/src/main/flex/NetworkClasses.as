@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package
-{
+{   
 
 /**
  *  @private
@@ -27,6 +27,8 @@ package
  */
 internal class NetworkClasses
 {	
+    import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
+	import org.apache.flex.net.HTTPConstants; HTTPConstants;
 }
 
 }

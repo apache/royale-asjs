@@ -34,7 +34,7 @@ package org.apache.flex.html
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.accessories.CheckBoxIcon;
+		import org.apache.flex.html.supportClasses.CheckBoxIcon;
     }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
@@ -155,6 +155,7 @@ package org.apache.flex.html
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
+			_icon.element.flexjs_wrapper = this;
 
             className = 'CheckBox';
             typeNames = 'CheckBox, CheckBoxIcon';

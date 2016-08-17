@@ -350,6 +350,7 @@
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -393,6 +394,7 @@
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
                 <!--          Google Closure Library     -->
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->

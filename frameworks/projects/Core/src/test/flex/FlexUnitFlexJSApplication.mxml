@@ -24,8 +24,8 @@ limitations under the License.
                    >
     <fx:Script>
         <![CDATA[
-            import flexUnitTests.StrandTesterTest;
-            import flexUnitTests.StrandTester;
+
+			import flexUnitTests.CoreTester;
             
             import org.flexunit.listeners.CIListener;
             import org.flexunit.runner.FlexUnitCore;
@@ -34,7 +34,8 @@ limitations under the License.
             {
                 var core : FlexUnitCore = new FlexUnitCore();
                 core.addListener(new CIListener());
-                core.run(StrandTester);
+                core.run(CoreTester);
+
             }
             
         ]]>

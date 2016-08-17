@@ -25,7 +25,7 @@ package org.apache.flex.html
 	import org.apache.flex.events.IEventDispatcher;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	/*
@@ -38,18 +38,18 @@ package org.apache.flex.html
 
     /**
      *  The Label class implements the basic control for labeling
-     *  other controls.  
-     *  
+     *  other controls.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
     public class Label extends UIBase
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -59,11 +59,11 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
+
         [Bindable("textChange")]
         /**
          *  The text to display in the label.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -72,7 +72,7 @@ package org.apache.flex.html
 		public function get text():String
 		{
             COMPILE::SWF
-            {                    
+            {
                 return ITextModel(model).text;
             }
             COMPILE::JS
@@ -88,20 +88,20 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                ITextModel(model).text = value;                    
+                ITextModel(model).text = value;
             }
             COMPILE::JS
             {
                 this.element.innerHTML = value;
-                this.dispatchEvent('textChange');                
+                this.dispatchEvent('textChange');
             }
 
 		}
-		
+
         [Bindable("htmlChange")]
         /**
          *  The html-formatted text to display in the label.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -111,7 +111,7 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).html;                    
+                return ITextModel(model).html;
             }
             COMPILE::JS
             {
@@ -126,16 +126,38 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                ITextModel(model).html = value;                    
+                ITextModel(model).html = value;
             }
             COMPILE::JS
             {
                 this.element.innerHTML = value;
-                this.dispatchEvent('textChange');                
+                this.dispatchEvent('textChange');
             }
 		}
+        private var _selectable:Boolean;
 
-        
+        public function get selectable():Boolean
+        {
+            return _selectable;
+        }
+        public function set selectable(value:Boolean):void
+        {
+            if(value != _selectable)
+            {
+                _selectable = value;
+                COMPILE::JS
+                {
+                    if(element)
+                    {
+                        element.style.cursor = _selectable ? "auto" : "default";
+                        element.style.pointerEvents = _selectable ? "auto" : "none";
+                    }
+                }
+            }
+
+        }
+
+
         /**
          *  @private
          */
@@ -146,7 +168,7 @@ package org.apache.flex.html
             model.addEventListener("textChange", repeaterListener);
             model.addEventListener("htmlChange", repeaterListener);
         }
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -157,8 +179,16 @@ package org.apache.flex.html
             positioner = element;
             element.flexjs_wrapper = this;
             element.style.whiteSpace = "nowrap";
+            if(!selectable)
+            {
+                element.style.cursor = "default";
+                element.style.pointerEvents = "none";
+            }
+
+            className = "Label";
+            typeNames = "Label";
             return element;
-        }        
+        }
 
 	}
 }

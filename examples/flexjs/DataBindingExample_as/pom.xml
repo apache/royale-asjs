@@ -20,49 +20,83 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.examples</groupId>
-        <artifactId>examples-flexjs</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
+  <!--
+        TODO:
+        Flash version:
+          TypeError: Error #1007: Instantiation attempted on a non-constructor.
+          	at org.apache.flex.core::UIBase/get model()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/UIBase.as:815]
+          	at org.apache.flex.html::Label/set text()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/HTML/src/main/flex/org/apache/flex/html/Label.as:91]
+          	at MyInitialView/get MXMLDescriptor()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/flexjs/DataBindingExample_as/src/MyInitialView.as:143]
+          	at org.apache.flex.core::ContainerBase/addedToParent()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/ContainerBase.as:207]
+          	at org.apache.flex.core::Application/addElement()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:424]
+          	at org.apache.flex.core::Application/initialize()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:183]
+          	at org.apache.flex.core::Application/initHandler()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:147]
 
-    <artifactId>DataBindingExample_as</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+        JS Version:
+          - Checkbox binding doesn't seem to work. Details field is always visible
+  -->
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.flex.flexjs.compiler</groupId>
-                <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.7.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <mainClass>DataBindingExample.as</mainClass>
-                    <defines>
-                        <define>
-                            <name>CONFIG::as_only</name>
-                            <value>true</value>
-                        </define>
-                        <define>
-                            <name>CONFIG::js_only</name>
-                            <value>false</value>
-                        </define>
-                    </defines>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-flexjs</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Network</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-        </dependency>
-    </dependencies>
+  <artifactId>DataBindingExample_as</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: FlexJS: DataBindingExample_as</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>DataBindingExample.as</mainClass>
+          <removeCirculars>true</removeCirculars>
+          <defines>
+            <define>
+              <name>CONFIG::as_only</name>
+              <value>false</value>
+            </define>
+            <define>
+              <name>CONFIG::js_only</name>
+              <value>false</value>
+            </define>
+          </defines>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
 
 </project>

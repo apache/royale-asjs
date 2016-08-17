@@ -23,9 +23,9 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.Rect;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.svg.Rect;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 	import org.apache.flex.events.Event;
 	
 	/**

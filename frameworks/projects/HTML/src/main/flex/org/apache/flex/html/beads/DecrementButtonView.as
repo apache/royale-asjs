@@ -22,10 +22,10 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.core.graphics.Rect;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.svg.Path;
+	import org.apache.flex.svg.Rect;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.graphics.SolidColorStroke;
 	import org.apache.flex.events.Event;
 
 	public class DecrementButtonView extends BeadViewBase implements IBeadView
@@ -88,7 +88,7 @@ package org.apache.flex.html.beads
 			_arrow.setWidthAndHeight(xm, ym, true);
 			_arrow.y = 2;
 			_arrow.x = 0;
-			_arrow.drawPath(0, 0, "M "+String(xm)+" "+String(ym)+" L "+String(xm-8)+" 2 "+String(xm+8)+" 2 "+String(xm)+" "+String(ym)+" Z");
+			_arrow.drawStringPath(0, 0, "M "+xm+" "+ym+" L "+(xm-8)+" 2 "+(xm+8)+" 2 "+xm+" "+ym+" Z");
 		}
 	}
 }

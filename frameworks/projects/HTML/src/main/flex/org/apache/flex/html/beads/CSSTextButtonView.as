@@ -212,7 +212,10 @@ package org.apache.flex.html.beads
             if (backgroundColor != null)
             {
                 bgColor = CSSUtils.toColorWithAlpha(backgroundColor);
-                if (bgColor & 0xFF000000)
+				if (bgColor == uint.MAX_VALUE) {
+					bgAlpha = 0
+				}
+				else if (bgColor & 0xFF000000)
                 {
                     bgAlpha = bgColor >>> 24 / 255;
                     bgColor = bgColor & 0xFFFFFF;

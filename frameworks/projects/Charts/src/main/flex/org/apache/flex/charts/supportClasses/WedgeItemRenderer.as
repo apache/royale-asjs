@@ -19,9 +19,12 @@
 package org.apache.flex.charts.supportClasses
 {	
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.svg.Path;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.svg.LinearGradient;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -34,9 +37,27 @@ package org.apache.flex.charts.supportClasses
 	 */
 	public class WedgeItemRenderer extends DataItemRenderer implements IWedgeItemRenderer
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function WedgeItemRenderer()
 		{
 			super();
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+		}
+		
+		override public function addBead(bead:IBead):void
+		{
+			super.addBead(bead);
 		}
 		
 		private var _series:IChartSeries;
@@ -57,6 +78,60 @@ package org.apache.flex.charts.supportClasses
 		public function set series(value:IChartSeries):void
 		{
 			_series = value;
+		}
+		
+		private var filledPath:Path;
+		
+		private var _fill:IFill;
+		
+		/**
+		 *  The color used to fill the interior of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get fill():IFill
+		{
+			return _fill;
+		}
+		public function set fill(value:IFill):void
+		{
+			_fill = value;
+		}
+		
+		private var _stroke:IStroke;
+		
+		/**
+		 *  The outline of the box.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get stroke():IStroke
+		{
+			return _stroke;
+		}
+		public function set stroke(value:IStroke):void
+		{
+			_stroke = value;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function set data(value:Object):void
+		{
+			super.data = value;	
+			drawWedgeInternal();
 		}
 		
 		private var _centerX:Number;
@@ -159,44 +234,6 @@ package org.apache.flex.charts.supportClasses
 			drawWedgeInternal();
 		}
 		
-		private var _fill:IFill;
-		
-		/**
-		 *  The color used to fill the interior of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get fill():IFill
-		{
-			return _fill;
-		}
-		public function set fill(value:IFill):void
-		{
-			_fill = value;
-		}
-		
-		private var _stroke:IStroke;
-		
-		/**
-		 *  The outline of the box.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get stroke():IStroke
-		{
-			return _stroke;
-		}
-		public function set stroke(value:IStroke):void
-		{
-			_stroke = value;
-		}
-		
 		/**
 		 * @private
 		 */
@@ -206,7 +243,7 @@ package org.apache.flex.charts.supportClasses
 				drawWedge(centerX, centerY, startAngle, arc, radius, radius, false);
 			}
 		}
-		
+				
 		/**
 		 * @private
 		 * 
@@ -226,6 +263,13 @@ package org.apache.flex.charts.supportClasses
 								  radius:Number, yRadius:Number = NaN,
 								  continueFlag:Boolean = false):void
 		{			
+			var needsAdd:Boolean = false;
+			
+			if (filledPath == null) {
+				filledPath = new Path();
+				needsAdd = true;
+			}
+			
 			var x1:Number = x + radius * Math.cos(startAngle);
 			var y1:Number = y + radius * Math.sin(startAngle);
 			var x2:Number = x + radius * Math.cos(startAngle + arc);
@@ -234,13 +278,46 @@ package org.apache.flex.charts.supportClasses
 			var pathString:String = 'M' + x + ' ' + y + ' L' + x1 + ' ' + y1 + ' A' + radius + ' ' + radius +
 				' 0 0 1 ' + x2 + ' ' + y2 + ' z';
 			
-			var path:Path = new Path();
-			path.fill = fill;
-			path.stroke = stroke;
-			path.x = 0;
-			path.y = 0;
-			path.data = pathString;
-			addElement(path);
+			filledPath.fill = fill;
+			filledPath.stroke = stroke;
+			filledPath.x = 0;
+			filledPath.y = 0;
+			filledPath.data = pathString;
+			
+			if (needsAdd) {	
+				addElement(filledPath);
+			}
+		}
+		
+		private var hoverFill:IFill;
+		
+		override public function updateRenderer():void
+		{						
+			if (down||selected||hovered) {
+				if (hoverFill == null) {
+					if(fill is SolidColor)
+					{
+						hoverFill = new SolidColor();
+						(hoverFill as SolidColor).color = (fill as SolidColor).color;
+						(hoverFill as SolidColor).alpha = 0.65;
+					}
+					else if(fill is LinearGradient)
+					{
+						hoverFill = new LinearGradient();
+						(hoverFill as LinearGradient).entries = (fill as LinearGradient).entries;
+						for (var i:int=0; i<(hoverFill as LinearGradient).entries; i++)
+						{
+							(hoverFill as LinearGradient).entries[i].alpha = 0.65;
+						}
+					}
+				}
+				filledPath.fill = hoverFill;
+			}
+			else {
+				filledPath.fill = fill;
+			}
+			
+			filledPath.drawStringPath(0, 0, filledPath.data);
 		}
 		
 		/*

@@ -19,90 +19,77 @@
 -->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.framework</groupId>
-        <artifactId>projects</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
-    <artifactId>GoogleMaps</artifactId>
+  <parent>
+    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <artifactId>projects</artifactId>
     <version>0.7.0-SNAPSHOT</version>
-    <packaging>swc</packaging>
+  </parent>
 
-    <build>
-        <sourceDirectory>src/main/flex</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.flex.flexjs.compiler</groupId>
-                <artifactId>flexjs-maven-plugin</artifactId>
-                <version>0.7.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <namespaces>
-                        <namespace>
-                            <uri>library://ns.apache.org/flexjs/google</uri>
-                            <manifest>${project.basedir}/src/main/resources/google-manifest.xml</manifest>
-                        </namespace>
-                    </namespaces>
-                    <includeClasses>
-                        <includeClass>GoogleStubClasses</includeClass>
-                        <includeClass>GoogleMapsClasses</includeClass>
-                    </includeClasses>
-                    <includeFiles>
-                        <include-file>
-                            <name>defaults.css</name>
-                            <path>../src/main/resources/defaults.css</path>
-                        </include-file>
-                        <include-file>
-                            <name>js/out/*</name>
-                            <path>generated-sources/flexjs/*</path>
-                        </include-file>
-                    </includeFiles>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.flex.flexjs.compiler</groupId>
-                        <artifactId>compiler-jx</artifactId>
-                        <version>0.7.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
+  <artifactId>GoogleMaps</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swc</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.adobe.air.framework</groupId>
-            <artifactId>airglobal</artifactId>
-            <version>${air.version}</version>
-            <type>swc</type>
-            <scope>provided</scope>
-        </dependency>
+  <name>Apache Flex - FlexJS: Framework: Libs: GoogleMaps</name>
 
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Core</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <scope>external</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.framework</groupId>
-            <artifactId>Core</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <classifier>extern</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flex.flexjs.externs</groupId>
-            <artifactId>flexjs-externs-goolemaps</artifactId>
-            <version>0.7.0-SNAPSHOT</version>
-            <type>swc</type>
-            <classifier>extern</classifier>
-        </dependency>
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <version>0.7.0-SNAPSHOT</version>
+        <extensions>true</extensions>
+        <configuration>
+          <namespaces>
+            <namespace>
+              <uri>library://ns.apache.org/flexjs/google</uri>
+              <manifest>${project.basedir}/src/main/resources/google-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <includeClasses>
+            <includeClass>GoogleStubClasses</includeClass>
+            <includeClass>GoogleMapsClasses</includeClass>
+          </includeClasses>
+          <includeFiles>
+            <include-file>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
+            </include-file>
+            <include-file>
+              <name>js/out/*</name>
+              <path>generated-sources/flexjs/*</path>
+            </include-file>
+          </includeFiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-goolemaps</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 
 </project>

@@ -38,6 +38,10 @@ package org.apache.flex.utils
 			throw new Error("CSSUtils should not be instantiated.");
 		}
 		
+        public static function attributeFromColor(value:uint):String
+        {
+            return "#" + StringPadder.pad(value.toString(16),"0",6);
+        }
         /**
          *  Converts a String to number.
          *
@@ -86,7 +90,7 @@ package org.apache.flex.utils
          *
          *  @param value The value. 
          *
-         *  @return uint of the color. 
+         *  @return uint of the color. If value is "transparent" then uint.MAX_VALUE is returned.
          *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -103,6 +107,10 @@ package org.apache.flex.utils
             var c2:int;
             
             var stringValue:String = value as String;
+			if (stringValue == "transparent")
+			{
+				return uint.MAX_VALUE;
+			}
             if (stringValue.charAt(0) == '#')
             {
                 if (stringValue.length == 4)
@@ -138,11 +146,11 @@ package org.apache.flex.utils
                 return colorMap[stringValue];
             return uint(stringValue);
         }
-        
+
         /**
-         *  Computes paddingLeft or marginLeft.
+         *  Computes paddingTop or marginTop.
          *
-         *  @param value The value of padding-left or margin-left. 
+         *  @param value The value of padding-top or margin-top. 
          *  @param values The value of padding or margin. 
          *  @param reference A Number that will be used to convert percentages. 
          *
@@ -154,30 +162,9 @@ package org.apache.flex.utils
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion String
          */
-        public static function getLeftValue(value:Object, values:Object, reference:Number = NaN):Number
+        public static function getTopValue(value:Object, values:Object, reference:Number = NaN):Number
         {
-            if (value is Number)
-                return value as Number;
-
-            if (values is Number)
-                return values as Number;
-            
-            if (value != null)
-                return toNumber(value as String, reference);
-            if (values == null)
-                return 0;
-            if (values is Array)
-            {
-                var arr:Array = values as Array;
-                var n:int = arr.length;
-                // shouldn't be n == 1. values would not be an array
-                var index:int = n < 3 ? 1 : 3;
-                value = arr[index];
-                if (value is String)
-                  return toNumber(value as String, reference);
-                return value as Number;
-            }
-            return toNumber(values as String, reference);
+            return getSideValue(value, values, 0, reference);
         }
         
         /**
@@ -197,63 +184,7 @@ package org.apache.flex.utils
          */
         public static function getRightValue(value:Object, values:Object, reference:Number = NaN):Number
         {
-            if (value is Number)
-                return value as Number;
-
-            if (values is Number)
-                return values as Number;
-            
-            if (value != null)
-                return toNumber(value as String, reference);
-            if (values == null)
-                return 0;
-            if (values is Array)
-            {
-                var arr:Array = values as Array;
-                value = arr[1];
-                if (value is String)
-                    return toNumber(value as String, reference);
-                return value as Number;
-            }
-            return toNumber(values as String, reference);
-        }
-        
-        /**
-         *  Computes paddingTop or marginTop.
-         *
-         *  @param value The value of padding-top or margin-top. 
-         *  @param values The value of padding or margin. 
-         *  @param reference A Number that will be used to convert percentages. 
-         *
-         *  @return Number. 
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion String
-         */
-        public static function getTopValue(value:Object, values:Object, reference:Number = NaN):Number
-        {
-            if (value is Number)
-                return value as Number;
-            
-            if (values is Number)
-                return values as Number;
-            
-            if (value != null)
-                return toNumber(value as String, reference);
-            if (values == null)
-                return 0;
-            if (values is Array)
-            {
-                var arr:Array = values as Array;
-                value = arr[0];
-                if (value is String)
-                    return toNumber(value as String, reference);
-                return value as Number;
-            }
-            return toNumber(values as String, reference);
+            return getSideValue(value, values, 1, reference);
         }
         
         /**
@@ -273,6 +204,47 @@ package org.apache.flex.utils
          */
         public static function getBottomValue(value:Object, values:Object, reference:Number = NaN):Number
         {
+            return getSideValue(value, values, 2, reference);
+        }
+
+        /**
+         *  Computes paddingLeft or marginLeft.
+         *
+         *  @param value The value of padding-left or margin-left. 
+         *  @param values The value of padding or margin. 
+         *  @param reference A Number that will be used to convert percentages. 
+         *
+         *  @return Number. 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
+         */
+        public static function getLeftValue(value:Object, values:Object, reference:Number = NaN):Number
+        {
+            return getSideValue(value, values, 3, reference);
+        }
+
+        /**
+         *  Computes padding or margin.
+         *
+         *  @param value The value of padding or margin.
+         *  @param values The value of padding or margin. 
+         *  @param side Which side we want to get. 0 = top, 1 = right, 2 = bottom, 3 = left
+         *  @param reference A Number that will be used to convert percentages. 
+         *
+         *  @return Number. 
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion String
+         */
+        public static function getSideValue(value:Object, values:Object, side:int, reference:Number = NaN):Number
+        {
             if (value is Number)
                 return value as Number;
             
@@ -285,17 +257,42 @@ package org.apache.flex.utils
                 return 0;
             if (values is Array)
             {
-                var arr:Array = values as Array;
-                var n:int = arr.length;
-                // shouldn't be n == 1. values would not be an array
-                var index:int = n == 2 ? 0 : 2;
-                value = arr[index];
+                value = getArrayValue(values as Array,side);
                 if (value is String)
                     return toNumber(value as String, reference);
                 return value as Number;
             }
             return toNumber(values as String, reference);
         }
+
+        /**
+         *  @private
+         *  
+         *  side should be an int 0 = top, 1 = right, 2 = bottom, 3 = left
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        private static function getArrayValue(arr:Array,side:int):Object
+        {
+            var n:int = arr.length;
+            switch (side)
+            {
+                case 2:
+                    side = n == 2 ? 0 : 2;
+                    break;
+                case 3:
+                    side = n < 3 ? 1 : 3;
+                    break;
+                default:
+                    //do nothing for 0 and 1
+                    break;
+            }
+            return arr[side];
+        }
+
         
         /**
          *  The map of color names to uints.

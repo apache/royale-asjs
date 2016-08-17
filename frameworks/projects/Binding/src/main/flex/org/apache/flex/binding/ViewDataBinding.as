@@ -264,7 +264,10 @@ package org.apache.flex.binding
             var n:int = bindingData.length;
             var index:int = 0;
             var watcherData:Object;
-            while (index < n)
+            // FalconJX adds an extra null to the data so make sure
+            // we have enough data for a complete watcher otherwise
+            // say we are done
+            while (index < n - 2)
             {
                 var watcherIndex:int = bindingData[index++];
                 var type:int = bindingData[index++];
@@ -328,7 +331,21 @@ package org.apache.flex.binding
                 if (_strand[p] != null)
                 {
                     var destination:IStrand = _strand[p] as IStrand;
-                    destination.addBead(deferredBindings[p]);
+					if (destination)
+	                    destination.addBead(deferredBindings[p]);
+					else
+					{
+						var destObject:Object = _strand[p];
+						if (destObject)
+						{
+							deferredBindings[p].destination = destObject;
+							_strand.addBead(deferredBindings[p]);
+						}
+						else
+						{
+							trace("unexpected condition in deferredBindingsHandler");
+						}
+					}
                     delete deferredBindings[p];
                 }
             }

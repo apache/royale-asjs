@@ -25,7 +25,6 @@ package org.apache.flex.net
         import flash.net.URLLoader;
         import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
-        import flash.net.URLRequestMethod;            
     }
 	COMPILE::JS
     {
@@ -35,7 +34,6 @@ package org.apache.flex.net
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.utils.BinaryData;
 	
     //--------------------------------------
@@ -101,55 +99,6 @@ package org.apache.flex.net
      */
 	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
-        /**
-         *  The GET request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_GET:String = "GET";
-
-        /**
-         *  The POST request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_POST:String = "POST";
-
-        /**
-         *  The PUT request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const HTTP_METHOD_PUT:String = "PUT";
-
-        /**
-         *  The DELETE request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const HTTP_METHOD_DELETE:String = "DELETE";
-		
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
 		public function BinaryUploader()
 		{
 			super();
@@ -246,7 +195,7 @@ package org.apache.flex.net
 			}
 		}
 		
-		private var _method:String = HTTP_METHOD_POST;
+		private var _method:String = HTTPConstants.POST;
 
         /**
          *  The HTTP method for the upload.
@@ -538,7 +487,7 @@ package org.apache.flex.net
 		}
 
         COMPILE::SWF
-        private var urlLoader:URLLoader;
+        private var urlLoader:flash.net.URLLoader;
         
         /**
          *  Starts the upload to the server.  Events
@@ -554,8 +503,8 @@ package org.apache.flex.net
             COMPILE::SWF
             {
                 if (!urlLoader)
-                    urlLoader = new URLLoader();
-                var request:URLRequest = new URLRequest(url);
+                    urlLoader = new flash.net.URLLoader();
+                var request:flash.net.URLRequest = new flash.net.URLRequest(url);
                 request.method = method;
                 if ("idleTimeout" in request)
                 {
@@ -572,14 +521,14 @@ package org.apache.flex.net
                             sawContentType = true;
                     }
                 }
-                if (method != HTTP_METHOD_GET && !sawContentType)
+                if (method != HTTPConstants.GET && !sawContentType)
                 {
                     urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                     request.requestHeaders.push(urlHeader);
                 }
                 if (binaryData)
                 {
-                    if (method == HTTP_METHOD_GET)
+                    if (method == HTTPConstants.GET)
                     {
                         if (url.indexOf("?") != -1)
                             url += binaryData.data.toString();
@@ -606,7 +555,7 @@ package org.apache.flex.net
                 
                 var binaryData:String = null;
                 if (_binaryData != null) {
-                    if (_method === HTTP_METHOD_GET) {
+                    if (_method === HTTPConstants.GET) {
                         if (url.indexOf('?') !== -1) {
                             url += _binaryData.data;
                         } else {
@@ -633,7 +582,7 @@ package org.apache.flex.net
                     }
                 }
                 
-                if (_method !== HTTP_METHOD_GET &&
+                if (_method !== HTTPConstants.GET &&
                     !sawContentType && binaryData) {
                     element.setRequestHeader(
                         HTTPHeader.CONTENT_TYPE, _contentType);

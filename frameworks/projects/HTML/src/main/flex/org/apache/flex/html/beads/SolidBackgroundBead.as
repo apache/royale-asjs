@@ -79,7 +79,11 @@ package org.apache.flex.html.beads
 			IEventDispatcher(host).addEventListener("initComplete", changeHandler);
 			
 			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
-			if( bgColor != null ) {
+			if ((bgColor is String) && (bgColor == "transparent")) {
+				bgColor = null;
+				opacity = 0;
+			}
+			else if( bgColor != null ) {
 				backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
 			}
 			

@@ -47,8 +47,8 @@ package org.apache.flex.events
 		//   Static Property
 		//--------------------------------------
 
-		static public const CHANGE:String = "change";
-
+		public static const CHANGE:String = "change";
+		public static const COMPLETE:String = "complete";
 		//--------------------------------------
 		//   Constructor
 		//--------------------------------------
@@ -104,6 +104,7 @@ package org.apache.flex.events
     public class Event extends goog.events.Event {
 
 		public static const CHANGE:String = "change";
+		public static const COMPLETE:String = "complete";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);

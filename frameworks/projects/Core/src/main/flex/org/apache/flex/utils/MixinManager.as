@@ -89,14 +89,18 @@ public class MixinManager implements IBead
             var app:IFlexInfo = value as IFlexInfo;
             if (app) 
             {
-                var mixins:Array = app.info()['mixins'] as Array;
-                if (mixins) {
-                    var n:int = mixins.length;
-                    for (var i:int = 0; i < n; i++) 
-                    {
-                        mixins[i].init(value);
+				var info:Object = app.info();
+				if (info)
+				{
+                    var mixins:Array = info['mixins'] as Array;
+                    if (mixins) {
+                        var n:int = mixins.length;
+                        for (var i:int = 0; i < n; i++) 
+                        {
+                            mixins[i].init(value);
+                        }
                     }
-                }
+				}
             }
         }
     }    

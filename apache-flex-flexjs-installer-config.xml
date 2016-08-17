@@ -201,7 +201,7 @@
 		</el_GR>
 		<en_US>
 			<label>Adobe AIR SDK (Required)</label>
-			<message>The Adobe SDK license agreement applies to the Adobe AIR SDK.  Do you want to install the Adobe AIR SDK?</message>
+			<message>Terms and Conditions: By clicking the “Install” button, you acknowledge that you have read and agree to the Adobe AIR SDK  License Agreement.</message>
 			<license>Adobe AIR SDK License</license>
 			<licenseURL>http://www.adobe.com/products/air/sdk-eula.html</licenseURL>
 		</en_US>
@@ -219,24 +219,24 @@
 	<component id="STEP_REQUIRED_INSTALL_FLASH_PLAYER_GLOBAL_SWC" required="true" property="do.flash.install">
 		<el_GR>
 			<label>Adobe Flash Player playerglobal.swc (Απαιτούμενο)</label>
-			<message>Για το Adobe Flash Player playerglobal.swc ισχύει η συμφωνία χρήσης του Adobe SDK License. Θέλετε να εγκαταστήσετε το Adobe Flash Player playerglobal.swc;</message>
-			<license>'Αδεια χρήσης Adobe Flex SDK</license>
+			<message>Για το Adobe Flash Player playerglobal.swc ισχύει η συμφωνία χρήσης του Adobe Flash Player License. Θέλετε να εγκαταστήσετε το Adobe Flash Player playerglobal.swc;</message>
+			<license>'Αδεια χρήσης Adobe Flash Player</license>
 		</el_GR>
 		<en_US>
 			<label>Adobe Flash Player playerglobal.swc (Required)</label>
-			<message>The Adobe SDK license agreement applies to the Adobe Flash Player playerglobal.swc.  Do you want to install the Adobe Flash Player playerglobal.swc?</message>
-			<license>Adobe Flex SDK License</license>
-			<licenseURL>http://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf</licenseURL>
+			<message>Terms and Conditions: By clicking the “Install” button, you acknowledge that you have read and agree to the Adobe Flash Player Agreement.</message>
+			<license>Adobe Flash Player License</license>
+			<licenseURL>http://wwwimages.adobe.com/content/dam/acom/en/legal/licenses-terms/pdf/Flash_Player_21_0.pdf#page=87</licenseURL>
 		</en_US>
 		<zh_CN>
 			<label>Adobe Flash Player playerglobal.swc (必须的)</label>
-			<message>Adobe SDK 许可协议适用于 Adobe Flash Player 的 playerglobal.swc 文件. 您想要安装 Adobe Flash Player 的 playerglobal.swc 文件吗?</message>
-			<license>Adobe Flex SDK 许可协议</license>
+			<message>Adobe Flash Player 许可协议适用于 Adobe Flash Player 的 playerglobal.swc 文件. 您想要安装 Adobe Flash Player 的 playerglobal.swc 文件吗?</message>
+			<license>Adobe Flash Player 许可协议</license>
 		</zh_CN>
 		<zh_TW>
 			<label>Adobe Flash Player playerglobal.swc (必須的)</label>
-			<message>Adobe SDK 授權合約適用於 Adobe Flash Player 的 playerglobal.swc 檔案. 您想要安裝 Adobe Flash Player 的 playerglobal.swc 檔案嗎?</message>
-			<license>Adobe Flex SDK 授權合約</license>
+			<message>Adobe Flash Player 授權合約適用於 Adobe Flash Player 的 playerglobal.swc 檔案. 您想要安裝 Adobe Flash Player 的 playerglobal.swc 檔案嗎?</message>
+			<license>Adobe Flash Player 授權合約</license>
 		</zh_TW>
 	</component>
     <component id="STEP_REQUIRED_INSTALL_FLAT_FONTS" required="false" property="do.flat.install">

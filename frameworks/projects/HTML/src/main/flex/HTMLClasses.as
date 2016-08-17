@@ -76,10 +76,10 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.SliderThumbView; SliderThumbView;
 	import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
+	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.SolidBackgroundBead; SolidBackgroundBead;
-	    import org.apache.flex.html.beads.SpinnerView; SpinnerView;
     	import org.apache.flex.html.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 		import org.apache.flex.html.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
     	import org.apache.flex.html.beads.TextAreaView; TextAreaView;
@@ -144,11 +144,15 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
+	import org.apache.flex.html.beads.DataItemRendererFactoryAndEventDispatcherForArrayData; DataItemRendererFactoryAndEventDispatcherForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
+	import org.apache.flex.html.supportClasses.DataGridButtonBarButtonItemRenderer; DataGridButtonBarButtonItemRenderer;
 
+	import org.apache.flex.html.DataGridButtonBarTextButton; DataGridButtonBarTextButton;
+	import org.apache.flex.html.DataGridButtonBar; DataGridButtonBar;
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
@@ -165,6 +169,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.controllers.RangeStepperMouseController; RangeStepperMouseController;
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
+	import org.apache.flex.html.supportClasses.DateHeaderButton; DateHeaderButton;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
 
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;

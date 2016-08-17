@@ -76,6 +76,7 @@
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
+        <antcall target="Language"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
@@ -83,11 +84,11 @@
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
-        <antcall target="CreateJS"/>
         <antcall target="DragDrop"/>
         <antcall target="Effects"/>
         <antcall target="Formatters"/>
         <antcall target="GoogleMaps"/>
+        <antcall target="CreateJS"/>
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
@@ -126,16 +127,17 @@
         <ant dir="${basedir}/projects/Charts" target="clean"/>
         <ant dir="${basedir}/projects/Collections" target="clean"/>
         <ant dir="${basedir}/projects/Core" target="clean"/>
-        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/DragDrop" target="clean"/>
         <ant dir="${basedir}/projects/Effects" target="clean"/>
         <ant dir="${basedir}/projects/Flat" target="clean"/>
         <ant dir="${basedir}/projects/Formatters" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
+        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/Graphics" target="clean"/>
         <ant dir="${basedir}/projects/HTML" target="clean"/>
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
+        <ant dir="${basedir}/projects/Language" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/MX" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
@@ -219,6 +221,10 @@
 
     <target name="JQuery" description="Clean build of JQuery.swc">
         <ant dir="${basedir}/projects/JQuery"/>
+    </target>
+
+    <target name="Language" description="Clean build of Language.swc">
+        <ant dir="${basedir}/projects/Language"/>
     </target>
 
     <target name="Mobile" description="Clean build of Mobile.swc">

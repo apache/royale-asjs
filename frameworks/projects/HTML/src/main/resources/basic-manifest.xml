@@ -37,9 +37,7 @@
     <component id="List" class="org.apache.flex.html.List"/>
     <component id="SimpleList" class="org.apache.flex.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>
-    <component id="CheckBoxIcon" class="org.apache.flex.html.accessories.CheckBoxIcon" />
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
-    <component id="RadioButtonIcon" class="org.apache.flex.html.accessories.RadioButtonIcon"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>
@@ -89,6 +87,8 @@
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataProviderChangeNotifier" class="org.apache.flex.html.beads.DataProviderChangeNotifier"/>
+    <component id="DataGridButtonBar" class="org.apache.flex.html.DataGridButtonBar"/>
+    <component id="DataGridButtonBarTextButton" class="org.apache.flex.html.DataGridButtonBarTextButton"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
 

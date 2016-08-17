@@ -20,20 +20,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.flexjs.examples</groupId>
-        <artifactId>examples</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
-    </parent>
-
+  <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
-    <artifactId>examples-native</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <artifactId>examples</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
 
-    <modules>
-    </modules>
+  <artifactId>examples-native</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: Native</name>
+
+  <modules>
+    <!-- Seems to be missing a module with the angular types -->
+    <module>AngularExample</module>
+    <!-- Also seems to be missing something -->
+    <module>ButtonExample</module>
+    <!-- Also seems to be missing something -->
+    <module>USStatesMap</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
 </project>

@@ -21,11 +21,11 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Rect;
-	import org.apache.flex.core.graphics.SolidColor;
-	import org.apache.flex.core.graphics.LinearGradient;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.svg.Rect;
+	import org.apache.flex.graphics.SolidColor;
+	import org.apache.flex.svg.LinearGradient;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -234,16 +234,14 @@ package org.apache.flex.charts.supportClasses
 		private var hoverFill:IFill;
 		
 		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			
+		{			
 			if (down||selected||hovered) {
 				if (hoverFill == null) {
 					if(fill is SolidColor)
 					{
 						hoverFill = new SolidColor();
 						(hoverFill as SolidColor).color = (fill as SolidColor).color;
-						(hoverFill as SolidColor).alpha = 0.5;
+						(hoverFill as SolidColor).alpha = 0.65;
 					}
 					else if(fill is LinearGradient)
 					{
@@ -251,7 +249,7 @@ package org.apache.flex.charts.supportClasses
 						(hoverFill as LinearGradient).entries = (fill as LinearGradient).entries;
 						for (var i:int=0; i<(hoverFill as LinearGradient).entries; i++)
 						{
-							(hoverFill as LinearGradient).entries[i].alpha = 0.5;
+							(hoverFill as LinearGradient).entries[i].alpha = 0.65;
 						}
 					}
 					

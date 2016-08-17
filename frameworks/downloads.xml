@@ -207,6 +207,8 @@
                 <exclude name="closure/goog/reflect/reflect.js"/>
                 <exclude name="closure/goog/string/string.js"/>
                 <exclude name="closure/goog/useragent/useragent.js"/>
+                <!-- needed for node.js support -->
+                <exclude name="closure/goog/bootstrap/nodejs.js"/>
             </fileset>
         </delete>
     </target>

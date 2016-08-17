@@ -21,9 +21,9 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IAxisGroup;
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.svg.Path;
 	import org.apache.flex.html.Label;
 	
 	/**
@@ -149,7 +149,7 @@ package org.apache.flex.charts.supportClasses
 			tickPath.height = this.height;
 			addElement(tickPath);
 			tickPath.stroke = tickStroke;
-			tickPath.drawPath( 0, 0, marks );
+			tickPath.drawStringPath( 0, 0, marks );
 		}
 		
 		/**
@@ -175,8 +175,8 @@ package org.apache.flex.charts.supportClasses
 			axisPath.height = this.height;
 			addElement(axisPath);
 			axisPath.stroke = lineStroke;
-			var pathLine:String = "M " + String(originX) + " " + String(originY) + " l "+String(width)+" "+String(height);
-			axisPath.drawPath(0, 0, pathLine);
+			var pathLine:String = "M " + originX + " " + originY + " l "+width+" "+height;
+			axisPath.drawStringPath(0, 0, pathLine);
 		}
 	}
 }

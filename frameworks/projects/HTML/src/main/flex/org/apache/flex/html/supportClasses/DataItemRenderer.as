@@ -27,6 +27,7 @@ package org.apache.flex.html.supportClasses
 		import org.apache.flex.core.WrappedHTMLElement;
 		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 	}
+	import org.apache.flex.core.ValuesManager;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
