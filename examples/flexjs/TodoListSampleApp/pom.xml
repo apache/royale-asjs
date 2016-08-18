@@ -48,7 +48,6 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TodoListSampleApp.mxml</mainClass>
-          <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
       <plugin>
