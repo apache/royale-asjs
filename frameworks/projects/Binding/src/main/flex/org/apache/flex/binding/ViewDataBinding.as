@@ -147,12 +147,12 @@ package org.apache.flex.binding
                                 {
                                     if (destObject)
                                     {
-                                        sb.destination = destObject;
-                                        _strand.addBead(sb);
+                                        cb.destination = destObject;
+                                        _strand.addBead(cb);
                                     }
                                     else
                                     {
-                                        deferredBindings[binding.destination[0]] = sb;
+                                        deferredBindings[binding.destination[0]] = cb;
                                         IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                                     }
                                 }
@@ -222,8 +222,11 @@ package org.apache.flex.binding
                 if (isValidWatcher)
                 {
                     var type:String = watcher.type;
+					var parentObj:Object = _strand;
                     switch (type)
                     {
+						case "static":
+                            parentObj = watcher.parentObj;
                         case "property":
                         {
                             var pw:PropertyWatcher = new PropertyWatcher(this, 
@@ -234,7 +237,7 @@ package org.apache.flex.binding
                             if (parentWatcher)
                                 pw.parentChanged(parentWatcher.value);
                             else
-                                pw.parentChanged(_strand);
+                                pw.parentChanged(parentObj);
                             if (parentWatcher)
                                 parentWatcher.addChild(pw);
                             if (watcher.children == null)
@@ -242,6 +245,7 @@ package org.apache.flex.binding
                             foundWatcher = true;
                             break;
                         }
+
                     }
                     if (watcher.children)
                     {

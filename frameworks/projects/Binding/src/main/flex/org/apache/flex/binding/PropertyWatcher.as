@@ -52,11 +52,24 @@ package org.apache.flex.binding
                                             getterFunction:Function)
 		{
             this.source = source;
+            this.dispatcher = source;
             this.propertyName = propertyName;
             this.getterFunction = getterFunction;
             this.eventNames = eventNames;
             
 		}
+
+        /**
+         *  The event dispatcher that dispatches an event
+         *  when the source property changes. This can
+         *  be different from the source (example: static bindables)
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        protected var dispatcher:Object;
 		
         /**
          *  The object who's property we are watching.
@@ -139,7 +152,7 @@ package org.apache.flex.binding
          */                
         override public function parentChanged(parent:Object):void
         {
-            if (source && source is IEventDispatcher)
+            if (dispatcher && dispatcher is IEventDispatcher)
                 removeEventListeners();
 
             if (parent is PropertyWatcher)
@@ -147,8 +160,12 @@ package org.apache.flex.binding
             else
                 source = parent;
             
-            if (source && source is IEventDispatcher)
-                addEventListeners();
+            if (source) {
+                if (source is IEventDispatcher) dispatcher = source;
+                else if (source is Class && source['staticEventDispatcher']!=null) dispatcher = source.staticEventDispatcher;
+            }
+
+            if (dispatcher) addEventListeners();
             
             // Now get our property.
             wrapUpdate(updateProperty);
@@ -159,7 +176,7 @@ package org.apache.flex.binding
         private function addEventListeners():void
         {
             if (eventNames is String)
-                source.addEventListener(eventNames as String, changeHandler);
+                dispatcher.addEventListener(eventNames as String, changeHandler);
             else if (eventNames is Array)
             {
                 var arr:Array = eventNames as Array;
@@ -167,7 +184,7 @@ package org.apache.flex.binding
                 for (var i:int = 0; i < n; i++)
                 {
                     var eventName:String = eventNames[i];
-                    source.addEventListener(eventName, changeHandler);           
+                    dispatcher.addEventListener(eventName, changeHandler);
                 }
             }
         }
@@ -175,7 +192,7 @@ package org.apache.flex.binding
         private function removeEventListeners():void
         {
             if (eventNames is String)
-                source.removeEventListener(eventNames as String, changeHandler);
+                dispatcher.removeEventListener(eventNames as String, changeHandler);
             else if (eventNames is Array)
             {
                 var arr:Array = eventNames as Array;
@@ -183,9 +200,10 @@ package org.apache.flex.binding
                 for (var i:int = 0; i < n; i++)
                 {
                     var eventName:String = eventNames[i];
-                    source.removeEventListener(eventName, changeHandler);           
+                    dispatcher.removeEventListener(eventName, changeHandler);
                 }
             }
+            dispatcher = null;
         }
         
         /**
