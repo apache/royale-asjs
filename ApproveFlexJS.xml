@@ -136,7 +136,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs/lastSuccessfulBuild/artifact/out">
+        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs_release_branch/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
