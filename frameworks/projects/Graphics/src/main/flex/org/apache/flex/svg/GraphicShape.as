@@ -40,6 +40,7 @@ package org.apache.flex.svg
         override protected function createElement():IFlexJSElement
         {
             element = new WrappedSprite();
+			element.flexjs_wrapper = this;
             return element;
         }
         
