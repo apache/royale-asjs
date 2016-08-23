@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {   
-    import flash.utils.clearTimeout;
-    
     import org.apache.flex.events.DetailEvent;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
