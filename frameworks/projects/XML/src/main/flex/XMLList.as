@@ -707,14 +707,80 @@ package
 				_xmlArray[i].setAttribute(attr,value);
 
 		}
+		public function insertChildAfter(child1:XML, child2:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].insertChildAfter(child1,child2);
 
+			return null;
+		}
+		public function insertChildBefore(child1:XML, child2:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].insertChildAfter(child1,child2);
 
+			return null;
+		}
+
+		public function namespace(prefix:String = null):*
+		{
+			if(isSingle())
+				return _xmlArray[0].namespace(prefix);
+
+			return null;
+		}
+		public function nodeKind():String
+		{
+			if(isSingle())
+				return _xmlArray[0].nodeKind();
+
+			return null;
+		}
+
+		public function removeNamespace(ns:*):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].removeNamespace(ns);
+
+			return null;
+		}
+		public function replace(propertyName:Object, value:*):*
+		{
+			if(isSingle())
+				_xmlArray[0].replace(propertyName,value);
+		}
 		public function setChild(elementName:*, elements:Object):void
 		{
 			if(isSingle())
 				_xmlArray[0].setChild(elementName,elements);
 
 		}
+
+		public function setChildren(value:Object):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].setChildren(value);
+
+			return null;
+		}
+	
+		public function setLocalName(name:String):void
+		{
+			if(isSingle())
+				_xmlArray[0].setLocalName(name);
+		}
+ 	 	public function setName(name:String):void
+ 	 	{
+ 	 		if(isSingle())
+				_xmlArray[0].setName(name);
+ 	 	}
+ 	 	
+		public function setNamespace(ns:Namespace):void
+		{
+			if(isSingle())
+				_xmlArray[0].setNamespace(ns);
+		}
+
 		/**
 		 * Calls the text() method of each XML object and returns an XMLList object that contains the results.
 		 * 
@@ -854,10 +920,12 @@ package
 		{
 			return isSingle() ? _xmlArray[0].match(regexp) : null;
 		}
+/*
 		public function replace(regexp:*,withStr:*):String
 		{
 			return isSingle() ? _xmlArray[0].replace(regexp,withStr) : null;
 		}
+*/
 		public function search(regexp:*):Number
 		{
 			return isSingle() ? _xmlArray[0].search(regexp) : -1;
