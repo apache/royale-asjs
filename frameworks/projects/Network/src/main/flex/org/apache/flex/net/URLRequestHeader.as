@@ -19,19 +19,17 @@
 package org.apache.flex.net
 {
 	/**
-	 *  The URLRequest class captures all of the information in a single HTTP request.
-	 *  URLRequest objects are passed to the load() methods of the URLStream,
-	 *  and URLLoader classes, and to other loading operations, to initiate URL downloads.
-	 *  
+	 *  A URLRequestHeader object represents an HTTP request header.
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.7.0
 	 */
-    public final class URLRequest extends Object
+	
+    public class URLRequestHeader
     {
 		/**
-		 *  The URL to be requested.
+		 *  An HTTP request header name
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -39,57 +37,24 @@ package org.apache.flex.net
 		 *  @productversion FlexJS 0.7.0
 		 */	
         
-		public var url:String;
+		public var name:String;
 		
 		/**
-		 *  An object containing data to be transmitted with the URL request. 
+		 *  A value of an HTTPRequestHeader
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */	
-        public var data:Object;
+        public var value:String;
 		
-		/**
-		 *   Controls the HTTP form submission method.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
-		 */	
-        public var contentType:String = "application/x-www-form-urlencoded";
 		
-		/**
-		 *   Controls the HTTP form submission method.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.7.0
-		 */	
-		public var method:String = HTTPConstants.GET;
-		private var _requestHeaders:Array;
         
-        public function URLRequest(url:String = null)
+        public function URLRequestHeader(name:String, value:String)
         {
-            super();
-            if(url != null)
-            {
-                this.url = url;
-            }
-            this.requestHeaders = [];
-        }
-        
-        public function get requestHeaders():Array
-        {
-            return _requestHeaders;
-        }
-        
-        public function set requestHeaders(value:Array) : void
-        {
-			_requestHeaders = value;
+			this.name = name;
+			this.value = value;
         }
         
     }
