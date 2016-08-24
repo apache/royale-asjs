@@ -392,7 +392,7 @@ package org.apache.flex.createjs
 		 */
 		public function get numElements():int
 		{
-			return stage.numChildren();
+			return stage.numChildren;
 		}
 	}
 }
