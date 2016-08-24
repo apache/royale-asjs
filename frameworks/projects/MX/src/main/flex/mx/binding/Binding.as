@@ -41,7 +41,6 @@ public class Binding
     // Certain errors are normal during binding execution, so we swallow them.
     // 1507 - invalid null argument 
     // 2005 - argument error (null gets converted to 0) 
-    mx_internal static var allowedErrors:Object = generateAllowedErrors();
     mx_internal static function generateAllowedErrors():Object
     {
         var o:Object = {};
@@ -49,6 +48,7 @@ public class Binding
         o[2005] = 1;
         return o;
     }
+    mx_internal static var allowedErrors:Object = generateAllowedErrors();
     
     //--------------------------------------------------------------------------
 	//
