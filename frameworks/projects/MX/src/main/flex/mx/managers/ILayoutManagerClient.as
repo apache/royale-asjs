@@ -206,6 +206,17 @@ public interface ILayoutManagerClient extends IEventDispatcher
      *  @productversion Flex 3
      */
     function validateDisplayList():void;
+    
+    /**
+     *  Unique identifier for each instance.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function get uid():String;
+
 }
 
 }

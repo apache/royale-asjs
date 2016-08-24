@@ -119,19 +119,9 @@ public class PriorityQueue
             // If no hash exists for the specified priority, create one.
             bin = new PriorityBin();
             priorityBins[priority] = bin;
-            bin.items[obj] = true;
-            bin.length++;
         }
-        else
-        {
-            // If we don't already hold the obj in the specified hash, add it
-            // and update our item count.
-            if (bin.items[obj] == null)
-            { 
-                bin.items[obj] = true;
-                bin.length++;
-            }
-        }
+        
+        bin.add(obj as ILayoutManagerClient);
         
     }
 
@@ -153,15 +143,7 @@ public class PriorityQueue
                 bin = priorityBins[maxPriority];
             }
         
-            // Remove the item with largest priority from our priority queue.
-            // Must use a for loop here since we're removing a specific item
-            // from a 'Dictionary' (no means of directly indexing).
-            for (var key:Object in bin.items )
-            {
-                obj = key;
-                removeChild(ILayoutManagerClient(key), maxPriority);
-                break;
-            }
+            obj = bin.next();
 
             // Update maxPriority if applicable.
             while (!bin || bin.length == 0)
@@ -196,7 +178,7 @@ public class PriorityQueue
                     // client, no need to search the entire list, just check to see
                     // if the client exists in the queue (it would be the only item
                     // at that nestLevel).
-                    if (bin.items[client])
+                    if (bin.hasItem(client))
                     {
                         removeChild(ILayoutManagerClient(client), max);
                         return client;
@@ -204,12 +186,12 @@ public class PriorityQueue
                 }
                 else
                 {
-                    for (var key:Object in bin.items )
+                    for each (var obj:Object in bin.items )
                     {
-                        if ((key is DisplayObject) && contains(DisplayObject(client), DisplayObject(key)))
+                        if ((obj is DisplayObject) && contains(DisplayObject(client), DisplayObject(obj)))
                         {
-                            removeChild(ILayoutManagerClient(key), max);
-                            return key;
+                            removeChild(ILayoutManagerClient(obj), max);
+                            return obj;
                         }
                     }
                 }
@@ -247,15 +229,7 @@ public class PriorityQueue
                 bin = priorityBins[minPriority];
             }           
 
-            // Remove the item with smallest priority from our priority queue.
-            // Must use a for loop here since we're removing a specific item
-            // from a 'Dictionary' (no means of directly indexing).
-            for (var key:Object in bin.items )
-            {
-                obj = key;
-                removeChild(ILayoutManagerClient(key), minPriority);
-                break;
-            }
+            obj = bin.next();
 
             // Update minPriority if applicable.
             while (!bin || bin.length == 0)
@@ -288,7 +262,7 @@ public class PriorityQueue
                     // client, no need to search the entire list, just check to see
                     // if the client exists in the queue (it would be the only item
                     // at that nestLevel).
-                    if (bin.items[client])
+                    if (bin.hasItem(client))
                     {
                         removeChild(ILayoutManagerClient(client), min);
                         return client;
@@ -296,12 +270,12 @@ public class PriorityQueue
                 }
                 else
                 {
-                    for (var key:Object in bin.items)
+                    for each (var obj:Object in bin.items)
                     {
-                        if ((key is DisplayObject) && contains(DisplayObject(client), DisplayObject(key)))
+                        if ((obj is DisplayObject) && contains(DisplayObject(client), DisplayObject(obj)))
                         {
-                            removeChild(ILayoutManagerClient(key), min);
-                            return key;
+                            removeChild(ILayoutManagerClient(obj), min);
+                            return obj;
                         }
                     }
                 }
@@ -328,10 +302,9 @@ public class PriorityQueue
     {
         var priority:int = (level >= 0) ? level : client.nestLevel;
         var bin:PriorityBin = priorityBins[priority];
-        if (bin && bin.items[client] != null)
+        if (bin && bin.hasItem(client) != null)
         {
-            delete bin.items[client];
-            bin.length--;
+            bin.remove(client);
             return client;
         }
         return null;
@@ -381,6 +354,7 @@ COMPILE::LATER
 {
 import flash.utils.Dictionary;
 }
+import mx.managers.ILayoutManagerClient;
 
 /**
  *  Represents one priority bucket of entries.
@@ -388,11 +362,64 @@ import flash.utils.Dictionary;
  */
 class PriorityBin 
 {
-    public var length:int;
 	COMPILE::LATER
 	{
     public var items:Dictionary = new Dictionary();
 	}
-	public var items:Object = new Object();
+    
+    public function PriorityBin()
+    {
+        arr = [];
+        map = {};
+    }
+    
+    private var arr:Array;
+    private var map:Object;
+    
+    public function get length():int
+    {
+        return arr.length;
+    }
+    
+    public function add(obj:ILayoutManagerClient):void
+    {
+        if (map[obj.uid] == null)
+        {
+            arr.push(obj);
+            map[obj.uid] = obj;
+        }
+    }
+    
+    public function remove(obj:ILayoutManagerClient):void
+    {
+        var i:int = arr.indexOf(obj);
+        arr.splice(i, 1);
+        delete map[obj.uid];
+    }
+    
+    public function next():ILayoutManagerClient
+    {
+        if (arr.length == 0) return null;
+        
+        var obj:ILayoutManagerClient = arr.shift() as ILayoutManagerClient;
+        delete map[obj.uid];
+        return obj;
+    }
+    
+    public function hasItem(obj:ILayoutManagerClient):Boolean
+    {
+        return map[obj.uid] != null;    
+    }
+    
+    public function empty():void
+    {
+        arr.length == 0;
+        map = {};
+    }
+    
+	public function get items():Object
+    {
+        return arr;
+    }
     
 }
