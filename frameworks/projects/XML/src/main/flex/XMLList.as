@@ -756,6 +756,13 @@ package
 
 		}
 
+		public function setParent(parent:XML):void
+		{
+			if(isSingle())
+				_xmlArray[0].setParent(parent);
+
+		}
+
 		public function setChildren(value:Object):XML
 		{
 			if(isSingle())
