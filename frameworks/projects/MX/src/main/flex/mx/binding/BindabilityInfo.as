@@ -195,7 +195,7 @@ public class BindabilityInfo
 				}				
 			}
 			
-			var numChildren:int = childDesc.length();
+			var numChildren:int = childDesc.length;
 
 			if (numChildren == 0)
 			{
