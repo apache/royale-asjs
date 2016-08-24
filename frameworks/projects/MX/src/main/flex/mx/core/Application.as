@@ -51,6 +51,8 @@ import mx.managers.ILayoutManager;
 import mx.managers.ISystemManager;
 // force-link this here. In flex-sdk, it gets dragged in by Effect.
 import mx.managers.LayoutManager; LayoutManager; 
+// force-link this here. In flex-sdk, it gets injected somehow.
+import mx.core.TextFieldFactory; TextFieldFactory; 
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
