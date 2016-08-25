@@ -19,61 +19,72 @@
 package controllers
 {
 	import org.apache.flex.events.Event;
-	
+
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
-    
+	import org.apache.flex.net.HTTPService;
+	import org.apache.flex.collections.LazyCollection;
+
     import models.MyModel;
-    	
+
 	public class MyController implements IDocument
 	{
 		public function MyController(app:Application = null)
 		{
 			if (app)
 			{
-				this.app = app as DataBindingExample;
 				app.addEventListener("viewChanged", viewChangeHandler);
 			}
 		}
-		
+
+		private var model:MyModel;
+		private var initialView:Object;
+		private var service:HTTPService;
+		private var collection:LazyCollection;
+
         private var queryBegin:String = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22";
         private var queryEnd:String = "%22)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json";
-		private var app:DataBindingExample;
-		
+
 		private function viewChangeHandler(event:Event):void
 		{
+			var app:Application = event.target as Application;
 			app.initialView.addEventListener("buttonClicked", buttonClickHandler);
 			app.initialView.addEventListener("radioClicked", radioClickHandler);
             app.initialView.addEventListener("listChanged", listChangedHandler);
+
+            initialView = app.initialView;
+			model = app.model as MyModel;
+			service = app["service"] as HTTPService;
+			collection = app["collection"] as LazyCollection;
 		}
-		
+
         private function buttonClickHandler(event:Event):void
         {
-            var sym:String = MyInitialView(app.initialView).symbol;
-            app.service.url = queryBegin + sym + queryEnd;
-            app.service.send();
-            app.service.addEventListener("complete", completeHandler);
+            var sym:String = MyInitialView(initialView).symbol;
+            service.url = queryBegin + sym + queryEnd;
+            service.send();
+            service.addEventListener("complete", completeHandler);
         }
-        
+
 		private function radioClickHandler(event:Event):void
 		{
-			var field:String = MyInitialView(app.initialView).requestedField;
-			MyModel(app.model).requestedField = field;
+			var field:String = MyInitialView(initialView).requestedField;
+			model.requestedField = field;
 		}
-		
+
         private function completeHandler(event:Event):void
         {
-			MyModel(app.model).responseData = app.collection.getItemAt(0);
+			model.responseData = collection.getItemAt(0);
         }
-        
+
         private function listChangedHandler(event:Event):void
         {
-            MyModel(app.model).stockSymbol = MyInitialView(app.initialView).symbol;
+            model.stockSymbol = MyInitialView(initialView).symbol;
         }
-        
+
 		public function setDocument(document:Object, id:String = null):void
 		{
-			this.app = document as DataBindingExample;
+			var app:Application = document as Application;
 			app.addEventListener("viewChanged", viewChangeHandler);
 		}
 

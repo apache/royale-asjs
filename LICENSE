@@ -225,3 +225,8 @@ https://en.wikipedia.org/wiki/File:USA_CIA_Map.svg#file
 Most of the .as files in frameworks/projects/GoogleMaps/src/main/flex/google 
 are derived from the google_maps_api_v3_11.js externs file in the 
 Google Closure Library which are available under Apache License 2.0.
+
+The file frameworks/projects/Core/src/main/flex/org/apache/flex/geom/Matrix.as
+is derived from OpenFL (https://github.com/openfl) which is available under an
+MIT License.
+
