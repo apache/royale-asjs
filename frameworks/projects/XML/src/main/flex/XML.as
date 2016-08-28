@@ -953,6 +953,21 @@ package
 		{
 			return _value;
 		}
+
+		public function hasAncestor(obj:*):Boolean
+		{
+			if(!obj)
+				return false;
+			
+			var parent:XML = this.parent();
+			while(parent)
+			{
+				if(obj == parent)
+					return true;
+				parent = parent.parent();
+			}
+			return false;
+		}
 		/**
 		 * Checks to see whether the XML object contains complex content.
 		 * 
