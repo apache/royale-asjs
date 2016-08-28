@@ -88,7 +88,7 @@ package
 		static private function escapeAttributeValue(value:String):String
 		{
 			var outArr:Array = [];
-			var arr:Array = value.split("");
+			var arr:Array = String(value).split("");
 			var len:int = arr.length;
 			for(var i:int=0;i<len;i++)
 			{
