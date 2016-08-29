@@ -182,58 +182,59 @@ limitations under the License.
         </js:beads>
 		<js:Label id="testExplanation" text="These examples are mostly intended for FlexJS dev team to verify various binding functionality" />
         <js:Label id="expressionTest" text="model expression binding [WORKS](5 sec timer) {MyModel(applicationModel).modelInstanceTime}" />
-		<!--<js:Label id="timerDemo2" width="300" text="{'test local static expression '+timerText}" />-->
-		<!--<js:Label id="timerDemo" width="300" text="{'test external static expression '+StaticTimer.static_timerText}" />-->
+		<js:Label text="[WORKS] 2 examples of binding expressions with static vars:"/>
+		<js:Label id="timerDemo2" width="300" text="{'test local static expression '+timerText}" />
+		<js:Label id="timerDemo" width="300" text="{'test external static expression '+StaticTimer.static_timerText}" />
 		<js:Container width="500">
 			<js:beads>
 				<js:HorizontalLayout />
 			</js:beads>
-			<js:Label id="timerDemoSB1" text="test local static simplebinding [BROKEN]" />
-			<!--<js:Label id="timerDemoSB2" text="{timerText}" />-->
+			<js:Label id="timerDemoSB1" text="[WORKS] test local static simplebinding" />
+			<js:Label id="timerDemoSB2" text="{timerText}" />
 		</js:Container>		
 		<js:Container width="500">
 			<js:beads>
 				<js:HorizontalLayout />
 			</js:beads>
-			<js:Label id="timerDemoSB3"  text="test external static simplebinding [BROKEN]" />
-			<!--<js:Label id="timerDemoSB4"  text="{StaticTimer.static_timerText}" />-->
+			<js:Label id="timerDemoSB3"  text="[WORKS] test external static simplebinding " />
+			<js:Label id="timerDemoSB4"  text="{StaticTimer.static_timerText}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
 				<js:HorizontalLayout />
 			</js:beads>
-			<js:Label id="timerDemoSB5"  text="test internal instance simplebinding [WORKS]" />
+			<js:Label id="timerDemoSB5"  text="[WORKS] test internal instance simplebinding" />
 			<js:Label id="timerDemoSB6"  text="{instanceTimerText}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
 				<js:VerticalLayout />
 			</js:beads>
-			<js:Label text="[BROKEN] 3 examples of binding into local and external static constants"/>
-			<!--<js:Label id="staticConstDemo1"  text="{STATIC_PRIVATE_CONST}" />
+			<js:Label text="[WORKS] 3 examples of binding into local and external static constants"/>
+			<js:Label id="staticConstDemo1"  text="{STATIC_PRIVATE_CONST}" />
 			<js:Label id="staticConstDemo2"  text="{STATIC_PUBLIC_CONST}" />
-			<js:Label id="staticConstDemo3"  text="{StaticTimer.EXTERNAL_STATIC_CONST}" />-->
+			<js:Label id="staticConstDemo3"  text="{StaticTimer.EXTERNAL_STATIC_CONST}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
 				<js:VerticalLayout />
 			</js:beads>
-			<js:Label text="[BROKEN] 2 examples of binding into local instance constants"/>
-			<!--<js:Label id="instConstDemo1"  text="{INSTANCE_PRIVATE_CONST}" />
-			<js:Label id="instConstDemo2"  text="{INSTANCE_PUBLIC_CONST}" />-->
+			<js:Label text="[WORKS] 2 examples of binding into local instance constants"/>
+			<js:Label id="instConstDemo1"  text="{INSTANCE_PRIVATE_CONST}" />
+			<js:Label id="instConstDemo2"  text="{INSTANCE_PUBLIC_CONST}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
 				<js:HorizontalLayout />
 			</js:beads>
-			<js:Label id="timerDemoSB7"  text="test nested instance timercount [BROKEN]" />
+			<js:Label id="timerDemoSB7"  text="[WORKS] test nested instance timercount " />
 			<js:Label id="timerDemoSB8"  text="{instTimer.timerCount}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
 				<js:VerticalLayout />
 			</js:beads>
-			<js:Label text="[BROKEN] 2 examples of binding into an Unbindable parent (compiler warning, one const binding):"/>
+			<js:Label text="[WORKS] 2 examples of binding into an Unbindable parent (compiler warning, one const binding):"/>
 			<js:Label id="unbindableParentDemo1"  text="{unbindableParentInstance.unbindableField}" />
 			<js:Label id="unbindableParentDemo1b"  text="{unbindableParentInstance.unbindableField2}" />
 			<js:Label id="unbindableParentDemo2"  text="{unbindableParentInstance.UNBINDABLE_CONST_FIELD}" />
