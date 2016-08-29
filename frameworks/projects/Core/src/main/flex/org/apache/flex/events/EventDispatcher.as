@@ -61,8 +61,20 @@ package org.apache.flex.events
 	{
         public function EventDispatcher(target:IEventDispatcher = null)
         {
-            if (target != null)
-                setTargetForTesting(target);
+            if (target != null) {
+				setTargetForTesting(target);
+				//the following can be required with IEventDispatcher implementation instead of extending EventDispatcher
+				//(fireListeners is not required by IEventDispatcher, but is called on the 'currentTarget'
+				//by the ancestor goog.events.EventTarget code)
+				var obj:Object = target;
+				if (!obj.fireListeners) {
+					var me:EventDispatcher = this;
+					obj.fireListeners = function ():* {
+						me.fireListeners.apply(me,arguments);
+					};
+				}
+			}
+                
         }
         
         public function hasEventListener(type:String):Boolean

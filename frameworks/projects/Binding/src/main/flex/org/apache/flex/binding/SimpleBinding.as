@@ -17,190 +17,220 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.binding
-{	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IDocument;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.Event;    
-    import org.apache.flex.events.ValueChangeEvent;
+{
+import org.apache.flex.core.IBead;
+import org.apache.flex.core.IStrand;
+import org.apache.flex.core.IDocument;
+import org.apache.flex.events.IEventDispatcher;
+import org.apache.flex.events.Event;
+import org.apache.flex.events.ValueChangeEvent;
 
-    /**
-     *  The SimpleBinding class is lightweight data-binding class that
-     *  is optimized for simple assignments of one object's property to
-     *  another object's property.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-	public class SimpleBinding implements IBead, IDocument
+/**
+ *  The SimpleBinding class is lightweight data-binding class that
+ *  is optimized for simple assignments of one object's property to
+ *  another object's property.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
+public class SimpleBinding implements IBead, IDocument
+{
+	/**
+	 *  Constructor.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public function SimpleBinding(isStatic:Boolean=false)
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function SimpleBinding()
-		{
+		_isStatic = isStatic;
+	}
+
+	private var _isStatic:Boolean;
+
+	/**
+	 *  The event dispatcher that dispatches an event
+	 *  when the source property changes. This can
+	 *  be different from the source (example: static bindables)
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	protected var dispatcher:IEventDispatcher;
+
+
+	/**
+
+	 *  The source object that dispatches an event
+	 *  when the property changes
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	protected var source:Object;
+
+	/**
+	 *  The host mxml document for the source and
+	 *  destination objects.  The source object
+	 *  is either this document for simple bindings
+	 *  like {foo} where foo is a property on
+	 *  the mxml documnet, or found as document[sourceID]
+	 *  for simple bindings like {someid.someproperty}
+	 *  It may be the document class for local static
+	 *  bindables (e.g. from a script block)
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	protected var document:Object;
+
+
+	/**
+	 *  The destination object.  It is always the same
+	 *  as the strand.  SimpleBindings are attached to
+	 *  the strand of the destination object.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public var destination:Object;
+
+	/**
+	 *  If not null, the id of the mxml tag who's property
+	 *  is being watched for changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public var sourceID:String;
+
+	/**
+	 *  If not null, the name of a property on the
+	 *  mxml document that is being watched for changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public var sourcePropertyName:String;
+
+	/**
+	 *  The event name that is dispatched when the source
+	 *  property changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public var eventName:String;
+
+	/**
+	 *  The name of the property on the strand that
+	 *  is set when the source property changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public var destinationPropertyName:String;
+
+
+
+	/**
+	 *  @copy org.apache.flex.core.IBead#strand
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public function set strand(value:IStrand):void
+	{
+		if (dispatcher) dispatcher.removeEventListener(eventName, changeHandler);
+		if (destination == null)
+			destination = value;
+		if (_isStatic) {
+			source = document;
+			dispatcher = source.staticEventDispatcher as IEventDispatcher;
+		} else {
+			if (sourceID != null)
+			{
+				source = dispatcher = document[sourceID] as IEventDispatcher;
+				if (source == null)
+				{
+					document.addEventListener("valueChange",
+							sourceChangeHandler);
+					return;
+				}
+			} else
+			source = dispatcher = document as IEventDispatcher;
 		}
-		
-        /**
-         *  The source object that dispatches an event
-         *  when the property changes
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		protected var source:IEventDispatcher;
 
-        /**
-         *  The host mxml document for the source and
-         *  destination objects.  The source object
-         *  is either this document for simple bindings
-         *  like {foo} where foo is a property on
-         *  the mxml documnet, or found as document[sourceID]
-         *  for simple bindings like {someid.someproperty}
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected var document:Object;
 
-        /**
-         *  The destination object.  It is always the same
-         *  as the strand.  SimpleBindings are attached to
-         *  the strand of the destination object.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public var destination:Object;
-
-        /**
-         *  If not null, the id of the mxml tag who's property
-         *  is being watched for changes.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public var sourceID:String;
-
-        /**
-         *  If not null, the name of a property on the
-         *  mxml document that is being watched for changes.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public var sourcePropertyName:String;
-        
-        /**
-         *  The event name that is dispatched when the source
-         *  property changes.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public var eventName:String;
-        
-        /**
-         *  The name of the property on the strand that
-         *  is set when the source property changes.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public var destinationPropertyName:String;
-		
-        /**
-         *  @copy org.apache.flex.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function set strand(value:IStrand):void
+		dispatcher.addEventListener(eventName, changeHandler);
+		try
 		{
-			if (destination == null)
-                destination = value;
-            if (sourceID != null)
-            {
-    			source = document[sourceID] as IEventDispatcher;
-                if (source == null)
-                {
-                    document.addEventListener("valueChange", 
-                        sourceChangeHandler);
-                    return;
-                }
-            }
-            else
-                source = document as IEventDispatcher;
-			source.addEventListener(eventName, changeHandler);
-            try 
-            {
-    			destination[destinationPropertyName] = source[sourcePropertyName];
-            }
-            catch (e:Error) {}
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.IDocument#setDocument()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function setDocument(document:Object, id:String = null):void
-		{
-			this.document = document;
-		}
-		
-		private function changeHandler(event:Event):void
-		{
-            if (event.type == ValueChangeEvent.VALUE_CHANGE)
-            {
-                var vce:ValueChangeEvent = event as ValueChangeEvent;
-                if (vce.propertyName != sourcePropertyName)
-                    return;
-            }
 			destination[destinationPropertyName] = source[sourcePropertyName];
 		}
-        
-        private function sourceChangeHandler(event:ValueChangeEvent):void
-        {
-            if (event.propertyName != sourceID)
-                return;
-            
-            if (source)
-                source.removeEventListener(eventName, changeHandler);
-            
-            source = document[sourceID] as IEventDispatcher;
-            if (source)
-            {
-                source.addEventListener(eventName, changeHandler);
-                destination[destinationPropertyName] = source[sourcePropertyName];
-            }
-        }
+		catch (e:Error) {}
+
 	}
+
+	/**
+	 *  @copy org.apache.flex.core.IDocument#setDocument()
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public function setDocument(document:Object, id:String = null):void
+	{
+		this.document = document;
+	}
+
+	private function changeHandler(event:Event):void
+	{
+		if (event.type == ValueChangeEvent.VALUE_CHANGE)
+		{
+			var vce:ValueChangeEvent = event as ValueChangeEvent;
+			if (vce.propertyName != sourcePropertyName)
+				return;
+		}
+		destination[destinationPropertyName] = source[sourcePropertyName];
+	}
+
+	private function sourceChangeHandler(event:ValueChangeEvent):void
+	{
+		if (event.propertyName != sourceID)
+			return;
+
+		if (dispatcher)
+			dispatcher.removeEventListener(eventName, changeHandler);
+
+		source = dispatcher = document[sourceID] as IEventDispatcher;
+		if (source)
+		{
+			dispatcher.addEventListener(eventName, changeHandler);
+			destination[destinationPropertyName] = source[sourcePropertyName];
+		}
+	}
+}
 }
