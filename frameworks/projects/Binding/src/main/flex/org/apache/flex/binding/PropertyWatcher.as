@@ -37,7 +37,7 @@ package org.apache.flex.binding
          *  Constructor.
          *  
          *  @param source The object who's property we are watching.
-         *  @param proeprtyName The name of the property we are watching.
+         *  @param propertyName The name of the property we are watching.
          *  @param eventNames The name or array of names of events that get
          *  dispatched when the property changes.
          *  @param getterFunction  A function to call to get the value
@@ -52,7 +52,6 @@ package org.apache.flex.binding
                                             getterFunction:Function)
 		{
             this.source = source;
-            this.dispatcher = source;
             this.propertyName = propertyName;
             this.getterFunction = getterFunction;
             this.eventNames = eventNames;
@@ -69,7 +68,7 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        protected var dispatcher:Object;
+        protected var dispatcher:IEventDispatcher;
 		
         /**
          *  The object who's property we are watching.
@@ -152,7 +151,7 @@ package org.apache.flex.binding
          */                
         override public function parentChanged(parent:Object):void
         {
-            if (dispatcher && dispatcher is IEventDispatcher)
+            if (dispatcher)
                 removeEventListeners();
 
             if (parent is PropertyWatcher)
@@ -161,7 +160,7 @@ package org.apache.flex.binding
                 source = parent;
             
             if (source) {
-                if (source is IEventDispatcher) dispatcher = source;
+                if (source is IEventDispatcher) dispatcher = IEventDispatcher(source);
                 else if (source is Class && source['staticEventDispatcher']!=null) dispatcher = source.staticEventDispatcher;
             }
 

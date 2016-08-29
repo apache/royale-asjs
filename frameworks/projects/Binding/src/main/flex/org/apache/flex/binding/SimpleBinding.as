@@ -45,9 +45,12 @@ public class SimpleBinding implements IBead, IDocument
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public function SimpleBinding()
+	public function SimpleBinding(isStatic:Boolean=false)
 	{
+		_isStatic = isStatic;
 	}
+
+	private var _isStatic:Boolean;
 
 	/**
 	 *  The event dispatcher that dispatches an event
@@ -81,6 +84,8 @@ public class SimpleBinding implements IBead, IDocument
 	 *  like {foo} where foo is a property on
 	 *  the mxml documnet, or found as document[sourceID]
 	 *  for simple bindings like {someid.someproperty}
+	 *  It may be the document class for local static
+	 *  bindables (e.g. from a script block)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -161,27 +166,23 @@ public class SimpleBinding implements IBead, IDocument
 		if (dispatcher) dispatcher.removeEventListener(eventName, changeHandler);
 		if (destination == null)
 			destination = value;
-		if (sourceID != null)
-		{
-			source = dispatcher = document[sourceID] as IEventDispatcher;
-			if (source == null)
+		if (_isStatic) {
+			source = document;
+			dispatcher = source.staticEventDispatcher as IEventDispatcher;
+		} else {
+			if (sourceID != null)
 			{
-				document.addEventListener("valueChange",
-						sourceChangeHandler);
-				return;
-			}
+				source = dispatcher = document[sourceID] as IEventDispatcher;
+				if (source == null)
+				{
+					document.addEventListener("valueChange",
+							sourceChangeHandler);
+					return;
+				}
+			} else
+			source = dispatcher = document as IEventDispatcher;
 		}
-		else {
-			if (sourcePropertyName in document)
-			{
-				source = dispatcher = document as IEventDispatcher;
-			}
-			else if (sourcePropertyName in document.constructor)
-			{
-				source = document.constructor;
-				dispatcher = source.staticEventDispatcher as IEventDispatcher;
-			}
-		}
+
 
 		dispatcher.addEventListener(eventName, changeHandler);
 		try
