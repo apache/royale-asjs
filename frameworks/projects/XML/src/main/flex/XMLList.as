@@ -627,8 +627,9 @@ package
 				{
 					if(_xmlArray[i] == child)
 					{
-						child.setParent(null);
 						_xmlArray.splice(i,1);
+						if(child.hasAncestor(_targetObject))
+							child.parent().removeChild(child);
 					}
 				}
 			}
@@ -638,8 +639,10 @@ package
 		{
 			if(idx >= 0 && idx < _xmlArray.length)
 			{
-				_xmlArray[idx].setParent(null);
+				var child:XML = _xmlArray[idx];
 				_xmlArray.splice(idx,1);
+				if(child.hasAncestor(_targetObject))
+					child.parent().removeChild(child);
 			}
 		}
 		private function replaceChildAt(idx:int,child:*):void
