@@ -102,42 +102,85 @@ limitations under the License.
 					
 					StaticTimer.initStaticTimer();
 					try{
-					  instTimer = new InstanceTimer();
+					  	instTimer = new InstanceTimer();
 					} catch (e:Error) {
 						addErrorReport("problem instantiating InstanceTimer ",e);
 					}
+					try{
+					  if (instTimer) {
+						  Object(instTimer).addEventListener("testinstTimer",testEventTarget);
+						  _expectedTarget=instTimer;
+						  Object(instTimer).dispatchEvent(new Event("testinstTimer"));
+						  Object(instTimer).removeEventListener("testinstTimer",testEventTarget);
+					  }
+					} catch (e:Error) {
+						 addErrorReport("problem with explicit dispatching from InstanceTimer ",e);
+					}		
 					
 					try {
 						var test:Object = new BindableSubVO1()
 					} catch (e:Error) {
 						addErrorReport("problem instantiating BindableSubVO1 ",e);
 					}
+					
+					try{
+					  if (test) {
+						  test.addEventListener("testBindableSubVO1",testEventTarget);
+						  _expectedTarget=test;
+						  test.dispatchEvent(new Event("testBindableSubVO1"));
+						  test.removeEventListener("testBindableSubVO1",testEventTarget);
+					  
+					  }
+					} catch (e:Error) {
+						addErrorReport("problem with explicit dispatching from BindableSubVO1 ",e);
+					}		
+					
+					
 					test=null;
 					try {
-					   test = new BindableSubVO2();
+						test = new BindableSubVO2();
 					} catch (e:Error) {
 						addErrorReport("problem instantiating BindableSubVO2 ",e);
 					}
-					
-					try {
-					   if (test) {
-							//remove the EventDispatcher constructor hack in js
-						//	if (test.fireListeners) delete test.fireListeners;
-							test.fieldofBindableSubVO2 = "otherValue";
-					   }
-					  
+
+					try{
+						if (test) {
+							test.addEventListener("testBindableSubVO2",testEventTarget);
+							_expectedTarget=test;
+							test.dispatchEvent(new Event("testBindableSubVO2"));
+							test.removeEventListener("testBindableSubVO2",testEventTarget);
+
+						}
 					} catch (e:Error) {
-						addErrorReport("problem dispatching events on BindableSubVO2 ",e);
+						addErrorReport("problem with explicit dispatching from BindableSubVO2 ",e);
 					}
-					
-					test=null;
+
+
+				test=null;
 					try {
 						test = new BindableSubVO3()
 					} catch (e:Error) {
 						addErrorReport("problem instantiating BindableSubVO3 ",e);
 					}
+					try{
+						if (test) {
+							test.addEventListener("testBindableSubVO3",testEventTarget);
+							_expectedTarget=test;
+							test.dispatchEvent(new Event("testBindableSubVO3"));
+							test.removeEventListener("testBindableSubVO3",testEventTarget);
+
+						}
+					} catch (e:Error) {
+						addErrorReport("problem with explicit dispatching from BindableSubVO3 ",e);
+					}
 					
-					
+			}
+			
+			private var _expectedTarget:Object;
+			private function testEventTarget(event:Event):void{
+				if (event.target!=_expectedTarget) {
+					addErrorReport("unexpected event target "+event.type,new Error("unexpected event target"));
+				}
 			}
 			
 			
