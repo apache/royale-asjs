@@ -19,8 +19,13 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:bindables="bindables.*"
 			    initComplete="initControls()">
-    <fx:Script>
+    
+	<fx:Declarations>
+		<bindables:BindableMxmlTest id="mxmlTest" />
+	</fx:Declarations>
+	<fx:Script>
         <![CDATA[
 			import models.MyModel;
 			import bindables.StaticTimer;
@@ -227,7 +232,7 @@ limitations under the License.
 			<js:Label text="[WORKS] 3 examples of binding into local and external static constants"/>
 			<js:Label id="staticConstDemo1"  text="{STATIC_PRIVATE_CONST}" />
 			<js:Label id="staticConstDemo2"  text="{STATIC_PUBLIC_CONST}" />
-			<js:Label id="staticConstDemo3"  text="{StaticTimer.EXTERNAL_STATIC_CONST}" />-->
+			<js:Label id="staticConstDemo3"  text="{StaticTimer.EXTERNAL_STATIC_CONST}" />
 		</js:Container>
 		<js:Container width="500">
 			<js:beads>
@@ -248,11 +253,17 @@ limitations under the License.
 			<js:beads>
 				<js:VerticalLayout />
 			</js:beads>
-			<js:Label text="[WORKS] 2 examples of binding into an Unbindable parent (compiler warning, one const binding):"/>
+			<js:Label text="[WORKS] 2 examples of var binding and 1 const binding into an Unbindable parent (2 compiler warnings):"/>
 			<js:Label id="unbindableParentDemo1"  text="{unbindableParentInstance.unbindableField}" />
 			<js:Label id="unbindableParentDemo1b"  text="{unbindableParentInstance.unbindableField2}" />
 			<js:Label id="unbindableParentDemo2"  text="{unbindableParentInstance.UNBINDABLE_CONST_FIELD}" />
-			
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="[WORKS] binding into local mxml instance of local bindable actionscript class:"/>
+			<js:Label id="mxmlBindableDemo1"  text="{mxmlTest.fieldofBindableMxmlTest}" />	
 		</js:Container>
 		<js:Container width="500" id="errorReporter">
 			<js:beads>
