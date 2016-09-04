@@ -31,14 +31,20 @@ package org.apache.flex.graphics
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        public function PathBuilder()
+        public function PathBuilder(closedPath:Boolean=false)
         {
             commands = new Vector.<IPathCommand>();
+			this.closedPath = closedPath;
         }
 
         public function getPathString():String
         {
-            return commands.join(" ");
+			var pathString:String = commands.join(" ");
+            if (closedPath)
+			{
+				pathString += " Z";
+			}
+			return pathString;
         }
         COMPILE::SWF
         public function draw(g:Graphics):void
@@ -65,6 +71,7 @@ package org.apache.flex.graphics
         }
 
         private var commands:Vector.<IPathCommand>;
+        public var closedPath:Boolean;
         
         public function lineTo(x:Number, y:Number):void
         {
