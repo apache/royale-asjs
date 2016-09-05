@@ -61,7 +61,7 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
+        <version>${flexjs.compiler.version}</version>
         <configuration>
           <!-- We don't want dependencies to be linked into the resulting libraries -->
           <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>
