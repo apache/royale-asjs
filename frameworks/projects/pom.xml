@@ -82,7 +82,7 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
       <artifactId>flexjs-typedefs-gcl</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
@@ -94,7 +94,7 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
       <artifactId>flexjs-typedefs-js</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>
