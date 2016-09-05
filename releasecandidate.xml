@@ -20,6 +20,7 @@
 
 <project name="CreateFlexJSReleaseCandidate" default="main" basedir=".">
 
+    <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
 
     <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
     <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
@@ -202,12 +203,20 @@
         classpathref="anttask.classpath"/>
     </target>
 
+    <target name="checkout_tag" if="tag" >
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="${tag}" />
+        </exec>
+    </target>
+
     <target name="main" depends="install-rat,credentials" description="Perform required release approval steps">
 		<antcall target="check-new-version" />
 		<exec executable="${git}" dir="${basedir}" failonerror="true" >
 			<arg value="pull" />
 			<arg value="--rebase" />
 		</exec>
+        <antcall target="checkout_tag" />
 		<antcall target="stage.rc" />
 		<antcall target="push.rc" />
 	</target>
@@ -255,19 +264,23 @@
 			<arg value="-m" />
 			<arg value="rc${rc} of Apache FlexJS ${release.version}" />
 		</exec>
-		<exec executable="${git}" dir="${basedir}" failonerror="true" >
-			<arg value="tag" />
-			<arg value="-a" />
-			<arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
-			<arg value="-m" />
-			<arg value="&quot;rc${rc} of apache-flex-flexjs-${release.version}&quot;" />
-		</exec>
-		<exec executable="${git}" dir="${basedir}" failonerror="true" >
-			<arg value="push" />
-			<arg value="--tags" />
-		</exec>
+        <antcall target="tag_release" />
 		<antcall target="update-installer-config" />
 		<antcall target="mail" />
+    </target>
+
+    <target name="tag_release" unless="tag" >
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="tag" />
+            <arg value="-a" />
+            <arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
+            <arg value="-m" />
+            <arg value="&quot;rc${rc} of apache-flex-flexjs-${release.version}&quot;" />
+        </exec>
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="push" />
+            <arg value="--tags" />
+        </exec>
     </target>
 
 	<target name="credentials" depends="get-username,get-password">
