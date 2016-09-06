@@ -46,7 +46,8 @@ package org.apache.flex.binding
 		public function GenericBinding()
 		{
 		}
-		
+
+
         /**
          *  The mxml document for the
          *  binding expression.  If you bind to
@@ -107,6 +108,20 @@ package org.apache.flex.binding
          *  @productversion FlexJS 0.0
          */
         public var destinationFunction:Function;
+
+
+        /**
+         *  Flag used to indicate that the document
+         *  value refers to a Class with a static
+         *  bindable source
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var isStatic:Boolean;
+        public var staticRoot:Object
 		
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -135,7 +150,13 @@ package org.apache.flex.binding
             {
                 var arr:Array = source as Array;
                 var n:int = arr.length;
-                var obj:Object = document[arr[0]];
+                var obj:Object;
+                if (isStatic) {
+                    //ignore first element in the array, it is text representation of
+                    //staticRoot which here refers to the class
+                    obj=staticRoot;
+                } else obj = document[arr[0]];
+
                 if (obj == null)
                     return null;
                 for (var i:int = 1; i < n; i++)
@@ -154,7 +175,7 @@ package org.apache.flex.binding
             }
             else if (source is String)
             {
-                obj = document[source];
+                obj = isStatic ? staticRoot[source] : document[source];
                 return obj;
             }
             return null;

@@ -117,6 +117,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
@@ -166,6 +169,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
@@ -203,6 +209,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
@@ -240,6 +249,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
@@ -284,6 +296,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />
@@ -329,6 +344,9 @@
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
+			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
+			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
+			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
             <arg value="${extlib_arg}" />

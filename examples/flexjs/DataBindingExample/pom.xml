@@ -42,7 +42,6 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
-          <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
       <plugin>
