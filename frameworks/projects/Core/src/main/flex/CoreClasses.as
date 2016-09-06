@@ -159,6 +159,7 @@ internal class CoreClasses
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
 	import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.TransformBeadBase; TransformBeadBase;
 	import org.apache.flex.core.TransformModel; TransformModel;
 	import org.apache.flex.core.TransformCompoundModel; TransformCompoundModel;
 	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;

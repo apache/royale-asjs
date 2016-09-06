@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg
+package org.apache.flex.html5
 {
 	import org.apache.flex.core.TransformBeadBase;
 	import org.apache.flex.geom.Matrix;
-
+	
 	public class TransformBead extends TransformBeadBase
 	{
 		/**
@@ -34,14 +34,11 @@ package org.apache.flex.svg
 				return;
 			}			
 			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
-			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
-			(element.parentNode as HTMLElement).setAttribute("pointer-events", "none");
-			element.setAttribute("pointer-events", "visiblePainted");
 			var fjsm:Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
-			element.setAttribute("transform", transformStr);
+			element.style.transform = transformStr;
 		}
-
+		
 	}
 }

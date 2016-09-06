@@ -138,7 +138,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild
+	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IParentIUIBase, IStyleableObject, ILayoutChild, ITransformHost
 	{
         /**
          *  Constructor.
@@ -1374,5 +1374,17 @@ package org.apache.flex.core
             ValuesManager.valuesImpl.applyStyles(this, newStyle);
         };
 
+		COMPILE::SWF
+		public function get transformElement():IFlexJSElement
+		{
+			return element;
+		}
+		
+		COMPILE::JS
+		public function get transformElement():WrappedHTMLElement
+		{
+			return element;
+		}
+		
 	}
 }

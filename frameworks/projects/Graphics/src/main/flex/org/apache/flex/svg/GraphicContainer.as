@@ -34,11 +34,6 @@ package org.apache.flex.svg
             super();
         }
 
-		public function get transformElement():IFlexJSElement
-		{
-			return element;
-		}
-
     }
 	
 	COMPILE::JS
@@ -73,7 +68,7 @@ package org.apache.flex.svg
 		}
 
 		
-		public function get transformElement():org.apache.flex.core.WrappedHTMLElement
+		override public function get transformElement():org.apache.flex.core.WrappedHTMLElement
 		{
 			return graphicGroup.element;
 		}
