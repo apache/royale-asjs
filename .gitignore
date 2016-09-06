@@ -127,3 +127,4 @@ vf2js/frameworks/js/
 #FlexJS generated files
 frameworks/js/FlexJS/generated-sources
 manualtests/FlexJSTest_SVG/bin
+frameworks/projects/MX/src/test/flex/bin
