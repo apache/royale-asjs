@@ -585,9 +585,14 @@ ${my.name}
 	</target>
 
     <target name="release.tag" >
+        <condition property="tag" value="apache-flex-flexjs-${release.version}-rc${rc}">
+            <not>
+                <isset property="tag" />
+            </not>
+        </condition>
         <exec executable="${git}" dir="${basedir}" failonerror="true" output="${basedir}/taghash.txt">
             <arg value="show" />
-            <arg value="apache-flex-flexjs-${release.version}-rc${rc}" />
+            <arg value="${tag}" />
         </exec>
         <replaceregexp file="${basedir}/taghash.txt" match="(.*).commit (.*).Author(.*)" replace="\2" byline="false" flags="s" />
         <loadfile srcFile="${basedir}/taghash.txt" property="releasehash" />
