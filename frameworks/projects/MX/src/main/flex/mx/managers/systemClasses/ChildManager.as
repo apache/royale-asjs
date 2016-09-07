@@ -336,76 +336,75 @@ public class ChildManager implements ISystemManagerChildManager
         {
     		// Create a new instance of the toplevel class
             systemManager.document = app = topLevelWindow = IUIComponent(systemManager.create());
-    		COMPILE::SWF
-    		{
-    			FlashEventConverter.setupAllConverters(app as DisplayObject);
-    		}			
+        }
+        else
+            app = topLevelWindow = systemManager.document as IUIComponent;
+
+		COMPILE::SWF
+		{
+			FlashEventConverter.setupAllConverters(app as DisplayObject);
+		}			
+
+        CONFIG::performanceInstrumentation
+        {
+            perfUtil.markTime("SystemManager.create().end");
+        }        
+
+		if (systemManager.document)
+		{
+			// Add listener for the creationComplete event
+			IEventDispatcher(app).addEventListener(FlexEvent.CREATION_COMPLETE,
+												   appCreationCompleteHandler);
+        }
+        
+		COMPILE::LATER
+		{
+		// if somebody has set this in our applicationdomain hierarchy, don't overwrite it
+		if (!LoaderConfig._url)
+		{
+			LoaderConfig._url = LoaderUtil.normalizeURL(systemManager.loaderInfo);
+			LoaderConfig._parameters = systemManager.loaderInfo.parameters;
+            LoaderConfig._swfVersion = systemManager.loaderInfo.swfVersion;
+        }
+		}
+		
+		IFlexDisplayObject(app).setActualSize(width, height);
+
+		// Wait for the app to finish its initialization sequence
+		// before doing an addChild(). 
+		// Otherwise, the measurement/layout code will cause the
+		// player to do a bunch of unnecessary screen repaints,
+		// which slows application startup time.
+		
+		// Pass the application instance to the preloader.
+		// Note: preloader can be null when the user chooses
+		// Control > Play in the standalone player.
+		if (preloader)
+			preloader.registerApplication(app);
+					
+		// The Application doesn't get added to the SystemManager in the standard way.
+		// We want to recursively create the entire application subtree and process
+		// it with the LayoutManager before putting the Application on the display list.
+		// So here we what would normally happen inside an override of addChild().
+		// Leter, when we actually attach the Application instance,
+		// we call super.addChild(), which is the bare player method.
+		addingChild(DisplayObject(app));
+
+        CONFIG::performanceInstrumentation
+        {
+            perfUtil.markTime("Application.createChildren().start");
+        }
+        
+        childAdded(DisplayObject(app)); // calls app.createChildren()
+
+        CONFIG::performanceInstrumentation
+        {
+            perfUtil.markTime("Application.createChildren().end");
+        }
     
-            CONFIG::performanceInstrumentation
-            {
-                perfUtil.markTime("SystemManager.create().end");
-            }        
-    
-    		if (systemManager.document)
-    		{
-    			// Add listener for the creationComplete event
-    			IEventDispatcher(app).addEventListener(FlexEvent.CREATION_COMPLETE,
-    												   appCreationCompleteHandler);
-    
-    			COMPILE::LATER
-    			{
-    			// if somebody has set this in our applicationdomain hierarchy, don't overwrite it
-    			if (!LoaderConfig._url)
-    			{
-    				LoaderConfig._url = LoaderUtil.normalizeURL(systemManager.loaderInfo);
-    				LoaderConfig._parameters = systemManager.loaderInfo.parameters;
-                    LoaderConfig._swfVersion = systemManager.loaderInfo.swfVersion;
-                }
-    			}
-    			
-    			IFlexDisplayObject(app).setActualSize(width, height);
-    
-    			// Wait for the app to finish its initialization sequence
-    			// before doing an addChild(). 
-    			// Otherwise, the measurement/layout code will cause the
-    			// player to do a bunch of unnecessary screen repaints,
-    			// which slows application startup time.
-    			
-    			// Pass the application instance to the preloader.
-    			// Note: preloader can be null when the user chooses
-    			// Control > Play in the standalone player.
-    			if (preloader)
-    				preloader.registerApplication(app);
-    						
-    			// The Application doesn't get added to the SystemManager in the standard way.
-    			// We want to recursively create the entire application subtree and process
-    			// it with the LayoutManager before putting the Application on the display list.
-    			// So here we what would normally happen inside an override of addChild().
-    			// Leter, when we actually attach the Application instance,
-    			// we call super.addChild(), which is the bare player method.
-    			addingChild(DisplayObject(app));
-    
-                CONFIG::performanceInstrumentation
-                {
-                    perfUtil.markTime("Application.createChildren().start");
-                }
-                
-                childAdded(DisplayObject(app)); // calls app.createChildren()
-    
-                CONFIG::performanceInstrumentation
-                {
-                    perfUtil.markTime("Application.createChildren().end");
-                }
-    		}
-    		else
-    		{
-    			systemManager.document = this;
-    		}
-            
-            CONFIG::performanceInstrumentation
-            {
-                perfUtil.markTime("ChildManager.initializeTopLevelWindow().end");
-            }
+        CONFIG::performanceInstrumentation
+        {
+            perfUtil.markTime("ChildManager.initializeTopLevelWindow().end");
         }
 	}
 	
