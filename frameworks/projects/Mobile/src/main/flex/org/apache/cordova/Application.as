@@ -23,17 +23,6 @@ package org.apache.cordova
 	import org.apache.flex.core.IFlexInfo;
 
 	/**
-	 *  Dispatched at startup after the initial view has been
-	 *  put on the display list.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	[Event(name="deviceready", type="org.apache.flex.events.Event")]
-
-	/**
 	 *  A customized Application that dispatches the Cordova deviceReady event
 	 *  
 	 *  @langversion 3.0
@@ -43,14 +32,54 @@ package org.apache.cordova
 	 */
 	public class Application extends org.apache.flex.core.Application implements IFlexInfo
 	{
+		/**
+		 * FalconJX will inject html into the index.html file.  Surround with
+		 * "inject_html" tag as follows:
+		 *
+		 * <inject_html>
+		 * <script type="text/javascript" src="cordova.js"></script>
+		 * </inject_html>
+		 */
 		public function Application()
 		{
-			addEventListener("applicationComplete", appCompleteHandler);
+			super();
 		}
 		
-		private function appCompleteHandler(event:Event):void
+		public var isDeviceReady:Boolean = false
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		override public function start():void
 		{
-			dispatchEvent(new Event("deviceready"));
+			// listen for Cordova's deviceReady event
+			document.addEventListener("deviceReady", startOnReady, false);
+			
+			// listen for preinitialize event which will be cancelled until
+			// the Cordova 'deviceReady' event is received.
+			addEventListener("preinitialize", handlePreInit);
+			
+			super.start();
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handlePreInit(event:Event):void
+		{
+			if (!isDeviceReady) {
+				event.preventDefault(); // basically, cancel the event until the device is ready
+			}
+		}
+		
+		/**
+		 * @private
+		 */
+		private function startOnReady(event:*):void
+		{
+			isDeviceReady = true;
+			removeEventListener("preinitialize", handlePreInit);
 		}
 	}
 }

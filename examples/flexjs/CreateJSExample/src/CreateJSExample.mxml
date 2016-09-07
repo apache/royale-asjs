@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<cjs:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:local="*"
+                   xmlns:js="library://ns.apache.org/flexjs/basic" 
+                   xmlns:cjs="library://ns.apache.org/flexjs/createjs"
+                   applicationComplete="seq.play()"
+                   >
+
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+    
+    <js:beads>
+        <js:ApplicationDataBinding />
+    </js:beads>
+    
+    <fx:Declarations>
+    	<cjs:Sequence id="seq" target="circle" loop="true">
+			<cjs:Tween id="tween1" target="circle" xTo="400" 
+					duration="1000" easing="{Ease.getPowInOut(4)}" /> 
+			<cjs:Tween id="tween2" target="circle" alphaTo="0" yTo="175" 
+					duration="500" easing="{Ease.getPowInOut(2)}" />
+			<cjs:Tween id="tween3" target="circle" alphaTo="0" yTo="225" 
+					duration="100" />
+			<cjs:Tween id="tween4" target="circle" alphaTo="1" yTo="200" 
+					duration="500" easing="{Ease.getPowInOut(2)}" />
+			<cjs:Tween id="tween5" target="circle" xTo="100" 
+					duration="800" easing="{Ease.getPowInOut(2)}" />
+    	</cjs:Sequence>
+    </fx:Declarations>
+    
+    <fx:Script>
+    	<![CDATA[
+    		// import required for Ease functions in data binding.
+    		import org.apache.flex.createjs.tween.Ease;
+    	]]>
+    </fx:Script>
+    
+    <js:initialView>
+        <cjs:View>
+
+			<cjs:Circle id="circle" x="100" y="100" radius="50">
+				<js:fill>
+					<js:SolidColor color="#26C9FF" />
+				</js:fill>
+			</cjs:Circle>
+   		    
+        </cjs:View>
+    </js:initialView>
+
+</cjs:Application>

@@ -18,80 +18,146 @@
 
 -->
 
-<project name="createproject" default="main" basedir=".">
+<project name="cordova-app" default="main">
 
-    <condition property="project.name.specified" value="true">
-            <isset property="PROJECT_NAME" />
-    </condition>
-    <fail message="PROJECT_NAME not specified. Should specify desired name of cordova project" unless="project.name.specified"/>
-
-    <condition property="target.dir.specified" value="true">
-        <isset property="TARGET_DIR" />
-    </condition>
-    <fail message="TARGET_DIR not specified. Should specify folder to contain cordova project folder" unless="target.dir.specified"/>
-
-    <condition property="project.dir.specified" value="true">
-        <isset property="PROJECT_DIR" />
-    </condition>
-    <fail message="PROJECT_DIR not specified. Should specify folder that contains the bin/js-debug output of a FlexJS project" unless="project.dir.specified"/>
-
-    <property name="target.dir" value="${TARGET_DIR}" />
-    <property name="project.name" value="${PROJECT_NAME}" />
-    <property name="project.dir" value="${PROJECT_DIR}" />
-
-    <property name="app.dir" value="${target.dir}/${project.name}" />
-    <available file="${app.dir}" type="dir" property="app.dir.exists"/>
-
-    <available file="${target.dir}" type="dir" property="target.dir.exists"/>
-    <fail message="${target.dir} does not exist" unless="target.dir.exists"/>
-    <available file="${project.dir}/bin/js-debug" type="dir" property="project.dir.exists"/>
-    <fail message="${project.dir}/bin/js-debug does not exist" unless="project.dir.exists"/>
+	<!-- this ANT script assumes you are in the following directory structure:
+	
+	     .    /* run ANT here */
+	     ./src/<APP>.mxml   /* The main application MXML tag */
+	     ./bin/js-debug     /* The result of building APP.mxml via mxmlc
+	     ./app/<APP>        /* The Cordova application directory
+	     
+	     1. This ANT script will build the template Cordova app/APP if it does not
+	     already exist. 
+	     
+	     2. This ANT script will compile the APP.mxml into bin/js-debug
+	     
+	     3. This ANT script will remove ./app/<APP>/www contents are replace it with
+	     the contents of bin/js-debug.
+	     
+	     Optionally, you can run the Cordova application using ant run
+	     
+	-->
+	
+	<target name="main" depends="create, compilejs, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	</target>
+	
+	<!-- Set up properties and conditions -->
+	
+	<property environment="env"/>
     
-    <target name="create" unless="app.dir.exists">
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    
+    <condition property="projectdir" value="${user.dir}">
+    	<not>
+    		<isset property="projectdir" />
+    	</not>
+    </condition>
+	
+	<!-- override with -Dplatform=other-platform-name -->
+	<condition property="platform" value="android">
+		<not>
+			<isset property="platform" />
+		</not>
+    </condition>
+    
+	<!-- override with -Dappname=other-app-name -->
+	<basename property="directory.name" file="${projectdir}" />
+    <condition property="appname" value="${directory.name}">
+    	<not>
+    		<isset property="appname" />
+    	</not>
+    </condition>
+    
+    <condition property="cordova.executable" value="cordova">
+    	<not>
+    		<isset property="isWindows" />
+    	</not>
+    </condition>
+    <condition property="cordova.executable" value="cordova.cmd">
+    	<isset property="isWindows" />
+    </condition>
+	
+	<property name="cordova.target.dir" value="${projectdir}/app/${appname}" />
+    <available file="${cordova.target.dir}" type="dir" property="app.dir.exists"/>
+    
+	
+	<!-- Create the Cordova template project unless it already exists -->
+	
+	<target name="makedir" unless="app.dir.exists">
+		<mkdir dir="${projectdir}/app" />
+	</target>
+	
+	<target name="create" unless="app.dir.exists" depends="makedir" description="Creates the Cordova application template">
     	<!-- create the project -->
-		<exec executable="cordova" dir="${target.dir}">
+		<exec executable="${cordova.executable}" dir="${projectdir}/app">
 			<arg value="create" />
-			<arg value="${project.name}" />
-			<arg value="org.apache.flex.mobile" />
-			<arg value="${project.name}" />
+			<arg value="${appname}" />
 		</exec>
+		
+		<echo>Adding in platform(s). This may take awhile.</echo>
 
 		<!-- add in the platforms -->
-		<exec executable="cordova" dir="${app.dir}">
+		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
 			<arg value="platform" />
 			<arg value="add" />
-			<arg value="android" />
+			<arg value="${platform}" />
 		</exec>
     </target>
     
-    <target name="copyfiles" depends="create">
-    	<echo message="Removing www directory contents" />
+    <!-- Compile the FlexJS application -->
+    
+    <target name="compilejs" description="Compiles the FlexJS app into JavaScript">
+    	<echo message="Compiling FlexJS app" />
+    	<exec executable="mxmlc" dir="${projectdir}/src">
+    		<arg value="${appname}.mxml" />
+    	</exec>
+    </target>
+    
+    <!-- Clean www directory -->
+    
+    <target name="purge">
     	<delete includeEmptyDirs="true">
-    		<fileset dir="${app.dir}/www" includes="**/*" />
+    		<fileset dir="${cordova.target.dir}/www" includes="**/*" />
     	</delete>
+    </target>
+    
+    <!-- Copy files from step above -->
+    
+    <target name="copyfiles" depends="purge">
     	<echo message="Copying files from project" />
-    	<copy todir="${app.dir}/www">
-    		<fileset dir="${project.dir}/bin/js-debug" />
+    	<copy todir="${cordova.target.dir}/www">
+    		<fileset dir="${projectdir}/bin/js-debug" />
     	</copy>
     </target>
     
-    <target name="build" depends="copyfiles">
-		<!-- build the app -->
-		<exec executable="cordova" dir="${app.dir}">
-			<arg value="build" />
-			<arg value="android" />
-		</exec>
+    <!--
+    	Running the app on the platform
+    -->
+    
+    <target name="run" description="Runs the Cordova application on the specified platform">
+    	<echo message="Launching ${appname} on platform ${platform}" />
+    	<exec executable="cordova" dir="${cordova.target.dir}">
+    		<arg value="run" />
+    		<arg value="${platform}" />
+    	</exec>
     </target>
     
-    <target name="main" depends="build">
-    	<echo message="App = ${app.dir} and basedir = ${basedir}" />
+    <!--
+    	Cleaning Tasks
+    -->
+    
+    <target name="clean" depends="purge" description="Removes files created during the build and copy">
+    	<delete dir="${projectdir}/bin-debug" failonerror="false" />
+    	<delete dir="${projectdir}/bin-release" failonerror="false" />
     </target>
     
-    <target name="help">
-    	<echo message="ant -f cordova-build.xml -DPROJECT_NAME=name -DPROJECT_DIR=FlexJSProjectDirectory -DTARGET_DIR=PhoneGapProjectDirectory" />
-    	<echo message="PhoneGap project is created inside of PhoneGapProjectDirectory with the PROJECT name and all files are copied" />
-    	<echo message="from FlexJSProjectDirectory/bin/js-debug into the PhoneGap project." />
+    <target name="super-clean" depends="clean" description="Removes all files and directories except src and its contents">
+    	<delete dir="${projectdir}/bin" />
+    	<delete dir="${projectdir}/app" />
     </target>
     
-</project>
 
+</project>

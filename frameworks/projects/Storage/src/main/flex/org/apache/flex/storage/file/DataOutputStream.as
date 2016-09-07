@@ -23,7 +23,7 @@ import org.apache.flex.events.IEventDispatcher;
 import org.apache.flex.storage.events.FileEvent;
 import org.apache.flex.storage.events.FileErrorEvent;
 
-COMPILE::AS3 {
+COMPILE::SWF {
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
@@ -83,7 +83,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 			_fileWriter.truncate(0);
 		}
 			
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			_fileHandle = fileHandle as File;
 			_fileWriter = fileWriter as FileStream;
 		}
@@ -98,7 +98,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 		private var _fileHandle:FileEntry;
 		private var _fileWriter:FileWriter;
 	}
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		private var _fileHandle:File;
 		private var _fileWriter:FileStream;
 	}
@@ -120,7 +120,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 			var blob:Blob = new Blob([text], { type: 'text/plain' });
 			_fileWriter.write(blob);
 		}
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			try {
 				_fileWriter.writeUTFBytes(text);
 				
@@ -152,7 +152,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	 */
 	public function close():void
 	{
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			_fileWriter.close();
 		}
 			

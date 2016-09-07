@@ -106,6 +106,10 @@
         <os family="windows" />
     </condition>
     <property name="MXMLC" value="mxmlc" />
+    <condition property="ASJSC" value="asjsc.bat">
+        <os family="windows" />
+    </condition>
+    <property name="ASJSC" value="asjsc" />
     
     <condition property="java.home" value="${env.JAVA_HOME}" >
         <and>
@@ -212,7 +216,7 @@
         <property name="falcon.file" value="apache-flex-falconjx-${falcon.version}-bin.zip" />
     </target>
     
-    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,delete-download-dir" description="Converts binary package to IDE compatible folder">
+    <target name="install" depends="get-data,find-java,get-md5-data,check-binary,ask-licenses,get-falcon,get-third-party-files,fixup-config-files,hack-fb-files,setup-launch-configs,setup-launch-configs-windows,delete-download-dir" description="Converts binary package to IDE compatible folder">
         <echo>${install.complete.echo}</echo>
     </target>
 
@@ -775,6 +779,8 @@
             tofile="${FLEXJS_HOME}/frameworks/flex-config.xml" overwrite="true"/>
         <copy file="${FLEXJS_HOME}/frameworks/air-config-template.xml"
             tofile="${FLEXJS_HOME}/frameworks/air-config.xml" overwrite="true"/>
+        <copy file="${FLEXJS_HOME}/frameworks/js-config-template.xml"
+            tofile="${FLEXJS_HOME}/frameworks/js-config.xml" overwrite="true"/>
         <replace file="${FLEXJS_HOME}/frameworks/flex-config.xml">
             <replacefilter token="@playerversion@"
                             value="${flash.sdk.version}"/>
@@ -784,6 +790,14 @@
                             value="libs/player"/>
         </replace>
         <replace file="${FLEXJS_HOME}/frameworks/air-config.xml" >
+            <replacefilter token="@playerversion@"
+                            value="${flash.sdk.version}"/>
+            <replacefilter token="@swfversion@"
+                            value="${flash.sdk.swfversion}"/>
+            <replacefilter token="{airHome}/frameworks/libs"
+                            value="libs"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/frameworks/js-config.xml" >
             <replacefilter token="@playerversion@"
                             value="${flash.sdk.version}"/>
             <replacefilter token="@swfversion@"
@@ -916,10 +930,54 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (FalconJX Debug Build).launch">
+            <replacefilter
+            token="$MXMLC"
+            value="${MXMLC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
         <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (JS COMPC).launch">
             <replacefilter
             token="$COMPC"
             value="${COMPC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/ASJSC (Debug and Release Build).launch">
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/ASJSC (Debug Build).launch">
+            <replacefilter
+            token="$ASJSC"
+            value="${ASJSC}"/>
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS MVC Project.launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/Convert New Flex Project to FlexJS Project.launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
@@ -933,6 +991,19 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             <replacefilter
             token="@java"
             value="&quot;${java.executable}&quot;"/>
+        </replace>
+    </target>
+    
+    <target name="setup-launch-configs-windows" description="Custom Flash Builder launch configurations for Windows" if="isWindows">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Build).launch">
+        	<replacefilter
+        	token="PATH"
+        	value="UNIX_PATH" />
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        	<replacefilter
+        	token="PATH"
+        	value="UNIX_PATH" />
         </replace>
     </target>
 

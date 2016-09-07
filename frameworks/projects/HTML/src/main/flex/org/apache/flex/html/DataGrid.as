@@ -52,6 +52,8 @@ package org.apache.flex.html
 		public function DataGrid()
 		{
 			super();
+			
+			className = "DataGrid";
 		}
 		
 		/**

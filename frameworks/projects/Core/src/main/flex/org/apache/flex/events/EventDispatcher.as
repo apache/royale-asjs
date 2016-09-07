@@ -24,9 +24,10 @@ package org.apache.flex.events
 		import goog.events.EventTarget;
 	}
 
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import flash.events.EventDispatcher;
+        import flash.events.IEventDispatcher;
 	}
 
 	/**
@@ -38,8 +39,8 @@ package org.apache.flex.events
 	 * @playerversion AIR 2.6
 	 * @productversion FlexJS 0.0
 	 */
-	COMPILE::AS3
-	public class EventDispatcher extends flash.events.EventDispatcher implements IEventDispatcher
+	COMPILE::SWF
+	public class EventDispatcher extends flash.events.EventDispatcher implements org.apache.flex.events.IEventDispatcher
 	{
 		/**
 		 * Constructor.
@@ -49,15 +50,21 @@ package org.apache.flex.events
 		 * @playerversion AIR 2.6
 		 * @productversion FlexJS 0.0
 		 */
-		public function EventDispatcher()
+		public function EventDispatcher(target:org.apache.flex.events.IEventDispatcher = null)
 		{
-			super();
+			super(target as flash.events.IEventDispatcher);
 		}
 	}
 
 	COMPILE::JS
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
+        public function EventDispatcher(target:IEventDispatcher = null)
+        {
+            if (target != null)
+                setTargetForTesting(target);
+        }
+        
         public function hasEventListener(type:String):Boolean
         {
             return goog.events.hasListener(this, type);

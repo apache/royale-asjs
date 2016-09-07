@@ -496,7 +496,7 @@ ToolTip
     background-color: #FFFFCC;
 }
 
-ViewBase
+View
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
@@ -832,7 +832,7 @@ ToggleTextButton
     IBeadView:  ClassReference("org.apache.flex.html.beads.CSSTextButtonView");
 }
 
-ViewBase
+View
 {
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");

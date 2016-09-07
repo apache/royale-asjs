@@ -34,6 +34,7 @@ internal class ChartsClasses
 	import org.apache.flex.charts.core.IChart; IChart;
 	import org.apache.flex.charts.core.ICartesianChartLayout; ICartesianChartLayout;
 	import org.apache.flex.charts.core.IChartDataGroup; IChartDataGroup;
+	import org.apache.flex.charts.core.IChartDataModel; IChartDataModel;
 	import org.apache.flex.charts.core.IChartSeries; IChartSeries;
 	import org.apache.flex.charts.core.IHorizontalAxisBead; IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead; IVerticalAxisBead;
@@ -51,6 +52,7 @@ internal class ChartsClasses
 	import org.apache.flex.charts.beads.HorizontalLinearAxisBead; HorizontalLinearAxisBead;
 	import org.apache.flex.charts.beads.VerticalCategoryAxisBead; VerticalCategoryAxisBead;
 	import org.apache.flex.charts.beads.VerticalLinearAxisBead; VerticalLinearAxisBead;
+	import org.apache.flex.charts.beads.controllers.ChartSeriesMouseController; ChartSeriesMouseController;
 	import org.apache.flex.charts.beads.layouts.BarChartLayout; BarChartLayout;
 	import org.apache.flex.charts.beads.layouts.ColumnChartLayout; ColumnChartLayout;
 	import org.apache.flex.charts.beads.layouts.LineChartCategoryVsLinearLayout; LineChartCategoryVsLinearLayout;
@@ -58,6 +60,7 @@ internal class ChartsClasses
 	import org.apache.flex.charts.beads.layouts.PieChartLayout; PieChartLayout;
 	import org.apache.flex.charts.beads.layouts.StackedBarChartLayout; StackedBarChartLayout;
 	import org.apache.flex.charts.beads.layouts.StackedColumnChartLayout; StackedColumnChartLayout;
+	import org.apache.flex.charts.beads.models.ChartArraySelectionModel; ChartArraySelectionModel;
 	import org.apache.flex.charts.supportClasses.BarSeries; BarSeries;
 	import org.apache.flex.charts.supportClasses.LineSeries; LineSeries;
 	import org.apache.flex.charts.supportClasses.PieSeries; PieSeries;

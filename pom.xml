@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>18</version>
+  </parent>
+
+  <groupId>org.apache.flex.flexjs</groupId>
+  <artifactId>flexjs-framework-parent</artifactId>
+  <version>0.8.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Apache Flex - FlexJS: Framework: Parent</name>
+  <description>The Apache Flex ASJS Project</description>
+
+  <!--
+        This build builds only the framework libraries per default.
+        - In order to build the examples, activate the "build-examples" profile
+        - In order to assemble a distribution, activate the "build-distribution" profile.
+  -->
+
+  <scm>
+    <connection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</connection>
+    <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</developerConnection>
+    <url>https://github.com/apache/flex-asjs</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <java.version>1.6</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
+    <maven.version>3.3.1</maven.version>
+
+    <flexjs.compiler.version>0.7.0</flexjs.compiler.version>
+    <flexjs.typedefs.version>0.7.0</flexjs.typedefs.version>
+    <flexjs.build-tools.version>1.0.0</flexjs.build-tools.version>
+
+    <flex.debug>true</flex.debug>
+    <flex.version>4.15.0</flex.version>
+    <flash.version>20.0</flash.version>
+    <air.version>20.0</air.version>
+
+    <!-- URL of the ASF SonarQube server -->
+    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
+    <!-- Tell sonar where the coverage reports are located -->
+    <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
+    <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+  </properties>
+
+  <!-- Only configure the site distribution as the rest is handled by the apache parent -->
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <!-- TODO: Set this to the correct url -->
+      <url>scp://www.mycompany.com/www/docs/project/</url>
+    </site>
+  </distributionManagement>
+
+  <issueManagement>
+    <system>Jira</system>
+    <url>https://issues.apache.org/jira/browse/FLEX</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>Apache Flex User List</name>
+      <subscribe>users-subscribe@flex.apache.org</subscribe>
+      <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
+      <post>users@flex.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+    </mailingList>
+    <mailingList>
+      <name>Apache Flex Developer List</name>
+      <subscribe>dev-subscribe@flex.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
+      <post>dev@flex.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+    </mailingList>
+  </mailingLists>
+
+  <modules>
+    <module>frameworks</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.flex.flexjs.compiler</groupId>
+          <artifactId>flexjs-maven-plugin</artifactId>
+          <version>${flexjs.compiler.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <targetPlayer>${flash.version}</targetPlayer>
+            <debug>${flex.debug}</debug>
+            <keepAs3Metadata>
+              <name>Bindable</name>
+              <name>Managed</name>
+              <name>ChangeEvent</name>
+              <name>NonCommittingChangeEvent</name>
+              <name>Transient</name>
+              <name>Mixin</name>
+            </keepAs3Metadata>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.flex.flexjs.compiler</groupId>
+              <artifactId>compiler-jx</artifactId>
+              <version>${flexjs.compiler.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!-- Check if all source files have the required apache license headers -->
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.12</version>
+        <executions>
+          <execution>
+            <id>license-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes>
+            <!--
+              As the examples and distribution are not build in every case, we
+              have to exclude them. This skips the checks if they are not included
+              but if they are included, the checks inside distribution and examples
+              kick in and do the checks.
+            -->
+            <exclude>distribution/**</exclude>
+            <exclude>examples/**</exclude>
+            <!-- JSON files can't contain comments -->
+            <exclude>**/*.json</exclude>
+            <!-- This is appended to the LICENSE file for binary packages-->
+            <exclude>LICENSE.bin</exclude>
+
+            <!-- Stuff that needs to be removed -->
+            <exclude>fxg2svg/**</exclude>
+            <exclude>vf2js/**</exclude>
+            <!-- frameworks/fb.properties contains Alex' path entries and should be removed -->
+            <exclude>fb.properties</exclude>
+            <!-- Should probably also be removed -->
+            <exclude>js/*jshint*</exclude>
+            <!-- If checked in, they should have apache headers -->
+            <exclude>**/.settings/**</exclude>
+            <!-- Examples needs to be fixed -->
+            <exclude>native/**</exclude>
+          </excludes>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>1.6</version>
+            <exclusions>
+              <exclusion>
+                <groupId>xerces</groupId>
+                <artifactId>xercesImpl</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <properties>
+        <flex.debug>false</flex.debug>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>build-examples</id>
+      <modules>
+        <module>examples</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>build-distribution</id>
+      <modules>
+        <module>distribution</module>
+      </modules>
+    </profile>
+  </profiles>
+
+  <repositories>
+    <repository>
+      <id>apache-release</id>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>apache-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>apache-plugins-release</id>
+      <url>https://repository.apache.org/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>apache-plugins-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

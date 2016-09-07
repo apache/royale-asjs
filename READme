@@ -69,21 +69,17 @@ Install Prerequisites
 
     Google Closure Library (*3)                 GOOG_HOME
 
-    Google Closure Linter (*4)                  see note
+    Adobe Flash Player playerglobal swcs (*4)   PLAYERGLOBAL_HOME
 
-    Adobe Flash Player playerglobal swcs (*5)   PLAYERGLOBAL_HOME
+    Adobe AIR Integration Kit (*5)             AIR_HOME
 
-    Adobe AIR Integration Kit (* 6)             AIR_HOME
+    Adobe Flash Player Content Debugger (*6)   FLASHPLAYER_DEBUGGER
 
-    Adobe Flash Player Content Debugger (* 7)   FLASHPLAYER_DEBUGGER
+    Apache Flex 'Falcon' Compiler (*7)          FALCON_HOME
 
-    JSHint (*8)                                 see note
+    Apache Flex 'FalconJX' Compiler (*8)       FALCONJX_HOME
 
-    Apache Flex 'Falcon' Compiler (*9)          FALCON_HOME
-
-    Apache Flex 'FalconJX' Compiler (*10)       FALCONJX_HOME
-
-    Apache Flex FlexUnit (*11)                  FLEXUNIT_HOME
+    Apache Flex FlexUnit (*9)                  FLEXUNIT_HOME
 
     Apache Flex SDK or repository               FLEX_HOME
 
@@ -113,14 +109,7 @@ Install Prerequisites
         Set GOOG_HOME to the absolute path of the folder that contains the 
         third_party and closure sub-folders.
 
-    *4) The Google Closure Linter can be installed by following the directions here:
-            https://developers.google.com/closure/utilities/docs/linter_howto
-
-        It should automatically make the linter available.  No need to change paths 
-        or environment variables.  Some folks on OSX had permission issues after the
-        install.  See their support channels for assistance.
-
-    *5) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
+    *4) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
 
         Use URL above to download playerglobal11_1.swc. Create the directory,
@@ -145,7 +134,7 @@ Install Prerequisites
 
             frameworks/libs/player/<version.major>.<version.minor>/playerglobal.swc
 
-    *6) The Adobe AIR integration kit for Windows can be downloaded from:
+    *5) The Adobe AIR integration kit for Windows can be downloaded from:
 
            http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip
 
@@ -163,7 +152,7 @@ Install Prerequisites
         This version of Apache FlexJS was certified for use with Adobe AIR 16
         and is compatible with version 3.1 and up.
 
-    *7) The Adobe Flash Player content debuggers can be found here:
+    *6) The Adobe Flash Player content debuggers can be found here:
 
            http://www.adobe.com/support/flashplayer/downloads.html
 
@@ -182,31 +171,21 @@ Install Prerequisites
 
         On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
 
-    *8) You will need npm (Node Package Manager) to install JSHint. You can get npm from here:
-            https://nodejs.org/
-    
-        The JSHint utility can be installed by following the instructions here:
-            http://www.jshint.com/install/
-
-        JSHint will also be automatically available.  No need to change paths or
-        environment variables.  On OSX some folks had permission issues after
-        the install.  See their documentation on using -g and sudo.
-
-    *9) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
+    *7) Set FALCON_HOME to the root of its SDK.  If you have cloned the flex-falcon
         repository as a sibling of the flex-asjs repository, you don’t need to
         set this variable, otherwise, set it as: 
-             FALCON_HOME=<repo-path>/compiler/generated/dist/sdk
+             FALCON_HOME=<repo-path>/compiler
 			 
 	    Look at flex-falcon/README for instructions on how to build Falcon
 
-    *10) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
-         repositoryas a sibling of the flex-asjs repository, you don’t need to
+    *8) Set FALCONJX_HOME to the root of its SDK.  If you have cloned the flex-falcon
+         repository as a sibling of the flex-asjs repository, you don’t need to
          set this variable, otherwise, set it as
-             FALCONJX_HOME=<repo-path>/compiler.jx
+             FALCONJX_HOME=<repo-path>/compiler-jx
         
 	 Look at flex-falcon/README_JX for instructions on how to build FalconJX
 			 
-    *11) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
+    *9) Set FLEXUNIT_HOME to the root of a FlexUnit release or repo.  If you
          have cloned the flex-flexunit repository as a sibling of the flex-asjs
          repository, you don’t need to set this variable. 
 	 Look at flex-flexunit/README for instructions on how to build FlexUnit

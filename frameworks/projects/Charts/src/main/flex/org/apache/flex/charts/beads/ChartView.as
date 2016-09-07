@@ -21,10 +21,15 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.charts.core.IAxisGroup;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.charts.core.IChartDataModel;
+	import org.apache.flex.charts.supportClasses.ChartDataGroup;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
@@ -39,8 +44,25 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.utils.CSSContainerUtils;
 	
+	/**
+	 *  The ChartView class provides the visual elemental structure for a chart. This includes the
+	 *  axis areas and the chart data area where the graphs are drawn.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ChartView extends ListView implements IBeadView
 	{
+		/**
+		 *  Constructor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function ChartView()
 		{
 			super();
@@ -61,7 +83,7 @@ package org.apache.flex.charts.beads
 		{
 			_strand = value;
 						
-			var listModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var listModel:IChartDataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
@@ -83,6 +105,9 @@ package org.apache.flex.charts.beads
 			super.strand = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		override protected function completeSetup():void
 		{
 			if (border) {
@@ -92,11 +117,27 @@ package org.apache.flex.charts.beads
 			super.completeSetup();
 		}
 		
+		/**
+		 *  The IAxisGroup that represents the horizontal axis.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get horizontalAxisGroup():IAxisGroup
 		{
 			return _horizontalAxisGroup;
 		}
 		
+		/**
+		 *  The IAxisGroup that represents the vertical axis.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function get verticalAxisGroup():IAxisGroup
 		{
 			return _verticalAxisGroup;
@@ -161,14 +202,62 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment - metrics.left - metrics.right;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		protected var lastSelectedSeries:IChartSeries;
+		
+		/**
+		 * @private
+		 */
+		override protected function selectionChangeHandler(event:Event):void
+		{
+			var model:IChartDataModel = event.currentTarget as IChartDataModel;
+			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
+			var ir:ISelectableItemRenderer = null;
 			
-            /* viewport should be doing this now
-			if (dataGroup) {
-				UIBase(dataGroup).x = viewportModel.contentX;
-				UIBase(dataGroup).y = viewportModel.contentY;
-				UIBase(dataGroup).width = viewportModel.contentWidth;
-				UIBase(dataGroup).height = viewportModel.contentHeight;
-			} */
-		}		
+			if (lastSelectedIndex != -1)
+			{
+				ir = chartDataGroup.getItemRendererForSeriesAtIndex(lastSelectedSeries, lastSelectedIndex) as ISelectableItemRenderer;
+				ir.selected = false;
+			}
+			if (model.selectedIndex != -1)
+			{
+				ir = chartDataGroup.getItemRendererForSeriesAtIndex(model.selectedSeries, model.selectedIndex) as ISelectableItemRenderer;
+				ir.selected = true;
+			}
+			lastSelectedIndex = model.selectedIndex;
+			lastSelectedSeries = model.selectedSeries;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected var lastRollOverSeries:IChartSeries;
+		
+		/**
+		 * @private
+		 */
+		override protected function rollOverIndexChangeHandler(event:Event):void
+		{
+			var model:IChartDataModel = event.currentTarget as IChartDataModel;
+			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
+			var ir:ISelectableItemRenderer = null;
+
+			if (lastRollOverIndex != -1)
+			{
+				ir = chartDataGroup.getItemRendererForSeriesAtIndex(lastRollOverSeries, lastRollOverIndex) as ISelectableItemRenderer;
+				ir.hovered = false;
+			}
+			if (model.rollOverIndex != -1)
+			{
+				ir = chartDataGroup.getItemRendererForSeriesAtIndex(model.rollOverSeries, model.rollOverIndex) as ISelectableItemRenderer;
+				ir.hovered = true;
+			}
+			lastRollOverIndex = model.rollOverIndex;
+			lastRollOverSeries = model.rollOverSeries;
+		}
 	}
 }

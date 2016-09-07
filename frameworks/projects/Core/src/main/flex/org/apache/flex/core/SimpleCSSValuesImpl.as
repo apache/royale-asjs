@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.system.ApplicationDomain;
         import flash.utils.getDefinitionByName;
@@ -72,7 +72,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function init(mainClass:Object):void
         {
 			var styleClassName:String;
@@ -155,7 +155,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        COMPILE::AS3
+        COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
 			if (factoryFunctions == null)
@@ -390,7 +390,7 @@ package org.apache.flex.core
                 }
 			}
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
     			className = getQualifiedClassName(thisObject);
             }
@@ -424,7 +424,7 @@ package org.apache.flex.core
 	                if (value !== undefined)
 	                    return value;
 	            }
-                COMPILE::AS3
+                COMPILE::SWF
                 {
                     className = getQualifiedSuperclassName(thisInstance);
                     thisInstance = getDefinitionByName(className);                        
@@ -544,7 +544,7 @@ package org.apache.flex.core
         {
             var o:Object = values["global"];
             o = o[valueName];
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var i:Class = o as Class;                    
             }
@@ -740,7 +740,7 @@ package org.apache.flex.core
 	}
 }
 
-COMPILE::AS3
+COMPILE::SWF
 class CSSClass
 {
     public static const CSSSelector:int = 0;
@@ -749,7 +749,7 @@ class CSSClass
     public static const CSSMediaQuery:int = 3;
 }
 
-COMPILE::AS3
+COMPILE::SWF
 class CSSFactory
 {
     public static const DefaultFactory:int = 0;
@@ -757,7 +757,7 @@ class CSSFactory
     public static const Override:int = 2;
 }
 
-COMPILE::AS3
+COMPILE::SWF
 class CSSDataType
 {
     public static const Native:int = 0;

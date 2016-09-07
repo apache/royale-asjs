@@ -26,8 +26,8 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.graphics.IFill;
-	import org.apache.flex.core.graphics.SolidColor;
+	import org.apache.flex.graphics.IFill;
+	import org.apache.flex.graphics.SolidColor;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	

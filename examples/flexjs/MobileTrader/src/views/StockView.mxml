@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:TitleView xmlns:fx="http://ns.adobe.com/mxml/2009"
 					   xmlns:js="library://ns.apache.org/flexjs/basic"
 					   xmlns:apache="org.apache.flex.html.beads.*"
 					   xmlns:local="*"
@@ -95,4 +95,4 @@ limitations under the License.
 			<js:TextButton text="Remove From List" width="200" className="StockRemoveButton" click="removeFromList()" />
 		</js:Container>
 	</js:Container>
-</js:View>
+</js:TitleView>

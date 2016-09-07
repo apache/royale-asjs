@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.events.Event;
     import flash.external.ExternalInterface;
@@ -81,7 +81,7 @@ COMPILE::AS3
         public function set strand(value:IStrand):void
         {
             app = value as Application;
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 app.stage.addEventListener("resize", resizeHandler);
                 if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
@@ -111,7 +111,7 @@ COMPILE::AS3
         
         private function resizeHandler(event:Event):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var initialView:UIBase = app.initialView as UIBase;
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))

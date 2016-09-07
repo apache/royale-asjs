@@ -82,7 +82,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
                 var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;

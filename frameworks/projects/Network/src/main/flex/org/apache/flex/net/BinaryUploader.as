@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
         import flash.net.URLLoader;
         import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
-        import flash.net.URLRequestMethod;            
     }
 	COMPILE::JS
     {
@@ -35,7 +34,6 @@ package org.apache.flex.net
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.utils.BinaryData;
 	
     //--------------------------------------
@@ -101,55 +99,6 @@ package org.apache.flex.net
      */
 	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
-        /**
-         *  The GET request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_GET:String = "GET";
-
-        /**
-         *  The POST request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public static const HTTP_METHOD_POST:String = "POST";
-
-        /**
-         *  The PUT request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const HTTP_METHOD_PUT:String = "PUT";
-
-        /**
-         *  The DELETE request method.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public static const HTTP_METHOD_DELETE:String = "DELETE";
-		
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
 		public function BinaryUploader()
 		{
 			super();
@@ -246,7 +195,7 @@ package org.apache.flex.net
 			}
 		}
 		
-		private var _method:String = HTTP_METHOD_POST;
+		private var _method:String = HTTPConstants.POST;
 
         /**
          *  The HTTP method for the upload.
@@ -287,7 +236,7 @@ package org.apache.flex.net
          */        
 		public function get responseHeaders():Array
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (_responseHeaders && _responseHeaders.length > 0)
                 {
@@ -474,7 +423,7 @@ package org.apache.flex.net
          */        
 		public var beads:Array;
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _beads:Vector.<IBead>;
 
         /**
@@ -485,7 +434,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */       
-        COMPILE::AS3
+        COMPILE::SWF
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
@@ -502,7 +451,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */     
-        COMPILE::AS3
+        COMPILE::SWF
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			for each (var bead:IBead in _beads)
@@ -521,7 +470,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */  
-        COMPILE::AS3
+        COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
 		{
 			var n:int = _beads.length;
@@ -537,8 +486,8 @@ package org.apache.flex.net
 			return null;
 		}
 
-        COMPILE::AS3
-        private var urlLoader:URLLoader;
+        COMPILE::SWF
+        private var urlLoader:flash.net.URLLoader;
         
         /**
          *  Starts the upload to the server.  Events
@@ -551,11 +500,11 @@ package org.apache.flex.net
          */        
         public function send():void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 if (!urlLoader)
-                    urlLoader = new URLLoader();
-                var request:URLRequest = new URLRequest(url);
+                    urlLoader = new flash.net.URLLoader();
+                var request:flash.net.URLRequest = new flash.net.URLRequest(url);
                 request.method = method;
                 if ("idleTimeout" in request)
                 {
@@ -572,14 +521,14 @@ package org.apache.flex.net
                             sawContentType = true;
                     }
                 }
-                if (method != HTTP_METHOD_GET && !sawContentType)
+                if (method != HTTPConstants.GET && !sawContentType)
                 {
                     urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                     request.requestHeaders.push(urlHeader);
                 }
                 if (binaryData)
                 {
-                    if (method == HTTP_METHOD_GET)
+                    if (method == HTTPConstants.GET)
                     {
                         if (url.indexOf("?") != -1)
                             url += binaryData.data.toString();
@@ -606,7 +555,7 @@ package org.apache.flex.net
                 
                 var binaryData:String = null;
                 if (_binaryData != null) {
-                    if (_method === HTTP_METHOD_GET) {
+                    if (_method === HTTPConstants.GET) {
                         if (url.indexOf('?') !== -1) {
                             url += _binaryData.data;
                         } else {
@@ -633,7 +582,7 @@ package org.apache.flex.net
                     }
                 }
                 
-                if (_method !== HTTP_METHOD_GET &&
+                if (_method !== HTTPConstants.GET &&
                     !sawContentType && binaryData) {
                     element.setRequestHeader(
                         HTTPHeader.CONTENT_TYPE, _contentType);
@@ -658,7 +607,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function statusHandler(event:HTTPStatusEvent):void
 		{
 			_status = event.status;
@@ -677,7 +626,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */  
-        COMPILE::AS3
+        COMPILE::SWF
 		protected function ioErrorHandler(event:IOErrorEvent):void
 		{
 			dispatchEvent(new Event(event.type));
@@ -691,7 +640,7 @@ package org.apache.flex.net
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */        
-        COMPILE::AS3
+        COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void
         {
             dispatchEvent(new Event(event.type));
@@ -725,7 +674,7 @@ package org.apache.flex.net
          */        
         public function get data():*
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return urlLoader.data;                    
             }

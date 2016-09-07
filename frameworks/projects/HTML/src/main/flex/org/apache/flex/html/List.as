@@ -248,7 +248,7 @@ package org.apache.flex.html
 		{
 			var result:Boolean = false;
 			
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				result = _itemRenderer != null;
 			}
 			

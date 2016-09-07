@@ -226,7 +226,7 @@ package org.apache.flex.html
             var xloc:Number = p * (parseInt(track.element.style.width, 10) -
                 parseInt(thumb.element.style.width, 10));
             
-            thumb.element.style.left = String(xloc) + 'px';
+            thumb.element.style.left = "" + xloc + 'px';
         }        
 
     }

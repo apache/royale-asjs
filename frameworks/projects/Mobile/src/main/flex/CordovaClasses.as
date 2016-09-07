@@ -26,10 +26,11 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class CordovaClasses
-{	
+{
 	import org.apache.cordova.camera.Camera; Camera;
 	import org.apache.cordova.Application; Application;
 	import org.apache.cordova.Weinre; Weinre;
+	import org.apache.cordova.geolocation.Geolocation; Geolocation;
 }
 
 }

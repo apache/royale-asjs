@@ -155,9 +155,21 @@
           
       </namespace>
       <namespace>
+          <uri>library://ns.apache.org/flexjs/svg</uri>
+          
+          <manifest>projects/Graphics/src/main/resources/svg-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
           <uri>library://ns.apache.org/flexjs/basic</uri>
           
           <manifest>projects/HTML/src/main/resources/basic-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
+          <uri>library://ns.apache.org/flexjs/svg</uri>
+          
+          <manifest>projects/HTML/src/main/resources/svg-manifest.xml</manifest>
           
       </namespace>
       <namespace>
@@ -231,6 +243,7 @@
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>Mixin</name>
       </keep-as3-metadata>
       -->
 

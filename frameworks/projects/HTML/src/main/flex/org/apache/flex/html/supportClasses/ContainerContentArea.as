@@ -64,7 +64,7 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function removeAllElements():void
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				removeChildren(0);					
 			}

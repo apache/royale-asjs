@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.CSSTextField;			
 	}
@@ -27,7 +27,7 @@ package org.apache.flex.html.accessories
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.ITextFieldView;
 	}
@@ -70,7 +70,7 @@ package org.apache.flex.html.accessories
 		{
 			_strand = value;
 			
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
 			}
@@ -85,7 +85,7 @@ package org.apache.flex.html.accessories
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		private function viewChangeHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work

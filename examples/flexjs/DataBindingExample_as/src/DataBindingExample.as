@@ -44,15 +44,19 @@ import org.apache.flex.html.beads.controllers.DropDownListController;
 import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
 import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController;
+import org.apache.flex.html.beads.layouts.BasicLayout;
 import org.apache.flex.html.beads.layouts.VerticalLayout;
 import org.apache.flex.html.beads.models.ArraySelectionModel;
 import org.apache.flex.html.beads.models.SingleLineBorderModel;
 import org.apache.flex.html.beads.models.TextModel;
 import org.apache.flex.html.beads.models.ToggleButtonModel;
 import org.apache.flex.html.beads.models.ValueToggleButtonModel;
+import org.apache.flex.html.beads.models.ViewportModel;
+import org.apache.flex.html.supportClasses.ContainerContentArea;
 import org.apache.flex.html.supportClasses.DropDownListList;
 import org.apache.flex.html.supportClasses.DataGroup;
 import org.apache.flex.html.supportClasses.ScrollingViewport;
+import org.apache.flex.html.supportClasses.Viewport;
 import org.apache.flex.html.supportClasses.StringItemRenderer;
 import org.apache.flex.net.HTTPService;
 import org.apache.flex.collections.parsers.JSONInputParser;
@@ -105,9 +109,23 @@ public class DataBindingExample extends Application
         o = viv[makeDefinitionName("org.apache.flex.html::Container")] =
         {
             
-            iBeadView: ContainerView
+            iBeadView: ContainerView,
+    		iBeadLayout: BasicLayout,
+    		iContentView: ContainerContentArea,
+			iViewport: Viewport,
+			iViewportModel: ViewportModel
         };
         
+        o = viv[makeDefinitionName("org.apache.flex.core::View")] =
+        {
+            
+            iBeadView: ContainerView,
+    		iBeadLayout: BasicLayout,
+    		iContentView: ContainerContentArea,
+			iViewport: Viewport,
+			iViewportModel: ViewportModel
+        };
+		
         CONFIG::as_only {
             o.iBackgroundBead = SolidBackgroundBead;
             o.iBorderBead = SingleLineBorderBead;
@@ -119,9 +137,10 @@ public class DataBindingExample extends Application
             iBeadView:  ListView,		
             iBeadController: ListSingleSelectionMouseController,
             iBeadLayout: VerticalLayout,
-            iDataGroup: DataGroup,
+            iContentView: DataGroup,
             iDataProviderItemRendererMapper: DataItemRendererFactoryForArrayData,
-			IViewport: ScrollingViewport,
+			iViewport: ScrollingViewport,
+			iViewportModel: ViewportModel,
             iItemRendererClassFactory: ItemRendererClassFactory,
             iItemRenderer: StringItemRenderer
         };
@@ -243,9 +262,10 @@ public class DataBindingExample extends Application
                 iBeadView:  ListView,
                 iBeadController: ListSingleSelectionMouseController,
                 iBeadLayout: VerticalLayout,
-                iDataGroup: DataGroup,
+                iContentView: DataGroup,
                 iDataProviderItemRendererMapper: TextItemRendererFactoryForArrayData,
-	    		IViewport: ScrollingViewport,
+	    		iViewport: ScrollingViewport,
+	    		iViewportModel: ViewportModel,
                 iItemRendererClassFactory: ItemRendererClassFactory,
                 iItemRenderer: StringItemRenderer
             }

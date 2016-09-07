@@ -54,7 +54,7 @@ package org.apache.flex.reflection
             if (_rawData == null)
             {
                 var def:Object = getDefinitionByName(packageName + "::" + name);
-                COMPILE::AS3
+                COMPILE::SWF
                 {
                     _rawData = describeType(def);                        
                 }
@@ -72,7 +72,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.extendsClass;
@@ -105,7 +105,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.implementsInterface;
@@ -146,7 +146,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.variable;
@@ -184,7 +184,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.accessor;
@@ -222,7 +222,7 @@ package org.apache.flex.reflection
         {
             var results:Array = [];
             
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
                 var data:XMLList = xml.method;

@@ -135,7 +135,6 @@ package org.apache.flex.html.beads.controllers
 		{
 			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (renderer) {
-				renderer.hovered = true;
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
 		}

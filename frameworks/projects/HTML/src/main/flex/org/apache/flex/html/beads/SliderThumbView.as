@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
     	import flash.display.Graphics;
     	import flash.display.Shape;
@@ -55,7 +55,7 @@ package org.apache.flex.html.beads
 		 */
 		public function SliderThumbView()
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 hitArea = new Shape();
                 upView = new Shape();
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
 			g.clear();
@@ -77,7 +77,7 @@ package org.apache.flex.html.beads
 			g.endFill();
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var hitArea:Shape;
 		
 		/**
@@ -94,7 +94,7 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 drawView(hitArea.graphics, 0xDD0000);
                 drawView(upView.graphics, 0xFFFFFF);
@@ -131,11 +131,11 @@ package org.apache.flex.html.beads
             }
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var upView:Shape;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var downView:Shape;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var overView:Shape;
 		
         COMPILE::JS
@@ -144,7 +144,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			drawView(hitArea.graphics, 0xDD0000);

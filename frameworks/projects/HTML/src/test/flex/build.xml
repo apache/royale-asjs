@@ -80,8 +80,8 @@
                 <include name="FlexUnitFlexJSApplication.swf"/>
             </fileset>
         </delete>
-        <delete failonerror="false">
-            <fileset dir="${basedir}/bin">
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${report.dir}">
                 <include name="**/**"/>
             </fileset>
         </delete>

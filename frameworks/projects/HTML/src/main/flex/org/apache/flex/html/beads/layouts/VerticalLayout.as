@@ -90,7 +90,7 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function layout():Boolean
 		{
-			COMPILE::AS3
+			COMPILE::SWF
 			{
 				var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
 				var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
@@ -305,7 +305,7 @@ package org.apache.flex.html.beads.layouts
 			}
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		private function setPositionAndWidth(child:IUIBase, left:Number, ml:Number, pl:Number,
 											 right:Number, mr:Number, pr:Number, w:Number):void
 		{

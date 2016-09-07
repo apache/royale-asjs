@@ -22,11 +22,18 @@ package sample.todo.events {
     public class TodoListEvent extends Event {
 
         public static const LOG_TODO:String = "logTodoEvent";
+		public static const ITEM_CHECKED:String = "itemChecked";
+		public static const ITEM_REMOVE_REQUEST:String = "itemRemoveRequest";
 
         /**
          * the todo to log
          */
         public var todo:String = null;
+		
+		/**
+		 * handle item selection or removal
+		 */
+		public var item:Object = null;
 
         public function TodoListEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type, bubbles, cancelable);

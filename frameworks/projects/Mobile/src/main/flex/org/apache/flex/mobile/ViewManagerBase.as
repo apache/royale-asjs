@@ -21,7 +21,7 @@ package org.apache.flex.mobile
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IView;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -83,7 +83,7 @@ package org.apache.flex.mobile
 			ViewManagerModel(model).title = value;
 		}
 		
-		COMPILE::AS3
+		COMPILE::SWF
 		override public function toString():String
 		{
 			return ViewManagerModel(model).title;
@@ -170,7 +170,7 @@ package org.apache.flex.mobile
 			if (n > 0) {
 				for (var i:int = 0; i < n; i++)
 				{
-					var view:IView = ViewManagerModel(model).views[i] as IView;
+					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
 					view.viewManager = this;
 					if (i == 0) {
 						addElement(view, true);
@@ -195,7 +195,7 @@ package org.apache.flex.mobile
 			dispatchEvent( new Event("viewChanged") );
 		}
 		
-		private var _currentView:IView;
+		private var _currentView:IViewManagerView;
 		
 		/**
 		 * The currently visible view.
@@ -205,7 +205,7 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get selectedView():IView
+		public function get selectedView():IViewManagerView
 		{
 			return _currentView;
 		}

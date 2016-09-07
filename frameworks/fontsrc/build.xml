@@ -86,6 +86,7 @@
     </target>
     
     <target name="clean">
+        <delete dir="${basedir}/target" />
         <delete file="${basedir}/../fonts/flat-ui-icons-regular.swf" />
     </target>
 </project>

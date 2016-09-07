@@ -28,7 +28,7 @@ internal class CoreClasses
 {
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;
@@ -40,10 +40,11 @@ internal class CoreClasses
     import org.apache.flex.core.IAlertModel; IAlertModel;
     import org.apache.flex.core.IBead; IBead;
     import org.apache.flex.core.IBeadController; IBeadController;
-    import org.apache.flex.core.IBeadLayout; IBeadLayout;
+	import org.apache.flex.core.IBeadLayout; IBeadLayout;
+	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
     import org.apache.flex.core.IBeadView; IBeadView;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IBorderModel; IBorderModel;
 	}
@@ -67,8 +68,10 @@ internal class CoreClasses
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
     import org.apache.flex.core.IPopUp; IPopUp;
     import org.apache.flex.core.IRangeModel; IRangeModel;
+	import org.apache.flex.core.ITransformModel; ITransformModel;
+	import org.apache.flex.core.ITransformHost; ITransformHost;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IScrollBarModel; IScrollBarModel;
 	}
@@ -83,7 +86,7 @@ internal class CoreClasses
     import org.apache.flex.core.IValueToggleButtonModel; IValueToggleButtonModel;
 	import org.apache.flex.core.IViewport; IViewport;
 	import org.apache.flex.core.IViewportModel; IViewportModel;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 		import org.apache.flex.core.IViewportScroller; IViewportScroller;
 	}
@@ -93,39 +96,48 @@ internal class CoreClasses
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
     import org.apache.flex.core.UIBase; UIBase;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.core.UIButtonBase; UIButtonBase;
 	}
 	import org.apache.flex.events.CustomEvent; CustomEvent;
-	import org.apache.flex.events.Event; Event;
+    import org.apache.flex.events.Event; Event;
+    import org.apache.flex.events.ProgressEvent; ProgressEvent;
     import org.apache.flex.events.EventDispatcher; EventDispatcher;
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
+	import org.apache.flex.events.DetailEvent; DetailEvent;
 	import org.apache.flex.events.ValueEvent; ValueEvent;
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
+	import org.apache.flex.geom.Matrix; Matrix;
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
     import org.apache.flex.utils.BinaryData; BinaryData;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
 	}
+	import org.apache.flex.utils.ColorUtil; ColorUtil;
     import org.apache.flex.utils.CSSContainerUtils; CSSContainerUtils;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
 	}
 	import org.apache.flex.utils.EffectTimer; EffectTimer;
     import org.apache.flex.utils.MixinManager; MixinManager;
-	COMPILE::AS3
+	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     	import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;
-	    import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 		import org.apache.flex.utils.HTMLLoader; HTMLLoader;
 }
+	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
+	import org.apache.flex.utils.Endian; Endian;
+    import org.apache.flex.utils.StringPadder; StringPadder;
+	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
+	import org.apache.flex.utils.StringUtil; StringUtil;
 	import org.apache.flex.utils.Timer; Timer;
+	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
 
 	import org.apache.flex.core.ClassFactory; ClassFactory;
@@ -137,17 +149,16 @@ internal class CoreClasses
     import org.apache.flex.core.IDataGridModel; IDataGridModel;
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
-    import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.TransformModel; TransformModel;
+	import org.apache.flex.core.TransformCompoundModel; TransformCompoundModel;
+	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;
+	import org.apache.flex.core.TransformMoveXModel; TransformMoveXModel;
+	import org.apache.flex.core.TransformMoveYModel; TransformMoveYModel;
+	import org.apache.flex.core.TransformScaleModel; TransformScaleModel;
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
-
-	COMPILE::JS
-	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-	}
 }
 
 }

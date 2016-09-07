@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-    COMPILE::AS3 {
+    COMPILE::SWF {
         import flash.display.Sprite;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
@@ -33,7 +33,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class ApplicationBase extends Sprite implements IFlexInfo
 	{
         /**

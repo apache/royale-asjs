@@ -20,16 +20,13 @@
 package org.apache.flex.effects
 {
 
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.display.DisplayObject;
-    import flash.geom.Rectangle;            
-}
-COMPILE::JS
-{
-    import org.apache.flex.geom.Rectangle;
+    import flash.geom.Rectangle;
 }
 
+import org.apache.flex.geom.Rectangle;
 import org.apache.flex.core.IDocument;
 import org.apache.flex.core.IUIBase;
 
@@ -91,7 +88,7 @@ public class PlatformWiper
      */
     public function set target(value:IUIBase):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
             if (value == null)
                 DisplayObject(_target).scrollRect = null;
@@ -121,11 +118,11 @@ public class PlatformWiper
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function set visibleRect(value:Rectangle):void
+    public function set visibleRect(value:org.apache.flex.geom.Rectangle):void
     {
-        COMPILE::AS3
+        COMPILE::SWF
         {
-            DisplayObject(_target).scrollRect = value;                
+            DisplayObject(_target).scrollRect = new flash.geom.Rectangle(value.x,value.y,value.width,value.height);                
         }
         COMPILE::JS
         {

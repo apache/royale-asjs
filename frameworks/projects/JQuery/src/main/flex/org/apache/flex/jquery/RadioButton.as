@@ -20,7 +20,7 @@ package org.apache.flex.jquery
 {
 	import org.apache.flex.html.RadioButton;
 	
-	COMPILE::AS3
+	COMPILE::SWF
 	public class RadioButton extends org.apache.flex.html.RadioButton
 	{
 		

@@ -20,31 +20,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.examples.flexjs</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+  <!--
+        TODO: Needs to be packaged via Cordova.
+  -->
 
-    <artifactId>CordovaCameraExample</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-flexjs</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
 
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>7.1.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sourceFile>CordovaCameraExample.mxml</sourceFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <artifactId>CordovaCameraExample</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: FlexJS: CordovaCameraExample</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>CordovaCameraExample.mxml</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <!--
+            Do the Cordova packaging of the javascript application
+      -->
+      <!--plugin>
+        <groupId>org.jboss.errai</groupId>
+        <artifactId>cordova-maven-plugin</artifactId>
+        <version>3.2.4.Final</version>
+        <executions>
+          <execution>
+            <id>build</id>
+            <phase>package</phase>
+            <goals>
+              <goal>build-project</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin-->
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.air.framework</groupId>
+      <artifactId>airglobal</artifactId>
+      <version>${air.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Mobile</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
 
 </project>

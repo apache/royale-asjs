@@ -80,8 +80,8 @@
                 <include name="FlexUnitFlexJSApplication.swf"/>
             </fileset>
         </delete>
-        <delete failonerror="false">
-            <fileset dir="${basedir}/bin">
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${report.dir}">
                 <include name="**/**"/>
             </fileset>
         </delete>
@@ -118,7 +118,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
-            <arg value="-define=COMPILE::AS3,true" />
+            <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />

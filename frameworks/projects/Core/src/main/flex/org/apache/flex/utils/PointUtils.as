@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.display.DisplayObject;
         import flash.geom.Point;
@@ -60,9 +60,9 @@ package org.apache.flex.utils
 		 */
 		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(pt);
+                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
@@ -101,9 +101,9 @@ package org.apache.flex.utils
          */
         public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(pt);
+                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS

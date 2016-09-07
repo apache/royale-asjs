@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-COMPILE::AS3 {
+COMPILE::SWF {
 	import flash.display.Loader;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -60,7 +60,7 @@ COMPILE::AS3 {
 		 */
 		public function ImageButtonView()
 		{
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				upSprite = new Sprite();
 				downSprite = new Sprite();
 				overSprite = new Sprite();
@@ -79,7 +79,7 @@ COMPILE::AS3 {
 		{
 			super.strand = value;
 
-			COMPILE::AS3 {
+			COMPILE::SWF {
 				shape = new Shape();
 				shape.graphics.beginFill(0xCCCCCC);
 				shape.graphics.drawRect(0, 0, 10, 10);
@@ -95,7 +95,7 @@ COMPILE::AS3 {
 			}
 		}
 
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			private var upSprite:Sprite;
 			private var downSprite:Sprite;
 			private var overSprite:Sprite;
@@ -105,7 +105,7 @@ COMPILE::AS3 {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		private function setupBackground(sprite:Sprite, state:String = null):void
 		{
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(_strand, "background-image", state);
@@ -146,7 +146,7 @@ COMPILE::AS3 {
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		private function updateHitArea():void
 		{
 			shape.graphics.clear();

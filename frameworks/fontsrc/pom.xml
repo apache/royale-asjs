@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.flex.flexjs.framework</groupId>
+    <artifactId>frameworks</artifactId>
+    <version>0.8.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>Fonts</artifactId>
+  <version>0.8.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>Apache Flex - FlexJS: Framework: Fonts</name>
+
+  <properties>
+    <flat-ui.version>2.2.2</flat-ui.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <!-- Download Flat-UI and unpack it into the target directory -->
+          <execution>
+            <id>get-createjs</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>https://github.com/designmodo/Flat-UI/archive/${flat-ui.version}.zip</url>
+              <unpack>true</unpack>
+              <outputFileName>flat-ui-${flat-ui.version}.zip</outputFileName>
+              <outputDirectory>${project.build.directory}/downloads</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Have the Flat-UI Icons Font compiled to an SWF -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <configuration>
+          <mainClass>com.adobe.fonts.transcoder.Font2SWF</mainClass>
+          <arguments>
+            <argument>-4</argument>
+            <argument>-a</argument>
+            <argument>Flat-UI-Icons</argument>
+            <argument>-o</argument>
+            <argument>${basedir}/target/${project.artifactId}-${project.version}.swf</argument>
+            <argument>${basedir}/target/downloads/Flat-UI-${flat-ui.version}/fonts/glyphicons/flat-ui-icons-regular.ttf</argument>
+          </arguments>
+          <includePluginDependencies>true</includePluginDependencies>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compile-font</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe</groupId>
+            <artifactId>fontkit</artifactId>
+            <version>1.0</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.flex.compiler</groupId>
+            <artifactId>swfutils</artifactId>
+            <version>${flex.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <!-- Create a stripped-down WAR archive containing the fonts -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <warSourceDirectory>${project.build.directory}/downloads/Flat-UI-${flat-ui.version}/fonts/glyphicons</warSourceDirectory>
+          <warSourceExcludes>selection.json</warSourceExcludes>
+          <packagingExcludes>WEB-INF/**</packagingExcludes>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+          </archive>
+        </configuration>
+      </plugin>
+      <!--
+            Attach the generated swf as additional Maven artifact,
+            So it is automatically installed and deployed.
+      -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.11</version>
+        <executions>
+          <execution>
+            <id>attach-swf</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <artifacts>
+            <artifact>
+              <file>${basedir}/target/${project.artifactId}-${project.version}.swf</file>
+              <type>swf</type>
+            </artifact>
+          </artifacts>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

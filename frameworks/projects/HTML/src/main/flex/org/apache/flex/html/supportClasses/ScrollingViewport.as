@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.geom.Rectangle;
     }
@@ -30,7 +30,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.core.IViewportScroller;
     }
@@ -65,30 +65,30 @@ package org.apache.flex.html.supportClasses
 		{
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _verticalScroller:ScrollBar;
 
-        COMPILE::AS3
+        COMPILE::SWF
 		public function get verticalScroller():IViewportScroller
 		{
 			return _verticalScroller;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private var _horizontalScroller:ScrollBar
 
-        COMPILE::AS3
+        COMPILE::SWF
 		public function get horizontalScroller():IViewportScroller
 		{
 			return _horizontalScroller;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
         private var _verticalScrollPosition:Number = 0;
 
         public function get verticalScrollPosition():Number
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return _verticalScrollPosition;
             }
@@ -99,7 +99,7 @@ package org.apache.flex.html.supportClasses
         }
         public function set verticalScrollPosition(value:Number):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 _verticalScrollPosition = value;
                 handleVerticalScrollChange();
@@ -110,12 +110,12 @@ package org.apache.flex.html.supportClasses
             }
         }
 
-        COMPILE::AS3
+        COMPILE::SWF
         private var _horizontalScrollPosition:Number = 0;
 
         public function get horizontalScrollPosition():Number
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 return _horizontalScrollPosition;
             }
@@ -126,7 +126,7 @@ package org.apache.flex.html.supportClasses
         }
         public function set horizontalScrollPosition(value:Number):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 _horizontalScrollPosition = value;
                 handleHorizontalScrollChange();
@@ -162,7 +162,7 @@ package org.apache.flex.html.supportClasses
          */
 		override public function layoutViewportAfterContentLayout():Size
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
                 var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
@@ -272,7 +272,7 @@ package org.apache.flex.html.supportClasses
 
 		}
 
-		COMPILE::AS3
+		COMPILE::SWF
 		private function createVerticalScrollBar():ScrollBar
 		{
 			var vsbm:ScrollBarModel = new ScrollBarModel();
@@ -290,7 +290,7 @@ package org.apache.flex.html.supportClasses
 			return vsb;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function createHorizontalScrollBar():ScrollBar
 		{
 			var hsbm:ScrollBarModel = new ScrollBarModel();
@@ -308,7 +308,7 @@ package org.apache.flex.html.supportClasses
 			return hsb;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function handleVerticalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
@@ -320,7 +320,7 @@ package org.apache.flex.html.supportClasses
 			_verticalScrollPosition = vpos;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function handleHorizontalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
@@ -332,7 +332,7 @@ package org.apache.flex.html.supportClasses
 			_horizontalScrollPosition = hpos;
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function handleVerticalScrollChange():void
 		{
 			if (_verticalScroller) {
@@ -340,7 +340,7 @@ package org.apache.flex.html.supportClasses
 			}
 		}
 
-        COMPILE::AS3
+        COMPILE::SWF
 		private function handleHorizontalScrollChange():void
 		{
 			if (_horizontalScroller) {

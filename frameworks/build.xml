@@ -76,6 +76,7 @@
     
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
+        <antcall target="Language"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
@@ -83,17 +84,18 @@
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
-        <antcall target="CreateJS"/>
         <antcall target="DragDrop"/>
         <antcall target="Effects"/>
         <antcall target="Formatters"/>
         <antcall target="GoogleMaps"/>
+        <antcall target="CreateJS"/>
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
+        <antcall target="XML"/>
     </target>
     
     <target name="fonts">
@@ -124,20 +126,22 @@
         <ant dir="${basedir}/projects/Charts" target="clean"/>
         <ant dir="${basedir}/projects/Collections" target="clean"/>
         <ant dir="${basedir}/projects/Core" target="clean"/>
-        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/DragDrop" target="clean"/>
         <ant dir="${basedir}/projects/Effects" target="clean"/>
         <ant dir="${basedir}/projects/Flat" target="clean"/>
         <ant dir="${basedir}/projects/Formatters" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
+        <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/Graphics" target="clean"/>
         <ant dir="${basedir}/projects/HTML" target="clean"/>
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
+        <ant dir="${basedir}/projects/Language" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
+        <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -155,7 +159,10 @@
         <!-- Delete only if it exists and it is empty.  air and swfobject put dirs here. -->
         <delete dir="${FLEXJS_HOME}/templates" includeemptydirs="true" failonerror="false">
             <exclude name="swfobject/index.template.html" />
-        </delete> 
+            <exclude name="swfobject/expressInstall.swf" />
+            <exclude name="swfobject/swfobject.js" />
+            <exclude name="swfobject/history/**" />
+        </delete>
     </target>
     
     <target name="Binding" description="Clean build of Binding.swc">
@@ -214,6 +221,10 @@
         <ant dir="${basedir}/projects/JQuery"/>
     </target>
 
+    <target name="Language" description="Clean build of Language.swc">
+        <ant dir="${basedir}/projects/Language"/>
+    </target>
+
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
     </target>
@@ -228,6 +239,9 @@
 
     <target name="Storage" description="Clean build of Storage.swc">
         <ant dir="${basedir}/projects/Storage"/>
+    </target>
+    <target name="XML" description="Clean build of XML.swc">
+        <ant dir="${basedir}/projects/XML"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
@@ -249,6 +263,46 @@
 			</filterset>
 		</copy>
 	</target>
+
+    <target name="js-config" depends="playerglobal-setswfversion" description="Copy the js config template to js-config.xml and inject version numbers">
+        <copy file="${basedir}/js-config-template.xml" tofile="${basedir}/js-config.xml" overwrite="true">
+            <filterset>
+                <filter token="playerversion" value="${playerglobal.version}"/>
+                <filter token="swfversion" value="${playerglobal.swfversion}"/>
+                <filter token="locale" value="${locale}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="jquery-config" depends="playerglobal-setswfversion" description="Copy the jquery config template to jquery-config.xml and inject version numbers">
+        <copy file="${basedir}/jquery-config-template.xml" tofile="${basedir}/jquery-config.xml" overwrite="true">
+            <filterset>
+                <filter token="playerversion" value="${playerglobal.version}"/>
+                <filter token="swfversion" value="${playerglobal.swfversion}"/>
+                <filter token="locale" value="${locale}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="createjs-config" depends="playerglobal-setswfversion" description="Copy the createjs config template to createjs-config.xml and inject version numbers">
+        <copy file="${basedir}/createjs-config-template.xml" tofile="${basedir}/createjs-config.xml" overwrite="true">
+            <filterset>
+                <filter token="playerversion" value="${playerglobal.version}"/>
+                <filter token="swfversion" value="${playerglobal.swfversion}"/>
+                <filter token="locale" value="${locale}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="node-config" depends="playerglobal-setswfversion" description="Copy the node config template to node-config.xml and inject version numbers">
+        <copy file="${basedir}/node-config-template.xml" tofile="${basedir}/node-config.xml" overwrite="true">
+            <filterset>
+                <filter token="playerversion" value="${playerglobal.version}"/>
+                <filter token="swfversion" value="${playerglobal.swfversion}"/>
+                <filter token="locale" value="${locale}"/>
+            </filterset>
+        </copy>
+    </target>
 
 	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the flex config file">
 		<condition property="playerglobal.swfversion" value="11">

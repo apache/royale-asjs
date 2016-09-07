@@ -273,7 +273,7 @@ package org.apache.flex.events
          */
 		public function DragEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 super(type, bubbles, cancelable);                    
             }
@@ -300,7 +300,7 @@ package org.apache.flex.events
          */
         public static function createDragEvent(type:String, event:MouseEvent):DragEvent
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var de:DragEvent = new DragEvent(type, true, true);
                 de.localX = event.localX;
@@ -341,7 +341,7 @@ package org.apache.flex.events
          */
         public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
         {
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 target.dispatchEvent(event);                    
             }

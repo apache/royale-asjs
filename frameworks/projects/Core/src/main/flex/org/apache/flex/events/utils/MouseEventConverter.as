@@ -33,7 +33,7 @@ package org.apache.flex.events.utils
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class MouseEventConverter
 	{
         /**

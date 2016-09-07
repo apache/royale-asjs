@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.collections
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import flash.events.Event;            
     }
@@ -187,7 +187,7 @@ package org.apache.flex.collections
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 IEventDispatcher(_strand).addEventListener(flash.events.Event.COMPLETE, completeHandler);                    
             }
@@ -218,7 +218,7 @@ package org.apache.flex.collections
          */
         protected var data:Array;
         
-        COMPILE::AS3
+        COMPILE::SWF
         private function completeHandler(event:flash.events.Event):void
         {
             rawData = inputParser.parseItems(_strand["data"]);  

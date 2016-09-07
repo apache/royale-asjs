@@ -29,12 +29,12 @@
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk">
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -65,12 +65,12 @@
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler.jx">
+    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler-jx">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar" type="file" />
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -234,7 +234,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -247,7 +247,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
@@ -278,7 +278,7 @@
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+configname=air" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
@@ -291,7 +291,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
@@ -321,7 +321,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
+            <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,false" />
             <arg value="-define=CONFIG::js_only,true" />
@@ -336,7 +336,7 @@
             <arg value="${opt2_arg}" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
             <arg value="${basedir}/src/${example}.as" />
         </java>
         <fail>

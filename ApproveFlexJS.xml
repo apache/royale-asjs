@@ -136,7 +136,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs/lastSuccessfulBuild/artifact/out">
+        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs_release_branch/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
@@ -350,6 +350,7 @@
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -393,10 +394,12 @@
                 <!--          fragments           -->
                 <exclude name="LICENSE.bin"/>
                 <exclude name="LICENSE.base"/>
+                <exclude name="**/META-INF/DEPENDENCIES" />
                 <!--          Google Closure Library     -->
                 <exclude name="js/lib/google/**"/>
                 <!--          compiled output     -->
                 <exclude name="frameworks/projects/*/target/**"/>
+                <exclude name="frameworks/js/FlexJS/projects/*/target/**"/>
                 <!--          swcs     -->
                 <exclude name="frameworks/libs/Binding.swc"/>
                 <exclude name="frameworks/libs/Charts.swc"/>
@@ -411,29 +414,33 @@
                 <exclude name="frameworks/libs/Graphics.swc"/>
                 <exclude name="frameworks/libs/HTML.swc"/>
                 <exclude name="frameworks/libs/HTML5.swc"/>
-                <exclude name="frameworks/libs/JQuery.swc"/>
+                <exclude name="frameworks/libs/jQuery.swc"/>
+                <exclude name="frameworks/libs/Language.swc"/>
                 <exclude name="frameworks/libs/Mobile.swc"/>
                 <exclude name="frameworks/libs/Network.swc"/>
                 <exclude name="frameworks/libs/Reflection.swc"/>
                 <exclude name="frameworks/libs/Storage.swc"/>
-                <exclude name="frameworks/externs/Binding.swc"/>
-                <exclude name="frameworks/externs/Charts.swc"/>
-                <exclude name="frameworks/externs/Collections.swc"/>
-                <exclude name="frameworks/externs/Core.swc"/>
-                <exclude name="frameworks/externs/CreateJS.swc"/>
-                <exclude name="frameworks/externs/DragDrop.swc"/>
-                <exclude name="frameworks/externs/Effects.swc"/>
-                <exclude name="frameworks/externs/Flat.swc"/>
-                <exclude name="frameworks/externs/Formatters.swc"/>
-                <exclude name="frameworks/externs/GoogleMaps.swc"/>
-                <exclude name="frameworks/externs/Graphics.swc"/>
-                <exclude name="frameworks/externs/HTML.swc"/>
-                <exclude name="frameworks/externs/HTML5.swc"/>
-                <exclude name="frameworks/externs/JQuery.swc"/>
-                <exclude name="frameworks/externs/Mobile.swc"/>
-                <exclude name="frameworks/externs/Network.swc"/>
-                <exclude name="frameworks/externs/Reflection.swc"/>
-                <exclude name="frameworks/externs/Storage.swc"/>
+                <exclude name="frameworks/libs/XML.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/BindingJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/ChartsJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/CollectionsJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/CoreJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/CreateJSJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/DragDropJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/EffectsJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/FlatJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/FormattersJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/GoogleMapsJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/GraphicsJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/HTMLJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/HTML5JS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/jQueryJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/LanguageJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/MobileJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/NetworkJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/ReflectionJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/StorageJS.swc"/>
+                <exclude name="frameworks/js/FlexJS/libs/XMLJS.swc"/>
             </fileset>
         </rat:report>
         
@@ -671,7 +678,7 @@
     </target>
     <target name="get.falcon.if.needed" depends="get.falcon.nightly,get.falcon.rc" unless="FALCON_HOME" />
     <target name="get.falcon.nightly" if="falcon.nightly">
-        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.6.0"/>
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
@@ -685,29 +692,17 @@
         </condition>
         <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
-        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
-        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
-        <!-- Copy compiler external dependencies -->
-        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
-            <fileset dir="${basedir}/falconjx/compiler/lib">
-                <include name="**"/>
-            </fileset>
-        </copy>
-        <!-- Copy compiler.jx external dependencies -->
-        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
-            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
-                <include name="**"/>
-            </fileset>
-        </copy>
-        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <ant dir="${basedir}/falconjx/compiler/src/main/resources" antfile="downloads.xml" />
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler" />
         <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
+        <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.falcon.rc" if="falcon.rc">
-        <property name="kit.jx.prefix" value="apache-flex-falconjx-0.6.0"/>
+        <property name="kit.jx.prefix" value="apache-flex-falconjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.6.0/rc1/binaries/${binary.jx.kit}.zip"
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/0.6.0/rc1/binaries/${binary.jx.kit}.zip.md5"
+        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
         dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
         <condition property="FalconMD5Invalid">
@@ -717,22 +712,10 @@
         </condition>
         <fail message="MD5 checksum did not match" if="FalconMD5Invalid" />
         <unzip src="${basedir}/${binary.jx.kit}.zip" dest="${basedir}/falconjx" />
-        <ant dir="${basedir}/falconjx/compiler" antfile="downloads.xml" />
-        <ant dir="${basedir}/falconjx/compiler.jx" antfile="downloads.xml" />
-        <!-- Copy compiler external dependencies -->
-        <copy todir="${basedir}/falconjx/compiler/generated/dist/sdk/lib/external" overwrite="true" includeEmptyDirs="false">
-            <fileset dir="${basedir}/falconjx/compiler/lib">
-                <include name="**"/>
-            </fileset>
-        </copy>
-        <!-- Copy compiler.jx external dependencies -->
-        <copy todir="${basedir}/falconjx/js/lib" overwrite="true" includeEmptyDirs="false">
-            <fileset dir="${basedir}/falconjx/compiler.jx/lib">
-                <include name="**"/>
-            </fileset>
-        </copy>
-        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler/generated/dist/sdk" />
+        <ant dir="${basedir}/falconjx/compiler/src/main/resources" antfile="downloads.xml" />
+        <property name="FALCON_HOME" value="${basedir}/falconjx/compiler" />
         <property name="FALCONJX_HOME" value="${basedir}/falconjx/js" />
+        <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
         <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
@@ -752,11 +735,11 @@
     </target>
     <target name="get.sdk.if.needed" depends="get.sdk" unless="FLEX_SDK_HOME" />
     <target name="get.sdk">
-        <property name="kit.sdk.prefix" value="apache-flex-sdk-4.14.1"/>
+        <property name="kit.sdk.prefix" value="apache-flex-sdk-4.15.0"/>
         <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
-        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip"
+        <get src="https://archive.apache.org/dist/flex/4.15.0/binaries/${binary.sdk.kit}.zip"
         dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/flex/4.14.1/binaries/${binary.sdk.kit}.zip.md5"
+        <get src="https://archive.apache.org/dist/flex/4.15.0/binaries/${binary.sdk.kit}.zip.md5"
         dest="${basedir}/${binary.sdk.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="md5" verifyproperty="sdk.md5.ok" />
         <condition property="SDKMD5Invalid">

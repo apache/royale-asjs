@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.maps.google.beads
 {
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		import flash.events.Event;
 		import flash.net.URLRequest;
 		import flash.filesystem.File;
@@ -408,7 +408,7 @@ package org.apache.flex.maps.google.beads
 	 * The AS3 version of GoogleMapView is geared toward its use with HTMLLoader
 	 * for AIR.
 	 */
-	COMPILE::AS3
+	COMPILE::SWF
 	public class GoogleMapView extends BeadViewBase implements IBeadView
 	{
 		/**

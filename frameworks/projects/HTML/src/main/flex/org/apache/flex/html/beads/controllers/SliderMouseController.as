@@ -83,7 +83,7 @@ package org.apache.flex.html.beads.controllers
 			
 			rangeModel = UIBase(value).model as IRangeModel;
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
                 sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
@@ -117,7 +117,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function thumbDownHandler( event:MouseEvent ) : void
 		{
 			UIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
@@ -132,7 +132,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function thumbUpHandler( event:MouseEvent ) : void
 		{
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
@@ -141,15 +141,15 @@ package org.apache.flex.html.beads.controllers
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 		
-        COMPILE::AS3
+        COMPILE::SWF
 		private var origin:Point;
-        COMPILE::AS3
+        COMPILE::SWF
 		private var thumb:Point;
 		
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function thumbMoveHandler( event:MouseEvent ) : void
 		{
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
@@ -169,7 +169,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-        COMPILE::AS3
+        COMPILE::SWF
 		private function trackClickHandler( event:MouseEvent ) : void
 		{
 			event.stopImmediatePropagation();

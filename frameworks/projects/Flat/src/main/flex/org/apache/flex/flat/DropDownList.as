@@ -20,7 +20,7 @@ package org.apache.flex.flat
 {
     import org.apache.flex.core.UIBase;
 
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.html.DropDownList;            
     }
@@ -44,7 +44,7 @@ package org.apache.flex.flat
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class DropDownList extends org.apache.flex.html.DropDownList
 	{
         /**

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.flat
 {
-    COMPILE::AS3
+    COMPILE::SWF
     {
         import org.apache.flex.html.RadioButton;            
     }
@@ -37,7 +37,7 @@ package org.apache.flex.flat
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::AS3
+    COMPILE::SWF
 	public class RadioButton extends org.apache.flex.html.RadioButton
 	{
         /**

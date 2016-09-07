@@ -30,7 +30,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.ButtonBar;
+	import org.apache.flex.html.DataGridButtonBar;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
@@ -66,7 +66,7 @@ package org.apache.flex.html.beads
 		}
 
 		private var _strand:IStrand;
-		private var _header:ButtonBar;
+		private var _header:DataGridButtonBar;
 		private var _listArea:Container;
 		
 		private var _lists:Array;
@@ -103,7 +103,7 @@ package org.apache.flex.html.beads
 			host.addEventListener("widthChanged", handleSizeChanges);
 			host.addEventListener("heightChanged", handleSizeChanges);
 
-			_header = new ButtonBar();
+			_header = new DataGridButtonBar();
 			_header.id = "dataGridHeader";
 
 			var scrollPort:ScrollingViewport = new ScrollingViewport();

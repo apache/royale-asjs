@@ -19,16 +19,16 @@
 package org.apache.flex.charts.optimized
 {
 	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.graphics.GraphicsContainer;
-	import org.apache.flex.core.graphics.IStroke;
-	import org.apache.flex.core.graphics.Path;
-	import org.apache.flex.core.graphics.SolidColorStroke;
+	import org.apache.flex.svg.CompoundGraphic;
+	import org.apache.flex.graphics.IStroke;
+	import org.apache.flex.svg.Path;
+	import org.apache.flex.graphics.SolidColorStroke;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.charts.supportClasses.ILineSegmentItemRenderer;
 	
 	/**
 	 *  The SVGLineSegmentItemRenderer draws its graphics directly into a SVGChartDataGroup (a
-	 *  GraphicsContainer).
+	 *  CompoundGraphic).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -177,7 +177,7 @@ package org.apache.flex.charts.optimized
 		{			
 			if (points != null)
 			{
-				var graphicsContainer:GraphicsContainer = this.itemRendererParent as GraphicsContainer;
+				var graphicsContainer:CompoundGraphic = this.itemRendererParent as CompoundGraphic;
 				
 				if (stroke == null) {
 					var solidColorStroke:SolidColorStroke = new SolidColorStroke();
@@ -198,7 +198,7 @@ package org.apache.flex.charts.optimized
 					else pathString += "L "+point.x+" "+point.y+" ";
 				}
 				
-				graphicsContainer.drawPath(pathString);
+				graphicsContainer.drawStringPath(pathString);
 			}
 		}
 	}

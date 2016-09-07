@@ -17,14 +17,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package sample.todo.renderers {
+
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
     import org.apache.flex.html.Button;
     import org.apache.flex.html.CheckBox;
     import org.apache.flex.html.Label;
     import org.apache.flex.html.supportClasses.DataItemRenderer;
+    
+	[Event("checkChanged","org.apache.flex.events.Event")]
+	[Event("removeRequest","org.apache.flex.events.Event")]
 
     public class TodoItemRenderer extends DataItemRenderer {
+		
         public function TodoItemRenderer() {
             super();
+			className = "TodoItemRenderer";
         }
 
         private var checkbox:CheckBox;
@@ -36,12 +44,14 @@ package sample.todo.renderers {
 
             checkbox = new CheckBox();
             addElement(checkbox);
+			checkbox.addEventListener("change", checkBoxChange);
 
             title = new Label();
             addElement(title);
 
             removeButton = new Button();
             addElement(removeButton);
+			removeButton.addEventListener("click", removeClick);
         }
 
         override public function set data(value:Object):void {
@@ -52,6 +62,7 @@ package sample.todo.renderers {
         }
 
         override public function adjustSize():void {
+        	var hgt:Number = this.height;
             var cy:Number = this.height / 2;
 
             checkbox.x = 10;
@@ -65,5 +76,15 @@ package sample.todo.renderers {
 
             updateRenderer();
         }
+
+		private function checkBoxChange(event:Event):void
+		{
+			dispatchEvent(new Event("checkChanged"));
+		}
+
+		private function removeClick(event:MouseEvent):void
+		{
+			dispatchEvent(new Event("removeRequest"));
+		}
     }
 }

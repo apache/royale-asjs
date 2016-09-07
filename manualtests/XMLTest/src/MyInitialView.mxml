@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*" 
+				xmlns:models="models.*" 
+				xmlns:acc="org.apache.flex.html.accessories.*">
+	
+	<fx:Style>
+		.title {
+			font-size: 14pt;
+			font-weight: bold;
+		}
+
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+						
+      import XML;
+            private var quotedXML : XML =<root title="That's Entertainment"/>;
+
+            private var xmlStr:String = '<?xml version="1.0" encoding="UTF-8" ?>'+
+                '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"'+
+                '              xmlns:dac="com.printui.view.components.DesignAreaComponents.*">'+
+                '<'+'!'+'-'+'- just a comment -'+'-'+'>'+
+                '<?bla fud?>'+
+                '   bla bla<product description="Cardigan Sweater" product_image="cardigan.jpg">'+
+                '      <fx:catalog_item gender="Men\'s" fx:foo="bah">'+
+                '         <item_number>QWZ5671</item_number>'+
+                '         <price>39.95</price>'+
+                '         <size description="Medium">'+
+                '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                '         </size>'+
+                '         <size description="Large">'+
+                '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                '         </size>'+
+                '      </fx:catalog_item>'+
+        '      <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]'+']>   </script>'+
+'      <catalog_item gender="Women\'s">'+
+           '         <item_number>RRX9856</item_number>'+
+           '         <price>42.50</price>'+
+           '         <size description="Small">'+
+                         '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Medium">'+
+                         '            <color_swatch image="red_cardigan.jpg">Red</color_swatch>'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Large">'+
+                         '            <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+           '         <size description="Extra Large">'+
+                         '            <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>'+
+                         '            <color_swatch image="black_cardigan.jpg">Black</color_swatch>'+
+                     '         </size>'+
+        '      </catalog_item>'+
+        '   </product>'+
+'</catalog>';
+
+      private var xml:XML = new XML(xmlStr);
+      private var text:String = "hi";
+      private var xml2:XML = new XML('<root xmlns:fz="http://ns.adobe.com/mxml/2009"><a><b/></a><a name="fred"/><a>hi<b>yeah!</b></a><a name="frank"/><c/></root>');
+
+      public function runTest():void
+      {
+        var args:Array;
+        var j:int;
+        var m:int;
+        var list1:XMLList;
+        var list2:XMLList;
+        var list3:XMLList;
+        var list4:XMLList;
+        var xml1:XML = <foo baz="true"/>;
+        trace(xml1.toXMLString());
+        trace(xml1.toXMLString() == '<foo baz="true"/>');
+        var baz:XMLList = xml1.@baz;
+        trace("baz: " + xml1.@baz.toString() + " //true");
+        var child:XML = <pop><child name="Sam"/></pop>;
+        xml1.appendChild(child);
+        child = <pop><child name="George"/></pop>;
+        xml1.appendChild(child);
+        trace(xml1.pop[0].toString());
+        trace(xml1.pop[1].toString());
+        var pop:XMLList = xml1.pop;
+        pop[pop.length()] = <pop><child name="Fred"/></pop>;
+        trace(pop.toString());
+        trace(xml1.toString());
+        pop[0] = <pop><child name="Fred"/></pop>;
+        trace(pop.toString());
+        trace(xml1.toString());
+        
+        
+        var xmlString:String = xml.toXMLString();
+        var script:XML = xml..script[0].children()[0];
+        var kind:String = script.nodeKind();
+        var comment:XML = xml.children()[0];
+        var comKind:String = comment.nodeKind();
+        var instr:XML = xml.processingInstructions()[0];
+        var prod:XML = xml.product[0];
+        //JIRA https://issues.apache.org/jira/browse/FLEX-35069
+        //var catalog_item = xml..('http://ns.adobe.com/mxml/2009')::catalog_item[0];
+        var prod_desc_name:QName = prod.@description.name();
+        //xml2.appendChild(catalog_item);
+        trace(prod.childIndex());
+        list1 = xml2.a;
+        var aaa:XML = list1[0];
+        var aab:XML = list1[0][0][0];
+        list2 = xml2.child("a");
+        list3 = xml2.descendants();
+        list3  = list3.(attribute("name").length());
+        list2[list2.length()] = <c id="1"/>;
+        list2[0] = <bla/>;
+        list4 = new XMLList();
+        list4[0] = <a id="1"/>;
+        list4[1] = <a id="2"/>;
+        list4[2] = <a id="3"/>;
+        //JIRA https://issues.apache.org/jira/browse/FLEX-35072
+        list1 += list4
+        //list1.concat(list4);
+        trace("after concat");
+        trace(xml2.toString());
+        xml2.insertChildAfter(xml2.a,<a id="123"/>);
+        trace(xml2.toString());
+        xml2.a = list4;
+        trace("assigned a");
+        trace(xml2.toString());
+        xml2.a = <a id="123"/>;
+        xml2.a += <a id="456"/>;
+        //xml2.a -= <a id="456"/>;
+        var a:XMLList = xml2.baz
+        trace(xml2.toString());
+        trace(xml2.toXMLString());
+        trace(list1[0].toString());
+        trace(list1[0].toXMLString());
+        trace(list1[1].toString());
+        trace(list1[1].toXMLString());
+        trace(list1[2].toString());
+        trace(list1[2].toXMLString());
+        trace(list1[3].toString());
+        trace(list1[3].toXMLString());
+        aaa = list1[4];
+        trace(list1[4].toString());
+        trace(list1[4].toXMLString());
+        trace(list1[5].toString());
+        trace(list1[5].toXMLString());
+        
+        delete xml2.a;
+        var aa:XMLList = list2.b;
+        var ab:XMLList = list2.@name;
+        var ac:XML = ab.parent();
+        trace(list2.length());
+        list3 = list1.copy();
+        //list1[0].@foo = "food";
+        trace(list1[1].contains(<a name="fred"/>));
+        trace("simple: " +list1[0].hasSimpleContent());
+        trace("complex: " +list1[0].hasComplexContent());
+        trace("simple: " +list1[1].hasSimpleContent());
+        trace("complex: " +list1[1].hasComplexContent());
+        trace("simple: " +list1[2].hasSimpleContent());
+        trace("complex: " +list1[2].hasComplexContent());
+        trace("simple: " +list1.hasSimpleContent());
+        trace("complex: " +list1.hasComplexContent());
+        list2 = xml2.b;
+        trace("list 2");
+        trace("simple: " +list2.hasSimpleContent());
+        trace("complex: " +list2.hasComplexContent());
+        var elem:XMLList = list1.elements();
+        var elem2:XMLList = list1.elements("c");
+        var elem3:XMLList = list1.elements("a");
+        trace(list1.toXMLString());
+        trace(list1.toString());
+        trace("done");
+        trace("test 3");
+        var xmlSource:XML =
+          <xmlParentNode>
+             <Set1>
+              <child><year>2015</year></child>
+              <child><year>2016</year></child>
+              <child><year>2017</year></child>
+            </Set1>
+            <Set2>
+              <child><year>2015</year></child>
+              <child><year>2016</year></child>
+              <child><year>2017</year></child>
+            </Set2>
+          </xmlParentNode>;
+        
+        
+        //var xmllcSet1:XMLListCollection = new XMLListCollection();
+        //var xmllcSet2:XMLListCollection = new XMLListCollection();
+        
+        //xmllcSet1.source = xmlSource.Set1.child;
+        //xmllcSet2.source = xmlSource.Set2.child;
+        
+        var xmllcSet1:XMLList = xmlSource.Set1.child;
+        var xmllcSet2:XMLList = xmlSource.Set2.child;
+        
+        trace(xmllcSet1.toXMLString());
+        trace(xmllcSet2.toXMLString());
+        
+        
+        //var xmllcFiltered: XMLListCollection = new XMLListCollection();
+        
+        //xmllcFiltered.source = xmlSource.Set1.child.(year == "2015");
+        var xmllcFiltered:XMLList = xmlSource.Set1.child.(year == "2015");
+        trace(xmllcFiltered.toXMLString());
+        trace("test 4");
+        var svg:XML = <svg>
+         <group>
+           <rect id="1" />
+           <rect id="2" />
+         </group>
+         <group>
+           <rect id="3" />
+           <rect id="4" />
+         </group>
+        </svg>;
+        
+        var rects:XMLList = svg..rect;
+        rects[1].@width = "100px";
+        rects.(@id==3).@height = "100px";
+        trace(rects.toXMLString());
+      }
+		]]>
+	</fx:Script>
+	
+	<js:Container id="cont" width="600" height="700" x="50" y="50">
+		<js:beads>
+			<js:VerticalLayout />
+		</js:beads>
+		
+		<js:Label text="XML Test" className="title" />
+		<js:TextButton text="Test" click="runTest()" />
+	</js:Container>
+	
+</js:View>

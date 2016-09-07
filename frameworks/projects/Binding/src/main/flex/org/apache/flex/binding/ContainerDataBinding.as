@@ -260,6 +260,8 @@ package org.apache.flex.binding
         
         private function setupWatchers(gb:GenericBinding, index:int, watchers:Array, parentWatcher:WatcherBase):void
         {
+            var foundWatcher:Boolean = false;
+            
             var n:int = watchers.length;
             for (var i:int = 0; i < n; i++)
             {
@@ -289,6 +291,7 @@ package org.apache.flex.binding
                                 parentWatcher.addChild(pw);
                             if (watcher.children == null)
                                 pw.addBinding(gb);
+                            foundWatcher = true;
                             break;
                         }
                     }
@@ -297,6 +300,12 @@ package org.apache.flex.binding
                         setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
                     }
                 }
+            }
+            if (!foundWatcher && parentWatcher == null)
+            {
+                // might be a binding to a function that doesn't have change events
+                // so just force an update
+                gb.valueChanged(null);
             }
         }
         
@@ -373,9 +382,23 @@ package org.apache.flex.binding
             {
                 if (_strand[p] != null)
                 {
-                    var destination:IStrand = _strand[p] as IStrand;
-                    destination.addBead(deferredBindings[p]);
-                    delete deferredBindings[p];
+					var destination:IStrand = _strand[p] as IStrand;
+					if (destination)
+						destination.addBead(deferredBindings[p]);
+					else
+					{
+						var destObject:Object = _strand[p];
+						if (destObject)
+						{
+							deferredBindings[p].destination = destObject;
+							_strand.addBead(deferredBindings[p]);
+						}
+						else
+						{
+							trace("unexpected condition in deferredBindingsHandler");
+						}
+					}
+					delete deferredBindings[p];
                 }
             }
         }

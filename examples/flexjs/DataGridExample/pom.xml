@@ -20,31 +20,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.examples.flexjs</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+  <!--
+        Flash Version: CSS problems
+  -->
 
-    <artifactId>DataGridExample</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-flexjs</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
 
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>7.1.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sourceFile>DataGridExample.mxml</sourceFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <artifactId>DataGridExample</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: FlexJS: DataGridExample</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>DataGridExample.mxml</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
 </project>

@@ -22,7 +22,7 @@ import org.apache.flex.events.EventDispatcher;
 import org.apache.flex.events.IEventDispatcher;
 import org.apache.flex.storage.events.FileEvent;
 
-COMPILE::AS3 {
+COMPILE::SWF {
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;
 	import flash.filesystem.FileStream;
@@ -77,7 +77,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 			};
 		}
 			
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			_fileHandle = fileHandle as File;
 			_fileReader = fileReader as FileStream;
 		}
@@ -92,7 +92,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 		private var _fileHandle:File;
 		private var _fileReader:FileReader;
 	}
-	COMPILE::AS3 {
+	COMPILE::SWF {
 		private var _fileHandle:File;
 		private var _fileReader:FileStream;
 	}
@@ -111,7 +111,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 		COMPILE::JS {
 			_fileReader.readAsText(_fileHandle);
 		}
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			var bytes:ByteArray = new ByteArray();
 			_fileReader.readBytes(bytes);
 			
@@ -133,7 +133,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 	 */
 	public function close():void
 	{
-		COMPILE::AS3 {
+		COMPILE::SWF {
 			_fileReader.close();
 		}
 		

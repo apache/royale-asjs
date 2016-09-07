@@ -17,8 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/flat"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+             xmlns:js="library://ns.apache.org/flexjs/basic"
+             xmlns:flat="library://ns.apache.org/flexjs/flat"
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
@@ -100,7 +101,7 @@ limitations under the License.
         <js:State name="showAll" />        
     </js:states>
     <js:beads>
-        <js:ViewBaseDataBinding />
+        <js:ViewDataBinding />
     </js:beads>
     <js:Container x="0" y="0" className="topContainer" >
         <js:beads>
@@ -125,14 +126,14 @@ limitations under the License.
                 <js:beads>
                     <js:VerticalLayout />
                 </js:beads>
-                <js:DropDownList id="list" width="100"
+                <flat:DropDownList id="list" width="100"
                                     change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
                                     dataProvider="{MyModel(applicationModel).strings}" />
-                <js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
-                <js:CheckBox id="showAllData" text="Show All Data" change="setState()" />
+                <flat:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+                <flat:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
+                <flat:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
+                <flat:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
+                <flat:CheckBox id="showAllData" text="Show All Data" change="setState()" />
             </js:Container>
         </js:Container>
         <js:Label id="bindtest" text="{fieldText + ' expression binding'}" />
@@ -141,4 +142,4 @@ limitations under the License.
                         includeIn="showAll"
                         text="{MyModel(applicationModel).allData}" />
     </js:Container>	
-</js:ViewBase>
+</js:View>

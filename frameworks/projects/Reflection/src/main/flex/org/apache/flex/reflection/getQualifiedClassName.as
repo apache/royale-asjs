@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.reflection
 {
-COMPILE::AS3
+COMPILE::SWF
 {
     import flash.utils.getQualifiedClassName;
 }
@@ -33,7 +33,7 @@ COMPILE::AS3
      */
     public function getQualifiedClassName(value:*):String
 	{
-        COMPILE::AS3
+        COMPILE::SWF
         {
             return flash.utils.getQualifiedClassName(value);
         }

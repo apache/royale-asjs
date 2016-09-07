@@ -24,7 +24,7 @@
     <component id="Application" class="org.apache.flex.core.Application"/>
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
-    <component id="ViewBase" class="org.apache.flex.core.ViewBase"/>
+    <component id="View" class="org.apache.flex.core.View"/>
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
@@ -36,6 +36,12 @@
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
+    <component id="TransformModel" class="org.apache.flex.core.TransformModel" />
+    <component id="TransformRotateModel" class="org.apache.flex.core.TransformRotateModel" />
+    <component id="TransformCompoundModel" class="org.apache.flex.core.TransformCompoundModel" />
+    <component id="TransformMoveXModel" class="org.apache.flex.core.TransformMoveXModel" />
+    <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
+    <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>

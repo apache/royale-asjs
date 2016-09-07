@@ -29,7 +29,7 @@
 
    <compiler>
 
-    <define><name>COMPILE::AS3</name><value>true</value></define>
+    <define><name>COMPILE::SWF</name><value>true</value></define>
     <define><name>COMPILE::JS</name><value>false</value></define>
     <define><name>CONFIG::debug</name><value>false</value></define>
     <define><name>CONFIG::release</name><value>true</value></define>
@@ -65,6 +65,7 @@
           <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Language/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
@@ -430,7 +431,7 @@
     </exclude-classes>
    
    <exclude-sources>
-       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/utils/Language.as</path-element>
+       <path-element>${frameworks_dir}/projects/Language/src/main/flex/org/apache/flex/utils/Language.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/WrappedHTMLElement.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/BrowserEvent.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/IFlexJSElement.as</path-element>

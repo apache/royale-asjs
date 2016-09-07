@@ -76,7 +76,7 @@ package org.apache.flex.mobile.beads.controllers
 			
 			model = UIBase(value).model as IToggleButtonModel;
 			
-            COMPILE::AS3
+            COMPILE::SWF
             {
                 var viewBead:ToggleSwitchView = value.getBeadByType(IBeadView) as ToggleSwitchView;
                 viewBead.boundingBox.addEventListener(MouseEvent.CLICK, asClickHandler);
@@ -98,7 +98,7 @@ package org.apache.flex.mobile.beads.controllers
 		/**
 		 * @private
 		 */
-		COMPILE::AS3
+		COMPILE::SWF
 		private function asClickHandler( event:MouseEvent ) : void
 		{
 			var oldValue:Boolean = model.selected;

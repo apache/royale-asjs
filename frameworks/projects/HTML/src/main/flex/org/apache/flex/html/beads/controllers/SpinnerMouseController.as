@@ -30,15 +30,16 @@ package org.apache.flex.html.beads.controllers
     COMPILE::JS
     {
         import org.apache.flex.html.Spinner;
+        import org.apache.flex.html.supportClasses.SpinnerButton;
         import goog.events;
         import goog.events.EventType;
     }
-	
+
 	/**
-	 *  The SpinnerMouseController class bead handles mouse events on the 
-	 *  org.apache.flex.html.Spinner's component buttons, changing the 
+	 *  The SpinnerMouseController class bead handles mouse events on the
+	 *  org.apache.flex.html.Spinner's component buttons, changing the
 	 *  value of the Spinner.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -48,7 +49,7 @@ package org.apache.flex.html.beads.controllers
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -57,14 +58,14 @@ package org.apache.flex.html.beads.controllers
 		public function SpinnerMouseController()
 		{
 		}
-		
+
 		private var rangeModel:IRangeModel;
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @flexjsignorecoercion org.apache.flex.html.Spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -74,51 +75,49 @@ package org.apache.flex.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			rangeModel = UIBase(value).model as IRangeModel;
-			
-            COMPILE::AS3
+
+            COMPILE::SWF
             {
                 var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
                 spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
                 spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
                 spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
-                spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);                    
+                spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
             }
-            
+
             COMPILE::JS
             {
-                var host:Spinner = value as Spinner;
-                incrementButton = host.incrementButton;
-                decrementButton = host.decrementButton;
-                
+            	var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+
+                var incrementButton:SpinnerButton = spinnerBead.increment;
+                var decrementButton:SpinnerButton = spinnerBead.decrement;
+
                 goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
                     incrementClickHandler);
-                
+
                 goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
                     decrementClickHandler);
 
             }
 		}
-		
-        private var incrementButton:TextButton;
-        private var decrementButton:TextButton;
-        
+
 		/**
 		 * @private
 		 */
-		private function decrementClickHandler( event:Event ) : void
+		private function decrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
 		{
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
-		
+
 		/**
 		 * @private
 		 */
-		private function incrementClickHandler( event:Event ) : void
+		private function incrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
 		{
-			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);	
+			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
 	}

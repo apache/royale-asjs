@@ -41,8 +41,7 @@ package org.apache.flex.core
     
     /**
      *  The ViewBase class is the base class for most views in a FlexJS
-     *  application.  It is generally used as the root tag of MXML
-     *  documents and UI controls and containers are added to it.
+     *  application.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

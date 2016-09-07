@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:views="views.*" 
@@ -186,7 +186,7 @@ limitations under the License.
 			import org.apache.flex.core.IBeadController;
 			import org.apache.flex.core.IBeadModel;
 			import org.apache.flex.events.Event;
-			import org.apache.flex.mobile.IView;
+			import org.apache.flex.mobile.IViewManagerView;
 			import org.apache.flex.mobile.IViewManager;
 			import org.apache.flex.mobile.chrome.NavigationBar;
 			
@@ -210,7 +210,7 @@ limitations under the License.
 				trace("watchlist stack changed");
 				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
 				
-				var currentView:IView = manager.selectedView;
+				var currentView:IViewManagerView = manager.selectedView;
 				backButton.visible = manager.views.length > 1;
 			}
 			
@@ -224,7 +224,7 @@ limitations under the License.
 	</fx:Script>
 	
 	<js:beads>
-		<js:ViewBaseDataBinding />
+		<js:ViewDataBinding />
 	</js:beads>
 	
 	<js:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
@@ -253,4 +253,4 @@ limitations under the License.
 		</js:views>
 	</js:TabbedViewManager>
 	
-</js:ViewBase>
+</js:View>

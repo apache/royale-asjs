@@ -17,28 +17,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:ViewBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:svg="library://ns.apache.org/flexjs/svg"
 				initComplete="viewbase1_initCompleteHandler(event)"
 			   >
     <fx:Script>
         <![CDATA[            
-			import org.apache.flex.core.graphics.Circle;
-			import org.apache.flex.core.graphics.Ellipse;
-			import org.apache.flex.core.graphics.GradientEntry;
-			import org.apache.flex.core.graphics.GraphicsContainer;
-			import org.apache.flex.core.graphics.LinearGradient;
-			import org.apache.flex.core.graphics.Path;
-			import org.apache.flex.core.graphics.Rect;
-			import org.apache.flex.core.graphics.SolidColor;
-			import org.apache.flex.core.graphics.SolidColorStroke;
+			import org.apache.flex.svg.Circle;
+			import org.apache.flex.svg.Ellipse;
+			import org.apache.flex.graphics.GradientEntry;
+			import org.apache.flex.svg.CompoundGraphic;
+			import org.apache.flex.svg.LinearGradient;
+			import org.apache.flex.svg.Path;
+			import org.apache.flex.svg.Rect;
+			import org.apache.flex.graphics.SolidColor;
+			import org.apache.flex.graphics.SolidColorStroke;
 			import org.apache.flex.events.Event;
 
 			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
 			{
 				//drawIndividualShapes();
-				//drawOnGraphicsContainer();
+				//drawOnCompoundGraphic();
 			}
 			
 			private function drawIndividualShapes():void
@@ -198,9 +198,9 @@ limitations under the License.
 				this.addElement(path4);
 			}
 			
-			private function drawOnGraphicsContainer():void
+			private function drawOnCompoundGraphic():void
 			{
-				var container:GraphicsContainer = new GraphicsContainer();
+				var container:CompoundGraphic = new CompoundGraphic();
 				
 /*				var fill:SolidColor = new SolidColor();
 				fill.color = 0xFF0000;
@@ -324,4 +324,4 @@ limitations under the License.
 		</js:fill>
 	</js:Path>
 	
-</js:ViewBase>
+</js:View>

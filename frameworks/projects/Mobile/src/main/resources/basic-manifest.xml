@@ -22,9 +22,10 @@
 <componentPackage>
     <component id="StackedViewManager" class="org.apache.flex.mobile.StackedViewManager" />
     <component id="TabbedViewManager" class="org.apache.flex.mobile.TabbedViewManager" />
-    <component id="View" class="org.apache.flex.mobile.View" />
+    <component id="TitleView" class="org.apache.flex.mobile.TitleView" />
     <component id="NavigationBar" class="org.apache.flex.mobile.chrome.NavigationBar" />
     <component id="ToolBar" class="org.apache.flex.mobile.chrome.ToolBar" />
     <component id="TabBar" class="org.apache.flex.mobile.chrome.TabBar" />
     <component id="ToggleSwitch" class="org.apache.flex.mobile.ToggleSwitch" />
+    <component id="DatePicker" class="org.apache.flex.mobile.DatePicker" />
 </componentPackage>

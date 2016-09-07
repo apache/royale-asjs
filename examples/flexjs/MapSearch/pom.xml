@@ -20,31 +20,67 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache.flex.examples.flexjs</groupId>
-        <artifactId>examples</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+  <!--
+        TODO:
+          No Flash Version built in ANT
 
-    <artifactId>MapSearch</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>swf</packaging>
+        JavaScript Version:
+          base.js:2189 Uncaught TypeError: Cannot read property 'prototype' of undefined
+            goog.inherits @ base.js:2189
+            (anonymous function) @ Marker.js:26
+  -->
 
-    <build>
-        <sourceDirectory>src</sourceDirectory>
-        <plugins>
-            <plugin>
-                <groupId>net.flexmojos.oss</groupId>
-                <artifactId>flexmojos-maven-plugin</artifactId>
-                <version>7.1.0-SNAPSHOT</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <sourceFile>MapSearch.mxml</sourceFile>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <parent>
+    <groupId>org.apache.flex.flexjs.examples</groupId>
+    <artifactId>examples-flexjs</artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>MapSearch</artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+  <packaging>swf</packaging>
+
+  <name>Apache Flex - FlexJS: Examples: FlexJS: MapSearch</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>MapSearch.mxml</mainClass>
+          <removeCirculars>true</removeCirculars>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.air.framework</groupId>
+      <artifactId>airglobal</artifactId>
+      <version>${air.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>GoogleMaps</artifactId>
+      <version>0.7.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
 
 </project>
