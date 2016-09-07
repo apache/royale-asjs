@@ -59,6 +59,7 @@ COMPILE::JS
 	import flex.events.EventPhase;
 	import flex.ui.Keyboard;
 	
+    import org.apache.flex.core.WrappedHTMLElement;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 }
@@ -2154,12 +2155,25 @@ public class SystemManager extends MovieClip
 
     /**
      *  @private
+     *  this is overridden by the SWF compiler
      */
     public function info():Object
     {
-        return {};
+        return __info;
     }
 
+    private static var __info:Object;
+    
+    /**
+     *  @private
+     *  this is set by JS code as hack for now.
+     *  eventually, the JS transpiler should generate the object
+     */
+    public static function setInfo(obj:Object):void
+    {
+        __info = obj;
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -3016,16 +3030,32 @@ public class SystemManager extends MovieClip
 		}
     }   
 
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        element = window.document.getElementsByTagName('body')[0];
+        element.flexjs_wrapper = this;
+        element.className = 'SystemManager';
+        
+        positioner = element;
+        
+        return element;
+    }
+    
     /**
      *  @private
      *  kick off 
+     *  @flexjsignorecoercion Class
      */
     mx_internal function kickOff():void
     {
-        // already been here
-        if (document)
-            return;
-
+        COMPILE::SWF
+        {
+            // already been here
+            if (document)
+                return;
+        }
+        
         CONFIG::performanceInstrumentation
         {
             var perfUtil:mx.utils.PerfUtil = mx.utils.PerfUtil.getInstance();
@@ -3042,35 +3072,35 @@ public class SystemManager extends MovieClip
 		
         // Generated code will bring in EmbeddedFontRegistry
         Singleton.registerClass("mx.core::IEmbeddedFontRegistry",
-                Class(getDefinitionByName("mx.core::EmbeddedFontRegistry")));
+                getDefinitionByName("mx.core::EmbeddedFontRegistry") as Class);
                 
         Singleton.registerClass("mx.styles::IStyleManager",
-            Class(getDefinitionByName("mx.styles::StyleManagerImpl")));
+            getDefinitionByName("mx.styles::StyleManagerImpl") as Class);
         
         Singleton.registerClass("mx.styles::IStyleManager2",
-            Class(getDefinitionByName("mx.styles::StyleManagerImpl")));
+            getDefinitionByName("mx.styles::StyleManagerImpl") as Class);
 
         // Register other singleton classes.
         // Note: getDefinitionByName() will return null
         // if the class can't be found.
 
         Singleton.registerClass("mx.managers::IBrowserManager",
-            Class(getDefinitionByName("mx.managers::BrowserManagerImpl")));
+            getDefinitionByName("mx.managers::BrowserManagerImpl") as Class);
 
         Singleton.registerClass("mx.managers::ICursorManager",
-            Class(getDefinitionByName("mx.managers::CursorManagerImpl")));
+            getDefinitionByName("mx.managers::CursorManagerImpl") as Class);
 
         Singleton.registerClass("mx.managers::IHistoryManager",
-            Class(getDefinitionByName("mx.managers::HistoryManagerImpl")));
+            getDefinitionByName("mx.managers::HistoryManagerImpl") as Class);
 
         Singleton.registerClass("mx.managers::ILayoutManager",
-            Class(getDefinitionByName("mx.managers::LayoutManager")));
+            getDefinitionByName("mx.managers::LayoutManager") as Class);
 
         Singleton.registerClass("mx.managers::IPopUpManager",
-            Class(getDefinitionByName("mx.managers::PopUpManagerImpl")));
+            getDefinitionByName("mx.managers::PopUpManagerImpl") as Class);
 
         Singleton.registerClass("mx.managers::IToolTipManager2",
-            Class(getDefinitionByName("mx.managers::ToolTipManagerImpl")));
+            getDefinitionByName("mx.managers::ToolTipManagerImpl") as Class);
 
         var dragManagerClass:Class = null;
                 
@@ -3085,15 +3115,15 @@ public class SystemManager extends MovieClip
         var useNative:Boolean = dmInfo == null ? true : String(dmInfo) == "true";
          
         if (useNative)
-            dragManagerClass = Class(getDefinitionByName("mx.managers::NativeDragManagerImpl"));
+            dragManagerClass = getDefinitionByName("mx.managers::NativeDragManagerImpl") as Class;
     
         if (dragManagerClass == null)
-            dragManagerClass = Class(getDefinitionByName("mx.managers::DragManagerImpl"));
+            dragManagerClass = getDefinitionByName("mx.managers::DragManagerImpl") as Class;
         
         Singleton.registerClass("mx.managers::IDragManager", dragManagerClass);
 
         Singleton.registerClass("mx.core::ITextFieldFactory", 
-            Class(getDefinitionByName("mx.core::TextFieldFactory")));
+            getDefinitionByName("mx.core::TextFieldFactory") as Class);
 
         var mixinList:Array = info()["mixins"];
         if (mixinList && mixinList.length > 0)
@@ -3107,7 +3137,7 @@ public class SystemManager extends MovieClip
                 }
                 
                 // trace("initializing mixin " + mixinList[i]);
-                var c:Class = Class(getDefinitionByName(mixinList[i]));
+                var c:Class = getDefinitionByName(mixinList[i]) as Class;
                 c["init"](this);
 
                 CONFIG::performanceInstrumentation

@@ -46,6 +46,8 @@ COMPILE::SWF
 			}
 			COMPILE::JS
 			{
+                // may not work in release optimized mode
+                name = name.replace("::", ".");
 				var parts:Array = name.split(".");
 				var obj:* = window;
 				for each (var part:String in parts)
@@ -66,6 +68,8 @@ COMPILE::SWF
 			}
 			COMPILE::JS
 			{
+                // may not work in release optimized mode
+                name = name.replace("::", ".");
 				var parts:Array = name.split(".");
 				var obj:* = window;
 				for each (var part:String in parts)

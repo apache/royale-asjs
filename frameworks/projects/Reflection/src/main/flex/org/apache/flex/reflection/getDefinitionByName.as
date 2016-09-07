@@ -39,6 +39,7 @@ COMPILE::SWF
         }
         COMPILE::JS
         {
+            name = name.replace("::", ".");
             var parts:Array = name.split('.');
             var n:int = parts.length;
             var o:Object = window;

@@ -40,6 +40,9 @@ COMPILE::JS
     import flex.display.DisplayObject;
     import flex.display.InteractiveObject;
     import flex.events.Event;
+    import org.apache.flex.core.WrappedHTMLElement;
+    import mx.managers.SystemManager;
+    import mx.managers.systemClasses.ChildManager;
 }
 
 import mx.containers.utilityClasses.ApplicationLayout;
@@ -50,13 +53,15 @@ import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
 import mx.managers.ISystemManager;
 // force-link this here. In flex-sdk, it gets dragged in by Effect.
-import mx.managers.LayoutManager; LayoutManager; 
+import mx.managers.LayoutManager; // LayoutManager; force-link syntax not supported by FalconJX 
 // force-link this here. In flex-sdk, it gets injected somehow.
-import mx.core.TextFieldFactory; TextFieldFactory; 
+import mx.core.TextFieldFactory; // TextFieldFactory; force-link syntax not supported by FalconJX 
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
 import mx.utils.Platform;
+import org.apache.flex.core.SimpleCSSValuesImpl;
+import org.apache.flex.core.ValuesManager;
 
 use namespace mx_internal;
 
@@ -348,14 +353,41 @@ public class Application extends LayoutContainer
      */
     public function Application()
     {
+        start();
+    }
+    
+    /**
+     *  Entry point for JS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function start():void
+    {
+        var forceLinkLayoutManager:Class = LayoutManager;
+        var forceLinkTextFieldFactory:Class = TextFieldFactory;
+        ValuesManager.valuesImpl = new SimpleCSSValuesImpl();
+        ValuesManager.valuesImpl.init(this);
+        
+        COMPILE::JS
+        {
+            // this is a hack until we get falconjx to put the info on the factory
+            SystemManager.setInfo(this["info"]());
+            var sm:SystemManager = new SystemManager();
+            sm.document = this;
+            systemManager = sm;
+            new ChildManager(sm);
+            sm.kickOff();
+        }
+                
         UIComponentGlobals.layoutManager = ILayoutManager(
             Singleton.getInstance("mx.managers::ILayoutManager"));
         UIComponentGlobals.layoutManager.usePhasedInstantiation = true;
 
         if (!FlexGlobals.topLevelApplication)
             FlexGlobals.topLevelApplication = this;
-
-        super();
 
         layoutObject = new ApplicationLayout();
         layoutObject.target = this;
@@ -370,6 +402,21 @@ public class Application extends LayoutContainer
         initResizeBehavior();
     }
 
+    /**
+     * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement 
+     */
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        element = window.document.createElement('div') as WrappedHTMLElement;
+        element.flexjs_wrapper = this;
+        element.className = 'Application';
+        
+        positioner = element;
+        
+        return element;
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Variables

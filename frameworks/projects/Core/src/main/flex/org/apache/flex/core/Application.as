@@ -577,15 +577,21 @@ package org.apache.flex.core
 		COMPILE::JS
 		protected var startupTimer:Timer;
 
+        COMPILE::JS
+        protected function createElement():void
+        {
+            element = document.getElementsByTagName('body')[0];
+            element.flexjs_wrapper = this;
+            element.className = 'Application';            
+        }
+        
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.IBead
 		 */
 		COMPILE::JS
 		public function start():void
 		{
-			element = document.getElementsByTagName('body')[0];
-			element.flexjs_wrapper = this;
-			element.className = 'Application';
+            createElement();
 			
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);

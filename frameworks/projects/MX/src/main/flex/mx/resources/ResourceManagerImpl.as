@@ -512,6 +512,8 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
      */
     public function initializeLocaleChain(compiledLocales:Array):void
     {
+        if (!compiledLocales) return;
+        
         localeChain = LocaleSorter.sortLocalesByPreference(
             compiledLocales, getSystemPreferredLocales(), null, true);
     }

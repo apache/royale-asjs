@@ -357,6 +357,8 @@ include "../styles/metadata/TextStyles.as"
 
 [ResourceBundle("core")]
 
+[DefaultProperty("mxmlContent")] 
+
 /**
  *  The Container class is an abstract base class for components that
  *  controls the layout characteristics of child components.
@@ -1890,6 +1892,40 @@ public class Container extends UIComponent
         return verticalScrollBar ?
                verticalScrollBar.maxScrollPosition :
                Math.max(scrollableHeight - viewableHeight, 0);
+    }
+
+    //----------------------------------
+    //  mxmlContent
+    //----------------------------------
+    
+    private var _mxmlContent:Array;
+    
+    [ArrayElementType("mx.core.IVisualElement")]
+    
+    /**
+     *  The visual content children for this Group.
+     * 
+     *  This method is used internally by Flex and is not intended for direct
+     *  use by developers.
+     *
+     *  <p>The content items should only be IVisualElement objects.  
+     *  An <code>mxmlContent</code> Array should not be shared between multiple
+     *  Group containers because visual elements can only live in one container 
+     *  at a time.</p>
+     * 
+     *  <p>If the content is an Array, do not modify the Array 
+     *  directly. Use the methods defined by the Group class instead.</p>
+     *
+     *  @default null
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function set mxmlContent(value:Array):void
+    {
+        _mxmlContent = value;
     }
 
     //----------------------------------
