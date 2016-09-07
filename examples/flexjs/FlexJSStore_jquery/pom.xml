@@ -113,7 +113,7 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
       <artifactId>flexjs-typedefs-jquery</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>
