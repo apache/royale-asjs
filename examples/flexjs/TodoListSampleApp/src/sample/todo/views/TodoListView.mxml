@@ -26,6 +26,8 @@ limitations under the License.
     <fx:Script>
 		<![CDATA[
 			import org.apache.flex.events.Event;
+			import org.apache.flex.events.IEventDispatcher;
+			import org.apache.flex.events.ItemRendererEvent;
 			import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 			
 			import sample.todo.events.TodoListEvent;
@@ -50,13 +52,6 @@ limitations under the License.
 				dispatchEvent(logEvent);
 				
 				todoInput.text = "";
-			}
-			
-			private function forwardEvent(event:TodoListEvent):void
-			{
-				var newEvent:TodoListEvent = new TodoListEvent(event.type);
-				newEvent.item = event.item;
-				dispatchEvent(newEvent);
 			}
 			
 			private function updateStatus(event:org.apache.flex.events.Event):void {
@@ -92,6 +87,39 @@ limitations under the License.
 			private function showCompleted():void {
 				(applicationModel as TodoListModel).showCompletedTodos();
 			}
+			
+			/**
+			 * Handle creation of itemRenderers by listening for the events they dispatch.
+			 */
+			private function handleRendererCreated(event:ItemRendererEvent):void {
+				var renderer:IEventDispatcher = event.itemRenderer as IEventDispatcher;
+				renderer.addEventListener("checkChanged",itemChecked);
+				renderer.addEventListener("removeRequest",itemRemove);
+			}
+			
+			/**
+			 * When an item is checked, form new event and dispatch to controller.
+			 */
+			private function itemChecked(event:Event):void
+			{
+				var renderer:TodoItemRenderer = event.target as TodoItemRenderer;
+
+				var newEvent:TodoListEvent = new TodoListEvent(TodoListEvent.ITEM_CHECKED);
+				newEvent.item = renderer.data;
+				dispatchEvent(newEvent);
+			}
+
+			/**
+			 * When an item is removed, form a new event and dispatch to the controller.
+			 */
+			private function itemRemove(event:Event):void
+			{
+				var renderer:TodoItemRenderer = event.target as TodoItemRenderer;
+
+				var newEvent:TodoListEvent = new TodoListEvent(TodoListEvent.ITEM_REMOVE_REQUEST);
+				newEvent.item = renderer.data;
+				dispatchEvent(newEvent);
+			}
         ]]>
 	</fx:Script>
 	
@@ -115,8 +143,7 @@ limitations under the License.
 					dataProvider="{TodoListModel(applicationModel).todos}"
                     width="100%" height="400">
 			<js:beads>
-				<renderers:TodoListItemRendererFactory itemChecked="forwardEvent(event)" 
-													   itemRemoveRequest="forwardEvent(event)" />
+				<js:DataItemRendererFactoryForArrayData itemRendererCreated="handleRendererCreated(event)" />
 			</js:beads>
         </js:List>
 
@@ -134,14 +161,6 @@ limitations under the License.
     <fx:Style>
         @namespace basic "library://ns.apache.org/flexjs/basic";
         @namespace renderers "sample.todo.renderers.*";
-
-        /* use className="todoList" on the List element in place of itemRenderer if you want to specify
-         * the itemRenderer in a style definition along with other settings.
-         */
-        .todoList {
-            IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
-            IItemRenderer: ClassReference("sample.todo.renderers.TodoItemRenderer");
-        }
 
         renderers|TodoItemRenderer {
 			backgroundColor: #FFFFFF;
