@@ -114,13 +114,14 @@ COMPILE::SWF
             COMPILE::SWF
             {
                 var initialView:UIBase = app.initialView as UIBase;
+				var constrainedWidth:Number = Math.max(isNaN(minWidth) ? 0 : minWidth, app.$displayObject.stage.stageWidth);
+				var constrainedHeight:Number = Math.max(isNaN(minHeight) ? 0 : minHeight, app.$displayObject.stage.stageHeight);
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                    initialView.setWidthAndHeight(Math.max(minWidth, app.$displayObject.stage.stageWidth), 
-                        Math.max(minHeight, app.$displayObject.stage.stageHeight), true);
+                    initialView.setWidthAndHeight(constrainedWidth, constrainedHeight, true);
                 else if (!isNaN(initialView.percentWidth))
-                    initialView.setWidth(Math.max(minWidth, app.$displayObject.stage.stageWidth));
+                    initialView.setWidth(constrainedWidth);
                 else if (!isNaN(initialView.percentHeight))
-                    initialView.setHeight(Math.max(minHeight, app.$displayObject.stage.stageHeight));
+                    initialView.setHeight(constrainedHeight);
             }
             COMPILE::JS
             {
