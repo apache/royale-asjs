@@ -754,7 +754,7 @@ package
 		public function replace(propertyName:Object, value:*):*
 		{
 			if(isSingle())
-				_xmlArray[0].replace(propertyName,value);
+				return _xmlArray[0].replace(propertyName,value);
 		}
 		public function setChild(elementName:*, elements:Object):void
 		{
