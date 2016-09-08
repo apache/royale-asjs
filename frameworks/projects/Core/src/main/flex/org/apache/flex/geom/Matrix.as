@@ -16,6 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+//
+// Implementation derived fromL
+//     https://github.com/openfl/openfl/blob/develop/openfl/geom/Matrix.hx
+// available under MIT License.
+//
 package org.apache.flex.geom
 {
 

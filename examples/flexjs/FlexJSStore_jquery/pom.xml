@@ -39,11 +39,11 @@
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>FlexJSStore_jquery</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Flex - FlexJS: Examples: FlexJS: FlexJSStore_jquery</name>
@@ -82,38 +82,38 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
 
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
       <artifactId>flexjs-typedefs-jquery</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
       <scope>runtime</scope>

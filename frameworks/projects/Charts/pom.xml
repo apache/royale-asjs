@@ -17,18 +17,17 @@
   limitations under the License.
 
 -->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.flex.flexjs.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>Charts</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Libs: Charts</name>
@@ -39,7 +38,7 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>0.7.0-SNAPSHOT</version>
+        <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
           <namespaces>
@@ -70,52 +69,52 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
