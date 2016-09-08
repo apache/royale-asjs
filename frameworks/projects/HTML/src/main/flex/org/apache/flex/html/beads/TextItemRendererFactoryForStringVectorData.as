@@ -25,6 +25,11 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ItemRendererEvent;
+	
+	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 
     /**
      *  The TextItemRendererFactoryForStringVectorData class is the 
@@ -39,7 +44,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class TextItemRendererFactoryForStringVectorData implements IBead
+	public class TextItemRendererFactoryForStringVectorData extends EventDispatcher implements IBead
 	{
         /**
          *  Constructor.
@@ -49,8 +54,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function TextItemRendererFactoryForStringVectorData()
+		public function TextItemRendererFactoryForStringVectorData(target:Object=null)
 		{
+			super(target);
 		}
 		
 		private var selectionModel:ISelectionModel;
@@ -68,8 +74,13 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listView:IListView = value.getBeadByType(IListView) as IListView;
+			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
+		}
+		
+		private function finishSetup(event:Event):void
+		{
+			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChange", dataProviderChangeHandler);
 			dataProviderChangeHandler(null);
@@ -121,6 +132,10 @@ package org.apache.flex.html.beads
                 tf.index = i;
                 dataGroup.addElement(tf);
 				tf.text = dp[i];
+				
+				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+				newEvent.itemRenderer = tf;
+				dispatchEvent(newEvent);
 			}			
 		}
 		
