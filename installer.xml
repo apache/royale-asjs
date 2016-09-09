@@ -57,8 +57,8 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flexjs.version" value="0.7.0"/>
-    <property name="falcon.version" value="0.7.0"/>
+    <property name="flexjs.version" value="0.8.0"/>
+    <property name="falcon.version" value="0.8.0"/>
 
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
