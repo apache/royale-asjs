@@ -961,6 +961,9 @@
         <replace file="${FLEXJS_HOME}/build.properties"
             token="${old-version}"
             value="${new-version}" />
+        <replace file="${FLEXJS_HOME}/nightly.properties"
+            token="${old-version}"
+            value="${new-version}" />
         <replace file="${FLEXJS_HOME}/installer.xml"
             token="${old-version}"
             value="${new-version}" />
