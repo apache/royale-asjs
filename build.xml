@@ -1180,7 +1180,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1281,7 +1281,7 @@
         <mkdir dir="${basedir}/mustella/java/bin"/>
         <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
