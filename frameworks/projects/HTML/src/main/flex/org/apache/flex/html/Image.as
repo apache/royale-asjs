@@ -85,13 +85,7 @@ package org.apache.flex.html
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
-            model = new
-                ImageModel();
-            
-            addBead(new
-                ImageView());
-            
+         
             return element;
         }        
 
