@@ -714,6 +714,13 @@ package
 				_xmlArray[i].setAttribute(attr,value);
 
 		}
+		public function hasAncestor(obj:*):Boolean
+		{
+			if(isSingle())
+				return _xmlArray[0].hasAncestor(obj);
+
+			return false;
+		}
 		public function insertChildAfter(child1:XML, child2:XML):XML
 		{
 			if(isSingle())
