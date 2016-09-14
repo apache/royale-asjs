@@ -3136,8 +3136,14 @@ public class SystemManager extends MovieClip
                     var token:int = perfUtil.markStart();
                 }
                 
-                // trace("initializing mixin " + mixinList[i]);
-                var c:Class = getDefinitionByName(mixinList[i]) as Class;
+                COMPILE::LATER
+                {
+                    // trace("initializing mixin " + mixinList[i]);
+                    var c:Class = getDefinitionByName(mixinList[i]) as Class;
+                }
+                // in FlexJS, mixins are classes, not class names.  Class names
+                // are better for two-frame SWFs so this may change later
+                var c:Class = mixinList[i] as Class;
                 c["init"](this);
 
                 CONFIG::performanceInstrumentation

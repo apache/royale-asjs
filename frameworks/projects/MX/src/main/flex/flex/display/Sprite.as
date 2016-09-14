@@ -23,8 +23,16 @@ package flex.display
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
 	import mx.managers.SystemManagerGlobals;
-	
-	public class Sprite extends CompoundGraphic implements DisplayObjectContainer
+	COMPILE::SWF
+    {
+        import flash.events.IEventDispatcher;
+    }
+    COMPILE::JS
+    {
+        import flex.events.IEventDispatcher;
+    }
+    
+	public class Sprite extends CompoundGraphic implements DisplayObjectContainer, IEventDispatcher
 	{
 		COMPILE::JS
 		private var _name:String;

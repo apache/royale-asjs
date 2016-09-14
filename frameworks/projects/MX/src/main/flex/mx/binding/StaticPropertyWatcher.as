@@ -162,7 +162,7 @@ public class StaticPropertyWatcher extends Watcher
                 {
                     var eventDispatcher:IEventDispatcher = parentObj["staticEventDispatcher"];
 
-                    eventDispatcher.bindingEventDispatcher.addEventListener(eventType, eventHandler, false);
+                    eventDispatcher.addEventListener(eventType, eventHandler, false);
                 }
             }
         }

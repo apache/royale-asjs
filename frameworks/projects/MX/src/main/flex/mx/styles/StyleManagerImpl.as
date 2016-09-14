@@ -36,14 +36,14 @@ COMPILE::LATER
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 }
-import org.apache.flex.events.Event;
-import org.apache.flex.events.EventDispatcher;
-import org.apache.flex.events.IEventDispatcher;
-
 import mx.core.FlexVersion;
 import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
 import mx.events.FlexChangeEvent;
+
+import org.apache.flex.events.Event;
+import org.apache.flex.events.EventDispatcher;
+import org.apache.flex.events.IEventDispatcher;
 COMPILE::LATER
 {
 	import mx.events.ModuleEvent;
@@ -118,6 +118,54 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 			generateCSSStyleDeclarations(sm, styleDataClass["factoryFunctions"], styleDataClass["data"]);
 			sm.initProtoChainRoots();
 		}
+        COMPILE::JS
+        {
+            if (!sm)
+                sm = new StyleManagerImpl(fbs);
+            
+            var cssData:Array = fbs.info()["cssData"];
+            if (cssData) {
+                var n:int = cssData.length;
+                var i:int = 0;
+                while (i < n)
+                {
+                    var numMQ:int = cssData[i++];
+                    if (numMQ > 0)
+                    {
+                        // skip MediaQuery tests for now
+                        i += numMQ;
+                    }
+                    var numSel:int = cssData[i++];
+                    var props:Object = {};
+                    var decls:Array = [];
+                    for (var j:int = 0; j < numSel; j++)
+                    {
+                        var selName:String = cssData[i++];
+                        decls.push(new CSSStyleDeclaration(selName));
+                    }
+                    var numProps:int = cssData[i++];
+                    for (j = 0; j < numProps; j++)
+                    {
+                        var propName:String = cssData[i++];
+                        var propValue:Object = cssData[i++];
+                        props[propName] = propValue;
+                    }
+                    for each (var decl:CSSStyleDeclaration in decls)
+                    {
+                        var factoryFunction:String = "(function factoryFunction() {";
+                        for (var p:String in props)
+                        {
+                            factoryFunction += "this." + p + " = " + props[p] + ";";
+                        }
+                        factoryFunction += "})";
+                        var f:Function = eval(factoryFunction);
+                        decl.defaultFactory = f;
+                    }
+                }
+            }
+
+            sm.initProtoChainRoots();
+        }
 	}
 	
 	public static function generateCSSStyleDeclarations(styleManager:StyleManagerImpl, factoryFunctions:Object, data:Array, newSelectors:Array = null, overrideMap:Object = null):void

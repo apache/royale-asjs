@@ -250,7 +250,7 @@ public class FunctionReturnWatcher extends Watcher
                 {
                     if (eventName != "__NoChangeEvent__")
                     {
-                        eventDispatcher.bindingEventDispatcher.addEventListener(eventName, eventHandler,
+                        eventDispatcher.addEventListener(eventName, eventHandler,
                                                          false);
                     }
                 }
@@ -262,8 +262,8 @@ public class FunctionReturnWatcher extends Watcher
                 // {getStyle("color")}, the eventName will be
                 // "colorChanged".
                 eventName = parameterFunction.apply(document) + "Changed";
-                eventDispatcher.bindingEventDispatcher.addEventListener(eventName, eventHandler, false);                
-                eventDispatcher.bindingEventDispatcher.addEventListener("allStylesChanged", eventHandler, false);                
+                eventDispatcher.addEventListener(eventName, eventHandler, false);                
+                eventDispatcher.addEventListener("allStylesChanged", eventHandler, false);                
             }
         }
     }

@@ -56,12 +56,15 @@ import mx.managers.ISystemManager;
 import mx.managers.LayoutManager; // LayoutManager; force-link syntax not supported by FalconJX 
 // force-link this here. In flex-sdk, it gets injected somehow.
 import mx.core.TextFieldFactory; // TextFieldFactory; force-link syntax not supported by FalconJX 
+// force-link this here. In flex-sdk, it gets injected in generated code.
+import mx.styles.StyleManagerImpl; // StyleManagerImpl; force-link syntax not supported by FalconJX 
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
 import mx.utils.Platform;
 import org.apache.flex.core.SimpleCSSValuesImpl;
 import org.apache.flex.core.ValuesManager;
+import org.apache.flex.utils.MixinManager;
 
 use namespace mx_internal;
 
@@ -368,6 +371,7 @@ public class Application extends LayoutContainer
     {
         var forceLinkLayoutManager:Class = LayoutManager;
         var forceLinkTextFieldFactory:Class = TextFieldFactory;
+        var forceLinkStyleManager:Class = StyleManagerImpl;
         ValuesManager.valuesImpl = new SimpleCSSValuesImpl();
         ValuesManager.valuesImpl.init(this);
         
@@ -377,6 +381,7 @@ public class Application extends LayoutContainer
             SystemManager.setInfo(this["info"]());
             var sm:SystemManager = new SystemManager();
             sm.document = this;
+            sm.info()["cssData"] = this["cssData"];
             systemManager = sm;
             new ChildManager(sm);
             sm.kickOff();
