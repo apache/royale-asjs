@@ -33,8 +33,8 @@
 	-->
 	
     <property name="selenium2.jar.dir.name" value="2.53"/>
-    <property name="selenium2.jar.name" value="selenium-java-2.53.0"/>
-    <property name="selenium2.dir.name" value="selenium-2.53.0"/>
+    <property name="selenium2.jar.name" value="selenium-java-2.53.1"/>
+    <property name="selenium2.dir.name" value="selenium-2.53.1"/>
 	
     <!-- 
         Because the downloads requires a network connection and the JARs don't change very often, 

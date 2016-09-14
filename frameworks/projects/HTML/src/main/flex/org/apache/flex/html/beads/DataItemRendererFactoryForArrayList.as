@@ -33,7 +33,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.ItemRendererEvent;
 	import org.apache.flex.html.List;
+	
+	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
     /**
      *  The DataItemRendererFactoryForArrayList class uses an ArrayList
@@ -47,7 +51,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataItemRendererFactoryForArrayList implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForArrayList extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
         /**
          *  Constructor.
@@ -57,8 +61,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function DataItemRendererFactoryForArrayList()
+		public function DataItemRendererFactoryForArrayList(target:Object=null)
 		{
+			super(target);
 		}
 		
 		protected var selectionModel:ISelectionModel;
@@ -177,6 +182,10 @@ package org.apache.flex.html.beads
 				}
 				dataGroup.addElement(ir);
 				setData(ir, dp.getItemAt(i), i);
+				
+				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+				newEvent.itemRenderer = ir;
+				dispatchEvent(newEvent);
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

@@ -31,10 +31,14 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.ItemRendererEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.supportClasses.TreeListData;
 	import org.apache.flex.collections.FlattenedList;
+	
+	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a

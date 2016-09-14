@@ -31,8 +31,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ItemRendererEvent;
 	import org.apache.flex.html.List;
+	
+	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
     /**
      *  The DataItemRendererFactoryForArrayData class reads an
@@ -46,7 +50,7 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataItemRendererFactoryForArrayData implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
         /**
          *  Constructor.
@@ -56,8 +60,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function DataItemRendererFactoryForArrayData()
+		public function DataItemRendererFactoryForArrayData(target:Object=null)
 		{
+			super(target);
 		}
 		
 		private var selectionModel:ISelectionModel;
@@ -77,8 +82,13 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listView:IListView = value.getBeadByType(IListView) as IListView;
+			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
+		}
+		
+		private function finishSetup(event:Event):void
+		{
+			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
@@ -153,6 +163,10 @@ package org.apache.flex.html.beads
 				}
 				dataGroup.addElement(ir);
 				ir.data = dp[i];
+				
+				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+				newEvent.itemRenderer = ir;
+				dispatchEvent(newEvent);
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
