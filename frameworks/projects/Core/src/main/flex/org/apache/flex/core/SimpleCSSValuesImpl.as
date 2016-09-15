@@ -125,21 +125,20 @@ package org.apache.flex.core
                         i += numMQ;
                     }
                     var numSel:int = cssData[i++];
-                    var props:Object = {};
+                    var propFn:Function = cssData[i + numSel];
+                    var props:Object;
                     for (var j:int = 0; j < numSel; j++)
                     {
                         var selName:String = cssData[i++];
                         if (values[selName])
+                        {
                             props = values[selName];
-                        values[selName] = props;
+                            propFn.prototype = props;
+                        }
+                        values[selName] = new propFn();
                     }
-                    var numProps:int = cssData[i++];
-                    for (j = 0; j < numProps; j++)
-                    {
-                        var propName:String = cssData[i++];
-                        var propValue:Object = cssData[i++];
-                        props[propName] = propValue;
-                    }
+                    // skip the propFn
+                    props = cssData[i++];
                 }
             }
             
