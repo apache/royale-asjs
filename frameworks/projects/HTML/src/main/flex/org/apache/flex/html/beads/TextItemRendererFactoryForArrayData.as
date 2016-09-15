@@ -76,6 +76,7 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
+			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
 		private function finishSetup(event:Event):void
