@@ -972,6 +972,7 @@
             value="&lt;versionNumber&gt;${new-version}&lt;/versionNumber&gt;" >
             <include name="**/*-app.xml"/>
         </replace>
+        <echo>Don't forget to update JIRA to indicate current version is released and add new version</echo>
     </target>
     
 	<!--
