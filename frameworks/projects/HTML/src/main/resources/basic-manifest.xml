@@ -75,6 +75,7 @@
      <component id="HRuleView" class="org.apache.flex.html.beads.HRuleView" />
      <component id="VRuleView" class="org.apache.flex.html.beads.VRuleView" />
      -->
+    <component id="DisableBead" class="org.apache.flex.html.beads.DisableBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
