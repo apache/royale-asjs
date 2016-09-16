@@ -2137,6 +2137,9 @@ public class SystemManager extends MovieClip
     {
         var mainClassName:String = info()["mainClassName"];
 
+        if (params && params.length > 0)
+            mainClassName = params[0];
+        
 		COMPILE::SWF
 		{
 			if (mainClassName == null)

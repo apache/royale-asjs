@@ -80,7 +80,7 @@ public dynamic class OrderedObject extends Proxy
 	COMPILE::SWF
     object_proxy var propertyList:Array;
 	COMPILE::JS
-	protected var propertyList:Array;
+	public var propertyList:Array;
 
     //--------------------------------------------------------------------------
     //

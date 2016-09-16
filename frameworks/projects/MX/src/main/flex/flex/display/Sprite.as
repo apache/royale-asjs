@@ -56,7 +56,7 @@ package flex.display
 		COMPILE::JS
 		public function getChildAt(index:int):DisplayObject
 		{
-			return getElementAt(index) as DisplayObject;
+			return super.getElementAt(index) as DisplayObject;
 		}
 		
 		COMPILE::JS
@@ -73,42 +73,48 @@ package flex.display
 		COMPILE::JS
 		public function getChildIndex(child:DisplayObject):int
 		{
-			return getElementIndex(child);
+			return super.getElementIndex(child);
 		}
 		
 		COMPILE::JS
 		public function setChildIndex(child:DisplayObject, index:int):void
 		{
-			removeElement(child);
-			addElementAt(child, index);
+			super.removeElement(child);
+			super.addElementAt(child, index);
 		}
 		
 		COMPILE::JS
 		public function addChild(child:DisplayObject):DisplayObject
 		{
-			addElement(child);
+			super.addElement(child);
 			return child;
 		}
 		
 		COMPILE::JS
 		public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
-			addElementAt(child, index);
+            if (index >= super.numElements)
+            {
+                super.addElement(child);
+                return child;
+            }
+                
+			super.addElementAt(child, index);
 			return child;
 		}
 		
 		COMPILE::JS
 		public function removeChild(child:DisplayObject):DisplayObject
 		{
-			removeElement(child);
+			super.removeElement(child);
 			return child;
 		}
 		
 		COMPILE::JS
 		public function removeChildAt(index:int):DisplayObject
 		{
-			var child:DisplayObject = getChildAt(index);
-			removeElement(child);
+			var child:DisplayObject = super.getChildAt(index);
+			super.removeElement(child);
 			return child;
 		}
 		

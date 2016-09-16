@@ -1490,7 +1490,7 @@ public class Application extends LayoutContainer
         {
             focusManager = new FocusManager(this);
             var awm:IActiveWindowManager = 
-                IActiveWindowManager(sm.getImplementation("mx.managers::IActiveWindowManager"));
+                sm.getImplementation("mx.managers::IActiveWindowManager") as IActiveWindowManager;
             if (awm)
                 awm.activate(this);
             else

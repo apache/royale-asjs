@@ -54,10 +54,13 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.utils.NameUtil;
 import mx.utils.OrderedObject;
+COMPILE::SWF
+{
 import mx.utils.object_proxy;
+use namespace object_proxy;
+}
 
 use namespace mx_internal;
-use namespace object_proxy;
 
 [ExcludeClass]
 
@@ -809,7 +812,14 @@ public class StyleProtoChain
         var styleManager:IStyleManager2 = getStyleManager(object);
         var qualified:Boolean = styleManager.qualifiedTypeSelectors;
         var typeHierarchy:OrderedObject = getTypeHierarchy(object, styleManager, qualified);
-        return typeHierarchy.object_proxy::getObjectProperty(cssType) != null;
+        COMPILE::SWF
+        {
+            return typeHierarchy.object_proxy::getObjectProperty(cssType) != null;
+        }
+        COMPILE::JS
+        {
+            return typeHierarchy[cssType] != null;
+        }
     }
 
     /**
@@ -898,7 +908,14 @@ public class StyleProtoChain
                     else
                         type = NameUtil.getUnqualifiedClassName(className);
 
-                    hierarchy.object_proxy::setObjectProperty(type, true);
+                    COMPILE::SWF
+                    {
+                        hierarchy.object_proxy::setObjectProperty(type, true);
+                    }
+                    COMPILE::JS
+                    {
+                        hierarchy[type] = true;
+                    }
                     className = getQualifiedSuperclassName(
                         myApplicationDomain.getDefinition(className));
                 }
