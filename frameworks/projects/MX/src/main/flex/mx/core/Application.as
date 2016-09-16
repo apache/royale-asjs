@@ -46,22 +46,20 @@ COMPILE::JS
 }
 
 import mx.containers.utilityClasses.ApplicationLayout;
+import mx.core.TextFieldFactory;
 import mx.effects.EffectManager;
 import mx.events.FlexEvent;
 import mx.managers.FocusManager;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
 import mx.managers.ISystemManager;
-// force-link this here. In flex-sdk, it gets dragged in by Effect.
-import mx.managers.LayoutManager; // LayoutManager; force-link syntax not supported by FalconJX 
-// force-link this here. In flex-sdk, it gets injected somehow.
-import mx.core.TextFieldFactory; // TextFieldFactory; force-link syntax not supported by FalconJX 
-// force-link this here. In flex-sdk, it gets injected in generated code.
-import mx.styles.StyleManagerImpl; // StyleManagerImpl; force-link syntax not supported by FalconJX 
+import mx.managers.LayoutManager;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
+import mx.styles.StyleManagerImpl;
 import mx.utils.LoaderUtil;
 import mx.utils.Platform;
+
 import org.apache.flex.core.SimpleCSSValuesImpl;
 import org.apache.flex.core.ValuesManager;
 import org.apache.flex.utils.MixinManager;
@@ -377,6 +375,7 @@ public class Application extends LayoutContainer
         
         COMPILE::JS
         {
+            UIComponentGlobals.layoutManager = LayoutManager.getInstance();
             // this is a hack until we get falconjx to put the info on the factory
             SystemManager.setInfo(this["info"]());
             var sm:SystemManager = new SystemManager();
@@ -387,8 +386,11 @@ public class Application extends LayoutContainer
             sm.kickOff();
         }
                 
-        UIComponentGlobals.layoutManager = ILayoutManager(
-            Singleton.getInstance("mx.managers::ILayoutManager"));
+        COMPILE::SWF
+        {
+            UIComponentGlobals.layoutManager = ILayoutManager(
+                Singleton.getInstance("mx.managers::ILayoutManager"));
+        }
         UIComponentGlobals.layoutManager.usePhasedInstantiation = true;
 
         if (!FlexGlobals.topLevelApplication)
