@@ -143,23 +143,13 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
                         var selName:String = cssData[i++];
                         decls.push(new CSSStyleDeclaration(selName));
                     }
-                    var numProps:int = cssData[i++];
-                    for (j = 0; j < numProps; j++)
-                    {
-                        var propName:String = cssData[i++];
-                        var propValue:Object = cssData[i++];
-                        props[propName] = propValue;
-                    }
+                    var propFn:Function = cssData[i++];
                     for each (var decl:CSSStyleDeclaration in decls)
                     {
-                        var factoryFunction:String = "(function factoryFunction() {";
-                        for (var p:String in props)
-                        {
-                            factoryFunction += "this." + p + " = " + props[p] + ";";
-                        }
-                        factoryFunction += "})";
-                        var f:Function = eval(factoryFunction);
-                        decl.defaultFactory = f;
+                        if (decl.defaultFactory == null)
+                            decl.defaultFactory = propFn;
+                        else
+                            decl.factory = propFn;
                     }
                 }
             }
