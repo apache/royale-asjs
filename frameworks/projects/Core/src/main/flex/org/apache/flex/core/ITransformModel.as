@@ -30,7 +30,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface ITransformModel extends IEventDispatcher, IBeadModel
+	public interface ITransformModel extends IEventDispatcher, IBead
 	{
         /**
          *  The matrix of the Transform
