@@ -32,9 +32,30 @@
     <component id="StackedBarChart" class="org.apache.flex.charts.StackedBarChart" />
     <component id="DataTipBead" class="org.apache.flex.charts.beads.DataTipBead" />
     <component id="HorizontalCategoryAxisBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisBead" />
+    <component id="HorizontalCategoryAxisForArrayListBead" class="org.apache.flex.charts.beads.HorizontalCategoryAxisForArrayListBead" />
     <component id="HorizontalLinearAxisBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisBead" />
+    <component id="HorizontalLinearAxisForArrayListBead" class="org.apache.flex.charts.beads.HorizontalLinearAxisForArrayListBead" />
     <component id="VerticalCategoryAxisBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisBead" />
+    <component id="VerticalCategoryAxisForArrayListBead" class="org.apache.flex.charts.beads.VerticalCategoryAxisForArrayListBead" />
     <component id="VerticalLinearAxisBead" class="org.apache.flex.charts.beads.VerticalLinearAxisBead" />
+    <component id="VerticalLinearAxisForArrayListBead" class="org.apache.flex.charts.beads.VerticalLinearAxisForArrayListBead" />
+    
+    <component id="ChartArraySelectionModel" class="org.apache.flex.charts.beads.models.ChartArraySelectionModel" />
+    <component id="ChartArrayListSelectionModel" class="org.apache.flex.charts.beads.models.ChartArrayListSelectionModel" />
+    
+    <component id="BarChartLayout" class="org.apache.flex.charts.beads.layouts.BarChartLayout" />
+    <component id="BarChartLayoutForArrayList" class="org.apache.flex.charts.beads.layouts.BarChartLayoutForArrayList" />
+    <component id="ColumnChartLayout" class="org.apache.flex.charts.beads.layouts.ColumnChartLayout" />
+    <component id="ColumnChartLayoutForArrayList" class="org.apache.flex.charts.beads.layouts.ColumnChartLayoutForArrayList" />
+    <component id="PieChartLayout" class="org.apache.flex.charts.beads.layouts.PieChartLayout" />
+    <component id="PieChartLayoutForArrayList" class="org.apache.flex.charts.beads.layouts.PieChartLayoutForArrayList" />
+    <component id="StackedBarChartLayout" class="org.apache.flex.charts.beads.layouts.StackedBarChartLayout" />
+    <component id="StackedBarChartLayoutForArrayList" class="org.apache.flex.charts.beads.layouts.StackedBarChartLayoutForArrayList" />
+    <component id="StackedColumnChartLayout" class="org.apache.flex.charts.beads.layouts.StackedColumnChartLayout" />
+    <component id="StackedColumnChartLayoutForArrayList" class="org.apache.flex.charts.beads.layouts.StackedColumnChartLayoutForArrayList" />
+    
+    <component id="DataItemRendererFactoryForSeriesData" class="org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesData" />
+    <component id="DataItemRendererFactoryForSeriesArrayListData" class="org.apache.flex.charts.beads.DataItemRendererFactoryForSeriesArrayListData" />
     
     <component id="BoxItemRenderer" class="org.apache.flex.charts.supportClasses.BoxItemRenderer" />
     <component id="WedgeItemRenderer" class="org.apache.flex.charts.supportClasses.WedgeItemRenderer" />

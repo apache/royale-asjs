@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads
 {
+	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.core.IBead;
@@ -26,7 +27,7 @@ package org.apache.flex.charts.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
 	
 	/**
 	 *  The VerticalLinearAxisBead class provides a vertical axis that uses a numeric
@@ -37,141 +38,21 @@ package org.apache.flex.charts.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class VerticalLinearAxisBead extends AxisBaseBead implements IBead, IVerticalAxisBead
+	public class VerticalLinearAxisForArrayListBead extends VerticalLinearAxisBead
 	{
-		public function VerticalLinearAxisBead()
+		public function VerticalLinearAxisForArrayListBead()
 		{
 			super();
-			
-			placement = "left";
-		}
-		
-		private var _strand:IStrand;
-				
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-			
-			// in order to draw or create the labels, need to know when the series has been created.
-			IEventDispatcher(strand).addEventListener("layoutComplete",handleItemsCreated);
-		}
-		override public function get strand():IStrand
-		{
-			return _strand;
-		}
-		
-		private var _axisWidth:Number = 50;
-		
-		public function get axisWidth():Number
-		{
-			return _axisWidth;
-		}
-		public function set axisWidth(value:Number):void
-		{
-			_axisWidth = value;
-		}
-		
-		private var _valueField:String;
-		
-		/**
-		 *  The name of field within the chart data the holds the value being mapped
-		 *  to this axis. If values should fall within minimum and maximum but if
-		 *  not, they will be fixed to the closest value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get valueField():String
-		{
-			return _valueField;
-		}
-		public function set valueField(value:String):void
-		{
-			_valueField = value;
-		}
-		
-		private var _minimum:Number = 0;
-		
-		/**
-		 *  The minimun value to be represented on this axis. If minimum is NaN,
-		 *  the value is calculated from the data.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get minimum():Number
-		{
-			return _minimum;
-		}
-		public function set minimum(value:Number):void
-		{
-			_minimum = value;
-		}
-		
-		private var _maximum:Number = Number.NaN;
-		
-		/**
-		 *  The maximum value to be represented on this axis. If maximum is NaN,
-		 *  the value is calculated from the data.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get maximum():Number
-		{
-			return _maximum;
-		}
-		public function set maximum(value:Number):void
-		{
-			_maximum = value;
 		}
 		
 		/**
 		 * @private
 		 */
-		protected function formatLabel(n:Number):String
+		override protected function handleItemsCreated(event:Event):void
 		{
-			var sign:Number = n < 0 ? -1 : 1;
-			n = Math.abs(n);
-			
-			var i:int;
-			
-			if (0 <= n && n <= 1) {
-				i = Math.round(n * 100);
-				n = i / 100.0;
-			}
-			else {
-				i = Math.round(n);
-				n = i;
-			}
-			
-			var result:String = String(sign*n);
-			return result;
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function handleItemsCreated(event:Event):void
-		{
-			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
-			var items:Array;
-			if (model.dataProvider is Array) items = model.dataProvider as Array;
+			var model:ArrayListSelectionModel = strand.getBeadByType(ISelectionModel) as ArrayListSelectionModel;
+			var items:ArrayList;
+			if (model.dataProvider is ArrayList) items = model.dataProvider as ArrayList;
 			else return;
 			
 			clearGraphics();
@@ -188,7 +69,8 @@ package org.apache.flex.charts.beads
 			// determine minimum and maximum values, if needed
 			if (isNaN(minimum)) {
 				for(var i:int=0; i < items.length; i++) {
-					var value:Number = Number(items[i][valueField]);
+					var item:Object = items.getItemAt(i);
+					var value:Number = Number(item[valueField]);
 					if (!isNaN(value)) minValue = Math.min(minValue,value);
 					else minValue = Math.min(minValue,0);
 				}
@@ -197,7 +79,8 @@ package org.apache.flex.charts.beads
 			}
 			if (isNaN(maximum)) {
 				for(i=0; i < items.length; i++) {
-					value = Number(items[i][valueField]);
+					item = items.getItemAt(i);
+					value = Number(item[valueField]);
 					if (!isNaN(value)) maxValue = Math.max(maxValue,value);
 					else maxValue = Math.max(maxValue,0);
 				}
@@ -218,7 +101,7 @@ package org.apache.flex.charts.beads
 			{			
 				var label:Object = addTickLabel(formatLabel(tickValue), 0, ypos, 0, tickSpacing);
 				label.y = ypos - label.height/2;
-			
+				
 				// add a tick mark, too.
 				addTickMark(useWidth-6, ypos, 5, 0);
 				
