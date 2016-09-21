@@ -1784,6 +1784,13 @@ public class UIComponent extends Sprite
         _width = super.width;
         _height = super.height;
         
+        COMPILE::JS
+        {
+            // UIComponent is born invisible and won't be layed out by
+            // FlexJS layout so needs a default display style
+            setDisplayStyleForLayout("block");        
+        }
+        
     }
 
     //--------------------------------------------------------------------------
@@ -13704,6 +13711,8 @@ public class UIComponent extends Sprite
         if (!hasFontContextBeenSaved)
             return false;
 
+        COMPILE::LATER
+        {
         // Check if the module factory has changed.
         var fontName:String =
             StringUtil.trimArrayElements(getStyle("fontFamily"), ",");
@@ -13716,6 +13725,8 @@ public class UIComponent extends Sprite
                 fontName, bold, italic, this, moduleFactory,
                 systemManager);
         return fontContext != oldEmbeddedFontContext;
+        }
+        return false;
     }
 
     /**

@@ -3143,7 +3143,7 @@ public class Container extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    override public function removeAllElements():void
+    public function removeAllElements():void
     {
         for (var i:int = numElements - 1; i >= 0; i--)
         {

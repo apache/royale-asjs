@@ -72,6 +72,8 @@ package org.apache.flex.utils
 
 			coercion = (coercion !== undefined) ? coercion : false;
 
+            if (coercion && leftOperand == null) return null;
+            
 			itIs = Language.is(leftOperand, rightOperand);
 
 			if (!itIs && coercion)

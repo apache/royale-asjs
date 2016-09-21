@@ -22,6 +22,7 @@ limitations under the License.
 				xmlns:mx="library://ns.apache.org/flexjs/mx"
 				xmlns:js="library://ns.apache.org/flexjs/basic" 
                    applicationComplete="runTests()"
+                   width="500" height="375"
                    usePreloader="false"
                    preloader="mx.preloaders.DownloadProgressBar"
                    >

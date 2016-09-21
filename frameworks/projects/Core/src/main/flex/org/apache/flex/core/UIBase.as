@@ -1201,6 +1201,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 *  @flexjsignorecoercion String
          */
         public function getElementIndex(c:IVisualElement):int
         {
@@ -1213,13 +1214,17 @@ package org.apache.flex.core
             }
             COMPILE::JS
             {
+                var index:int = -1;
                 var children:Array = internalChildren();
                 var n:int = children.length;
 				var ui:IUIBase = c as IUIBase;
                 for (var i:int = 0; i < n; i++)
                 {
+                    var nodeName:String = children[i]["nodeName"] as String;
+                    if (children[i]["nodeType"] == 1 && nodeName.toUpperCase() != "SCRIPT")
+                        index++;
                     if (children[i] == ui.element)
-                        return i;
+                        return index;
                 }
                 return -1;                
             }

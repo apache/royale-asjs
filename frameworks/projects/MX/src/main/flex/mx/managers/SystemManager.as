@@ -63,16 +63,17 @@ COMPILE::JS
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 }
-import org.apache.flex.utils.Timer;
-import flex.system.DefinitionManager;
-import org.apache.flex.reflection.getQualifiedClassName;
-
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 import mx.core.IRawChildrenContainer;
 import mx.core.IUIComponent;
+
+import flex.system.DefinitionManager;
+
+import org.apache.flex.reflection.getQualifiedClassName;
+import org.apache.flex.utils.Timer;
 COMPILE::LATER
 {
 import mx.core.RSLData;
@@ -1806,6 +1807,38 @@ public class SystemManager extends MovieClip
 		trace(e.type, e.target);
 	}
 	
+    COMPILE::JS
+    public var frameRate:Number = 166;
+    
+    COMPILE::JS
+    private var frameInterval:Number = -1;
+    
+    COMPILE::JS
+    override public function addEventListener(type:String, listener:Function,
+                                              useCapture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (type == FlexEvent.RENDER)
+            type = Event.RENDER;
+        else
+            type = Event.ENTER_FRAME;
+        
+        // TODO (aharui): figure out when to stop the interval
+        if (type == Event.RENDER || type == Event.ENTER_FRAME)
+        {
+            if (frameInterval == -1)
+                frameInterval = setInterval(frameCallback, frameRate);
+        }    
+        super.addEventListener(type, listener, useCapture);
+    }
+    
+    COMPILE::JS
+    private function frameCallback():void
+    {
+        dispatchEvent(new Event(Event.ENTER_FRAME));
+        dispatchEvent(new Event(Event.RENDER));
+    }
+            
+    
     /**
      *  @private
      */

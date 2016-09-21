@@ -19,6 +19,7 @@
 
 package flex.display
 {	
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
@@ -32,7 +33,7 @@ package flex.display
         import flex.events.IEventDispatcher;
     }
     
-	public class Sprite extends CompoundGraphic implements DisplayObjectContainer, IEventDispatcher
+	public class Sprite extends UIBase implements DisplayObjectContainer, IEventDispatcher
 	{
 		COMPILE::JS
 		private var _name:String;
@@ -153,6 +154,9 @@ package flex.display
 		COMPILE::JS
 		private var _graphics:Graphics;
 		
+        COMPILE::JS
+        private var _graphicsHost:CompoundGraphic;
+        
 		COMPILE::JS
 		/**
 		 *  @flexjsignorecoercion flex.display.DisplayObject
@@ -160,8 +164,12 @@ package flex.display
 		public function get graphics():Graphics
 		{
 			if (!_graphics)
-				_graphics = new Graphics(this);
-			return _graphics
+            {
+                _graphicsHost = new CompoundGraphic();
+                super.addElement(_graphicsHost);
+				_graphics = new Graphics(_graphicsHost);
+            }
+			return _graphics;
 		}
 
 		COMPILE::JS

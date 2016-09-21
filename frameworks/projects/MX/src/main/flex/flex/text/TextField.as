@@ -539,8 +539,8 @@ public class TextField extends Label
 	
 	public function getLineMetrics(index:int):TextLineMetrics
 	{
-		trace("TextField.getLineMetrics not implemented");
-		return null;
+		
+		return new TextLineMetrics(0, element.offsetWidth, element.offsetHeight, 0, 0, 0);
 	}
 	
 	public function getLineOffset(index:int):int

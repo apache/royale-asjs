@@ -354,7 +354,6 @@ public class Application extends LayoutContainer
      */
     public function Application()
     {
-        start();
     }
     
     /**
@@ -375,14 +374,16 @@ public class Application extends LayoutContainer
         
         COMPILE::JS
         {
-            UIComponentGlobals.layoutManager = LayoutManager.getInstance();
             // this is a hack until we get falconjx to put the info on the factory
             SystemManager.setInfo(this["info"]());
             var sm:SystemManager = new SystemManager();
             sm.document = this;
             sm.info()["cssData"] = this["cssData"];
             systemManager = sm;
+            UIComponentGlobals.layoutManager = LayoutManager.getInstance();
             new ChildManager(sm);
+            sm.width = width;
+            sm.height = height;
             sm.kickOff();
         }
                 

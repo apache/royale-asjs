@@ -1502,10 +1502,13 @@ public class Label extends UIComponent
                 truncated = textField.truncateToFit();
             }
 
+            COMPILE::LATER
+            {    
             // If no explicit tooltip has been set,
             // implicitly set or clear a "truncation tip".
             if (!toolTipSet)
                 super.toolTip = truncated ? text : null;
+            }
         }
         
     }

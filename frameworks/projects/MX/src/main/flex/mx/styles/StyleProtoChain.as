@@ -779,6 +779,8 @@ public class StyleProtoChain
             object.invalidateSize();
         }
 
+        COMPILE::LATER
+        {
         // TODO (gosmith): Should initThemeColor() be in some interface?
         if (!styleProp || 
             styleProp == "styleName" ||
@@ -786,6 +788,7 @@ public class StyleProtoChain
         {
         	if (object is IUIComponent)
                 object["initThemeColor"]();
+        }
         }
         
         object.invalidateDisplayList();
