@@ -20,8 +20,8 @@ package org.apache.flex.mobile
 {	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -102,6 +102,15 @@ package org.apache.flex.mobile
 
 		
 		private var _topView:IViewManagerView;
+		
+		override public function set views(value:Array):void
+		{
+			super.views = value;
+			
+			if (value != null && value.length > 0) {
+				_topView = value[0] as IViewManagerView;
+			}
+		}
 
 		/**
 		 * The top-most (current) view.
@@ -130,7 +139,9 @@ package org.apache.flex.mobile
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
 			
-			removeElement(_topView);
+			if (_topView != null) {
+				removeElement(_topView);
+			}
 			_topView = nextView;
 			addElement(_topView);
 			

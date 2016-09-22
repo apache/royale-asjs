@@ -159,7 +159,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		private function handleItemsCreated(event:Event):void
+		protected function handleItemsCreated(event:Event):void
 		{	
 			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;
