@@ -22,7 +22,6 @@ package flex.display
     import mx.managers.SystemManagerGlobals;
     
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.WrappedHTMLElement;
     import org.apache.flex.geom.Point;
     import org.apache.flex.svg.CompoundGraphic;
     import org.apache.flex.utils.PointUtils;
@@ -34,6 +33,7 @@ package flex.display
     COMPILE::JS
     {
         import flex.events.IEventDispatcher;
+        import org.apache.flex.core.WrappedHTMLElement;
     }
     
 	public class Sprite extends UIBase implements DisplayObjectContainer, IEventDispatcher
