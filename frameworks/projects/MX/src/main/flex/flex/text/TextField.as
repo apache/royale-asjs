@@ -16,7 +16,8 @@ COMPILE::JS
 	import flex.display.DisplayObjectContainer;
 	import flex.display.Sprite;
 	import flex.display.TopOfDisplayList;
-	
+
+    import org.apache.flex.core.WrappedHTMLElement;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.Label;
 }
@@ -31,8 +32,14 @@ public class TextField extends flash.text.TextField
 }
 
 COMPILE::JS
-public class TextField extends Label
+public class TextField extends Label implements DisplayObject
 {
+    override protected function createElement():WrappedHTMLElement
+    {
+        var e:WrappedHTMLElement = super.createElement();
+        e.style.border = "none";
+        return e;
+    }    
 
 	private var _alwaysShowSelection:Boolean;
 	public function get alwaysShowSelection():Boolean

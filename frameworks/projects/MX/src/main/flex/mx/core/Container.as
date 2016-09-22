@@ -4931,6 +4931,11 @@ public class Container extends UIComponent
             border.move(0, 0);
             border.setActualSize(unscaledWidth, unscaledHeight);
         }
+        COMPILE::JS
+        {
+            if (!border)
+                element.style.border = "none";
+        }
     }
 
     /**

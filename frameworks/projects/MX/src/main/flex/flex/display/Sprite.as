@@ -19,11 +19,14 @@
 
 package flex.display
 {	
+    import mx.managers.SystemManagerGlobals;
+    
     import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.utils.PointUtils;
-	import mx.managers.SystemManagerGlobals;
+    import org.apache.flex.core.WrappedHTMLElement;
+    import org.apache.flex.geom.Point;
+    import org.apache.flex.svg.CompoundGraphic;
+    import org.apache.flex.utils.PointUtils;
+
 	COMPILE::SWF
     {
         import flash.events.IEventDispatcher;
@@ -35,6 +38,15 @@ package flex.display
     
 	public class Sprite extends UIBase implements DisplayObjectContainer, IEventDispatcher
 	{
+        
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            var e:WrappedHTMLElement = super.createElement();
+            e.style.border = "none";
+            return e;
+        }        
+
 		COMPILE::JS
 		private var _name:String;
 		COMPILE::JS
@@ -114,7 +126,7 @@ package flex.display
 		COMPILE::JS
 		public function removeChildAt(index:int):DisplayObject
 		{
-			var child:DisplayObject = super.getChildAt(index);
+			var child:DisplayObject = super.getElementAt(index) as DisplayObject;
 			super.removeElement(child);
 			return child;
 		}

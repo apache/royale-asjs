@@ -3072,7 +3072,7 @@ public class SystemManager extends MovieClip
         element = window.document.getElementsByTagName('body')[0];
         element.flexjs_wrapper = this;
         element.className = 'SystemManager';
-        
+        element.style.border = "none";
         positioner = element;
         
         return element;
@@ -3172,14 +3172,17 @@ public class SystemManager extends MovieClip
                     var token:int = perfUtil.markStart();
                 }
                 
-                COMPILE::LATER
+                COMPILE::SWF
                 {
                     // trace("initializing mixin " + mixinList[i]);
                     var c:Class = getDefinitionByName(mixinList[i]) as Class;
                 }
-                // in FlexJS, mixins are classes, not class names.  Class names
-                // are better for two-frame SWFs so this may change later
-                var c:Class = mixinList[i] as Class;
+                COMPILE::JS
+                {
+                    // in FlexJS, mixins are classes, not class names.  Class names
+                    // are better for two-frame SWFs so this may change later
+                    var c:Class = mixinList[i] as Class;
+                }
                 c["init"](this);
 
                 CONFIG::performanceInstrumentation

@@ -354,6 +354,10 @@ public class Application extends LayoutContainer
      */
     public function Application()
     {
+        COMPILE::SWF
+        {
+            start();
+        }
     }
     
     /**

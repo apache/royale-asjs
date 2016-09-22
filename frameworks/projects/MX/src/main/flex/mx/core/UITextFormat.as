@@ -22,11 +22,13 @@ package mx.core
 
 COMPILE::SWF
 {
+    import flash.display.DisplayObject;
 	import flash.text.TextFormat;
 	import flash.text.TextLineMetrics;		
 }
 COMPILE::JS
 {
+    import flex.display.DisplayObject;
 	import flex.text.TextFormat;
 	import flex.text.TextLineMetrics;		
 }
@@ -570,6 +572,10 @@ public class UITextFormat extends TextFormat
             useFTE ?
             textFieldFactory.createFTETextField(fontModuleFactory) :
             textFieldFactory.createTextField(fontModuleFactory);
+        COMPILE::JS
+        {
+            systemManager.addChildAt(measurementTextField as DisplayObject, 0);        
+        }
         
         // Clear any old text from the TextField.
         // Otherwise, new text will get the old TextFormat. 
@@ -623,6 +629,10 @@ public class UITextFormat extends TextFormat
             lineMetrics.height = Math.ceil(lineMetrics.height);
         }
         
+        COMPILE::JS
+        {
+            systemManager.removeChildAt(0);        
+        }
         return lineMetrics;
     }
 
