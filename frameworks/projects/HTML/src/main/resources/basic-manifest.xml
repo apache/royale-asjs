@@ -93,6 +93,7 @@
     <component id="DataGridButtonBarTextButton" class="org.apache.flex.html.DataGridButtonBarTextButton"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
+    <component id="DataGridColumnList" class="org.apache.flex.html.supportClasses.DataGridColumnList"/>
     
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayList" />

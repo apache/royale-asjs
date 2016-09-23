@@ -131,7 +131,7 @@ DataGridButtonBar
 	border-style: none;
 }
 
-.DataGridColumn {
+DataGridColumnList {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
