@@ -30,6 +30,19 @@ package org.apache.flex.svg
 	import flash.display.DisplayObject;
 	}
 
+	/**
+	 *  The ClipBead bead allows you to clip
+	 *  a graphic Shape using a an arbitrary graphic path.
+	 *  The clipping path is defined in the path property
+	 *  using a PathBuilder object. This Bead will not
+	 *  work on the JS on components which are not implemented
+	 *  using SVG.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
 	public class ClipBead implements IBead
 	{
 		private var _strand:IStrand;
