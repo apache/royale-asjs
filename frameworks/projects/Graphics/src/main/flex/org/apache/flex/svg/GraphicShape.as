@@ -147,10 +147,7 @@ package org.apache.flex.svg
 
 		override public function addedToParent():void
 		{
-            COMPILE::SWF
-            {
-                super.addedToParent();
-            }
+            super.addedToParent();
 			draw();
             COMPILE::JS
             {
