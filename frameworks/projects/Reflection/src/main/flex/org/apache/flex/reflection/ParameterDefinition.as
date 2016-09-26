@@ -20,46 +20,65 @@ package org.apache.flex.reflection
 {
     
     /**
-     *  The description of a Class or Interface
+     *  The description of a Function parameter
      * 
      *  @langversion 3.0
-     *  @playerversion Flash 10.2
+     *  @playerversion Flash 10.2S
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MetaDataArgDefinition extends DefinitionBase
+    public class ParameterDefinition extends DefinitionBase
 	{
-        public function MetaDataArgDefinition(name:String, value:String)
+
+        public function ParameterDefinition( index:uint, rawData:Object)
         {
-            super(name);
-            _value = value;
-        }
-        
-        private var _value:String;
-        /**
-         * the 'key' value of a metadata argument
-         * in [Event(name="boom")]
-         * the value for the 1st (only) argument
-         * is 'boom'
-         */
-        public function get value():String
-        {
-            return _value;
+            super("parameter "+index, rawData);
         }
 
-        /**
-         * the 'key' value of a metadata argument
-         * in [Event(name="boom")]
-         * the key for the 1st (only) argument
-         * is 'name'
-         */
-        public function get key():String{
-            return _name;
-        }
+		/**
+		 * The type of this parameter
+		 */
+		public function get type():TypeDefinition{
+			COMPILE::SWF {
+				return TypeDefinition.getDefinition(_rawData.@type);
+			}
 
-        public function toString():String
-        {
-            return "arg: key:'"+_name+"', value:'"+_value+"'";
-        }
+			COMPILE::JS {
+				return TypeDefinition.getDefinition(_rawData.type);
+			}
+
+		}
+		/**
+		 * Whether this parameter is optional (has a default value) or not
+		 */
+		public function get optional():Boolean {
+			COMPILE::SWF {
+				return _rawData.@optional == "true";
+			}
+
+			COMPILE::JS {
+				return _rawData.optional;
+			}
+
+		}
+		/**
+		 * The 1-based index of this parameter in its owner function/method
+		 */
+		public function get index():uint{
+			COMPILE::SWF {
+				return uint(_rawData.@index);
+			}
+
+			COMPILE::JS {
+				return _rawData.index;
+			}
+
+		}
+        /**
+         * A string representation of this parameter definition
+         */
+		public function toString():String{
+			return _name+", optional:"+optional+", type:"+type.qualifiedName;
+		}
     }
 }

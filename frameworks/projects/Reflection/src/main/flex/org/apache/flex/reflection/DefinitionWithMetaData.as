@@ -20,7 +20,8 @@ package org.apache.flex.reflection
 {
     
     /**
-     *  The description of a Class or Interface
+     *  The base class for definition types that can be decorated with metadata in actionscript
+     *  source code
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -33,21 +34,29 @@ package org.apache.flex.reflection
         {
             super(name, rawData);
         }
-        
+
+        COMPILE::SWF
+        protected var useFactory:Boolean;
+
+
+        private var _metaData:Array;
+        /**
+         * gets a copy of the metadata collection array
+         */
         public function get metadata():Array
         {
+            if (_metaData) return _metaData.slice();
             var results:Array = [];
-            
             COMPILE::SWF
             {
-                var xml:XML = rawData as XML;
+                var xml:XML = useFactory ? rawData.factory[0] as XML : rawData as XML;
                 var data:XMLList = xml.metadata;
                 var n:int = data.length();
                 for (var i:int = 0; i < n; i++)
                 {
                     var item:XML = data[i] as XML;
-                    var qname:String = item.@name;
-                    results.push(new MetaDataDefinition(qname, item));
+                    var metaName:String = item.@name;
+                    results[i] = new MetaDataDefinition(metaName, item);
                 }
             }
             COMPILE::JS
@@ -67,13 +76,32 @@ package org.apache.flex.reflection
                     var metadatas:Array = rdata.metadata();
                     if (metadatas)
                     {
-                        var n:int = metadatas.length;
-                        for each (var mdDef:Object in metadatas)
-                        results.push(new MetaDataDefinition(mdDef.name, mdDef));
+                        var i:uint = 0;
+                        var l:int = metadatas.length;
+                        for (;i<l;i++) {
+                            var mdDef:Object = metadatas[i];
+                            results[i] = new MetaDataDefinition(mdDef.name, mdDef);
+                        }
                     }
                 }
             }
+            _metaData = results.slice();
             return results;                        
+        }
+
+        /**
+         * A convenience method for retrieving metadatas
+         * @param name the name of the metadata item to retrieve.
+         *        It can occur more than once, so an array is returned
+         * @return an array of all MetaDataDefinition items with matching 'name'
+         *
+         */
+        public function retrieveMetaDataByName(name:String):Array {
+            var source:Array = _metaData || metadata;
+            var results:Array = [];
+            var i:uint=0, l:uint = source.length;
+            for(;i<l;i++) if (source[i].name == name) results.push(source[i]);
+            return results;
         }
     }
 }

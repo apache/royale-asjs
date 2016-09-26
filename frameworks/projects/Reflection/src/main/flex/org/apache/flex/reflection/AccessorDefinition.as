@@ -16,53 +16,71 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection
-{
-    
+package org.apache.flex.reflection {
     /**
-     *  The description of a Class or Interface variable
-     * 
+     *  The description of a Class or Interface accessor (get and/or set)
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class VariableDefinition extends DefinitionWithMetaData
-	{
-        public function VariableDefinition(name:String, rawData:Object)
-        {
+    public class AccessorDefinition extends VariableDefinition
+    {
+        public function AccessorDefinition(name:String, rawData:Object) {
             super(name, rawData);
         }
-
         /**
-         * A TypeDefinition representing the type of the variable that
-         * this VariableDefinition represents
+         * The type that defined this accessor
+         * This could be an ancestor class of the method's containing TypeDefinition
          */
-        public function get type():TypeDefinition {
-            COMPILE::SWF {
-                return TypeDefinition.getDefinition(_rawData.@type);
+        public function get declaredBy():TypeDefinition
+        {
+            COMPILE::SWF{
+                var declareBy:String = _rawData.@declaredBy;
             }
-
-            COMPILE::JS {
-                return TypeDefinition.getDefinition(_rawData.type);
+            COMPILE::JS{
+                var declareBy:String = _rawData.declaredBy;
             }
+            return TypeDefinition.getDefinition(declareBy);
         }
+
+
+        private var _access:String;
         /**
-         * A string representation of this variable definition
+         * The type of access that this accessor has.
+         * One of: 'readonly', 'writeonly', or 'readwrite'
+         * Note, these values are all lower case (not camelCase).
          */
-        public function toString():String {
-            var s:String = "variable: '"+name+"', type:"+type.qualifiedName;
+        public function get access():String
+        {
+            if (_access) return _access;
+
+            COMPILE::SWF {
+                _access=rawData.@access;
+            }
+            COMPILE::JS {
+                _access = rawData.access;
+            }
+
+            return _access;
+        }
+
+        /**
+         * A string representation of this accessor definition
+         */
+        override public function toString():String{
+            var s:String = "accessor: '"+name+"' access:"+access+", type:"+type.qualifiedName+", declaredBy:"+declaredBy.qualifiedName;
             var meta:Array = metadata;
             var i:uint;
             var l:uint = meta.length;
             if (l) {
-                s+="\n\tmetadata:";
+                s += "\n\tmetadata:";
                 for (i=0;i<l;i++) {
                     s += "\n\t\t" + meta[i].toString().split("\n").join("\n\t\t");
                 }
             }
             return s;
         }
-        
     }
 }

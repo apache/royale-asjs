@@ -20,7 +20,7 @@ package org.apache.flex.reflection
 {
     
     /**
-     *  The description of a Class or Interface
+     *  The description of a MetaData tag attached to a class member or a class
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -33,11 +33,19 @@ package org.apache.flex.reflection
         {
             super(name, rawData);
         }
-        
+
+        private var _args:Array;
+        /**
+         * The argument pairs (if any) associated with a Metadata tag
+         * in [Event(name="boom")]
+         * the args array would be of length 1
+         * the array contains MetaDataArgDefinitions
+         */
         public function get args():Array
         {
+            if (_args) return _args.slice();
             var results:Array = [];
-            
+
             COMPILE::SWF
             {
                 var xml:XML = rawData as XML;
@@ -59,13 +67,57 @@ package org.apache.flex.reflection
                     var args:Array = rdata.args;
                     if (args)
                     {
-                        var n:int = args.length;
-                        for each (var argDef:Object in args)
-                        results.push(new MetaDataArgDefinition(argDef.key, argDef.value));
+                        args = args.slice();
+                        while(args.length) {
+                            var argDef:Object = args.shift();
+                            results.push(new MetaDataArgDefinition(argDef.key, argDef.value));
+                        }
                     }
                 }
             }
-            return results;            
+            //fully populated, so release rawData ref
+            _rawData = null;
+            _args = results.slice();
+            return  results;
+        }
+
+        /**
+         * convenience method for retrieving a set of args with a specific key
+         * Most often this would be of length 1, but it is possible for there to be
+         * multiple MetaDataArgDefinitions with the same key
+         * @param key the key to search for
+         * @return an array of MetaDataArgDefinitions with the matching key.
+         */
+        public function getArgsByKey(key:String):Array{
+            var ret:Array=[];
+            var source:Array = _args || args;
+            var i:uint=0, l:uint=source.length;
+            for (;i<l;i++) {
+                var arg:MetaDataArgDefinition = source[i];
+                if (arg.key == key) ret.push(arg);
+            }
+            return ret;
+        }
+
+        /**
+         * Used primarily for debugging purposes, this provides a string representation of this
+         * MetaDataDefinition
+         * @return a String representation of this MetaDataDefinition
+         */
+        public function toString():String
+        {
+            var s:String="item: '"+_name +"', ";
+            var args:Array = this.args;
+            var i:uint;
+            var l:uint = args.length;
+            if (!l) s+= "args:{none}";
+            else {
+                s+= "args:";
+                for (i=0;i<l;i++) {
+                    s+="\n\t"+args[i].toString();
+                }
+            }
+            return s;
         }
     }
 }

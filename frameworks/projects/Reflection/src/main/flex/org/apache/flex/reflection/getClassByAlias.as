@@ -16,36 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection
-{
-    
-    /**
-     *  The base class for all definition types
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+package org.apache.flex.reflection {
+COMPILE::SWF {
+    import flash.net.getClassByAlias;
+}
+/**
+     * Retrieves a class based on an alias mapping, previously registered with
+     * registerClassAlias, or possibly using [RemoteClass(alias='someAlias')] metadata
+     *
+     * @param aliasName the alias name to use to look up the class definition
+     * @return the class definition that has been mapped to by the registered
+     *         alias, or null if no alias mapping exists.
      */
-    public class DefinitionBase
-	{
-        public function DefinitionBase(name:String, rawData:Object = null)
-        {
-            _name = name;
-            _rawData = rawData;
+    public function getClassByAlias(aliasName:String):Class {
+        COMPILE::SWF {
+            return flash.net.getClassByAlias(aliasName);
         }
-        
-        protected var _name:String;
-        public function get name():String
-        {
-            return _name;
-        }
-        
-        protected var _rawData:Object;
-        
-        protected function get rawData():Object
-        {
-            return _rawData;
+
+        COMPILE::JS {
+            if (aliasName == null) throw new TypeError("Parameter aliasName must be non-null.");
+            var klazz:Class = TypeDefinition.getClassByAlias(aliasName);
+            if (!klazz) throw new ReferenceError("Class "+aliasName+" could not be found.");
+            return klazz;
         }
     }
 }

@@ -35,13 +35,21 @@ COMPILE::SWF
 	{
         COMPILE::SWF
         {
+
+            var untyped:* = value;
+            if (value !== null && untyped !== undefined) {
+                //normalize the query object to the static Class or interface level
+                while (value['constructor'] !== Class) {
+                    value = value['constructor'];
+                }
+            }
             var xml:XML = flash.utils.describeType(value);
-            return new TypeDefinition(xml.@name, xml);
+            return TypeDefinition.getDefinition(xml.@name, xml);
         }
         COMPILE::JS
         {
             var qname:String = getQualifiedClassName(value);
-            return new TypeDefinition(qname, value.FLEXJS_CLASS_INFO);
+            return TypeDefinition.getDefinition(qname, value.FLEXJS_CLASS_INFO || value.prototype.FLEXJS_CLASS_INFO);
         }
     }
 }
