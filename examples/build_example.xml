@@ -178,7 +178,8 @@
         
         <copy todir="${basedir}/bin-debug">
             <fileset dir="${basedir}/src">
-                <include name="*.png" />
+                <include name="**/*.png" />
+                <include name="**/*.jpg" />
             </fileset>
         </copy>
         <copy todir="${basedir}/bin-debug">
