@@ -94,16 +94,17 @@ package org.apache.flex.svg
 			g.beginFill(0);
 			path.draw(g);
 			g.endFill();
+			// remove existing mask from display list
 			if (element.mask && element.mask.parent)
 			{
 				element.mask.parent.removeChild(element.mask);
 			}
+			// add new mask to display list
 			if (element.parent)
 			{
 				element.parent.addChild(mask);
 			}
-			mask.x = element.x;
-			mask.y = element.y;
+			// set mask
 			element.mask = mask;
 		}
 		/**
@@ -168,7 +169,6 @@ package org.apache.flex.svg
 		
 		public function get host():IRenderedObject
 		{
-			trace('hi_js221');
 			return _strand as IRenderedObject;
 		}
 		
