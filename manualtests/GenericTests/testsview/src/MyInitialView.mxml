@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:local="*" 
+				xmlns:acc="org.apache.flex.html.accessories.*"
+				className="viewStyles">
+	
+	<fx:Style>
+		.title {
+			font-size: 14pt;
+			font-weight: bold;
+		}
+		
+		.viewStyles {
+			font-family: Arial,sans-serif;
+			color: #333;
+			background: #f5f5f5;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.h1 {
+			font-size: 28px;
+			line-height: 1.25;
+			font-weight: normal;
+		}
+
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[			
+			import org.apache.flex.core.IPopUpHost;
+			import org.apache.flex.events.Event;
+			import org.apache.flex.utils.UIUtils;
+			import org.apache.flex.events.EventDispatcher;
+						
+            import org.apache.flex.reflection.describeType;
+			import org.apache.flex.reflection.getDefinitionByName;
+            import org.apache.flex.reflection.MetaDataArgDefinition;
+            import org.apache.flex.reflection.MetaDataDefinition;
+            import org.apache.flex.reflection.MethodDefinition;
+            import org.apache.flex.reflection.TypeDefinition;
+			import org.apache.flex.reflection.VariableDefinition;
+			
+			import testclasses.TestClass1;
+			import testclasses.TestClass2;
+			import testclasses.ITestInterface;
+			import testclasses.ITestInterface2;
+			import testclasses.ITestInterface3;
+		
+			
+			
+	
+		]]>
+	</fx:Script>
+	<js:beads>
+        <js:ViewDataBinding/>
+		<js:HorizontalLayout />
+    </js:beads>
+	<js:Container id="cont" width="100%" height="700" x="0" y="0">
+		<js:beads>
+			<js:VerticalLayout />
+		</js:beads>
+		<js:Container id="header" width="100%" height="100" x="0" y="0">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label text="FlexJS Framework Development Unit Tests" className="h1" />
+		</js:Container>
+		<js:Container id="tests" width="100%" height="100%" x="0" y="100">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			
+		</js:Container>
+	</js:Container>
+	
+</js:View>
