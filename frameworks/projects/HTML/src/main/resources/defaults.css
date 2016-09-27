@@ -131,7 +131,7 @@ DataGridButtonBar
 	border-style: none;
 }
 
-.DataGridColumn {
+DataGridColumnList {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
@@ -182,6 +182,8 @@ HContainer
 Image
 {
 	vertical-align: top;
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
 ImageAndTextButton
@@ -486,18 +488,6 @@ DropDownListList
 HRule
 {
     IBeadView:  ClassReference("org.apache.flex.html.beads.HRuleView");
-}
-
-Image
-{
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
-}
-
-BinaryImage
-{
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.BinaryImageModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.BinaryImageView");
 }
 
 ImageButton

@@ -32,12 +32,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.DataGridButtonBar;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
 	import org.apache.flex.html.beads.layouts.VerticalLayout;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.ScrollingViewport;
 	import org.apache.flex.html.supportClasses.Viewport;
 
@@ -202,7 +202,7 @@ package org.apache.flex.html.beads
 				var xpos:Number = 0;
 				var listWidth:Number = host.width / _lists.length;
 				for (var i:int=0; i < _lists.length; i++) {
-					var list:List = _lists[i] as List;
+					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 					list.x = xpos;
 					list.y = 0;
 
@@ -229,7 +229,7 @@ package org.apache.flex.html.beads
 
 			for (var i:int=0; i < _lists.length; i++)
 			{
-				var list:List = _lists[i] as List;
+				var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
 				listModel.dataProvider = sharedModel.dataProvider;
 			}
@@ -243,12 +243,12 @@ package org.apache.flex.html.beads
 		private function handleColumnListChange(event:Event):void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-			var list:List = event.target as List;
+			var list:DataGridColumnList = event.target as DataGridColumnList;
 			sharedModel.selectedIndex = list.selectedIndex;
 
 			for(var i:int=0; i < _lists.length; i++) {
 				if (list != _lists[i]) {
-					var otherList:List = _lists[i] as List;
+					var otherList:DataGridColumnList = _lists[i] as DataGridColumnList;
 					otherList.selectedIndex = list.selectedIndex;
 				}
 			}
@@ -270,9 +270,8 @@ package org.apache.flex.html.beads
 			for (var i:int=0; i < sharedModel.columns.length; i++) {
 				var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 
-				var list:List = new List();
+				var list:DataGridColumnList = new DataGridColumnList();
 				list.id = "dataGridColumn"+String(i);
-				list.className = "DataGridColumn";
 				list.addBead(sharedModel);
 				list.itemRenderer = dataGridColumn.itemRenderer;
 				list.labelField = dataGridColumn.dataField;

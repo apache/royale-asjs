@@ -19,9 +19,12 @@
 package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.collections.ArrayList;
 	
@@ -64,15 +67,30 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			
+			if (_strand[destinationPropertyName] == null) {
+				var model:IBeadModel = UIBase(_strand).model as IBeadModel;
+				IEventDispatcher(model).addEventListener(changeEventName, destinationChangedHandler);
+			}
+			else {
+				destinationChangedHandler(null);
+			}
+		}
+		
+		private function destinationChangedHandler(event:Event):void
+		{
 			if (_dataProvider == null) {
 				var object:Object = document[sourceID];
 				_dataProvider = object[propertyName] as ArrayList;
+			}
+			else {
+				_dataProvider.removeEventListener("itemAdded", handleItemAdded);
+				_dataProvider.removeEventListener("itemRemoved", handleItemRemoved);
+				_dataProvider.removeEventListener("itemUpdated", handleItemUpdated);
 			}
 			
 			_dataProvider.addEventListener("itemAdded", handleItemAdded);
 			_dataProvider.addEventListener("itemRemoved", handleItemRemoved);
 			_dataProvider.addEventListener("itemUpdated", handleItemUpdated);
-
 		}
 		
 		protected var document:Object;
@@ -83,6 +101,28 @@ package org.apache.flex.html.beads
 		public function setDocument(document:Object, id:String = null):void
 		{
 			this.document = document;
+		}
+		
+		private var _destinationPropertyName:String;
+		
+		public function get destinationPropertyName():String
+		{
+			return _destinationPropertyName;
+		}
+		public function set destinationPropertyName(value:String):void
+		{
+			_destinationPropertyName = value;
+		}
+		
+		private var _changeEventName:String;
+		
+		public function get changeEventName():String
+		{
+			return _changeEventName;
+		}
+		public function set changeEventName(value:String):void
+		{
+			_changeEventName = value;
 		}
 		
 		private var _sourceID:String;

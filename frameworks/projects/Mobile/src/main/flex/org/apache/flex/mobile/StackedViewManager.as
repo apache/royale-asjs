@@ -103,6 +103,15 @@ package org.apache.flex.mobile
 
 		
 		private var _topView:IViewManagerView;
+		
+		override public function set views(value:Array):void
+		{
+			super.views = value;
+			
+			if (value != null && value.length > 0) {
+				_topView = value[0] as IViewManagerView;
+			}
+		}
 
 		/**
 		 * The top-most (current) view.
@@ -131,7 +140,9 @@ package org.apache.flex.mobile
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
 			
-			removeElement(_topView);
+			if (_topView != null) {
+				removeElement(_topView);
+			}
 			_topView = nextView;
 			addElement(_topView);
 			

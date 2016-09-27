@@ -74,6 +74,7 @@ package org.apache.flex.html
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLInputElement
          */
+		[Bindable(event="change")]
 		public function get text():String
 		{
             COMPILE::SWF
@@ -114,6 +115,7 @@ package org.apache.flex.html
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLInputElement
          */
+		[Bindable(event="change")] 
 		public function get html():String
 		{
             COMPILE::SWF

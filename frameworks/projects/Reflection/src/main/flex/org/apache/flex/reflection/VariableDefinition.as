@@ -20,7 +20,7 @@ package org.apache.flex.reflection
 {
     
     /**
-     *  The description of a Class or Interface
+     *  The description of a Class or Interface variable
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -29,9 +29,39 @@ package org.apache.flex.reflection
      */
     public class VariableDefinition extends DefinitionWithMetaData
 	{
-        public function VariableDefinition(name:String, rawData:Object = null)
+        public function VariableDefinition(name:String, rawData:Object)
         {
-            super(rawData, name);
+            super(name, rawData);
+        }
+
+        /**
+         * A TypeDefinition representing the type of the variable that
+         * this VariableDefinition represents
+         */
+        public function get type():TypeDefinition {
+            COMPILE::SWF {
+                return TypeDefinition.getDefinition(_rawData.@type);
+            }
+
+            COMPILE::JS {
+                return TypeDefinition.getDefinition(_rawData.type);
+            }
+        }
+        /**
+         * A string representation of this variable definition
+         */
+        public function toString():String {
+            var s:String = "variable: '"+name+"', type:"+type.qualifiedName;
+            var meta:Array = metadata;
+            var i:uint;
+            var l:uint = meta.length;
+            if (l) {
+                s+="\n\tmetadata:";
+                for (i=0;i<l;i++) {
+                    s += "\n\t\t" + meta[i].toString().split("\n").join("\n\t\t");
+                }
+            }
+            return s;
         }
         
     }

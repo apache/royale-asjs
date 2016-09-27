@@ -21,7 +21,6 @@ package org.apache.flex.html
 	import org.apache.flex.core.IImage;
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.UIBase;
-    import org.apache.flex.utils.BinaryData;
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -80,22 +79,6 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-        	createElementInternal();
-            model = new
-                ImageModel();
-            
-            addBead(new
-                ImageView());
-            
-            return element;
-        }
-        
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        protected function createElementInternal():void
-        {
             element = document.createElement('img') as WrappedHTMLElement;
             element.className = 'Image';
             typeNames = 'Image';
@@ -103,7 +86,9 @@ package org.apache.flex.html
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-        }
+         
+            return element;
+        }        
 
 	}
 }

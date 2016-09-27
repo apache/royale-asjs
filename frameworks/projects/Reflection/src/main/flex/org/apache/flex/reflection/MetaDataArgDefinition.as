@@ -36,10 +36,30 @@ package org.apache.flex.reflection
         }
         
         private var _value:String;
-        
+        /**
+         * the 'key' value of a metadata argument
+         * in [Event(name="boom")]
+         * the value for the 1st (only) argument
+         * is 'boom'
+         */
         public function get value():String
         {
             return _value;
-        }        
+        }
+
+        /**
+         * the 'key' value of a metadata argument
+         * in [Event(name="boom")]
+         * the key for the 1st (only) argument
+         * is 'name'
+         */
+        public function get key():String{
+            return _name;
+        }
+
+        public function toString():String
+        {
+            return "arg: key:'"+_name+"', value:'"+_value+"'";
+        }
     }
 }

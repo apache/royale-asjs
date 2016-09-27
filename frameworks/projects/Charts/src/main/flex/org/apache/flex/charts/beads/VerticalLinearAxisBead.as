@@ -144,7 +144,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		private function formatLabel(n:Number):String
+		protected function formatLabel(n:Number):String
 		{
 			var sign:Number = n < 0 ? -1 : 1;
 			n = Math.abs(n);
@@ -167,7 +167,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		private function handleItemsCreated(event:Event):void
+		protected function handleItemsCreated(event:Event):void
 		{
 			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
 			var items:Array;

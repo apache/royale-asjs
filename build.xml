@@ -942,6 +942,39 @@
         </sequential>
     </macrodef>	
     
+    <!--
+	    Update various files for a new release version.
+     -->
+    <target name="update-version">
+        <fail message="old-version and new-version must be set in the form major.minor.hotfix i.e. 0.7.0">
+            <condition>
+                <or>
+                    <not>
+                        <isset property="old-version"/>
+                    </not>
+                    <not>
+                        <isset property="new-version"/>
+                    </not>
+                </or>
+            </condition>
+        </fail>
+        <replace file="${FLEXJS_HOME}/build.properties"
+            token="${old-version}"
+            value="${new-version}" />
+        <replace file="${FLEXJS_HOME}/nightly.properties"
+            token="${old-version}"
+            value="${new-version}" />
+        <replace file="${FLEXJS_HOME}/installer.xml"
+            token="${old-version}"
+            value="${new-version}" />
+        <replace dir="${FLEXJS_HOME}/examples"
+            token="&lt;versionNumber&gt;${old-version}&lt;/versionNumber&gt;"
+            value="&lt;versionNumber&gt;${new-version}&lt;/versionNumber&gt;" >
+            <include name="**/*-app.xml"/>
+        </replace>
+        <echo>Don't forget to update JIRA to indicate current version is released and add new version</echo>
+    </target>
+    
 	<!--
 	    Update all frameworks Version.as files in the kit stagging area with the 
 	    latest version build number info.
@@ -1148,7 +1181,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
@@ -1249,7 +1282,7 @@
         <mkdir dir="${basedir}/mustella/java/bin"/>
         <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>

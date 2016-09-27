@@ -45,10 +45,12 @@
     <component id="VContainer" class="org.apache.flex.html.VContainer"/>
     <component id="Panel" class="org.apache.flex.html.Panel"/>
     <component id="PanelView" class="org.apache.flex.html.beads.PanelView"/>
+    <component id="ImageView" class="org.apache.flex.html.beads.ImageView"/>
     <component id="PanelWithControlBar" class="org.apache.flex.html.PanelWithControlBar"/>
     <component id="ControlBar" class="org.apache.flex.html.ControlBar"/>
     <component id="RangeStepper" class="org.apache.flex.html.RangeStepper" />
     <component id="TitleBar" class="org.apache.flex.html.TitleBar"/>
+    <component id="ImageModel" class="org.apache.flex.html.beads.models.ImageModel"/>
     <component id="TitleBarModel" class="org.apache.flex.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.flex.html.ToolTip"/>
     <component id="Tree" class="org.apache.flex.html.Tree"/>
@@ -93,6 +95,13 @@
     <component id="DataGridButtonBarTextButton" class="org.apache.flex.html.DataGridButtonBarTextButton"/>
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
+    <component id="DataGridColumnList" class="org.apache.flex.html.supportClasses.DataGridColumnList"/>
+    
+    <component id="DataItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayData" />
+    <component id="DataItemRendererFactoryForArrayList" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayList" />
+    <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData" />
+    <component id="TextItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.TextItemRendererFactoryForArrayData" />
+    <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.flex.html.beads.TextItemRendererFactoryForStringVectorData" />
 
     <component id="DateChooser" class="org.apache.flex.html.DateChooser"/>
     <component id="DateField" class="org.apache.flex.html.DateField"/>

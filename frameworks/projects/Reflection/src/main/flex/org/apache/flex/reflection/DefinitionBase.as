@@ -20,7 +20,7 @@ package org.apache.flex.reflection
 {
     
     /**
-     *  The description of a Class or Interface
+     *  The base class for all definition types
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -35,7 +35,7 @@ package org.apache.flex.reflection
             _rawData = rawData;
         }
         
-        private var _name:String;
+        protected var _name:String;
         public function get name():String
         {
             return _name;
