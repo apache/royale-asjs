@@ -86,6 +86,9 @@
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
      -->
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
+    
+    <component id="ArraySelectionModel" class="org.apache.flex.html.beads.models.ArraySelectionModel" />
+    <component id="ArrayListSelectionModel" class="org.apache.flex.html.beads.models.ArrayListSelectionModel" />
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataProviderChangeNotifier" class="org.apache.flex.html.beads.DataProviderChangeNotifier"/>
