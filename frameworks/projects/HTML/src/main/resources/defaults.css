@@ -185,6 +185,11 @@ Image
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
+BinaryImage
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.BinaryImageModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.BinaryImageView");
+}
 
 ImageAndTextButton
 {
