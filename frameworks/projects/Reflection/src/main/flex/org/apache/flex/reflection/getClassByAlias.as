@@ -35,6 +35,7 @@ COMPILE::SWF {
 
         COMPILE::JS {
             if (aliasName == null) throw new TypeError("Parameter aliasName must be non-null.");
+            if (aliasName.length==0) throw new TypeError("Parameter aliasName must be non-empty string.");
             var klazz:Class = TypeDefinition.getClassByAlias(aliasName);
             if (!klazz) throw new ReferenceError("Class "+aliasName+" could not be found.");
             return klazz;

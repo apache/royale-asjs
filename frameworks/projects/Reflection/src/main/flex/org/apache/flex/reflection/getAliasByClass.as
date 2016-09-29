@@ -34,13 +34,15 @@ COMPILE::SWF {
         if (classObject == null) throw new TypeError("Parameter classObject must be non-null.");
         COMPILE::SWF {
             ret= flash.utils.describeType(classObject).@alias;
+            if (ret.length==0) ret = null;
         }
 
         COMPILE::JS {
-            var info:* = classObject.FLEXJS_CLASS_INFO;
+            var info:* = classObject.prototype.FLEXJS_CLASS_INFO;
             if (info) {
-                ret = info.alias || "";
-            } else ret="";
+                ret = info.alias;
+                if (ret == '') ret = null;
+            } else ret=null;
         }
         return ret;
     }

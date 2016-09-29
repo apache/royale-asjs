@@ -31,13 +31,13 @@ COMPILE::SWF {
      */
     public function registerClassAlias(aliasName:String, classObject:Class):void {
         COMPILE::SWF {
-
             flash.net.registerClassAlias(aliasName,classObject);
         }
 
         COMPILE::JS {
             if (classObject == null) throw new TypeError("Parameter classObject must be non-null.");
             if (aliasName == null) throw new TypeError("Parameter aliasName must be non-null.");
+            if (aliasName.length==0) throw new TypeError("Parameter aliasName must be non-empty string.");
             TypeDefinition.registerClassAlias(aliasName , classObject);
         }
     }

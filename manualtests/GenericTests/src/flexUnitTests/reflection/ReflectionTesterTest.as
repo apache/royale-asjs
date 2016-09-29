@@ -52,6 +52,8 @@ package flexUnitTests.reflection
 		 [Before]
         public function setUp():void
         {
+            TestClass2.testStaticVar = "testStaticVar_val";
+            TestClass2.testStaticWriteOnly = "staticAccessor_initial_value";
         }
         
         [After]
@@ -284,6 +286,7 @@ package flexUnitTests.reflection
             /** static vars **/
             variables = def.staticVariables;
 
+            
             variable = variables[0];
             Assert.assertEquals("unexpected variable name","testStaticVar",variable.name);
             meta = variable.retrieveMetaDataByName("TestMeta")[0];
@@ -298,6 +301,8 @@ package flexUnitTests.reflection
             /** static accessors **/
 
             accessors = def.staticAccessors;
+
+            
             testReadOnly = retrieveItemWithName(accessors,"testStaticReadOnly") as AccessorDefinition;
             meta = testReadOnly.retrieveMetaDataByName("TestMeta")[0];
             Assert.assertEquals("unexpected meta name","TestMeta",meta.name);
@@ -348,7 +353,7 @@ package flexUnitTests.reflection
 
 
 		[Test]
-        public function testIntefaceReflection():void{
+        public function testInterfaceReflection():void{
             var def:TypeDefinition = describeType(ITestInterface4);
             Assert.assertEquals("unexpected kind value","interface",def.kind);
             Assert.assertEquals("unexpected interfaces length",3,def.interfaces.length);
