@@ -136,8 +136,12 @@ package org.apache.flex.net
 					req.requestHeaders.push(new flash.net.URLRequestHeader("Content-type", urlRequest.contentType));
 					
 				}
-                req.data = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
-					new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				if (urlRequest.data)
+				{
+					req.data = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
+						new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				}
+               
                 req.method = urlRequest.method;
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, flash_status);
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_STATUS, flash_status);

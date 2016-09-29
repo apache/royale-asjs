@@ -55,7 +55,7 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.CloseButtonView; CloseButtonView;
     	import org.apache.flex.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
 		import org.apache.flex.html.beads.ImageView; ImageView;
-		import org.apache.flex.html.beads.BinaryImageView; BinaryImageView;
+		import org.apache.flex.html.beads.BinaryImageLoader; BinaryImageLoader;
 	}
 	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ListView; ListView;
@@ -102,7 +102,6 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.models.ImageModel; ImageModel;
 	    import org.apache.flex.html.beads.models.ImageAndTextModel; ImageAndTextModel;
 	}
-		import org.apache.flex.html.beads.models.BinaryImageModel; BinaryImageModel;
 	import org.apache.flex.html.beads.models.PanelModel; PanelModel;
 	COMPILE::SWF
 	{

@@ -33,14 +33,12 @@ package org.apache.flex.html.beads
     }
 	
 	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.BinaryData;
+    import org.apache.flex.core.IImageView;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
@@ -50,7 +48,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageView extends BeadViewBase implements IBeadView
+	public class ImageView extends BeadViewBase implements IImageView
 	{
 		/**
 		 *  constructor.
@@ -67,10 +65,16 @@ package org.apache.flex.html.beads
         COMPILE::SWF
 		protected var bitmap:Bitmap;
         COMPILE::SWF
-		protected var loader:Loader;
+		private var _loader:Loader;
 		
 		protected var _model:IImageModel;
 		
+		COMPILE::SWF
+		public function get loader():Loader
+		{
+			return _loader;
+		}
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -117,9 +121,9 @@ package org.apache.flex.html.beads
 		}
 
         COMPILE::SWF
-        protected function setupLoader():void
+        public function setupLoader():void
         {
-            loader = new Loader();
+            _loader = new Loader();
             loader.contentLoaderInfo.addEventListener("complete",onComplete);
             loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function (e:IOErrorEvent):void {
                 trace(e);
@@ -128,7 +132,7 @@ package org.apache.flex.html.beads
         }
 
         COMPILE::JS
-        protected function setupLoader():void
+		public function setupLoader():void
         {
             var host:IUIBase = _strand as IUIBase;
             (host.element as HTMLImageElement).addEventListener('load',

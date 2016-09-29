@@ -18,10 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
+	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IBinaryImage;
 	import org.apache.flex.core.IBinaryImageModel;
 	import org.apache.flex.core.UIBase;
-    import org.apache.flex.utils.BinaryData;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.beads.IBinaryImageLoader;
+	import org.apache.flex.utils.BinaryData;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -54,6 +58,20 @@ package org.apache.flex.html
 		public function BinaryImage()
 		{
 			super();
+		}
+		
+		override public function addedToParent():void
+		{
+			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader") as Class;
+			if (c)
+			{
+				if (c)
+				{
+					var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;
+					addBead(loader);
+				}
+			}
+			super.addedToParent();
 		}
 		
 		/**
