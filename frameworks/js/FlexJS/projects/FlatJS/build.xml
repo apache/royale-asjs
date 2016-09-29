@@ -28,8 +28,13 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
+    <property name="target.name" value="${ant.project.name}.swc" />
+    <echo file="${basedir}/${target.name}.properties">target.name.nojs=${ant.project.name}</echo>
+    <replaceregexp file="${basedir}/${target.name}.properties" match="(.*)JS$" replace="\1" flags="m" />
+    <property file="${basedir}/${target.name}.properties"/>
+    <delete file="${basedir}/${target.name}.properties"/>
     
-    <target name="main" depends="clean,check-compiler,compile-js-swc,compile-asjs,copy-js" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile-js-swc,compile-asjs" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="clean">
@@ -58,7 +63,7 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${basedir}/target/generated-sources/flexjs" />
+            <arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>

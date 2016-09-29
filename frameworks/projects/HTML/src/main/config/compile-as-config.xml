@@ -74,10 +74,6 @@
         <name>defaults.css</name>
         <path>../resources/defaults.css</path>
     </include-file>
-    <include-file>
-        <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/HTMLJS/target/generated-sources/flexjs/*</path>
-    </include-file>
 
     <include-classes>
         <class>HTMLClasses</class>
