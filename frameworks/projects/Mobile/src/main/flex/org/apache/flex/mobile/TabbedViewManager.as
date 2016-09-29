@@ -24,6 +24,8 @@ package org.apache.flex.mobile
 	import org.apache.flex.mobile.chrome.TabBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
 	
+	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
+	
 	/**
 	 * The TabbedViewManager displays a set of views, only one of which is active at
 	 * a time. The other views are reachable via a set of tab buttons at the bottom of
