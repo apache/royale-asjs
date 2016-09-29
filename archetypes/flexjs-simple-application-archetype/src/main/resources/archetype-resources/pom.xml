@@ -22,12 +22,77 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}</artifactId>
-  <version>${version}</version>
-  <packaging>jar</packaging>
+  <groupId>\${groupId}</groupId>
+  <artifactId>\${artifactId}</artifactId>
+  <version>\${version}</version>
+  <packaging>swf</packaging>
+
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <version>${flexjs.compiler.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <flashVersion>${flash.version}</flashVersion>
+          <mainClass>App.mxml</mainClass>
+        </configuration>
+        <executions>
+          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
+          <execution>
+            <id>compile-javascript</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile-app</goal>
+            </goals>
+            <configuration>
+              <outputJavaScript>true</outputJavaScript>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.flex.flexjs.compiler</groupId>
+            <artifactId>compiler-jx</artifactId>
+            <version>${flexjs.compiler.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+
+    <!-- Needed for Flash compilation -->
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Needed for JavaScript compilation -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
   </dependencies>
 
 </project>

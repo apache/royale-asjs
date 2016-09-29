@@ -17,14 +17,14 @@
   limitations under the License.
 
 -->
-<archetype xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0 http://maven.apache.org/xsd/archetype-1.0.0.xsd">
-  <id>flexjs-simple-library-archetype</id>
-  <resources>
-    <resource>src/main/java/App.java</resource>
-  </resources>
-  <testResources>
-    <resource>src/test/java/AppTest.java</resource>
-  </testResources>
-</archetype>
+<extensions xmlns="http://maven.apache.org/EXTENSIONS/1.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/EXTENSIONS/1.0.0 http://maven.apache.org/xsd/core-extensions-1.0.0.xsd">
+
+    <extension>
+        <groupId>org.apache.flex.utilities.converter</groupId>
+        <artifactId>flex-sdk-converter-maven-extension</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </extension>
+
+</extensions>
