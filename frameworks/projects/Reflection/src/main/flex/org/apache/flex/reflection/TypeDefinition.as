@@ -33,16 +33,18 @@ COMPILE::SWF {
     public class TypeDefinition extends DefinitionWithMetaData
 	{
 
-            COMPILE::JS
+
             //js storage support for class aliases
+            COMPILE::JS
             private static var _aliasMappings:Object={};
 
-            COMPILE::JS
+
             /**
              * @private
              * @param aliasName
              * @param classObject
              */
+            COMPILE::JS
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
                 var info:* = classObject.prototype.FLEXJS_CLASS_INFO;
                 if (info) {
@@ -67,12 +69,13 @@ COMPILE::SWF {
                 } else throw new Error("registerClassAlias error: classObject is not Reflectable "+classObject);
             }
 
-            COMPILE::JS
+
             /**
              * @private
              * @param aliasName
-             * @return
+             * @return the class that is mapped to by the alias
              */
+            COMPILE::JS
             internal static function getClassByAlias(aliasName:String):Class {
                 return _aliasMappings[aliasName];
             }
