@@ -24,6 +24,19 @@ package flexUnitTests
     [RunWith("org.flexunit.runners.Suite")]
     public class CoreTester
     {
+        public function CoreTester()
+        {
+            // for JS, force-link these classes in the output
+            var arr:Array = [StrandTesterTest, BinaryDataTesterTest];
+        }
+        
+        // in JS, using a class as a type won't include the class in
+        // the output since types are not chcked in JS.  It is when
+        // the actual class is referenced that it will be included
+        // in the output.
+        // Is there a reason to use reflection to gather the set
+        // of tests?  I would think an array of tests would wokr
+        // better and allow you to define order.
         public var strandTesterTest:StrandTesterTest;
 		public var binaryDataTesterTest:BinaryDataTesterTest;
     }

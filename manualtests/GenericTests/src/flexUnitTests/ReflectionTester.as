@@ -24,10 +24,13 @@ package flexUnitTests
     [RunWith("org.flexunit.runners.Suite")]
     public class ReflectionTester
     {
-
-
+        public function ReflectionTester()
+        {
+            // see notes in CoreTester
+            var arr:Array = [ReflectionTesterTest, ReflectionTesterTestUseCache, ReflectionTesterTestAlias];
+        }
+        
         public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
-
         public var reflectionTesterTest:ReflectionTesterTest;
         
         public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
