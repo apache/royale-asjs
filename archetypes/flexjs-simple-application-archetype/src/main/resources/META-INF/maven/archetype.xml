@@ -22,6 +22,6 @@
            xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype/1.0.0 http://maven.apache.org/xsd/archetype-1.0.0.xsd">
   <id>flexjs-simple-application-archetype</id>
   <resources>
-    <resource>src/main/java/App.java</resource>
+    <resource>src/main/flex/App.mxml</resource>
   </resources>
 </archetype>
