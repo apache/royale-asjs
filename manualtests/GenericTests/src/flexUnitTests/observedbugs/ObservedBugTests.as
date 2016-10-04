@@ -63,11 +63,11 @@ package flexUnitTests.observedbugs
         [Test]
         public function testTryCatchJSReleaseModeFail():void
         {
-            var js:Boolean = false;
+            var js:int = 1;
             try {
-                var check:* = getDefinitionByName("flash.system.Capabilities");
+                js = getDefinitionByName("flash.system.Capabilities") == null ? 1 : 0;
             } catch (e:Error) {
-                js = true;
+                js = 2;
             }
 			
 			//if this next reference to 'check' variable is not included, then the above try/catch code
@@ -76,7 +76,7 @@ package flexUnitTests.observedbugs
             /* if (check == null) {
                 js = true;
             }*/
-            Assert.assertTrue("Unexpected value following try/catch",(js==isJS));
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1));
 
 
         }
