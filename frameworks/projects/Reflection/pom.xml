@@ -42,6 +42,12 @@
         <extensions>true</extensions>
         <configuration>
           <includeSources>true</includeSources>
+          <includeFiles>
+            <include-file>
+              <name>js/out/*</name>
+              <path>generated-sources/flexjs/*</path>
+            </include-file>
+          </includeFiles>
         </configuration>
       </plugin>
     </plugins>

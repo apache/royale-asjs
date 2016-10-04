@@ -50,6 +50,12 @@
           <includeClasses>
             <includeClass>DragDropClasses</includeClass>
           </includeClasses>
+          <includeFiles>
+            <include-file>
+              <name>js/out/*</name>
+              <path>generated-sources/flexjs/*</path>
+            </include-file>
+          </includeFiles>
         </configuration>
       </plugin>
     </plugins>
