@@ -118,7 +118,6 @@ _ReSharper*/
 *.zip
 *.rar
 *.tar
-html-template
 
 #VF2JS generated files
 vf2js/frameworks/js/
