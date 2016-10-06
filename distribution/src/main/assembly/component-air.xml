@@ -34,8 +34,7 @@ under the License.
         <include>com.adobe.air.compiler:adt:zip:android</include>
         <include>com.adobe.air.compiler:adt:zip:desktop</include>
         <include>com.adobe.air.compiler:adt:zip:ios</include>
-        <!-- TODO: Change this back to "win" after fixing the mavenizer -->
-        <include>com.adobe.air.compiler:adt:zip:windows</include>
+        <include>com.adobe.air.compiler:adt:zip:win</include>
       </includes>
       <unpack>true</unpack>
     </dependencySet>
