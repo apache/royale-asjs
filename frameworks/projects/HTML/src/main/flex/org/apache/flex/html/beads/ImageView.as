@@ -36,6 +36,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IImageModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.core.IImageView;

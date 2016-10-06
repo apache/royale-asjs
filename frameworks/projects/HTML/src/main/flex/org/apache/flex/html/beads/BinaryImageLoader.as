@@ -43,6 +43,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.utils.BinaryData;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IImageView;
+    import org.apache.flex.core.IBinaryImageLoader;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.

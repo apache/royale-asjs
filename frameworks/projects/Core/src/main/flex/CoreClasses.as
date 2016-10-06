@@ -36,6 +36,7 @@ internal class CoreClasses
 		import org.apache.flex.core.CSSTextField; CSSTextField;
 	    import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
 	}
+	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.IAlertModel; IAlertModel;
@@ -44,12 +45,14 @@ internal class CoreClasses
 	import org.apache.flex.core.IBeadLayout; IBeadLayout;
 	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
-    import org.apache.flex.core.IBeadView; IBeadView;
+	import org.apache.flex.core.IBeadView; IBeadView;
+	import org.apache.flex.core.IImageView; IImageView;
     import org.apache.flex.core.IBinaryImage; IBinaryImage;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IBorderModel; IBorderModel;
 	}
+	
     import org.apache.flex.core.IChild; IChild;
     import org.apache.flex.core.IChrome; IChrome;
     import org.apache.flex.core.IComboBoxModel; IComboBoxModel;
@@ -99,7 +102,8 @@ internal class CoreClasses
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
-    import org.apache.flex.core.UIBase; UIBase;
+	import org.apache.flex.core.UIBase; UIBase;
+	import org.apache.flex.core.ImageBase; ImageBase;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.UIButtonBase; UIButtonBase;

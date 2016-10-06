@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -16,20 +17,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
-{	
-	import org.apache.flex.core.IBead;
-
+package org.apache.flex.svg.beads
+{
+	import org.apache.flex.html.beads.ImageView;
+	
 	/**
-	 *  The IBinaryImageLoader interface marks classes 
-	 *  that are used for loading binary data to image views
+	 *  The ImageView class creates the visual elements of the org.apache.flex.svg.Image component.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IBinaryImageLoader extends IBead
+	public class ImageView extends org.apache.flex.html.beads.ImageView
 	{
-		
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function ImageView()
+		{
+		}
 	}
 }

@@ -16,16 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.core
 {
-	import org.apache.flex.core.ImageBase;
+	import org.apache.flex.core.IImage;
+	import org.apache.flex.core.IImageModel;
+	import org.apache.flex.core.UIBase;
 	
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
-	
-	public class Image extends ImageBase
+	/**
+	 *  The ImageBase class serves as a base class for components that displays a bitmap. The Image uses
+	 *  the following beads:
+	 * 
+	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
+	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class ImageBase extends UIBase implements IImage
 	{
 		/**
 		 *  constructor.
@@ -35,27 +44,28 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Image()
+		public function ImageBase()
 		{
 			super();
 		}
 		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            element = document.createElement('img') as WrappedHTMLElement;
-            element.className = 'Image';
-            typeNames = 'Image';
-            
-            positioner = element;
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-         
-            return element;
-        }        
+		/**
+		 *  The location of the bitmap, usually a URL.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
+		 */
+		public function get url():String
+		{
+			return (model as IImageModel).url;
+		}
+		public function set url(value:String):void
+		{
+			(model as IImageModel).url = value;
+		}
 
 	}
 }

@@ -105,6 +105,8 @@ package org.apache.flex.svg
 				element.parent.addChild(mask);
 			}
 			// set mask
+			mask.x = element.x;
+			mask.y = element.y;
 			element.mask = mask;
 		}
 		/**

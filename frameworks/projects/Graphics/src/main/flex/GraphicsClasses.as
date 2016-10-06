@@ -33,6 +33,8 @@ internal class GraphicsClasses
 	import org.apache.flex.svg.Rect; Rect;
 	import org.apache.flex.svg.Ellipse; Ellipse;
 	import org.apache.flex.svg.Circle; Circle;
+	import org.apache.flex.svg.Image; Image;
+	import org.apache.flex.svg.BinaryImage; BinaryImage;
 	import org.apache.flex.svg.Path; Path;
 	import org.apache.flex.graphics.SolidColor; SolidColor;
 	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;

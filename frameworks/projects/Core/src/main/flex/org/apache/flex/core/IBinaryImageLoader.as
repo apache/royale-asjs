@@ -16,46 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
-{
-	import org.apache.flex.core.ImageBase;
-	
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
-	
-	public class Image extends ImageBase
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function Image()
-		{
-			super();
-		}
-		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            element = document.createElement('img') as WrappedHTMLElement;
-            element.className = 'Image';
-            typeNames = 'Image';
-            
-            positioner = element;
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-         
-            return element;
-        }        
+package org.apache.flex.core
+{	
 
+	/**
+	 *  The IBinaryImageLoader interface marks classes 
+	 *  that are used for loading binary data to image views
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public interface IBinaryImageLoader extends IBead
+	{
+		
 	}
 }

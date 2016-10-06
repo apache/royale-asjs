@@ -29,4 +29,7 @@
 	<component id="TransformBead" class="org.apache.flex.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.flex.svg.ClipBead" />
 	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
+    <component id="Image" class="org.apache.flex.svg.Image"/>
+    <component id="BinaryImage" class="org.apache.flex.svg.BinaryImage"/>
+	
 </componentPackage>

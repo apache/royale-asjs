@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.svg
 {
 	import org.apache.flex.core.IBinaryImage;
 	import org.apache.flex.core.IBinaryImageModel;
@@ -24,8 +24,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IBinaryImageLoader;
 	import org.apache.flex.utils.BinaryData;
 
-	
-	/**
+ 	/**
 	 *  The Image class is a component that displays a bitmap. The Image uses
 	 *  the following beads:
 	 * 
@@ -84,6 +83,5 @@ package org.apache.flex.html
 			(model as IBinaryImageModel).binary = value;
 		}
         
-
 	}
 }
