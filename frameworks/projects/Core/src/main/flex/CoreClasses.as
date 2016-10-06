@@ -104,6 +104,7 @@ internal class CoreClasses
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
 	import org.apache.flex.core.UIBase; UIBase;
 	import org.apache.flex.core.ImageBase; ImageBase;
+	import org.apache.flex.core.ImageViewBase; ImageViewBase;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.UIButtonBase; UIButtonBase;

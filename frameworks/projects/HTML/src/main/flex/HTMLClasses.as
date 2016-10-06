@@ -56,6 +56,7 @@ internal class HTMLClasses
     	import org.apache.flex.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
 		import org.apache.flex.html.beads.ImageView; ImageView;
 		import org.apache.flex.html.beads.BinaryImageLoader; BinaryImageLoader;
+		import org.apache.flex.html.beads.models.BinaryImageModel; BinaryImageModel;
 	}
 	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ListView; ListView;

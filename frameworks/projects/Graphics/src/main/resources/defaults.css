@@ -26,7 +26,6 @@ svg|Image
 	vertical-align: top;
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.flex.svg.beads.ImageView");
-	IBinaryImageLoader: ClassReference("org.apache.flex.html.beads.BinaryImageLoader");
 }
 
 svg|BinaryImage

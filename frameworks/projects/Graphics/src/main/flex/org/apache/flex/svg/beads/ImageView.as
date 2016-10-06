@@ -19,7 +19,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg.beads
 {
-	import org.apache.flex.html.beads.ImageView;
+	import org.apache.flex.core.ImageViewBase;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.svg.Image component.
@@ -29,7 +29,7 @@ package org.apache.flex.svg.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageView extends org.apache.flex.html.beads.ImageView
+	public class ImageView extends ImageViewBase
 	{
 		/**
 		 *  constructor.

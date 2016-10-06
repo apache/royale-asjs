@@ -63,6 +63,11 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
+    <include-file>
+        <name>defaults.css</name>
+        <path>../resources/defaults.css</path>
+    </include-file>
+    
     <include-classes>
         <class>GraphicsClasses</class>
     </include-classes>
