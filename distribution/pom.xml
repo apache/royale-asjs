@@ -648,7 +648,8 @@
           <groupId>com.adobe.air.compiler</groupId>
           <artifactId>adt</artifactId>
           <version>${air.version}</version>
-          <classifier>win</classifier>
+          <!-- TODO: Change this back to "win" after fixing the mavenizer -->
+          <classifier>windows</classifier>
           <type>zip</type>
         </dependency>
         <dependency>
