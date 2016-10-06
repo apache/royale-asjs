@@ -113,13 +113,14 @@ under the License.
       <unpack>true</unpack>
     </dependencySet>
     <!-- Unpack the rest of the stuff that usually belongs to an AIR SDK -->
-    <dependencySet>
+    <!-- TODO: This seems to be empty on windows machines -->
+    <!--dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <includes>
         <include>com.adobe.air:misc:zip</include>
       </includes>
       <unpack>true</unpack>
-    </dependencySet>
+    </dependencySet-->
   </dependencySets>
   <fileSets>
     <!-- Copy the adt scripts and update the air version-number -->
