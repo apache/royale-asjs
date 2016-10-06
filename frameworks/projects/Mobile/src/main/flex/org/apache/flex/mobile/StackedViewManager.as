@@ -27,6 +27,8 @@ package org.apache.flex.mobile
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
 	
+	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
+	
 	/**
 	 * The StackedViewManager displays a single View at a time from a
 	 * collection of Views where views[0] is at the bottom and views[n-1]

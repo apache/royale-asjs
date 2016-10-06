@@ -26,6 +26,8 @@
 
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
     <property name="theme_arg" value="-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta" />
+    <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
+    <property name="extlib_arg" value="-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta" />
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>

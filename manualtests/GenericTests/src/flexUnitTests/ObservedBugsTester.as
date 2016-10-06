@@ -24,6 +24,10 @@ package flexUnitTests
     [RunWith("org.flexunit.runners.Suite")]
     public class ObservedBugsTester
     {
+        public function ObservedBugsTester()
+        {
+            var arr:Array = [ObservedBugTests];
+        }
         public var observedBugsTest1:ObservedBugTests;
     }
 }

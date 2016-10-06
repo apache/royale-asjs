@@ -496,9 +496,6 @@
     -->
 
     <target name="frameworks" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
-        <ant dir="${basedir}/frameworks/js/FlexJS">
-            <property name="locale" value="${locale}"/>
-        </ant>
         <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
         </ant>

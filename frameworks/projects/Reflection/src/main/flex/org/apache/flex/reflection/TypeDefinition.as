@@ -33,17 +33,20 @@ COMPILE::SWF {
     public class TypeDefinition extends DefinitionWithMetaData
 	{
 
-        COMPILE::JS {
+
             //js storage support for class aliases
+            COMPILE::JS
             private static var _aliasMappings:Object={};
+
 
             /**
              * @private
              * @param aliasName
              * @param classObject
              */
+            COMPILE::JS
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
-                var info:* = classObject.FLEXJS_CLASS_INFO;
+                var info:* = classObject.prototype.FLEXJS_CLASS_INFO;
                 if (info) {
                     //a class may have more than one alias point to it, but only the most recently registered
                     //alias is retained for reflection (applying same approach as swf)
@@ -57,24 +60,25 @@ COMPILE::SWF {
                     //from the other class's FLEXJS_CLASS_INFO
                     var altClass:Class = _aliasMappings[aliasName];
                     if (altClass) {
-                        var altInfo:* = altClass.FLEXJS_CLASS_INFO;
+                        var altInfo:* = altClass.prototype.FLEXJS_CLASS_INFO;
                         delete altInfo.alias;
                     }
                     _aliasMappings[aliasName] = classObject;
                     info.alias = aliasName;
+
                 } else throw new Error("registerClassAlias error: classObject is not Reflectable "+classObject);
             }
+
 
             /**
              * @private
              * @param aliasName
-             * @return
+             * @return the class that is mapped to by the alias
              */
+            COMPILE::JS
             internal static function getClassByAlias(aliasName:String):Class {
                 return _aliasMappings[aliasName];
             }
-
-        }
 
 
 
@@ -392,7 +396,7 @@ COMPILE::SWF {
                 var i:uint, n:int;
                 if (data !== undefined)
                 {
-                    var collect:Array = data.interfaces || [];
+                    var collect:Array = data.interfaces ?  data.interfaces.slice() : [];
                     var qname:String = data.names[0].qName;
                     var def:Object = getDefinitionByName(qname);
                     if ((_kind || kind) == "interface") {

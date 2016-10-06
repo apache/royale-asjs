@@ -1,4 +1,4 @@
-Apache FlexJS 0.7.0
+Apache FlexJS 0.8.0
 =================
 
 Apache FlexJS is a next-generation Flex SDK that provides the capability
@@ -10,7 +10,17 @@ It is an ‘beta’ type of release.   Expect to find lots of bugs and missing
 features.
 
 New Features
+=================
+-more complete Reflection implementation with access to static members, kept metadata and method parameters
+-added cross-platform registerClassAlias/getAliasByClass/getClassByAlias implementations (reflection package)
+
+
+Bug Fixes
 ---------
+
+
+Apache FlexJS 0.7.0
+=================
 - Support for XML contructors and literals as well as E4X.
 See here for limitations: https://cwiki.apache.org/confluence/display/FLEX/Using+XML+in+FlexJS
 - Support for Typed Node.js

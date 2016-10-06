@@ -44,12 +44,6 @@
           <includeClasses>
             <includeClass>LanguageClasses</includeClass>
           </includeClasses>
-          <includeFiles>
-            <include-file>
-              <name>js/out/*</name>
-              <path>generated-sources/flexjs/*</path>
-            </include-file>
-          </includeFiles>
           <skipExtern>false</skipExtern>
         </configuration>
       </plugin>

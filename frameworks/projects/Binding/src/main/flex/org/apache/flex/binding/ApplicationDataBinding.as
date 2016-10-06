@@ -212,6 +212,9 @@ package org.apache.flex.binding
             setupWatchers(gb, index, watchers.watchers, null);
         }
         
+        /**
+         * @flexjsignorecoercion Function
+         */
         private function setupWatchers(gb:GenericBinding, index:int, watchers:Array, parentWatcher:WatcherBase):void
         {
             var foundWatcher:Boolean = false;
@@ -235,7 +238,7 @@ package org.apache.flex.binding
                             var pw:PropertyWatcher = new PropertyWatcher(this, 
                                         watcher.propertyName, 
                                         watcher.eventNames,
-                                        watcher.getterFunction);
+                                        (typeof(gb.source) === "function") ? gb.source as Function : watcher.getterFunction);
                             watcher.watcher = pw;
                             if (parentWatcher)
                                 pw.parentChanged(parentWatcher.value);

@@ -29,16 +29,15 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
-    <target name="main" depends="clean,check-compiler,js-if-needed,compile,test" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
-    <target name="check-js">
-        <uptodate property="js-not-needed" targetfile="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
-            <srcfiles dir="${basedir}/src/main/flex" includes="**/**"/>
-        </uptodate>
-    </target>
-    <target name="js-if-needed" depends="check-js" unless="js-not-needed">
+    <target name="compile-js">
         <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
+    </target>
+    
+    <target name="copy-swc">
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>
     
     <target name="check-for-tests" >
@@ -75,8 +74,6 @@
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-        <!-- make JS output folder now so include-file doesn't error -->
-        <mkdir dir="${basedir}/target/generated-sources/flexjs" />
         
         <compc fork="true"
             output="${basedir}/target/${target.name}">

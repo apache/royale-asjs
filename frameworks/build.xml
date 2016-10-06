@@ -162,6 +162,7 @@
             <exclude name="swfobject/expressInstall.swf" />
             <exclude name="swfobject/swfobject.js" />
             <exclude name="swfobject/history/**" />
+            <exclude name="js-index-template.html" />
         </delete>
     </target>
     

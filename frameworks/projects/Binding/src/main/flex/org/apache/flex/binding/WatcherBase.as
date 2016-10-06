@@ -295,6 +295,7 @@ package org.apache.flex.binding
             "Call attempted on an object that is not a function.",
             "null has no properties.",
             "undefined has no properties.",
+            "undefined is not an object",
             "has no properties.",
             "and there is no default value",
             "invalid null argument."

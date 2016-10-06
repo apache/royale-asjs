@@ -59,11 +59,6 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-file>
-        <name>js/out/*</name>
-        <path>../../../../../js/FlexJS/projects/CollectionsJS/target/generated-sources/flexjs/*</path>
-    </include-file>
-
     <include-classes>
         <class>CollectionsClasses</class>
     </include-classes>

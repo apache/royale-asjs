@@ -102,6 +102,7 @@
 
   <modules>
     <module>frameworks</module>
+    <module>archetypes</module>
   </modules>
 
   <build>
@@ -213,6 +214,13 @@
       <id>build-distribution</id>
       <modules>
         <module>distribution</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>run-testsuite</id>
+      <modules>
+        <module>testsuite</module>
       </modules>
     </profile>
   </profiles>
