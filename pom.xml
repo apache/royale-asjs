@@ -176,6 +176,8 @@
             <exclude>**/.settings/**</exclude>
             <!-- Examples needs to be fixed -->
             <exclude>native/**</exclude>
+            <!-- After running the testsuite, the target directory is full of non-header files -->
+            <exclude>testsuite/**</exclude>
           </excludes>
         </configuration>
         <dependencies>
