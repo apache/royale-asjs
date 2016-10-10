@@ -289,10 +289,10 @@ package org.apache.flex.html.beads
 			updateCalendar();
 		}
 		
-		COMPILE::SWF
 		/**
 		 * @private
 		 */
+		COMPILE::SWF
 		protected function displayBackgroundAndBorder(host:UIBase) : void
 		{
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
