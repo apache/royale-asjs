@@ -84,6 +84,11 @@ package org.apache.flex.html
 			(model as IBinaryImageModel).binary = value;
 		}
         
+		COMPILE::JS
+		public function applyBinaryDataAsString(binaryDataAsString:String):void
+		{
+			(element as HTMLImageElement).src = binaryDataAsString;
+		}
 
 	}
 }

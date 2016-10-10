@@ -55,14 +55,25 @@ package org.apache.flex.svg
 		COMPILE::JS
 		protected var _image:WrappedHTMLElement;
 		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
 		COMPILE::JS
 		protected function addImageElement():void
 		{
 			if (_image == null) {
 				_image = document.createElementNS('http://www.w3.org/2000/svg', 'image') as WrappedHTMLElement;
+				_image.setAttribute("width", "100%");
+				_image.setAttribute("height", "100%");
 				_image.flexjs_wrapper = this;
 				element.appendChild(_image);
 			}
+		}
+		
+		COMPILE::JS
+		override public function get imageElement():Element
+		{
+			return _image;
 		}
 
     }

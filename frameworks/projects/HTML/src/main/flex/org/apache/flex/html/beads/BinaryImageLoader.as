@@ -18,32 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    COMPILE::SWF
-    {
-        import flash.display.Bitmap;
-        import flash.display.Loader;
-        import flash.display.LoaderInfo;
-        import flash.events.IOErrorEvent;
-        import flash.net.URLRequest;            
-    }
+	import org.apache.flex.core.IBinaryImageLoader;
+	import org.apache.flex.core.IBinaryImageModel;
+	import org.apache.flex.core.IImageView;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+
     COMPILE::JS
     {
         import goog.events;
         import org.apache.flex.utils.URLUtils;
+		import org.apache.flex.core.IBinaryImage;
     }
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IBinaryImageModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.BinaryData;
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IImageView;
-    import org.apache.flex.core.IBinaryImageLoader;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
@@ -91,16 +78,16 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-         * @flexjsignorecoercion HTMLImageELement
-         * @flexjsignorecoercion BinaryImageModel
+         * @flexjsignorecoercion Object
+         * @flexjsignorecoercion UIBase
 		 */
         private function handleBinaryChange(event:Event):void
         {
             var m:IBinaryImageModel = model;
+			var imageView:IImageView = _strand.getBeadByType(IImageView) as IImageView;
            COMPILE::SWF
             {
                 if (m.binary) {
-					var imageView:IImageView = _strand.getBeadByType(IImageView) as IImageView;
 					imageView.setupLoader();
 					imageView.loader.loadBytes(m.binary.array);
                 }                    
@@ -108,14 +95,14 @@ package org.apache.flex.html.beads
             COMPILE::JS
             {
                 if (m.binary) {
-                    setupLoader();
+					imageView.setupLoader();
                     if(_objectURL)
                         URLUtils.revokeObjectURL(_objectURL);
                     var blob:Blob = new Blob([m.binary.array]);
 // I don't think we need to specify the type.
 //                    var blob = new Blob([response], {type: "image/png"});
                     _objectURL = URLUtils.createObjectURL(blob);
-                    (host.element as HTMLImageElement).src = _objectURL;
+                    (_strand as IBinaryImage).applyBinaryDataAsString(_objectURL);
                 }
             }
         }

@@ -48,7 +48,6 @@ package org.apache.flex.core
 		COMPILE::SWF
 		function get loader():Loader
 			
-		COMPILE::SWF
 		function setupLoader():void
 	}
 }

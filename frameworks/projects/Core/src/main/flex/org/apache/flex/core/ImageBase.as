@@ -66,6 +66,13 @@ package org.apache.flex.core
 		{
 			(model as IImageModel).url = value;
 		}
+		
+		COMPILE::JS
+		public function get imageElement():Element
+		{
+			return null;
+			// override this
+		}
 
 	}
 }

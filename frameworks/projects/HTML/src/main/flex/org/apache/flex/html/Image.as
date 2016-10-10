@@ -55,7 +55,14 @@ package org.apache.flex.html
             element.flexjs_wrapper = this;
          
             return element;
-        }        
+        }
+		
+		COMPILE::JS
+		override public function get imageElement():Element
+		{
+			return element;
+		}
+
 
 	}
 }

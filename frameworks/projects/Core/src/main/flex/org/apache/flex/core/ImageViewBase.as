@@ -131,11 +131,20 @@ package org.apache.flex.core
             });
         }
 
+		/**
+		*  @flexjsignorecoercion org.apache.flex.core.IImage
+		*/
+		COMPILE::JS
+		protected function get imageElement():Element
+		{
+			return (_strand as IImage).imageElement;
+		}
+			
         COMPILE::JS
 		public function setupLoader():void
         {
             var host:IUIBase = _strand as IUIBase;
-            (host.element as HTMLImageElement).addEventListener('load',
+            imageElement.addEventListener('load',
                 loadHandler, false);
             host.addEventListener('sizeChanged',
                 sizeChangedHandler);

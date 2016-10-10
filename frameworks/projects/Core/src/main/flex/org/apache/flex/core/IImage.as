@@ -41,5 +41,7 @@ package org.apache.flex.core
          */
         function get url():String;
         function set url(value:String):void;
+		COMPILE::JS
+		function get imageElement():Element;
 	}
 }
