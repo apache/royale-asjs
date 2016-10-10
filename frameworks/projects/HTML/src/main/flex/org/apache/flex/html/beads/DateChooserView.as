@@ -18,11 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.html.beads.models.DateChooserModel;
-	import org.apache.flex.html.supportClasses.DateChooserButton;
-	import org.apache.flex.html.supportClasses.DateHeaderButton;
-
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
@@ -31,9 +27,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.layouts.TileLayout;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.beads.layouts.TileLayout;
+	import org.apache.flex.html.beads.models.DateChooserModel;
+	import org.apache.flex.html.supportClasses.DateChooserButton;
+	import org.apache.flex.html.supportClasses.DateHeaderButton;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class
@@ -54,6 +53,8 @@ package org.apache.flex.html.beads
 		public function DateChooserView()
 		{
 		}
+		
+		private var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -66,11 +67,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			COMPILE::SWF {
-				value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);
-				value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
-			}
+			_strand = value;
 
 			// make sure there is a model.
 			model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
@@ -153,6 +150,10 @@ package org.apache.flex.html.beads
 			dayContainer.y = monthLabel.y + monthLabel.height + 5;
 			dayContainer.width = sw;
 			dayContainer.height = sh - (monthLabel.height+5);
+			
+			COMPILE::SWF {
+				displayBackgroundAndBorder(_strand as UIBase);
+			}
 
 			IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );
 			IEventDispatcher(dayContainer).dispatchEvent( new Event("layoutNeeded") );
@@ -286,6 +287,44 @@ package org.apache.flex.html.beads
 		private function handleModelChange(event:Event):void
 		{
 			updateCalendar();
+		}
+		
+		COMPILE::SWF
+		/**
+		 * @private
+		 */
+		protected function displayBackgroundAndBorder(host:UIBase) : void
+		{
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				if (host.getBeadByType(IBackgroundBead) == null)
+					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBackgroundBead");
+				if (c) {
+					host.addBead( new c() as IBead );
+				}
+			}
+			
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
+			if (borderStyles is Array)
+			{
+				borderStyle = borderStyles[1];
+			}
+			if (borderStyle == null)
+			{
+				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
+			}
+			if (borderStyle != null && borderStyle != "none")
+			{
+				if (host.getBeadByType(IBorderBead) == null) {
+					c = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
+					if (c) {
+						host.addBead( new c() as IBead );
+					}
+				}
+			}
 		}
 	}
 }
