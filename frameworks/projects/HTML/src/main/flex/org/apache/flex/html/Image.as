@@ -63,6 +63,11 @@ package org.apache.flex.html
 			return element;
 		}
 
+		COMPILE::JS
+		override public function applyImageData(binaryDataAsString:String):void
+		{
+			(element as HTMLImageElement).src = binaryDataAsString;
+		}
 
 	}
 }

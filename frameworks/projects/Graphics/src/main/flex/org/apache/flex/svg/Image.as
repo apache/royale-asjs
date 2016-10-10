@@ -76,5 +76,11 @@ package org.apache.flex.svg
 			return _image;
 		}
 
+		COMPILE::JS
+		override public function applyImageData(binaryDataAsString:String):void
+		{
+			(_image as SVGImageElement).setAttributeNS('http://www.w3.org/1999/xlink','href', binaryDataAsString);
+		}
+
     }
 }

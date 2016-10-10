@@ -18,10 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import org.apache.flex.core.CallLaterBead;
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBinaryImageLoader;
 	import org.apache.flex.core.IBinaryImageModel;
 	import org.apache.flex.core.IImageView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 
     COMPILE::JS
@@ -59,7 +62,15 @@ package org.apache.flex.html.beads
 		
 		private function get model():IBinaryImageModel
 		{
-			return _strand.getBeadByType(IBinaryImageModel) as IBinaryImageModel;
+			var result:IBinaryImageModel = _strand.getBeadByType(IBinaryImageModel) as IBinaryImageModel;
+			if (!result && _strand)
+			{
+				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadModel") as Class;
+				var model:IBinaryImageModel = new c as IBinaryImageModel;
+				_strand.addBead(model);
+				result = model;
+			}
+			return result;
 		}
 		
 		/**
@@ -102,7 +113,7 @@ package org.apache.flex.html.beads
 // I don't think we need to specify the type.
 //                    var blob = new Blob([response], {type: "image/png"});
                     _objectURL = URLUtils.createObjectURL(blob);
-                    (_strand as IBinaryImage).applyBinaryDataAsString(_objectURL);
+                    (_strand as IBinaryImage).applyImageData(_objectURL);
                 }
             }
         }

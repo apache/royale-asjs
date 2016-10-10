@@ -100,7 +100,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
-         * @flexjsignorecoercion HTMLImageELement
+         * @flexjsignorecoercion org.apache.flex.core.IImage
 		 */
 		protected function handleUrlChange(event:Event):void
 		{
@@ -115,7 +115,7 @@ package org.apache.flex.core
             {
 				if (_model.url) {
                     setupLoader();
-	                (host.element as HTMLImageElement).src = _model.url;
+	                (host as IImage).applyImageData(_model.url);
 				}
             }
 		}

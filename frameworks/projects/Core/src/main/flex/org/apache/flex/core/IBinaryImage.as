@@ -43,8 +43,5 @@ package org.apache.flex.core
         function get binary():BinaryData;
         function set binary(value:BinaryData):void;
 		
-		COMPILE::JS
-		function applyBinaryDataAsString(binaryDataAsString:String):void;
-		
 	}
 }

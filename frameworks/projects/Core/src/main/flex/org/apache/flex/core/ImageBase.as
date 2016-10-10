@@ -73,6 +73,12 @@ package org.apache.flex.core
 			return null;
 			// override this
 		}
-
+		
+		COMPILE::JS
+		public function applyImageData(binaryDataAsString:String):void
+		{
+			// override this
+		}
+		
 	}
 }

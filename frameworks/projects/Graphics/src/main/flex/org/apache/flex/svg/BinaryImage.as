@@ -83,11 +83,5 @@ package org.apache.flex.svg
 			(model as IBinaryImageModel).binary = value;
 		}
         
-		COMPILE::JS
-		public function applyBinaryDataAsString(binaryDataAsString:String):void
-		{
-			(_image as SVGImageElement).setAttributeNS('http://www.w3.org/1999/xlink','href', binaryDataAsString);
-		}
-
 	}
 }

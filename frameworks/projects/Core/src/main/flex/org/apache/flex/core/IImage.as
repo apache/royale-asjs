@@ -43,5 +43,8 @@ package org.apache.flex.core
         function set url(value:String):void;
 		COMPILE::JS
 		function get imageElement():Element;
+		COMPILE::JS
+		function applyImageData(binaryDataAsString:String):void;
+
 	}
 }
