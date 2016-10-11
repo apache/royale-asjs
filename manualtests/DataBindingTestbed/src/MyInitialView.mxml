@@ -174,6 +174,25 @@ limitations under the License.
 						addErrorReport("problem with explicit dispatching from BindableSubVO3 ",e);
 					}
 					
+					test=null;
+					try {
+						test = BindableWithConstructorInit.STATIC_INIT;
+						if (test.value !="STATIC_INIT") {
+						throw new Error("problem with static init in BindableWithConstructorInit ");
+						}
+						test.value= "STATIC_INIT_CHANGED";
+					} catch (e:Error) {
+						addErrorReport("problem with static init in BindableWithConstructorInit ",e);
+					}
+					
+					test=null;
+					try {
+						test = new BindableWithConstructorInit("string",99)
+					} catch (e:Error) {
+						addErrorReport("problem instantiating BindableWithConstructorInit ",e);
+					}
+					
+					
 			}
 			
 			private var _expectedTarget:Object;
