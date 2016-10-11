@@ -97,6 +97,8 @@
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.flex.html.beads.DataGridLinesBead"/>
     <component id="DataGridColumnList" class="org.apache.flex.html.supportClasses.DataGridColumnList"/>
+    <component id="DataGridLayout" class="org.apache.flex.html.beads.layouts.DataGridLayout" />
+    <component id="DataGridPercentageLayout" class="org.apache.flex.html.beads.layouts.DataGridPercentageLayout" />
     
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayList" />

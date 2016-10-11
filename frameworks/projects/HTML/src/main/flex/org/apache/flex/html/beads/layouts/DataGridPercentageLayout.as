@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {	
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IStrand;
@@ -29,21 +29,21 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.ButtonBar;
 	import org.apache.flex.html.beads.DataGridView;
-	import org.apache.flex.html.beads.layouts.BasicLayout;
-	import org.apache.flex.html.supportClasses.DataGridColumnList;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
-	 * DataGridLayout is a class that handles the size and positioning of the
+	 * DataGridPercentageLayout is a class that handles the size and positioning of the
 	 * elements of a DataGrid. This includes the ButtonBar used for the column
-	 * headers and the Lists that are the columns.
+	 * headers and the Lists that are the columns. The columns are sized on their
+	 * percentage of the width of the DataGrid space.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridLayout implements IDataGridLayout
+	public class DataGridPercentageLayout implements IDataGridLayout
 	{
 		/**
 		 *  constructor
@@ -53,7 +53,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DataGridLayout()
+		public function DataGridPercentageLayout()
 		{
 		}
 		
@@ -71,16 +71,23 @@ package org.apache.flex.html.beads.layouts
 		{
 			_strand = value;
 			
-			var host:UIBase = _strand as UIBase;
+			var host:UIBase = value as UIBase;
+			
+			var view:DataGridView = host.view as DataGridView;
+			
+			header = view.header;
+			listArea = view.listArea;
+			
+			var anylayout:IBead = listArea.getBeadByType(IBeadLayout);
+			if (anylayout != null) {
+				listArea.removeBead(anylayout);
+			}
+			listArea.addBead(new HorizontalLayout());
+			
 			host.addEventListener("widthChanged", handleSizeChanges);
 			host.addEventListener("heightChanged", handleSizeChanges);
 			host.addEventListener("sizeChanged", handleSizeChanges);
 			host.addEventListener("layoutNeeded", handleSizeChanges);
-			
-			var view:DataGridView = host.view as DataGridView;
-			header = view.header;
-			listArea = view.listArea;
-			listArea.addBead(new BasicLayout());
 		}
 		
 		private var _header:UIBase;
@@ -136,56 +143,65 @@ package org.apache.flex.html.beads.layouts
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
 		public function layout():Boolean
-		{						
+		{			
 			if (columns == null || columns.length == 0) {
 				return false;
 			}
+			
 			var host:UIBase = _strand as UIBase;
 			
-			var useWidth:Number = host.width;
-			var useHeight:Number = host.height;
-
-			if (host.height > 0) {
-				useHeight = host.height - _header.height;
+			var sw:Number = host.width;
+			var sh:Number = host.height;
+			
+			var columnHeight:Number = Math.floor(sh - header.height);
+			var columnWidth:Number  = Math.floor(sw / columns.length);
+			
+			var xpos:Number = 0;
+			var ypos:Number = 26;
+			
+			_header.x = 0;
+			_header.y = 0;
+			_header.width = sw;
+			_header.height = 25;
+			
+			if (sh > 0) {
+				sh = sh - _header.height;
 			}
 			
-			var thisisnothing:Number = -1234;
+			// TODO: change the layout so that the model's DataGridColumn.columnWidth
+			// isn't used blindly, but is considered in the overall width. In other words,
+			// right now the width could exceed the strand's width.
+			var model:IDataGridModel = host.model as IDataGridModel;
+			
+			var buttonWidths:Array = new Array();
+						
+			for(var i:int=0; i < columns.length; i++) {
+				var column:UIBase = columns[i] as UIBase;
+				column.percentHeight = 100;
 
+				var dgc:DataGridColumn = model.columns[i];
+				if (!isNaN(dgc.columnWidth)) {
+					column.percentWidth = dgc.columnWidth;
+					columnWidth = sw * (dgc.columnWidth/100.0);
+				}
+				else column.explicitWidth = columnWidth;
+				
+				buttonWidths.push(columnWidth);
+			}
+			
 			_listArea.x = 0;
 			_listArea.y = 26;
-			_listArea.width = useWidth;
-			_listArea.height = useHeight;
-
-			var sharedModel:IDataGridModel = host.model as IDataGridModel;
-			var buttonWidths:Array = [];
-
-			if (_columns != null && _columns.length > 0) {
-				var xpos:Number = 0;
-				var listWidth:Number = host.width / _columns.length;
-				for (var i:int=0; i < _columns.length; i++) {
-					var list:DataGridColumnList = _columns[i] as DataGridColumnList;
-					list.x = xpos;
-					list.y = 0;
-
-					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					var colWidth:Number = dataGridColumn.columnWidth;
-					if (!isNaN(colWidth)) list.width = colWidth;
-					else list.width = listWidth;
-
-					xpos += list.width;
-					
-					buttonWidths.push(list.width);
-				}
-			}
+			_listArea.width = sw;
+			_listArea.height = sh;
+			_listArea.dispatchEvent(new Event("layoutNeeded"));
 			
 			var bar:ButtonBar = header as ButtonBar;
 			var barLayout:ButtonBarLayout = bar.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
 			barLayout.buttonWidths = buttonWidths;
-			bar.dispatchEvent(new Event("layoutNeeded"));
 			
 			_header.x = 0;
 			_header.y = 0;
-			_header.width = useWidth;
+			_header.width = sw;
 			_header.height = 25;
 			_header.dispatchEvent(new Event("layoutNeeded"));
 			
