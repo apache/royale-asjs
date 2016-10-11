@@ -54,8 +54,6 @@ package org.apache.flex.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *
