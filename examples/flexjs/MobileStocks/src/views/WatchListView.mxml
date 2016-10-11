@@ -107,6 +107,7 @@ limitations under the License.
 		
 	<js:DataGrid id="dataGrid" width="100%" height="85%" change="selectRow()" className="WatchListDataGrid">
 		<js:beads>
+			<js:DataGridPercentageLayout />
 			<js:SimpleBinding
 				eventName="update"
 				sourceID="dataModel"
@@ -116,38 +117,18 @@ limitations under the License.
 										   destinationPropertyName="dataProvider" changeEventName="dataProviderChanged" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Company (SYMB)" dataField="symbol" 
+			<js:DataGridColumn label="Company (SYMB)" dataField="symbol" columnWidth="45"
 			                   itemRenderer="renderers.CompanyNameRenderer" />
-			<js:DataGridColumn label="Open" dataField="open"
+			<js:DataGridColumn label="Open" dataField="open" columnWidth="11"
 			                   itemRenderer="renderers.StockRenderer" />
-			<js:DataGridColumn label="Last" dataField="last" >
-				<js:itemRenderer>
-					<fx:Component>
-						<renderers:StockRenderer />
-					</fx:Component>
-				</js:itemRenderer>
-			</js:DataGridColumn>
-			<js:DataGridColumn label="Change" dataField="change">
-				<js:itemRenderer>
-					<fx:Component>
-						<renderers:StockRenderer />
-					</fx:Component>
-				</js:itemRenderer>
-			</js:DataGridColumn>
-			<js:DataGridColumn label="High" dataField="high" >
-				<js:itemRenderer>
-					<fx:Component>
-						<renderers:StockRenderer />
-					</fx:Component>
-				</js:itemRenderer>
-			</js:DataGridColumn>
-			<js:DataGridColumn label="Low" dataField="low" >
-				<js:itemRenderer>
-					<fx:Component>
-						<renderers:StockRenderer />
-					</fx:Component>
-				</js:itemRenderer>
-			</js:DataGridColumn>
+			<js:DataGridColumn label="Last" dataField="last"columnWidth="11"
+			                   itemRenderer="renderers.StockRenderer" />
+			<js:DataGridColumn label="Change" dataField="change"columnWidth="11"
+			                   itemRenderer="renderers.StockRenderer" />
+			<js:DataGridColumn label="High" dataField="high"columnWidth="11"
+			                   itemRenderer="renderers.StockRenderer" />
+			<js:DataGridColumn label="Low" dataField="low" columnWidth="11"
+			                   itemRenderer="renderers.StockRenderer" />
 		</js:columns>
 	</js:DataGrid>
 	

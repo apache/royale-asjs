@@ -80,6 +80,22 @@ limitations under the License.
 			padding-bottom: 2px;
 			padding-right: 10px;
 		}
+		
+		.Outer1 {
+			background-color: #FFFFCC;
+		}
+		
+		.Outer2 {
+			background-color: #FF0000;
+		}
+		
+		.LaunchGrid {
+			background-color: #0000FF;
+		}
+		
+		.DataGridListArea {
+			background-color: #CCFFFF;
+		}
 	</fx:Style>
 	
 	<fx:Metadata>
@@ -94,7 +110,10 @@ limitations under the License.
 		<models:AssetsModel />
 	</js:model>
 
-	<js:HContainer height="10%">
+	<js:Container height="40" width="100%" className="Outer1">
+	  <js:beads>
+	  	<js:OneFlexibleChildHorizontalLayout flexibleChild="spacer1" maxWidth="400" maxHeight="20" />
+	  </js:beads>
 		<js:Label text="Symbol:" />
 		<js:TextInput id="symbolInput" width="50" />
 		<js:Spacer width="10" />
@@ -102,37 +121,40 @@ limitations under the License.
 		<js:TextInput id="sharesInput" width="50" />
 		<js:Spacer width="10" />
 		<js:TextButton id="addButton" text="Add" width="80" click="addSymbol()" />
-		<js:Spacer width="30" />
+		<js:Spacer id="spacer1" width="1" />
 		<js:TextButton id="removeButton" text="Remove" width="80" click="removeSymbol()" />
-	</js:HContainer>
+	</js:Container>
 	
-	<js:DataGrid id="assetGrid" height="45%" width="510" rowHeight="25" change="gridSelected()">
-		<js:beads>
-			<js:SimpleBinding
-				eventName="update"
-				sourceID="dataModel"
-				sourcePropertyName="assetList"
-				destinationPropertyName="dataProvider" />
-			<js:DataProviderChangeNotifier sourceID="dataModel" propertyName="assetList" 
-										   destinationPropertyName="dataProvider" changeEventName="dataProviderChanged" />
-		</js:beads>
-		<js:columns>
-			<js:DataGridColumn columnWidth="250" label="Company (SYMB)" dataField="name" itemRenderer="renderers.CompanyNameRenderer" />
-			<js:DataGridColumn columnWidth="80" label="Shares" dataField="shares" />
-			<js:DataGridColumn columnWidth="80" label="Last" dataField="last" />
-			<js:DataGridColumn columnWidth="100" label="Total $" dataField="shares" itemRenderer="renderers.SharesTotalRenderer" />
-		</js:columns>
-	</js:DataGrid>
+	<js:Container height="45%" width="100%" className="Outer2">
+		<js:DataGrid id="assetGrid" height="100%" width="100%" rowHeight="25" change="gridSelected()" className="LaunchGrid">
+			<js:beads>
+				<js:DataGridPercentageLayout />
+				<js:SimpleBinding
+					eventName="update"
+					sourceID="dataModel"
+					sourcePropertyName="assetList"
+					destinationPropertyName="dataProvider" />
+				<js:DataProviderChangeNotifier sourceID="dataModel" propertyName="assetList" 
+											   destinationPropertyName="dataProvider" changeEventName="dataProviderChanged" />
+			</js:beads>
+			<js:columns>
+				<js:DataGridColumn columnWidth="36" label="Company (SYMB)" dataField="name" itemRenderer="renderers.CompanyNameRenderer" />
+				<js:DataGridColumn columnWidth="20" label="Shares" dataField="shares" />
+				<js:DataGridColumn columnWidth="20" label="Last" dataField="last" />
+				<js:DataGridColumn columnWidth="24" label="Total $" dataField="shares" itemRenderer="renderers.SharesTotalRenderer" />
+			</js:columns>
+		</js:DataGrid>
+	</js:Container>
 	
 	<js:Spacer height="3%" />
 		
-	<js:StackedBarChart id="barChart" width="510" height="40%" className="AllCharts">
+	<js:BarChart id="barChart" width="100%" height="40%" className="AllCharts">
 		<js:model>
 			<js:ChartArrayListSelectionModel />
 		</js:model>
 		<js:beads>
 			<js:DataItemRendererFactoryForSeriesArrayListData />
-			<js:StackedBarChartLayoutForArrayList />
+			<js:BarChartLayoutForArrayList />
 			<js:SimpleBinding
 				eventName="update"
 				sourceID="dataModel"
@@ -156,6 +178,6 @@ limitations under the License.
 				</js:itemRenderer>
 			</js:BarSeries>
 		</js:series>
-	</js:StackedBarChart>
+	</js:BarChart>
 
 </js:TitleView>
