@@ -59,15 +59,30 @@ package flexUnitTests.observedbugs
         }
 
 
-        [TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
         [Test]
-        public function testTryCatchJSReleaseModeFail():void
+        public function testTryCatchJSReleaseModeWorks_a():void
         {
             var js:int = 1;
             try {
-                js = getDefinitionByName("flash.system.Capabilities") == null ? 1 : 0;
+                js = getDefinitionByName("flash.system.Capabilities") != null ? 1 : 0;
             } catch (e:Error) {
                 js = 2;
+            }
+			
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1));
+
+        }
+		
+		
+		[TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
+        [Test]
+        public function testTryCatchJSReleaseModeFails_b():void
+        {
+            var js:Boolean = false;
+            try {
+                var check:* = getDefinitionByName("flash.system.Capabilities");
+            } catch (e:Error) {
+                js = true;
             }
 			
 			//if this next reference to 'check' variable is not included, then the above try/catch code
@@ -76,7 +91,7 @@ package flexUnitTests.observedbugs
             /* if (check == null) {
                 js = true;
             }*/
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1));
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == true) : (js == false));
 
 
         }
