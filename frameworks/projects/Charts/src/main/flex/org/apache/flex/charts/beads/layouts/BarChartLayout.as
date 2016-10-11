@@ -86,9 +86,9 @@ package org.apache.flex.charts.beads.layouts
 			var n:int = dp.length;
 			var useWidth:Number = UIBase(chartDataGroup).width;
 			var useHeight:Number = UIBase(chartDataGroup).height;
-			var itemHeight:Number =  (useHeight - gap*(dp.length-1))/dp.length;
+			var itemHeight:Number =  useHeight/dp.length - gap;
 			var seriesHeight:Number = itemHeight/chart.series.length;
-			var ypos:Number = useHeight;
+			var ypos:Number = useHeight - gap/2;
 			
 			var maxXValue:Number = 0;
 			var minXValue:Number = 0;
@@ -138,6 +138,8 @@ package org.apache.flex.charts.beads.layouts
 					child.width = xValue;
 					child.height = seriesHeight;
 					ypos -= seriesHeight;
+					
+					child.updateRenderer();
 				}
 				
 				ypos -= gap;
