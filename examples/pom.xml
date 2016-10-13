@@ -37,6 +37,8 @@
   <modules>
     <module>flexjs</module>
     <!--module>native</module-->
+
+    <module>examples-tests</module>
   </modules>
 
   <build>
