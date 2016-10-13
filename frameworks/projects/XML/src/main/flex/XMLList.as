@@ -115,7 +115,7 @@ package
 					"get": function():* { return _xmlArray[idx]; },
 					"set": function(newValue:*):void {
 						if(idx >= _xmlArray.length)
-							appendChild(newValue);
+							append(newValue);
 						else
 							replaceChildAt(idx,newValue);
 					},
@@ -125,7 +125,7 @@ package
 			);
 		}
 		
-		public function appendChild(child:XML):void
+		public function append(child:XML):void
 		{
 			_xmlArray[_xmlArray.length] = child;
 			addIndex(_xmlArray.length);
@@ -146,6 +146,13 @@ package
 				}
 				_targetObject.insertChildAfter(objToAppend[objToAppend.length()-1],child);
 			}while(false);
+		}
+
+		public function appendChild(child:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].appendChild(child);
+			return null;
 		}
 		
 		/**
@@ -200,7 +207,7 @@ package
 			{
 				if(propNum >= 0 && propNum < _xmlArray.length)
 				{
-					retVal.appendChild(_xmlArray[propNum]);
+					retVal.append(_xmlArray[propNum]);
 					retVal.targetObject = _xmlArray[propNum];
 				}
 				return retVal;
@@ -265,7 +272,7 @@ package
 			if(list is XML)
 			{
 				var newList:XMLList = new XMLList();
-				newList.appendChild(list);
+				newList.append(list);
 				list = newList;
 			}
 			if(!(list is XMLList))
@@ -276,11 +283,11 @@ package
 			var len:int = list.length();
 			var i:int=0;
 			while(i<len)
-				appendChild(list[i++]);
+				append(list[i++]);
 
 //			var xmlList:XMLList = list;
 //			for each(item in xmlList)
-//				appendChild(item);
+//				append(item);
 				
 			return this;
 		}
@@ -315,7 +322,7 @@ package
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
-				retVal.appendChild(_xmlArray[i].copy());
+				retVal.append(_xmlArray[i].copy());
 			
 			return retVal;
 		}
@@ -402,7 +409,7 @@ package
 			for(var i:int = 0;i<_xmlArray.length;i++)
 			{
 				if(callback(_xmlArray[i]))
-					list.appendChild(_xmlArray[i]);
+					list.append(_xmlArray[i]);
 			}
 			list.targetObject = _targetObject;
 			list.targetProperty = _targetProperty;
@@ -600,10 +607,10 @@ package
 					continue;
 				if(name == "*")
 				{
-					retVal.appendChild(_xmlArray[i]);
+					retVal.append(_xmlArray[i]);
 				}
 				else if(name == _xmlArray[i].localName)
-					retVal.appendChild(_xmlArray[i]);
+					retVal.append(_xmlArray[i]);
 			}
 			return retVal;
 		}
@@ -612,6 +619,11 @@ package
 		{
 			var i:int;
 			var len:int;
+			if(child is String)
+			{
+				child = this.child(child);
+			}
+			
 			if(child is XMLList)
 			{
 				len = child.length();

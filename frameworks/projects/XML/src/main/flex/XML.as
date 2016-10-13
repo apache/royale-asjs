@@ -512,7 +512,7 @@ package
 			for(i=0;i<_attributes.length;i++)
 			{
 				if(_attributes[i].name().matches(attributeName))
-					list.appendChild(_attributes[i]);
+					list.append(_attributes[i]);
 			}
 			list.targetObject = this;
 			list.targetProperty = attributeName;
@@ -530,7 +530,7 @@ package
 			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_attributes.length;i++)
-				list.appendChild(_attributes[i]);
+				list.append(_attributes[i]);
 
 			list.targetObject = this;
 			return list;
@@ -569,7 +569,7 @@ package
 			{
 				if(propertyName != "0")
 					return null;
-				list.appendChild(this);
+				list.append(this);
 				list.targetObject = this;
 				return list;
 			}
@@ -579,7 +579,7 @@ package
 				for(i=0;i<_attributes.length;i++)
 				{
 					if(propertyName.matches(_attributes[i].name()))
-						list.appendChild(_attributes[i]);
+						list.append(_attributes[i]);
 				}
 			}
 			else
@@ -587,7 +587,7 @@ package
 				for(i=0;i<_children.length;i++)
 				{
 					if(propertyName.matches(_children[i].name()))
-						list.appendChild(_children[i]);
+						list.append(_children[i]);
 				}
 			}
 			list.targetObject = this;
@@ -620,7 +620,7 @@ package
 			var i:int;
 			var list:XMLList = new XMLList();
 			for(i=0;i<_children.length;i++)
-				list.appendChild(_children[i]);
+				list.append(_children[i]);
 
 			list.targetObject = this;
 			return list;
@@ -639,7 +639,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "comment")
-					list.appendChild(_children[i]);
+					list.append(_children[i]);
 			}
 			list.targetObject = this;
 			return list;
@@ -650,17 +650,17 @@ package
 			if(list is XML)
 			{
 				var newList:XMLList = new XMLList();
-				newList.appendChild(list);
+				newList.append(list);
 				list = newList;
 			}
 			if(!(list is XMLList))
 				throw new TypeError("invalid type");
 
 			var retVal:XMLList = new XMLList();
-			retVal.appendChild(this);
+			retVal.append(this);
 			var item:XML;
 			for each(item in list)
-				retVal.appendChild(item);
+				retVal.append(item);
 				
 			return retVal;
 		}
@@ -768,7 +768,7 @@ package
 				for(i=0;i<_attributes.length;i++)
 				{
 					if(name.matches(_attributes[i].name()))
-						list.appendChild(_attributes[i]);
+						list.append(_attributes[i]);
 				}
 			}
 			for(i=0;i<_children.length;i++)
@@ -776,7 +776,7 @@ package
 				if(_children[i].nodeKind() == "element")
 				{
 					if(name.matches(_children[i].name()))
-						list.appendChild(_children[i]);
+						list.append(_children[i]);
 
 					list.concat(_children[i].descendants(name));
 				} 
@@ -801,7 +801,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "element" && name.matches(_children[i].name()))
-					list.appendChild(_children[i]);
+					list.append(_children[i]);
 			}
 
 			list.targetObject = this;
@@ -1370,7 +1370,7 @@ package
 		public function plus(rightHand:*):*
 		{
 			var list:XMLList = new XMLList();
-			list.appendChild(this);
+			list.append(this);
 			return list.plus(rightHand);
 		}
 
@@ -1403,7 +1403,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "processing-instruction")
-					list.appendChild(_children[i]);
+					list.append(_children[i]);
 			}
 			list.targetObject = this;
 			return list;
@@ -2033,7 +2033,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "text")
-					list.appendChild(_attributes[i]);
+					list.append(_attributes[i]);
 			}
 			list.targetObject = this;
 			return list;
