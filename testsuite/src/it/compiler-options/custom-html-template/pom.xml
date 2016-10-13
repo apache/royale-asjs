@@ -41,6 +41,7 @@
         <version>@flexjs.compiler.version@</version>
         <extensions>true</extensions>
         <configuration>
+          <debug>true</debug>
           <mainClass>HelloWorld.mxml</mainClass>
           <outputJavaScript>true</outputJavaScript>
           <htmlTemplate>${basedir}/src/main/template/custom-js-index-template.html</htmlTemplate>

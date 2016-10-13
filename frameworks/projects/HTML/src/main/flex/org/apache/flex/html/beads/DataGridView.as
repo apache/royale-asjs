@@ -20,6 +20,7 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
@@ -34,6 +35,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
 	import org.apache.flex.html.beads.layouts.VerticalLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.html.beads.layouts.IDataGridLayout;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
@@ -74,9 +77,18 @@ package org.apache.flex.html.beads
 		/**
 		 * An array of List objects the comprise the columns of the DataGrid.
 		 */
-		public function get getColumnLists():Array
+		public function get columnLists():Array
 		{
 			return _lists;
+		}
+		
+		/**
+		 * The area used to hold the columns
+		 *
+		 */
+		public function get listArea():Container
+		{
+			return _listArea;
 		}
 
 		/**
@@ -85,6 +97,14 @@ package org.apache.flex.html.beads
 		public function get host():IUIBase
 		{
 			return _strand as IUIBase;
+		}
+		
+		/**
+		 * Returns the component used as the header for the DataGrid.
+		 */
+		public function get header():IUIBase
+		{
+			return _header;
 		}
 
 		/**
@@ -100,19 +120,25 @@ package org.apache.flex.html.beads
 			_strand = value;
 
 			var host:UIBase = value as UIBase;
-			host.addEventListener("widthChanged", handleSizeChanges);
-			host.addEventListener("heightChanged", handleSizeChanges);
 
 			_header = new DataGridButtonBar();
 			_header.id = "dataGridHeader";
 
 			var scrollPort:ScrollingViewport = new ScrollingViewport();
-//			scrollPort.showsHorizontalScrollBar = false;
 
 			_listArea = new Container();
 			_listArea.id = "dataGridListArea";
 			_listArea.className = "DataGridListArea";
 			_listArea.addBead(scrollPort);
+			
+			if (_strand.getBeadByType(IBeadLayout) == null) {
+				var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+				if (c)
+				{
+					var layout:IBeadLayout = new c() as IBeadLayout;
+					_strand.addBead(layout);
+				}
+			}
 
 			finishSetup(null);
 		}
@@ -135,19 +161,13 @@ package org.apache.flex.html.beads
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 
 			var columnLabels:Array = new Array();
-			var buttonWidths:Array = new Array();
 
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
 				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				columnLabels.push(dgc.label);
-				if (!isNaN(dgc.columnWidth)) buttonWidths.push(dgc.columnWidth);
 			}
 
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
-			if (buttonWidths.length == sharedModel.columns.length) {
-				bblayout.buttonWidths = buttonWidths;
-			}
-
 			var buttonBarModel:ArraySelectionModel = new ArraySelectionModel();
 			buttonBarModel.dataProvider = columnLabels;
 
@@ -158,62 +178,19 @@ package org.apache.flex.html.beads
 
 			host.addElement(_listArea);
 
-			// do we know what the size is? If not, wait to be sized
-
-			if (host.isHeightSizedToContent() || host.isWidthSizedToContent()) {
-				host.addEventListener("sizeChanged", handleSizeChanges);
-			}
-
-				// else size now
-			else {
-				handleDataProviderChanged(event);
-			}
+			handleDataProviderChanged(event);
 		}
 
 		/**
 		 * @private
 		 */
 		private function handleSizeChanges(event:Event):void
-		{
-			var useWidth:Number = _listArea.width;
-			var useHeight:Number = _listArea.height;
-
-			if (host.width > 0) {
-				useWidth = host.width;
-			}
-
-			_header.x = 0;
-			_header.y = 0;
-			_header.width = useWidth;
-			_header.height = 25;
-
-			if (host.height > 0) {
-				useHeight = host.height - _header.height;
-			}
-
-			_listArea.x = 0;
-			_listArea.y = 26;
-			_listArea.width = useWidth;
-			_listArea.height = useHeight;
-
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-
-			if (_lists != null && _lists.length > 0) {
-				var xpos:Number = 0;
-				var listWidth:Number = host.width / _lists.length;
-				for (var i:int=0; i < _lists.length; i++) {
-					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
-					list.x = xpos;
-					list.y = 0;
-
-					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					var colWidth:Number = dataGridColumn.columnWidth;
-					if (!isNaN(colWidth)) list.width = colWidth;
-					else list.width = listWidth;
-
-					xpos += list.width;
-				}
-			}
+		{	
+			var layoutBead:IDataGridLayout = _strand.getBeadByType(IBeadLayout) as IDataGridLayout;
+			layoutBead.header = _header;
+			layoutBead.columns = _lists;
+			layoutBead.listArea = _listArea;
+			layoutBead.layout();
 		}
 
 		/**
@@ -234,7 +211,7 @@ package org.apache.flex.html.beads
 				listModel.dataProvider = sharedModel.dataProvider;
 			}
 
-			handleSizeChanges(event);
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		/**
@@ -253,7 +230,7 @@ package org.apache.flex.html.beads
 				}
 			}
 
-			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
+			host.dispatchEvent(new Event('change'));
 		}
 
 		/**
@@ -278,15 +255,11 @@ package org.apache.flex.html.beads
 				list.addEventListener('change',handleColumnListChange);
 				list.addBead(presentationModel);
 
-				var colWidth:Number = dataGridColumn.columnWidth;
-				if (!isNaN(colWidth)) list.width = colWidth;
-				else list.width = listWidth;
-
 				_listArea.addElement(list);
 				_lists.push(list);
 			}
 
-			_listArea.dispatchEvent(new Event("layoutNeeded"));
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }

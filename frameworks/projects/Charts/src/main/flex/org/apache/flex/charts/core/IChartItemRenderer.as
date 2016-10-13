@@ -123,5 +123,15 @@ package org.apache.flex.charts.core
 		 *  @productversion FlexJS 0.0
 		 */
 		function set height(value:Number):void;
+		
+		/**
+		 * Invoke this function to force the itemRenderer to redraw.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		function updateRenderer():void;
 	}
 }

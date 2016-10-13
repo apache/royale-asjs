@@ -16,26 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package bindables
 {
-    import org.apache.flex.collections.converters.JSONItemConverter;
 
-    public class StockDataJSONItemConverter extends JSONItemConverter
-    {
-        public function StockDataJSONItemConverter()
-        {
-            super();
-        }
+	
+	[Bindable]
+	public class BindableWithConstructorInit
+	{
+	
+		public static const STATIC_INIT:BindableWithConstructorInit 	= new BindableWithConstructorInit( "STATIC_INIT"	,-1 );
+		
+		public var ordinal:int;
+		public var value:String;
+		
+		public function BindableWithConstructorInit ( value:String, ordinal:int )
+		{
+			this.value = value;
+			this.ordinal = ordinal;
+		}
 
-        override public function convertItem(data:String):Object
-        {
-            var obj:Object = super.convertItem(data);
-            if (obj["query"] == null) return "No Data";
-			if (obj["query"]["count"] == 0)
-				return "No Data";
+	
+		
+		public function equals( other:BindableWithConstructorInit ):Boolean
+		{
+			return ( this.ordinal == other.ordinal && this.value == other.value );
+		}
+	}
 
-			obj = obj["query"]["results"]["quote"];
-			return obj;
-        }
-    }
 }

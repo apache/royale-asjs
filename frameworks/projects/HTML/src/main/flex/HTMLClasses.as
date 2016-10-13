@@ -138,6 +138,9 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout; HorizontalLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
+	import org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
+	import org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
+	
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
@@ -157,6 +160,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.DataGridButtonBar; DataGridButtonBar;
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
+	import org.apache.flex.html.beads.layouts.DataGridLayout; DataGridLayout;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;
 	import org.apache.flex.html.beads.DecrementButtonView; DecrementButtonView;

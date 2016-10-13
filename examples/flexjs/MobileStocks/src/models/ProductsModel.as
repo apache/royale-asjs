@@ -232,6 +232,7 @@ package models
 		private function completeHandler(event:Event):void
 		{
 			var responseData:Object = collection.getItemAt(0);
+			if ((responseData is String) && (responseData == "No Data")) return;
 			var sym:String = responseData["Symbol"];
 
 			var queueNext:Stock = null;

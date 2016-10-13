@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.DateFieldView;
 	
@@ -71,7 +72,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function clickHandler(event:Event):void
+		private function clickHandler(event:MouseEvent):void
 		{
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;

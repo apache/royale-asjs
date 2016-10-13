@@ -281,10 +281,10 @@ package org.apache.flex.binding
                     {
                         case "property":
                         {
-                            var pw:PropertyWatcher = new PropertyWatcher(this, 
-                                        watcher.propertyName, 
-                                        watcher.eventNames,
-                                        (typeof(gb.source) === "function") ? gb.source as Function : watcher.getterFunction);
+                            var pw:PropertyWatcher = new PropertyWatcher(_strand, 
+                                watcher.propertyName, 
+                                watcher.eventNames,
+                                (typeof(gb.source) === "function" && watcher.children == null) ? gb.source as Function : watcher.getterFunction);
                             watcher.watcher = pw;
                             if (parentWatcher)
                                 pw.parentChanged(parentWatcher.value);

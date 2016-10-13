@@ -33,15 +33,16 @@ limitations under the License.
 		
 	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" rowHeight="30">
 		<js:beads>
+			<js:DataGridPercentageLayout />
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="25" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="50" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
 		</js:columns>
 	</js:DataGrid>
 		

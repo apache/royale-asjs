@@ -50,6 +50,7 @@
     <module>MapSearch</module>
     <module>MobileMap</module>
     <module>MobileTrader</module>
+    <module>MobileStocks</module>
     <module>StorageExample</module>
     <module>StyleExample</module>
     <module>TodoListSampleApp</module>

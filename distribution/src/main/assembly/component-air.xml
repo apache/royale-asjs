@@ -34,6 +34,7 @@ under the License.
         <include>com.adobe.air.compiler:adt:zip:android</include>
         <include>com.adobe.air.compiler:adt:zip:desktop</include>
         <include>com.adobe.air.compiler:adt:zip:ios</include>
+        <include>com.adobe.air.compiler:adt:zip:win</include>
       </includes>
       <unpack>true</unpack>
     </dependencySet>

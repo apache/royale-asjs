@@ -48,10 +48,10 @@ package org.apache.flex.binding
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function PropertyWatcher(source:Object, propertyName:String, eventNames:Object, 
+		public function PropertyWatcher(document:Object, propertyName:String, eventNames:Object, 
                                             getterFunction:Function)
 		{
-            this.source = source;
+            this.document = document;
             this.propertyName = propertyName;
             this.getterFunction = getterFunction;
             this.eventNames = eventNames;
@@ -70,6 +70,16 @@ package org.apache.flex.binding
          */
         protected var dispatcher:IEventDispatcher;
 		
+        /**
+         *  The document we belong to.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public var document:Object;
+        
         /**
          *  The object who's property we are watching.
          *
@@ -226,7 +236,7 @@ package org.apache.flex.binding
                 {
                     if (getterFunction != null)
                     {
-                        value = getterFunction.apply(source, [ propertyName ]);
+                        value = getterFunction.apply(document, [ propertyName ]);
                     }
                     else
                     {
