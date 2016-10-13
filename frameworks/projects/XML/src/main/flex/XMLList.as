@@ -621,9 +621,18 @@ package
 			var len:int;
 			if(child is String)
 			{
-				child = this.child(child);
+				var propNum:Number = parseInt(child,10);
+				if(propNum.toString() == child)
+				{
+					removeChildAt(propNum);
+				}
+				else if (isSingle())
+				{
+					_xmlArray[0].removeChild(child);
+				}
+				return;
 			}
-			
+
 			if(child is XMLList)
 			{
 				len = child.length();
