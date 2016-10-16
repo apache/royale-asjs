@@ -20,7 +20,8 @@ limitations under the License.
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                 xmlns:js="library://ns.apache.org/flexjs/basic"
                 xmlns:local="*"
-                xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+                xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                xmlns="http://www.w3.org/1999/xhtml">
     
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
@@ -29,9 +30,9 @@ limitations under the License.
     <js:initialView>
         <js:View>
             
-            <js:Button className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-               
-            </js:Button>
+            <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+               <i class="material-icons">add</i>
+            </js:TextButton>
 
             <mdl:Button/>
         </js:View>
