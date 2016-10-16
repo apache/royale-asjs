@@ -30,11 +30,38 @@ limitations under the License.
     <js:initialView>
         <js:View>
             
-            <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-               <i class="material-icons">add</i>
-            </js:TextButton>
+            <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
+            <js:Container>
+                <js:beads>
+                    <js:HorizontalLayout />
+                </js:beads>
+                            
+                <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                    <i class="material-icons">add</i>
+                </js:TextButton>
 
-            <mdl:Button/>
+                <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <i class="material-icons">add</i>
+                </js:TextButton>
+
+                <!-- Raised button -->
+                <js:TextButton className="mdl-button mdl-js-button mdl-button--raised" text="BUTTON"/>
+                <!-- Raised button with ripple -->
+                <js:TextButton className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" text="BUTTON"/>
+                <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
+                <js:TextButton className="mdl-button mdl-js-button mdl-button--raised" text="BUTTON"/>
+
+                <mdl:Button/>
+
+            </js:Container>
+
+            <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
+            <js:Container className="mdl-textfield mdl-js-textfield">
+                <js:TextInput className="mdl-textfield__input" id="sample1"/>
+                <js:Label className="mdl-textfield__label" text="Text..."/>
+            </js:Container>
+
+            
         </js:View>
     </js:initialView>
 </js:Application>
