@@ -24,6 +24,8 @@ package org.apache.flex.html
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
 
+    [DefaultProperty("text")]
+        
     /**
      *  The TextButton class implements a basic button that
      *  displays text.
