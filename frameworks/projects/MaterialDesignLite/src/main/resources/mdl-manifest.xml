@@ -22,6 +22,6 @@
 <componentPackage>
 
     <component id="Button" class="org.apache.flex.mdl.Button"/>
-    <component id="TextInput" class="org.apache.flex.html.TextInput"  lookupOnly="true" />
+    <component id="TextInput" class="org.apache.flex.mdl.TextInput"/>
 
 </componentPackage>
