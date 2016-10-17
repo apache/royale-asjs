@@ -56,11 +56,12 @@ limitations under the License.
             </js:Container>
 
             <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-            <js:Container className="mdl-textfield mdl-js-textfield">
-                <js:TextInput className="mdl-textfield__input" id="sample1"/>
-                <js:Label className="mdl-textfield__label" text="Text..."/>
-            </js:Container>
-
+            <js:Form action="http://www.google.com">
+                <js:Container className="mdl-textfield mdl-js-textfield">
+                    <js:TextInput className="mdl-textfield__input" id="sample1"/>
+                    <js:Label className="mdl-textfield__label" text="Text..."/>
+                </js:Container>
+            </js:Form>
             
         </js:View>
     </js:initialView>
