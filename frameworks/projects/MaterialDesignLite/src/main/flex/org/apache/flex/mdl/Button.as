@@ -66,8 +66,9 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             var button:HTMLButtonElement;
-
-            element = button = document.createElement('button') as HTMLButtonElement;
+            
+            button = document.createElement('button') as HTMLButtonElement;
+            element = button as WrappedHTMLElement;
             button.className = 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored';
             
             positioner = element;
