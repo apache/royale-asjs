@@ -59,8 +59,7 @@ package org.apache.flex.mdl
             var input:HTMLInputElement;
             var label:HTMLLabelElement;
             var textNode:Text;
-            //element = document.createElement('input') as WrappedHTMLElement;
-
+            
             div = document.createElement('div') as HTMLDivElement;
             div.className = "mdl-textfield mdl-js-textfield";
 
@@ -71,15 +70,15 @@ package org.apache.flex.mdl
             label = document.createElement('label') as HTMLLabelElement;
             label.className = "mdl-textfield__label";
             
-            textNode = document.createTextNode('Text...') as Text;
+            textNode = document.createTextNode('') as Text;
             label.appendChild(textNode);
-            //element.className = 'TextInput';
-            //typeNames = 'TextInput';
             
             div.appendChild(input);
             div.appendChild(label);
 
             element = div as WrappedHTMLElement;
+            //element.className = 'TextInput';
+            typeNames = 'TextInput';
 
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
