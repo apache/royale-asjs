@@ -30,44 +30,42 @@ limitations under the License.
     <js:initialView>
         <js:View>
             
-            <js:Form action="http://www.google.com"> 
+            <js:Form action="#"> 
 
                 <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
                 <js:Container>
                     <js:beads>
                         <js:HorizontalLayout />
                     </js:beads>
-                           
-                    <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-                        <i class="material-icons">add</i>
-                    </js:TextButton>
-
-                    <js:TextButton className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-                        <i class="material-icons">mood</i>
-                    </js:TextButton>
-
-                    <!-- Raised button -->
-                    <js:TextButton className="mdl-button mdl-js-button mdl-button--raised" text="BUTTON"/>
-                    <!-- Raised button with ripple -->
-                    <js:TextButton className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" text="BUTTON"/>
-                    <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
-                    <js:TextButton className="mdl-button mdl-js-button mdl-button--raised" text="BUTTON"/>
-
-                    <mdl:Button>
+                    
+                    <!-- Fab button -->
+                    <mdl:Button mdlEffect="mdl-button--fab mdl-button--colored">
                         <i class="material-icons">add</i>
                     </mdl:Button>
 
-                    <mdl:Button text="BUTTON"/>                 
+                    <!-- Fab with Ripple -->
+                    <mdl:Button mdlEffect="mdl-button--fab mdl-js-ripple-effect">
+                        <i class="material-icons md-48">face</i>
+                    </mdl:Button>
+
+                    <!-- Raised button -->
+                    <mdl:Button mdlEffect="mdl-button--raised mdl-button--colored" text="BUTTON"/>
+                    <!-- Raised button with ripple -->
+                    <mdl:Button mdlEffect="mdl-button--raised mdl-js-ripple-effect mdl-button--accent" text="BUTTON"/>
+                    <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
+                    <mdl:Button mdlEffect="mdl-button--raised" text="BUTTON"/>
                 </js:Container>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
                 <mdl:TextInput id="mdlti" text="Something..." change="mdlchk.text = mdlti.text"/>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-                <mdl:CheckBox id="mdlchk" text="Hello" selected="true"/>
+                <mdl:CheckBox id="mdlchk" text="This Checks" selected="true"/>
+                <mdl:CheckBox id="mdlchk1" text="This is disabled at start" />
                 
                 <mdl:RadioButton groupName="g1" text="Black"/>
                 <mdl:RadioButton groupName="g1" text="White"/>
+                <mdl:RadioButton groupName="g1" text="Red"/>
             </js:Form>
             
         </js:View>
