@@ -18,13 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    COMPILE::SWF
-    {
-        import org.apache.flex.html.Button;            
-    }
+    import org.apache.flex.html.TextButton;            
+    
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
     }
     
@@ -37,8 +34,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::SWF
-	public class Button extends org.apache.flex.html.Button
+	public class Button extends TextButton
 	{
         /**
          *  Constructor.
@@ -52,31 +48,50 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
-	}
-    
-    COMPILE::JS
-    public class Button extends UIBase
-    {
-        private var button:HTMLButtonElement;
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLButtonElement
-         */
-        override protected function createElement():WrappedHTMLElement
-        {
-            var button:HTMLButtonElement;
-            
-            button = document.createElement('button') as HTMLButtonElement;
-            element = button as WrappedHTMLElement;
-            button.className = 'mdl-button mdl-js-button mdl-button--fab mdl-button--colored';
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+            element = document.createElement('button') as WrappedHTMLElement;
+            //element.setAttribute('type', 'button');
             
             positioner = element;
             positioner.style.position = 'relative';
-            (button as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
-            
-            return element;
+
+            element.className = 'mdl-button mdl-js-button';
+			className = "";
+			typeNames = "MDLButton";
+			return element;
+		}
+
+        public static const RAISED_EFFECT:String = "mdl-button--raised";
+        public static const FAB_EFFECT:String = "mdl-button--fab";
+        public static const MINI_FAB_EFFECT:String = "mdl-button--mini-fab";
+        public static const ICON_EFFECT:String = "mdl-button--icon";
+        public static const COLORED_EFFECT:String = "mdl-button--colored";
+        public static const PRIMARY_EFFECT:String = "mdl-button--primary";
+        public static const ACCENT_EFFECT:String = "mdl-button--accent";
+        public static const RIPPLE_EFFECT:String = "mdl-js-ripple-effect";
+
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
         }
-    }    
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+            COMPILE::JS 
+            {
+                element.className = 'mdl-button mdl-js-button ' + _mdlEffect;
+            }
+        }
+	}
 }
