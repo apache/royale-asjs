@@ -34,6 +34,14 @@ limitations under the License.
 			background-color: #FFFFFF;
 		}
 		
+		js|TextInput {
+			font-size: 10pt;
+		}
+		
+		js|Label {
+		    font-size: 8pt;
+		}
+		
 		js|StackedViewManager {
 			padding-top: 0px;
 			padding-bottom: 0px;
@@ -53,7 +61,8 @@ limitations under the License.
 		
 		.NavigationBar {
 			background-image: url("assets/background.png");
-			height: 55px;
+			height: 56px;
+			width: 100%;
 			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 		}
 		

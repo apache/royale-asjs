@@ -81,20 +81,37 @@ limitations under the License.
 			padding-right: 10px;
 		}
 		
+		.DataGridListArea .StringItemRenderer {
+			font-size: 10px;
+		}
+
+		.HorizontalAxis .TickLabel {
+			color: #333333;
+		}
+
+		.VerticalAxis .TickLabel {
+			color: #333333;
+		}
+		
 		.Outer1 {
-			background-color: #FFFFCC;
+			background-color: #FFFFFF;
+			vertical-align: middle;
+		}
+		
+		.InputChild {
+			vertical-align: middle;
 		}
 		
 		.Outer2 {
-			background-color: #FF0000;
+			background-color: #FFFFFF;
 		}
 		
 		.LaunchGrid {
-			background-color: #0000FF;
+			background-color: #FFFFFF;
 		}
 		
 		.DataGridListArea {
-			background-color: #CCFFFF;
+			background-color: #FFFFFF;
 		}
 	</fx:Style>
 	
@@ -114,15 +131,15 @@ limitations under the License.
 	  <js:beads>
 	  	<js:OneFlexibleChildHorizontalLayout flexibleChild="spacer1" maxWidth="400" maxHeight="20" />
 	  </js:beads>
-		<js:Label text="Symbol:" />
-		<js:TextInput id="symbolInput" width="50" />
+		<js:Label text="Symbol:" className="InputChild" />
+		<js:TextInput id="symbolInput" width="50" className="InputChild" />
 		<js:Spacer width="10" />
-		<js:Label text="Shares:" />
-		<js:TextInput id="sharesInput" width="50" />
+		<js:Label text="Shares:" className="InputChild" />
+		<js:TextInput id="sharesInput" width="50" className="InputChild" />
 		<js:Spacer width="10" />
-		<js:TextButton id="addButton" text="Add" width="80" click="addSymbol()" />
+		<js:TextButton id="addButton" text="Add" width="80" click="addSymbol()" className="InputChild" />
 		<js:Spacer id="spacer1" width="1" />
-		<js:TextButton id="removeButton" text="Remove" width="80" click="removeSymbol()" />
+		<js:TextButton id="removeButton" text="Remove" width="80" click="removeSymbol()" className="InputChild" />
 	</js:Container>
 	
 	<js:Container height="45%" width="100%" className="Outer2">
@@ -154,7 +171,7 @@ limitations under the License.
 		</js:model>
 		<js:beads>
 			<js:DataItemRendererFactoryForSeriesArrayListData />
-			<js:BarChartLayoutForArrayList />
+			<js:BarChartLayoutForArrayList gap="2" />
 			<js:SimpleBinding
 				eventName="update"
 				sourceID="dataModel"
