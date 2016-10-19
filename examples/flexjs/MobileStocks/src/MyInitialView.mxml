@@ -85,16 +85,6 @@ limitations under the License.
 			background-image: url('assets/arrow_left_24.png');
 		}
 		
-		.AssetsInner {
-			padding-top: 5px;
-			background-color: #FFFFFF;
-		}
-		
-		views|AssetsView {
-			width: 100%;
-			height: 100%;
-		}
-		
 		views|LaunchView {
 			width: 100%;
 			height: 100%;
@@ -131,12 +121,6 @@ limitations under the License.
 		views|StockView {
 			width: 100%;
 			height: 100%;
-		}
-		
-		views|AlertsView {
-			width: 100%;
-			height: 100%;
-			IBeadController:ClassReference('controller.AlertsViewController');
 		}
 		
 		.redCell {
@@ -213,20 +197,16 @@ limitations under the License.
 				(applicationModel as ProductsModel).loadDataFromStorage();
 			}
 			
-			private function onAssetsNext():void
-			{
-				
-			}
-			
+			/* debugging */
 			private function tabbedViewChanged(event:org.apache.flex.events.Event):void
 			{
-				var manager:IViewManager = event.currentTarget as IViewManager;
-				trace("TabbedViewChanged for "+manager);
+				//var manager:IViewManager = event.currentTarget as IViewManager;
+				//trace("TabbedViewChanged for "+manager);
 			}
 			
 			private function watchListStackChanged(event:org.apache.flex.events.Event):void
 			{
-				trace("watchlist stack changed");
+				//trace("watchlist stack changed");
 				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
 				
 				var currentView:IViewManagerView = manager.selectedView;
@@ -258,7 +238,7 @@ limitations under the License.
 		<js:views>
 			<js:StackedViewManager title="Assets">
 				<js:views>
-					<views:LaunchView id="assetsView" title="Assets" next="onAssetsNext()" dataModel="{applicationModel}" />
+					<views:LaunchView id="assetsView" title="Assets" dataModel="{applicationModel}" />
 				</js:views>
 			</js:StackedViewManager>
 			

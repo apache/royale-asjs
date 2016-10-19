@@ -22,7 +22,9 @@ limitations under the License.
 			xmlns:js="library://ns.apache.org/flexjs/basic"
 			xmlns:models="models.*"
 			xmlns:local="*"
-			className="AssetsView" xmlns:views="views.*">
+		    xmlns:views="views.*"
+			className="LaunchView">
+			
 	<fx:Script>
 		<![CDATA[
 			import controller.LaunchViewController;
@@ -93,18 +95,18 @@ limitations under the License.
 			color: #333333;
 		}
 		
-		.Outer1 {
+		/*.Outer1 {
 			background-color: #FFFFFF;
 			vertical-align: middle;
-		}
+		}*/
 		
 		.InputChild {
 			vertical-align: middle;
 		}
 		
-		.Outer2 {
+		/*.Outer2 {
 			background-color: #FFFFFF;
-		}
+		}*/
 		
 		.LaunchGrid {
 			background-color: #FFFFFF;
@@ -123,11 +125,13 @@ limitations under the License.
 		<js:VerticalLayout />
 	</js:beads>
 	
-	<js:model>
+	<!-- 
+<js:model>
 		<models:AssetsModel />
 	</js:model>
+ -->
 
-	<js:Container height="40" width="100%" className="Outer1">
+	<js:Container height="40" width="100%">
 	  <js:beads>
 	  	<js:OneFlexibleChildHorizontalLayout flexibleChild="spacer1" maxWidth="400" maxHeight="20" />
 	  </js:beads>
@@ -142,7 +146,7 @@ limitations under the License.
 		<js:TextButton id="removeButton" text="Remove" width="80" click="removeSymbol()" className="InputChild" />
 	</js:Container>
 	
-	<js:Container height="45%" width="100%" className="Outer2">
+	<js:Container height="45%" width="100%">
 		<js:DataGrid id="assetGrid" height="100%" width="100%" rowHeight="25" change="gridSelected()" className="LaunchGrid">
 			<js:beads>
 				<js:DataGridPercentageLayout />

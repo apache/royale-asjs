@@ -267,31 +267,5 @@ package models
 			}
 
 		}
-
-
-
-
-		// discard alerts
-		private var _alerts:ArrayList;
-
-		public function get alerts():ArrayList
-		{
-			return _alerts;
-		}
-
-		public function addAlert(value:Alert):void
-		{
-			for (var i:int =0; i < _alerts.length; i++)
-			{
-				var alert:Alert = _alerts.getItemAt(i) as Alert;
-				if (alert.symbol == value.symbol) {
-					_alerts.setItemAt(value, i);
-					return;
-				}
-			}
-
-			_alerts.addItem(value);
-			dispatchEvent(new Event("alertsUpdate"));
-		}
 	}
 }
