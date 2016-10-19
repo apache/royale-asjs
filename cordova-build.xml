@@ -39,7 +39,7 @@
 	     
 	-->
 	
-	<target name="main" depends="create, compilejs, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	<target name="main" depends="create, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
 	</target>
 	
 	<!-- Set up properties and conditions -->
@@ -56,11 +56,15 @@
     	</not>
     </condition>
 	
-	<!-- override with -Dplatform=other-platform-name -->
-	<condition property="platform" value="android">
+	<condition property="platform.android" value="android">
 		<not>
-			<isset property="platform" />
+			<isset property="platform.android" />
 		</not>
+    </condition>
+    <condition property="platform.ios" value="ios">
+    	<not>
+    		<isset property="platform.ios" />
+    	</not>
     </condition>
     
 	<!-- override with -Dappname=other-app-name -->
@@ -95,6 +99,8 @@
 		<exec executable="${cordova.executable}" dir="${projectdir}/app">
 			<arg value="create" />
 			<arg value="${appname}" />
+			<arg value="org.apache.flex.examples.${appname}" />
+			<arg value="${appname}" />
 		</exec>
 		
 		<echo>Adding in platform(s). This may take awhile.</echo>
@@ -103,17 +109,13 @@
 		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
 			<arg value="platform" />
 			<arg value="add" />
-			<arg value="${platform}" />
+			<arg value="${platform.android}" />
 		</exec>
-    </target>
-    
-    <!-- Compile the FlexJS application -->
-    
-    <target name="compilejs" description="Compiles the FlexJS app into JavaScript">
-    	<echo message="Compiling FlexJS app" />
-    	<exec executable="mxmlc" dir="${projectdir}/src">
-    		<arg value="${appname}.mxml" />
-    	</exec>
+		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="${platform.ios}" />
+		</exec>
     </target>
     
     <!-- Clean www directory -->
@@ -137,11 +139,19 @@
     	Running the app on the platform
     -->
     
-    <target name="run" description="Runs the Cordova application on the specified platform">
-    	<echo message="Launching ${appname} on platform ${platform}" />
+    <target name="run.android" description="Runs the Cordova application on the specified platform">
+    	<echo message="Launching ${appname} on platform ${platform.android}" />
     	<exec executable="cordova" dir="${cordova.target.dir}">
     		<arg value="run" />
-    		<arg value="${platform}" />
+    		<arg value="${platform.android}" />
+    	</exec>
+    </target>
+    
+    <target name="run.ios" description="Runs the Cordova application on the specified platform">
+    	<echo message="Launching ${appname} on platform ${platform.ios}" />
+    	<exec executable="cordova" dir="${cordova.target.dir}">
+    		<arg value="run" />
+    		<arg value="${platform.ios}" />
     	</exec>
     </target>
     
