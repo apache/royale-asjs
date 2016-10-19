@@ -57,7 +57,9 @@ limitations under the License.
                 </js:Container>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti" text="Something..." change="mdlchk.text = mdlti.text"/>
+                <mdl:TextInput id="mdlti"  change="mdlchk.text = mdlti.text" text="Text..."/>
+
+                <mdl:TextInput  mdlEffect="mdl-textfield--floating-label" text="Floating Label"/>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                 <mdl:CheckBox id="mdlchk" text="This Checks" selected="true"/>
@@ -66,6 +68,7 @@ limitations under the License.
                 <mdl:RadioButton groupName="g1" text="Black"/>
                 <mdl:RadioButton groupName="g1" text="White"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
+
             </js:Form>
             
         </js:View>

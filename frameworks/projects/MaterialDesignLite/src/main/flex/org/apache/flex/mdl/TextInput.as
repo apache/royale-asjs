@@ -49,8 +49,17 @@ package org.apache.flex.mdl
 			super();
 		}
 		
+        COMPILE::JS
+        {
+            private var _textNode:Text;
+        }
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLDivElement
+         * @flexjsignorecoercion HTMLInputElement
+         * @flexjsignorecoercion HTMLLabelElement
+         * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -70,7 +79,7 @@ package org.apache.flex.mdl
             label = document.createElement('label') as HTMLLabelElement;
             label.className = "mdl-textfield__label";
             
-            textNode = document.createTextNode('') as Text;
+            _textNode = textNode = document.createTextNode('') as Text;
             label.appendChild(textNode);
             
             div.appendChild(input);
@@ -94,5 +103,39 @@ package org.apache.flex.mdl
             return element;
         }        
         
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
+        }
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+            COMPILE::JS 
+            {
+                element.className = 'mdl-textfield mdl-js-textfield ' + _mdlEffect;
+            }
+        }
+
+        /**
+         *  @private
+         *  @flexjsignorecoercion HTMLInputElement
+         */
+		override public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                //inSetter = true;
+                //ITextModel(model).text = value;
+                //inSetter = false;                    
+            }
+            COMPILE::JS
+            {
+                _textNode.text = value;
+                dispatchEvent(new Event('textChange'));
+            }
+		}
 	}
 }
