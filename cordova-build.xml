@@ -139,7 +139,21 @@
     	Running the app on the platform
     -->
     
-    <target name="run.android" description="Runs the Cordova application on the specified platform">
+    <target name="check-fileplugin">
+    	<property name="storage.file" value="${projectdir}/bin/js-debug/org/apache/flex/storage/IPermanentStorage.js" />
+    	<available file="${storage.file}" type="file" property="file.plugin.needed" />
+    </target>
+    
+    <target name="load-fileplugin" depends="check-fileplugin" if="file.plugin.needed">
+    	<echo message="Loading cordova file-plugin" />
+    	<exec executable="cordova" dir="${cordova.target.dir}">
+    		<arg value="plugin" />
+    		<arg value="add" />
+    		<arg value="cordova-plugin-file" />
+    	</exec>
+	</target>
+    
+    <target name="run.android" depends="load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.android}" />
     	<exec executable="cordova" dir="${cordova.target.dir}">
     		<arg value="run" />
@@ -147,7 +161,7 @@
     	</exec>
     </target>
     
-    <target name="run.ios" description="Runs the Cordova application on the specified platform">
+    <target name="run.ios" depends="load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.ios}" />
     	<exec executable="cordova" dir="${cordova.target.dir}">
     		<arg value="run" />
