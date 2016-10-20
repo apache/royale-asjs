@@ -106,22 +106,6 @@
 			<arg value="org.apache.flex.examples.${appname}" />
 			<arg value="${appname}" />
 		</exec>
-		
-		<echo>Adding in platform(s). This may take awhile.</echo>
-
-		<!-- add in the platforms -->
-		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
-			<arg value="platform" />
-			<arg value="add" />
-			<arg value="${platform.android}" />
-		</exec>
-		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
-			<arg value="platform" />
-			<arg value="add" />
-			<arg value="${platform.ios}" />
-		</exec>
     </target>
     
     <!-- Clean www directory -->
@@ -142,7 +126,43 @@
     </target>
     
     <!--
-    	Running the app on the platform
+    	Check to see if the Android platform needs to be loaded.
+    -->
+    
+    <target name="check-platform.android">
+    	<property name="android.platform" value="${projectdir}/app/${appname}/platforms/android" />
+    	<available file="${android.platform}" type="dir" property="platform.loaded" />
+    </target>
+    
+    <target name="load-platform.android" depends="check-platform.android" unless="platform.loaded">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="${platform.android}" />
+		</exec>
+    </target>
+    
+    <!--
+    	Check to see if the iOS platform needs to be loaded.
+    -->
+    
+    <target name="check-platform.ios">
+    	<property name="android.ios" value="${projectdir}/app/${appname}/platforms/ios" />
+    	<available file="${ios.platform}" type="dir" property="platform.loaded" />
+    </target>
+    
+    <target name="load-platform.ios" depends="check-platform.ios" unless="platform.loaded">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="${platform.ios}" />
+		</exec>
+    </target>
+    
+    <!-- 
+    	Check to see if the Cordova File Plugin is needed and if so, load it.
     -->
     
     <target name="check-fileplugin">
@@ -160,7 +180,11 @@
     	</exec>
 	</target>
     
-    <target name="run.android" depends="find.cordova.mac,load-fileplugin" description="Runs the Cordova application on the specified platform">
+    <!--
+    	Running the app on the platform
+    -->
+    
+    <target name="run.android" depends="find.cordova.mac,load-platform.android,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.android}" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
             <env key="PATH" path="${env.PATH}:${cordova.path}"/>
@@ -169,7 +193,7 @@
     	</exec>
     </target>
     
-    <target name="run.ios" depends="find.cordova.mac,load-fileplugin" description="Runs the Cordova application on the specified platform">
+    <target name="run.ios" depends="find.cordova.mac,load-platform.ios,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.ios}" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
             <env key="PATH" path="${env.PATH}:${cordova.path}"/>
