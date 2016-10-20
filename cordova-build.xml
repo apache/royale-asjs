@@ -39,7 +39,7 @@
 	     
 	-->
 	
-	<target name="main" depends="create, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	<target name="main" depends="find.cordova.mac,create, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
 	</target>
 	
 	<!-- Set up properties and conditions -->
@@ -75,11 +75,6 @@
     	</not>
     </condition>
     
-    <condition property="cordova.executable" value="cordova">
-    	<not>
-    		<isset property="isWindows" />
-    	</not>
-    </condition>
     <condition property="cordova.executable" value="cordova.cmd">
     	<isset property="isWindows" />
     </condition>
@@ -87,6 +82,14 @@
 	<property name="cordova.target.dir" value="${projectdir}/app/${appname}" />
     <available file="${cordova.target.dir}" type="dir" property="app.dir.exists"/>
     
+    <target name="find.cordova.mac" unless="isWindows">
+        <condition property="cordova.executable" value="/usr/local/bin/cordova">
+            <available file="/usr/local/bin/cordova" type="file"/>
+        </condition>
+        <condition property="cordova.path" value="/usr/local/bin">
+            <available file="/usr/local/bin/cordova" type="file"/>
+        </condition>
+    </target>
 	
 	<!-- Create the Cordova template project unless it already exists -->
 	
@@ -97,6 +100,7 @@
 	<target name="create" unless="app.dir.exists" depends="makedir" description="Creates the Cordova application template">
     	<!-- create the project -->
 		<exec executable="${cordova.executable}" dir="${projectdir}/app">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
 			<arg value="create" />
 			<arg value="${appname}" />
 			<arg value="org.apache.flex.examples.${appname}" />
@@ -107,11 +111,13 @@
 
 		<!-- add in the platforms -->
 		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
 			<arg value="platform" />
 			<arg value="add" />
 			<arg value="${platform.android}" />
 		</exec>
 		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
 			<arg value="platform" />
 			<arg value="add" />
 			<arg value="${platform.ios}" />
@@ -144,26 +150,29 @@
     	<available file="${storage.file}" type="file" property="file.plugin.needed" />
     </target>
     
-    <target name="load-fileplugin" depends="check-fileplugin" if="file.plugin.needed">
+    <target name="load-fileplugin" depends="find.cordova.mac,check-fileplugin" if="file.plugin.needed">
     	<echo message="Loading cordova file-plugin" />
-    	<exec executable="cordova" dir="${cordova.target.dir}">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
     		<arg value="plugin" />
     		<arg value="add" />
     		<arg value="cordova-plugin-file" />
     	</exec>
 	</target>
     
-    <target name="run.android" depends="load-fileplugin" description="Runs the Cordova application on the specified platform">
+    <target name="run.android" depends="find.cordova.mac,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.android}" />
-    	<exec executable="cordova" dir="${cordova.target.dir}">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
     		<arg value="run" />
     		<arg value="${platform.android}" />
     	</exec>
     </target>
     
-    <target name="run.ios" depends="load-fileplugin" description="Runs the Cordova application on the specified platform">
+    <target name="run.ios" depends="find.cordova.mac,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.ios}" />
-    	<exec executable="cordova" dir="${cordova.target.dir}">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
     		<arg value="run" />
     		<arg value="${platform.ios}" />
     	</exec>
