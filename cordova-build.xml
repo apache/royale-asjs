@@ -24,7 +24,8 @@
 	
 	     .    /* run ANT here */
 	     ./src/<APP>.mxml   /* The main application MXML tag */
-	     ./bin/js-debug     /* The result of building APP.mxml via mxmlc
+	     ./bin/js-debug                       /* The result of building APP.mxml via mxmlc, or
+         ./target/javascript/bin/js-debug     /* The result of building APP.mxml via maven
 	     ./app/<APP>        /* The Cordova application directory
 	     
 	     1. This ANT script will build the template Cordova app/APP if it does not
@@ -55,6 +56,10 @@
     		<isset property="projectdir" />
     	</not>
     </condition>
+    <condition property="target" value="target/javascript">
+        <available file="${projectdir}/target/javascript/bin/js-debug" type="dir" />
+    </condition>
+    <property name="target" value="." />
 	
 	<condition property="platform.android" value="android">
 		<not>
@@ -121,7 +126,7 @@
     <target name="copyfiles" depends="purge">
     	<echo message="Copying files from project" />
     	<copy todir="${cordova.target.dir}/www">
-    		<fileset dir="${projectdir}/bin/js-debug" />
+    		<fileset dir="${projectdir}/${target}/bin/js-debug" />
     	</copy>
     </target>
     
@@ -166,7 +171,7 @@
     -->
     
     <target name="check-fileplugin">
-    	<property name="storage.file" value="${projectdir}/bin/js-debug/org/apache/flex/storage/IPermanentStorage.js" />
+    	<property name="storage.file" value="${projectdir}/${target}/bin/js-debug/org/apache/flex/storage/IPermanentStorage.js" />
     	<available file="${storage.file}" type="file" property="file.plugin.needed" />
     </target>
     
