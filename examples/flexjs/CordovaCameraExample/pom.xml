@@ -52,23 +52,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
       </plugin>
-      <!--
-            Do the Cordova packaging of the javascript application
-      -->
-      <!--plugin>
+      <plugin>
         <groupId>org.jboss.errai</groupId>
         <artifactId>cordova-maven-plugin</artifactId>
-        <version>3.2.4.Final</version>
-        <executions>
-          <execution>
-            <id>build</id>
-            <phase>package</phase>
-            <goals>
-              <goal>build-project</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin-->
+      </plugin>
     </plugins>
   </build>
 

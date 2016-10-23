@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ 
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ -->
+<project name="Maven" xmlns="https://maven.apache.org/xsd/decoration-1.7.0.xsd">
+
+    <!-- Use the nicer looking fluido skin instead of the default -->
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+
+    <bannerLeft>
+        <name>Apache Flex</name>
+        <src>http://flex.apache.org/images/logo_01_fullcolor-sm.png</src>
+        <href>http://flex.apache.org/</href>
+    </bannerLeft>
+
+    <!--bannerRight>
+        <src>http://maven.apache.org/images/maven-small.gif</src>
+    </bannerRight-->
+
+    <body>
+        <links>
+            <item name="Apache Flex Homepage" href="http://flex.apache.org/" />
+            <!--item name="Apache FlexJS Homepage" href="http://flex.apache.org/" /-->
+            <item name="Apache Flex Wiki" href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki"/>
+        </links>
+
+        <menu name="FlexJS">
+            <item name="Introduction" href="index.html"/>
+            <!--item name="Download" href="download.html"/>
+            <item name="Release Notes" href="release-notes.html" />
+            <item name="General Information" href="about.html"/-->
+        </menu>
+
+        <menu name="Howtos">
+            <!-- Generated from src/site/asciidoc/build.adoc -->
+            <item name="Building from Source" href="build.html"/>
+            <item name="Featurebranch Autobuilds" href="featurebranch-autobuild.html"/>
+            <item name="Build structure" href="structure.html"/>
+        </menu>
+
+        <menu ref="reports" />
+        <menu ref="parent" />
+        <menu ref="modules" />
+
+    </body>
+</project>
