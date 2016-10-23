@@ -37,29 +37,6 @@
     </bannerRight-->
 
     <body>
-        <links>
-            <item name="Apache Flex Homepage" href="http://flex.apache.org/" />
-            <!--item name="Apache FlexJS Homepage" href="http://flex.apache.org/" /-->
-            <item name="Apache Flex Wiki" href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki"/>
-        </links>
-
-        <menu name="FlexJS">
-            <item name="Introduction" href="index.html"/>
-            <!--item name="Download" href="download.html"/>
-            <item name="Release Notes" href="release-notes.html" />
-            <item name="General Information" href="about.html"/-->
-        </menu>
-
-        <menu name="Howtos">
-            <!-- Generated from src/site/asciidoc/build.adoc -->
-            <item name="Building from Source" href="build.html"/>
-            <item name="Featurebranch Autobuilds" href="featurebranch-autobuild.html"/>
-            <item name="Build structure" href="structure.html"/>
-        </menu>
-
-        <menu ref="reports" />
-        <menu ref="parent" />
-        <menu ref="modules" />
 
     </body>
 </project>
