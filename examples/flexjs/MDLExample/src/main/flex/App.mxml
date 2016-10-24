@@ -33,11 +33,9 @@ limitations under the License.
             <js:Form action="#"> 
 
                 <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
-                <js:Container>
-                    <js:beads>
-                        <js:HorizontalLayout />
-                    </js:beads>
-                    
+                <js:HContainer>
+                    <mdl:Button/>
+
                     <!-- Fab button -->
                     <mdl:Button mdlEffect="mdl-button--fab mdl-button--colored">
                         <i class="material-icons">add</i>
@@ -54,23 +52,23 @@ limitations under the License.
                     <mdl:Button mdlEffect="mdl-button--raised mdl-js-ripple-effect mdl-button--accent" text="BUTTON"/>
                     <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
                     <mdl:Button mdlEffect="mdl-button--raised" text="BUTTON"/>
-                </js:Container>
+                </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti"  change="mdlchk.text = mdlti.text" text="Text..."/>
+                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text" text="Text..."/>
 
                 <mdl:TextInput  mdlEffect="mdl-textfield--floating-label" text="Floating Label"/>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-                <mdl:CheckBox id="mdlchk" text="This Checks" selected="true"/>
+                <mdl:CheckBox id="mdlchk" text="This Checks" selected="true" mdlEffect="mdl-js-ripple-effect"/>
                 <mdl:CheckBox id="mdlchk1" text="This is disabled at start" />
                 
-                <mdl:RadioButton groupName="g1" text="Black"/>
+                <mdl:RadioButton groupName="g1" text="Black" mdlEffect="mdl-js-ripple-effect"/>
                 <mdl:RadioButton groupName="g1" text="White"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
             </js:Form>
-            
+
         </js:View>
     </js:initialView>
 </js:Application>
