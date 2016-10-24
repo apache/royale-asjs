@@ -26,6 +26,7 @@ package org.apache.flex.mdl
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.supportClasses.RadioButtonIcon;
     }
 
     /**
@@ -74,8 +75,8 @@ package org.apache.flex.mdl
          */
         public static var radioCounter:int = 0;
 
-        private var input:HTMLInputElement;
         private var radio:HTMLSpanElement;
+        private var icon:RadioButtonIcon;
         private var label:HTMLLabelElement;
         private var textNode:Text;
         
@@ -88,22 +89,19 @@ package org.apache.flex.mdl
          */
         override protected function createElement():WrappedHTMLElement
         { 
-            // hide this eleement
-            input = document.createElement('input') as HTMLInputElement;
-            input.type = 'radio';
-            input.className = 'mdl-radio__button';
-            input.id = '_radio_' + radioCounter++;
-            input.addEventListener('change', selectionChangeHandler, false);  
+            icon = new RadioButtonIcon();
+            icon.className = 'mdl-radio__button';
+            icon.id = '_radio_' + RadioButton.radioCounter++;
+            
+            textNode = document.createTextNode('') as Text;
 
             radio = document.createElement('span') as HTMLSpanElement;
             radio.className = 'mdl-radio__label';
             radio.addEventListener('mouseover', mouseOverHandler, false);
             radio.addEventListener('mouseout', mouseOutHandler, false);
             
-            textNode = document.createTextNode('') as Text;
-            
             label = document.createElement('label') as HTMLLabelElement;
-            label.appendChild(input);
+            label.appendChild(icon.element);
             label.appendChild(radio);
             radio.appendChild(textNode);
             label.style.position = 'relative';
@@ -112,10 +110,10 @@ package org.apache.flex.mdl
             
             positioner = element;
             positioner.style.position = 'relative';
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
-            (radio as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
+            (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+            (icon.element as WrappedHTMLElement).flexjs_wrapper = this;
+            (radio as WrappedHTMLElement).flexjs_wrapper = this;
             
             className = typeNames = 'mdl-radio mdl-js-radio';
             
@@ -158,20 +156,16 @@ package org.apache.flex.mdl
         {
             super.id = value;
             label.id = value;
-            input.id = value;
+            icon.element.id = value;
         }
         
-        /**
-         * @flexjsignorecoercion String
-         */
         public function get groupName():String
         {
-            return input.name as String;
+            return (icon.element as HTMLInputElement).name as String;
         }
-        
         public function set groupName(value:String):void
         {
-            input.name = value;
+            (icon.element as HTMLInputElement).name = value;
         }
         
         public function get text():String
@@ -184,74 +178,62 @@ package org.apache.flex.mdl
             textNode.nodeValue = value;
         }
         
+        /** @export */
         public function get selected():Boolean
         {
-            return input.checked;
+            return (icon.element as HTMLInputElement).checked;
         }
-        
         public function set selected(value:Boolean):void
         {
-            input.checked = value;
-            /*if (input.checked)
-                radio.className = 'radio-icon-checked';
-            else
-                radio.className = 'radio-icon';*/
+            (icon.element as HTMLInputElement).checked = value;
         }
         
-        public function get value():String
+        public function get value():Object
         {
-            return input.value;
+            return (icon.element as HTMLInputElement).value;
         }
-        
-        public function set value(value:String):void
+        public function set value(v:Object):void
         {
-            input.value = value;
+            (icon.element as HTMLInputElement).value = v as String;
         }
         
-        /**
-         * @flexjsignorecoercion Array 
-         * @flexjsignorecoercion String
-         */
         public function get selectedValue():Object
         {
-            var buttons:Array;
+            var buttons:NodeList;
             var groupName:String;
             var i:int;
             var n:int;
-            
-            groupName = input.name as String;
-            buttons = document.getElementsByName(groupName) as Array;
+
+            groupName = (icon.element as HTMLInputElement).name as String;
+            buttons = document.getElementsByName(groupName);
             n = buttons.length;
-            
+
             for (i = 0; i < n; i++) {
                 if (buttons[i].checked) {
                     return buttons[i].value;
                 }
             }
-            return null;            
+            return null;
         }
-        
+
         /**
          * @flexjsignorecoercion Array
-         * @flexjsignorecoercion String
          */
         public function set selectedValue(value:Object):void
         {
-            var buttons:Array;
+            var buttons:NodeList;
             var groupName:String;
             var i:int;
             var n:int;
-            
-            groupName = input.name as String;
-            buttons = document.getElementsByName(groupName) as Array;
+
+            groupName = (icon.element as HTMLInputElement).name as String;
+            buttons = document.getElementsByName(groupName);
             n = buttons.length;
             for (i = 0; i < n; i++) {
                 if (buttons[i].value === value) {
                     buttons[i].checked = true;
-                    buttons[i].flexjs_wrapper.selected = true;
+                    break;
                 }
-                else
-                    buttons[i].flexjs_wrapper.selected = false;
             }
         }
 
