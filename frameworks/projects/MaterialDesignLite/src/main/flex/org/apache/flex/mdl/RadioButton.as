@@ -52,6 +52,18 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
+
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
+        }
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+        }
 	}
     
     COMPILE::JS
@@ -91,15 +103,12 @@ package org.apache.flex.mdl
             textNode = document.createTextNode('') as Text;
             
             label = document.createElement('label') as HTMLLabelElement;
-            label.className = "mdl-radio mdl-js-radio mdl-js-ripple-effect";
             label.appendChild(input);
             label.appendChild(radio);
             radio.appendChild(textNode);
             label.style.position = 'relative';
             
             element = label as WrappedHTMLElement;
-            //element.className = 'RadioButton';
-            typeNames = 'RadioButton';
             
             positioner = element;
             positioner.style.position = 'relative';
@@ -107,6 +116,8 @@ package org.apache.flex.mdl
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+            
+            className = typeNames = 'mdl-radio mdl-js-radio';
             
             return element;
         };
@@ -241,6 +252,22 @@ package org.apache.flex.mdl
                 }
                 else
                     buttons[i].flexjs_wrapper.selected = false;
+            }
+        }
+
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
+        }
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+            COMPILE::JS 
+            {
+                className = _mdlEffect;
             }
         }
 

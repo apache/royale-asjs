@@ -53,6 +53,18 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
+
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
+        }
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+        }
 	}
     
     COMPILE::JS
@@ -74,7 +86,6 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
                 label = document.createElement('label') as HTMLLabelElement;
-                label.className = 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect';
                 element = label as WrappedHTMLElement;
                 
                 input = document.createElement('input') as HTMLInputElement;
@@ -91,8 +102,6 @@ package org.apache.flex.mdl
                 
                 textNode = document.createTextNode('') as Text;
                 checkbox.appendChild(textNode);
-                //label.className = 'CheckBox';
-                typeNames = 'CheckBox';
                 
                 positioner = element;
                 positioner.style.position = 'relative';
@@ -100,6 +109,8 @@ package org.apache.flex.mdl
                 (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
                 element.flexjs_wrapper = this;
                 
+                className = typeNames = 'mdl-checkbox mdl-js-checkbox';
+
                 return element;
             };
         
@@ -157,6 +168,21 @@ package org.apache.flex.mdl
                 checkbox.className = 'checkbox-icon';*/
         }
 
+        private var _mdlEffect:String = "";
+
+        public function get mdlEffect():String
+        {
+            return _mdlEffect;
+        }
+        
+        public function set mdlEffect(value:String):void
+        {
+            _mdlEffect = value;
+            COMPILE::JS 
+            {
+                className = _mdlEffect;
+            }
+        }
     }
 
 }

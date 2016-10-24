@@ -70,7 +70,6 @@ package org.apache.flex.mdl
             var textNode:Text;
             
             div = document.createElement('div') as HTMLDivElement;
-            div.className = "mdl-textfield mdl-js-textfield";
 
             input = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');
@@ -86,9 +85,7 @@ package org.apache.flex.mdl
             div.appendChild(label);
 
             element = div as WrappedHTMLElement;
-            //element.className = 'TextInput';
-            typeNames = 'TextInput';
-
+            
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
@@ -100,6 +97,8 @@ package org.apache.flex.mdl
             (label as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             
+            className = typeNames = "mdl-textfield mdl-js-textfield";
+
             return element;
         }        
         
@@ -115,25 +114,24 @@ package org.apache.flex.mdl
             _mdlEffect = value;
             COMPILE::JS 
             {
-                element.className = 'mdl-textfield mdl-js-textfield ' + _mdlEffect;
+                className = _mdlEffect;
             }
         }
 
         /**
          *  @private
-         *  @flexjsignorecoercion HTMLInputElement
          */
 		override public function set text(value:String):void
 		{
-            COMPILE::SWF
-            {
+            //COMPILE::SWF
+            //{
                 //inSetter = true;
                 //ITextModel(model).text = value;
                 //inSetter = false;                    
-            }
+            //}
             COMPILE::JS
             {
-                _textNode.text = value;
+                _textNode.nodeValue = value;
                 dispatchEvent(new Event('textChange'));
             }
 		}
