@@ -64,41 +64,34 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var div:HTMLDivElement;
-            var input:HTMLInputElement;
-            var label:HTMLLabelElement;
-            var textNode:Text;
-            
-            div = document.createElement('div') as HTMLDivElement;
+            var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
+            div.className = "mdl-textfield mdl-js-textfield";
 
-            input = document.createElement('input') as HTMLInputElement;
+            var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');
             input.className = 'mdl-textfield__input';
-
-            label = document.createElement('label') as HTMLLabelElement;
-            label.className = "mdl-textfield__label";
-            
-            _textNode = textNode = document.createTextNode('') as Text;
-            label.appendChild(textNode);
-            
-            div.appendChild(input);
-            div.appendChild(label);
-
-            element = div as WrappedHTMLElement;
             
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            positioner = element;
+            var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
+            label.className = "mdl-textfield__label";
+
+            var textNode:Text = document.createTextNode('') as Text;
+            label.appendChild(textNode);
+            
+            div.appendChild(input);
+            div.appendChild(label);
+
+            element = input as WrappedHTMLElement;
+
+            positioner = div as WrappedHTMLElement;
             positioner.style.position = 'relative';
-            (div as WrappedHTMLElement).flexjs_wrapper = this;
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (label as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             
-            className = typeNames = "mdl-textfield mdl-js-textfield";
-
             return element;
         }        
         
@@ -114,26 +107,8 @@ package org.apache.flex.mdl
             _mdlEffect = value;
             COMPILE::JS 
             {
-                className = _mdlEffect;
+                positioner.className = positioner.className + " " + _mdlEffect;
             }
         }
-
-        /**
-         *  @private
-         */
-		override public function set text(value:String):void
-		{
-            //COMPILE::SWF
-            //{
-                //inSetter = true;
-                //ITextModel(model).text = value;
-                //inSetter = false;                    
-            //}
-            COMPILE::JS
-            {
-                _textNode.nodeValue = value;
-                dispatchEvent(new Event('textChange'));
-            }
-		}
 	}
 }
