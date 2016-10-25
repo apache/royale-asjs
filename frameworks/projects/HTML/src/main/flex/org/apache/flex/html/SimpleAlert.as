@@ -103,7 +103,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function show(parent:Object) : void
+		public function showAlert(parent:Object) : void
 		{
 			parent.addElement(this);
 		}
@@ -125,7 +125,7 @@ package org.apache.flex.html
             {
                 var alert:SimpleAlert = new SimpleAlert();
                 alert.message = message;
-                alert.show(parent);                    
+                alert.showAlert(parent);                    
                 
                 return alert;
             }
