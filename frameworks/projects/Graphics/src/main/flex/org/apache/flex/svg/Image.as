@@ -33,7 +33,7 @@ package org.apache.flex.svg
         public function Image()
         {
 			super();
-        }
+       }
 		
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -43,8 +43,8 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
-			element.style.left = 0;
-			element.style.top = 0;
+			element.setAttribute('x', 0);
+			element.setAttribute('y', 0);
 			//element.offsetParent = null;
 			positioner = element;
 			positioner.style.position = 'relative';
@@ -75,12 +75,59 @@ package org.apache.flex.svg
 		{
 			return _image;
 		}
-
+		
+		COMPILE::JS
+		override public function get transformElement():WrappedHTMLElement
+		{
+			return _image;
+		}
+		
 		COMPILE::JS
 		override public function applyImageData(binaryDataAsString:String):void
 		{
 			(_image as SVGImageElement).setAttributeNS('http://www.w3.org/1999/xlink','href', binaryDataAsString);
 		}
+		COMPILE::JS
+		override public function setWidth(value:Number, noEvent:Boolean=false):void
+		{
+			super.setWidth(value, noEvent);
+			positioner.setAttribute("width", value);
+		}
 
+		COMPILE::JS
+		override public function setHeight(value:Number, noEvent:Boolean=false):void
+		{
+			super.setHeight(value, noEvent);
+			positioner.setAttribute("height", value);
+		}
+		
+		COMPILE::JS
+		override public function setX(value:Number):void
+		{
+			super.setX(value);
+			positioner.setAttribute("x", value);
+
+		}
+		COMPILE::JS
+		override public function setY(value:Number):void
+		{
+			super.setY(value);
+			positioner.setAttribute("y", value);
+			
+		}
+		
+		COMPILE::JS
+		override public function set x(value:Number):void
+		{
+			super.x = value;
+			positioner.setAttribute("x", value);
+		}
+		
+		COMPILE::JS
+		override public function set y(value:Number):void
+		{
+			super.y = value;
+			positioner.setAttribute("y", value);
+		}
     }
 }

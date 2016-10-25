@@ -20,6 +20,11 @@
 package org.apache.flex.svg.beads
 {
 	import org.apache.flex.core.ImageViewBase;
+	COMPILE::JS
+		{
+			import org.apache.flex.core.UIBase;
+			import org.apache.flex.core.ValuesManager;
+		}
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.svg.Image component.
@@ -42,5 +47,41 @@ package org.apache.flex.svg.beads
 		public function ImageView()
 		{
 		}
+		
+		COMPILE::JS
+		override protected function sizeChangedHandler(event:Object):void
+		{
+			super.sizeChangedHandler(event);
+			var host:UIBase = _strand as UIBase;
+			
+			var left:* = ValuesManager.valuesImpl.getValue(host, "left");
+			var right:* = ValuesManager.valuesImpl.getValue(host, "right");
+			var l:Number = isNaN(left) ? NaN : left;
+			var r:Number = isNaN(right) ? NaN : right;
+
+			var top:* = ValuesManager.valuesImpl.getValue(host, "top");
+			var bottom:* = ValuesManager.valuesImpl.getValue(host, "bottom");
+			var t:Number = isNaN(top) ? NaN : top;
+			var b:Number = isNaN(bottom) ? NaN : bottom;
+			
+			var p:Object = host.positioner;
+
+			if (!isNaN(l) &&
+				!isNaN(r)) {
+				// if just using size constraints and image will not shrink or grow
+				var computedWidth:Number = (host.positioner.offsetParent as HTMLElement).offsetWidth -
+					l - r;
+				p.setAttribute("width", computedWidth);
+
+			}
+			if (!isNaN(t) &&
+				!isNaN(b)) {
+				// if just using size constraints and image will not shrink or grow
+				var computedHeight:Number = (host.positioner.offsetParent as HTMLElement).offsetHeight -
+					t - b;
+				p.setAttribute("height", computedHeight);
+			}
+		}
+
 	}
 }

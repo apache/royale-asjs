@@ -211,7 +211,7 @@ package org.apache.flex.core
          * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
-        private function sizeChangedHandler(event:Object):void
+        protected function sizeChangedHandler(event:Object):void
         {
             var host:UIBase = _strand as UIBase;
             var s:Object = host.positioner.style;
