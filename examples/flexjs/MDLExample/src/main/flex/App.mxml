@@ -55,16 +55,15 @@ limitations under the License.
                 </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text" text="Text..."/>
-
-                <mdl:TextInput  mdlEffect="mdl-textfield--floating-label" text="Floating Label"/>
+                <mdl:TextInput id="mdlti" text="Normal Text Field..." change="mdlchk.text = mdlti.text"/>
+                <mdl:TextInput text="Floating Label" mdlEffect="mdl-textfield--floating-label" />
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-                <mdl:CheckBox id="mdlchk" text="This Checks" selected="true" mdlEffect="mdl-js-ripple-effect"/>
-                <mdl:CheckBox id="mdlchk1" text="This is disabled at start" />
+                <mdl:CheckBox id="mdlchk" text="Disabled at start" />
+                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" mdlEffect="mdl-js-ripple-effect"/>
                 
-                <mdl:RadioButton groupName="g1" text="Black" mdlEffect="mdl-js-ripple-effect"/>
-                <mdl:RadioButton groupName="g1" text="White"/>
+                <mdl:RadioButton groupName="g1" text="Black"/>
+                <mdl:RadioButton groupName="g1" text="Ripple" mdlEffect="mdl-js-ripple-effect"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
             </js:Form>
