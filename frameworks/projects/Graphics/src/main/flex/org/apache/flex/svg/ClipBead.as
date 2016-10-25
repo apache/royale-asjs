@@ -30,6 +30,10 @@ package org.apache.flex.svg
 	import flash.display.DisplayObject;
 	}
 
+		COMPILE::JS
+		{
+			import org.apache.flex.utils.UIDUtil;
+		}
 	/**
 	 *  The ClipBead bead allows you to clip
 	 *  a graphic Shape using a an arbitrary graphic path.
@@ -123,7 +127,7 @@ package org.apache.flex.svg
 			var svgElement:Node = host.element as Element;
 			var defs:Element = getChildNode(svgElement, "defs") as Element;
 			var clipPath:Element = getChildNode(defs, "clipPath") as Element;
-			clipPath.id = "myClip"; // TODO UUID
+			clipPath.id = "myClip" + UIDUtil.createUID();
 			// clean up existing clip paths
 			if (clipPath.hasChildNodes())
 			{
@@ -137,8 +141,7 @@ package org.apache.flex.svg
 			var pathNode:Element = createChildNode(clipPath, "path") as Element;
 			pathNode.setAttribute("d", path.getPathString());
 			// set style 
-			var content:Element = defs.previousSibling ? defs.previousSibling as Element : defs.nextSibling as Element;
-			(content.style as Object).clipPath = "url(#" + clipPath.id + ")";
+			(host.element as Object).style.clipPath = "url(#" + clipPath.id + ")";
 		}
 		
 		COMPILE::JS
