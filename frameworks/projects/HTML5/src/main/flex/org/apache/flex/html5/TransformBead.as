@@ -37,8 +37,6 @@ package org.apache.flex.html5
 			var fjsm:Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";
-			element.style.transformOrigin = "0 0";
-			element.style.WebkitTransformOrigin = "0 0";
 			element.style.transform = transformStr;
 		}
 		
