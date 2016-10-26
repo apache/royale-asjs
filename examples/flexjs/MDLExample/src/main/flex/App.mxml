@@ -37,21 +37,40 @@ limitations under the License.
                     <mdl:Button/>
 
                     <!-- Fab button -->
-                    <mdl:Button mdlEffect="mdl-button--fab mdl-button--colored">
+                    <mdl:Button>
+                        <js:beads>
+                            <mdl:EffectBead mdlEffect="mdl-button--fab mdl-button--colored"/>
+                        </js:beads>
                         <i class="material-icons">add</i>
                     </mdl:Button>
 
                     <!-- Fab with Ripple -->
-                    <mdl:Button mdlEffect="mdl-button--fab mdl-js-ripple-effect">
+                    <mdl:Button>
+                        <js:beads>
+                            <mdl:EffectBead mdlEffect="mdl-button--fab mdl-js-ripple-effect"/>
+                        </js:beads>
                         <i class="material-icons md-48">face</i>
                     </mdl:Button>
 
                     <!-- Raised button -->
-                    <mdl:Button mdlEffect="mdl-button--raised mdl-button--colored" text="BUTTON"/>
+                    <mdl:Button text="BUTTON">
+                        <js:beads>
+                            <mdl:EffectBead mdlEffect="mdl-button--raised mdl-button--colored"/>
+                        </js:beads>
+                    </mdl:Button>
+
                     <!-- Raised button with ripple -->
-                    <mdl:Button mdlEffect="mdl-button--raised mdl-js-ripple-effect mdl-button--accent" text="BUTTON"/>
+                    <mdl:Button text="BUTTON">
+                        <js:beads>
+                            <mdl:EffectBead mdlEffect="mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                        </js:beads>
+                    </mdl:Button>
                     <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
-                    <mdl:Button mdlEffect="mdl-button--raised" text="BUTTON"/>
+                    <mdl:Button text="BUTTON">
+                        <js:beads>
+                            <mdl:EffectBead mdlEffect="mdl-button--raised"/>
+                        </js:beads>
+                    </mdl:Button>
                 </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
@@ -60,18 +79,26 @@ limitations under the License.
                         <mdl:TextPromptBead prompt="Normal Text Field..."/>
                     </js:beads>
                 </mdl:TextInput>
-                <mdl:TextInput mdlEffect="mdl-textfield--floating-label">
+                <mdl:TextInput>
                     <js:beads>
+                        <mdl:EffectBead mdlEffect="mdl-textfield--floating-label"/>
                         <mdl:TextPromptBead prompt="Floating Label"/>
                     </js:beads>
                 </mdl:TextInput>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                 <mdl:CheckBox id="mdlchk" text="Disabled at start" />
-                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" mdlEffect="mdl-js-ripple-effect"/>
-                
+                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true">
+                    <js:beads>
+                        <mdl:EffectBead mdlEffect="mdl-js-ripple-effect"/>
+                    </js:beads>
+                </mdl:CheckBox>
                 <mdl:RadioButton groupName="g1" text="Black"/>
-                <mdl:RadioButton groupName="g1" text="Ripple" mdlEffect="mdl-js-ripple-effect"/>
+                <mdl:RadioButton groupName="g1" text="Ripple">
+                    <js:beads>
+                        <mdl:EffectBead mdlEffect="mdl-js-ripple-effect"/>
+                    </js:beads>
+                </mdl:RadioButton>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
             </js:Form>
