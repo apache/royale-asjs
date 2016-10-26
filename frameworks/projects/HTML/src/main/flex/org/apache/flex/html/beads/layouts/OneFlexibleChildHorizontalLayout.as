@@ -313,7 +313,7 @@ package org.apache.flex.html.beads.layouts
                 if (!isNaN(ilc.percentHeight))
                     ilc.setHeight(h * ilc.percentHeight / 100, true);
             }
-            if (valign == "center")
+            if (valign == "middle")
                 child.y = (h - child.height) / 2;
             else if (valign == "bottom")
                 child.y = h - child.height - mb;

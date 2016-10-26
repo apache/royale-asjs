@@ -23,19 +23,10 @@ limitations under the License.
 					  xmlns:views="views.*"
 					  xmlns:js="library://ns.apache.org/flexjs/basic" 
 				      xmlns:cordova="library://ns.apache.org/flexjs/cordova"
-					  xmlns:controller="controller.*" 
-					  applicationComplete="showDetails()">
+					  >
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<fx:Script>
-		<![CDATA[
-			private function showDetails():void
-			{
-				trace("Size is "+width+" x "+height);
-			}
-		]]>
-	</fx:Script>
 	
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
@@ -53,8 +44,6 @@ limitations under the License.
 		<cordova:Weinre guid="aharui" />
 		<js:MixinManager />
 		<js:DeviceSizeBead />
-		//native application and compile with air global airbeads.
-		//need orientation beads, size beads.
 	</js:beads>
 	
 	

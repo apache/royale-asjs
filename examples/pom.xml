@@ -37,10 +37,18 @@
   <modules>
     <module>flexjs</module>
     <!--module>native</module-->
+
+    <module>examples-tests</module>
   </modules>
 
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -78,6 +86,11 @@
           <configuration>
             <warSourceDirectory>${basedir}/target/javascript/bin/js-debug</warSourceDirectory>
             <failOnMissingWebXml>false</failOnMissingWebXml>
+            <webResources>
+              <resource>
+                <directory>${build.outputDirectory}</directory>
+              </resource>
+            </webResources>
           </configuration>
         </plugin>
         <plugin>
@@ -102,6 +115,11 @@
             </artifacts>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.jboss.errai</groupId>
+          <artifactId>cordova-maven-plugin</artifactId>
+          <version>4.0.0.Beta2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -122,6 +140,30 @@
               <configuration>
                 <warSourceDirectory>${basedir}/target/javascript/bin/js-release</warSourceDirectory>
               </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+
+    <profile>
+      <id>with-cordova</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.jboss.errai</groupId>
+              <artifactId>cordova-maven-plugin</artifactId>
+              <version>4.0.0.Beta2</version>
+              <executions>
+                <execution>
+                  <id>build</id>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>build-project</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
           </plugins>
         </pluginManagement>

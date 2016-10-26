@@ -41,6 +41,7 @@
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
+    <component id="Form" class="org.apache.flex.html.Form"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>
     <component id="VContainer" class="org.apache.flex.html.VContainer"/>
     <component id="Panel" class="org.apache.flex.html.Panel"/>

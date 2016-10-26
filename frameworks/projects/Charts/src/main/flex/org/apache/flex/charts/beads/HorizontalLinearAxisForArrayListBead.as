@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads
 {
-	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
+	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -100,6 +100,8 @@ package org.apache.flex.charts.beads
 			
 			// place the labels below the axis enough to account for the tick marks
 			var labelY:Number = 7;
+			var lastX:Number = -1000;
+			var lastWasHidden:Boolean = false;
 			
 			for(i=0; i < numTicks+1; i++) 
 			{	
@@ -111,6 +113,16 @@ package org.apache.flex.charts.beads
 				
 				xpos += tickSpacing;
 				tickValue += tickStep;
+				
+				if ((label.x-5) <= lastX && !lastWasHidden) {
+					label.visible = false;
+					lastWasHidden = true;
+				} else {
+					label.visible = true;
+					lastWasHidden = false;
+				}
+				
+				lastX = label.x + label.width;
 			}
 			
 			// draw the axis and tick marks

@@ -48,25 +48,15 @@ package org.apache.flex.html
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
-     *  The Button class is a simple button.  Use TextButton for
-     *  buttons that should show text.  This is the lightest weight
-     *  button used for non-text buttons like the arrow buttons
-     *  in a Scrollbar or NumericStepper.
-     * 
-     *  The most common view for this button is CSSButtonView that
-     *  allows you to specify a backgroundImage in CSS that defines
-     *  the look of the button.
-     * 
-     *  However, when used in ScrollBar and when composed in many
-     *  other components, it is more common to assign a custom view
-     *  to the button.  
+     *  The ButtonBase class is the base class for Button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Button extends ButtonBase
+    COMPILE::SWF
+	public class ButtonBase extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase
 	{
         /**
          *  Constructor.
@@ -76,10 +66,36 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function Button()
+		public function ButtonBase()
 		{
 			super();
 		}
 	}
     
+    COMPILE::JS
+    public class ButtonBase extends UIBase implements IStrand, IEventDispatcher, IUIBase
+    {
+        /**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('button') as WrappedHTMLElement;
+            element.setAttribute('type', 'button');
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            /* AJH comment out until we figure out why it is needed
+            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
+                var impl:Object = org.apache.flex.core.ValuesManager.valuesImpl.
+                    getValue(this, 'iStatesImpl');
+            }*/
+            
+            return element;
+        }        
+
+    }        
+
 }

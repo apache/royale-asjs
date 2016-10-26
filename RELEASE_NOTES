@@ -11,9 +11,9 @@ features.
 
 New Features
 =================
--more complete Reflection implementation with access to static members, kept metadata and method parameters
--added cross-platform registerClassAlias/getAliasByClass/getClassByAlias implementations (reflection package)
-
+- More complete Reflection implementation with access to static members, kept metadata and method parameters
+- Added cross-platform registerClassAlias/getAliasByClass/getClassByAlias implementations (reflection package)
+- Added support for interpreting XML literals as JSX by adding [JSX] metadata to a function.
 
 Bug Fixes
 ---------
@@ -23,7 +23,12 @@ Apache FlexJS 0.7.0
 =================
 - Support for XML contructors and literals as well as E4X.
 See here for limitations: https://cwiki.apache.org/confluence/display/FLEX/Using+XML+in+FlexJS
-- Support for Typed Node.js
+- Node.js projects no longer need to call require() for built-in modules. The JavaScript require() calls are generated when these modules are used.
+ define APIs for Typed Node.js
+- The node.swc for Node.js APIs has been expanded to include more APIs with types for ActionScript.
+- Added -source-map compiler argument to generate source maps, which allow web browser debuggers to step through add breakpoints to the original ActionScript code instead of the generated JavaScript.
+- SDK may be built with Maven.
+- Improved compatibility of externc tool to parse more Google Closure Compiler externs.
 
 Bug Fixes
 ---------
