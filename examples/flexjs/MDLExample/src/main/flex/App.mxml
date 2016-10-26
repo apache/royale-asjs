@@ -65,10 +65,11 @@ limitations under the License.
                             <mdl:ButtonEffect raised="true" ripple="true" accent="true"/>
                         </js:beads>
                     </mdl:Button>
-                    <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
+                    <!-- Raised disabled button-->
                     <mdl:Button text="BUTTON">
                         <js:beads>
                             <mdl:ButtonEffect raised="true"/>
+                            <mdl:Disabled/>
                         </js:beads>
                     </mdl:Button>
                 </js:HContainer>
