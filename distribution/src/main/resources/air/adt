@@ -21,4 +21,4 @@
 
 scriptDir=$(dirname "$0")
 args=$@
-java -Dfile.encoding=UTF-8 -jar "$scriptDir/../lib/adt-${airVersion}.jar" "$args"
+java -Dfile.encoding=UTF-8 -jar "$scriptDir/../lib/adt.jar" "$args"

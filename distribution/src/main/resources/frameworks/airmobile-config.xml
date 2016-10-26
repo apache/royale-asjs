@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<flex-config>
+    <!-- Specifies the minimum player version that will run the compiled SWF. -->
+    <target-player>${air.version}</target-player>
+
+    <!-- Specifies the version of the compiled SWF -->
+    <swf-version>${swf.version}</swf-version>
+
+    <compiler>
+
+        <!-- Specifies that the target runtime is a mobile device. -->
+        <mobile>true</mobile>
+
+        <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
+        <!-- not set -->
+        <!--
+        <source-path>
+           <path-element>string</path-element>
+        </source-path>
+        -->
+
+        <!-- Allow the source-path to have path-elements which contain other path-elements -->
+        <allow-source-path-overlap>false</allow-source-path-overlap>
+
+        <!-- Turn on generation of debuggable SWFs. False by default for mxmlc, -->
+        <!-- but true by default for compc. -->
+        <!--
+        <debug>true</debug>
+        -->
+
+        <!-- List of SWC files or directories to compile against but to omit from -->
+        <!-- linking.                                                             -->
+        <external-library-path>
+            <path-element>{airHome}/frameworks/libs/air/airglobal.swc</path-element>
+        </external-library-path>
+
+        <!-- not set -->
+        <!--
+        <include-libraries>
+           <library>string</library>
+        </include-libraries>
+        -->
+
+        <!-- List of SWC files or directories that contain SWC files. -->
+        <library-path>
+            <path-element>libs</path-element>
+            <path-element>{airHome}/frameworks/libs/air</path-element>
+            <path-element>locale/{locale}</path-element>
+        </library-path>
+
+        <!-- Enable post-link SWF optimization. -->
+        <optimize>true</optimize>
+
+        <!-- Keep the following AS3 metadata in the bytecodes.                                             -->
+        <!--
+        <keep-as3-metadata>
+            <name>Transient</name>
+        </keep-as3-metadata>
+        -->
+
+        <!-- Run the AS3 compiler in strict error checking mode. -->
+        <strict>true</strict>
+
+        <!-- Run the AS3 compiler in a mode that detects legal but potentially incorrect -->
+        <!-- code. -->
+        <show-actionscript-warnings>true</show-actionscript-warnings>
+
+        <!-- Assignment within conditional. -->
+        <warn-assignment-within-conditional>true</warn-assignment-within-conditional>
+
+        <!-- Possibly invalid Array cast operation. -->
+        <warn-bad-array-cast>true</warn-bad-array-cast>
+
+        <!-- Invalid Date cast operation. -->
+        <warn-bad-date-cast>true</warn-bad-date-cast>
+
+        <!-- Illogical comparison with NaN. Any comparison operation involving NaN will evaluate to false because NaN != NaN. -->
+        <warn-bad-nan-comparison>true</warn-bad-nan-comparison>
+
+        <!-- Impossible assignment to null. -->
+        <warn-bad-null-assignment>true</warn-bad-null-assignment>
+
+        <!-- Illogical comparison with undefined. Only untyped variables (or variables of type *) can be undefined. -->
+        <warn-bad-undefined-comparison>true</warn-bad-undefined-comparison>
+
+        <!-- Constant not initialized. -->
+        <warn-const-not-initialized>true</warn-const-not-initialized>
+
+        <!-- Duplicate variable definition -->
+        <warn-duplicate-variable-def>true</warn-duplicate-variable-def>
+
+        <!-- Use of the instanceof operator. -->
+        <warn-instance-of-changes>true</warn-instance-of-changes>
+
+        <!-- Missing namespace declaration (e.g. variable is not defined to be public, private, etc.). -->
+        <warn-missing-namespace-decl>true</warn-missing-namespace-decl>
+
+        <!-- Missing type declaration. -->
+        <warn-no-type-decl>true</warn-no-type-decl>
+
+    </compiler>
+
+    <!-- Enables SWFs to access the network. -->
+    <use-network>true</use-network>
+
+    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
+    <metadata>
+        <title>Apache FlexJS Application</title>
+        <description>http://flex.apache.org/</description>
+        <publisher>Apache Software Foundation</publisher>
+        <creator>Apache Software Foundation</creator>
+        <language>en_US</language>
+    </metadata>
+
+</flex-config>
