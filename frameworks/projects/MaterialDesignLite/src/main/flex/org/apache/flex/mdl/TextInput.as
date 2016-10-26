@@ -17,6 +17,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+    import org.apache.flex.core.ITextModel;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.TextInput;
 
     COMPILE::JS
@@ -52,6 +54,16 @@ package org.apache.flex.mdl
         COMPILE::JS
         {
             private var _textNode:Text;
+
+            public function get textNode():Text
+            {
+                return _textNode;
+            }
+
+            public function set textNode(value:Text):void
+            {
+                _textNode = value;
+            }
         }
         
         /**
@@ -78,7 +90,7 @@ package org.apache.flex.mdl
             var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
             label.className = "mdl-textfield__label";
 
-            var textNode:Text = document.createTextNode('') as Text;
+            textNode = document.createTextNode('') as Text;
             label.appendChild(textNode);
             
             div.appendChild(input);
@@ -110,5 +122,7 @@ package org.apache.flex.mdl
                 positioner.className = positioner.className + " " + _mdlEffect;
             }
         }
+
+        
 	}
 }
