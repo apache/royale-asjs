@@ -18,14 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-
+    import org.apache.flex.core.IStrand;
+	import org.apache.flex.mdl.beads.MDLEffect;
     import org.apache.flex.mdl.Button;
 	
 	/**
-	 *  The ButtonEffectBead class is a specialty bead that can be used with
+	 *  The ButtonEffect class is a specialty bead that can be used with
 	 *  an MDL button control to apply some MDL complementary effect.
 	 *  
 	 *  @langversion 3.0
@@ -33,7 +31,7 @@ package org.apache.flex.mdl.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonEffectBead implements IBead
+	public class ButtonEffect extends MDLEffect
 	{
 		/**
 		 *  constructor.
@@ -43,7 +41,7 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ButtonEffectBead()
+		public function ButtonEffect()
 		{
 		}
 		
@@ -110,28 +108,6 @@ package org.apache.flex.mdl.beads
                 _colored = " mdl-button--colored";
             } else {
                 _colored = "";
-            }   
-        }
-
-        private var _ripple:String = "";
-        /**
-		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get ripple():Boolean
-        {
-            return _ripple;
-        }
-        public function set ripple(value:Boolean):void
-        {
-            if(value) {
-                _ripple = " mdl-js-ripple-effect";
-            } else {
-                _ripple = "";
             }   
         }
 
@@ -232,10 +208,9 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 *  @flexjsignorecoercion org.apache.flex.mdl.Button;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			

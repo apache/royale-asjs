@@ -34,7 +34,7 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.mdl.TextInput;
 	
 	/**
-	 *  The TextPromptBead class is a specialty bead that can be used with
+	 *  The TextPrompt class is a specialty bead that can be used with
 	 *  any TextInput control. The bead places a string into the input field
 	 *  when there is no value associated with the text property.
 	 *  
@@ -43,7 +43,7 @@ package org.apache.flex.mdl.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TextPromptBead implements IBead
+	public class TextPrompt implements IBead
 	{
 		/**
 		 *  constructor.
@@ -53,7 +53,7 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function TextPromptBead()
+		public function TextPrompt()
 		{
 		}
 		
