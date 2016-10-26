@@ -25,7 +25,7 @@ package
  *  beyond those that are found by dependecy analysis starting
  *  from the classes specified in manifest.xml.
  */
-internal class HTMLClasses
+internal class BasicClasses
 {
 
     import org.apache.flex.html.ToolTip; ToolTip;
