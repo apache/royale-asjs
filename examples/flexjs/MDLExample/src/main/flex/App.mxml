@@ -39,7 +39,7 @@ limitations under the License.
                     <!-- Fab button -->
                     <mdl:Button>
                         <js:beads>
-                            <mdl:EffectBead mdlEffect="mdl-button--fab mdl-button--colored"/>
+                            <mdl:ButtonEffectBead fab="true" colored="true"/>
                         </js:beads>
                         <i class="material-icons">add</i>
                     </mdl:Button>
@@ -47,7 +47,7 @@ limitations under the License.
                     <!-- Fab with Ripple -->
                     <mdl:Button>
                         <js:beads>
-                            <mdl:EffectBead mdlEffect="mdl-button--fab mdl-js-ripple-effect"/>
+                            <mdl:ButtonEffectBead fab="true" ripple="true"/>
                         </js:beads>
                         <i class="material-icons md-48">face</i>
                     </mdl:Button>
@@ -55,20 +55,20 @@ limitations under the License.
                     <!-- Raised button -->
                     <mdl:Button text="BUTTON">
                         <js:beads>
-                            <mdl:EffectBead mdlEffect="mdl-button--raised mdl-button--colored"/>
+                            <mdl:ButtonEffectBead raised="true" colored="true"/>
                         </js:beads>
                     </mdl:Button>
 
                     <!-- Raised button with ripple -->
                     <mdl:Button text="BUTTON">
                         <js:beads>
-                            <mdl:EffectBead mdlEffect="mdl-button--raised mdl-js-ripple-effect mdl-button--accent"/>
+                            <mdl:ButtonEffectBead raised="true" ripple="true" accent="true"/>
                         </js:beads>
                     </mdl:Button>
                     <!-- Raised disabled button ... it seems we don't have "disabled" implemented yet-->
                     <mdl:Button text="BUTTON">
                         <js:beads>
-                            <mdl:EffectBead mdlEffect="mdl-button--raised"/>
+                            <mdl:ButtonEffectBead raised="true"/>
                         </js:beads>
                     </mdl:Button>
                 </js:HContainer>
