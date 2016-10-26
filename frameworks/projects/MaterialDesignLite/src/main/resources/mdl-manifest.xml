@@ -25,8 +25,9 @@
     <component id="TextInput" class="org.apache.flex.mdl.TextInput"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
-    <component id="TextPromptBead" class="org.apache.flex.mdl.beads.TextPromptBead"/>
-    <component id="EffectBead" class="org.apache.flex.mdl.beads.EffectBead"/>
-    <component id="ButtonEffectBead" class="org.apache.flex.mdl.beads.ButtonEffectBead"/>
+    <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="MDLEffect" class="org.apache.flex.mdl.beads.MDLEffect"/>
+    <component id="ButtonEffect" class="org.apache.flex.mdl.beads.ButtonEffect"/>
+    <component id="TextInputEffect" class="org.apache.flex.mdl.beads.TextInputEffect"/>
 
 </componentPackage>

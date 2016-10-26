@@ -21,7 +21,7 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-
+	import org.apache.flex.mdl.Button;
     import org.apache.flex.mdl.TextInput;
 	
 	/**
@@ -33,7 +33,7 @@ package org.apache.flex.mdl.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class EffectBead implements IBead
+	public class MDLEffect implements IBead
 	{
 		/**
 		 *  constructor.
@@ -43,28 +43,30 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function EffectBead()
+		public function MDLEffect()
 		{
 		}
 
-        private var _mdlEffect:String = "";
-
+        protected var _ripple:String = "";
         /**
-		 *  The string to use as the MDL effect.
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        public function get mdlEffect():String
+        public function get ripple():Boolean
         {
-            return _mdlEffect;
+            return _ripple;
         }
-        
-        public function set mdlEffect(value:String):void
+        public function set ripple(value:Boolean):void
         {
-            _mdlEffect = value;
+            if(value) {
+                _ripple = " mdl-js-ripple-effect";
+            } else {
+                _ripple = "";
+            }   
         }
 
 		private var _strand:IStrand;
@@ -85,12 +87,17 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-                if (value is TextInput) {
+				if (value is Button) {
+                    var button:Button = value as Button;
+                    button.className = _ripple;
+                } else if (value is TextInput) {
                     var mdTi:TextInput = value as TextInput;
-                    mdTi.positioner.className = mdTi.positioner.className + " " + mdlEffect;
-                } else {
-                    var host:UIBase = value as UIBase;
-                    host.className = mdlEffect;
+                    mdTi.positioner.className = mdTi.positioner.className + _ripple;
+                } else if (value is UIBase) {
+					var host:UIBase = value as UIBase;
+                    host.className = _ripple;
+				} else {
+                    throw new Error("Host component must be an MDL control.");
                 }
 			}
 		}
