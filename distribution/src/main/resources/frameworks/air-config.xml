@@ -21,10 +21,10 @@
 
 <flex-config>
   <!-- Specifies the minimum player version that will run the compiled SWF. -->
-  <target-player>11.1</target-player>
+  <target-player>${air.version}</target-player>
 
   <!-- Specifies the version of the compiled SWF -->
-  <swf-version>14</swf-version>
+  <swf-version>${swf.version}</swf-version>
 
   <compiler>
 

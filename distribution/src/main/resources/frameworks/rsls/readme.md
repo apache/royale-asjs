@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!--
 
   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,10 +16,5 @@
   limitations under the License.
 
 -->
-<flex-sdk-description>
-  <name>Apache Flex ${project.version} FP${flash.version} AIR${air.version} en_US</name>
-  <!--version>${project.version}</version-->
-  <!-- This is a hack to trick the FlashBuilder in accepting this version -->
-  <version>4.8.${project.version}</version>
-  <build>${timestamp}</build>
-</flex-sdk-description>
+
+FlashBuilder seems to need this directory. 

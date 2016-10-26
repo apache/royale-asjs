@@ -26,6 +26,9 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib</outputDirectory>
+      <!-- FlashBuilder doesn't like us appending the version to the jar name -->
+      <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.flex.flexjs.compiler:*:jar</include>
       </includes>
@@ -37,14 +40,14 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib/external</outputDirectory>
+      <includes>
+        <include>*:jar</include>
+      </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.framework:*</exclude>
-        <exclude>org.apache.flex.flexjs.typedefs:*</exclude>
         <exclude>org.apache.flex.flexjs.compiler:*</exclude>
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
         <exclude>*:org.json:jar</exclude>
-        <exclude>*:*:pom</exclude>
       </excludes>
     </dependencySet>
     <!-- Put the externs swcs into the externs directory -->
@@ -125,6 +128,7 @@ under the License.
         <include>NOTICE</include>
         <include>README*</include>
         <include>RELEASE*</include>
+        <include>ide/**</include>
       </includes>
     </fileSet>
 
@@ -153,6 +157,7 @@ under the License.
       <includes>
         <include>**</include>
       </includes>
+      <filtered>true</filtered>
     </fileSet>
 
     <!-- Copy the sdk descriptor -->
