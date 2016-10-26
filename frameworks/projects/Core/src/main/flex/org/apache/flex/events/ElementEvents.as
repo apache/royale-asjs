@@ -28,7 +28,8 @@ package org.apache.flex.events
         //--------------------------------------
         
         static public const elementEvents:Object = {
-            'click': 1,
+			'click': 1,
+			'doubleClick': 1,
             'change': 1,
             'keyup': 1,
             'keydown': 1,
@@ -53,6 +54,7 @@ package org.apache.flex.events
 
 		static public const elementEvents:Object = {
                 'click': 1,
+				'dblclick': 1,
                 'change': 1,
                 'keyup': 1,
                 'keydown': 1,

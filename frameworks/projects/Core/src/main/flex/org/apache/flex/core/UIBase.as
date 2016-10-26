@@ -30,6 +30,9 @@ package org.apache.flex.core
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.utils.MouseEventConverter;
+	COMPILE::SWF {
+	import flash.display.InteractiveObject;
+	}
 	
 	/**
 	 *  Set a different class for click events so that
@@ -1328,6 +1331,7 @@ package org.apache.flex.core
 			{
 				element = new WrappedSprite();
 				element.flexjs_wrapper = this;
+				(element as InteractiveObject).doubleClickEnabled = true; // make JS and flash consistent
                 return element;
 			}
 			COMPILE::JS
