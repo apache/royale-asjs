@@ -25,5 +25,6 @@
     <component id="TextInput" class="org.apache.flex.mdl.TextInput"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
+    <component id="TextPromptBead" class="org.apache.flex.mdl.beads.TextPromptBead"/>
 
 </componentPackage>

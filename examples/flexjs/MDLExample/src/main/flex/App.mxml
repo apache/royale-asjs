@@ -55,8 +55,16 @@ limitations under the License.
                 </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti" text="Normal Text Field..." change="mdlchk.text = mdlti.text"/>
-                <mdl:TextInput text="Floating Label" mdlEffect="mdl-textfield--floating-label" />
+                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text">
+                    <js:beads>
+                        <mdl:TextPromptBead prompt="Normal Text Field..."/>
+                    </js:beads>
+                </mdl:TextInput>
+                <mdl:TextInput mdlEffect="mdl-textfield--floating-label">
+                    <js:beads>
+                        <mdl:TextPromptBead prompt="Floating Label"/>
+                    </js:beads>
+                </mdl:TextInput>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                 <mdl:CheckBox id="mdlchk" text="Disabled at start" />

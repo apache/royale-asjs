@@ -29,7 +29,7 @@ internal class MDLClasses
 {	
 	COMPILE::SWF
 	{
-		//import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
+		//import org.apache.flex.mdl.beads.TextPromptBead; TextPromptBead;
 	}
 }
 
