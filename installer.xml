@@ -967,7 +967,12 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
@@ -1000,10 +1005,15 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         	token="PATH"
         	value="UNIX_PATH" />
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
         	<replacefilter
         	token="PATH"
         	value="UNIX_PATH" />
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
+            <replacefilter
+            token="PATH"
+            value="UNIX_PATH" />
         </replace>
     </target>
 
