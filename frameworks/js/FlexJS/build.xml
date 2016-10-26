@@ -80,6 +80,7 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
+        <antcall target="Basic"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
@@ -128,6 +129,7 @@
         <ant dir="${basedir}/projects/FormattersJS" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMapsJS" target="clean"/>
         <ant dir="${basedir}/projects/GraphicsJS" target="clean"/>
+        <ant dir="${basedir}/projects/BasicJS" target="clean"/>
         <ant dir="${basedir}/projects/HTMLJS" target="clean"/>
         <ant dir="${basedir}/projects/HTML5JS" target="clean"/>
         <ant dir="${basedir}/projects/JQueryJS" target="clean"/>
@@ -184,6 +186,10 @@
 
     <target name="Graphics" description="Clean build of Graphics.swc">
         <ant dir="${basedir}/projects/GraphicsJS"/>
+    </target>
+
+    <target name="Basic" description="Clean build of Basic.swc">
+        <ant dir="${basedir}/projects/BasicJS"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">
