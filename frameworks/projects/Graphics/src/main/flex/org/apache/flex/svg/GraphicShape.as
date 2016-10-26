@@ -36,14 +36,6 @@ package org.apache.flex.svg
 	public class GraphicShape extends UIBase implements IGraphicShape
 	{
         
-        COMPILE::SWF
-        override protected function createElement():IFlexJSElement
-        {
-            element = new WrappedSprite();
-			element.flexjs_wrapper = this;
-            return element;
-        }
-        
 		private var _fill:IFill;
 		private var _stroke:IStroke;
 
