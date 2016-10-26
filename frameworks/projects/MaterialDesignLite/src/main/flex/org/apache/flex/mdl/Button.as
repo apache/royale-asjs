@@ -67,30 +67,5 @@ package org.apache.flex.mdl
 			
             return element;
 		}
-
-        /*public static const RAISED_EFFECT:String = "mdl-button--raised";
-        public static const FAB_EFFECT:String = "mdl-button--fab";
-        public static const MINI_FAB_EFFECT:String = "mdl-button--mini-fab";
-        public static const ICON_EFFECT:String = "mdl-button--icon";
-        public static const COLORED_EFFECT:String = "mdl-button--colored";
-        public static const PRIMARY_EFFECT:String = "mdl-button--primary";
-        public static const ACCENT_EFFECT:String = "mdl-button--accent";
-        public static const RIPPLE_EFFECT:String = "mdl-js-ripple-effect";*/
-
-        private var _mdlEffect:String = "";
-
-        public function get mdlEffect():String
-        {
-            return _mdlEffect;
-        }
-        
-        public function set mdlEffect(value:String):void
-        {
-            _mdlEffect = value;
-            COMPILE::JS 
-            {
-                className = _mdlEffect;
-            }
-        }
 	}
 }

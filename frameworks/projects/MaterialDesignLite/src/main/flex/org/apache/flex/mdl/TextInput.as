@@ -105,24 +105,6 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
             
             return element;
-        }        
-        
-        private var _mdlEffect:String = "";
-
-        public function get mdlEffect():String
-        {
-            return _mdlEffect;
-        }
-        
-        public function set mdlEffect(value:String):void
-        {
-            _mdlEffect = value;
-            COMPILE::JS 
-            {
-                positioner.className = positioner.className + " " + _mdlEffect;
-            }
-        }
-
-        
+        }    
 	}
 }
