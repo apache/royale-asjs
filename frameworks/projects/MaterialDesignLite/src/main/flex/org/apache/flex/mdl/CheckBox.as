@@ -53,18 +53,6 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
-
-        private var _mdlEffect:String = "";
-
-        public function get mdlEffect():String
-        {
-            return _mdlEffect;
-        }
-        
-        public function set mdlEffect(value:String):void
-        {
-            _mdlEffect = value;
-        }
 	}
     
     COMPILE::JS

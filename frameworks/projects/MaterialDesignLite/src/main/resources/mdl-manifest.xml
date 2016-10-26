@@ -27,5 +27,6 @@
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="TextPromptBead" class="org.apache.flex.mdl.beads.TextPromptBead"/>
     <component id="EffectBead" class="org.apache.flex.mdl.beads.EffectBead"/>
+    <component id="ButtonEffectBead" class="org.apache.flex.mdl.beads.ButtonEffectBead"/>
 
 </componentPackage>

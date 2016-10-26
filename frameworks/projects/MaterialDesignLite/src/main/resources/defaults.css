@@ -17,9 +17,15 @@
  *
  */
 
-@namespace "library://ns.apache.org/flexjs/mdl";
 
+@namespace "library://ns.apache.org/flexjs/basic";
+@namespace mdl "library://ns.apache.org/flexjs/mdl";
 
+.flexjs *, . flexjs *:before, . flexjs *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 
 
