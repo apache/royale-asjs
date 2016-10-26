@@ -49,13 +49,44 @@
     <module>HelloWorld</module>
     <module>MapSearch</module>
     <module>MobileMap</module>
-    <module>MobileTrader</module>
     <module>MobileStocks</module>
+    <module>MobileTrader</module>
     <module>StorageExample</module>
     <module>StyleExample</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
   </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <executions>
+          <execution>
+            <id>tests-default</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <!-- Run the tests from the 'examples-tests' artifact -->
+              <dependenciesToScan>
+                <dependency>org.apache.flex.flexjs.examples:examples-tests</dependency>
+              </dependenciesToScan>
+              <systemPropertyVariables>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>${project.packaging}</type>
+                <buildDirectory>${project.build.directory}</buildDirectory>
+              </systemPropertyVariables>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
@@ -93,6 +124,14 @@
       <artifactId>Graphics</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+    </dependency>
+
+    <!-- Import the shared unit-tests we want to run on all examples -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <artifactId>examples-tests</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

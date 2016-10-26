@@ -24,7 +24,8 @@
 	
 	     .    /* run ANT here */
 	     ./src/<APP>.mxml   /* The main application MXML tag */
-	     ./bin/js-debug     /* The result of building APP.mxml via mxmlc
+	     ./bin/js-debug                       /* The result of building APP.mxml via mxmlc, or
+         ./target/javascript/bin/js-debug     /* The result of building APP.mxml via maven
 	     ./app/<APP>        /* The Cordova application directory
 	     
 	     1. This ANT script will build the template Cordova app/APP if it does not
@@ -39,7 +40,7 @@
 	     
 	-->
 	
-	<target name="main" depends="create, compilejs, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	<target name="main" depends="find.cordova.mac,create, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
 	</target>
 	
 	<!-- Set up properties and conditions -->
@@ -55,12 +56,20 @@
     		<isset property="projectdir" />
     	</not>
     </condition>
+    <condition property="target" value="target/javascript">
+        <available file="${projectdir}/target/javascript/bin/js-debug" type="dir" />
+    </condition>
+    <property name="target" value="." />
 	
-	<!-- override with -Dplatform=other-platform-name -->
-	<condition property="platform" value="android">
+	<condition property="platform.android" value="android">
 		<not>
-			<isset property="platform" />
+			<isset property="platform.android" />
 		</not>
+    </condition>
+    <condition property="platform.ios" value="ios">
+    	<not>
+    		<isset property="platform.ios" />
+    	</not>
     </condition>
     
 	<!-- override with -Dappname=other-app-name -->
@@ -71,11 +80,6 @@
     	</not>
     </condition>
     
-    <condition property="cordova.executable" value="cordova">
-    	<not>
-    		<isset property="isWindows" />
-    	</not>
-    </condition>
     <condition property="cordova.executable" value="cordova.cmd">
     	<isset property="isWindows" />
     </condition>
@@ -83,6 +87,14 @@
 	<property name="cordova.target.dir" value="${projectdir}/app/${appname}" />
     <available file="${cordova.target.dir}" type="dir" property="app.dir.exists"/>
     
+    <target name="find.cordova.mac" unless="isWindows">
+        <condition property="cordova.executable" value="/usr/local/bin/cordova">
+            <available file="/usr/local/bin/cordova" type="file"/>
+        </condition>
+        <condition property="cordova.path" value="/usr/local/bin">
+            <available file="/usr/local/bin/cordova" type="file"/>
+        </condition>
+    </target>
 	
 	<!-- Create the Cordova template project unless it already exists -->
 	
@@ -93,27 +105,12 @@
 	<target name="create" unless="app.dir.exists" depends="makedir" description="Creates the Cordova application template">
     	<!-- create the project -->
 		<exec executable="${cordova.executable}" dir="${projectdir}/app">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
 			<arg value="create" />
 			<arg value="${appname}" />
+			<arg value="org.apache.flex.examples.${appname}" />
+			<arg value="${appname}" />
 		</exec>
-		
-		<echo>Adding in platform(s). This may take awhile.</echo>
-
-		<!-- add in the platforms -->
-		<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-			<arg value="platform" />
-			<arg value="add" />
-			<arg value="${platform}" />
-		</exec>
-    </target>
-    
-    <!-- Compile the FlexJS application -->
-    
-    <target name="compilejs" description="Compiles the FlexJS app into JavaScript">
-    	<echo message="Compiling FlexJS app" />
-    	<exec executable="mxmlc" dir="${projectdir}/src">
-    		<arg value="${appname}.mxml" />
-    	</exec>
     </target>
     
     <!-- Clean www directory -->
@@ -129,19 +126,84 @@
     <target name="copyfiles" depends="purge">
     	<echo message="Copying files from project" />
     	<copy todir="${cordova.target.dir}/www">
-    		<fileset dir="${projectdir}/bin/js-debug" />
+    		<fileset dir="${projectdir}/${target}/bin/js-debug" />
     	</copy>
     </target>
+    
+    <!--
+    	Check to see if the Android platform needs to be loaded.
+    -->
+    
+    <target name="check-platform.android">
+    	<property name="android.platform" value="${projectdir}/app/${appname}/platforms/android" />
+    	<available file="${android.platform}" type="dir" property="platform.loaded" />
+    </target>
+    
+    <target name="load-platform.android" depends="check-platform.android" unless="platform.loaded">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="${platform.android}" />
+		</exec>
+    </target>
+    
+    <!--
+    	Check to see if the iOS platform needs to be loaded.
+    -->
+    
+    <target name="check-platform.ios">
+    	<property name="android.ios" value="${projectdir}/app/${appname}/platforms/ios" />
+    	<available file="${ios.platform}" type="dir" property="platform.loaded" />
+    </target>
+    
+    <target name="load-platform.ios" depends="check-platform.ios" unless="platform.loaded">
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+			<arg value="platform" />
+			<arg value="add" />
+			<arg value="${platform.ios}" />
+		</exec>
+    </target>
+    
+    <!-- 
+    	Check to see if the Cordova File Plugin is needed and if so, load it.
+    -->
+    
+    <target name="check-fileplugin">
+    	<property name="storage.file" value="${projectdir}/${target}/bin/js-debug/org/apache/flex/storage/IPermanentStorage.js" />
+    	<available file="${storage.file}" type="file" property="file.plugin.needed" />
+    </target>
+    
+    <target name="load-fileplugin" depends="find.cordova.mac,check-fileplugin" if="file.plugin.needed">
+    	<echo message="Loading cordova file-plugin" />
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+    		<arg value="plugin" />
+    		<arg value="add" />
+    		<arg value="cordova-plugin-file" />
+    	</exec>
+	</target>
     
     <!--
     	Running the app on the platform
     -->
     
-    <target name="run" description="Runs the Cordova application on the specified platform">
-    	<echo message="Launching ${appname} on platform ${platform}" />
-    	<exec executable="cordova" dir="${cordova.target.dir}">
+    <target name="run.android" depends="find.cordova.mac,load-platform.android,load-fileplugin" description="Runs the Cordova application on the specified platform">
+    	<echo message="Launching ${appname} on platform ${platform.android}" />
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
     		<arg value="run" />
-    		<arg value="${platform}" />
+    		<arg value="${platform.android}" />
+    	</exec>
+    </target>
+    
+    <target name="run.ios" depends="find.cordova.mac,load-platform.ios,load-fileplugin" description="Runs the Cordova application on the specified platform">
+    	<echo message="Launching ${appname} on platform ${platform.ios}" />
+    	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
+            <env key="PATH" path="${env.PATH}:${cordova.path}"/>
+    		<arg value="run" />
+    		<arg value="${platform.ios}" />
     	</exec>
     </target>
     

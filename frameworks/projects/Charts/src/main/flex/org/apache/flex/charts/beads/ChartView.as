@@ -91,6 +91,7 @@ package org.apache.flex.charts.beads
 				var m1:Class = ValuesManager.valuesImpl.getValue(_strand, "iHorizontalAxisGroup");
 				_horizontalAxisGroup = new m1();
 				haxis.axisGroup = _horizontalAxisGroup;
+				UIBase(_horizontalAxisGroup).className = "HorizontalAxis";
 				IParent(_strand).addElement(_horizontalAxisGroup, false);
 			}
 			
@@ -99,6 +100,7 @@ package org.apache.flex.charts.beads
 				var m2:Class = ValuesManager.valuesImpl.getValue(_strand, "iVerticalAxisGroup");
 				_verticalAxisGroup = new m2();
 				vaxis.axisGroup = _verticalAxisGroup;
+				UIBase(_verticalAxisGroup).className = "VerticalAxis";
 				IParent(_strand).addElement(_verticalAxisGroup, false);
 			}
 			

@@ -55,8 +55,15 @@
         
         <mkdir dir="${download.dir}"/>
         <get src="https://codeload.github.com/swfobject/swfobject/zip/2.2"
-            dest="${download.dir}/swfobject_2_2.zip" 
-            verbose="false"/>
+            dest="${download.dir}/swfobject_2_2.zip"
+            verbose="false" ignoreerrors="true"/>
+        
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="swfobject_2_2.zip" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="swfobject_2_2.zip" />
+        </antcall>
         
         <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
             <patternset>
@@ -65,6 +72,7 @@
             </patternset>
             <flattenmapper />
         </unzip>
+        <antcall target="swfobject-double-check" />
         <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
         <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
             <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
@@ -81,6 +89,24 @@
                 <exclude name="history/**"/>
             </fileset>
         </delete>
+    </target>
+        
+    <target name="have-swfobject" >
+        <condition property="still-no-swfobject">
+            <not>
+                <available file="${FLEXJS_HOME}/templates/swfobject/swfobject.js" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="swfobject-double-check" depends="have-swfobject" if="still-no-swfobject" description="some SWFObject zips have a different folder structure so if the first unzip doesn't work, try this one">
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
+            <patternset>
+                <include name="swfobject/expressInstall.swf"/>
+                <include name="swfobject/swfobject.js"/>
+            </patternset>
+            <flattenmapper />
+        </unzip>
     </target>
         
     <!-- flat ui fonts  -->
@@ -125,7 +151,16 @@
         <mkdir dir="${download.dir}"/>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
         dest="${download.dir}/flat-ui_2_2.zip"
-        verbose="false"/>
+        verbose="false" ignoreerrors="true"/>
+        
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="flat-ui_2_2.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="flat-ui_2_2.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
         
         <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
         <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
@@ -158,8 +193,17 @@
     	<mkdir dir="${download.dir}"/>
     	<get src="https://github.com/google/closure-library/archive/master.zip"
     	        dest="${download.dir}/google-closure-library-master.zip"
-    	        verbose="false"/>
+    	        verbose="false" ignoreerrors="true"/>
     	
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="google-closure-library-master.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="google-closure-library-master.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        
     	<mkdir dir="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${FLEXJS_HOME}/js/lib/google/closure-library">
     		<cutdirsmapper dirs="1" />
@@ -225,4 +269,28 @@
             value="${env.GOOG_HOME}" />
     </target>
         
+    <target name="fail-if-not-found">
+        <fail message="${filename} could not be downloaded or found in cache">
+            <condition>
+                <not>
+                    <available file="${download.dir}/${filename}" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="double-check-file" >
+        <condition property="still-no-file" value="true">
+            <and>
+                <not>
+                    <available file="${download.dir}/${filename}" />
+                </not>
+                <isset property="env.FLEX_DOWNLOAD_CACHE" />
+            </and>
+        </condition>
+        <echo>Need file: ${still_no_file}</echo>
+    </target>
+    <target name="get-from-cache-if-needed" depends="double-check-file" if="still-no-file">
+        <copy file="${env.FLEX_DOWNLOAD_CACHE}/${filename}" tofile="${download.dir}/${filename}" />
+    </target>
 </project>

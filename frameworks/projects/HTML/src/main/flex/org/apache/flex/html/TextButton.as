@@ -24,6 +24,8 @@ package org.apache.flex.html
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
 
+    [DefaultProperty("text")]
+        
     /**
      *  The TextButton class implements a basic button that
      *  displays text.
@@ -33,7 +35,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class TextButton extends Button
+	public class TextButton extends ButtonBase
 	{
         /**
          *  Constructor.

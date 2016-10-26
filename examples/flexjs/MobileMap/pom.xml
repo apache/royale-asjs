@@ -23,8 +23,6 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Needs to be packaged with cordova
-
         Seems to be a Flash build however requiring airglobal to build because of a dependency to air in GoogleMaps.
   -->
 
@@ -58,6 +56,10 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jboss.errai</groupId>
+        <artifactId>cordova-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

@@ -40,6 +40,7 @@
     
     <target name="convert_project" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS project">
         <copy file="${basedir}/../../examples/flexjs/HelloWorld/src/HelloWorld.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+        <antcall target="makeAIRvisible" />
     </target>
 
     <target name="convert_project_mvc" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS MVC project">
@@ -51,6 +52,7 @@
         <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/models/MyModel.as" tofile="${projectDir}/src/models/MyModel.as" overwrite="true" />
         <copy file="${basedir}/../../examples/flexjs/DataBindingExample/src/controllers/MyController.as" tofile="${projectDir}/src/controllers/MyController.as" overwrite="true" />
         <replace file="${projectDir}/src/controllers/MyController.as" token="DataBindingExample" value="${projectName}" />
+        <antcall target="makeAIRvisible" />
     </target>
 
     <target name="cutpath" >
@@ -58,4 +60,16 @@
         <echo>projectDir: ${projectDir}</echo>
         <echo>projectName: ${projectName}</echo>
     </target>
+    
+    <target name="makeAIRvisible">
+        <echo>Checking for ${projectDir}/src/${projectName}-app.xml</echo>
+        <condition property="isAIR" value="true">
+            <available file="${projectDir}/src/${projectName}-app.xml" />
+        </condition>
+        <antcall target="replaceVisibleInAppXML" />
+    </target>
+    <target name="replaceVisibleInAppXML" if="isAIR">
+        <replace file="${projectDir}/src/${projectName}-app.xml" token="&lt;visible&gt;false&lt;/visible&gt;" value="&lt;visible&gt;true&lt;/visible&gt;" />
+    </target>
+    
 </project>
