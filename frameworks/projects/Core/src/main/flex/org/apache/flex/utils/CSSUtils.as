@@ -40,6 +40,10 @@ package org.apache.flex.utils
 		
         public static function attributeFromColor(value:uint):String
         {
+			if(value > 16777215)
+			{
+				//rgba -- return rgb notation
+			}
             return "#" + StringPadder.pad(value.toString(16),"0",6);
         }
         /**
