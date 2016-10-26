@@ -21,6 +21,7 @@ package org.apache.flex.events
 {
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.events.CustomEvent;
+	import org.apache.flex.events.IFlexJSEvent;
 	
 	/**
 	 * The ItemRendererEvent is dispatched by DataItemRendererFactory classes under
@@ -80,7 +81,7 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-		override public function cloneEvent():org.apache.flex.events.Event
+		override public function cloneEvent():IFlexJSEvent
 		{
 			var newEvent:ItemRendererEvent = new ItemRendererEvent(type);
 			newEvent.itemRenderer = itemRenderer;
