@@ -53,20 +53,20 @@ limitations under the License.
                     </mdl:Button>
 
                     <!-- Raised button -->
-                    <mdl:Button text="BUTTON">
+                    <mdl:Button text="COLORED">
                         <js:beads>
                             <mdl:ButtonEffect raised="true" colored="true"/>
                         </js:beads>
                     </mdl:Button>
 
                     <!-- Raised button with ripple -->
-                    <mdl:Button text="BUTTON">
+                    <mdl:Button text="ACCENT">
                         <js:beads>
                             <mdl:ButtonEffect raised="true" ripple="true" accent="true"/>
                         </js:beads>
                     </mdl:Button>
                     <!-- Raised disabled button-->
-                    <mdl:Button text="BUTTON">
+                    <mdl:Button text="DISABLED">
                         <js:beads>
                             <mdl:ButtonEffect raised="true"/>
                             <mdl:Disabled/>

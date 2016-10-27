@@ -44,6 +44,12 @@
         <configuration>
           <flashVersion>20.0</flashVersion>
           <mainClass>App.mxml</mainClass>
+          <includeFiles>
+            <include-file>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
+            </include-file>
+          </includeFiles>
         </configuration>
         <executions>
           <!-- Add a second execution with output set to JavaScript (Flash is the default) -->

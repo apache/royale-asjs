@@ -19,14 +19,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-.demo-card-wide.mdl-card {
-  width: 512px;
+@namespace "library://ns.apache.org/flexjs/basic";
+
+.flexjs *, . flexjs *:before, . flexjs *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('welcome_card.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
+
+Application
+{
+	padding: 10px;
+	margin: 10px;
 }
