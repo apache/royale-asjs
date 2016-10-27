@@ -19,24 +19,54 @@
  -->
 <project name="Maven" xmlns="https://maven.apache.org/xsd/decoration-1.7.0.xsd">
 
-    <!-- Use the nicer looking fluido skin instead of the default -->
     <skin>
-        <groupId>org.apache.maven.skins</groupId>
-        <artifactId>maven-fluido-skin</artifactId>
-        <version>1.5</version>
+        <groupId>lt.velykis.maven.skins</groupId>
+        <artifactId>reflow-maven-skin</artifactId>
+        <version>1.1.1</version>
     </skin>
+
+    <!--
+        Details on how to configure the reflow skin:
+        http://andriusvelykis.github.io/reflow-maven-skin/skin/
+    -->
+    <custom>
+        <reflowSkin>
+            <theme>site</theme>
+            <titleTemplate>Apache Flex® - %2$s</titleTemplate>
+            <breadcrumbs>false</breadcrumbs>
+            <highlightJs>true</highlightJs>
+        </reflowSkin>
+    </custom>
 
     <bannerLeft>
         <name>Apache Flex</name>
-        <src>http://flex.apache.org/images/logo_01_fullcolor-sm.png</src>
+        <src>img/logo-flex.png</src>
         <href>http://flex.apache.org/</href>
     </bannerLeft>
 
-    <!--bannerRight>
-        <src>http://maven.apache.org/images/maven-small.gif</src>
-    </bannerRight-->
+    <bannerRight>
+        <name>An Apache Project</name>
+        <src>img/logo-asf.png</src>
+        <href>http://www.apache.org</href>
+    </bannerRight>
 
     <body>
+        <head>
+            <link rel="icon" type="image/x-icon" href="img/favicon.ico"/>
+            <link rel="apple-touch-icon" href="img/apple-touch-icon-60.png"/>
+            <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76.png"/>
+            <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120.png"/>
+            <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152.png"/>
+        </head>
 
+        <links>
+            <item name="Apache Flex Homepage" href="http://flex.apache.org/" />
+            <!--item name="Apache FlexJS Homepage" href="http://flex.apache.org/" /-->
+            <item name="Apache Flex Wiki" href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki"/>
+        </links>
+
+        <menu ref="reports" />
+        <menu ref="parent" />
+        <menu ref="modules" />
     </body>
 </project>

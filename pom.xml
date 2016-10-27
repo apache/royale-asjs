@@ -74,9 +74,8 @@
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
     <site>
-      <id>website</id>
-      <!-- TODO: Set this to the correct url -->
-      <url>scp://www.mycompany.com/www/docs/project/</url>
+      <id>apache.website</id>
+      <url>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</url>
     </site>
   </distributionManagement>
 
@@ -195,6 +194,91 @@
             </exclusions>
           </dependency>
         </dependencies>
+      </plugin>
+
+      <!-- Configure the Site generation -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <!-- Downgraded to 3.4 as 3.5 and 3.5.1 seem to have issues with the velocity tools -->
+        <version>3.4</version>
+        <configuration>
+          <generateReports>true</generateReports>
+          <generateSitemap>true</generateSitemap>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
+          <locales>en</locales>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${project.reporting.outputencoding}</outputEncoding>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>1.6</version>
+          </dependency>
+          <!-- All dependencies needed by the reflow skin -->
+          <dependency>
+            <groupId>lt.velykis.maven.skins</groupId>
+            <artifactId>reflow-velocity-tools</artifactId>
+            <version>1.1.1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+          </dependency>
+          <!-- add support for scm/git site deployment -->
+          <dependency>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-scm</artifactId>
+            <version>2.10</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-api</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-manager-plexus</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!--
+        Make the maven-site-plugin stage the output in the "asf-site" branch
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>scm-publish</id>
+            <phase>site-deploy</phase>
+            <!-- deploy site with maven-scm-publish-plugin -->
+            <goals>
+              <goal>publish-scm</goal>
+            </goals>
+            <configuration>
+              <!-- mono-module doesn't require site:stage -->
+              <content>${project.build.directory}/site</content>
+              <!-- branch where to deploy -->
+              <scmBranch>asf-site</scmBranch>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
