@@ -40,11 +40,19 @@ package org.apache.flex.utils
 		
         public static function attributeFromColor(value:uint):String
         {
+            var hexVal:String = value.toString(16);
 			if(value > 16777215)
 			{
-				//rgba -- return rgb notation
+                //rgba -- return rgba notation
+                var rgba:Array = hexVal.match(/.{2}/g);
+                for(var i:int = 0; i < 4; i++)
+                {
+                    rgba[i] = parseInt(rgba[i], 16);
+                }
+                rgba[3] = parseInt(""+(rgba[3]/255)*1000) / 1000;
+				return "rgba(" + rgba.join(",") + ")";
 			}
-            return "#" + StringPadder.pad(value.toString(16),"0",6);
+            return "#" + StringPadder.pad(hexVal,"0",6);
         }
         /**
          *  Converts a String to number.
