@@ -46,6 +46,24 @@ package org.apache.flex.mdl.beads
 		{
 		}
 		
+		private var _disabled:Boolean = true;
+        /**
+		 *  A boolean flag to enable or disable the host control.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get disabled():Boolean
+        {
+            return _disabled;
+        }
+        public function set disabled(value:Boolean):void
+        {
+            _disabled = value; 
+        }
+
 		private var _strand:IStrand;
 		
 		/**
@@ -69,7 +87,7 @@ package org.apache.flex.mdl.beads
                 //if (host.element is HTMLInputElement)
                 //{
                     input = host.element as HTMLInputElement;
-                    input.disabled = "disabled";
+                    //input.disabled = _disabled ? "disabled" : "";
                 //} else
                 //{
                  //   throw new Error("Host element component in not type input");

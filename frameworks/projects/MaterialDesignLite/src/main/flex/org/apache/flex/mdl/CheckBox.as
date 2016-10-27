@@ -73,64 +73,31 @@ package org.apache.flex.mdl
          */
         override protected function createElement():WrappedHTMLElement
         {
-                label = document.createElement('label') as HTMLLabelElement;
-                element = label as WrappedHTMLElement;
-                
-                input = document.createElement('input') as HTMLInputElement;
-                input.type = 'checkbox';
-                input.className = 'mdl-checkbox__input';
-                //input.addEventListener('change', selectionChangeHandler, false);
-                label.appendChild(input);
-                
-                checkbox = document.createElement('span') as HTMLSpanElement;
-                checkbox.className = 'mdl-checkbox__label';
-                //checkbox.addEventListener('mouseover', mouseOverHandler, false);
-                //checkbox.addEventListener('mouseout', mouseOutHandler, false);
-                label.appendChild(checkbox);
-                
-                textNode = document.createTextNode('') as Text;
-                checkbox.appendChild(textNode);
-                
-                positioner = element;
-                positioner.style.position = 'relative';
-                (input as WrappedHTMLElement).flexjs_wrapper = this;
-                (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
-                element.flexjs_wrapper = this;
-                
-                className = typeNames = 'mdl-checkbox mdl-js-checkbox';
+            label = document.createElement('label') as HTMLLabelElement;
+            element = label as WrappedHTMLElement;
+            
+            input = document.createElement('input') as HTMLInputElement;
+            input.type = 'checkbox';    
+            input.className = 'mdl-checkbox__input';
+            label.appendChild(input);
+            
+            checkbox = document.createElement('span') as HTMLSpanElement;
+            checkbox.className = 'mdl-checkbox__label';
+            label.appendChild(checkbox);
+            
+            textNode = document.createTextNode('') as Text;
+            checkbox.appendChild(textNode);
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            (input as WrappedHTMLElement).flexjs_wrapper = this;
+            (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
+            element.flexjs_wrapper = this;
+            
+            className = typeNames = 'mdl-checkbox mdl-js-checkbox';
 
-                return element;
-            };
-        
-        
-        /**
-         */
-        private function mouseOverHandler(event:Event):void
-        {
-            //checkbox.className = 'checkbox-icon-hover';
-        }
-        
-        /**
-         */
-        private function mouseOutHandler(event:Event):void
-        {
-            /*if (input.checked)
-                checkbox.className = 'checkbox-icon-checked';
-            else
-                checkbox.className = 'checkbox-icon';*/
-        }
-        
-        
-        /**
-         */
-        private function selectionChangeHandler(event:Event):void
-        {
-            /*if (input.checked)
-                checkbox.className = 'checkbox-icon-checked';
-            else
-                checkbox.className = 'checkbox-icon';*/
-        }
-        
+            return element;
+        };
         
         public function get text():String
         {
@@ -150,10 +117,6 @@ package org.apache.flex.mdl
         public function set selected(value:Boolean):void
         {
             input.checked = value;
-            /*if (value)
-                checkbox.className = 'checkbox-icon-checked';
-            else
-                checkbox.className = 'checkbox-icon';*/
         }
     }
 
