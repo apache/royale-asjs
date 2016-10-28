@@ -38,7 +38,6 @@ internal class CoreClasses
 	}
 	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
-	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.IAlertModel; IAlertModel;
     import org.apache.flex.core.IBead; IBead;
     import org.apache.flex.core.IBeadController; IBeadController;
@@ -97,14 +96,8 @@ internal class CoreClasses
 	{
 		import org.apache.flex.core.IViewportScroller; IViewportScroller;
 	}
-	import org.apache.flex.core.ListBase; ListBase;
-	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
-    import org.apache.flex.core.SimpleApplication; SimpleApplication;
     import org.apache.flex.core.DataBindingBase; DataBindingBase;
-	import org.apache.flex.core.UIBase; UIBase;
-	import org.apache.flex.core.ImageBase; ImageBase;
-	import org.apache.flex.core.ImageViewBase; ImageViewBase;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.UIButtonBase; UIButtonBase;

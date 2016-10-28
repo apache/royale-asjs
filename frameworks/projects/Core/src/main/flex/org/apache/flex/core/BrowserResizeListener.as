@@ -48,7 +48,7 @@ COMPILE::SWF
 		{
 		}
 		
-        private var app:Application;
+        private var app:IInitialViewApplication;
         
         /**
          *  Minimum height
@@ -80,7 +80,7 @@ COMPILE::SWF
          */
         public function set strand(value:IStrand):void
         {
-            app = value as Application;
+            app = value as IInitialViewApplication;
             COMPILE::SWF
             {
                 app.$displayObject.stage.addEventListener("resize", resizeHandler);
