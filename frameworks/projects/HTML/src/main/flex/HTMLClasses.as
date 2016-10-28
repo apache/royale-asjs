@@ -182,6 +182,14 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 
+	import org.apache.flex.core.ListBase; ListBase;
+	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
+	import org.apache.flex.core.FilledRectangle; FilledRectangle;
+    import org.apache.flex.core.UIBase; UIBase;
+    import org.apache.flex.core.SimpleApplication; SimpleApplication;
+	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
+	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
+	
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.HRuleView; HRuleView;

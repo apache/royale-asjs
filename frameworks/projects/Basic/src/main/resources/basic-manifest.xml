@@ -21,6 +21,8 @@
 
 <componentPackage>
 
+    <component id="Application" class="org.apache.flex.core.Application"/>
+    <component id="View" class="org.apache.flex.core.View"/>
     <component id="Button" class="org.apache.flex.html.Button"/>
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"/>

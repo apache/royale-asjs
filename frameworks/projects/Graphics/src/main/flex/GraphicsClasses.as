@@ -28,7 +28,6 @@ package
 internal class GraphicsClasses
 {	
 
-	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
 	import org.apache.flex.svg.GraphicShape; GraphicShape;
 	import org.apache.flex.svg.Rect; Rect;
 	import org.apache.flex.svg.Ellipse; Ellipse;
@@ -46,7 +45,6 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.MoveTo; MoveTo;
 	import org.apache.flex.graphics.PathBuilder; PathBuilder;
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
-	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
 	
 }
 
