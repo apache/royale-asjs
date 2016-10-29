@@ -109,11 +109,14 @@ COMPILE::SWF
             }
         }
         
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.ILayoutChild
+		 */
         private function resizeHandler(event:Event):void
         {
             COMPILE::SWF
             {
-                var initialView:UIBase = app.initialView as UIBase;
+                var initialView:ILayoutChild = app.initialView as ILayoutChild;
 				var constrainedWidth:Number = Math.max(isNaN(minWidth) ? 0 : minWidth, app.$displayObject.stage.stageWidth);
 				var constrainedHeight:Number = Math.max(isNaN(minHeight) ? 0 : minHeight, app.$displayObject.stage.stageHeight);
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
@@ -125,7 +128,7 @@ COMPILE::SWF
             }
             COMPILE::JS
             {
-                var initialView:UIBase = app.initialView as UIBase;
+                var initialView:ILayoutChild = app.initialView as ILayoutChild;
                 var element:HTMLElement = app.element;
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
                     element.style.height = window.innerHeight + 'px';
