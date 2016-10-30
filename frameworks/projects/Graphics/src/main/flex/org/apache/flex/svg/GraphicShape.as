@@ -17,10 +17,10 @@ package org.apache.flex.svg
 	COMPILE::SWF
     {
 		import flash.display.Graphics;
-        import flash.display.Sprite;
-        import flash.geom.Point;
-        import flash.geom.Rectangle;
-        import org.apache.flex.core.WrappedSprite;
+		import flash.display.Sprite;
+		import flash.geom.Point;
+		import flash.geom.Rectangle;
+		import org.apache.flex.core.WrappedSprite;
     }
     COMPILE::JS
     {
@@ -176,6 +176,12 @@ package org.apache.flex.svg
 
             return fillStr + ';' + strokeStr;
         }
+
+		COMPILE::JS
+		override protected function setClassName(value:String):void
+		{
+			element.setAttribute('class', value);           
+		}
 
 
         /**

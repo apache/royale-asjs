@@ -67,6 +67,11 @@ package org.apache.flex.svg
 			return element;
 		}
 
+		COMPILE::JS
+		override protected function setClassName(value:String):void
+		{
+			element.setAttribute('class', value);           
+		}
 		
 		override public function get transformElement():org.apache.flex.core.WrappedHTMLElement
 		{

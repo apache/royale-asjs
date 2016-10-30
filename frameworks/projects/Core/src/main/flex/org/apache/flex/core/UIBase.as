@@ -945,12 +945,19 @@ package org.apache.flex.core
 			{
                 COMPILE::JS
                 {
-                    element.className = typeNames ? value + ' ' + typeNames : value;             
+                    setClassName(typeNames ? value + ' ' + typeNames : value);             
                 }
 				_className = value;
 				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
+		
+		COMPILE::JS
+		protected function setClassName(value:String):void
+		{
+			element.className = value;           
+		}
+		
         
         /**
          *  @copy org.apache.flex.core.Application#beads
