@@ -62,6 +62,7 @@ internal class CoreClasses
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
 	import org.apache.flex.core.ILayoutHost; ILayoutHost;
     import org.apache.flex.core.IListPresentationModel; IListPresentationModel;
+	import org.apache.flex.core.IMeasurementBead; IMeasurementBead;
     import org.apache.flex.core.IPanelModel; IPanelModel;
     import org.apache.flex.core.IParent; IParent;
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
@@ -97,6 +98,11 @@ internal class CoreClasses
     import org.apache.flex.events.EventDispatcher; EventDispatcher;
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
+	COMPILE::SWF
+	{
+	    import org.apache.flex.core.StageProxy; StageProxy;
+		import org.apache.flex.events.utils.MouseEventConverter; MouseEventConverter;
+	}
 	import org.apache.flex.events.DetailEvent; DetailEvent;
 	import org.apache.flex.events.ValueEvent; ValueEvent;
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
@@ -150,6 +156,12 @@ internal class CoreClasses
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
+    import org.apache.flex.core.HTMLElementWrapper; HTMLElementWrapper;
+	
+	COMPILE::JS
+	{
+	    import org.apache.flex.core.IFlexJSElement; IFlexJSElement;
+	}
 }
 
 }

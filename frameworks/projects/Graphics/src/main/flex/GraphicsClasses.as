@@ -28,15 +28,8 @@ package
 internal class GraphicsClasses
 {	
 
-	import org.apache.flex.svg.GraphicShape; GraphicShape;
-	import org.apache.flex.svg.Rect; Rect;
-	import org.apache.flex.svg.Ellipse; Ellipse;
-	import org.apache.flex.svg.Circle; Circle;
-	import org.apache.flex.svg.Path; Path;
 	import org.apache.flex.graphics.SolidColor; SolidColor;
 	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
-	import org.apache.flex.svg.Text; Text;
-	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 	import org.apache.flex.svg.TransformBead; TransformBead;
 	import org.apache.flex.svg.LinearGradient; LinearGradient;
 	import org.apache.flex.graphics.CubicCurve; CubicCurve;
@@ -44,8 +37,18 @@ internal class GraphicsClasses
 	import org.apache.flex.graphics.LineTo; LineTo;
 	import org.apache.flex.graphics.MoveTo; MoveTo;
 	import org.apache.flex.graphics.PathBuilder; PathBuilder;
+	COMPILE::SWF
+	{
+		import org.apache.flex.graphics.utils.PathHelper; PathHelper;
+	}
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
-	
+	import org.apache.flex.graphics.ICircle; ICircle;
+	import org.apache.flex.graphics.ICompoundGraphic; ICompoundGraphic;
+	import org.apache.flex.graphics.IEllipse; IEllipse;
+	import org.apache.flex.graphics.IPath; IPath;
+	import org.apache.flex.graphics.IRect; IRect;
+	import org.apache.flex.graphics.IText; IText;
+		
 }
 
 }
