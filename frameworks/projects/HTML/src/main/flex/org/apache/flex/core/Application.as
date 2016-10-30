@@ -21,7 +21,9 @@ package org.apache.flex.core
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.events.utils.MouseEventConverter;
+	COMPILE::SWF {
+	    import org.apache.flex.events.utils.MouseEventConverter;
+	}
     import org.apache.flex.utils.MXMLDataInterpreter;
     import org.apache.flex.utils.Timer;
 

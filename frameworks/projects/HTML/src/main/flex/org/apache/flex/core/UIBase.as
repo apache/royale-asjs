@@ -29,9 +29,9 @@ package org.apache.flex.core
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.events.utils.MouseEventConverter;
 	COMPILE::SWF {
-	import flash.display.InteractiveObject;
+	    import flash.display.InteractiveObject;
+	    import org.apache.flex.events.utils.MouseEventConverter;
 	}
 	
 	/**

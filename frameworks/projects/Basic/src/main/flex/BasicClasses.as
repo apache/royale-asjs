@@ -189,6 +189,14 @@ internal class BasicClasses
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
 	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
 	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
+	
+	import org.apache.flex.svg.GraphicShape; GraphicShape;
+	import org.apache.flex.svg.Rect; Rect;
+	import org.apache.flex.svg.Ellipse; Ellipse;
+	import org.apache.flex.svg.Circle; Circle;
+	import org.apache.flex.svg.Path; Path;
+	import org.apache.flex.svg.Text; Text;
+	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 
 
 	COMPILE::SWF
