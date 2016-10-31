@@ -169,7 +169,7 @@ internal class CoreClasses
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
-    import org.apache.flex.core.HTMLElementWrapper; HTMLElementWrapper;
+    import org.apache.flex.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
 	
 	COMPILE::JS
 	{
