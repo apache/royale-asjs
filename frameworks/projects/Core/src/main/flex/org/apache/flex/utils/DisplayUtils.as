@@ -132,11 +132,17 @@ package org.apache.flex.utils
 		            break;
 		        }
 		        elements[elements.length] = element;
-		        if(elem && elem == element)
-		        {
-		        	found = element;
-		        	break;
-		        }
+				// work our way up the parent tree to find containing elements if applicable
+				var parent:Element = element;
+				while(parent)
+				{
+					if(elem && elem == parent)
+					{
+						found = parent;
+						break;
+					}
+					parent = parent.parentElement;
+				}
 		        visibility[visibility.length] = element.style.visibility;
 		        element.style.visibility = 'hidden'; // Temporarily hide the element (without changing the layout)
 		    }
