@@ -106,7 +106,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        override public function getElementAt(index:int):Object
+        override public function getElementAt(index:int):IChild
         {
             var contentView:IParent = view as IParent;
             if (contentView != null) {
@@ -119,7 +119,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        override public function getElementIndex(c:Object):int
+        override public function getElementIndex(c:IChild):int
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
@@ -132,7 +132,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
@@ -148,7 +148,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
@@ -164,7 +164,7 @@ package org.apache.flex.core
         /**
          *  @private
          */
-        override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
@@ -229,7 +229,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
 		}
@@ -239,7 +239,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			super.addElementAt(c, index, dispatchEvent);
 		}
@@ -249,7 +249,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $removeElement(c:Object, dispatchEvent:Boolean = true):void
+		public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			super.removeElement(c, dispatchEvent);
 		}
@@ -259,7 +259,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $getElementIndex(c:Object):int
+		public function $getElementIndex(c:IChild):int
 		{
 			return super.getElementIndex(c);
 		}
@@ -269,7 +269,7 @@ package org.apache.flex.core
          * @suppress {undefinedNames}
 		 * Support strandChildren.
 		 */
-		public function $getElementAt(index:int):Object
+		public function $getElementAt(index:int):IChild
 		{
 			return super.getElementAt(index);
 		}

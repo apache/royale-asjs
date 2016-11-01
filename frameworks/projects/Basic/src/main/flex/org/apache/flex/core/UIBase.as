@@ -1098,8 +1098,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-		public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
             COMPILE::SWF
             {
@@ -1117,7 +1118,7 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 element.appendChild(c.positioner);
-                c.addedToParent();
+                (c as IUIBase).addedToParent();
             }
 		}
         
@@ -1128,8 +1129,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF
             {
@@ -1153,7 +1155,7 @@ package org.apache.flex.core
                 {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    c.addedToParent();
+                    (c as IUIBase).addedToParent();
                 }
             }
         }
@@ -1166,7 +1168,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IChild
         {
             COMPILE::SWF
             {
@@ -1187,7 +1189,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IChild):int
         {
             COMPILE::SWF
             {
@@ -1216,8 +1218,9 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion HTMLElement
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF
             {
@@ -1228,7 +1231,7 @@ package org.apache.flex.core
             }
             COMPILE::JS
             {
-                element.removeChild(c.element);
+                element.removeChild(c.element as HTMLElement);
             }
         }
 		

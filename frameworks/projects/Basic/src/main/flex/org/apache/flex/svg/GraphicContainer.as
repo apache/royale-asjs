@@ -21,6 +21,7 @@ package org.apache.flex.svg
 	{
 		import org.apache.flex.core.IContainer;
 		import org.apache.flex.core.UIBase;
+		import org.apache.flex.core.IChild;
 	}
 
 	[DefaultProperty("mxmlContent")]
@@ -32,11 +33,6 @@ package org.apache.flex.svg
         {
             super();
         }
-
-		public function get transformElement():IFlexJSElement
-		{
-			return element;
-		}
 
     }
 	
@@ -72,7 +68,7 @@ package org.apache.flex.svg
 		}
 
 		
-		public function get transformElement():org.apache.flex.core.WrappedHTMLElement
+		override public function get transformElement():org.apache.flex.core.WrappedHTMLElement
 		{
 			return graphicGroup.element;
 		}
@@ -85,7 +81,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function getElementAt(index:int):Object
+		override public function getElementAt(index:int):IChild
 		{
 			return graphicGroup.getElementAt(index);
 		}        
@@ -98,7 +94,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.addElement(c, dispatchEvent);
 			if (dispatchEvent)
@@ -113,7 +109,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.addElementAt(c, index, dispatchEvent);
 			if (dispatchEvent)
@@ -128,7 +124,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			graphicGroup.removeElement(c, dispatchEvent);
 			if (dispatchEvent)
@@ -156,7 +152,7 @@ package org.apache.flex.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function getElementIndex(c:Object):int
+		override public function getElementIndex(c:IChild):int
 		{
 			return graphicGroup.getElementIndex(c);
 		}
