@@ -35,7 +35,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class TextButton extends ButtonBase
+	public class TextButton extends Button
 	{
         /**
          *  Constructor.
