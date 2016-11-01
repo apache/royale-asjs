@@ -165,6 +165,20 @@ package org.apache.flex.core
             }
         }
         
+        COMPILE::SWF
+        public function get $displayObject():DisplayObject
+        {
+            return this;
+        }
+        
+        public function get flexjs_wrapper():Object
+        {
+            return this;
+        }
+        public function set flexjs_wrapper(value:Object):void
+        {
+        }
+        
 		private var _explicitWidth:Number;
         
         /**
@@ -1091,7 +1105,10 @@ package org.apache.flex.core
             {
                 if (c is IUIBase)
                 {
-                    addChild(IUIBase(c).element as DisplayObject);
+                    if (c is IRenderedObject)
+                        addChild(IRenderedObject(c).$displayObject);
+                    else
+                        addChild(c as DisplayObject);                        
                     IUIBase(c).addedToParent();
                 }
                 else
@@ -1118,7 +1135,10 @@ package org.apache.flex.core
             {
                 if (c is IUIBase)
                 {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
+                    if (c is IRenderedObject)
+                        addChildAt(IUIBase(c).$displayObject, index);
+                    else
+                        addChildAt(c as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
                 else
@@ -1150,7 +1170,7 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                return getChildAt(index);
+                return getChildAt(index) as IChild;
             }
             COMPILE::JS
             {
@@ -1171,8 +1191,8 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                if (c is IUIBase)
-                    return getChildIndex(IUIBase(c).element as DisplayObject);
+                if (c is IRenderedObject)
+                    return getChildIndex(IRenderedObject(c).$displayObject);
                 else
                     return getChildIndex(c as DisplayObject);
             }
@@ -1201,8 +1221,8 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                if (c is IUIBase)
-                    removeChild(IUIBase(c).element as DisplayObject);
+                if (c is IRenderedObject)
+                    removeChild(IRenderedObject(c).$displayObject);
                 else
                     removeChild(c as DisplayObject);
             }
@@ -1471,15 +1491,26 @@ package org.apache.flex.core
         /**
          * @param value The event containing new style properties.
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion org.apache.flex.core.IUIBase
+         * @flexjsignorecoercion org.apache.flex.core.IParent
          */
         COMPILE::JS
-        public function get parent():IUIBase
+        public function get parent():IParent
         {
             var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
-            var wrapper:IUIBase = p ? p.flexjs_wrapper as IUIBase : null;
+            var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
             return wrapper;
         }
         
+		COMPILE::SWF
+		public function get transformElement():IFlexJSElement
+		{
+			return this;
+		}
+		
+		COMPILE::JS
+		public function get transformElement():WrappedHTMLElement
+		{
+			return element;
+		}
 	}
 }

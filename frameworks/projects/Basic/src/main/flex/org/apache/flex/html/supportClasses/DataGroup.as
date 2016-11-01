@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {	
+    import org.apache.flex.core.IChild;
     import org.apache.flex.core.IContentView;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
@@ -58,7 +59,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		override public function addElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
 			
@@ -72,7 +73,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 * @private
 		 */
-		override public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{	
 			super.removeElement(c, dispatchEvent);
 			

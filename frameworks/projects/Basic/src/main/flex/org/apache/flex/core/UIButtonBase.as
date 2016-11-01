@@ -75,7 +75,22 @@ package org.apache.flex.core
 			// mouseEnabled = true;
             MouseEventConverter.setupInstanceConverters(this);
 		}
-				
+
+        COMPILE::SWF
+        public function get $displayObject():DisplayObject
+        {
+            return this;
+        }
+        
+        public function get flexjs_wrapper():Object
+        {
+            return this;
+        }
+        public function set flexjs_wrapper(value:Object):void
+        {
+            
+        }
+
         private var _x:Number;
         
 		/**

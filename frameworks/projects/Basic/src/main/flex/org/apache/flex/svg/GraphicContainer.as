@@ -26,7 +26,7 @@ package org.apache.flex.svg
 	[DefaultProperty("mxmlContent")]
 
 	COMPILE::SWF
-    public class GraphicContainer extends ContainerBase implements ITransformHost
+    public class GraphicContainer extends ContainerBase
     {
         public function GraphicContainer()
         {
@@ -41,7 +41,7 @@ package org.apache.flex.svg
     }
 	
 	COMPILE::JS
-	public class GraphicContainer extends UIBase implements ITransformHost, IContainer
+	public class GraphicContainer extends UIBase implements IContainer
 	{
 		private var graphicGroup:ContainerBase;
 		

@@ -81,7 +81,6 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
-        <antcall target="Basic"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
@@ -97,6 +96,7 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
+        <antcall target="Basic"/>
     </target>
     
     <target name="fonts">

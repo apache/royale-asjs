@@ -29,6 +29,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -287,7 +288,7 @@ package org.apache.flex.html.beads
                     while (host && !(host is IPopUpHost))
                         host = host.parent;
                     if (host)
-                        IPopUpHost(host).addElement(popUp);
+                        IPopUpHost(host).addElement(popUp as IChild);
                 }
                 else
                 {

@@ -16,19 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.core
 {
-	import org.apache.flex.core.ImageViewBase;
+	import org.apache.flex.core.IImage;
+	import org.apache.flex.core.IImageModel;
+	import org.apache.flex.core.UIBase;
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
+	 *  The ImageBase class serves as a base class for components that displays a bitmap. The Image uses
+	 *  the following beads:
+	 * 
+	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
+	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageView extends ImageViewBase
+	public class ImageBase extends UIBase implements IImage
 	{
 		/**
 		 *  constructor.
@@ -38,8 +44,40 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ImageView()
+		public function ImageBase()
 		{
+			super();
+		}
+		
+		/**
+		 *  The location of the bitmap, usually a URL.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
+		 */
+		public function get url():String
+		{
+			return (model as IImageModel).url;
+		}
+		public function set url(value:String):void
+		{
+			(model as IImageModel).url = value;
+		}
+		
+		COMPILE::JS
+		public function get imageElement():Element
+		{
+			return null;
+			// override this
+		}
+		
+		COMPILE::JS
+		public function applyImageData(binaryDataAsString:String):void
+		{
+			// override this
 		}
 		
 	}

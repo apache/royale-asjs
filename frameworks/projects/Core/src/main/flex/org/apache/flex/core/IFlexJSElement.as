@@ -33,8 +33,8 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.7
          */
-        function get flexjs_wrapper():ElementWrapper;
-        function set flexjs_wrapper(value:ElementWrapper):void;
+        function get flexjs_wrapper():Object;
+        function set flexjs_wrapper(value:Object):void;
     }
 
 	COMPILE::JS

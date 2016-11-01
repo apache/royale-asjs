@@ -51,7 +51,7 @@ package org.apache.flex.core
             COMPILE::SWF
             {
                 _shape = new flash.display.Shape();
-                this.addElement(_shape);
+                this.addChild(_shape);
             }
 		}
 		

@@ -16,23 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.flex.svg
 {
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	
-	/**
-	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.Image
-	 *  component, namely the source of the image.
-	 *
+	import org.apache.flex.core.IBinaryImage;
+	import org.apache.flex.core.IBinaryImageModel;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.IBinaryImageLoader;
+	import org.apache.flex.utils.BinaryData;
+
+ 	/**
+	 *  The Image class is a component that displays a bitmap. The Image uses
+	 *  the following beads:
+	 * 
+	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
+	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ImageModel extends EventDispatcher implements IImageModel
+	public class BinaryImage extends Image implements IBinaryImage
 	{
 		/**
 		 *  constructor.
@@ -42,48 +46,42 @@ package org.apache.flex.html.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function ImageModel()
+		public function BinaryImage()
 		{
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
+		override public function addedToParent():void
 		{
-			_strand = value;
+			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader") as Class;
+			if (c)
+			{
+				if (c)
+				{
+					var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;
+					addBead(loader);
+				}
+			}
+			super.addedToParent();
 		}
 		
-		private var _url:String;
-		
 		/**
-		 *  The source of the image.
-		 * 
-		 *  @copy org.apache.flex.core.IImageModel#source
+		 *  The binary bitmap data.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
 		 */
-		public function get url():String
+		public function get binary():BinaryData
 		{
-			return _url;
+			return (model as IBinaryImageModel).binary;
 		}
-		public function set url(value:String):void
+		public function set binary(value:BinaryData):void
 		{
-			if (value != _url) {
-				_url = value;
-				dispatchEvent( new Event("urlChanged") );
-			}
+			(model as IBinaryImageModel).binary = value;
 		}
+        
 	}
 }

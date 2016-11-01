@@ -957,8 +957,7 @@ package org.apache.flex.core
 		{
 			element.className = value;           
 		}
-		
-        
+		        
         /**
          *  @copy org.apache.flex.core.Application#beads
          *  

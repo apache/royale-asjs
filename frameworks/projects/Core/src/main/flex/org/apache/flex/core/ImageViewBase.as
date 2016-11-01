@@ -23,6 +23,7 @@ package org.apache.flex.core
         import flash.display.Bitmap;
         import flash.display.Loader;
         import flash.display.LoaderInfo;
+        import flash.display.Sprite;
         import flash.events.IOErrorEvent;
         import flash.net.URLRequest;            
     }
@@ -34,8 +35,10 @@ package org.apache.flex.core
 	
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IImageModel;
+	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.IRenderedObject;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.core.IImageView;
@@ -156,14 +159,16 @@ package org.apache.flex.core
         COMPILE::SWF
 		private function onComplete(event:Object):void
 		{
-            var host:UIBase = UIBase(_strand);
+            var host:ILayoutChild = ILayoutChild(_strand);
+			var hostSprite:Sprite = (host as IRenderedObject).$displayObject as Sprite;
+			
 			if (bitmap) {
-				host.$sprite.removeChild(bitmap);
+				hostSprite.removeChild(bitmap);
 			}
 			
 			bitmap = Bitmap(LoaderInfo(event.target).content);
 			
-			host.$sprite.addChild(bitmap);
+			hostSprite.addChild(bitmap);
 			
             if (host.isWidthSizedToContent())
             {
@@ -191,19 +196,19 @@ package org.apache.flex.core
         COMPILE::SWF
 		private function handleSizeChange(event:Object):void
 		{
-            var host:UIBase = UIBase(_strand);
+            var host:ILayoutChild = ILayoutChild(_strand);
             if (bitmap) {
                 if (!isNaN(host.explicitWidth) || !isNaN(host.percentWidth))
-	    			bitmap.width = UIBase(_strand).width;
+	    			bitmap.width = IUIBase(_strand).width;
                 if (!isNaN(host.explicitHeight) || !isNaN(host.percentHeight))
-    				bitmap.height = UIBase(_strand).height;
+    				bitmap.height = IUIBase(_strand).height;
 			}
 		}
         
         COMPILE::JS
         private function loadHandler(event:Object):void
         {
-            var host:UIBase = UIBase(_strand);
+            var host:IUIBase = IUIBase(_strand);
             IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
         }
         
@@ -213,7 +218,7 @@ package org.apache.flex.core
         COMPILE::JS
         protected function sizeChangedHandler(event:Object):void
         {
-            var host:UIBase = _strand as UIBase;
+            var host:IUIBase = _strand as IUIBase;
             var s:Object = host.positioner.style;
             var l:Number = NaN;
             var ls:String = s.left;

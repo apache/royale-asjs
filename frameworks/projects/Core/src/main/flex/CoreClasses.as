@@ -27,6 +27,7 @@ package {
 internal class CoreClasses
 {
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
+    import org.apache.flex.core.ImageViewBase; ImageViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
@@ -35,6 +36,11 @@ internal class CoreClasses
 		import org.apache.flex.core.CSSSprite; CSSSprite;
 		import org.apache.flex.core.CSSTextField; CSSTextField;
 	    import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
+		import org.apache.flex.core.WrappedMovieClip; WrappedMovieClip;
+		import org.apache.flex.core.WrappedShape; WrappedShape;
+		import org.apache.flex.core.WrappedSimpleButton; WrappedSimpleButton;
+		import org.apache.flex.core.WrappedSprite; WrappedSprite;
+		import org.apache.flex.core.WrappedTextField; WrappedTextField;
 	}
 	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
@@ -75,6 +81,7 @@ internal class CoreClasses
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
     import org.apache.flex.core.IPopUp; IPopUp;
     import org.apache.flex.core.IRangeModel; IRangeModel;
+    import org.apache.flex.core.ISWFApplication; ISWFApplication;
 	import org.apache.flex.core.ITransformModel; ITransformModel;
 	import org.apache.flex.core.ITransformHost; ITransformHost;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
