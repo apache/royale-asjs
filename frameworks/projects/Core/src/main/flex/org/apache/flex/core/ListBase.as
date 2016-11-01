@@ -20,6 +20,7 @@ package org.apache.flex.core
 {
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.states.State;
@@ -34,7 +35,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ListBase extends UIBase implements IContentViewHost
+	public class ListBase extends UIBase implements IContentViewHost, ILayoutParent
 	{
         /**
          *  Constructor.
@@ -59,6 +60,14 @@ package org.apache.flex.core
 		public function get strandChildren():IParent
 		{
 			return _strandChildren;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function getLayoutHost():ILayoutHost
+		{
+			return view as ILayoutHost; 
 		}
 		
 		/**

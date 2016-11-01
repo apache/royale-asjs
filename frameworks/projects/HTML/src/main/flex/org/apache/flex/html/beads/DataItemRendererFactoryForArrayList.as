@@ -171,6 +171,7 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				dataGroup.addElement(ir);
 				if (presentationModel) {
 					UIBase(ir).height = presentationModel.rowHeight;
 					
@@ -180,7 +181,6 @@ package org.apache.flex.html.beads
 					style.left = 0;
 					UIBase(ir).style = style;
 				}
-				dataGroup.addElement(ir);
 				setData(ir, dp.getItemAt(i), i);
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

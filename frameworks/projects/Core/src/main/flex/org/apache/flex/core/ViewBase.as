@@ -48,7 +48,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewBase extends ContainerBase implements IPopUpHost, IApplicationView
+	public class ViewBase extends ContainerBase implements IPopUpHost, IApplicationView, ILayoutParent
 	{
         /**
          *  Constructor.
@@ -92,6 +92,20 @@ package org.apache.flex.core
             _applicationModel = value;
             dispatchEvent(new Event("modelChanged"));
         }
+		
+		/**
+		 * Implements the ILayoutParent protocol by returning the bead that
+		 * is acting as the host for layout.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+		 */
+		public function getLayoutHost():ILayoutHost
+		{
+			return getBeadByType(ILayoutHost) as ILayoutHost;
+		}
 
     }
 }

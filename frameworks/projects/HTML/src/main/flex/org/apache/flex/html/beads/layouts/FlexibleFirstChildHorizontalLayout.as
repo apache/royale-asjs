@@ -21,6 +21,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
     import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -130,7 +131,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-			var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+			var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
             var hostSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -152,6 +153,7 @@ package org.apache.flex.html.beads.layouts
             for (var i:int = n - 1; i >= 0; i--)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
 				if (margin is Array)
 				{
@@ -226,6 +228,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				var obj:Object = verticalMargins[0]
 				child = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) continue;
 				if (obj.valign == "middle")
 					child.y = (maxHeight - child.height) / 2;
 				else if (valign == "bottom")
