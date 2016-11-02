@@ -72,6 +72,7 @@
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
+    <component id="MXMLItemRenderer" class="org.apache.flex.html.supportClasses.MXMLItemRenderer"/>
     <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>

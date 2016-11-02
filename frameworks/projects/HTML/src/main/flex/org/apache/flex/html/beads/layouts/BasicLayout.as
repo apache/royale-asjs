@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -85,7 +86,7 @@ package org.apache.flex.html.beads.layouts
             COMPILE::SWF
             {
                 //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
-                var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+                var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
                 var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
                 
                 var gotMargin:Boolean;
@@ -109,6 +110,7 @@ package org.apache.flex.html.beads.layouts
                 for (var i:int = 0; i < n; i++)
                 {
                     var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+					if (child == null || !child.visible) continue;
                     var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
                     var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
                     var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
@@ -379,7 +381,7 @@ package org.apache.flex.html.beads.layouts
                 var h:Number;
                 var w:Number;
                 
-                var viewBead:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+                var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
                 var contentView:IParentIUIBase = viewBead.contentView;
                 w = contentView.width;
                 var hasWidth:Boolean = !host.isWidthSizedToContent();
@@ -390,6 +392,7 @@ package org.apache.flex.html.beads.layouts
                 n = contentView.numElements;
                 for (i = 0; i < n; i++) {
                     var child:UIBase = contentView.getElementAt(i) as UIBase;
+					if (child == null || !child.visible) continue;
                     child.setDisplayStyleForLayout('block');
                     var left:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
                     var right:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
