@@ -34,7 +34,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ListBase extends UIBase implements IContentViewHost
+	public class ListBase extends UIBase implements IContentViewHost, ILayoutParent
 	{
         /**
          *  Constructor.
@@ -59,6 +59,14 @@ package org.apache.flex.core
 		public function get strandChildren():IParent
 		{
 			return _strandChildren;
+		}
+		
+		/**
+		 * @private
+		 */
+		public function getLayoutHost():ILayoutHost
+		{
+			return view as ILayoutHost; 
 		}
 		
 		/**
