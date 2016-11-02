@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.display.DisplayObject;
 	
 	import org.apache.flex.events.Event;
     import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.Button;
 	
     /**
      *  The HScrollBarMouseController class is the controller for
@@ -76,16 +76,16 @@ package org.apache.flex.html.beads.controllers
          */
 		override protected function thumbMouseDownHandler(event:MouseEvent):void
 		{
-			sbView.thumb.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
-			sbView.thumb.stage.addEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);
+			sbView.thumb.$button.stage.addEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
+			sbView.thumb.$button.stage.addEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);
 			thumbDownX = event.screenX;
 			lastThumbX = sbView.thumb.x;
 		}
 		
 		private function thumbMouseMoveHandler(event:MouseEvent):void
 		{
-			var thumb:DisplayObject = sbView.thumb;
-			var track:DisplayObject = sbView.track;
+			var thumb:Button = sbView.thumb;
+			var track:Button = sbView.track;
 			thumb.x = Math.max(track.x, Math.min(lastThumbX + (event.screenX - thumbDownX), track.x + track.width - thumb.width));
 			var newValue:Number = snap((thumb.x - track.x) / (track.width - thumb.width) * (sbModel.maximum - sbModel.minimum - sbModel.pageSize));
 			sbModel.value = newValue;
@@ -94,8 +94,8 @@ package org.apache.flex.html.beads.controllers
 		
 		private function thumbMouseUpHandler(event:MouseEvent):void
 		{
-			sbView.thumb.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
-			sbView.thumb.stage.removeEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);			
+			sbView.thumb.$button.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMouseMoveHandler);
+			sbView.thumb.$button.stage.removeEventListener(MouseEvent.MOUSE_UP, thumbMouseUpHandler);			
 		}
 	}
 }

@@ -29,13 +29,15 @@ COMPILE::SWF {
 
 	import org.apache.flex.core.UIButtonBase;
 }
-
+    
     import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IStrand;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -84,10 +86,11 @@ COMPILE::SWF {
 				shape.graphics.beginFill(0xCCCCCC);
 				shape.graphics.drawRect(0, 0, 10, 10);
 				shape.graphics.endFill();
-				SimpleButton(value).upState = upSprite;
-				SimpleButton(value).downState = downSprite;
-				SimpleButton(value).overState = overSprite;
-				SimpleButton(value).hitTestState = shape;
+                var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+				button.upState = upSprite;
+				button.downState = downSprite;
+				button.overState = overSprite;
+				button.hitTestState = shape;
 
 				setupBackground(upSprite);
 				setupBackground(overSprite, "hover");
@@ -124,8 +127,8 @@ COMPILE::SWF {
                     if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
                     {
                         host.setWidth(loader.content.width);
-                        if (host.parent)
-                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                        if (host.parent is IEventDispatcher)
+                            IEventDispatcher(host.parent).dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
                     }
                     else
                         loader.content.width = host.width;
@@ -133,8 +136,8 @@ COMPILE::SWF {
                     if (isNaN(host.explicitHeight) && isNaN(host.percentHeight))
                     {
                         host.setHeight(loader.content.height);
-                        if (host.parent)
-                            host.parent.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+                        if (host.parent is IEventDispatcher)
+                            IEventDispatcher(host.parent).dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
                     }
                     else
                         loader.content.height = host.height;

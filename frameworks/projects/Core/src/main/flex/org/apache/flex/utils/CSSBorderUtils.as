@@ -64,7 +64,7 @@ package org.apache.flex.utils
 		 *  @productversion FlexJS 0.0
          */
         public static function draw(g:Graphics, width:Number, height:Number,
-                                    host:DisplayObject, state:String = null, 
+                                    host:Object, state:String = null, 
                                     drawBackground:Boolean = false, clear:Boolean = true):void
         {            
             if (clear)

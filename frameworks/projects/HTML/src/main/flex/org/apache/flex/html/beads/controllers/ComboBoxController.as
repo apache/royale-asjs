@@ -23,9 +23,10 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IComboBoxView;
 
 	/**
@@ -74,17 +75,19 @@ package org.apache.flex.html.beads.controllers
 		 */
         private function clickHandler(event:MouseEvent):void
         {
+            var host:IUIBase = IUIBase(_strand);
             var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
             viewBead.popUpVisible = true;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
             popUpModel.dataProvider = selectionModel.dataProvider;
             popUpModel.selectedIndex = selectionModel.selectedIndex;
-			DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
-			DisplayObject(viewBead.popUp).height = 200;
-			DisplayObject(viewBead.popUp).x = DisplayObject(_strand).x;
-			DisplayObject(viewBead.popUp).y = DisplayObject(_strand).y;
-            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+            var popUp:IUIBase = IUIBase(viewBead.popUp);
+			popUp.width = host.width;
+            popUp.height = 200;
+            popUp.x = host.x;
+            popUp.y = host.y;
+            popUp.addEventListener("change", changeHandler);
         }
         
 		/**

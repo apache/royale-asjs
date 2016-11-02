@@ -27,14 +27,22 @@ package {
 internal class CoreClasses
 {
     import org.apache.flex.core.BeadViewBase; BeadViewBase;
+    import org.apache.flex.core.ImageViewBase; ImageViewBase;
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
+		import org.apache.flex.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;
 		import org.apache.flex.core.CSSTextField; CSSTextField;
 	    import org.apache.flex.core.StyleableCSSTextField; StyleableCSSTextField;
+		import org.apache.flex.core.WrappedMovieClip; WrappedMovieClip;
+		import org.apache.flex.core.WrappedShape; WrappedShape;
+		import org.apache.flex.core.WrappedSimpleButton; WrappedSimpleButton;
+		import org.apache.flex.core.WrappedSprite; WrappedSprite;
+		import org.apache.flex.core.WrappedTextField; WrappedTextField;
 	}
+	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
     import org.apache.flex.core.IAlertModel; IAlertModel;
     import org.apache.flex.core.IBead; IBead;
@@ -42,11 +50,14 @@ internal class CoreClasses
 	import org.apache.flex.core.IBeadLayout; IBeadLayout;
 	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
-    import org.apache.flex.core.IBeadView; IBeadView;
+	import org.apache.flex.core.IBeadView; IBeadView;
+	import org.apache.flex.core.IImageView; IImageView;
+    import org.apache.flex.core.IBinaryImage; IBinaryImage;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.IBorderModel; IBorderModel;
 	}
+	
     import org.apache.flex.core.IChild; IChild;
     import org.apache.flex.core.IChrome; IChrome;
     import org.apache.flex.core.IComboBoxModel; IComboBoxModel;
@@ -55,8 +66,10 @@ internal class CoreClasses
     import org.apache.flex.core.IContentView; IContentView;
 	import org.apache.flex.core.IContentViewHost; IContentViewHost;
     import org.apache.flex.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
+    import org.apache.flex.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.flex.core.IDocument; IDocument;
     import org.apache.flex.core.IFormatBead; IFormatBead;
+    import org.apache.flex.core.IImage; IImage;
     import org.apache.flex.core.IImageModel; IImageModel;
     import org.apache.flex.core.IItemRendererProvider; IItemRendererProvider;
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
@@ -68,6 +81,7 @@ internal class CoreClasses
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
     import org.apache.flex.core.IPopUp; IPopUp;
     import org.apache.flex.core.IRangeModel; IRangeModel;
+    import org.apache.flex.core.ISWFApplication; ISWFApplication;
 	import org.apache.flex.core.ITransformModel; ITransformModel;
 	import org.apache.flex.core.ITransformHost; ITransformHost;
     import org.apache.flex.core.IRollOverModel; IRollOverModel;
@@ -116,6 +130,7 @@ internal class CoreClasses
 	}
 	import org.apache.flex.utils.ColorUtil; ColorUtil;
     import org.apache.flex.utils.CSSContainerUtils; CSSContainerUtils;
+    import org.apache.flex.utils.DisplayUtils; DisplayUtils;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.dbg.DOMPathUtil; DOMPathUtil;
@@ -127,7 +142,7 @@ internal class CoreClasses
 	    import org.apache.flex.utils.PNGEncoder; PNGEncoder;
     	import org.apache.flex.utils.SolidBorderUtil; SolidBorderUtil;
 		import org.apache.flex.utils.HTMLLoader; HTMLLoader;
-}
+	}
 	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
 	import org.apache.flex.utils.Endian; Endian;
     import org.apache.flex.utils.StringPadder; StringPadder;
@@ -136,6 +151,10 @@ internal class CoreClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
+	COMPILE::JS
+	{
+		import org.apache.flex.utils.URLUtils; URLUtils;
+	}
 
 	import org.apache.flex.core.ClassFactory; ClassFactory;
     import org.apache.flex.states.AddItems; AddItems;
@@ -147,6 +166,7 @@ internal class CoreClasses
     import org.apache.flex.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.flex.core.IDateChooserModel; IDateChooserModel;
 	import org.apache.flex.core.ParentDocumentBead; ParentDocumentBead;
+	import org.apache.flex.core.TransformBeadBase; TransformBeadBase;
 	import org.apache.flex.core.TransformModel; TransformModel;
 	import org.apache.flex.core.TransformCompoundModel; TransformCompoundModel;
 	import org.apache.flex.core.TransformRotateModel; TransformRotateModel;
@@ -156,7 +176,7 @@ internal class CoreClasses
     import org.apache.flex.utils.CSSUtils; CSSUtils;
 
     import org.apache.flex.utils.Proxy; Proxy;
-    import org.apache.flex.core.HTMLElementWrapper; HTMLElementWrapper;
+    import org.apache.flex.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
 	
 	COMPILE::JS
 	{

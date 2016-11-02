@@ -21,7 +21,20 @@ package org.apache.flex.core
     COMPILE::SWF
     public interface IFlexJSElement
     {
-        
+        //--------------------------------------
+        //   Property
+        //--------------------------------------
+
+        /**
+         *  A pointer back to the instance that wrapped this element.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7
+         */
+        function get flexjs_wrapper():Object;
+        function set flexjs_wrapper(value:Object):void;
     }
 
 	COMPILE::JS

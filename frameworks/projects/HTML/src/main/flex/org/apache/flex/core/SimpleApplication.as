@@ -38,6 +38,17 @@ package org.apache.flex.core
 	}
     import org.apache.flex.utils.MXMLDataInterpreter;
     
+	/**
+	 *  A SWF application must be bootstrapped by a Flash Sprite.
+	 *  The factory class is the default bootstrap.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	[Frame(factoryClass="org.apache.flex.core.ApplicationFactory")]
+	
     /**
      *  The SimpleApplication class can be used as the main class and entry point
      *  for low-level ActionScript-only FlexJS
@@ -63,23 +74,12 @@ package org.apache.flex.core
         public function SimpleApplication()
         {
             super();
-			COMPILE::SWF
-			{
-				if (stage)
-				{
-					stage.align = StageAlign.TOP_LEFT;
-					stage.scaleMode = StageScaleMode.NO_SCALE;
-					// should be opt-in
-					//stage.quality = StageQuality.HIGH_16X16_LINEAR;                
-				}
-				
-				loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-			}
-        }
+		}
         
 		COMPILE::SWF
-        private function initHandler(event:flash.events.Event):void
+        public function setRoot(r:WrappedMovieClip):void
         {
+			element = r;
 			start();
         }
         

@@ -30,7 +30,8 @@ package org.apache.flex.mobile.beads
 	{
 		import flash.events.Event;
 		import flash.external.ExternalInterface;
-		import flash.utils.getQualifiedClassName;        
+		import flash.utils.getQualifiedClassName;
+		import flash.display.Stage;
 	}
 	
 	/**
@@ -58,6 +59,10 @@ package org.apache.flex.mobile.beads
 		
 		private var _app:Application;
 		
+		COMPILE::SWF
+		{
+			private var stage:Stage;
+		}
 		/**
 		 * @private
 		 */
@@ -67,7 +72,8 @@ package org.apache.flex.mobile.beads
 			
 			COMPILE::SWF
 			{
-				_app.stage.addEventListener("resize", onResize);     
+				stage = _app.$displayObject.stage;
+				stage.addEventListener("resize", onResize);     
 				onResize(null);
 			}
 			
@@ -95,11 +101,11 @@ package org.apache.flex.mobile.beads
 		{
 			var initialView:UIBase = _app.initialView as UIBase;
 			if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-				initialView.setWidthAndHeight(_app.stage.stageWidth, _app.stage.stageHeight);
+				initialView.setWidthAndHeight(stage.stageWidth, stage.stageHeight);
 			else if (!isNaN(initialView.percentWidth))
-				initialView.setWidth(_app.stage.stageWidth);
+				initialView.setWidth(stage.stageWidth);
 			else if (!isNaN(initialView.percentHeight))
-				initialView.setHeight(_app.stage.stageHeight);
+				initialView.setHeight(stage.stageHeight);
 		}
 	}
 }

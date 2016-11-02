@@ -83,7 +83,7 @@ COMPILE::SWF
             app = value as IInitialViewApplication;
             COMPILE::SWF
             {
-                app.stage.addEventListener("resize", resizeHandler);
+                app.$displayObject.stage.addEventListener("resize", resizeHandler);
                 if (ExternalInterface.available && (!isNaN(minWidth) || !isNaN(minHeight)))
                 {
                     // Get application name.  This assumes that the wrapper is using an
@@ -91,9 +91,9 @@ COMPILE::SWF
                     var appName:String = getQualifiedClassName(app);
                     var js:String = "var o = document.getElementById('" + appName + "');";
                     if (!isNaN(minWidth))
-                        js += "o.style.minWidth = '" + minWidth.toString() + "px';";
+                        js += "o.style.minWidth = '" + minWidth + "px';";
                     if (!isNaN(minHeight))
-                        js += "o.style.minHeight = '" + minHeight.toString() + "px';"
+                        js += "o.style.minHeight = '" + minHeight + "px';"
                     ExternalInterface.call("eval", js); 
                 }                    
             }
@@ -102,9 +102,9 @@ COMPILE::SWF
                 window.addEventListener('resize',
                     this.resizeHandler, false);
                 if (!isNaN(this.minWidth))
-                    document.body.style.minWidth = this.minWidth.toString() + 'px';
+                    document.body.style.minWidth = this.minWidth + 'px';
                 if (!isNaN(this.minHeight))
-                    document.body.style.minHeight = this.minHeight.toString() + 'px';
+                    document.body.style.minHeight = this.minHeight + 'px';
                 document.body.style.overflow = 'auto';
             }
         }
@@ -117,21 +117,22 @@ COMPILE::SWF
             COMPILE::SWF
             {
                 var initialView:ILayoutChild = app.initialView as ILayoutChild;
+				var constrainedWidth:Number = Math.max(isNaN(minWidth) ? 0 : minWidth, app.$displayObject.stage.stageWidth);
+				var constrainedHeight:Number = Math.max(isNaN(minHeight) ? 0 : minHeight, app.$displayObject.stage.stageHeight);
                 if (!isNaN(initialView.percentWidth) && !isNaN(initialView.percentHeight))
-                    initialView.setWidthAndHeight(Math.max(minWidth, app.stage.stageWidth), 
-                        Math.max(minHeight, app.stage.stageHeight), true);
+                    initialView.setWidthAndHeight(constrainedWidth, constrainedHeight, true);
                 else if (!isNaN(initialView.percentWidth))
-                    initialView.setWidth(Math.max(minWidth, app.stage.stageWidth));
+                    initialView.setWidth(constrainedWidth);
                 else if (!isNaN(initialView.percentHeight))
-                    initialView.setHeight(Math.max(minHeight, app.stage.stageHeight));
+                    initialView.setHeight(constrainedHeight);
             }
             COMPILE::JS
             {
                 var initialView:ILayoutChild = app.initialView as ILayoutChild;
                 var element:HTMLElement = app.element;
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
-                    element.style.height = window.innerHeight.toString() + 'px';
-                    element.style.width = window.innerWidth.toString() + 'px';
+                    element.style.height = window.innerHeight + 'px';
+                    element.style.width = window.innerWidth + 'px';
                     initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
                 }
             }

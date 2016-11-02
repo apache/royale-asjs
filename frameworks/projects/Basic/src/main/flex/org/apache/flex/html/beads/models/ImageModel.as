@@ -62,7 +62,7 @@ package org.apache.flex.html.beads.models
 			_strand = value;
 		}
 		
-		private var _source:String;
+		private var _url:String;
 		
 		/**
 		 *  The source of the image.
@@ -74,14 +74,14 @@ package org.apache.flex.html.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get source():String
+		public function get url():String
 		{
-			return _source;
+			return _url;
 		}
-		public function set source(value:String):void
+		public function set url(value:String):void
 		{
-			if (value != _source) {
-				_source = value;
+			if (value != _url) {
+				_url = value;
 				dispatchEvent( new Event("urlChanged") );
 			}
 		}

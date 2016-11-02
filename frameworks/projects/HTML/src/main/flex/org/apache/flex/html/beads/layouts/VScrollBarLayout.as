@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.beads.IScrollBarView;
 	import org.apache.flex.html.beads.ScrollBarView;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.utils.CSSContainerUtils;
 
     /**
@@ -83,12 +84,13 @@ package org.apache.flex.html.beads.layouts
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
 					
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
-                    
-			var h:Number = DisplayObject(_strand).height + metrics.top + metrics.bottom;
-			var increment:DisplayObject = sbView.increment;
-			var decrement:DisplayObject = sbView.decrement;
-			var track:DisplayObject = sbView.track;
-			var thumb:DisplayObject = sbView.thumb;
+            
+            var host:UIBase = UIBase(_strand);
+			var h:Number = host.height + metrics.top + metrics.bottom;
+			var increment:Button = sbView.increment;
+			var decrement:Button = sbView.decrement;
+			var track:Button = sbView.track;
+			var thumb:Button = sbView.thumb;
 			
 			decrement.x = 0;
 			decrement.y = 0;

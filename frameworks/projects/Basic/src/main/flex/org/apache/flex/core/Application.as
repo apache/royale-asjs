@@ -21,9 +21,6 @@ package org.apache.flex.core
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
-	COMPILE::SWF {
-	    import org.apache.flex.events.utils.MouseEventConverter;
-	}
     import org.apache.flex.utils.MXMLDataInterpreter;
 	import org.apache.flex.utils.Timer;
 
@@ -36,6 +33,7 @@ package org.apache.flex.core
         import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
+        import org.apache.flex.events.utils.MouseEventConverter;
     }
 
     //--------------------------------------
@@ -416,21 +414,26 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion HTMLElement
          */
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF {
                 if (c is IUIBase)
                 {
-                    addChild(IUIBase(c).element as DisplayObject);
+                    if (c is IRenderedObject)
+                        addChild(IRenderedObject(c).$displayObject);
+                    else
+                        addChild(c as DisplayObject);
                     IUIBase(c).addedToParent();
                 }
                 else
                     addChild(c as DisplayObject);
             }
             COMPILE::JS {
-                this.element.appendChild(c.element);
-                c.addedToParent();
+                this.element.appendChild(c.element as HTMLElement);
+                (c as IUIBase).addedToParent();
             }
         }
 
@@ -441,13 +444,17 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF {
                 if (c is IUIBase)
                 {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
+                    if (c is IRenderedObject)
+                        addChildAt(IRenderedObject(c).$displayObject, index);
+                    else
+                        addChildAt(c as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
                 else
@@ -461,7 +468,7 @@ package org.apache.flex.core
                 {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    c.addedToParent();
+	                (c as IUIBase).addedToParent();
                 }
 
             }
@@ -475,10 +482,10 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IChild
         {
             COMPILE::SWF {
-                return getChildAt(index);
+                return getChildAt(index) as IChild;
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
@@ -494,11 +501,11 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IChild):int
         {
             COMPILE::SWF {
-                if (c is IUIBase)
-                    return getChildIndex(IUIBase(c).element as DisplayObject);
+                if (c is IRenderedObject)
+                    return getChildIndex(IRenderedObject(c).$displayObject);
 
                 return getChildIndex(c as DisplayObject);
             }
@@ -521,19 +528,20 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF {
-                if (c is IUIBase)
+                if (c is IRenderedObject)
                 {
-                    removeChild(IUIBase(c).element as DisplayObject);
+                    removeChild(IRenderedObject(c).$displayObject);
                 }
                 else
                     removeChild(c as DisplayObject);
             }
             COMPILE::JS {
-                element.removeChild(c.element);
+                element.removeChild(c.element as HTMLElement);
             }
         }
 

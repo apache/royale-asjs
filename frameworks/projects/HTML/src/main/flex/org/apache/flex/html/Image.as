@@ -18,28 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ImageBase;
+	
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
-        import org.apache.flex.html.beads.models.ImageModel;
-        import org.apache.flex.html.beads.ImageView;
     }
 	
-	/**
-	 *  The Image class is a component that displays a bitmap. The Image uses
-	 *  the following beads:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the source property.
-	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class Image extends UIBase
+	public class Image extends ImageBase
 	{
 		/**
 		 *  constructor.
@@ -54,24 +40,6 @@ package org.apache.flex.html
 			super();
 		}
 		
-		/**
-		 *  The location of the bitmap, usually a URL.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
-		 */
-		public function get source():String
-		{
-			return (model as IImageModel).source;
-		}
-		public function set source(value:String):void
-		{
-			(model as IImageModel).source = value;
-		}
-        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -87,7 +55,19 @@ package org.apache.flex.html
             element.flexjs_wrapper = this;
          
             return element;
-        }        
+        }
+		
+		COMPILE::JS
+		override public function get imageElement():Element
+		{
+			return element;
+		}
+
+		COMPILE::JS
+		override public function applyImageData(binaryDataAsString:String):void
+		{
+			(element as HTMLImageElement).src = binaryDataAsString;
+		}
 
 	}
 }

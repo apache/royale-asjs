@@ -73,13 +73,15 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
 		public function set strand(value:IStrand):void
 		{
 			host = value as ILayoutChild;
             COMPILE::JS
             {
-                (value as IUIBase).element.style.display = 'block';
+                ((value as IUIBase).element as HTMLElement).style.display = 'block';
             }
 		}
 	

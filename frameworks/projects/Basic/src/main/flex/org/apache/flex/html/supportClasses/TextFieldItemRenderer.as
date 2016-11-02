@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
+    import flash.display.DisplayObject;
     import flash.text.TextFieldType;
     
     import org.apache.flex.core.CSSTextField;
@@ -69,6 +70,21 @@ package org.apache.flex.html.supportClasses
 		
 		private var _explicitWidth:Number;
 		
+        COMPILE::SWF
+        public function get $displayObject():DisplayObject
+        {
+            return this;
+        }
+        
+        public function get flexjs_wrapper():Object
+        {
+            return this;
+        }
+        public function set flexjs_wrapper(value:Object):void
+        {
+            
+        }
+        
 		/**
 		 *  The explicitly set width (as opposed to measured width
 		 *  or percentage width).

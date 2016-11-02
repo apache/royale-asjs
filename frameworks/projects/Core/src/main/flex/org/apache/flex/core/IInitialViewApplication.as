@@ -20,6 +20,7 @@ package org.apache.flex.core
 {
 COMPILE::SWF
 {
+	import flash.display.DisplayObject;
 	import flash.display.Stage;
 }
 	import org.apache.flex.events.IEventDispatcher;
@@ -50,6 +51,12 @@ COMPILE::SWF
          */
         COMPILE::SWF
 		function get stage():Stage;
+		
+        /**
+         *  @private
+         */
+        COMPILE::SWF
+		function get $displayObject():DisplayObject;
 		
         /**
          *  @private

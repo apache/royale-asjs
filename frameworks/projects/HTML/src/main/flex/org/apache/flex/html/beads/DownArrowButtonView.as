@@ -21,11 +21,13 @@ package org.apache.flex.html.beads
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
-
-    import org.apache.flex.core.BeadViewBase;
+	
+	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.Event;
 	
     /**
      *  The DownArrowButtonView class is the view for
@@ -89,13 +91,14 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, ScrollBarView.FullSize, ScrollBarView.FullSize);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upView;
+			button.downState = downView;
+			button.overState = overView;
+			button.hitTestState = shape;
 
-            SimpleButton(_strand).addEventListener("widthChanged",sizeChangeHandler);
-            SimpleButton(_strand).addEventListener("heightChanged",sizeChangeHandler);
+            IEventDispatcher(_strand).addEventListener("widthChanged",sizeChangeHandler);
+            IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
         }
 				
 		private var upView:Shape;
@@ -104,8 +107,9 @@ package org.apache.flex.html.beads
         
         private function sizeChangeHandler(event:Event):void
         {
-            SimpleButton(_strand).scaleX = SimpleButton(_strand).width / ScrollBarView.FullSize;
-            SimpleButton(_strand).scaleY = SimpleButton(_strand).height / ScrollBarView.FullSize;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+            button.scaleX = button.width / ScrollBarView.FullSize;
+            button.scaleY = button.height / ScrollBarView.FullSize;
         }
 	}
 }

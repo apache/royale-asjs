@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
+    import org.apache.flex.html.Button;
 	
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get increment():DisplayObject;
+		function get increment():Button;
         
         /**
          *  The up arrow button in a vertical ScrollBar or left arrow
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get decrement():DisplayObject;
+		function get decrement():Button;
 
         /**
          *  The track in a ScrollBar
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get track():DisplayObject;
+		function get track():Button;
         
         /**
          *  The thumb in a ScrollBar
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		function get thumb():DisplayObject;
+		function get thumb():Button;
 		
 	}
 }

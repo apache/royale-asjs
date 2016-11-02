@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.display.DisplayObject;
-	import flash.geom.Point;
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
@@ -30,8 +27,10 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.beads.IDropDownListView;
-
+    import org.apache.flex.geom.Point;
+   	import org.apache.flex.html.beads.IDropDownListView;
+    import org.apache.flex.utils.PointUtils;
+    
     /**
      *  The DropDownListController class is the controller for
      *  org.apache.flex.html.DropDownList.  Controllers
@@ -81,22 +80,22 @@ package org.apache.flex.html.beads.controllers
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
-            DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
+            IUIBase(viewBead.popUp).width = IUIBase(_strand).width;
             popUpModel.dataProvider = selectionModel.dataProvider;
             popUpModel.labelField = selectionModel.labelField;
             viewBead.popUpVisible = true; // adds to display list as well
             popUpModel.selectedIndex = selectionModel.selectedIndex;
-            var pt:Point = new Point(DisplayObject(_strand).x, DisplayObject(_strand).y + DisplayObject(_strand).height);
-            pt = DisplayObject(_strand).parent.localToGlobal(pt);
-			DisplayObject(viewBead.popUp).x = pt.x;
-			DisplayObject(viewBead.popUp).y = pt.y;
+            var pt:Point = new Point(IUIBase(_strand).x, IUIBase(_strand).y + IUIBase(_strand).height);
+            pt = PointUtils.localToGlobal(pt, IUIBase(_strand).parent);
+            IUIBase(viewBead.popUp).x = pt.x;
+            IUIBase(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
             IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
         }
         
         private function dismissHandler(event:org.apache.flex.events.MouseEvent):void
         {
-            if (event.target == _strand) return;
+            if (event.isSameTarget(_strand as IEventDispatcher)) return;
             
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;

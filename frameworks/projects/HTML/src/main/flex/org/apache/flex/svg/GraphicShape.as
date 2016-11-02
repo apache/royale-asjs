@@ -16,14 +16,18 @@ package org.apache.flex.svg
 {
 	COMPILE::SWF
     {
-        import flash.geom.Point;
-        import flash.geom.Rectangle;
+		import flash.display.Graphics;
+		import flash.display.Sprite;
+		import flash.geom.Point;
+		import flash.geom.Rectangle;
+		import org.apache.flex.core.WrappedSprite;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    import org.apache.flex.core.IFlexJSElement;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
@@ -31,6 +35,7 @@ package org.apache.flex.svg
 
 	public class GraphicShape extends UIBase implements IGraphicShape
 	{
+        
 		private var _fill:IFill;
 		private var _stroke:IStroke;
 
@@ -83,7 +88,7 @@ package org.apache.flex.svg
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
+		override protected function createElement():IFlexJSElement
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
@@ -102,7 +107,7 @@ package org.apache.flex.svg
 		{
 			if(stroke)
 			{
-				stroke.apply(this);
+				stroke.apply($sprite.graphics);
 			}
 		}
 
@@ -111,7 +116,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.begin(this, targetBounds,targetOrigin);
+				fill.begin($sprite.graphics, targetBounds,targetOrigin);
 			}
 		}
 
@@ -120,7 +125,7 @@ package org.apache.flex.svg
 		{
 			if(fill)
 			{
-				fill.end(this);
+				fill.end($sprite.graphics);
 			}
 		}
 
@@ -134,10 +139,7 @@ package org.apache.flex.svg
 
 		override public function addedToParent():void
 		{
-            COMPILE::SWF
-            {
-                super.addedToParent();
-            }
+            super.addedToParent();
 			draw();
             COMPILE::JS
             {
@@ -174,6 +176,12 @@ package org.apache.flex.svg
 
             return fillStr + ';' + strokeStr;
         }
+
+		COMPILE::JS
+		override protected function setClassName(value:String):void
+		{
+			element.setAttribute('class', value);           
+		}
 
 
         /**

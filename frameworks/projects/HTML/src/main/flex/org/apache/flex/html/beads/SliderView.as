@@ -70,14 +70,15 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+			var s:UIBase = UIBase(_strand);
 			_track = new Button();
-			Button(_track).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
+			_track.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
 			
 			_thumb = new Button();
-			Button(_thumb).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
+			_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
 			
-			UIBase(_strand).addChild(_track);
-			UIBase(_strand).addChild(_thumb);
+			s.$sprite.addChild(_track.$button);
+			s.$sprite.addChild(_thumb.$button);
 			
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
@@ -93,20 +94,20 @@ package org.apache.flex.html.beads
 			
 			// set a minimum size to trigger the size change handler
 			var needsSizing:Boolean = true;
-			if( UIBase(_strand).width < 100 ) {
-				UIBase(_strand).width = 100;
+			if( s.width < 100 ) {
+				s.width = 100;
 				needsSizing = false;
 			}
-			if( UIBase(_strand).height < 30 ) {
-				UIBase(_strand).height = 30;
+			if( s.height < 30 ) {
+				s.height = 30;
 				needsSizing = false;
 			}
 			
 			if( needsSizing ) sizeChangeHandler(null);
 		}
 		
-		private var _track:DisplayObject;
-		private var _thumb:DisplayObject;
+		private var _track:Button;
+		private var _thumb:Button;
 		
 		/**
 		 *  The track component.
@@ -116,7 +117,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get track():DisplayObject
+		public function get track():Button
 		{
 			return _track;
 		}
@@ -129,7 +130,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get thumb():DisplayObject
+		public function get thumb():Button
 		{
 			return _thumb;
 		}
@@ -139,11 +140,12 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
-			var w:Number = UIBase(_strand).width;
-			var h:Number = UIBase(_strand).height;
+			var host:UIBase = UIBase(_strand);
+			var w:Number = host.width;
+			var h:Number = host.height;
 			
 			_thumb.width = 20;
-			_thumb.height = UIBase(_strand).height;
+			_thumb.height = host.height;
 			
 			_thumb.x = 10;
 			_thumb.y = 0;
@@ -151,10 +153,10 @@ package org.apache.flex.html.beads
 			// the track is inset 1/2 of the thumbwidth so the thumb can
 			// overlay the track on either end with the thumb center being
 			// on the track's edge
-			_track.width = UIBase(_strand).width - _thumb.width;
+			_track.width = host.width - _thumb.width;
 			_track.height = 5;
 			_track.x = _thumb.width/2;
-			_track.y = (UIBase(_strand).height - _track.height)/2;
+			_track.y = (host.height - _track.height)/2;
 		}
 		
 		/**

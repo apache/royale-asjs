@@ -28,18 +28,20 @@ package org.apache.flex.html.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.TextButton;
-    import org.apache.flex.html.beads.models.ImageAndTextModel;
+	import org.apache.flex.html.beads.models.ImageAndTextModel;
 	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.SolidBorderUtil;
-    import org.apache.flex.utils.StringTrimmer;
+	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The CSSTextButtonView class is the default view for
@@ -118,10 +120,11 @@ package org.apache.flex.html.beads
             upTextField.parentHandlesPadding = true;
             downTextField.parentHandlesPadding = true;
             overTextField.parentHandlesPadding = true;
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upSprite;
+			button.downState = downSprite;
+			button.overState = overSprite;
+			button.hitTestState = shape;
 			if (textModel.text !== null)
 				text = textModel.text;
 			if (textModel.html !== null)
@@ -142,10 +145,11 @@ package org.apache.flex.html.beads
             updateHitArea();
         }
         
-		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
+		private function setupSkin(sprite:Sprite, textField:CSSTextField, state:String = null):void
 		{
-			var sw:uint = DisplayObject(_strand).width;
-			var sh:uint = DisplayObject(_strand).height;
+            var host:IUIBase = IUIBase(_strand);
+			var sw:uint = host.width;
+			var sh:uint = host.height;
 			
 			textField.defaultTextFormat.leftMargin = 0;
 			textField.defaultTextFormat.rightMargin = 0;
@@ -202,10 +206,10 @@ package org.apache.flex.html.beads
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
-            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
-            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
-            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
+            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, host.width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, host.width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, host.height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, host.height);
             
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
             var bgColor:uint;
@@ -331,8 +335,9 @@ package org.apache.flex.html.beads
 		
 		private function updateHitArea():void
 		{
-			var useWidth:uint = Math.max(DisplayObject(_strand).width, upTextField.textWidth);
-			var useHeight:uint = Math.max(DisplayObject(_strand).height, upTextField.textHeight);
+            var host:IUIBase = IUIBase(_strand);
+			var useWidth:uint = Math.max(host.width, upTextField.textWidth);
+			var useHeight:uint = Math.max(host.height, upTextField.textHeight);
 			
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);

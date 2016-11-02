@@ -73,9 +73,9 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		public function get host():IUIBase
+		public function get host():UIBase
 		{
-			return _strand as IUIBase;
+			return _strand as UIBase;
 		}
 
 		/**
@@ -90,16 +90,16 @@ package org.apache.flex.mobile.beads
 		{
 			_strand = value;
 
-			(host as UIBase).addEventListener("widthChanged", handleSizeChange);
-			(host as UIBase).addEventListener("heightChanged", handleSizeChange);
+			host.addEventListener("widthChanged", handleSizeChange);
+			host.addEventListener("heightChanged", handleSizeChange);
 
-			var model:IEventDispatcher = (host as UIBase).model as IEventDispatcher;
+			var model:IEventDispatcher = host.model as IEventDispatcher;
 			model.addEventListener("urlChanged", loadPage);
 
-			stageWebView.stage = (host as UIBase).stage;
+			stageWebView.stage = host.$sprite.stage;
 			
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = (host as UIBase).localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 
@@ -108,7 +108,7 @@ package org.apache.flex.mobile.beads
 		 */
 		private function loadPage(event:org.apache.flex.events.Event):void
 		{
-			var model:WebBrowserModel = (host as UIBase).model as WebBrowserModel;
+			var model:WebBrowserModel = host.model as WebBrowserModel;
 			stageWebView.loadURL(model.url);
 		}
 
@@ -118,7 +118,7 @@ package org.apache.flex.mobile.beads
 		private function handleSizeChange(event:org.apache.flex.events.Event):void
 		{
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = (host as UIBase).localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 
@@ -127,7 +127,7 @@ package org.apache.flex.mobile.beads
 		 */
 		private function handleLocationChange(event:flash.events.Event):void
 		{
-			var model:WebBrowserModel = (host as UIBase).model as WebBrowserModel;
+			var model:WebBrowserModel = host.model as WebBrowserModel;
 			model.setURL(stageWebView.location);
 			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
 		}

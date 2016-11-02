@@ -21,6 +21,7 @@ package org.apache.flex.flat.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
+	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
@@ -94,6 +95,7 @@ package org.apache.flex.flat.beads
 		private var overAndSelectedSprite:Sprite;
 		
 		private var sprites:Array = [];
+		private var textFields:Array = [];
 		
 		private var _toggleButtonModel:IToggleButtonModel;
 
@@ -122,6 +124,7 @@ package org.apache.flex.flat.beads
                 this[p] = s;
                 
                 var tf:CSSTextField = new CSSTextField();
+                textFields[textFields.length] = tf;
                 tf.type = TextFieldType.DYNAMIC;
                 tf.autoSize = TextFieldAutoSize.LEFT;
                 tf.name = "textField";
@@ -168,7 +171,7 @@ package org.apache.flex.flat.beads
          */
 		public function get text():String
 		{
-			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
+			var tf:TextField = upSprite.getChildByName('textField') as TextField;
 			return tf.text;
 		}
 		
@@ -179,8 +182,11 @@ package org.apache.flex.flat.beads
 		{
 			for each( var s:Sprite in sprites )
 			{
-				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
-                tf.styleParent = _strand;
+				var tf:TextField = s.getChildByName('textField') as TextField;
+				var p:CSSTextField = getTextFieldParent(tf);
+				if(p)
+					p.styleParent = _strand;
+
 				tf.text = value;
 			}
 			
@@ -197,7 +203,7 @@ package org.apache.flex.flat.beads
          */
 		public function get html():String
 		{
-			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
+			var tf:TextField = upSprite.getChildByName('textField') as TextField;
 			return tf.htmlText;
 		}
 		
@@ -208,11 +214,21 @@ package org.apache.flex.flat.beads
 		{
 			for each(var s:Sprite in sprites)
 			{
-				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
+				var tf:TextField = s.getChildByName('textField') as TextField;
 				tf.htmlText = value;
 			}
 			
 			layoutControl();
+		}
+		private function getTextFieldParent(tf:TextField):CSSTextField
+		{
+			var parent:CSSTextField;
+			for each(parent in textFields)
+			{
+				if(parent == tf)
+					return parent;
+			}
+			return null;
 		}
 		
 		private function textChangeHandler(event:Event):void
@@ -282,7 +298,7 @@ package org.apache.flex.flat.beads
                 var s:Sprite = this[p];
 				var icon:StyleableCSSTextField = s.getChildByName("icon") as StyleableCSSTextField;
                 icon.autoSize = TextFieldAutoSize.LEFT;
-				var tf:CSSTextField = s.getChildByName("textField") as CSSTextField;
+				var tf:TextField = s.getChildByName("textField") as TextField;
 				
                 icon.CSSParent = _strand;
                 var content:String = ValuesManager.valuesImpl.getValue(icon, "content", "before");

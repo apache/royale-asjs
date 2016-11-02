@@ -21,21 +21,17 @@ package org.apache.flex.core
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.MouseEvent;
-	COMPILE::SWF {
-	    import org.apache.flex.events.utils.MouseEventConverter;
-	}
     import org.apache.flex.utils.MXMLDataInterpreter;
-	import org.apache.flex.utils.Timer;
+    import org.apache.flex.utils.Timer;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
+        import flash.display.Graphics;
         import flash.display.Sprite;
-        import flash.display.StageAlign;
-        import flash.display.StageQuality;
-        import flash.display.StageScaleMode;
-        import flash.events.Event;
+		import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
+        import org.apache.flex.events.utils.MouseEventConverter;
     }
 
     //--------------------------------------
@@ -91,6 +87,18 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+	
+	/**
+	 *  A SWF application must be bootstrapped by a Flash Sprite.
+	 *  The factory class is the default bootstrap.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	[Frame(factoryClass="org.apache.flex.core.ApplicationFactory")]
+
     /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
@@ -105,7 +113,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost, IRenderedObject
     {
         /**
          *  Constructor.
@@ -118,27 +126,31 @@ package org.apache.flex.core
         public function Application()
         {
             super();
-
-            COMPILE::SWF {
-    			if (stage)
-    			{
-    				stage.align = StageAlign.TOP_LEFT;
-    				stage.scaleMode = StageScaleMode.NO_SCALE;
-                    // should be opt-in
-    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-    			}
-
-                loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-            }
         }
 
+		/**
+		 *  Application wraps the root object.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::SWF
+		public function setRoot(r:WrappedMovieClip):void
+		{
+			element = r;
+			element.flexjs_wrapper = this;
+			MouseEventConverter.setupAllConverters(r.stage);
+            MouseEventConverter.setupAllConverters(r.stage, false);
+			initHandler();
+		}
+		
         COMPILE::SWF
-        private function initHandler(event:flash.events.Event):void
+        private function initHandler():void
         {
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
-
-            MouseEventConverter.setupAllConverters(stage);
 
             for each (var bead:IBead in beads)
                 addBead(bead);
@@ -170,11 +182,10 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.IBead
          */
-        COMPILE::SWF
         protected function initialize():void
         {
-
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
 
             dispatchEvent(new org.apache.flex.events.Event("initialize"));
@@ -183,28 +194,45 @@ package org.apache.flex.core
             {
                 initialView.applicationModel =  model;
         	    this.addElement(initialView);
+				
+				COMPILE::SWF
+				{	
                 // if someone has installed a resize listener, fake an event to run it now
-                if (stage.hasEventListener("resize"))
-                    stage.dispatchEvent(new flash.events.Event("resize"));
+                if ($displayObject.stage.hasEventListener("resize"))
+					$displayObject.stage.dispatchEvent(new flash.events.Event("resize"));
                 else if (initialView is ILayoutChild)
                 {
                     var ilc:ILayoutChild = initialView as ILayoutChild;
                     // otherwise, size once like this
                     if (!isNaN(ilc.percentWidth) && !isNaN(ilc.percentHeight))
-                        ilc.setWidthAndHeight(stage.stageWidth, stage.stageHeight, true);
+                        ilc.setWidthAndHeight($displayObject.stage.stageWidth, $displayObject.stage.stageHeight, true);
                     else if (!isNaN(ilc.percentWidth))
-                        ilc.setWidth(stage.stageWidth);
+                        ilc.setWidth($displayObject.stage.stageWidth);
                     else if (!isNaN(ilc.percentHeight))
-                        ilc.setHeight(stage.stageHeight);
+                        ilc.setHeight($displayObject.stage.stageHeight);
                 }
+				}
+				COMPILE::JS
+				{	
+				var baseView:UIBase = initialView as UIBase;
+				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
+					this.element.style.height = window.innerHeight + 'px';
+					this.element.style.width = window.innerWidth + 'px';
+					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+				}
+				}
+				COMPILE::SWF
+				{
                 var bgColor:Object = ValuesManager.valuesImpl.getValue(this, "background-color");
                 if (bgColor != null)
                 {
                     var backgroundColor:uint = ValuesManager.valuesImpl.convertColor(bgColor);
-                    graphics.beginFill(backgroundColor);
-                    graphics.drawRect(0, 0, initialView.width, initialView.height);
-                    graphics.endFill();
+                    var graphics:Graphics = Sprite($displayObject).graphics;
+					graphics.beginFill(backgroundColor);
+					graphics.drawRect(0, 0, initialView.width, initialView.height);
+					graphics.endFill();
                 }
+				}
                 dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
             }
             dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
@@ -241,46 +269,6 @@ package org.apache.flex.core
          */
         [Bindable("__NoChangeEvent__")]
         public var initialView:IApplicationView;
-
-        /**
-         *  The data model (for the initial view).
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        [Bindable("__NoChangeEvent__")]
-        COMPILE::SWF
-        public var model:Object;
-
-        COMPILE::JS
-        private var _model:Object;
-
-        /**
-         *  The data model (for the initial view).
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        [Bindable("__NoChangeEvent__")]
-        COMPILE::JS
-        override public function get model():Object
-        {
-            return _model;
-        }
-
-        /**
-         *  @private
-         */
-        [Bindable("__NoChangeEvent__")]
-        COMPILE::JS
-        override public function set model(value:Object):void
-        {
-            _model = value;
-        }
 
         /**
          *  The controller.  The controller typically watches
@@ -346,68 +334,7 @@ package org.apache.flex.core
          */
         public var beads:Array;
 
-        COMPILE::SWF
-        private var _beads:Vector.<IBead>;
-
-        /**
-         *  @copy org.apache.flex.core.IStrand#addBead()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        public function addBead(bead:IBead):void
-        {
-            if (!_beads)
-                _beads = new Vector.<IBead>;
-            _beads.push(bead);
-            bead.strand = this;
-        }
-
-        /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        public function getBeadByType(classOrInterface:Class):IBead
-        {
-            for each (var bead:IBead in _beads)
-            {
-                if (bead is classOrInterface)
-                    return bead;
-            }
-            return null;
-        }
-
-        /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        public function removeBead(value:IBead):IBead
-        {
-            var n:int = _beads.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                var bead:IBead = _beads[i];
-                if (bead == value)
-                {
-                    _beads.splice(i, 1);
-                    return bead;
-                }
-            }
-            return null;
-        }
+        private var _elements:Array;
 
         /**
          *  @copy org.apache.flex.core.IParent#addElement()
@@ -416,21 +343,25 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion HTMLElement
          */
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    _elements = [];
+                _elements[_elements.length] = c;
+				$displayObjectContainer.addChild(c.$displayObject);
                 if (c is IUIBase)
                 {
-                    addChild(IUIBase(c).element as DisplayObject);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChild(c as DisplayObject);
             }
             COMPILE::JS {
-                this.element.appendChild(c.element);
-                c.addedToParent();
+                this.element.appendChild(c.element as HTMLElement);
+                (c as IUIBase).addedToParent();
             }
         }
 
@@ -441,17 +372,22 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    _elements = [];
+                _elements.splice(index,0,c);
+
+				$displayObjectContainer.addChildAt(c.$displayObject,index);
+
                 if (c is IUIBase)
                 {
-                    addChildAt(IUIBase(c).element as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
-                else
-                    addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
@@ -461,7 +397,7 @@ package org.apache.flex.core
                 {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    c.addedToParent();
+                    (c as IUIBase).addedToParent();
                 }
 
             }
@@ -475,12 +411,16 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IChild
         {
-            COMPILE::SWF {
-                return getChildAt(index);
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    return null;
+                return _elements[index];
             }
-            COMPILE::JS {
+            COMPILE::JS
+            {
                 var children:NodeList = internalChildren();
                 return children[index].flexjs_wrapper;
             }
@@ -494,13 +434,13 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IChild):int
         {
-            COMPILE::SWF {
-                if (c is IUIBase)
-                    return getChildIndex(IUIBase(c).element as DisplayObject);
-
-                return getChildIndex(c as DisplayObject);
+            COMPILE::SWF
+            {
+                if(_elements == null)
+                    return -1;
+                return _elements.indexOf(c);
             }
             COMPILE::JS {
                 var children:NodeList = internalChildren();
@@ -521,19 +461,23 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
-            COMPILE::SWF {
-                if (c is IUIBase)
+            COMPILE::SWF
+            {
+                if(_elements)
                 {
-                    removeChild(IUIBase(c).element as DisplayObject);
+                    var idx:int = _elements.indexOf(c);
+                    if(idx>=0)
+                        _elements.splice(idx,1);
                 }
-                else
-                    removeChild(c as DisplayObject);
+				$displayObjectContainer.removeChild(c.$displayObject as DisplayObject);
             }
-            COMPILE::JS {
-                element.removeChild(c.element);
+            COMPILE::JS
+            {
+                element.removeChild(c.element as HTMLElement);
             }
         }
 
@@ -547,10 +491,12 @@ package org.apache.flex.core
          */
         public function get numElements():int
         {
-            COMPILE::SWF {
-                return numChildren;
+            COMPILE::SWF
+            {
+                return _elements ? _elements.length : 0;
             }
-            COMPILE::JS {
+            COMPILE::JS
+            {
                 var children:NodeList = internalChildren();
                 return children.length;
             }
@@ -577,6 +523,7 @@ package org.apache.flex.core
 			element = document.getElementsByTagName('body')[0];
 			element.flexjs_wrapper = this;
 			element.className = 'Application';
+            positioner = element;
 			
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
@@ -609,31 +556,5 @@ package org.apache.flex.core
 			}
 		}
 		
-		/**
-		 * @flexjsignorecoercion org.apache.flex.core.IBead
-		 */
-		COMPILE::JS
-		protected function initialize():void
-		{
-			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
-			
-			dispatchEvent('initialize');
-			
-			initialView.applicationModel = model;
-			addElement(initialView);
-			
-			if (initialView)
-			{
-				var baseView:UIBase = initialView as UIBase;
-				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
-					this.element.style.height = window.innerHeight.toString() + 'px';
-					this.element.style.width = window.innerWidth.toString() + 'px';
-					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
-				}
-				
-				dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
-			}
-			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
-		}
     }
 }

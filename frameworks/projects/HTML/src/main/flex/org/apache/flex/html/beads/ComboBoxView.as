@@ -23,16 +23,21 @@ package org.apache.flex.html.beads
 	import flash.display.Sprite;
 	
     import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.ElementWrapper;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.core.IChild;
     import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Button;
 	import org.apache.flex.html.TextInput;
+    import org.apache.flex.utils.UIUtils;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.ComboBox 
@@ -132,10 +137,10 @@ package org.apache.flex.html.beads
 			drawButton( downSprite, "down", 18, 18 );
 			
 			button = new Button();
-            button.upState = upSprite;
-            button.overState = overSprite;
-            button.downState = downSprite;
-			DisplayObjectContainer(strand).addChild(button);
+            button.$button.upState = upSprite;
+            button.$button.overState = overSprite;
+            button.$button.downState = downSprite;
+			UIBase(strand).$displayObjectContainer.addChild(button.$button);
 			button.width = 18;
 			button.height = 18;
 			button.x = textInput.width;
@@ -171,61 +176,64 @@ package org.apache.flex.html.beads
 			sprite.graphics.lineTo(4,4);
 			sprite.graphics.endFill();
 		}
+        
+        private var _popUp:IStrand;
 		
-		private var _popUp:IStrand;
-		
-		/**
-		 *  The pop-up component that holds the selection list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get popUp():IStrand
-		{
-			return _popUp;
-		}
-		
-		private var _popUpVisible:Boolean;
-		
-		/**
-		 *  This property is true if the pop-up selection list is currently visible.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get popUpVisible():Boolean
-		{
-			return _popUpVisible;
-		}
-		public function set popUpVisible(value:Boolean):void
-		{
-			if (value != _popUpVisible)
-			{
-				_popUpVisible = value;
-				if (value)
-				{
-					if (!_popUp)
-					{
-						var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-						_popUp = new popUpClass() as IStrand;
-					}
-					var root:Object = DisplayObject(_strand).root;
-					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
-					while (host && !(host is IPopUpHost))
-						host = host.parent;
-                    if (host)
-    					IPopUpHost(host).addElement(popUp);
-				}
-				else
-				{
-					DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
-				}
-			}
-		}
+        /**
+         *  The dropdown/popup that displays the set of choices.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get popUp():IStrand
+        {
+            if (!_popUp)
+            {
+                var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+                _popUp = new popUpClass() as IStrand;
+            }
+            return _popUp;
+        }
+        
+        private var _popUpVisible:Boolean;
+        
+        /**
+         *  A flag that indicates whether the dropdown/popup is
+         *  visible.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get popUpVisible():Boolean
+        {
+            return _popUpVisible;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set popUpVisible(value:Boolean):void
+        {
+            var host:IPopUpHost;
+            if (value != _popUpVisible)
+            {
+                _popUpVisible = value;
+                if (value)
+                {
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).addElement(popUp as IChild);
+                }
+                else
+                {
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).removeElement(popUp as IChild);
+                }
+            }
+        }
 		
 		/**
 		 * @private

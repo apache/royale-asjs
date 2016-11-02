@@ -407,24 +407,24 @@ package org.apache.flex.html.beads.layouts
                     
                     if (!isNaN(left)) {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.left = left.toString() + 'px';
+                        child.positioner.style.left = left + 'px';
                     }
                     if (!isNaN(top)) {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.top = top.toString() + 'px';
+                        child.positioner.style.top = top + 'px';
                     }
                     if (!isNaN(right)) {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.right = right.toString() + 'px';
+                        child.positioner.style.right = right + 'px';
                     }
                     if (!isNaN(bottom)) {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.bottom = bottom.toString() + 'px';
+                        child.positioner.style.bottom = bottom + 'px';
                     }
                     if (horizontalCenter)
                     {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.left = ((w - child.width) / 2).toString() + 'px';
+                        child.positioner.style.left = ((w - child.width) / 2) + 'px';
                     }
                     child.dispatchEvent('sizeChanged');
                     maxWidth = Math.max(maxWidth, child.positioner.offsetLeft + child.positioner.offsetWidth);

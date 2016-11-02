@@ -124,7 +124,7 @@ package org.apache.flex.html.beads
                 element.style.top = '-10px';
                 element.style.left = '20px';
                 
-                host.element.appendChild(element);
+                (host.element as WrappedHTMLElement).appendChild(element);
                 
                 element.flexjs_wrapper = this;
 

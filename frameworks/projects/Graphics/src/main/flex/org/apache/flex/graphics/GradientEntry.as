@@ -14,6 +14,11 @@
 
 package org.apache.flex.graphics
 {
+	COMPILE::SWF
+	{
+		import flash.display.Graphics;
+	}
+
 	public class GradientEntry
 	{
 		
@@ -110,23 +115,19 @@ package org.apache.flex.graphics
 		/**
 		 * Begin drawing the fill on the given shape's graphic object
 		 */
-		public function begin(s:IGraphicShape):void
+		COMPILE::SWF
+		public function begin(g:Graphics):void
 		{
-            COMPILE::SWF
-            {
-                s.graphics.beginFill(color,alpha);                    
-            }
+            g.beginFill(color,alpha);                    
 		}
 		
 		/**
 		 * End the fill
 		 */
-		public function end(s:IGraphicShape):void
+		COMPILE::SWF
+		public function end(g:Graphics):void
 		{
-            COMPILE::SWF
-            {
-    			s.graphics.endFill();
-            }
+			g.endFill();
 		}
 
 	}

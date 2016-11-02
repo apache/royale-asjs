@@ -21,6 +21,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
     /**
      *  The ContainerContentArea class implements the contentView for
@@ -50,8 +51,8 @@ package org.apache.flex.html.supportClasses
         
         private function forwardEventHandler(event:Event):void
         {
-            if (parent)
-                parent.dispatchEvent(event);
+            if (parent is IEventDispatcher)
+                (parent as IEventDispatcher).dispatchEvent(event);
         }
 		
 		/**
@@ -66,7 +67,7 @@ package org.apache.flex.html.supportClasses
 		{
 			COMPILE::SWF
 			{
-				removeChildren(0);					
+				$sprite.removeChildren(0);
 			}
 			COMPILE::JS
 			{

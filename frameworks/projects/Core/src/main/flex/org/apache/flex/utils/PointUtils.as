@@ -62,7 +62,7 @@ package org.apache.flex.utils
 		{
             COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).globalToLocal(new flash.geom.Point(pt.x,pt.y));
+                var fpt:flash.geom.Point = DisplayObject(local.$displayObject).globalToLocal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
@@ -103,7 +103,7 @@ package org.apache.flex.utils
         {
             COMPILE::SWF
             {
-                var fpt:flash.geom.Point = DisplayObject(local).localToGlobal(new flash.geom.Point(pt.x,pt.y));
+                var fpt:flash.geom.Point = DisplayObject(local.$displayObject).localToGlobal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
@@ -112,12 +112,18 @@ package org.apache.flex.utils
                 var y:Number = pt.y;
                 var element:HTMLElement = local.element as HTMLElement;
                 
-                do {
-                    x += element.offsetLeft;
-                    y += element.offsetTop;
-                    element = element.offsetParent as HTMLElement;
-                }
-                while (element);
+				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
+					var rect:Object = element.getBoundingClientRect();
+					x = rect.left;
+					y = rect.top;
+				} else { // for older browsers, but offsetParent is soon to be deprecated from from chrome 
+	                do {
+	                    x += element.offsetLeft;
+	                    y += element.offsetTop;
+	                    element = element.offsetParent as HTMLElement;
+	                }
+                	while (element);
+				}
                 return new org.apache.flex.geom.Point(x, y);
             }
         }

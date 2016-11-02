@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -28,18 +27,19 @@ package org.apache.flex.html.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIButtonBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.TextButton;
 	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.SolidBorderUtil;
-    import org.apache.flex.utils.StringTrimmer;
+	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.StringTrimmer;
 
     /**
      *  The CSSTextButtonView class is the default view for
@@ -86,6 +86,10 @@ package org.apache.flex.html.beads
 			overSprite.addChild(overTextField);
 		}
 		
+		private function get host():IUIBase
+		{
+			return _strand as IUIBase;
+		}
 		private var textModel:ITextModel;
 		
 		private var shape:Shape;
@@ -117,10 +121,10 @@ package org.apache.flex.html.beads
             upTextField.parentHandlesPadding = true;
             downTextField.parentHandlesPadding = true;
             overTextField.parentHandlesPadding = true;
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+			(value as UIButtonBase).$button.upState = upSprite;
+			(value as UIButtonBase).$button.downState = downSprite;
+			(value as UIButtonBase).$button.overState = overSprite;
+			(value as UIButtonBase).$button.hitTestState = shape;
 			if (textModel.text !== null)
 				text = textModel.text;
 			if (textModel.html !== null)
@@ -141,10 +145,10 @@ package org.apache.flex.html.beads
             updateHitArea();
         }
         
-		private function setupSkin(sprite:Sprite, textField:TextField, state:String = null):void
+		private function setupSkin(sprite:Sprite, textField:CSSTextField, state:String = null):void
 		{
-			var sw:uint = DisplayObject(_strand).width;
-			var sh:uint = DisplayObject(_strand).height;
+			var sw:uint = IUIBase(_strand).width;
+			var sh:uint = IUIBase(_strand).height;
 			
 			textField.defaultTextFormat.leftMargin = 0;
 			textField.defaultTextFormat.rightMargin = 0;
@@ -201,10 +205,10 @@ package org.apache.flex.html.beads
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
-            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
-            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
-            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
+            var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, host.$displayObject.width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, host.$displayObject.width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, host.$displayObject.height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, host.$displayObject.height);
             
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(_strand, "background-color", state);
             var bgColor:uint;
@@ -314,8 +318,8 @@ package org.apache.flex.html.beads
 		
 		private function updateHitArea():void
 		{
-			var useWidth:uint = Math.max(DisplayObject(_strand).width, upTextField.textWidth);
-			var useHeight:uint = Math.max(DisplayObject(_strand).height, upTextField.textHeight);
+			var useWidth:uint = Math.max(host.$displayObject.width, upTextField.textWidth);
+			var useHeight:uint = Math.max(host.$displayObject.height, upTextField.textHeight);
 			
 			shape.graphics.clear();
 			shape.graphics.beginFill(0xCCCCCC);

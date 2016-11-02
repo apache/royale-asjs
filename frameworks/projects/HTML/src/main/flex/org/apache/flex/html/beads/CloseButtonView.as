@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.Button;
 	import org.apache.flex.html.TitleBar;
@@ -87,10 +88,11 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 11, 11);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upView;
+			button.downState = downView;
+			button.overState = overView;
+			button.hitTestState = shape;
 		}
 				
 		private var upView:Shape;

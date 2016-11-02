@@ -21,9 +21,11 @@ package org.apache.flex.html.beads.controllers
     import flash.display.DisplayObject;
     
 	import org.apache.flex.core.IBeadController;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.utils.UIUtils;
 
 	/**
 	 *  The AlertControler class bead handles the close event on the org.apache.flex.html.Alert 
@@ -82,7 +84,7 @@ package org.apache.flex.html.beads.controllers
 		 */
         private function handleAlertClose(event:Event):void
         {
-            DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+            UIUtils.removePopUp(IChild(_strand));
         }
 	}
 }

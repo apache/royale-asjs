@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.createjs.core
 {
-    import org.apache.flex.core.HTMLElementWrapper;
+    import org.apache.flex.core.UIHTMLElementWrapper;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.IParent;
+    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IBeadModel;
@@ -62,7 +64,7 @@ package org.apache.flex.createjs.core
 	}
         
 	COMPILE::JS
-	public class UIBase extends HTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IFlexJSElement
+	public class UIBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IFlexJSElement
 	{
 		/**
 		 *  Constructor.
@@ -336,7 +338,7 @@ package org.apache.flex.createjs.core
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
          */
-        public function addElement(c:Object, dispatchEvent:Boolean = true):void
+        public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             (element as Container).addChild(c.element as DisplayObject);
         }
@@ -345,7 +347,7 @@ package org.apache.flex.createjs.core
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
          */
-        public function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
             (element as Container).addChildAt(c.element as DisplayObject, index);
         }
@@ -355,7 +357,7 @@ package org.apache.flex.createjs.core
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
          */
-        public function getElementIndex(c:Object):int
+        public function getElementIndex(c:IChild):int
         {
             return (element as Container).getChildIndex(c.element as DisplayObject);
         }
@@ -365,7 +367,7 @@ package org.apache.flex.createjs.core
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
          */
-        public function removeElement(c:Object, dispatchEvent:Boolean = true):void
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             (element as Container).removeChild(c.element as DisplayObject);
         }
@@ -374,10 +376,11 @@ package org.apache.flex.createjs.core
         /**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
+         * @flexjsignorecoercion org.apache.flex.core.IChild
          */
-        public function getElementAt(index:int):Object
+        public function getElementAt(index:int):IChild
         {
-            return (element as Container).getChildAt(index);
+            return (element as Container).getChildAt(index) as IChild;
         }
         
 
@@ -670,34 +673,16 @@ package org.apache.flex.createjs.core
             (positioner as DisplayObject).alpha = value;
         }
 
-        private var _positioner:WrappedHTMLElement;
-        
-        /**
-         * The HTMLElement used to position the component.
-         */
-        public function get positioner():WrappedHTMLElement
-        {
-            return _positioner;
-        }
-        
-        /**
-         * @private
-         */
-        public function set positioner(value:WrappedHTMLElement):void
-        {
-            _positioner = value;
-        }
-		
 		/**
          * @flexjsignorecoercion createjs.Container
          * @flexjsignorecoercion createjs.DisplayObject
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
-		public function get parent():IUIBase
+		override public function get parent():IParent
 		{
 			var pos:createjs.DisplayObject = this.positioner as createjs.DisplayObject;
 			var p:WrappedHTMLElement = pos['parent'] as WrappedHTMLElement;
-			var wrapper:IUIBase = p ? p.flexjs_wrapper as IUIBase : null;
+			var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
 			return wrapper;
 		}
 		

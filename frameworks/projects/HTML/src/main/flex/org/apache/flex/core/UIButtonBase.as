@@ -28,8 +28,9 @@ package org.apache.flex.core
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-    import org.apache.flex.events.utils.MouseEventConverter;
+	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.utils.MouseEventConverter;
 	
     //--------------------------------------
     //  Events
@@ -48,8 +49,9 @@ package org.apache.flex.core
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
 
     /**
-     *  The UIButtonBase class is the base class for most Buttons in a FlexJS
-     *  application.  In Flash, these buttons extend SimpleButton and therefore
+     *  The UIHTMLElementWrapper class is the base class for most Buttons
+     *  and other UI objects in a FlexJS application that do not have children.  
+     *  In Flash, these buttons extend SimpleButton and therefore
      *  do not support all of the Sprite APIs.
      *  
      *  @langversion 3.0
@@ -58,7 +60,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	COMPILE::SWF
-	public class UIButtonBase extends SimpleButton implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild, IFlexJSElement
+	public class UIButtonBase extends UIHTMLElementWrapper implements IStrandWithModel, IEventDispatcher, IUIBase, IStyleableObject, ILayoutChild
 	{
         /**
          *  Constructor.
@@ -68,14 +70,27 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function UIButtonBase(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+		public function UIButtonBase()
 		{
-			super(upState, overState, downState, hitTestState);
 			// mouseChildren = true;
 			// mouseEnabled = true;
+            createElement();
             MouseEventConverter.setupInstanceConverters(this);
 		}
-				
+
+        protected function createElement():IFlexJSElement
+        {
+            element = _button = new WrappedSimpleButton();
+            _button.flexjs_wrapper = this;
+            return element;
+        }
+        private var _button:WrappedSimpleButton;
+
+        public function get $button():SimpleButton
+        {
+            return _button;
+        }
+
         private var _x:Number;
         
 		/**
@@ -83,8 +98,8 @@ package org.apache.flex.core
 		 */
 		override public function set x(value:Number):void
 		{
-			if (super.x != value) {
-				super.x = _x = value;
+			if (_button.x != value) {
+				_button.x = _x = value;
                 if (!style)
                     style = { left: value };
                 else
@@ -94,14 +109,14 @@ package org.apache.flex.core
 		}
 		
         private var _y:Number;
-
+        
         /**
 		 *  @private
 		 */
 		override public function set y(value:Number):void
 		{
-			if (super.y != value) {
-				super.y = _y = value;
+			if (_button.y != value) {
+				_button.y = _y = value;
                 if (!style)
                     style = { top: value };
                 else
@@ -109,7 +124,7 @@ package org.apache.flex.core
 				dispatchEvent(new Event("yChanged"));
 			}
 		}
-		
+
 		/**
 		 *  Retrieve the low-level bounding box y.
 		 *  
@@ -120,7 +135,7 @@ package org.apache.flex.core
 		 */
 		protected function get $y():Number
 		{
-			return super.y;
+			return _button.y;
 		}
 		
 		private var _explicitWidth:Number;
@@ -323,7 +338,7 @@ package org.apache.flex.core
          */
 		public function get $width():Number
 		{
-			return super.width;
+			return _button.width;
 		}
 		
 		private var _height:Number;
@@ -374,7 +389,7 @@ package org.apache.flex.core
          */
 		public function get $height():Number
 		{
-			return super.height;
+			return _button.height;
 		}
 
         /**
@@ -462,7 +477,7 @@ package org.apache.flex.core
          */
         public function setX(value:Number):void
         {
-            super.x = value;
+            _button.x = value;
         }
                 
         /**
@@ -475,7 +490,7 @@ package org.apache.flex.core
          */
         public function setY(value:Number):void
         {
-            super.y = value;
+            _button.y = value;
         }
         
 		/**
@@ -484,10 +499,15 @@ package org.apache.flex.core
         [Bindable("visibleChanged")]
 		override public function set visible(value:Boolean):void
 		{
-			super.visible = value;
+			_button.visible = value;
 			dispatchEvent(new Event(value?"show":"hide"));
 			dispatchEvent(new Event("visibleChanged"));
 		}
+
+        override public function get visible():Boolean
+        {
+            return _button.visible;
+        }
         
         /**
          *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent
@@ -502,38 +522,6 @@ package org.apache.flex.core
             return (isNaN(_explicitHeight) && isNaN(_percentHeight));
         }
         
-        private var _model:IBeadModel;
-
-        /**
-         *  @copy org.apache.flex.core.UIBase#model
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get model():Object
-        {
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-            return _model;
-        }
-
-        /**
-         *  @private
-         */
-        public function set model(value:Object):void
-        {
-            if (_model != value)
-            {
-                addBead(value as IBead);
-                dispatchEvent(new Event("modelChanged"));
-            }
-        }
-		
         private var _view:IBeadView;
         
         /**
@@ -689,19 +677,6 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.UIBase#element
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get element():IFlexJSElement
-        {
-            return this;
-        }
-
-        /**
          *  @copy org.apache.flex.core.UIBase#beads
          *  
          *  @langversion 3.0
@@ -721,57 +696,12 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function addBead(bead:IBead):void
+		override public function addBead(bead:IBead):void
 		{
-			if (!strand)
-				strand = new Vector.<IBead>;
-			strand.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
-            else if (bead is IBeadView)
+            super.addBead(bead);
+            if (bead is IBeadView)
                 _view = bead as IBeadView;
 			bead.strand = this;
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in strand)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = strand.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = strand[i];
-				if (bead == value)
-				{
-					strand.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
 		}
 		
         /**

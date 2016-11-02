@@ -75,7 +75,7 @@ package org.apache.flex.html.beads
 		private function changeHandler(event:Event):void
 		{
             var host:UIBase = UIBase(_strand);
-            var g:Graphics = host.graphics;
+            var g:Graphics = (host.$displayObject as Object).graphics as Graphics;
             var w:Number = host.width;
             var h:Number = host.height;
             var state:String;

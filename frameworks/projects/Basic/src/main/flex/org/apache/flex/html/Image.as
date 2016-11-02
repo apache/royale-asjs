@@ -63,13 +63,13 @@ package org.apache.flex.html
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.IImageModel
 		 */
-		public function get source():String
+		public function get url():String
 		{
-			return (model as IImageModel).source;
+			return (model as IImageModel).url;
 		}
-		public function set source(value:String):void
+		public function set url(value:String):void
 		{
-			(model as IImageModel).source = value;
+			(model as IImageModel).url = value;
 		}
         
         /**
