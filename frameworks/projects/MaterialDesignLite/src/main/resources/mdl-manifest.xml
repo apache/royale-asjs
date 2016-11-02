@@ -30,5 +30,6 @@
     <component id="ButtonEffect" class="org.apache.flex.mdl.beads.ButtonEffect"/>
     <component id="TextInputEffect" class="org.apache.flex.mdl.beads.TextInputEffect"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
+    <component id="Slider" class="org.apache.flex.mdl.Slider"/>
 
 </componentPackage>
