@@ -44,12 +44,6 @@
         <configuration>
           <flashVersion>20.0</flashVersion>
           <mainClass>App.mxml</mainClass>
-          <includeFiles>
-            <include-file>
-              <name>defaults.css</name>
-              <path>../src/main/resources/defaults.css</path>
-            </include-file>
-          </includeFiles>
         </configuration>
         <executions>
           <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
@@ -63,6 +57,12 @@
               <outputJavaScript>true</outputJavaScript>
               <htmlTemplate>${basedir}/src/main/resources/mdl-js-index-template.html</htmlTemplate>
               <additionalCompilerOptions>-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>
+              <includeFiles>
+                <include-file>
+                  <name>mdl-styles.css</name>
+                  <path>../src/main/resources/mdl-styles.css</path>
+                </include-file>
+              </includeFiles>
             </configuration>
           </execution>
         </executions>

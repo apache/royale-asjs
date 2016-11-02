@@ -18,13 +18,16 @@
  */
 
 
-@namespace "library://ns.apache.org/flexjs/basic";
-@namespace mdl "library://ns.apache.org/flexjs/mdl";
+@namespace "library://ns.apache.org/flexjs/mdl";
 
-mdl|CheckBox
+CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
 }
 
+Slider
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+}
 
 

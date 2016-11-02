@@ -19,19 +19,19 @@
 package
 {
 
-/**
- *  @private
- *  This class is used to link additional classes into mdl.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class MDLClasses
-{	
-	COMPILE::SWF
-	{
-		//import org.apache.flex.mdl.beads.TextPromptBead; TextPromptBead;
+	/**
+	*  @private
+	*  This class is used to link additional classes into mdl.swc
+	*  beyond those that are found by dependecy analysis starting
+	*  from the classes specified in manifest.xml.
+	*/
+	internal class MDLClasses
+	{	
+		COMPILE::SWF
+		{
+			//import org.apache.flex.mdl.beads.TextPromptBead; TextPromptBead;
+		}
 	}
-}
 
 }
 
