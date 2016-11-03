@@ -102,7 +102,9 @@ limitations under the License.
                 </mdl:RadioButton>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
-                <mdl:Slider minimum="0" maximum="100" value="0"/>
+                <mdl:Slider/>
+
+                <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
             </js:Form>
 
