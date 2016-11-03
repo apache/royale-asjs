@@ -106,6 +106,34 @@ limitations under the License.
 
                 <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
+                <js:VContainer>
+                    <mdl:Badge text="This is a Badge" dataBadge="5" linkUrl="http://flex.apache.org">
+                        <js:beads>
+                            <mdl:BadgeEffect overlap="true" noBackground="true"/>
+                        </js:beads>
+                    </mdl:Badge>
+
+                    <mdl:Badge id="badge1" text="Loving this." dataBadge="1" linkUrl="http://flex.apache.org"/>
+                </js:VContainer>
+
+                <mdl:Button text="TYPE LINK" click="badge1.type = 0">
+                    <js:beads>
+                        <mdl:ButtonEffect raised="true" colored="true"/>
+                    </js:beads>
+                </mdl:Button>
+
+                <mdl:Button text="TYPE TEXT" click="badge1.type = 1">
+                    <js:beads>
+                        <mdl:ButtonEffect raised="true" colored="false"/>
+                    </js:beads>
+                </mdl:Button>
+
+                <mdl:Button text="TYPE CONTAINER" click="badge1.type = 2; badge1.text='account_box'">
+                    <js:beads>
+                        <mdl:ButtonEffect raised="true" accent="true"/>
+                    </js:beads>
+                </mdl:Button>
+
             </js:Form>
 
         </js:View>

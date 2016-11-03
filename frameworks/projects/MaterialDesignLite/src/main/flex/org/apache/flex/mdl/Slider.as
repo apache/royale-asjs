@@ -32,14 +32,11 @@ package org.apache.flex.mdl
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
 	
 	/**
-	 *  The Slider class is a component that displays a range of values using a
-	 *  track and a thumb control. The Slider uses the following bead types:
+	 *  The Slider class provides a MDL UI-like appearance for a slider.
+	 *  It displays a range of values using a track and a thumb control. 
+	 *  The Slider uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input.
-	 *  org.apache.flex.core.IThumbValue: the bead responsible for the display of the thumb control.
-	 *  org.apache.flex.core.ITrackView: the bead responsible for the display of the track.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -59,8 +56,6 @@ package org.apache.flex.mdl
 		public function Slider()
 		{
 			super();
-			
-			//className = "Slider";
 			
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
@@ -201,12 +196,13 @@ package org.apache.flex.mdl
 
 			input = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
+			input.className = 'mdl-slider mdl-js-slider';
+
 			input.value = IRangeModel(model).value.toString();
 			input.min = IRangeModel(model).minimum.toString();
 			input.max = IRangeModel(model).maximum.toString();
 			input.step = IRangeModel(model).stepSize.toString();
-			input.className = 'mdl-slider mdl-js-slider';
-
+			
 			p.appendChild(input);
 
 			element = input as WrappedHTMLElement;
