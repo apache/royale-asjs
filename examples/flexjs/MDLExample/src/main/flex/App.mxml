@@ -27,6 +27,8 @@ limitations under the License.
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
 
+     <fx:Style source="../../main/resources/mdl-styles.css"/>
+
     <js:initialView>
         <js:View>
             
@@ -122,17 +124,33 @@ limitations under the License.
                     </js:beads>
                 </mdl:Button>
 
-                <mdl:Button text="TYPE TEXT" click="badge1.type = 1">
+                <mdl:Card>
                     <js:beads>
-                        <mdl:ButtonEffect raised="true" colored="false"/>
+                        <mdl:CardEffect shadow4dp="true"/>
                     </js:beads>
-                </mdl:Button>
+                    <mdl:CardTitle>
+                        <js:Label text="My Card Title"/>
+                    </mdl:CardTitle>
+                    <mdl:CardMedia>
+                        <js:Image url="../../../../src/main/resources/Unknown.jpeg"  height="140"/>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText>
+                        <js:Label text="This text might describe the photo and provide further information, such as where and when it was taken."/>
+                    </mdl:CardSupportingText>
+                    <mdl:CardActions>
+                        <mdl:Button text="TYPE TEXT" click="badge1.type = 1">
+                            <js:beads>
+                                <mdl:ButtonEffect raised="true" colored="false"/>
+                            </js:beads>
+                        </mdl:Button>
 
-                <mdl:Button text="TYPE CONTAINER" click="badge1.type = 2; badge1.text='account_box'">
-                    <js:beads>
-                        <mdl:ButtonEffect raised="true" accent="true"/>
-                    </js:beads>
-                </mdl:Button>
+                        <mdl:Button text="TYPE CONTAINER" click="badge1.type = 2; badge1.text='account_box'">
+                            <js:beads>
+                                <mdl:ButtonEffect raised="true" accent="true"/>
+                            </js:beads>
+                        </mdl:Button>
+                    </mdl:CardActions>
+                </mdl:Card>
 
             </js:Form>
 
