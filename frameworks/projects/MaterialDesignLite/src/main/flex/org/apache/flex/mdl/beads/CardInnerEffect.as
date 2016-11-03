@@ -20,19 +20,19 @@ package org.apache.flex.mdl.beads
 {
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IBead;
-	import org.apache.flex.mdl.Card;
+	import org.apache.flex.mdl.supportClasses.CardInner;
 	
 	
 	/**
-	 *  The CardEffect class is a specialty bead that can be used with
-	 *  a MDL Card control to apply some MDL complementary effect.
+	 *  The CardInnerEffect class is a specialty bead that can be used with
+	 *  a MDL Card Inner container to apply some MDL complementary effect.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class CardEffect implements IBead
+	public class CardInnerEffect implements IBead
 	{
 		/**
 		 *  constructor.
@@ -42,33 +42,31 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function CardEffect()
+		public function CardInnerEffect()
 		{
 		}
 
-		private var _shadow:Number = 0;
-		private var _shadowStyle:String = "";
+		private var _border:String = "";
         /**
-		 *  A boolean flag to activate "mdl-shadow--4dp" effect selector.
-		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
+		 *  A boolean flag to activate "mdl-card--border" effect selector.
+		 *  Adds a border to the card section that it's applied to
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        public function get shadow():Number
+        public function get border():Boolean
         {
-            return _shadow;
+            return _border;
         }
-        public function set shadow(value:Number):void
+        public function set border(value:Boolean):void
         {
-            if(value == 0) {
-				_shadowStyle = "";
-			} else {
-				_shadow = value;
-                _shadowStyle = " mdl-shadow--" + _shadow + "dp";
-            }  
+            if(value) {
+                _border = " mdl-card--border";
+            } else {
+                _border = "";
+            }   
         }
 
 		private var _strand:IStrand;
@@ -88,11 +86,11 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				if (value is Card) {
-					var card:Card = value as Card;
-					card.className =  _shadowStyle;
+				if (value is CardInner) {
+					var card:CardInner = value as CardInner;
+					card.className =  _border;
 				} else {
-					throw new Error("Host component must be an MDL Card.");
+					throw new Error("Host component must be an MDL CardInner.");
 				}
 			}
 		}

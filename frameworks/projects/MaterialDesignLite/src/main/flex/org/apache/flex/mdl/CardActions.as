@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.mdl.supportClasses.CardInner;
     
     COMPILE::JS
     {
@@ -40,7 +40,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class CardActions extends ContainerBase
+	public class CardActions extends CardInner
 	{
 		/**
 		 *  constructor.

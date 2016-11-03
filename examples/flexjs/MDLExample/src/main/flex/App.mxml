@@ -124,20 +124,23 @@ limitations under the License.
                     </js:beads>
                 </mdl:Button>
 
-                <mdl:Card>
+                <mdl:Card width="512">
                     <js:beads>
-                        <mdl:CardEffect shadow4dp="true"/>
+                        <mdl:CardEffect shadow="2"/>
                     </js:beads>
-                    <mdl:CardTitle>
-                        <js:Label text="My Card Title"/>
+                    <mdl:CardTitle style="color: #666;height: 176px; background-image: url('../../../../src/main/resources/Unknown.jpeg') center / cover;">
+                        <js:Label text="Welcome" className="mdl-card__title-text"/>
                     </mdl:CardTitle>
                     <mdl:CardMedia>
-                        <js:Image url="../../../../src/main/resources/Unknown.jpeg"  height="140"/>
+                        <js:Image url="../../../../src/main/resources/Unknown.jpeg"  height="176"/>
                     </mdl:CardMedia>
                     <mdl:CardSupportingText>
-                        <js:Label text="This text might describe the photo and provide further information, such as where and when it was taken."/>
+                        <js:MultilineLabel text="This text might describe the photo and provide further information, such as where and when it was taken."/>
                     </mdl:CardSupportingText>
                     <mdl:CardActions>
+                        <js:beads>
+                            <mdl:CardInnerEffect border="true"/>
+                        </js:beads>
                         <mdl:Button text="TYPE TEXT" click="badge1.type = 1">
                             <js:beads>
                                 <mdl:ButtonEffect raised="true" colored="false"/>

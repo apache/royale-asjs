@@ -16,17 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.mdl.supportClasses
 {
-	import org.apache.flex.mdl.supportClasses.CardInner;
-
+	import org.apache.flex.core.ContainerBase;
+    
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
     
 	/**
-	 *  The CardMedia class is a Container component capable of parenting other. 
+	 *  The CardInner class is a Container component capable of parenting other
+	 *  four components (CardTitle, CardMedia, CardSupportingText and CardActions. 
      *  The Panel uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
@@ -40,7 +41,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class CardMedia extends CardInner
+	public class CardInner extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -50,7 +51,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function CardMedia()
+		public function CardInner()
 		{
 			super();
 		}
@@ -72,7 +73,7 @@ package org.apache.flex.mdl
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = typeNames = "mdl-card__media";
+            className = typeNames = "mdl-card";
 
             return element;
         }    
