@@ -87,7 +87,7 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
 			{
-				(element as HTMLInputElement).value = "" + value;
+				(element as HTMLInputElement).value = IRangeModel(model).value.toString();
 			}
 		}
 		
@@ -109,7 +109,7 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
 			{
-				(element as HTMLInputElement).min = "" + value;
+				(element as HTMLInputElement).min = IRangeModel(model).minimum.toString();
 			}
 		}
 		
@@ -131,7 +131,7 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
 			{
-				(element as HTMLInputElement).max = "" + value;
+				(element as HTMLInputElement).max = IRangeModel(model).maximum.toString();
 			}
 			
 		}
@@ -170,6 +170,11 @@ package org.apache.flex.mdl
         public function set stepSize(value:Number):void
         {
             IRangeModel(model).stepSize = value;
+
+			COMPILE::JS
+			{
+				(element as HTMLInputElement).step = IRangeModel(model).stepSize.toString();
+			}
         }
 
         COMPILE::JS
@@ -191,32 +196,32 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            input = document.createElement('input') as HTMLInputElement;
+			var p:HTMLElement = document.createElement('p') as HTMLElement;
+            p.style.width = '300px';
+
+			input = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
-			//input.min = "0";
-			//input.max = "100";
-			//input.value = "0";
+			input.value = IRangeModel(model).value.toString();
+			input.min = IRangeModel(model).minimum.toString();
+			input.max = IRangeModel(model).maximum.toString();
+			input.step = IRangeModel(model).stepSize.toString();
+			input.className = 'mdl-slider mdl-js-slider';
 
-
-            //input.style.width = '200px';
-            //input.style.height = '30px';
+			p.appendChild(input);
 
 			element = input as WrappedHTMLElement;
             
             //track = new SliderTrackView();
-            //addBead(track);
-            
+            //addBead(track);            
             //thumb = new SliderThumbView();
             //addBead(thumb);
-            
             //controller = new SliderMouseController();
             //addBead(controller);
             
-            positioner = element;
+            positioner = p as WrappedHTMLElement;
             positioner.style.position = 'relative';
+			(input as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
-            
-            className = typeNames = 'mdl-slider mdl-js-slider';
             
             return element;
         } 
