@@ -39,3 +39,5 @@ Image
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
+
+

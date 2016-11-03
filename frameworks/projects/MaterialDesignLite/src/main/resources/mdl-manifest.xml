@@ -34,10 +34,12 @@
     <component id="Badge" class="org.apache.flex.mdl.Badge"/>
     <component id="BadgeEffect" class="org.apache.flex.mdl.beads.BadgeEffect"/>
     <component id="Card" class="org.apache.flex.mdl.Card"/>
+    <component id="CardInner" class="org.apache.flex.mdl.supportClasses.CardInner"/>
     <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
     <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
     <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
     <component id="CardEffect" class="org.apache.flex.mdl.beads.CardEffect"/>
+    <component id="CardInnerEffect" class="org.apache.flex.mdl.beads.CardInnerEffect"/>
 
 </componentPackage>
