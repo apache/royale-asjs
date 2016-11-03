@@ -31,5 +31,7 @@
     <component id="TextInputEffect" class="org.apache.flex.mdl.beads.TextInputEffect"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
+    <component id="Badge" class="org.apache.flex.mdl.Badge"/>
+    <component id="BadgeEffect" class="org.apache.flex.mdl.beads.BadgeEffect"/>
 
 </componentPackage>
