@@ -33,5 +33,11 @@
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
     <component id="Badge" class="org.apache.flex.mdl.Badge"/>
     <component id="BadgeEffect" class="org.apache.flex.mdl.beads.BadgeEffect"/>
+    <component id="Card" class="org.apache.flex.mdl.Card"/>
+    <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
+    <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
+    <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
+    <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
+    <component id="CardEffect" class="org.apache.flex.mdl.beads.CardEffect"/>
 
 </componentPackage>

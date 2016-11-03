@@ -32,3 +32,10 @@ Application
 	padding: 10px;
 	margin: 10px;
 }
+
+Image
+{
+	vertical-align: top;
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+}
