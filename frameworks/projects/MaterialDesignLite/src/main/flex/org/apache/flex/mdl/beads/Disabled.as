@@ -87,7 +87,7 @@ package org.apache.flex.mdl.beads
                 //if (host.element is HTMLInputElement)
                 //{
                     input = host.element as HTMLInputElement;
-                    //input.disabled = _disabled ? "disabled" : "";
+                    input.disabled = "disabled";
                 //} else
                 //{
                  //   throw new Error("Host element component in not type input");

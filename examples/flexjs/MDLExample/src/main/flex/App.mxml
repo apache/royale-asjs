@@ -109,13 +109,17 @@ limitations under the License.
                 <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
                 <js:VContainer>
-                    <mdl:Badge text="This is a Badge" dataBadge="5" linkUrl="http://flex.apache.org">
+                    <mdl:Link text="This is a Badge" linkUrl="http://flex.apache.org">
                         <js:beads>
-                            <mdl:BadgeEffect overlap="true" noBackground="true"/>
+                            <mdl:Badge dataBadge="5" overlap="true" noBackground="true"/>
                         </js:beads>
-                    </mdl:Badge>
+                    </mdl:Link>
 
-                    <mdl:Badge id="badge1" text="Loving this." dataBadge="1" linkUrl="http://flex.apache.org"/>
+                    <mdl:Link id="badge1" text="Loving this." linkUrl="http://flex.apache.org">
+                        <js:beads>
+                            <mdl:Badge dataBadge="1"/>
+                        </js:beads>
+                    </mdl:Link>
                 </js:VContainer>
 
                 <mdl:Card width="512">
@@ -129,7 +133,7 @@ limitations under the License.
                         <js:Image url="../../../../src/main/resources/Unknown.jpg"  height="176"/>
                     </mdl:CardMedia>
                     <mdl:CardSupportingText>
-                        <js:MultilineLabel text="This text might describe the photo and provide further information, such as where and when it was taken."/>
+                        <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
                     </mdl:CardSupportingText>
                     <mdl:CardActions>
                         <js:beads>
@@ -137,7 +141,7 @@ limitations under the License.
                         </js:beads>
                         <mdl:Button text="Get Started">
                             <js:beads>
-                                <mdl:ButtonEffect raised="true" colored="false"/>
+                                <mdl:ButtonEffect ripple="true" colored="true"/>
                             </js:beads>
                         </mdl:Button>
                     </mdl:CardActions>
