@@ -130,7 +130,7 @@ package org.apache.flex.html
             positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
-            className = typeNames = 'A';
+            //className = typeNames = 'A';
 
             return element;
         }

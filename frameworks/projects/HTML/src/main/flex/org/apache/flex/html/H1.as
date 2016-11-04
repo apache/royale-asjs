@@ -104,7 +104,7 @@ package org.apache.flex.html
             positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
-            className = typeNames = 'H1';
+            //className = typeNames = 'H1';
 
             return element;
         }
