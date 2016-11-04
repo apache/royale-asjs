@@ -118,12 +118,6 @@ limitations under the License.
                     <mdl:Badge id="badge1" text="Loving this." dataBadge="1" linkUrl="http://flex.apache.org"/>
                 </js:VContainer>
 
-                <mdl:Button text="TYPE LINK" click="badge1.type = 0">
-                    <js:beads>
-                        <mdl:ButtonEffect raised="true" colored="true"/>
-                    </js:beads>
-                </mdl:Button>
-
                 <mdl:Card width="512">
                     <js:beads>
                         <mdl:CardEffect shadow="2"/>
@@ -132,7 +126,7 @@ limitations under the License.
                         <js:Label text="Welcome" className="mdl-card__title-text"/>
                     </mdl:CardTitle>
                     <mdl:CardMedia>
-                        <js:Image url="../../../../src/main/resources/Unknown.jpeg"  height="176"/>
+                        <js:Image url="../../../../src/main/resources/Unknown.jpg"  height="176"/>
                     </mdl:CardMedia>
                     <mdl:CardSupportingText>
                         <js:MultilineLabel text="This text might describe the photo and provide further information, such as where and when it was taken."/>
@@ -141,15 +135,9 @@ limitations under the License.
                         <js:beads>
                             <mdl:CardInnerEffect border="true"/>
                         </js:beads>
-                        <mdl:Button text="TYPE TEXT" click="badge1.type = 1">
+                        <mdl:Button text="Get Started">
                             <js:beads>
                                 <mdl:ButtonEffect raised="true" colored="false"/>
-                            </js:beads>
-                        </mdl:Button>
-
-                        <mdl:Button text="TYPE CONTAINER" click="badge1.type = 2; badge1.text='account_box'">
-                            <js:beads>
-                                <mdl:ButtonEffect raised="true" accent="true"/>
                             </js:beads>
                         </mdl:Button>
                     </mdl:CardActions>
