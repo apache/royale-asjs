@@ -135,17 +135,17 @@ package org.apache.flex.mdl.beads
 				if (host.element is HTMLSpanElement)
 				{
 					var span:HTMLSpanElement = host.element as HTMLSpanElement;
-					span.className = "mdl-badge " + _noBackground + _overlap;
+					span.className += " mdl-badge " + _noBackground + _overlap;
 					span.setAttribute('data-badge', _dataBadge.toString());
 				} else if (host.element is HTMLDivElement)
 				{
 					var div:HTMLDivElement = host.element as HTMLDivElement;
-					div.className = "mdl-badge " + _noBackground + _overlap;
+					div.className += " mdl-badge " + _noBackground + _overlap;
 					div.setAttribute('data-badge', _dataBadge.toString());
 				} else if (host.element is HTMLElement)
 				{
 					var a:HTMLElement = host.element as HTMLElement;
-					a.className = "mdl-badge " + _noBackground + _overlap;
+					a.className += " mdl-badge " + _noBackground + _overlap;
 					a.setAttribute('data-badge', _dataBadge.toString());
 				} else
 				{

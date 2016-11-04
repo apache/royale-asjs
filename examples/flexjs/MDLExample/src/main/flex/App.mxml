@@ -109,17 +109,30 @@ limitations under the License.
                 <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
                 <js:VContainer>
-                    <js:A text="This is a Badge" href="http://flex.apache.org">
+                    <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
                         <js:beads>
-                            <mdl:Badge dataBadge="5" overlap="true" noBackground="true"/>
+                            <mdl:Badge dataBadge="1" overlap="true"/>
+                        </js:beads>
+                    </js:Div>
+
+                    <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
+                        <js:beads>
+                            <mdl:Badge dataBadge="4"/>
+                        </js:beads>
+                    </js:Span>
+
+                    <js:A text="Badge No Bg" href="http://flex.apache.org">
+                        <js:beads>
+                            <mdl:Badge dataBadge="5" noBackground="true"/>
                         </js:beads>
                     </js:A>
 
-                    <js:A id="badge1" text="Loving this." href="http://flex.apache.org">
+                    <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
                         <js:beads>
                             <mdl:Badge dataBadge="1"/>
                         </js:beads>
                     </js:A>
+                    
                 </js:VContainer>
 
                 <mdl:Card width="512">
