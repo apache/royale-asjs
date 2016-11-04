@@ -26,7 +26,7 @@ package org.apache.flex.html
     }
 
 	/**
-	 *  The Anchor class represents an HTML <a> element
+	 *  The H4 class represents an HTML <h1> element
      *  
 	 *  
 	 *  @langversion 3.0
@@ -34,7 +34,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Anchor extends UIBase
+	public class H4 extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -44,7 +44,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Anchor()
+		public function H4()
 		{
 			super();
 		}
@@ -52,7 +52,7 @@ package org.apache.flex.html
         private var _text:String = "";
 
         /**
-         *  The text of the link
+         *  The text of the heading
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -82,31 +82,6 @@ package org.apache.flex.html
                 textNode.nodeValue = value;
             }
 		}
-        
-        private var _href:String = "#";
-
-        /**
-         *  the link url
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get href():String
-		{
-            return _href;   
-		}
-
-		public function set href(value:String):void
-		{
-            _href = value;
-            
-            COMPILE::JS
-            {
-                (element as HTMLElement).setAttribute('href', value);
-            }
-		}
 		
         COMPILE::JS
         private var textNode:Text;
@@ -118,19 +93,18 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
-            a.setAttribute('href', href);
+			var h4:HTMLElement = document.createElement('h4') as HTMLElement;
             
             textNode = document.createTextNode('') as Text;
-            a.appendChild(textNode); 
+            h4.appendChild(textNode); 
 
-			element = a as WrappedHTMLElement;
+			element = h4 as WrappedHTMLElement;
             
             positioner = element;
             positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
-            className = typeNames = 'Anchor';
+            className = typeNames = 'H4';
 
             return element;
         }

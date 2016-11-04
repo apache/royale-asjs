@@ -129,6 +129,12 @@
     
     <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
 
-    <component id="Anchor" class="org.apache.flex.html.Anchor" />
+    <component id="A" class="org.apache.flex.html.A" />
+    <component id="H1" class="org.apache.flex.html.H1" />
+    <component id="H2" class="org.apache.flex.html.H2" />
+    <component id="H3" class="org.apache.flex.html.H3" />
+    <component id="H4" class="org.apache.flex.html.H4" />
+    <component id="H5" class="org.apache.flex.html.H5" />
+    <component id="H6" class="org.apache.flex.html.H6" />
 
 </componentPackage>
