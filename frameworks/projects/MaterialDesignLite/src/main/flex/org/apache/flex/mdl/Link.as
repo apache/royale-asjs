@@ -26,17 +26,14 @@ package org.apache.flex.mdl
     }
 
 	/**
-	 *  The Badge class provides a MDL UI-like appearance for a badge.
-	 *  A Badge is an onscreen notification element consists of a small circle, 
-     *  typically containing a number or other characters, that appears in 
-     *  proximity to another object
+	 *  The Link class 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Badge extends UIBase
+	public class Link extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -46,78 +43,11 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Badge()
+		public function Link()
 		{
 			super();
 		}
 		
-        private var _type:Number = 0;
-        public static const LINK_TYPE:Number = 0;
-        public static const TEXT_TYPE:Number = 1;
-        public static const CONTAINER_TYPE:Number = 2;
-
-        /**
-         *  the type of badge
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get type():Number
-		{
-            return _type;   
-		}
-
-		public function set type(value:Number):void
-		{
-            _type = value;
-            
-            COMPILE::JS
-            {
-                if(value == LINK_TYPE)
-                {
-                    var link:HTMLElement = document.createElement('a') as HTMLElement;
-                    link.setAttribute('href', linkUrl);
-                    link.setAttribute('data-badge', dataBadge);
-                    link.appendChild(textNode);
-                    link.className = 'mdl-badge';
-                    
-                    element.parentNode.replaceChild(link, element);
-
-
-                    element = link as WrappedHTMLElement;
-                } 
-                else if(value == TEXT_TYPE)
-                {  
-                    var span:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
-                    span.setAttribute('data-badge', dataBadge);
-                    span.appendChild(textNode); 
-                    span.className = 'mdl-badge';
-
-                    element.parentNode.replaceChild(span, element);
-                    
-                    element = span as WrappedHTMLElement;
-                } 
-                else if(value == CONTAINER_TYPE)
-                {
-                    var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-                    div.setAttribute('data-badge', dataBadge);
-                    div.appendChild(textNode); 
-                    div.className = 'mdl-badge material-icons';
-
-                    element.parentNode.replaceChild(div, element);
-                    
-                    element = div as WrappedHTMLElement;
-                }
-                
-                positioner = element;
-                positioner.style.position = 'relative';
-                element.flexjs_wrapper = this;
-                
-            }
-		}
-
         private var _text:String = "";
 
         /**
@@ -176,31 +106,6 @@ package org.apache.flex.mdl
                 (element as HTMLElement).setAttribute('href', value);
             }
 		}
-
-
-        private var _dataBadge:Number = 0;
-
-		/**
-		 *  The current value of the Badge that appers inside the circle.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get dataBadge():Number
-		{
-			return _dataBadge;
-		}
-		public function set dataBadge(value:Number):void
-		{
-			_dataBadge = value;
-
-			COMPILE::JS
-			{
-				(element as HTMLElement).setAttribute('data-badge', _dataBadge.toString());
-			}
-		}
 		
         COMPILE::JS
         private var textNode:Text;
@@ -214,8 +119,7 @@ package org.apache.flex.mdl
         {
 			var a:HTMLElement = document.createElement('a') as HTMLElement;
             a.setAttribute('href', linkUrl);
-            a.setAttribute('data-badge', dataBadge);
-
+            
             textNode = document.createTextNode('') as Text;
             a.appendChild(textNode); 
 
@@ -225,7 +129,7 @@ package org.apache.flex.mdl
             positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
-            className = typeNames = 'mdl-badge';
+            //className = typeNames = 'Link';
 
             return element;
         }

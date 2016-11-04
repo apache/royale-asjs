@@ -20,19 +20,21 @@ package org.apache.flex.mdl.beads
 {
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IBead;
-	import org.apache.flex.mdl.Badge;
+	import org.apache.flex.core.UIBase;
 	
 	
 	/**
-	 *  The BadgeEffect class is a specialty bead that can be used with
-	 *  a MDL Badge control to apply some MDL complementary effect.
+	 *  The Badge class provides a MDL UI-like appearance for a badge.
+	 *  A Badge is an onscreen notification element consists of a small circle, 
+     *  typically containing a number or other characters, that appears in 
+     *  proximity to another object
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class BadgeEffect implements IBead
+	public class Badge implements IBead
 	{
 		/**
 		 *  constructor.
@@ -42,8 +44,27 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function BadgeEffect()
+		public function Badge()
 		{
+		}
+
+		private var _dataBadge:Number = 0;
+
+		/**
+		 *  The current value of the Badge that appers inside the circle.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get dataBadge():Number
+		{
+			return _dataBadge;
+		}
+		public function set dataBadge(value:Number):void
+		{
+			_dataBadge = value;
 		}
 
 		private var _noBackground:String = "";
@@ -109,11 +130,26 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				if (value is Badge) {
-					var badge:Badge = value as Badge;
-					badge.className = _noBackground + _overlap;
-				} else {
-					throw new Error("Host component must be an MDL Badge.");
+				var host:UIBase = value as UIBase;
+				
+				if (host.element is HTMLSpanElement)
+				{
+					var span:HTMLSpanElement = host.element as HTMLSpanElement;
+					span.className = "mdl-badge " + _noBackground + _overlap;
+					span.setAttribute('data-badge', _dataBadge.toString());
+				} else if (host.element is HTMLDivElement)
+				{
+					var div:HTMLDivElement = host.element as HTMLDivElement;
+					div.className = "mdl-badge " + _noBackground + _overlap;
+					div.setAttribute('data-badge', _dataBadge.toString());
+				} else if (host.element is HTMLElement)
+				{
+					var a:HTMLElement = host.element as HTMLElement;
+					a.className = "mdl-badge " + _noBackground + _overlap;
+					a.setAttribute('data-badge', _dataBadge.toString());
+				} else
+				{
+					throw new Error("Host component must be an MDL Host for Badges.");
 				}
 			}
 		}
