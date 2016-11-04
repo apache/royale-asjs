@@ -109,17 +109,17 @@ limitations under the License.
                 <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
                 <js:VContainer>
-                    <mdl:Link text="This is a Badge" linkUrl="http://flex.apache.org">
+                    <js:Anchor text="This is a Badge" href="http://flex.apache.org">
                         <js:beads>
                             <mdl:Badge dataBadge="5" overlap="true" noBackground="true"/>
                         </js:beads>
-                    </mdl:Link>
+                    </js:Anchor>
 
-                    <mdl:Link id="badge1" text="Loving this." linkUrl="http://flex.apache.org">
+                    <js:Anchor id="badge1" text="Loving this." href="http://flex.apache.org">
                         <js:beads>
                             <mdl:Badge dataBadge="1"/>
                         </js:beads>
-                    </mdl:Link>
+                    </js:Anchor>
                 </js:VContainer>
 
                 <mdl:Card width="512">
