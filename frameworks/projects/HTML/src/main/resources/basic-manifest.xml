@@ -129,4 +129,6 @@
     
     <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
 
+    <component id="Anchor" class="org.apache.flex.html.Anchor" />
+
 </componentPackage>
