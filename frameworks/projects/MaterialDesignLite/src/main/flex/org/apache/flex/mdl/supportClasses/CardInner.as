@@ -73,9 +73,30 @@ package org.apache.flex.mdl.supportClasses
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = typeNames = "mdl-card";
+            className = "mdl-card";
 
             return element;
-        }    
+        }
+
+		private var _border:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-card--border" effect selector.
+		 *  Adds a border to the card section that it's applied to
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get border():Boolean
+        {
+            return _border;
+        }
+        public function set border(value:Boolean):void
+        {
+			_border = value;
+
+            className += (_border ? " mdl-card--border" : "");  
+        } 
 	}
 }

@@ -35,6 +35,5 @@
     <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
     <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
-    <component id="CardInnerEffect" class="org.apache.flex.mdl.beads.CardInnerEffect"/>
-
+    
 </componentPackage>

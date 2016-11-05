@@ -123,10 +123,7 @@ limitations under the License.
                     <mdl:CardSupportingText>
                         <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
                     </mdl:CardSupportingText>
-                    <mdl:CardActions>
-                        <js:beads>
-                            <mdl:CardInnerEffect border="true"/>
-                        </js:beads>
+                    <mdl:CardActions border="true">
                         <mdl:Button text="Get Started" ripple="true" colored="true"/>
                     </mdl:CardActions>
                 </mdl:Card>

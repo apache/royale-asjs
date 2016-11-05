@@ -72,7 +72,7 @@ package org.apache.flex.mdl
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = typeNames = "mdl-card__media";
+            className = "mdl-card__media";
 
             return element;
         }    
