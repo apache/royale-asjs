@@ -42,8 +42,9 @@
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <flashVersion>20.0</flashVersion>
           <mainClass>TeamPage.mxml</mainClass>
+          <!-- Not a config option of flexjs-maven-plugin -->
+          <!--flashVersion>20.0</flashVersion-->
         </configuration>
         <executions>
           <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
@@ -71,12 +72,13 @@
   </build>
 
   <dependencies>
-    <dependency>
+    <!-- Already added in parent -->
+    <!--dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-    </dependency>
+    </dependency-->
     
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -95,7 +97,8 @@
     </dependency>
 
     <!-- Needed for JavaScript compilation -->
-    <dependency>
+    <!-- Already added in parent -->
+    <!--dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.8.0-SNAPSHOT</version>
@@ -106,7 +109,7 @@
       <artifactId>Language</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-    </dependency>
+    </dependency-->
   </dependencies>
 
 </project>
