@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package main.flex.models
 {
 	import org.apache.flex.collections.LazyCollection;
 	import org.apache.flex.core.Application;

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package main.flex
 {
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IStrand;

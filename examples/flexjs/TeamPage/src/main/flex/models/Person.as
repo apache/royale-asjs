@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package main.flex.models
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;

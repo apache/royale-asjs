@@ -35,7 +35,6 @@
   <name>Apache Flex - FlexJS: Examples: FlexJS: TeamPage</name>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
