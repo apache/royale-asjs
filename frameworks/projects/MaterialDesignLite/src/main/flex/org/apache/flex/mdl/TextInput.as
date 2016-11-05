@@ -105,6 +105,52 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
             
             return element;
-        }    
+        }
+
+        private var _floatingLabel:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-textfield--floating-label" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get floatingLabel():Boolean
+        {
+            return _floatingLabel;
+        }
+        public function set floatingLabel(value:Boolean):void
+        {
+            _floatingLabel = value;
+
+            COMPILE::JS
+            {
+                positioner.className += (_floatingLabel ? " mdl-textfield--floating-label" : "");
+            }
+        }
+
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+
+            COMPILE::JS
+            {
+                positioner.className += (_ripple ? " mdl-js-ripple-effect" : "");
+            }
+        } 
 	}
 }
