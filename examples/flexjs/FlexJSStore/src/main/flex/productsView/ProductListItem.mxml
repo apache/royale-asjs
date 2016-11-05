@@ -117,7 +117,7 @@ limitations under the License.
         </js:beads>
     </js:ImageButton>
     
-    <js:Image id="productImage" x="16" y="6" width="12" height="12" source="{product.image}"/>
+    <js:Image id="productImage" x="16" y="6" width="12" height="12" url="{product.image}"/>
 
     <js:Label id="productName" x="30" width="100" y="4" text="{product.name}"/>
 

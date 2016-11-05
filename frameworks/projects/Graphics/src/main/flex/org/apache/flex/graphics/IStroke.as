@@ -14,10 +14,14 @@
 
 package org.apache.flex.graphics
 {
+    COMPILE::SWF
+    {
+        import flash.display.Graphics;
+    }
     public interface IStroke
     {
         COMPILE::SWF
-        function apply(s:IGraphicShape):void;
+        function apply(s:Graphics):void;
         
         COMPILE::JS
         function get weight():Number;

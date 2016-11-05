@@ -110,6 +110,11 @@ package org.apache.flex.html.beads.controllers
 		{
 			_strand = value;
 			
+            COMPILE::SWF
+            {
+                // consider using [Mixin] and requiring MixinManager
+                DragEvent.init();
+            }
             IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, dragMoveHandler);
 		}
 		

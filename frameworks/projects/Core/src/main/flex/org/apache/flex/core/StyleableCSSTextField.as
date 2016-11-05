@@ -34,7 +34,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class StyleableCSSTextField extends CSSTextField implements IStyleableObject, IChild
+	public class StyleableCSSTextField extends CSSTextField implements IStyleableObject
 	{
         /**
          *  Constructor.

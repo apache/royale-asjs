@@ -70,6 +70,7 @@ package org.apache.flex.net
 		 *  @productversion FlexJS 0.7.0
 		 */	
 		public var method:String = HTTPConstants.GET;
+		private var _requestHeaders:Array;
         
         public function URLRequest(url:String = null)
         {
@@ -83,11 +84,12 @@ package org.apache.flex.net
         
         public function get requestHeaders():Array
         {
-            return null;
+            return _requestHeaders;
         }
         
         public function set requestHeaders(value:Array) : void
         {
+			_requestHeaders = value;
         }
         
     }

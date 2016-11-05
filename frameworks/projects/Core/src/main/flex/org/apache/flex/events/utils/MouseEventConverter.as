@@ -105,7 +105,8 @@ package org.apache.flex.events.utils
          *  @productversion FlexJS 0.0
          */
         public static var allConvertedEvents:Array = [
-            flash.events.MouseEvent.CLICK,
+			flash.events.MouseEvent.CLICK,
+			flash.events.MouseEvent.DOUBLE_CLICK,
             flash.events.MouseEvent.MOUSE_DOWN,
             flash.events.MouseEvent.MOUSE_UP,
             flash.events.MouseEvent.ROLL_OVER,
@@ -150,10 +151,10 @@ package org.apache.flex.events.utils
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static function setupAllConverters(target:IEventDispatcher):void
+        public static function setupAllConverters(target:IEventDispatcher, capture:Boolean = true):void
         {
             for each (var eventType:String in allConvertedEvents)
-                target.addEventListener(eventType, eventHandler, true, 9999);
+                target.addEventListener(eventType, eventHandler, capture, 9999);
         }
 
         /**

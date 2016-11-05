@@ -95,7 +95,7 @@ package org.apache.flex.html.beads
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
-			DisplayObjectContainer(value).addChild(_textField);
+			UIBase(value).$displayObjectContainer.addChild(_textField);
 			if (_textModel.text !== null)
 				text = _textModel.text;
 			if (_textModel.html !== null)

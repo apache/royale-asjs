@@ -50,6 +50,10 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/svg</uri>
+                <manifest>../resources/svg-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -58,6 +62,11 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
+    
+    <include-file>
+        <name>defaults.css</name>
+        <path>../resources/defaults.css</path>
+    </include-file>
     
     <include-classes>
         <class>GraphicsClasses</class>

@@ -19,6 +19,10 @@
 package org.apache.flex.core
 {
     import org.apache.flex.events.IEventDispatcher;
+    COMPILE::SWF
+    {
+        import flash.display.DisplayObject;
+    }
 
     /**
      *  The IUIBase interface is the basic interface for user interface components.
@@ -28,47 +32,9 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public interface IUIBase extends IStrand, IEventDispatcher
+	public interface IUIBase extends IStrand, IEventDispatcher, IChild
 	{
-        /**
-         *  Each IUIBase has an element that is actually added to
-         *  the platform's display list DOM.  It may not be the actual
-         *  component itself.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::SWF
-        function get element():IFlexJSElement;
-        
-        /**
-         *  Each IUIBase has an element that is actually added to
-         *  the platform's display list DOM.  It may not be the actual
-         *  component itself.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::JS
-        function get element():WrappedHTMLElement;
-        
-        /**
-         *  Each IUIBase has an element that is actually added to
-         *  the platform's display list DOM.  It may not be the actual
-         *  component itself.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        COMPILE::JS
-        function get positioner():WrappedHTMLElement;
-        
+
         /**
          *  Called by parent components when the component is
          *  added via a call to addElement or addElementAt.

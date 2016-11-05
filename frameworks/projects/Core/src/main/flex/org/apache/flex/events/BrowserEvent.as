@@ -126,6 +126,11 @@ package org.apache.flex.events
 			return wrappedEvent.clientX;
 		}
 
+		public function get localX():Number
+		{
+			return clientX;
+		}
+
 		/**
 		 * Y-coordinate relative to the window.
 		 * @type {number}
@@ -140,6 +145,10 @@ package org.apache.flex.events
 			return wrappedEvent.clientY;
 		}
 
+		public function get localY():Number
+		{
+			return clientY;
+		}
 		/**
 		 * Was ctrl key depressed.
 		 * @type {boolean}

@@ -33,6 +33,7 @@ package org.apache.flex.html.beads
     }
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IChild;
 	
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
@@ -70,10 +71,11 @@ package org.apache.flex.html.beads
         COMPILE::SWF
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
 			g.clear();
 			g.lineStyle(1,0x000000);
 			g.beginFill(bgColor);
-			g.drawCircle(SimpleButton(_strand).width/2, SimpleButton(_strand).height/2, 10);
+			g.drawCircle(button.width/2, button.height/2, 10);
 			g.endFill();
 		}
 		
@@ -101,10 +103,11 @@ package org.apache.flex.html.beads
                 drawView(downView.graphics, 0x999999);
                 drawView(overView.graphics, 0xDDDDDD);
                 
-                SimpleButton(value).upState = upView;
-                SimpleButton(value).downState = downView;
-                SimpleButton(value).overState = overView;
-                SimpleButton(value).hitTestState = hitArea;
+                var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+                button.upState = upView;
+                button.downState = downView;
+                button.overState = overView;
+                button.hitTestState = hitArea;
                 
                 IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
                 IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);                
@@ -124,7 +127,7 @@ package org.apache.flex.html.beads
                 element.style.top = '-10px';
                 element.style.left = '20px';
                 
-                host.element.appendChild(element);
+                (host.element as WrappedHTMLElement).appendChild(element);
                 
                 element.flexjs_wrapper = this;
 

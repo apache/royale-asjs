@@ -20,7 +20,7 @@ package org.apache.flex.html.beads
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;
+		import org.apache.flex.html.Button;
     }
     COMPILE::JS
     {
@@ -49,7 +49,7 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
         COMPILE::SWF
-		function get increment():DisplayObject;
+		function get increment():Button;
 		COMPILE::JS
 		function get increment():SpinnerButton;
 
@@ -62,7 +62,7 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
         COMPILE::SWF
-		function get decrement():DisplayObject;
+		function get decrement():Button;
 		COMPILE::JS
 		function get decrement():SpinnerButton;
 	}

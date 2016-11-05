@@ -21,12 +21,15 @@
 
 <componentPackage>
 
+    <component id="Application" class="org.apache.flex.core.Application"/>
+    <component id="View" class="org.apache.flex.core.View"/>
     <component id="Button" class="org.apache.flex.html.Button"/>
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"/>
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.Image"/>
+    <component id="BinaryImage" class="org.apache.flex.html.BinaryImage"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"/>
     <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"/>
@@ -69,6 +72,7 @@
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
+    <component id="MXMLItemRenderer" class="org.apache.flex.html.supportClasses.MXMLItemRenderer"/>
     <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
@@ -77,6 +81,7 @@
      <component id="HRuleView" class="org.apache.flex.html.beads.HRuleView" />
      <component id="VRuleView" class="org.apache.flex.html.beads.VRuleView" />
      -->
+    <component id="DisableBead" class="org.apache.flex.html.beads.DisableBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
@@ -123,5 +128,15 @@
     <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
     
     <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
+
+    <component id="A" class="org.apache.flex.html.A" />
+    <component id="H1" class="org.apache.flex.html.H1" />
+    <component id="H2" class="org.apache.flex.html.H2" />
+    <component id="H3" class="org.apache.flex.html.H3" />
+    <component id="H4" class="org.apache.flex.html.H4" />
+    <component id="H5" class="org.apache.flex.html.H5" />
+    <component id="H6" class="org.apache.flex.html.H6" />
+    <component id="Span" class="org.apache.flex.html.Span" />
+    <component id="Div" class="org.apache.flex.html.Div" />
 
 </componentPackage>

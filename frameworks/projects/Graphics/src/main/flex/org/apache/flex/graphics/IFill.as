@@ -16,6 +16,7 @@ package org.apache.flex.graphics
 {
     COMPILE::SWF
     {
+        import flash.display.Graphics;
         import flash.geom.Point;
         import flash.geom.Rectangle;            
     }
@@ -23,9 +24,9 @@ package org.apache.flex.graphics
 	public interface IFill
 	{
         COMPILE::SWF
-		function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void;
+		function begin(s:Graphics,targetBounds:Rectangle, targetOrigin:Point):void;
         COMPILE::SWF
-		function end(s:IGraphicShape):void;
+		function end(s:Graphics):void;
         COMPILE::JS
         function addFillAttrib(s:IGraphicShape):String;
 	}

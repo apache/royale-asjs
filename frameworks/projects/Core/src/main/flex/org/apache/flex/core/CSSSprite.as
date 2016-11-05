@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    COMPILE::SWF
+    {
     import flash.display.Graphics;
     import flash.display.Sprite;
+    }
     
     import org.apache.flex.core.IChild;
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.utils.CSSBorderUtils;
     
     /**
@@ -36,7 +40,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSSprite extends Sprite implements IStyleableObject, IChild
+	public class CSSSprite extends Sprite implements IStyleableObject
 	{
         /**
          *  Constructor.
@@ -48,7 +52,6 @@ package org.apache.flex.core
          */
 		public function CSSSprite()
 		{
-			super();
 		}		
         
         private var _id:String;
@@ -157,7 +160,8 @@ package org.apache.flex.core
          */
         public function draw(w:Number, h:Number):void
         {
-            CSSBorderUtils.draw(this.graphics, w, h, this, state, true);            
+            CSSBorderUtils.draw(graphics, w, h, this, state, true);            
         }
-   	}
+
+	}
 }

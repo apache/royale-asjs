@@ -31,14 +31,20 @@ package org.apache.flex.graphics
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        public function PathBuilder()
+        public function PathBuilder(closedPath:Boolean=false)
         {
             commands = new Vector.<IPathCommand>();
+			this.closedPath = closedPath;
         }
 
         public function getPathString():String
         {
-            return commands.join(" ");
+			var pathString:String = commands.join(" ");
+            if (closedPath)
+			{
+				pathString += " Z";
+			}
+			return pathString;
         }
         COMPILE::SWF
         public function draw(g:Graphics):void
@@ -65,6 +71,7 @@ package org.apache.flex.graphics
         }
 
         private var commands:Vector.<IPathCommand>;
+        public var closedPath:Boolean;
         
         public function lineTo(x:Number, y:Number):void
         {
@@ -84,6 +91,14 @@ package org.apache.flex.graphics
         public function cubicCurveTo(controlX1:Number, controlY1:Number, controlX2:Number, controlY2:Number, anchorX:Number, anchorY:Number):void
         {
             commands.push(new CubicCurve(controlX1, controlY1, controlX2, controlY2, anchorX, anchorY));
+        }
+        public function drawRect(x:Number,y:Number,width:Number,height:Number):void
+        {
+            commands.push(new MoveTo(x,y));
+            commands.push(new LineTo(x+width,y));
+            commands.push(new LineTo(x+width,y+height));
+            commands.push(new LineTo(x,y+height));
+            commands.push(new LineTo(x,y));
         }
 
         public function drawRoundRectComplex(x:Number, y:Number, 

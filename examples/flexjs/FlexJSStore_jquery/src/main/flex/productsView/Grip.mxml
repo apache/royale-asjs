@@ -38,8 +38,8 @@ limitations under the License.
         <js:OneFlexibleChildVerticalLayout flexibleChild="grip" />
     </js:beads>
 
-    <js:Image id="icon" source="{gripIcon}" />
-    <js:Image id="grip" source="assets/grip.png" >
+    <js:Image id="icon" url="{gripIcon}" />
+    <js:Image id="grip" url="assets/grip.png" >
         <js:beads>
             <js:ToolTipBead toolTip="{gripTip}" />
         </js:beads>

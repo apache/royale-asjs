@@ -24,7 +24,7 @@
     <!-- component id="ListViewNoSelectionState" class="org.apache.flex.html.beads.ListViewNoSelectionState"/ -->
     <!--<component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView"/>-->
     
-     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
+    <!--<component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>-->
     <component id="HScrollBar" class="org.apache.flex.html.supportClasses.HScrollBar"/>
     <component id="VScrollBar" class="org.apache.flex.html.supportClasses.VScrollBar"/>
     <!--

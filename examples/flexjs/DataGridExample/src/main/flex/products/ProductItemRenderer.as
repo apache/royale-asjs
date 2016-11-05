@@ -48,7 +48,7 @@ package products
 		{
 			super.data = value;
 			
-			image.source = value.image;
+			image.url = value.image;
 		}
 		
 		override public function adjustSize():void

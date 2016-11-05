@@ -20,9 +20,9 @@ package models
 {
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.collections.ArrayList;
-	
+
 	import products.Product;
-	
+
 	public class ProductsModel extends EventDispatcher
 	{
 		public function ProductsModel()
@@ -38,9 +38,14 @@ package models
 			new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
 			new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
 			];
-			
+
 		private var _productList:ArrayList;
-		
+
+		override public function toString():String
+		{
+			return "ProductsModel";
+		}
+
 		public function get productList():ArrayList
 		{
 			return _productList;

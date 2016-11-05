@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile
 {	
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.mobile.IViewManager;
@@ -161,7 +162,7 @@ package org.apache.flex.mobile
 		public function pop():void
 		{
 			if (ViewManagerModel(model).views.length > 1) {
-				var lastView:Object = ViewManagerModel(model).popView();
+				var lastView:IChild = ViewManagerModel(model).popView() as IChild;
 				removeElement(_topView);
 				addElement(lastView);
 				_topView = lastView as IViewManagerView;

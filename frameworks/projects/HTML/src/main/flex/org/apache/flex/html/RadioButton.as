@@ -67,9 +67,9 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function RadioButton(upState:DisplayObject=null, overState:DisplayObject=null, downState:DisplayObject=null, hitTestState:DisplayObject=null)
+		public function RadioButton()
 		{
-			super(upState, overState, downState, hitTestState);
+			super();
 
 			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
 	import flash.display.Shape;
@@ -29,13 +28,16 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.flex.utils.UIUtils;
     
     /**
      *  The DropDownListView class is the default view for
@@ -111,7 +113,7 @@ package org.apache.flex.html.beads
          */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;;
+			super.strand = value;
             selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
@@ -119,10 +121,11 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upSprite;
+            button.downState = downSprite;
+            button.overState = overSprite;
+            button.hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				text = selectionModel.selectedItem.toString();
             else
@@ -150,8 +153,8 @@ package org.apache.flex.html.beads
 		
         private function changeHandler(event:Event):void
         {
-            var ww:Number = DisplayObject(_strand).width;
-            var hh:Number = DisplayObject(_strand).height;
+            var ww:Number = IUIBase(_strand).width;
+            var hh:Number = IUIBase(_strand).height;
             
             upArrows.x = ww - upArrows.width - 6;            
             overArrows.x = ww - overArrows.width - 6;            
@@ -229,8 +232,6 @@ package org.apache.flex.html.beads
          */
 		public function set text(value:String):void
 		{
-            var ww:Number = DisplayObject(_strand).width;
-            var hh:Number = DisplayObject(_strand).height;
 			upTextField.text = value;
 			downTextField.text = value;
 			overTextField.text = value;
@@ -277,21 +278,19 @@ package org.apache.flex.html.beads
          */
         public function set popUpVisible(value:Boolean):void
         {
+            var host:IPopUpHost;
             if (value != _popUpVisible)
             {
                 _popUpVisible = value;
                 if (value)
                 {
-					var root:Object = DisplayObject(_strand).root;
-					var host:DisplayObjectContainer = DisplayObject(_strand).parent;
-                    while (host && !(host is IPopUpHost))
-                        host = host.parent;
-                    if (host)
-                        IPopUpHost(host).addElement(popUp);
+					host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).addElement(popUp as IChild);
                 }
                 else
                 {
-                    DisplayObject(_popUp).parent.removeChild(_popUp as DisplayObject);                    
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    IPopUpHost(host).removeElement(popUp as IChild);
                 }
             }
         }

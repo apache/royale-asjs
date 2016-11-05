@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.flat.beads
 {
-	import flash.display.DisplayObject;
 	
     import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
@@ -102,7 +101,8 @@ package org.apache.flex.flat.beads
             
             for each (var bead:IBead in beads)
                 addBead(bead);
-                        
+            
+            var host:UIBase = UIBase(value);
 			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
             sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel;
             sbModel.addEventListener("maximumChange", changeHandler);
@@ -119,25 +119,25 @@ package org.apache.flex.flat.beads
             sbView.upArrowShape.className = "vscrollbar-downarrow";
             sbView.downArrowShape.className = "vscrollbar-downarrow";
             sbView.overArrowShape.className = "vscrollbar-downarrow";
-            Button(_increment).addBead(sbView);
-            Button(_increment).addBead(new ButtonAutoRepeatController());
+            _increment.addBead(sbView);
+            _increment.addBead(new ButtonAutoRepeatController());
 			_decrement = new Button();
-            Button(_decrement).className = "vscrollbar-uparrow-btn";
+            _decrement.className = "vscrollbar-uparrow-btn";
             sbView = new CSSScrollBarButtonView();
             sbView.upArrowShape.className = "vscrollbar-uparrow";
             sbView.downArrowShape.className = "vscrollbar-uparrow";
             sbView.overArrowShape.className = "vscrollbar-uparrow";
-            Button(_decrement).addBead(sbView);
-            Button(_decrement).addBead(new ButtonAutoRepeatController());
+            _decrement.addBead(sbView);
+            _decrement.addBead(new ButtonAutoRepeatController());
 			_track = new Button();
-            Button(_track).className = "vscrollbar-track";
+            _track.className = "vscrollbar-track";
 			_thumb = new Button();				
-            Button(_thumb).className = "vscrollbar-thumb";
+            _thumb.className = "vscrollbar-thumb";
             
-            UIBase(value).addElement(_decrement);
-            UIBase(value).addElement(_increment);
-            UIBase(value).addElement(_track);
-            UIBase(value).addElement(_thumb);
+            host.addElement(_decrement);
+            host.addElement(_increment);
+            host.addElement(_track);
+            host.addElement(_thumb);
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             
@@ -153,10 +153,10 @@ package org.apache.flex.flat.beads
             layout.layout();    
         }
         
-		private var _decrement:DisplayObject;
-		private var _increment:DisplayObject;
-		private var _track:DisplayObject;
-		private var _thumb:DisplayObject;
+		private var _decrement:Button;
+		private var _increment:Button;
+		private var _track:Button;
+		private var _thumb:Button;
 		
         /**
          *  @copy org.apache.flex.html.beads.IScrollBarView#decrement
@@ -166,7 +166,7 @@ package org.apache.flex.flat.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get decrement():DisplayObject
+		public function get decrement():Button
 		{
 			return _decrement;
 		}
@@ -179,7 +179,7 @@ package org.apache.flex.flat.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get increment():DisplayObject
+		public function get increment():Button
 		{
 			return _increment;
 		}
@@ -192,7 +192,7 @@ package org.apache.flex.flat.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get track():DisplayObject
+		public function get track():Button
 		{
 			return _track;
 		}
@@ -205,7 +205,7 @@ package org.apache.flex.flat.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get thumb():DisplayObject
+		public function get thumb():Button
 		{
 			return _thumb;
 		}

@@ -23,13 +23,15 @@ package org.apache.flex.html.beads
 	import flash.display.SimpleButton;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.CSSTextField;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.html.Button;
 
     /**
      *  The TextButtonView class is the default view for
@@ -94,6 +96,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			var button:SimpleButton = Button(value).$button;
 			textModel = value.getBeadByType(ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
@@ -101,10 +104,10 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upTextField;
-			SimpleButton(value).downState = downTextField;
-			SimpleButton(value).overState = overTextField;
-			SimpleButton(value).hitTestState = shape;
+			button.upState = upTextField;
+			button.downState = downTextField;
+			button.overState = overTextField;
+			button.hitTestState = shape;
 			upTextField.styleParent = value;
 			downTextField.styleParent = value;
 			overTextField.styleParent = value;
@@ -129,8 +132,9 @@ package org.apache.flex.html.beads
 		
 		private function sizeChangeHandler(event:Event):void
 		{
-			upTextField.width = downTextField.width = overTextField.width = DisplayObject(_strand).width;
-			upTextField.height= downTextField.height= overTextField.height= DisplayObject(_strand).height;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+			upTextField.width = downTextField.width = overTextField.width = button.width;
+			upTextField.height= downTextField.height= overTextField.height= button.height;
 		}
 		
         /**

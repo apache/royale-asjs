@@ -246,12 +246,12 @@ package org.apache.flex.net
             {
                 if (_responseHeaders && _responseHeaders.length > 0)
                 {
-                    if (_responseHeaders[0] is URLRequestHeader)
+                    if (_responseHeaders[0] is flash.net.URLRequestHeader)
                     {
                         var n:int = _responseHeaders.length;
                         for (var i:int = 0; i < n; i++)
                         {
-                            var old:URLRequestHeader = _responseHeaders[i];
+                            var old:flash.net.URLRequestHeader = _responseHeaders[i];
                             var nu:HTTPHeader = new HTTPHeader(old.name, old.value);
                             _responseHeaders[i] = nu;
                         }
@@ -528,7 +528,7 @@ package org.apache.flex.net
                 {
                     for each (var header:HTTPHeader in headers)
                     {
-                        var urlHeader:URLRequestHeader = new URLRequestHeader(header.name, header.value);
+                        var urlHeader:flash.net.URLRequestHeader = new flash.net.URLRequestHeader(header.name, header.value);
                         request.requestHeaders.push(urlHeader);
                         if (header.name == HTTPHeader.CONTENT_TYPE)
                             sawContentType = true;
@@ -536,7 +536,7 @@ package org.apache.flex.net
                 }
                 if (method != HTTPConstants.GET && !sawContentType && contentData != null)
                 {
-                    urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
+                    urlHeader = new flash.net.URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                     request.requestHeaders.push(urlHeader);
                 }
                 if (contentData)

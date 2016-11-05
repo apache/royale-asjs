@@ -210,7 +210,7 @@ package org.apache.flex.html.beads.controllers
                 {
                     trace("sending dragStart");
                     dragEvent = DragEvent.createDragEvent("dragStart", event);
-                    DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(_strand));
+                    DragEvent.dispatchDragEvent(dragEvent, _strand);
                     if (DragEvent.dragSource != null)
                     {
                         dragging = true;
@@ -231,7 +231,7 @@ package org.apache.flex.html.beads.controllers
                 trace("host: " + pt.x.toString() + " " + pt.y.toString());
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
-                DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
+                DragEvent.dispatchDragEvent(dragEvent, event.target);
             }
         }
         
@@ -244,7 +244,7 @@ package org.apache.flex.html.beads.controllers
             {
                 trace("sending dragEnd");
                 dragEvent = DragEvent.createDragEvent("dragEnd", event);
-                DragEvent.dispatchDragEvent(dragEvent, IEventDispatcher(event.target));
+                DragEvent.dispatchDragEvent(dragEvent, event.target);
                 event.preventDefault();
             }
             dragging = false;

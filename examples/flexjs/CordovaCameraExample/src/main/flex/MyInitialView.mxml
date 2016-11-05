@@ -41,7 +41,7 @@ limitations under the License.
 			private function success(data:Object):void
 			{
 				output.text = "Success: "+String(data);
-				image.source = String(data);
+				image.url = String(data);
 			}
 			
 			private function failure(message:Object):void

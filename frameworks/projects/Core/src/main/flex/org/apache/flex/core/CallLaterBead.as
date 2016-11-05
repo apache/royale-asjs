@@ -20,7 +20,6 @@ package org.apache.flex.core
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;
         import flash.events.Event;
     }
     
@@ -91,7 +90,7 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                DisplayObject(_strand).addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+                (_strand as IRenderedObject).$displayObject.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
             }
             if (calls == null)
                 calls = [ {thisArg: thisArg, fn: fn, args: args } ];
@@ -107,7 +106,7 @@ package org.apache.flex.core
         COMPILE::SWF
         private function enterFrameHandler(event:Event):void
         {
-            DisplayObject(_strand).removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
+            (_strand as IRenderedObject).$displayObject.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
             makeCalls();
         }
         

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
+    import org.apache.flex.core.IFlexJSElement;
+
     COMPILE::SWF {
         import flash.events.Event;
     }
@@ -40,7 +42,7 @@ package org.apache.flex.events
 	 * @productversion FlexJS 0.0
 	 */
 	COMPILE::SWF
-	public class Event extends flash.events.Event
+	public class Event extends flash.events.Event implements IFlexJSEvent
 	{
 
 		//--------------------------------------
@@ -83,7 +85,7 @@ package org.apache.flex.events
 		 */
 		public override function clone():flash.events.Event
 		{
-			return cloneEvent();
+			return cloneEvent() as flash.events.Event;
 		}
 
 		/**
@@ -94,14 +96,46 @@ package org.apache.flex.events
 		 * @playerversion AIR 2.6
 		 * @productversion FlexJS 0.0
 		 */
-		public function cloneEvent():org.apache.flex.events.Event
+		public function cloneEvent():IFlexJSEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
+        
+        /**
+         * Determine if the target is the same as the event's target.  The event's target
+         * can sometimes be an internal target so this tests if the outer component
+         * matches the potential target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
+        {
+            if (potentialTarget === target) return true;
+            if (target is IFlexJSElement)
+                if (IFlexJSElement(target).flexjs_wrapper === potentialTarget) return true;
+            return false;
+        }
+
+        /**
+         * defaultPrevented is true if <code>preventDefault()</code> was called.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function get defaultPrevented():Boolean
+        {
+        	return isDefaultPrevented();
+        }
+        
 	}
 
     COMPILE::JS
-    public class Event extends goog.events.Event {
+    public class Event extends goog.events.Event implements IFlexJSEvent {
 
 		public static const CHANGE:String = "change";
 		public static const COMPLETE:String = "complete";
@@ -117,7 +151,7 @@ package org.apache.flex.events
 				
 		/**
 		 * Google Closure doesn't seem to support stopImmediatePropagation, but
-		 * actually the HTMLElementWrapper fireListener override sends a
+		 * actually the ElementWrapper fireListener override sends a
 		 * BrowserEvent in most/all cases where folks need stopImmediatePropagation
 		 * so we put this in here for compile time since it will exist in
 		 * the BrowserEvent that does get sent around.
@@ -127,9 +161,34 @@ package org.apache.flex.events
 			throw new Error("stopImmediatePropagation");
 		}
 		
-		public function cloneEvent():org.apache.flex.events.Event
+		public function cloneEvent():IFlexJSEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
+
+		public function isDefaultPrevented():Boolean
+		{
+			return defaultPrevented;
+		}
+        
+        /**
+         * Determine if the target is the same as the event's target.  The event's target
+         * can sometimes be an internal target so this tests if the outer component
+         * matches the potential target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         * @flexjsignorecoercion Object
+         */
+        public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
+        {
+            if (potentialTarget === target) return true;
+            if (target is IFlexJSElement)
+                if ((target as Object).flexjs_wrapper === potentialTarget) return true;
+            return false;
+        }
+
     }
 }

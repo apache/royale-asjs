@@ -20,6 +20,7 @@ package org.apache.flex.events
 {
     COMPILE::SWF
     {
+        import flash.events.Event;
         import flash.events.MouseEvent;
 		import flash.display.InteractiveObject;
     }
@@ -27,7 +28,8 @@ package org.apache.flex.events
     {
         import window.MouseEvent;
     }
-
+    
+    import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
@@ -42,7 +44,7 @@ package org.apache.flex.events
      *  @productversion FlexJS 0.0
 	 */
 	COMPILE::SWF
-	public class MouseEvent extends flash.events.MouseEvent
+	public class MouseEvent extends flash.events.MouseEvent implements IFlexJSEvent
 	{
         private static function platformConstant(s:String):String
         {
@@ -132,10 +134,53 @@ package org.apache.flex.events
             }
             return _stagePoint.y;
         }
+        
+        /**
+         * @private
+         */
+        public override function clone():flash.events.Event
+        {
+            return cloneEvent() as flash.events.Event;
+        }
+        
+        /**
+         * Create a copy/clone of the Event object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function cloneEvent():IFlexJSEvent
+        {
+            return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+                localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
+                buttonDown, delta
+                /* got errors for commandKey, commandKey, controlKey, clickCount*/);
+        }
+
+        /**
+         * Determine if the target is the same as the event's target.  The event's target
+         * can sometimes be an internal target so this tests if the outer component
+         * matches the potential target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
+        {
+            if (potentialTarget === target) return true;
+            if (target is IFlexJSElement)
+                if (IFlexJSElement(target).flexjs_wrapper === potentialTarget) return true;
+            return false;
+        }
+
 	}
 
 	COMPILE::JS
-	public class MouseEvent extends Event
+	public class MouseEvent extends Event implements IFlexJSEvent
 	{
 		private static function platformConstant(s:String):String
 		{
@@ -363,6 +408,22 @@ package org.apache.flex.events
 				e.shiftKey, e.metaKey, e.button, e.relatedTarget);
 			return out;
 		};
+
+        /**
+         * Create a copy/clone of the Event object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        override public function cloneEvent():IFlexJSEvent
+        {
+            return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+                localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
+                buttonDown, delta
+            /* got errors for commandKey, commandKey, controlKey, clickCount*/);
+        }
 
 	}
 }

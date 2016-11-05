@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+	COMPILE::JS
 	public class XMLList
 	{
-		COMPILE::JS
 		public function XMLList()
 		{
 			addIndex(0);
 		}
-		COMPILE::JS
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -108,7 +107,6 @@ package
 			  b. Call the [[Put]] method of x[0] with arguments P and V
 			4. Return
 		*/
-		COMPILE::JS
 		private function addIndex(idx:int):void
 		{
 			var idxStr:String = "" + idx;
@@ -117,7 +115,7 @@ package
 					"get": function():* { return _xmlArray[idx]; },
 					"set": function(newValue:*):void {
 						if(idx >= _xmlArray.length)
-							appendChild(newValue);
+							append(newValue);
 						else
 							replaceChildAt(idx,newValue);
 					},
@@ -127,8 +125,7 @@ package
 			);
 		}
 		
-		COMPILE::JS
-		public function appendChild(child:XML):void
+		public function append(child:XML):void
 		{
 			_xmlArray[_xmlArray.length] = child;
 			addIndex(_xmlArray.length);
@@ -150,6 +147,13 @@ package
 				_targetObject.insertChildAfter(objToAppend[objToAppend.length()-1],child);
 			}while(false);
 		}
+
+		public function appendChild(child:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].appendChild(child);
+			return null;
+		}
 		
 		/**
 		 * Calls the attribute() method of each XML object and returns an XMLList object of the results.
@@ -158,7 +162,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function attribute(attributeName:*):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -177,7 +180,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function attributes():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -197,7 +199,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -206,7 +207,7 @@ package
 			{
 				if(propNum >= 0 && propNum < _xmlArray.length)
 				{
-					retVal.appendChild(_xmlArray[propNum]);
+					retVal.append(_xmlArray[propNum]);
 					retVal.targetObject = _xmlArray[propNum];
 				}
 				return retVal;
@@ -221,13 +222,20 @@ package
 			}
 			return retVal;
 		}
+
+		public function childIndex():int
+		{
+			if(isSingle())
+				return _xmlArray[0].childIndex();
+
+			throw new Error("childIndex can only be called on an XMLList with one item.");
+		}
 		/**
 		 * Calls the children() method of each XML object and returns an XMLList object that contains the results.
 		 * 
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function children():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -246,7 +254,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function comments():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -260,13 +267,12 @@ package
 			return retVal;
 		}
 		
-		COMPILE::JS
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
 			{
 				var newList:XMLList = new XMLList();
-				newList.appendChild(list);
+				newList.append(list);
 				list = newList;
 			}
 			if(!(list is XMLList))
@@ -277,11 +283,11 @@ package
 			var len:int = list.length();
 			var i:int=0;
 			while(i<len)
-				appendChild(list[i++]);
+				append(list[i++]);
 
 //			var xmlList:XMLList = list;
 //			for each(item in xmlList)
-//				appendChild(item);
+//				append(item);
 				
 			return this;
 		}
@@ -293,8 +299,7 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
-		public function contains(value:XML):Boolean
+		public function contains(value:*):Boolean
 		{
 			
 			var len:int = _xmlArray.length;
@@ -312,13 +317,12 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function copy():XMLList
 		{
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
-				retVal.appendChild(_xmlArray[i].copy());
+				retVal.append(_xmlArray[i].copy());
 			
 			return retVal;
 		}
@@ -330,7 +334,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function descendants(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -351,7 +354,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function elements(name:Object = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -365,7 +367,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function elementNames():Array
 		{
 			var retVal:Array = [];
@@ -376,7 +377,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function equals(list:*):Boolean
 		{
 			/*
@@ -403,25 +403,23 @@ package
 			*/
 			return false;
 		}
-		COMPILE::JS
 		public function filter(callback:Function):XMLList
 		{
 			var list:XMLList = new XMLList();
 			for(var i:int = 0;i<_xmlArray.length;i++)
 			{
 				if(callback(_xmlArray[i]))
-					list.appendChild(_xmlArray[i]);
+					list.append(_xmlArray[i]);
 			}
 			list.targetObject = _targetObject;
 			list.targetProperty = _targetProperty;
 			return list;
 		}
 		
-		COMPILE::JS
 		public function hasComplexContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return true.
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return false;
 			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
@@ -432,7 +430,6 @@ package
 			return false;
 		}
 
-		COMPILE::JS
 		override public function hasOwnProperty(propertyName:*):Boolean
 		{
 			/*
@@ -465,11 +462,10 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function hasSimpleContent():Boolean
 		{
 			//what to do with multiple nodes? If anything is complex, we return false.
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return true;
 			var len:int = _xmlArray.length;
 			for (var i:int=1;i<len;i++)
@@ -486,16 +482,14 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function length():int
 		{
 			return _xmlArray.length;
 		}
 		
-		COMPILE::JS
 		public function name():QName
 		{
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				return _xmlArray[0].name();
 			return null;
 		}
@@ -506,7 +500,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function normalize():XMLList
 		{
 			/*
@@ -537,10 +530,9 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function parent():Object
 		{
-			if(_xmlArray.length == 0)
+			if(isEmpty())
 				return undefined;
 			var retVal:XML = _xmlArray[0].parent();
 			var len:int = _xmlArray.length;
@@ -552,7 +544,6 @@ package
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function plus(rightHand:*):*
 		{
 			/*
@@ -604,7 +595,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function processingInstructions(name:String = "*"):XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -617,19 +607,32 @@ package
 					continue;
 				if(name == "*")
 				{
-					retVal.appendChild(_xmlArray[i]);
+					retVal.append(_xmlArray[i]);
 				}
 				else if(name == _xmlArray[i].localName)
-					retVal.appendChild(_xmlArray[i]);
+					retVal.append(_xmlArray[i]);
 			}
 			return retVal;
 		}
 
-		COMPILE::JS
 		public function removeChild(child:*):void
 		{
 			var i:int;
 			var len:int;
+			if(child is String)
+			{
+				var propNum:Number = parseInt(child,10);
+				if(propNum.toString() == child)
+				{
+					removeChildAt(propNum);
+				}
+				else if (isSingle())
+				{
+					_xmlArray[0].removeChild(child);
+				}
+				return;
+			}
+
 			if(child is XMLList)
 			{
 				len = child.length();
@@ -646,18 +649,23 @@ package
 					if(_xmlArray[i] == child)
 					{
 						_xmlArray.splice(i,1);
+						if(child.hasAncestor(_targetObject))
+							child.parent().removeChild(child);
 					}
 				}
 			}
 		}
 
-		COMPILE::JS
 		public function removeChildAt(idx:int):void
 		{
 			if(idx >= 0 && idx < _xmlArray.length)
+			{
+				var child:XML = _xmlArray[idx];
 				_xmlArray.splice(idx,1);
+				if(child.hasAncestor(_targetObject))
+					child.parent().removeChild(child);
+			}
 		}
-		COMPILE::JS
 		private function replaceChildAt(idx:int,child:*):void
 		{
 			var i:int;
@@ -720,7 +728,6 @@ package
 			return _targetProperty;
 		}
 		
-		COMPILE::JS
 		public function setAttribute(attr:*,value:String):void
 		{
 			var len:int = _xmlArray.length;
@@ -728,22 +735,100 @@ package
 				_xmlArray[i].setAttribute(attr,value);
 
 		}
+		public function hasAncestor(obj:*):Boolean
+		{
+			if(isSingle())
+				return _xmlArray[0].hasAncestor(obj);
 
+			return false;
+		}
+		public function insertChildAfter(child1:XML, child2:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].insertChildAfter(child1,child2);
 
-		COMPILE::JS
+			return null;
+		}
+		public function insertChildBefore(child1:XML, child2:XML):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].insertChildAfter(child1,child2);
+
+			return null;
+		}
+
+		public function namespace(prefix:String = null):*
+		{
+			if(isSingle())
+				return _xmlArray[0].namespace(prefix);
+
+			return null;
+		}
+		public function nodeKind():String
+		{
+			if(isSingle())
+				return _xmlArray[0].nodeKind();
+
+			return null;
+		}
+
+		public function removeNamespace(ns:*):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].removeNamespace(ns);
+
+			return null;
+		}
+		public function replace(propertyName:Object, value:*):*
+		{
+			if(isSingle())
+				return _xmlArray[0].replace(propertyName,value);
+		}
 		public function setChild(elementName:*, elements:Object):void
 		{
-			if(_xmlArray.length == 1)
+			if(isSingle())
 				_xmlArray[0].setChild(elementName,elements);
 
 		}
+
+		public function setParent(parent:XML):void
+		{
+			if(isSingle())
+				_xmlArray[0].setParent(parent);
+
+		}
+
+		public function setChildren(value:Object):XML
+		{
+			if(isSingle())
+				return _xmlArray[0].setChildren(value);
+
+			return null;
+		}
+	
+		public function setLocalName(name:String):void
+		{
+			if(isSingle())
+				_xmlArray[0].setLocalName(name);
+		}
+ 	 	public function setName(name:String):void
+ 	 	{
+ 	 		if(isSingle())
+				_xmlArray[0].setName(name);
+ 	 	}
+ 	 	
+		public function setNamespace(ns:Namespace):void
+		{
+			if(isSingle())
+				_xmlArray[0].setNamespace(ns);
+		}
+
 		/**
 		 * Calls the text() method of each XML object and returns an XMLList object that contains the results.
 		 * 
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function text():XMLList
 		{
 			var retVal:XMLList = new XMLList();
@@ -763,7 +848,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		override public function toLocaleString():String
 		{
 			var retVal:Array = [];
@@ -783,7 +867,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function toString():String
 		{
 			var retVal:Array = [];
@@ -803,7 +886,6 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		public function toXMLString():String
 		{
 			var retVal:Array = [];
@@ -823,10 +905,132 @@ package
 		 * @return 
 		 * 
 		 */
-		COMPILE::JS
 		override public function valueOf():*
 		{
-			return this;
+			if(isEmpty())
+				return "";
+			if(isSingle())
+				return _xmlArray[0].valueOf();
+
+			return this.toString();
+		}
+
+		////////////////////////////////////////////////////////////////
+		///
+		///
+		/// METHODS to allow XML to behave as if it's a string or number
+		/// 
+		///
+		////////////////////////////////////////////////////////////////
+		
+		public function anchor(name:String):String
+		{
+			return isSingle() ? _xmlArray[0].anchor(name) : "";
+		}
+		public function charAt(index:Number):String
+		{
+			return isSingle() ? _xmlArray[0].charAt(index) : "";
+		}
+		public function charCodeAt(index:Number):Number
+		{
+			return isSingle() ? _xmlArray[0].charCodeAt(index) : -1;
+		}
+		public function codePointAt(pos:Number):Number
+		{
+			return isSingle() ? _xmlArray[0].codePointAt(pos): -1;
+		}
+/*
+		public function concat(... args):Array
+		{
+			return isSingle() ? _xmlArray[0].concat(args) : null;
+		}
+*/
+
+		public function indexOf(searchValue:String,fromIndex:Number=0):Number
+		{
+			return isSingle() ? _xmlArray[0].indexOf(searchValue,fromIndex) : -1;
+		}
+		public function lastIndexOf(searchValue:String,fromIndex:Number=0):Number
+		{
+			return isSingle() ? _xmlArray[0].lastIndexOf(searchValue,fromIndex) : -1;
+		}
+		public function localeCompare(compareString:String,locales:*=undefined, options:*=undefined):Number
+		{
+			return isSingle() ? _xmlArray[0].localeCompare(compareString,locales,options) : NaN;
+		}
+		public function match(regexp:*):Array
+		{
+			return isSingle() ? _xmlArray[0].match(regexp) : null;
+		}
+/*
+		public function replace(regexp:*,withStr:*):String
+		{
+			return isSingle() ? _xmlArray[0].replace(regexp,withStr) : null;
+		}
+*/
+		public function search(regexp:*):Number
+		{
+			return isSingle() ? _xmlArray[0].search(regexp) : -1;
+		}
+		public function slice(beginSlice:Number, endSlice:*=undefined):String
+		{
+			return isSingle() ? _xmlArray[0].slice(beginSlice,endSlice) : null;
+		}
+		public function split(separator:*=undefined,limit:*=undefined):Array
+		{
+			return isSingle() ? _xmlArray[0].split(separator,limit) : null;
+		}
+		public function substr(start:Number, length:*=undefined):String
+		{
+			return isSingle() ? _xmlArray[0].substr(start,length) : null;
+		}
+		public function substring(indexStart:Number, indexEnd:*=undefined):String
+		{
+			return isSingle() ? _xmlArray[0].substring(indexStart,indexEnd) :null;
+		}
+		public function toLocaleLowerCase():String
+		{
+			return isSingle() ? _xmlArray[0].toLocaleLowerCase() : null;
+		}
+		public function toLocaleUpperCase():String
+		{
+			return isSingle() ? _xmlArray[0].toLocaleUpperCase() : null;
+		}
+		public function toLowerCase():String
+		{
+			return isSingle() ? _xmlArray[0].toLowerCase() : null;
+		}
+		public function toUpperCase():String
+		{
+			return isSingle() ? _xmlArray[0].toUpperCase() : null;
+		}
+		public function trim():String
+		{
+			return isSingle() ? _xmlArray[0].trim() : null;
+		}
+
+		// Number methods
+		
+		
+		public function toExponential(fractionDigits:*=undefined):Number
+		{
+			return isSingle() ? _xmlArray[0].toExponential(fractionDigits) : NaN;
+		}
+		public function toFixed(digits:*=undefined):Number
+		{
+			return isSingle() ? _xmlArray[0].toFixed(digits) : NaN;
+		}
+		public function toPrecision(precision:*=undefined):Number
+		{
+			return isSingle() ? _xmlArray[0].toPrecision(precision) : NaN;
+		}
+		private function isEmpty():Boolean
+		{
+			return _xmlArray.length == 0;
+		}
+		private function isSingle():Boolean
+		{
+			return _xmlArray.length == 1;
 		}
 	}
 }

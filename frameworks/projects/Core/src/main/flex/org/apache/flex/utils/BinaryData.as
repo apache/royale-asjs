@@ -1059,17 +1059,19 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     private function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
         var newContentLength:uint = newBytes.length;
         var dest:Uint8Array;
-        if (offset + newContentLength > _len) {
+		var mergeUpperBound:uint = offset + newContentLength
+        if (mergeUpperBound > _len) {
             dest = new Uint8Array(offset + newContentLength);
             dest.set(new Uint8Array(ba, 0, offset));
             dest.set(newBytes, offset);
             ba = dest.buffer;
             _typedArray = dest;
+			_len = mergeUpperBound;
         } else {
             dest = new Uint8Array(ba, offset, newContentLength);
             dest.set(newBytes);
         }
-        return offset + newContentLength;
+        return mergeUpperBound;
     }
 
     COMPILE::JS

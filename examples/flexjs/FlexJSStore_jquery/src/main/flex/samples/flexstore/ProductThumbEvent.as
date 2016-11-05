@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package samples.flexstore
 {
-    
+
 import org.apache.flex.events.Event;
 
 public class ProductThumbEvent extends Event
@@ -27,19 +27,19 @@ public class ProductThumbEvent extends Event
     public static const COMPARE:String = "compare";
     public static const DETAILS:String = "details";
     public static const BROWSE:String = "browse";
-    
+
     public var product:Product;
-    
+
     public function ProductThumbEvent(type:String, product:Product)
     {
         super(type);
         this.product = product;
     }
-    
-    override public function cloneEvent():Event
-    {
-        return new ProductThumbEvent(type, product);
-    }
+
+    //override public function cloneEvent():Event
+    //{
+    //    return new ProductThumbEvent(type, product);
+    //}
 }
 
 }

@@ -17,8 +17,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
-{
-	public interface IContentView
+{    
+	public interface IContentView extends IParent
 	{
 		function get x():Number;
 		function set x(value:Number):void;
@@ -32,7 +32,6 @@ package org.apache.flex.core
 		function get height():Number;
 		function set height(value:Number):void;
 
-		function addElement(value:Object, dispatchEvent:Boolean = true):void;
 		function removeAllElements():void;
 	}
 }

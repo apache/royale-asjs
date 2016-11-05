@@ -41,7 +41,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function addElement(c:Object, dispatchEvent:Boolean = true):void;
+        function addElement(c:IChild, dispatchEvent:Boolean = true):void;
 
         /**
          *  Add a component to the parent.
@@ -55,7 +55,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function addElementAt(c:Object, index:int, dispatchEvent:Boolean = true):void;
+        function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
         
         /**
          *  Gets the index of this subcomponent.
@@ -68,7 +68,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        function getElementIndex(c:Object):int;
+        function getElementIndex(c:IChild):int;
 
         /**
          *  Remove a component from the parent.
@@ -81,7 +81,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-       function removeElement(c:Object, dispatchEvent:Boolean = true):void;
+       function removeElement(c:IChild, dispatchEvent:Boolean = true):void;
        
        /**
         *  The number of elements in the parent.
@@ -103,7 +103,7 @@ package org.apache.flex.core
         *  @playerversion AIR 2.6
         *  @productversion FlexJS 0.0
         */
-       function getElementAt(index:int):Object;
+       function getElementAt(index:int):IChild;
 
     }
 }

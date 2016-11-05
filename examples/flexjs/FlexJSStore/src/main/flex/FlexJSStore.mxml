@@ -61,7 +61,7 @@ limitations under the License.
 			
 			private function completeHandler(event:Event):void
 			{
-				image.source = ValuesManager.valuesImpl.getValue(acb, "storeLogo");
+				image.url = ValuesManager.valuesImpl.getValue(acb, "storeLogo");
                 /*
 				super.initialized = true;
                 */

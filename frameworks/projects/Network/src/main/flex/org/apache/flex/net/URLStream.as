@@ -93,21 +93,55 @@ package org.apache.flex.net
         public function load(urlRequest:org.apache.flex.net.URLRequest):void
         {
             COMPILE::JS {
+            	requestStatus = 0;
                 xhr = new XMLHttpRequest();
                 xhr.open(urlRequest.method, urlRequest.url);
                 xhr.responseType = "arraybuffer";
                 xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
                 xhr.addEventListener("progress", xhr_progress, false);
-                xhr.setRequestHeader("Content-type", urlRequest.contentType);
-                xhr.send(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				var contentTypeSet:Boolean = false;
+				for (var i:int = 0; i < urlRequest.requestHeaders.length; i++)
+				{
+					var header:org.apache.flex.net.URLRequestHeader = urlRequest.requestHeaders[i];
+					if (header.name.toLowerCase() == "content-type")
+					{
+						contentTypeSet = true;
+					}
+					xhr.setRequestHeader(header.name, header.value);
+				}
+				if (!contentTypeSet)
+				{
+            		xhr.setRequestHeader("Content-type", urlRequest.contentType);
+				}
+				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : HTTPUtils.encodeUrlVariables(urlRequest.data);
+				xhr.send(requestData);
+//				xhr.send(HTTPUtils.encodeUrlVariables(urlRequest.data));
             }
             COMPILE::SWF 
             {
                 flashUrlStream = new flash.net.URLStream();
                 var req:flash.net.URLRequest = new flash.net.URLRequest(urlRequest.url);
-                var hdr:URLRequestHeader = new URLRequestHeader("Content-type", urlRequest.contentType);
-                req.requestHeaders.push(hdr);
-                req.data = new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				var contentSet:Boolean = false;
+				for each (var requestHeader:org.apache.flex.net.URLRequestHeader in urlRequest.requestHeaders)
+				{
+					if(requestHeader.name.toLowerCase() == "content-type")
+					{
+						contentSet = true;
+						req.contentType = requestHeader.value;
+					}
+					req.requestHeaders.push(requestHeader)
+				}
+				if(!contentSet)
+				{
+					req.requestHeaders.push(new flash.net.URLRequestHeader("Content-type", urlRequest.contentType));
+					
+				}
+				if (urlRequest.data)
+				{
+					req.data = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
+						new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				}
+               
                 req.method = urlRequest.method;
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, flash_status);
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_STATUS, flash_status);

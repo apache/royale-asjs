@@ -337,9 +337,10 @@ package org.apache.flex.events
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
          *  @flexjsignorecoercion window.Event
          */
-        public static function dispatchDragEvent(event:DragEvent, target:IEventDispatcher):void
+        public static function dispatchDragEvent(event:DragEvent, target:Object):void
         {
             COMPILE::SWF
             {
@@ -347,13 +348,12 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                (target as IUIBase).element.dispatchEvent(event as window.Event);
+                ((target as IUIBase).element as IEventDispatcher).dispatchEvent(event as window.Event);
             }
         }
 
         /**
          */
-        COMPILE::JS
         private static function installDragEventMixin():Boolean 
         {
             var o:Object = org.apache.flex.events.ElementEvents.elementEvents;
@@ -366,8 +366,32 @@ package org.apache.flex.events
         /**
          * Add some other events to listen from the element
          */
-        COMPILE::JS
         private static var dragEventMixin:Boolean = installDragEventMixin();
+        
+        /**
+         * Calling this calls the static initializers
+         */
+        COMPILE::SWF
+        public static function init():void
+        {
+            
+        }
+        
+        /**
+         * Create a copy/clone of the Event object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        COMPILE::SWF
+        override public function cloneEvent():IFlexJSEvent
+        {
+            return createDragEvent(type, this);
+        }
+        
+
 
     }
 }

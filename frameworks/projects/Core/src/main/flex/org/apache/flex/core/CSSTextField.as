@@ -19,9 +19,12 @@
 package org.apache.flex.core
 {
 	COMPILE::SWF {
+        import flash.display.DisplayObject;
 		import flash.text.TextField;
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFormat;
+        import org.apache.flex.events.Event;        
+        import org.apache.flex.events.EventDispatcher;
 	}
 
     import org.apache.flex.core.ValuesManager;
@@ -50,7 +53,6 @@ package org.apache.flex.core
          */
 		public function CSSTextField()
 		{
-			super();
 		}
 
         /**
@@ -107,6 +109,8 @@ package org.apache.flex.core
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
+            if (sp is IFlexJSElement)
+                sp = sp.flexjs_wrapper;
 			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);
@@ -140,8 +144,8 @@ package org.apache.flex.core
                 var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
                 if (backgroundColor != null)
                 {
-                    this.background = true;
-                    this.backgroundColor = CSSUtils.toColor(backgroundColor);
+                    background = true;
+                    backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
             }
 			defaultTextFormat = tf;

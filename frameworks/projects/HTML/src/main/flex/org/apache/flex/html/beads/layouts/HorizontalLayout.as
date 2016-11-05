@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -73,13 +74,15 @@ package org.apache.flex.html.beads.layouts
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
          */
 		public function set strand(value:IStrand):void
 		{
 			host = value as ILayoutChild;
             COMPILE::JS
             {
-                (value as IUIBase).element.style.display = 'block';
+                ((value as IUIBase).element as HTMLElement).style.display = 'block';
             }
 		}
 	
@@ -93,7 +96,7 @@ package org.apache.flex.html.beads.layouts
             COMPILE::SWF
             {
                 //trace(DOMPathUtil.getPath(host), event ? event.type : "fixed size");
-                var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+                var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost(); //host.getBeadByType(ILayoutHost) as ILayoutHost;
                 var contentView:IParentIUIBase = layoutParent.contentView;
                 var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
                 
@@ -211,7 +214,7 @@ package org.apache.flex.html.beads.layouts
                 var i:int;
                 var n:int;
                 
-                var viewBead:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+                var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
                 var contentView:IParentIUIBase = viewBead.contentView;
                 children = contentView.internalChildren();
                 var hasHeight:Boolean = !host.isHeightSizedToContent();
@@ -222,6 +225,7 @@ package org.apache.flex.html.beads.layouts
                 for (i = 0; i < n; i++)
                 {
                     var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
+					if (child == null) continue;
                     child.flexjs_wrapper.internalDisplay = 'inline-block';
                     if (child.style.display == 'none')
                         child.flexjs_wrapper.setDisplayStyleForLayout('inline-block');

@@ -138,6 +138,7 @@
             <fileset dir="${basedir}/src">
                 <include name="**/*.png" />
                 <include name="**/*.jpg" />
+                <include name="**/*.json" />
             </fileset>
         </copy>
         <copy todir="${basedir}/bin-debug/fonts">

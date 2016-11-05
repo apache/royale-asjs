@@ -137,11 +137,14 @@ package org.apache.flex.html.supportClasses
             }
         }
 
+        /**
+         * @flexjsignorecoercion HTMLElement 
+         */
         COMPILE::JS
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            contentView.element.style.overflow = 'auto';
+            (contentView.element as HTMLElement).style.overflow = 'auto';
         }
 
         private var viewportWidth:Number;
@@ -261,7 +264,7 @@ package org.apache.flex.html.supportClasses
                     _verticalScroller.x : viewportWidth,
                     (_horizontalScroller != null && _horizontalScroller.visible) ?
                     _horizontalScroller.y : viewportHeight);
-                contentArea.scrollRect = rect;
+                contentArea.$sprite.scrollRect = rect;
                 return contentSize;
 
             }
@@ -313,9 +316,9 @@ package org.apache.flex.html.supportClasses
 		{
 			var host:UIBase = UIBase(_strand);
 			var vpos:Number = ScrollBarModel(_verticalScroller.model).value;
-			var rect:Rectangle = contentArea.scrollRect;
+			var rect:Rectangle = contentArea.$sprite.scrollRect;
 			rect.y = vpos;
-			contentArea.scrollRect = rect;
+			contentArea.$sprite.scrollRect = rect;
 
 			_verticalScrollPosition = vpos;
 		}
@@ -325,9 +328,9 @@ package org.apache.flex.html.supportClasses
 		{
 			var host:UIBase = UIBase(_strand);
 			var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
-			var rect:Rectangle = contentArea.scrollRect;
+			var rect:Rectangle = contentArea.$sprite.scrollRect;
 			rect.x = hpos;
-			contentArea.scrollRect = rect;
+			contentArea.$sprite.scrollRect = rect;
 
 			_horizontalScrollPosition = hpos;
 		}

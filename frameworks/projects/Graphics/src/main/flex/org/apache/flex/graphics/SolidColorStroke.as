@@ -19,6 +19,7 @@ package org.apache.flex.graphics
     COMPILE::SWF
     {
         import flash.display.CapsStyle;
+        import flash.display.Graphics;
         import flash.display.JointStyle;
     }
 
@@ -94,6 +95,9 @@ package org.apache.flex.graphics
         
         public function set color(value:uint):void
         {
+			if(value < 0 || value > 0xffffff)
+				throw new Error("Color values must be between 0 and 0xFFFFFF");
+			
             var oldValue:uint = _color;
             if (value != oldValue)
             {
@@ -120,9 +124,9 @@ package org.apache.flex.graphics
         }
         
         COMPILE::SWF
-        public function apply(s:IGraphicShape):void
+        public function apply(g:Graphics):void
         {
-            s.graphics.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
+            g.lineStyle(weight,color,alpha,false,"normal",CapsStyle.SQUARE,JointStyle.MITER);
         }
         
         /**

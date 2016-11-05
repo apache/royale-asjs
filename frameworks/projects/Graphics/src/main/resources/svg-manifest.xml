@@ -20,12 +20,8 @@
 
 
 <componentPackage>
-	<component id="Circle" class="org.apache.flex.svg.Circle" />
-	<component id="Ellipse" class="org.apache.flex.svg.Ellipse" />
-	<component id="Path" class="org.apache.flex.svg.Path" />
-	<component id="Rect" class="org.apache.flex.svg.Rect" />
-	<component id="CompoundGraphic" class="org.apache.flex.svg.CompoundGraphic" />
-	<component id="GraphicContainer" class="org.apache.flex.svg.GraphicContainer" />
 	<component id="TransformBead" class="org.apache.flex.svg.TransformBead" />
-  	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
+	<component id="ClipBead" class="org.apache.flex.svg.ClipBead" />
+	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
+	
 </componentPackage>

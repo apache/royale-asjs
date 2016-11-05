@@ -191,6 +191,13 @@ Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
+BinaryImage
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.BinaryImageModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+	IBinaryImageLoader:  ClassReference("org.apache.flex.html.beads.BinaryImageLoader");
+}
+
 ImageAndTextButton
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageAndTextModel");
@@ -618,11 +625,13 @@ TextButton
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.TextButtonMeasurementBead");
 }
 
+/*
 TextFieldItemRenderer
 {
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
     height: 16;
 }
+*/
 
 TextInput
 {

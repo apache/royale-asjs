@@ -234,7 +234,7 @@ limitations under the License.
 					<apache:ImageButtonView />
 				</js:beads>
 			</js:TextButton>
-			<js:Image source="assets/logo.png" width="218" height="55" />
+			<js:Image url="assets/logo.png" width="218" height="55" />
 		</js:navigationBarItems>
 		<js:views>
 			<js:StackedViewManager title="Assets">

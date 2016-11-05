@@ -151,7 +151,7 @@ limitations under the License.
             <js:Image id="img" height="45" width="45" 
                      width.x3cols="60" height.x3cols="60"
                      width.x2cols="60" height.x2cols="60"
-                     source="{product.image}" />
+                     url="{product.image}" />
 
             <js:VContainer id="descr" height="100%" >
                 <js:style>

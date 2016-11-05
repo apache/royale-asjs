@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    import flash.display.DisplayObject;
     import flash.display.Loader;
     import flash.display.Shape;
     import flash.display.SimpleButton;
@@ -28,8 +27,10 @@ package org.apache.flex.html.beads
     
     import org.apache.flex.core.BeadViewBase;
     import org.apache.flex.core.IBeadView;
+    import org.apache.flex.core.IChild;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.ITextModel;
+    import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
@@ -86,10 +87,11 @@ package org.apache.flex.html.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			SimpleButton(value).upState = upSprite;
-			SimpleButton(value).downState = downSprite;
-			SimpleButton(value).overState = overSprite;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upSprite;
+			button.downState = downSprite;
+			button.overState = overSprite;
+			button.hitTestState = shape;
 
             setupBackground(overSprite, "hover");
             setupBackground(downSprite, "active");
@@ -114,20 +116,21 @@ package org.apache.flex.html.beads
 
 		private function setupSkin(sprite:Sprite, state:String = null):void
 		{
+            var host:IUIBase = IUIBase(_strand);
 			var padding:Object = ValuesManager.valuesImpl.getValue(_strand, "padding", state);
 			var paddingLeft:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-left", state);
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
-            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
-            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
-            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
+			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, host.width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, host.width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, host.height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, host.height);
 			
 		    CSSBorderUtils.draw(sprite.graphics, 
-					DisplayObject(_strand).width + pl + pr, 
-					DisplayObject(_strand).height + pt + pb,
-                    _strand as DisplayObject,
+					host.width + pl + pr, 
+					host.height + pt + pb,
+                    _strand,
                     state, true);
 		}
 		

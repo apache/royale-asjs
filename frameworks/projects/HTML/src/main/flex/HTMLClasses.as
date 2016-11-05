@@ -54,8 +54,10 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.DropDownListView; DropDownListView;
 		import org.apache.flex.html.beads.CloseButtonView; CloseButtonView;
     	import org.apache.flex.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
-		import org.apache.flex.html.beads.ImageView; ImageView;
 	}
+	import org.apache.flex.html.beads.ImageView; org.apache.flex.html.beads.ImageView;
+	import org.apache.flex.html.beads.BinaryImageLoader; BinaryImageLoader;
+	import org.apache.flex.html.beads.models.BinaryImageModel; BinaryImageModel;
 	import org.apache.flex.html.beads.ImageButtonView; ImageButtonView;
 	import org.apache.flex.html.beads.ListView; ListView;
 	COMPILE::SWF
@@ -182,6 +184,26 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 
+	import org.apache.flex.core.ListBase; ListBase;
+	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
+	import org.apache.flex.core.FilledRectangle; FilledRectangle;
+    import org.apache.flex.core.UIBase; UIBase;
+    import org.apache.flex.core.SimpleApplication; SimpleApplication;
+	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
+	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
+	
+	import org.apache.flex.svg.GraphicShape; GraphicShape;
+	import org.apache.flex.svg.Rect; Rect;
+	import org.apache.flex.svg.Ellipse; Ellipse;
+	import org.apache.flex.svg.Circle; Circle;
+	import org.apache.flex.svg.Image; Image;
+	import org.apache.flex.svg.BinaryImage; BinaryImage;
+	import org.apache.flex.svg.beads.ImageView; org.apache.flex.svg.beads.ImageView;
+	import org.apache.flex.svg.Path; Path;
+	import org.apache.flex.svg.Text; Text;
+	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
+
+	
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.HRuleView; HRuleView;

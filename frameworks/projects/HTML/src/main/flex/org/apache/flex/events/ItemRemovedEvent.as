@@ -21,6 +21,7 @@ package org.apache.flex.events
 {
 
 	import org.apache.flex.events.CustomEvent;
+	import org.apache.flex.events.IFlexJSEvent;
 	
 	/**
 	 * The ItemRemovedEvent is dispatched by IItemRendererParent objects whenenver an
@@ -78,7 +79,7 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-		override public function cloneEvent():org.apache.flex.events.Event
+		override public function cloneEvent():IFlexJSEvent
 		{
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent(type);
 			newEvent.item = item;

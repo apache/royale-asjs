@@ -23,10 +23,12 @@ package org.apache.flex.html.beads
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 	
     /**
      *  The HScrollBarTrackView class is the view for
@@ -53,7 +55,8 @@ package org.apache.flex.html.beads
 		
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
-			var w:Number = SimpleButton(_strand).width;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+			var w:Number = button.width;
 			
 			g.clear();
 			g.lineStyle(1, 0x808080);
@@ -65,10 +68,11 @@ package org.apache.flex.html.beads
 
 		private function widthChangeHandler(event:Event):void
 		{
-			DisplayObject(_strand).scaleY = 1.0;
-			DisplayObject(_strand).scaleX = 1.0;
+            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+			button.scaleY = 1.0;
+			button.scaleX = 1.0;
 			
-			var w:Number = SimpleButton(_strand).width;
+			var w:Number = button.width;
 			
 			drawView(upView.graphics, 0xf8f8f8);
 			drawView(downView.graphics, 0xd8d8d8);
@@ -102,12 +106,13 @@ package org.apache.flex.html.beads
 			drawView(downView.graphics, 0xd8d8d8);
 			drawView(overView.graphics, 0xe8e8e8);
 			
-			SimpleButton(value).addEventListener("widthChanged", widthChangeHandler);
+			IEventDispatcher(value).addEventListener("widthChanged", widthChangeHandler);
 			shape = new Shape();
-			SimpleButton(value).upState = upView;
-			SimpleButton(value).downState = downView;
-			SimpleButton(value).overState = overView;
-			SimpleButton(value).hitTestState = shape;
+            var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
+			button.upState = upView;
+			button.downState = downView;
+			button.overState = overView;
+			button.hitTestState = shape;
 		}
 
 		private var upView:Shape;
