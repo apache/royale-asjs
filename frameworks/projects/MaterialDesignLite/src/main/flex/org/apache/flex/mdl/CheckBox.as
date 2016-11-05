@@ -53,6 +53,24 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
+
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+        }
 	}
     
     COMPILE::JS
@@ -94,10 +112,30 @@ package org.apache.flex.mdl
             (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             
-            className = typeNames = 'mdl-checkbox mdl-js-checkbox';
+            className = 'mdl-checkbox mdl-js-checkbox';
 
             return element;
         };
+
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
+        }
         
         public function get text():String
         {

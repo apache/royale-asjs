@@ -26,9 +26,6 @@
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
-    <component id="MDLEffect" class="org.apache.flex.mdl.beads.MDLEffect"/>
-    <component id="ButtonEffect" class="org.apache.flex.mdl.beads.ButtonEffect"/>
-    <component id="TextInputEffect" class="org.apache.flex.mdl.beads.TextInputEffect"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
     <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>

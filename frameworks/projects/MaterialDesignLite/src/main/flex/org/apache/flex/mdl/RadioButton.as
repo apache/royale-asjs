@@ -53,6 +53,24 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
+
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+        }
 	}
     
     COMPILE::JS
@@ -103,11 +121,30 @@ package org.apache.flex.mdl
             (icon.element as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
             
-            className = typeNames = 'mdl-radio mdl-js-radio';
+            className = 'mdl-radio mdl-js-radio';
             
             return element;
         };
         
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
+        }
         
         /**
          * @param e The event object.

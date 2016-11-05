@@ -39,38 +39,24 @@ limitations under the License.
                     <mdl:Button/>
 
                     <!-- Fab button -->
-                    <mdl:Button>
-                        <js:beads>
-                            <mdl:ButtonEffect fab="true" colored="true"/>
-                        </js:beads>
+                    <mdl:Button fab="true" colored="true">
                         <i class="material-icons">add</i>
                     </mdl:Button>
 
                     <!-- Fab with Ripple -->
-                    <mdl:Button>
-                        <js:beads>
-                            <mdl:ButtonEffect fab="true" ripple="true"/>
-                        </js:beads>
+                    <mdl:Button fab="true" ripple="true">
                         <i class="material-icons md-48">face</i>
                     </mdl:Button>
 
                     <!-- Raised button -->
-                    <mdl:Button text="COLORED">
-                        <js:beads>
-                            <mdl:ButtonEffect raised="true" colored="true"/>
-                        </js:beads>
-                    </mdl:Button>
+                    <mdl:Button text="COLORED" raised="true" colored="true"/>
 
                     <!-- Raised button with ripple -->
-                    <mdl:Button text="ACCENT">
-                        <js:beads>
-                            <mdl:ButtonEffect raised="true" ripple="true" accent="true"/>
-                        </js:beads>
-                    </mdl:Button>
+                    <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
+
                     <!-- Raised disabled button-->
-                    <mdl:Button text="DISABLED">
+                    <mdl:Button text="DISABLED" raised="true">
                         <js:beads>
-                            <mdl:ButtonEffect raised="true"/>
                             <mdl:Disabled/>
                         </js:beads>
                     </mdl:Button>
@@ -82,26 +68,18 @@ limitations under the License.
                         <mdl:TextPrompt prompt="Normal Text Field..."/>
                     </js:beads>
                 </mdl:TextInput>
-                <mdl:TextInput>
+                <mdl:TextInput floatingLabel= "true">
                     <js:beads>
-                        <mdl:TextInputEffect floatingLabel= "true"/>
                         <mdl:TextPrompt prompt="Floating Label"/>
                     </js:beads>
                 </mdl:TextInput>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                 <mdl:CheckBox id="mdlchk" text="Disabled at start" />
-                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true">
-                    <js:beads>
-                        <mdl:MDLEffect ripple="true"/>
-                    </js:beads>
-                </mdl:CheckBox>
+                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
+                
                 <mdl:RadioButton groupName="g1" text="Black"/>
-                <mdl:RadioButton groupName="g1" text="Ripple">
-                    <js:beads>
-                        <mdl:MDLEffect ripple="true"/>
-                    </js:beads>
-                </mdl:RadioButton>
+                <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
                 <mdl:Slider/>
@@ -139,7 +117,7 @@ limitations under the License.
                     <js:beads>
                         <mdl:CardEffect shadow="2"/>
                     </js:beads>
-                    <mdl:CardTitle style="color: #666;height: 176px; background-image: url('../../../../src/main/resources/Unknown.jpeg') center / cover;">
+                    <mdl:CardTitle style="color: #666;height: 176px; backgroundImage: url('../../../../src/main/resources/Unknown.jpeg') center / cover;">
                         <js:H2 text="Welcome" className="mdl-card__title-text"/>
                     </mdl:CardTitle>
                     <mdl:CardMedia>
@@ -152,11 +130,7 @@ limitations under the License.
                         <js:beads>
                             <mdl:CardInnerEffect border="true"/>
                         </js:beads>
-                        <mdl:Button text="Get Started">
-                            <js:beads>
-                                <mdl:ButtonEffect ripple="true" colored="true"/>
-                            </js:beads>
-                        </mdl:Button>
+                        <mdl:Button text="Get Started" ripple="true" colored="true"/>
                     </mdl:CardActions>
                 </mdl:Card>
 

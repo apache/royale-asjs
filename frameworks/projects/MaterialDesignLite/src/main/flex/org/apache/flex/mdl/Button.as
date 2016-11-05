@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.html.TextButton;            
+    import org.apache.flex.html.TextButton;          
     
     COMPILE::JS
     {
@@ -48,7 +48,7 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
-
+        
         /**
 		 * @private
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -57,15 +57,174 @@ package org.apache.flex.mdl
 		override protected function createElement():WrappedHTMLElement
 		{
             element = document.createElement('button') as WrappedHTMLElement;
-            //element.setAttribute('type', 'button');
             
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
 
-			className = typeNames = "mdl-button mdl-js-button";
-			
+            className = "mdl-button mdl-js-button";
+
             return element;
 		}
+
+        private var _fab:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--fab" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get fab():Boolean
+        {
+            return _fab;
+        }
+        public function set fab(value:Boolean):void
+        {
+             _fab = value;
+
+             className += (_fab ? " mdl-button--fab" : "" );
+        }
+
+        private var _raised:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--raised" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get raised():Boolean
+        {
+            return _raised;
+        }
+        public function set raised(value:Boolean):void
+        {
+            _raised = value;
+
+             className += (_raised ? " mdl-button--raised" : "" );
+        }
+
+        private var _colored:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--colored" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get colored():Boolean
+        {
+            return _colored;
+        }
+        public function set colored(value:Boolean):void
+        {
+             _colored = value;
+
+             className += (_colored ? " mdl-button--colored" : "");  
+        }
+
+        private var _accent:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--accent" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get accent():Boolean
+        {
+            return _accent;
+        }
+        public function set accent(value:Boolean):void
+        {
+            _accent = value;
+
+            className += (_accent ? " mdl-button--accent" : "");  
+        }
+
+        private var _primary:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--primary" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get primary():Boolean
+        {
+            return _primary;
+        }
+        public function set primary(value:Boolean):void
+        {
+            _primary = value;
+
+            className += (_primary ? " mdl-button--primary" : "");
+        }
+
+        private var _minifab:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--mini-fab" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get minifab():Boolean
+        {
+            return _minifab;
+        }
+        public function set minifab(value:Boolean):void
+        {
+            _minifab = value;
+
+            className += (_minifab ? " mdl-button--mini-fab" : "");
+        }
+
+        private var _icon:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-button--icon" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get icon():Boolean
+        {
+            return _icon;
+        }
+        public function set icon(value:Boolean):void
+        {
+            _icon = value;
+
+            className += (_icon ? " mdl-button--icon" : "");
+        }
+
+        protected var _ripple:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
+
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
+        }
 	}
 }
