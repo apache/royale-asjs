@@ -550,12 +550,6 @@ package org.apache.flex.html.supportClasses
                 return null;
             return IUIBase(parent).topMostEventDispatcher;
         }
-
-		COMPILE::SWF
-        public function get $displayObject():DisplayObject
-        {
-            return this;
-        }
         
     }
 }

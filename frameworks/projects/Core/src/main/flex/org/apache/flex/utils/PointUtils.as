@@ -26,6 +26,7 @@ package org.apache.flex.utils
     
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
+    import flash.display.Stage;
 
 	/**
 	 *  The PointUtils class is a collection of static functions that convert
@@ -103,6 +104,10 @@ package org.apache.flex.utils
         {
             COMPILE::SWF
             {
+				if (local is Stage)
+				{
+					return pt;
+				}
                 var fpt:flash.geom.Point = DisplayObject(local.$displayObject).localToGlobal(new flash.geom.Point(pt.x,pt.y));
                 return new org.apache.flex.geom.Point(fpt.x, fpt.y);
             }

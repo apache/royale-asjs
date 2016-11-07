@@ -20,10 +20,11 @@ package org.apache.flex.core
 {
 	COMPILE::SWF {
         import flash.display.DisplayObject;
-		import flash.text.TextField;
-		import flash.text.TextFieldAutoSize;
-		import flash.text.TextFormat;
-        import org.apache.flex.events.Event;        
+        import flash.text.TextField;
+        import flash.text.TextFieldAutoSize;
+        import flash.text.TextFormat;
+        
+        import org.apache.flex.events.Event;
         import org.apache.flex.events.EventDispatcher;
 	}
 
@@ -41,7 +42,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSTextField extends TextField
+	public class CSSTextField extends TextField implements IRenderedObject
 	{
         /**
          *  Constructor.
@@ -157,7 +158,13 @@ package org.apache.flex.core
             // force styles to be re-calculated
             this.text = text;
         }
-
+		
+		COMPILE::SWF
+		public function get $displayObject():DisplayObject
+		{
+			return this;
+		}
+		
 	}
 
 	COMPILE::JS
