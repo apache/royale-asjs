@@ -35,7 +35,6 @@
   <name>Apache Flex - FlexJS: Examples: FlexJS: TeamPage</name>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
@@ -43,30 +42,18 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TeamPage.mxml</mainClass>
+          <removeCirculars>true</removeCirculars>
           <!-- Not a config option of flexjs-maven-plugin -->
           <!--flashVersion>20.0</flashVersion-->
         </configuration>
-        <executions>
-          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-          <execution>
-            <id>compile-javascript</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile-app</goal>
-            </goals>
-            <configuration>
-              <outputJavaScript>true</outputJavaScript>
-              <removeCirculars>true</removeCirculars>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.flex.flexjs.compiler</groupId>
-            <artifactId>compiler-jx</artifactId>
-            <version>0.8.0-SNAPSHOT</version>
-          </dependency>
-        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
