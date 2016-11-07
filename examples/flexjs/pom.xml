@@ -54,6 +54,7 @@
     <module>MobileTrader</module>
     <module>StorageExample</module>
     <module>StyleExample</module>
+    <module>TeamPage</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
   </modules>

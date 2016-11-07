@@ -126,6 +126,11 @@ limitations under the License.
                     <mdl:CardActions border="true">
                         <mdl:Button text="Get Started" ripple="true" colored="true"/>
                     </mdl:CardActions>
+                    <mdl:CardMenu>
+                        <mdl:Button icon="true" ripple="true">
+                            <i class="material-icons">share</i>
+                        </mdl:Button>
+                    </mdl:CardMenu>
                 </mdl:Card>
 
             </js:Form>

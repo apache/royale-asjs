@@ -31,6 +31,7 @@ under the License.
       <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.flex.flexjs.compiler:*:jar</include>
+        <include>org.apache.flex.flexjs.framework.distribution:*:jar</include>
       </includes>
       <excludes>
         <exclude>org.apache.flex.flexjs.compiler:compiler-jx:jar</exclude>
