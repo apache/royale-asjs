@@ -18,23 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-    import flash.text.TextFieldType;
+	COMPILE::SWF
+	{
+		import flash.display.DisplayObject;
+	    import flash.text.TextFieldType;
+	}
     
     import org.apache.flex.core.CSSTextField;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.geom.Rectangle;
     import org.apache.flex.html.beads.ITextItemRenderer;
-	import org.apache.flex.utils.CSSContainerUtils;
+    import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
@@ -44,7 +45,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase
+	public class TextFieldItemRenderer extends CSSTextField implements /*ITextItemRenderer, */IStrand/*, IUIBase*/
 	{
 		/**
 		 *  constructor.
@@ -57,7 +58,9 @@ package org.apache.flex.html.supportClasses
 		public function TextFieldItemRenderer()
 		{
 			super();
-            type = TextFieldType.DYNAMIC;
+			COMPILE::SWF {
+            	type = TextFieldType.DYNAMIC;
+			}
             selectable = false;
             
             MouseEventConverter.setupInstanceConverters(this);
@@ -548,6 +551,7 @@ package org.apache.flex.html.supportClasses
             return IUIBase(parent).topMostEventDispatcher;
         }
 
+		COMPILE::SWF
         public function get $displayObject():DisplayObject
         {
             return this;
