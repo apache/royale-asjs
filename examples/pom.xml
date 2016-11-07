@@ -34,6 +34,10 @@
 
   <name>Apache Flex - FlexJS: Examples</name>
 
+  <properties>
+    <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
+  </properties>
+
   <modules>
     <module>flexjs</module>
     <!--module>native</module-->
@@ -51,6 +55,15 @@
     </resources>
     <pluginManagement>
       <plugins>
+        <!-- Copy the resources to the compiler output directory -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.1</version>
+          <configuration>
+            <outputDirectory>${compiler.output-dir}</outputDirectory>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.flex.flexjs.compiler</groupId>
           <artifactId>flexjs-maven-plugin</artifactId>
@@ -84,13 +97,13 @@
             </execution>
           </executions>
           <configuration>
-            <warSourceDirectory>${basedir}/target/javascript/bin/js-debug</warSourceDirectory>
+            <warSourceDirectory>${compiler.output-dir}</warSourceDirectory>
             <failOnMissingWebXml>false</failOnMissingWebXml>
-            <webResources>
+            <!--webResources>
               <resource>
                 <directory>${build.outputDirectory}</directory>
               </resource>
-            </webResources>
+            </webResources-->
           </configuration>
         </plugin>
         <plugin>
@@ -130,20 +143,10 @@
   <profiles>
     <profile>
       <id>release</id>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-war-plugin</artifactId>
-              <version>2.6</version>
-              <configuration>
-                <warSourceDirectory>${basedir}/target/javascript/bin/js-release</warSourceDirectory>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
+
+      <properties>
+        <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
+      </properties>
     </profile>
 
     <profile>
