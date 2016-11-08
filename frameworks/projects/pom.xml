@@ -48,6 +48,7 @@
     <module>HTML5</module>
     <module>JQuery</module>
     <module>Language</module>
+    <module>MaterialDesignLite</module>
     <module>Mobile</module>
     <module>Network</module>
     <module>Reflection</module>

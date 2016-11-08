@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:js="library://ns.apache.org/flexjs/basic"
+                xmlns:local="*"
+                xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                xmlns="http://www.w3.org/1999/xhtml">
+    
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+
+     <fx:Style source="../../main/resources/mdl-styles.css"/>
+
+    <js:initialView>
+        <js:View>
+            
+            <js:Form action="#"> 
+
+                <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
+                <js:HContainer>
+                    <mdl:Button/>
+
+                    <!-- Fab button -->
+                    <mdl:Button fab="true" colored="true">
+                        <i class="material-icons">add</i>
+                    </mdl:Button>
+
+                    <!-- Fab with Ripple -->
+                    <mdl:Button fab="true" ripple="true">
+                        <i class="material-icons md-48">face</i>
+                    </mdl:Button>
+
+                    <!-- Raised button -->
+                    <mdl:Button text="COLORED" raised="true" colored="true"/>
+
+                    <!-- Raised button with ripple -->
+                    <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
+
+                    <!-- Raised disabled button-->
+                    <mdl:Button text="DISABLED" raised="true">
+                        <js:beads>
+                            <mdl:Disabled/>
+                        </js:beads>
+                    </mdl:Button>
+                </js:HContainer>
+
+                <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
+                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text">
+                    <js:beads>
+                        <mdl:TextPrompt prompt="Normal Text Field..."/>
+                    </js:beads>
+                </mdl:TextInput>
+                <mdl:TextInput floatingLabel= "true">
+                    <js:beads>
+                        <mdl:TextPrompt prompt="Floating Label"/>
+                    </js:beads>
+                </mdl:TextInput>
+
+                <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
+                <mdl:CheckBox id="mdlchk" text="Disabled at start" />
+                <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
+                
+                <mdl:RadioButton groupName="g1" text="Black"/>
+                <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
+                <mdl:RadioButton groupName="g1" text="Red"/>
+
+                <mdl:Slider/>
+
+                <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
+
+                <js:VContainer>
+                    <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
+                        <js:beads>
+                            <mdl:Badge dataBadge="1" overlap="true"/>
+                        </js:beads>
+                    </js:Div>
+
+                    <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
+                        <js:beads>
+                            <mdl:Badge dataBadge="4"/>
+                        </js:beads>
+                    </js:Span>
+
+                    <js:A text="Badge No Bg" href="http://flex.apache.org">
+                        <js:beads>
+                            <mdl:Badge dataBadge="5" noBackground="true"/>
+                        </js:beads>
+                    </js:A>
+
+                    <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
+                        <js:beads>
+                            <mdl:Badge dataBadge="1"/>
+                        </js:beads>
+                    </js:A>
+                    
+                </js:VContainer>
+
+                <mdl:Card width="512" shadow="2">
+                    <mdl:CardTitle style="color: #666;height: 176px; backgroundImage: url('../../../../src/main/resources/Unknown.jpeg') center / cover;">
+                        <js:H2 text="Welcome" className="mdl-card__title-text"/>
+                    </mdl:CardTitle>
+                    <mdl:CardMedia>
+                        <js:Image url="../../../../src/main/resources/Unknown.jpg"  height="176"/>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText>
+                        <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
+                    </mdl:CardSupportingText>
+                    <mdl:CardActions border="true">
+                        <mdl:Button text="Get Started" ripple="true" colored="true"/>
+                    </mdl:CardActions>
+                    <mdl:CardMenu>
+                        <mdl:Button icon="true" ripple="true">
+                            <i class="material-icons">share</i>
+                        </mdl:Button>
+                    </mdl:CardMenu>
+                </mdl:Card>
+
+            </js:Form>
+
+        </js:View>
+    </js:initialView>
+</js:Application>

@@ -97,13 +97,13 @@
             </execution>
           </executions>
           <configuration>
-            <warSourceDirectory>${basedir}/target/javascript/bin/js-debug</warSourceDirectory>
+            <warSourceDirectory>${compiler.output-dir}</warSourceDirectory>
             <failOnMissingWebXml>false</failOnMissingWebXml>
-            <webResources>
+            <!--webResources>
               <resource>
                 <directory>${compiler.output-dir}</directory>
               </resource>
-            </webResources>
+            </webResources-->
           </configuration>
         </plugin>
         <plugin>

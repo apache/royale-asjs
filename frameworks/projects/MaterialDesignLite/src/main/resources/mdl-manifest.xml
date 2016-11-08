@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+    <component id="Button" class="org.apache.flex.mdl.Button"/>
+    <component id="TextInput" class="org.apache.flex.mdl.TextInput"/>
+    <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
+    <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
+    <component id="Slider" class="org.apache.flex.mdl.Slider"/>
+    <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>
+    <component id="Card" class="org.apache.flex.mdl.Card"/>
+    <component id="CardInner" class="org.apache.flex.mdl.supportClasses.CardInner"/>
+    <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
+    <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
+    <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
+    <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
+    <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
+    <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
+
+</componentPackage>

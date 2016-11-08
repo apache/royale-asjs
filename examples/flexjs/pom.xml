@@ -48,6 +48,7 @@
     <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
     <module>MapSearch</module>
+    <module>MDLExample</module>
     <module>MobileMap</module>
     <module>MobileStocks</module>
     <module>MobileTrader</module>
