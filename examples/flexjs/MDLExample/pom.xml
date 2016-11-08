@@ -48,6 +48,8 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
+          <htmlTemplate>${basedir}/src/main/resources/mdl-js-index-template.html</htmlTemplate>
+          <additionalCompilerOptions>-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
