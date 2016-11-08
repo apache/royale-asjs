@@ -47,43 +47,21 @@
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <!--flashVersion>20.0</flashVersion-->
           <mainClass>App.mxml</mainClass>
         </configuration>
-        <executions>
-          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-          <execution>
-            <id>compile-javascript</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile-app</goal>
-            </goals>
-            <configuration>
-              <outputJavaScript>true</outputJavaScript>
-              <htmlTemplate>${basedir}/src/main/resources/mdl-js-index-template.html</htmlTemplate>
-              <additionalCompilerOptions>-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.flex.flexjs.compiler</groupId>
-            <artifactId>compiler-jx</artifactId>
-            <version>0.8.0-SNAPSHOT</version>
-          </dependency>
-        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-    <!--dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency-->
-    
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
@@ -99,20 +77,6 @@
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
-
-    <!-- Needed for JavaScript compilation -->
-    <!--dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
-      <type>swc</type>
-    </dependency-->
   </dependencies>
 
 </project>
