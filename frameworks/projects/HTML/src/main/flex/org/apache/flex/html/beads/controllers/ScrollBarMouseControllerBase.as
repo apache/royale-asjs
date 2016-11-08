@@ -23,7 +23,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IScrollBarView;
 
     /**
@@ -135,7 +135,7 @@ package org.apache.flex.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */	
-		protected function decrementClickHandler(event:Event):void
+		protected function decrementClickHandler(event:Object):void
 		{
 			sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.stepSize));
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
@@ -149,7 +149,7 @@ package org.apache.flex.html.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */	
-		protected function incrementClickHandler(event:Event):void
+		protected function incrementClickHandler(event:Object):void
 		{
 			sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.stepSize));	
 			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));

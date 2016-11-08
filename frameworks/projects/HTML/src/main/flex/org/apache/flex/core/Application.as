@@ -18,19 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+    
+    
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
     import org.apache.flex.utils.MXMLDataInterpreter;
     import org.apache.flex.utils.Timer;
 
     COMPILE::SWF {
+	    import flash.display.Stage;
         import flash.display.DisplayObject;
         import flash.display.Graphics;
         import flash.display.Sprite;
 		import flash.events.Event;
-        import flash.system.ApplicationDomain;
-        import flash.utils.getQualifiedClassName;
         import org.apache.flex.events.utils.MouseEventConverter;
     }
 
@@ -109,11 +109,11 @@ package org.apache.flex.core
      *
      *  @see ViewBase
      *  @langversion 3.0
-     *  @playerversion Flash 10.2
+     *  @playerversion Flash 10.2 
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost, IRenderedObject
+    public class Application extends ApplicationBase implements IInitialViewApplication, IStrand, IParent, IEventDispatcher, ISWFApplication, IPopUpHost, IRenderedObject
     {
         /**
          *  Constructor.
@@ -257,18 +257,7 @@ package org.apache.flex.core
             ValuesManager.valuesImpl.init(this);
         }
 
-        /**
-         *  The initial view.
-         *
-         *  @see org.apache.flex.core.ViewBase
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        [Bindable("__NoChangeEvent__")]
-        public var initialView:IApplicationView;
+        private var _initialView:IApplicationView;
 
         /**
          *  The controller.  The controller typically watches
@@ -556,5 +545,33 @@ package org.apache.flex.core
 			}
 		}
 		
-    }
+		/**
+		 *  The initial view.
+		 *
+		 *  @see org.apache.flex.core.ViewBase
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		[Bindable("__NoChangeEvent__")]
+		public function get initialView():IApplicationView
+		{
+			return _initialView;
+		}
+		
+		public function set initialView(value:IApplicationView):void
+		{
+			_initialView = value;
+			dispatchEvent(new org.apache.flex.events.Event("__NoChangeEvent__");
+		}
+		
+		COMPILE::SWF
+		public function get stage():Stage
+		{
+			return $displayObject.stage;
+		}
+		
+	}
 }
