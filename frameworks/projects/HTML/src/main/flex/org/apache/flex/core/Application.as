@@ -555,7 +555,6 @@ package org.apache.flex.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		[Bindable("__NoChangeEvent__")]
 		public function get initialView():IApplicationView
 		{
 			return _initialView;
@@ -564,7 +563,6 @@ package org.apache.flex.core
 		public function set initialView(value:IApplicationView):void
 		{
 			_initialView = value;
-			dispatchEvent(new org.apache.flex.events.Event("__NoChangeEvent__");
 		}
 		
 		COMPILE::SWF
