@@ -35,7 +35,15 @@ package models
 			super(target);
 		}
 
-		public var members:Array = null;
+		private var _members:Array = null;
+		public function get members():Array
+		{
+			return _members;
+		}
+		public function set members(value:Array):void
+		{
+			_members = value;
+		}
 
 		private var app:Application;
 		private var service:HTTPService;
@@ -64,19 +72,29 @@ package models
 		{
 			service.url = "team.json";
 			service.send();
+			service.addEventListener("httpStatus", handleStatusReturn);
 			service.addEventListener("complete", handleLoadComplete);
+			service.addEventListener("ioError", handleError);
+		}
+
+		public function handleStatusReturn(event:org.apache.flex.events.Event):void
+		{
+			// tbd: should handle a bad status here
 		}
 
 		public function handleLoadComplete(event:org.apache.flex.events.Event):void
 		{
 			members = [];
-			trace("We got something back");
-			trace("Collection: "+collection.length+" items");
 			for (var i:int=0; i < collection.length; i++) {
 				var item:Object = collection.getItemAt(i);
 				members.push(item);
 			}
 			dispatchEvent( new Event("membersChanged") );
+		}
+
+		public function handleError(event:org.apache.flex.events.Event):void
+		{
+			// tbd: should handle error here
 		}
 	}
 }
