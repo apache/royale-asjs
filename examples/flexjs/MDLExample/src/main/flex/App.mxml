@@ -114,7 +114,7 @@ limitations under the License.
                 </js:VContainer>
 
                 <mdl:Card width="512" shadow="2">
-                    <mdl:CardTitle style="color: #666;height: 176px; backgroundImage: url('assets/Unknown.jpeg') center / cover;">
+                    <mdl:CardTitle style="color: #666;height: 176px; background:url('assets/Unknown.jpg') center / cover;">
                         <js:H2 text="Welcome" className="mdl-card__title-text"/>
                     </mdl:CardTitle>
                     <mdl:CardMedia>
