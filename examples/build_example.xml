@@ -107,7 +107,7 @@
             then they would set theme_arg=-theme=<path to theme> -->
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-               file="${basedir}/src/${example}.mxml"
+               file="${basedir}/src/main/flex/${example}.mxml"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
@@ -157,7 +157,7 @@
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-            file="${basedir}/src/${example}.mxml"
+            file="${basedir}/src/main/flex/${example}.mxml"
             output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
@@ -199,7 +199,7 @@
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-               file="${basedir}/src/${example}.as"
+               file="${basedir}/src/main/flex/${example}.as"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
@@ -262,7 +262,7 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/${example}.mxml" />
+            <arg value="${basedir}/src/main/flex/${example}.mxml" />
         </java>
         <fail>
 			<condition>
@@ -309,7 +309,7 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/${example}.mxml" />
+            <arg value="${basedir}/src/main/flex/${example}.mxml" />
         </java>
         <fail>
             <condition>
@@ -357,7 +357,7 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/${example}.as" />
+            <arg value="${basedir}/src/main/flex/${example}.as" />
         </java>
         <fail>
 			<condition>

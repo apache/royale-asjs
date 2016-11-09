@@ -87,6 +87,7 @@
         <ant dir="${basedir}/flexjs/HelloWorld"/>
         <ant dir="${basedir}/flexjs/MapSearch"/>
         <ant dir="${basedir}/flexjs/MobileMap"/>
+        <ant dir="${basedir}/flexjs/MobileStocks"/>
         <ant dir="${basedir}/flexjs/MobileTrader"/>
         <ant dir="${basedir}/flexjs/ChartExample"/>
         <ant dir="${basedir}/flexjs/StorageExample"/>
@@ -121,6 +122,7 @@
         <ant dir="${basedir}/flexjs/HelloWorld" target="clean"/>
         <ant dir="${basedir}/flexjs/MapSearch" target="clean"/>
         <ant dir="${basedir}/flexjs/MobileTrader" target="clean"/>
+        <ant dir="${basedir}/flexjs/MobileStocks" target="clean"/>
         <ant dir="${basedir}/flexjs/MobileMap" target="clean"/>
         <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
         <ant dir="${basedir}/flexjs/StorageExample" target="clean"/>
