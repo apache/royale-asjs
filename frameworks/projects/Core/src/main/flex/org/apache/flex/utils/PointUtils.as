@@ -22,11 +22,11 @@ package org.apache.flex.utils
     {
         import flash.display.DisplayObject;
         import flash.geom.Point;
+	    import flash.display.Stage;
     }
     
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
-    import flash.display.Stage;
 
 	/**
 	 *  The PointUtils class is a collection of static functions that convert
