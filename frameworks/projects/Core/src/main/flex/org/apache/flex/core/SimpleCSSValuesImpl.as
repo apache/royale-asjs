@@ -30,6 +30,7 @@ package org.apache.flex.core
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.ValueEvent;
 	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.StringUtil;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
@@ -590,7 +591,7 @@ package org.apache.flex.core
             var parts:Array = styles.split(";");
             for each (var part:String in parts)
             {
-                var pieces:Array = part.split(":");
+                var pieces:Array = StringUtil.splitAndTrim(part, ":");
                 var value:String = pieces[1];
                 if (value == "null")
                     obj[pieces[0]] = null;
