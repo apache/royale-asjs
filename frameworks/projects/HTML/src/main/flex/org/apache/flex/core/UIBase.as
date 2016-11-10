@@ -981,9 +981,10 @@ package org.apache.flex.core
          */        
 		override public function addBead(bead:IBead):void
 		{
-            super.addBead(bead);
             if (bead is IBeadView)
                 _view = bead as IBeadView;
+            
+            super.addBead(bead);
 			
 			if (bead is IBeadView) {
 				IEventDispatcher(this).dispatchEvent(new Event("viewChanged"));

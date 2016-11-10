@@ -1863,4 +1863,43 @@
         <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
     </target>
 
+    <target name="compile" depends="check-flex-home,check-falcon-home,load-task" description="compile for SWF">
+        
+        <property name="FLEX_HOME" value="${basedir}" />
+        <mxmlc fork="true" debug="true"
+            file="${file}">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+    </target>
+    
+    <target name="compile-js" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+        <property name="FLEX_HOME" value="${basedir}" />
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="-debug" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="${file}" />
+        </java>
+    </target>
+    
+    <target name="compile-js-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+        <property name="FLEX_HOME" value="${basedir}" />
+        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="${file}" />
+        </java>
+    </target>
 </project>
