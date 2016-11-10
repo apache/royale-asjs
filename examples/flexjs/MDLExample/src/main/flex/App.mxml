@@ -36,7 +36,7 @@ limitations under the License.
 
                 <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
                 <js:HContainer>
-                    <mdl:Button/>
+                    <mdl:Button className="mdlbtn"/>
 
                     <!-- Fab button -->
                     <mdl:Button fab="true" colored="true">
@@ -63,7 +63,7 @@ limitations under the License.
                 </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text">
+                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
                     <js:beads>
                         <mdl:TextPrompt prompt="Normal Text Field..."/>
                     </js:beads>
@@ -75,14 +75,14 @@ limitations under the License.
                 </mdl:TextInput>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-                <mdl:CheckBox id="mdlchk" text="Disabled at start" />
+                <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
                 <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
                 
-                <mdl:RadioButton groupName="g1" text="Black"/>
+                <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
                 <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
-                <mdl:Slider/>
+                <mdl:Slider className="mdlsl_example"/>
 
                 <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
@@ -114,7 +114,7 @@ limitations under the License.
                 </js:VContainer>
 
                 <mdl:Card width="512" shadow="2">
-                    <mdl:CardTitle style="color: #fff;height: 176px; background:url('assets/Unknown.jpg') center / cover;">
+                    <mdl:CardTitle className="cardTitle" style="color: #fff;">
                         <js:H2 text="Welcome" className="mdl-card__title-text"/>
                     </mdl:CardTitle>
                     <mdl:CardSupportingText>

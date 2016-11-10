@@ -40,4 +40,12 @@ Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
-
+.cardTitle
+{
+	color: #fff;
+	height: 176px;
+	background-image:url('assets/Unknown.jpg'); /*center / cover;*/
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: initial initial;
+}
