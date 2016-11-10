@@ -20,6 +20,7 @@ package org.apache.flex.mdl
 {
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.Event;
 
     COMPILE::JS
     {
@@ -56,6 +57,8 @@ package org.apache.flex.mdl
 		public function Slider()
 		{
 			super();
+
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 			
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
@@ -191,12 +194,14 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			typeNames = "mdl-slider mdl-js-slider";
+
 			var p:HTMLElement = document.createElement('p') as HTMLElement;
             p.style.width = '300px';
 
 			input = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
-			input.className = 'mdl-slider mdl-js-slider';
+			input.className = typeNames;
 
 			input.value = IRangeModel(model).value.toString();
 			input.min = IRangeModel(model).minimum.toString();
@@ -222,6 +227,25 @@ package org.apache.flex.mdl
             return element;
         } 
         
+		private var _className:String;
+
+        /**
+         * since we have a div surronding the main input, we need to 
+         * route the class assignaments to div
+         */
+        override public function set className(value:String):void
+		{
+			if (_className != value)
+			{
+                COMPILE::JS
+                {
+                    positioner.className = typeNames ? value + ' ' + typeNames : value;             
+                }
+				_className = value;
+				dispatchEvent(new Event("classNameChanged"));
+			}
+		}
+
         /**
          */
         COMPILE::JS
