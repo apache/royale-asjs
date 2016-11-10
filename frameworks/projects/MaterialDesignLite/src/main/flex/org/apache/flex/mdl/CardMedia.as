@@ -61,8 +61,11 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			typeNames = "mdl-card__media";
+
             element = document.createElement('div') as WrappedHTMLElement;
-            
+            element.className = typeNames;
+
             positioner = element;
             
             // absolute positioned children need a non-null
@@ -72,8 +75,6 @@ package org.apache.flex.mdl
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = "mdl-card__media";
-
             return element;
         }    
 	}

@@ -54,6 +54,8 @@ package org.apache.flex.mdl.supportClasses
 		public function CardInner()
 		{
 			super();
+
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
         /**
@@ -72,8 +74,6 @@ package org.apache.flex.mdl.supportClasses
             // also absolutely positioned
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
-            className = "mdl-card";
 
             return element;
         }
