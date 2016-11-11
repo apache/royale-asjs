@@ -35,7 +35,7 @@ binjs-release
 examples/FlexJSTest_again/html-template
 examples/FlexJSTest_again/bin
 rat.report
-mustella/tests/bin
+mustella/tests/basicTests/bin
 asdoc-output
 
 #Apache Flex Projects
