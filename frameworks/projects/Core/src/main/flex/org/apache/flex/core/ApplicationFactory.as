@@ -68,22 +68,26 @@ package org.apache.flex.core
 		}
 		
 		private function deferredFrameHandler(e:flash.events.Event):void
-		{
-			removeEventListener(flash.events.Event.ENTER_FRAME, deferredFrameHandler);
-			
+		{			
 			var mainClassName:String = info()["mainClassName"];
 			
 			var app:ISWFApplication =  create() as ISWFApplication;
 			if (app)
-				app.setRoot(this);			
+			{
+				removeEventListener(flash.events.Event.ENTER_FRAME, deferredFrameHandler);
+				app.setRoot(this);		
+			}
+			else if (currentFrame == 1)
+			    nextFrame();
 		}
 		
+		private var _info:Object = {};
 		/**
 		 *  @private
 		 */
 		public function info():Object
 		{
-			return {};
+			return _info;
 		}
 		
 		/**
