@@ -82,10 +82,6 @@ limitations under the License.
                 <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
 
-                <mdl:Slider className="mdlsl_example"/>
-
-                <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
-
                 <js:VContainer>
                     <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
                         <js:beads>
@@ -113,25 +109,61 @@ limitations under the License.
                     
                 </js:VContainer>
 
-                <mdl:Card width="512" shadow="2">
-                    <mdl:CardTitle className="cardTitle" style="color: #fff;">
-                        <js:H2 text="Welcome" className="mdl-card__title-text"/>
-                    </mdl:CardTitle>
-                    <mdl:CardSupportingText>
-                        <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
-                    </mdl:CardSupportingText>
-                    <mdl:CardActions border="true">
-                        <mdl:Button text="Get Started" ripple="true" colored="true"/>
-                    </mdl:CardActions>
-                    <mdl:CardMenu>
-                        <mdl:Button icon="true" ripple="true" style="color: #fff;">
-                            <i class="material-icons">share</i>
-                        </mdl:Button>
-                    </mdl:CardMenu>
-                </mdl:Card>
+                <js:HContainer>
+                    <mdl:Card width="512" shadow="2" style="margin:10;">
+                        <mdl:CardTitle className="cardTitle">
+                            <js:H2 text="Welcome" className="mdl-card__title-text"/>
+                        </mdl:CardTitle>
+                        <mdl:CardSupportingText>
+                            <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
+                        </mdl:CardSupportingText>
+                        <mdl:CardActions border="true">
+                            <mdl:Button text="Get Started" ripple="true" colored="true"/>
+                        </mdl:CardActions>
+                        <mdl:CardMenu>
+                            <mdl:Button icon="true" ripple="true" style="color: #fff;">
+                                <i class="material-icons">share</i>
+                            </mdl:Button>
+                        </mdl:CardMenu>
+                    </mdl:Card>
 
+                    <mdl:Slider className="mdlsl_example"/>
+                    <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
-                    <!--<mdl:CardMedia>
+                    <mdl:Card width="320" height="320" shadow="2" style="margin:10;">
+                        <mdl:CardTitle className="dogTitle" style="color: #fff;">
+                            <js:H2 text="Update" className="mdl-card__title-text"/>
+                        </mdl:CardTitle>
+                        <mdl:CardSupportingText>
+                            <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
+                        </mdl:CardSupportingText>
+                        <mdl:CardActions border="true">
+                            <mdl:Button colored="true" ripple="true" text="View Updates"/>
+                        </mdl:CardActions>
+                    </mdl:Card>
+
+                    <mdl:Card width="256" height="256" shadow="2" style="margin:10;background: url('assets/image_card.jpg') center / cover">
+                        <mdl:CardTitle/>
+                        <mdl:CardActions style="height: 52px; padding: 16px; background: rgba(0, 0, 0, 0.2);">
+                            <js:Span text="Image.jpg" style="color: #fff; font-size: 14px; font-weight: 500;"/>
+                        </mdl:CardActions>
+                    </mdl:Card>
+                </js:HContainer>
+
+                
+                 <!--
+                <mdl:Spacer/>
+                <mdl:Button id="demo_menu" icon="true">
+                    <i class="material-icons">more_vert</i>
+                </mdl:Button>
+
+                <mdl:Menu ripple="true" dataMdlFor="demo_menu">
+                    <mdl:MenuItem text="Some Action"/>
+                    <mdl:MenuItem text="Another Action"/>
+                </mdl:Menu>
+
+                
+                   <mdl:CardMedia>
                         <js:Image url="assets/Unknown.jpg"  height="176"/>
                     </mdl:CardMedia>-->
 
