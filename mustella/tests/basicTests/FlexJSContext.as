@@ -34,7 +34,7 @@ public class FlexJSContext
 	
 	public static function contextFunction():Object
 	{
-		return UnitTester._root["initialView"];		
+		return UnitTester._root["info"]().app["initialView"];		
 	}
 }
 

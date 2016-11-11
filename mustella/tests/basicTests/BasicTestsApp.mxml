@@ -22,7 +22,25 @@ limitations under the License.
                    xmlns:js="library://ns.apache.org/flexjs/basic" 
                    xmlns:models="models.*" 
                    xmlns:controllers="controllers.*"
-                   >
+                   applicationComplete="forwardEvent(event)" >
+    <fx:Script>
+	  <![CDATA[
+	    import org.apache.flex.core.WrappedMovieClip;
+	    
+	    private var r:WrappedMovieClip;
+	    override public function setRoot(r:WrappedMovieClip):void
+	    {
+	      this.r = r;
+	      r["info"]().app = this;
+	      super.setRoot(r);
+	    }
+	    
+	    private function forwardEvent(e:Event):void
+	    {
+	    	r.dispatchEvent(e);
+	    }
+	  ]]>
+    </fx:Script>
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
