@@ -86,10 +86,6 @@ package org.apache.flex.html.beads
 			overSprite.addChild(overTextField);
 		}
 		
-		private function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
 		private var textModel:ITextModel;
 		
 		private var shape:Shape;

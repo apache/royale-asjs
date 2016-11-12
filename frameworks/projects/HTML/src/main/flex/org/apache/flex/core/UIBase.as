@@ -968,9 +968,6 @@ package org.apache.flex.core
          */
 		public var beads:Array;
 		
-        COMPILE::SWF
-		private var _beads:Vector.<IBead>;
-        
         /**
          *  @copy org.apache.flex.core.IStrand#addBead()
          *  

@@ -27,6 +27,7 @@ package org.apache.flex.mobile.beads
 
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IStrandWithModel;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
@@ -73,9 +74,9 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		public function get host():UIBase
+		public function get host():IUIBase
 		{
-			return _strand as UIBase;
+			return _strand as IUIBase;
 		}
 
 		/**
@@ -93,13 +94,13 @@ package org.apache.flex.mobile.beads
 			host.addEventListener("widthChanged", handleSizeChange);
 			host.addEventListener("heightChanged", handleSizeChange);
 
-			var model:IEventDispatcher = host.model as IEventDispatcher;
+			var model:IEventDispatcher = (host as IStrandWithModel).model as IEventDispatcher;
 			model.addEventListener("urlChanged", loadPage);
 
-			stageWebView.stage = host.$sprite.stage;
+			stageWebView.stage = host.$displayObject.stage;
 			
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$displayObject.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 
@@ -108,7 +109,7 @@ package org.apache.flex.mobile.beads
 		 */
 		private function loadPage(event:org.apache.flex.events.Event):void
 		{
-			var model:WebBrowserModel = host.model as WebBrowserModel;
+			var model:WebBrowserModel = (host as IStrandWithModel).model as WebBrowserModel;
 			stageWebView.loadURL(model.url);
 		}
 
@@ -118,7 +119,7 @@ package org.apache.flex.mobile.beads
 		private function handleSizeChange(event:org.apache.flex.events.Event):void
 		{
 			var hostOrigin:Point = new Point(0,0);
-			var hostPosition:Point = host.$sprite.localToGlobal(hostOrigin);
+			var hostPosition:Point = host.$displayObject.localToGlobal(hostOrigin);
 			stageWebView.viewPort = new Rectangle( hostPosition.x, hostPosition.y, host.width, host.height );
 		}
 
@@ -127,7 +128,7 @@ package org.apache.flex.mobile.beads
 		 */
 		private function handleLocationChange(event:flash.events.Event):void
 		{
-			var model:WebBrowserModel = host.model as WebBrowserModel;
+			var model:WebBrowserModel = (host as IStrandWithModel).model as WebBrowserModel;
 			model.setURL(stageWebView.location);
 			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
 		}
