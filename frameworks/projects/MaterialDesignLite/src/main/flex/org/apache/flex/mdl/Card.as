@@ -54,6 +54,8 @@ package org.apache.flex.mdl
 		public function Card()
 		{
 			super();
+
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
         /**
@@ -62,9 +64,12 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			typeNames = "mdl-card";
+
             element = document.createElement('div') as WrappedHTMLElement;
+            element.className = typeNames;
             
-            positioner = element;
+			positioner = element;
             
             // absolute positioned children need a non-null
             // position value in the parent.  It might
@@ -72,8 +77,6 @@ package org.apache.flex.mdl
             // also absolutely positioned
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
-            className = "mdl-card";
 
             return element;
         }
@@ -98,7 +101,7 @@ package org.apache.flex.mdl
 			{
 				_shadow = value;
 
-				className += _shadow != 0 ? " mdl-shadow--" + _shadow + "dp" : "";
+				className += (_shadow != 0 ? " mdl-shadow--" + _shadow + "dp" : "");
 			}  
         }
 	}

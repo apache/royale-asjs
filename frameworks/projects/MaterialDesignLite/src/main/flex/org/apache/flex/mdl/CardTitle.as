@@ -61,7 +61,10 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			typeNames = "mdl-card__title";
+
             element = document.createElement('div') as WrappedHTMLElement;
+			element.className = typeNames;
             
             positioner = element;
             
@@ -72,8 +75,6 @@ package org.apache.flex.mdl
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = "mdl-card__title";
-
             return element;
         }    
 	}

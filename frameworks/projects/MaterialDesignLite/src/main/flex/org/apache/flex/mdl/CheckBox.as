@@ -76,6 +76,20 @@ package org.apache.flex.mdl
     COMPILE::JS
     public class CheckBox extends UIBase
     {
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function CheckBox()
+		{
+			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+		}
         
         private var input:HTMLInputElement;
         private var checkbox:HTMLSpanElement;
@@ -91,6 +105,8 @@ package org.apache.flex.mdl
          */
         override protected function createElement():WrappedHTMLElement
         {
+            typeNames = "mdl-checkbox mdl-js-checkbox";
+
             label = document.createElement('label') as HTMLLabelElement;
             element = label as WrappedHTMLElement;
             
@@ -112,14 +128,13 @@ package org.apache.flex.mdl
             (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             
-            className = 'mdl-checkbox mdl-js-checkbox';
-
             return element;
         };
 
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+         *  Applies ripple click effect. May be used in combination with any other classes
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

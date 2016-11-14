@@ -47,6 +47,8 @@ package org.apache.flex.mdl
 		public function Button()
 		{
 			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
         
         /**
@@ -56,13 +58,14 @@ package org.apache.flex.mdl
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-            element = document.createElement('button') as WrappedHTMLElement;
+            typeNames = "mdl-button mdl-js-button";
             
+            element = document.createElement('button') as WrappedHTMLElement;
+            element.className = typeNames;
+
             positioner = element;
             positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-
-            className = "mdl-button mdl-js-button";
 
             return element;
 		}
@@ -70,6 +73,7 @@ package org.apache.flex.mdl
         private var _fab:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--fab" effect selector.
+         *  Applies fab (circular) display effect. Mutually exclusive with raised, mini-fab, and icon.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -90,6 +94,7 @@ package org.apache.flex.mdl
         private var _raised:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--raised" effect selector.
+         *  Applies raised display effect. Mutually exclusive with fab, mini-fab, and icon.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -110,6 +115,8 @@ package org.apache.flex.mdl
         private var _colored:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--colored" effect selector.
+         *  Applies colored display effect (primary or accent color, depending on the type of button).
+         *  Colors are defined in material.min.css
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -130,7 +137,9 @@ package org.apache.flex.mdl
         private var _accent:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--accent" effect selector.
-		 *
+		 *  Applies accent color display effect.
+         *  Colors are defined in material.min.css.
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -150,7 +159,9 @@ package org.apache.flex.mdl
         private var _primary:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--primary" effect selector.
-		 *
+		 *  Applies primary color display effect.
+         *  Colors are defined in material.min.css
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -170,7 +181,9 @@ package org.apache.flex.mdl
         private var _minifab:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--mini-fab" effect selector.
-		 *
+		 *  Applies mini-fab (small fab circular) display effect.
+         *  Mutually exclusive with raised, fab, and icon
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -190,7 +203,9 @@ package org.apache.flex.mdl
         private var _icon:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-button--icon" effect selector.
-		 *
+		 *  Applies icon (small plain circular) display effect.
+         *  Mutually exclusive with raised, fab, and mini-fab
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -210,7 +225,8 @@ package org.apache.flex.mdl
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-		 *
+		 *  Applies ripple click effect. May be used in combination with any other classes
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

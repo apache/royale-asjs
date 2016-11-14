@@ -77,6 +77,21 @@ package org.apache.flex.mdl
     public class RadioButton extends UIBase
     {
         /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function RadioButton()
+		{
+			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+		}
+
+        /**
          * Provides unique name
          */
         public static var radioCounter:int = 0;
@@ -94,7 +109,9 @@ package org.apache.flex.mdl
          * @flexjsignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
-        { 
+        {
+            typeNames = "mdl-radio mdl-js-radio";
+
             icon = new RadioButtonIcon();
             icon.className = 'mdl-radio__button';
             icon.id = '_radio_' + RadioButton.radioCounter++;
@@ -121,14 +138,13 @@ package org.apache.flex.mdl
             (icon.element as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
             
-            className = 'mdl-radio mdl-js-radio';
-            
             return element;
         };
         
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+         *  Applies ripple click effect. May be used in combination with any other classes
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
