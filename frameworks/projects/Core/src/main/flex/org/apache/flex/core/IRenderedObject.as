@@ -38,7 +38,7 @@ COMPILE::SWF
         function get $displayObject():DisplayObject;
         
         COMPILE::JS
-        function get element():IFlexJSElement;
+        function get element():WrappedHTMLElement;
 
 	}
 }

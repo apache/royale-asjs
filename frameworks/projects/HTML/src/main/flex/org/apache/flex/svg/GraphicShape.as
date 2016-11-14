@@ -88,7 +88,7 @@ package org.apache.flex.svg
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
-		override protected function createElement():IFlexJSElement
+		override protected function createElement():WrappedHTMLElement
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
