@@ -115,7 +115,7 @@ package org.apache.flex.html
         {
             element = document.createElement('textarea') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             element.className = 'TextArea';
             typeNames = 'TextArea';

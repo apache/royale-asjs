@@ -59,7 +59,7 @@ package org.apache.flex.svg
 			// position value in the parent.  It might
 			// get set to 'absolute' if the container is
 			// also absolutely positioned
-			positioner.style.position = 'relative';
+			
 			element.flexjs_wrapper = this;
 			
 			graphicGroup = new GraphicGroup();
@@ -196,7 +196,7 @@ class GraphicGroup extends ContainerBase
 		// position value in the parent.  It might
 		// get set to 'absolute' if the container is
 		// also absolutely positioned
-		positioner.style.position = 'relative';
+		
 		element.flexjs_wrapper = this;
 		
 		/*addEventListener('childrenAdded',

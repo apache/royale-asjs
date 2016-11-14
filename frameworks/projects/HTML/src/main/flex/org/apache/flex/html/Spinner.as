@@ -155,7 +155,7 @@ package org.apache.flex.html
         {
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            
 
             element.style.verticalAlign = 'middle';
             element.flexjs_wrapper = this;

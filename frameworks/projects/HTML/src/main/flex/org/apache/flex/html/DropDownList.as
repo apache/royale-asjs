@@ -216,7 +216,7 @@ package org.apache.flex.html
                 changeHandler);
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             
             element.flexjs_wrapper = this;
             

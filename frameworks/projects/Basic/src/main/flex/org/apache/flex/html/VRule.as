@@ -60,7 +60,7 @@ package org.apache.flex.html
             element.style.borderBottom = 'none';
             element.style.borderRight = 'none';
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             return element;
         }        

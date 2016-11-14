@@ -161,7 +161,6 @@ ButtonBarButtonItemRenderer
 CheckBox
 {
   /* .checkbox */
-  position: relative;
   padding-left: 32px;
   margin-bottom: 12px;
   font-size: 14px;
@@ -424,7 +423,6 @@ PanelWithControlBar
 RadioButton
 {
   /* .radio */
-  position: relative;
   padding-left: 32px;
   margin-bottom: 12px;
   font-size: 14px;
@@ -721,7 +719,6 @@ RadioButton
   }
 .vscrollbar-track {
   padding: 0px;
-  position: relative;
   width: 8px;
   height: 8px;
   /*margin-bottom: 20px;*/

@@ -120,7 +120,6 @@ package org.apache.flex.html.beads
                 element.id = 'thumb';
                 element.style.backgroundColor = '#949494';
                 element.style.border = 'thin solid #747474';
-                element.style.position = 'relative';
                 element.style.height = '30px';
                 element.style.width = '10px';
                 element.style.zIndex = '2';

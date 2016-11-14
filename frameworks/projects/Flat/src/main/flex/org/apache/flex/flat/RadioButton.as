@@ -93,14 +93,13 @@ package org.apache.flex.flat
             labelFor.appendChild(input);
             labelFor.appendChild(radio);
             labelFor.appendChild(textNode);
-            labelFor.style.position = 'relative';
             
             element = labelFor as WrappedHTMLElement;
             element.className = 'RadioButton';
             typeNames = 'RadioButton';
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;

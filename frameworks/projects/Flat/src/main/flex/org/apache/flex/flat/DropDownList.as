@@ -113,7 +113,6 @@ package org.apache.flex.flat
             caret.className = 'dropdown-caret';
             
             this.positioner = this.element;
-            this.positioner.style.position = 'relative';
             
             // add a click handler so that a click outside of the combo box can
             // dismiss the pop-up should it be visible.

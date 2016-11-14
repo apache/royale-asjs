@@ -127,12 +127,11 @@ package org.apache.flex.mdl
             label.appendChild(icon.element);
             label.appendChild(radio);
             radio.appendChild(textNode);
-            label.style.position = 'relative';
             
             element = label as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
             (icon.element as WrappedHTMLElement).flexjs_wrapper = this;

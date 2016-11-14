@@ -83,7 +83,7 @@ package org.apache.flex.html
             typeNames = 'Image';
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
          
             return element;

@@ -94,7 +94,7 @@ package org.apache.flex.flat
                 typeNames = 'CheckBox';
                 
                 positioner = element;
-                positioner.style.position = 'relative';
+                
                 (input as WrappedHTMLElement).flexjs_wrapper = this;
                 (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
                 element.flexjs_wrapper = this;

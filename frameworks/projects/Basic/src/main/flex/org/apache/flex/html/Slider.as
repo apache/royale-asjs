@@ -185,7 +185,7 @@ package org.apache.flex.html
             addBead(controller);
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             
             className = 'Slider';

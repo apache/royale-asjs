@@ -46,7 +46,7 @@ package org.apache.flex.svg
 			element.style.top = 0;
 			//element.offsetParent = null;
 			positioner = element;
-			positioner.style.position = 'relative';
+			
 			
 			return element;
 		}

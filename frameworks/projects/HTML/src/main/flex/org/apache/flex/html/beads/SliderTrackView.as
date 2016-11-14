@@ -121,7 +121,6 @@ package org.apache.flex.html.beads
 				element.style.height = '10px';
 				element.style.width = '200px';
 				element.style.border = 'thin solid #C4C4C4';
-				element.style.position = 'relative';
 				element.style.left = '0px';
 				element.style.top = '10px';
 				element.style.zIndex = '1';

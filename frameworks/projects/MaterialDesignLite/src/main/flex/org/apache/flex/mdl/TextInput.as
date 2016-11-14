@@ -103,7 +103,7 @@ package org.apache.flex.mdl
             element = input as WrappedHTMLElement;
 
             positioner = div as WrappedHTMLElement;
-            positioner.style.position = 'relative';
+            
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (label as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;

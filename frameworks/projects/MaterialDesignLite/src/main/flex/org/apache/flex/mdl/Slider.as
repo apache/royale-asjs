@@ -220,7 +220,7 @@ package org.apache.flex.mdl
             //addBead(controller);
             
             positioner = p as WrappedHTMLElement;
-            positioner.style.position = 'relative';
+            
 			(input as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
             

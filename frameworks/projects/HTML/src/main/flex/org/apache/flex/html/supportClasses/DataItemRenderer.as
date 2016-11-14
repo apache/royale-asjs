@@ -163,7 +163,7 @@ package org.apache.flex.html.supportClasses
 		{
 			element = document.createElement('div') as WrappedHTMLElement;
 			positioner = element;
-			positioner.style.position = 'relative';
+			
 
 			element.flexjs_wrapper = this;
 			className = 'DataItemRenderer';

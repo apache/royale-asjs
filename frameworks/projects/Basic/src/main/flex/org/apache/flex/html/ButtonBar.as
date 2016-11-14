@@ -64,7 +64,7 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             element.style.overflow = 'auto';
             positioner = element;
-            positioner.style.position = 'relative';
+            
             
             className = 'ButtonBar';
             

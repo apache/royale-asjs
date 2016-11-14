@@ -123,7 +123,7 @@ package org.apache.flex.mdl
             checkbox.appendChild(textNode);
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;

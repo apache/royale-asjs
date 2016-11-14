@@ -146,7 +146,7 @@ package org.apache.flex.html
             element.appendChild(button);
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             
             // add a click handler so that a click outside of the combo box can
             // dismiss the pop-up should it be visible.

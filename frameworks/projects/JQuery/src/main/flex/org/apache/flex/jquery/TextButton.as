@@ -41,7 +41,7 @@ package org.apache.flex.jquery
 			element.setAttribute('type', 'button');
 			
 			positioner = element;
-			positioner.style.position = 'relative';
+			
 			element.flexjs_wrapper = this;
 			return element;
 		}

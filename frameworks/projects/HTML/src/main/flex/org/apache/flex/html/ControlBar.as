@@ -89,7 +89,7 @@ package org.apache.flex.html
             typeNames = 'ControlBar';
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             
             return element;

@@ -1345,7 +1345,7 @@ package org.apache.flex.core
 	            if (positioner == null)
 	                positioner = element;
 	            positioner.style.display = 'block';
-	            positioner.style.position = 'relative';
+	            
 	            
 	            element.flexjs_wrapper = this;
 	            

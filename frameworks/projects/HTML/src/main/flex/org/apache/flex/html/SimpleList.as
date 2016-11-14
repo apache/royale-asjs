@@ -61,7 +61,7 @@ package org.apache.flex.html
             goog.events.listen(element, 'change',
                 changeHandler);
             positioner = element;
-            positioner.style.position = 'relative';
+            
             className = 'SimpleList';
             
             return element;

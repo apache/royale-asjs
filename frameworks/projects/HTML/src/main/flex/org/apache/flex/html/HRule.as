@@ -55,7 +55,7 @@ package org.apache.flex.html
         {
             element = document.createElement('hr') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             return element;
         }        

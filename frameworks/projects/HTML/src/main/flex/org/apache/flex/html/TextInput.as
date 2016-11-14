@@ -177,7 +177,7 @@ package org.apache.flex.html
             goog.events.listen(element, 'input', textChangeHandler);
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
             element.flexjs_wrapper = this;
             
             return element;

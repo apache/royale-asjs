@@ -101,7 +101,7 @@ package org.apache.flex.html
 			element = div as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
+            
 			element.flexjs_wrapper = this;
             
             //className = typeNames = 'Div';

@@ -168,7 +168,6 @@ package org.apache.flex.html
             
             COMPILE::JS
             {
-                alert.positioner.style.position = 'relative';
                 alert.positioner.style.width = '200px';
                 alert.positioner.style.margin = 'auto';
                 alert.positioner.style.top = '100px';
