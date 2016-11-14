@@ -75,7 +75,6 @@ package org.apache.flex.mdl
             // position value in the parent.  It might
             // get set to 'absolute' if the container is
             // also absolutely positioned
-            positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
 
             return element;
