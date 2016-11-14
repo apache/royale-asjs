@@ -131,7 +131,7 @@ limitations under the License.
                     <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 
                     <mdl:Card width="320" height="320" shadow="2" style="margin:10;">
-                        <mdl:CardTitle className="dogTitle" style="color: #fff;">
+                        <mdl:CardTitle className="dogTitle">
                             <js:H2 text="Update" className="mdl-card__title-text"/>
                         </mdl:CardTitle>
                         <mdl:CardSupportingText>

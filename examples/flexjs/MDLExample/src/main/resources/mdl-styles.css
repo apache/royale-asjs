@@ -42,20 +42,14 @@ Image
 
 .cardTitle
 {
-	color: #ffffff;
+	color: #fff;
 	height: 176px;
-	background-image:url('assets/Unknown.jpg'); /*center / cover;*/
-	background-size: cover;
-	background-position: 50% 50%;
-	background-repeat: initial initial;
+	background: url('assets/Unknown.jpg') center / cover;
 }
 
 .dogTitle
 {
 	color: #fff;
 	height: 176px;
-	background-image: url('assets/dog.png'); /*bottom right 15% no-repeat #46B6AC*/
-	background-position: right 15% bottom 0%; 
-	background-repeat: no-repeat no-repeat;
-	background-color: rgb(70, 182, 172); 
+	background: url('assets/dog.png') bottom right 15% no-repeat #46B6AC;
 }
