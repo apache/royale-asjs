@@ -139,5 +139,6 @@
     <component id="H6" class="org.apache.flex.html.H6" />
     <component id="Span" class="org.apache.flex.html.Span" />
     <component id="Div" class="org.apache.flex.html.Div" />
+    <component id="I" class="org.apache.flex.html.I" />
 
 </componentPackage>
