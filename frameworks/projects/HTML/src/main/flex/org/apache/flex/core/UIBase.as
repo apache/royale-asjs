@@ -1338,6 +1338,10 @@ package org.apache.flex.core
             return element;
         }
         
+        /**
+         * @return The actual element to be parented.
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
 		COMPILE::JS
         protected function createElement():WrappedHTMLElement
         {
