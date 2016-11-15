@@ -16,31 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.html
 {
-	import org.apache.flex.mdl.supportClasses.CardInner;
+	import org.apache.flex.core.UIBase;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.core.WrappedHTMLElement;            
     }
-    
+
 	/**
-	 *  The CardMenu class is a Container component capable of parenting other. 
-     *  The Panel uses the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Card.
+	 *  The I(Italic) class represents an HTML <i> anchor element
+     *  
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class CardMenu extends CardInner
+	public class I extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -50,31 +44,66 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function CardMenu()
+		public function I()
 		{
 			super();
 		}
 		
+        private var _text:String = "";
+
+        /**
+         *  The text of the element
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function get text():String
+		{
+            COMPILE::SWF
+            {
+                return _text;
+            }
+            COMPILE::JS
+            {
+                return textNode.nodeValue;
+            }
+		}
+
+		public function set text(value:String):void
+		{
+            COMPILE::SWF
+            {
+                _text = value;
+            }
+            COMPILE::JS
+            {
+                textNode.nodeValue = value;
+            }
+		}
+		
+        COMPILE::JS
+        private var textNode:Text;
+		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-card__menu";
-
-            element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
-
-            positioner = element;
+			var a:HTMLElement = document.createElement('i') as HTMLElement;
             
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
-            element.flexjs_wrapper = this;
+            textNode = document.createTextNode('') as Text;
+            a.appendChild(textNode); 
+
+			element = a as WrappedHTMLElement;
+            
+            positioner = element;
+			element.flexjs_wrapper = this;
             
             return element;
-        }    
-	}
+        }
+    }
 }

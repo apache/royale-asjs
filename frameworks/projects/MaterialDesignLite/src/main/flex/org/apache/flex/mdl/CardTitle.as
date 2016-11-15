@@ -61,7 +61,10 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			typeNames = "mdl-card__title";
+
             element = document.createElement('div') as WrappedHTMLElement;
+			element.className = typeNames;
             
             positioner = element;
             
@@ -69,11 +72,8 @@ package org.apache.flex.mdl
             // position value in the parent.  It might
             // get set to 'absolute' if the container is
             // also absolutely positioned
-            positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
-            className = "mdl-card__title";
-
             return element;
         }    
 	}

@@ -40,4 +40,16 @@ Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
+.cardTitle
+{
+	color: #fff;
+	height: 176px;
+	background: url('assets/Unknown.jpg') center / cover;
+}
 
+.dogTitle
+{
+	color: #fff;
+	height: 176px;
+	background: url('assets/dog.png') bottom right 15% no-repeat #46B6AC;
+}

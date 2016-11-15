@@ -62,7 +62,7 @@ COMPILE::SWF
          *  @private
          */
         COMPILE::JS
-		function get element():HTMLElement;
+		function get element():WrappedHTMLElement;
 
     }
 }

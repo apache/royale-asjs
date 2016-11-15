@@ -1327,30 +1327,34 @@ package org.apache.flex.core
         
         /**
          * @return The actual element to be parented.
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion org.apache.flex.core.IFlexJSElement
          */
+        COMPILE::SWF
         protected function createElement():IFlexJSElement
         {
-			COMPILE::SWF
-			{
-				element = new WrappedSprite();
-				element.flexjs_wrapper = this;
-				(element as InteractiveObject).doubleClickEnabled = true; // make JS and flash consistent
-                return element;
-			}
-			COMPILE::JS
-			{
-	            if (element == null)
-	                element = document.createElement('div') as WrappedHTMLElement;
-	            if (positioner == null)
-	                positioner = element;
-	            positioner.style.display = 'block';
-	            positioner.style.position = 'relative';
-	            
-	            element.flexjs_wrapper = this;
-	            
-	            return positioner;
-			}
+			element = new WrappedSprite();
+			element.flexjs_wrapper = this;
+			(element as InteractiveObject).doubleClickEnabled = true; // make JS and flash consistent
+            return element;
+        }
+        
+        /**
+         * @return The actual element to be parented.
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+		COMPILE::JS
+        protected function createElement():WrappedHTMLElement
+        {
+            if (element == null)
+                element = document.createElement('div') as WrappedHTMLElement;
+            if (positioner == null)
+                positioner = element;
+            positioner.style.display = 'block';
+            positioner.style.position = 'relative';
+            
+            element.flexjs_wrapper = this;
+            
+            return positioner;
         }
         
         /**
