@@ -125,5 +125,10 @@ package org.apache.flex.html.supportClasses
 			return 0;
 		}
 		
+		public function collapse():void
+		{
+			height = collapsedHeight;
+		}
+		
 	}
 }

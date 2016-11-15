@@ -1,9 +1,11 @@
 package org.apache.flex.html.beads
 {
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
+	import org.apache.flex.html.supportClasses.ICollapsible;
 
 	public class AccordionView extends ListView
 	{
@@ -41,6 +43,17 @@ package org.apache.flex.html.beads
 			if (layout && layout.flexibleChild)
 			{
 				super.performLayout(event);
+			}
+		}
+		
+		override protected function itemsCreatedHandler(event:Event):void
+		{
+			super.itemsCreatedHandler(event);
+			var n:int = dataGroup.numElements;
+			for (var i:int = 0; i < n; i++)
+			{
+				var child:ICollapsible = dataGroup.getItemRendererForIndex(i) as ICollapsible;
+				child.collapse();
 			}
 		}
 	}

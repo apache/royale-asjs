@@ -1,7 +1,5 @@
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
@@ -40,7 +38,7 @@ package org.apache.flex.html.beads
 			if (lastSelectedIndex > -1)
 			{
 				var lastElement:ICollapsible = view.dataGroup.getItemRendererForIndex(lastSelectedIndex) as ICollapsible;
-				(lastElement as ILayoutChild).height = lastElement.collapsedHeight;
+				lastElement.collapse();
 			}
 			lastSelectedIndex = host.selectedIndex;
 			layout.flexibleChild = newChild.id;
