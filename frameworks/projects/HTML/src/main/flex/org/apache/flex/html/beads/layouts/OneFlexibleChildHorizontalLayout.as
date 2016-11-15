@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
@@ -26,13 +25,11 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSContainerUtils;
 	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The OneFlexibleChildHorizontalLayout class is a simple layout
@@ -47,7 +44,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class OneFlexibleChildHorizontalLayout implements IBeadLayout, IDocument
+	public class OneFlexibleChildHorizontalLayout implements IOneFlexibleChildLayout, IDocument
 	{
         /**
          *  Constructor.
@@ -62,15 +59,7 @@ package org.apache.flex.html.beads.layouts
 		}
 		
         
-        /**
-         *  The id of the flexible child
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public var flexibleChild:String;
+        private var _flexibleChild:String;
         
         private var actualChild:ILayoutChild;
         
@@ -85,6 +74,27 @@ package org.apache.flex.html.beads.layouts
          */
         private var document:Object;
         
+		/**
+		 *  The id of the flexible child
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get flexibleChild():String
+		{
+			return _flexibleChild;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set flexibleChild(value:String):void
+		{
+			_flexibleChild = value;
+		}
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
@@ -29,9 +28,8 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
 
     /**
      *  The OneFlexibleChildVerticalLayout class is a simple layout
@@ -46,7 +44,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class OneFlexibleChildVerticalLayout implements IBeadLayout, IDocument
+	public class OneFlexibleChildVerticalLayout implements IOneFlexibleChildLayout, IDocument
 	{
         /**
          *  Constructor.
@@ -61,15 +59,7 @@ package org.apache.flex.html.beads.layouts
 		}
 		
         
-        /**
-         *  The id of the flexible child
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public var flexibleChild:String;
+        private var _flexibleChild:String;
         
         private var actualChild:ILayoutChild;
         
@@ -84,6 +74,27 @@ package org.apache.flex.html.beads.layouts
          */
         private var document:Object;
         
+		/**
+		 *  The id of the flexible child
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get flexibleChild():String
+		{
+			return _flexibleChild;
+		}
+
+		/**
+		 * @private
+		 */
+		public function set flexibleChild(value:String):void
+		{
+			_flexibleChild = value;
+		}
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
@@ -143,6 +154,20 @@ package org.apache.flex.html.beads.layouts
             _maxHeight = value;
         }
         
+		// TODO get rid of this
+		private function getActualChildById(contentView:IParentIUIBase, id:String):ILayoutChild
+		{
+			var result:ILayoutChild;
+			for (var i:int = 0; i < contentView.numElements; i++)
+			{
+				var child:UIBase = contentView.getElementAt(i) as UIBase;
+				if (child.id == id)
+				{
+					return child;
+				}
+			}
+			return null;
+		}
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
@@ -151,7 +176,13 @@ package org.apache.flex.html.beads.layouts
             var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-			actualChild = document[flexibleChild];
+			if (document && document.hasOwnProperty(flexibleChild))
+			{
+				actualChild = document[flexibleChild];
+			} else
+			{
+				actualChild = getActualChildById(contentView, flexibleChild);
+			}
             
             var ilc:ILayoutChild;
 			var n:int = contentView.numElements;

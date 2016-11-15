@@ -43,6 +43,7 @@
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
+    <component id="Accordion" class="org.apache.flex.html.Accordion"/>
     <component id="Form" class="org.apache.flex.html.Form"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>
     <component id="VContainer" class="org.apache.flex.html.VContainer"/>
@@ -70,6 +71,7 @@
     <component id="Slider" class="org.apache.flex.html.Slider"/>
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
+    <component id="AccordionItemRenderer" class="org.apache.flex.html.supportClasses.AccordionItemRenderer"/>
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.html.supportClasses.MXMLItemRenderer"/>
