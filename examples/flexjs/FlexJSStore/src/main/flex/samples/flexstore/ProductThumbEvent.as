@@ -20,6 +20,7 @@ package samples.flexstore
 {
     
 import org.apache.flex.events.Event;
+import org.apache.flex.events.IFlexJSEvent;
 
 public class ProductThumbEvent extends Event
 {
@@ -36,7 +37,7 @@ public class ProductThumbEvent extends Event
         this.product = product;
     }
     
-    override public function cloneEvent():Event
+    override public function cloneEvent():IFlexJSEvent
     {
         return new ProductThumbEvent(type, product);
     }
