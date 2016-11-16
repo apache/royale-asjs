@@ -30,7 +30,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.ItemRemovedEvent;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IListView;
-	
+
 	import org.apache.flex.events.ItemClickedEvent;
 
     /**
@@ -42,7 +42,7 @@ package org.apache.flex.html.beads.controllers
      *  and updates an ISelectionModel (which only supports single
      *  selection).  Other controller/model pairs would support
      *  various kinds of multiple selection.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -52,7 +52,7 @@ package org.apache.flex.html.beads.controllers
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -61,10 +61,10 @@ package org.apache.flex.html.beads.controllers
 		public function ListSingleSelectionMouseController()
 		{
 		}
-		
+
         /**
          *  The model.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads.controllers
 
         /**
          *  The view.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads.controllers
 
         /**
          *  The parent of the item renderers.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -93,10 +93,10 @@ package org.apache.flex.html.beads.controllers
         protected var dataGroup:IItemRendererParent;
 
 		private var _strand:IStrand;
-		
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -110,27 +110,27 @@ package org.apache.flex.html.beads.controllers
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
 		}
-		
+
 		protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
-		
-		protected function handleItemRemoved(event:ItemAddedEvent):void
+
+		protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
-		
+
 		protected function selectedHandler(event:ItemClickedEvent):void
         {
             listModel.selectedIndex = event.index;
             listView.host.dispatchEvent(new Event("change"));
         }
-		
+
 		protected function rolloverHandler(event:Event):void
 		{
 			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
@@ -138,7 +138,7 @@ package org.apache.flex.html.beads.controllers
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
 		}
-		
+
 		protected function rolloutHandler(event:Event):void
 		{
 			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
@@ -148,6 +148,6 @@ package org.apache.flex.html.beads.controllers
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}
-	
+
 	}
 }

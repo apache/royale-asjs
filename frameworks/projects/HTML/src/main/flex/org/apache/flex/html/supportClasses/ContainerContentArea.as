@@ -23,6 +23,10 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
+	COMPILE::SWF {
+		import org.apache.flex.core.IChild;
+	}
+	
     /**
      *  The ContainerContentArea class implements the contentView for
      *  a Container.  Container's don't always parent their children directly as
@@ -67,6 +71,11 @@ package org.apache.flex.html.supportClasses
 		{
 			COMPILE::SWF
 			{
+				var n:Number = numElements;
+				for (var i:Number = n-1; i >= 0; i--) {
+					var child:IChild = getElementAt(i);
+					removeElement(child,false);
+				}
 				$sprite.removeChildren(0);
 			}
 			COMPILE::JS
