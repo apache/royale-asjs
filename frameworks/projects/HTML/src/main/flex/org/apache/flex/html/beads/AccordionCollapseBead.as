@@ -39,7 +39,7 @@ package org.apache.flex.html.beads
 			host.model.addEventListener("selectedIndexChanged", selectedIndexChangedHandler);
 		}
 		
-		private function get host():Accordion
+		protected function get host():Accordion
 		{
 			return _strand as Accordion;
 		}

@@ -21,36 +21,36 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.IAccordionCollapseBead;
 	
-
-    /**
-     *  The Accordion class used to display a list of collapsible components
+	
+	/**
+	 *  The Accordion class used to display a list of collapsible components
 	 *  All but the selected item are expected to be collapsed.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */    
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */    
 	public class Accordion extends List
 	{
 		private var _collapseBead:IAccordionCollapseBead;
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
 		public function Accordion()
 		{
 			super();
-			accordionCollapseBead; // make sure it's initialized
 		}
 		
 		override public function addedToParent():void
 		{
 			super.addedToParent();
+			accordionCollapseBead; // make sure it's initialized
 			if (selectedIndex < 0)
 			{
 				selectedIndex = 0;
@@ -61,19 +61,26 @@ package org.apache.flex.html
 		{
 			if (_collapseBead == null)
 			{
-				var c:Class = ValuesManager.valuesImpl.getValue(this, "iAccordionCollapseBead") as Class;
-				if (c)
+				_collapseBead = getBeadByType(IAccordionCollapseBead) as IAccordionCollapseBead;
+				if (_collapseBead == null)
 				{
+					var c:Class = ValuesManager.valuesImpl.getValue(this, "iAccordionCollapseBead") as Class;
 					if (c)
 					{
-						_collapseBead = (new c()) as IAccordionCollapseBead;
-						addBead(_collapseBead);
+						if (c)
+						{
+							_collapseBead = (new c()) as IAccordionCollapseBead;
+						}
 					}
 				}
 			}
+			if (_collapseBead)
+			{
+				addBead(_collapseBead);
+			}
 			return _collapseBead;
 		}
-
-				
+		
+		
 	}
 }
