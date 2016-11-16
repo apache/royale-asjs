@@ -324,10 +324,12 @@ package org.apache.flex.utils
 		{
 			var theConsole:*;
 
+			if (!goog.DEBUG) return;
+			
 			theConsole = goog.global.console;
 
 			if (theConsole === undefined)
-			{
+			{				
 				if(typeof window !== "undefined")
 				{
 					theConsole = window.console;
