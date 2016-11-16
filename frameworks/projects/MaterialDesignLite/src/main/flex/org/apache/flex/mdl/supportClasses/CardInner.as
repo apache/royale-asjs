@@ -96,6 +96,28 @@ package org.apache.flex.mdl.supportClasses
 			_border = value;
 
             className += (_border ? " mdl-card--border" : "");  
+        }
+
+		private var _expand:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-card--expand" effect selector.
+		 *  Makes the container grows all available space. Is flex css dependant
+		 *  It seems it will be deprecated in new MDL versions.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get expand():Boolean
+        {
+            return _expand;
+        }
+        public function set expand(value:Boolean):void
+        {
+			_expand = value;
+
+            className += (_expand ? " mdl-card--expand" : "");  
         } 
 	}
 }
