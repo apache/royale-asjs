@@ -63,6 +63,7 @@
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"/>
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
+    <component id="AccordionView" class="org.apache.flex.html.beads.AccordionView"/>
     <!--<component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView"/>-->
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>
@@ -72,6 +73,7 @@
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.flex.html.supportClasses.AccordionItemRenderer"/>
+    <component id="AccordionCollapseBead" class="org.apache.flex.html.beads.AccordionCollapseBead"/>
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.html.supportClasses.MXMLItemRenderer"/>

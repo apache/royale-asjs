@@ -66,13 +66,13 @@ package org.apache.flex.html.beads
 		
 		override protected function itemsCreatedHandler(event:Event):void
 		{
-			super.itemsCreatedHandler(event);
 			var n:int = dataGroup.numElements;
 			for (var i:int = 0; i < n; i++)
 			{
 				var child:ICollapsible = dataGroup.getItemRendererForIndex(i) as ICollapsible;
 				child.collapse();
 			}
+			super.itemsCreatedHandler(event);
 		}
 	}
 }
