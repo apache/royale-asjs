@@ -81,11 +81,11 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
+        <antcall target="Effects"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="DragDrop"/>
-        <antcall target="Effects"/>
         <antcall target="Formatters"/>
         <antcall target="GoogleMaps"/>
         <antcall target="CreateJS"/>
