@@ -19,8 +19,6 @@
 package org.apache.flex.html.beads
 {
 	
-	import flash.events.IEventDispatcher;
-	
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -28,6 +26,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.effects.Parallel;
 	import org.apache.flex.effects.Resize;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
 	
