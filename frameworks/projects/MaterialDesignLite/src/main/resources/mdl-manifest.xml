@@ -37,5 +37,7 @@
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
     <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
     <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
+    <component id="Menu" class="org.apache.flex.mdl.Menu"/>
+    <component id="MenuItem" class="org.apache.flex.mdl.MenuItem"/>
 
 </componentPackage>

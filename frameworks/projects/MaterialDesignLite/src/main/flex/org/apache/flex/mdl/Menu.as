@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ContainerBase;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -32,7 +33,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Menu extends UIBase
+	public class Menu extends ContainerBase
 	{
         /**
          *  Constructor.
@@ -45,6 +46,8 @@ package org.apache.flex.mdl
 		public function Menu()
 		{
 			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
         
         /**
@@ -53,17 +56,17 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            this.element = document.createElement('ul') as WrappedHTMLElement;
-            this.element.className = "mdl-menu mdl-js-menu mdl-menu--top-left";
-            this.element.setAttribute('data-mdl-for', dataMdlFor.toString());
-            this.element.setAttribute('id', '0');
-            this.positioner = this.element;
-            this.element.flexjs_wrapper = this;
+            typeNames = "mdl-menu mdl-js-menu mdl-menu--top-left";
+
+            element = document.createElement('ul') as WrappedHTMLElement;
+            
+            positioner = element;
+            element.flexjs_wrapper = this;
             
             return element;
         }
 
-        private var _dataMdlFor:Number = 0;
+        private var _dataMdlFor:String;
 
 		/**
 		 *  The id value of the associated button that opens this menu.
@@ -73,13 +76,18 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get dataMdlFor():Number
+		public function get dataMdlFor():String
 		{
 			return _dataMdlFor;
 		}
-		public function set dataMdlFor(value:Number):void
+		public function set dataMdlFor(value:String):void
 		{
 			_dataMdlFor = value;
+
+            COMPILE::JS
+            {
+                element.setAttribute('for', dataMdlFor);
+            }
 		}
 
         protected var _ripple:Boolean = false;
@@ -99,7 +107,7 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            typeNames += (_ripple ? " mdl-js-ripple-effect" : "");
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
         }     
 
 	}

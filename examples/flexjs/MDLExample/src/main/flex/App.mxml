@@ -120,15 +120,14 @@ limitations under the License.
                         <mdl:CardActions border="true">
                             <mdl:Button text="Get Started" ripple="true" colored="true"/>
                             <mdl:Spacer/>
-                            <mdl:Button id="demo_menu" icon="true">
+                            <mdl:Button icon="true" id="menu_btn">
                                 <i class="material-icons">more_vert</i>
                             </mdl:Button>
-                            <!--
-                            <mdl:Menu ripple="true" dataMdlFor="demo_menu">
+                            <mdl:Menu ripple="true" dataMdlFor="menu_btn">
                                 <mdl:MenuItem text="Some Action"/>
                                 <mdl:MenuItem text="Another Action"/>
                                 <mdl:MenuItem text="Another Action 2"/>
-                            </mdl:Menu>-->
+                            </mdl:Menu>
                         </mdl:CardActions>
                         <mdl:CardMenu>
                             <mdl:Button icon="true" ripple="true" style="color: #fff;">
@@ -162,7 +161,7 @@ limitations under the License.
                         </mdl:CardActions>
                     </mdl:Card>
                 </js:HContainer>
-                
+
             </js:Form>
 
         </js:View>

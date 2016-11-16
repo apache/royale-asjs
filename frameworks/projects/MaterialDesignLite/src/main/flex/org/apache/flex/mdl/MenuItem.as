@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.UIBase;
+    
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -45,6 +46,8 @@ package org.apache.flex.mdl
 		public function MenuItem()
 		{
 			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
         
         private var _text:String = "";
@@ -90,14 +93,15 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            this.element = document.createElement('li') as WrappedHTMLElement;
-            this.element.className = "mdl-menu__item";
+            typeNames = "mdl-menu__item";
 
+            element = document.createElement('li') as WrappedHTMLElement;
+            
             textNode = document.createTextNode('') as Text;
-            this.element.appendChild(textNode); 
+            element.appendChild(textNode); 
 
-            this.positioner = this.element;
-            this.element.flexjs_wrapper = this;
+            positioner = element;
+            element.flexjs_wrapper = this;
             
             return element;
         }
@@ -119,7 +123,7 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            typeNames += (_ripple ? " mdl-js-ripple-effect" : "");
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
         }     
 
 	}

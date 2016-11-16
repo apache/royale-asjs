@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.UIBase;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -45,6 +46,8 @@ package org.apache.flex.mdl
 		public function Spacer()
 		{
 			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
         
         /**
@@ -53,10 +56,11 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            this.element = document.createElement('div') as WrappedHTMLElement;
-            this.element.className = "mdl-layout-spacer";
-            this.positioner = this.element;
-            this.element.flexjs_wrapper = this;
+            typeNames = "mdl-layout-spacer";
+
+            element = document.createElement('div') as WrappedHTMLElement;
+            positioner = element;
+            element.flexjs_wrapper = this;
             
             return element;
         }        
