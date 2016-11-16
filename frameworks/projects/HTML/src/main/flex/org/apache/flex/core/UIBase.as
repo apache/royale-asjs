@@ -866,6 +866,11 @@ package org.apache.flex.core
 				_id = value;
 				dispatchEvent(new Event("idChanged"));
 			}
+
+            COMPILE::JS
+            {
+                element.id = _id;
+            }
 		}
 		
         private var _style:Object;
