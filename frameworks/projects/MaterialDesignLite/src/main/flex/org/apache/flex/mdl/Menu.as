@@ -56,7 +56,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-menu mdl-js-menu mdl-menu--top-left";
+            typeNames = "mdl-menu mdl-js-menu";
 
             element = document.createElement('ul') as WrappedHTMLElement;
             
@@ -66,8 +66,82 @@ package org.apache.flex.mdl
             return element;
         }
 
-        private var _dataMdlFor:String;
+        // default position for Menu in MDL is bottom/left (or no class selector specified)
+        private var currentPosClazz:String = "";
+        private var _bottom:Boolean = true;
+		/**
+		 *  Position the menu relative to the associated button.
+         *  Used in conjunction with "left"
+         *  deafult is true
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get bottom():Boolean
+		{
+			return _bottom;
+		}
+		public function set bottom(value:Boolean):void
+		{
+			_bottom = value;
 
+            var newPosClazz:String;
+
+            if(currentPosClazz == "")
+            {
+                currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                trace("[bottom] currentPosClazz: " + currentPosClazz);
+                className += currentPosClazz;                
+            } else
+            {
+                newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                trace("[bottom] newPosClazz: " + newPosClazz);
+                className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
+            }
+
+            currentPosClazz = newPosClazz;
+            
+		}
+
+        private var _left:Boolean = true;
+		/**
+		 *  Position the menu relative to the associated button.
+         *  Used in conjunction with "bottom"
+         *  deafult is true
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get left():Boolean
+		{
+			return _left;
+		}
+		public function set left(value:Boolean):void
+		{
+			_left = value;
+
+            var newPosClazz:String;
+
+            if(currentPosClazz == "")
+            {
+                currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                trace("[left] currentPosClazz: " + currentPosClazz);
+                className += currentPosClazz;                
+            } else
+            {
+                newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                trace("[left] newPosClazz: " + newPosClazz);
+                className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
+            }
+
+            currentPosClazz = newPosClazz;
+		}
+
+        private var _dataMdlFor:String;
 		/**
 		 *  The id value of the associated button that opens this menu.
 		 *

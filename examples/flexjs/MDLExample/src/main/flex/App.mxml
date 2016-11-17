@@ -119,15 +119,6 @@ limitations under the License.
                         </mdl:CardSupportingText>
                         <mdl:CardActions border="true">
                             <mdl:Button text="Get Started" ripple="true" colored="true"/>
-                            <mdl:Spacer/>
-                            <mdl:Button icon="true" id="menu_btn">
-                                <i class="material-icons">more_vert</i>
-                            </mdl:Button>
-                            <mdl:Menu ripple="true" dataMdlFor="menu_btn">
-                                <mdl:MenuItem text="Some Action"/>
-                                <mdl:MenuItem text="Another Action"/>
-                                <mdl:MenuItem text="Another Action 2"/>
-                            </mdl:Menu>
                         </mdl:CardActions>
                         <mdl:CardMenu>
                             <mdl:Button icon="true" ripple="true" style="color: #fff;">
@@ -136,6 +127,23 @@ limitations under the License.
                         </mdl:CardMenu>
                     </mdl:Card>
 
+                    <mdl:Spacer/>
+
+                    <mdl:Button id="menu_btn" icon="true">
+                        <i class="material-icons">more_vert</i>
+                    </mdl:Button>
+                    <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
+                        <mdl:MenuItem text="Some Action"/>
+                        <mdl:MenuItem text="Another Action"/>
+                        <mdl:MenuItem text="Action Disabled">
+                            <js:beads>
+                                <mdl:Disabled/>
+                            </js:beads>
+                        </mdl:MenuItem>
+                        <mdl:MenuItem text="More Action" divider="true"/>
+                        <mdl:MenuItem text="Separated Action"/>
+                    </mdl:Menu>
+                    
                     <mdl:Slider className="mdlsl_example"/>
                     <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
 

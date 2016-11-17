@@ -106,6 +106,28 @@ package org.apache.flex.mdl
             return element;
         }
 
+        private var _divider:Boolean;
+
+		/**
+		 *  A boolean flag to activate "mdl-menu__item--full-bleed-divider" effect selector.
+         *  Modifies an item to have a full bleed divider between it and the next list item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get divider():Boolean
+		{
+			return _divider;
+		}
+		public function set divider(value:Boolean):void
+		{
+			_divider = value;
+
+            className += (_divider ? " mdl-menu__item--full-bleed-divider" : "");
+		}
+
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.

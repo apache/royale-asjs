@@ -83,13 +83,17 @@ package org.apache.flex.mdl.beads
 			COMPILE::JS
 			{
 				var host:UIBase = value as UIBase;
-                var input:HTMLInputElement;
-                //if (host.element is HTMLInputElement)
-                //{
-                    input = host.element as HTMLInputElement;
+				host.element.setAttribute('disabled', '');
+				/*var host:UIBase = value as UIBase;
+                if (host.element is HTMLInputElement)
+                {
+					var input:HTMLInputElement = host.element as HTMLInputElement;
                     input.disabled = "disabled";
-                //} else
-                //{
+                } else if (host.element is HTMLElement)
+                {
+					var elm:HTMLElement = host.element as HTMLElement;
+                    elm.disabled = "disabled";
+				}*/
                  //   throw new Error("Host element component in not type input");
                 //}
 			}
