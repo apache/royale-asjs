@@ -412,6 +412,7 @@ package org.apache.flex.utils
 				arr.sort(compareString);
 			}
 		}
+		
 		private static function compareStringCaseinsensitive(a:Object, b:Object):int{
 			for each(var n:String in sortNames){
 				var v:int = (a[n]||zeroStr).toString().toLowerCase().localeCompare((b[n]||zeroStr).toString().toLowerCase());
@@ -440,6 +441,22 @@ package org.apache.flex.utils
 				}
 			}
 			return 0;
+		}
+		
+		public static function Vector(size:int = 0, basetype:String = null):Array{
+			var arr:Array = [];
+			var defValue:Object = null;
+			if (basetype == "int" || basetype == "uint" || basetype == "Number")
+			{
+				defValue = 0;
+			}
+			else if (basetype == "String")
+			{
+				defValue = "";
+			}
+			for (var i:int = 0; i < size; i++)
+				arr.push(defValue);
+			return arr;
 		}
 	}
 }
