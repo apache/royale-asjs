@@ -82,7 +82,6 @@
         <antcall target="Collections"/>
         <antcall target="Basic"/>
         <antcall target="HTML"/>
-		<antcall target="MaterialDesignLite"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="CreateJS"/>
@@ -96,7 +95,8 @@
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
-        <antcall target="XML"/>
+        <antcall target="XML"/>	
+		<antcall target="MaterialDesignLite"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
