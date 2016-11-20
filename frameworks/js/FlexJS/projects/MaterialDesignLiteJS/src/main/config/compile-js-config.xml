@@ -61,7 +61,7 @@
         </namespaces>
         
         <source-path>
-            <path-element>../flex</path-element>
+            <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
