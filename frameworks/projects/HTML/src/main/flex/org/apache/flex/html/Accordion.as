@@ -73,10 +73,10 @@ package org.apache.flex.html
 						}
 					}
 				}
-			}
-			if (_collapseBead)
-			{
-				addBead(_collapseBead);
+				if (_collapseBead)
+				{
+					addBead(_collapseBead);
+				}
 			}
 			return _collapseBead;
 		}

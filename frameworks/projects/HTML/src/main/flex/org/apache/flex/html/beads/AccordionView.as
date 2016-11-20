@@ -24,7 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
-
+	
 	public class AccordionView extends ListView
 	{
 		private var _layout:IOneFlexibleChildLayout;
@@ -49,8 +49,11 @@ package org.apache.flex.html.beads
 					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
 					if (c) {
 						_layout = new c() as IOneFlexibleChildLayout;
-						_strand.addBead(_layout);
 					}
+				}
+				if (_layout)
+				{
+					_strand.addBead(_layout);
 				}
 			}
 			return _layout;
