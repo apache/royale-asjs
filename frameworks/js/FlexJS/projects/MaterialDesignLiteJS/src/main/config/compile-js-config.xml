@@ -46,14 +46,6 @@
         </keep-as3-metadata>
 	  
         <locale/>
-        
-		<library-path>
-			<path-element>../../../../../libs/CoreJS.swc</path-element>
-			<path-element>../../../../../libs/BindingJS.swc</path-element>
-			<path-element>../../../../../libs/GraphicsJS.swc</path-element>
-            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
-			<path-element>../../../../../libs/HTMLJS.swc</path-element>
-        <library-path/>
 
         <namespaces>
             <namespace>
@@ -61,11 +53,19 @@
                 <manifest>../../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
             </namespace>
         </namespaces>
-        
+
+        <library-path>
+			<path-element>../../../../../libs/CoreJS.swc</path-element>
+			<path-element>../../../../../libs/BindingJS.swc</path-element>
+			<path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+			<path-element>../../../../../libs/HTMLJS.swc</path-element>
+        </library-path>
+
         <source-path>
             <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>
         </source-path>
-        
+
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
