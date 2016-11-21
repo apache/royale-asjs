@@ -96,6 +96,7 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
+		<antcall target="MaterialDesignLite"/>
     </target>
     
     <target name="fonts">
@@ -138,6 +139,7 @@
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Language" target="clean"/>
+		<ant dir="${basedir}/projects/MaterialDesignLite" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
@@ -231,6 +233,10 @@
         <ant dir="${basedir}/projects/Language"/>
     </target>
 
+	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
+        <ant dir="${basedir}/projects/MaterialDesignLite"/>
+    </target>
+	
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
     </target>

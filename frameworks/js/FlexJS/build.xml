@@ -95,7 +95,8 @@
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
-        <antcall target="XML"/>
+        <antcall target="XML"/>	
+		<antcall target="MaterialDesignLite"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -134,6 +135,7 @@
         <ant dir="${basedir}/projects/HTML5JS" target="clean"/>
         <ant dir="${basedir}/projects/JQueryJS" target="clean"/>
         <ant dir="${basedir}/projects/LanguageJS" target="clean"/>
+		<ant dir="${basedir}/projects/MaterialDesignLiteJS" target="clean"/>
         <ant dir="${basedir}/projects/MobileJS" target="clean"/>
         <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
@@ -208,6 +210,10 @@
         <ant dir="${basedir}/projects/LanguageJS"/>
     </target>
 
+	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
+        <ant dir="${basedir}/projects/MaterialDesignLiteJS"/>
+    </target>
+	
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/MobileJS"/>
     </target>
