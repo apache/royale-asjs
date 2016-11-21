@@ -41,5 +41,8 @@
     <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
     <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
     <component id="List" class="org.apache.flex.mdl.List"/>
+    <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
+    <component id="Header" class="org.apache.flex.mdl.Header"/>
+    <component id="HeaderRow" class="org.apache.flex.mdl.HeaderRow"/>
 
 </componentPackage>

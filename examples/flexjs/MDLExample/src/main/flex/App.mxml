@@ -62,6 +62,18 @@ limitations under the License.
                     </mdl:Button>
                 </js:HContainer>
 
+                <mdl:NavigationLayout>
+                    <mdl:Header>
+                        <mdl:HeaderRow>
+                            <js:Span text="Title" className="mdl-layout-title"/>
+                        </mdl:HeaderRow>
+                    </mdl:Header>
+
+                    <mdl:Button fab="true" colored="true">
+                        <i class="material-icons">add</i>
+                    </mdl:Button>
+                </mdl:NavigationLayout>
+
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
                 <mdl:TextField id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
                     <js:beads>
