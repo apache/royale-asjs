@@ -126,7 +126,10 @@ package org.apache.flex.core
                     for each (var item:IChild in ai.items)
                     {
                         var parent:IParent = item.parent as IParent;
-                        parent.removeElement(item);
+						if (parent)
+						{
+                        	parent.removeElement(item);
+						}
                     }
                     if (parent is IContainer)
                         IContainer(parent).childrenAdded();
@@ -193,10 +196,14 @@ package org.apache.flex.core
                                 index++;
                             parent.addElementAt(item, index);
                         }
-                        else
-                        {
-                            parent.addElement(item);
-                        }
+						else if (ai.position == "first")
+						{
+							parent.addElementAt(item, 0);
+						}
+						else
+						{
+							parent.addElement(item);
+						}
                     }
                     if (parent is IContainer)
                         IContainer(parent).childrenAdded();
