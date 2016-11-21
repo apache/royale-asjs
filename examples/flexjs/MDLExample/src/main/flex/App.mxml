@@ -81,7 +81,7 @@ limitations under the License.
                 <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
                 <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
                 <mdl:RadioButton groupName="g1" text="Red"/>
-
+                <mdl:Switch text="Switch" ripple="true" selected="true"/>
                 <js:VContainer>
                     <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
                         <js:beads>
