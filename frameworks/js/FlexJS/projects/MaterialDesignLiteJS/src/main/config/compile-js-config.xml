@@ -17,71 +17,57 @@
 
 -->
 <flex-config>
-
-    <compiler>
-        <accessible>false</accessible>
-
-		<mxml>
-			<children-as-data>true</children-as-data>
-		</mxml>
-		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
-		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
-
-		<define>
-            <name>COMPILE::SWF</name>
-            <value>false</value>
-        </define>
-        <define>
-            <name>COMPILE::JS</name>
-            <value>true</value>
-        </define>
-		
-        <keep-as3-metadata>
-          <name>Bindable</name>
-          <name>Managed</name>
-          <name>ChangeEvent</name>
-          <name>NonCommittingChangeEvent</name>
-          <name>Transient</name>
-        </keep-as3-metadata>
-	  
-        <locale/>
-
-        <namespaces>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/mdl</uri>
-                <manifest>../../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
-            </namespace>
-        </namespaces>
-
-        <library-path>
-			<path-element>../../../../../libs/CoreJS.swc</path-element>
-			<path-element>../../../../../libs/BindingJS.swc</path-element>
-			<path-element>../../../../../libs/GraphicsJS.swc</path-element>
-            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
-			<path-element>../../../../../libs/HTMLJS.swc</path-element>
-        </library-path>
-
-        <source-path>
-            <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>
-        </source-path>
-
-        <warn-no-constructor>false</warn-no-constructor>
-    </compiler>
-    
-    <include-file>
-        <name>defaults.css</name>
-        <path>../../../../../../../projects/MaterialDesignLite/src/main/resources/defaults.css</path>
-    </include-file>
-
-    <include-lookup-only>true</include-lookup-only>
-    
-    <include-classes>
-        <class>MDLClasses</class>
-    </include-classes>
-    
-    <include-namespaces>
+  <compiler>
+    <accessible>false</accessible>
+    <mxml>
+      <children-as-data>true</children-as-data>
+    </mxml>
+    <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+    <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+    <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+    <define>
+      <name>COMPILE::SWF</name>
+      <value>false</value>
+    </define>
+    <define>
+      <name>COMPILE::JS</name>
+      <value>true</value>
+    </define>
+    <keep-as3-metadata>
+      <name>Bindable</name>
+      <name>Managed</name>
+      <name>ChangeEvent</name>
+      <name>NonCommittingChangeEvent</name>
+      <name>Transient</name>
+    </keep-as3-metadata>
+    <locale/>
+    <namespaces>
+      <namespace>
         <uri>library://ns.apache.org/flexjs/mdl</uri>
-    </include-namespaces>
-
+        <manifest>../../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
+      </namespace>
+    </namespaces>
+    <library-path>
+      <path-element>../../../../../libs/CoreJS.swc</path-element>
+      <path-element>../../../../../libs/BindingJS.swc</path-element>
+      <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+      <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+      <path-element>../../../../../libs/HTMLJS.swc</path-element>
+    </library-path>
+    <source-path>
+      <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>
+    </source-path>
+    <warn-no-constructor>false</warn-no-constructor>
+  </compiler>
+  <include-file>
+    <name>defaults.css</name>
+    <path>../../../../../../../projects/MaterialDesignLite/src/main/resources/defaults.css</path>
+  </include-file>
+  <include-lookup-only>true</include-lookup-only>
+  <include-classes>
+    <class>MDLClasses</class>
+  </include-classes>
+  <include-namespaces>
+    <uri>library://ns.apache.org/flexjs/mdl</uri>
+  </include-namespaces>
 </flex-config>
