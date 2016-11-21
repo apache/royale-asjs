@@ -20,20 +20,23 @@ package org.apache.flex.html.beads
 {
 	
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.effects.Effect;
+	import org.apache.flex.effects.IEffect;
 	import org.apache.flex.effects.Parallel;
 	import org.apache.flex.effects.Resize;
+	import org.apache.flex.effects.Tween;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ValueEvent;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
 	
 	public class EasyAccordionCollapseBead extends AccordionCollapseBead
 	{
-		private var _strand:IStrand;
-		private var lastSelectedIndex:int = -1;
+		private var newChild:UIBase;
+		private var oldChild:UIBase;
+		private var resizeNew:Resize;
+		private var resizeOld:Resize;
 		public function EasyAccordionCollapseBead()
 		{
 			super();
@@ -60,13 +63,13 @@ package org.apache.flex.html.beads
 		
 		override protected function selectedIndexChangedHandler(event:Event):void
 		{
-			var newChild:UIBase = view.dataGroup.getElementAt(host.selectedIndex) as UIBase;
-			var oldChild:UIBase = findPreviousNonCollapsed() as UIBase;
+			newChild = view.dataGroup.getElementAt(host.selectedIndex) as UIBase;
+			oldChild = findPreviousNonCollapsed() as UIBase;
 			if (!newChild || !oldChild)
 			{
 				return;
 			}
-			var effect:Effect = getResize(newChild, oldChild);
+			var effect:IEffect = getResize(newChild, oldChild);
 			effect.addEventListener(Effect.EFFECT_END, effectEndHandler);
 			layout.flexibleChild = newChild.id;
 			effect.play();
@@ -74,24 +77,45 @@ package org.apache.flex.html.beads
 		
 		private function get layout():IOneFlexibleChildLayout
 		{
-			return host.getBeadByType(IOneFlexibleChildLayout) as IOneFlexibleChildLayout;
+			return (view as AccordionView).layout;
 		}
 		
 		protected function effectEndHandler(event:Event):void
 		{
-			(event.target as IEventDispatcher).removeEventListener(Effect.EFFECT_END, effectEndHandler);
+			var parallel:Parallel = event.target as Parallel;
+			parallel.removeEventListener(Effect.EFFECT_END, effectEndHandler);
+			resizeNew.removeEventListener(Tween.TWEEN_UPDATE, newTweenUpdateHandler);
+			resizeOld.removeEventListener(Tween.TWEEN_UPDATE, oldTweenUpdateHandler);
+			resizeNew = null;
+			resizeOld = null;
+			newChild = null;
+			oldChild = null;
 			layout.layout();
 		}
 		
-		private function getResize(newChild:UIBase, oldChild:UIBase):Effect
+		private function getResize(newChild:UIBase, oldChild:UIBase):IEffect
 		{
-			var resizeNew:Resize = new Resize(newChild);
+			resizeNew = new Resize(newChild);
+//			resizeNew.duration = 3000;
+			resizeNew.addEventListener(Tween.TWEEN_UPDATE, newTweenUpdateHandler);
 			resizeNew.heightTo = oldChild.height;
-			var resizeOld:Resize = new Resize(oldChild);
+			resizeOld = new Resize(oldChild);
+//			resizeOld.duration = 3000;
+			resizeOld.addEventListener(Tween.TWEEN_UPDATE, oldTweenUpdateHandler);
 			resizeOld.heightTo = (oldChild as ICollapsible).collapsedHeight;
 			var parallel:Parallel = new Parallel();
 			parallel.children = [resizeNew, resizeOld];
 			return parallel;
+		}
+		
+		protected function oldTweenUpdateHandler(event:ValueEvent):void
+		{
+			oldChild.dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		protected function newTweenUpdateHandler(event:ValueEvent):void
+		{
+			newChild.dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }
