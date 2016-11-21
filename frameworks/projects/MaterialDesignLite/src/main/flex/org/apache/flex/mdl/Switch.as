@@ -18,158 +18,158 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+
     COMPILE::SWF
     {
-        import org.apache.flex.html.CheckBox;            
+        import org.apache.flex.html.ToggleTextButton;
     }
+
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.core.UIBase;
     }
 
     /**
-     *  The CheckBox class provides a MDL UI-like appearance for
-     *  a CheckBox.
-     *  
+     *  The Switch class provides a MDL UI-like appearance for
+     *  a Switch.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CheckBox extends org.apache.flex.html.CheckBox
-	{
+    public class Switch extends org.apache.flex.html.ToggleTextButton
+    {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function CheckBox()
-		{
-			super();
-		}
+        public function Switch()
+        {
+            super();
+        }
 
         protected var _ripple:Boolean = false;
         /**
-		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
+         *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get ripple():Boolean
         {
             return _ripple;
         }
+
         public function set ripple(value:Boolean):void
         {
             _ripple = value;
         }
-	}
-    
+    }
+
     COMPILE::JS
-    public class CheckBox extends UIBase
+    public class Switch extends UIBase
     {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function CheckBox()
-		{
-			super();
+        public function Switch()
+        {
+            super();
 
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
-        
-        private var input:HTMLInputElement;
-        private var checkbox:HTMLSpanElement;
+            className = "";
+        }
+
         private var label:HTMLLabelElement;
-        private var textNode:Text;
-        
+        private var input:HTMLInputElement;
+        private var span:HTMLSpanElement;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLLabelElement
          * @flexjsignorecoercion HTMLInputElement
          * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-checkbox mdl-js-checkbox";
+            typeNames = "mdl-switch mdl-js-switch";
 
-            label = document.createElement('label') as HTMLLabelElement;
+            label = document.createElement("label") as HTMLLabelElement;
             element = label as WrappedHTMLElement;
-            
-            input = document.createElement('input') as HTMLInputElement;
-            input.type = 'checkbox';    
-            input.className = 'mdl-checkbox__input';
+
+            input = document.createElement("input") as HTMLInputElement;
+            input.type = "checkbox";
+            input.className = "mdl-switch__input";
             label.appendChild(input);
-            
-            checkbox = document.createElement('span') as HTMLSpanElement;
-            checkbox.className = 'mdl-checkbox__label';
-            label.appendChild(checkbox);
-            
-            textNode = document.createTextNode('') as Text;
-            checkbox.appendChild(textNode);
-            
+
+            span = document.createElement("span") as HTMLSpanElement;
+            span.className = "mdl-switch_label";
+
+            label.appendChild(span);
+
             positioner = element;
+
             (input as WrappedHTMLElement).flexjs_wrapper = this;
-            (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
+            (span as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
-            
+
             return element;
-        };
+        }
 
         protected var _ripple:Boolean = false;
 
         /**
-		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+         *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
          *  Applies ripple click effect. May be used in combination with any other classes
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get ripple():Boolean
         {
             return _ripple;
         }
+
         public function set ripple(value:Boolean):void
         {
             _ripple = value;
 
             className += (_ripple ? " mdl-js-ripple-effect" : "");
         }
-        
+
         public function get text():String
         {
-            return textNode.nodeValue;
+            return span.textContent;
         }
-        
+
         public function set text(value:String):void
         {
-            textNode.nodeValue = value;
+            span.textContent = value;
         }
-        
+
         public function get selected():Boolean
         {
             return input.checked;
         }
-        
+
         public function set selected(value:Boolean):void
         {
             input.checked = value;
         }
     }
-
 }
