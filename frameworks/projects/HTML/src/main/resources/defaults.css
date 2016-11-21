@@ -83,6 +83,11 @@ ButtonBarButtonItemRenderer
     height: 30;
 }
 
+ComboBox
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
+}
+
 Container
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
@@ -474,7 +479,6 @@ CloseButton
 
 ComboBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
     IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ComboBoxController");
     IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");

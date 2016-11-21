@@ -117,15 +117,17 @@ package org.apache.flex.html
 			IComboBoxModel(model).selectedItem = value;
 		}
 		
+		COMPILE::JS {
+			private var input: WrappedHTMLElement;
+			private var button: WrappedHTMLElement;
+		}
+		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {
-            var button:WrappedHTMLElement;
-            var input:WrappedHTMLElement;
-            
+        {            
             element = document.createElement('div') as WrappedHTMLElement;
             
             input = document.createElement('input') as WrappedHTMLElement;
@@ -164,6 +166,7 @@ package org.apache.flex.html
         /**
          * @param event The event.
          * @flexjsignorecoercion HTMLSelectElement
+		 * @flexjsignorecoercion HTMLInputElement
          */
         COMPILE::JS
         private function selectChanged(event:Event):void
@@ -173,6 +176,7 @@ package org.apache.flex.html
             select = event.currentTarget as HTMLSelectElement;
             
             selectedItem = select.options[select.selectedIndex].value;
+			(input as HTMLInputElement).value = selectedItem.toString();
             
             popup.parentNode.removeChild(popup);
             popup = null;

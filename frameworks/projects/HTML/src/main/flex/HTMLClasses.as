@@ -95,10 +95,7 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
     import org.apache.flex.html.beads.models.RangeModel; RangeModel;
     import org.apache.flex.html.beads.models.RangeModelExtended; RangeModelExtended;
-	COMPILE::SWF
-	{
-	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
-	}
+	import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.models.ImageModel; ImageModel;
@@ -141,7 +138,7 @@ internal class HTMLClasses
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
-	
+
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
@@ -192,7 +189,7 @@ internal class HTMLClasses
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
 	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
 	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
-	
+
 	import org.apache.flex.svg.GraphicShape; GraphicShape;
 	import org.apache.flex.svg.Rect; Rect;
 	import org.apache.flex.svg.Ellipse; Ellipse;
@@ -204,7 +201,7 @@ internal class HTMLClasses
 	import org.apache.flex.svg.Text; Text;
 	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 
-	
+
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.HRuleView; HRuleView;
