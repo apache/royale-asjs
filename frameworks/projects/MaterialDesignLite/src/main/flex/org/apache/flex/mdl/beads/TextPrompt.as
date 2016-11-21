@@ -31,11 +31,11 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-    import org.apache.flex.mdl.TextInput;
+    import org.apache.flex.mdl.TextField;
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
-	 *  any TextInput control. The bead places a string into the input field
+	 *  any TextField control. The bead places a string into the input field
 	 *  when there is no value associated with the text property.
 	 *  
 	 *  @langversion 3.0
@@ -116,7 +116,7 @@ package org.apache.flex.mdl.beads
 			}
 			COMPILE::JS
 			{
-				var mdlTi:TextInput = value as TextInput;
+				var mdlTi:TextField = value as TextField;
                 mdlTi.textNode.nodeValue = prompt;
 				//var e:HTMLInputElement = host.element as HTMLInputElement;
 				//e.placeholder = prompt;

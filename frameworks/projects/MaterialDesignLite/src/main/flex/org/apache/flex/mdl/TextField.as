@@ -28,7 +28,7 @@ package org.apache.flex.mdl
     }
     
     /**
-     *  The TextInput class provides a Material Design Library UI-like appearance for
+     *  The TextField class provides a Material Design Library UI-like appearance for
      *  a TextInput.
      *  
      *  @langversion 3.0
@@ -36,7 +36,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class TextInput extends org.apache.flex.html.TextInput
+	public class TextField extends org.apache.flex.html.TextInput
 	{
         /**
          *  Constructor.
@@ -46,7 +46,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function TextInput()
+		public function TextField()
 		{
 			super();
 

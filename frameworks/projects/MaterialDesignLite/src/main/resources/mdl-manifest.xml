@@ -22,7 +22,7 @@
 <componentPackage>
 
     <component id="Button" class="org.apache.flex.mdl.Button"/>
-    <component id="TextInput" class="org.apache.flex.mdl.TextInput"/>
+    <component id="TextField" class="org.apache.flex.mdl.TextField"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.flex.mdl.Switch"/>

@@ -63,16 +63,16 @@ limitations under the License.
                 </js:HContainer>
 
                 <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-                <mdl:TextInput id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
+                <mdl:TextField id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
                     <js:beads>
                         <mdl:TextPrompt prompt="Normal Text Field..."/>
                     </js:beads>
-                </mdl:TextInput>
-                <mdl:TextInput floatingLabel= "true">
+                </mdl:TextField>
+                <mdl:TextField floatingLabel= "true">
                     <js:beads>
                         <mdl:TextPrompt prompt="Floating Label"/>
                     </js:beads>
-                </mdl:TextInput>
+                </mdl:TextField>
 
                 <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                 <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
@@ -109,7 +109,7 @@ limitations under the License.
                     
                 </js:VContainer>
 
-                <mdl:List id="list" width="130" labelField="label">
+                <!--<mdl:List id="list" width="130" labelField="label">
                     <js:dataProvider>
                         <fx:Array>
                             <fx:Object label="Install SIM Card"/>
@@ -117,7 +117,7 @@ limitations under the License.
                             <fx:Object label="Install SIM Card 2"/>
                         </fx:Array>
                     </js:dataProvider>
-                </mdl:List>
+                </mdl:List>-->
 
 
                 <js:HContainer>
