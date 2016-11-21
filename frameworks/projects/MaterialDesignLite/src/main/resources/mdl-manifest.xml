@@ -40,5 +40,6 @@
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
     <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
     <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
+    <component id="List" class="org.apache.flex.mdl.List"/>
 
 </componentPackage>

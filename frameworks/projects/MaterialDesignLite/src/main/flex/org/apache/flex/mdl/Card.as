@@ -82,7 +82,7 @@ package org.apache.flex.mdl
 		
 		protected var _shadow:Number = 0;
         /**
-		 *  A boolean flag to activate "mdl-shadow--4dp" effect selector.
+		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
 		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
 		 *
 		 *  @langversion 3.0

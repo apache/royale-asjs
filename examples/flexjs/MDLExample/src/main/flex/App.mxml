@@ -109,6 +109,17 @@ limitations under the License.
                     
                 </js:VContainer>
 
+                <mdl:List id="list" width="130" labelField="label">
+                    <js:dataProvider>
+                        <fx:Array>
+                            <fx:Object label="Install SIM Card"/>
+                            <fx:Object label="Install SIM Card 1"/>
+                            <fx:Object label="Install SIM Card 2"/>
+                        </fx:Array>
+                    </js:dataProvider>
+                </mdl:List>
+
+
                 <js:HContainer>
                     <mdl:Card width="512" shadow="2" style="margin:10;">
                         <mdl:CardTitle className="cardTitle">
