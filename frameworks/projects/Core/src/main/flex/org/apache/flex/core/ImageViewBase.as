@@ -209,7 +209,10 @@ package org.apache.flex.core
         private function loadHandler(event:Object):void
         {
             var host:IUIBase = IUIBase(_strand);
-            IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
+			if (host.parent)
+			{
+            	IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
+			}
         }
         
         /**
