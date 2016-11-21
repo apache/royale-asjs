@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.controllers
 {
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.supportClasses.AccordionItemRenderer;
@@ -46,6 +47,15 @@ package org.apache.flex.html.beads.controllers
 		{
 			_strand = value;
 			accordionItemRenderer.titleBar.addEventListener(MouseEvent.CLICK, titleBarClickHandler);
+			accordionItemRenderer.titleBar.addEventListener(MouseEvent.ROLL_OVER, titleRollHandler);
+			accordionItemRenderer.titleBar.addEventListener(MouseEvent.ROLL_OUT, titleRollHandler);
+		}
+		
+		protected function titleRollHandler(event:MouseEvent):void
+		{
+			var type:String = event.type == MouseEvent.ROLL_OVER ? "itemRollOver" : "itemRollOut";
+			var newEvent:Event = new Event(type);
+			accordionItemRenderer.dispatchEvent(newEvent);
 		}
 		
 		protected function titleBarClickHandler(event:MouseEvent):void

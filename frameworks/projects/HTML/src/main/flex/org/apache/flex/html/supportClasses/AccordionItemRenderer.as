@@ -30,6 +30,9 @@ package org.apache.flex.html.supportClasses
 	{
 		private var _index:int;
 		private var _selected:Boolean;
+		private var _hovered:Boolean;
+		private var _down:Boolean;
+		private var value:Object;
 		
 		public function AccordionItemRenderer()
 		{
@@ -70,25 +73,32 @@ package org.apache.flex.html.supportClasses
 				
 		public function get hovered():Boolean
 		{
-			return false;
+			return _hovered;
 		}
 		
 		public function set hovered(value:Boolean):void
 		{
+			_hovered = value;
 		}
 		
 		public function get down():Boolean
 		{
-			return false;
+			return _down;
 		}
 		
 		public function set down(value:Boolean):void
 		{
+			_down = value;
 		}
 		
 		public function get data():Object
 		{
 			return numElements > 0 ? getElementAt(0) : null;
+		}
+		
+		override public function set height(value:Number):void
+		{
+			super.height = value;
 		}
 		
 		public function set data(value:Object):void
