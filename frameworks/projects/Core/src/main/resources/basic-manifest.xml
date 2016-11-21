@@ -26,6 +26,7 @@
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
+    <component id="SimpleStatesImpl" class="org.apache.flex.core.SimpleStatesImpl"/>
     <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
     <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
 
