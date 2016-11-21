@@ -116,7 +116,7 @@ package org.apache.flex.mdl
             label.appendChild(input);
 
             span = document.createElement("span") as HTMLSpanElement;
-            span.className = "mdl-switch_label";
+            span.className = "mdl-switch__label";
 
             label.appendChild(span);
 
