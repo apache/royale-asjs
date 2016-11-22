@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.mdl
 {
-	import org.apache.flex.core.UIBase;
-
+	import org.apache.flex.html.A;
+    
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-
+    
 	/**
-	 *  The Span class represents an HTML <span> element
-     *  
-	 *  
+	 *  The NavigationLink class is a Container component capable of parenting other
+	 *  components 
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Span extends UIBase
+	public class NavigationLink extends A
 	{
 		/**
 		 *  constructor.
@@ -44,69 +44,33 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Span()
+		public function NavigationLink()
 		{
 			super();
-		}
-		
-        private var _text:String = "";
 
-        /**
-         *  The text of the heading
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLSpanElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var span:HTMLElement = document.createElement('span') as HTMLSpanElement;
+			typeNames = "mdl-navigation__link";
+
+			var a:HTMLElement = document.createElement('a') as HTMLElement;
+            a.setAttribute('href', href);
             
             textNode = document.createTextNode('') as Text;
-            span.appendChild(textNode); 
+            a.appendChild(textNode); 
 
-			element = span as WrappedHTMLElement;
+			element = a as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
-            className = typeNames = 'Span';
-
             return element;
         }
-    }
+	}
 }

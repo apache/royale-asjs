@@ -20,6 +20,7 @@
 */
 
 @namespace "library://ns.apache.org/flexjs/basic";
+@namespace mdl "library://ns.apache.org/flexjs/mdl";
 
 .flexjs *, . flexjs *:before, . flexjs *:after {
     -moz-box-sizing: border-box;
@@ -27,7 +28,7 @@
     box-sizing: border-box;
 }
 
-Application
+.page-content
 {
 	padding: 10px;
 	margin: 10px;
@@ -38,6 +39,22 @@ Image
 	vertical-align: top;
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+}
+
+mdl|List
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
+    IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
+	border-style: solid;
+	border-color: #222222;
 }
 
 .cardTitle
@@ -52,4 +69,9 @@ Image
 	color: #fff;
 	height: 176px;
 	background: url('assets/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+
+.layoutTransparent {
+  background: url('assets/transparent.jpg') center / cover;
+  color: white;
 }
