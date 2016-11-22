@@ -40,7 +40,7 @@ Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
-.mdl-card__title {
+.welcomeCard__title {
   color: #fff;
   height: 176px;
   background: url('assets/welcome_card.jpg') center / cover;
