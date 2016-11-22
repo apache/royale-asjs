@@ -187,8 +187,8 @@ limitations under the License.
                             </js:VContainer>
 
                             <mdl:Card width="512" shadow="2" style="margin:10;">
-                                <mdl:CardTitle className="cardTitle">
-                                    <js:H2 text="Welcome" className="mdl-card__title-text"/>
+                                <mdl:CardTitle>
+                                    <mdl:CardTitleText text="Welcome"/>
                                 </mdl:CardTitle>
                                 <mdl:CardSupportingText>
                                     <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>

@@ -35,6 +35,7 @@
     <component id="Card" class="org.apache.flex.mdl.Card"/>
     <component id="CardInner" class="org.apache.flex.mdl.supportClasses.CardInner"/>
     <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
+    <component id="CardTitleText" class="org.apache.flex.mdl.CardTitleText"/>
     <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
     <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
