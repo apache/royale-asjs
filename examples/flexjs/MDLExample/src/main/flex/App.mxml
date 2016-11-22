@@ -140,6 +140,16 @@ limitations under the License.
                                 </js:beads>
                             </mdl:TextField>
 
+                            <mdl:List labelField="label">
+                                <js:dataProvider>
+                                    <fx:Array>
+                                        <fx:Object label="Install SIM Card"/>
+                                        <fx:Object label="Install SIM Card 1"/>
+                                        <fx:Object label="Install SIM Card 2"/>
+                                    </fx:Array>
+                                </js:dataProvider>
+                            </mdl:List>
+
                             <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
                             <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
                             <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
@@ -217,15 +227,7 @@ limitations under the License.
                     
             </mdl:NavigationLayout>
 
-            <!--<mdl:List id="list" width="130" labelField="label">
-                <js:dataProvider>
-                    <fx:Array>
-                        <fx:Object label="Install SIM Card"/>
-                        <fx:Object label="Install SIM Card 1"/>
-                        <fx:Object label="Install SIM Card 2"/>
-                    </fx:Array>
-                </js:dataProvider>
-            </mdl:List>-->
+            
 
 
             <js:Form action="#"> 
