@@ -18,53 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.html.List;
-	
+    import org.apache.flex.html.List;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.ListView;
-        import org.apache.flex.html.supportClasses.DataGroup;
+        import goog.events;
+        import org.apache.flex.core.WrappedHTMLElement;            
     }
-	
+        
 	/**
-	 *  Indicates that the initialization of the list is complete.
+	 *  The SimpleList class is a component that displays data in a vertical column. This
+	 *  component differs from org.apache.flex.html.List in that it displays 
+	 *  only string values and maps to the &lt;select&gt; HTML element.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="initComplete", type="org.apache.flex.events.Event")]
-	
-	/**
-	 * The change event is dispatched whenever the list's selection changes.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-    [Event(name="change", type="org.apache.flex.events.Event")]
-    
-	/**
-	 *  The List class is a component that displays multiple data items. The List uses
-	 *  the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
-	 *  so forth.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
-	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
-	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class List extends org.apache.flex.html.List
+	public class List extends org.apache.flex.html.SimpleList
 	{
 		/**
 		 *  constructor.
@@ -80,38 +51,35 @@ package org.apache.flex.mdl
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
-		
+        
         /**
-         * @flexjsignorecoercion org.apache.flex.html.beads.ListView 
-         * @flexjsignorecoercion org.apache.flex.html.supportClasses.DataGroup 
-         */
-        /*COMPILE::JS
-        override public function internalChildren():Array
-        {
-            var listView:ListView = getBeadByType(ListView) as ListView;
-            var dg:DataGroup = listView.dataGroup as DataGroup;
-            var renderers:Array = dg.internalChildren();
-            return renderers;
-        };*/
-
-        /**
-         * @return The actual element to be parented.
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLSelectElement
          */
-		COMPILE::JS
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-list";
             
             element = document.createElement('ul') as WrappedHTMLElement;
             element.className = typeNames;
+            //(element as HTMLSelectElement).size = 5;
+            //goog.events.listen(element, 'change',changeHandler);
             
             positioner = element;
             
             element.flexjs_wrapper = this;
             
             return positioner;
+        }   
+        
+        /**
+         * @flexjsignorecoercion HTMLSelectElement
+         */
+        COMPILE::JS
+        override protected function changeHandler(event:Event):void
+        {
+            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
         }
-   	}
+	}
 }

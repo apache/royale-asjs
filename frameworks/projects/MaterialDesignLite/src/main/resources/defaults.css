@@ -33,11 +33,11 @@ Slider
 List
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
+    IBeadView:  ClassReference("org.apache.flex.mdl.beads.ListView");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
     IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
