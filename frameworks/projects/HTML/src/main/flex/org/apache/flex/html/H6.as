@@ -26,7 +26,7 @@ package org.apache.flex.html
     }
 
 	/**
-	 *  The H6 class represents an HTML <h1> element
+	 *  The H6 class represents an HTML <h6> element
      *  
 	 *  
 	 *  @langversion 3.0
@@ -84,7 +84,7 @@ package org.apache.flex.html
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

@@ -84,7 +84,7 @@ package org.apache.flex.html
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

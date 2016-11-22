@@ -26,7 +26,7 @@ package org.apache.flex.html
     }
 
 	/**
-	 *  The H3 class represents an HTML <h1> element
+	 *  The H3 class represents an HTML <h3> element
      *  
 	 *  
 	 *  @langversion 3.0
@@ -84,7 +84,7 @@ package org.apache.flex.html
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
