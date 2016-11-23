@@ -55,5 +55,6 @@
     <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
     <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
     <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
+    <component id="Grid" class="org.apache.flex.mdl.Grid"/>
 
 </componentPackage>
