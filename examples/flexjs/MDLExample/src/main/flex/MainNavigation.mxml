@@ -28,55 +28,60 @@ limitations under the License.
             <mdl:LayoutTitle text="Material Design Layout"/>
             <mdl:Spacer/>
             <mdl:Navigation>
-                <mdl:NavigationLink text="link 1"/>
-                <mdl:NavigationLink text="link 2"/>
-                <mdl:NavigationLink text="link 3"/>
-                <mdl:NavigationLink text="link 4"/>
+                <mdl:NavigationLink text="link 1" href="#"/>
+                <mdl:NavigationLink text="link 2" href="#"/>
+                <mdl:NavigationLink text="link 3" href="#"/>
+                <mdl:NavigationLink text="link 4" href="#"/>
             </mdl:Navigation>
         </mdl:HeaderRow>
+        <mdl:TabBar ripple="true">
+            <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
+            <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
+            <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
+            <mdl:TabBarButton text="Others" href="#others_panel"/>
+        </mdl:TabBar>
     </mdl:Header>
     
     <mdl:Drawer>
         <mdl:LayoutTitle text="Drawer"/>
         <mdl:Navigation>
-            <mdl:NavigationLink text="link 1"/>
-            <mdl:NavigationLink text="link 2"/>
-            <mdl:NavigationLink text="link 3"/>
-            <mdl:NavigationLink text="link 4"/>
+            <mdl:NavigationLink text="link 1" href="#"/>
+            <mdl:NavigationLink text="link 2" href="#"/>
+            <mdl:NavigationLink text="link 3" href="#"/>
+            <mdl:NavigationLink text="link 4" href="#"/>
         </mdl:Navigation>
     </mdl:Drawer>
     
     <mdl:NavigationLayoutContent>
-        <js:Container className="page-content">
-            
+        <mdl:TabBarPanel id="buttons_panel">
             <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
-            <js:HContainer>
-                <mdl:Button className="mdlbtn"/>
+            <mdl:Button className="mdlbtn"/>
 
-                <!-- Fab button -->
-                <mdl:Button fab="true" colored="true">
-                    <i class="material-icons">add</i>
-                </mdl:Button>
+            <!-- Fab button -->
+            <mdl:Button fab="true" colored="true">
+                <i class="material-icons">add</i>
+            </mdl:Button>
 
-                <!-- Fab with Ripple -->
-                <mdl:Button fab="true" ripple="true">
-                    <i class="material-icons md-48">face</i>
-                </mdl:Button>
+            <!-- Fab with Ripple -->
+            <mdl:Button fab="true" ripple="true">
+                <i class="material-icons md-48">face</i>
+            </mdl:Button>
 
-                <!-- Raised button -->
-                <mdl:Button text="COLORED" raised="true" colored="true"/>
+            <!-- Raised button -->
+            <mdl:Button text="COLORED" raised="true" colored="true"/>
 
-                <!-- Raised button with ripple -->
-                <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
+            <!-- Raised button with ripple -->
+            <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
 
-                <!-- Raised disabled button-->
-                <mdl:Button text="DISABLED" raised="true">
-                    <js:beads>
-                        <mdl:Disabled/>
-                    </js:beads>
-                </mdl:Button>
-            </js:HContainer>
-            
+            <!-- Raised disabled button-->
+            <mdl:Button text="DISABLED" raised="true">
+                <js:beads>
+                    <mdl:Disabled/>
+                </js:beads>
+            </mdl:Button>
+        </mdl:TabBarPanel>
+
+        <mdl:TabBarPanel id="textfield_panel">
             <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
             <mdl:TextField id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
                 <js:beads>
@@ -88,53 +93,9 @@ limitations under the License.
                     <mdl:TextPrompt prompt="Floating Label"/>
                 </js:beads>
             </mdl:TextField>
+        </mdl:TabBarPanel>
 
-            <mdl:List labelField="label">
-                <js:dataProvider>
-                    <fx:Array>
-                        <fx:Object label="Install SIM Card"/>
-                        <fx:Object label="Install SIM Card 1"/>
-                        <fx:Object label="Install SIM Card 2"/>
-                    </fx:Array>
-                </js:dataProvider>
-            </mdl:List>
-
-            <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-            <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
-            <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
-            
-            <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
-            <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
-            <mdl:RadioButton groupName="g1" text="Red"/>
-            <mdl:Switch text="Switch" ripple="true" selected="true"/>
-
-            <js:VContainer>
-                <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
-                    <js:beads>
-                        <mdl:Badge dataBadge="1" overlap="true"/>
-                    </js:beads>
-                </js:Div>
-
-                <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
-                    <js:beads>
-                        <mdl:Badge dataBadge="4"/>
-                    </js:beads>
-                </js:Span>
-
-                <js:A text="Badge No Bg" href="http://flex.apache.org">
-                    <js:beads>
-                        <mdl:Badge dataBadge="5" noBackground="true"/>
-                    </js:beads>
-                </js:A>
-
-                <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
-                    <js:beads>
-                        <mdl:Badge dataBadge="1"/>
-                    </js:beads>
-                </js:A>
-                
-            </js:VContainer>
-
+        <mdl:TabBarPanel id="cards_panel" isActive="true">
             <mdl:Card width="512" shadow="2" style="margin:10;">
                 <mdl:CardTitle className="welcomeCard__title">
                     <mdl:CardTitleText text="Welcome"/>
@@ -151,25 +112,7 @@ limitations under the License.
                     </mdl:Button>
                 </mdl:CardMenu>
             </mdl:Card>
-
-            <mdl:Button id="menu_btn" icon="true">
-                <i class="material-icons">more_vert</i>
-            </mdl:Button>
-            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
-                <mdl:MenuItem text="Some Action"/>
-                <mdl:MenuItem text="Another Action"/>
-                <mdl:MenuItem text="Action Disabled">
-                    <js:beads>
-                        <mdl:Disabled/>
-                    </js:beads>
-                </mdl:MenuItem>
-                <mdl:MenuItem text="More Action" divider="true"/>
-                <mdl:MenuItem text="Separated Action"/>
-            </mdl:Menu>
             
-            <mdl:Slider className="mdlsl_example"/>
-            <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
-
             <mdl:Card width="320" height="320" shadow="2" style="margin:10;">
                 <mdl:CardTitle className="dogTitle" expand="true">
                     <mdl:CardTitleText text="Update"/>
@@ -191,7 +134,74 @@ limitations under the License.
                     <js:Span text="Image.jpg" style="color: #fff; font-size: 14px; font-weight: 500;"/>
                 </mdl:CardActions>
             </mdl:Card>
+        </mdl:TabBarPanel>
 
+        <mdl:TabBarPanel id="others_panel">
+            
+            <mdl:List labelField="label">
+                <js:dataProvider>
+                    <fx:Array>
+                        <fx:Object label="Install SIM Card"/>
+                        <fx:Object label="Install SIM Card 1"/>
+                        <fx:Object label="Install SIM Card 2"/>
+                    </fx:Array>
+                </js:dataProvider>
+            </mdl:List>
+
+            <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
+            <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
+            <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
+            
+            <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
+            <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
+            <mdl:RadioButton groupName="g1" text="Red"/>
+            <mdl:Switch text="Switch" ripple="true" selected="true"/>
+
+            <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
+                <js:beads>
+                    <mdl:Badge dataBadge="1" overlap="true"/>
+                </js:beads>
+            </js:Div>
+
+            <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
+                <js:beads>
+                    <mdl:Badge dataBadge="4"/>
+                </js:beads>
+            </js:Span>
+
+            <js:A text="Badge No Bg" href="http://flex.apache.org">
+                <js:beads>
+                    <mdl:Badge dataBadge="5" noBackground="true"/>
+                </js:beads>
+            </js:A>
+
+            <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
+                <js:beads>
+                    <mdl:Badge dataBadge="1"/>
+                </js:beads>
+            </js:A>
+
+            <mdl:Button id="menu_btn" icon="true">
+                <i class="material-icons">more_vert</i>
+            </mdl:Button>
+            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
+                <mdl:MenuItem text="Some Action"/>
+                <mdl:MenuItem text="Another Action"/>
+                <mdl:MenuItem text="Action Disabled">
+                    <js:beads>
+                        <mdl:Disabled/>
+                    </js:beads>
+                </mdl:MenuItem>
+                <mdl:MenuItem text="More Action" divider="true"/>
+                <mdl:MenuItem text="Separated Action"/>
+            </mdl:Menu>
+            
+            <mdl:Slider className="mdlsl_example"/>
+            <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
+        </mdl:TabBarPanel>
+        
+        <js:Container className="page-content">
+            
             <!--<js:Form action="#"> 
             </js:Form>-->
         </js:Container>

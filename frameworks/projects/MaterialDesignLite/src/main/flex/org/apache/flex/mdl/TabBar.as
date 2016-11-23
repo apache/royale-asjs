@@ -26,7 +26,7 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Header class is a Container component capable of parenting other
+	 *  The TabBar class is a Container component capable of parenting other
 	 *  components 
 	 *
 	 *  @langversion 3.0
@@ -34,7 +34,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Header extends ContainerBase
+	public class TabBar extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -44,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Header()
+		public function TabBar()
 		{
 			super();
 
@@ -57,9 +57,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout__header";
+			typeNames = "mdl-layout__tab-bar";
 
-            element = document.createElement('header') as WrappedHTMLElement;
+            element = document.createElement('div') as WrappedHTMLElement;
             element.className = typeNames;
             
 			positioner = element;
@@ -72,68 +72,26 @@ package org.apache.flex.mdl
 
             return element;
         }
-		
-		protected var _transparent:Boolean;
+
+		protected var _ripple:Boolean = false;
         /**
-		 *  A boolean flag to activate "mdl-transparent--Xdp" effect selector.
-		 *  Assigns variable transparent depths (0, 2, 3, 4, 6, 8, or 16) to card
-		 *
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *  Applies ripple click effect. May be used in combination with any other classes
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        public function get transparent():Boolean
+        public function get ripple():Boolean
         {
-            return _transparent;
+            return _ripple;
         }
-        public function set transparent(value:Boolean):void
+        public function set ripple(value:Boolean):void
         {
-			_transparent = value;
+            _ripple = value;
 
-			className += (_transparent ? " mdl-layout__header--transparent" : "");
-        }
-
-		protected var _scrollable:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-layout__header--scroll" effect selector.
-		 *  Optional. Makes the header scroll with the content
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get scrollable():Boolean
-        {
-            return _scrollable;
-        }
-        public function set scrollable(value:Boolean):void
-        {
-			_scrollable = value;
-
-			className += (_scrollable ? " mdl-layout__header--scroll" : "");
-        }
-
-		protected var _waterfall:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-layout__header--waterfall" effect selector.
-		 *  Optional. Allows a "waterfall" effect with multiple header lines
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get waterfall():Boolean
-        {
-            return _waterfall;
-        }
-        public function set waterfall(value:Boolean):void
-        {
-			_waterfall = value;
-
-			className += (_waterfall ? " mdl-layout__header--waterfall" : "");
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
         }
 	}
 }

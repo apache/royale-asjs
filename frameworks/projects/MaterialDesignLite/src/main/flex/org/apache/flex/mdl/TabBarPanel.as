@@ -26,15 +26,18 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Header class is a Container component capable of parenting other
-	 *  components 
-	 *
+	 *  The TabBarPanel class is a Container component capable of parenting other
+	 *  four components
+	 *  
+	 *  @see PanelWithControlBar
+	 *  @see ControlBar
+	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Header extends ContainerBase
+	public class TabBarPanel extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -44,7 +47,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Header()
+		public function TabBarPanel()
 		{
 			super();
 
@@ -57,9 +60,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout__header";
+			typeNames = "mdl-layout__tab-panel";
 
-            element = document.createElement('header') as WrappedHTMLElement;
+            element = document.createElement('section') as WrappedHTMLElement;
             element.className = typeNames;
             
 			positioner = element;
@@ -72,68 +75,30 @@ package org.apache.flex.mdl
 
             return element;
         }
-		
-		protected var _transparent:Boolean;
+
+		private var _isActive:Boolean;
+
         /**
-		 *  A boolean flag to activate "mdl-transparent--Xdp" effect selector.
-		 *  Assigns variable transparent depths (0, 2, 3, 4, 6, 8, or 16) to card
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get transparent():Boolean
-        {
-            return _transparent;
-        }
-        public function set transparent(value:Boolean):void
-        {
-			_transparent = value;
+         *  Marks this Button as the active one in the TabBar
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function get isActive():Boolean
+		{
+            return _isActive;   
+		}
 
-			className += (_transparent ? " mdl-layout__header--transparent" : "");
-        }
-
-		protected var _scrollable:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-layout__header--scroll" effect selector.
-		 *  Optional. Makes the header scroll with the content
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get scrollable():Boolean
-        {
-            return _scrollable;
-        }
-        public function set scrollable(value:Boolean):void
-        {
-			_scrollable = value;
-
-			className += (_scrollable ? " mdl-layout__header--scroll" : "");
-        }
-
-		protected var _waterfall:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-layout__header--waterfall" effect selector.
-		 *  Optional. Allows a "waterfall" effect with multiple header lines
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get waterfall():Boolean
-        {
-            return _waterfall;
-        }
-        public function set waterfall(value:Boolean):void
-        {
-			_waterfall = value;
-
-			className += (_waterfall ? " mdl-layout__header--waterfall" : "");
-        }
+		public function set isActive(value:Boolean):void
+		{
+            _isActive = value;
+            
+            COMPILE::JS
+            {
+				className += (_isActive ? " is-active" : "");
+            }
+		}
 	}
 }

@@ -52,6 +52,8 @@
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
     <component id="Drawer" class="org.apache.flex.mdl.Drawer"/>
     <component id="NavigationLayoutContent" class="org.apache.flex.mdl.NavigationLayoutContent"/>
-    
+    <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
+    <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
+    <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
 
 </componentPackage>
