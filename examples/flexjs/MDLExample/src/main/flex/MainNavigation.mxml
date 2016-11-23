@@ -38,7 +38,8 @@ limitations under the License.
             <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
             <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
-            <mdl:TabBarButton text="Others" href="#others_panel"/>
+            <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
+            <mdl:TabBarButton text="Other" href="#others_panel"/>
         </mdl:TabBar>
     </mdl:Header>
     
@@ -56,49 +57,11 @@ limitations under the License.
         
         <local:Cards id="cards_panel" isActive="true"/>
         
-        <mdl:TabBarPanel id="buttons_panel">
-            <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
-            <mdl:Button className="mdlbtn"/>
+        <local:Buttons id="buttons_panel"/>
 
-            <!-- Fab button -->
-            <mdl:Button fab="true" colored="true">
-                <i class="material-icons">add</i>
-            </mdl:Button>
+        <local:TextFields id="textfield_panel"/>
 
-            <!-- Fab with Ripple -->
-            <mdl:Button fab="true" ripple="true">
-                <i class="material-icons md-48">face</i>
-            </mdl:Button>
-
-            <!-- Raised button -->
-            <mdl:Button text="COLORED" raised="true" colored="true"/>
-
-            <!-- Raised button with ripple -->
-            <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
-
-            <!-- Raised disabled button-->
-            <mdl:Button text="DISABLED" raised="true">
-                <js:beads>
-                    <mdl:Disabled/>
-                </js:beads>
-            </mdl:Button>
-        </mdl:TabBarPanel>
-
-        <mdl:TabBarPanel id="textfield_panel">
-            <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-            <mdl:TextField id="mdlti" change="mdlchk.text = mdlti.text" className="mdlti_example">
-                <js:beads>
-                    <mdl:TextPrompt prompt="Normal Text Field..."/>
-                </js:beads>
-            </mdl:TextField>
-            <mdl:TextField floatingLabel= "true">
-                <js:beads>
-                    <mdl:TextPrompt prompt="Floating Label"/>
-                </js:beads>
-            </mdl:TextField>
-        </mdl:TabBarPanel>
-
-        
+        <local:Toggles id="toggles_panel"/>
 
         <mdl:TabBarPanel id="others_panel">
             
@@ -111,15 +74,6 @@ limitations under the License.
                     </fx:Array>
                 </js:dataProvider>
             </mdl:List>
-
-            <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-            <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
-            <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
-            
-            <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
-            <mdl:RadioButton groupName="g1" text="Ripple" ripple="true"/>
-            <mdl:RadioButton groupName="g1" text="Red"/>
-            <mdl:Switch text="Switch" ripple="true" selected="true"/>
 
             <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
                 <js:beads>
