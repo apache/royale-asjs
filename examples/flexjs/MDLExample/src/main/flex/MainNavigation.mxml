@@ -39,6 +39,7 @@ limitations under the License.
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
             <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
             <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
+            <mdl:TabBarButton text="Lists" href="#lists_panel"/>
             <mdl:TabBarButton text="Other" href="#others_panel"/>
         </mdl:TabBar>
     </mdl:Header>
@@ -63,18 +64,10 @@ limitations under the License.
 
         <local:Toggles id="toggles_panel"/>
 
+        <local:Lists id="lists_panel"/>
+
         <mdl:TabBarPanel id="others_panel">
             
-            <mdl:List labelField="label">
-                <js:dataProvider>
-                    <fx:Array>
-                        <fx:Object label="Install SIM Card"/>
-                        <fx:Object label="Install SIM Card 1"/>
-                        <fx:Object label="Install SIM Card 2"/>
-                    </fx:Array>
-                </js:dataProvider>
-            </mdl:List>
-
             <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
                 <js:beads>
                     <mdl:Badge dataBadge="1" overlap="true"/>
@@ -118,10 +111,5 @@ limitations under the License.
             <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
         </mdl:TabBarPanel>
         
-        <js:Container className="page-content">
-            
-            <!--<js:Form action="#"> 
-            </js:Form>-->
-        </js:Container>
     </mdl:NavigationLayoutContent>
 </mdl:NavigationLayout>

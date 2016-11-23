@@ -24,21 +24,16 @@ limitations under the License.
                  xmlns="http://www.w3.org/1999/xhtml">
     
     <mdl:Grid>
-    
-        <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
-        <js:Form action="#">
-            <mdl:TextField id="mdlti" change="mdlfloatingti.text = mdlti.text" className="mdlti_example">
-                <js:beads>
-                    <mdl:TextPrompt prompt="Normal Text Field..."/>
-                </js:beads>
-            </mdl:TextField>
-        </js:Form>
 
-        <mdl:TextField id="mdlfloatingti" floatingLabel= "true">
-            <js:beads>
-                <mdl:TextPrompt prompt="Floating Label"/>
-            </js:beads>
-        </mdl:TextField>
+        <mdl:List labelField="label">
+            <js:dataProvider>
+                <fx:Array>
+                    <fx:Object label="Install SIM Card"/>
+                    <fx:Object label="Install SIM Card 1"/>
+                    <fx:Object label="Install SIM Card 2"/>
+                </fx:Array>
+            </js:dataProvider>
+        </mdl:List>
     
     </mdl:Grid>
 
