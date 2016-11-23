@@ -72,5 +72,26 @@ package org.apache.flex.mdl
 
             return element;
         }
+
+		protected var _nospacing:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-grid--no-spacing" effect selector.
+		 *  Optional. Modifies the grid cells to have no margin between them.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get nospacing():Boolean
+        {
+            return _nospacing;
+        }
+        public function set nospacing(value:Boolean):void
+        {
+            _nospacing = value;
+
+            className += (_nospacing ? " mdl-grid--no-spacing" : "");
+        }
 	}
 }

@@ -23,34 +23,46 @@ limitations under the License.
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
     
+    <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
     <mdl:Grid>
     
-        <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
-        <mdl:Button className="mdlbtn"/>
+        <mdl:GridCell column="1">
+            <mdl:Button className="mdlbtn"/>
+        </mdl:GridCell>
+        
+        <mdl:GridCell column="1">
+            <!-- Fab button -->
+            <mdl:Button fab="true" colored="true">
+                <i class="material-icons">add</i>
+            </mdl:Button>
+        </mdl:GridCell>
+        
+        <mdl:GridCell column="2">
+             <!-- Fab with Ripple -->
+            <mdl:Button fab="true" ripple="true">
+                <i class="material-icons md-48">face</i>
+            </mdl:Button>
+        </mdl:GridCell>
 
-        <!-- Fab button -->
-        <mdl:Button fab="true" colored="true">
-            <i class="material-icons">add</i>
-        </mdl:Button>
+        <mdl:GridCell column="2">
+            <!-- Raised button -->
+            <mdl:Button text="COLORED" raised="true" colored="true"/>
+        </mdl:GridCell>
 
-        <!-- Fab with Ripple -->
-        <mdl:Button fab="true" ripple="true">
-            <i class="material-icons md-48">face</i>
-        </mdl:Button>
+        <mdl:GridCell column="2">
+            <!-- Raised button with ripple -->
+            <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
+        </mdl:GridCell>
 
-        <!-- Raised button -->
-        <mdl:Button text="COLORED" raised="true" colored="true"/>
-
-        <!-- Raised button with ripple -->
-        <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
-
-        <!-- Raised disabled button-->
-        <mdl:Button text="DISABLED" raised="true">
-            <js:beads>
-                <mdl:Disabled/>
-            </js:beads>
-        </mdl:Button>
-    
+        <mdl:GridCell column="2">
+             <!-- Raised disabled button-->
+            <mdl:Button text="DISABLED" raised="true">
+                <js:beads>
+                    <mdl:Disabled/>
+                </js:beads>
+            </mdl:Button>
+        </mdl:GridCell>
+        
     </mdl:Grid>
 
 </mdl:TabBarPanel>
