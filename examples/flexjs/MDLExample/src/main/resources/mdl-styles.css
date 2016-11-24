@@ -69,3 +69,20 @@ Image
 
 
 
+.demo-grid .mdl-cell {
+  box-sizing: border-box;
+  background-color: #BDBDBD;
+  height: 200px;
+  padding-left: 8px;
+  padding-top: 4px;
+  color: white;
+}
+.demo-grid .mdl-grid:first-of-type .mdl-cell {
+  height: 50px;
+}
+
+/* center items in grid */
+.mdl-grid.center-items {
+  flex-direction: column;
+  align-items: center;
+}
