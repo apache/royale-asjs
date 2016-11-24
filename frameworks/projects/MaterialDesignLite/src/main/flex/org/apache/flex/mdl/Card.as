@@ -96,12 +96,14 @@ package org.apache.flex.mdl
         }
         public function set shadow(value:Number):void
         {
-			if(value == 0 || value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+			if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
 			{
 				_shadow = value;
 
-				className += (_shadow != 0 ? " mdl-shadow--" + _shadow + "dp" : "");
-			}  
+				className += " mdl-shadow--" + _shadow + "dp";
+			} else {
+				className += "";
+			}
         }
 	}
 }

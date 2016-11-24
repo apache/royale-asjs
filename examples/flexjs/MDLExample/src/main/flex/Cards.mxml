@@ -25,8 +25,8 @@ limitations under the License.
     
     <mdl:Grid>
     
-        <mdl:Card width="512" shadow="2" style="margin:10;">
-            <mdl:CardTitle className="welcomeCard__title">
+        <mdl:Card className="demo-card-wide" shadow="2">
+            <mdl:CardTitle>
                 <mdl:CardTitleText text="Welcome"/>
             </mdl:CardTitle>
             <mdl:CardSupportingText>
@@ -36,19 +36,16 @@ limitations under the License.
                 <mdl:Button text="Get Started" ripple="true" colored="true"/>
             </mdl:CardActions>
             <mdl:CardMenu>
-                <mdl:Button icon="true" ripple="true" style="color: #fff;">
+                <mdl:Button icon="true" ripple="true">
                     <i class="material-icons">share</i>
                 </mdl:Button>
             </mdl:CardMenu>
         </mdl:Card>
         
-        <mdl:Card width="320" height="320" shadow="2" style="margin:10;">
-            <mdl:CardTitle className="dogTitle" expand="true">
+        <mdl:Card className="demo-card-square" shadow="2" style="margin:10;">
+            <mdl:CardTitle expand="true">
                 <mdl:CardTitleText text="Update"/>
             </mdl:CardTitle>
-            <!--<mdl:CardMedia>
-                <js:Image url="assets/Unknown.jpg"  height="176"/>
-            </mdl:CardMedia>-->
             <mdl:CardSupportingText>
                 <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
             </mdl:CardSupportingText>
@@ -64,6 +61,10 @@ limitations under the License.
             </mdl:CardActions>
         </mdl:Card>
 
+
+            <!--<mdl:CardMedia>
+                <js:Image url="assets/Unknown.jpg"  height="176"/>
+            </mdl:CardMedia>-->
     </mdl:Grid>
     
 </mdl:TabBarPanel>
