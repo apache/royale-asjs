@@ -210,7 +210,7 @@ package org.apache.flex.html.beads
 			
 			// listen for initComplete to signal that the strand is set with its size
 			// and beads.
-			host.addEventListener("initComplete", initCompleteHandler);
+			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
 		/**
@@ -222,7 +222,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function initCompleteHandler(event:Event):void
+		protected function beadsAddedHandler(event:Event):void
 		{
             var ilc:ILayoutChild = host as ILayoutChild;
 			// Complete the setup if the height is sized to content or has been explicitly set
