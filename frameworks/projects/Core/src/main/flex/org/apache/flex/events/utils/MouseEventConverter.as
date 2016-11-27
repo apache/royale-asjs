@@ -23,7 +23,7 @@ package org.apache.flex.events.utils
     import flash.events.MouseEvent;
     
     import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.utils.IHandlesOriginalEvent;
+    import org.apache.flex.events.utils.IHandlesOriginalEvent;
     
 	/**
 	 *  Mouse events conversion.
@@ -89,6 +89,7 @@ package org.apache.flex.events.utils
                 {
                     // some events are not converted if there are no JS equivalents
                     event.stopImmediatePropagation();
+					newEvent.targetBeforeBubbling = event.target;
                     event.target.dispatchEvent(newEvent);
                 }
                 else

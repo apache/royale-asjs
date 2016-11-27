@@ -20,9 +20,9 @@ package org.apache.flex.events
 {
     COMPILE::SWF
     {
+        import flash.display.InteractiveObject;
         import flash.events.Event;
         import flash.events.MouseEvent;
-		import flash.display.InteractiveObject;
     }
     COMPILE::JS
     {
@@ -79,7 +79,7 @@ package org.apache.flex.events
                                    ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
                                    buttonDown:Boolean = false, delta:int = 0,
                                    commandKey:Boolean = false, controlKey:Boolean = false,
-                                   clickCount:int = 0)
+                                   clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 		{
 			super(type, bubbles, cancelable);
 
@@ -91,6 +91,7 @@ package org.apache.flex.events
             this.shiftKey = shiftKey;
             this.buttonDown = buttonDown;
             this.delta = delta;
+			this.targetBeforeBubbling = targetBeforeBubbling;
 		}
 
         // these map directly to JS MouseEvent fields.
@@ -112,6 +113,8 @@ package org.apache.flex.events
         }
 
         private var _stagePoint:Point;
+		// TODO remove this when figure out how to preserve the real target
+        public var targetBeforeBubbling:Object;
 
         public function get screenX():Number
         {
@@ -119,7 +122,8 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, target);
+				var referenceObject:Object = targetBeforeBubbling ? targetBeforeBubbling : target;
+                _stagePoint = PointUtils.localToGlobal(localPoint, referenceObject);
             }
             return _stagePoint.x;
         }
@@ -130,7 +134,8 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, target);
+				var referenceObject:Object = targetBeforeBubbling ? targetBeforeBubbling : target;
+                _stagePoint = PointUtils.localToGlobal(localPoint, referenceObject);
             }
             return _stagePoint.y;
         }
@@ -153,10 +158,12 @@ package org.apache.flex.events
          */
         public function cloneEvent():IFlexJSEvent
         {
-            return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+            var e:org.apache.flex.events.MouseEvent = new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
                 localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
                 buttonDown, delta
                 /* got errors for commandKey, commandKey, controlKey, clickCount*/);
+			e.targetBeforeBubbling = targetBeforeBubbling;
+			return e;
         }
 
         /**
@@ -215,7 +222,7 @@ package org.apache.flex.events
 								   ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
 								   buttonDown:Boolean = false, delta:int = 0,
 								   commandKey:Boolean = false, controlKey:Boolean = false,
-								   clickCount:int = 0)
+								   clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 		{
 			super(type, bubbles, cancelable);
 
@@ -264,6 +271,12 @@ package org.apache.flex.events
 		public var controlKey:Boolean;
 		public var clickCount:int;
 
+		// TODO remove this when figure out how to preserve the real target
+		// The problem only manifests in SWF, so this alias is good enough for now
+		public function get targetBeforeBubbling():Object
+		{
+			return target;
+		}
 		// these map directly to JS MouseEvent fields.
 		public function get clientX():Number
 		{
@@ -283,7 +296,7 @@ package org.apache.flex.events
 		}
 
 		private var _stagePoint:Point;
-
+	
 		public function get screenX():Number
 		{
 			if (!target) return localX;
