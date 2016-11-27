@@ -20,32 +20,14 @@ package org.apache.flex.mdl.beads
 {	
     import org.apache.flex.html.beads.IListView;
     import org.apache.flex.html.beads.ContainerView;
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.Strand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
-	import org.apache.flex.html.beads.models.ScrollBarModel;
-	import org.apache.flex.html.beads.models.SingleLineBorderModel;
 	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.DataGroup;
-	import org.apache.flex.html.supportClasses.ScrollBar;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.flex.html.List 
