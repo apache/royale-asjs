@@ -57,5 +57,6 @@
     <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
     <component id="Grid" class="org.apache.flex.mdl.Grid"/>
     <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
+    <component id="Chip" class="org.apache.flex.mdl.Chip"/>
 
 </componentPackage>
