@@ -90,6 +90,7 @@ package org.apache.flex.html
 		public function List()
 		{
 			super();
+			addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
 		/**
@@ -267,7 +268,15 @@ package org.apache.flex.html
 		override public function addedToParent():void
 		{
             super.addedToParent();
-            
+            		
+			dispatchEvent(new Event("initComplete"));
+		}
+        
+		/**
+		 * @private
+		 */
+	    private function beadsAddedHandler(e:Event):void
+		{
             if (getBeadByType(IDataProviderItemRendererMapper) == null)
             {
                 var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
@@ -279,10 +288,8 @@ package org.apache.flex.html
 				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				addBead(itemRendererFactory);
 			}
-			
-			dispatchEvent(new Event("initComplete"));
 		}
-        
+		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
