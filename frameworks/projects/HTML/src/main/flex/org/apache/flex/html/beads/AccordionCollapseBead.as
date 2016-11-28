@@ -20,6 +20,7 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Accordion;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
@@ -29,6 +30,7 @@ package org.apache.flex.html.beads
 	{
 		private var _strand:IStrand;
 		private var lastSelectedIndex:int = -1;
+		private var _layout:IOneFlexibleChildLayout;
 		public function AccordionCollapseBead()
 		{
 		}
@@ -52,7 +54,6 @@ package org.apache.flex.html.beads
 			{
 				return;
 			}
-			var layout:IOneFlexibleChildLayout = host.getBeadByType(IOneFlexibleChildLayout) as IOneFlexibleChildLayout;
 			if (lastSelectedIndex > -1)
 			{
 				var lastElement:ICollapsible = view.dataGroup.getItemRendererForIndex(lastSelectedIndex) as ICollapsible;
@@ -62,5 +63,25 @@ package org.apache.flex.html.beads
 			layout.flexibleChild = newChild.id;
 			layout.layout();
 		}
+		
+		private function get layout():IOneFlexibleChildLayout
+		{
+			if (!_layout)
+			{
+				_layout = _strand.getBeadByType(IOneFlexibleChildLayout) as IOneFlexibleChildLayout;
+				if (!_layout) {
+					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
+					if (c) {
+						_layout = new c() as IOneFlexibleChildLayout;
+					}
+				}
+				if (_layout)
+				{
+					_strand.addBead(_layout);
+				}
+			}
+			return _layout;
+		}
+
 	}
 }
