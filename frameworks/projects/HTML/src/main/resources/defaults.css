@@ -26,6 +26,7 @@
     font-family: "Arial";
     font-size: 12px;
 	border-width: 1px;
+	border-style: none;
 }
 
 .flexjs *, . flexjs *:before, . flexjs *:after {
