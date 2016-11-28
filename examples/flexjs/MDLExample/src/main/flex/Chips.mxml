@@ -23,5 +23,8 @@ limitations under the License.
         <mdl:GridCell column="1">
             <mdl:Chip text="Basic Chip" />
         </mdl:GridCell>
+        <mdl:GridCell column="2">
+            <mdl:ButtonChip text="Button Chip" />
+        </mdl:GridCell>
     </mdl:Grid>
 </mdl:TabBarPanel>

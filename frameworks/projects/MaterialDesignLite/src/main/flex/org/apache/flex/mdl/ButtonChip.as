@@ -39,31 +39,32 @@ package org.apache.flex.mdl
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public class Chip extends TextButton
+    public class ButtonChip extends TextButton
     {
-        public function Chip()
+        public function ButtonChip()
         {
             super();
         }
     }
 
     COMPILE::JS
-    public class Chip extends UIBase
+    public class ButtonChip extends UIBase
     {
-        public function Chip()
+        public function ButtonChip()
         {
             super();
 
             className = "";
         }
 
-        private var chip:HTMLSpanElement;
+        private var chip:HTMLButtonElement;
         private var chipTextSpan:HTMLSpanElement;
         private var textNode:Text;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLSpanElement
+         * @flexjsignorecoercion HTMLButtonElement
          * @flexjsignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
@@ -76,7 +77,7 @@ package org.apache.flex.mdl
             textNode = document.createTextNode('') as Text;
             chipTextSpan.appendChild(textNode);
 
-            chip = document.createElement("span") as HTMLSpanElement;
+            chip = document.createElement("button") as HTMLButtonElement;
             chip.appendChild(chipTextSpan);
 
             element = chip as WrappedHTMLElement;
