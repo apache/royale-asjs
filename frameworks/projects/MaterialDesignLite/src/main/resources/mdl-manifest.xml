@@ -58,5 +58,5 @@
     <component id="Grid" class="org.apache.flex.mdl.Grid"/>
     <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
     <component id="Chip" class="org.apache.flex.mdl.Chip"/>
-
+    <component id="ButtonChip" class="org.apache.flex.mdl.ButtonChip"/>
 </componentPackage>
