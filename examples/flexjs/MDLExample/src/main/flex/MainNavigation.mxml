@@ -38,6 +38,7 @@ limitations under the License.
             <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
             <mdl:TabBarButton text="Chips" href="#chips_panel"/>
             <mdl:TabBarButton text="Grids" href="#grids_panel"/>
+            <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
             <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
             <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
@@ -63,6 +64,8 @@ limitations under the License.
         <local:Chips id="chips_panel" />
 
         <local:Grids id="grids_panel"/>
+
+        <local:Tabs id="tabs_panel"/>
         
         <local:Buttons id="buttons_panel"/>
 
