@@ -52,7 +52,7 @@ public class CSSContainerUtils
 		var borderOffset:Number;
         if (borderStyle == "none")
             borderOffset = 0;
-        else if (borderThickness != null)
+        else if (borderStyle != null && borderThickness != null)
         {
             if (borderThickness is String)
                 borderOffset = CSSUtils.toNumber(borderThickness as String, object.width);
