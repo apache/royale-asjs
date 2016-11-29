@@ -27,6 +27,7 @@
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.flex.mdl.Switch"/>
     <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="Numeric" class="org.apache.flex.mdl.beads.Numeric"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
     <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>

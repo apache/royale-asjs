@@ -26,7 +26,7 @@ limitations under the License.
     
         <!-- Text Fields :: https://getmdl.io/components/index.html#textfields-section -->
         <js:Form action="#">
-            <mdl:TextField id="mdlti" change="mdlfloatingti.text = mdlti.text" className="mdlti_example">
+            <mdl:TextField id="mdlti" change="mdlfloatingti.text = mdlti.text">
                 <js:beads>
                     <mdl:TextPrompt prompt="Normal Text Field..."/>
                 </js:beads>
@@ -36,6 +36,20 @@ limitations under the License.
         <mdl:TextField id="mdlfloatingti" floatingLabel= "true">
             <js:beads>
                 <mdl:TextPrompt prompt="Floating Label"/>
+            </js:beads>
+        </mdl:TextField>
+
+        <mdl:TextField>
+            <js:beads>
+                <mdl:TextPrompt prompt="Number..."/>
+                <mdl:Numeric text="This is not a number."/>
+            </js:beads>
+        </mdl:TextField>
+
+        <mdl:TextField floatingLabel="true">
+            <js:beads>
+                <mdl:TextPrompt prompt="Number..."/>
+                <mdl:Numeric/>
             </js:beads>
         </mdl:TextField>
     
