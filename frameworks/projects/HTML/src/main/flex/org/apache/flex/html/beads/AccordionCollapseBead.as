@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -39,6 +40,19 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			host.model.addEventListener("selectedIndexChanged", selectedIndexChangedHandler);
+			var idx:int = host.selectedIndex;
+			if(idx < 0)
+				idx = 0;
+
+			var dg:IItemRendererParent = IListView(host.view).dataGroup as IItemRendererParent;
+			var numElems:int = dg.numElements;
+			for(var i:int = 0; i < numElems; i++){
+				if(i == idx)
+					continue;
+
+				var elem:ICollapsible = dg.getItemRendererForIndex(i) as ICollapsible;
+				elem.collapse();
+			}
 		}
 		
 		protected function get host():Accordion

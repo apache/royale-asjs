@@ -47,15 +47,18 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public function BinaryData(bytes:ByteArray = null)
+    public function BinaryData(bytes:Object = null)
     {
-        ba = bytes ? bytes : new ByteArray();
+        ba = bytes ? bytes as ByteArray : new ByteArray();
     }
 
+    /**
+    * @flexjsignorecoercion ArrayBuffer
+    */
     COMPILE::JS
-    public function BinaryData(bytes:ArrayBuffer = null)
+    public function BinaryData(bytes:Object = null)
     {
-        ba = bytes ? bytes : new ArrayBuffer(0);
+        ba = bytes ? bytes as ArrayBuffer : new ArrayBuffer(0);
         _len = ba.byteLength;
     }
 
