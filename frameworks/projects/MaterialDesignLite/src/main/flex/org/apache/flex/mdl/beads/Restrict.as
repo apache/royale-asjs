@@ -34,16 +34,26 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.mdl.TextField;
 	
 	/**
-	 *  The TextPrompt class is a specialty bead that can be used with
-	 *  any TextField control. The bead places a string into the input field
-	 *  when there is no value associated with the text property.
+	 *  The Restrict bead class is a specialty bead that can be used with
+	 *  any TextField control. The bead uses a reg exp pattern to validate
+	 *  input from user. A text property allows to configure error text.
+	 *  
+	 *  use examples:
+	 *  Numeric pattern = -?[0-9]*(\.[0-9]+)?
+	 *  error text = "Input is not a number!"
+	 *
+	 *  Letters and spaces only pattern = [A-Z,a-z, ]*
+	 *  error text = "Letters and spaces only";
+	 *
+	 *  Digits only = [0-9]*
+	 *  error text = "Digits only";
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Numeric implements IBead
+	public class Restrict implements IBead
 	{
 		/**
 		 *  constructor.
@@ -53,11 +63,11 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Numeric()
+		public function Restrict()
 		{
 		}
 		
-		private var _pattern:String = "-?[0-9]*(\.[0-9]+)?";
+		private var _pattern:String = "";
 		
 		/**
 		 *  The string to use as numeric pattern.
@@ -76,7 +86,7 @@ package org.apache.flex.mdl.beads
 			_pattern = value;
 		}
 		
-        private var _text:String = "Input is not a number!";
+        private var _error:String = "";
 
         /**
 		 *  The string to use as error text in the associated span.
@@ -86,13 +96,13 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        public function get text():String
+        public function get error():String
         {
-            return _text;
+            return _error;
         }
-        public function set text(value:String):void
+        public function set error(value:String):void
         {
-            _text = value;
+            _error = value;
         }
 
 		private var _strand:IStrand;
@@ -119,7 +129,7 @@ package org.apache.flex.mdl.beads
                 var span:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
                 span.className = "mdl-textfield__error";
 
-                var spanTextNode:Text = document.createTextNode(text) as Text;
+                var spanTextNode:Text = document.createTextNode(error) as Text;
                 span.appendChild(spanTextNode);
 
                 mdlTi.positioner.appendChild(span);

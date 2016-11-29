@@ -41,15 +41,15 @@ limitations under the License.
 
         <mdl:TextField>
             <js:beads>
-                <mdl:TextPrompt prompt="Number..."/>
-                <mdl:Numeric text="This is not a number."/>
+                <mdl:TextPrompt prompt="Letters and spaces..."/>
+                <mdl:Restrict pattern="[A-Z,a-z, ]*" error="Letters and spaces only"/>
             </js:beads>
         </mdl:TextField>
 
         <mdl:TextField floatingLabel="true">
             <js:beads>
-                <mdl:TextPrompt prompt="Number..."/>
-                <mdl:Numeric/>
+                <mdl:TextPrompt prompt="Numbers..."/>
+                <mdl:Restrict pattern="-?[0-9]*(\.[0-9]+)?" error="Input is not a number!"/>
             </js:beads>
         </mdl:TextField>
     
