@@ -41,8 +41,8 @@ internal class HTMLClasses
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.CheckBoxView; CheckBoxView;
-	    import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
 	}
+	import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
     import org.apache.flex.html.beads.ContainerView; ContainerView;
 	COMPILE::SWF
 	{
@@ -117,10 +117,10 @@ internal class HTMLClasses
 	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.controllers.AlertController; AlertController;
-		import org.apache.flex.html.beads.controllers.ComboBoxController; ComboBoxController;
     	import org.apache.flex.html.beads.controllers.DropDownListController; DropDownListController;
 		import org.apache.flex.html.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
 	}
+	import org.apache.flex.html.beads.controllers.ComboBoxController; ComboBoxController;
 	import org.apache.flex.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
