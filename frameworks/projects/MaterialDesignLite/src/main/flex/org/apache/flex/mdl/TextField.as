@@ -66,8 +66,22 @@ package org.apache.flex.mdl
             {
                 _textNode = value;
             }
+
+            private var _input:HTMLInputElement;
+
+            public function get input():HTMLInputElement
+            {
+                return _input;
+            }
+
+            public function set input(value:HTMLInputElement):void
+            {
+                _input = value;
+            }
         }
         
+
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLDivElement
@@ -83,7 +97,7 @@ package org.apache.flex.mdl
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
 
-            var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
+            input = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');
             input.className = "mdl-textfield__input";
             

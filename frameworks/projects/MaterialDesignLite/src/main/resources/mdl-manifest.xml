@@ -27,6 +27,7 @@
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.flex.mdl.Switch"/>
     <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="Restrict" class="org.apache.flex.mdl.beads.Restrict"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
     <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>
@@ -55,6 +56,7 @@
     <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
     <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
     <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
+    <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
     <component id="Grid" class="org.apache.flex.mdl.Grid"/>
     <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
     <component id="Chip" class="org.apache.flex.mdl.Chip"/>

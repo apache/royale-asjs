@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.html
 {
-	import org.apache.flex.html.A;
-    
+	import org.apache.flex.core.ContainerBase;
+
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.core.WrappedHTMLElement;            
     }
-    
+
 	/**
-	 *  The NavigationLink class is a Container component capable of parenting other
-	 *  components 
-	 *
+	 *  The Ul class represents an HTML <ul> element
+     *  
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class NavigationLink extends A
+	public class Ul extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -44,33 +44,26 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function NavigationLink()
+		public function Ul()
 		{
 			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-navigation__link";
-
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
-            a.setAttribute('href', href);
+			var ul:HTMLUListElement = document.createElement('ul') as HTMLUListElement;
             
-            textNode = document.createTextNode(text) as Text;
-            a.appendChild(textNode); 
-
-			element = a as WrappedHTMLElement;
+            element = ul as WrappedHTMLElement;
             
             positioner = element;
 			element.flexjs_wrapper = this;
             
             return element;
         }
-	}
+    }
 }

@@ -26,18 +26,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The TabBarPanel class is a Container component capable of parenting other
-	 *  four components
-	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
+	 *  The Tabs class is a Container component capable of parenting other
+	 *  components 
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TabBarPanel extends ContainerBase
+	public class Tabs extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -47,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function TabBarPanel()
+		public function Tabs()
 		{
 			super();
 
@@ -60,9 +57,12 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			element = document.createElement('section') as WrappedHTMLElement;
-			
-            positioner = element;
+			typeNames = "mdl-tabs mdl-js-tabs";
+
+            element = document.createElement('div') as WrappedHTMLElement;
+            element.className = typeNames;
+            
+			positioner = element;
             
             // absolute positioned children need a non-null
             // position value in the parent.  It might
@@ -73,52 +73,25 @@ package org.apache.flex.mdl
             return element;
         }
 
-		/**
-         *  If TabBarPanel is used inside Tabs use a different config
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		COMPILE::JS
-		override public function addedToParent():void
-        {
-			super.addedToParent();
-
-			if(parent is Tabs)
-			{
-				typeNames = "mdl-tabs__panel";
-			} else {
-				typeNames = "mdl-layout__tab-panel";
-			}
-			
-			element.className = typeNames;
-			className += (_isActive ? " is-active" : "");
-        }
-
-		private var _isActive:Boolean;
+		protected var _ripple:Boolean = false;
         /**
-         *  Marks this Button as the active one in the TabBar
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get isActive():Boolean
-		{
-            return _isActive;   
-		}
+		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+		 *  Applies ripple click effect. May be used in combination with any other classes
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get ripple():Boolean
+        {
+            return _ripple;
+        }
+        public function set ripple(value:Boolean):void
+        {
+            _ripple = value;
 
-		public function set isActive(value:Boolean):void
-		{
-            _isActive = value;
-            
-            COMPILE::JS
-            {
-				className += (_isActive ? " is-active" : "");
-            }
-		}
+            className += (_ripple ? " mdl-js-ripple-effect" : "");
+        }
 	}
 }

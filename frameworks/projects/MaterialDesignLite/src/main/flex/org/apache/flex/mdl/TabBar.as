@@ -57,12 +57,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout__tab-bar";
-
-            element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
-            
-			positioner = element;
+			element = document.createElement('div') as WrappedHTMLElement;
+			
+            positioner = element;
             
             // absolute positioned children need a non-null
             // position value in the parent.  It might
@@ -71,6 +68,30 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
 
             return element;
+        }
+
+		/**
+         *  If TabBar is used inside Tabs use a different config
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+        */ 
+		COMPILE::JS
+		override public function addedToParent():void
+        {
+			super.addedToParent();
+
+			if(parent is Tabs)
+			{
+				typeNames = "mdl-tabs__tab-bar";
+			} else {
+				typeNames = "mdl-layout__tab-bar";
+			}
+
+			element.className = typeNames;
+			className += (_ripple ? " mdl-js-ripple-effect" : "");
         }
 
 		protected var _ripple:Boolean = false;
