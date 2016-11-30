@@ -24,28 +24,26 @@ limitations under the License.
 
     <mdl:Grid className="demo-grid">
         
-        <mdl:Tabs>
+        <mdl:Tabs width="400" ripple="true">
             <mdl:TabBar ripple="true">
                 <mdl:TabBarButton text="Tab One" href="#tab1" isActive="true"/>
                 <mdl:TabBarButton text="Tab Two" href="#tab2"/>
                 <mdl:TabBarButton text="Tab Three" href="#tab3"/>
             </mdl:TabBar>
             
-            <mdl:TabBarPanel id="tab1">
-                <mdl:Button fab="true" ripple="true">
-                    <i class="material-icons md-48">add</i>
-                </mdl:Button>
+            <mdl:TabBarPanel id="tab1" isActive="true">
+                <js:Label text="Tab 1"/>
             </mdl:TabBarPanel>
 
             <mdl:TabBarPanel id="tab2">
-                <mdl:Button fab="true" ripple="true">
-                    <i class="material-icons md-48">face</i>
-                </mdl:Button>
+                <js:Label text="Tab 2"/>
             </mdl:TabBarPanel>
             
             <mdl:TabBarPanel id="tab3">
+                <js:Label text="Tab 3"/>
             </mdl:TabBarPanel>
         </mdl:Tabs>
+
     </mdl:Grid> 
 
 </mdl:TabBarPanel>

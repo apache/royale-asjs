@@ -60,12 +60,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout__tab-panel";
-
-            element = document.createElement('section') as WrappedHTMLElement;
-            element.className = typeNames;
-            
-			positioner = element;
+			element = document.createElement('section') as WrappedHTMLElement;
+			
+            positioner = element;
             
             // absolute positioned children need a non-null
             // position value in the parent.  It might
@@ -76,8 +73,31 @@ package org.apache.flex.mdl
             return element;
         }
 
-		private var _isActive:Boolean;
+		/**
+         *  If TabBarPanel is used inside Tabs use a different config
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		COMPILE::JS
+		override public function addedToParent():void
+        {
+			super.addedToParent();
 
+			if(parent is Tabs)
+			{
+				typeNames = "mdl-tabs__panel";
+			} else {
+				typeNames = "mdl-layout__tab-panel";
+			}
+			
+			element.className = typeNames;
+			className += (_isActive ? " is-active" : "");
+        }
+
+		private var _isActive:Boolean;
         /**
          *  Marks this Button as the active one in the TabBar
          *  

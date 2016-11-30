@@ -82,8 +82,6 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-layout__tab";
-
 			var a:HTMLElement = document.createElement('a') as HTMLElement;
             a.setAttribute('href', href);
             
@@ -96,6 +94,35 @@ package org.apache.flex.mdl
 			element.flexjs_wrapper = this;
             
             return element;
+        }
+
+		/**
+         *  If TabBarButton is used in a TabBar that is
+		 *  inside a Tabs component use a different config
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+        */ 
+		COMPILE::JS
+		override public function addedToParent():void
+        {
+			super.addedToParent();
+
+			if(parent is TabBar)
+			{
+				var parentTabBar:TabBar = parent as TabBar;
+				if(parentTabBar.parent is Tabs)
+				{
+					typeNames = "mdl-tabs__tab";
+				} else {
+					typeNames = "mdl-layout__tab";
+				}
+
+				element.className = typeNames;
+				className += (_isActive ? " is-active" : "");
+			}
         }
 	}
 }
