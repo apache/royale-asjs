@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
+	COMPILE::SWF {
 	import flash.display.DisplayObject;
+	}
 	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.ISelectionModel;
@@ -28,6 +30,86 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.beads.IComboBoxView;
+	
+	COMPILE::JS {
+		import goog.events;
+		import org.apache.flex.core.WrappedHTMLElement; 
+	}
+	
+	/**
+	 *  The ComboBoxController class bead handles mouse events on the elements of
+	 *  the org.apache.flex.html.ComboBox. This includes selecting the 
+	 *  button to display the selection list pop-up as well as selecting an item from the 
+	 *  pop-up list.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::JS
+	public class ComboBoxController implements IBeadController
+	{
+		private var _strand:IStrand;
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			
+			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			if (viewBead) {
+				finishSetup(null);
+			} else {
+				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
+			}
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		private function finishSetup(event:Event):void
+		{
+			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			var button:WrappedHTMLElement = viewBead.popupButton as WrappedHTMLElement;
+			goog.events.listen(button, 'click', showPopup);
+			
+			// add a click handler so that a click outside of the combo box can
+			// dismiss the pop-up should it be visible.
+			goog.events.listen(document, 'click',
+				dismissPopup);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function dismissPopup(event:Event):void
+		{
+			var host:IUIBase = IUIBase(_strand);
+			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			viewBead.popUpVisible = false;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function showPopup(event:Event):void
+		{
+			event.stopPropagation();
+			
+			var host:IUIBase = IUIBase(_strand);
+			var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			viewBead.popUpVisible = true;
+		}
+	}
 
 	/**
 	 *  The ComboBoxController class bead handles mouse events on the elements of
@@ -40,6 +122,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::SWF
 	public class ComboBoxController implements IBeadController
 	{
 		/**

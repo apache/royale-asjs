@@ -33,26 +33,24 @@ package org.apache.flex.html.beads
 	public interface IComboBoxView extends IBeadView
 	{
 		/**
-		 *  The string appearing in the input area for the ComboBox.
+		 *  The sub-component used for the input area of the ComboBox.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get text():String;
-		function set text(value:String):void;
+		function get textInputField():Object;
 		
 		/**
-		 *  The HTML string appearing in the input area for the ComboBox.
+		 *  The sub-component used for the button to activate the pop-up.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get html():String;
-		function set html(value:String):void;
+		function get popupButton():Object;
 		
 		/**
 		 *  The component housing the selection list.
@@ -62,7 +60,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		function get popUp():IStrand;
+		function get popUp():Object;
 		
 		/**
 		 *  Determines whether or not the pop-up with the selection list is visible or not.

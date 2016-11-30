@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.display.Sprite;
+	COMPILE::SWF {
+		import flash.display.DisplayObject;
+		import flash.display.DisplayObjectContainer;
+		import flash.display.Sprite;
+	}
 	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.ElementWrapper;
@@ -38,6 +40,13 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Button;
 	import org.apache.flex.html.TextInput;
     import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.core.IComboBoxModel;
+	
+	COMPILE::JS
+	{
+		import goog.events;
+		import org.apache.flex.core.WrappedHTMLElement;            
+	}
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.ComboBox 
@@ -49,6 +58,240 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::JS
+	public class ComboBoxView extends BeadViewBase implements IBeadView, IComboBoxView
+	{
+		public function ComboBoxView()
+		{
+			
+		}
+		
+		private var input: WrappedHTMLElement;
+		private var button: WrappedHTMLElement;
+		private var _popup:HTMLElement;
+		
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			
+			var element:WrappedHTMLElement = (_strand as UIBase).element;
+			
+			input = document.createElement('input') as WrappedHTMLElement;
+			input.style.position = 'absolute';
+			input.style.width = '80px';
+			element.appendChild(input);
+			
+			button = document.createElement('div') as WrappedHTMLElement;
+			button.style.position = 'absolute';
+			button.style.top = '0px';
+			button.style.right = '0px';
+			button.style.background = '#bbb';
+			button.style.width = '16px';
+			button.style.height = '20px';
+			button.style.margin = '0';
+			button.style.border = 'solid #609 1px';
+			element.appendChild(button);
+
+			input.flexjs_wrapper = this;
+		}
+		
+		/**
+		 *  The TextInput component of the ComboBox.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get textInputField():Object 
+		{
+			return input;
+		}
+		
+		/**
+		 *  The Button component of the ComboBox.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get popupButton():Object
+		{
+			return button;
+		}
+		
+		/**
+		 *  The pop-up list component of the ComboBox.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get popUp():Object
+		{
+			return _popup;
+		}
+		
+		/**
+		 *  Returns whether or not the pop-up is visible.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get popUpVisible():Boolean
+		{
+			return _popup != null;
+		}
+		public function set popUpVisible(value:Boolean):void
+		{
+			if (value && _popup == null) {
+				showPopup();
+			}
+			else {
+				dismissPopup();
+			}
+		}
+		
+		/**
+		 * @param event The event.
+		 * @flexjsignorecoercion HTMLSelectElement
+		 * @flexjsignorecoercion HTMLInputElement
+		 */
+		private function selectChanged(event:Event):void
+		{
+			var select:HTMLSelectElement;
+			
+			select = event.currentTarget as HTMLSelectElement;
+			
+			var model:IComboBoxModel = (_strand as UIBase).model as IComboBoxModel;
+			model.selectedItem = select.options[select.selectedIndex].value;
+			(input as HTMLInputElement).value = model.selectedItem.toString();
+			
+			_popup.parentNode.removeChild(_popup);
+			_popup = null;
+			
+			dispatchEvent(event);
+		}
+		
+		/**
+		 */
+		private function dismissPopup():void
+		{
+			// remove the popup if it already exists
+			if (_popup) {
+				_popup.parentNode.removeChild(_popup);
+				_popup = null;
+			}
+		}
+		
+		/**
+		 * @export
+		 * @param {Object} event The event.
+		 * @flexjsignorecoercion HTMLInputElement
+		 * @flexjsignorecoercion HTMLElement
+		 * @flexjsignorecoercion HTMLSelectElement
+		 * @flexjsignorecoercion HTMLOptionElement
+		 * @flexjsignorecoercion Array
+		 */
+		private function showPopup():void
+		{
+			var dp:Array;
+			var i:int;
+			var input:HTMLInputElement;
+			var left:Number;
+			var n:int;
+			var opt:HTMLOptionElement;
+			var pn:HTMLElement;
+			var select:HTMLSelectElement;
+			var si:int;
+			var top:Number;
+			var width:Number;
+			
+			if (_popup) {
+				dismissPopup();
+				
+				return;
+			}
+			
+			var element:WrappedHTMLElement = (_strand as UIBase).element;
+			
+			input = element.childNodes.item(0) as HTMLInputElement;
+			
+			pn = element;
+			top = pn.offsetTop + input.offsetHeight;
+			left = pn.offsetLeft;
+			width = pn.offsetWidth;
+			
+			_popup = document.createElement('div') as HTMLElement;
+			_popup.className = 'popup';
+			_popup.id = 'test';
+			_popup.style.position = 'absolute';
+			_popup.style.top = top.toString() + 'px';
+			_popup.style.left = left.toString() + 'px';
+			_popup.style.width = width.toString() + 'px';
+			_popup.style.margin = '0px auto';
+			_popup.style.padding = '0px';
+			_popup.style.zIndex = '10000';
+			
+			select = document.createElement('select') as HTMLSelectElement;
+			select.style.width = width.toString() + 'px';
+			goog.events.listen(select, 'change', selectChanged);
+			
+			var model:IComboBoxModel = (_strand as UIBase).model as IComboBoxModel;
+			
+			dp = model.dataProvider as Array;
+			n = dp.length;
+			for (i = 0; i < n; i++) {
+				opt = document.createElement('option') as HTMLOptionElement;
+				opt.text = dp[i];
+				select.add(opt, null);
+			}
+			
+			select.size = n;
+			
+			si = model.selectedIndex;
+			if (si < 0) {
+				select.value = null;
+			} else {
+				select.value = dp[si];
+			}
+						
+			_popup.appendChild(select);
+			document.body.appendChild(_popup);
+		}
+	}
+	
+	/**
+	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.ComboBox 
+	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
+	 *  control and org.apache.flex.html.Button to trigger the pop-up.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::SWF
 	public class ComboBoxView extends BeadViewBase implements IBeadView, IComboBoxView
 	{
 		/**
@@ -66,44 +309,6 @@ package org.apache.flex.html.beads
 		private var textInput:TextInput;
 		private var button:Button;
 		private var selectionModel:IComboBoxModel;
-		
-		/**
-		 *  The value of the TextInput component of the ComboBox.
-		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get text():String
-		{
-			return textInput.text;
-		}
-		public function set text(value:String):void
-		{
-			textInput.text = value;
-		}
-		
-		/**
-		 *  The HTML value of the TextInput component of the ComboBox.
-		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#html
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get html():String
-		{
-			return textInput.html;
-		}
-		public function set html(value:String):void
-		{
-			textInput.html = value;
-		}
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -176,6 +381,36 @@ package org.apache.flex.html.beads
 			sprite.graphics.lineTo(4,4);
 			sprite.graphics.endFill();
 		}
+		
+		/**
+		 *  The TextInput component of the ComboBox.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get textInputField():Object 
+		{
+			return textInput;
+		}
+		
+		/**
+		 *  The Button component of the ComboBox.
+		 * 
+		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get popupButton():Object
+		{
+			return button;
+		}
         
         private var _popUp:IStrand;
 		
@@ -187,7 +422,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get popUp():IStrand
+        public function get popUp():Object
         {
             if (!_popUp)
             {
@@ -240,7 +475,7 @@ package org.apache.flex.html.beads
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
-			text = selectionModel.selectedItem.toString();
+			textInput.text = selectionModel.selectedItem.toString();
 		}
 		
 		/**
