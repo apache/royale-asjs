@@ -24,7 +24,7 @@ limitations under the License.
 
     <mdl:Grid className="demo-grid">
         
-        <mdl:Tabs width="400" ripple="true">
+        <mdl:Tabs width="400">
             <mdl:TabBar ripple="true">
                 <mdl:TabBarButton text="Tab One" href="#tab1" isActive="true"/>
                 <mdl:TabBarButton text="Tab Two" href="#tab2"/>
@@ -41,6 +41,42 @@ limitations under the License.
             
             <mdl:TabBarPanel id="tab3">
                 <js:Label text="Tab 3"/>
+            </mdl:TabBarPanel>
+        </mdl:Tabs>
+
+        <mdl:Tabs width="400" ripple="true">
+            <mdl:TabBar ripple="true">
+                <mdl:TabBarButton text="Starks" href="#starks_panel" isActive="true"/>
+                <mdl:TabBarButton text="Lannisters" href="#lannisters_panel"/>
+                <mdl:TabBarButton text="Targaryens" href="#targaryens_panel"/>
+            </mdl:TabBar>
+            
+            <mdl:TabBarPanel id="starks_panel" isActive="true">
+                <js:Ul>
+                    <js:Li><js:Label text="Eddard"/></js:Li>
+                    <js:Li><js:Label text="Catelyn"/></js:Li>
+                    <js:Li><js:Label text="Robb"/></js:Li>
+                    <js:Li><js:Label text="Sansa"/></js:Li>
+                    <js:Li><js:Label text="Brandon"/></js:Li>
+                    <js:Li><js:Label text="Arya"/></js:Li>
+                    <js:Li><js:Label text="Rickon"/></js:Li>
+                </js:Ul>
+            </mdl:TabBarPanel>
+
+            <mdl:TabBarPanel id="lannisters_panel">
+                <js:Ul>
+                    <js:Li><js:Label text="Tywin"/></js:Li>
+                    <js:Li><js:Label text="Cersei"/></js:Li>
+                    <js:Li><js:Label text="Jamie"/></js:Li>
+                    <js:Li><js:Label text="Tyrion"/></js:Li>
+                </js:Ul>
+            </mdl:TabBarPanel>
+            
+            <mdl:TabBarPanel id="targaryens_panel">
+                <js:Ul>
+                    <js:Li><js:Label text="Viserys"/></js:Li>
+                    <js:Li><js:Label text="Daenerys"/></js:Li>
+                </js:Ul>
             </mdl:TabBarPanel>
         </mdl:Tabs>
 
