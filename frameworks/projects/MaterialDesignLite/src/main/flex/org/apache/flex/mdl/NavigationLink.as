@@ -62,7 +62,7 @@ package org.apache.flex.mdl
 			var a:HTMLElement = document.createElement('a') as HTMLElement;
             a.setAttribute('href', href);
             
-            textNode = document.createTextNode(text) as Text;
+            textNode = document.createTextNode('') as Text;
             a.appendChild(textNode); 
 
 			element = a as WrappedHTMLElement;
