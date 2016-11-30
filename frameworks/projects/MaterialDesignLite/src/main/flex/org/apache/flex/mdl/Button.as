@@ -87,7 +87,10 @@ package org.apache.flex.mdl
         {
              _fab = value;
 
-             className += (_fab ? " mdl-button--fab" : "" );
+             COMPILE::JS
+             {
+                 element.classList.toggle("mdl-button--fab", _fab);
+             }
         }
 
         private var _raised:Boolean = false;
@@ -108,7 +111,10 @@ package org.apache.flex.mdl
         {
             _raised = value;
 
-             className += (_raised ? " mdl-button--raised" : "" );
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--raised", _raised);
+            }
         }
 
         private var _colored:Boolean = false;
@@ -130,7 +136,10 @@ package org.apache.flex.mdl
         {
              _colored = value;
 
-             className += (_colored ? " mdl-button--colored" : "");  
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--colored", _colored);
+            } 
         }
 
         private var _accent:Boolean = false;
@@ -152,7 +161,10 @@ package org.apache.flex.mdl
         {
             _accent = value;
 
-            className += (_accent ? " mdl-button--accent" : "");  
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--accent", _accent);
+            } 
         }
 
         private var _primary:Boolean = false;
@@ -174,7 +186,10 @@ package org.apache.flex.mdl
         {
             _primary = value;
 
-            className += (_primary ? " mdl-button--primary" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--primary", _primary);
+            }
         }
 
         private var _minifab:Boolean = false;
@@ -196,7 +211,10 @@ package org.apache.flex.mdl
         {
             _minifab = value;
 
-            className += (_minifab ? " mdl-button--mini-fab" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--mini-fab", _minifab);
+            }
         }
 
         private var _icon:Boolean = false;
@@ -218,7 +236,10 @@ package org.apache.flex.mdl
         {
             _icon = value;
 
-            className += (_icon ? " mdl-button--icon" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-button--icon", _icon);
+            }
         }
 
         protected var _ripple:Boolean = false;
@@ -239,7 +260,10 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            className += (_ripple ? " mdl-js-ripple-effect" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            }
         }
 	}
 }
