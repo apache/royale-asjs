@@ -28,10 +28,10 @@ limitations under the License.
             <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
             <mdl:Spacer/>
             <mdl:Navigation>
-                <mdl:NavigationLink text="link 1" href="#"/>
-                <mdl:NavigationLink text="link 2" href="#"/>
-                <mdl:NavigationLink text="link 3" href="#"/>
-                <mdl:NavigationLink text="link 4" href="#"/>
+                <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
+                <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
+                <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
+                <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
             </mdl:Navigation>
         </mdl:HeaderRow>
         <mdl:TabBar ripple="true">
@@ -50,10 +50,14 @@ limitations under the License.
     <mdl:Drawer>
         <mdl:LayoutTitle text="Drawer"/>
         <mdl:Navigation>
-            <mdl:NavigationLink text="link 1" href="#"/>
-            <mdl:NavigationLink text="link 2" href="#"/>
-            <mdl:NavigationLink text="link 3" href="#"/>
-            <mdl:NavigationLink text="link 4" href="#"/>
+            <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
+            <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
+            <mdl:NavigationLink text="Templates" href="https://getmdl.io/templates/index.html"/>
+            <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
+            <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
+            <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
+            <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
+            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
         </mdl:Navigation>
     </mdl:Drawer>
     
