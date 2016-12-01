@@ -86,3 +86,8 @@ Image
   flex-direction: column;
   align-items: center;
 }
+
+/* make center items have some padding */
+.mdl-grid.center-items > .mdl-card {
+  margin: 10px;
+}

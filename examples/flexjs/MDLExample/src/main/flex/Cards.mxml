@@ -24,7 +24,6 @@ limitations under the License.
     
     <mdl:Grid className="center-items">
         
-        <mdl:GridCell>
             <mdl:Card className="demo-card-wide" shadow="2">
                 <mdl:CardTitle>
                     <mdl:CardTitleText text="Welcome"/>
@@ -41,9 +40,7 @@ limitations under the License.
                     </mdl:Button>
                 </mdl:CardMenu>
             </mdl:Card>
-        </mdl:GridCell>
-        
-        <mdl:GridCell>
+
             <mdl:Card className="demo-card-square" shadow="2">
                 <mdl:CardTitle expand="true">
                     <mdl:CardTitleText text="Update"/>
@@ -55,20 +52,14 @@ limitations under the License.
                     <mdl:Button colored="true" ripple="true" text="View Updates"/>
                 </mdl:CardActions>
             </mdl:Card>
-        </mdl:GridCell>
         
-        <mdl:GridCell>
             <mdl:Card width="256" height="256" shadow="2" style="background: url('assets/image_card.jpg') center / cover">
                 <mdl:CardTitle expand="true"/>
                 <mdl:CardActions style="height: 52px; padding: 16px; background: rgba(0, 0, 0, 0.2);">
                     <js:Span text="Image.jpg" style="color: #fff; font-size: 14px; font-weight: 500;"/>
                 </mdl:CardActions>
             </mdl:Card>
-        </mdl:GridCell>
         
-            <!--<mdl:CardMedia>
-                <js:Image url="assets/Unknown.jpg"  height="176"/>
-            </mdl:CardMedia>-->
     </mdl:Grid>
     
 </mdl:TabBarPanel>
