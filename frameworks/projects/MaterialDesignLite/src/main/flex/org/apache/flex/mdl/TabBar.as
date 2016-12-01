@@ -90,7 +90,12 @@ package org.apache.flex.mdl
 				typeNames = "mdl-layout__tab-bar";
 			}
 			
-			element.classList.add(typeNames);			
+			element.classList.add(typeNames);
+
+			if(parent is Tabs && _ripple)
+			{
+				throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
+			}			
         }
 
 		protected var _ripple:Boolean = false;
@@ -110,6 +115,11 @@ package org.apache.flex.mdl
         public function set ripple(value:Boolean):void
         {
             _ripple = value;
+
+			if(parent is Tabs && _ripple)
+			{
+				throw new Error("TabBar ripple can not be used if parent is a Tabs component. Use only in Tabs instead to avoid MDL browser error.");
+			}
 
             COMPILE::JS
             {

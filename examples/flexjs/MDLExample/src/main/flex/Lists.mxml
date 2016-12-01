@@ -67,7 +67,11 @@ limitations under the License.
             <ui:ItemRendererClassFactory>
                 <ui:itemRendererFactory>
                     <fx:Component>
-                        <support:StringItemRenderer />
+                        <support:StringItemRenderer>
+                            <support:beads>
+                                <controllers:ItemRendererMouseController />
+                            </support:beads>
+                        </support:StringItemRenderer>
                     </fx:Component>
                 </ui:itemRendererFactory>
             </ui:ItemRendererClassFactory>
