@@ -21,11 +21,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Accordion;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
+	import org.apache.flex.utils.StrandUtils;
 	
 	public class AccordionCollapseBead implements IAccordionCollapseBead
 	{
@@ -82,17 +82,7 @@ package org.apache.flex.html.beads
 		{
 			if (!_layout)
 			{
-				_layout = _strand.getBeadByType(IOneFlexibleChildLayout) as IOneFlexibleChildLayout;
-				if (!_layout) {
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-					if (c) {
-						_layout = new c() as IOneFlexibleChildLayout;
-					}
-				}
-				if (_layout)
-				{
-					_strand.addBead(_layout);
-				}
+				_layout = StrandUtils.loadBead(IOneFlexibleChildLayout, "iBeadLayout", _strand) as IOneFlexibleChildLayout;
 			}
 			return _layout;
 		}

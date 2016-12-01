@@ -130,6 +130,7 @@ internal class CoreClasses
 	    import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
 	}
 	import org.apache.flex.utils.ColorUtil; ColorUtil;
+	import org.apache.flex.utils.StrandUtils; StrandUtils;
     import org.apache.flex.utils.CSSContainerUtils; CSSContainerUtils;
     import org.apache.flex.utils.DisplayUtils; DisplayUtils;
 	COMPILE::SWF
