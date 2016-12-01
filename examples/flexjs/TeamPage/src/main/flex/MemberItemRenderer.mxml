@@ -19,7 +19,8 @@ limitations under the License.
 -->
 <js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:local="*"
-				xmlns:js="library://ns.apache.org/flexjs/basic">
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				width="25%" >
 	
 	<fx:Script>
 		<![CDATA[
@@ -42,7 +43,10 @@ limitations under the License.
 				memberID.text = _member.apacheID;
 				
 				if (_member.title != null && _member.title.length > 0) {
-					memberName.text = _member.name+", "+_member.title;
+					memberTitle.text = _member.title;
+					memberTitle.visible = true;
+				} else {
+					memberTitle.visible = false;
 				}
 				
 				for (var type:String in _member.social) {
@@ -71,12 +75,13 @@ limitations under the License.
 	<js:Image id="memberPhoto" width="128" height="128" />
 	<js:Spacer width="10" />
 	
-	<js:VContainer id="contentArea" height="100%" >
+	<js:VContainer id="contentArea" >
 		<js:style>
 			<js:SimpleCSSStyles verticalAlign="top" />
 		</js:style>
 		
 		<js:Label id="memberName" width="100%" className="MemberName" />
+		<js:Label id="memberTitle" width="100%" className="MemberTitle" />
 		<js:Label id="memberID" width="100%" className="ApacheID" />
 		<js:Spacer height="10" />
 		<js:HContainer id="socialMedia" />

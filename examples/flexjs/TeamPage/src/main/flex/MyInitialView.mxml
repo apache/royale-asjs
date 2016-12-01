@@ -49,6 +49,12 @@ limitations under the License.
 			font-weight: bold;
 			color: #333333;
 		}
+		
+		.MemberTitle {
+			font-size: 10pt;
+			font-style: italic;
+			color: #333333;
+		}
 	</fx:Style>
 	
 	<js:beads>
@@ -56,13 +62,14 @@ limitations under the License.
 	</js:beads>
 	
 	
-	<js:VContainer id="output" width="800" height="100%">
+	<js:VContainer id="output" width="100%" height="100%">
 		<js:Label text="FlexJS Team Page" className="Heading1" />
 		<js:Spacer height="20" />
 		
 		<!-- This list does not use selections, so it has a special controller. -->
-		<js:List width="800" height="500" itemRenderer="MemberItemRenderer" rowHeight="250" className="Repeater">
+		<js:List width="100%" itemRenderer="MemberItemRenderer" className="Repeater">
 			<js:beads>
+				<js:HorizontalFlowLayout rowGap="100" columnGap="20" />
 				<local:NoSelectionController />
 				<js:SimpleBinding destinationPropertyName="dataProvider" 
 								  sourceID="applicationModel" 

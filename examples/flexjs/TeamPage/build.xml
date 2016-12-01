@@ -49,6 +49,9 @@
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    	<copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin-debug/team.json" />
+        <copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin/js-debug/team.json" />
+        <copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin/js-release/team.json" />
     </target>
     
     <target name="clean">
