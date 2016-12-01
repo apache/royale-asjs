@@ -18,18 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads
 {
-	COMPILE::SWF
-	{
-		import flash.text.TextFieldType;			
-		
-		import org.apache.flex.core.CSSTextField;
-	}
-	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 
     import org.apache.flex.mdl.TextField;
 	
@@ -127,7 +117,7 @@ package org.apache.flex.mdl.beads
                 mdlTi.input.setAttribute('pattern', pattern);
 
                 var span:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
-                span.className = "mdl-textfield__error";
+				span.classList.add("mdl-textfield__error");
 
                 var spanTextNode:Text = document.createTextNode(error) as Text;
                 span.appendChild(spanTextNode);

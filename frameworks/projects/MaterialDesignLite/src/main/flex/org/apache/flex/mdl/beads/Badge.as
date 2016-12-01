@@ -147,7 +147,8 @@ package org.apache.flex.mdl.beads
 					host.element.classList.toggle("mdl-badge--no-background", _noBackground);
 					host.element.classList.toggle("mdl-badge--overlap", _overlap);
 					host.element.setAttribute('data-badge', _dataBadge.toString());
-				} else
+				}
+				else
 				{
 					throw new Error("Host component must be an MDL Host for Badges.");
 				}

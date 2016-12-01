@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.flex.mdl.beads.materialIcons
 {
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.Button;
+    import org.apache.flex.mdl.supportClasses.MaterialIcons;
 
     /**
-     *  The DeletableChip bead class is a specialty bead that can be used to add additional
-     *  button to Chip MDL control.
+     *  The MaterialIconCancel bead class is a specialty bead that add "cancel" icon
+     *  to component taken from "material-icons"
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class DeletableChip implements IBead
+    public class MaterialIconCancel implements IBead
     {
         /**
          *  constructor.
@@ -42,17 +42,16 @@ package org.apache.flex.mdl.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function DeletableChip()
+        public function MaterialIconCancel()
         {
-
         }
+
+        private var cancel:MaterialIcons;
 
         private var _strand:IStrand;
 
         /**
          * @flexjsignorecoercion HTMLElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion HTMLButtonElement
          *
          * @param value
          */
@@ -64,24 +63,11 @@ package org.apache.flex.mdl.beads
             {
                 var host:UIBase = value as UIBase;
                 var element:HTMLElement = host.element as HTMLElement;
-                var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
 
-                if (isValidElement && element.className.search("mdl-chip") > -1)
-                {
-                    element.classList.add("mdl-chip--deletable");
+                cancel = new MaterialIcons();
+                cancel.text = MaterialIconsType.CANCEL;
 
-                    var deleteButton:Button = new Button();
-                    deleteButton.icon = true;
-
-                    var htmlButton:HTMLElement = (deleteButton.element as HTMLElement)
-                    htmlButton.classList.add("mdl-chip__action");
-
-                    element.appendChild(deleteButton.element as HTMLElement);
-                }
-                else
-                {
-                    throw new Error("Host component must be an MDL Host for Chips.");
-                }
+                element.appendChild(cancel.element as HTMLElement);
             }
         }
     }

@@ -62,4 +62,6 @@
     <component id="Chip" class="org.apache.flex.mdl.Chip"/>
     <component id="ButtonChip" class="org.apache.flex.mdl.ButtonChip"/>
     <component id="DeletableChip" class="org.apache.flex.mdl.beads.DeletableChip"/>
+    <component id="MaterialIconCancel" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconCancel"/>
+    <component id="MaterialIconAdd" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconAdd"/>
 </componentPackage>
