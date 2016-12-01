@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
 		public function MultilineTextFieldView()
 		{
 			super();
-			
+						
 			textField.selectable = false;
 			textField.type = TextFieldType.DYNAMIC;
 			textField.mouseEnabled = false;
