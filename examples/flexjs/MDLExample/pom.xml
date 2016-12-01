@@ -34,11 +34,17 @@
 
   <name>Apache Flex - FlexJS: Examples: FlexJS: MDLExample</name>
 
+  <properties>
+    <primary>cyan</primary>
+    <accent>red</accent>
+  </properties>
+
   <build>
     <sourceDirectory>src/main/flex</sourceDirectory>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
+        <filtering>true</filtering>
       </resource>
     </resources>
     <plugins>
