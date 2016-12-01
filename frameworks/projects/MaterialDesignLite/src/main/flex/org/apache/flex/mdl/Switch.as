@@ -112,11 +112,12 @@ package org.apache.flex.mdl
 
             input = document.createElement("input") as HTMLInputElement;
             input.type = "checkbox";
-            input.className = "mdl-switch__input";
+            input.classList.add("mdl-switch__input");
+
             label.appendChild(input);
 
             span = document.createElement("span") as HTMLSpanElement;
-            span.className = "mdl-switch__label";
+            span.classList.add("mdl-switch__label");
 
             label.appendChild(span);
 

@@ -68,11 +68,13 @@ package org.apache.flex.mdl.beads
 
                 if (isValidElement && element.className.search("mdl-chip") > -1)
                 {
-                    host.className += " mdl-chip--deletable";
+                    element.classList.add("mdl-chip--deletable");
 
                     deleteButton = new Button();
                     deleteButton.icon = true;
-                    deleteButton.className += " mdl-chip__action";
+
+                    var htmlButton:HTMLElement = (deleteButton.element as HTMLElement)
+                    htmlButton.classList.add("mdl-chip__action");
 
                     element.appendChild(deleteButton.element as HTMLElement);
                 }
