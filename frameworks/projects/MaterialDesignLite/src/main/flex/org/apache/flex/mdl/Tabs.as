@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-tabs mdl-js-tabs";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             

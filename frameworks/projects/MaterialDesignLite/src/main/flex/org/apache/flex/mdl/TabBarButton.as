@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
-		private var _isActive:Boolean;
+		private var _isActive:Boolean = false;
 
         /**
          *  Marks this Button as the active one in the TabBar
@@ -120,8 +120,7 @@ package org.apache.flex.mdl
 					typeNames = "mdl-layout__tab";
 				}
 
-				element.className = typeNames;
-				className += (_isActive ? " is-active" : "");
+				element.classList.add(typeNames);
 			}
         }
 	}

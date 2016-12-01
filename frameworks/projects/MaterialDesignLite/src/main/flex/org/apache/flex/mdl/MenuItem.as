@@ -125,7 +125,10 @@ package org.apache.flex.mdl
 		{
 			_divider = value;
 
-            className += (_divider ? " mdl-menu__item--full-bleed-divider" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-menu__item--full-bleed-divider", _divider);
+            }
 		}
 
         protected var _ripple:Boolean = false;

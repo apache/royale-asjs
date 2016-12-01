@@ -67,7 +67,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-card";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             

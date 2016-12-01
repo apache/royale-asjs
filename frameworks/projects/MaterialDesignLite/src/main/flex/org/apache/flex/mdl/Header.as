@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout__header";
 
             element = document.createElement('header') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             

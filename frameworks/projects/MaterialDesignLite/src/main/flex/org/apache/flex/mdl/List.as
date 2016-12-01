@@ -62,7 +62,6 @@ package org.apache.flex.mdl
             typeNames = "mdl-list";
             
             element = document.createElement('ul') as WrappedHTMLElement;
-            element.className = typeNames;
             //(element as HTMLSelectElement).size = 5;
             //goog.events.listen(element, 'change',changeHandler);
             

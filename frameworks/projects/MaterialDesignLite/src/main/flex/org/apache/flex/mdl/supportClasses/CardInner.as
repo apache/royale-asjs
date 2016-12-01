@@ -95,7 +95,10 @@ package org.apache.flex.mdl.supportClasses
         {
 			_border = value;
 
-            className += (_border ? " mdl-card--border" : "");  
+			COMPILE::JS
+    		{
+				element.classList.toggle("mdl-card--border", _border);
+			}
         }
 
 		private var _expand:Boolean = false;
@@ -117,7 +120,10 @@ package org.apache.flex.mdl.supportClasses
         {
 			_expand = value;
 
-            className += (_expand ? " mdl-card--expand" : "");  
+			COMPILE::JS
+    		{
+				element.classList.toggle("mdl-card--expand", _expand);
+			}
         } 
 	}
 }

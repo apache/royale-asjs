@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-cell";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
