@@ -79,8 +79,6 @@ package org.apache.flex.mdl
                 _input = value;
             }
         }
-        
-
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -163,32 +161,8 @@ package org.apache.flex.mdl
 
             COMPILE::JS
             {
-                className += (_floatingLabel ? " mdl-textfield--floating-label" : "");
+                positioner.classList.toggle("mdl-textfield--floating-label", _floatingLabel);
             }
         }
-
-        protected var _ripple:Boolean = false;
-        /**
-		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-         *  Applies ripple click effect. May be used in combination with any other classes
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get ripple():Boolean
-        {
-            return _ripple;
-        }
-        public function set ripple(value:Boolean):void
-        {
-            _ripple = value;
-
-            COMPILE::JS
-            {
-                className += (_ripple ? " mdl-js-ripple-effect" : "");
-            }
-        } 
 	}
 }

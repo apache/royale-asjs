@@ -91,7 +91,10 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            className += (_ripple ? " mdl-js-ripple-effect" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            }
         }
 	}
 }

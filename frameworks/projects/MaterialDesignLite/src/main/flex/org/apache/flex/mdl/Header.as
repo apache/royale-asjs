@@ -91,7 +91,10 @@ package org.apache.flex.mdl
         {
 			_transparent = value;
 
-			className += (_transparent ? " mdl-layout__header--transparent" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-layout__header--transparent", _transparent);
+            }
         }
 
 		protected var _scrollable:Boolean;
@@ -112,7 +115,10 @@ package org.apache.flex.mdl
         {
 			_scrollable = value;
 
-			className += (_scrollable ? " mdl-layout__header--scroll" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-layout__header--scroll", _scrollable);
+            }
         }
 
 		protected var _waterfall:Boolean;
@@ -133,7 +139,10 @@ package org.apache.flex.mdl
         {
 			_waterfall = value;
 
-			className += (_waterfall ? " mdl-layout__header--waterfall" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-layout__header--waterfall", _waterfall);
+            }
         }
 	}
 }

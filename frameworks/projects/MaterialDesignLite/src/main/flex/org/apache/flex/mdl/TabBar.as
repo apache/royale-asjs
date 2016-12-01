@@ -89,9 +89,8 @@ package org.apache.flex.mdl
 			} else {
 				typeNames = "mdl-layout__tab-bar";
 			}
-
-			element.className = typeNames;
-			className += (_ripple ? " mdl-js-ripple-effect" : "");
+			
+			element.classList.add(typeNames);			
         }
 
 		protected var _ripple:Boolean = false;
@@ -112,7 +111,10 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            className += (_ripple ? " mdl-js-ripple-effect" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            }
         }
 	}
 }

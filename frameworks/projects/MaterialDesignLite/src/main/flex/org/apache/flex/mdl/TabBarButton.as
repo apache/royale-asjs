@@ -70,9 +70,9 @@ package org.apache.flex.mdl
 		{
             _isActive = value;
             
-            COMPILE::JS
+			COMPILE::JS
             {
-				className += (_isActive ? " is-active" : "");
+                element.classList.toggle("is-active", _isActive);
             }
 		}
 
