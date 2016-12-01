@@ -93,8 +93,7 @@ package org.apache.flex.mdl
 				typeNames = "mdl-layout__tab-panel";
 			}
 			
-			element.className = typeNames;
-			className += (_isActive ? " is-active" : "");
+			element.classList.add(typeNames);
         }
 
 		private var _isActive:Boolean;
@@ -117,7 +116,7 @@ package org.apache.flex.mdl
             
             COMPILE::JS
             {
-				className += (_isActive ? " is-active" : "");
+                element.classList.toggle("is-active", _isActive);
             }
 		}
 	}

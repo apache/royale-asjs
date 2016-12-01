@@ -67,7 +67,7 @@ package org.apache.flex.mdl.beads
 			_dataBadge = value;
 		}
 
-		private var _noBackground:String = "";
+		private var _noBackground:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-badge--no-background" effect selector.
 		 *  Applies open-circle effect to badge
@@ -83,14 +83,18 @@ package org.apache.flex.mdl.beads
         }
         public function set noBackground(value:Boolean):void
         {
-            if(value) {
-                _noBackground = " mdl-badge--no-background";
-            } else {
-                _noBackground = "";
+			_noBackground = value;
+			
+			COMPILE::JS
+            {
+				if(host)
+				{
+                	host.element.classList.toggle("mdl-badge--no-background", _noBackground);
+				}
             }   
         }
 
-        private var _overlap:String = "";
+        private var _overlap:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-badge--overlap" effect selector.
 		 *  Make the badge overlap with its container
@@ -106,15 +110,20 @@ package org.apache.flex.mdl.beads
         }
         public function set overlap(value:Boolean):void
         {
-            if(value) {
-                _overlap = " mdl-badge--overlap";
-            } else {
-                _overlap = "";
-            }   
+			_overlap = value;
+			
+			COMPILE::JS
+            {
+				if(host) 
+				{
+                	host.element.classList.toggle("mdl-badge--overlap", _overlap);
+				}
+            }
         }
 
-		private var _strand:IStrand;
-		
+		private var host:UIBase;
+
+		private var _strand:IStrand;		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -130,23 +139,14 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
+				host = value as UIBase;
 				
-				if (host.element is HTMLSpanElement)
+				if (host.element is HTMLSpanElement || host.element is HTMLDivElement || host.element is HTMLElement)
 				{
-					var span:HTMLSpanElement = host.element as HTMLSpanElement;
-					span.className += " mdl-badge " + _noBackground + _overlap;
-					span.setAttribute('data-badge', _dataBadge.toString());
-				} else if (host.element is HTMLDivElement)
-				{
-					var div:HTMLDivElement = host.element as HTMLDivElement;
-					div.className += " mdl-badge " + _noBackground + _overlap;
-					div.setAttribute('data-badge', _dataBadge.toString());
-				} else if (host.element is HTMLElement)
-				{
-					var a:HTMLElement = host.element as HTMLElement;
-					a.className += " mdl-badge " + _noBackground + _overlap;
-					a.setAttribute('data-badge', _dataBadge.toString());
+					host.element.classList.add("mdl-badge");
+					host.element.classList.toggle("mdl-badge--no-background", _noBackground);
+					host.element.classList.toggle("mdl-badge--overlap", _overlap);
+					host.element.setAttribute('data-badge', _dataBadge.toString());
 				} else
 				{
 					throw new Error("Host component must be an MDL Host for Badges.");

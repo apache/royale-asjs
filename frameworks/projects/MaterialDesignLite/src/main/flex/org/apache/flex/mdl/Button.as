@@ -61,8 +61,7 @@ package org.apache.flex.mdl
             typeNames = "mdl-button mdl-js-button";
             
             element = document.createElement('button') as WrappedHTMLElement;
-            element.className = typeNames;
-
+            
             positioner = element;
             element.flexjs_wrapper = this;
 

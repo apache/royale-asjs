@@ -25,13 +25,13 @@ limitations under the License.
     <mdl:Grid className="demo-grid">
         
         <mdl:Tabs width="400">
-            <mdl:TabBar ripple="true">
-                <mdl:TabBarButton text="Tab One" href="#tab1" isActive="true"/>
+            <mdl:TabBar>
+                <mdl:TabBarButton text="Tab One" href="#tab1"/>
                 <mdl:TabBarButton text="Tab Two" href="#tab2"/>
                 <mdl:TabBarButton text="Tab Three" href="#tab3"/>
             </mdl:TabBar>
             
-            <mdl:TabBarPanel id="tab1" isActive="true">
+            <mdl:TabBarPanel id="tab1">
                 <js:Label text="Tab 1"/>
             </mdl:TabBarPanel>
 
@@ -45,13 +45,13 @@ limitations under the License.
         </mdl:Tabs>
 
         <mdl:Tabs width="400" ripple="true">
-            <mdl:TabBar ripple="true">
-                <mdl:TabBarButton text="Starks" href="#starks_panel" isActive="true"/>
-                <mdl:TabBarButton text="Lannisters" href="#lannisters_panel"/>
+            <mdl:TabBar>
+                <mdl:TabBarButton text="Starks" href="#starks_panel"/>
+                <mdl:TabBarButton text="Lannisters" href="#lannisters_panel" isActive="true"/>
                 <mdl:TabBarButton text="Targaryens" href="#targaryens_panel"/>
             </mdl:TabBar>
             
-            <mdl:TabBarPanel id="starks_panel" isActive="true">
+            <mdl:TabBarPanel id="starks_panel">
                 <js:Ul>
                     <js:Li><js:Label text="Eddard"/></js:Li>
                     <js:Li><js:Label text="Catelyn"/></js:Li>
@@ -63,7 +63,7 @@ limitations under the License.
                 </js:Ul>
             </mdl:TabBarPanel>
 
-            <mdl:TabBarPanel id="lannisters_panel">
+            <mdl:TabBarPanel id="lannisters_panel" isActive="true">
                 <js:Ul>
                     <js:Li><js:Label text="Tywin"/></js:Li>
                     <js:Li><js:Label text="Cersei"/></js:Li>

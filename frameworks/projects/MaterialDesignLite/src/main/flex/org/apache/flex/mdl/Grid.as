@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-grid";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -91,7 +90,10 @@ package org.apache.flex.mdl
         {
             _nospacing = value;
 
-            className += (_nospacing ? " mdl-grid--no-spacing" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-grid--no-spacing", _nospacing);
+            }
         }
 	}
 }

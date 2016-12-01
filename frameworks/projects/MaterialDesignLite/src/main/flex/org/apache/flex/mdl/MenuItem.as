@@ -125,7 +125,10 @@ package org.apache.flex.mdl
 		{
 			_divider = value;
 
-            className += (_divider ? " mdl-menu__item--full-bleed-divider" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-menu__item--full-bleed-divider", _divider);
+            }
 		}
 
         protected var _ripple:Boolean = false;
@@ -145,7 +148,10 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            className += (_ripple ? " mdl-js-ripple-effect" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            }
         }     
 
 	}

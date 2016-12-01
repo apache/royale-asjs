@@ -67,7 +67,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-card";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -96,13 +95,16 @@ package org.apache.flex.mdl
         }
         public function set shadow(value:Number):void
         {
-			if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+			COMPILE::JS
 			{
-				_shadow = value;
+				element.classList.remove("mdl-shadow--" + _shadow + "dp");
+				
+				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+				{
+					_shadow = value;
 
-				className += " mdl-shadow--" + _shadow + "dp";
-			} else {
-				className += "";
+					element.classList.add("mdl-shadow--" + _shadow + "dp");
+				}
 			}
         }
 	}

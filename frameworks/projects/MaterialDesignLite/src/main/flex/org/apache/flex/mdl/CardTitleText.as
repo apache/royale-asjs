@@ -67,8 +67,7 @@ package org.apache.flex.mdl
             h2.appendChild(textNode); 
 
 			element = h2 as WrappedHTMLElement;
-            element.className = typeNames;
-
+            
             positioner = element;
 			element.flexjs_wrapper = this;
             

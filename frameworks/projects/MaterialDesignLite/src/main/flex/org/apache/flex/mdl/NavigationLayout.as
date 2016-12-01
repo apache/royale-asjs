@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout mdl-js-layout";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -91,7 +90,10 @@ package org.apache.flex.mdl
         {
 			_fixedHeader = value;
 
-			className += (_fixedHeader ? " mdl-layout--fixed-header" : "");  
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-layout--fixed-header", _fixedHeader);
+            } 
         }
 
 		protected var _fixedDrawer:Boolean;
@@ -112,7 +114,10 @@ package org.apache.flex.mdl
         {
 			_fixedDrawer = value;
 
-			className += (_fixedDrawer ? " mdl-layout--fixed-drawer" : "");  
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-layout--fixed-drawer", _fixedDrawer);
+            }
         }
 	}
 }

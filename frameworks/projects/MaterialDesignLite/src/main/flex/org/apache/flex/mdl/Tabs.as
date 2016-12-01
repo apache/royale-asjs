@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-tabs mdl-js-tabs";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -91,7 +90,10 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            className += (_ripple ? " mdl-js-ripple-effect" : "");
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            }
         }
 	}
 }

@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-cell";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -90,11 +89,16 @@ package org.apache.flex.mdl
         }
         public function set column(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_column = value;
+				element.classList.remove("mdl-cell--" + _column + "-col");
+				
+				if(value > 0 || value < 13)
+				{
+					_column = value;
 
-				className += " mdl-cell--" + _column + "-col";
+					element.classList.add("mdl-cell--" + _column + "-col");
+				}
 			}  
         }
 
@@ -115,12 +119,17 @@ package org.apache.flex.mdl
         }
         public function set columnDesktop(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_columnDesktop = value;
+				element.classList.remove("mdl-cell--" + _columnDesktop + "-col-desktop");
+				
+				if(value > 0 || value < 13)
+				{
+					_columnDesktop = value;
 
-				className += " mdl-cell--" + _columnDesktop + "-col-desktop";
-			}  
+					element.classList.add("mdl-cell--" + _columnDesktop + "-col-desktop");
+				}
+			} 
         }
 
 		protected var _columnTablet:Number;
@@ -140,12 +149,17 @@ package org.apache.flex.mdl
         }
         public function set columnTablet(value:Number):void
         {
-			if(value > 0 || value < 9)
+			COMPILE::JS
 			{
-				_columnTablet = value;
+				element.classList.remove("mdl-cell--" + _columnTablet + "-col-tablet");
+				
+				if(value > 0 || value < 9)
+				{
+					_columnTablet = value;
 
-				className += " mdl-cell--" + _columnTablet + "-col-tablet";
-			}  
+					element.classList.add("mdl-cell--" + _columnTablet + "-col-tablet");
+				}
+			}
         }
 
 		protected var _columnPhone:Number;
@@ -165,12 +179,17 @@ package org.apache.flex.mdl
         }
         public function set columnPhone(value:Number):void
         {
-			if(value > 0 || value < 5)
+			COMPILE::JS
 			{
-				_columnPhone = value;
+				element.classList.remove("mdl-cell--" + _columnPhone + "-col-phone");
+				
+				if(value > 0 || value < 5)
+				{
+					_columnPhone = value;
 
-				className += " mdl-cell--" + _columnPhone + "-col-phone";
-			}  
+					element.classList.add("mdl-cell--" + _columnPhone + "-col-phone");
+				}
+			} 
         }
 
 		protected var _offset:Number;
@@ -190,11 +209,16 @@ package org.apache.flex.mdl
         }
         public function set offset(value:Number):void
         {
-			if(value > 0 || value < 12)
+			COMPILE::JS
 			{
-				_offset = value;
+				element.classList.remove("mdl-cell--" + _offset + "-offset");
+				
+				if(value > 0 || value < 12)
+				{
+					_offset = value;
 
-				className += " mdl-cell--" + _offset + "-offset";
+					element.classList.add("mdl-cell--" + _offset + "-offset");
+				}
 			}
         }
 
@@ -215,11 +239,16 @@ package org.apache.flex.mdl
         }
         public function set offsetDesktop(value:Number):void
         {
-			if(value > 0 || value < 12)
+			COMPILE::JS
 			{
-				_offsetDesktop = value;
+				element.classList.remove("mdl-cell--" + _offsetDesktop + "-offset-desktop");
+				
+				if(value > 0 || value < 12)
+				{
+					_offsetDesktop = value;
 
-				className += " mdl-cell--" + _offsetDesktop + "-offset-desktop";
+					element.classList.add("mdl-cell--" + _offsetDesktop + "-offset-desktop");
+				}
 			}
         }
 
@@ -240,11 +269,16 @@ package org.apache.flex.mdl
         }
         public function set offsetTablet(value:Number):void
         {
-			if(value > 0 || value < 12)
+			COMPILE::JS
 			{
-				_offsetTablet = value;
+				element.classList.remove("mdl-cell--" + _offsetTablet + "-offset-tablet");
+				
+				if(value > 0 || value < 12)
+				{
+					_offsetTablet = value;
 
-				className += " mdl-cell--" + _offsetTablet + "-offset-tablet";
+					element.classList.add("mdl-cell--" + _offsetTablet + "-offset-tablet");
+				}
 			}
         }
 
@@ -265,11 +299,16 @@ package org.apache.flex.mdl
         }
         public function set offsetPhone(value:Number):void
         {
-			if(value > 0 || value < 12)
+			COMPILE::JS
 			{
-				_offsetPhone = value;
+				element.classList.remove("mdl-cell--" + _offsetPhone + "-offset-phone");
+				
+				if(value > 0 || value < 12)
+				{
+					_offsetPhone = value;
 
-				className += " mdl-cell--" + _offsetPhone + "-offset-phone";
+					element.classList.add("mdl-cell--" + _offsetPhone + "-offset-phone");
+				}
 			}
         }
 
@@ -290,11 +329,16 @@ package org.apache.flex.mdl
         }
         public function set order(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_order = value;
+				element.classList.remove("mdl-cell--order-" + _order);
+				
+				if(value > 0 || value < 13)
+				{
+					_order = value;
 
-				className += " mdl-cell--order-" + _order;
+					element.classList.add("mdl-cell--order-" + _order);
+				}
 			}
         }
 
@@ -315,11 +359,16 @@ package org.apache.flex.mdl
         }
         public function set orderDesktop(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_orderDesktop = value;
+				element.classList.remove("mdl-cell--order-" + _orderDesktop + "-desktop");
+				
+				if(value > 0 || value < 13)
+				{
+					_orderDesktop = value;
 
-				className += " mdl-cell--order-" + _orderDesktop + "-desktop";
+					element.classList.add("mdl-cell--order-" + _orderDesktop + "-desktop");
+				}
 			}
         }
 
@@ -340,11 +389,16 @@ package org.apache.flex.mdl
         }
         public function set orderTablet(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_orderTablet = value;
+				element.classList.remove("mdl-cell--order-" + _orderTablet + "-tablet");
+				
+				if(value > 0 || value < 13)
+				{
+					_orderTablet = value;
 
-				className += " mdl-cell--order-" + _orderTablet + "-tablet";
+					element.classList.add("mdl-cell--order-" + _orderTablet + "-tablet");
+				}
 			}
         }
 
@@ -365,11 +419,16 @@ package org.apache.flex.mdl
         }
         public function set orderPhone(value:Number):void
         {
-			if(value > 0 || value < 13)
+			COMPILE::JS
 			{
-				_orderPhone = value;
+				element.classList.remove("mdl-cell--order-" + _orderPhone + "-phone");
+				
+				if(value > 0 || value < 13)
+				{
+					_orderPhone = value;
 
-				className += " mdl-cell--order-" + _orderPhone + "-phone";
+					element.classList.add("mdl-cell--order-" + _orderPhone + "-phone");
+				}
 			}
         }
 		
@@ -391,7 +450,10 @@ package org.apache.flex.mdl
         {
             _hideDesktop = value;
 
-            className += (_hideDesktop ? " mdl-cell--hide-desktop" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--hide-desktop", _hideDesktop);
+            }
         }
 
 		protected var _hideTablet:Boolean = false;
@@ -412,7 +474,10 @@ package org.apache.flex.mdl
         {
             _hideTablet = value;
 
-            className += (_hideTablet ? " mdl-cell--hide-tablet" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--hide-tablet", _hideTablet);
+            }
         }
 
 		protected var _hidePhone:Boolean = false;
@@ -433,7 +498,10 @@ package org.apache.flex.mdl
         {
             _hidePhone = value;
 
-            className += (_hidePhone ? " mdl-cell--hide-phone" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--hide-phone", _hidePhone);
+            }
         }
 
 		protected var _strech:Boolean = false;
@@ -455,7 +523,10 @@ package org.apache.flex.mdl
         {
             _strech = value;
 
-            className += (_strech ? " mdl-cell--stretch" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--stretch", _strech);
+            }
         }
 
 		protected var _alignTop:Boolean = false;
@@ -476,7 +547,10 @@ package org.apache.flex.mdl
         {
             _alignTop = value;
 
-            className += (_alignTop ? " mdl-cell--top" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--top", _alignTop);
+            }
         }
 
 		protected var _alignMiddle:Boolean = false;
@@ -497,7 +571,10 @@ package org.apache.flex.mdl
         {
             _alignMiddle = value;
 
-            className += (_alignMiddle ? " mdl-cell--middle" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--middle", _alignMiddle);
+            }
         }
 
 		protected var _alignBottom:Boolean = false;
@@ -518,7 +595,10 @@ package org.apache.flex.mdl
         {
             _alignBottom = value;
 
-            className += (_alignBottom ? " mdl-cell--bottom" : "");
+			COMPILE::JS
+            {
+                element.classList.toggle("mdl-cell--bottom", _alignBottom);
+            }
         }
 	}
 }

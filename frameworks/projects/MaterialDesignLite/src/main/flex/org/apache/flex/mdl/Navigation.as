@@ -60,7 +60,6 @@ package org.apache.flex.mdl
 			typeNames = "mdl-navigation";
 
             element = document.createElement('nav') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             

@@ -64,8 +64,7 @@ package org.apache.flex.mdl
 			typeNames = "mdl-card__menu";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            element.className = typeNames;
-
+            
             positioner = element;
             
             // absolute positioned children need a non-null
