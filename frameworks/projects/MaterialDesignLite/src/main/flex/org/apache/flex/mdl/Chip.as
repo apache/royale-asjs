@@ -71,7 +71,7 @@ package org.apache.flex.mdl
             typeNames = "mdl-chip";
 
             chipTextSpan = document.createElement("span") as HTMLSpanElement;
-            chipTextSpan.className = "mdl-chip__text";
+            chipTextSpan.classList.toggle("mdl-chip__text");
 
             textNode = document.createTextNode('') as Text;
             chipTextSpan.appendChild(textNode);
