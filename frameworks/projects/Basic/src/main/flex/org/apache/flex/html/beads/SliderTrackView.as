@@ -89,6 +89,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
