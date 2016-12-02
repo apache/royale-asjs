@@ -31,11 +31,12 @@ limitations under the License.
         
         <mdl:GridCell column="1">
             <!-- Fab button -->
-            <mdl:Button fab="true" colored="true">
+            <mdl:Button id="mybtn" fab="true" colored="true">
                 <mdl:beads>
                     <mdl:MaterialIconAdd />
                 </mdl:beads>
             </mdl:Button>
+            <mdl:Tooltip text="A simple tooltip" dataMdlFor="mybtn"/>
         </mdl:GridCell>
         
         <mdl:GridCell column="2">
