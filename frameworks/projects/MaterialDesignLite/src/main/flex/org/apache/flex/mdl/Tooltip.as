@@ -111,6 +111,126 @@ package org.apache.flex.mdl
             }
 		}
 
+        private var _large:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-tooltip--large" effect selector.
+		 *  Applies large-font effect. Optional
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get large():Boolean
+        {
+            return _large;
+        }
+        public function set large(value:Boolean):void
+        {
+             _large = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-tooltip--large", _large);
+            } 
+        }
+
+        private var _leftPosition:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-tooltip--left" effect selector.
+		 *  Positions the tooltip to the left of the target. Optional
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get leftPosition():Boolean
+        {
+            return _large;
+        }
+        public function set leftPosition(value:Boolean):void
+        {
+             _leftPosition = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-tooltip--left", _leftPosition);
+            } 
+        }
+
+        private var _rightPosition:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-tooltip--right" effect selector.
+		 *  Positions the tooltip to the right of the target. Optional
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get rightPosition():Boolean
+        {
+            return _rightPosition;
+        }
+        public function set rightPosition(value:Boolean):void
+        {
+             _rightPosition = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-tooltip--right", _rightPosition);
+            } 
+        }
+
+        private var _topPosition:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-tooltip--top" effect selector.
+		 *  Positions the tooltip to the top of the target. Optional
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get topPosition():Boolean
+        {
+            return _topPosition;
+        }
+        public function set topPosition(value:Boolean):void
+        {
+             _topPosition = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-tooltip--top", _topPosition);
+            } 
+        }
+
+        private var _bottomPosition:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-tooltip--bottom" effect selector.
+		 *  Positions the tooltip to the bottom of the target. Optional
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get bottomPosition():Boolean
+        {
+            return _bottomPosition;
+        }
+        public function set bottomPosition(value:Boolean):void
+        {
+             _bottomPosition = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-tooltip--bottom", _bottomPosition);
+            } 
+        }
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 * @flexjsignorecoercion HTMLDivElement
