@@ -22,12 +22,12 @@ limitations under the License.
                 xmlns:local="*"
                 xmlns="http://www.w3.org/1999/xhtml">
     
+     <fx:Style source="../../main/resources/mdl-styles.css"/>
+
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
-
-     <fx:Style source="../../main/resources/mdl-styles.css"/>
-
+    
     <js:initialView>
         <local:MainNavigation/>
     </js:initialView>
