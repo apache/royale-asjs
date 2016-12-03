@@ -22,6 +22,9 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.Button;
+    import org.apache.flex.mdl.beads.materialIcons.MaterialIconCancel;
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    import org.apache.flex.utils.StrandUtils;
 
     /**
      *  The DeletableChip bead class is a specialty bead that can be used to add additional
@@ -70,19 +73,35 @@ package org.apache.flex.mdl.beads
                 {
                     element.classList.add("mdl-chip--deletable");
 
-                    var deleteButton:Button = new Button();
-                    deleteButton.icon = true;
+                    var deleteButton:HTMLElement = createDeleteButton();
 
-                    var htmlButton:HTMLElement = (deleteButton.element as HTMLElement)
-                    htmlButton.classList.add("mdl-chip__action");
-
-                    element.appendChild(deleteButton.element as HTMLElement);
+                    element.appendChild(deleteButton);
                 }
                 else
                 {
                     throw new Error("Host component must be an MDL Host for Chips.");
                 }
             }
+        }
+
+        /**
+         * @flexjsignorecoercion HTMLElement
+         *
+         * @return Button represents cancel icon
+         */
+        COMPILE::JS
+        private function createDeleteButton():HTMLElement
+        {
+            var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
+
+            var deleteButton:Button = new Button();
+            deleteButton.icon = true;
+            deleteButton.addBead(iconBead);
+
+            var htmlButton:HTMLElement = (deleteButton.element as HTMLElement);
+            htmlButton.classList.add("mdl-chip__action");
+
+            return htmlButton;
         }
     }
 }

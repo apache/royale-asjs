@@ -29,6 +29,7 @@ limitations under the License.
         <mdl:GridCell column="3">
             <mdl:Chip text="Deletable Chip">
                 <mdl:beads>
+                    <mdl:MaterialIconCancel />
                     <mdl:DeletableChip />
                 </mdl:beads>
             </mdl:Chip>
@@ -36,6 +37,7 @@ limitations under the License.
         <mdl:GridCell column="4">
             <mdl:ButtonChip text="Deletable Button Chip">
                 <mdl:beads>
+                    <mdl:MaterialIconCancel />
                     <mdl:DeletableChip />
                 </mdl:beads>
             </mdl:ButtonChip>
