@@ -158,8 +158,7 @@ package org.apache.flex.mdl.supportClasses
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				dataGroup.addElement(ir);
 				ir.index = i;
-                trace("list.labelField: "+ list.labelField);
-				ir.labelField = list.labelField;
+                ir.labelField = list.labelField;
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
 					style.marginBottom = presentationModel.separatorThickness;

@@ -27,15 +27,36 @@ package org.apache.flex.mdl
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.IChild;
 
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;        
+    }
+
 	/**
-	 * GenericList relies on an itemRenderer factory to produce its children componenents
-	 * and on a layout to arrange them. This is the only UI element aside from the itemRenderers.
-	 */
+	 *  List relies on an itemRenderer factory to produce its children components
+	 *  and on a layout to arrange them. 
+     *  This is the only UI element aside from the itemRenderers.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */  
 	public class List extends UIBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function List()
 		{
 			super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 
 		public function get dataProvider():Object
@@ -88,5 +109,21 @@ package org.apache.flex.mdl
 			//	child.update();
 			//}
 		}
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            typeNames = "mdl-list";
+            
+            element = document.createElement('ul') as WrappedHTMLElement;
+            
+            positioner = element;
+            element.flexjs_wrapper = this;
+            
+            return positioner;
+        }  
 	}
 }
