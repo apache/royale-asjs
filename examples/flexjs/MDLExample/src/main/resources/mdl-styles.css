@@ -19,7 +19,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-@namespace "library://ns.apache.org/flexjs/basic";
+@namespace "library://ns.apache.org/flexjs/mdl";
+@namespace js "library://ns.apache.org/flexjs/basic";
 
 .flexjs *, . flexjs *:before, . flexjs *:after {
     -moz-box-sizing: border-box;
@@ -33,11 +34,16 @@
 	margin: 10px;
 }
 
-Image
+js|Image
 {
 	vertical-align: top;
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+}
+
+List
+{
+    IItemRenderer: ClassReference("itemRenderers.ListItemRenderer");
 }
 
 .layoutTransparent {

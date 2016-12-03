@@ -18,43 +18,100 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.html.List;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IChild;
+
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;        
     }
-        
+
 	/**
-	 *  The SimpleList class is a component that displays data in a vertical column. This
-	 *  component differs from org.apache.flex.html.List in that it displays 
-	 *  only string values and maps to the &lt;select&gt; HTML element.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class List extends org.apache.flex.html.SimpleList
+	 *  List relies on an itemRenderer factory to produce its children components
+	 *  and on a layout to arrange them. 
+     *  This is the only UI element aside from the itemRenderers.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */  
+	public class List extends UIBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function List()
 		{
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-        
+
+		public function get dataProvider():Object
+		{
+			return ISelectionModel(model).dataProvider;
+		}
+		public function set dataProvider(value:Object):void
+		{
+			ISelectionModel(model).dataProvider = value;
+		}
+
+		public function get labelField():String
+		{
+			return ISelectionModel(model).labelField;
+		}
+		public function set labelField(value:String):void
+		{
+			ISelectionModel(model).labelField = value;
+		}
+
+		public function getLayoutHost():ILayoutHost
+		{
+			return this;
+		}
+
+		public function get contentView():IParentIUIBase
+		{
+			return this;
+		}
+
+		public function getItemRendererForIndex(index:int):IItemRenderer
+		{
+			var child:IItemRenderer = getElementAt(index) as IItemRenderer;
+			return child;
+		}
+
+		public function removeAllElements():void
+		{
+			while (numElements > 0) {
+				var child:IChild = getElementAt(0);
+				removeElement(child);
+			}
+		}
+
+		public function updateAllItemRenderers():void
+		{
+			//todo: IItemRenderer does not define update function but DataItemRenderer does
+			//for(var i:int = 0; i < numElements; i++) {
+			//	var child:IItemRenderer = getElementAt(i) as IItemRenderer;
+			//	child.update();
+			//}
+		}
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -62,23 +119,11 @@ package org.apache.flex.mdl
             typeNames = "mdl-list";
             
             element = document.createElement('ul') as WrappedHTMLElement;
-            //(element as HTMLSelectElement).size = 5;
-            //goog.events.listen(element, 'change',changeHandler);
             
             positioner = element;
-            
             element.flexjs_wrapper = this;
             
             return positioner;
-        }   
-        
-        /**
-         * @flexjsignorecoercion HTMLSelectElement
-         */
-        COMPILE::JS
-        override protected function changeHandler(event:Event):void
-        {
-            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
-        }
+        }  
 	}
 }

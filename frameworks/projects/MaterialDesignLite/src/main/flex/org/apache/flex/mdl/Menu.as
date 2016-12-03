@@ -92,12 +92,10 @@ package org.apache.flex.mdl
             if(currentPosClazz == "")
             {
                 currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                trace("[bottom] currentPosClazz: " + currentPosClazz);
                 className += currentPosClazz;                
             } else
             {
                 newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                trace("[bottom] newPosClazz: " + newPosClazz);
                 className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
             }
 
@@ -129,12 +127,10 @@ package org.apache.flex.mdl
             if(currentPosClazz == "")
             {
                 currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                trace("[left] currentPosClazz: " + currentPosClazz);
                 className += currentPosClazz;                
             } else
             {
                 newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                trace("[left] newPosClazz: " + newPosClazz);
                 className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
             }
 
