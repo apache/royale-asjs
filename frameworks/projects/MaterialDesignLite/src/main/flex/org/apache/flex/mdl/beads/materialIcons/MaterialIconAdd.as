@@ -21,7 +21,7 @@ package org.apache.flex.mdl.beads.materialIcons
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.supportClasses.MaterialIcons;
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
      *  The MaterialIconCancel bead class is a specialty bead that add "add" icon
@@ -32,7 +32,7 @@ package org.apache.flex.mdl.beads.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconAdd implements IBead
+    public class MaterialIconAdd extends MaterialIconBase implements IBead
     {
         /**
          *  constructor.
@@ -44,10 +44,9 @@ package org.apache.flex.mdl.beads.materialIcons
          */
         public function MaterialIconAdd()
         {
+            super();
         }
-
-        private var add:MaterialIcons;
-
+        
         private var _strand:IStrand;
 
         /**
@@ -62,12 +61,11 @@ package org.apache.flex.mdl.beads.materialIcons
             COMPILE::JS
             {
                 var host:UIBase = value as UIBase;
-                var element:HTMLElement = host.element as HTMLElement;
+                var htmlElement:HTMLElement = host.element as HTMLElement;
 
-                add = new MaterialIcons();
-                add.text = MaterialIconsType.ADD;
+                materialIcon.text = MaterialIconsType.ADD;
 
-                element.appendChild(add.element as HTMLElement);
+                htmlElement.appendChild(element);
             }
         }
     }

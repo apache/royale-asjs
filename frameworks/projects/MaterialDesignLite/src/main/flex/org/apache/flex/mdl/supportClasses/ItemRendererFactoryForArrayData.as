@@ -27,7 +27,6 @@ package org.apache.flex.mdl.supportClasses
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;

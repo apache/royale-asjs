@@ -19,43 +19,62 @@
 package org.apache.flex.mdl.supportClasses
 {
     import org.apache.flex.html.I;
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;
-    }
 
     /**
-     *  Provide HTML element for material icons derived class
+     *  Provide common features for all material icons type
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIcons extends I
+    COMPILE::SWF
+    public class MaterialIconBase
     {
-        public function MaterialIcons()
+        public function MaterialIconBase()
         {
-            super();
+        }
+    }
+
+    /**
+     *  Provide HTML element and common features for all material icons type
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    COMPILE::JS
+    public class MaterialIconBase
+    {
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *
+         *  @flexjsignorecoercion HTMLElement
+         */
+        public function MaterialIconBase()
+        {
+            materialIcon = new I();
+            element.classList.add("material-icons");
         }
 
-        /**
-         * @flexjsignorecoercion HTMLElement
-         *
-         * @param value
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
+        private var _md48:Boolean;
+        protected var materialIcon:I;
+
+        public function get element():HTMLElement
         {
-            super.createElement();
+            return materialIcon.element as HTMLElement;
+        }
 
-            var materialIconElement:HTMLElement = element as HTMLElement;
-            materialIconElement.classList.add("material-icons");
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+        public function set md48(value:Boolean):void
+        {
+            _md48 = value;
+            element.classList.toggle("md-48", _md48);
         }
     }
 }
