@@ -95,10 +95,10 @@ package org.apache.flex.mdl.beads
             var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
 
             var deleteButton:Button = new Button();
-            deleteButton.icon = true;
             deleteButton.addBead(iconBead);
 
             var htmlButton:HTMLElement = (deleteButton.element as HTMLElement);
+            htmlButton.classList.remove("mdl-button", "mdl-js-button");
             htmlButton.classList.add("mdl-chip__action");
 
             return htmlButton;
