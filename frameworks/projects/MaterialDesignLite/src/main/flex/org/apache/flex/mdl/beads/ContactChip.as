@@ -97,9 +97,10 @@ package org.apache.flex.mdl.beads
                     
                     contact = document.createElement("span") as HTMLSpanElement;
                     contact.classList.add("mdl-chip__contact");
+
                     contact.appendChild(textNode);
 
-                    element.appendChild(contact);
+                    element.insertBefore(contact, host["chipTextSpan"]);
                 }
                 else
                 {

@@ -58,33 +58,13 @@ package org.apache.flex.mdl
         }
 
         private var chip:HTMLSpanElement;
-        private var chipTextSpan:HTMLSpanElement;
         private var textNode:Text;
 
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion Text
-         */
-        override protected function createElement():WrappedHTMLElement
+        private var _chipTextSpan:HTMLSpanElement;
+
+        public function get chipTextSpan():HTMLSpanElement
         {
-            typeNames = "mdl-chip";
-
-            chipTextSpan = document.createElement("span") as HTMLSpanElement;
-            chipTextSpan.classList.add("mdl-chip__text");
-
-            textNode = document.createTextNode('') as Text;
-            chipTextSpan.appendChild(textNode);
-
-            chip = document.createElement("span") as HTMLSpanElement;
-            chip.appendChild(chipTextSpan);
-
-            element = chip as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+           return _chipTextSpan;
         }
 
         public function get text():String
@@ -95,6 +75,32 @@ package org.apache.flex.mdl
         public function set text(value:String):void
         {
             textNode.nodeValue = value;
+        }
+
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLSpanElement
+         * @flexjsignorecoercion Text
+         */
+        override protected function createElement():WrappedHTMLElement
+        {
+            typeNames = "mdl-chip";
+
+            _chipTextSpan = document.createElement("span") as HTMLSpanElement;
+            _chipTextSpan.classList.add("mdl-chip__text");
+
+            textNode = document.createTextNode('') as Text;
+            _chipTextSpan.appendChild(textNode);
+
+            chip = document.createElement("span") as HTMLSpanElement;
+            chip.appendChild(_chipTextSpan);
+
+            element = chip as WrappedHTMLElement;
+
+            positioner = element;
+            element.flexjs_wrapper = this;
+
+            return element;
         }
     }
 }

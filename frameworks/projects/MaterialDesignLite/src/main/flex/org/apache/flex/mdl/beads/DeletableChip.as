@@ -95,7 +95,7 @@ package org.apache.flex.mdl.beads
             var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
             if (iconBead == null)
             {
-                throw new Error("MaterialIconBase bead does not exists");
+                throw new Error("Missing material icon bead");
             }
 
             var delButton:Button = new Button();

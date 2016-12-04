@@ -58,8 +58,24 @@ package org.apache.flex.mdl
         }
 
         private var chip:HTMLButtonElement;
-        private var chipTextSpan:HTMLSpanElement;
         private var textNode:Text;
+
+        private var _chipTextSpan:HTMLSpanElement;
+
+        public function get chipTextSpan():HTMLSpanElement
+        {
+            return _chipTextSpan;
+        }
+
+        public function get text():String
+        {
+            return textNode.nodeValue;
+        }
+
+        public function set text(value:String):void
+        {
+            textNode.nodeValue = value;
+        }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -71,14 +87,14 @@ package org.apache.flex.mdl
         {
             typeNames = "mdl-chip";
 
-            chipTextSpan = document.createElement("span") as HTMLSpanElement;
-            chipTextSpan.classList.add("mdl-chip__text");
+            _chipTextSpan = document.createElement("span") as HTMLSpanElement;
+            _chipTextSpan.classList.add("mdl-chip__text");
 
             textNode = document.createTextNode('') as Text;
-            chipTextSpan.appendChild(textNode);
+            _chipTextSpan.appendChild(textNode);
 
             chip = document.createElement("button") as HTMLButtonElement;
-            chip.appendChild(chipTextSpan);
+            chip.appendChild(_chipTextSpan);
 
             element = chip as WrappedHTMLElement;
 
@@ -86,16 +102,6 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
 
             return element;
-        }
-
-        public function get text():String
-        {
-            return textNode.nodeValue;
-        }
-
-        public function set text(value:String):void
-        {
-            textNode.nodeValue = value;
         }
     }
 }
