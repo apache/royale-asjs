@@ -24,7 +24,6 @@ package org.apache.flex.html.beads.controllers
     import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
