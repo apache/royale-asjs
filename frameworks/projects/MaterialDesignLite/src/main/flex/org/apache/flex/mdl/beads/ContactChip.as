@@ -21,12 +21,9 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.Button;
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
-    import org.apache.flex.utils.StrandUtils;
 
     /**
-     *  The DeletableChip bead class is a specialty bead that can be used to add additional
+     *  The ContactChip bead class is a specialty bead that can be used to add additional
      *  button to Chip MDL control.
      *
      *  @langversion 3.0
@@ -34,7 +31,7 @@ package org.apache.flex.mdl.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class DeletableChip implements IBead
+    public class ContactChip implements IBead
     {
         /**
          *  constructor.
@@ -44,17 +41,23 @@ package org.apache.flex.mdl.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function DeletableChip()
+        public function ContactChip()
         {
-
         }
 
-        private var deleteButton:Button;
+        private var _contactText:String = "";
+
+        COMPILE::JS
+        private var contact:HTMLSpanElement;
+        COMPILE::JS
+        private var textNode:Text;
+
         private var _strand:IStrand;
 
         /**
          * @flexjsignorecoercion HTMLElement
          * @flexjsignorecoercion HTMLSpanElement
+         * @flexjsignorecoercion Text
          * @flexjsignorecoercion HTMLButtonElement
          *
          * @param value
@@ -71,11 +74,15 @@ package org.apache.flex.mdl.beads
 
                 if (isValidElement && element.className.search("mdl-chip") > -1)
                 {
-                    element.classList.add("mdl-chip--deletable");
+                    element.classList.add("mdl-chip--contact");
 
-                    deleteButton = createDeleteButton();
+                    textNode = document.createTextNode('') as Text;
 
-                    element.appendChild(deleteButton.element as HTMLElement);
+                    contact = document.createElement("span") as HTMLSpanElement;
+                    contact.classList.add("mdl-chip__contact");
+                    contact.appendChild(textNode);
+
+                    element.appendChild(contact);
                 }
                 else
                 {
@@ -85,27 +92,35 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @flexjsignorecoercion HTMLElement
+         *  The text for contact
          *
-         * @return Button represents cancel icon
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
-        COMPILE::JS
-        private function createDeleteButton():Button
+        public function get contactText():String
         {
-            var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
-            if (iconBead == null)
+            COMPILE::SWF
             {
-                throw new Error("MaterialIconBase bead does not exists");
+                return _contactText;
             }
+            COMPILE::JS
+            {
+                return textNode.nodeValue;
+            }
+        }
 
-            var delButton:Button = new Button();
-            delButton.addBead(iconBead);
-
-            var htmlButton:HTMLElement = (delButton.element as HTMLElement);
-            htmlButton.classList.remove("mdl-button", "mdl-js-button");
-            htmlButton.classList.add("mdl-chip__action");
-
-            return delButton;
+        public function set contactText(value:String):void
+        {
+            COMPILE::SWF
+            {
+                _contactText = value;
+            }
+            COMPILE::JS
+            {
+                textNode.nodeValue = value;
+            }
         }
     }
 }

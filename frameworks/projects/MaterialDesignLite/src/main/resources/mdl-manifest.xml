@@ -43,8 +43,8 @@
     <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
     <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
     <component id="List" class="org.apache.flex.mdl.List"/>
-        <component id="ListView" class="org.apache.flex.mdl.beads.views.ListView"/>
-        <component id="ItemRendererFactoryForArrayData" class="org.apache.flex.mdl.supportClasses.ItemRendererFactoryForArrayData"/>
+    <component id="ListView" class="org.apache.flex.mdl.beads.views.ListView"/>
+    <component id="ItemRendererFactoryForArrayData" class="org.apache.flex.mdl.supportClasses.ItemRendererFactoryForArrayData"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
@@ -66,4 +66,5 @@
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconAdd"/>
     <component id="Tooltip" class="org.apache.flex.mdl.Tooltip"/>
+    <component id="ContactChip" class="org.apache.flex.mdl.beads.ContactChip"/>
 </componentPackage>
