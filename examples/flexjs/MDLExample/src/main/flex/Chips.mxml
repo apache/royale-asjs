@@ -23,10 +23,10 @@ limitations under the License.
         <mdl:GridCell column="1">
             <mdl:Chip text="Basic Chip" />
         </mdl:GridCell>
-        <mdl:GridCell column="1">
+        <mdl:GridCell column="2">
             <mdl:ButtonChip text="Button Chip" />
         </mdl:GridCell>
-        <mdl:GridCell column="1">
+        <mdl:GridCell column="3">
             <mdl:Chip text="Deletable Chip">
                 <mdl:beads>
                     <mdl:MaterialIconCancel />
@@ -34,7 +34,7 @@ limitations under the License.
                 </mdl:beads>
             </mdl:Chip>
         </mdl:GridCell>
-        <mdl:GridCell column="1">
+        <mdl:GridCell column="4">
             <mdl:ButtonChip text="Deletable Button Chip">
                 <mdl:beads>
                     <mdl:MaterialIconCancel />
@@ -42,7 +42,7 @@ limitations under the License.
                 </mdl:beads>
             </mdl:ButtonChip>
         </mdl:GridCell>
-        <mdl:GridCell column="1">
+        <mdl:GridCell column="5">
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:ContactChip contactText="A"/>

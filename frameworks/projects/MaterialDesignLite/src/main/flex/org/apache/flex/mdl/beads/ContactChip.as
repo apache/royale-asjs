@@ -22,6 +22,7 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
 
+
     /**
      *  The ContactChip bead class is a specialty bead that can be used to add additional
      *  button to Chip MDL control.
@@ -31,6 +32,23 @@ package org.apache.flex.mdl.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
+    COMPILE::SWF
+    public class ContactChip
+    {
+        private var _contactText:String = "";
+
+        public function ContactChip()
+        {
+
+        }
+
+        public function set contactText(value:String):void
+        {
+            _contactText = value;
+        }
+    }
+
+    COMPILE::JS
     public class ContactChip implements IBead
     {
         /**
@@ -47,9 +65,7 @@ package org.apache.flex.mdl.beads
 
         private var _contactText:String = "";
 
-        COMPILE::JS
         private var contact:HTMLSpanElement;
-        COMPILE::JS
         private var textNode:Text;
 
         private var _strand:IStrand;
@@ -77,7 +93,8 @@ package org.apache.flex.mdl.beads
                     element.classList.add("mdl-chip--contact");
 
                     textNode = document.createTextNode('') as Text;
-
+                    textNode.nodeValue = _contactText;
+                    
                     contact = document.createElement("span") as HTMLSpanElement;
                     contact.classList.add("mdl-chip__contact");
                     contact.appendChild(textNode);
@@ -91,36 +108,9 @@ package org.apache.flex.mdl.beads
             }
         }
 
-        /**
-         *  The text for contact
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get contactText():String
-        {
-            COMPILE::SWF
-            {
-                return _contactText;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
-        }
-
         public function set contactText(value:String):void
         {
-            COMPILE::SWF
-            {
-                _contactText = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
+            _contactText = value;
         }
     }
 }
