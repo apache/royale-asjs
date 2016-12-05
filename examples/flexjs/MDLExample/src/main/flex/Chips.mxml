@@ -48,6 +48,15 @@ limitations under the License.
                     <mdl:ContactChip contactText="A"/>
                 </mdl:beads>
             </mdl:Chip>
-        </mdl:GridCell>  
+        </mdl:GridCell>
+        <mdl:GridCell column="5">
+            <mdl:Chip text="Contact Chip">
+                <mdl:beads>
+                    <mdl:ContactChip contactText="A"/>
+                    <mdl:MaterialIconCancel />
+                    <mdl:DeletableChip />
+                </mdl:beads>
+            </mdl:Chip>
+        </mdl:GridCell>
     </mdl:Grid>
 </mdl:TabBarPanel>
