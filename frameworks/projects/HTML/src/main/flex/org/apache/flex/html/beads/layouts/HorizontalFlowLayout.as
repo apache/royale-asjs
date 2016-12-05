@@ -76,6 +76,7 @@ package org.apache.flex.html.beads.layouts
 		private var _computedColumnWidth:Number = Number.NaN;
 		private var _columnGap:int = 4;
 		private var _rowGap:int = 4;
+		private var _useChildWidth:Boolean = false;
 		
 		/**
 		 *  The amount of spacing between the columns.
@@ -150,6 +151,24 @@ package org.apache.flex.html.beads.layouts
 		{
 			_computedColumnWidth = value;
 		}
+		
+		/**
+		 *  Determines whether or not each child's width is set from the column size (false) or
+		 *  uses its own width (true). Default is false.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get useChildWidth():Boolean
+		{
+			return _useChildWidth;
+		}
+		public function set useChildWidth(value:Boolean):void
+		{
+			_useChildWidth = value;
+		}
 
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
@@ -195,10 +214,9 @@ package org.apache.flex.html.beads.layouts
 					
 					child.x = xpos;
 					child.y = ypos;
-					child.setWidth(useWidth)
-					//child.explicitWidth = useWidth;
-					//child.width = useWidth; // to trigger child layout
-					//child.dispatchEvent(new Event("layoutNeeded"));
+					if (!useChildWidth) {
+						child.setWidth(useWidth)
+					}
 					
 					var childWidth:Number = child.width;
 					var childHeight:Number = child.height;
@@ -250,7 +268,11 @@ package org.apache.flex.html.beads.layouts
 					else if (!isNaN(child.percentWidth)) useWidth = host.width * (child.percentWidth/100.0);
 					else useWidth = _computedColumnWidth;
 					
-					child.width = useWidth;
+					if (useChildWidth) {
+						children[i].style["position"] = null;
+					} else {
+						child.width = useWidth;
+					}
 					children[i].style["margin-top"] = String(_rowGap/2)+"px";
 					children[i].style["margin-bottom"] = String(_rowGap/2)+"px";
 					children[i].style["margin-left"] = String(_columnGap/2)+"px";
