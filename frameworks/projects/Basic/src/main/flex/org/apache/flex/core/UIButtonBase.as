@@ -76,7 +76,12 @@ package org.apache.flex.core
             MouseEventConverter.setupInstanceConverters(this);
 		}
 
-        COMPILE::SWF
+        [SWFOverride(returns="flash.display.DisplayObjectContainer")]
+        override public function get parent():IParent
+        {
+            return super.parent as IParent;
+        }
+        
         public function get $displayObject():DisplayObject
         {
             return this;

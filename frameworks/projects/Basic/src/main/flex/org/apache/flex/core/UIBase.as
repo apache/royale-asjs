@@ -1492,7 +1492,6 @@ package org.apache.flex.core
         };
 
         /**
-         * @param value The event containing new style properties.
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion org.apache.flex.core.IParent
          */
@@ -1502,6 +1501,15 @@ package org.apache.flex.core
             var p:WrappedHTMLElement = this.positioner.parentNode as WrappedHTMLElement;
             var wrapper:IParent = p ? p.flexjs_wrapper as IParent : null;
             return wrapper;
+        }
+        
+        COMPILE::SWF
+        {
+        [SWFOverride(returns="flash.display.DisplayObjectContainer")]
+        override public function get parent():IParent
+        {
+            return super.parent as IParent;
+        }
         }
         
 		COMPILE::SWF
@@ -1515,5 +1523,15 @@ package org.apache.flex.core
 		{
 			return element;
 		}
+        
+        COMPILE::SWF
+        {
+        [SWFOverride(params="flash.events.Event")]
+        override public function dispatchEvent(event:org.apache.flex.events.Event):Boolean
+        {
+            return super.dispatchEvent(event);
+        }
+        }
+
 	}
 }

@@ -120,6 +120,7 @@
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />

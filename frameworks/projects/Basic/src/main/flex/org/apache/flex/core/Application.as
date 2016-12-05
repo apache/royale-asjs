@@ -103,7 +103,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication
     {
         /**
          *  Constructor.
@@ -227,6 +227,7 @@ package org.apache.flex.core
             ValuesManager.valuesImpl.init(this);
         }
 
+        private var _initialView:IApplicationView;
         /**
          *  The initial view.
          *
@@ -237,8 +238,14 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        [Bindable("__NoChangeEvent__")]
-        public var initialView:IApplicationView;
+        public function get initialView():IApplicationView
+        {
+            return _initialView;
+        }
+        public function set initialView(value:IApplicationView):void
+        {
+            _initialView = value;
+        }
 
         /**
          *  The data model (for the initial view).
@@ -643,5 +650,11 @@ package org.apache.flex.core
 			}
 			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
 		}
+        
+        COMPILE::SWF
+        public function get $displayObject():DisplayObject
+        {
+            return this;
+        }
     }
 }

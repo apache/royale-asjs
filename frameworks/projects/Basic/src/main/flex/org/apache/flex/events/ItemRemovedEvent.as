@@ -78,7 +78,7 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-		override public function cloneEvent():org.apache.flex.events.Event
+		override public function clone():IFlexJSEvent
 		{
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent(type);
 			newEvent.item = item;

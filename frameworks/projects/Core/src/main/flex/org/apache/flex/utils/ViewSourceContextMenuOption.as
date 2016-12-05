@@ -29,7 +29,7 @@ COMPILE::SWF
     import flash.ui.ContextMenuItem;
 }
 
-import org.apache.flex.core.UIHTMLElementWrapper;
+import org.apache.flex.core.IInitialViewApplication;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IStrand;
 
@@ -74,7 +74,7 @@ public class ViewSourceContextMenuOption implements IBead
 		
         COMPILE::SWF
         {
-    		var menuHost:InteractiveObject = InteractiveObject(UIHTMLElementWrapper(value).$displayObject);
+    		var menuHost:InteractiveObject = InteractiveObject(IInitialViewApplication(value).$displayObject);
     		var cm:ContextMenu = ContextMenu(menuHost.contextMenu);
     		if (!cm)
     		{

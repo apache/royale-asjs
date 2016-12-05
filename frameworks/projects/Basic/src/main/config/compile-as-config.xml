@@ -30,6 +30,8 @@
             <path-element>../../../../../libs/Effects.swc</path-element>
         </external-library-path>
         
+        <allow-subclass-overrides>true</allow-subclass-overrides>
+        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -43,6 +45,7 @@
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>SWFOverride</name>
         </keep-as3-metadata>
 	  
         <locale/>

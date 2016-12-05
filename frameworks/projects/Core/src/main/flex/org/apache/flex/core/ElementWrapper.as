@@ -161,7 +161,7 @@ package org.apache.flex.core
         private function forwarder(event:flash.events.Event):void
         {
             if (event is IFlexJSEvent)
-                event = IFlexJSEvent(event).cloneEvent() as flash.events.Event;
+                event = IFlexJSEvent(event).clone() as flash.events.Event;
             dispatchEvent(event);
         }
     }

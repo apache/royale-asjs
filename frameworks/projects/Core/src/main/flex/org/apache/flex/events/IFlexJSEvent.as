@@ -43,6 +43,7 @@ package org.apache.flex.events
 		 * @playerversion AIR 2.6
 		 * @productversion FlexJS 0.0
 		 */
-		function cloneEvent():IFlexJSEvent;
+        [SWFOverride(returns="flash.events.Event")]
+		function clone():IFlexJSEvent;
 	}
 }

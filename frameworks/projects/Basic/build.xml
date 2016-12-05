@@ -84,7 +84,7 @@
             <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
         </compc>
-        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
+        <!--<copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />-->
     </target>
     
     <target name="check-compiler" depends="check-falcon-home">

@@ -25,6 +25,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IFlexJSElement;
+    import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
@@ -35,7 +36,7 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.events.utils.MouseEventConverter;
     import org.apache.flex.geom.Rectangle;
     import org.apache.flex.html.beads.ITextItemRenderer;
-	import org.apache.flex.utils.CSSContainerUtils;
+    import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
@@ -70,12 +71,6 @@ package org.apache.flex.html.supportClasses
 		
 		private var _explicitWidth:Number;
 		
-        COMPILE::SWF
-        public function get $displayObject():DisplayObject
-        {
-            return this;
-        }
-        
         public function get flexjs_wrapper():Object
         {
             return this;
@@ -570,6 +565,16 @@ package org.apache.flex.html.supportClasses
             if (!parent)
                 return null;
             return IUIBase(parent).topMostEventDispatcher;
+        }
+        
+        
+        COMPILE::SWF
+        {
+        [SWFOverride(returns="flash.display.DisplayObjectContainer")]
+        override public function get parent():IParent
+        {
+            return super.parent as IParent;
+        }
         }
 
     }
