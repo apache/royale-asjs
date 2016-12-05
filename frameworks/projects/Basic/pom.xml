@@ -65,6 +65,7 @@
               <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
         </configuration>
       </plugin>
     </plugins>

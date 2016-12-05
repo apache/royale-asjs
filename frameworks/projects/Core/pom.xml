@@ -51,6 +51,7 @@
             <includeClass>CoreClasses</includeClass>
           </includeClasses>
           <skipExtern>false</skipExtern>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
         </configuration>
       </plugin>
     </plugins>
