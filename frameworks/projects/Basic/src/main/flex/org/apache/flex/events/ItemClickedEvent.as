@@ -103,7 +103,7 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-		override public function clone():IFlexJSEvent
+		override public function cloneEvent():IFlexJSEvent
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent(type);
 			newEvent.index = index;

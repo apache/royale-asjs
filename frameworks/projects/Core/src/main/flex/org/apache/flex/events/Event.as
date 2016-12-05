@@ -83,8 +83,20 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-        [SWFOverride(returns="flash.events.Event")]
-		public override function clone():IFlexJSEvent
+		public override function clone():flash.events.Event
+		{
+			return cloneEvent() as flash.events.Event;
+		}
+
+		/**
+		 * Create a copy/clone of the Event object.
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.0
+		 */
+		public function cloneEvent():IFlexJSEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}
@@ -149,7 +161,7 @@ package org.apache.flex.events
 			throw new Error("stopImmediatePropagation");
 		}
 		
-		public function clone():IFlexJSEvent
+		public function cloneEvent():IFlexJSEvent
 		{
 			return new org.apache.flex.events.Event(type, bubbles, cancelable);
 		}

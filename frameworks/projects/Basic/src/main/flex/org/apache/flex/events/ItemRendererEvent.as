@@ -80,7 +80,7 @@ package org.apache.flex.events
 		/**
 		 * @private
 		 */
-		override public function clone():IFlexJSEvent
+		override public function cloneEvent():IFlexJSEvent
 		{
 			var newEvent:ItemRendererEvent = new ItemRendererEvent(type);
 			newEvent.itemRenderer = itemRenderer;
