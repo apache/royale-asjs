@@ -55,6 +55,11 @@ limitations under the License.
 			font-style: italic;
 			color: #333333;
 		}
+		
+		/* social icons */
+		.social {
+			margin-right: 5px;
+		}
 	</fx:Style>
 	
 	<js:beads>

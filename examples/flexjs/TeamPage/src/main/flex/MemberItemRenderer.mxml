@@ -27,7 +27,7 @@ limitations under the License.
 			import models.Person;
 			
 			import org.apache.flex.events.MouseEvent;
-			import org.apache.flex.html.TextButton;
+			import org.apache.flex.html.A;
 			import org.apache.flex.utils.BrowserUtils;
 			
 			private var _member:Person;
@@ -50,19 +50,13 @@ limitations under the License.
 				}
 				
 				for (var type:String in _member.social) {
-					var button:TextButton = new TextButton();
-					button.text = type;
-					button.className = type;
-					button.addEventListener("click", gotoSocialMedia);
-					socialMedia.addElement(button);
+					var link:A = new A();
+					link.text = type;
+					link.className = type;
+					link.className = "social";
+					link.href = _member.social[type];
+					socialMedia.addElement(link);
 				}
-			}
-			
-			private function gotoSocialMedia(event:org.apache.flex.events.MouseEvent):void
-			{
-				var button:TextButton = event.target as TextButton;
-				var url:String = _member.social[button.text];
-				BrowserUtils.executeJS("window.open('"+url+"')");
 			}
 			
 		]]>
@@ -84,7 +78,11 @@ limitations under the License.
 		<js:Label id="memberTitle" width="100%" className="MemberTitle" />
 		<js:Label id="memberID" width="100%" className="ApacheID" />
 		<js:Spacer height="10" />
-		<js:HContainer id="socialMedia" />
+		<js:Container id="socialMedia" width="100%">
+			<js:beads>
+				<js:HorizontalFlowLayout useChildWidth="true" />
+			</js:beads>
+		</js:Container>
 		<js:Spacer height="10"/>
 		<js:MultilineLabel id="memberBio" width="100%"/>
 	</js:VContainer>
