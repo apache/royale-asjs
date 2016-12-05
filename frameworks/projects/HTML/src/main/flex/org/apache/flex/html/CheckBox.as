@@ -105,6 +105,7 @@ package org.apache.flex.html
         /**
          *  <code>true</code> if the check mark is displayed.
          *
+         *  @default false
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
