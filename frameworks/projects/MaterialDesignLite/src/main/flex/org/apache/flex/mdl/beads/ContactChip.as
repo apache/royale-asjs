@@ -21,6 +21,8 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
+    import org.apache.flex.mdl.supportClasses.IMdlColor;
+    import org.apache.flex.mdl.supportClasses.IMdlTextColor;
 
 
     /**
@@ -33,9 +35,14 @@ package org.apache.flex.mdl.beads
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public class ContactChip
+    public class ContactChip implements IMdlColor, IMdlTextColor
     {
-        private var _contactText:String = "";
+        private var _color:String;
+        private var _colorWeight:String;
+        private var _textColor:String;
+        private var _textColorWeight:String;
+
+        private var _contactText:String;
 
         public function ContactChip()
         {
@@ -46,10 +53,62 @@ package org.apache.flex.mdl.beads
         {
             _contactText = value;
         }
+
+        /**
+         * @inheritDoc
+         */
+        public function get color():String
+        {
+            return _color;
+        }
+
+        public function set color(value:String):void
+        {
+            _color = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get colorWeight():String
+        {
+            return _colorWeight;
+        }
+
+        public function set colorWeight(value:String):void
+        {
+            _colorWeight = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get textColor():String
+        {
+            return _textColor;
+        }
+
+        public function set textColor(value:String):void
+        {
+            _textColor = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get textColorWeight():String
+        {
+            return _textColorWeight;
+        }
+
+        public function set textColorWeight(value:String):void
+        {
+            _textColorWeight = value;
+        }
     }
 
     COMPILE::JS
-    public class ContactChip implements IBead
+    public class ContactChip implements IBead, IMdlColor, IMdlTextColor
     {
         /**
          *  constructor.
@@ -63,6 +122,10 @@ package org.apache.flex.mdl.beads
         {
         }
 
+        private var _color:String = "";
+        private var _colorWeight:String = "";
+        private var _textColor:String = "";
+        private var _textColorWeight:String = "";
         private var _contactText:String = "";
 
         private var contact:HTMLSpanElement;
@@ -98,6 +161,17 @@ package org.apache.flex.mdl.beads
                     contact = document.createElement("span") as HTMLSpanElement;
                     contact.classList.add("mdl-chip__contact");
 
+                    var contactColor:String = _colorWeight ?
+                            "mdl-color--".concat(_color, "-", _colorWeight) :
+                            "mdl-color--".concat(_color);
+
+                    var contactTextColor:String = _textColorWeight ?
+                            "mdl-color-text--".concat(_textColor, "-", _textColorWeight) :
+                            "mdl-color-text--".concat(_textColor);
+
+                    contact.classList.toggle(contactColor, _color);
+                    contact.classList.toggle(contactTextColor, _textColor);
+
                     contact.appendChild(textNode);
 
                     element.insertBefore(contact, host["chipTextSpan"]);
@@ -112,6 +186,58 @@ package org.apache.flex.mdl.beads
         public function set contactText(value:String):void
         {
             _contactText = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get color():String
+        {
+            return _color;
+        }
+
+        public function set color(value:String):void
+        {
+            _color = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get colorWeight():String
+        {
+            return _colorWeight;
+        }
+
+        public function set colorWeight(value:String):void
+        {
+            _colorWeight = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get textColor():String
+        {
+            return _textColor;
+        }
+
+        public function set textColor(value:String):void
+        {
+            _textColor = value;
+        }
+
+        /**
+         * @inheritDoc
+         */
+        public function get textColorWeight():String
+        {
+            return _textColorWeight;
+        }
+
+        public function set textColorWeight(value:String):void
+        {
+            _textColorWeight = value;
         }
     }
 }
