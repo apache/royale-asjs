@@ -24,9 +24,6 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-        import org.apache.flex.html.beads.SliderTrackView;
-        import org.apache.flex.html.beads.SliderThumbView;
-        import org.apache.flex.html.beads.controllers.SliderMouseController;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 
@@ -175,14 +172,14 @@ package org.apache.flex.mdl
 			}
         }
 
-        COMPILE::JS
-        private var track:SliderTrackView;
+        //COMPILE::JS
+        //private var track:SliderTrackView;
         
-        COMPILE::JS
-        private var thumb:SliderThumbView;
+        //COMPILE::JS
+        //private var thumb:SliderThumbView;
         
-        COMPILE::JS
-        private var controller:SliderMouseController;
+        //COMPILE::JS
+        //private var controller:SliderMouseController;
         
 		COMPILE::JS
 		private var input:HTMLInputElement;
@@ -268,7 +265,7 @@ package org.apache.flex.mdl
         /**
          * @param {number} value The value used to calculate new position of the thumb.
          * @return {void} Moves the thumb to the corresponding position.
-         */
+         *
         COMPILE::JS
         public function setThumbFromValue(value:Number):void
         {
@@ -279,7 +276,7 @@ package org.apache.flex.mdl
                 parseInt(thumb.element.style.width, 10));
             
             thumb.element.style.left = "" + xloc + 'px';
-        }        
+        } */       
 
     }
 }
