@@ -59,7 +59,7 @@ package org.apache.flex.mdl.beads
         private var _source:String = "";
         private var _strand:IStrand;
 
-        private var contact:Image;
+        private var contact:HTMLImageElement;
 
         public function set strand(value:IStrand):void
         {
@@ -73,12 +73,11 @@ package org.apache.flex.mdl.beads
             {
                 element.classList.add("mdl-chip--contact");
 
-                contact = new Image();
-                contact["applyImageData"](_source);
+                contact = document.createElement("img") as HTMLImageElement;
+                contact.classList.add("mdl-chip__contact");
+                contact.src = _source;
 
-                contact["imageElement"].classList.add("mdl-chip__contact");
-
-                element.insertBefore(contact["imageElement"], host["chipTextSpan"]);
+                element.insertBefore(contact, host["chipTextSpan"]);
             }
             else
             {
