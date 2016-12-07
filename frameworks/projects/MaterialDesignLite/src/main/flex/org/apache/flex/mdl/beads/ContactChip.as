@@ -144,42 +144,34 @@ package org.apache.flex.mdl.beads
         public function set strand(value:IStrand):void
         {
             _strand = value;
+            
+            var host:UIBase = value as UIBase;
+            var element:HTMLElement = host.element as HTMLElement;
+            var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
 
-            COMPILE::JS
+            if (isValidElement && element.className.search("mdl-chip") > -1)
             {
-                var host:UIBase = value as UIBase;
-                var element:HTMLElement = host.element as HTMLElement;
-                var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
+                element.classList.add("mdl-chip--contact");
 
-                if (isValidElement && element.className.search("mdl-chip") > -1)
-                {
-                    element.classList.add("mdl-chip--contact");
+                textNode = document.createTextNode('') as Text;
+                textNode.nodeValue = _contactText;
+                
+                contact = document.createElement("span") as HTMLSpanElement;
+                contact.classList.add("mdl-chip__contact");
+                
+                var contactColor:String = getContactColor();
+                var contactTextColor:String = getContactTextColor();
 
-                    textNode = document.createTextNode('') as Text;
-                    textNode.nodeValue = _contactText;
-                    
-                    contact = document.createElement("span") as HTMLSpanElement;
-                    contact.classList.add("mdl-chip__contact");
+                contact.classList.toggle(contactColor, _color);
+                contact.classList.toggle(contactTextColor, _textColor);
 
-                    var contactColor:String = _colorWeight ?
-                            "mdl-color--".concat(_color, "-", _colorWeight) :
-                            "mdl-color--".concat(_color);
+                contact.appendChild(textNode);
 
-                    var contactTextColor:String = _textColorWeight ?
-                            "mdl-color-text--".concat(_textColor, "-", _textColorWeight) :
-                            "mdl-color-text--".concat(_textColor);
-
-                    contact.classList.toggle(contactColor, _color);
-                    contact.classList.toggle(contactTextColor, _textColor);
-
-                    contact.appendChild(textNode);
-
-                    element.insertBefore(contact, host["chipTextSpan"]);
-                }
-                else
-                {
-                    throw new Error("Host component must be an MDL Host for Chips.");
-                }
+                element.insertBefore(contact, host["chipTextSpan"]);
+            }
+            else
+            {
+                throw new Error("Host component must be an MDL Host for Chips.");
             }
         }
 
@@ -238,6 +230,20 @@ package org.apache.flex.mdl.beads
         public function set textColorWeight(value:String):void
         {
             _textColorWeight = value;
+        }
+
+        private function getContactColor():String
+        {
+            return _colorWeight ?
+                    "mdl-color--".concat(_color, "-", _colorWeight) :
+                    "mdl-color--".concat(_color);
+        }
+
+        private function getContactTextColor():String
+        {
+            return _textColorWeight ?
+                    "mdl-color-text--".concat(_textColor, "-", _textColorWeight) :
+                    "mdl-color-text--".concat(_textColor);
         }
     }
 }

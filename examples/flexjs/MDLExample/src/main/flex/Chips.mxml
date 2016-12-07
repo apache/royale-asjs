@@ -61,7 +61,7 @@ limitations under the License.
         <mdl:GridCell column="5">
             <mdl:Chip text="Contact Link Chip">
                 <mdl:beads>
-                    <mdl:ContactChip contactText="L" color="teal" textColor="white"/>
+                    <mdl:ContactImageChip />
                     <mdl:MaterialIconCancel />
                     <mdl:DeletableLinkChip href="http://flex.apache.org/"/>
                 </mdl:beads>

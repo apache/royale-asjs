@@ -66,6 +66,7 @@
     <component id="DeletableLinkChip" class="org.apache.flex.mdl.beads.DeletableLinkChip"/>
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.beads.materialIcons.MaterialIconAdd"/>
-    <component id="Tooltip" class="org.apache.flex.mdl.Tooltip"/>
     <component id="ContactChip" class="org.apache.flex.mdl.beads.ContactChip"/>
+    <component id="ContactImageChip" class="org.apache.flex.mdl.beads.ContactImageChip"/>
+    <component id="Tooltip" class="org.apache.flex.mdl.Tooltip"/>
 </componentPackage>
