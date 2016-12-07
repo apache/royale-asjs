@@ -81,7 +81,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function prevMonthClickHandler(event:Event):void
+		private function prevMonthClickHandler(event:MouseEvent):void
 		{
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth - 1;
@@ -97,7 +97,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function nextMonthClickHandler(event:Event):void
+		private function nextMonthClickHandler(event:MouseEvent):void
 		{
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth + 1;
