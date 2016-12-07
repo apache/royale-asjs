@@ -24,6 +24,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -150,14 +151,15 @@ package org.apache.flex.html.beads.layouts
 				for(var j:int=0; j < n; j++)
 				{
 					var testChild:IUIBase = area.getElementAt(i) as IUIBase;
-					if (testChild || !testChild.visible) realN--;
+					if (testChild == null || !testChild.visible) realN--;
 				}
 
 				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN/numColumns);
-					useHeight = Math.floor(host.height / numRows);
+					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					else useHeight = Math.floor(host.height / numRows);
 				}
 
 				var maxWidth:Number = useWidth;
@@ -214,6 +216,8 @@ package org.apache.flex.html.beads.layouts
 				if (n === 0) return false;
 
 				viewBead.contentView.width = host.width;
+				viewBead.contentView.element.style["display"] = "flex";
+				viewBead.contentView.element.style["flex-flow"] = "row wrap";
 
 				var realN:int = n;
 				for (i = 0; i < n; i++)
@@ -231,7 +235,8 @@ package org.apache.flex.html.beads.layouts
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN / numColumns);
-					useHeight = Math.floor(host.height / numRows);
+					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					else useHeight = Math.floor(host.height / numRows);
 				}
 
 				for (i = 0; i < n; i++)
