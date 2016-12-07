@@ -34,9 +34,9 @@ limitations under the License.
             <mdl:Button id="mybtn" fab="true" colored="true">
                 <mdl:beads>
                     <mdl:MaterialIconAdd />
+                    <mdl:Tooltip text="A simple tooltip"/>
                 </mdl:beads>
             </mdl:Button>
-            <mdl:Tooltip text="A simple tooltip" dataMdlFor="mybtn"/>
         </mdl:GridCell>
         
         <mdl:GridCell column="2">

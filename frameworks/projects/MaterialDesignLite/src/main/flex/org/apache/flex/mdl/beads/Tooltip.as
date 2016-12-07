@@ -16,9 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.mdl.beads
 {
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.html.Div;
 
     COMPILE::JS
     {
@@ -34,7 +37,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Tooltip extends UIBase
+	public class Tooltip implements IBead
 	{
 		/**
 		 *  constructor.
@@ -46,11 +49,10 @@ package org.apache.flex.mdl
 		 */
 		public function Tooltip()
 		{
-			super();
-
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+			
 		}
-		
+
+        private var _strand:IStrand;
         private var _text:String = "";
 
         /**
@@ -63,31 +65,14 @@ package org.apache.flex.mdl
          */
 		public function get text():String
 		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+            return _text;
 		}
 
 		public function set text(value:String):void
 		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
+            _text = value;
 		}
-		
-        COMPILE::JS
-        private var textNode:Text;
-		
+
         private var _dataMdlFor:String;
 		/**
 		 *  The id value of the associated button that opens this menu.
@@ -104,11 +89,6 @@ package org.apache.flex.mdl
 		public function set dataMdlFor(value:String):void
 		{
 			_dataMdlFor = value;
-
-            COMPILE::JS
-            {
-                element.setAttribute('for', dataMdlFor);
-            }
 		}
 
         private var _large:Boolean = false;
@@ -128,11 +108,6 @@ package org.apache.flex.mdl
         public function set large(value:Boolean):void
         {
              _large = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-tooltip--large", _large);
-            } 
         }
 
         private var _leftPosition:Boolean = false;
@@ -152,11 +127,6 @@ package org.apache.flex.mdl
         public function set leftPosition(value:Boolean):void
         {
              _leftPosition = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-tooltip--left", _leftPosition);
-            } 
         }
 
         private var _rightPosition:Boolean = false;
@@ -176,11 +146,6 @@ package org.apache.flex.mdl
         public function set rightPosition(value:Boolean):void
         {
              _rightPosition = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-tooltip--right", _rightPosition);
-            } 
         }
 
         private var _topPosition:Boolean = false;
@@ -200,11 +165,6 @@ package org.apache.flex.mdl
         public function set topPosition(value:Boolean):void
         {
              _topPosition = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-tooltip--top", _topPosition);
-            } 
         }
 
         private var _bottomPosition:Boolean = false;
@@ -224,34 +184,39 @@ package org.apache.flex.mdl
         public function set bottomPosition(value:Boolean):void
         {
              _bottomPosition = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-tooltip--bottom", _bottomPosition);
-            } 
         }
 
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLDivElement
+         * @flexjsignorecoercion HTMLElement
+         *
+         * @param value
          */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
+        public function set strand(value:IStrand):void
         {
-            typeNames = 'mdl-tooltip';
+            _strand = value;
 
-			var div:HTMLElement = document.createElement('div') as HTMLDivElement;
-            
-            textNode = document.createTextNode('') as Text;
-            div.appendChild(textNode); 
+            COMPILE::JS
+            {
+                var host:UIBase = value as UIBase;
+                var element:HTMLElement = host.element as HTMLElement;
 
-			element = div as WrappedHTMLElement;
-            element.setAttribute('for', dataMdlFor);
-            
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
+                var divElemet:HTMLDivElement = document.createElement("div") as HTMLDivElement;
+
+                divElemet.classList.add("mdl-tooltip");
+                divElemet.classList.toggle("mdl-tooltip--top", _topPosition);
+                divElemet.classList.toggle("mdl-tooltip--left", _leftPosition);
+                divElemet.classList.toggle("mdl-tooltip--right", _rightPosition);
+                divElemet.classList.toggle("mdl-tooltip--bottom", _bottomPosition);
+
+                divElemet.classList.toggle("mdl-tooltip--large", _large);
+                divElemet.setAttribute('for', host.id);
+
+                var textNode:Text = document.createTextNode('');
+                textNode.nodeValue = _text;
+                divElemet.appendChild(textNode);
+
+                element.parentElement.appendChild(divElemet);
+            }
         }
     }
 }
