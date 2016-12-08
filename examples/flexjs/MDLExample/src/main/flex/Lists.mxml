@@ -36,6 +36,15 @@ limitations under the License.
                     destinationPropertyName="dataProvider" />
             </mdl:beads>
         </mdl:List>
+
+        <mdl:List labelField="label" className="customListItemRenderer">
+            <mdl:beads>
+                <js:ConstantBinding
+                    sourceID="model"
+                    sourcePropertyName="productNames"
+                    destinationPropertyName="dataProvider" />
+            </mdl:beads>
+        </mdl:List>
     </mdl:Grid>
 
     <!--xmlns:ui="org.apache.flex.core.*"

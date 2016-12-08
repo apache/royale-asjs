@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package itemRenderers
+package org.apache.flex.mdl.itemRenderers
 {
     COMPILE::JS
     {

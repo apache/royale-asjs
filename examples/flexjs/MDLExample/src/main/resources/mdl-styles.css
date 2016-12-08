@@ -41,9 +41,9 @@ js|Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
-List
+.customListItemRenderer
 {
-    IItemRenderer: ClassReference("itemRenderers.ListItemRenderer");
+    IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
 }
 
 .layoutTransparent {
