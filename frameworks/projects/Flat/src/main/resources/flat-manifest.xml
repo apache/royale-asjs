@@ -59,7 +59,6 @@
     <component id="Alert" class="org.apache.flex.html.Alert" lookupOnly="true" />
     <component id="Spinner" class="org.apache.flex.html.Spinner" lookupOnly="true" />
     <component id="Slider" class="org.apache.flex.html.Slider" lookupOnly="true" />
-    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead" lookupOnly="true" />
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper"  lookupOnly="true" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer" lookupOnly="true" />
