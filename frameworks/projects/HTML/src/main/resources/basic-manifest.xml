@@ -42,6 +42,7 @@
     <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"/>
     <component id="ComboBox" class="org.apache.flex.html.ComboBox"/>
+    <component id="ComboBoxList" class="org.apache.flex.html.supportClasses.ComboBoxList"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
     <component id="Accordion" class="org.apache.flex.html.Accordion"/>
     <component id="Form" class="org.apache.flex.html.Form"/>

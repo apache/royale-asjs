@@ -119,8 +119,8 @@ package org.apache.flex.utils
                 
 				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
 					var rect:Object = element.getBoundingClientRect();
-					x = rect.left;
-					y = rect.top;
+					x = rect.left + x;
+					y = rect.top + y;
 				} else { // for older browsers, but offsetParent is soon to be deprecated from from chrome 
 	                do {
 	                    x += element.offsetLeft;
