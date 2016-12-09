@@ -37,6 +37,7 @@
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"/>
     <component id="TextInput" class="org.apache.flex.html.TextInput"/>
     <component id="TextArea" class="org.apache.flex.html.TextArea"/>
+    <component id="DataContainer" class="org.apache.flex.html.DataContainer"/>
     <component id="List" class="org.apache.flex.html.List"/>
     <component id="SimpleList" class="org.apache.flex.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.flex.html.CheckBox"/>

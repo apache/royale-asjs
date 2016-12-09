@@ -24,7 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.SimpleCSSStyles;
@@ -65,7 +65,7 @@ package org.apache.flex.html.beads
 			super(target);
 		}
 		
-		private var selectionModel:ISelectionModel;
+		private var dataProviderModel:IDataProviderModel;
 		
 		private var labelField:String;
 		
@@ -88,12 +88,12 @@ package org.apache.flex.html.beads
 		
 		private function finishSetup(event:Event):void
 		{
-			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
-			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
-			labelField = (listView.host as List).labelField;
+			labelField = dataProviderModel.labelField;
 			
 			if (!itemRendererFactory)
 			{
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads
 		
 		private function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:Array = selectionModel.dataProvider as Array;
+			var dp:Array = dataProviderModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
