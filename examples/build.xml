@@ -74,6 +74,7 @@
     </target>
     
     <target name="compile" description="Compile Examples" >
+        <ant dir="${basedir}/flexjs/ASDoc"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
         <ant dir="${basedir}/flexjs/CreateJSExample"/>
         <ant dir="${basedir}/flexjs/DataBindingExample"/>
@@ -109,6 +110,7 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/flexjs/ASDoc" target="clean"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/flexjs/CreateJSExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample" target="clean"/>
