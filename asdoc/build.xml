@@ -67,7 +67,7 @@
         <taskdef resource="flexTasks.tasks" classpathref="flexTasks.path"/>
         
 		<!-- Call asdoc to generate dita xml files -->
-		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true"
+		<asdoc output="${doc_output}" lenient="true" failonerror="true" warnings="false" strict="false" locale="en_US" fork="true" keep-xml="true"
                window-title="Apache FlexJS API Reference"
                main-title="${release.name} ${release.version} API Reference "
                footer="${manifest.Implementation-Vendor}" >

@@ -437,8 +437,6 @@
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/utils/URLUtils.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/WrappedHTMLElement.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/BrowserEvent.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/IFlexJSElement.as</path-element>
-       <path-element>${frameworks_dir}/projects/HTML/src/main/flex/org/apache/flex/html/beads/CSSTextButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org/apache/flex/maps/google/beads/MapView_original.as</path-element>
     </exclude-sources>
    
