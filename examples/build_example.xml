@@ -135,7 +135,7 @@
             output="${basedir}/bin-debug"/> 
  
         <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src">
+            <fileset dir="${basedir}/src/main/resources">
                 <include name="**/*.png" />
                 <include name="**/*.jpg" />
                 <include name="**/*.json" />
@@ -178,7 +178,7 @@
         </mxmlc>
         
         <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src">
+            <fileset dir="${basedir}/src/main/resources">
                 <include name="**/*.png" />
                 <include name="**/*.jpg" />
             </fileset>
