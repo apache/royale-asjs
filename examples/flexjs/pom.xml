@@ -35,6 +35,7 @@
   <name>Apache Flex - FlexJS: Examples: FlexJS</name>
 
   <modules>
+    <module>ASDoc</module>
     <module>ChartExample</module>
     <module>CordovaCameraExample</module>
     <module>CreateJSExample</module>
