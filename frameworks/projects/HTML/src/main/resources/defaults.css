@@ -88,6 +88,24 @@ ComboBox
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
 	IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ComboBoxController");
+	IPopUp: ClassReference("org.apache.flex.html.supportClasses.ComboBoxList");
+}
+
+ComboBoxList
+{
+	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	border-style: solid;
+	border-radius: 4px;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
+}
+
+.ComboBoxButton {
+	padding: 0px;
+	margin: 0px;
 }
 
 Container
@@ -245,6 +263,7 @@ List
 	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
+	background-color: #FFFFFF;
 }
 
 Accordion
@@ -481,14 +500,6 @@ global
 		IBeadView: ClassReference("org.apache.flex.html.beads.CloseButtonView");
 	}
 	
-	ComboBox
-	{
-		IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
-		IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
-		IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-		IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
-	}
-	
 	Container
 	{
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
@@ -501,6 +512,10 @@ global
 		iMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");    
+	}
+	
+	ComboBoxList {
+		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 	}
 	
 	DropDownList

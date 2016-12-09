@@ -18,15 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-
-    COMPILE::JS
-    {
-        import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
+	import org.apache.flex.core.IUIBase;
+	
+	import org.apache.flex.core.IComboBoxModel;
+	import org.apache.flex.html.beads.models.ComboBoxModel;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	
@@ -40,9 +36,6 @@ package org.apache.flex.html
 	 *  so forth.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
 	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
-	 *  org.apache.flex.core.IPopUp: the bead responsible for displaying the selection list.
-	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the component.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -52,7 +45,7 @@ package org.apache.flex.html
 	public class ComboBox extends UIBase
 	{
 		/**
-		 *  constructor.
+		 *  Constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -62,6 +55,8 @@ package org.apache.flex.html
 		public function ComboBox()
 		{
 			super();
+			
+			className = "ComboBox";
 		}
 		
 		/**
@@ -76,11 +71,13 @@ package org.apache.flex.html
 		{
 			return IComboBoxModel(model).dataProvider;
 		}
+		
 		public function set dataProvider(value:Object):void
 		{
 			IComboBoxModel(model).dataProvider = value;
 		}
 		
+		[Bindable("change")]
 		/**
 		 *  The index of the currently selected item. Changing this item changes
 		 *  the selectedItem value.
@@ -99,6 +96,7 @@ package org.apache.flex.html
 			IComboBoxModel(model).selectedIndex = value;
 		}
 		
+		[Bindable("change")]
 		/**
 		 *  The item that is currently selected. Changing this item changes
 		 *  the selectedIndex.
@@ -116,19 +114,5 @@ package org.apache.flex.html
 		{
 			IComboBoxModel(model).selectedItem = value;
 		}
-		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {            
-            element = document.createElement('div') as WrappedHTMLElement;
-            
-            positioner = element;
-            positioner.style.position = 'relative';
-            
-            return element;
-        }
 	}
 }
