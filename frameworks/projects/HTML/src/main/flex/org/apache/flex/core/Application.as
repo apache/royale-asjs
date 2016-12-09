@@ -571,5 +571,21 @@ package org.apache.flex.core
 			return $displayObject.stage;
 		}
 		
+        COMPILE::SWF
+        override public function set width(value:Number):void
+        {
+            // just eat this.  
+            // The stageWidth will be set by SWF metadata. 
+            // Setting this directly doesn't do anything
+        }
+        
+        COMPILE::SWF
+        override public function set height(value:Number):void
+        {
+            // just eat this.  
+            // The stageWidth will be set by SWF metadata. 
+            // Setting this directly doesn't do anything
+        }
+        
 	}
 }
