@@ -24,6 +24,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IParentIUIBase;
+    import org.apache.flex.events.Event;
 
 	/**
 	 *  The MXMLItemRenderer class is the base class for itemRenderers that are MXML-based
@@ -49,6 +50,16 @@ package org.apache.flex.html.supportClasses
 			super();
 		}
 		
+        [Bindable("dataChange")]
+        override public function set data(value:Object):void
+        {
+            if (value != data)
+            {
+                super.data = value;
+                dispatchEvent(new Event("dataChange"));
+            }
+        }
+        
 		public function getLayoutHost():ILayoutHost
 		{
 			return this; 
