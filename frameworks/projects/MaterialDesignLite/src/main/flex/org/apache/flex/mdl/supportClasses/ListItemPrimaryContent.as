@@ -70,17 +70,13 @@ package org.apache.flex.mdl.supportClasses
 		{
              _text = value;
 
-			 COMPILE::JS
+			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-				}	
+				if(MXMLDescriptor == null) {
+					element.innerHTML = text;
+				}
 			}
 		}
-
-		COMPILE::JS
-        private var textNode:Text;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -91,12 +87,6 @@ package org.apache.flex.mdl.supportClasses
             typeNames = "mdl-list__item-primary-content";
 
 			element = document.createElement('span') as WrappedHTMLElement;
-            
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				element.appendChild(textNode);
-			}
 
             positioner = element;
             element.flexjs_wrapper = this;
