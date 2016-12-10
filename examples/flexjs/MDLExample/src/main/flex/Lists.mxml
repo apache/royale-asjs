@@ -73,6 +73,15 @@ limitations under the License.
             </mdl:beads>
         </mdl:List>
 
+        <mdl:List labelField="actorName" className="avatarAndActionThreeLineListItemRenderer">
+            <mdl:beads>
+                <js:ConstantBinding
+                    sourceID="model"
+                    sourcePropertyName="actors"
+                    destinationPropertyName="dataProvider" />
+            </mdl:beads>
+        </mdl:List>
+
 
     </mdl:Grid>
 

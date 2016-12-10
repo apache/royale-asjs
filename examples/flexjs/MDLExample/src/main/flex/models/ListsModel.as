@@ -42,9 +42,9 @@ package models
 		 * Used in the List example.
 		 */
 		private var _actors:Array = [
-			new ActorVO("Bryan Cranston", "62 Episodes"),
-			new ActorVO("Aaron Paul", "61 Episodes"),
-			new ActorVO("Bob Odenkirk", "59 Episodes")
+			new ActorVO("Bryan Cranston", "62 Episodes", "Bryan Cranston played the role of Walter in Breaking Bad. He is also known for playing Hal in Malcom in the Middle."),
+			new ActorVO("Aaron Paul", "61 Episodes", "Aaron Paul played the role of Jesse in Breaking Bad. He also featured in the 'Need For Speed' Movie."),
+			new ActorVO("Bob Odenkirk", "59 Episodes", "Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the character, Bob stars in his own show now, called 'Better Call Saul'.")
 		];
 		
 		public function get actors():Array

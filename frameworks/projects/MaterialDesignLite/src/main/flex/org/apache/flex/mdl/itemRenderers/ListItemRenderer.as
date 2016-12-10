@@ -26,8 +26,7 @@ package org.apache.flex.mdl.itemRenderers
 	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
     
 	/**
-	 *  The StringItemRenderer class displays data in string form using the data's toString()
-	 *  function.
+	 *  The ListItemRenderer defines the basic Item Renderer for a MDL List Component.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -128,7 +127,8 @@ package org.apache.flex.mdl.itemRenderers
 
 		private var _twoLine:Boolean;
         /**
-         * Activate "mdl-list__item--two-line" class selector, for use in list item
+         * Activate "mdl-list__item--two-line" class selector, for use in list item.
+		 * Optional Two Line List Variant
          */
         public function get twoLine():Boolean
         {
@@ -141,6 +141,25 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-list__item--two-line", _twoLine);
+            }
+        }
+
+		private var _threeLine:Boolean;
+        /**
+         * Activate "mdl-list__item--three-line" class selector, for use in list item.
+		 * Optional Three Line List Variant
+         */
+        public function get threeLine():Boolean
+        {
+            return _threeLine;
+        }
+        public function set threeLine(value:Boolean):void
+        {
+            _threeLine = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-list__item--three-line", _threeLine);
             }
         }
 	}

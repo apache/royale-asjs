@@ -65,6 +65,12 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.AvatarAndActionTwoLineListItemRenderer");
 }
 
+.avatarAndActionThreeLineListItemRenderer
+{
+    width: 650px;
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionThreeLineListItemRenderer");
+}
+
 /*.customListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
