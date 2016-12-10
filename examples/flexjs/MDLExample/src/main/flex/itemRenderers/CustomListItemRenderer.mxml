@@ -38,7 +38,11 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </js:beads>
     
-    <mdl:ListItemPrimaryContent text="{data.label}"/>
-      
+    <js:Span text="{data.label}">
+        <js:beads>
+            <mdl:ListItemPrimaryContent/>
+        </js:beads>
+    </js:Span>
+    
 </mdl:ListItemRenderer>
 

@@ -38,12 +38,12 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </js:beads>
     
-    <mdl:ListItemPrimaryContent>
+    <js:Span text="{actor.actorName}">
         <mdl:beads>
+            <mdl:ListItemPrimaryContent/>
             <mdl:MaterialIconPerson listItemIcon="true"/>
         </mdl:beads>
-        <js:Span text="{actor.actorName}"/>
-    </mdl:ListItemPrimaryContent>
+    </js:Span>
       
 </mdl:ListItemRenderer>
 
