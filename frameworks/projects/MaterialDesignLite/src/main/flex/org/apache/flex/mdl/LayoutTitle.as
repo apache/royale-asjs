@@ -59,12 +59,7 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-layout-title";
 			
-			var span:HTMLElement = document.createElement('span') as HTMLSpanElement;
-            
-            textNode = document.createTextNode('') as Text;
-            span.appendChild(textNode); 
-
-			element = span as WrappedHTMLElement;
+			element = document.createElement('span')  as WrappedHTMLElement;
             
             positioner = element;
 			element.flexjs_wrapper = this;
