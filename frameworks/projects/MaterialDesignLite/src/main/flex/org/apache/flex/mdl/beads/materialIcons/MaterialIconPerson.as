@@ -16,19 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.flex.mdl.beads.materialIcons
 {
-    import org.apache.flex.html.I;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  Provide common features for all material icons type
+     *  The MaterialIconPerson bead class is a specialty bead that add "person" icon
+     *  to component taken from "material-icons"
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconBase
+    public class MaterialIconPerson extends MaterialIconBase implements IBead
     {
         /**
          *  constructor.
@@ -37,61 +41,31 @@ package org.apache.flex.mdl.supportClasses
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         *
-         *  @flexjsignorecoercion HTMLElement
          */
-        public function MaterialIconBase()
+        public function MaterialIconPerson()
         {
-            COMPILE::JS
-            {
-                materialIcon = new I();
-                element.classList.add("material-icons");
-            }
+            super();
         }
-
-        COMPILE::JS
-        protected var materialIcon:I;
-
-        COMPILE::JS
-        public function get element():HTMLElement
-        {
-            return materialIcon.element as HTMLElement;
-        }
-
-        private var _md48:Boolean;
         
-        public function get md48():Boolean
-        {
-            return _md48;
-        }
+        private var _strand:IStrand;
+
         /**
-         * Activate "md-48" class selector.
+         * @flexjsignorecoercion HTMLElement
+         *
+         * @param value
          */
-        public function set md48(value:Boolean):void
+        public function set strand(value:IStrand):void
         {
-            _md48 = value;
+            _strand = value;
 
             COMPILE::JS
             {
-                element.classList.toggle("md-48", _md48);
-            }
-        }
+                var host:UIBase = value as UIBase;
+                var htmlElement:HTMLElement = host.element as HTMLElement;
 
-        private var _listItemIcon:Boolean;
-        /**
-         * Activate "mdl-list__item-icon" class selector, for use in list item
-         */
-        public function get listItemIcon():Boolean
-        {
-            return _listItemIcon;
-        }
-        public function set listItemIcon(value:Boolean):void
-        {
-            _listItemIcon = value;
+                materialIcon.text = MaterialIconsType.PERSON;
 
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-list__item-icon", _listItemIcon);
+                htmlElement.appendChild(element);
             }
         }
     }
