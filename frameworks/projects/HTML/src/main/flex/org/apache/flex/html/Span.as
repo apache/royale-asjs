@@ -70,13 +70,23 @@ package org.apache.flex.html
 
 			COMPILE::JS
 			{
-				if(MXMLDescriptor == null) {
-					element.innerHTML = text;
+				if(MXMLDescriptor == null) 
+                {
+                    if(textNode == null)
+                    {
+                        textNode = document.createTextNode('') as Text;
+                        element.appendChild(textNode);
+                    }
+                    
+                    textNode.nodeValue = value;
 				}
 			}
 
 		}
 		
+        COMPILE::JS
+        private var textNode:Text;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
