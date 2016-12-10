@@ -70,16 +70,13 @@ package org.apache.flex.html
 
 			COMPILE::JS
 			{
-				if(MXMLDescriptor == null) 
+                if(textNode == null)
                 {
-                    if(textNode == null)
-                    {
-                        textNode = document.createTextNode('') as Text;
-                        element.appendChild(textNode);
-                    }
-                    
-                    textNode.nodeValue = value;
-				}
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
 			}
 
 		}
