@@ -41,6 +41,11 @@ js|Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
+.actorListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.ActorListItemRenderer");
+}
+
 .customListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");

@@ -28,26 +28,40 @@ limitations under the License.
 	</mdl:model>
 
     <mdl:Grid>
-        <mdl:List labelField="label">
+        <mdl:List>
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"
-                    sourcePropertyName="productNames"
+                    sourcePropertyName="things"
                     destinationPropertyName="dataProvider" />
             </mdl:beads>
         </mdl:List>
 
-        <mdl:List labelField="label" className="customListItemRenderer">
+        <mdl:List labelField="actorName" className="actorListItemRenderer">
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"
-                    sourcePropertyName="productNames"
+                    sourcePropertyName="actors"
                     destinationPropertyName="dataProvider" />
             </mdl:beads>
         </mdl:List>
     </mdl:Grid>
 
-    <!--xmlns:ui="org.apache.flex.core.*"
+
+
+
+    <!--
+    <mdl:List labelField="label" className="customListItemRenderer">
+            <mdl:beads>
+                <js:ConstantBinding
+                    sourceID="model"
+                    sourcePropertyName="productNames"
+                    destinationPropertyName="dataProvider" />
+            </mdl:beads>
+        </mdl:List>
+    
+    
+    xmlns:ui="org.apache.flex.core.*"
                  xmlns:models="org.apache.flex.html.beads.models.*"
                  xmlns:beads="org.apache.flex.html.beads.*"
                  xmlns:controllers="org.apache.flex.html.beads.controllers.*"

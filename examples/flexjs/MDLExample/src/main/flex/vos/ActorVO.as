@@ -16,41 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package vos
 {
-	import org.apache.flex.events.EventDispatcher;
-	import vos.*;
-
-	public class ListsModel extends EventDispatcher
+    [Bindable]
+	public class ActorVO
 	{
-		/**
-		 * Used in the List example.
-		 */
-		private var _things:Array = [
-			"A", 
-			"Simple", 
-			"List",
-			"Example"
-		];
-		
-		public function get things():Array
+		public function ActorVO(actorName:String = null)
 		{
-			return _things;
+			this.actorName = actorName;
 		}
 
-		/**
-		 * Used in the List example.
-		 */
-		private var _actors:Array = [
-			new ActorVO("Bryan Cranston"),
-			new ActorVO("Aaron Paul"),
-			new ActorVO("Bob Odenkirk")
-		];
-		
-		public function get actors():Array
-		{
-			return _actors;
-		}		
-
+		public var actorName:String = "";
 	}
 }
