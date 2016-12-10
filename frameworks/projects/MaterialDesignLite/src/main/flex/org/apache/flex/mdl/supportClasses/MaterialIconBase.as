@@ -94,5 +94,24 @@ package org.apache.flex.mdl.supportClasses
                 element.classList.toggle("mdl-list__item-icon", _listItemIcon);
             }
         }
+
+        private var _listItemAvatar:Boolean;
+        /**
+         * Activate "mdl-list__item-avatar" class selector, for use in list item
+         */
+        public function get listItemAvatar():Boolean
+        {
+            return _listItemAvatar;
+        }
+        public function set listItemAvatar(value:Boolean):void
+        {
+            _listItemAvatar = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-list__item-avatar", _listItemAvatar);
+            }
+        }
+
     }
 }

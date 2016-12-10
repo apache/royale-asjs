@@ -51,6 +51,11 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.ActorNameAndIconListItemRenderer");
 }
 
+.avatarAndActionListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionListItemRenderer");
+}
+
 /*.customListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
