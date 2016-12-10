@@ -45,10 +45,17 @@ limitations under the License.
                     destinationPropertyName="dataProvider" />
             </mdl:beads>
         </mdl:List>
+
+        <mdl:List labelField="actorName" className="actorNameAndIconListItemRenderer">
+            <mdl:beads>
+                <js:ConstantBinding
+                    sourceID="model"
+                    sourcePropertyName="actors"
+                    destinationPropertyName="dataProvider" />
+            </mdl:beads>
+        </mdl:List>
+
     </mdl:Grid>
-
-
-
 
     <!--
     <mdl:List labelField="label" className="customListItemRenderer">

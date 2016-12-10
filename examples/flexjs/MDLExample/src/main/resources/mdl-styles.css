@@ -41,15 +41,20 @@ js|Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
-.actorListItemRenderer
+.actorNameListItemRenderer
 {
-    IItemRenderer: ClassReference("itemRenderers.ActorListItemRenderer");
+    IItemRenderer: ClassReference("itemRenderers.ActorNameListItemRenderer");
 }
 
-.customListItemRenderer
+.actorNameAndIconListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.ActorNameAndIconListItemRenderer");
+}
+
+/*.customListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
-}
+}*/
 
 .layoutTransparent {
   background: url('assets/transparent.jpg') center / cover;
