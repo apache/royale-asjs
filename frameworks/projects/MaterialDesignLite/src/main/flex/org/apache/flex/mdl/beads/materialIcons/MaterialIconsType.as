@@ -23,5 +23,6 @@ package org.apache.flex.mdl.beads.materialIcons
         public static const CANCEL:String = "cancel";
         public static const ADD:String = "add";
         public static const PERSON:String = "person";
+        public static const STAR:String = "star";
     }
 }
