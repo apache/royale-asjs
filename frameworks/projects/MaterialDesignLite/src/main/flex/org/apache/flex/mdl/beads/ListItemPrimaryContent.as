@@ -16,9 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.flex.mdl.beads
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IBead;
+	import org.apache.flex.core.UIBase;
 
     COMPILE::JS
     {
@@ -26,7 +28,7 @@ package org.apache.flex.mdl.supportClasses
     }
 
 	/**
-	 *  The ListItemPrimaryContent class represents an HTML <span> element
+	 *  The ListItemPrimaryContent class decorates a tag element in a list item renderer
      *  
 	 *  
 	 *  @langversion 3.0
@@ -34,7 +36,7 @@ package org.apache.flex.mdl.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ListItemPrimaryContent extends ContainerBase
+	public class ListItemPrimaryContent implements IBead
 	{
 		/**
 		 *  constructor.
@@ -46,52 +48,38 @@ package org.apache.flex.mdl.supportClasses
 		 */
 		public function ListItemPrimaryContent()
 		{
-			super();
-
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+			super();   
 		}
+		
+		private var host:UIBase;
 
-		private var _text:String = "";
-
-        /**
-         *  The text of the heading
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get text():String
+		private var _strand:IStrand;		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 */
+		public function set strand(value:IStrand):void
 		{
-            return _text;
-		}
-
-		public function set text(value:String):void
-		{
-             _text = value;
-
+			_strand = value;
+			
 			COMPILE::JS
 			{
-				if(MXMLDescriptor == null) {
-					element.innerHTML = text;
+				host = value as UIBase;
+				
+				if (host.element is HTMLElement)
+				{
+					host.element.classList.add("mdl-list__item-primary-content");
+				}
+				else
+				{
+					throw new Error("Host component must be an MDL element.");
 				}
 			}
 		}
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            typeNames = "mdl-list__item-primary-content";
-
-			element = document.createElement('span') as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
-        }
     }
 }
