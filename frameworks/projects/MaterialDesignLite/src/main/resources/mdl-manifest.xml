@@ -46,7 +46,10 @@
     <component id="ListView" class="org.apache.flex.mdl.beads.views.ListView"/>
     <component id="ListItemRenderer" class="org.apache.flex.mdl.itemRenderers.ListItemRenderer"/>
     <component id="ListItemPrimaryContent" class="org.apache.flex.mdl.beads.ListItemPrimaryContent"/>
+    <component id="ListItemSecondaryContent" class="org.apache.flex.mdl.beads.ListItemSecondaryContent"/>
     <component id="ListItemSecondaryAction" class="org.apache.flex.mdl.beads.ListItemSecondaryAction"/>
+    <component id="ListItemSubTitle" class="org.apache.flex.mdl.beads.ListItemSubTitle"/>
+    <component id="ListItemSecondaryInfo" class="org.apache.flex.mdl.beads.ListItemSecondaryInfo"/>
     <component id="ItemRendererFactoryForArrayData" class="org.apache.flex.mdl.supportClasses.ItemRendererFactoryForArrayData"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>

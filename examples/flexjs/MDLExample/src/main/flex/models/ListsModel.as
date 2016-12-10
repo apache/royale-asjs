@@ -42,9 +42,9 @@ package models
 		 * Used in the List example.
 		 */
 		private var _actors:Array = [
-			new ActorVO("Bryan Cranston"),
-			new ActorVO("Aaron Paul"),
-			new ActorVO("Bob Odenkirk")
+			new ActorVO("Bryan Cranston", "62 Episodes"),
+			new ActorVO("Aaron Paul", "61 Episodes"),
+			new ActorVO("Bob Odenkirk", "59 Episodes")
 		];
 		
 		public function get actors():Array

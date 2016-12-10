@@ -21,11 +21,13 @@ package vos
     [Bindable]
 	public class ActorVO
 	{
-		public function ActorVO(actorName:String = null)
+		public function ActorVO(actorName:String = null, episodes:String = null)
 		{
 			this.actorName = actorName;
+			this.episodes = episodes;
 		}
 
 		public var actorName:String = "";
+		public var episodes:String = "";
 	}
 }

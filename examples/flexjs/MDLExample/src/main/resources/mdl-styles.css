@@ -43,17 +43,26 @@ js|Image
 
 .actorNameListItemRenderer
 {
+    width: 300px;
     IItemRenderer: ClassReference("itemRenderers.ActorNameListItemRenderer");
 }
 
 .actorNameAndIconListItemRenderer
 {
+    width: 300px;
     IItemRenderer: ClassReference("itemRenderers.ActorNameAndIconListItemRenderer");
 }
 
 .avatarAndActionListItemRenderer
 {
+    width: 300px;
     IItemRenderer: ClassReference("itemRenderers.AvatarAndActionListItemRenderer");
+}
+
+.avatarAndActionTwoLineListItemRenderer
+{
+    width: 300px;
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionTwoLineListItemRenderer");
 }
 
 /*.customListItemRenderer

@@ -126,5 +126,22 @@ package org.apache.flex.mdl.itemRenderers
             return element;
         }
 
+		private var _twoLine:Boolean;
+        /**
+         * Activate "mdl-list__item--two-line" class selector, for use in list item
+         */
+        public function get twoLine():Boolean
+        {
+            return _twoLine;
+        }
+        public function set twoLine(value:Boolean):void
+        {
+            _twoLine = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-list__item--two-line", _twoLine);
+            }
+        }
 	}
 }
