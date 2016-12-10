@@ -23,6 +23,12 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import valueObjects.ValueObject;
+            
+            [Bindable("dataChange")]
+            public function get obj():ValueObject
+            {
+                return data as ValueObject;
+            }
         ]]>
     </fx:Script>
     <fx:Style>
@@ -31,7 +37,7 @@ limitations under the License.
         <js:VerticalLayout />
         <js:ItemRendererDataBinding />
     </js:beads>
-    <js:Label width="100%" height="30" style="fontWeight:bold" text="{ValueObject(data).qname}" >
+    <js:Label width="100%" height="30" style="fontWeight:bold" text="{obj.qname}" >
     </js:Label>
-    <js:MultilineLabel id="description" width="100%" text="{ValueObject(data).description}" />
+    <js:MultilineLabel id="description" width="100%" text="{obj.description}" />
 </js:MXMLItemRenderer>
