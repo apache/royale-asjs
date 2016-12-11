@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
@@ -38,7 +37,7 @@ package org.apache.flex.html.beads
 		override protected function selectionChangeHandler(event:Event):void
 		{
 			super.selectionChangeHandler(event);
-			var renderer:UIBase = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as UIBase;
+			var renderer:IStyleableObject = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IStyleableObject;
 			layout.flexibleChild = renderer.id;
 		}
 		
@@ -68,7 +67,7 @@ package org.apache.flex.html.beads
 				if (!layout.flexibleChild)
 				{
 					var model:ISelectionModel = StrandUtils.loadBead(ISelectionModel, "iBeadModel", host) as ISelectionModel;
-					layout.flexibleChild = (model.selectedItem as UIBase).id;
+					layout.flexibleChild = (dataGroup.getItemRendererForIndex(model.selectedIndex) as IStyleableObject).id;
 				}
 				super.performLayout(event);
 			}
