@@ -19,11 +19,13 @@
 package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
+	import org.apache.flex.utils.StrandUtils;
 	
 	public class AccordionView extends ListView
 	{
@@ -61,8 +63,13 @@ package org.apache.flex.html.beads
 		
 		override protected function performLayout(event:Event):void
 		{
-			if (layout && layout.flexibleChild)
+			if (layout)
 			{
+				if (!layout.flexibleChild)
+				{
+					var model:ISelectionModel = StrandUtils.loadBead(ISelectionModel, "iBeadModel", host) as ISelectionModel;
+					layout.flexibleChild = (model.selectedItem as UIBase).id;
+				}
 				super.performLayout(event);
 			}
 		}
