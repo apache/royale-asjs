@@ -29,7 +29,13 @@ limitations under the License.
                     <mdl:CardTitleText text="Welcome"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia..."/>
+                    <js:beads>
+                        <js:InnerText>
+                            <![CDATA[
+                                Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...
+                            ]]>
+                        </js:InnerText>
+                    </js:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button text="Get Started" ripple="true" colored="true"/>
@@ -46,7 +52,9 @@ limitations under the License.
                     <mdl:CardTitleText text="Update"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:MultilineLabel text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
+                    <js:beads>
+                        <js:InnerText text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
+                    </js:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button colored="true" ripple="true" text="View Updates"/>
