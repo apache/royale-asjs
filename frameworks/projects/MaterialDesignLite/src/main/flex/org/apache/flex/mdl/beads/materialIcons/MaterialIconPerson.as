@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.materialIcons
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
@@ -32,7 +29,7 @@ package org.apache.flex.mdl.beads.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconPerson extends MaterialIconBase implements IBead
+    public class MaterialIconPerson extends MaterialIconBase
     {
         /**
          *  constructor.
@@ -47,26 +44,9 @@ package org.apache.flex.mdl.beads.materialIcons
             super();
         }
         
-        private var _strand:IStrand;
-
-        /**
-         * @flexjsignorecoercion HTMLElement
-         *
-         * @param value
-         */
-        public function set strand(value:IStrand):void
+        override protected function get iconText():String
         {
-            _strand = value;
-
-            COMPILE::JS
-            {
-                var host:UIBase = value as UIBase;
-                var htmlElement:HTMLElement = host.element as HTMLElement;
-
-                materialIcon.text = MaterialIconsType.PERSON;
-
-                htmlElement.appendChild(element);
-            }
+            return MaterialIconsType.PERSON;
         }
     }
 }
