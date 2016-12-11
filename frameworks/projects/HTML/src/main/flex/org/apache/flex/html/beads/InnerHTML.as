@@ -32,7 +32,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-    public class InnerText implements IBead
+    public class InnerHTML implements IBead
     {
         /**
 		 *  constructor.
@@ -42,7 +42,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function InnerText()
+		public function InnerHTML()
 		{
             super();
 		}

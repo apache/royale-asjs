@@ -30,11 +30,11 @@ limitations under the License.
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <js:beads>
-                        <js:InnerText>
+                        <js:InnerHTML>
                             <![CDATA[
                                 Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...
                             ]]>
-                        </js:InnerText>
+                        </js:InnerHTML>
                     </js:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
@@ -53,7 +53,7 @@ limitations under the License.
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <js:beads>
-                        <js:InnerText text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
+                        <js:InnerHTML text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
                     </js:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
