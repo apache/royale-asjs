@@ -41,6 +41,7 @@ js|Image
 	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
 }
 
+/* Lists */
 .actorNameListItemRenderer
 {
     width: 300px;
@@ -81,6 +82,7 @@ js|Image
   color: white;
 }
 
+/* card wide */
 .demo-card-wide.mdl-card {
   width: 512px;
 }
@@ -93,6 +95,7 @@ js|Image
   color: #fff;
 }
 
+/* card square */
 .demo-card-square.mdl-card {
   width: 320px;
   height: 320px;
@@ -103,6 +106,34 @@ js|Image
   background: url('assets/dog.png') bottom right 15% no-repeat #46B6AC;
 }
 
+/* card event */
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: #3E4EB8;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > .mdl-card__title_h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
 
 
 .demo-grid .mdl-cell {

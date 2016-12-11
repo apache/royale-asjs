@@ -24,7 +24,7 @@ package org.apache.flex.mdl.beads.materialIcons
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconStar bead class is a specialty bead that add "star" icon
+     *  The MaterialIconEvent bead class is a specialty bead that add "star" icon
      *  to component taken from "material-icons"
      *
      *  @langversion 3.0
@@ -32,7 +32,7 @@ package org.apache.flex.mdl.beads.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconStar extends MaterialIconBase implements IBead
+    public class MaterialIconEvent extends MaterialIconBase implements IBead
     {
         /**
          *  constructor.
@@ -42,7 +42,7 @@ package org.apache.flex.mdl.beads.materialIcons
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function MaterialIconStar()
+        public function MaterialIconEvent()
         {
             super();
         }
@@ -63,7 +63,7 @@ package org.apache.flex.mdl.beads.materialIcons
                 var host:UIBase = value as UIBase;
                 var htmlElement:HTMLElement = host.element as HTMLElement;
 
-                materialIcon.text = MaterialIconsType.STAR;
+                materialIcon.text = MaterialIconsType.EVENT;
 
                 htmlElement.appendChild(element);
             }

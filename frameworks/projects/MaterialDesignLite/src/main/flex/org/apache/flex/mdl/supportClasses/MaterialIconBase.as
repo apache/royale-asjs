@@ -58,22 +58,68 @@ package org.apache.flex.mdl.supportClasses
             return materialIcon.element as HTMLElement;
         }
 
-        private var _md48:Boolean;
-        
-        public function get md48():Boolean
+        private var _size:Number = 24;
+        /**
+         * Although the icons in the font can be scaled to any size, 
+         * in accordance with material design icons guidelines, 
+         * we recommend them to be shown in either 18, 24, 36 or 48px. 
+         * The default being 24px.
+         */
+        public function get size():Number
         {
-            return _md48;
+            return _size;
         }
         /**
          * Activate "md-48" class selector.
          */
-        public function set md48(value:Boolean):void
+        public function set size(value:Number):void
         {
-            _md48 = value;
+            COMPILE::JS
+            {
+                element.classList.remove("md-" + _size);
+            }
+
+            _size = value;
 
             COMPILE::JS
             {
-                element.classList.toggle("md-48", _md48);
+                element.classList.add("md-" + _size);
+            }
+        }
+
+        private var _dark:Boolean;
+        /**
+         * Activate "mdl-dark" class selector, for use in list item
+         */
+        public function get dark():Boolean
+        {
+            return _dark;
+        }
+        public function set dark(value:Boolean):void
+        {
+            _dark = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-dark", _dark);
+            }
+        }
+
+        private var _light:Boolean;
+        /**
+         * Activate "mdl-light" class selector, for use in list item
+         */
+        public function get light():Boolean
+        {
+            return _light;
+        }
+        public function set light(value:Boolean):void
+        {
+            _light = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-light", _light);
             }
         }
 
