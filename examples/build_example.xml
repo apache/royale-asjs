@@ -134,13 +134,7 @@
             versionrevision="0" 
             output="${basedir}/bin-debug"/> 
  
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src/main/resources">
-                <include name="**/*.png" />
-                <include name="**/*.jpg" />
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
+        <antcall target="build_example.copy-resources" />
         <copy todir="${basedir}/bin-debug/fonts">
             <fileset dir="${FLEX_HOME}/frameworks/fonts">
                 <include name="**/*.swf" />
@@ -177,12 +171,7 @@
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
         
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src/main/resources">
-                <include name="**/*.png" />
-                <include name="**/*.jpg" />
-            </fileset>
-        </copy>
+        <antcall target="build_example.copy-resources" />
         <copy todir="${basedir}/bin-debug">
             <fileset dir="${basedir}">
                 <include name="*-app.xml" />
@@ -457,4 +446,19 @@
         </sequential>
     </macrodef>
     
+    <target name="check-resources" >
+        <available file="${basedir}/src/main/resources"
+        type="dir"
+        property="has-resources"/>
+    </target>
+    
+    <target name="copy-resources" depends="check-resources" if="has-resources">
+        <copy todir="${basedir}/bin-debug">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="**/*.png" />
+                <include name="**/*.jpg" />
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+    </target>
 </project>
