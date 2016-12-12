@@ -122,6 +122,7 @@
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.flex.html.beads.TextItemRendererFactoryForStringVectorData" />
 
     <component id="DateChooser" class="org.apache.flex.html.DateChooser"/>
+    <component id="DateChooserList" class="org.apache.flex.html.supportClasses.DateChooserList" />
     <component id="DateField" class="org.apache.flex.html.DateField"/>
     <component id="VerticalColumnLayout" class="org.apache.flex.html.beads.layouts.VerticalColumnLayout" />
 

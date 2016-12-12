@@ -21,6 +21,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.html.beads.DateChooserView;
 	import org.apache.flex.html.beads.models.DateChooserModel;
 	import org.apache.flex.html.supportClasses.DateChooserButton;
+	import org.apache.flex.html.supportClasses.DateChooserList;
 	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IBeadModel;
@@ -72,10 +73,11 @@ package org.apache.flex.html.beads.controllers
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
-			var dayButtons:Array = view.dayButtons;
-			for(var i:int=0; i < dayButtons.length; i++) {
-				IEventDispatcher(dayButtons[i]).addEventListener("click", dayButtonClickHandler);
-			}
+			IEventDispatcher(view.dayList).addEventListener("change", listHandler);
+//			var dayButtons:Array = view.dayButtons;
+//			for(var i:int=0; i < dayButtons.length; i++) {
+//				IEventDispatcher(dayButtons[i]).addEventListener("click", dayButtonClickHandler);
+//			}
 		}
 		
 		/**
@@ -108,6 +110,16 @@ package org.apache.flex.html.beads.controllers
 			}
 			model.displayedMonth = month;
 			model.displayedYear = year;
+		}
+		
+		private function listHandler(event:Event):void
+		{
+			var list:DateChooserList = event.target as DateChooserList;
+			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			var newDate:Date = new Date(model.displayedYear,model.displayedMonth,list.selectedIndex-7);
+			
+			model.selectedDate = newDate;
+			IEventDispatcher(_strand).dispatchEvent( new Event("change") );
 		}
 		
 		/**

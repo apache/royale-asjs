@@ -47,7 +47,6 @@ package org.apache.flex.html
 		public function DateChooser()
 		{
 			super();
-			className = "DateChooser";
 
 			// fix the DateChooser's size
 			width = 280;
