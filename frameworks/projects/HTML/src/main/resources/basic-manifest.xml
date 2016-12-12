@@ -152,4 +152,6 @@
     <component id="Ul" class="org.apache.flex.html.Ul" />
     <component id="Li" class="org.apache.flex.html.Li" />
 
+    <component id="InnerHTML" class="org.apache.flex.html.beads.InnerHTML" />
+
 </componentPackage>

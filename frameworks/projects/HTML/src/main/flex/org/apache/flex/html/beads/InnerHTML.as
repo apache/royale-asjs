@@ -16,27 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.ContainerBase;
-
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
+    import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
+	
+    [DefaultProperty("text")]
 
 	/**
-	 *  The Span class represents an HTML <span> element
-     *  
+	 *  The InnerText bead class adds innetHTML text to a html tag.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Span extends ContainerBase
-	{
-		/**
+    public class InnerHTML implements IBead
+    {
+        /**
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
@@ -44,12 +42,12 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function Span()
+		public function InnerHTML()
 		{
-			super();
+            super();
 		}
-		
-        private var _text:String = "";
+
+        private var _text:String = null;
 
         /**
          *  The text of the heading
@@ -67,35 +65,34 @@ package org.apache.flex.html
 		public function set text(value:String):void
 		{
             _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-                
-                textNode.nodeValue = value;	
-			}
-
 		}
 		
-        COMPILE::JS
-        private var textNode:Text;
+        private var host:UIBase;
 
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			element = document.createElement('span') as WrappedHTMLElement;
+		private var _strand:IStrand;		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
-        }
+            host = value as UIBase;
+
+            if(_text != null && _text != "" && host != null)
+            {
+                COMPILE::JS
+                {
+                    var e:HTMLElement = host.element as HTMLElement;
+                    e.innerHTML = _text;
+                }
+            }
+		}
     }
 }

@@ -16,25 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.mdl.beads
 {
-	import org.apache.flex.html.Span;
-    
+	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IBead;
+	import org.apache.flex.core.UIBase;
+
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.core.WrappedHTMLElement;            
     }
-    
+
 	/**
-	 *  The LayoutTitle class is a Container component capable of parenting other
-	 *  components 
-	 *
+	 *  The ListItemSecondaryAction class decorates a tag element in a list item renderer
+     *  
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class LayoutTitle extends Span
+	public class ListItemSecondaryAction implements IBead
 	{
 		/**
 		 *  constructor.
@@ -44,27 +46,40 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function LayoutTitle()
+		public function ListItemSecondaryAction()
 		{
-			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+			super();   
 		}
 		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout-title";
+		private var host:UIBase;
+
+		private var _strand:IStrand;		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 			
-			element = document.createElement('span')  as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            return element;
-        }
-	}
+			COMPILE::JS
+			{
+				host = value as UIBase;
+				
+				if (host.element is HTMLElement)
+				{
+					host.element.classList.add("mdl-list__item-secondary-action");
+				}
+				else
+				{
+					throw new Error("Host component must be an MDL element.");
+				}
+			}
+		}
+    }
 }

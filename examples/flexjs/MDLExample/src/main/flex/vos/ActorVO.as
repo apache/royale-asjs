@@ -16,41 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package vos
 {
-	import org.apache.flex.events.EventDispatcher;
-	import vos.*;
-
-	public class ListsModel extends EventDispatcher
+    [Bindable]
+	public class ActorVO
 	{
-		/**
-		 * Used in the List example.
-		 */
-		private var _things:Array = [
-			"A", 
-			"Simple", 
-			"List",
-			"Example"
-		];
-		
-		public function get things():Array
+		public function ActorVO(actorName:String = null, episodes:String = null, description:String = null)
 		{
-			return _things;
+			this.actorName = actorName;
+			this.episodes = episodes;
+			this.description = description;
 		}
 
-		/**
-		 * Used in the List example.
-		 */
-		private var _actors:Array = [
-			new ActorVO("Bryan Cranston", "62 Episodes", "Bryan Cranston played the role of Walter in Breaking Bad. He is also known for playing Hal in Malcom in the Middle."),
-			new ActorVO("Aaron Paul", "61 Episodes", "Aaron Paul played the role of Jesse in Breaking Bad. He also featured in the 'Need For Speed' Movie."),
-			new ActorVO("Bob Odenkirk", "59 Episodes", "Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the character, Bob stars in his own show now, called 'Better Call Saul'.")
-		];
-		
-		public function get actors():Array
-		{
-			return _actors;
-		}		
-
+		public var actorName:String = "";
+		public var episodes:String = "";
+		public var description:String = "";
 	}
 }

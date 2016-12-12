@@ -72,6 +72,7 @@ package org.apache.flex.binding
             var fieldWatcher:Object;
             var isStatic:Boolean;
             var sb:SimpleBinding;
+            var cb:ConstantBinding;
             if (!("_bindings" in _strand))
                 return;
             var bindingData:Array = _strand["_bindings"];
@@ -126,17 +127,74 @@ package org.apache.flex.binding
                         }
                     }
                 }
-                else
-                if (binding.source is Array
-                        && binding.source[0] == "data"
+                else if (binding.source is Array
                         && binding.source.length == 2 && binding.destination.length == 2)
                 {
-                    var irsb:ItemRendererSimpleBinding = new ItemRendererSimpleBinding();
-                    irsb.destinationID = binding.destination[0];
-                    irsb.destinationPropertyName = binding.destination[1];
-                    irsb.sourcePropertyName = binding.source[1];
-                    irsb.setDocument(_strand);
-                    _strand.addBead(irsb);
+                    var compWatcher:Object;
+                    compWatcher = watchers.watcherMap[binding.source[0]];
+                    fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
+                    if (binding.source[0] == "data" ||
+                            (compWatcher.eventNames is String
+                            && compWatcher.eventNames == "dataChange"))
+                    {
+                        var irsb:ItemRendererSimpleBinding = new ItemRendererSimpleBinding();
+                        irsb.destinationID = binding.destination[0];
+                        irsb.destinationPropertyName = binding.destination[1];
+                        irsb.sourcePropertyName = binding.source[1];
+                        irsb.setDocument(_strand);
+                        _strand.addBead(irsb);
+                    }
+                    else if (fieldWatcher.eventNames is String)
+                    {
+                        sb = new SimpleBinding();
+                        sb.destinationPropertyName = binding.destination[1];
+                        sb.eventName = fieldWatcher.eventNames as String;
+                        sb.sourceID = binding.source[0];
+                        sb.sourcePropertyName = binding.source[1];
+                        sb.setDocument(_strand);
+                        destObject = _strand[binding.destination[0]];                                
+                        destination = destObject as IStrand;
+                        if (destination)
+                            destination.addBead(sb);
+                        else
+                        {
+                            if (destObject)
+                            {
+                                sb.destination = destObject;
+                                _strand.addBead(sb);
+                            }
+                            else
+                            {
+                                deferredBindings[binding.destination[0]] = sb;
+                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                            }
+                        }
+                    }
+                    else if (fieldWatcher.eventNames == null)
+                    {
+                        cb = new ConstantBinding();
+                        cb.destinationPropertyName = binding.destination[1];
+                        cb.sourceID = binding.source[0];
+                        cb.sourcePropertyName = binding.source[1];
+                        cb.setDocument(_strand);
+                        destObject = _strand[binding.destination[0]];                                
+                        destination = destObject as IStrand;
+                        if (destination)
+                            destination.addBead(cb);
+                        else
+                        {
+                            if (destObject)
+                            {
+                                cb.destination = destObject;
+                                _strand.addBead(cb);
+                            }
+                            else
+                            {
+                                deferredBindings[binding.destination[0]] = cb;
+                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                            }
+                        }
+                    }
                 }
                 else
                 {

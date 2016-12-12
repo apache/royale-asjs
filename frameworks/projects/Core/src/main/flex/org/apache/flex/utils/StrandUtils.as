@@ -20,7 +20,6 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	
@@ -58,7 +57,7 @@ package org.apache.flex.utils
 				var c:Class = ValuesManager.valuesImpl.getValue(strand, classOrInterfaceName) as Class;
 				if (c)
 				{
-					result = new c as IBeadModel;
+					result = new c() as IBead;
 					if (result)
 						strand.addBead(result);
 				}

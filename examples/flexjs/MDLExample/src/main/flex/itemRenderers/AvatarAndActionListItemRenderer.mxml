@@ -24,12 +24,12 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-			import vos.ProductVO;
+			import vos.ActorVO;
             
             [Bindable("dataChange")]
-            public function get product():ProductVO
+            public function get actor():ActorVO
             {
-                return data as ProductVO;
+                return data as ActorVO;
             }
 		]]>
 	</fx:Script>
@@ -38,11 +38,19 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </js:beads>
     
-    <js:Span text="{data.label}">
-        <js:beads>
+    <js:Span text="{actor.actorName}">
+        <mdl:beads>
             <mdl:ListItemPrimaryContent/>
-        </js:beads>
+            <mdl:MaterialIconPerson listItemAvatar="true"/>
+        </mdl:beads>
     </js:Span>
-    
+    <js:A href="#">
+        <mdl:beads>
+            <mdl:ListItemSecondaryAction/>
+            <mdl:MaterialIconStar/>
+        </mdl:beads>
+    </js:A>
+
+      
 </mdl:ListItemRenderer>
 

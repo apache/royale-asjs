@@ -148,6 +148,10 @@ package models
         
         private var _currentClassData:Object;
         
+        private var _baseClassList:Array;
+        
+        private var _attributesMap:Object;
+        
         private function completeClassHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeClassHandler);
@@ -158,7 +162,13 @@ package models
                 _publicProperties = [];
                 _publicMethods = [];
                 _constructorList = [];
+                _baseClassList = [];
+                _inheritance = null;
+                _attributesMap = {};
+                _attributes = null;
             }
+            else
+                _baseClassList.push(data.qname);
             for each (var m:Object in data.members)
             {
                 m.shortDescription = makeShortDescription(m.description);
@@ -168,7 +178,7 @@ package models
                     {
                         _constructorList.push(m);
                     }
-                    else
+                    else if (m.qname != data.qname)
                         _publicMethods.push(m);
                 }
                 else
@@ -177,6 +187,14 @@ package models
                 }
                     
             }
+            for each (m in data.tags)
+            {
+                if (!_attributesMap[m.tagName])
+                {
+                    _attributesMap[m.tagName] = m.values;
+                }
+            }
+
             if (data.type == "class" && data.baseClassname && data.baseClassname.indexOf("flash.") != 0)
             {
                 app.service.addEventListener("complete", completeClassHandler);
@@ -224,7 +242,13 @@ package models
                 _publicProperties = [];
                 _publicMethods = [];
                 _constructorList = [];
+                _baseClassList = [];
+                _inheritance = null;
+                _attributesMap = {};
+                _attributes = null;
             }
+            else
+                _baseClassList.push(data.qname);
             for each (var m:Object in data.members)
             {
                 m.shortDescription = makeShortDescription(m.description);
@@ -242,6 +266,13 @@ package models
                     _publicProperties.push(m);
                 }
                 
+            }
+            for each (m in data.tags)
+            {
+                if (!_attributesMap[m.tagName])
+                {
+                    _attributesMap[m.tagName] = m.values;
+                }
             }
             if (data.baseInterfaceNames)
                 extensions = extensions.concat(data.baseInterfaceNames);
@@ -289,12 +320,27 @@ package models
         {
             return _currentClassData.description;
         }
-
+        
         private var _inheritance:String;
         
         [Bindable("currentDataChanged")]
         public function get inheritance():String
         {
+            if (!_inheritance)
+            {
+                var s:String = "extends ";
+                if (_baseClassList.length == 0)
+                    s += "Object";
+                else
+                {
+                    s += _baseClassList.shift();
+                    for each (var p:String in _baseClassList)
+                    {
+                        s += "-> " + p;
+                    }
+                }
+                _inheritance = s;
+            }
             return _inheritance;
         }
        
@@ -303,6 +349,25 @@ package models
         [Bindable("currentDataChanged")]
         public function get attributes():String
         {
+            if (!_attributes)
+            {
+                var s:String = "";
+                for (var p:String in _attributesMap)
+                {
+                    var o:Array = _attributesMap[p];
+                    s += p + ": ";
+                    var firstOne:Boolean = true;
+                    for each (var q:String in o)
+                    {
+                        if (!firstOne)
+                            s += ", ";
+                        firstOne = false;
+                        s += q;
+                    }
+                    s += "\n";
+                }
+                _attributes = s;
+            }
             return _attributes;
         }
 	}

@@ -19,6 +19,8 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.IAccordionCollapseBead;
 	
 	
@@ -54,6 +56,11 @@ package org.apache.flex.html
 			if (selectedIndex < 0)
 			{
 				selectedIndex = 0;
+			} else
+			{
+				// TODO this should probably be done in List, but it's too hacky
+				// This is my way of setting the proper item renderer state and layout 
+				(model as IEventDispatcher).dispatchEvent(new Event("selectedIndexChanged"));
 			}
 		}
 		

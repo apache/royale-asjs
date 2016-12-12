@@ -16,37 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package vos
 {
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    [Bindable]
+	public class ProductVO
+	{
 
-    /**
-     *  The MaterialIconCancel bead class is a specialty bead that add "cancel" icon
-     *  to component taken from "material-icons"
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    public class MaterialIconCancel extends MaterialIconBase
-    {
-        /**
-         *  constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function MaterialIconCancel()
-        {
-            super();
-        }
-
-        override protected function get iconText():String
-        {
-            return MaterialIconsType.CANCEL;
-        }
-    }
+		public var label:String;
+	}
 }

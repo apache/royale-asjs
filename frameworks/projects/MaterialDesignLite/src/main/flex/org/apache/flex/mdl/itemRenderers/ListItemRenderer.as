@@ -20,24 +20,20 @@ package org.apache.flex.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;        
+        import org.apache.flex.core.WrappedHTMLElement;        
     }
-    import org.apache.flex.events.Event;
-    import org.apache.flex.html.beads.ITextItemRenderer;
 
-    import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
     
 	/**
-	 *  The StringItemRenderer class displays data in string form using the data's toString()
-	 *  function.
+	 *  The ListItemRenderer defines the basic Item Renderer for a MDL List Component.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ListItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	public class ListItemRenderer extends MXMLItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -54,35 +50,29 @@ package org.apache.flex.mdl.itemRenderers
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
-        private var _text:String = "";
-		/**
-		 *  The text currently displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
+		private var _text:String = "";
+
+        /**
+         *  The text of the heading
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public function get text():String
 		{
             return _text;
-
-            COMPILE::JS
-            {
-                return this.element.innerHTML;
-            }
 		}
-		
+
 		public function set text(value:String):void
 		{
-            _text = value;                    
-            
-            COMPILE::JS
-            {
-                this.element.innerHTML = value;
-            }
+             _text = value;
 		}
-		
+
+		COMPILE::JS
+        private var textNode:Text;
+
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
 		 * 
@@ -96,25 +86,23 @@ package org.apache.flex.mdl.itemRenderers
 		override public function set data(value:Object):void
 		{
 			super.data = value;
+
             var text:String;
-			if (labelField) {
+			if (labelField || dataField) {
                 text = String(value[labelField]);
-            } else if (dataField) {
-                text = String(value[dataField]);
             } else {
                 text = String(value);
             }
             
-            trace("the text: " + text);
-            this.text = text;
+			COMPILE::JS
+			{
+				if(textNode != null)
+				{
+					textNode.nodeValue = text;
+				}	
+			}
 		}
-		
-        COMPILE::JS
-        private var controller:ItemRendererMouseController;
-            
-        COMPILE::JS
-        private var backgroundView:WrappedHTMLElement;
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -125,15 +113,54 @@ package org.apache.flex.mdl.itemRenderers
 
             element = document.createElement('li') as WrappedHTMLElement;
             
+			if(MXMLDescriptor == null)
+			{
+				textNode = document.createTextNode('') as Text;
+				element.appendChild(textNode);
+			}
+
             positioner = element;
             element.flexjs_wrapper = this;
-            
-            // itemRenderers should provide something for the background to handle
-            // the selection and highlight
-            backgroundView = element;
             
             return element;
         }
 
+		private var _twoLine:Boolean;
+        /**
+         * Activate "mdl-list__item--two-line" class selector, for use in list item.
+		 * Optional Two Line List Variant
+         */
+        public function get twoLine():Boolean
+        {
+            return _twoLine;
+        }
+        public function set twoLine(value:Boolean):void
+        {
+            _twoLine = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-list__item--two-line", _twoLine);
+            }
+        }
+
+		private var _threeLine:Boolean;
+        /**
+         * Activate "mdl-list__item--three-line" class selector, for use in list item.
+		 * Optional Three Line List Variant
+         */
+        public function get threeLine():Boolean
+        {
+            return _threeLine;
+        }
+        public function set threeLine(value:Boolean):void
+        {
+            _threeLine = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-list__item--three-line", _threeLine);
+            }
+        }
 	}
 }
