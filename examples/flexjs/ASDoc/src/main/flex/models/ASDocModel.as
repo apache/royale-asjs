@@ -224,6 +224,7 @@ package models
         
         private function makeShortDescription(input:String):String
         {
+            if (!input) return "";
             var c:int = input.indexOf(".");
             if (c == -1) return input;
             
