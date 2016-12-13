@@ -162,7 +162,7 @@ package org.apache.flex.html.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {            
-            element = document.createElement('div') as WrappedHTMLElement;
+            element = document.createElement('span') as WrappedHTMLElement;
             positioner = element;
             positioner.style.position = 'relative';
             

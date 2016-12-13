@@ -74,10 +74,6 @@ package org.apache.flex.html.beads.controllers
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
 			IEventDispatcher(view.dayList).addEventListener("change", listHandler);
-//			var dayButtons:Array = view.dayButtons;
-//			for(var i:int=0; i < dayButtons.length; i++) {
-//				IEventDispatcher(dayButtons[i]).addEventListener("click", dayButtonClickHandler);
-//			}
 		}
 		
 		/**
@@ -86,6 +82,7 @@ package org.apache.flex.html.beads.controllers
 		private function prevMonthClickHandler(event:MouseEvent):void
 		{
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			
 			var month:Number = model.displayedMonth - 1;
 			var year:Number  = model.displayedYear;
 			if (month < 0) {
@@ -102,6 +99,7 @@ package org.apache.flex.html.beads.controllers
 		private function nextMonthClickHandler(event:MouseEvent):void
 		{
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			
 			var month:Number = model.displayedMonth + 1;
 			var year:Number  = model.displayedYear;
 			if (month >= 12) {
@@ -115,25 +113,9 @@ package org.apache.flex.html.beads.controllers
 		private function listHandler(event:Event):void
 		{
 			var list:DateChooserList = event.target as DateChooserList;
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			var newDate:Date = new Date(model.displayedYear,model.displayedMonth,list.selectedIndex-7);
-			
-			model.selectedDate = newDate;
+			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;			
+			model.selectedDate = list.selectedItem as Date;
 			IEventDispatcher(_strand).dispatchEvent( new Event("change") );
-		}
-		
-		/**
-		 * @private
-		 */
-		private function dayButtonClickHandler(event:MouseEvent):void
-		{
-			var dateButton:DateChooserButton = event.target as DateChooserButton;
-			if (dateButton.dayOfMonth > 0) {
-				var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-				var newDate:Date = new Date(model.displayedYear,model.displayedMonth,dateButton.dayOfMonth);
-				model.selectedDate = newDate;
-				IEventDispatcher(_strand).dispatchEvent( new Event("change") );
-			}
 		}
 	}
 }

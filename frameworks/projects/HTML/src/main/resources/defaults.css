@@ -193,24 +193,46 @@ DataGridColumnList {
 	border-color: #333333;
 }
 
+/* DateChooser */
+
 DateChooser {
 	IBeadView:   ClassReference("org.apache.flex.html.beads.DateChooserView");
 	IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateChooserMouseController");
 	width:  280px;
-	height: 240px;
+	height: 230px;
 }
 
 DateChooserList {
-	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DateItemRenderer");		
 	border-style: solid;
-	border-radius: 4px;
-	border-color: #0000DD;
+	border-color: #000000;
 	border-width: 1px;
-	background-color: #DDDDFF;
+	background-color: #FFFFFF;
 }
+
+DateChooserHeader {	
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DayNameItemRenderer");		
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
+}
+
+DateItemRenderer
+{
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+	text-align: center;
+}
+
+DayNameItemRenderer
+{
+	text-align: center;
+}
+
+/* DateField */
 
 DateField {
 	IBeadView:   ClassReference("org.apache.flex.html.beads.DateFieldView");
@@ -218,6 +240,8 @@ DateField {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateFieldMouseController");
 	IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatMMDDYYYYBead");
 }
+
+/* RangeStepper */
 
 RangeStepper {
 	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
@@ -542,6 +566,23 @@ global
 	
 	ComboBoxList {
 		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+	}
+	
+	DateChooserList {
+		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead"); 
+	}
+	
+	DateChooserHeader {
+		padding-top: 0px;
+		padding-bottom: 5px;
+		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");   
+	}
+	
+	DateItemRenderer {
+		margin: 0px;
+		padding: 5px;
 	}
 	
 	DropDownList

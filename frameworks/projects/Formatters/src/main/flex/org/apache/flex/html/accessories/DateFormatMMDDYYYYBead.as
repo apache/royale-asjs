@@ -139,19 +139,18 @@ package org.apache.flex.html.accessories
 		private function handleTextChange(event:Event):void
 		{
 			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
-			/*var view:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
-			var input:TextInput = view.textInput;*/
 			
 			var d:Date = model.selectedDate;
-			var month:String = String(d.getMonth()+1);
-			if (Number(month)<10) month = "0"+month;
-			var date:String = String(d.getDate());
-			if (Number(date)<10) date = "0"+date;
-			var fmt:String = month+"/"+date+"/"+String(d.getFullYear());
-			/*input.text = fmt;*/
-			_formattedResult = month+"/"+date+"/"+String(d.getFullYear());
-			
-			dispatchEvent( new Event("formatChanged") );
+			if (d != null) {
+				var month:String = String(d.getMonth()+1);
+				if (Number(month)<10) month = "0"+month;
+				var date:String = String(d.getDate());
+				if (Number(date)<10) date = "0"+date;
+				var fmt:String = month+"/"+date+"/"+String(d.getFullYear());
+				_formattedResult = month+"/"+date+"/"+String(d.getFullYear());
+				
+				dispatchEvent( new Event("formatChanged") );
+			}
 		}
 		
 	}
