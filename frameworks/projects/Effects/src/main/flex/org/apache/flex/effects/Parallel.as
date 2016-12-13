@@ -94,7 +94,7 @@ public class Parallel extends Effect implements IDocument
     override public function set duration(value:Number):void
     {
         var n:int = children.length;
-        for (var i:int = 0; i < 0; i++)
+        for (var i:int = 0; i < n; i++)
         {
             children[i].duration = value;
         }

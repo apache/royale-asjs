@@ -24,6 +24,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -160,10 +161,10 @@ package org.apache.flex.html.beads.layouts
 			var result:ILayoutChild;
 			for (var i:int = 0; i < contentView.numElements; i++)
 			{
-				var child:UIBase = contentView.getElementAt(i) as UIBase;
+				var child:IStyleableObject = contentView.getElementAt(i) as IStyleableObject;
 				if (child.id == id)
 				{
-					return child;
+					return child as ILayoutChild;
 				}
 			}
 			return null;

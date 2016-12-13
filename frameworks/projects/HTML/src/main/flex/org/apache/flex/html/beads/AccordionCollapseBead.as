@@ -78,7 +78,7 @@ package org.apache.flex.html.beads
 			layout.layout();
 		}
 		
-		private function get layout():IOneFlexibleChildLayout
+		protected function get layout():IOneFlexibleChildLayout
 		{
 			if (!_layout)
 			{
