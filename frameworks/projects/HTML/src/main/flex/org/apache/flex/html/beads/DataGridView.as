@@ -159,6 +159,7 @@ package org.apache.flex.html.beads
 
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
+			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
 			var columnLabels:Array = new Array();
 
@@ -212,6 +213,21 @@ package org.apache.flex.html.beads
 			}
 
 			host.dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handleSelectedIndexChanged(event:Event):void
+		{
+			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var newIndex:int = sharedModel.selectedIndex;
+			
+			for (var i:int=0; i < _lists.length; i++)
+			{
+				var list:DataGridColumnList = _lists[i] as DataGridColumnList;
+				list.selectedIndex = newIndex;
+			}
 		}
 
 		/**
