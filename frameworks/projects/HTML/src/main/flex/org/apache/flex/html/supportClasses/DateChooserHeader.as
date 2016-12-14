@@ -16,61 +16,51 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
-
+	import org.apache.flex.html.DataContainer;
+	import org.apache.flex.html.beads.layouts.TileLayout;
+	
 	/**
-	 * The change event is dispatched when the selectedDate is changed.
-	 */
-	[Event(name="change", type="org.apache.flex.events.Event")]
-
-	/**
-	 *  The DateChooser class is a component that displays a calendar.
+	 *  The DateChooserHeader is the container for the days of the week labels
+	 *  in the DateChooser.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooser extends UIBase
+	public class DateChooserHeader extends DataContainer
 	{
 		/**
-		 *  constructor.
+		 * Constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DateChooser()
+		public function DateChooserHeader()
 		{
 			super();
-
-			// fix the DateChooser's size
-			width = 280;
-			height = 240;
 			
-			// default to today
-			selectedDate = new Date();
+			tileLayout = new TileLayout();
+			tileLayout.numColumns = 7;
+			addBead(tileLayout);
 		}
-
+		
 		/**
-		 *  The currently selected date (or null if no date has been selected).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 * @private
 		 */
-		public function get selectedDate():Date
+		private var tileLayout:TileLayout;
+		
+		/**
+		 * @private
+		 */
+		override public function set height(value:Number):void
 		{
-			return IDateChooserModel(model).selectedDate;
-		}
-		public function set selectedDate(value:Date):void
-		{
-			IDateChooserModel(model).selectedDate = value;
+			super.height = value;
+			tileLayout.rowHeight = value;
 		}
 	}
 }

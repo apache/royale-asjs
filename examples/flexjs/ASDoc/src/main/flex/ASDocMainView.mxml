@@ -73,7 +73,7 @@ limitations under the License.
             <js:Label id="packageName"  text="{ASDocModel(applicationModel).currentPackage}" width="100%"/>
             <js:Label id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
             <js:Label id="inheritance" text="{ASDocModel(applicationModel).inheritance}" width="100%"/>
-            <js:Label id="attributes" text="{ASDocModel(applicationModel).attributes}" width="100%"/>
+            <js:MultilineLabel id="attributes" width="100%"/>
             <js:MultilineLabel id="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
             <js:Label text="Public Properties" />
             <js:List id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"

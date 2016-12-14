@@ -16,25 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
+	COMPILE::SWF
+	{
+		import flash.text.TextFieldAutoSize;
+		import flash.text.TextFieldType;
+		
+		import org.apache.flex.core.CSSTextField;            
+	}
+	import org.apache.flex.events.Event;
 
 	/**
-	 * The change event is dispatched when the selectedDate is changed.
-	 */
-	[Event(name="change", type="org.apache.flex.events.Event")]
-
-	/**
-	 *  The DateChooser class is a component that displays a calendar.
+	 *  The DayNameItemRenderer class renders the names of days of the week
+	 *  for the DateChooser.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooser extends UIBase
+	public class DayNameItemRenderer extends StringItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -44,33 +46,40 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DateChooser()
+		public function DayNameItemRenderer()
 		{
 			super();
-
-			// fix the DateChooser's size
-			width = 280;
-			height = 240;
 			
-			// default to today
-			selectedDate = new Date();
+			className = "DayNameItemRenderer";
 		}
-
+		
 		/**
-		 *  The currently selected date (or null if no date has been selected).
+		 *  Sets the data value and uses the String version of the data for display.
+		 * 
+		 *  @param Object data The object being displayed by the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get selectedDate():Date
+		override public function set data(value:Object):void
 		{
-			return IDateChooserModel(model).selectedDate;
+			super.data = value;
+			
+			COMPILE::SWF {
+				textField.autoSize = TextFieldAutoSize.CENTER;
+			}
 		}
-		public function set selectedDate(value:Date):void
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		override public function set height(value:Number):void
 		{
-			IDateChooserModel(model).selectedDate = value;
+			super.height = value;
+			element.style["line-height"] = String(value)+"px";
 		}
 	}
 }

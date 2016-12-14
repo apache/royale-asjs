@@ -174,7 +174,9 @@ internal class HTMLClasses
 	import org.apache.flex.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.flex.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.flex.html.supportClasses.DateHeaderButton; DateHeaderButton;
+	import org.apache.flex.html.supportClasses.DateItemRenderer; DateItemRenderer;
 	import org.apache.flex.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
+	import org.apache.flex.html.supportClasses.DateChooserList; DateChooserList;
 
     import org.apache.flex.html.beads.TitleBarView; TitleBarView;
     import org.apache.flex.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;

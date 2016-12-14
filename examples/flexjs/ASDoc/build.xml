@@ -31,14 +31,11 @@
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
-        <copy todir="${basedir}/bin/js-debug">
-            <fileset dir="${basedir}/src/main/resources">
-                <include name="**/*.png" />
-                <include name="**/*.jpg" />
-                <include name="**/*.json" />
-            </fileset>
-        </copy>
+    <target name="main" depends="build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+        <available file="${basedir}/bin-debug/classes.json"
+        type="file"
+        property="json.exists"/>
+        <antcall target="json" />
     </target>
     
     <target name="clean">
@@ -48,6 +45,38 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-    
+    <target name="json" unless="json.exists" >
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <java jar="${FALCONJX_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+            fork="true">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
+            <arg value="-external-library-path+=${FLEXJS_HOME}/js/libs/google_maps.swc" />
+            <arg value="+frameworks_dir=${FLEXJS_HOME}/frameworks" />
+            <arg value="-load-config=${basedir}/src/main/config/asdoc-config.xml" />
+            <arg value="-debug=true" />
+            <arg value="-output=${basedir}/bin-debug" />
+            <arg value="-window-title=Apache FlexJS API Reference" />
+            <arg value="-main-title=Apache FlexJS 0.8.0 API Reference " />
+            <arg value="-footer=The Apache Software Foundation" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-js-output-type=FLEXJS" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
+        </java>
+        <copy todir="${basedir}/bin/js-debug">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release">
+            <fileset dir="${basedir}/bin-debug">
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+
+    </target>
     
 </project>
