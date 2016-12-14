@@ -18,9 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
-	import flash.display.DisplayObject;
-	import flash.events.Event;
-	
+	COMPILE::SWF
+	{
+		import flash.display.DisplayObject;
+		import flash.events.Event;
+	}
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContentView;
@@ -130,10 +136,11 @@ package org.apache.flex.utils
 		{
 			public function internalChildren():Array
 			{
-				
+				return null;
 			}
 		}
 
+		COMPILE::SWF
 		public function get $displayObject():DisplayObject
 		{
 			// TODO Auto Generated method stub
@@ -158,13 +165,26 @@ package org.apache.flex.utils
 			return null;
 		}
 		
+		COMPILE::SWF
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
-			
 		}
 		
-		public function dispatchEvent(event:Event):Boolean
+		COMPILE::JS
+		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+		}
+		
+		COMPILE::SWF
+		public function dispatchEvent(event:flash.events.Event):Boolean
+		{
+			// TODO Auto Generated method stub
+			return false;
+		}
+
+		COMPILE::JS
+		public function dispatchEvent(event:Object):Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
@@ -176,12 +196,18 @@ package org.apache.flex.utils
 			return false;
 		}
 		
+		COMPILE::SWF
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
-			
 		}
-		
+
+		COMPILE::JS
+		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+			// TODO Auto Generated method stub
+		}
+
 		public function willTrigger(type:String):Boolean
 		{
 			// TODO Auto Generated method stub
@@ -228,6 +254,18 @@ package org.apache.flex.utils
 		{
 			// TODO Auto Generated method stub
 			return false;
+		}
+	
+		COMPILE::JS
+		public function get positioner():WrappedHTMLElement
+		{
+			return null;
+		}
+		
+		COMPILE::JS
+		public function get element():WrappedHTMLElement
+		{
+			return null;
 		}
 		
 	}

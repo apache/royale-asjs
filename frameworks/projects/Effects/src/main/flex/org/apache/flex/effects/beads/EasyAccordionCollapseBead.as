@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.effects.beads
 {
 	
 	import org.apache.flex.core.ILayoutChild;
@@ -26,6 +26,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
 	import org.apache.flex.utils.LayoutTweener;
+	import org.apache.flex.html.beads.AccordionCollapseBead;
+	import org.apache.flex.html.beads.AccordionView;
+	import org.apache.flex.html.beads.IListView;
 	
 	public class EasyAccordionCollapseBead extends AccordionCollapseBead
 	{

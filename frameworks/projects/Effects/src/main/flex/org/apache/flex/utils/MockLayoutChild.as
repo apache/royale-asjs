@@ -24,6 +24,11 @@ package org.apache.flex.utils
 		import flash.events.Event;
 	}
 	
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
+
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IParent;
@@ -224,13 +229,27 @@ package org.apache.flex.utils
 			return null;
 		}
 		
+		COMPILE::JS
+		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+		}
+
+		COMPILE::SWF
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
 		{
 		}
 		
+		COMPILE::SWF
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
 		{
 		}
+		
+		COMPILE::JS
+		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+			// TODO Auto Generated method stub
+		}
+
 		
 		COMPILE::SWF
 		public function dispatchEvent(event:Event):Boolean
@@ -238,14 +257,22 @@ package org.apache.flex.utils
 			return false;
 		}
 		
-		public function hasEventListener(type:String):Boolean
+		COMPILE::JS
+		public function dispatchEvent(event:Object):Boolean
 		{
-			return _source.hasEventListener(type);
+			return false;
 		}
 		
+		COMPILE::SWF
+		public function hasEventListener(type:String):Boolean
+		{
+			return (_source as IEventDispatcher).hasEventListener(type);
+		}
+		
+		COMPILE::SWF
 		public function willTrigger(type:String):Boolean
 		{
-			return _source.willTrigger(type);
+			return (_source as IEventDispatcher).willTrigger(type);
 		}
 		
 		public function get className():String
@@ -268,5 +295,17 @@ package org.apache.flex.utils
 			return (_source as IStyleableObject).style;
 		}
 		
+		COMPILE::JS
+		public function get positioner():WrappedHTMLElement
+		{
+			return null;
+		}
+		
+		COMPILE::JS
+		public function get element():WrappedHTMLElement
+		{
+			return null;
+		}
+
 	}
 }
