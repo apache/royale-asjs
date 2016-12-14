@@ -74,11 +74,6 @@ package org.apache.flex.effects.beads
 			layout.layout();
 			tweener.play();
 		}
-		
-		private function get layout():IOneFlexibleChildLayout
-		{
-			return (view as AccordionView).layout;
-		}
-		
+				
 	}
 }
