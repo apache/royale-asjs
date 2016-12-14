@@ -146,8 +146,17 @@ package org.apache.flex.core
                 if (backgroundColor != null)
                 {
                     background = true;
-                    backgroundColor = CSSUtils.toColor(backgroundColor);
+                    this.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
+				
+				// supports border: <thickness> solid <color> 
+				var border:Object = ValuesManager.valuesImpl.getValue(sp, "border", styleState);
+				if (border != null && border is Array) {
+					this.border = true;
+					this.borderColor = CSSUtils.toColor(border[2]);
+					this.thickness = Number(border[0]);
+				}
+				// else: add code to look for individual border styles such as border-color.
             }
 			defaultTextFormat = tf;
 			super.text = value;
