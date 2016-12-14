@@ -278,6 +278,9 @@ package models
             if (data.baseInterfaceNames)
                 extensions = extensions.concat(data.baseInterfaceNames);
 
+            while (extensions.length && extensions[0].indexOf("flash.") == 0)
+                extensions.shift();
+            
             if (extensions.length)
             {
                 app.service.addEventListener("complete", completeInterfaceHandler);
