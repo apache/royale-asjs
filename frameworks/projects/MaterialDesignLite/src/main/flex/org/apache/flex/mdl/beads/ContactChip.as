@@ -20,11 +20,17 @@ package org.apache.flex.mdl.beads
 {
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
+    import org.apache.flex.html.Span;
     import org.apache.flex.mdl.supportClasses.IMdlColor;
     import org.apache.flex.mdl.supportClasses.IMdlTextColor;
+    import org.apache.flex.utils.StrandUtils;
 
-
+    COMPILE::JS
+    {
+        import org.apache.flex.core.UIHTMLElementWrapper;
+        import org.apache.flex.core.UIBase;
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
     /**
      *  The ContactChip bead class is a specialty bead that can be used to add additional
      *  button to Chip MDL control.
@@ -35,10 +41,8 @@ package org.apache.flex.mdl.beads
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public class ContactChip implements IMdlColor, IMdlTextColor
+    public class ContactChip implements IMdlTextColor
     {
-        private var _color:String;
-        private var _colorWeight:String;
         private var _textColor:String;
         private var _textColorWeight:String;
 
@@ -52,32 +56,6 @@ package org.apache.flex.mdl.beads
         public function set contactText(value:String):void
         {
             _contactText = value;
-        }
-
-        /**
-         * @inheritDoc
-         */
-        public function get color():String
-        {
-            return _color;
-        }
-
-        public function set color(value:String):void
-        {
-            _color = value;
-        }
-
-        /**
-         * @inheritDoc
-         */
-        public function get colorWeight():String
-        {
-            return _colorWeight;
-        }
-
-        public function set colorWeight(value:String):void
-        {
-            _colorWeight = value;
         }
 
         /**
@@ -108,7 +86,7 @@ package org.apache.flex.mdl.beads
     }
 
     COMPILE::JS
-    public class ContactChip implements IBead, IMdlColor, IMdlTextColor
+    public class ContactChip implements IBead, IMdlTextColor
     {
         /**
          *  constructor.
@@ -122,13 +100,11 @@ package org.apache.flex.mdl.beads
         {
         }
 
-        private var _color:String = "";
-        private var _colorWeight:String = "";
         private var _textColor:String = "";
         private var _textColorWeight:String = "";
         private var _contactText:String = "";
 
-        private var contact:HTMLSpanElement;
+        private var contact:Span;
         private var textNode:Text;
 
         private var _strand:IStrand;
@@ -138,6 +114,7 @@ package org.apache.flex.mdl.beads
          * @flexjsignorecoercion HTMLSpanElement
          * @flexjsignorecoercion Text
          * @flexjsignorecoercion HTMLButtonElement
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *
          * @param value
          */
@@ -155,19 +132,19 @@ package org.apache.flex.mdl.beads
 
                 textNode = document.createTextNode('') as Text;
                 textNode.nodeValue = _contactText;
-                
-                contact = document.createElement("span") as HTMLSpanElement;
-                contact.classList.add("mdl-chip__contact");
-                
-                var contactColor:String = getContactColor();
+
+                contact = new Span();
+                contact.element.classList.add("mdl-chip__contact");
+
+                loadColorBead();
+
                 var contactTextColor:String = getContactTextColor();
 
-                contact.classList.toggle(contactColor, _color);
-                contact.classList.toggle(contactTextColor, _textColor);
+                contact.element.classList.toggle(contactTextColor, _textColor);
 
-                contact.appendChild(textNode);
+                contact.element.appendChild(textNode);
 
-                element.insertBefore(contact, host["chipTextSpan"]);
+                element.insertBefore(contact.element, host["chipTextSpan"]);
             }
             else
             {
@@ -175,35 +152,21 @@ package org.apache.flex.mdl.beads
             }
         }
 
+        private function loadColorBead():void
+        {
+            var mdlColorBead:IBead = StrandUtils.loadBead(MdlColor, "MdlColor", _strand);
+
+            if (mdlColorBead != null)
+            {
+                //Maybe removing also css manually from strand is a solution ?
+               _strand.removeBead(mdlColorBead);
+               contact.addBead(mdlColorBead);
+            }
+        }
+
         public function set contactText(value:String):void
         {
             _contactText = value;
-        }
-
-        /**
-         * @inheritDoc
-         */
-        public function get color():String
-        {
-            return _color;
-        }
-
-        public function set color(value:String):void
-        {
-            _color = value;
-        }
-
-        /**
-         * @inheritDoc
-         */
-        public function get colorWeight():String
-        {
-            return _colorWeight;
-        }
-
-        public function set colorWeight(value:String):void
-        {
-            _colorWeight = value;
         }
 
         /**
@@ -231,14 +194,7 @@ package org.apache.flex.mdl.beads
         {
             _textColorWeight = value;
         }
-
-        private function getContactColor():String
-        {
-            return _colorWeight ?
-                    "mdl-color--".concat(_color, "-", _colorWeight) :
-                    "mdl-color--".concat(_color);
-        }
-
+        
         private function getContactTextColor():String
         {
             return _textColorWeight ?
