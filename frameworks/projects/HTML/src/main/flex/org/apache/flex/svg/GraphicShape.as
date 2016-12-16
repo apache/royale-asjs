@@ -92,8 +92,8 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
-			element.style.left = 0;
-			element.style.top = 0;
+			element.style.left = "0px";
+			element.style.top = "0px";
 			//element.offsetParent = null;
 			positioner = element;
 			positioner.style.position = 'relative';
@@ -196,12 +196,12 @@ package org.apache.flex.svg
             var useHeight:Number = Math.max(this.height, bbox.height);
 
             element.style.position = 'absolute';
-            if (!isNaN(x)) element.style.top = x;
-            if (!isNaN(y)) element.style.left = y;
+            if (!isNaN(x)) element.style.top = x + "px";
+            if (!isNaN(y)) element.style.left = y + "px";
             element.style.width = useWidth;
             element.style.height = useHeight;
-            element.style.left = x;
-            element.style.top = y;
+            element.style.left = x + "px";
+            element.style.top = y + "px";
         }
 
         COMPILE::JS
@@ -226,8 +226,8 @@ package org.apache.flex.svg
             _y = y;
             _xOffset = xOffset;
             _yOffset = yOffset;
-            element.style.left = xOffset;
-            element.style.top = yOffset;
+            element.style.left = xOffset + "px";
+            element.style.top = yOffset + "px";
         }
 	}
 }

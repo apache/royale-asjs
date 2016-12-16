@@ -42,8 +42,8 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
-			element.style.left = 0;
-			element.style.top = 0;
+			element.style.left = "0px";
+			element.style.top = "0px";
 			//element.offsetParent = null;
 			positioner = element;
 			positioner.style.position = 'relative';
