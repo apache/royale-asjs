@@ -31,9 +31,7 @@ limitations under the License.
                 <mdl:CardSupportingText>
                     <js:beads>
                         <js:InnerHTML>
-                            <![CDATA[
-                                Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...
-                            ]]>
+                            <![CDATA[Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...]]>
                         </js:InnerHTML>
                     </js:beads>
                 </mdl:CardSupportingText>
@@ -54,9 +52,7 @@ limitations under the License.
                     <mdl:CardTitleText text="Update"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:beads>
-                        <js:InnerHTML text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
-                    </js:beads>
+                    <js:TextNode text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button colored="true" ripple="true" text="View Updates"/>
@@ -75,9 +71,7 @@ limitations under the License.
                     <mdl:CardTitleText>
                         <js:beads>
                             <js:InnerHTML>
-                                <![CDATA[
-                                    <h4 class="mdl-card__title_h4">Featured event:<br>May 24, 2016<br>7-11pm</h4>
-                                ]]>
+                                <![CDATA[<h4 class="mdl-card__title_h4">Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
                         </js:beads>
                     </mdl:CardTitleText>
