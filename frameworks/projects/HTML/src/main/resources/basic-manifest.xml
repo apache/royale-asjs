@@ -155,5 +155,6 @@
     <component id="Li" class="org.apache.flex.html.Li" />
 
     <component id="InnerHTML" class="org.apache.flex.html.beads.InnerHTML" />
+    <component id="TextNode" class="org.apache.flex.html.TextNode" />
 
 </componentPackage>
