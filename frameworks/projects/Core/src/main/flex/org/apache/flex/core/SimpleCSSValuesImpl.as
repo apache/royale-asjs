@@ -727,7 +727,7 @@ package org.apache.flex.core
                     continue;
                 if (typeof(value) == 'number') {
                     if (colorStyles[p])
-                        value = '#' + value.toString(16);
+                        value = CSSUtils.attributeFromColor(value);
                     else
                         value = value.toString() + 'px';
                 }

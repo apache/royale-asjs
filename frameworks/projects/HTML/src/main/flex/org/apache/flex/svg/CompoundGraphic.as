@@ -185,8 +185,8 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
                 rect.flexjs_wrapper = this;
-                rect.style.left = x;
-                rect.style.top = y;
+                rect.style.left = x + "px";
+                rect.style.top = y + "px";
                 rect.setAttribute('style', style);
                 rect.setAttribute('x', x);
                 rect.setAttribute('y', y);
@@ -229,8 +229,8 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
                 ellipse.flexjs_wrapper = this;
-                ellipse.style.left = x;
-                ellipse.style.top = y;
+                ellipse.style.left = x + "px";
+                ellipse.style.top = y + "px";
                 ellipse.setAttribute('style', style);
                 ellipse.setAttribute('cx', x + width / 2);
                 ellipse.setAttribute('cy', y + height / 2);
@@ -266,8 +266,8 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
                 circle.flexjs_wrapper = this;
-                circle.style.left = x;
-                circle.style.top = y;
+                circle.style.left = x + "px";
+                circle.style.top = y + "px";
                 circle.setAttribute('style', style);
                 circle.setAttribute('cx', x);
                 circle.setAttribute('cy', y);
@@ -325,8 +325,8 @@ package org.apache.flex.svg
                 var style:String = getStyleStr();
                 var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
                 path.flexjs_wrapper = this;
-                path.style.left = 0;
-                path.style.top = 0;
+                path.style.left = "0px";
+                path.style.top = "0px";
                 path.setAttribute('style', style);
                 path.setAttribute('d', data);
                 element.appendChild(path);
@@ -538,8 +538,8 @@ package org.apache.flex.svg
                 var style:String = getTxtStyleStr();
                 var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
                 text.flexjs_wrapper = this;
-                text.style.left = x;
-                text.style.top = y;
+                text.style.left = x + "px";
+                text.style.top = y + "px";
                 text.setAttribute('style', style);
                 text.setAttribute('x', x);
                 text.setAttribute('y', y + 15);

@@ -52,9 +52,7 @@ limitations under the License.
                     <mdl:CardTitleText text="Update"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:beads>
-                        <js:InnerHTML text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
-                    </js:beads>
+                    <js:TextNode text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button colored="true" ripple="true" text="View Updates"/>

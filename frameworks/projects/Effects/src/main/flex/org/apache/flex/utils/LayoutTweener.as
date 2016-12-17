@@ -87,6 +87,7 @@ package org.apache.flex.utils
 		public function play():void
 		{
 			var effects:Array = getEffects(sourceLayoutParent, mockLayoutParent);
+			_mockLayoutParent = null;
 			sourceLayout.strand = sourceLayoutParent as IStrand;
 			if (effects && effects.length > 0)
 			{
