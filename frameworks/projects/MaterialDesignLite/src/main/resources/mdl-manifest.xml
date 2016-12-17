@@ -82,4 +82,5 @@
     <component id="Tooltip" class="org.apache.flex.mdl.beads.Tooltip"/>
     <component id="MdlColor" class="org.apache.flex.mdl.beads.MdlColor"/>
     <component id="MdlTextColor" class="org.apache.flex.mdl.beads.MdlTextColor"/>
+    <component id="Spinner" class="org.apache.flex.mdl.Spinner"/>
 </componentPackage>
