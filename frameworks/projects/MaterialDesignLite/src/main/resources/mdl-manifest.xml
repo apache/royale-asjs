@@ -81,4 +81,5 @@
     <component id="ContactImageChip" class="org.apache.flex.mdl.beads.ContactImageChip"/>
     <component id="Tooltip" class="org.apache.flex.mdl.beads.Tooltip"/>
     <component id="MdlColor" class="org.apache.flex.mdl.beads.MdlColor"/>
+    <component id="MdlTextColor" class="org.apache.flex.mdl.beads.MdlTextColor"/>
 </componentPackage>

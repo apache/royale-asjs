@@ -41,11 +41,8 @@ package org.apache.flex.mdl.beads
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public class ContactChip implements IMdlTextColor
+    public class ContactChip
     {
-        private var _textColor:String;
-        private var _textColorWeight:String;
-
         private var _contactText:String;
 
         public function ContactChip()
@@ -57,36 +54,10 @@ package org.apache.flex.mdl.beads
         {
             _contactText = value;
         }
-
-        /**
-         * @inheritDoc
-         */
-        public function get textColor():String
-        {
-            return _textColor;
-        }
-
-        public function set textColor(value:String):void
-        {
-            _textColor = value;
-        }
-
-        /**
-         * @inheritDoc
-         */
-        public function get textColorWeight():String
-        {
-            return _textColorWeight;
-        }
-
-        public function set textColorWeight(value:String):void
-        {
-            _textColorWeight = value;
-        }
     }
 
     COMPILE::JS
-    public class ContactChip implements IBead, IMdlTextColor
+    public class ContactChip implements IBead
     {
         /**
          *  constructor.
@@ -100,14 +71,13 @@ package org.apache.flex.mdl.beads
         {
         }
 
-        private var _textColor:String = "";
-        private var _textColorWeight:String = "";
         private var _contactText:String = "";
 
         private var contact:Span;
         private var textNode:Text;
 
         private var _strand:IStrand;
+        private var _strandHtmlElement:HTMLElement;
 
         /**
          * @flexjsignorecoercion HTMLElement
@@ -123,12 +93,12 @@ package org.apache.flex.mdl.beads
             _strand = value;
             
             var host:UIBase = value as UIBase;
-            var element:HTMLElement = host.element as HTMLElement;
-            var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
+            _strandHtmlElement = host.element as HTMLElement;
+            var isValidElement:Boolean = _strandHtmlElement is HTMLSpanElement || _strandHtmlElement is HTMLButtonElement;
 
-            if (isValidElement && element.className.search("mdl-chip") > -1)
+            if (isValidElement && _strandHtmlElement.className.search("mdl-chip") > -1)
             {
-                element.classList.add("mdl-chip--contact");
+                _strandHtmlElement.classList.add("mdl-chip--contact");
 
                 textNode = document.createTextNode('') as Text;
                 textNode.nodeValue = _contactText;
@@ -137,30 +107,15 @@ package org.apache.flex.mdl.beads
                 contact.element.classList.add("mdl-chip__contact");
 
                 loadColorBead();
-
-                var contactTextColor:String = getContactTextColor();
-
-                contact.element.classList.toggle(contactTextColor, _textColor);
+                loadTextColorBead();
 
                 contact.element.appendChild(textNode);
 
-                element.insertBefore(contact.element, host["chipTextSpan"]);
+                _strandHtmlElement.insertBefore(contact.element, host["chipTextSpan"]);
             }
             else
             {
                 throw new Error("Host component must be an MDL Host for Chips.");
-            }
-        }
-
-        private function loadColorBead():void
-        {
-            var mdlColorBead:IBead = StrandUtils.loadBead(MdlColor, "MdlColor", _strand);
-
-            if (mdlColorBead != null)
-            {
-                //Maybe removing also css manually from strand is a solution ?
-               _strand.removeBead(mdlColorBead);
-               contact.addBead(mdlColorBead);
             }
         }
 
@@ -169,37 +124,39 @@ package org.apache.flex.mdl.beads
             _contactText = value;
         }
 
-        /**
-         * @inheritDoc
-         */
-        public function get textColor():String
+        private function loadColorBead():void
         {
-            return _textColor;
+            var mdlColorBead:MdlColor = StrandUtils.loadBead(MdlColor, "MdlColor", _strand) as MdlColor;
+
+            if (mdlColorBead != null)
+            {
+                var mdlColorElement:String = mdlColorBead.getMdlElementColor();
+                if (!mdlColorElement)
+                {
+                   throw new Error("MdlColor bead exists, but there is no color specified");
+                }
+
+                _strandHtmlElement.classList.remove(mdlColorElement);
+                contact.addBead(mdlColorBead);
+            }
         }
 
-        public function set textColor(value:String):void
+        private function loadTextColorBead():void
         {
-            _textColor = value;
-        }
+            var mdlTextColorBead:MdlTextColor = StrandUtils.loadBead(MdlTextColor, "MdlTextColor", _strand)
+                    as MdlTextColor;
 
-        /**
-         * @inheritDoc
-         */
-        public function get textColorWeight():String
-        {
-            return _textColorWeight;
-        }
+            if (mdlTextColorBead != null)
+            {
+                var mdlTextElementTextColor:String = mdlTextColorBead.getMdlElementTextColor();
+                if (!mdlTextElementTextColor)
+                {
+                    throw new Error("MdlTextColor bead exists, but there is no textColor specified");
+                }
 
-        public function set textColorWeight(value:String):void
-        {
-            _textColorWeight = value;
-        }
-        
-        private function getContactTextColor():String
-        {
-            return _textColorWeight ?
-                    "mdl-color-text--".concat(_textColor, "-", _textColorWeight) :
-                    "mdl-color-text--".concat(_textColor);
+                _strandHtmlElement.classList.remove(mdlTextElementTextColor);
+                contact.addBead(mdlTextColorBead);
+            }
         }
     }
 }

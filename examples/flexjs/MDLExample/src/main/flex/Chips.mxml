@@ -46,6 +46,7 @@ limitations under the License.
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:MdlColor color="teal" />
+                    <mdl:MdlTextColor textColor="white" />
                     <mdl:ContactChip contactText="A" />
                 </mdl:beads>
             </mdl:Chip>
@@ -53,7 +54,9 @@ limitations under the License.
        <mdl:GridCell column="5">
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
-                    <mdl:ContactChip contactText="A" color="teal" textColor="white"/>
+                    <mdl:MdlColor color="teal" />
+                    <mdl:MdlTextColor textColor="white" />
+                    <mdl:ContactChip contactText="A" />
                     <mdl:MaterialIconCancel />
                     <mdl:DeletableChip />
                 </mdl:beads>

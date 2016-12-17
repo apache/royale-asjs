@@ -139,7 +139,7 @@ package org.apache.flex.mdl.beads
             return _colorWeight != null && _colorWeight != "";
         }
 
-        private function getMdlElementColor():String
+        public function getMdlElementColor():String
         {
             if (hasColor && hasColorWeight)
             {
