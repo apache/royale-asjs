@@ -30,6 +30,9 @@ limitations under the License.
             <mdl:ProgressBar currentProgress="47" />
         </mdl:GridCell>
         <mdl:GridCell column="1">
+            <mdl:ProgressBar currentProgress="47" currentBuffer="25"/>
+        </mdl:GridCell>
+        <mdl:GridCell column="1">
             <mdl:ProgressBar currentProgress="47" indeterminate="true"/>
         </mdl:GridCell>
     </mdl:Grid>

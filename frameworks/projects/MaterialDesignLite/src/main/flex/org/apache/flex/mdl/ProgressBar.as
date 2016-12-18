@@ -37,6 +37,7 @@ package org.apache.flex.mdl
     public class ProgressBar
     {
         private var _currentProgress:Number;
+        private var _currentBuffer:Number;
         private var _indeterminate:Boolean;
 
         /**
@@ -57,6 +58,24 @@ package org.apache.flex.mdl
             _currentProgress = value;
         }
 
+        /**
+         *  Current progress of the buffer.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get currentBuffer():Number
+        {
+            return _currentBuffer;
+        }
+
+        public function set currentBuffer(value:Number):void
+        {
+            _currentBuffer = value;
+        }
+
         public function set indeterminate(value:Boolean):void
         {
             _indeterminate = value;
@@ -66,8 +85,6 @@ package org.apache.flex.mdl
     COMPILE::JS
     public class ProgressBar extends UIBase
     {
-        private const MaterialProgress:String = "MaterialProgress";
-
         public function ProgressBar()
         {
             super();
@@ -75,8 +92,10 @@ package org.apache.flex.mdl
             className = "";
         }
 
-        private var _materialProgress:Object;
+        private var materialProgress:Object;
+
         private var _currentProgress:Number;
+        private var _currentBuffer:Number;
         private var _indeterminate:Boolean;
 
         public function get currentProgress():Number
@@ -87,6 +106,18 @@ package org.apache.flex.mdl
         public function set currentProgress(value:Number):void
         {
             _currentProgress = value;
+
+            setCurrentProgress(value);
+        }
+
+        public function get currentBuffer():Number
+        {
+            return _currentBuffer;
+        }
+
+        public function set currentBuffer(value:Number):void
+        {
+            _currentBuffer = value;
 
             setCurrentProgress(value);
         }
@@ -117,17 +148,28 @@ package org.apache.flex.mdl
 
         private function setCurrentProgress(value:Number):void
         {
-            if (_materialProgress && !_indeterminate)
+            if (materialProgress && !_indeterminate)
             {
-                _materialProgress.setProgress(value);
+                materialProgress.setProgress(value);
+            }
+        }
+
+        private function setCurrentBuffer(value:Number):void
+        {
+            if (materialProgress && !_indeterminate)
+            {
+                materialProgress.setBuffer(value);
             }
         }
 
         private function onElementMdlComponentUpgraded(event:Event):void
         {
-            _materialProgress = event.currentTarget[MaterialProgress];
+            if (!event.currentTarget) return;
+
+            materialProgress = event.currentTarget.MaterialProgress;
 
             setCurrentProgress(_currentProgress);
+            setCurrentBuffer(_currentBuffer);
         }
     }
 }
