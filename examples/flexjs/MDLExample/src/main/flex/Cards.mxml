@@ -71,7 +71,7 @@ limitations under the License.
                     <mdl:CardTitleText>
                         <js:beads>
                             <js:InnerHTML>
-                                <![CDATA[<h4 class="mdl-card__title_h4">Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
+                                <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
                         </js:beads>
                     </mdl:CardTitleText>
