@@ -132,14 +132,6 @@ package org.apache.flex.utils
 			return elements[index] as IChild;
 		}
 		
-		COMPILE::JS
-		{
-			public function internalChildren():Array
-			{
-				return null;
-			}
-		}
-
 		COMPILE::SWF
 		public function get $displayObject():DisplayObject
 		{
@@ -267,6 +259,13 @@ package org.apache.flex.utils
 		{
 			return null;
 		}
+		
+		COMPILE::JS
+		public function internalChildren():Array
+		{
+			return elements;
+		}
+
 		
 	}
 }
