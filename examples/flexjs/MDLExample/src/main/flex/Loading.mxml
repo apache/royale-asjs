@@ -26,5 +26,8 @@ limitations under the License.
         <mdl:GridCell column="1">
             <mdl:Spinner isActive="true" singleColor="true"/>
         </mdl:GridCell>
+        <mdl:GridCell column="1">
+            <mdl:ProgressBar currentProgress="47"/>
+        </mdl:GridCell>
     </mdl:Grid>
 </mdl:TabBarPanel>

@@ -20,12 +20,13 @@ package org.apache.flex.mdl
 {
     COMPILE::JS
     {
+        import org.apache.flex.events.Event;
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
-     *  The Spinner class provides a MDL UI-like appearance for
-     *  a Spinner.
+     *  The ProgressBar class provides a MDL UI-like appearance for
+     *  a ProgressBar.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -33,74 +34,54 @@ package org.apache.flex.mdl
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public class Spinner
+    public class ProgressBar
     {
-        private var _isActive:Boolean;
-        private var _singleColor:Boolean;
+        private var _currentProgress:Number;
 
         /**
-         *  Indicates whether Spinner is active and visible
+         *  Current progress of the progressbar
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get isActive():Boolean
+        public function get currentProgress():Number
         {
-            return _isActive;
+            return _currentProgress;
         }
 
-        public function set isActive(value:Boolean):void
+        public function set currentProgress(value:Number):void
         {
-            _isActive = value;
-        }
-
-
-        /**
-         *  Make Spinner in a single color
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function set singleColor(value:Boolean):void
-        {
-            _singleColor = value;
+            _currentProgress = value;
         }
     }
 
     COMPILE::JS
-    public class Spinner extends UIBase
+    public class ProgressBar extends UIBase
     {
-        public function Spinner()
+        private const MaterialProgress:String = "MaterialProgress";
+
+        public function ProgressBar()
         {
             super();
 
             className = "";
         }
 
-        private var _isActive:Boolean;
-        private var _singleColor:Boolean;
+        private var _materialProgress:Object;
+        private var _currentProgress:Number;
 
-        public function get isActive():Boolean
+        public function get currentProgress():Number
         {
-            return _isActive;
+            return _currentProgress;
         }
 
-        public function set isActive(value:Boolean):void
+        public function set currentProgress(value:Number):void
         {
-            _isActive = value;
+            _currentProgress = value;
 
-            element.classList.toggle("is-active", _isActive);
-        }
-
-        public function set singleColor(value:Boolean):void
-        {
-            _singleColor = value;
-
-            element.classList.toggle("mdl-spinner--single-color", _singleColor);
+            setCurrentProgress(value);
         }
 
         /**
@@ -110,14 +91,30 @@ package org.apache.flex.mdl
          */
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-spinner mdl-js-spinner";
+            typeNames = "mdl-progress mdl-js-progress";
 
             element = document.createElement("div") as WrappedHTMLElement;
+            element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 
             positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
+        }
+
+        private function setCurrentProgress(value:Number):void
+        {
+            if (_materialProgress)
+            {
+                _materialProgress.setProgress(value);
+            }
+        }
+
+        private function onElementMdlComponentUpgraded(event:Event):void
+        {
+            _materialProgress = event.currentTarget[MaterialProgress];
+
+            setCurrentProgress(_currentProgress);
         }
     }
 }
