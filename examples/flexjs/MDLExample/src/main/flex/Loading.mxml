@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--
+  Created by piotr on 12/18/2016.
+-->
+<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+    <mdl:Spinner isActive="true"/>
+</mdl:TabBarPanel>
