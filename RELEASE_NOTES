@@ -17,7 +17,29 @@ New Features
 
 Bug Fixes
 ---------
-
+-FLEX-35213 Assigned multi line CDATA section to InnerHtml bead causes exception
+-FLEX-35212 [FlexJS] DataGrid requires a way to select it's row(s) automatically
+-FLEX-35210 FlexJSStore and FlexJSStore_JQuery fail with javascript error on starting as of 09 DEC
+-FLEX-35208 DateField is not closable without selecting one date in javascript mode
+-FLEX-35207 DateChooser doesn't highlight current select date
+-FLEX-35205 style properties are ignored in swf mode
+-FLEX-35204 DateChooser and DateField doesn't work in swf mode
+-FLEX-35201 TileLayout is not working in javascript mode
+-FLEX-35192 [FalconJX] TypeError: Cannot read property 'apply' of undefined with subclass of <js:View>
+-FLEX-35200 Array.removeAt() is broken in javascript mode in 0.8 dev
+-FLEX-35191 DateChooser and DateField don't align days correctly in javascript mode
+-FLEX-35187 [FlexJS] 1px Left Offset Added to Containers
+-FLEX-35176 Not able to build FlexJS project when local maven repo is on different disk drive than compiling project
+-FLEX-35169 [FlexJS] ComboBox broken on JS side
+-FLEX-35144 [FlexJS] Panel Broken
+-FLEX-35137 [Bindable] doesn't work on swf side if referenced var is declared as private
+-FLEX-35134 FalconJX 0.7.0 crash
+-FLEX-35115 Method implementation error: getConditionalExpressionNodes in compiler/src/org/apache/flex/compiler/internal/tree/as/ForLoopNode.java
+-FLEX-35068 SWCs not created for XML
+-FLEX-35061 var keyword "internal" scoping
+-FLEX-35051 NullPointerException in FlexJS compiler
+-FLEX-35041 Date property not working in FlexJS
+-FLEX-34996 [FlexJS] Issue with VerticalColumnLayout Inside Panel
 
 Apache FlexJS 0.7.0
 =================
