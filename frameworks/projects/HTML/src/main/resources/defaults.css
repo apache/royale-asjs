@@ -415,6 +415,7 @@ StringItemRenderer
 AccordionItemRenderer
 {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.AccordionItemRendererMouseController");
+	IBeadView: ClassReference("org.apache.flex.html.beads.AccordionItemRendererView");
 }
 
 TreeItemRenderer

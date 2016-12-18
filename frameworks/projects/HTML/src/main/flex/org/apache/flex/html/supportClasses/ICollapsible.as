@@ -23,5 +23,6 @@ package org.apache.flex.html.supportClasses
 		function get collapsedHeight():Number;
 		function get collapsedWidth():Number;
 		function collapse():void;
+		function get collapsed():Boolean;
 	}
 }

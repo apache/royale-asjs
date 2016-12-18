@@ -64,7 +64,8 @@ internal class HTMLClasses
 	{
 	    import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
 	}
-    import org.apache.flex.html.beads.PanelView; PanelView;
+	import org.apache.flex.html.beads.PanelView; PanelView;
+	import org.apache.flex.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	import org.apache.flex.html.beads.SliderView; SliderView;
 	COMPILE::SWF
 	{

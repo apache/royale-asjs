@@ -158,5 +158,10 @@ package org.apache.flex.html.supportClasses
 			height = collapsedHeight;
 		}
 		
+		public function get collapsed():Boolean
+		{
+			return height == collapsedHeight;
+		}
+		
 	}
 }
