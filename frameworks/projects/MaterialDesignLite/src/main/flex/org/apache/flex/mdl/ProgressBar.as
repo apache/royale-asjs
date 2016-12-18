@@ -37,6 +37,7 @@ package org.apache.flex.mdl
     public class ProgressBar
     {
         private var _currentProgress:Number;
+        private var _indeterminate:Boolean;
 
         /**
          *  Current progress of the progressbar
@@ -55,6 +56,11 @@ package org.apache.flex.mdl
         {
             _currentProgress = value;
         }
+
+        public function set indeterminate(value:Boolean):void
+        {
+            _indeterminate = value;
+        }
     }
 
     COMPILE::JS
@@ -71,6 +77,7 @@ package org.apache.flex.mdl
 
         private var _materialProgress:Object;
         private var _currentProgress:Number;
+        private var _indeterminate:Boolean;
 
         public function get currentProgress():Number
         {
@@ -84,6 +91,12 @@ package org.apache.flex.mdl
             setCurrentProgress(value);
         }
 
+        public function set indeterminate(value:Boolean):void
+        {
+            _indeterminate = value;
+
+            element.classList.toggle("mdl-progress__indeterminate", value);
+        }
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *
@@ -104,7 +117,7 @@ package org.apache.flex.mdl
 
         private function setCurrentProgress(value:Number):void
         {
-            if (_materialProgress)
+            if (_materialProgress && !_indeterminate)
             {
                 _materialProgress.setProgress(value);
             }
