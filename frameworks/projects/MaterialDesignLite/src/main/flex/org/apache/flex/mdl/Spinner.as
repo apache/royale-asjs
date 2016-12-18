@@ -59,7 +59,6 @@ package org.apache.flex.mdl
             className = "";
         }
 
-        private var spinner:HTMLDivElement;
         private var _isActive:Boolean;
         private var _singleColor:Boolean;
 
@@ -67,30 +66,27 @@ package org.apache.flex.mdl
         {
             _isActive = value;
 
-            spinner.classList.toggle("is-active", _isActive);
+            element.classList.toggle("is-active", _isActive);
         }
 
         public function set singleColor(value:Boolean):void
         {
             _singleColor = value;
 
-            spinner.classList.toggle("mdl-spinner--single-color", _singleColor);
+            element.classList.toggle("mdl-spinner--single-color", _singleColor);
         }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLDivElement
          *
          * @return
          */
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-spinner";
+            typeNames = "mdl-spinner mdl-js-spinner";
 
-            spinner = document.createElement("div") as HTMLDivElement;
-            spinner.classList.add("mdl-js-spinner");
+            element = document.createElement("div") as WrappedHTMLElement;
 
-            element = spinner as WrappedHTMLElement;
             positioner = element;
             element.flexjs_wrapper = this;
 
