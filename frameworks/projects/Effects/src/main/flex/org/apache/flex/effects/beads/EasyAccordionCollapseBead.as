@@ -23,12 +23,10 @@ package org.apache.flex.effects.beads
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
-	import org.apache.flex.html.supportClasses.ICollapsible;
-	import org.apache.flex.utils.LayoutTweener;
 	import org.apache.flex.html.beads.AccordionCollapseBead;
-	import org.apache.flex.html.beads.AccordionView;
 	import org.apache.flex.html.beads.IListView;
+	import org.apache.flex.html.supportClasses.ICollapsible;
+	import org.apache.flex.utils.AbsoluteLayoutTweener;
 	
 	public class EasyAccordionCollapseBead extends AccordionCollapseBead
 	{
@@ -66,7 +64,7 @@ package org.apache.flex.effects.beads
 				return;
 			}
 			var collapseHeight:Number = oldCollapsible.collapsedHeight;
-			var tweener:LayoutTweener = new LayoutTweener(layout, host as ILayoutParent);
+			var tweener:AbsoluteLayoutTweener = new AbsoluteLayoutTweener(layout, host as ILayoutParent);
 			tweener.setBaseline();
 			var oldLayoutChild:ILayoutChild = tweener.mockLayoutParent.contentView.getElementAt(oldChildIndex) as ILayoutChild;
 			oldLayoutChild.height = collapseHeight;
