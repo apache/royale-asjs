@@ -16,37 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package org.apache.flex.mdl.materialIcons
 {
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
-
-    /**
-     *  The MaterialIconPerson bead class is a specialty bead that add "person" icon
-     *  to component taken from "material-icons"
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    public class MaterialIconPerson extends MaterialIconBase
+    public class MaterialIconsType
     {
-        /**
-         *  constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function MaterialIconPerson()
-        {
-            super();
-        }
-        
-        override protected function get iconText():String
-        {
-            return MaterialIconsType.PERSON;
-        }
+        public static const CANCEL:String = "cancel";
+        public static const ADD:String = "add";
+        public static const PERSON:String = "person";
+        public static const STAR:String = "star";
+        public static const SHARE:String = "share";
+        public static const EVENT:String = "event";
+        public static const FACE:String = "face";
+        public static const MORE_VERT:String = "more_vert";
     }
 }

@@ -18,15 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    COMPILE::SWF
-    {
-        import org.apache.flex.html.TextButton;
-    }
-
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.core.UIBase;
     }
 
     /**
@@ -38,17 +32,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::SWF
-    public class Chip extends TextButton
-    {
-        public function Chip()
-        {
-            super();
-        }
-    }
-
-    COMPILE::JS
-    public class Chip extends UIBase
+    public class Chip extends Button
     {
         public function Chip()
         {
@@ -57,31 +41,56 @@ package org.apache.flex.mdl
             className = "";
         }
 
+        COMPILE::JS
         private var chip:HTMLSpanElement;
-        private var textNode:Text;
-
+        
+        COMPILE::JS
         private var _chipTextSpan:HTMLSpanElement;
 
+        COMPILE::JS
         public function get chipTextSpan():HTMLSpanElement
         {
            return _chipTextSpan;
         }
 
-        public function get text():String
-        {
-            return textNode.nodeValue;
-        }
+        private var _text:String = "";
+        /**
+         *  The text of the link
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		override public function get text():String
+		{
+            return _text;            
+		}
+        override public function set text(value:String):void
+		{
+            _text = value;
 
-        public function set text(value:String):void
-        {
-            textNode.nodeValue = value;
-        }
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
+		}
 
+        COMPILE::JS
+        protected var textNode:Text;
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLSpanElement
          * @flexjsignorecoercion Text
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-chip";

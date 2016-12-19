@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ContainerBase;
 
     COMPILE::JS
     {
@@ -34,7 +34,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class A extends UIBase
+	public class A extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -61,30 +61,25 @@ package org.apache.flex.html
          */
 		public function get text():String
 		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+            return _text;            
 		}
-
-		public function set text(value:String):void
+        public function set text(value:String):void
 		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
 		}
         
         private var _href:String = "#";
-
         /**
          *  the link url
          *  
@@ -97,7 +92,6 @@ package org.apache.flex.html
 		{
             return _href;   
 		}
-
 		public function set href(value:String):void
 		{
             _href = value;
@@ -121,9 +115,6 @@ package org.apache.flex.html
 			var a:HTMLElement = document.createElement('a') as HTMLElement;
             a.setAttribute('href', href);
             
-            textNode = document.createTextNode('') as Text;
-            a.appendChild(textNode); 
-
 			element = a as WrappedHTMLElement;
             
             positioner = element;

@@ -63,7 +63,6 @@ package org.apache.flex.html
 		{
             return _text;
 		}
-
 		public function set text(value:String):void
 		{
             _text = value;
@@ -78,11 +77,10 @@ package org.apache.flex.html
                 
                 textNode.nodeValue = value;	
 			}
-
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

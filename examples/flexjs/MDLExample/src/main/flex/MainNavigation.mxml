@@ -67,7 +67,7 @@ limitations under the License.
         <local:Cards id="cards_panel" isActive="true"/>
 
         <local:Chips id="chips_panel" />
-
+        
         <local:Grids id="grids_panel"/>
 
         <local:Tabs id="tabs_panel"/>
@@ -109,7 +109,9 @@ limitations under the License.
             </js:A>
 
             <mdl:Button id="menu_btn" icon="true">
-                <i class="material-icons">more_vert</i>
+                <mdl:materialIcon>
+                    <mdl:MaterialIconMoreVert/>
+                </mdl:materialIcon>
             </mdl:Button>
             <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
                 <mdl:MenuItem text="Some Action"/>
