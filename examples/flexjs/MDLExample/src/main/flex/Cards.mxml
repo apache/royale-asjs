@@ -40,9 +40,9 @@ limitations under the License.
                 </mdl:CardActions>
                 <mdl:CardMenu>
                     <mdl:Button icon="true" ripple="true">
-                        <js:beads>
+                        <mdl:materialIcon>
                             <mdl:MaterialIconShare/>
-                        </js:beads>
+                        </mdl:materialIcon>
                     </mdl:Button>
                 </mdl:CardMenu>
             </mdl:Card>
@@ -71,17 +71,15 @@ limitations under the License.
                     <mdl:CardTitleText>
                         <js:beads>
                             <js:InnerHTML>
-                                <![CDATA[<h4 class="mdl-card__title_h4">Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
+                                <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
                         </js:beads>
                     </mdl:CardTitleText>
                 </mdl:CardTitle>
                 <mdl:CardActions border="true">
-                    <js:beads>
-                        <mdl:MaterialIconEvent/>
-                    </js:beads>
                     <mdl:Button colored="true" ripple="true" text="Add to Calendar"/>
                     <mdl:Spacer/>
+                    <mdl:MaterialIconEvent/>
                 </mdl:CardActions>
             </mdl:Card>
         

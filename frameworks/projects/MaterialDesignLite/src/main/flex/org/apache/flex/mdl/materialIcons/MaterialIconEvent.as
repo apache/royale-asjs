@@ -16,15 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package org.apache.flex.mdl.materialIcons
 {
-    public class MaterialIconsType
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+
+    /**
+     *  The MaterialIconEvent bead class is a specialty bead that add "star" icon
+     *  to component taken from "material-icons"
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public class MaterialIconEvent extends MaterialIconBase
     {
-        public static const CANCEL:String = "cancel";
-        public static const ADD:String = "add";
-        public static const PERSON:String = "person";
-        public static const STAR:String = "star";
-        public static const SHARE:String = "share";
-        public static const EVENT:String = "event";
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function MaterialIconEvent()
+        {
+            super();
+        }
+        
+        override protected function get iconText():String
+        {
+            return MaterialIconsType.EVENT;
+        }
     }
 }

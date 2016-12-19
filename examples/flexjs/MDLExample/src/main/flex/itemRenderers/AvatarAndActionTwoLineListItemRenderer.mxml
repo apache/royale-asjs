@@ -71,13 +71,10 @@ limitations under the License.
         <js:A href="#">        
             <mdl:beads>
                 <mdl:ListItemSecondaryAction/>
-                <mdl:MaterialIconStar/>
             </mdl:beads>
+            <mdl:MaterialIconStar/>
         </js:A>
     </js:Span>
-    
-    
-
-      
+     
 </mdl:ListItemRenderer>
 

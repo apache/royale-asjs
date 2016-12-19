@@ -25,6 +25,8 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
     import org.apache.flex.utils.StrandUtils;
 
+    import org.apache.flex.mdl.Button;
+
     /**
      *  The DeletableLinkChip bead class is a specialty bead that can be used to add additional
      *  link button to Chip MDL control.
@@ -99,14 +101,15 @@ package org.apache.flex.mdl.beads
         COMPILE::JS
         private function createLinkElement():NavigationLink
         {
-            var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
-            if (iconBead == null)
+            var materialIcon:MaterialIconBase = Button(_strand).materialIcon; //this could be Chip or ButtonChip, 
+                                                                    //maybe add an Interface for both since is not really a Button
+            if (materialIcon == null)
             {
-                throw new Error("Missing material icon bead");
+                throw new Error("Missing material icon");
             }
 
             var link:NavigationLink = new NavigationLink();
-            link.addBead(iconBead);
+            link.addElement(materialIcon);
 
             var linkElement:HTMLElement = (link.element as HTMLElement);
             linkElement.classList.remove("mdl-navigation__link");

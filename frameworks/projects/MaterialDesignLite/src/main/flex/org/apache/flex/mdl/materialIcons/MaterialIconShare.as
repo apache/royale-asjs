@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package org.apache.flex.mdl.materialIcons
 {
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconStar bead class is a specialty bead that add "star" icon
+     *  The MaterialIconShare bead class is a specialty bead that add "add" icon
      *  to component taken from "material-icons"
      *
      *  @langversion 3.0
@@ -29,7 +29,7 @@ package org.apache.flex.mdl.beads.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconStar extends MaterialIconBase
+    public class MaterialIconShare extends MaterialIconBase
     {
         /**
          *  constructor.
@@ -39,14 +39,14 @@ package org.apache.flex.mdl.beads.materialIcons
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function MaterialIconStar()
+        public function MaterialIconShare()
         {
             super();
         }
         
         override protected function get iconText():String
         {
-            return MaterialIconsType.STAR;
+            return MaterialIconsType.SHARE;
         }
     }
 }

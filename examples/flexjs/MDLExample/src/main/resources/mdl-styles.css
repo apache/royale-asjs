@@ -19,8 +19,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-@namespace "library://ns.apache.org/flexjs/mdl";
+@namespace "http://www.w3.org/1999/xhtml";
 @namespace js "library://ns.apache.org/flexjs/basic";
+@namespace mdl "library://ns.apache.org/flexjs/mdl";
 
 .flexjs *, . flexjs *:before, . flexjs *:after {
     -moz-box-sizing: border-box;
@@ -118,7 +119,7 @@ js|Image
 .demo-card-event > .mdl-card__title {
   align-items: flex-start;
 }
-.demo-card-event > .mdl-card__title > .mdl-card__title_h4 {
+.demo-card-event > .mdl-card__title > h4 {
   margin-top: 0;
 }
 .demo-card-event > .mdl-card__actions {

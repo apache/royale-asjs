@@ -33,16 +33,20 @@ limitations under the License.
             <!-- Fab button -->
             <mdl:Button id="mybtn" fab="true" colored="true">
                 <mdl:beads>
-                    <mdl:MaterialIconAdd />
                     <mdl:Tooltip text="A simple tooltip"/>
                 </mdl:beads>
+                <mdl:materialIcon>
+                    <mdl:MaterialIconAdd/>
+                </mdl:materialIcon>
             </mdl:Button>
         </mdl:GridCell>
         
         <mdl:GridCell column="2">
              <!-- Fab with Ripple -->
             <mdl:Button fab="true" ripple="true">
-                <i class="material-icons md-48">face</i>
+                <mdl:materialIcon>
+                    <mdl:MaterialIconFace size="48"/>
+                </mdl:materialIcon>
             </mdl:Button>
         </mdl:GridCell>
 

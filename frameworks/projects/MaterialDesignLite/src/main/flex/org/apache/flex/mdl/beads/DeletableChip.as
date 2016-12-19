@@ -25,6 +25,8 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
     import org.apache.flex.utils.StrandUtils;
 
+    //import org.apache.flex.mdl.Chip;
+
     /**
      *  The DeletableChip bead class is a specialty bead that can be used to add additional
      *  button to Chip MDL control.
@@ -92,14 +94,15 @@ package org.apache.flex.mdl.beads
         COMPILE::JS
         private function createDeleteButton():Button
         {
-            var iconBead:IBead = StrandUtils.loadBead(MaterialIconBase, "MaterialIconBase", _strand);
-            if (iconBead == null)
+            var materialIcon:MaterialIconBase = Button(_strand).materialIcon; //this could be Chip or ButtonChip, 
+                                                                    //maybe add an Interface for both since is not really a Button
+            if (materialIcon == null)
             {
-                throw new Error("Missing material icon bead");
+                throw new Error("Missing material icon");
             }
 
             var delButton:Button = new Button();
-            delButton.addBead(iconBead);
+            delButton.materialIcon = materialIcon;
 
             var htmlButton:HTMLElement = (delButton.element as HTMLElement);
             htmlButton.classList.remove("mdl-button", "mdl-js-button");

@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package org.apache.flex.mdl.materialIcons
 {
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconEvent bead class is a specialty bead that add "star" icon
+     *  The MaterialIconCancel bead class is a specialty bead that add "cancel" icon
      *  to component taken from "material-icons"
      *
      *  @langversion 3.0
@@ -29,7 +29,7 @@ package org.apache.flex.mdl.beads.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconEvent extends MaterialIconBase
+    public class MaterialIconCancel extends MaterialIconBase
     {
         /**
          *  constructor.
@@ -39,14 +39,14 @@ package org.apache.flex.mdl.beads.materialIcons
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function MaterialIconEvent()
+        public function MaterialIconCancel()
         {
             super();
         }
-        
+
         override protected function get iconText():String
         {
-            return MaterialIconsType.EVENT;
+            return MaterialIconsType.CANCEL;
         }
     }
 }

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.materialIcons
+package org.apache.flex.mdl.materialIcons
 {
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 

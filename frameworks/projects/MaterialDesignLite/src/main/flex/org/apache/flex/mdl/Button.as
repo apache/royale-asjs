@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.html.TextButton;          
+    import org.apache.flex.html.TextButton;
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;    
     
     COMPILE::JS
     {
@@ -67,6 +68,29 @@ package org.apache.flex.mdl
 
             return element;
 		}
+
+        private var _materialIcon:MaterialIconBase;
+        /**
+		 *  A material icon. Optional
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get materialIcon():MaterialIconBase
+        {
+            return _materialIcon;
+        }
+        public function set materialIcon(value:MaterialIconBase):void
+        {
+            _materialIcon = value;
+
+            COMPILE::JS
+            {
+                 addElement(_materialIcon);
+            }
+        }
 
         private var _fab:Boolean = false;
         /**

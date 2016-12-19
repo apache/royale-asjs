@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.supportClasses
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.html.I;
+
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 
     /**
      *  Provide common features for all material icons type
@@ -31,7 +33,7 @@ package org.apache.flex.mdl.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconBase implements IBead
+    public class MaterialIconBase extends UIBase
     {
         /**
          *  constructor.
@@ -45,47 +47,39 @@ package org.apache.flex.mdl.supportClasses
          */
         public function MaterialIconBase()
         {
-            COMPILE::JS
-            {
-                materialIcon = new I();
-                element.classList.add("material-icons");
-            }
+            super();
+
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
 
-        private var _strand:IStrand;
+        COMPILE::JS
+        protected var textNode:Text;
 
         /**
-         * @flexjsignorecoercion HTMLElement
-         *
-         * @param value
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLElement
          */
-        public function set strand(value:IStrand):void
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
         {
-            _strand = value;
+            typeNames = "material-icons";
 
-            COMPILE::JS
-            {
-                var host:UIBase = value as UIBase;
-                var htmlElement:HTMLElement = host.element as HTMLElement;
+			var i:HTMLElement = document.createElement('i') as HTMLElement;
+            
+            textNode = document.createTextNode(iconText) as Text;
+            i.appendChild(textNode); 
 
-                materialIcon.text = iconText;
-
-                htmlElement.appendChild(element);
-            }
+			element = i as WrappedHTMLElement;
+            
+            positioner = element;
+			element.flexjs_wrapper = this;
+            
+            return element;
         }
 
         protected function get iconText():String
         {
             return "";
-        }
-
-        COMPILE::JS
-        protected var materialIcon:I;
-
-        COMPILE::JS
-        public function get element():HTMLElement
-        {
-            return materialIcon.element as HTMLElement;
         }
 
         private var _size:Number = 24;

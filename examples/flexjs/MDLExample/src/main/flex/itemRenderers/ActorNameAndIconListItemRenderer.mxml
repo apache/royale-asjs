@@ -41,8 +41,8 @@ limitations under the License.
     <js:Span text="{actor.actorName}">
         <mdl:beads>
             <mdl:ListItemPrimaryContent/>
-            <mdl:MaterialIconPerson listItemIcon="true"/>
         </mdl:beads>
+        <mdl:MaterialIconPerson listItemIcon="true"/>
     </js:Span>
       
 </mdl:ListItemRenderer>
