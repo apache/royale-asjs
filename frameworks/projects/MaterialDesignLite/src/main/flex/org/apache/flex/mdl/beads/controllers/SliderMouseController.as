@@ -37,7 +37,6 @@ package org.apache.flex.mdl.beads.controllers
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.mdl.Slider;
         import org.apache.flex.mdl.beads.SliderThumbView;
-        import org.apache.flex.mdl.beads.SliderTrackView;
     }
 	
 	/**
