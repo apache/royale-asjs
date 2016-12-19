@@ -30,6 +30,10 @@
     <component id="Restrict" class="org.apache.flex.mdl.beads.Restrict"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
+    <component id="SliderView" class="org.apache.flex.mdl.beads.views.SliderView"/>
+    <component id="SliderTrackView" class="org.apache.flex.mdl.beads.SliderTrackView"/>
+    <component id="SliderThumbView" class="org.apache.flex.mdl.beads.SliderThumbView"/>
+    <component id="SliderMouseController" class="org.apache.flex.mdl.beads.controllers.SliderMouseController"/>
     <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>
     <component id="Menu" class="org.apache.flex.mdl.Menu"/>
     <component id="MenuItem" class="org.apache.flex.mdl.MenuItem"/>

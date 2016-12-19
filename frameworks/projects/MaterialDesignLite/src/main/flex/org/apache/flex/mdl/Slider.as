@@ -24,6 +24,7 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
+		import org.apache.flex.html.beads.controllers.SliderMouseController;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 
@@ -35,6 +36,8 @@ package org.apache.flex.mdl
 	 *  The Slider uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
+	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  org.apache.flex.core.IBeadController: the bead that handles input.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -80,10 +83,10 @@ package org.apache.flex.mdl
 		{
 			IRangeModel(model).value = newValue;
 
-			COMPILE::JS
+			/*COMPILE::JS
 			{
 				(element as HTMLInputElement).value = IRangeModel(model).value.toString();
-			}
+			}*/
 		}
 		
 		/**
@@ -102,10 +105,10 @@ package org.apache.flex.mdl
 		{
 			IRangeModel(model).minimum = value;
 
-			COMPILE::JS
+			/*COMPILE::JS
 			{
 				(element as HTMLInputElement).min = IRangeModel(model).minimum.toString();
-			}
+			}*/
 		}
 		
 		/**
@@ -124,11 +127,10 @@ package org.apache.flex.mdl
 		{
 			IRangeModel(model).maximum = value;
 
-			COMPILE::JS
+			/*COMPILE::JS
 			{
 				(element as HTMLInputElement).max = IRangeModel(model).maximum.toString();
-			}
-			
+			}*/
 		}
 		
 		/**
@@ -166,20 +168,11 @@ package org.apache.flex.mdl
         {
             IRangeModel(model).stepSize = value;
 
-			COMPILE::JS
+			/*COMPILE::JS
 			{
 				(element as HTMLInputElement).step = IRangeModel(model).stepSize.toString();
-			}
+			}*/
         }
-
-        //COMPILE::JS
-        //private var track:SliderTrackView;
-        
-        //COMPILE::JS
-        //private var thumb:SliderThumbView;
-        
-        //COMPILE::JS
-        //private var controller:SliderMouseController;
         
 		COMPILE::JS
 		private var input:HTMLInputElement;
@@ -209,12 +202,6 @@ package org.apache.flex.mdl
 
 			element = input as WrappedHTMLElement;
             
-            //track = new SliderTrackView();
-            //addBead(track);            
-            //thumb = new SliderThumbView();
-            //addBead(thumb);
-            //controller = new SliderMouseController();
-            //addBead(controller);
             
             positioner = p as WrappedHTMLElement;
 			(input as WrappedHTMLElement).flexjs_wrapper = this;
@@ -243,6 +230,7 @@ package org.apache.flex.mdl
 		}
 
         /**
+		 * @private
          */
         COMPILE::JS
         public function snap(value:Number):Number
@@ -260,23 +248,5 @@ package org.apache.flex.mdl
                 return n + si;
             return n;
         }
-        
-        
-        /**
-         * @param {number} value The value used to calculate new position of the thumb.
-         * @return {void} Moves the thumb to the corresponding position.
-         *
-        COMPILE::JS
-        public function setThumbFromValue(value:Number):void
-        {
-            var min:Number = model.minimum;
-            var max:Number = model.maximum;
-            var p:Number = (value - min) / (max - min);
-            var xloc:Number = p * (parseInt(track.element.style.width, 10) -
-                parseInt(thumb.element.style.width, 10));
-            
-            thumb.element.style.left = "" + xloc + 'px';
-        } */       
-
     }
 }

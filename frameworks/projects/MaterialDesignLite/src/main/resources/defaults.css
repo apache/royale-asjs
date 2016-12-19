@@ -28,15 +28,15 @@ CheckBox
 Slider
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	iBeadView:  ClassReference("org.apache.flex.mdl.beads.views.SliderView");
+	iBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
 }
 
-/*Slider
+Slider
 {
-    iBeadView:  ClassReference("org.apache.flex.html.beads.SliderView");
-    iBeadController: ClassReference("org.apache.flex.html.beads.controllers.SliderMouseController");
-    iThumbView: ClassReference("org.apache.flex.html.beads.SliderThumbView");
-    iTrackView: ClassReference("org.apache.flex.html.beads.SliderTrackView");
-}*/
+    iThumbView: ClassReference("org.apache.flex.mdl.beads.SliderThumbView");
+    iTrackView: ClassReference("org.apache.flex.mdl.beads.SliderTrackView");
+}
 
 List
 {
