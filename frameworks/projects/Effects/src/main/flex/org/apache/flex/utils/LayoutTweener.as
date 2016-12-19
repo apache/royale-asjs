@@ -23,11 +23,9 @@ package org.apache.flex.utils
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.effects.Effect;
-	import org.apache.flex.effects.Move;
+	import org.apache.flex.effects.IEffect;
 	import org.apache.flex.effects.Parallel;
-	import org.apache.flex.effects.Resize;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 
@@ -40,6 +38,7 @@ package org.apache.flex.utils
 		private var sourceLayout:IBeadLayout;
 		private var sourceLayoutParent:ILayoutParent;
 		private var _mockLayoutParent:MockLayoutParent;
+		private var _effectGenerators:Vector.<IEffectsGenerator>;
 		/**
 		 * 
 		 * @param sourceLayout
@@ -51,6 +50,16 @@ package org.apache.flex.utils
 			this.sourceLayoutParent = sourceLayoutParent;
 		}
 		
+		public function get effectGenerators():Vector.<IEffectsGenerator>
+		{
+			return _effectGenerators;
+		}
+
+		public function set effectGenerators(value:Vector.<IEffectsGenerator>):void
+		{
+			_effectGenerators = value;
+		}
+
 		/**
 		 * 
 		 * @return 
@@ -67,18 +76,6 @@ package org.apache.flex.utils
 		{
 			_mockLayoutParent = new MockLayoutParent(sourceLayoutParent);
 			sourceLayout.strand = _mockLayoutParent as IStrand;
-		}
-		
-		/**
-		 * 
-		 * @return 
-		 */
-		public function layout():Boolean
-		{
-			setBaseline();
-			var result:Boolean = sourceLayout.layout();
-			play();
-			return result;
 		}
 		
 		/**
@@ -117,36 +114,16 @@ package org.apache.flex.utils
 			{
 				var originalChild:ILayoutChild = originalContentView.getElementAt(i) as ILayoutChild;
 				var mockChild:ILayoutChild = mockContentView.getElementAt(i) as ILayoutChild;
-				pushMove(originalChild, mockChild, effects);
-				pushResize(originalChild, mockChild, effects);
+				for (var j:int = 0; j < effectGenerators.length; j++)
+				{
+					var effect:IEffect = effectGenerators[j].generateEffect(originalChild, mockChild);
+					if (effect)
+					{
+						effects.push(effect);
+					}
+				}
 			}
 			return effects;
-		}
-		
-		private function pushResize(originalChild:ILayoutChild, mockChild:ILayoutChild, effects:Array):void
-		{
-			var widthDiff:Number = mockChild.width - originalChild.width;
-			var heightDiff:Number = mockChild.height - originalChild.height;
-			if (widthDiff != 0 || heightDiff !=0)
-			{
-				var resize:Resize = new Resize(originalChild as IUIBase);
-				resize.widthBy = widthDiff;
-				resize.heightBy = heightDiff;
-				effects.push(resize);
-			}
-		}
-		
-		private function pushMove(originalChild:ILayoutChild, mockChild:ILayoutChild, effects:Array):void
-		{
-			var xDiff:Number = mockChild.x - originalChild.x;
-			var yDiff:Number = mockChild.y - originalChild.y;
-			if (xDiff != 0 || yDiff !=0)
-			{
-				var move:Move = new Move(originalChild as IUIBase);
-				move.xBy = xDiff;
-				move.yBy = yDiff;
-				effects.push(move);
-			}
 		}
 		
 	}
