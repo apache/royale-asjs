@@ -100,11 +100,7 @@ package org.apache.flex.html.beads
 
         private function heightChangedHandler(event:Event):void
         {
-            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
-			button.scaleY = 1.0;
-			button.scaleX = 1.0;
-			
-            var hh:Number = button.height;
+            var hh:Number = IUIBase(_strand).height;
             drawView(upView.graphics, 0xc8c8c8);
             drawView(downView.graphics, 0xc8c8c8);
             drawView(overView.graphics, 0xb8b8b8);

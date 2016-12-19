@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
 	
@@ -55,7 +56,7 @@ package org.apache.flex.html.beads
 		
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
-            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
+            var button:IUIBase = _strand as IUIBase;
 			var h:Number = button.height;
 			
 			g.clear();
@@ -68,9 +69,7 @@ package org.apache.flex.html.beads
 
 		private function heightChangeHandler(event:Event):void
 		{
-            var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
-			button.scaleY = 1.0;
-			button.scaleX = 1.0;
+            var button:IUIBase = _strand as IUIBase;
 			
 			var h:Number = button.height;
 			
