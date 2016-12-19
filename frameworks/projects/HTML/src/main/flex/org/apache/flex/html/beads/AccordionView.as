@@ -67,7 +67,10 @@ package org.apache.flex.html.beads
 				if (!layout.flexibleChild)
 				{
 					var model:ISelectionModel = StrandUtils.loadBead(ISelectionModel, "iBeadModel", host) as ISelectionModel;
-					layout.flexibleChild = (dataGroup.getItemRendererForIndex(model.selectedIndex) as IStyleableObject).id;
+					if (model.selectedIndex > -1)
+					{
+						layout.flexibleChild = (dataGroup.getItemRendererForIndex(model.selectedIndex) as IStyleableObject).id;
+					}
 				}
 				super.performLayout(event);
 			}
