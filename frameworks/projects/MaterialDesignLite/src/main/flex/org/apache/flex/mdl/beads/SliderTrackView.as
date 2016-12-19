@@ -26,11 +26,10 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.core.IChild;
-
-    import org.apache.flex.mdl.Button;
 	
 	/**
 	 *  The SliderTrackView class creates the track area for the org.apache.flex.html.Slider

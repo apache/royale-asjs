@@ -32,12 +32,6 @@ Slider
 	iBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
 }
 
-Slider
-{
-    iThumbView: ClassReference("org.apache.flex.mdl.beads.SliderThumbView");
-    iTrackView: ClassReference("org.apache.flex.mdl.beads.SliderTrackView");
-}
-
 List
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.ListView");
@@ -48,3 +42,12 @@ List
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.ListItemRenderer");
 }
 
+
+@media -flex-flash
+{
+    Slider
+    {
+        iThumbView: ClassReference("org.apache.flex.mdl.beads.SliderThumbView");
+        iTrackView: ClassReference("org.apache.flex.mdl.beads.SliderTrackView");
+    }
+}

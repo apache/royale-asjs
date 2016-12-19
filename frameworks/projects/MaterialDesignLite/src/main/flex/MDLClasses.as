@@ -27,9 +27,11 @@ package
 	*/
 	internal class MDLClasses
 	{	
+		
 		COMPILE::SWF
 		{
-			//import org.apache.flex.mdl.beads.TextPromptBead; TextPromptBead;
+			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
+			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
 		}
 	}
 

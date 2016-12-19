@@ -27,7 +27,6 @@ package org.apache.flex.mdl.beads.controllers
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
-
 	import org.apache.flex.html.beads.ISliderView;
 	import org.apache.flex.mdl.beads.SliderTrackView;
 
@@ -36,7 +35,6 @@ package org.apache.flex.mdl.beads.controllers
         import goog.events;
         import goog.events.EventType;
         import org.apache.flex.events.BrowserEvent;
-
         import org.apache.flex.mdl.Slider;
         import org.apache.flex.mdl.beads.SliderThumbView;
         import org.apache.flex.mdl.beads.SliderTrackView;
@@ -44,7 +42,7 @@ package org.apache.flex.mdl.beads.controllers
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.flex.html.Slider's component parts (thumb and track) and 
+	 *  org.apache.flex.mdl.Slider's component parts (thumb and track) and 
 	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
 	 *  changes (such as moving the thumb when the track has been tapped or clicked).
 	 *  
