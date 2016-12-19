@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.html.TextButton;
+    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;    
     
     COMPILE::JS
@@ -35,7 +36,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class Button extends TextButton
+	public class Button extends TextButton implements IMaterialIcon
 	{
         /**
          *  Constructor.

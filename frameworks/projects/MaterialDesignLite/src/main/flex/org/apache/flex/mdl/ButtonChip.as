@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
-
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;

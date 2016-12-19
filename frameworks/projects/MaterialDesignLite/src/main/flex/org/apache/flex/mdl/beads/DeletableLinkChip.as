@@ -22,6 +22,7 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.NavigationLink;
+    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
     import org.apache.flex.utils.StrandUtils;
 
@@ -101,8 +102,8 @@ package org.apache.flex.mdl.beads
         COMPILE::JS
         private function createLinkElement():NavigationLink
         {
-            var materialIcon:MaterialIconBase = Button(_strand).materialIcon; //this could be Chip or ButtonChip, 
-                                                                    //maybe add an Interface for both since is not really a Button
+            var materialIcon:MaterialIconBase = IMaterialIcon(_strand).materialIcon;
+
             if (materialIcon == null)
             {
                 throw new Error("Missing material icon");
