@@ -23,10 +23,6 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.NavigationLink;
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
-    import org.apache.flex.utils.StrandUtils;
-
-    import org.apache.flex.mdl.Button;
 
     /**
      *  The DeletableLinkChip bead class is a specialty bead that can be used to add additional
@@ -102,7 +98,7 @@ package org.apache.flex.mdl.beads
         COMPILE::JS
         private function createLinkElement():NavigationLink
         {
-            var materialIcon:MaterialIconBase = IMaterialIcon(_strand).materialIcon;
+            var materialIcon:IMaterialIcon = _strand as IMaterialIcon;
 
             if (materialIcon == null)
             {
@@ -110,7 +106,7 @@ package org.apache.flex.mdl.beads
             }
 
             var link:NavigationLink = new NavigationLink();
-            link.addElement(materialIcon);
+            link.addElement(materialIcon.materialIcon);
 
             var linkElement:HTMLElement = (link.element as HTMLElement);
             linkElement.classList.remove("mdl-navigation__link");
