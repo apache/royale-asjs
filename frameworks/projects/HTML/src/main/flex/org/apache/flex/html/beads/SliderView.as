@@ -35,6 +35,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Button;
+	import org.apache.flex.html.TextButton;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.flex.html.Slider 
@@ -81,7 +82,8 @@ package org.apache.flex.html.beads
 				_track.className = "SliderTrack";
 				s.addElement(_track);
 				
-				_thumb = new Button();
+				_thumb = new TextButton();
+				_thumb.text = '\u2B0C';
 				_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
 				_thumb.className = "SliderThumb";
 				s.addElement(_thumb);
@@ -92,8 +94,9 @@ package org.apache.flex.html.beads
 				_track.className = "SliderTrack";
 				UIBase(_strand).addElement(_track);
 				
-				_thumb = new Button();
+				_thumb = new TextButton();
 				_thumb.className = "SliderThumb";
+				_thumb.text = '\u2B0C';
 				UIBase(_strand).addElement(_thumb);
 			}
 			
@@ -113,7 +116,7 @@ package org.apache.flex.html.beads
 		}
 		
 		private var _track:Button;
-		private var _thumb:Button;
+		private var _thumb:TextButton;
 		
 		
 		/**
