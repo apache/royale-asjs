@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.TextInput;
 	import org.apache.flex.html.Button;
+	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.List;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
@@ -69,7 +70,7 @@ package org.apache.flex.html.beads
 			return input;
 		}
 		
-		private var button:Button;
+		private var button:TextButton;
 		
 		/**
 		 *  The Button component of the ComboBox.
@@ -114,8 +115,9 @@ package org.apache.flex.html.beads
 			input.className = "ComboBoxTextInput";
 			UIBase(host).addElement(input);
 			
-			button = new Button();
+			button = new TextButton();
 			button.className = "ComboBoxButton";
+			button.text = '\u25BC';
 			UIBase(host).addElement(button);
 			
 			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
