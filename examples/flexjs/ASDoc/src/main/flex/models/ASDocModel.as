@@ -40,6 +40,19 @@ package models
         
         private function initializeHandler(event:Event):void
         {
+            app.service.addEventListener("complete", configCompleteHandler);
+            app.service.url = "config.json";
+            app.service.send();
+        }
+        
+        private var tagNameMap:Object;
+        
+        private function configCompleteHandler(event:Event):void
+        {
+            app.service.removeEventListener("complete", configCompleteHandler);
+            var config:Object = JSON.parse(app.service.data);
+            tagNameMap = config.tagNames;
+            
             app.service.addEventListener("complete", completeHandler);
             app.service.url = "classes.json";
             app.service.send();
@@ -359,7 +372,11 @@ package models
                 for (var p:String in _attributesMap)
                 {
                     var o:Array = _attributesMap[p];
-                    s += p + ": ";
+                    var k:String = tagNameMap[p];
+                    if (k != null)
+                        s += k + " ";
+                    else
+                        s += p + ": ";
                     var firstOne:Boolean = true;
                     for each (var q:String in o)
                     {
