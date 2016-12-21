@@ -22,7 +22,7 @@ limitations under the License.
     <mdl:Grid>
         <mdl:GridCell column="1">
             <mdl:Button id="showSnackbar" click="onShowSnackBarClick(event)"
-                        text="Show snackbar!"/>
+                        text="Show snackbar!" width="200" accent="true" colored="true" raised="true"/>
             <mdl:Snackbar id="snackbar" message="Snack bar message" actionText="Undo" timeout="3000"
                           action="onSnackBarAction(event)"/>
         </mdl:GridCell>
