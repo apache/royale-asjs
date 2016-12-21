@@ -41,6 +41,7 @@ limitations under the License.
             <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
             <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
+            <mdl:TabBarButton text="Snackbar" href="#snackbar_panel"/>
             <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
             <mdl:TabBarButton text="Lists" href="#lists_panel"/>
             <mdl:TabBarButton text="Loading" href="#loading_panel"/>
@@ -77,6 +78,8 @@ limitations under the License.
         <local:TextFields id="textfield_panel"/>
 
         <local:Toggles id="toggles_panel"/>
+
+        <local:Snackbar id="snackbar_panel"/>
 
         <local:Lists id="lists_panel"/>
 

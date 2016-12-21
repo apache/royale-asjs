@@ -86,4 +86,5 @@
     <component id="MdlTextColor" class="org.apache.flex.mdl.beads.MdlTextColor"/>
     <component id="Spinner" class="org.apache.flex.mdl.Spinner"/>
     <component id="ProgressBar" class="org.apache.flex.mdl.ProgressBar"/>
+    <component id="Snackbar" class="org.apache.flex.mdl.Snackbar"/>
 </componentPackage>

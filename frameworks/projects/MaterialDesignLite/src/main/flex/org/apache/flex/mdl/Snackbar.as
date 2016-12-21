@@ -18,6 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+    import org.apache.flex.events.EventDispatcher;
+
+    COMPILE::SWF
+    {
+        import flash.events.Event;
+    }
+
     COMPILE::JS
     {
         import org.apache.flex.events.Event;
@@ -25,8 +32,18 @@ package org.apache.flex.mdl
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    /**
+     *  Dispatched when the user click on Snackbar
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="action", type="org.apache.flex.events.Event")]
+
     COMPILE::SWF
-    public class Snackbar
+    public class Snackbar extends EventDispatcher
     {
         private var _message:String;
         private var _actionText:String;
@@ -86,6 +103,19 @@ package org.apache.flex.mdl
         {
             _timeout = value;
         }
+
+        /**
+         *  Show the snackbar
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function show():void
+        {
+            dispatchEvent(new Event("action"));
+        }
     }
 
     COMPILE::JS
@@ -135,6 +165,26 @@ package org.apache.flex.mdl
         public function set timeout(value:int):void
         {
             _timeout = value;
+        }
+
+        public function show():void
+        {
+            if (snackbar)
+            {
+                var snackbarData = {
+                    message: _message,
+                    timeout: _timeout,
+                    actionHandler: onActionHandler,
+                    actionText: _actionText
+                };
+
+                snackbar.showSnackbar(snackbarData);
+            }
+        }
+
+        private function onActionHandler(event:Event):void
+        {
+            dispatchEvent(new Event("action"));
         }
 
         /**
