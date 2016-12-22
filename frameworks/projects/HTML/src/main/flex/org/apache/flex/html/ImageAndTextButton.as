@@ -29,6 +29,7 @@ package org.apache.flex.html
      *  The ImageTextButton class implements a basic button that
      *  displays and image and text.
      *  
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

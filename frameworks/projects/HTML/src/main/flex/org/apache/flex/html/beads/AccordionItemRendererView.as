@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	/**
 	 * This class creates and manages the contents of an AccordionItemItemRenderer
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

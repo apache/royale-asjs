@@ -34,6 +34,7 @@ package org.apache.flex.html.beads
      *  The LeftArrowButtonView class is the view for
      *  the left arrow button in a ScrollBar and other controls.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

@@ -60,6 +60,7 @@ package org.apache.flex.html
      *  control and not a Container because the Alert does not
      *  support an arbitrary set of children.
      *  
+     *  @toplevel
      *  @see org.apache.flex.html.beads.layout
      *  @see org.apache.flex.html.supportClasses.ScrollingViewport
      *  @langversion 3.0

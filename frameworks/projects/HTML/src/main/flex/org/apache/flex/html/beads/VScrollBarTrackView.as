@@ -35,6 +35,7 @@ package org.apache.flex.html.beads
      *  The VScrollBarTrackView class is the view for
      *  the track in a Vertical ScrollBar.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

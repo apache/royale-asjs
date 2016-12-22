@@ -31,6 +31,7 @@ package org.apache.flex.html
 	 *  The TextNode class represents an HTML Text node element
      *  
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

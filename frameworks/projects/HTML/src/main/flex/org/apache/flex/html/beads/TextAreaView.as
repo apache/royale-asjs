@@ -39,6 +39,7 @@ package org.apache.flex.html.beads
      *  It implements the classic desktop-like TextArea with
      *  a border and scrollbars.  It does not support right-to-left text.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

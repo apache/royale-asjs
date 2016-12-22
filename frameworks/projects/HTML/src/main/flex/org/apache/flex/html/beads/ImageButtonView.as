@@ -45,6 +45,7 @@ COMPILE::SWF {
 	 *  class does not support background and border; only images
 	 *  for the up, over, and active states.
 	 *
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -33,6 +33,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
 	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -46,6 +46,7 @@ package org.apache.flex.html.beads
      *  down arrow button on the right, but really, the entire
      *  view is the button that will display or dismiss the dropdown.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

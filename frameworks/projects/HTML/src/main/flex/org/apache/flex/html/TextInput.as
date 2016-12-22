@@ -40,6 +40,7 @@ package org.apache.flex.html
      *  The TextInput class implements the basic control for
      *  single-line text input.
      *  
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

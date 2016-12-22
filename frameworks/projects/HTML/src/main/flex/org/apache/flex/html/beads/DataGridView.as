@@ -49,6 +49,7 @@ package org.apache.flex.html.beads
 	 *  This class constructs the items that make the DataGrid: Lists for each column and a
 	 *  org.apache.flex.html.ButtonBar for the column headers.
 	 *
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

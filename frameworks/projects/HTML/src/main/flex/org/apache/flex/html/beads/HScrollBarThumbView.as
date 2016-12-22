@@ -36,6 +36,7 @@ package org.apache.flex.html.beads
      *  The HScrollBarThumbView class is the view for
      *  the thumb button in a Horizontal ScrollBar.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

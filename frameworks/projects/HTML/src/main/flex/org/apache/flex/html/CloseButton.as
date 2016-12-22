@@ -27,6 +27,7 @@ package org.apache.flex.html
      *  The CloseButton class is Button that displays an X
      *  and is commonly used in a Panel's TitleBar.
      *  
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

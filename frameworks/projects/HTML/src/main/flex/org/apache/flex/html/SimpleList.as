@@ -29,6 +29,7 @@ package org.apache.flex.html
 	 *  component differs from org.apache.flex.html.List in that it displays 
 	 *  only string values and maps to the &lt;select&gt; HTML element.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

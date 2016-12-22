@@ -37,6 +37,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Spinner.
 	 *  org.apache.flex.core.IBeadController: a bead that handles the input events.
 	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

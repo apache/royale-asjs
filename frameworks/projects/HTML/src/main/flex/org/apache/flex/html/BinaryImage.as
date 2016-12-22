@@ -32,6 +32,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
 	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

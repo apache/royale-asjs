@@ -41,6 +41,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IMeasurementBead: a bead that helps determine the size of the 
 	 *  org.apache.flex.html.TitleBar for layout.
 	 * 
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

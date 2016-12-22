@@ -25,6 +25,7 @@ package org.apache.flex.html
 	 *  The Tree component displays structured data. The Tree uses a HierarchicalData
 	 *  object as its data provider. 
 	 * 
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

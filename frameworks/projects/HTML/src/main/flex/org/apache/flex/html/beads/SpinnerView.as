@@ -42,6 +42,7 @@ COMPILE::JS {
 	 *  The SpinnerView class creates the visual elements of the org.apache.flex.html.Spinner
 	 *  component.
 	 *
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

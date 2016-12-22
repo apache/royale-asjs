@@ -36,6 +36,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBorderBead: a bead, if present, that draws a border around the control.
 	 *  org.apache.flex.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

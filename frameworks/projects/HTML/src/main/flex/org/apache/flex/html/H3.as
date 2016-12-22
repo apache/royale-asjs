@@ -29,6 +29,7 @@ package org.apache.flex.html
 	 *  The H3 class represents an HTML <h3> element
      *  
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

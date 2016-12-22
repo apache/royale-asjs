@@ -107,6 +107,7 @@ package org.apache.flex.core
      *  Application class expects there to be a main model, a controller, and
      *  an initial view.
      *
+     *  @toplevel
      *  @see ViewBase
      *  @langversion 3.0
      *  @playerversion Flash 10.2 

@@ -41,6 +41,7 @@ package org.apache.flex.html.beads
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
 	 *  control and org.apache.flex.html.Button to trigger the pop-up.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

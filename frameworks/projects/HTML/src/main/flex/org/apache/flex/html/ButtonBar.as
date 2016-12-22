@@ -35,6 +35,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IDataProviderItemRendererMapper: produces itemRenderers.
 	 *  org.apache.flex.core.IItemRenderer: the class or class factory to use.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

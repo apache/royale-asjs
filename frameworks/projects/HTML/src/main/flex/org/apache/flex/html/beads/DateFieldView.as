@@ -41,6 +41,7 @@ package org.apache.flex.html.beads
 	 * input and button controls. This class also handles the pop-up 
 	 * mechanics.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

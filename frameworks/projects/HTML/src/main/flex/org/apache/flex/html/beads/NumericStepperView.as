@@ -42,6 +42,7 @@ package org.apache.flex.html.beads
 	 *  org.apache.flex.html.TextInput component to display the value and a 
 	 *  org.apache.flex.html.Spinner to change the value.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -42,6 +42,7 @@ package org.apache.flex.html.beads
 	 *  component. The job of the view bead is to put together the parts of the Alert, such as the 
 	 *  title bar, message, and various buttons, within the space of the Alert component strand.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

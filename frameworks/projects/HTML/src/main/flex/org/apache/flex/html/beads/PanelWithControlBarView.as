@@ -43,6 +43,7 @@ package org.apache.flex.html.beads
 	 *  component. A Panel has a org.apache.flex.html.TitleBar, content, and an 
 	 *  optional org.apache.flex.html.ControlBar.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

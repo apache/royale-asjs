@@ -39,6 +39,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IThumbValue: the bead responsible for the display of the thumb control.
 	 *  org.apache.flex.core.ITrackView: the bead responsible for the display of the track.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

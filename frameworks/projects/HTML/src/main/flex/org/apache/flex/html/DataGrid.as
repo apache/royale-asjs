@@ -34,6 +34,7 @@ package org.apache.flex.html
 	 *  view bead (usually org.apache.flex.html.beads.DataGridView) constructs these parts while 
 	 *  itemRenderer factories contruct the elements to display the data in each cell.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

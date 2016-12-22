@@ -35,6 +35,7 @@ package org.apache.flex.html.beads
 	 *  The SliderTrackView class creates the track area for the org.apache.flex.html.Slider
 	 *  component.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

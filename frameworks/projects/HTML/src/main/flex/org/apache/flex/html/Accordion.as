@@ -28,6 +28,7 @@ package org.apache.flex.html
 	 *  The Accordion class used to display a list of collapsible components
 	 *  All but the selected item are expected to be collapsed.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -29,6 +29,7 @@ package org.apache.flex.html
 	 *  The H1 class represents an HTML <h1> element
      *  
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

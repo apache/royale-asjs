@@ -25,6 +25,7 @@ package org.apache.flex.html
 	 *  The RangeStepper control allows for the selection of a single value
 	 *  from multiple choices.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

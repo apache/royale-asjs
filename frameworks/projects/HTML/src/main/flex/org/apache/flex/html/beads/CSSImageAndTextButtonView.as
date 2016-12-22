@@ -51,6 +51,7 @@ package org.apache.flex.html.beads
      *  a text label.  This view does not support right-to-left
      *  text.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

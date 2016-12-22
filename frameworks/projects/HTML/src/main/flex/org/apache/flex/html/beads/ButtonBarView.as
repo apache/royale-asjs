@@ -32,6 +32,7 @@ package org.apache.flex.html.beads
 	 *  The ButtonBarView class creates the visual elements of the org.apache.flex.html.ButtonBar 
 	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead, adding a border.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

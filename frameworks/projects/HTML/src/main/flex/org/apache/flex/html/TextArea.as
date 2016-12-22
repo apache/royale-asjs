@@ -29,6 +29,7 @@ package org.apache.flex.html
      *  The TextArea class implements the basic control for
      *  multi-line text input.
      *  
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

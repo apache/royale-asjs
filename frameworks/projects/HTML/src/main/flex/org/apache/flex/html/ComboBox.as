@@ -37,6 +37,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
 	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
 	 * 
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

@@ -34,6 +34,7 @@ package org.apache.flex.html.beads
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

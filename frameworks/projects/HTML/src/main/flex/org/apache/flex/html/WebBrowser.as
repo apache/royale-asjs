@@ -48,6 +48,7 @@ package org.apache.flex.html
 	 * a FlexJS application. Use the url property to change the location of
 	 * the web page being displayed.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

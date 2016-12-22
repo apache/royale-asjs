@@ -57,6 +57,7 @@ package org.apache.flex.html.beads
 	 * explicit size (including a percent size), the content dictates the size of the
 	 * Container.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

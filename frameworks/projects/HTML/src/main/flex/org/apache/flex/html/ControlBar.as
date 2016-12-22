@@ -42,6 +42,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBorderBead: if present, displays a border around the component.
 	 *  org.apache.flex.core.IBackgroundBead: if present, displays a solid background below the ControlBar.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

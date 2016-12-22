@@ -33,6 +33,7 @@ package org.apache.flex.html
 	 * and a pop-up calendar control for picking a date as an alternative to
 	 * the text field.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

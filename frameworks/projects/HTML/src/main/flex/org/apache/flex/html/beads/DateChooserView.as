@@ -42,6 +42,7 @@ package org.apache.flex.html.beads
 	 * creates the elements for the DateChooser: the buttons to move between
 	 * months, the labels for the days of the week, and the buttons for each day
 	 * of the month.
+	 *  @viewbead	 
 	 */
 	public class DateChooserView extends BeadViewBase implements IBeadView
 	{

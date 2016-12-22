@@ -38,6 +38,7 @@ package org.apache.flex.html.beads
      *  It displays text using a TextField, so there is no
      *  right-to-left text support in this view.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

@@ -26,6 +26,7 @@ package org.apache.flex.html.beads
 	 *  provides properties to the org.apache.flex.html.List that makes a column in 
 	 *  the org.apache.flex.html.DataGrid.  
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

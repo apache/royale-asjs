@@ -30,6 +30,7 @@ package org.apache.flex.html
     /**
      *  The Form class is a simple form.
      *  
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

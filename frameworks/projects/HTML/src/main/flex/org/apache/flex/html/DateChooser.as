@@ -29,6 +29,7 @@ package org.apache.flex.html
 	/**
 	 *  The DateChooser class is a component that displays a calendar.
 	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

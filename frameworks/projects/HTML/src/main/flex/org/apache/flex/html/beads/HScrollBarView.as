@@ -41,6 +41,7 @@ package org.apache.flex.html.beads
      *  A different view would implement more modern scrollbars that hide themselves
      *  until hovered over with the mouse.
      *  
+	 *  @viewbead
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

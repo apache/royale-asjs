@@ -57,6 +57,7 @@ package org.apache.flex.html
      *  The CheckBox class implements the common user interface
      *  control.  The CheckBox includes its text label.
      *
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
