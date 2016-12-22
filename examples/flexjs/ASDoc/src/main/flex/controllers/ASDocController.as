@@ -19,6 +19,7 @@
 package controllers
 {
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.DetailEvent;
 
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
@@ -46,9 +47,40 @@ package controllers
             mainView = app.mainView as ASDocMainView;
 			mainView.addEventListener("packageChanged", packageChangedHandler);
             mainView.addEventListener("classChanged", classChangedHandler);
+            mainView.addEventListener("addTag", addTagHandler);
+            mainView.addEventListener("removeTag", removeTagHandler);
 
 			model = app.model as ASDocModel;
 		}
+
+        private function addTagHandler(event:DetailEvent):void
+        {
+            var tags:Array = model.filterTags;
+            if (!tags)
+            {
+                tags = [];
+            }
+            tags.push({name: event.detail});
+            model.filterTags = tags;
+        }
+        
+        private function removeTagHandler(event:DetailEvent):void
+        {
+            var tags:Array = model.filterTags;
+            var n:int = tags.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                if (tags[i].name == event.detail)
+                {
+                    tags.splice(i, 1);
+                    break;
+                }
+            }
+            if (tags.length == 0)
+                model.filterTags = null;
+            else
+                model.filterTags = tags;
+        }
 
         private function packageChangedHandler(event:Event):void
         {

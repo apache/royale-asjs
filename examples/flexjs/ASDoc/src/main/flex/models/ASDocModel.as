@@ -47,11 +47,30 @@ package models
         
         private var tagNameMap:Object;
         
+        private var _knownTags:Array;
+        
+        [Bindable("packageListChanged")]
+        public function get knownTags():Array
+        {
+            return _knownTags;
+        }
+        
         private function configCompleteHandler(event:Event):void
         {
             app.service.removeEventListener("complete", configCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
             tagNameMap = config.tagNames;
+            
+            app.service.addEventListener("complete", tagsCompleteHandler);
+            app.service.url = "tags.json";
+            app.service.send();
+        }
+        
+        private function tagsCompleteHandler(event:Event):void
+        {
+            app.service.removeEventListener("complete", tagsCompleteHandler);
+            var config:Object = JSON.parse(app.service.data);
+            _knownTags = config.tags;
             
             app.service.addEventListener("complete", completeHandler);
             app.service.url = "classes.json";
@@ -64,6 +83,11 @@ package models
         {
             app.service.removeEventListener("complete", completeHandler);
             masterData = JSON.parse(app.service.data);
+            filterPackageList();
+        }
+        
+        private function filterPackageList():void
+        {
             var packages:Object = {};
             for each (var classData:Object in masterData.classes)
             {
@@ -86,7 +110,10 @@ package models
             var arr:Array = [];
             for (var p:String in packages)
             {
-                arr.push(p);
+                if (filter == null)
+                    arr.push(p);
+                else if (filterPackage(p))
+                    arr.push(p);
             }
             arr.sort();
             _packageList = arr;
@@ -121,7 +148,10 @@ package models
                 var arr:Array = [];
                 for (var p:String in packageData)
                 {
-                    arr.push(p);
+                    if (filter == null)
+                        arr.push(p);
+                    else if (filter(packageData[p]))
+                        arr.push(p);
                 }
                 arr.sort();
                 _classList = arr;
@@ -390,6 +420,62 @@ package models
                 _attributes = s;
             }
             return _attributes;
+        }
+        
+        public function filterPackage(p:String):Boolean
+        {
+            var packageData:Object = allPackages[p];
+            for (var pd:String in packageData)
+            {
+                if (filter(packageData[pd]))
+                    return true;
+            }
+            return false;
+        }
+        
+        private var filter:Function;
+        
+        private var _filterTags:Array;
+        
+        /**
+         *  Array of name/value pairs to search for 
+         */
+        public function get filterTags():Array
+        {
+            return _filterTags;
+        }
+        
+        public function set filterTags(value:Array):void
+        {
+            _filterTags = value;
+            if (_filterTags)
+                filter = filterByTags;
+            else
+                filter = null;
+            filterPackageList();
+        }
+
+        public function filterByTags(classData:Object):Boolean
+        {
+            var tags:Array = classData.tags;
+            if (!tags) return false;
+            for each (var tag:Object in tags)
+            {
+                for each (var obj:Object in filterTags)
+                {
+                    if (obj.name == tag.tagName)
+                    {
+                        if (tag.values == null || tag.values.length == 0)
+                            return true;
+                        for each (var v:Object in tag.values)
+                        {
+                            if (v == obj.value)
+                                return true;
+                        }
+                    }
+                }
+            }
+            return false;            
         }
 	}
 }
