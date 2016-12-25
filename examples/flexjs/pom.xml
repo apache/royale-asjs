@@ -43,11 +43,13 @@
     <module>DataBindingExample_as</module><!-- Flash error -->
     <module>DataBindingExample_Flat</module>
     <module>DataGridExample</module>
+    <module>DateControlsExample</module>
     <module>DesktopMap</module>
     <module>FlexJSStore</module>
     <module>FlexJSStore_jquery</module>
     <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
+    <module>ListExample</module>
     <module>MapSearch</module>
     <module>MDLExample</module>
     <module>MobileMap</module>

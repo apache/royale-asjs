@@ -32,11 +32,11 @@
     <version>0.8.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>DataGridExample</artifactId>
+  <artifactId>DateControlsExample</artifactId>
   <version>0.8.0-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Flex - FlexJS: Examples: FlexJS: DataGridExample</name>
+  <name>Apache Flex - FlexJS: Examples: FlexJS: DateControlsExample</name>
 
   <build>
     <plugins>
@@ -45,7 +45,7 @@
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>DataGridExample.mxml</mainClass>
+          <mainClass>DateControlsExample.mxml</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -66,6 +66,12 @@
       <version>${flash.version}</version>
       <type>swc</type>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Formatters</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
     </dependency>
   </dependencies>
 
