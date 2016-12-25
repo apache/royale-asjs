@@ -38,6 +38,8 @@
         This build builds only the framework libraries per default.
         - In order to build the examples, activate the "build-examples" profile
         - In order to assemble a distribution, activate the "build-distribution" profile.
+
+        Dummy change
   -->
 
   <scm>
