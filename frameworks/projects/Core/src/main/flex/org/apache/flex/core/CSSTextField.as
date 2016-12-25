@@ -175,9 +175,4 @@ package org.apache.flex.core
 		}
 		
 	}
-
-	COMPILE::JS
-	public class CSSTextField extends TextField
-	{
-	}
 }

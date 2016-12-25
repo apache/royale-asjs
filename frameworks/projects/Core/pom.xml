@@ -53,6 +53,16 @@
           <skipExtern>false</skipExtern>
           <allowSubclassOverrides>true</allowSubclassOverrides>
         </configuration>
+        <!-- As a test, add asdoc generation to the compile step -->
+        <executions>
+          <execution>
+            <id>site</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile-asdoc</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
