@@ -34,7 +34,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class THead extends ContainerBase
+	public class TBody extends ContainerBase
 	{
 		/**
 		 *  constructor.
