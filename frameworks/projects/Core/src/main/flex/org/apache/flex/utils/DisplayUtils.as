@@ -19,7 +19,14 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Rectangle
+	import org.apache.flex.geom.Rectangle;
+
+	COMPILE::JS 
+	{
+		import org.apache.flex.geom.Matrix;
+		import org.apache.flex.geom.Point;
+		import org.apache.flex.core.ITransformHost;
+	}
 	/**
 	 *  The SpriteUtils class is a collection of static functions that are useful
 	 *  for geometric operations on visible objects.
@@ -42,6 +49,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion ITransformHost
 		 */
 		public static function getScreenBoundingRect(obj:IUIBase):Rectangle
 		{
@@ -53,9 +61,21 @@ package org.apache.flex.utils
 			COMPILE::JS
 			{
 				var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
-				var bounds:Rectangle = new Rectangle(r.x, r.y, r.width, r.height);
+				var bounds:Rectangle = new Rectangle(r.left, r.top, r.right - r.left, r.bottom - r.top);
 				bounds.x -= window.pageXOffset;
 				bounds.y -= window.pageYOffset;
+				if (obj.element instanceof SVGElement)
+				{
+					var svgElement:Object = (obj as ITransformHost).transformElement as Object;
+					var sm:SVGMatrix = svgElement.getScreenCTM();
+					var m:Matrix = new Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
+					var tl:Point = m.transformPoint(bounds.topLeft);
+					var br:Point = m.transformPoint(bounds.bottomRight);
+					bounds.top = tl.y;
+					bounds.left = tl.x;
+					bounds.bottom = br.y;
+					bounds.right = br.x;
+				}
 				return bounds;
 			}
 		}
