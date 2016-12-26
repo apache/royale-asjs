@@ -65,10 +65,9 @@
     <swf.version>31</swf.version>
 
     <!-- URL of the ASF SonarQube server -->
-    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
-    <!-- Tell sonar where the coverage reports are located -->
-    <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+    <sonar.host.url>https://builds.apache.org/analysis</sonar.host.url>
+    <!-- Exclude all generated code -->
+    <sonar.exclusions>file:**/generated-sources/**</sonar.exclusions>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
@@ -133,6 +132,12 @@
               <version>${flexjs.compiler.version}</version>
             </dependency>
           </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.2</version>
         </plugin>
       </plugins>
     </pluginManagement>
