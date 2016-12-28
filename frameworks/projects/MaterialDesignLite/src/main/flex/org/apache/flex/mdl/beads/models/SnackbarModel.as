@@ -18,41 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.models
 {
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.Event;
 
-    public class SnackbarModel extends EventDispatcher implements ISnackbarModel
+    public class SnackbarModel extends ToastModel implements ISnackbarModel
     {
-        private var _message:String = "";
-        private var _timeout:int = 2750;
         private var _actionText:String = "";
-
-        private var _strand:IStrand;
 
         public function SnackbarModel()
         {
             super();
-        }
-
-        public function get message():String
-        {
-            return _message;
-        }
-
-        public function set message(value:String):void
-        {
-            _message = value;
-        }
-
-        public function get timeout():int
-        {
-            return _timeout;
-        }
-
-        public function set timeout(value:int):void
-        {
-            _timeout = value;
         }
         
         public function get actionText():String
@@ -65,19 +39,14 @@ package org.apache.flex.mdl.beads.models
             _actionText = value;
         }
 
-        public function get snackbarData():Object
+        override public function get snackbarData():Object
         {
             return {
-                message: _message,
-                timeout: _timeout,
+                message: message,
+                timeout: timeout,
                 actionHandler: onActionHandler,
                 actionText: _actionText
             };
-        }
-
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
         }
 
         private function onActionHandler(event:Event):void

@@ -61,27 +61,7 @@ package org.apache.flex.mdl
         {
             super();
         }
-
-        override public function get message():String
-        {
-            return ISnackbarModel(model).message;
-        }
-
-        override public function set message(value:String):void
-        {
-            ISnackbarModel(model).message = value;
-        }
-
-        override public function get timeout():int
-        {
-            return ISnackbarModel(model).timeout;
-        }
-
-        override public function set timeout(value:int):void
-        {
-            ISnackbarModel(model).timeout = value;
-        }
-
+        
         public function get actionText():String
         {
             return ISnackbarModel(model).actionText;
