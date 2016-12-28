@@ -171,7 +171,7 @@ package org.apache.flex.mdl
         {
             if (snackbar)
             {
-                var snackbarData = {
+                var snackbarData:Object = {
                     message: _message,
                     timeout: _timeout,
                     actionHandler: onActionHandler,
