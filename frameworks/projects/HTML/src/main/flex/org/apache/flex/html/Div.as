@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ContainerBase;
 
     COMPILE::JS
     {
@@ -35,7 +35,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Div extends UIBase
+	public class Div extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -53,7 +53,7 @@ package org.apache.flex.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the div
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -62,51 +62,38 @@ package org.apache.flex.html
          */
 		public function get text():String
 		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
+            return _text;
 		}
-
 		public function set text(value:String):void
 		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
 		}
 		
         COMPILE::JS
-        private var textNode:Text;
+        protected var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var div:HTMLElement = document.createElement('div') as HTMLDivElement;
-            
-            textNode = document.createTextNode('') as Text;
-            div.appendChild(textNode); 
+			element = document.createElement('div') as WrappedHTMLElement;
 
-			element = div as WrappedHTMLElement;
-            
             positioner = element;
-            positioner.style.position = 'relative';
-			element.flexjs_wrapper = this;
+            element.flexjs_wrapper = this;
             
-            //className = typeNames = 'Div';
-
             return element;
         }
     }

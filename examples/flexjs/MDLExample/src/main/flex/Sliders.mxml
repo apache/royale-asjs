@@ -47,36 +47,42 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <mdl:Grid>
-        <mdl:GridCell>
-            <mdl:Slider id="slider1" className="mdlsl_example" valueChange="onValueChange1(event)"/>
-            <!--<mdl:Slider id="slider1" minimum="0" maximum="16" value="2" stepSize="1" width="200"
+    <!--<mdl:Slider id="slider1" minimum="0" maximum="16" value="2" stepSize="1" width="200"
                                 valueChange="onValueChange(event)"/>-->
-        </mdl:GridCell>
-        <mdl:GridCell>
-            <mdl:Slider id="slider2" minimum="0" maximum="10" value="2" stepSize="2" width="200"
-                        valueChange="onValueChange2(event)"/>
-        </mdl:GridCell>
 
-        <mdl:GridCell>
-            <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200">
-                <mdl:beads>
-                    <mdl:Disabled/>
-                </mdl:beads>
-            </mdl:Slider>
-        </mdl:GridCell>
+    <mdl:Grid>
+        
+            <mdl:Card className="demo-card-slider" shadow="2">
+                <mdl:CardTitle>
+                    <mdl:CardTitleText id="slider1_txt"/>
+                </mdl:CardTitle>
+                <mdl:CardSupportingText>
+                    <mdl:Slider id="slider1" className="mdlsl_example" valueChange="onValueChange1(event)"/>
+                </mdl:CardSupportingText>
+            </mdl:Card>
 
-        <mdl:GridCell>
-            <js:Span id="slider1_txt"/>
-        </mdl:GridCell>
+            <mdl:Card className="demo-card-slider" shadow="2">
+                <mdl:CardTitle>
+                    <mdl:CardTitleText id="slider2_txt"/>
+                </mdl:CardTitle>
+                <mdl:CardSupportingText>
+                    <mdl:Slider id="slider2" minimum="0" maximum="10" value="2" stepSize="2" width="200" valueChange="onValueChange2(event)"/>
+                </mdl:CardSupportingText>
+            </mdl:Card>
 
-        <mdl:GridCell>
-            <js:Span id="slider2_txt"/>
-        </mdl:GridCell>
-
-        <mdl:GridCell>
-            <js:Span id="slider3_txt"/>
-        </mdl:GridCell>
+            <mdl:Card className="demo-card-slider" shadow="2">
+                <mdl:CardTitle>
+                    <mdl:CardTitleText id="slider3_txt"/>
+                </mdl:CardTitle>
+                <mdl:CardSupportingText>
+                    <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200">
+                        <mdl:beads>
+                            <mdl:Disabled/>
+                        </mdl:beads>
+                    </mdl:Slider>
+                </mdl:CardSupportingText>
+            </mdl:Card>
+        
     </mdl:Grid>
     
 </mdl:TabBarPanel>

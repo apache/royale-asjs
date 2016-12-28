@@ -53,7 +53,7 @@ package org.apache.flex.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the span
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

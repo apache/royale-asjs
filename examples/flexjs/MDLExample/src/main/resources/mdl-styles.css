@@ -136,7 +136,16 @@ js|Image
   color: #fff;
 }
 
+/* sliders demo */
+.demo-card-slider.mdl-card {
+  width: 250px;
+  height: 50px;
+  background: #fff;
+  color: #000;
+  margin: 4px;
+}
 
+/* Grids Example */
 .demo-grid .mdl-cell {
   box-sizing: border-box;
   background-color: #BDBDBD;
