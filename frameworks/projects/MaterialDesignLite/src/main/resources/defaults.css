@@ -42,6 +42,15 @@ List
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.ListItemRenderer");
 }
 
+Toast
+{
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.ToastModel");
+}
+
+Snackbar
+{
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.SnackbarModel");
+}
 
 @media -flex-flash
 {

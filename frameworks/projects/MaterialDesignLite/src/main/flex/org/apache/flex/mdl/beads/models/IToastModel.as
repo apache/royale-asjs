@@ -16,26 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.mdl.beads.models
 {
+    import org.apache.flex.core.IBeadModel;
 
-	/**
-	*  @private
-	*  This class is used to link additional classes into mdl.swc
-	*  beyond those that are found by dependecy analysis starting
-	*  from the classes specified in manifest.xml.
-	*/
-	internal class MDLClasses
-	{	
-		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
-		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
+    public interface IToastModel extends IBeadModel
+    {
+        function get message():String;
+        function set message(value:String):void;
+        function get timeout():int
+        function set timeout(value:int):void;
 
-		COMPILE::SWF
-		{
-			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
-			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
-		}
-	}
-
+        function get snackbarData():Object;
+    }
 }
-

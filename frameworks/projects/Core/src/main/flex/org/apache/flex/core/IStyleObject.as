@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
     /**
      *  The IStyleObject interface is the interface for
      *  objects that contain style properties.

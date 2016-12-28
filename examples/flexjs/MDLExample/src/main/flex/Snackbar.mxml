@@ -21,24 +21,36 @@ limitations under the License.
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl">
     <mdl:Grid>
         <mdl:GridCell column="1">
-            <mdl:Button id="showSnackbar" click="onShowSnackBarClick(event)"
-                        text="Show snackbar!" width="200" accent="true" colored="true" raised="true"/>
-            <mdl:Snackbar id="snackbar" message="Snack bar message" actionText="Undo" timeout="3000"
+            <mdl:Button id="showToast" click="onShowToastClick(event)"
+                        text="Show Toast!" width="200" accent="true" colored="true" raised="true"/>
+            <mdl:Toast id="toast" message="Toast message" timeout="3000"/>
+        </mdl:GridCell>
+        <mdl:GridCell column="1">
+            <mdl:Button id="showSnackbar" click="onShowSnackbarClick(event)"
+                        text="Show !" width="200" accent="true" colored="true" raised="true"/>
+            <mdl:Snackbar id="snackbar" message="Snackbar message" actionText="Undo" timeout="3000"
                           action="onSnackBarAction(event)"/>
         </mdl:GridCell>
     </mdl:Grid>
     <fx:Script><![CDATA[
         import org.apache.flex.events.Event;
         import org.apache.flex.events.MouseEvent;
+        import org.apache.flex.events.MouseEvent;
 
-        private function onShowSnackBarClick(event:MouseEvent):void
+        private function onShowToastClick(event:MouseEvent):void
+        {
+            toast.show();
+        }
+
+        private function onShowSnackbarClick(event:MouseEvent):void
         {
             snackbar.show();
         }
 
         private function onSnackBarAction(event:Event):void
         {
-           //some action here
+            //some action here
         }
+
         ]]></fx:Script>
 </mdl:TabBarPanel>
