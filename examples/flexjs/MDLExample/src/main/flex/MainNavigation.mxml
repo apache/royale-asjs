@@ -37,6 +37,7 @@ limitations under the License.
         <mdl:TabBar ripple="true">
             <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
             <mdl:TabBarButton text="Chips" href="#chips_panel"/>
+            <mdl:TabBarButton text="Sliders" href="#sliders_panel"/>
             <mdl:TabBarButton text="Grids" href="#grids_panel"/>
             <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
@@ -68,6 +69,8 @@ limitations under the License.
         <local:Cards id="cards_panel" isActive="true"/>
 
         <local:Chips id="chips_panel" />
+
+        <local:Sliders id="sliders_panel" />
         
         <local:Grids id="grids_panel"/>
 
@@ -116,6 +119,7 @@ limitations under the License.
                     <mdl:MaterialIconMoreVert/>
                 </mdl:materialIcon>
             </mdl:Button>
+            
             <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
                 <mdl:MenuItem text="Some Action"/>
                 <mdl:MenuItem text="Another Action"/>
@@ -128,8 +132,6 @@ limitations under the License.
                 <mdl:MenuItem text="Separated Action"/>
             </mdl:Menu>
             
-            <mdl:Slider className="mdlsl_example"/>
-            <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
         </mdl:TabBarPanel>
         
     </mdl:NavigationLayoutContent>
