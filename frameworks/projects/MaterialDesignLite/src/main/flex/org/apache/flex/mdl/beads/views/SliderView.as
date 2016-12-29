@@ -18,11 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
-	COMPILE::SWF {
-		import flash.display.DisplayObject;
-		import flash.display.Sprite;
-	}
-	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;

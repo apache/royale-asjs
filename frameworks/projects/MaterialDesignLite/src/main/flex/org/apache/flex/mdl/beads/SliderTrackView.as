@@ -25,7 +25,6 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.Button;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;

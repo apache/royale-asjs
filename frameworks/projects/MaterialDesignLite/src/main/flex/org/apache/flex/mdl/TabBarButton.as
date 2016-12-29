@@ -82,11 +82,8 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
-            a.setAttribute('href', href);
-            
-            textNode = document.createTextNode('') as Text;
-            a.appendChild(textNode); 
+			var a:HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
+            a.href = href;
 
 			element = a as WrappedHTMLElement;
             

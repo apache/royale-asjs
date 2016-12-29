@@ -24,7 +24,6 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-		import org.apache.flex.html.beads.controllers.SliderMouseController;
         import org.apache.flex.core.WrappedHTMLElement;        
     }
 

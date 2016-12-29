@@ -22,11 +22,6 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
 	import org.apache.flex.core.UIBase;
 
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
-
 	/**
 	 *  The ListItemTextBody class decorates a tag element in a list item renderer
      *  

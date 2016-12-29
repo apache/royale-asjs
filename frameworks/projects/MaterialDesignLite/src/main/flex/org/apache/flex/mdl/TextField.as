@@ -17,7 +17,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.core.ITextModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.TextInput;
 

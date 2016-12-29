@@ -22,7 +22,6 @@ package org.apache.flex.mdl.beads.views
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.ValuesManager;

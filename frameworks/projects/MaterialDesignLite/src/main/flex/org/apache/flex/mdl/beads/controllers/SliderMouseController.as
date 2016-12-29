@@ -28,15 +28,12 @@ package org.apache.flex.mdl.beads.controllers
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.beads.ISliderView;
-	import org.apache.flex.mdl.beads.SliderTrackView;
 
     COMPILE::JS
     {
-        import goog.events;
-        import goog.events.EventType;
+		import goog.events;
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.mdl.Slider;
-        import org.apache.flex.mdl.beads.SliderThumbView;
     }
 	
 	/**

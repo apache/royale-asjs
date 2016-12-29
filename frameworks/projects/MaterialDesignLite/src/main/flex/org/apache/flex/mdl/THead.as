@@ -92,7 +92,8 @@ package org.apache.flex.mdl
         {
 			_ascending = value;
 
-			className += (_ascending ? " mdl-data-table__header--sorted-ascending" : "mdl-data-table__header--sorted-descending");  
+			element.classList.toggle("mdl-data-table__header--sorted-ascending", _ascending);
+			element.classList.toggle("mdl-data-table__header--sorted-descending", _ascending == false);
         }
 	}
 }

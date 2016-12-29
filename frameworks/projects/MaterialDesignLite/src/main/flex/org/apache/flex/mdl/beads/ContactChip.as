@@ -21,15 +21,11 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.html.Span;
-    import org.apache.flex.mdl.supportClasses.IMdlColor;
-    import org.apache.flex.mdl.supportClasses.IMdlTextColor;
     import org.apache.flex.utils.StrandUtils;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.UIHTMLElementWrapper;
         import org.apache.flex.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
      *  The ContactChip bead class is a specialty bead that can be used to add additional
@@ -84,7 +80,6 @@ package org.apache.flex.mdl.beads
          * @flexjsignorecoercion HTMLSpanElement
          * @flexjsignorecoercion Text
          * @flexjsignorecoercion HTMLButtonElement
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *
          * @param value
          */
