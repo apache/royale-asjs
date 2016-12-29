@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.models
 {
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
 
     public class SnackbarModel extends ToastModel implements ISnackbarModel
     {
         private var _actionText:String = "";
+
+        private var _strand:IStrand;
 
         public function SnackbarModel()
         {
@@ -49,9 +53,14 @@ package org.apache.flex.mdl.beads.models
             };
         }
 
+        override public function set strand(value:IStrand):void
+        {
+            _strand = value;
+        }
+
         private function onActionHandler(event:Event):void
         {
-            dispatchEvent(new Event("action"));
+            (UIBase)(_strand).dispatchEvent(new Event("action"));
         }
     }
 }
