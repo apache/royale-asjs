@@ -124,9 +124,9 @@ limitations under the License.
                 <mdl:MenuItem text="Some Action"/>
                 <mdl:MenuItem text="Another Action"/>
                 <mdl:MenuItem text="Action Disabled">
-                    <js:beads>
+                    <mdl:beads>
                         <mdl:Disabled/>
-                    </js:beads>
+                    </mdl:beads>
                 </mdl:MenuItem>
                 <mdl:MenuItem text="More Action" divider="true"/>
                 <mdl:MenuItem text="Separated Action"/>

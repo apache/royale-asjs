@@ -34,14 +34,14 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <js:beads>
+    <mdl:beads>
         <js:ItemRendererDataBinding />
-    </js:beads>
+    </mdl:beads>
     
     <js:Span text="{actor.actorName}">
-        <mdl:beads>
+        <js:beads>
             <mdl:ListItemPrimaryContent/>
-        </mdl:beads>
+        </js:beads>
         <mdl:MaterialIconPerson listItemIcon="true"/>
     </js:Span>
       

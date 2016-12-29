@@ -29,11 +29,11 @@ limitations under the License.
                     <mdl:CardTitleText text="Welcome"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:beads>
+                    <mdl:beads>
                         <js:InnerHTML>
                             <![CDATA[Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...]]>
                         </js:InnerHTML>
-                    </js:beads>
+                    </mdl:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button text="Get Started" ripple="true" colored="true"/>
@@ -70,11 +70,11 @@ limitations under the License.
             <mdl:Card className="demo-card-event" shadow="2">
                 <mdl:CardTitle expand="true">
                     <mdl:CardTitleText>
-                        <js:beads>
+                        <mdl:beads>
                             <js:InnerHTML>
                                 <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
-                        </js:beads>
+                        </mdl:beads>
                     </mdl:CardTitleText>
                 </mdl:CardTitle>
                 <mdl:CardActions border="true">
