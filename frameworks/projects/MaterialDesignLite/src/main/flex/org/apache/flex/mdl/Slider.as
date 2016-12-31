@@ -27,7 +27,9 @@ package org.apache.flex.mdl
         import org.apache.flex.core.WrappedHTMLElement;        
     }
 
-	[Event(name="valueChange", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
+	[Event(name="input", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The Slider class provides a MDL UI-like appearance for a slider.

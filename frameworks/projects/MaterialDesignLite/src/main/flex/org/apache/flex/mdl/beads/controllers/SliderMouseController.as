@@ -97,7 +97,7 @@ package org.apache.flex.mdl.beads.controllers
                 //goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN, handleThumbDown, false, this);
 
                 goog.events.listen(UIBase(_strand).element, "change", handleChange, false, this);
-                //goog.events.listen(UIBase(_strand).element, "oninput", handleTrackClick, false, this);
+                goog.events.listen(UIBase(_strand).element, "input", handleInput, false, this);
             }
 		}
 
@@ -110,7 +110,19 @@ package org.apache.flex.mdl.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+            host.dispatchEvent(new org.apache.flex.events.Event('change'));
+        }
+
+        /**
+         */
+        COMPILE::JS
+        private function handleInput(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+
+            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+            host.dispatchEvent(new org.apache.flex.events.Event('input'));
         }
 		
         COMPILE::SWF
