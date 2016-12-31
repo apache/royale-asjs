@@ -77,6 +77,18 @@ package org.apache.flex.mdl
             {
                 _input = value;
             }
+
+            private var _label:HTMLLabelElement;
+
+            public function get label():HTMLLabelElement
+            {
+                return _label;
+            }
+
+            public function set label(value:HTMLLabelElement):void
+            {
+                _label = value;
+            }
         }
 
         /**
@@ -102,7 +114,7 @@ package org.apache.flex.mdl
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
+            label = document.createElement('label') as HTMLLabelElement;
             label.className = "mdl-textfield__label";
 
             textNode = document.createTextNode('') as Text;

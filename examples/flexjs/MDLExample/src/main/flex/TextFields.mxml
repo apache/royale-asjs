@@ -52,6 +52,20 @@ limitations under the License.
                 <mdl:Restrict pattern="-?[0-9]*(\.[0-9]+)?" error="Input is not a number!"/>
             </mdl:beads>
         </mdl:TextField>
+
+        <mdl:TextField>
+            <mdl:beads>
+                <mdl:TextPrompt prompt="Expandible..."/>
+                <mdl:ExpandableSearch/>
+            </mdl:beads>
+        </mdl:TextField>
+
+        <mdl:TextField>
+            <mdl:beads>
+                <mdl:TextPrompt prompt="Expandible..."/>
+                <mdl:ExpandableSearch/>
+            </mdl:beads>
+        </mdl:TextField>
     
     </mdl:Grid>
 

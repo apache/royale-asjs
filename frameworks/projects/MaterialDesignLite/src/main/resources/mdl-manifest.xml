@@ -27,6 +27,7 @@
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.flex.mdl.Switch"/>
     <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="ExpandableSearch" class="org.apache.flex.mdl.beads.ExpandableSearch"/>
     <component id="Restrict" class="org.apache.flex.mdl.beads.Restrict"/>
     <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
     <component id="Slider" class="org.apache.flex.mdl.Slider"/>
@@ -81,6 +82,7 @@
     <component id="MaterialIconEvent" class="org.apache.flex.mdl.materialIcons.MaterialIconEvent"/>
     <component id="MaterialIconFace" class="org.apache.flex.mdl.materialIcons.MaterialIconFace"/>
     <component id="MaterialIconMoreVert" class="org.apache.flex.mdl.materialIcons.MaterialIconMoreVert"/>
+    <component id="MaterialIconSearch" class="org.apache.flex.mdl.materialIcons.MaterialIconSearch"/>
     <component id="ContactChip" class="org.apache.flex.mdl.beads.ContactChip"/>
     <component id="ContactImageChip" class="org.apache.flex.mdl.beads.ContactImageChip"/>
     <component id="Tooltip" class="org.apache.flex.mdl.beads.Tooltip"/>
