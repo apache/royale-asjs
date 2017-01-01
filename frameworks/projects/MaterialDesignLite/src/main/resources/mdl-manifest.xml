@@ -23,6 +23,7 @@
 
     <component id="Button" class="org.apache.flex.mdl.Button"/>
     <component id="TextField" class="org.apache.flex.mdl.TextField"/>
+    <component id="TextArea" class="org.apache.flex.mdl.TextArea"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
     <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
     <component id="Switch" class="org.apache.flex.mdl.Switch"/>

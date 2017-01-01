@@ -19,9 +19,9 @@ package org.apache.flex.mdl
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.TextInput;
-
+    
     import org.apache.flex.mdl.supportClasses.ITextField;
-
+    
     COMPILE::JS
     {
         import goog.events;
@@ -29,15 +29,15 @@ package org.apache.flex.mdl
     }
     
     /**
-     *  The TextField class provides a Material Design Library UI-like appearance for
-     *  a TextInput.
+     *  The TextArea class provides a Material Design Library UI-like appearance for
+     *  a TextField with multiple lines
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class TextField extends org.apache.flex.html.TextInput implements ITextField
+	public class TextArea extends org.apache.flex.html.TextInput implements ITextField
 	{
         /**
          *  Constructor.
@@ -47,13 +47,36 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function TextField()
+		public function TextArea()
 		{
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
+        private var _rows:int = 2;
+        /**
+		 *  The number of rows in the textarea. Defaults to 2
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get rows():int
+        {
+            return _rows;
+        }
+        public function set rows(value:int):void
+        {
+            _rows = value;
+
+            COMPILE::JS 
+            {
+                input.setAttribute('rows', _rows);
+            }
+        }
+
         COMPILE::JS
         {
             private var _textNode:Text;
@@ -108,8 +131,9 @@ package org.apache.flex.mdl
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
 
-            input = document.createElement('input') as HTMLInputElement;
+            input = document.createElement('textarea') as HTMLInputElement;
             input.setAttribute('type', 'text');
+            input.setAttribute('rows', rows);
             input.className = "mdl-textfield__input";
             
             //attach input handler to dispatch flexjs change event when user write in textinput

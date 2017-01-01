@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-    import org.apache.flex.mdl.TextField;
+    import org.apache.flex.mdl.supportClasses.ITextField;
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -116,7 +116,7 @@ package org.apache.flex.mdl.beads
 			}
 			COMPILE::JS
 			{
-				var mdlTi:TextField = value as TextField;
+				var mdlTi:ITextField = value as ITextField;
                 mdlTi.textNode.nodeValue = prompt;
 				//var e:HTMLInputElement = host.element as HTMLInputElement;
 				//e.placeholder = prompt;
