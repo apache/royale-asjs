@@ -77,6 +77,29 @@ package org.apache.flex.mdl
             }
         }
 
+        private var _maxrows:int = 0;
+        /**
+		 *  The max number of rows in the textarea. Defaults to 0
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get maxrows():int
+        {
+            return _maxrows;
+        }
+        public function set maxrows(value:int):void
+        {
+            _maxrows = value;
+
+            COMPILE::JS 
+            {
+                input.setAttribute('maxrows', _maxrows);
+            }
+        }
+
         COMPILE::JS
         {
             private var _textNode:Text;
@@ -134,6 +157,7 @@ package org.apache.flex.mdl
             input = document.createElement('textarea') as HTMLInputElement;
             input.setAttribute('type', 'text');
             input.setAttribute('rows', rows);
+            //input.setAttribute('maxrows', maxrows);
             input.className = "mdl-textfield__input";
             
             //attach input handler to dispatch flexjs change event when user write in textinput
