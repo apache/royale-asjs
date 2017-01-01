@@ -81,10 +81,9 @@ limitations under the License.
                 </mdl:beads>
             </mdl:TextArea>
 
-            <mdl:TextArea floatingLabel="true" width="100%" rows="5" maxrows="8">
+            <mdl:TextArea floatingLabel="true" width="100%" rows="5" maxrows="8" isInvalid="true">
                 <mdl:beads>
-                    <mdl:TextPrompt prompt="Floating, maxrows 8 and only letters..."/>
-                    <mdl:Restrict pattern="[A-Z,a-z, ]*" error="Letters and spaces only"/>
+                    <mdl:TextPrompt prompt="Floating, maxrows 8, invalid on load"/>
                 </mdl:beads>
             </mdl:TextArea>
         </js:Form>

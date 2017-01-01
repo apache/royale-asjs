@@ -18,9 +18,8 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.TextInput;
 
-    import org.apache.flex.mdl.supportClasses.ITextField;
+    import org.apache.flex.mdl.supportClasses.TextFieldBase;
 
     COMPILE::JS
     {
@@ -37,7 +36,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class TextField extends org.apache.flex.html.TextInput implements ITextField
+	public class TextField extends TextFieldBase
 	{
         /**
          *  Constructor.
@@ -53,45 +52,6 @@ package org.apache.flex.mdl
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
-        COMPILE::JS
-        {
-            private var _textNode:Text;
-
-            public function get textNode():Text
-            {
-                return _textNode;
-            }
-
-            public function set textNode(value:Text):void
-            {
-                _textNode = value;
-            }
-
-            private var _input:HTMLInputElement;
-
-            public function get input():HTMLInputElement
-            {
-                return _input;
-            }
-
-            public function set input(value:HTMLInputElement):void
-            {
-                _input = value;
-            }
-
-            private var _label:HTMLLabelElement;
-
-            public function get label():HTMLLabelElement
-            {
-                return _label;
-            }
-
-            public function set label(value:HTMLLabelElement):void
-            {
-                _label = value;
-            }
-        }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -133,49 +93,6 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
             
             return element;
-        }
-
-        private var _className:String;
-
-        /**
-         * since we have a div surronding the main input, we need to 
-         * route the class assignaments to div
-         */
-        override public function set className(value:String):void
-		{
-			if (_className != value)
-			{
-                COMPILE::JS
-                {
-                    positioner.className = typeNames ? value + ' ' + typeNames : value;             
-                }
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
-		}
-
-        private var _floatingLabel:Boolean = false;
-        /**
-		 *  A boolean flag to activate "mdl-textfield--floating-label" effect selector.
-         *  Applies floating label effect.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get floatingLabel():Boolean
-        {
-            return _floatingLabel;
-        }
-        public function set floatingLabel(value:Boolean):void
-        {
-            _floatingLabel = value;
-
-            COMPILE::JS
-            {
-                positioner.classList.toggle("mdl-textfield--floating-label", _floatingLabel);
-            }
         }
 	}
 }
