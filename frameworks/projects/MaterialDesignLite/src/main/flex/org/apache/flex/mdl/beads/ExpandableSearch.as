@@ -100,7 +100,6 @@ package org.apache.flex.mdl.beads
                     div.appendChild(TextField(host).label);
 
                     TextField(host).input.setAttribute('id', searchId);
-                    TextField(host).label.innerHTML = "Expandible...";
 				}
 				else
 				{

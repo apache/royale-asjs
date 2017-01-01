@@ -68,6 +68,13 @@ limitations under the License.
                 </mdl:beads>
             </mdl:TextField>
 
+            <mdl:TextField floatingLabel="true" width="100%">
+                <mdl:beads>
+                    <mdl:TextPrompt prompt="Floating and Expandible..."/>
+                    <mdl:ExpandableSearch/>
+                </mdl:beads>
+            </mdl:TextField>
+
             <mdl:TextArea width="100%">
                 <mdl:beads>
                     <mdl:TextPrompt prompt="Text lines..."/>
