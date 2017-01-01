@@ -20,6 +20,20 @@
 
 @namespace "library://ns.apache.org/flexjs/mdl";
 
+TextField
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    /*IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");*/
+}
+
+TextArea
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
+    /*IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");*/
+}
+
 CheckBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
