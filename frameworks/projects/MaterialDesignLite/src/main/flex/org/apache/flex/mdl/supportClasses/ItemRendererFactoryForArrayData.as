@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.supportClasses
 {
-    import org.apache.flex.mdl.List;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
@@ -135,7 +134,7 @@ package org.apache.flex.mdl.supportClasses
          */
 		protected var dataGroup:IItemRendererParent;
 
-		private function dataProviderChangeHandler(event:Event):void
+		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
@@ -149,7 +148,7 @@ package org.apache.flex.mdl.supportClasses
 			// This needs to be re-thought. There should be a better way to move the
 			// properties from the component to the renderers. At least a new interface
 			// should be created.
-			var list:List = _strand as List;
+			var component:UIBase = _strand as UIBase;
 
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
@@ -157,7 +156,7 @@ package org.apache.flex.mdl.supportClasses
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 				dataGroup.addElement(ir);
 				ir.index = i;
-                ir.labelField = list.labelField;
+                ir.labelField = component["labelField"];
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
 					style.marginBottom = presentationModel.separatorThickness;

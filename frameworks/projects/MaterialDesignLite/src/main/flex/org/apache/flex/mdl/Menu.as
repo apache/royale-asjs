@@ -18,10 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IItemRenderer;
+    import org.apache.flex.core.IItemRendererParent;
+    import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.IParentIUIBase;
+    import org.apache.flex.core.ISelectionModel;
 
     COMPILE::JS
     {
+        import org.apache.flex.events.Event;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 	
@@ -33,7 +41,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Menu extends ContainerBase
+	public class Menu extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
         /**
          *  Constructor.
@@ -49,7 +57,68 @@ package org.apache.flex.mdl
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
-        
+
+        COMPILE::JS
+        private var materialMenu:Object;
+        /**
+         * default position for Menu in MDL is bottom/left (or no class selector specified)
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        private var currentMenuPosition:String = "";
+
+        public function get dataProvider():Object
+        {
+            return ISelectionModel(model).dataProvider;
+        }
+
+        public function set dataProvider(value:Object):void
+        {
+            ISelectionModel(model).dataProvider = value;
+        }
+
+        public function get labelField():String
+        {
+            return ISelectionModel(model).labelField;
+        }
+
+        public function set labelField(value:String):void
+        {
+            ISelectionModel(model).labelField = value;
+        }
+
+        public function getLayoutHost():ILayoutHost
+        {
+            return this;
+        }
+
+        public function get contentView():IParentIUIBase
+        {
+            return this;
+        }
+
+        public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+            var child:IItemRenderer = getElementAt(index) as IItemRenderer;
+            return child;
+        }
+
+        public function removeAllElements():void
+        {
+            while (numElements > 0) {
+                var child:IChild = getElementAt(0);
+                removeElement(child);
+            }
+        }
+
+        public function updateAllItemRenderers():void
+        {
+
+        }
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -59,16 +128,16 @@ package org.apache.flex.mdl
             typeNames = "mdl-menu mdl-js-menu";
 
             element = document.createElement('ul') as WrappedHTMLElement;
-            
+            element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
+
             positioner = element;
             element.flexjs_wrapper = this;
             
             return element;
         }
 
-        // default position for Menu in MDL is bottom/left (or no class selector specified)
-        private var currentPosClazz:String = "";
         private var _bottom:Boolean = true;
+
 		/**
 		 *  Position the menu relative to the associated button.
          *  Used in conjunction with "left"
@@ -87,20 +156,19 @@ package org.apache.flex.mdl
 		{
 			_bottom = value;
 
-            var newPosClazz:String;
+            var newMenuPosition:String;
 
-            if(currentPosClazz == "")
+            if(currentMenuPosition == "")
             {
-                currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className += currentPosClazz;                
+                currentMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                className += currentMenuPosition;
             } else
             {
-                newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
+                newMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                className = className.replace( "/(?:^|\s)" + currentMenuPosition + "(?!\S)/g" , newMenuPosition);
             }
 
-            currentPosClazz = newPosClazz;
-            
+            currentMenuPosition = newMenuPosition;
 		}
 
         private var _left:Boolean = true;
@@ -122,19 +190,19 @@ package org.apache.flex.mdl
 		{
 			_left = value;
 
-            var newPosClazz:String;
+            var newMenuPosition:String;
 
-            if(currentPosClazz == "")
+            if(currentMenuPosition == "")
             {
-                currentPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className += currentPosClazz;                
+                currentMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                className += currentMenuPosition;
             } else
             {
-                newPosClazz = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className = className.replace( "/(?:^|\s)" + currentPosClazz + "(?!\S)/g" , newPosClazz);
+                newMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+                className = className.replace( "/(?:^|\s)" + currentMenuPosition + "(?!\S)/g" , newMenuPosition);
             }
 
-            currentPosClazz = newPosClazz;
+            currentMenuPosition = newMenuPosition;
 		}
 
         private var _dataMdlFor:String;
@@ -181,7 +249,25 @@ package org.apache.flex.mdl
             {
                 element.classList.toggle("mdl-js-ripple-effect", _ripple);
             }
-        }     
+        }
 
-	}
+        public function show():void
+        {
+            COMPILE::JS
+            {
+                if (materialMenu)
+                {
+                    materialMenu.show();
+                }
+            }
+        }
+
+        COMPILE::JS
+        private function onElementMdlComponentUpgraded(event:Event):void
+        {
+            if (!event.currentTarget) return;
+
+            materialMenu = event.currentTarget.MaterialMenu;
+        }
+    }
 }

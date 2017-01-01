@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.mdl.itemRenderers
 {
-	import org.apache.flex.core.UIBase;
-    
+    import org.apache.flex.html.supportClasses.MXMLItemRenderer;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 	
     /**
-     *  The MenuItem class creates a MDL menu item
+     *  The MenuItemRenderer class creates a MDL menu item
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class MenuItem extends UIBase
+	public class MenuItemRenderer extends MXMLItemRenderer
 	{
         /**
          *  Constructor.
@@ -43,7 +43,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function MenuItem()
+		public function MenuItemRenderer()
 		{
 			super();
 
@@ -86,6 +86,39 @@ package org.apache.flex.mdl
 
         COMPILE::JS
         private var textNode:Text;
+
+        /**
+         *  Sets the data value and uses the String version of the data for display.
+         *
+         *  @param Object data The object being displayed by the itemRenderer instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        override public function set data(value:Object):void
+        {
+            super.data = value;
+
+            var text:String;
+            if (labelField || dataField)
+            {
+                text = String(value[labelField]);
+            }
+            else
+            {
+                text = String(value);
+            }
+
+            COMPILE::JS
+            {
+                if(textNode != null)
+                {
+                    textNode.nodeValue = text;
+                }
+            }
+        }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

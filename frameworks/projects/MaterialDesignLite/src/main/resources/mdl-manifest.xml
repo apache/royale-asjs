@@ -36,7 +36,7 @@
     <component id="SliderMouseController" class="org.apache.flex.mdl.beads.controllers.SliderMouseController"/>
     <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>
     <component id="Menu" class="org.apache.flex.mdl.Menu"/>
-    <component id="MenuItem" class="org.apache.flex.mdl.MenuItem"/>
+    <component id="MenuItemRenderer" class="org.apache.flex.mdl.itemRenderers.MenuItemRenderer"/>
     <component id="Card" class="org.apache.flex.mdl.Card"/>
     <component id="CardInner" class="org.apache.flex.mdl.supportClasses.CardInner"/>
     <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>

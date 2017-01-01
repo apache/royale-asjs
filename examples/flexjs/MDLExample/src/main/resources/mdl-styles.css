@@ -73,10 +73,15 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.AvatarAndActionThreeLineListItemRenderer");
 }
 
-/*.customListItemRenderer
+.menuItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomMenuItemRenderer");
+}
+
+.customListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
-}*/
+}
 
 .layoutTransparent {
   background: url('assets/transparent.jpg') center / cover;

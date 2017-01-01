@@ -21,8 +21,12 @@ limitations under the License.
                       xmlns:js="library://ns.apache.org/flexjs/basic"
                       xmlns:local="*"
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                      xmlns="http://www.w3.org/1999/xhtml"
+                      xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
                       fixedHeader="true">
+    <mdl:model>
+        <models:MenuModel id="menuModel"/>
+    </mdl:model>
+
     <mdl:Header>
         <mdl:HeaderRow>
             <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
@@ -120,16 +124,14 @@ limitations under the License.
                 </mdl:materialIcon>
             </mdl:Button>
             
-            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
-                <mdl:MenuItem text="Some Action"/>
-                <mdl:MenuItem text="Another Action"/>
-                <mdl:MenuItem text="Action Disabled">
-                    <mdl:beads>
-                        <mdl:Disabled/>
-                    </mdl:beads>
-                </mdl:MenuItem>
-                <mdl:MenuItem text="More Action" divider="true"/>
-                <mdl:MenuItem text="Separated Action"/>
+            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false"
+                      labelField="label">
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="menuModel"
+                            sourcePropertyName="menuItems"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
             </mdl:Menu>
             
         </mdl:TabBarPanel>
