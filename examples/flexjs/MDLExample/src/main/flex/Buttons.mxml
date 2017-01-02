@@ -24,10 +24,10 @@ limitations under the License.
     <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
     <mdl:Grid width="100">
         
-        <mdl:Button className="mdlbtn" style="display:block;"/>
+        <mdl:Button className="mdlbtn"/>
         
         <!-- Fab button -->
-        <mdl:Button id="mybtn" fab="true" colored="true" style="display:block;">
+        <mdl:Button id="mybtn" fab="true" colored="true">
             <mdl:beads>
                 <mdl:Tooltip text="A simple tooltip"/>
             </mdl:beads>
@@ -35,16 +35,22 @@ limitations under the License.
                 <mdl:MaterialIconAdd/>
             </mdl:materialIcon>
         </mdl:Button>
+
+        <mdl:Button fab="true" colored="true">
+            <mdl:materialIcon>
+                <mdl:MaterialIconKeyboardArrowDown/>
+            </mdl:materialIcon>
+        </mdl:Button>
         
         <!-- Fab with Ripple -->
-        <mdl:Button fab="true" ripple="true" style="display:block;">
+        <mdl:Button fab="true" ripple="true">
             <mdl:materialIcon>
                 <mdl:MaterialIconFace size="48"/>
             </mdl:materialIcon>
         </mdl:Button>
         
         <!-- Raised button -->
-        <mdl:Button text="COLORED" raised="true" colored="true" style="display:block;"/>
+        <mdl:Button text="COLORED" raised="true" colored="true"/>
         
         <!-- Raised button with ripple -->
         <mdl:Button text="ACCENT" raised="true" ripple="true" accent="true"/>
