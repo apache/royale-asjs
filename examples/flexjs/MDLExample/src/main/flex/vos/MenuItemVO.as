@@ -22,10 +22,12 @@ package vos
     {
         private var _label:String;
         private var _disabled:Boolean;
+        private var _hasDivider:Boolean;
 
-        public function MenuItemVO(label:String, disabled:Boolean = false)
+        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = false)
         {
            this.label = label;
+           this.hasDivider = hasDivider;
            this.disabled = disabled;
         }
 
@@ -47,6 +49,16 @@ package vos
         public function set disabled(value:Boolean):void
         {
             _disabled = value;
+        }
+
+        public function get hasDivider():Boolean
+        {
+            return _hasDivider;
+        }
+
+        public function set hasDivider(value:Boolean):void
+        {
+            _hasDivider = value;
         }
     }
 }

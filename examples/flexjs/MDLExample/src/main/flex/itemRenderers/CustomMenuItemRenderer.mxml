@@ -18,10 +18,11 @@ limitations under the License.
 
 -->
 <mdl:MenuItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                      xmlns:mdl="library://ns.apache.org/flexjs/mdl">
-    <!--<mdl:beads>
+                      xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                      divider="{menuItem.hasDivider}">
+    <mdl:beads>
         <mdl:Disabled disabled="{menuItem.disabled}"/>
-    </mdl:beads> -->
+    </mdl:beads>
     <fx:Script><![CDATA[
         import vos.MenuItemVO;
 
