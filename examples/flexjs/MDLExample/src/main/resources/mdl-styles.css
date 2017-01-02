@@ -73,7 +73,7 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.AvatarAndActionThreeLineListItemRenderer");
 }
 
-.menuItemRenderer
+.customMenuItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomMenuItemRenderer");
 }

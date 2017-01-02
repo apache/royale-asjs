@@ -64,7 +64,7 @@ limitations under the License.
             <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
             <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
             <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
-            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
+             <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
         </mdl:Navigation>
     </mdl:Drawer>
     
@@ -125,7 +125,7 @@ limitations under the License.
             </mdl:Button>
             
             <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false"
-                      labelField="label">
+                      labelField="label" className="customMenuItemRenderer">
                 <mdl:beads>
                     <js:ConstantBinding
                             sourceID="menuModel"
