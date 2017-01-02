@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package vos
 {
+    [Bindable]
     public class MenuItemVO
     {
         private var _label:String;
