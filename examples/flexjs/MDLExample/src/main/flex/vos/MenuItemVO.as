@@ -22,13 +22,11 @@ package vos
     {
         private var _label:String;
         private var _disabled:Boolean;
-        private var _hasSubMenu:Boolean;
 
-        public function MenuItemVO(label:String, disabled:Boolean = false, hasSubMenu:Boolean = false)
+        public function MenuItemVO(label:String, disabled:Boolean = false)
         {
            this.label = label;
            this.disabled = disabled;
-           this.hasSubMenu = hasSubMenu;
         }
 
         public function get label():String
@@ -49,16 +47,6 @@ package vos
         public function set disabled(value:Boolean):void
         {
             _disabled = value;
-        }
-
-        public function get hasSubMenu():Boolean
-        {
-            return _hasSubMenu;
-        }
-
-        public function set hasSubMenu(value:Boolean):void
-        {
-            _hasSubMenu = value;
         }
     }
 }

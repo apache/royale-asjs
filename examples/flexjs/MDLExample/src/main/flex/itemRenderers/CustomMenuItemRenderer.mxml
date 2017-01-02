@@ -18,17 +18,11 @@ limitations under the License.
 
 -->
 <mdl:MenuItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                      xmlns:mdl="library://ns.apache.org/flexjs/mdl" xmlns:models="models.*"
-                      xmlns:js="library://ns.apache.org/flexjs/basic" rollOver="onMenuItemRollOver(event)">
-    <mdl:model>
-        <models:MenuModel id="subMenuModel"/>
-    </mdl:model>
-    <mdl:beads>
+                      xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+    <!--<mdl:beads>
         <mdl:Disabled disabled="{menuItem.disabled}"/>
-    </mdl:beads>
+    </mdl:beads> -->
     <fx:Script><![CDATA[
-        import org.apache.flex.events.MouseEvent;
-
         import vos.MenuItemVO;
 
         [Bindable("dataChange")]
@@ -37,30 +31,5 @@ limitations under the License.
             return data as MenuItemVO;
         }
 
-        override public function set data(value:Object):void
-        {
-            super.data = value;
-
-            if (value && value.hasSubMenu)
-            {
-                id = "subMenu";
-            }
-        }
-
-        private function onMenuItemRollOver(event:MouseEvent):void
-        {
-            if (menuItem.hasSubMenu)
-            {
-                subMenu.show();
-            }
-        }
         ]]></fx:Script>
-     <mdl:Menu id="subMenu" dataMdlFor="subMenu" left="true" labelField="label">
-         <mdl:beads>
-             <js:ConstantBinding
-                     sourceID="subMenuModel"
-                     sourcePropertyName="subMenuItems"
-                     destinationPropertyName="dataProvider" />
-         </mdl:beads>
-     </mdl:Menu>
 </mdl:MenuItemRenderer>

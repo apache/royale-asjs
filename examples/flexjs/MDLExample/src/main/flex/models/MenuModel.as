@@ -28,23 +28,12 @@ package models
         private var _menuItems:Array = [
             new MenuItemVO("Some Action"),
             new MenuItemVO("Another Action"),
-            new MenuItemVO("More Action", false, true)
+            new MenuItemVO("More Action", false)
         ];
-        
-        private var _subMenuItems:Array = [
-            new MenuItemVO("Sub Menu Action"),
-            new MenuItemVO("Sub Menu Action"),
-            new MenuItemVO("Sub Menu Action")
-        ]
 
         public function get menuItems():Array
         {
             return _menuItems;
-        }
-
-        public function get subMenuItems():Array
-        {
-            return _subMenuItems;
         }
     }
 }

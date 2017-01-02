@@ -29,7 +29,6 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-        import org.apache.flex.events.Event;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
 	
@@ -58,8 +57,6 @@ package org.apache.flex.mdl
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
 
-        COMPILE::JS
-        private var materialMenu:Object;
         /**
          * default position for Menu in MDL is bottom/left (or no class selector specified)
          *
@@ -128,7 +125,6 @@ package org.apache.flex.mdl
             typeNames = "mdl-menu mdl-js-menu";
 
             element = document.createElement('ul') as WrappedHTMLElement;
-            element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 
             positioner = element;
             element.flexjs_wrapper = this;
@@ -249,25 +245,6 @@ package org.apache.flex.mdl
             {
                 element.classList.toggle("mdl-js-ripple-effect", _ripple);
             }
-        }
-
-        public function show():void
-        {
-            COMPILE::JS
-            {
-                if (materialMenu)
-                {
-                    materialMenu.show();
-                }
-            }
-        }
-
-        COMPILE::JS
-        private function onElementMdlComponentUpgraded(event:Event):void
-        {
-            if (!event.currentTarget) return;
-
-            materialMenu = event.currentTarget.MaterialMenu;
         }
     }
 }
