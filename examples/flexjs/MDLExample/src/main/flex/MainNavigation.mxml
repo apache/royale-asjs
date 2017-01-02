@@ -23,10 +23,6 @@ limitations under the License.
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                       xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
                       fixedHeader="true">
-    <mdl:model>
-        <models:MenuModel id="menuModel"/>
-    </mdl:model>
-
     <mdl:Header>
         <mdl:HeaderRow>
             <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
@@ -50,6 +46,7 @@ limitations under the License.
             <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
             <mdl:TabBarButton text="Lists" href="#lists_panel"/>
             <mdl:TabBarButton text="Loading" href="#loading_panel"/>
+            <mdl:TabBarButton text="Menu" href="#menus_panel"/>
             <mdl:TabBarButton text="Other" href="#others_panel"/>
         </mdl:TabBar>
     </mdl:Header>
@@ -92,6 +89,8 @@ limitations under the License.
 
         <local:Loading id="loading_panel"/>
 
+        <local:Menus id="menus_panel"/>
+
         <mdl:TabBarPanel id="others_panel">
             
             <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
@@ -117,23 +116,6 @@ limitations under the License.
                     <mdl:Badge dataBadge="1"/>
                 </js:beads>
             </js:A>
-
-            <mdl:Button id="menu_btn" icon="true">
-                <mdl:materialIcon>
-                    <mdl:MaterialIconMoreVert/>
-                </mdl:materialIcon>
-            </mdl:Button>
-            
-            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false"
-                      labelField="label" className="customMenuItemRenderer">
-                <mdl:beads>
-                    <js:ConstantBinding
-                            sourceID="menuModel"
-                            sourcePropertyName="menuItems"
-                            destinationPropertyName="dataProvider" />
-                </mdl:beads>
-            </mdl:Menu>
-            
         </mdl:TabBarPanel>
         
     </mdl:NavigationLayoutContent>
