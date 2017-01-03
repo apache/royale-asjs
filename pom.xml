@@ -184,6 +184,8 @@
             <exclude>native/**</exclude>
             <!-- After running the testsuite, the target directory is full of non-header files -->
             <exclude>testsuite/**</exclude>
+			<!-- Ignore IntelliJ IDEA project files -->
+			<exclude>**/*.iml</exclude>
           </excludes>
         </configuration>
         <dependencies>
