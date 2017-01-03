@@ -21,18 +21,18 @@ package vos
     [Bindable]
     public class MenuItemVO
     {
-        private var _label:String;
-        private var _disabled:Boolean;
-        private var _hasDivider:Boolean;
+        public var label:String;
+        public var disabled:Boolean;
+        public var hasDivider:Boolean;
 
-        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = false)
+        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = true)
         {
            this.label = label;
            this.hasDivider = hasDivider;
            this.disabled = disabled;
         }
 
-        public function get label():String
+      /*  public function get label():String
         {
             return _label;
         }
@@ -60,6 +60,6 @@ package vos
         public function set hasDivider(value:Boolean):void
         {
             _hasDivider = value;
-        }
+        }   */
     }
 }
