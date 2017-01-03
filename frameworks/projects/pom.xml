@@ -42,6 +42,7 @@
     <module>Effects</module>
     <module>Flat</module>
     <module>Formatters</module>
+	<module>FontAwesome</module>
     <module>GoogleMaps</module>
     <module>Graphics</module>
     <module>Basic</module>
