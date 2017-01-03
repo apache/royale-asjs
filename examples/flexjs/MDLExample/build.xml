@@ -27,7 +27,7 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css" />
+    <property name="opt1_arg" value="-compiler.exclude-defaults-css-files=HTML.swc:defaults.css" />
     <property name="opt2_arg" value="-html-template=${basedir}/src/main/resources/mdl-js-index-template.html" />
 
     <include file="${basedir}/../../build_example.xml" />
