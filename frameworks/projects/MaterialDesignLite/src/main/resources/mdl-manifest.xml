@@ -55,7 +55,6 @@
     <component id="ListItemSubTitle" class="org.apache.flex.mdl.beads.ListItemSubTitle"/>
     <component id="ListItemSecondaryInfo" class="org.apache.flex.mdl.beads.ListItemSecondaryInfo"/>
     <component id="ListItemTextBody" class="org.apache.flex.mdl.beads.ListItemTextBody"/>
-    <component id="ItemRendererFactoryForArrayData" class="org.apache.flex.mdl.supportClasses.ItemRendererFactoryForArrayData"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
