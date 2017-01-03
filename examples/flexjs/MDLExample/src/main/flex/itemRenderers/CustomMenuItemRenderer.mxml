@@ -19,8 +19,7 @@ limitations under the License.
 -->
 <mdl:MenuItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                      xmlns:binding="org.apache.flex.binding.*"
-                      divider="{menuItem.hasDivider}">
+                      xmlns:binding="org.apache.flex.binding.*">
     <mdl:beads>
         <binding:ItemRendererDataBinding />
         <mdl:Disabled disabled="{menuItem.disabled}"/>
@@ -28,7 +27,7 @@ limitations under the License.
     <fx:Script><![CDATA[
         import vos.MenuItemVO;
 
-        [Bindable("__NoChangeEvent__")]
+        [Bindable("dataChange")]
         public function get menuItem():MenuItemVO
         {
             return data as MenuItemVO;

@@ -28,7 +28,8 @@ package models
         private var _menuItems:Array = [
             new MenuItemVO("Some Action"),
             new MenuItemVO("Another Action", true),
-            new MenuItemVO("More Action", false, false)
+            new MenuItemVO("More Action"),
+            new MenuItemVO("Item Disabled", false, true)
         ];
 
         public function get menuItems():Array

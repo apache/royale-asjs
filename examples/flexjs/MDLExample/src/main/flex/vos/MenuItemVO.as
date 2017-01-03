@@ -18,48 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package vos
 {
-    [Bindable]
     public class MenuItemVO
     {
+        [Bindable]
         public var label:String;
+        [Bindable]
         public var disabled:Boolean;
+        [Bindable]
         public var hasDivider:Boolean;
 
-        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = true)
+        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = false)
         {
            this.label = label;
            this.hasDivider = hasDivider;
            this.disabled = disabled;
         }
-
-      /*  public function get label():String
-        {
-            return _label;
-        }
-
-        public function set label(value:String):void
-        {
-            _label = value;
-        }
-
-        public function get disabled():Boolean
-        {
-            return _disabled;
-        }
-
-        public function set disabled(value:Boolean):void
-        {
-            _disabled = value;
-        }
-
-        public function get hasDivider():Boolean
-        {
-            return _hasDivider;
-        }
-
-        public function set hasDivider(value:Boolean):void
-        {
-            _hasDivider = value;
-        }   */
     }
 }
