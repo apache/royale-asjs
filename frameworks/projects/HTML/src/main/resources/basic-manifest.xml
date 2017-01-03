@@ -31,6 +31,7 @@
     <component id="Image" class="org.apache.flex.html.Image"/>
     <component id="BinaryImage" class="org.apache.flex.html.BinaryImage"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
+	<component id="HTMLText" class="org.apache.flex.html.HTMLText"/>
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"/>
     <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"/>
     <component id="TextButton" class="org.apache.flex.html.TextButton"/>
