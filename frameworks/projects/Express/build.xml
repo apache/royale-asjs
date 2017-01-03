@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="Express" default="main" basedir=".">
+    <property name="FLEXJS_HOME" location="../../.."/>
+    
+    <property file="${FLEXJS_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${FLEXJS_HOME}/build.properties"/>
+    <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    
+    <property name="target.name" value="${ant.project.name}.swc" />
+    
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
+    </target>
+    
+    <target name="compile-js">
+        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
+    </target>
+    
+    <target name="copy-swc">
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
+    </target>
+    
+    <target name="check-for-tests" >
+        <condition property="skip-tests" >
+            <not>
+                <available file="${basedir}/src/test/flex/build.xml" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="test" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/flex" />
+    </target>
+    
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/libs">
+                <include name="${target.name}"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${basedir}/target">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+        <antcall target="clean-tests" />
+    </target>
+    
+    <target name="clean-tests" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/flex" target="clean"/>
+    </target>
+    
+    <target name="compile" description="Compiles .as files into .swc">
+        <echo message="Compiling libs/${ant.project.name}.swc"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        
+        <compc fork="true"
+            output="${basedir}/target/${target.name}">
+            <jvmarg line="${compc.jvm.args}"/>
+            <load-config filename="${basedir}/src/main/config/compile-as-config.xml" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
+        </compc>
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
+    </target>
+    
+    <target name="check-compiler" depends="check-falcon-home">
+        <path id="lib.path">
+            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+        </path>
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+    </target>
+    
+    <target name="check-falcon-home" unless="FALCON_HOME"
+        description="Check FALCON_HOME is a directory.">
+        
+        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+        
+        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
+        type="file"
+        property="FALCON_HOME"
+        value="${env.FALCON_HOME}"/>
+        
+        <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
+        type="file"
+        property="FALCON_HOME"
+        value="${FLEXJS_HOME}/../flex-falcon/compiler"/>
+        
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a FlexJS SDK folder"
+        unless="FALCON_HOME"/>
+    </target>
+    
+</project>
