@@ -32,6 +32,7 @@ package org.apache.flex.mdl.beads.controllers
     COMPILE::JS
     {
 		import goog.events;
+        import goog.events.EventType;
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.mdl.Slider;
     }
@@ -96,8 +97,8 @@ package org.apache.flex.mdl.beads.controllers
                 //goog.events.listen(track.element, goog.events.EventType.CLICK, handleTrackClick, false, this);
                 //goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN, handleThumbDown, false, this);
 
-                goog.events.listen(UIBase(_strand).element, "change", handleChange, false, this);
-                goog.events.listen(UIBase(_strand).element, "input", handleInput, false, this);
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
             }
 		}
 
@@ -110,7 +111,7 @@ package org.apache.flex.mdl.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-            host.dispatchEvent(new org.apache.flex.events.Event('change'));
+            //host.dispatchEvent(new org.apache.flex.events.Event('change')); --- This is not needed, the event is thrown in the main comp
         }
 
         /**
