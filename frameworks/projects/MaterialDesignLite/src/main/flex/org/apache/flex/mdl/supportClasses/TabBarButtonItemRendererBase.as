@@ -34,9 +34,6 @@ package org.apache.flex.mdl.supportClasses
             className = "";
         }
 
-        COMPILE::JS
-        private var textNode:Text;
-
         private var _tabIdField:String;
         private var _isActive:Boolean;
         
@@ -88,7 +85,7 @@ package org.apache.flex.mdl.supportClasses
 
                 if (labelField)
                 {
-                    textNode.nodeValue = String(value[labelField]);
+                    element.text = String(value[labelField]);
                 }
             }
         }
@@ -101,9 +98,6 @@ package org.apache.flex.mdl.supportClasses
         {
             var a:HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
             element = a as WrappedHTMLElement;
-
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode);
 
             positioner = element;
             element.flexjs_wrapper = this;
