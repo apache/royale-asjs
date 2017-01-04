@@ -26,6 +26,8 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
+        import org.apache.flex.fa.FontAwesomeIconType;
+
         import vos.MemberVO;
 
         [Bindable("dataChange")]
@@ -74,6 +76,9 @@ limitations under the License.
                     <js:I className="fa fa-github" />
                 </mdl:materialIcon>
             </mdl:Button>
+            <fa:FontAwesomeIcon iconType="fa-apple" />
+            <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.APPLE}" />
+            <Font
         </mdl:CardActions>
     </mdl:Card>
 
