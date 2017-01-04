@@ -21,12 +21,6 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.html.Div;
-
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
 
 	/**
 	 *  The Tooltip class represents

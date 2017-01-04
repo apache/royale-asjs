@@ -27,7 +27,9 @@ package
 	*/
 	internal class MDLClasses
 	{	
-		
+		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
+		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
+
 		COMPILE::SWF
 		{
 			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;

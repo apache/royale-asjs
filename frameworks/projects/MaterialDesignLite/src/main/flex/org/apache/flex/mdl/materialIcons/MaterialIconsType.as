@@ -28,5 +28,7 @@ package org.apache.flex.mdl.materialIcons
         public static const EVENT:String = "event";
         public static const FACE:String = "face";
         public static const MORE_VERT:String = "more_vert";
+        public static const SEARCH:String = "search";
+        public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
     }
 }

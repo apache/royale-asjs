@@ -123,7 +123,7 @@ package org.apache.flex.mdl
         {
 			_selectable = value;
 
-			className += (_selectable ? " mdl-data-table--selectable" : "");  
+			element.classList.toggle("mdl-data-table--selectable", _selectable);
         }
 	}
 }

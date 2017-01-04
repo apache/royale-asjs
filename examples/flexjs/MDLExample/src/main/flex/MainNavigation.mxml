@@ -21,7 +21,7 @@ limitations under the License.
                       xmlns:js="library://ns.apache.org/flexjs/basic"
                       xmlns:local="*"
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                      xmlns="http://www.w3.org/1999/xhtml"
+                      xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
                       fixedHeader="true">
     <mdl:Header>
         <mdl:HeaderRow>
@@ -37,6 +37,7 @@ limitations under the License.
         <mdl:TabBar ripple="true">
             <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
             <mdl:TabBarButton text="Chips" href="#chips_panel"/>
+            <mdl:TabBarButton text="Sliders" href="#sliders_panel"/>
             <mdl:TabBarButton text="Grids" href="#grids_panel"/>
             <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
             <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
@@ -45,6 +46,7 @@ limitations under the License.
             <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
             <mdl:TabBarButton text="Lists" href="#lists_panel"/>
             <mdl:TabBarButton text="Loading" href="#loading_panel"/>
+            <mdl:TabBarButton text="Menu" href="#menus_panel"/>
             <mdl:TabBarButton text="Other" href="#others_panel"/>
         </mdl:TabBar>
     </mdl:Header>
@@ -59,7 +61,7 @@ limitations under the License.
             <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
             <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
             <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
-            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
+             <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
         </mdl:Navigation>
     </mdl:Drawer>
     
@@ -68,6 +70,8 @@ limitations under the License.
         <local:Cards id="cards_panel" isActive="true"/>
 
         <local:Chips id="chips_panel" />
+
+        <local:Sliders id="sliders_panel" />
         
         <local:Grids id="grids_panel"/>
 
@@ -84,6 +88,8 @@ limitations under the License.
         <local:Lists id="lists_panel"/>
 
         <local:Loading id="loading_panel"/>
+
+        <local:Menus id="menus_panel"/>
 
         <mdl:TabBarPanel id="others_panel">
             
@@ -110,27 +116,15 @@ limitations under the License.
                     <mdl:Badge dataBadge="1"/>
                 </js:beads>
             </js:A>
-
-            <mdl:Button id="menu_btn" icon="true">
-                <mdl:materialIcon>
-                    <mdl:MaterialIconMoreVert/>
-                </mdl:materialIcon>
-            </mdl:Button>
-            <mdl:Menu dataMdlFor="menu_btn" ripple="true" bottom="true" left="false">
-                <mdl:MenuItem text="Some Action"/>
-                <mdl:MenuItem text="Another Action"/>
-                <mdl:MenuItem text="Action Disabled">
-                    <js:beads>
-                        <mdl:Disabled/>
-                    </js:beads>
-                </mdl:MenuItem>
-                <mdl:MenuItem text="More Action" divider="true"/>
-                <mdl:MenuItem text="Separated Action"/>
-            </mdl:Menu>
-            
-            <mdl:Slider className="mdlsl_example"/>
-            <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200"/>
         </mdl:TabBarPanel>
         
     </mdl:NavigationLayoutContent>
+
+    <mdl:Footer mini="true">
+        <mdl:FooterLeftSection>
+        </mdl:FooterLeftSection>
+
+        <mdl:FooterRightSection>
+        </mdl:FooterRightSection>
+    </mdl:Footer>
 </mdl:NavigationLayout>

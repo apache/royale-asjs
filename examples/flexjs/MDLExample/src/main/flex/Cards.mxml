@@ -21,17 +21,7 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
-    
-    <fx:Script>
-    <![CDATA[
-        private function onValueChange(event:Event):void
-        {
-            trace("value change:", slider.value);
-            mycard.shadow = slider.value
-        }
-    ]]>
-</fx:Script>
-
+                 
     <mdl:Grid className="center-items">
         
             <mdl:Card id="mycard" className="demo-card-wide" shadow="2">
@@ -39,16 +29,15 @@ limitations under the License.
                     <mdl:CardTitleText text="Welcome"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <js:beads>
+                    <mdl:beads>
                         <js:InnerHTML>
                             <![CDATA[Lorem ipsum dolor sit <b>amet</b>, consectetur <i>adipiscing elit</i>. Mauris sagittis pellentesque lacus eleifend lacinia...]]>
                         </js:InnerHTML>
-                    </js:beads>
+                    </mdl:beads>
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button text="Get Started" ripple="true" colored="true"/>
-                    <mdl:Slider id="slider" minimum="0" maximum="16" value="2" stepSize="1" width="200"
-                                valueChange="onValueChange(event)"/>
+                    
                 </mdl:CardActions>
                 <mdl:CardMenu>
                     <mdl:Button icon="true" ripple="true">
@@ -81,11 +70,11 @@ limitations under the License.
             <mdl:Card className="demo-card-event" shadow="2">
                 <mdl:CardTitle expand="true">
                     <mdl:CardTitleText>
-                        <js:beads>
+                        <mdl:beads>
                             <js:InnerHTML>
                                 <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
-                        </js:beads>
+                        </mdl:beads>
                     </mdl:CardTitleText>
                 </mdl:CardTitle>
                 <mdl:CardActions border="true">

@@ -42,36 +42,36 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <js:beads>
+    <mdl:beads>
         <js:ItemRendererDataBinding />
-    </js:beads>
+    </mdl:beads>
     
     <js:Span>
-        <mdl:beads>
+        <js:beads>
             <mdl:ListItemPrimaryContent/>
             <mdl:MaterialIconPerson listItemAvatar="true"/>
-        </mdl:beads>
+        </js:beads>
         <js:Span text="{actor.actorName}"/>
         <js:Span text="{actor.episodes}">
-            <mdl:beads>
+            <js:beads>
                 <mdl:ListItemSubTitle/>
-            </mdl:beads>
+            </js:beads>
         </js:Span>    
     </js:Span>
 
     <js:Span>
-        <mdl:beads>
+        <js:beads>
             <mdl:ListItemSecondaryContent/>
-        </mdl:beads>
+        </js:beads>
         <js:Span id="ir" visible="false" text="Actor">
-            <mdl:beads>
+            <js:beads>
                 <mdl:ListItemSecondaryInfo/>
-            </mdl:beads>
+            </js:beads>
         </js:Span> 
         <js:A href="#">        
-            <mdl:beads>
+            <js:beads>
                 <mdl:ListItemSecondaryAction/>
-            </mdl:beads>
+            </js:beads>
             <mdl:MaterialIconStar/>
         </js:A>
     </js:Span>

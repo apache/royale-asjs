@@ -43,7 +43,7 @@ package org.apache.flex.mdl.beads
 		public function Disabled()
 		{
 		}
-		
+
 		private var _disabled:Boolean = true;
         /**
 		 *  A boolean flag to enable or disable the host control.
@@ -59,7 +59,12 @@ package org.apache.flex.mdl.beads
         }
         public function set disabled(value:Boolean):void
         {
-            _disabled = value; 
+            _disabled = value;
+
+			COMPILE::JS
+            {
+                updateHost();
+            }
         }
 
 		private var _strand:IStrand;
@@ -80,8 +85,7 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
-				host.element.setAttribute('disabled', '');
+				updateHost();
 				/*var host:UIBase = value as UIBase;
                 if (host.element is HTMLInputElement)
                 {
@@ -95,6 +99,19 @@ package org.apache.flex.mdl.beads
                  //   throw new Error("Host element component in not type input");
                 //}
 			}
+		}
+
+		COMPILE::JS
+		private function updateHost():void
+		{
+			var host:UIBase = _strand as UIBase;
+
+			if (host)
+            {
+                _disabled ?
+				host.element.setAttribute('disabled', '') :
+				host.element.removeAttribute('disabled');
+            }
 		}
 	}
 }

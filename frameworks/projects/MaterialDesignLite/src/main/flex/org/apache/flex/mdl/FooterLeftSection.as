@@ -26,15 +26,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The THead class is a Container component capable of parenting
-	 *  TH Table Header Cells
+	 *  The FooterLeftSection class is a Container component capable of parenting other
+	 *  components 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TBody extends ContainerBase
+	public class FooterLeftSection extends ContainerBase
 	{
 		/**
 		 *  constructor.
@@ -44,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function THead()
+		public function FooterLeftSection()
 		{
 			super();
 
@@ -57,10 +57,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "";
+			typeNames = "mdl-mega-footer__left-section";
 
-            element = document.createElement('thead') as WrappedHTMLElement;
-            element.className = typeNames;
+            element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
             
@@ -73,26 +72,36 @@ package org.apache.flex.mdl
             return element;
         }
 
-		protected var _ascending:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-data-table__header--sorted-ascending" effect selector.
-		 *  Applies all/individual selectable behavior (checkboxes)
-		 *  Optional; goes on table element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get ascending():Boolean
+		/**
+         *  Configuration depends on parent Footer.
+		 *  Check to see if is mega or mini.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+        */ 
+		COMPILE::JS
+		override public function addedToParent():void
         {
-            return _ascending;
-        }
-        public function set selectable(value:Boolean):void
-        {
-			_ascending = value;
+			super.addedToParent();
 
-			className += (_ascending ? " mdl-data-table__header--sorted-ascending" : "mdl-data-table__header--sorted-descending");  
+			if(parent is Footer)
+			{
+				element.classList.remove(typeNames);
+				if(!Footer(parent).mini)
+				{
+					typeNames = "mdl-mega-footer__left-section";
+				} else
+				{
+					typeNames = "mdl-mini-footer__left-section";
+				}
+				element.classList.add(typeNames);
+			}
+			else
+			{
+				throw new Error("FooterLeftSection can not be used if parent is not a MDL Footer component.");
+			}			
         }
 	}
 }

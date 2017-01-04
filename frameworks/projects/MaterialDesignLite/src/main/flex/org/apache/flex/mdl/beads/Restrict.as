@@ -20,8 +20,9 @@ package org.apache.flex.mdl.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 
-    import org.apache.flex.mdl.TextField;
+    import org.apache.flex.mdl.supportClasses.ITextField;
 	
 	/**
 	 *  The Restrict bead class is a specialty bead that can be used with
@@ -113,7 +114,7 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				var mdlTi:TextField = value as TextField;
+				var mdlTi:ITextField = value as ITextField;
                 mdlTi.input.setAttribute('pattern', pattern);
 
                 var span:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
@@ -122,7 +123,7 @@ package org.apache.flex.mdl.beads
                 var spanTextNode:Text = document.createTextNode(error) as Text;
                 span.appendChild(spanTextNode);
 
-                mdlTi.positioner.appendChild(span);
+				UIBase(mdlTi).positioner.appendChild(span);
 			}
 		}
 	}

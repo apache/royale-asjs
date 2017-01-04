@@ -28,15 +28,13 @@ package org.apache.flex.mdl.beads.controllers
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.beads.ISliderView;
-	import org.apache.flex.mdl.beads.SliderTrackView;
 
     COMPILE::JS
     {
-        import goog.events;
+		import goog.events;
         import goog.events.EventType;
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.mdl.Slider;
-        import org.apache.flex.mdl.beads.SliderThumbView;
     }
 	
 	/**
@@ -94,24 +92,45 @@ package org.apache.flex.mdl.beads.controllers
             COMPILE::JS
             {
 				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
-				track = sliderView.track as UIBase;
-				thumb = sliderView.thumb as UIBase;
-                
-                goog.events.listen(track.element, goog.events.EventType.CLICK,
-                    handleTrackClick, false, this);
-                
-                goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN,
-                    handleThumbDown, false, this);
+				//track = sliderView.track as UIBase;
+				//thumb = sliderView.thumb as UIBase;
+                //goog.events.listen(track.element, goog.events.EventType.CLICK, handleTrackClick, false, this);
+                //goog.events.listen(thumb.element, goog.events.EventType.MOUSEDOWN, handleThumbDown, false, this);
 
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.CHANGE, handleChange, false, this);
+                goog.events.listen(UIBase(_strand).element, goog.events.EventType.INPUT, handleInput, false, this);
             }
 		}
+
+        /**
+         */
+        COMPILE::JS
+        private function handleChange(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+
+            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+            //host.dispatchEvent(new org.apache.flex.events.Event('change')); --- This is not needed, the event is thrown in the main comp
+        }
+
+        /**
+         */
+        COMPILE::JS
+        private function handleInput(event:BrowserEvent):void
+        {
+            var host:Slider = _strand as Slider;
+
+            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
+
+            host.dispatchEvent(new org.apache.flex.events.Event('input'));
+        }
 		
-        COMPILE::JS
-        private var track:UIBase;
-        
-        COMPILE::JS
-        private var thumb:UIBase;
-        
+        COMPILE::SWF
+		private var origin:Point;
+        COMPILE::SWF
+		private var thumb:Point;
+
 		/**
 		 * @private
 		 */
@@ -138,11 +157,6 @@ package org.apache.flex.mdl.beads.controllers
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
-		
-        COMPILE::SWF
-		private var origin:Point;
-        COMPILE::SWF
-		private var thumb:Point;
 		
 		/**
 		 * @private
@@ -184,32 +198,41 @@ package org.apache.flex.mdl.beads.controllers
 		}
         
         /**
-         */
         COMPILE::JS
-        private function handleTrackClick(event:BrowserEvent):void
+        private var track:UIBase;
+        
+        COMPILE::JS
+        private var thumb:UIBase;
+        
+        COMPILE::JS
+        private var origin:Number;
+        
+        COMPILE::JS
+        private var position:int;
+
+        COMPILE::JS
+        private function handleTrackClickOLD(event:BrowserEvent):void
         {
+            trace("handleTrackClickOLD...");
             var host:Slider = _strand as Slider;
             var xloc:Number = event.clientX;
-            var p:Number = Math.min(1, xloc / parseInt(track.element.style.width, 10));
-            var n:Number = p * (host.maximum - host.minimum) +
-                host.minimum;
+            var p:Number = Math.min(1, xloc / parseInt(host.element.style.width, 10));
+            var n:Number = p * (host.maximum - host.minimum) + host.minimum;
             
             host.value = n;
             
-            origin = parseInt(thumb.element.style.left, 10);
-            position = parseInt(thumb.element.style.left, 10);
+            origin = parseInt(host.element.style.left, 10);
+            position = parseInt(host.element.style.left, 10);
             
             calcValFromMousePosition(event, true);
             
             host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
         }
-        
-        
-        /**
-         */
+
         COMPILE::JS
         private function handleThumbDown(event:BrowserEvent):void
         {
+            trace("handleThumbDown...");
             var host:Slider = _strand as Slider;
             goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
@@ -217,19 +240,13 @@ package org.apache.flex.mdl.beads.controllers
                 handleThumbMove, false, this);
             
             origin = event.clientX;
-            position = parseInt(thumb.element.style.left, 10);
+            position = parseInt(host.element.style.left, 10);
         }
-        
-        COMPILE::JS
-        private var origin:Number;
-        COMPILE::JS
-        private var position:int;
-        
-        /**
-         */
+         
         COMPILE::JS
         private function handleThumbUp(event:BrowserEvent):void
         {
+            trace("handleThumbUp...");
             var host:Slider = _strand as Slider;
             goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
@@ -240,45 +257,40 @@ package org.apache.flex.mdl.beads.controllers
             
             host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
         }
-        
-        
-        /**
-         */
+         
         COMPILE::JS
         private function handleThumbMove(event:BrowserEvent):void
         {
+            trace("handleThumbMove...");
             var host:Slider = _strand as Slider;
             calcValFromMousePosition(event, false);
             
             host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
         }
-        
-        
-        /**
-         */
+
         COMPILE::JS
         private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
         {
+            trace("calcValFromMousePosition...");
             var host:Slider = _strand as Slider;
             var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - origin;
-            var thumbW:int = parseInt(thumb.element.style.width, 10) / 2;
+            var thumbW:int = parseInt(host.element.style.width, 10) / 2;
             var newX:Number = position + deltaX;
             
-            var p:Number = newX / parseInt(track.element.style.width, 10);
+            var p:Number = newX / parseInt(host.element.style.width, 10);
             var n:Number = p * (host.maximum - host.minimum) +
                 host.minimum;
             n = host.snap(n);
             if (n < host.minimum) n = host.minimum;
             else if (n > host.maximum) n = host.maximum;
             
-            p = (n - host.minimum) / (host.maximum -
-                host.minimum);
-            newX = p * parseInt(track.element.style.width, 10);
+            p = (n - host.minimum) / (host.maximum - host.minimum);
+            newX = p * parseInt(host.element.style.width, 10);
             
-            thumb.element.style.left = String(newX -
-                parseInt(thumb.element.style.width, 10) / 2) + 'px';
+            //thumb.element.style.left = String(newX -
+              //  parseInt(thumb.element.style.width, 10) / 2) + 'px';
             
             host.value = n;
-        }
+        }*/
     }
 }

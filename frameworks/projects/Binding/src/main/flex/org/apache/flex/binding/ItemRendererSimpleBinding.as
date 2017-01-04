@@ -144,7 +144,14 @@ public class ItemRendererSimpleBinding implements IBead, IDocument
 
 	private function dataChangeHandler(event:Event):void
 	{
-		document[destinationID][destinationPropertyName] = document.data[sourcePropertyName];
+		if (destinationID == "this")
+		{
+			document[destinationPropertyName] = document.data[sourcePropertyName];
+		}
+		else
+        {
+            document[destinationID][destinationPropertyName] = document.data[sourcePropertyName];
+        }
 	}
 
 }

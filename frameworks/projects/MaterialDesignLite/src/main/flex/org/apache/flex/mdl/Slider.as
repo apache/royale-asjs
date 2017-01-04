@@ -24,11 +24,12 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-		import org.apache.flex.html.beads.controllers.SliderMouseController;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;        
     }
 
-	[Event(name="valueChange", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
+	[Event(name="input", type="org.apache.flex.events.Event")]
 	
 	/**
 	 *  The Slider class provides a MDL UI-like appearance for a slider.
@@ -60,6 +61,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 			
+			//default model values 
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
 			IRangeModel(model).maximum = 100;
@@ -82,11 +84,6 @@ package org.apache.flex.mdl
 		public function set value(newValue:Number):void
 		{
 			IRangeModel(model).value = newValue;
-
-			/*COMPILE::JS
-			{
-				(element as HTMLInputElement).value = IRangeModel(model).value.toString();
-			}*/
 		}
 		
 		/**
@@ -104,11 +101,6 @@ package org.apache.flex.mdl
 		public function set minimum(value:Number):void
 		{
 			IRangeModel(model).minimum = value;
-
-			/*COMPILE::JS
-			{
-				(element as HTMLInputElement).min = IRangeModel(model).minimum.toString();
-			}*/
 		}
 		
 		/**
@@ -126,11 +118,6 @@ package org.apache.flex.mdl
 		public function set maximum(value:Number):void
 		{
 			IRangeModel(model).maximum = value;
-
-			/*COMPILE::JS
-			{
-				(element as HTMLInputElement).max = IRangeModel(model).maximum.toString();
-			}*/
 		}
 		
 		/**
@@ -167,11 +154,6 @@ package org.apache.flex.mdl
         public function set stepSize(value:Number):void
         {
             IRangeModel(model).stepSize = value;
-
-			/*COMPILE::JS
-			{
-				(element as HTMLInputElement).step = IRangeModel(model).stepSize.toString();
-			}*/
         }
         
 		COMPILE::JS
@@ -192,23 +174,17 @@ package org.apache.flex.mdl
 			input = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
 			input.className = typeNames;
-
-			input.value = IRangeModel(model).value.toString();
-			input.min = IRangeModel(model).minimum.toString();
-			input.max = IRangeModel(model).maximum.toString();
-			input.step = IRangeModel(model).stepSize.toString();
 			
 			p.appendChild(input);
 
-			element = input as WrappedHTMLElement;
-            
+			element = input as WrappedHTMLElement; 
             
             positioner = p as WrappedHTMLElement;
 			(input as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
-            
+
             return element;
-        } 
+        }
         
 		private var _className:String;
 

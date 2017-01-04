@@ -31,7 +31,8 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 
-    import org.apache.flex.mdl.TextField;
+    import org.apache.flex.mdl.supportClasses.ITextField;
+	import org.apache.flex.mdl.supportClasses.TextFieldBase;
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -92,15 +93,15 @@ package org.apache.flex.mdl.beads
 		{
 			_strand = value;
 			
+			//var model:Object = UIBase(_strand).model;
+			// listen for changes in text to hide or show the prompt
+			//if (!model.hasOwnProperty("text")) {
+			//	throw new Error("Model requires a text property when used with TextPromptBead");
+			//}
+			IEventDispatcher(UIBase(_strand)).addEventListener("textChange", handleTextChange);
+
 			COMPILE::SWF
 			{
-				// listen for changes in text to hide or show the prompt
-				var model:Object = UIBase(_strand).model;
-				if (!model.hasOwnProperty("text")) {
-					throw new Error("Model requires a text property when used with TextPromptBead");
-				}
-				IEventDispatcher(model).addEventListener("textChange", handleTextChange);
-				
 				// create a TextField that displays the prompt - it shows
 				// and hides based on the model's content
 				promptField = new CSSTextField();
@@ -114,37 +115,63 @@ package org.apache.flex.mdl.beads
 				// trigger the event handler to display if needed
 				handleTextChange(null);					
 			}
+
 			COMPILE::JS
 			{
-				var mdlTi:TextField = value as TextField;
+				mdlTi = value as ITextField;
                 mdlTi.textNode.nodeValue = prompt;
+				
 				//var e:HTMLInputElement = host.element as HTMLInputElement;
 				//e.placeholder = prompt;
 			}
 		}
 		
+		private var promptAdded:Boolean;
+		
+		COMPILE::JS
+		private var mdlTi:ITextField;
+
 		COMPILE::SWF
 		private var promptField:CSSTextField;
-		private var promptAdded:Boolean;
+		
 		
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
 		private function handleTextChange( event:Event ):void
-		{	
-			// see what the model currently has to determine if the prompt should be
-			// displayed or not.
-			var model:Object = UIBase(_strand).model;
-			
-			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) UIBase(_strand).$displayObjectContainer.removeChild(promptField);
-				promptAdded = false;
+		{
+			COMPILE::SWF
+			{
+				// see what the model currently has to determine if the prompt should be
+				// displayed or not.
+				var model:Object = UIBase(_strand).model;
+				
+				if (model.text != null && model.text.length > 0 ) {
+					if (promptAdded) UIBase(_strand).$displayObjectContainer.removeChild(promptField);
+					promptAdded = false;
+				}
+				else {
+					if (!promptAdded) UIBase(_strand).$displayObjectContainer.addChild(promptField);
+					promptField.text = prompt;
+					promptAdded = true;
+				}
 			}
-			else {
-				if (!promptAdded) UIBase(_strand).$displayObjectContainer.addChild(promptField);
-				promptField.text = prompt;
-				promptAdded = true;
+
+			COMPILE::JS
+			{
+				// see what the model currently has to determine if the prompt should be
+				// displayed or not.
+				var model:Object = UIBase(_strand).model;
+				
+				if (TextFieldBase(mdlTi).text != null && TextFieldBase(mdlTi).text.length > 0 )
+				{
+					mdlTi.textNode.nodeValue = "";
+				} 
+				else 
+				{
+					mdlTi.textNode.nodeValue = prompt;
+				}
+				
 			}
 		}
 	}

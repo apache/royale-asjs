@@ -21,7 +21,6 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
-    import org.apache.flex.html.Image;
 
     /**
      *  The ContactImageChip bead class is a specialty bead that can be used to add additional

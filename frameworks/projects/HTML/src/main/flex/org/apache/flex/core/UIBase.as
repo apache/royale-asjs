@@ -33,6 +33,7 @@ package org.apache.flex.core
 	    import flash.display.InteractiveObject;
 	    import org.apache.flex.events.utils.MouseEventConverter;
 	}
+    import org.apache.flex.utils.StringUtil;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -950,7 +951,7 @@ package org.apache.flex.core
 			{
                 COMPILE::JS
                 {
-                    setClassName(typeNames ? value + ' ' + typeNames : value);             
+                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
                 }
 				_className = value;
 				dispatchEvent(new Event("classNameChanged"));

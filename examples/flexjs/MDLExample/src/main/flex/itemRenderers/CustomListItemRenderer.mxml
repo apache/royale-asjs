@@ -34,11 +34,11 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <js:beads>
+    <mdl:beads>
         <js:ItemRendererDataBinding />
-    </js:beads>
+    </mdl:beads>
     
-    <js:Span text="{data.label}">
+    <js:Span text="{product.label}">
         <js:beads>
             <mdl:ListItemPrimaryContent/>
         </js:beads>
