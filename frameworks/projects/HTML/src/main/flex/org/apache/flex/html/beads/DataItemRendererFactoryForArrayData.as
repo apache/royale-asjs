@@ -64,11 +64,11 @@ package org.apache.flex.html.beads
 		{
 			super(target);
 		}
-		
-		private var dataProviderModel:IDataProviderModel;
-		
-		private var labelField:String;
-		
+
+		protected var dataProviderModel:IDataProviderModel;
+
+		protected var labelField:String;
+
 		private var _strand:IStrand;
 		
         /**
@@ -139,7 +139,7 @@ package org.apache.flex.html.beads
          */
 		protected var dataGroup:IItemRendererParent;
 		
-		private function dataProviderChangeHandler(event:Event):void
+		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = dataProviderModel.dataProvider as Array;
 			if (!dp)
@@ -149,7 +149,7 @@ package org.apache.flex.html.beads
 			
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			
+
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{				
