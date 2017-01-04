@@ -22,10 +22,12 @@ limitations under the License.
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                       xmlns:fa="library://ns.apache.org/flexjs/fa"
                       xmlns="http://www.w3.org/1999/xhtml"
-                      xmlns:components="components.*" >
+                      >
 
     <fx:Script>
 		<![CDATA[
+        import org.apache.flex.fa.FontAwesomeIconType;
+
         import vos.MemberVO;
 
         [Bindable("dataChange")]
@@ -74,6 +76,8 @@ limitations under the License.
                     <js:I className="fa fa-github" />
                 </mdl:materialIcon>
             </mdl:Button>
+            <fa:FontAwesomeIcon iconType="fa-apple" className="faIcon" />
+            <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}"  />
         </mdl:CardActions>
     </mdl:Card>
 
