@@ -34,6 +34,11 @@ package org.apache.flex.fa
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
+	 *
+	 * <inject_html>
+	 *     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	 * <inject_html>
+	 *
      */
     public class FontAwesomeIcon extends UIBase
     {
