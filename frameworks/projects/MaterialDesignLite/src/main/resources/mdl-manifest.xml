@@ -81,9 +81,7 @@
     <component id="MdlTextColor" class="org.apache.flex.mdl.beads.MdlTextColor"/>
     <component id="Spinner" class="org.apache.flex.mdl.Spinner"/>
     <component id="ProgressBar" class="org.apache.flex.mdl.ProgressBar"/>
-    <component id="ToastModel" class="org.apache.flex.mdl.beads.models.ToastModel"/>
     <component id="Toast" class="org.apache.flex.mdl.Toast"/>
-    <component id="SnackbarModel" class="org.apache.flex.mdl.beads.models.SnackbarModel"/>
     <component id="Snackbar" class="org.apache.flex.mdl.Snackbar"/>
     <component id="Footer" class="org.apache.flex.mdl.Footer"/>
     <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
