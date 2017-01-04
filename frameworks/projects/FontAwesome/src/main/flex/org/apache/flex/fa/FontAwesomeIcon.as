@@ -35,9 +35,6 @@ package org.apache.flex.fa
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 *
-	 * <inject_html>
-	 *     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	 * <inject_html>
 	 *
      */
     public class FontAwesomeIcon extends UIBase
@@ -51,6 +48,9 @@ package org.apache.flex.fa
          *  @productversion FlexJS 0.0
          *
          *  @flexjsignorecoercion HTMLElement
+		 * <inject_html>
+		 *     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		 * </inject_html>		 
          */
         public function FontAwesomeIcon()
         {
