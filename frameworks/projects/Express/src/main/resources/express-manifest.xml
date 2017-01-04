@@ -26,6 +26,7 @@
     <component id="HContainer" class="org.apache.flex.express.HContainer"/>
     <component id="HView" class="org.apache.flex.express.HView"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.express.MXMLItemRenderer"/>
+    <component id="TextInput" class="org.apache.flex.express.TextInput"/>
     <component id="VContainer" class="org.apache.flex.express.VContainer"/>
     <component id="View" class="org.apache.flex.express.View"/>
     <component id="VView" class="org.apache.flex.express.VView"/>
