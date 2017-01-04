@@ -27,11 +27,6 @@
   <version>\${version}</version>
   <packaging>swf</packaging>
 
-  <properties>
-    <compiler.debug>true</compiler.debug>
-    <compiler.output-dir>target/javascript/bin/js-debug</compiler.output-dir>
-  </properties>
-
   <build>
     <sourceDirectory>src/main/flex</sourceDirectory>
     <plugins>
@@ -43,20 +38,6 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
         </configuration>
-        <executions>
-          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-          <execution>
-            <id>compile-javascript</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile-app</goal>
-            </goals>
-            <configuration>
-              <debug>\${compiler.debug}</debug>
-              <outputJavaScript>true</outputJavaScript>
-            </configuration>
-          </execution>
-        </executions>
         <dependencies>
           <dependency>
             <groupId>org.apache.flex.flexjs.compiler</groupId>
@@ -64,46 +45,6 @@
             <version>${flexjs.compiler.version}</version>
           </dependency>
         </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <id>package-javascript</id>
-            <phase>package</phase>
-            <goals>
-              <goal>war</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <warSourceDirectory>\${compiler.output-dir}</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.11</version>
-        <executions>
-          <execution>
-            <id>attach-war</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <artifacts>
-            <artifact>
-              <file>target/\${artifactId}-\${version}.war</file>
-              <type>war</type>
-            </artifact>
-          </artifacts>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -139,15 +80,5 @@
       <type>swc</type>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>release</id>
-      <properties>
-        <compiler.debug>false</compiler.debug>
-        <compiler.output-dir>target/javascript/bin/js-release</compiler.output-dir>
-      </properties>
-    </profile>
-  </profiles>
 
 </project>

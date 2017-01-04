@@ -42,21 +42,9 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
+          <outputJavaScript>true</outputJavaScript>
+          <debug>\${compiler.debug}</debug>
         </configuration>
-        <executions>
-          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-          <execution>
-            <id>compile-javascript</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile-app</goal>
-            </goals>
-            <configuration>
-              <debug>\${compiler.debug}</debug>
-              <outputJavaScript>true</outputJavaScript>
-            </configuration>
-          </execution>
-        </executions>
         <dependencies>
           <dependency>
             <groupId>org.apache.flex.flexjs.compiler</groupId>
