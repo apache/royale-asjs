@@ -16,28 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.mdl.itemRenderers
 {
+    import org.apache.flex.mdl.supportClasses.TabBarButtonItemRendererBase;
 
-	/**
-	*  @private
-	*  This class is used to link additional classes into mdl.swc
-	*  beyond those that are found by dependecy analysis starting
-	*  from the classes specified in manifest.xml.
-	*/
-	internal class MDLClasses
-	{
-		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
-		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
-		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 
-		COMPILE::SWF
-		{
-			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
-			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
-		}
-	}
+    public class TabBarButtonTabsItemRenderer extends TabBarButtonItemRendererBase
+    {
+        public function TabBarButtonTabsItemRenderer()
+        {
+            super();
+        }
 
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+            typeNames = "mdl-tabs__tab";
+
+            return super.createElement();
+        }
+    }
 }
-

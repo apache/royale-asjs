@@ -64,10 +64,6 @@
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
     <component id="Drawer" class="org.apache.flex.mdl.Drawer"/>
     <component id="NavigationLayoutContent" class="org.apache.flex.mdl.NavigationLayoutContent"/>
-    <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
-    <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
-    <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
-    <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
     <component id="Grid" class="org.apache.flex.mdl.Grid"/>
     <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
     <component id="Chip" class="org.apache.flex.mdl.Chip"/>
@@ -86,6 +82,17 @@
     <component id="Footer" class="org.apache.flex.mdl.Footer"/>
     <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
     <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
+
+    <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
+    <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
+    <component id="TabBarButtonTabsItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer"/>
+    <component id="TabBarButtonLayoutItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarButtonLayoutItemRenderer"/>
+    <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
+    <component id="TabBarPanelItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarPanelItemRenderer"/>
+    <component id="TabBarLayoutItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarLayoutItemRenderer"/>
+    <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
+    <component id="TabsView" class="org.apache.flex.mdl.beads.views.TabsView"/>
+    <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
 
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.materialIcons.MaterialIconAdd"/>

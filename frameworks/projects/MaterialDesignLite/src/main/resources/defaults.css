@@ -66,6 +66,26 @@ Menu
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.MenuItemRenderer");
 }
 
+Tabs
+{
+    IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabsView");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadLayout: ClassReference(null);
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarPanelItemRenderer");
+}
+
+TabBar
+{
+    IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabBarView");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadLayout: ClassReference(null);
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer");
+}
+
 Toast
 {
     IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.ToastModel");

@@ -16,28 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.mdl.beads.models
 {
+    import org.apache.flex.html.beads.models.ArraySelectionModel;
 
-	/**
-	*  @private
-	*  This class is used to link additional classes into mdl.swc
-	*  beyond those that are found by dependecy analysis starting
-	*  from the classes specified in manifest.xml.
-	*/
-	internal class MDLClasses
-	{
-		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
-		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
-		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
+    public class TabModel extends ArraySelectionModel implements ITabModel
+    {
+        public function TabModel()
+        {
+            super();
+        }
 
-		COMPILE::SWF
-		{
-			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
-			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
-		}
-	}
+        private var _tabIdField:String;
 
+        public function get tabIdField():String
+        {
+            return _tabIdField;
+        }
+
+        public function set tabIdField(value:String):void
+        {
+            _tabIdField = value;
+        }
+    }
 }
-

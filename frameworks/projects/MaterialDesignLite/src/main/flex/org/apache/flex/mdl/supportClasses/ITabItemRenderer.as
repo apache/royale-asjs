@@ -16,28 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.mdl.supportClasses
 {
+    import org.apache.flex.core.ISelectableItemRenderer;
 
-	/**
-	*  @private
-	*  This class is used to link additional classes into mdl.swc
-	*  beyond those that are found by dependecy analysis starting
-	*  from the classes specified in manifest.xml.
-	*/
-	internal class MDLClasses
-	{
-		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
-		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
-		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
-
-		COMPILE::SWF
-		{
-			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
-			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
-		}
-	}
-
+    public interface ITabItemRenderer extends ISelectableItemRenderer
+    {
+        function get tabIdField():String;
+        function set tabIdField(value:String):void;
+        
+        function get isActive():Boolean;
+        function set isActive(value:Boolean):void;
+    }
 }
-
