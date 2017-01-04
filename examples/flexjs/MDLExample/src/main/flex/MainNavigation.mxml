@@ -120,11 +120,6 @@ limitations under the License.
         
     </mdl:NavigationLayoutContent>
 
-    <mdl:Footer mini="true">
-        <mdl:FooterLeftSection>
-        </mdl:FooterLeftSection>
-
-        <mdl:FooterRightSection>
-        </mdl:FooterRightSection>
-    </mdl:Footer>
+    <local:MainFooter/>
+    
 </mdl:NavigationLayout>

@@ -82,6 +82,10 @@
     <component id="Footer" class="org.apache.flex.mdl.Footer"/>
     <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
     <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
+    <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>
+    <component id="FooterBottomSection" class="org.apache.flex.mdl.FooterBottomSection"/>
+    <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
+
 
     <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
     <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
