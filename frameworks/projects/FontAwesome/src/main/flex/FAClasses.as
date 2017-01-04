@@ -26,11 +26,10 @@ package
 	*  from the classes specified in manifest.xml.
 	*/
 	internal class FAClasses
-	{	
-		
+	{
 		COMPILE::SWF
 		{
-			
+			import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
 		}
 	}
 

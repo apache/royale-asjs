@@ -27,6 +27,8 @@ package org.apache.flex.fa
 
     /**
      *  Provide common features for all FontAwesome icons type
+	 *  Usage example:
+	 *  <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.TWITTER}" />
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -54,7 +56,7 @@ package org.apache.flex.fa
 
         COMPILE::JS
         protected var textNode:Text;
-		protected var _iconText:String;
+		protected var _iconType:String;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -63,11 +65,11 @@ package org.apache.flex.fa
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "";
+            typeNames = "fa";
 
 			var i:HTMLElement = document.createElement('i') as HTMLElement;
             
-            textNode = document.createTextNode(iconText) as Text;
+            textNode = document.createTextNode(iconType) as Text;
             i.appendChild(textNode); 
 
 			element = i as WrappedHTMLElement;
@@ -78,23 +80,23 @@ package org.apache.flex.fa
             return element;
         }
 
-        public function get iconText():String
+        public function get iconType():String
         {
-            return _iconText;
+            return _iconType;
         }
 		
-		public function set iconText(v:String):void
+		public function set iconType(v:String):void
 		{
 			COMPILE::JS
             {
                 element.classList.remove(v);
             }
 
-            _iconText = v;
+            _iconType = v;
 
             COMPILE::JS
             {
-                element.classList.add(_iconText);
+                element.classList.add(_iconType);
             }
 		}
 
