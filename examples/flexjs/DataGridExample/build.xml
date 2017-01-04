@@ -49,6 +49,18 @@
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
     <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    	<mkdir dir="${basedir}/bin/js-debug/assets" />
+        <copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
