@@ -18,59 +18,55 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.mdl.supportClasses.IFooterSection;
-    
+	import org.apache.flex.core.UIBase;
+
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.core.WrappedHTMLElement;        
     }
-    
+
 	/**
-	 *  The FooterRightSection class is a Container component capable of parenting other
-	 *  components 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class FooterRightSection extends ContainerBase implements IFooterSection
+	 *  FooterLinkList relies on an itemRenderer factory to produce its children components
+	 *  and on a layout to arrange them. 
+     *  This is the only UI element aside from the itemRenderers.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */  
+	public class FooterLinkList extends List
 	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function FooterRightSection()
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function FooterLinkList()
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer__right-section";
-
-            element = document.createElement('div') as WrappedHTMLElement;
+            typeNames = "mdl-mega-footer__link-list";
             
-			positioner = element;
+            element = document.createElement('ul') as WrappedHTMLElement;
             
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
+            positioner = element;
             element.flexjs_wrapper = this;
-
-            return element;
+            
+            return positioner;
         }
 
 		/**
@@ -87,22 +83,26 @@ package org.apache.flex.mdl
         {
 			super.addedToParent();
 
-			if(parent is Footer)
+			if(parent is IFooterSection)
 			{
-				element.classList.remove(typeNames);
-				if(!Footer(parent).mini)
+				var parentSection:IFooterSection = parent as IFooterSection;
+				if(UIBase(parentSection).parent is Footer)
 				{
-					typeNames = "mdl-mega-footer__right-section";
-				} else
-				{
-					typeNames = "mdl-mini-footer__right-section";
+					element.classList.remove(typeNames);
+					if(!Footer(UIBase(parentSection).parent).mini)
+					{
+						typeNames = "mdl-mega-footer__link-list";
+					} else
+					{
+						typeNames = "mdl-mini-footer__link-list";
+					}
+					element.classList.add(typeNames);
 				}
-				element.classList.add(typeNames);
 			}
 			else
 			{
-				throw new Error("FooterRightSection can not be used if parent is not a MDL Footer component.");
+				throw new Error("FooterLinkList can not be used if parent is not a MDL Footer Section component.");
 			}			
-        }
+        } 
 	}
 }

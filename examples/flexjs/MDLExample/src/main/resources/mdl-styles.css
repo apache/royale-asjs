@@ -83,6 +83,11 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
 }
 
+.footerMiniLinkListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.FooterMiniLinkListItemRenderer");
+}
+
 .layoutTransparent {
   background: url('assets/transparent.jpg') center / cover;
   color: white;

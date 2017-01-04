@@ -37,7 +37,7 @@ limitations under the License.
             </mdl:beads>
         </mdl:List>
 
-        <mdl:List labelField="actorName" className="actorListItemRenderer">
+        <mdl:List labelField="actorName" className="actorNameListItemRenderer">
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"

@@ -96,6 +96,11 @@ Snackbar
     IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.SnackbarModel");
 }
 
+FooterLinkList
+{
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer");
+}
+
 @media -flex-flash
 {
     Slider

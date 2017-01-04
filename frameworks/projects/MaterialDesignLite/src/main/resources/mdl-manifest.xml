@@ -85,6 +85,8 @@
     <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>
     <component id="FooterBottomSection" class="org.apache.flex.mdl.FooterBottomSection"/>
     <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
+    <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
+    <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
 
 
     <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
