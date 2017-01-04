@@ -85,6 +85,9 @@
     <component id="Toast" class="org.apache.flex.mdl.Toast"/>
     <component id="SnackbarModel" class="org.apache.flex.mdl.beads.models.SnackbarModel"/>
     <component id="Snackbar" class="org.apache.flex.mdl.Snackbar"/>
+    <component id="Footer" class="org.apache.flex.mdl.Footer"/>
+    <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
+    <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
 
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.materialIcons.MaterialIconAdd"/>

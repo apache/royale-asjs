@@ -119,4 +119,12 @@ limitations under the License.
         </mdl:TabBarPanel>
         
     </mdl:NavigationLayoutContent>
+
+    <mdl:Footer mini="true">
+        <mdl:FooterLeftSection>
+        </mdl:FooterLeftSection>
+
+        <mdl:FooterRightSection>
+        </mdl:FooterRightSection>
+    </mdl:Footer>
 </mdl:NavigationLayout>
