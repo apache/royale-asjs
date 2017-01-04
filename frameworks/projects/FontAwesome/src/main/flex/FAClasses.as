@@ -27,9 +27,8 @@ package
 	*/
 	internal class FAClasses
 	{
-			import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
-			import org.apache.flex.fa.FontAwesomeIconSize; FontAwesomeIconSize;
-		}
-
+		import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
+		import org.apache.flex.fa.FontAwesomeIconSize; FontAwesomeIconSize;
+	}
 }
 
