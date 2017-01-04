@@ -34,10 +34,6 @@ package org.apache.flex.express
 		public function TextInput()
 		{
 			super();
-			
-			_promptBead = new TextPromptBead();
-			_promptBead.prompt = "";
-			addBead(_promptBead);
 		}
 		
 		private var _promptBead:TextPromptBead;
@@ -48,12 +44,19 @@ package org.apache.flex.express
 		 */
 		public function get prompt():String
 		{
-			return _promptBead.prompt;
+			return _promptBead ? _promptBead.prompt : null;
 		}
 		
 		public function set prompt(value:String):void
 		{
-			_promptBead.prompt = value;
+			if (_promptBead == null) {
+				_promptBead = new TextPromptBead();
+				_promptBead.prompt = value ? value : "";
+				addBead(_promptBead);
+			}
+			else {
+				_promptBead.prompt = value ? value : "";
+			}
 			dispatchEvent(new Event("promptChanged"));
 		}
 		
