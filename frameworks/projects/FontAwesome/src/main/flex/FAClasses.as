@@ -27,10 +27,7 @@ package
 	*/
 	internal class FAClasses
 	{
-		COMPILE::SWF
-		{
-			import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
-		}
+		import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
 	}
 
 }
