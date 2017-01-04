@@ -57,6 +57,7 @@ package org.apache.flex.fa
         COMPILE::JS
         protected var textNode:Text;
 		protected var _iconType:String;
+		protected var _size:String;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -86,20 +87,41 @@ package org.apache.flex.fa
             return _iconType;
         }
 		
-		public function set iconType(v:String):void
+		public function set iconType(value:String):void
 		{
 			COMPILE::JS
             {
-                element.classList.remove(v);
+                element.classList.remove(value);
             }
 
-            _iconType = v;
+            _iconType = value;
 
             COMPILE::JS
             {
                 element.classList.add(_iconType);
             }
 		}
+		
+		
+        public function get size():String
+        {
+            return _size;
+        }
+		
+		public function set size(value:String):void
+        {
+            COMPILE::JS
+            {
+                element.classList.remove(value);
+            }
 
+            _size = value;
+
+            COMPILE::JS
+            {
+                element.classList.add(value);
+            }
+        }
+		
     }
 }
