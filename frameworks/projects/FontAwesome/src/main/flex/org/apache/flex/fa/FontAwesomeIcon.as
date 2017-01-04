@@ -70,6 +70,7 @@ package org.apache.flex.fa
 			var i:HTMLElement = document.createElement('i') as HTMLElement;
             
             textNode = document.createTextNode(iconType) as Text;
+			textNode.textContent = '';
             i.appendChild(textNode); 
 
 			element = i as WrappedHTMLElement;
