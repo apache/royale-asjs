@@ -58,26 +58,29 @@ limitations under the License.
         <mdl:CardActions border="true">
             <mdl:Button colored="true" fab="true" ripple="true" raised="false" primary="true">
                 <mdl:materialIcon>
-                    <js:I className="fa fa-twitter" />
+                    <fa:FontAwesomeIcon iconType="fa-twitter" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false" accent="true">
                 <mdl:materialIcon>
-                    <js:I className="fa fa-linkedin" />
+                    <fa:FontAwesomeIcon iconType="fa-linkedin" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <js:I className="fa fa-facebook" />
+                    <fa:FontAwesomeIcon iconType="fa-facebook" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <js:I className="fa fa-github" />
+                    <fa:FontAwesomeIcon iconType="fa-github" />
                 </mdl:materialIcon>
             </mdl:Button>
-            <fa:FontAwesomeIcon iconType="fa-apple" className="faIcon" />
-            <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}"  />
+            <mdl:Button colored="true" fab="true" ripple="true" raised="false">
+                <mdl:materialIcon>
+                    <fa:FontAwesomeIcon iconType="fa-glass" size="fa-lg"  />
+                </mdl:materialIcon>
+            </mdl:Button>
         </mdl:CardActions>
     </mdl:Card>
 
