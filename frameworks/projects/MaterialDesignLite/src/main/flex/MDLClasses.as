@@ -26,7 +26,9 @@ package
 	*  from the classes specified in manifest.xml.
 	*/
 	internal class MDLClasses
-	{	
+	{
+		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
+		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
 		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
 		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
 

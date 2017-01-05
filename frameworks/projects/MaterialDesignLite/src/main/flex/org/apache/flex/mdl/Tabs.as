@@ -19,7 +19,14 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.ContainerBase;
-    
+    import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IItemRenderer;
+    import org.apache.flex.core.IItemRendererParent;
+    import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.IParentIUIBase;
+    import org.apache.flex.mdl.beads.models.ITabModel;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -34,7 +41,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Tabs extends ContainerBase
+	public class Tabs extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
 		/**
 		 *  constructor.
@@ -50,7 +57,59 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
+        public function get dataProvider():Object
+        {
+            return ITabModel(model).dataProvider;
+        }
+        public function set dataProvider(value:Object):void
+        {
+            ITabModel(model).dataProvider = value;
+        }
+        
+		public function get tabIdField():String
+		{
+			return ITabModel(model).tabIdField;
+		}
+
+		public function set tabIdField(value:String):void
+		{
+			ITabModel(model).tabIdField = value;
+		}
+
+        public function getLayoutHost():ILayoutHost
+        {
+            return this;
+        }
+
+        public function get contentView():IParentIUIBase
+        {
+            return this;
+        }
+
+        public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+            var child:IItemRenderer = getElementAt(index) as IItemRenderer;
+            return child;
+        }
+
+        public function removeAllElements():void
+        {
+            while (numElements > 0) {
+                var child:IChild = getElementAt(0);
+                removeElement(child);
+            }
+        }
+
+        public function updateAllItemRenderers():void
+        {
+            //todo: IItemRenderer does not define update function but DataItemRenderer does
+            //for(var i:int = 0; i < numElements; i++) {
+            //	var child:IItemRenderer = getElementAt(i) as IItemRenderer;
+            //	child.update();
+            //}
+        }
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -72,7 +131,7 @@ package org.apache.flex.mdl
             return element;
         }
 
-		protected var _ripple:Boolean = false;
+		private var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
 		 *  Applies ripple click effect. May be used in combination with any other classes
