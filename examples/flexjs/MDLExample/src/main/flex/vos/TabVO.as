@@ -20,7 +20,9 @@ package vos
 {
     public class TabVO
     {
+        [Bindable]
         public var tabId:String;
+        [Bindable]
         public var label:String;
 
         public function TabVO(tabId:String, label:String)

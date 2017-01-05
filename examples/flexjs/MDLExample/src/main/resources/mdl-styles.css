@@ -93,6 +93,16 @@ js|Image
   color: white;
 }
 
+.customTabBarPanelItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomTabBarPanelItemRenderer");
+}
+
+.customTabBarSetup
+{
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonLayoutItemRenderer");
+}
+
 /* card wide */
 .demo-card-wide.mdl-card {
   width: 512px;

@@ -30,9 +30,20 @@ package models
                 new TabVO("tab3", "Tab Three")
         ];
 
+        private var _tabsLayout:Array = [
+            new TabVO("starks_panel", "Starks"),
+            new TabVO("lannisters_panel", "Lannisters"),
+            new TabVO("targaryens_panel", "Targaryens")
+        ];
+
         public function get tabs():Array
         {
             return _tabs;
+        }
+
+        public function get tabsLayout():Array
+        {
+            return _tabsLayout;
         }
     }
 }
