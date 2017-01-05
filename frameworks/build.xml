@@ -98,6 +98,7 @@
         <antcall target="Storage"/>
         <antcall target="XML"/>
 		<antcall target="MaterialDesignLite"/>
+		<antcall target="FontAwesome"/>
     </target>
     
     <target name="fonts">
