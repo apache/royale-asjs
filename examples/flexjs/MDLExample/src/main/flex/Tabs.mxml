@@ -29,21 +29,13 @@ limitations under the License.
     <mdl:Grid>
 
         <mdl:GridCell column="1" percentWidth="100">
-            <mdl:Tabs width="400" tabIdField="tabId" className="customTabBarPanelItemRenderer">
+            <mdl:Tabs width="400" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
                 <mdl:beads>
                     <js:ConstantBinding
                             sourceID="tabsModel"
                             sourcePropertyName="tabs"
                             destinationPropertyName="dataProvider" />
                 </mdl:beads>
-                <mdl:TabBar tabIdField="tabId" labelField="label">
-                    <mdl:beads>
-                        <js:ConstantBinding
-                                sourceID="tabsModel"
-                                sourcePropertyName="tabs"
-                                destinationPropertyName="dataProvider" />
-                    </mdl:beads>
-                </mdl:TabBar>
             </mdl:Tabs>
         </mdl:GridCell>
         <mdl:GridCell column="1" percentWidth="100">

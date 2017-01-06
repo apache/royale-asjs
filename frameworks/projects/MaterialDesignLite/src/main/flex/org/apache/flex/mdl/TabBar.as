@@ -20,6 +20,7 @@ package org.apache.flex.mdl
 {
 	import org.apache.flex.core.ContainerBase;
     import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IChrome;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ILayoutHost;
@@ -41,7 +42,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TabBar extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
+	public class TabBar extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost, IChrome
 	{
 		/**
 		 *  constructor.

@@ -18,11 +18,51 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
+    import org.apache.flex.core.IContentViewHost;
+    import org.apache.flex.core.IStrandWithModel;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.mdl.TabBar;
+
     public class TabsView extends ListView
     {
         public function TabsView()
         {
             super();
+        }
+
+        private var _tabBar:TabBar;
+
+        public function get tabBar():TabBar
+        {
+            return _tabBar;
+        }
+
+        public function set tabBar(value:TabBar):void
+        {
+            _tabBar = value;
+        }
+
+        override public function set strand(value:IStrand):void
+        {
+            super.strand = value;
+
+            if (!_tabBar)
+            {
+                _tabBar = new TabBar();
+                _tabBar.id = "tabsTabBar";
+            }
+
+            _tabBar.model = (value as IStrandWithModel).model;
+
+            host.addEventListener("initComplete", initCompleteHandler);
+        }
+
+        private function initCompleteHandler(event:Event):void
+        {
+            host.removeEventListener("initComplete", initCompleteHandler);
+            
+            (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
         }
     }
 }
