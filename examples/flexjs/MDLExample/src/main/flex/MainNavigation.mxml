@@ -47,7 +47,7 @@ limitations under the License.
             <mdl:TabBarButton text="Lists" href="#lists_panel"/>
             <mdl:TabBarButton text="Loading" href="#loading_panel"/>
             <mdl:TabBarButton text="Menu" href="#menus_panel"/>
-            <mdl:TabBarButton text="Other" href="#others_panel"/>
+            <mdl:TabBarButton text="Badges" href="#badges_panel"/>
         </mdl:TabBar>
     </mdl:Header>
     
@@ -61,7 +61,7 @@ limitations under the License.
             <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
             <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
             <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
-             <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
+            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
         </mdl:Navigation>
     </mdl:Drawer>
     
@@ -91,33 +91,8 @@ limitations under the License.
 
         <local:Menus id="menus_panel"/>
 
-        <mdl:TabBarPanel id="others_panel">
-            
-            <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
-                <js:beads>
-                    <mdl:Badge dataBadge="1" overlap="true"/>
-                </js:beads>
-            </js:Div>
+        <local:Badges id="badges_panel"/>
 
-            <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
-                <js:beads>
-                    <mdl:Badge dataBadge="4"/>
-                </js:beads>
-            </js:Span>
-
-            <js:A text="Badge No Bg" href="http://flex.apache.org">
-                <js:beads>
-                    <mdl:Badge dataBadge="5" noBackground="true"/>
-                </js:beads>
-            </js:A>
-
-            <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
-                <js:beads>
-                    <mdl:Badge dataBadge="1"/>
-                </js:beads>
-            </js:A>
-        </mdl:TabBarPanel>
-        
     </mdl:NavigationLayoutContent>
 
     <local:MainFooter/>
