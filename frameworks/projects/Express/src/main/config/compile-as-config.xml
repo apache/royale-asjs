@@ -54,6 +54,10 @@
                 <uri>library://ns.apache.org/flexjs/express</uri>
                 <manifest>../resources/express-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/express</uri>
+                <manifest>../resources/express-as-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -67,6 +71,8 @@
         <name>defaults.css</name>
         <path>../resources/defaults.css</path>
     </include-file>
+
+    <include-lookup-only>true</include-lookup-only>
 
     <include-classes>
         <class>ExpressClasses</class>
