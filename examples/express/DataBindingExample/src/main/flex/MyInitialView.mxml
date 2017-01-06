@@ -17,9 +17,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<express:VView xmlns:fx="http://ns.adobe.com/mxml/2009"
-			    xmlns:express="library://ns.apache.org/flexjs/express"
-				xmlns:js="library://ns.apache.org/flexjs/basic"
+<js:VView xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/express"
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
@@ -106,7 +105,7 @@ limitations under the License.
         <js:Label width="300" text="Enter Stock Symbol or choose from list:" />
         <js:HContainer>
             <js:VContainer className="leftSide">
-                <express:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" prompt="symbol" />
+                <js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" prompt="symbol" />
                 <js:TextButton text="Get Quote" className="quoteButton" 
                                   click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
                 <js:Label id="field" text="{fieldText}"/>
@@ -127,4 +126,4 @@ limitations under the License.
                         includeIn="showAll"
                         text="{MyModel(applicationModel).allData}" />
     </js:VContainer>	
-</express:VView>
+</js:VView>

@@ -17,10 +17,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<express:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:local="*"
-                   xmlns:express="library://ns.apache.org/flexjs/express"
-                   xmlns:js="library://ns.apache.org/flexjs/basic" 
+                   xmlns:js="library://ns.apache.org/flexjs/express" 
                    xmlns:models="models.*" 
                    xmlns:controllers="controllers.*"
                    initialize="MyModel(model).stockSymbol='ADBE'"
@@ -48,4 +47,4 @@ limitations under the License.
         <js:CSSFontFaceBead />
         <js:ViewSourceContextMenuOption />
     </js:beads>
-</express:Application>
+</js:Application>
