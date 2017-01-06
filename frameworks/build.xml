@@ -134,6 +134,7 @@
         <ant dir="${basedir}/projects/Effects" target="clean"/>
         <ant dir="${basedir}/projects/Express" target="clean"/>
         <ant dir="${basedir}/projects/Flat" target="clean"/>
+        <ant dir="${basedir}/projects/FontAwesome" target="clean"/>
         <ant dir="${basedir}/projects/Formatters" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
         <ant dir="${basedir}/projects/CreateJS" target="clean"/>
@@ -209,6 +210,10 @@
         <ant dir="${basedir}/projects/Flat"/>
     </target>
 
+    <target name="FontAwesome" description="Clean build of FontAwesome.swc">
+        <ant dir="${basedir}/projects/FontAwesome"/>
+    </target>
+    
     <target name="Formatters" description="Clean build of Formatters.swc">
         <ant dir="${basedir}/projects/Formatters"/>
     </target>
