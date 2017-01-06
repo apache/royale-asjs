@@ -77,6 +77,15 @@ package org.apache.flex.mdl
 			ITabModel(model).tabIdField = value;
 		}
 
+        public function get labelField():String
+        {
+            return ITabModel(model).labelField;
+        }
+        public function set labelField(value:String):void
+        {
+            ITabModel(model).labelField = value;
+        }
+
         public function getLayoutHost():ILayoutHost
         {
             return this;
