@@ -21,7 +21,11 @@ package org.apache.flex.binding
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
-	
+
+    COMPILE::SWF
+    {
+        import flash.utils.getDefinitionByName;
+    }
     /**
      *  The ConstantBinding class is lightweight data-binding class that
      *  is optimized for simple assignments of one object's constant to
@@ -126,17 +130,53 @@ package org.apache.flex.binding
          */
 		public function set strand(value:IStrand):void
 		{
+            var val:* = null;
+            var objectFromWindow:Object = null;
+
             if (destination == null)
                 destination = value;
             
             if (sourceID != null)
-    			source = document[sourceID];
-            else
-                source = document;
-            var val:*;
-            if (sourcePropertyName in source)
             {
-                try {
+                source = document[sourceID];
+            }
+            else
+            {
+                source = document;
+            }
+
+            if (!source)
+            {
+                try
+                {
+                    COMPILE::SWF
+                    {
+                        var classFromSourceId:Class = getDefinitionByName(sourceID) as Class;
+                        if (classFromSourceId)
+                        {
+                            val = classFromSourceId[sourcePropertyName];
+                        }
+                    }
+
+                    COMPILE::JS
+                    {
+                        objectFromWindow = getObjectClassFromWindow(sourceID);
+                        if (objectFromWindow)
+                        {
+                            val = objectFromWindow[sourcePropertyName];
+                        }
+                    }
+                    destination[destinationPropertyName] = val;
+                }
+                catch (e:Error)
+                {
+
+                }
+            }
+            else if (sourcePropertyName in source)
+            {
+                try
+                {
                     val = source[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
@@ -146,7 +186,8 @@ package org.apache.flex.binding
             }
             else if (sourcePropertyName in source.constructor)
             {
-                try {
+                try
+                {
                     val = source.constructor[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
@@ -164,13 +205,11 @@ package org.apache.flex.binding
                     if (cname) 
                     {
                         cname = cname.names[0].qName;
-                        var parts:Array = cname.split('.');
-                        var n:int = parts.length;
-                        var o:Object = window;
-                        for (var i:int = 0; i < n; i++) {
-                            o = o[parts[i]];
+                        objectFromWindow = getObjectClassFromWindow(cname);
+                        if (objectFromWindow)
+                        {
+                            val = objectFromWindow[sourcePropertyName];
                         }
-                        val = o[sourcePropertyName];
                         destination[destinationPropertyName] = val;
                     }                    
                 }
@@ -190,6 +229,23 @@ package org.apache.flex.binding
 		{
 			this.document = document;
 		}
-		
+
+        COMPILE::JS
+        private function getObjectClassFromWindow(className:Object):Object
+        {
+            var windowObject:Object = window;
+            var parts:Array = className.split('.');
+            var n:int = parts.length;
+            if (n == 0)
+            {
+                return null;
+            }
+
+            for (var i:int = 0; i < n; i++) {
+                windowObject = windowObject[parts[i]];
+            }
+
+            return windowObject;
+        }
 	}
 }

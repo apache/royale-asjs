@@ -72,7 +72,6 @@ package org.apache.flex.binding
             var fieldWatcher:Object;
             var isStatic:Boolean;
             var sb:SimpleBinding;
-            var cb:ConstantBinding;
             if (!("_bindings" in _strand))
                 return;
             var bindingData:Array = _strand["_bindings"];
@@ -92,8 +91,9 @@ package org.apache.flex.binding
             var watchers:Object = decodeWatcher(bindingData.slice(index));
             for (i = 0; i < n; i++)
             {
-                    binding = bindings[i];
+                binding = bindings[i];
                 var destination:IStrand;
+
                 if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
@@ -130,12 +130,16 @@ package org.apache.flex.binding
                 else if (binding.source is Array
                         && binding.source.length == 2 && binding.destination.length == 2)
                 {
-                    var compWatcher:Object;
-                    compWatcher = watchers.watcherMap[binding.source[0]];
-                    fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
-                    if (binding.source[0] == "data" ||
-                            (compWatcher.eventNames is String
-                            && compWatcher.eventNames == "dataChange"))
+                    var compWatcher:Object = watchers.watcherMap[binding.source[0]];
+                    if (compWatcher)
+                    {
+                        fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
+                    }
+
+                    if (compWatcher && fieldWatcher &&
+                            (binding.source[0] == "data" ||
+                            (compWatcher.eventNames is String &&
+                            compWatcher.eventNames == "dataChange")))
                     {
                         var irsb:ItemRendererSimpleBinding = new ItemRendererSimpleBinding();
                         irsb.destinationID = binding.destination[0];
@@ -144,7 +148,7 @@ package org.apache.flex.binding
                         irsb.setDocument(_strand);
                         _strand.addBead(irsb);
                     }
-                    else if (fieldWatcher.eventNames is String)
+                    else if (fieldWatcher != null && fieldWatcher.eventNames is String)
                     {
                         sb = new SimpleBinding();
                         sb.destinationPropertyName = binding.destination[1];
@@ -170,36 +174,17 @@ package org.apache.flex.binding
                             }
                         }
                     }
-                    else if (fieldWatcher.eventNames == null)
+                    else if (fieldWatcher == null || fieldWatcher.eventNames == null)
                     {
-                        cb = new ConstantBinding();
-                        cb.destinationPropertyName = binding.destination[1];
-                        cb.sourceID = binding.source[0];
-                        cb.sourcePropertyName = binding.source[1];
-                        cb.setDocument(_strand);
-                        destObject = _strand[binding.destination[0]];                                
-                        destination = destObject as IStrand;
-                        if (destination)
-                            destination.addBead(cb);
-                        else
-                        {
-                            if (destObject)
-                            {
-                                cb.destination = destObject;
-                                _strand.addBead(cb);
-                            }
-                            else
-                            {
-                                deferredBindings[binding.destination[0]] = cb;
-                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
-                            }
-                        }
+                        makeConstantBinding(binding, _strand);
                     }
                 }
                 else
                 {
                     makeGenericBinding(binding, i, watchers);
                 }
+
+                fieldWatcher = null;
             }
         }
 
