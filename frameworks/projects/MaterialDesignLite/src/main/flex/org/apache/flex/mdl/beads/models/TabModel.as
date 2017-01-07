@@ -20,6 +20,15 @@ package org.apache.flex.mdl.beads.models
 {
     import org.apache.flex.html.beads.models.ArraySelectionModel;
 
+    /**
+     *  The TabModel class defines the data associated with an org.apache.flex.mdl.Tabs
+     *  component.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class TabModel extends ArraySelectionModel implements ITabModel
     {
         public function TabModel()
@@ -29,6 +38,14 @@ package org.apache.flex.mdl.beads.models
 
         private var _tabIdField:String;
 
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.ITabModel#tabIdField
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get tabIdField():String
         {
             return _tabIdField;

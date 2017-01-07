@@ -55,7 +55,12 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#color
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get color():String
         {
@@ -68,7 +73,12 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#colorWeight
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get colorWeight():String
         {
