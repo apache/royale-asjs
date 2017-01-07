@@ -25,6 +25,16 @@ package org.apache.flex.mdl.itemRenderers
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    /**
+     *  Represents content of TabBarPanel
+     *  
+     *  Creates MDL "mdl-tabs__panel" conponent
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     * */
     public class TabBarPanelItemRenderer extends TabItemRendererBase
     {
         public function TabBarPanelItemRenderer()

@@ -25,6 +25,14 @@ package org.apache.flex.mdl.supportClasses
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    /**
+     *  Base class for TabBarButton item renderers
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     * */
     public class TabBarButtonItemRendererBase extends MXMLItemRenderer implements ITabItemRenderer
     {
         public function TabBarButtonItemRendererBase()

@@ -97,6 +97,7 @@ package org.apache.flex.mdl
         }
 
 		private var _isActive:Boolean;
+		
         /**
          *  Marks this Button as the active one in the TabBar
          *  

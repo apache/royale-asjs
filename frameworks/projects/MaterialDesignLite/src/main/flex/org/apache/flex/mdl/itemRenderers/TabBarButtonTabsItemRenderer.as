@@ -25,6 +25,17 @@ package org.apache.flex.mdl.itemRenderers
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    /**
+     *  Represents item renderer for TabBarButton
+     *
+     *  It is default item renderer for TabBarButton
+     *  Creates MDL "mdl-tabs__tab" conponent
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     * */
     public class TabBarButtonTabsItemRenderer extends TabBarButtonItemRendererBase
     {
         public function TabBarButtonTabsItemRenderer()

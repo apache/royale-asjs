@@ -37,6 +37,16 @@ package org.apache.flex.mdl.beads
 
     [Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 
+    /**
+     *  The TabsItemRendererFactoryForArrayData class reads an
+     *  array of data and creates an item renderer for every
+     *  ITabItemRenderer in the array.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class TabsItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
     {
         public function TabsItemRendererFactoryForArrayData(target:Object = null)
