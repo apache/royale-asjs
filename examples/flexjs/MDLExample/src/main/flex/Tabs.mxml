@@ -82,56 +82,5 @@ limitations under the License.
                 </mdl:NavigationLayoutContent>
             </mdl:NavigationLayout>
         </mdl:GridCell>
-     <!--   <mdl:Tabs width="400" ripple="true" tabIdField="tabId" className="customTabSetup">
-            <mdl:beads>
-                <js:ConstantBinding
-                        sourceID="tabsModel"
-                        sourcePropertyName="tabsLayout"
-                        destinationPropertyName="dataProvider" />
-            </mdl:beads>
-            <mdl:TabBar tabIdField="tabId" labelField="label" className="customTabBarSetup" forceLayout="true">
-                <mdl:beads>
-                    <js:ConstantBinding
-                            sourceID="tabsModel"
-                            sourcePropertyName="tabsLayout"
-                            destinationPropertyName="dataProvider" />
-                </mdl:beads>
-            </mdl:TabBar>
-            <mdl:TabBar>
-                <mdl:TabBarButton text="Starks" href="#starks_panel"/>
-                <mdl:TabBarButton text="Lannisters" href="#lannisters_panel" isActive="true"/>
-                <mdl:TabBarButton text="Targaryens" href="#targaryens_panel"/>
-            </mdl:TabBar>
-            
-            <mdl:TabBarPanel id="starks_panel">
-                <js:Ul>
-                    <js:Li><js:Label text="Eddard"/></js:Li>
-                    <js:Li><js:Label text="Catelyn"/></js:Li>
-                    <js:Li><js:Label text="Robb"/></js:Li>
-                    <js:Li><js:Label text="Sansa"/></js:Li>
-                    <js:Li><js:Label text="Brandon"/></js:Li>
-                    <js:Li><js:Label text="Arya"/></js:Li>
-                    <js:Li><js:Label text="Rickon"/></js:Li>
-                </js:Ul>
-            </mdl:TabBarPanel>
-
-            <mdl:TabBarPanel id="lannisters_panel" isActive="true">
-                <js:Ul>
-                    <js:Li><js:Label text="Tywin"/></js:Li>
-                    <js:Li><js:Label text="Cersei"/></js:Li>
-                    <js:Li><js:Label text="Jamie"/></js:Li>
-                    <js:Li><js:Label text="Tyrion"/></js:Li>
-                </js:Ul>
-            </mdl:TabBarPanel>
-            
-            <mdl:TabBarPanel id="targaryens_panel">
-                <js:Ul>
-                    <js:Li><js:Label text="Viserys"/></js:Li>
-                    <js:Li><js:Label text="Daenerys"/></js:Li>
-                </js:Ul>
-            </mdl:TabBarPanel>
-        </mdl:Tabs>    -->
-
     </mdl:Grid>
-
 </mdl:TabBarPanel>

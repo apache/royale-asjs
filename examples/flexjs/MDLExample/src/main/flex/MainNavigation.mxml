@@ -41,20 +41,13 @@ limitations under the License.
                 </mdl:beads>
             </mdl:Navigation>
         </mdl:HeaderRow>
-        <mdl:TabBar ripple="true">
-            <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
-            <mdl:TabBarButton text="Chips" href="#chips_panel"/>
-            <mdl:TabBarButton text="Sliders" href="#sliders_panel"/>
-            <mdl:TabBarButton text="Grids" href="#grids_panel"/>
-            <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
-            <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
-            <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
-            <mdl:TabBarButton text="Snackbar" href="#snackbar_panel"/>
-            <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
-            <mdl:TabBarButton text="Lists" href="#lists_panel"/>
-            <mdl:TabBarButton text="Loading" href="#loading_panel"/>
-            <mdl:TabBarButton text="Menu" href="#menus_panel"/>
-            <mdl:TabBarButton text="Badges" href="#badges_panel"/>
+        <mdl:TabBar ripple="true" labelField="label" tabIdField="href" className="customTabBarSetup">
+            <mdl:beads>
+                <js:ConstantBinding
+                        sourceID="mainNavigationModel"
+                        sourcePropertyName="componentsTabs"
+                        destinationPropertyName="dataProvider" />
+            </mdl:beads>
         </mdl:TabBar>
     </mdl:Header>
     

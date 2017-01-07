@@ -51,5 +51,26 @@ package models
         {
             return _drawerNavigation;
         }
+
+        private var _componentsTabs:Array = [
+            new NavigationLinkVO("Cards", "cards_panel"),
+            new NavigationLinkVO("Chips", "chips_panel"),
+            new NavigationLinkVO("Sliders", "sliders_panel"),
+            new NavigationLinkVO("Grids", "grids_panel"),
+            new NavigationLinkVO("Tabs", "tabs_panel"),
+            new NavigationLinkVO("Buttons", "buttons_panel"),
+            new NavigationLinkVO("TextFields", "textfield_panel"),
+            new NavigationLinkVO("Snackbar", "snackbar_panel"),
+            new NavigationLinkVO("Toggles", "toggles_panel"),
+            new NavigationLinkVO("Lists", "lists_panel"),
+            new NavigationLinkVO("Loading", "loading_panel"),
+            new NavigationLinkVO("Menu", "menus_panel"),
+            new NavigationLinkVO("Badges", "badges_panel")
+        ];
+
+        public function get componentsTabs():Array
+        {
+            return _componentsTabs;
+        }
     }
 }
