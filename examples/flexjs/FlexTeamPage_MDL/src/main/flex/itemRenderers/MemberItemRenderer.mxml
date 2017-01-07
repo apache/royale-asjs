@@ -26,6 +26,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
+        import org.apache.flex.fa.FontAwesomeIconSize;
         import org.apache.flex.fa.FontAwesomeIconType;
 
         import vos.MemberVO;
@@ -58,27 +59,27 @@ limitations under the License.
         <mdl:CardActions border="true">
             <mdl:Button colored="true" fab="true" ripple="true" raised="false" primary="true">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="fa-twitter" />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.TWITTER}" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false" accent="true">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="fa-linkedin" />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.LINKEDIN}" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="fa-facebook" />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GITHUB}" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="fa-github" />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GITHUB}" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="fa-glass" size="fa-lg"  />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}" size="{FontAwesomeIconSize.X1}"  />
                 </mdl:materialIcon>
             </mdl:Button>
         </mdl:CardActions>
