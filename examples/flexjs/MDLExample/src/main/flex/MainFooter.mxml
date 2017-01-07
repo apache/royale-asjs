@@ -40,5 +40,8 @@ limitations under the License.
     </mdl:FooterLeftSection>
 
     <mdl:FooterRightSection>
+        <mdl:FooterSocialButton>1</mdl:FooterSocialButton>
+        <mdl:FooterSocialButton>2</mdl:FooterSocialButton>
+        <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
     </mdl:FooterRightSection>
 </mdl:Footer>
