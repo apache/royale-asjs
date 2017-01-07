@@ -21,6 +21,4 @@
 
 <componentPackage>
     <component id="FontAwesomeIcon" class="org.apache.flex.fa.FontAwesomeIcon"/>
-    <component id="FontAwesomeIconType" class="org.apache.flex.fa.FontAwesomeIconType"/>
-    <component id="FontAwesomeIconSize" class="org.apache.flex.fa.FontAwesomeIconSize"/>
 </componentPackage>
