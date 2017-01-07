@@ -35,5 +35,21 @@ package models
         {
             return _mainNavigation;
         }
+
+        private var _drawerNavigation:Array = [
+                new NavigationLinkVO("About", "https://getmdl.io/index.html"),
+                new NavigationLinkVO("Getting Started", "https://getmdl.io/started/index.html"),
+                new NavigationLinkVO("Templates", "https://getmdl.io/templates/index.html"),
+                new NavigationLinkVO("Components", "https://getmdl.io/components/index.html"),
+                new NavigationLinkVO("Styles", "https://getmdl.io/styles/index.html"),
+                new NavigationLinkVO("Customize", "https://getmdl.io/customize/index.html"),
+                new NavigationLinkVO("Showcase", "https://getmdl.io/showcase/index.html"),
+                new NavigationLinkVO("FAQ", "https://getmdl.io/faq/index.html")
+        ];
+
+        public function get drawerNavigation():Array
+        {
+            return _drawerNavigation;
+        }
     }
 }

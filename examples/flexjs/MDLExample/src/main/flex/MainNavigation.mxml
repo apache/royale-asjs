@@ -61,15 +61,13 @@ limitations under the License.
     <mdl:Drawer>
         <mdl:LayoutTitle text="Drawer"/>
         <mdl:Navigation>
-            <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
-            <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
-            <mdl:NavigationLink text="Templates" href="https://getmdl.io/templates/index.html"/>
-            <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
-            <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
-            <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
-            <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
-            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
-        </mdl:Navigation>
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="drawerNavigation"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:Navigation>
     </mdl:Drawer>
     
     <mdl:NavigationLayoutContent>
