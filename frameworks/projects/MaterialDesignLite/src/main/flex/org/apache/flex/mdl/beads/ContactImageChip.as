@@ -41,6 +41,16 @@ package org.apache.flex.mdl.beads
 
         }
 
+        /**
+         *  Source for displayed image
+         *
+         *  @param value
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set source(value:String):void
         {
             _source = value;

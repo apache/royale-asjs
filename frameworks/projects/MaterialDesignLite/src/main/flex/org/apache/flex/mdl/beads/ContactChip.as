@@ -46,6 +46,16 @@ package org.apache.flex.mdl.beads
 
         }
 
+        /**
+         *  The text displayed on ContactChip 
+         *
+         *  @param value
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set contactText(value:String):void
         {
             _contactText = value;

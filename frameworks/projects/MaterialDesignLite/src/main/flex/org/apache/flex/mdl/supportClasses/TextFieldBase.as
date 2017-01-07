@@ -57,6 +57,14 @@ package org.apache.flex.mdl.supportClasses
         {
             private var _textNode:Text;
 
+            /**
+             *  @copy org.apache.flex.mdl.supportClasses.ITextField#textNode
+             *
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion FlexJS 0.0
+             */
             public function get textNode():Text
             {
                 return _textNode;
@@ -69,6 +77,14 @@ package org.apache.flex.mdl.supportClasses
 
             private var _input:HTMLInputElement;
 
+            /**
+             *  @copy org.apache.flex.mdl.supportClasses.ITextField#input
+             *
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion FlexJS 0.0
+             */
             public function get input():HTMLInputElement
             {
                 return _input;

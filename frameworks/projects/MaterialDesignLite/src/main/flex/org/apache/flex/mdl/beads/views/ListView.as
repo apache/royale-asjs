@@ -51,6 +51,7 @@ package org.apache.flex.mdl.beads.views
 
 		protected var listModel:ISelectionModel;
 
+
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
