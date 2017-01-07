@@ -112,17 +112,15 @@ package org.apache.flex.mdl.itemRenderers
 
 			if(value == null) return;
 
-			/*if(value.hasOwnProperty('label')) {
+			if(value.label !== undefined) {
                 label = String(value.label);
 			} else {
 				label = String(value);
-			}*/
-			label = String(value.label);
-
-            /*if(value.hasOwnProperty('href')) {
+			}
+			
+            if(value.href !== undefined) {
                 href = String(value.href);
-			}*/
-            href = String(value.href);
+			}
 
 			COMPILE::JS
 			{

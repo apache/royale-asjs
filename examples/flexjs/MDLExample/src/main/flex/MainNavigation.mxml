@@ -71,33 +71,19 @@ limitations under the License.
     </mdl:Drawer>
     
     <mdl:NavigationLayoutContent>
-        
         <local:Cards id="cards_panel" isActive="true"/>
-
         <local:Chips id="chips_panel" />
-
         <local:Sliders id="sliders_panel" />
-        
         <local:Grids id="grids_panel"/>
-
         <local:Tabs id="tabs_panel"/>
-        
         <local:Buttons id="buttons_panel"/>
-
         <local:TextFields id="textfield_panel"/>
-
         <local:Toggles id="toggles_panel"/>
-
         <local:Snackbar id="snackbar_panel"/>
-
         <local:Lists id="lists_panel"/>
-
         <local:Loading id="loading_panel"/>
-
         <local:Menus id="menus_panel"/>
-
         <local:Badges id="badges_panel"/>
-
     </mdl:NavigationLayoutContent>
 
     <local:MainFooter/>
