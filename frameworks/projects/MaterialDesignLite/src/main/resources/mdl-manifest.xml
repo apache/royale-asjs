@@ -58,6 +58,7 @@
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
+    <component id="NavigationLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer"/>
     <component id="NavigationLink" class="org.apache.flex.mdl.NavigationLink"/>
     <component id="Header" class="org.apache.flex.mdl.Header"/>
     <component id="HeaderRow" class="org.apache.flex.mdl.HeaderRow"/>

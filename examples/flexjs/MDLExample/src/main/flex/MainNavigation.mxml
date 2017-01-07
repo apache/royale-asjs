@@ -23,15 +23,22 @@ limitations under the License.
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                       xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
                       fixedHeader="true">
+    
+    <mdl:model>
+        <models:MainNavigationModel id="mainNavigationModel"/>
+    </mdl:model>
+
     <mdl:Header>
         <mdl:HeaderRow>
             <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
             <mdl:Spacer/>
             <mdl:Navigation>
-                <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
-                <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
-                <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
-                <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="mainNavigation"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
             </mdl:Navigation>
         </mdl:HeaderRow>
         <mdl:TabBar ripple="true">
