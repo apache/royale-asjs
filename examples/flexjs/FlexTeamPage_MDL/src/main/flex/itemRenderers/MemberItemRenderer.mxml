@@ -79,12 +79,13 @@ limitations under the License.
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}" size="{FontAwesomeIconSize.X1}"
-                    fixedWidth="true"/>
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}"
+                                        fixedWidth="true"
+                                        showBorder="true"
+                    />
                 </mdl:materialIcon>
             </mdl:Button>
         </mdl:CardActions>
     </mdl:Card>
-
 </mdl:ListItemRenderer>
 

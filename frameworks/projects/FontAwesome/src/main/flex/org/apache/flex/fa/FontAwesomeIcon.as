@@ -64,6 +64,7 @@ package org.apache.flex.fa
 		protected var _iconType:String;
 		protected var _size:String;
         protected var _fixedWidth:Boolean;
+        protected var _showBorder:Boolean;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -149,6 +150,23 @@ package org.apache.flex.fa
             COMPILE::JS
             {
                 element.classList.toggle('fa-fw',_fixedWidth);
+            }
+        }
+
+        /**
+         * Show a border around the icon
+         */
+        public function get showBorder():Boolean
+        {
+            return _showBorder;
+        }
+
+        public function set showBorder(value:Boolean)
+        {
+            _showBorder = value;
+            COMPILE::JS
+            {
+                element.classList.toggle('fa-border',_showBorder)
             }
         }
 		
