@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="Button" class="org.apache.flex.mdl.Button"/>
+    <component id="IconToggle" class="org.apache.flex.mdl.IconToggle"/>
     <component id="TextField" class="org.apache.flex.mdl.TextField"/>
     <component id="TextArea" class="org.apache.flex.mdl.TextArea"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
@@ -112,5 +113,6 @@
     <component id="MaterialIconMoreVert" class="org.apache.flex.mdl.materialIcons.MaterialIconMoreVert"/>
     <component id="MaterialIconSearch" class="org.apache.flex.mdl.materialIcons.MaterialIconSearch"/>
     <component id="MaterialIconKeyboardArrowDown" class="org.apache.flex.mdl.materialIcons.MaterialIconKeyboardArrowDown"/>
-
+    <component id="MaterialIconFormatBold" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatBold" />
+    <component id="MaterialIconFormatItalic" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatItalic"/>
 </componentPackage>
