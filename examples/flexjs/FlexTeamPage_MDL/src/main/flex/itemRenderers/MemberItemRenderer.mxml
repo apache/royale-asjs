@@ -74,7 +74,7 @@ limitations under the License.
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
-                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GITHUB}" />
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GITHUB}" fixedWidth="true" />
                 </mdl:materialIcon>
             </mdl:Button>
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">

@@ -107,8 +107,12 @@ package org.apache.flex.fa
                 element.classList.add(_iconType);
             }
 		}
-		
-		
+
+        /**
+         * To increase icon sizes relative to their container,
+         * use the X1 (33% increase), X2, X3, X4, or X5.
+         *
+         */
         public function get size():String
         {
             return _size;
@@ -129,6 +133,11 @@ package org.apache.flex.fa
             }
         }
 
+        /**
+         * Set icons at a fixed width.
+         * Great to use when different icon widths throw off alignment.
+         * Especially useful in things like nav lists & list groups.
+         */
         public function get fixedWidth():Boolean
         {
             return _fixedWidth;
