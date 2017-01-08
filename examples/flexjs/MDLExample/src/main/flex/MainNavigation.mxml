@@ -41,7 +41,7 @@ limitations under the License.
                 </mdl:beads>
             </mdl:Navigation>
         </mdl:HeaderRow>
-        <mdl:TabBar ripple="true" labelField="label" tabIdField="href" className="customTabBarSetup">
+        <mdl:TabBar ripple="true" selectedIndex="0" labelField="label" tabIdField="href" className="customTabBarSetup">
             <mdl:beads>
                 <js:ConstantBinding
                         sourceID="mainNavigationModel"

@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
+    import org.apache.flex.events.Event;
+    import org.apache.flex.core.IContentViewHost;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.mdl.TabBarButton;
+    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
+
     /**
      *  The TabBarView class creates the visual elements of the org.apache.flex.mdl.TabBar
      *  component.
@@ -32,6 +38,36 @@ package org.apache.flex.mdl.beads.views
         public function TabBarView()
         {
             super();
+        }
+
+        override public function set strand(value:IStrand):void
+        {
+            super.strand = value;
+
+            host.addEventListener("initComplete", initCompleteHandler);
+        }
+
+        private function initCompleteHandler(event:Event):void
+        {
+            host.removeEventListener("initComplete", initCompleteHandler);
+
+            completeSetup();
+        }
+
+        protected function completeSetup():void
+        {
+            selectTabBarButton();
+        }
+
+        private function selectTabBarButton():void
+        {
+            if (listModel.selectedIndex < 0 ) return;
+
+            var tabBarButton:Object = (host as IContentViewHost).strandChildren.getElementAt(listModel.selectedIndex);
+            if (tabBarButton is ITabItemRenderer || tabBarButton is TabBarButton)
+            {
+                tabBarButton.isActive = true;
+            }
         }
     }
 }
