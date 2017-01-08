@@ -23,6 +23,8 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
+    import org.apache.flex.mdl.TabBarPanel;
+    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
     /**
      *  The TabsView class creates the visual elements of the org.apache.flex.mdl.Tabs
@@ -76,12 +78,30 @@ package org.apache.flex.mdl.beads.views
             host.addEventListener("initComplete", initCompleteHandler);
         }
 
-        
         private function initCompleteHandler(event:Event):void
         {
             host.removeEventListener("initComplete", initCompleteHandler);
-            
+
+            completeSetup();
+        }
+
+        protected function completeSetup():void
+        {
             (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
+
+            selectTabBarPanel();
+        }
+
+        private function selectTabBarPanel():void
+        {
+            if (listModel.selectedIndex < 0 ) return;
+
+            var indexElementAfterTabBar:int = listModel.selectedIndex + 1;
+            var tabBarPanel:Object = (host as IContentViewHost).strandChildren.getElementAt(indexElementAfterTabBar);
+            if (tabBarPanel is ITabItemRenderer || tabBarPanel is TabBarPanel)
+            {
+                tabBarPanel.isActive = true;
+            }
         }
     }
 }
