@@ -63,6 +63,7 @@ package org.apache.flex.fa
         protected var textNode:Text;
 		protected var _iconType:String;
 		protected var _size:String;
+        protected var _fixedWidth:Boolean;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -125,6 +126,20 @@ package org.apache.flex.fa
             COMPILE::JS
             {
                 element.classList.add(value);
+            }
+        }
+
+        public function get fixedWidth():Boolean
+        {
+            return _fixedWidth;
+        }
+
+        public function set fixedWidth(value:Boolean):void
+        {
+            _fixedWidth = value;
+            COMPILE::JS
+            {
+                element.classList.toggle('fa-fw',_fixedWidth);
             }
         }
 		
