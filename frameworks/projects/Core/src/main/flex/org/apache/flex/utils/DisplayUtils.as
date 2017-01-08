@@ -23,6 +23,7 @@ package org.apache.flex.utils
 
 	COMPILE::JS 
 	{
+		import org.apache.flex.geom.Point;
 		import org.apache.flex.geom.Matrix;
 		import org.apache.flex.geom.Point;
 		import org.apache.flex.core.ITransformHost;
@@ -70,11 +71,17 @@ package org.apache.flex.utils
 					var sm:SVGMatrix = svgElement.getScreenCTM();
 					var m:Matrix = new Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
 					var tl:Point = m.transformPoint(bounds.topLeft);
+					var tr:Point = m.transformPoint(new Point(bounds.right, bounds.top));
+					var bl:Point = m.transformPoint(new Point(bounds.left, bounds.bottom));
 					var br:Point = m.transformPoint(bounds.bottomRight);
-					bounds.top = tl.y;
-					bounds.left = tl.x;
-					bounds.bottom = br.y;
-					bounds.right = br.x;
+					var leftX:Number = Math.min(tl.x, tr.x, bl.x, br.x);
+					var topY:Number = Math.min(tl.y, tr.y, bl.y, br.y);
+					var rightX:Number = Math.max(tl.x, tr.x, bl.x, br.x);
+					var bottomY:Number = Math.max(tl.y, tr.y, bl.y, br.y);
+					bounds.top = topY;
+					bounds.left = leftX;
+					bounds.bottom = bottomY;
+					bounds.right = rightX;
 				}
 				return bounds;
 			}
