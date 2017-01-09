@@ -26,6 +26,7 @@
     <component id="Container" class="org.apache.flex.express.Container"/>
     <component id="HContainer" class="org.apache.flex.express.HContainer"/>
     <component id="HView" class="org.apache.flex.express.HView"/>
+    <component id="List" class="org.apache.flex.express.List"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.express.MXMLItemRenderer"/>
     <component id="TextInput" class="org.apache.flex.express.TextInput"/>
     <component id="VContainer" class="org.apache.flex.express.VContainer"/>
@@ -44,7 +45,6 @@
     <component id="TextButton" class="org.apache.flex.html.TextButton"  lookupOnly="true" />
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"  lookupOnly="true" />
     <component id="TextArea" class="org.apache.flex.html.TextArea"  lookupOnly="true" />
-    <component id="List" class="org.apache.flex.html.List"  lookupOnly="true" />
     <component id="SimpleList" class="org.apache.flex.html.SimpleList"  lookupOnly="true" />
     <component id="CheckBox" class="org.apache.flex.html.CheckBox"  lookupOnly="true" />
     <component id="RadioButton" class="org.apache.flex.html.RadioButton"  lookupOnly="true" />
