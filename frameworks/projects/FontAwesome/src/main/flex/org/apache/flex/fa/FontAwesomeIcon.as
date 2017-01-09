@@ -65,6 +65,7 @@ package org.apache.flex.fa
 		protected var _size:String;
         protected var _fixedWidth:Boolean;
         protected var _showBorder:Boolean;
+        protected var _rotation:String;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -185,6 +186,35 @@ package org.apache.flex.fa
             COMPILE::JS
             {
                 element.classList.toggle('fa-border',_showBorder)
+            }
+        }
+
+        /**
+         *  Rotate icon
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *
+         */
+        public function get rotation():String
+        {
+            return _rotation;
+        }
+
+        public function set rotation(value:String)
+        {
+            COMPILE::JS
+            {
+                element.classList.remove(value)
+            }
+
+            _rotation = value;
+
+            COMPILE::JS
+            {
+                element.classList.add(value)
             }
         }
 		

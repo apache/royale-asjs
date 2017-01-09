@@ -16,20 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.fa
 {
-
-	/**
-	*  @private
-	*  This class is used to link additional classes into fa.swc
-	*  beyond those that are found by dependecy analysis starting
-	*  from the classes specified in manifest.xml.
-	*/
-	internal class FAClasses
-	{
-		import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
-		import org.apache.flex.fa.FontAwesomeIconSize; FontAwesomeIconSize;
-		import org.apache.flex.fa.FontAwesomeIconRotation; FontAwesomeIconRotation;
-	}
+    public class FontAwesomeIconRotation
+    {
+		public static const R90:String = 'fa-rotate-90';
+		public static const R180:String = 'fa-rotate-180';
+		public static const R270:String = 'fa-rotate-270';
+    }
 }
-

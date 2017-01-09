@@ -26,6 +26,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
+        import org.apache.flex.fa.FontAwesomeIconRotation;
         import org.apache.flex.fa.FontAwesomeIconSize;
         import org.apache.flex.fa.FontAwesomeIconType;
 
@@ -80,7 +81,7 @@ limitations under the License.
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
                     <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}"
-                                        showBorder="true">
+                                        showBorder="true" rotation="{FontAwesomeIconRotation.R90}">
                     </fa:FontAwesomeIcon>
                 </mdl:materialIcon>
             </mdl:Button>
