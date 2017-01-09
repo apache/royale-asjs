@@ -110,8 +110,13 @@ package org.apache.flex.fa
 		}
 
         /**
-         * To increase icon sizes relative to their container,
-         * use the X1 (33% increase), X2, X3, X4, or X5.
+         *  To increase icon sizes relative to their container,
+         *  use the X1 (33% increase), X2, X3, X4, or X5.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          *
          */
         public function get size():String
@@ -135,9 +140,16 @@ package org.apache.flex.fa
         }
 
         /**
-         * Set icons at a fixed width.
-         * Great to use when different icon widths throw off alignment.
-         * Especially useful in things like nav lists & list groups.
+         *
+         *  Set icons at a fixed width.
+         *  Great to use when different icon widths throw off alignment.
+         *  Especially useful in things like nav lists & list groups.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *
          */
         public function get fixedWidth():Boolean
         {
@@ -154,7 +166,13 @@ package org.apache.flex.fa
         }
 
         /**
-         * Show a border around the icon
+         *  Show a border around the icon
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *
          */
         public function get showBorder():Boolean
         {
