@@ -20,7 +20,6 @@ package org.apache.flex.fa.beads {
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.core.UIBase;
-import org.osmf.elements.HTMLElement;
 
 public class Animate implements IBead {
     /**

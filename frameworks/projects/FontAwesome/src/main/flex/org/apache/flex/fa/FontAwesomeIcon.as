@@ -180,7 +180,7 @@ package org.apache.flex.fa
             return _showBorder;
         }
 
-        public function set showBorder(value:Boolean)
+        public function set showBorder(value:Boolean):void
         {
             _showBorder = value;
             COMPILE::JS
@@ -203,7 +203,7 @@ package org.apache.flex.fa
             return _rotation;
         }
 
-        public function set rotation(value:String)
+        public function set rotation(value:String):void
         {
             COMPILE::JS
             {
