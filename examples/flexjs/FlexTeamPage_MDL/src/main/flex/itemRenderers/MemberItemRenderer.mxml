@@ -80,11 +80,30 @@ limitations under the License.
             <mdl:Button colored="true" fab="true" ripple="true" raised="false">
                 <mdl:materialIcon>
                     <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.GLASS}"
-                                        fixedWidth="true"
-                                        showBorder="true"
-                    />
+                                        showBorder="true">
+                    </fa:FontAwesomeIcon>
                 </mdl:materialIcon>
             </mdl:Button>
+            <mdl:Button colored="true" fab="true" ripple="true" raised="false">
+                <mdl:materialIcon>
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.COG}">
+                        <fa:beads>
+                            <fa:Animate />
+                        </fa:beads>
+                    </fa:FontAwesomeIcon>
+                </mdl:materialIcon>
+            </mdl:Button>
+
+            <mdl:Button colored="true" fab="true" ripple="true" raised="false">
+                <mdl:materialIcon>
+                    <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.SPINNER}">
+                        <fa:beads>
+                            <fa:Animate pulse="true"/>
+                        </fa:beads>
+                    </fa:FontAwesomeIcon>
+                </mdl:materialIcon>
+            </mdl:Button>
+
         </mdl:CardActions>
     </mdl:Card>
 </mdl:ListItemRenderer>

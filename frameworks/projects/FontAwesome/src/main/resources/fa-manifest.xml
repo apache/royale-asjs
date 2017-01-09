@@ -21,4 +21,5 @@
 
 <componentPackage>
     <component id="FontAwesomeIcon" class="org.apache.flex.fa.FontAwesomeIcon"/>
+    <component id="Animate" class="org.apache.flex.fa.beads.Animate"/>
 </componentPackage>
