@@ -20,7 +20,8 @@ package org.apache.flex.html.accessories
 {
 	COMPILE::SWF
 	{
-		import flash.text.TextFieldType;			
+		import flash.text.TextFieldType;
+		import flash.text.TextField;
 		
 		import org.apache.flex.core.CSSTextField;
 	}
@@ -101,7 +102,7 @@ package org.apache.flex.html.accessories
 				
 				// create a TextField that displays the prompt - it shows
 				// and hides based on the model's content
-				promptField = new CSSTextField();
+				promptField = new TextField();
 				promptField.selectable = false;
 				promptField.type = TextFieldType.DYNAMIC;
 				promptField.mouseEnabled = false;
@@ -121,7 +122,7 @@ package org.apache.flex.html.accessories
 		}
 		
 		COMPILE::SWF
-		private var promptField:CSSTextField;
+		private var promptField:TextField;
 		private var promptAdded:Boolean;
 		
 		/**
@@ -142,6 +143,10 @@ package org.apache.flex.html.accessories
 				if (!promptAdded) UIBase(_strand).$displayObjectContainer.addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
+				promptField.x = 2;
+				promptField.y = 2;
+				promptField.width = UIBase(_strand).width-5;
+				promptField.height = UIBase(_strand).height-4;
 			}
 		}
 	}

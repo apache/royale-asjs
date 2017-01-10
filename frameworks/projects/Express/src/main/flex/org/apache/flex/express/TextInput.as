@@ -23,6 +23,11 @@ package org.apache.flex.express
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead;
 	import org.apache.flex.html.accessories.PasswordInputBead;
 	import org.apache.flex.html.accessories.TextPromptBead;
+	import org.apache.flex.html.beads.DisableBead;
+	
+	COMPILE::SWF {
+		import org.apache.flex.html.beads.TextInputView;
+	}
 	
 	/**
 	 * This class extends the standard TextInput class and adds in
@@ -112,6 +117,36 @@ package org.apache.flex.express
 			}
 			
 			dispatchEvent(new Event("numericChanged"));
+		}
+		
+		private var _disableBead:DisableBead;
+		private var _enabled:Boolean = true;
+		
+		[Bindable("enabledChanged")]
+		/**
+		 * Can enable or disable interaction with the control.
+		 */
+		public function get enabled():Boolean
+		{
+			return _enabled;
+		}
+		public function set enabled(value:Boolean):void
+		{
+			_enabled = value;
+			
+			if (_disableBead == null) {
+				_disableBead = new DisableBead();
+				addBead(_disableBead);
+			}
+			
+			_disableBead.disabled = !value;
+				
+			COMPILE::SWF {
+				var textView:TextInputView = view as TextInputView;
+				textView.textField.mouseEnabled = _enabled;
+			}
+			
+			dispatchEvent(new Event("enabledChanged"));
 		}
 	}
 }

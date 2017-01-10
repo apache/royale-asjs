@@ -28,6 +28,7 @@
     <component id="HView" class="org.apache.flex.express.HView"/>
     <component id="List" class="org.apache.flex.express.List"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.express.MXMLItemRenderer"/>
+    <component id="TextButton" class="org.apache.flex.express.TextButton"/>
     <component id="TextInput" class="org.apache.flex.express.TextInput"/>
     <component id="VContainer" class="org.apache.flex.express.VContainer"/>
     <component id="View" class="org.apache.flex.express.View"/>
@@ -42,7 +43,6 @@
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"  lookupOnly="true" />
     <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"  lookupOnly="true" />
-    <component id="TextButton" class="org.apache.flex.html.TextButton"  lookupOnly="true" />
     <component id="ToggleTextButton" class="org.apache.flex.html.ToggleTextButton"  lookupOnly="true" />
     <component id="TextArea" class="org.apache.flex.html.TextArea"  lookupOnly="true" />
     <component id="SimpleList" class="org.apache.flex.html.SimpleList"  lookupOnly="true" />

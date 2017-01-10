@@ -16,30 +16,46 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.express
 {
+	import org.apache.flex.events.Event;
+	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.beads.DisableBead;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class ExpressClasses
-{
-
-    import org.apache.flex.express.Application; Application;
-    import org.apache.flex.express.Container; Container;
-    import org.apache.flex.express.HContainer; HContainer;
-    import org.apache.flex.express.HView; HView;
-	import org.apache.flex.express.List; List;
-    import org.apache.flex.express.MXMLItemRenderer; MXMLItemRenderer;
-	import org.apache.flex.express.TextButton; TextButton;
-	import org.apache.flex.express.TextInput; TextInput;
-    import org.apache.flex.express.VContainer; VContainer;
-    import org.apache.flex.express.View; View;
-    import org.apache.flex.express.VView; VView;
+	/**
+	 * This class extends Container and adds the HorizontalLayout
+	 * bead for convenience.
+	 */
+	public class TextButton extends org.apache.flex.html.TextButton
+	{
+		public function TextButton()
+		{
+			super();
+		}
+		
+		private var _disableBead:DisableBead;
+		private var _enabled:Boolean = true;
+		
+		[Bindable("enabledChanged")]
+		/**
+		 * Can enable or disable interaction with the control.
+		 */
+		public function get enabled():Boolean
+		{
+			return _enabled;
+		}
+		public function set enabled(value:Boolean):void
+		{
+			_enabled = value;
+			
+			if (_disableBead == null) {
+				_disableBead = new DisableBead();
+				addBead(_disableBead);
+			}
+			
+			_disableBead.disabled = !value;
+				
+			dispatchEvent(new Event("enabledChanged"));
+		}
+	}
 }
-
-}
-
