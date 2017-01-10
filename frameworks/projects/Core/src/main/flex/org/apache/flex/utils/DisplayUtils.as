@@ -18,12 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
+	
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.geom.Matrix;
 	import org.apache.flex.geom.Rectangle;
 
+	COMPILE::SWF
+	{
+		import flash.geom.Matrix;
+	}
+	
 	COMPILE::JS 
 	{
-		import org.apache.flex.geom.Matrix;
+		import org.apache.flex.geom.Point;
 		import org.apache.flex.geom.Point;
 		import org.apache.flex.core.ITransformHost;
 	}
@@ -51,7 +58,7 @@ package org.apache.flex.utils
          *  @flexjsignorecoercion HTMLElement
          *  @flexjsignorecoercion ITransformHost
 		 */
-		public static function getScreenBoundingRect(obj:IUIBase):Rectangle
+		public static function getScreenBoundingRect(obj:IUIBase, boundsBeforeTransform:Rectangle=null):Rectangle
 		{
 			COMPILE::SWF
 			{
@@ -60,24 +67,61 @@ package org.apache.flex.utils
 
 			COMPILE::JS
 			{
-				var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
-				var bounds:Rectangle = new Rectangle(r.left, r.top, r.right - r.left, r.bottom - r.top);
+				var bounds:Rectangle = boundsBeforeTransform;
+				if (bounds == null)
+				{
+					var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
+					bounds = new Rectangle(r.left, r.top, r.right - r.left, r.bottom - r.top);
+				}
 				bounds.x -= window.pageXOffset;
 				bounds.y -= window.pageYOffset;
 				if (obj.element instanceof SVGElement)
 				{
-					var svgElement:Object = (obj as ITransformHost).transformElement as Object;
-					var sm:SVGMatrix = svgElement.getScreenCTM();
-					var m:Matrix = new Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
+					var m:org.apache.flex.geom.Matrix = getTransormMatrix(obj);
 					var tl:Point = m.transformPoint(bounds.topLeft);
+					var tr:Point = m.transformPoint(new Point(bounds.right, bounds.top));
+					var bl:Point = m.transformPoint(new Point(bounds.left, bounds.bottom));
 					var br:Point = m.transformPoint(bounds.bottomRight);
-					bounds.top = tl.y;
-					bounds.left = tl.x;
-					bounds.bottom = br.y;
-					bounds.right = br.x;
+					var leftX:Number = Math.min(tl.x, tr.x, bl.x, br.x);
+					var topY:Number = Math.min(tl.y, tr.y, bl.y, br.y);
+					var rightX:Number = Math.max(tl.x, tr.x, bl.x, br.x);
+					var bottomY:Number = Math.max(tl.y, tr.y, bl.y, br.y);
+					bounds.top = topY;
+					bounds.left = leftX;
+					bounds.bottom = bottomY;
+					bounds.right = rightX;
 				}
 				return bounds;
 			}
+		}
+		
+		/**
+		 *  Gets a composition all transform matrices applied to an IUIBase. Currently only works for SVG on JS side.
+		 * 
+		 *  @param obj The object to test.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion HTMLElement
+		 *  @flexjsignorecoercion ITransformHost
+		 */
+		public static function getTransormMatrix(obj:IUIBase):org.apache.flex.geom.Matrix
+		{
+			COMPILE::SWF
+			{
+				var m:flash.geom.Matrix = obj.$displayObject.transform.matrix;
+				return new org.apache.flex.geom.Matrix(m.a, m.b, m.c, m.d, m.tx, m.ty);
+			}
+			COMPILE::JS
+			{
+				// currently only works for SVG elements
+				var svgElement:Object = (obj as ITransformHost).transformElement as Object;
+				var sm:SVGMatrix = svgElement.getScreenCTM();
+				return new org.apache.flex.geom.Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
+			}
+			
 		}
 
 		/**

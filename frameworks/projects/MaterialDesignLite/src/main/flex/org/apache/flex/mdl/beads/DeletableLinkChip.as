@@ -52,6 +52,8 @@ package org.apache.flex.mdl.beads
         private var _strand:IStrand;
 
         /**
+         * @copy org.apache.flex.core.IBead#strand
+         * 
          * @flexjsignorecoercion HTMLElement
          * @flexjsignorecoercion HTMLSpanElement
          * @flexjsignorecoercion HTMLButtonElement
@@ -84,7 +86,17 @@ package org.apache.flex.mdl.beads
             }
         }
 
-
+        /**
+         * 
+         * Link
+         * 
+         * @param value
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
         public function set href(value:String):void
         {
            _href = value;

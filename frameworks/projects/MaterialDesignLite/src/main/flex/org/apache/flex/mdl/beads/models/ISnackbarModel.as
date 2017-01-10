@@ -20,8 +20,26 @@ package org.apache.flex.mdl.beads.models
 {
     import org.apache.flex.events.IEventDispatcher;
 
+    /**
+     *  The ISnackbarModel interface describes the minimum set of properties
+     *  available to Snackbar type of control
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public interface ISnackbarModel extends IToastModel, IEventDispatcher
     {
+
+        /**
+         *  Text on action button
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get actionText():String;
         function set actionText(value:String):void;
     }

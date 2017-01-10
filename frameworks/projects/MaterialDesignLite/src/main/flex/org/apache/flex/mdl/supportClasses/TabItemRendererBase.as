@@ -19,7 +19,15 @@
 package org.apache.flex.mdl.supportClasses
 {
     import org.apache.flex.html.supportClasses.MXMLItemRenderer;
-  
+
+    /**
+     *  Base class for Tabs item renderers
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     * */
     public class TabItemRendererBase extends MXMLItemRenderer implements ITabItemRenderer
     {
         public function TabItemRendererBase()
@@ -32,6 +40,14 @@ package org.apache.flex.mdl.supportClasses
         private var _tabIdField:String;
         private var _isActive:Boolean;
 
+        /**
+         *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#tabIdField
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get tabIdField():String
         {
             return _tabIdField;
@@ -42,6 +58,14 @@ package org.apache.flex.mdl.supportClasses
             _tabIdField = value;
         }
 
+        /**
+         *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#isActive
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get isActive():Boolean
         {
             return _isActive;

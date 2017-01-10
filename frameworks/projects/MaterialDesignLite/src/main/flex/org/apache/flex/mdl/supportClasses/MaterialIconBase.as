@@ -183,5 +183,22 @@ package org.apache.flex.mdl.supportClasses
             }
         }
 
+        private var _iconToggleLabel:Boolean;
+        /**
+         * Activate "mdl-icon-toggle__label" class selector, for use in list item
+         */
+        public function get iconToggleLabel():Boolean
+        {
+            return _iconToggleLabel;
+        }
+        public function set iconToggleLabel(value:Boolean):void
+        {
+            _iconToggleLabel = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-icon-toggle__label", _iconToggleLabel);
+            }
+        }
     }
 }

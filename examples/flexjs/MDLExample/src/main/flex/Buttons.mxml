@@ -61,7 +61,17 @@ limitations under the License.
                 <mdl:Disabled/>
             </mdl:beads>
         </mdl:Button>
-        
+
+        <mdl:IconToggle dataMdlFor="mdlBoldIcon">
+            <mdl:materialIcon>
+                <mdl:MaterialIconFormatBold />
+            </mdl:materialIcon>
+        </mdl:IconToggle>
+        <mdl:IconToggle dataMdlFor="mdlItalicIcon">
+            <mdl:materialIcon>
+                <mdl:MaterialIconFormatItalic />
+            </mdl:materialIcon>
+        </mdl:IconToggle>
     </mdl:Grid>
 
 </mdl:TabBarPanel>

@@ -16,43 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.itemRenderers
+package vos
 {
-    import org.apache.flex.mdl.supportClasses.TabBarButtonItemRendererBase;
-
-    COMPILE::JS
+    public class NavigationLinkVO
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-    }
+        [Bindable]
+        public var label:String;
+        [Bindable]
+        public var href:String;
 
-    /**
-     *  Represents item renderer for TabBarButton
-     *
-     *  Layout type item renderer
-     * 
-     *  Creates MDL "mdl-layout__tab" conponent
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     * */
-    public class TabBarButtonLayoutItemRenderer extends TabBarButtonItemRendererBase
-    {
-        public function TabBarButtonLayoutItemRenderer()
+        public function NavigationLinkVO(label:String, href:String)
         {
-            super();
-        }
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            typeNames = "mdl-layout__tab";
-
-            return super.createElement();
+            this.label = label;
+            this.href = href;
         }
     }
 }

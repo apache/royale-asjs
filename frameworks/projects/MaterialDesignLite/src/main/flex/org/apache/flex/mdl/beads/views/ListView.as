@@ -30,8 +30,13 @@ package org.apache.flex.mdl.beads.views
 	import org.apache.flex.events.Event;
 
 	/**
-	 * ListView makes sure the itemRendererFactory and the layout beads are installed.
-	 */
+	 *  ListView makes sure the itemRendererFactory and the layout beads are installed.
+	 * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
 	public class ListView extends BeadViewBase implements IListView
 	{
 		public function ListView()
@@ -46,6 +51,16 @@ package org.apache.flex.mdl.beads.views
 
 		protected var listModel:ISelectionModel;
 
+        /**
+         * @copy org.apache.flex.core.BeadViewBase#strand
+         *
+         * @param value
+		 *
+		 * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;

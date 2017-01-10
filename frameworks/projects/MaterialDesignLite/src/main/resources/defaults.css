@@ -56,6 +56,16 @@ List
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.ListItemRenderer");
 }
 
+Navigation
+{
+    IBeadView: ClassReference("org.apache.flex.mdl.beads.views.ListView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadLayout: ClassReference(null); /*"org.apache.flex.html.beads.layouts.VerticalLayout"*/
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer");
+}
+
 Menu
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.ListView");

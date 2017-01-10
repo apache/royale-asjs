@@ -20,11 +20,35 @@ package org.apache.flex.mdl.supportClasses
 {
     import org.apache.flex.core.ISelectableItemRenderer;
 
+    /**
+     *  The ITabItemRenderer interface is the basic interface for MDL Tabs and TabBar item renderers.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public interface ITabItemRenderer extends ISelectableItemRenderer
     {
+        /**
+         *  Provides name of the property which stores "id" for Tab
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get tabIdField():String;
         function set tabIdField(value:String):void;
-        
+
+        /**
+         * Indicates whether specific Tab is currently selected/active
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get isActive():Boolean;
         function set isActive(value:Boolean):void;
     }

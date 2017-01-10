@@ -52,6 +52,8 @@ package org.apache.flex.mdl.beads
         private var _strand:IStrand;
 
         /**
+         * @copy org.apache.flex.core.IBead#strand
+         * 
          * @flexjsignorecoercion HTMLElement
          * @flexjsignorecoercion HTMLSpanElement
          * @flexjsignorecoercion HTMLButtonElement

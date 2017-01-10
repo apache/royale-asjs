@@ -22,6 +22,15 @@ package org.apache.flex.mdl.beads.models
     import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
 
+    /**
+     *  The SnackbarModel class defines the data associated with an org.apache.flex.mdl.Snackbar
+     *  component.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class SnackbarModel extends ToastModel implements ISnackbarModel
     {
         private var _actionText:String = "";
@@ -32,7 +41,15 @@ package org.apache.flex.mdl.beads.models
         {
             super();
         }
-        
+
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.ISnackbarModel#actionText
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get actionText():String
         {
             return _actionText;
@@ -43,6 +60,14 @@ package org.apache.flex.mdl.beads.models
             _actionText = value;
         }
 
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.IToastModel#snackbarData
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         override public function get snackbarData():Object
         {
             return {
@@ -53,6 +78,14 @@ package org.apache.flex.mdl.beads.models
             };
         }
 
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.IToastModel#strand
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         override public function set strand(value:IStrand):void
         {
             _strand = value;

@@ -58,7 +58,15 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
+        /**
+         * @copy org.apache.flex.core.IDataProviderModel#dataProvider
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
         public function get dataProvider():Object
         {
             return ITabModel(model).dataProvider;
@@ -68,6 +76,14 @@ package org.apache.flex.mdl
             ITabModel(model).dataProvider = value;
         }
 
+        /**
+         * @copy org.apache.flex.core.IDataProviderModel#labelField
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
         public function get labelField():String
         {
             return ITabModel(model).labelField;
@@ -77,6 +93,14 @@ package org.apache.flex.mdl
             ITabModel(model).labelField = value;
         }
 
+        /**
+         * @copy org.apache.flex.mdl.beads.models.ITabModel#tabIdField
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
         public function get tabIdField():String
         {
             return ITabModel(model).tabIdField;
@@ -85,6 +109,11 @@ package org.apache.flex.mdl
         public function set tabIdField(value:String):void
         {
             ITabModel(model).tabIdField = value;
+        }
+
+        public function set selectedIndex(value:int):void
+        {
+            ITabModel(model).selectedIndex = value;
         }
 
         public function getLayoutHost():ILayoutHost

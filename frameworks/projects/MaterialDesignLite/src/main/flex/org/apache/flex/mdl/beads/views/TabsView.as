@@ -23,7 +23,18 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
+    import org.apache.flex.mdl.TabBarPanel;
+    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
+    /**
+     *  The TabsView class creates the visual elements of the org.apache.flex.mdl.Tabs
+     *  component.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class TabsView extends ListView
     {
         public function TabsView()
@@ -33,6 +44,15 @@ package org.apache.flex.mdl.beads.views
 
         private var _tabBar:TabBar;
 
+        /**
+         *  The org.apache.flex.mdl.TabBar component of the
+         *  org.apache.flex.mdl.Tabs.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get tabBar():TabBar
         {
             return _tabBar;
@@ -61,8 +81,27 @@ package org.apache.flex.mdl.beads.views
         private function initCompleteHandler(event:Event):void
         {
             host.removeEventListener("initComplete", initCompleteHandler);
-            
+
+            completeSetup();
+        }
+
+        protected function completeSetup():void
+        {
             (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
+
+            selectTabBarPanel();
+        }
+
+        private function selectTabBarPanel():void
+        {
+            if (listModel.selectedIndex < 0 ) return;
+
+            var indexElementAfterTabBar:int = listModel.selectedIndex + 1;
+            var tabBarPanel:Object = (host as IContentViewHost).strandChildren.getElementAt(indexElementAfterTabBar);
+            if (tabBarPanel is ITabItemRenderer || tabBarPanel is TabBarPanel)
+            {
+                tabBarPanel.isActive = true;
+            }
         }
     }
 }

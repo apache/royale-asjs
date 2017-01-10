@@ -20,13 +20,21 @@ package org.apache.flex.mdl.beads.models
 {
     import org.apache.flex.core.ISelectionModel;
 
+    /**
+     *  The ITabModel interface describes the minimum set of properties
+     *  available to Tabs control
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public interface ITabModel extends ISelectionModel
     {
         /**
-         *  The property on the data item that the item renderer
-         *  should renderer.
+         *  The property on data which represents "id" of TabBarPanel
          *
-         *  TabBarButton is binded with TabBarPanel. It requries unique id for each TabBarButton.
+         *  TabBarPanel requires unique id
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

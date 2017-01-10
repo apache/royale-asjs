@@ -55,7 +55,12 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#color
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get color():String
         {
@@ -68,7 +73,12 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#colorWeight
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get colorWeight():String
         {
@@ -94,9 +104,16 @@ package org.apache.flex.mdl.beads
         private var _strand:IStrand;
 
         /**
+         * @copy org.apache.flex.core.IBead#strand
+         * 
          * @flexjsignorecoercion HTMLElement
          *
          * @param value
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
          */
         public function set strand(value:IStrand):void
         {

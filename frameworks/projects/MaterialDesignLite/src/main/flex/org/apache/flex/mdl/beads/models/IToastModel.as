@@ -20,13 +20,54 @@ package org.apache.flex.mdl.beads.models
 {
     import org.apache.flex.core.IBeadModel;
 
+    /**
+     *  The IToastModel interface describes the minimum set of properties
+     *  available to simple version of Snackbar - Toast
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public interface IToastModel extends IBeadModel
     {
+        /**
+         *  Represents main text displayed on Snackbar/Toast
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get message():String;
         function set message(value:String):void;
+
+        /**
+         *  Describe in milliseconds how long Snackbar/Toast will not disappear
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get timeout():int
         function set timeout(value:int):void;
 
+        /**
+         *  Configuration object for MDL MaterialSnackbar.show method
+         *
+         *  {
+         *      message: message,
+         *       timeout: timeout,
+         *       actionHandler: onActionHandler,
+         *       actionText: _actionText
+         *   };
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         function get snackbarData():Object;
     }
 }

@@ -30,5 +30,8 @@ package org.apache.flex.mdl.materialIcons
         public static const MORE_VERT:String = "more_vert";
         public static const SEARCH:String = "search";
         public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
+
+        public static const FORMAT_BOLD:String = "format_bold";
+        public static const FORMAT_ITALIC:String = "format_italic";
     }
 }

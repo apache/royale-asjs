@@ -43,6 +43,7 @@
     <!--module>native</module-->
 
     <module>examples-tests</module>
+    <module>examples-integrationtests</module>
   </modules>
 
   <build>

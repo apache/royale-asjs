@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="Button" class="org.apache.flex.mdl.Button"/>
+    <component id="IconToggle" class="org.apache.flex.mdl.IconToggle"/>
     <component id="TextField" class="org.apache.flex.mdl.TextField"/>
     <component id="TextArea" class="org.apache.flex.mdl.TextArea"/>
     <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
@@ -58,6 +59,7 @@
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
+    <component id="NavigationLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer"/>
     <component id="NavigationLink" class="org.apache.flex.mdl.NavigationLink"/>
     <component id="Header" class="org.apache.flex.mdl.Header"/>
     <component id="HeaderRow" class="org.apache.flex.mdl.HeaderRow"/>
@@ -87,6 +89,7 @@
     <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
     <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
     <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
+    <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
 
 
     <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
@@ -110,5 +113,6 @@
     <component id="MaterialIconMoreVert" class="org.apache.flex.mdl.materialIcons.MaterialIconMoreVert"/>
     <component id="MaterialIconSearch" class="org.apache.flex.mdl.materialIcons.MaterialIconSearch"/>
     <component id="MaterialIconKeyboardArrowDown" class="org.apache.flex.mdl.materialIcons.MaterialIconKeyboardArrowDown"/>
-
+    <component id="MaterialIconFormatBold" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatBold" />
+    <component id="MaterialIconFormatItalic" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatItalic"/>
 </componentPackage>

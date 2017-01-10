@@ -32,6 +32,7 @@ internal class ExpressClasses
     import org.apache.flex.express.Container; Container;
     import org.apache.flex.express.HContainer; HContainer;
     import org.apache.flex.express.HView; HView;
+	import org.apache.flex.express.List; List;
     import org.apache.flex.express.MXMLItemRenderer; MXMLItemRenderer;
 	import org.apache.flex.express.TextInput; TextInput;
     import org.apache.flex.express.VContainer; VContainer;

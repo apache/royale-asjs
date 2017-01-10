@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.html.TextButton;
+	import org.apache.flex.mdl.supportClasses.IFooterSection;
+	import org.apache.flex.core.UIBase;
     
     COMPILE::JS
     {
@@ -26,18 +28,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The TabBarPanel class is a Container component capable of parenting other
-	 *  four components
+	 *  The FooterSocialButton class is a Container component capable of parenting other
+	 *  components 
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TabBarPanel extends ContainerBase
+	public class FooterSocialButton extends TextButton
 	{
 		/**
 		 *  constructor.
@@ -47,7 +46,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function TabBarPanel()
+		public function FooterSocialButton()
 		{
 			super();
 
@@ -60,65 +59,50 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			element = document.createElement('section') as WrappedHTMLElement;
-			
-            positioner = element;
+			typeNames = "mdl-mega-footer__social-btn";
+
+            element = document.createElement('button') as WrappedHTMLElement;
             
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
+            positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
         }
 
 		/**
-         *  If TabBarPanel is used inside Tabs use a different config
+         *  Configuration depends on parent Footer.
+		 *  Check to see if is mega or mini.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */
+        */ 
 		COMPILE::JS
 		override public function addedToParent():void
         {
 			super.addedToParent();
 
-			if(parent is Tabs)
+			if(parent is IFooterSection)
 			{
-				typeNames = "mdl-tabs__panel";
-			} else {
-				typeNames = "mdl-layout__tab-panel";
+				var parentSection:IFooterSection = parent as IFooterSection;
+				if(UIBase(parentSection).parent is Footer)
+				{
+					element.classList.remove(typeNames);
+					if(!Footer(UIBase(parentSection).parent).mini)
+					{
+						typeNames = "mdl-mega-footer__social-btn";
+					} else
+					{
+						typeNames = "mdl-mini-footer__social-btn";
+					}
+					element.classList.add(typeNames);
+				}
 			}
-			
-			element.classList.add(typeNames);
+			else
+			{
+				throw new Error("FooterSocialButton can not be used if parent is not a MDL Footer component.");
+			}			
         }
-
-		private var _isActive:Boolean;
-		
-        /**
-         *  Marks this Button as the active one in the TabBar
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get isActive():Boolean
-		{
-            return _isActive;   
-		}
-
-		public function set isActive(value:Boolean):void
-		{
-            _isActive = value;
-            
-            COMPILE::JS
-            {
-                element.classList.toggle("is-active", _isActive);
-            }
-		}
 	}
 }

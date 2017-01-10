@@ -55,9 +55,11 @@ package org.apache.flex.mdl
             super();
         }
 
-        protected var _ripple:Boolean = false;
+        private var _ripple:Boolean = false;
+        
         /**
          *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
+         *  Applies ripple click effect. May be used in combination with any other classes
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -130,17 +132,8 @@ package org.apache.flex.mdl
             return element;
         }
 
-        protected var _ripple:Boolean = false;
-
-        /**
-         *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-         *  Applies ripple click effect. May be used in combination with any other classes
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
+        private var _ripple:Boolean = false;
+        
         public function get ripple():Boolean
         {
             return _ripple;
@@ -150,10 +143,7 @@ package org.apache.flex.mdl
         {
             _ripple = value;
 
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-js-ripple-effect", _ripple);
-            }
+            element.classList.toggle("mdl-js-ripple-effect", _ripple);
         }
 
         public function get text():String

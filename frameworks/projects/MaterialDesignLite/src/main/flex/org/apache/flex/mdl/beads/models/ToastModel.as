@@ -21,6 +21,15 @@ package org.apache.flex.mdl.beads.models
     import org.apache.flex.core.IStrand;
     import org.apache.flex.events.EventDispatcher;
 
+    /**
+     *  The ToastModel class defines the data associated with an org.apache.flex.mdl.Toast
+     *  component.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class ToastModel extends EventDispatcher implements IToastModel
     {
         private var _message:String = "";
@@ -33,6 +42,14 @@ package org.apache.flex.mdl.beads.models
             super();
         }
 
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.IToastModel#message
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get message():String
         {
             return _message;
@@ -42,7 +59,15 @@ package org.apache.flex.mdl.beads.models
         {
             _message = value;
         }
-
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.IToastModel#timeout
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        
         public function get timeout():int
         {
             return _timeout;
@@ -53,6 +78,14 @@ package org.apache.flex.mdl.beads.models
             _timeout = value;
         }
 
+        /**
+         *  @copy org.apache.flex.mdl.beads.models.IToastModel#snackbarData
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function get snackbarData():Object
         {
             return {
@@ -61,6 +94,16 @@ package org.apache.flex.mdl.beads.models
             };
         }
 
+        /**
+         *   Set strand for model
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         *
+         * @param value
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;

@@ -23,76 +23,60 @@ limitations under the License.
                       xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                       xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
                       fixedHeader="true">
+    
+    <mdl:model>
+        <models:MainNavigationModel id="mainNavigationModel"/>
+    </mdl:model>
+
     <mdl:Header>
         <mdl:HeaderRow>
             <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
             <mdl:Spacer/>
             <mdl:Navigation>
-                <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
-                <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
-                <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
-                <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="mainNavigation"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
             </mdl:Navigation>
         </mdl:HeaderRow>
-        <mdl:TabBar ripple="true">
-            <mdl:TabBarButton text="Cards" href="#cards_panel" isActive="true"/>
-            <mdl:TabBarButton text="Chips" href="#chips_panel"/>
-            <mdl:TabBarButton text="Sliders" href="#sliders_panel"/>
-            <mdl:TabBarButton text="Grids" href="#grids_panel"/>
-            <mdl:TabBarButton text="Tabs" href="#tabs_panel"/>
-            <mdl:TabBarButton text="Buttons" href="#buttons_panel" />
-            <mdl:TabBarButton text="TextFields" href="#textfield_panel"/>
-            <mdl:TabBarButton text="Snackbar" href="#snackbar_panel"/>
-            <mdl:TabBarButton text="Toggles" href="#toggles_panel"/>
-            <mdl:TabBarButton text="Lists" href="#lists_panel"/>
-            <mdl:TabBarButton text="Loading" href="#loading_panel"/>
-            <mdl:TabBarButton text="Menu" href="#menus_panel"/>
-            <mdl:TabBarButton text="Badges" href="#badges_panel"/>
+        <mdl:TabBar ripple="true" selectedIndex="0" labelField="label" tabIdField="href" className="customTabBarSetup">
+            <mdl:beads>
+                <js:ConstantBinding
+                        sourceID="mainNavigationModel"
+                        sourcePropertyName="componentsTabs"
+                        destinationPropertyName="dataProvider" />
+            </mdl:beads>
         </mdl:TabBar>
     </mdl:Header>
     
     <mdl:Drawer>
         <mdl:LayoutTitle text="Drawer"/>
         <mdl:Navigation>
-            <mdl:NavigationLink text="About" href="https://getmdl.io/index.html"/>
-            <mdl:NavigationLink text="Getting Started" href="https://getmdl.io/started/index.html"/>
-            <mdl:NavigationLink text="Templates" href="https://getmdl.io/templates/index.html"/>
-            <mdl:NavigationLink text="Components" href="https://getmdl.io/components/index.html"/>
-            <mdl:NavigationLink text="Styles" href="https://getmdl.io/styles/index.html"/>
-            <mdl:NavigationLink text="Customize" href="https://getmdl.io/customize/index.html"/>
-            <mdl:NavigationLink text="Showcase" href="https://getmdl.io/showcase/index.html"/>
-            <mdl:NavigationLink text="FAQ" href="https://getmdl.io/faq/index.html"/>
-        </mdl:Navigation>
+                <mdl:beads>
+                    <js:ConstantBinding
+                            sourceID="mainNavigationModel"
+                            sourcePropertyName="drawerNavigation"
+                            destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:Navigation>
     </mdl:Drawer>
     
     <mdl:NavigationLayoutContent>
-        
         <local:Cards id="cards_panel" isActive="true"/>
-
         <local:Chips id="chips_panel" />
-
         <local:Sliders id="sliders_panel" />
-        
         <local:Grids id="grids_panel"/>
-
         <local:Tabs id="tabs_panel"/>
-        
         <local:Buttons id="buttons_panel"/>
-
         <local:TextFields id="textfield_panel"/>
-
         <local:Toggles id="toggles_panel"/>
-
         <local:Snackbar id="snackbar_panel"/>
-
         <local:Lists id="lists_panel"/>
-
         <local:Loading id="loading_panel"/>
-
         <local:Menus id="menus_panel"/>
-
         <local:Badges id="badges_panel"/>
-
     </mdl:NavigationLayoutContent>
 
     <local:MainFooter/>

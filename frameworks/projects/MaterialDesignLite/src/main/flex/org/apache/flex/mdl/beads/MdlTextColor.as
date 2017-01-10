@@ -30,7 +30,12 @@ package org.apache.flex.mdl.beads
         private var _textColorWeight:String;
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlTextColor#textColor
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get textColor():String
         {
@@ -43,7 +48,12 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * @inheritDoc
+         *  @copy org.apache.flex.mdl.supportClasses.IMdlTextColor#textColorWeight
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
          */
         public function get textColorWeight():String
         {
@@ -68,6 +78,18 @@ package org.apache.flex.mdl.beads
 
         private var _strand:IStrand;
 
+        /**
+         * @copy org.apache.flex.core.IBead#strand
+         *
+         * @flexjsignorecoercion HTMLElement
+         *
+         * @param value
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
         public function set strand(value:IStrand):void
         {
             _strand = value;
@@ -79,9 +101,6 @@ package org.apache.flex.mdl.beads
             element.classList.toggle(elementColor, hasTextColor || hasTextColorWeight);
         }
 
-        /**
-         * @inheritDoc
-         */
         public function get textColor():String
         {
             return _textColor;
@@ -92,9 +111,6 @@ package org.apache.flex.mdl.beads
             _textColor = value;
         }
 
-        /**
-         * @inheritDoc
-         */
         public function get textColorWeight():String
         {
             return _textColorWeight;

@@ -16,51 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.itemRenderers
+package org.apache.flex.mdl.materialIcons
 {
-    import org.apache.flex.mdl.supportClasses.TabItemRendererBase;
-
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;
-    }
+    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  Layout type content for Tabs
-     *
-     *  Creates MDL "mdl-layout__tab-panel" conponent
+     *  The MaterialIconFormatBold bead class is a specialty bead that add "format_bold" icon
+     *  to component taken from "material-icons"
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     * */
-    public class TabBarLayoutItemRenderer extends TabItemRendererBase
+     */
+    public class MaterialIconFormatBold extends MaterialIconBase
     {
-        public function TabBarLayoutItemRenderer()
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function MaterialIconFormatBold()
         {
             super();
         }
-        
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
+
+        override protected function get iconText():String
         {
-            typeNames = "mdl-layout__tab-panel";
-            
-            element = document.createElement('section') as WrappedHTMLElement;
-
-            positioner = element;
-
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
-            element.flexjs_wrapper = this;
-
-            return element;
+            return MaterialIconsType.FORMAT_BOLD;
         }
     }
 }
