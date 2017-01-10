@@ -24,7 +24,7 @@ import org.apache.flex.core.IDocument;
 import org.apache.flex.events.IEventDispatcher;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.ValueChangeEvent;
-
+import org.apache.flex.core.IBinding;
 /**
  *  The SimpleBinding class is lightweight data-binding class that
  *  is optimized for simple assignments of one object's property to
@@ -35,7 +35,7 @@ import org.apache.flex.events.ValueChangeEvent;
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
-public class SimpleBinding implements IBead, IDocument
+public class SimpleBinding implements IBead, IDocument, IBinding
 {
 	/**
 	 *  Constructor.
@@ -51,6 +51,10 @@ public class SimpleBinding implements IBead, IDocument
 	}
 
 	private var _isStatic:Boolean;
+    private var _destination:Object;
+    private var _sourceID:String;
+    private var _destinationPropertyName:String;
+    private var _sourcePropertyName:String;
 
 	/**
 	 *  The event dispatcher that dispatches an event
@@ -64,9 +68,7 @@ public class SimpleBinding implements IBead, IDocument
 	 */
 	protected var dispatcher:IEventDispatcher;
 
-
 	/**
-
 	 *  The source object that dispatches an event
 	 *  when the property changes
 	 *
@@ -94,41 +96,6 @@ public class SimpleBinding implements IBead, IDocument
 	 */
 	protected var document:Object;
 
-
-	/**
-	 *  The destination object.  It is always the same
-	 *  as the strand.  SimpleBindings are attached to
-	 *  the strand of the destination object.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public var destination:Object;
-
-	/**
-	 *  If not null, the id of the mxml tag who's property
-	 *  is being watched for changes.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public var sourceID:String;
-
-	/**
-	 *  If not null, the name of a property on the
-	 *  mxml document that is being watched for changes.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public var sourcePropertyName:String;
-
 	/**
 	 *  The event name that is dispatched when the source
 	 *  property changes.
@@ -140,18 +107,77 @@ public class SimpleBinding implements IBead, IDocument
 	 */
 	public var eventName:String;
 
-	/**
-	 *  The name of the property on the strand that
-	 *  is set when the source property changes.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public var destinationPropertyName:String;
+    /**
+     *  @copy org.apache.flex.core.IBinding#destination;
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function get destination():Object
+    {
+        return _destination;
+    }
 
+    public function set destination(value:Object):void
+    {
+        _destination = value;
+    }
 
+    /**
+     *  @copy org.apache.flex.core.IBinding#sourceID
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function get sourceID():String
+    {
+        return _sourceID;
+    }
+
+    public function set sourceID(value:String):void
+    {
+        _sourceID = value;
+    }
+
+    /**
+     *  @copy org.apache.flex.core.IBinding#destinationPropertyName
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function get destinationPropertyName():String
+    {
+        return _destinationPropertyName;
+    }
+
+    public function set destinationPropertyName(value:String):void
+    {
+        _destinationPropertyName = value;
+    }
+
+    /**
+     *  @copy org.apache.flex.core.IBinding#sourcePropertyName
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    public function get sourcePropertyName():String
+    {
+        return _sourcePropertyName;
+    }
+
+    public function set sourcePropertyName(value:String):void
+    {
+        _sourcePropertyName = value;
+    }
 
 	/**
 	 *  @copy org.apache.flex.core.IBead#strand

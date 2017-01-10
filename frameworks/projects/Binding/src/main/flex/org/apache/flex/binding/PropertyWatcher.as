@@ -185,7 +185,9 @@ package org.apache.flex.binding
         private function addEventListeners():void
         {
             if (eventNames is String)
+            {
                 dispatcher.addEventListener(eventNames as String, changeHandler);
+            }
             else if (eventNames is Array)
             {
                 var arr:Array = eventNames as Array;

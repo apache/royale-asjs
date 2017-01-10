@@ -51,6 +51,7 @@ internal class CoreClasses
 	import org.apache.flex.core.IBeadTransform; IBeadTransform;
     import org.apache.flex.core.IBeadModel; IBeadModel;
 	import org.apache.flex.core.IBeadView; IBeadView;
+	import org.apache.flex.core.IBinding; IBinding;
 	import org.apache.flex.core.IImageView; IImageView;
     import org.apache.flex.core.IBinaryImage; IBinaryImage;
 	COMPILE::SWF
