@@ -47,6 +47,7 @@
     <module>DesktopMap</module>
     <module>FlexJSStore</module>
     <module>FlexJSStore_jquery</module>
+    <module>FlexTeamPage_MDL</module>
     <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
     <module>ListExample</module>
