@@ -65,7 +65,8 @@ package models
             new NavigationLinkVO("Lists", "lists_panel"),
             new NavigationLinkVO("Loading", "loading_panel"),
             new NavigationLinkVO("Menu", "menus_panel"),
-            new NavigationLinkVO("Badges", "badges_panel")
+            new NavigationLinkVO("Badges", "badges_panel"),
+            new NavigationLinkVO("Footers", "footers_panel")
         ];
 
         public function get componentsTabs():Array
