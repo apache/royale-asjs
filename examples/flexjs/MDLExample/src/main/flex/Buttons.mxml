@@ -62,16 +62,52 @@ limitations under the License.
             </mdl:beads>
         </mdl:Button>
 
-        <mdl:IconToggle dataMdlFor="mdlBoldIcon">
+        <!-- Flat button -->
+        <mdl:Button text="Flat"/>
+
+        <!-- Flat button with ripple -->
+        <mdl:Button text="Ripple" ripple="true"/>
+
+        <!-- Disabled flat button -->
+        <mdl:Button text="Disabled">
+            <mdl:beads>
+                <mdl:Disabled/>
+            </mdl:beads>
+        </mdl:Button>
+
+        <!-- Primary-colored flat button -->
+        <mdl:Button text="primary" primary="true"/>
+
+        <!-- Accent-colored flat button -->
+        <mdl:Button text="accent" accent="true"/>
+
+        <!-- Icon button -->
+        <mdl:Button icon="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconFormatBold />
+                <mdl:MaterialIconMood/>
             </mdl:materialIcon>
-        </mdl:IconToggle>
-        <mdl:IconToggle dataMdlFor="mdlItalicIcon">
+        </mdl:Button>
+
+        <!-- Colored icon button -->
+        <mdl:Button icon="true" colored="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconFormatItalic />
+                <mdl:MaterialIconMood/>
             </mdl:materialIcon>
-        </mdl:IconToggle>
+        </mdl:Button>
+
+        <!-- Mini FAB button -->
+        <mdl:Button fab="true" minifab="true">
+            <mdl:materialIcon>
+                <mdl:MaterialIconAdd/>
+            </mdl:materialIcon>
+        </mdl:Button>
+
+        <!-- Colored mini FAB button -->
+        <mdl:Button fab="true" minifab="true" colored="true">
+            <mdl:materialIcon>
+                <mdl:MaterialIconAdd/>
+            </mdl:materialIcon>
+        </mdl:Button>
     </mdl:Grid>
 
 </mdl:TabBarPanel>
