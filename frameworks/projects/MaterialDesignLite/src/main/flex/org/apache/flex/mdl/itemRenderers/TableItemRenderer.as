@@ -109,7 +109,10 @@ package org.apache.flex.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+            positioner = document.createElement('tr') as WrappedHTMLElement;
             element = document.createElement('td') as WrappedHTMLElement;
+
+            positioner.appendChild(element);
             
 			if(MXMLDescriptor == null)
 			{
@@ -117,10 +120,10 @@ package org.apache.flex.mdl.itemRenderers
 				element.appendChild(textNode);
 			}
 
-            positioner = element;
+            //positioner = element;
             element.flexjs_wrapper = this;
             
-            return element;
+            return positioner;
         }
 
 		private var _nonNumeric:Boolean;

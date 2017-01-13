@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+	import org.apache.flex.events.Event;
 	import org.apache.flex.mdl.List;
     
     COMPILE::JS
@@ -66,13 +67,34 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-data-table mdl-js-data-table";
 
-            element = document.createElement('table') as WrappedHTMLElement;
-            
-			positioner = element;
-            element.flexjs_wrapper = this;
+            positioner = document.createElement('table') as WrappedHTMLElement;
+			element = document.createElement('tbody') as WrappedHTMLElement;
 
-            return element;
+			positioner.appendChild(element);
+            
+			element.flexjs_wrapper = this;
+
+            return positioner;
         }
+
+		private var _className:String;
+
+        /**
+         * since we have a div surronding the main input, we need to 
+         * route the class assignaments to div
+         */
+        override public function set className(value:String):void
+		{
+			if (_className != value)
+			{
+                COMPILE::JS
+                {
+                    positioner.className = typeNames ? value + ' ' + typeNames : value;             
+                }
+				_className = value;
+				dispatchEvent(new Event("classNameChanged"));
+			}
+		}
 		
 		protected var _shadow:Number = 0;
         /**
@@ -92,13 +114,13 @@ package org.apache.flex.mdl
         {
 			COMPILE::JS
 			{
-				element.classList.remove("mdl-shadow--" + _shadow + "dp");
+				positioner.classList.remove("mdl-shadow--" + _shadow + "dp");
 				
 				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
 				{
 					_shadow = value;
 
-					element.classList.add("mdl-shadow--" + _shadow + "dp");
+					positioner.classList.add("mdl-shadow--" + _shadow + "dp");
 				}
 			}
         }
@@ -124,7 +146,7 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
             {
-				element.classList.toggle("mdl-data-table--selectable", _selectable);
+				positioner.classList.toggle("mdl-data-table--selectable", _selectable);
 			}
         }
 	}
