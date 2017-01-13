@@ -221,6 +221,14 @@ limitations under the License.
 			public var subVO1:BindableSubVO1;
 			public var subVO2:BindableSubVO2;
 			public var subVO3:BindableSubVO3;
+            
+            [Bindable]
+            public var classVO:BindableClassVO = new BindableClassVO();
+            [Bindable]
+            public var getterVO:BindableGetterVO = new BindableGetterVO();
+            [Bindable]
+            public var setterVO:BindableSetterVO = new BindableSetterVO();
+            
 		]]>
     </fx:Script>
 	<fx:Style>
@@ -311,7 +319,7 @@ limitations under the License.
 			<js:Label id="timerDemoSB7"  text="[WORKS] test nested instance timercount " />
 			<js:Label id="timerDemoSB8"  text="{instTimer.timerCount}" />
 		</js:Container>
-		<js:Container width="500">
+		<js:Container width="500" height="60">
 			<js:beads>
 				<js:VerticalLayout />
 			</js:beads>
@@ -327,6 +335,18 @@ limitations under the License.
 			<js:Label text="[WORKS] binding into local mxml instance of local bindable actionscript class:"/>
 			<js:Label id="mxmlBindableDemo1"  text="{mxmlTest.fieldofBindableMxmlTest}" />	
 		</js:Container>
+        <js:Container width="500">
+            <js:beads>
+                <js:VerticalLayout />
+            </js:beads>
+            <js:Label text="Should say fieldOfBindableClassVO below"/>
+            <js:Label id="mxmlBindableClassVO"  text="{classVO.fieldOfBindableClassVO}" />	
+            <js:Label text="Should say fieldOfBindableGetterVO below"/>
+            <js:Label id="mxmlBindableGetterVO"  text="{getterVO.fieldOfBindableGetterVO}" />	
+            <js:Label text="Should say fieldOfBindableSetterVO below"/>
+            <js:Label id="mxmlBindableSetterVO"  text="{setterVO.fieldOfBindableSetterVO}" />
+            <js:TextButton text="Append ! to strings" click="classVO.fieldOfBindableClassVO += '!';getterVO.fieldOfBindableGetterVO += '!';setterVO.fieldOfBindableSetterVO += '!'" />
+        </js:Container>
 		<js:Container width="500" id="errorReporter">
 			<js:beads>
 				<js:VerticalLayout />
