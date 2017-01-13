@@ -75,7 +75,7 @@ package org.apache.flex.utils
 				}
 				bounds.x -= window.pageXOffset;
 				bounds.y -= window.pageYOffset;
-				if (obj.element instanceof SVGElement)
+				if (obj.element is SVGElement)
 				{
 					var m:org.apache.flex.geom.Matrix = getTransormMatrix(obj);
 					var tl:Point = m.transformPoint(bounds.topLeft);
