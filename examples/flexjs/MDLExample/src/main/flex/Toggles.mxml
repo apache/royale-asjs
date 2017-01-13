@@ -32,7 +32,18 @@ limitations under the License.
         <mdl:RadioButton groupName="g1" text="Red"/>
         
         <mdl:Switch text="Switch" ripple="true" selected="true"/>
-    
+        
+        <mdl:IconToggle dataMdlFor="mdlBoldIcon">
+            <mdl:materialIcon>
+                <mdl:MaterialIconFormatBold />
+            </mdl:materialIcon>
+        </mdl:IconToggle>
+        
+        <mdl:IconToggle dataMdlFor="mdlItalicIcon">
+            <mdl:materialIcon>
+                <mdl:MaterialIconFormatItalic />
+            </mdl:materialIcon>
+        </mdl:IconToggle>
     </mdl:Grid>
 
 </mdl:TabBarPanel>

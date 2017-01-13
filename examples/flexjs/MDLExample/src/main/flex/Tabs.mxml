@@ -29,7 +29,7 @@ limitations under the License.
     <mdl:Grid>
 
         <mdl:GridCell column="1" percentWidth="100">
-            <mdl:Tabs width="400" selectedIndex="0" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
+            <mdl:Tabs width="400" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
                 <mdl:beads>
                     <js:ConstantBinding
                             sourceID="tabsModel"
@@ -54,7 +54,7 @@ limitations under the License.
                 <mdl:NavigationLayoutContent>
                     <mdl:TabBarPanel id="starks_panel" isActive="true">
                         <js:Ul>
-                            <js:Li><js:Label text="Eddard"/></js:Li>
+                            <js:Li><mdl:beads><js:InnerHTML text="Eddard"/></mdl:beads></js:Li>
                             <js:Li><js:Label text="Catelyn"/></js:Li>
                             <js:Li><js:Label text="Robb"/></js:Li>
                             <js:Li><js:Label text="Sansa"/></js:Li>

@@ -77,8 +77,7 @@ limitations under the License.
         <local:Loading id="loading_panel"/>
         <local:Menus id="menus_panel"/>
         <local:Badges id="badges_panel"/>
+        <local:Footers id="footers_panel"/>
     </mdl:NavigationLayoutContent>
-
-    <local:MainFooter/>
     
 </mdl:NavigationLayout>

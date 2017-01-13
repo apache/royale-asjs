@@ -110,6 +110,7 @@
     <component id="MaterialIconShare" class="org.apache.flex.mdl.materialIcons.MaterialIconShare"/>
     <component id="MaterialIconEvent" class="org.apache.flex.mdl.materialIcons.MaterialIconEvent"/>
     <component id="MaterialIconFace" class="org.apache.flex.mdl.materialIcons.MaterialIconFace"/>
+    <component id="MaterialIconMood" class="org.apache.flex.mdl.materialIcons.MaterialIconMood"/>
     <component id="MaterialIconMoreVert" class="org.apache.flex.mdl.materialIcons.MaterialIconMoreVert"/>
     <component id="MaterialIconSearch" class="org.apache.flex.mdl.materialIcons.MaterialIconSearch"/>
     <component id="MaterialIconKeyboardArrowDown" class="org.apache.flex.mdl.materialIcons.MaterialIconKeyboardArrowDown"/>
