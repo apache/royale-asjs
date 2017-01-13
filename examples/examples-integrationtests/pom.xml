@@ -56,6 +56,11 @@
                 </goals>
               </execution>
             </executions>
+            <configuration>
+              <excludes>
+                <exclude>**/Abstract*.java</exclude>
+              </excludes>
+            </configuration>
           </plugin>
 
           <plugin>

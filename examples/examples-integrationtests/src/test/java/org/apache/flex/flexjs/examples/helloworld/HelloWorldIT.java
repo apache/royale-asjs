@@ -17,37 +17,24 @@
  *
  */
 
-package org.apache.flex.flexjs.examples;
+package org.apache.flex.flexjs.examples.helloworld;
 
-import org.junit.AfterClass;
+import org.apache.flex.flexjs.examples.AbstractIT;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import java.util.concurrent.TimeUnit;
+public class HelloWorldIT extends AbstractIT {
 
-public class HelloWorldIT {
-
-    private static FirefoxDriver driver;
-
-    @BeforeClass
-    public static void openBrowser() {
-        //System.setProperty("webdriver.gecko.driver", "/Users/christoferdutz/Devtools/geckodriver");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @AfterClass
-    public static void closeBrowser() {
-        driver.quit();
+    @Override
+    protected String getContext() {
+        return "HelloWorld";
     }
 
     @Test
     public void testApplication() {
-        driver.get("http://localhost:8082/HelloWorld/index.html");
+        initTest();
         WebElement element = driver.findElement(By.xpath(".//span[@class='Label']"));
         Assert.assertNotNull(element);
         String content = element.getText();
