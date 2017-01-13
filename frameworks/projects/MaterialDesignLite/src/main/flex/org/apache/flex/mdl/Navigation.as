@@ -64,7 +64,7 @@ package org.apache.flex.mdl
 			positioner = element;
             element.flexjs_wrapper = this;
             
-            return positioner;
+            return element;
         }
 	}
 }

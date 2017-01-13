@@ -74,6 +74,7 @@ limitations under the License.
         <local:Toggles id="toggles_panel"/>
         <local:Snackbar id="snackbar_panel"/>
         <local:Lists id="lists_panel"/>
+        <local:Tables id="tables_panel"/>
         <local:Loading id="loading_panel"/>
         <local:Menus id="menus_panel"/>
         <local:Badges id="badges_panel"/>

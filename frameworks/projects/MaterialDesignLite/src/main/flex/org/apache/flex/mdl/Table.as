@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.mdl.List;
     
     COMPILE::JS
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Table extends ContainerBase
+	public class Table extends List
 	{
 		/**
 		 *  constructor.
@@ -67,14 +67,8 @@ package org.apache.flex.mdl
 			typeNames = "mdl-data-table mdl-js-data-table";
 
             element = document.createElement('table') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
@@ -96,15 +90,20 @@ package org.apache.flex.mdl
         }
         public function set shadow(value:Number):void
         {
-			if(value == 0 || value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+			COMPILE::JS
 			{
-				_shadow = value;
+				element.classList.remove("mdl-shadow--" + _shadow + "dp");
+				
+				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
+				{
+					_shadow = value;
 
-				className += (_shadow != 0 ? " mdl-shadow--" + _shadow + "dp" : "");
-			}  
+					element.classList.add("mdl-shadow--" + _shadow + "dp");
+				}
+			}
         }
 
-		protected var _selectable:Boolean;
+		protected var _selectable:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-data-table--selectable" effect selector.
 		 *  Applies all/individual selectable behavior (checkboxes)
@@ -123,7 +122,10 @@ package org.apache.flex.mdl
         {
 			_selectable = value;
 
-			element.classList.toggle("mdl-data-table--selectable", _selectable);
+			COMPILE::JS
+            {
+				element.classList.toggle("mdl-data-table--selectable", _selectable);
+			}
         }
 	}
 }

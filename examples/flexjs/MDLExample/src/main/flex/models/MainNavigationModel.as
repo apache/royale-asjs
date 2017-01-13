@@ -63,6 +63,7 @@ package models
             new NavigationLinkVO("Snackbar", "snackbar_panel"),
             new NavigationLinkVO("Toggles", "toggles_panel"),
             new NavigationLinkVO("Lists", "lists_panel"),
+            new NavigationLinkVO("Tables", "tables_panel"),
             new NavigationLinkVO("Loading", "loading_panel"),
             new NavigationLinkVO("Menu", "menus_panel"),
             new NavigationLinkVO("Badges", "badges_panel"),
