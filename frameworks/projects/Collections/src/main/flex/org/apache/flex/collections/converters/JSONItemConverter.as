@@ -34,11 +34,24 @@ package org.apache.flex.collections.converters
 	{
 		public function convertItem(data:String):Object
         {
-            var c:int = data.indexOf("{");
-            if (c > 0)
-                data = data.substring(c);
-            if (data.indexOf("}") == -1)
-                data += "}";
+            if (data == "")
+            {
+                data = "{}";
+            }
+            else
+            {
+                var c:int = data.indexOf("{");
+                if (c > 0)
+                {
+                    data = data.substring(c);
+                }
+
+                if (data.indexOf("}") == -1)
+                {
+                    data += "}";
+                }
+            }
+
             return JSON.parse(data);
         }
         
