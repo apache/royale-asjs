@@ -47,7 +47,7 @@ package org.apache.flex.mdl.itemRenderers
 		{
 			super();
 			
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            //className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		private var _text:String = "";
@@ -129,7 +129,8 @@ package org.apache.flex.mdl.itemRenderers
 		private var _nonNumeric:Boolean;
         /**
          * Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
-		 * Optional 
+         * Applies text formatting to data cell
+		 * Optional; goes on both table header and table data cells 
          */
         public function get nonNumeric():Boolean
         {

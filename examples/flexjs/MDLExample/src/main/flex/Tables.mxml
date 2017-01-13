@@ -28,7 +28,7 @@ limitations under the License.
 	</mdl:model>
 
     <mdl:Grid>
-        <mdl:Table labelField="materialName" shadow="2">
+        <mdl:Table labelField="materialName" shadow="2" selectable="true">
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"
