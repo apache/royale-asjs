@@ -37,6 +37,12 @@ limitations under the License.
             return data as MemberVO;
         }
 
+        [Bindable] private var _spin:Boolean =  false;
+
+        private function handleCogClick():void {
+            _spin= !_spin;
+        }
+
         ]]>
 	</fx:Script>
 
@@ -85,11 +91,11 @@ limitations under the License.
                     </fa:FontAwesomeIcon>
                 </mdl:materialIcon>
             </mdl:Button>
-            <mdl:Button colored="true" fab="true" ripple="true" raised="false">
+            <mdl:Button colored="true" fab="true" ripple="true" raised="false" click="{handleCogClick()}">
                 <mdl:materialIcon>
                     <fa:FontAwesomeIcon iconType="{FontAwesomeIconType.COG}">
                         <fa:beads>
-                            <fa:Animate />
+                            <fa:Animate spin="{_spin}" />
                         </fa:beads>
                     </fa:FontAwesomeIcon>
                 </mdl:materialIcon>

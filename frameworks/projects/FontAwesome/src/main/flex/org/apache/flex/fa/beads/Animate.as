@@ -34,6 +34,7 @@ public class Animate implements IBead {
     }
 
     private var _strand:IStrand;
+    private var _hostElement:Object;
     private var _spin:Boolean = true;
     private var _pulse:Boolean = false;
 
@@ -53,6 +54,9 @@ public class Animate implements IBead {
     public function set spin(value:Boolean):void
     {
         _spin = value;
+        if(this._hostElement) {
+            _hostElement.classList.toggle('fa-spin', _spin);
+        }
     }
     /**
      *  Pulse the icon, i.e. rotate with 8 steps
@@ -70,6 +74,9 @@ public class Animate implements IBead {
     public function set pulse(value:Boolean):void
     {
         _pulse = value;
+        if(this._hostElement) {
+            _hostElement.classList.toggle('fa-pulse',_pulse);
+        }
     }
 
     /**
@@ -84,9 +91,9 @@ public class Animate implements IBead {
         COMPILE::JS
         {
             var host:UIBase = value as UIBase;
-            var element:HTMLElement = host.element as HTMLElement;
-            element.classList.toggle('fa-spin',_spin);
-            element.classList.toggle('fa-pulse',_pulse);
+            _hostElement = host.element;
+            _hostElement.classList.toggle('fa-spin',_spin);
+            _hostElement.classList.toggle('fa-pulse',_pulse);
         }
     }
 
