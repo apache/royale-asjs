@@ -27,7 +27,8 @@ package org.apache.flex.binding
     import org.apache.flex.core.IStrand;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
-    
+    import org.apache.flex.core.IBinding;
+
     /**
      *  The ItemRendererDataBinding class implements databinding for
      *  ItemRenderer instances.  Different classes can have
@@ -69,22 +70,28 @@ package org.apache.flex.binding
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            var fieldWatcher:Object;
-            var isStatic:Boolean;
-            var sb:SimpleBinding;
+
+            IEventDispatcher(_strand).addEventListener("initBindings", initCompleteHandler);
+        }
+
+        private function initCompleteHandler(event:Event):void
+        {
             if (!("_bindings" in _strand))
                 return;
+
+            var fieldWatcher:Object;
+            var sb:SimpleBinding;
             var bindingData:Array = _strand["_bindings"];
-            var destObject:Object;
             var n:int = bindingData[0];
             var bindings:Array = [];
+            var binding:Object = null;
             var i:int;
             var index:int = 1;
             for (i = 0; i < n; i++)
             {
-                var binding:Object = {};
+                binding = {};
                 binding.source = bindingData[index++];
-				binding.destFunc = bindingData[index++];
+                binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
                 bindings.push(binding);
             }
@@ -92,39 +99,31 @@ package org.apache.flex.binding
             for (i = 0; i < n; i++)
             {
                 binding = bindings[i];
-                var destination:IStrand;
 
                 if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
-                    if (!fieldWatcher) makeConstantBinding(binding, _strand);
+                    if (!fieldWatcher)
+                    {
+                        makeConstantBinding(binding);
+                    }
                     else if (fieldWatcher.eventNames is String)
                     {
-                        isStatic = fieldWatcher.type == "static";
+                        var isStatic:Boolean = fieldWatcher.type == "static";
                         sb = new SimpleBinding(isStatic);
                         sb.destinationPropertyName = binding.destination[1];
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
                         if (isStatic)
+                        {
                             sb.setDocument(fieldWatcher.parentObj);
-                        else sb.setDocument(_strand);
-                        destObject = _strand[binding.destination[0]];
-                        destination = destObject as IStrand;
-                        if (destination)
-                            destination.addBead(sb);
+                        }
                         else
                         {
-                            if (destObject)
-                            {
-                                sb.destination = destObject;
-                                _strand.addBead(sb);
-                            }
-                            else
-                            {
-                                deferredBindings[binding.destination[0]] = sb;
-                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
-                            }
+                            sb.setDocument(_strand);
                         }
+
+                        prepareCreatedBinding(sb as IBinding, binding);
                     }
                 }
                 else if (binding.source is Array
@@ -156,27 +155,12 @@ package org.apache.flex.binding
                         sb.sourceID = binding.source[0];
                         sb.sourcePropertyName = binding.source[1];
                         sb.setDocument(_strand);
-                        destObject = _strand[binding.destination[0]];                                
-                        destination = destObject as IStrand;
-                        if (destination)
-                            destination.addBead(sb);
-                        else
-                        {
-                            if (destObject)
-                            {
-                                sb.destination = destObject;
-                                _strand.addBead(sb);
-                            }
-                            else
-                            {
-                                deferredBindings[binding.destination[0]] = sb;
-                                IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
-                            }
-                        }
+
+                        prepareCreatedBinding(sb as IBinding, binding);
                     }
                     else if (fieldWatcher == null || fieldWatcher.eventNames == null)
                     {
-                        makeConstantBinding(binding, _strand);
+                        makeConstantBinding(binding);
                     }
                 }
                 else
@@ -188,7 +172,30 @@ package org.apache.flex.binding
             }
         }
 
-        private function makeConstantBinding(binding:Object,strand:IStrand):void{
+        private function prepareCreatedBinding(binding:IBinding, bindingObject:Object):void
+        {
+            var destinationObject:Object = _strand[bindingObject.destination[0]];
+            var destination:IStrand = destinationObject as IStrand;
+            if (destination)
+            {
+                destination.addBead(binding as IBead);
+            }
+            else
+            {
+                if (destinationObject)
+                {
+                    binding.destination = destinationObject;
+                    _strand.addBead(binding as IBead);
+                }
+                else
+                {
+                    deferredBindings[bindingObject.destination[0]] = binding;
+                    IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                }
+            }
+        }
+
+        private function makeConstantBinding(binding:Object):void{
             var cb:ConstantBinding = new ConstantBinding();
             cb.destinationPropertyName = binding.destination[1];
             if (binding.source is String) {
@@ -197,25 +204,9 @@ package org.apache.flex.binding
                 cb.sourceID = binding.source[0];
                 cb.sourcePropertyName = binding.source[1];
             }
-            cb.setDocument(strand);
-            var destObject:Object = strand[binding.destination[0]];
-            var destination:IStrand = destObject as IStrand;
-            if (destination)
-                destination.addBead(cb);
-            else
-            {
-                if (destObject)
-                {
-                    cb.destination = destObject;
-                    strand.addBead(cb);
-                }
-                else
-                {
-                    deferredBindings[binding.destination[0]] = cb;
-                    IEventDispatcher(strand).addEventListener("valueChange", deferredBindingsHandler);
-                }
-            }
+            cb.setDocument(_strand);
 
+            prepareCreatedBinding(cb as IBinding, binding);
         }
 
         private function makeGenericBinding(binding:Object, index:int, watchers:Object):void
@@ -379,6 +370,5 @@ package org.apache.flex.binding
                 }
             }
         }
-        
     }
 }

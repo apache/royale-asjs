@@ -101,7 +101,7 @@ package org.apache.flex.binding
             var watchers:Object = decodeWatcher(bindingData.slice(index));
             for (i = 0; i < n; i++)
             {
-                    binding = bindings[i];
+                binding = bindings[i];
                 if (binding.source is Array)
                 {
                     if (binding.source[0] in _strand)
@@ -187,6 +187,8 @@ package org.apache.flex.binding
                 {
                     makeGenericBinding(binding, i, watchers);
                 }
+
+                fieldWatcher = null;
             }
         }
 
