@@ -56,7 +56,7 @@ limitations under the License.
                     <mdl:CardTitleText id="slider1_txt"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
-                    <mdl:Slider id="slider1" className="mdlsl_example" change="onValueChange1(event)" input="onValueChange1(event)"/>
+                    <mdl:Slider id="slider1" change="onValueChange1(event)" input="onValueChange1(event)"/>
                 </mdl:CardSupportingText>
             </mdl:Card>
 

@@ -24,7 +24,7 @@ limitations under the License.
                  
     <mdl:Grid className="center-items">
         
-            <mdl:Card id="mycard" className="demo-card-wide" shadow="2">
+            <mdl:Card id="mycard" shadow="2" className="demo-card-wide">
                 <mdl:CardTitle>
                     <mdl:CardTitleText text="Welcome"/>
                 </mdl:CardTitle>

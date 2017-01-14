@@ -23,13 +23,13 @@ limitations under the License.
                  xmlns="http://www.w3.org/1999/xhtml">
 
     <mdl:Grid width="50" style="margin:20px">
-        <js:Div text="account_box" className="material-icons" style="color: rgba(0, 0, 0, 0.24);">
+        <js:Div text="account_box" style="color: rgba(0, 0, 0, 0.24);" className="material-icons">
             <js:beads>
                 <mdl:Badge dataBadge="2" overlap="true"/>
             </js:beads>
         </js:Div>
 
-        <js:Span text="Inbox" className="mdl-badge" style="color: rgba(0, 0, 0, 0.24);">
+        <js:Span text="Inbox" style="color: rgba(0, 0, 0, 0.24);" className="mdl-badge">
             <js:beads>
                 <mdl:Badge dataBadge="4"/>
             </js:beads>

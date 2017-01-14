@@ -20,14 +20,14 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                 xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*">
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:models="models.*">
 
     <mdl:model>
         <models:TabsModel id="tabsModel"/>
     </mdl:model>
 
     <mdl:Grid>
-
         <mdl:GridCell column="1" percentWidth="100">
             <mdl:Tabs width="400" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
                 <mdl:beads>
