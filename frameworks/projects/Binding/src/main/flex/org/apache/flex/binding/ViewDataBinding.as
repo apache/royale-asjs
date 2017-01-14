@@ -26,6 +26,7 @@ package org.apache.flex.binding
     import org.apache.flex.core.IBinding;
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.DataBindingBase;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
     
@@ -42,7 +43,7 @@ package org.apache.flex.binding
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewDataBinding implements IBead
+	public class ViewDataBinding extends DataBindingBase implements IBead
 	{
         /**
          *  Constructor.
@@ -96,8 +97,8 @@ package org.apache.flex.binding
             var watchers:Object = decodeWatcher(bindingData.slice(index));
             for (i = 0; i < n; i++)
             {
-                    binding = bindings[i];
-                var destination:IStrand;
+                binding = bindings[i];
+
                 if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
@@ -124,8 +125,7 @@ package org.apache.flex.binding
                         prepareCreatedBinding(sb, binding);
                     }
                 }
-                else
-                if (binding.source is Array
+                else if (binding.source is Array
                     && binding.source.length == 2 && binding.destination.length == 2)
                 {
                     // can be simplebinding or constantbinding
