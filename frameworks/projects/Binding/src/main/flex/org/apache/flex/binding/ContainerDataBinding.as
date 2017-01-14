@@ -79,19 +79,19 @@ package org.apache.flex.binding
 
         private function initCompleteHandler(event:Event):void
         {
+            if (!("_bindings" in _strand))
+                return;
             var fieldWatcher:Object;
             var sb:SimpleBinding;
             var cb:ConstantBinding;
-            if (!("_bindings" in _strand))
-                return;
             var bindingData:Array = _strand["_bindings"];
+            var binding:Object = {};
             var n:int = bindingData[0];
             var bindings:Array = [];
             var i:int;
             var index:int = 1;
             for (i = 0; i < n; i++)
             {
-                var binding:Object = {};
                 binding.source = bindingData[index++];
 				binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];

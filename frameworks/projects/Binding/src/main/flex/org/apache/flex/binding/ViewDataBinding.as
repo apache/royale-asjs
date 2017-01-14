@@ -76,19 +76,19 @@ package org.apache.flex.binding
 
         private function initCompleteHandler(event:Event):void
         {
-            var fieldWatcher:Object;
-            var isStatic:Boolean;
-            var sb:SimpleBinding;
             if (!("_bindings" in _strand))
                 return;
+
+            var fieldWatcher:Object;
+            var sb:SimpleBinding;
             var bindingData:Array = _strand["_bindings"];
             var n:int = bindingData[0];
             var bindings:Array = [];
+            var binding:Object = {};
             var i:int;
             var index:int = 1;
             for (i = 0; i < n; i++)
             {
-                var binding:Object = {};
                 binding.source = bindingData[index++];
 				binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
@@ -108,7 +108,7 @@ package org.apache.flex.binding
                     }
                     else if (fieldWatcher.eventNames is String)
                     {
-                        isStatic = fieldWatcher.type == "static";
+                        var isStatic:Boolean = fieldWatcher.type == "static";
                         sb = new SimpleBinding(isStatic);
                         sb.destinationPropertyName = binding.destination[1];
                         sb.eventName = fieldWatcher.eventNames as String;
