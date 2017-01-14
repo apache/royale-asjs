@@ -20,6 +20,7 @@ package org.apache.flex.binding
 {
     import org.apache.flex.binding.ConstantBinding;
     import org.apache.flex.binding.GenericBinding;
+    import org.apache.flex.binding.ChainBinding;
     import org.apache.flex.binding.PropertyWatcher;
     import org.apache.flex.binding.SimpleBinding;
     import org.apache.flex.binding.WatcherBase;
@@ -84,11 +85,12 @@ package org.apache.flex.binding
             var bindingData:Array = _strand["_bindings"];
             var n:int = bindingData[0];
             var bindings:Array = [];
-            var binding:Object = {};
+            var binding:Object = null;
             var i:int;
             var index:int = 1;
             for (i = 0; i < n; i++)
             {
+                binding = {};
                 binding.source = bindingData[index++];
 				binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
@@ -99,6 +101,7 @@ package org.apache.flex.binding
             {
                 binding = bindings[i];
 
+                var compWatcher:Object = null;
                 if (binding.source is String)
                 {
                     fieldWatcher = watchers.watcherMap[binding.source];
@@ -129,7 +132,7 @@ package org.apache.flex.binding
                     && binding.source.length == 2 && binding.destination.length == 2)
                 {
                     // can be simplebinding or constantbinding
-                    var compWatcher:Object = watchers.watcherMap[binding.source[0]];
+                    compWatcher = watchers.watcherMap[binding.source[0]];
                     if (compWatcher)
                     {
                         fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];

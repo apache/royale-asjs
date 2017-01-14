@@ -85,13 +85,14 @@ package org.apache.flex.binding
             var sb:SimpleBinding;
             var cb:ConstantBinding;
             var bindingData:Array = _strand["_bindings"];
-            var binding:Object = {};
+            var binding:Object = null;
             var n:int = bindingData[0];
             var bindings:Array = [];
             var i:int;
             var index:int = 1;
             for (i = 0; i < n; i++)
             {
+                binding = {};
                 binding.source = bindingData[index++];
 				binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
@@ -125,7 +126,7 @@ package org.apache.flex.binding
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
 
-                                prepareCreatedBinding(sb, binding);
+                                prepareCreatedBinding(sb as IBinding, binding);
                             }
                             else if (fieldWatcher && fieldWatcher.eventNames == null)
                             {
@@ -135,7 +136,7 @@ package org.apache.flex.binding
                                 cb.sourcePropertyName = binding.source[1];
                                 cb.setDocument(_strand);
 
-                                prepareCreatedBinding(cb, binding);
+                                prepareCreatedBinding(cb as IBinding, binding);
                             }
                         }
                         else
@@ -169,7 +170,7 @@ package org.apache.flex.binding
                             destinationObject = _strand[binding.destination[0]];
                         }
 
-                        prepareCreatedBinding(cb, binding, destinationObject);
+                        prepareCreatedBinding(cb as IBinding, binding, destinationObject);
                     }
                     else if (fieldWatcher.eventNames is String)
                     {
@@ -179,7 +180,7 @@ package org.apache.flex.binding
                         sb.sourcePropertyName = binding.source;
                         sb.setDocument(_strand);
 
-                        prepareCreatedBinding(sb, binding);
+                        prepareCreatedBinding(sb as IBinding, binding);
                     }
                 }
                 else
