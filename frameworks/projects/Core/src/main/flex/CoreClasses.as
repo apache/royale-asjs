@@ -152,6 +152,7 @@ internal class CoreClasses
     import org.apache.flex.utils.StringPadder; StringPadder;
 	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.StringUtil; StringUtil;
+	import org.apache.flex.utils.ObjectUtil; ObjectUtil;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
