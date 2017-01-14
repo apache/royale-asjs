@@ -93,6 +93,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-grid--no-spacing", _nospacing);
+				typeNames = element.className;
             }
         }
 	}

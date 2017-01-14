@@ -93,6 +93,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-layout--fixed-header", _fixedHeader);
+				typeNames = element.className;
             } 
         }
 
@@ -117,6 +118,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-layout--fixed-drawer", _fixedDrawer);
+				typeNames = element.className;
             }
         }
 	}

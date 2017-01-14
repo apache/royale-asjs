@@ -73,6 +73,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("is-active", _isActive);
+				typeNames = element.className;
             }
 		}
 

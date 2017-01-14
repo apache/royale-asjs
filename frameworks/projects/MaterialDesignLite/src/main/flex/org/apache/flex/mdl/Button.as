@@ -114,6 +114,7 @@ package org.apache.flex.mdl
              COMPILE::JS
              {
                  element.classList.toggle("mdl-button--fab", _fab);
+                 typeNames = element.className;
              }
         }
 
@@ -138,6 +139,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--raised", _raised);
+                typeNames = element.className;
             }
         }
 
@@ -163,6 +165,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--colored", _colored);
+                typeNames = element.className;
             } 
         }
 
@@ -188,6 +191,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--accent", _accent);
+                typeNames = element.className;
             } 
         }
 
@@ -213,6 +217,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--primary", _primary);
+                typeNames = element.className;
             }
         }
 
@@ -238,6 +243,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--mini-fab", _minifab);
+                typeNames = element.className;
             }
         }
 
@@ -263,6 +269,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-button--icon", _icon);
+                typeNames = element.className;
             }
         }
 
@@ -287,6 +294,7 @@ package org.apache.flex.mdl
             COMPILE::JS
             {
                 element.classList.toggle("mdl-js-ripple-effect", _ripple);
+                typeNames = element.className;
             }
         }
 	}

@@ -93,6 +93,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-layout__header--transparent", _transparent);
+				typeNames = element.className;
             }
         }
 
@@ -117,6 +118,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-layout__header--scroll", _scrollable);
+				typeNames = element.className;
             }
         }
 
@@ -141,6 +143,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-layout__header--waterfall", _waterfall);
+				typeNames = element.className;
             }
         }
 	}

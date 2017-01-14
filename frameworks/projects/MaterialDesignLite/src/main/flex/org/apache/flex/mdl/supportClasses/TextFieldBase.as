@@ -36,7 +36,7 @@ package org.apache.flex.mdl.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class TextFieldBase extends org.apache.flex.html.TextInput implements ITextField
+	public class TextFieldBase extends TextInput implements ITextField
 	{
         /**
          *  Constructor.
@@ -108,23 +108,10 @@ package org.apache.flex.mdl.supportClasses
             }
         }
 
-        private var _className:String;
-
-        /**
-         * since we have a div surronding the main input, we need to 
-         * route the class assignaments to div
-         */
-        override public function set className(value:String):void
+        COMPILE::JS
+		override protected function setClassName(value:String):void
 		{
-			if (_className != value)
-			{
-                COMPILE::JS
-                {
-                    positioner.className = typeNames ? value + ' ' + typeNames : value;             
-                }
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
+			positioner.className = value;           
 		}
 
         private var _floatingLabel:Boolean = false;
@@ -148,6 +135,7 @@ package org.apache.flex.mdl.supportClasses
             COMPILE::JS
             {
                 positioner.classList.toggle("mdl-textfield--floating-label", _floatingLabel);
+                typeNames = positioner.className;
             }
         }
 
@@ -172,6 +160,7 @@ package org.apache.flex.mdl.supportClasses
             COMPILE::JS
             {
                 positioner.classList.toggle("is-invalid", _isInvalid);
+                typeNames = positioner.className;
             }
         }
 	}

@@ -90,6 +90,7 @@ package org.apache.flex.mdl.beads
 				if(host)
 				{
                 	host.element.classList.toggle("mdl-badge--no-background", _noBackground);
+					host.typeNames = host.element.className;
 				}
             }   
         }
@@ -117,6 +118,7 @@ package org.apache.flex.mdl.beads
 				if(host) 
 				{
                 	host.element.classList.toggle("mdl-badge--overlap", _overlap);
+					host.typeNames = host.element.className;
 				}
             }
         }

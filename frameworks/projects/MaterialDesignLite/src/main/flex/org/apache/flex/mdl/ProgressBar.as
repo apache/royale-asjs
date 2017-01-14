@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
+
     COMPILE::JS
-    {
-        import org.apache.flex.events.Event;
-        import org.apache.flex.core.UIBase;
+    {        
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
@@ -33,9 +34,17 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::SWF
-    public class ProgressBar
+    public class ProgressBar extends UIBase
     {
+        public function ProgressBar()
+        {
+            super();
+
+            className = "";
+        }
+
+        private var materialProgress:Object;
+
         private var _currentProgress:Number;
         private var _currentBuffer:Number;
         private var _indeterminate:Boolean;
@@ -56,6 +65,8 @@ package org.apache.flex.mdl
         public function set currentProgress(value:Number):void
         {
             _currentProgress = value;
+
+            setCurrentProgress(value);
         }
 
         /**
@@ -74,65 +85,34 @@ package org.apache.flex.mdl
         public function set currentBuffer(value:Number):void
         {
             _currentBuffer = value;
-        }
-
-        public function set indeterminate(value:Boolean):void
-        {
-            _indeterminate = value;
-        }
-    }
-
-    COMPILE::JS
-    public class ProgressBar extends UIBase
-    {
-        public function ProgressBar()
-        {
-            super();
-
-            className = "";
-        }
-
-        private var materialProgress:Object;
-
-        private var _currentProgress:Number;
-        private var _currentBuffer:Number;
-        private var _indeterminate:Boolean;
-
-        public function get currentProgress():Number
-        {
-            return _currentProgress;
-        }
-
-        public function set currentProgress(value:Number):void
-        {
-            _currentProgress = value;
 
             setCurrentProgress(value);
         }
 
-        public function get currentBuffer():Number
-        {
-            return _currentBuffer;
-        }
-
-        public function set currentBuffer(value:Number):void
-        {
-            _currentBuffer = value;
-
-            setCurrentProgress(value);
-        }
-
+        /**
+         *  Indeterminate state.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function set indeterminate(value:Boolean):void
         {
             _indeterminate = value;
 
-            element.classList.toggle("mdl-progress__indeterminate", value);
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-progress__indeterminate", value);
+                typeNames = element.className;
+            }
         }
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *
          * @return
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-progress mdl-js-progress";

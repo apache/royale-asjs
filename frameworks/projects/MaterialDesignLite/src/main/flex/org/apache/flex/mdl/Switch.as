@@ -144,6 +144,7 @@ package org.apache.flex.mdl
             _ripple = value;
 
             element.classList.toggle("mdl-js-ripple-effect", _ripple);
+            typeNames = element.className;
         }
 
         public function get text():String

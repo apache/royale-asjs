@@ -99,6 +99,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _column + "-col");
 				}
+				
+				typeNames = element.className;
 			}  
         }
 
@@ -129,6 +131,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _columnDesktop + "-col-desktop");
 				}
+
+				typeNames = element.className;
 			} 
         }
 
@@ -159,6 +163,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _columnTablet + "-col-tablet");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -189,6 +195,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _columnPhone + "-col-phone");
 				}
+
+				typeNames = element.className;
 			} 
         }
 
@@ -219,6 +227,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _offset + "-offset");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -249,6 +259,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _offsetDesktop + "-offset-desktop");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -279,6 +291,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _offsetTablet + "-offset-tablet");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -309,6 +323,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--" + _offsetPhone + "-offset-phone");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -339,6 +355,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--order-" + _order);
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -369,6 +387,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--order-" + _orderDesktop + "-desktop");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -399,6 +419,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--order-" + _orderTablet + "-tablet");
 				}
+
+				typeNames = element.className;
 			}
         }
 
@@ -429,6 +451,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-cell--order-" + _orderPhone + "-phone");
 				}
+
+				typeNames = element.className;
 			}
         }
 		
@@ -453,6 +477,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--hide-desktop", _hideDesktop);
+				typeNames = element.className;
             }
         }
 
@@ -477,6 +502,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--hide-tablet", _hideTablet);
+				typeNames = element.className;
             }
         }
 
@@ -501,6 +527,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--hide-phone", _hidePhone);
+				typeNames = element.className;
             }
         }
 
@@ -526,6 +553,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--stretch", _strech);
+				typeNames = element.className;
             }
         }
 
@@ -550,6 +578,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--top", _alignTop);
+				typeNames = element.className;
             }
         }
 
@@ -574,6 +603,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--middle", _alignMiddle);
+				typeNames = element.className;
             }
         }
 
@@ -598,6 +628,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
                 element.classList.toggle("mdl-cell--bottom", _alignBottom);
+				typeNames = element.className;
             }
         }
 	}

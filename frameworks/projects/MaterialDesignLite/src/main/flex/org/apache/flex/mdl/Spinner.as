@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+    import org.apache.flex.core.UIBase;
+
     COMPILE::JS
-    {
-        import org.apache.flex.core.UIBase;
+    {    
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
@@ -32,12 +33,16 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    COMPILE::SWF
-    public class Spinner
+    public class Spinner extends UIBase
     {
-        private var _isActive:Boolean;
-        private var _singleColor:Boolean;
+        public function Spinner()
+        {
+            super();
 
+            className = "";
+        }
+
+        private var _isActive:Boolean;
         /**
          *  Indicates whether Spinner is active and visible
          *
@@ -54,9 +59,15 @@ package org.apache.flex.mdl
         public function set isActive(value:Boolean):void
         {
             _isActive = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("is-active", _isActive);
+                typeNames = element.className;
+            }
         }
 
-
+        private var _singleColor:Boolean;   
         /**
          *  Make Spinner in a single color
          *
@@ -68,39 +79,12 @@ package org.apache.flex.mdl
         public function set singleColor(value:Boolean):void
         {
             _singleColor = value;
-        }
-    }
 
-    COMPILE::JS
-    public class Spinner extends UIBase
-    {
-        public function Spinner()
-        {
-            super();
-
-            className = "";
-        }
-
-        private var _isActive:Boolean;
-        private var _singleColor:Boolean;
-
-        public function get isActive():Boolean
-        {
-            return _isActive;
-        }
-
-        public function set isActive(value:Boolean):void
-        {
-            _isActive = value;
-
-            element.classList.toggle("is-active", _isActive);
-        }
-
-        public function set singleColor(value:Boolean):void
-        {
-            _singleColor = value;
-
-            element.classList.toggle("mdl-spinner--single-color", _singleColor);
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-spinner--single-color", _singleColor);
+                typeNames = element.className;
+            }
         }
 
         /**
@@ -108,6 +92,7 @@ package org.apache.flex.mdl
          *
          * @return
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-spinner mdl-js-spinner";

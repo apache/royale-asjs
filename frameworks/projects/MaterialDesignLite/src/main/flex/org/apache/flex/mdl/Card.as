@@ -105,6 +105,8 @@ package org.apache.flex.mdl
 
 					element.classList.add("mdl-shadow--" + _shadow + "dp");
 				}
+
+				typeNames = element.className;
 			}
         }
 	}

@@ -20,10 +20,10 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    import org.apache.flex.core.UIBase;
 
     COMPILE::JS
-    {
-        import org.apache.flex.core.UIBase;
+    {    
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
@@ -34,22 +34,24 @@ package org.apache.flex.mdl
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */
-    COMPILE::SWF
-    public class IconToggle implements IMaterialIcon
+     */    
+    public class IconToggle extends UIBase implements IMaterialIcon
     {
-        /**
-         *  Constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-         public function IconToggle() {}
+        public function IconToggle()
+        {
+            super();
 
-        private var _ripple:Boolean;
+            className = "";
+        }
+
+        COMPILE::JS
+        private var label:HTMLLabelElement;
+
+        COMPILE::JS
+        private var input:HTMLInputElement;
+
         private var _dataMdlFor:String = "icon-toggle-1";
+        private var _ripple:Boolean = false;
         private var _materialIcon:MaterialIconBase;
         
         /**
@@ -65,10 +67,18 @@ package org.apache.flex.mdl
         {
             return _dataMdlFor;
         }
-
         public function set dataMdlFor(value:String):void
         {
             _dataMdlFor = value;
+
+            COMPILE::JS
+            {
+                if (input)
+                {
+                    input.id = _dataMdlFor;
+                }
+                element.setAttribute('for', _dataMdlFor);
+            }
         }
 
         /**
@@ -88,71 +98,12 @@ package org.apache.flex.mdl
         public function set ripple(value:Boolean):void
         {
             _ripple = value;
-        }
-
-        /**
-         *  A material icon. Optional
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function get materialIcon():MaterialIconBase
-        {
-            return _materialIcon;
-        }
-        public function set materialIcon(value:MaterialIconBase):void
-        {
-            _materialIcon = value;
-        }
-    }
-        
-    COMPILE::JS
-    public class IconToggle extends UIBase
-    {
-        public function IconToggle()
-        {
-            super();
-
-            className = "";
-        }
-
-        private var label:HTMLLabelElement;
-        private var input:HTMLInputElement;
-
-        private var _dataMdlFor:String = "icon-toggle-1";
-        private var _ripple:Boolean = false;
-        private var _materialIcon:MaterialIconBase;
-        
-        public function get dataMdlFor():String
-        {
-            return _dataMdlFor;
-        }
-        public function set dataMdlFor(value:String):void
-        {
-            _dataMdlFor = value;
 
             COMPILE::JS
             {
-                if (input)
-                {
-                    input.id = _dataMdlFor;
-                }
-                element.setAttribute('for', _dataMdlFor);
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+                typeNames = element.className;
             }
-        }
-
-        public function get ripple():Boolean
-        {
-            return _ripple;
-        }
-
-        public function set ripple(value:Boolean):void
-        {
-            _ripple = value;
-
-            element.classList.toggle("mdl-js-ripple-effect", _ripple);
         }
 
         /**
@@ -183,6 +134,7 @@ package org.apache.flex.mdl
          * @flexjsignorecoercion HTMLLabelElement
          * @flexjsignorecoercion HTMLInputElement
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-icon-toggle mdl-js-icon-toggle";
