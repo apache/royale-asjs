@@ -28,7 +28,13 @@ limitations under the License.
 	</mdl:model>
 
     <mdl:Grid>
-        <mdl:Table labelField="materialName" shadow="2" selectable="true">
+
+        <mdl:Table shadow="2" selectable="true" className="customTableItemRenderer">
+            <mdl:columns>
+                <mdl:TableColumn headerText="Material" nonNumeric="true" ascending = "true"/>
+                <mdl:TableColumn headerText="Quantity"/>
+                <mdl:TableColumn headerText="Unit price"/>
+            </mdl:columns>
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"
@@ -36,6 +42,7 @@ limitations under the License.
                     destinationPropertyName="dataProvider" />
             </mdl:beads>
         </mdl:Table>
+        
     </mdl:Grid>
     
 </mdl:TabBarPanel>
