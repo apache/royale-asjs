@@ -141,6 +141,7 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-list__item--two-line", _twoLine);
+                typeNames = element.className;
             }
         }
 
@@ -160,6 +161,7 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-list__item--three-line", _threeLine);
+                typeNames = element.className;
             }
         }
 	}

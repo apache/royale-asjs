@@ -161,6 +161,7 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-menu__item--full-bleed-divider", _divider);
+                typeNames = element.className;
             }
 		}
 
@@ -184,6 +185,7 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-js-ripple-effect", _ripple);
+                typeNames = element.className;
             }
         }     
 
