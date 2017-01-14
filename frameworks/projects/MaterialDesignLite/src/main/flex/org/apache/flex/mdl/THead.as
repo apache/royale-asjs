@@ -27,7 +27,7 @@ package org.apache.flex.mdl
     
 	/**
 	 *  The THead class is a Container component capable of parenting
-	 *  TH Table Header Cells
+	 *  TableColumn for MDL Table
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -48,7 +48,7 @@ package org.apache.flex.mdl
 		{
 			super();
 
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+			//className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
         /**
@@ -57,10 +57,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "";
-
             element = document.createElement('thead') as WrappedHTMLElement;
-            element.className = typeNames;
             
 			positioner = element;
             
@@ -71,29 +68,6 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
 
             return element;
-        }
-
-		protected var _ascending:Boolean;
-        /**
-		 *  A boolean flag to activate "mdl-data-table__header--sorted-ascending" effect selector.
-		 *  Applies all/individual selectable behavior (checkboxes)
-		 *  Optional; goes on table element
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get ascending():Boolean
-        {
-            return _ascending;
-        }
-        public function set selectable(value:Boolean):void
-        {
-			_ascending = value;
-
-			element.classList.toggle("mdl-data-table__header--sorted-ascending", _ascending);
-			element.classList.toggle("mdl-data-table__header--sorted-descending", _ascending == false);
         }
 	}
 }

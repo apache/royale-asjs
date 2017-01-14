@@ -20,6 +20,9 @@ package org.apache.flex.mdl
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.mdl.List;
+	import org.apache.flex.utils.StringUtil;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.IUIBase;
     
     COMPILE::JS
     {
@@ -58,7 +61,65 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
+
+		private var _columns:Array;
+        /**
+		 *  columns. Optional
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get columns():Array
+        {
+            return _columns;
+        }
+        public function set columns(value:Array):void
+        {
+			_columns = value;
+
+			if(_columns != null && _columns.length > 0)
+			{
+				COMPILE::JS
+            	{
+					for each (var column:TableColumn in _columns){
+						head.addElement(column);
+					}
+				}
+			}
+        }
+
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			/*COMPILE::SWF
+            {
+                if(_elements == null)
+                    _elements = [];
+                _elements[_elements.length] = c;
+                $displayObjectContainer.addChild(c.$displayObject);
+                if (c is IUIBase)
+                {
+                    IUIBase(c).addedToParent();
+                }
+                    
+            }*/
+            COMPILE::JS
+            {
+				if(c is THead) {
+					positioner.appendChild(c.positioner);
+					(c as IUIBase).addedToParent();
+				} else
+				{
+					element.appendChild(c.positioner);
+					(c as IUIBase).addedToParent();
+				}
+            }
+		}
 		
+		COMPILE::JS
+		private var head:THead;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -68,34 +129,24 @@ package org.apache.flex.mdl
 			typeNames = "mdl-data-table mdl-js-data-table";
 
             positioner = document.createElement('table') as WrappedHTMLElement;
-			element = document.createElement('tbody') as WrappedHTMLElement;
+			
+			head = new THead();
+			addElement(head);
 
+			element = document.createElement('tbody') as WrappedHTMLElement;
+			
 			positioner.appendChild(element);
-            
 			element.flexjs_wrapper = this;
 
-            return positioner;
+            return element;
         }
-
-		private var _className:String;
-
-        /**
-         * since we have a div surronding the main input, we need to 
-         * route the class assignaments to div
-         */
-        override public function set className(value:String):void
-		{
-			if (_className != value)
-			{
-                COMPILE::JS
-                {
-                    positioner.className = typeNames ? value + ' ' + typeNames : value;             
-                }
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
-		}
 		
+		COMPILE::JS
+		override protected function setClassName(value:String):void
+		{
+			positioner.className = value;
+		}
+        
 		protected var _shadow:Number = 0;
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
@@ -121,6 +172,7 @@ package org.apache.flex.mdl
 					_shadow = value;
 
 					positioner.classList.add("mdl-shadow--" + _shadow + "dp");
+					typeNames = positioner.className;
 				}
 			}
         }
@@ -147,6 +199,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
             {
 				positioner.classList.toggle("mdl-data-table--selectable", _selectable);
+				typeNames = positioner.className;
 			}
         }
 	}

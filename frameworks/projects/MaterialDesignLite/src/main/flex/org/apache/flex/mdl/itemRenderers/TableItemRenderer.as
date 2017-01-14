@@ -109,27 +109,32 @@ package org.apache.flex.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            positioner = document.createElement('tr') as WrappedHTMLElement;
-            element = document.createElement('td') as WrappedHTMLElement;
-
-            positioner.appendChild(element);
-            
-			if(MXMLDescriptor == null)
+            if(MXMLDescriptor == null)
 			{
+                positioner = document.createElement('tr') as WrappedHTMLElement;
+                element = document.createElement('td') as WrappedHTMLElement;
+
+                positioner.appendChild(element);
+
 				textNode = document.createTextNode('') as Text;
 				element.appendChild(textNode);
-			}
+                element.flexjs_wrapper = this;
+                return positioner;
+			} else {
+                element = document.createElement('tr') as WrappedHTMLElement;
+                
+                positioner = element;
 
-            //positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return positioner;
+                element.flexjs_wrapper = this;
+
+                return element;
+            }
         }
 
 		private var _nonNumeric:Boolean;
         /**
          * Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
-         * Applies text formatting to data cell
+         * Applies text formatting to data cell. Numeric is the default
 		 * Optional; goes on both table header and table data cells 
          */
         public function get nonNumeric():Boolean
@@ -143,6 +148,7 @@ package org.apache.flex.mdl.itemRenderers
             COMPILE::JS
             {
                 element.classList.toggle("mdl-data-table__cell--non-numeric", _nonNumeric);
+				typeNames = element.className;
             }
         }
 	}

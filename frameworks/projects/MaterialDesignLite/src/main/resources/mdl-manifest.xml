@@ -57,6 +57,8 @@
     <component id="ListItemSecondaryInfo" class="org.apache.flex.mdl.beads.ListItemSecondaryInfo"/>
     <component id="ListItemTextBody" class="org.apache.flex.mdl.beads.ListItemTextBody"/>
     <component id="Table" class="org.apache.flex.mdl.Table"/>
+    <component id="THead" class="org.apache.flex.mdl.THead"/>
+    <component id="TableColumn" class="org.apache.flex.mdl.TableColumn"/>
     <component id="TableItemRenderer" class="org.apache.flex.mdl.itemRenderers.TableItemRenderer"/>
     <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
