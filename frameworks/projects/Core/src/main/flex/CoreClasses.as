@@ -107,7 +107,6 @@ internal class CoreClasses
 		import org.apache.flex.core.IViewportScroller; IViewportScroller;
 	}
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
-    import org.apache.flex.core.DataBindingBase; DataBindingBase;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
     import org.apache.flex.events.Event; Event;
     import org.apache.flex.events.ProgressEvent; ProgressEvent;
