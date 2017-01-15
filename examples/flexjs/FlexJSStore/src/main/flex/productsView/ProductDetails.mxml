@@ -107,7 +107,7 @@ limitations under the License.
 
                     <js:Label text="{product.highlight2}" style="color:#EE8D0C"/>
 
-                    <!--js:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/-->
+                   <js:Label text="{cf.format(product.price)}" style="fontWeight:'bold'"/>
 
                 </js:VContainer>
             </js:Container>
