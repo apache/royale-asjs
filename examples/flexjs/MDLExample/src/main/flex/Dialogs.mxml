@@ -18,19 +18,41 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+
+    <fx:Script>
+        <![CDATA[
+            private function showModal():void
+            {
+                dialog.showModal();
+            }
+
+            private function closeModal():void
+            {
+                dialog.close();
+            }
+        ]]>
+    </fx:Script>
 
     <mdl:Grid>
         
-        <mdl:Button id="showdialog" text="Show Dialog" raised="true">
+        <mdl:Button id="showdialog" text="Show Dialog" raised="true" click="showModal()">
             <mdl:beads>
                 <mdl:Tooltip text="Dialog is still under development"/>
             </mdl:beads>
         </mdl:Button>
 
-        <!--<mdl:Dialog>
-
-        </mdl:Dialog>-->
+        <mdl:Dialog id="dialog">
+            <js:H4 text="Allow data collection?" className="mdl-dialog__title"/>
+            <mdl:DialogContent>
+                <js:P text="This is an example of the Material Design Lite dialog component. Please use responsibly."/>
+            </mdl:DialogContent>
+            <mdl:DialogActions>
+                <mdl:Button text="Agree" raised="true"/>
+                <mdl:Button text="Disagree" raised="true" click="closeModal()"/>
+            </mdl:DialogActions>
+        </mdl:Dialog>
 
     </mdl:Grid>
 </mdl:TabBarPanel>

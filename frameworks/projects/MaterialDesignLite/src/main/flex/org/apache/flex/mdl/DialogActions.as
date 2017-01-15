@@ -72,5 +72,31 @@ package org.apache.flex.mdl
 
             return element;
         }
+
+		protected var _fullWidth:Boolean = false;
+        /**
+		 *  A boolean flag to activate "mdl-dialog__actions--full-width" effect selector.
+		 *  Modifies the actions to each take the full width of the container. This makes each take their own line.
+		 *  Optional on action container.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+        public function get fullWidth():Boolean
+        {
+            return _fullWidth;
+        }
+        public function set fullWidth(value:Boolean):void
+        {
+			_fullWidth = value;
+
+			COMPILE::JS
+            {
+				positioner.classList.toggle("mdl-dialog__actions--full-width", _fullWidth);
+				typeNames = positioner.className;
+			}
+        }
 	}
 }

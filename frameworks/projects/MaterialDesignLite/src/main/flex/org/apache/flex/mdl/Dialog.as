@@ -40,10 +40,10 @@ package org.apache.flex.mdl
 		/**
 		 *  constructor.
          *  
-         *  <inject_html>
+         *  <no_inject_html>
          *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
          *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css"></script>
-         *  </inject_html>
+         *  </no_inject_html>
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -57,18 +57,54 @@ package org.apache.flex.mdl
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
+		/**
+		 * showModal
+		 */
+		public function showModal():void
+		{
+			COMPILE::JS
+			{
+				dialog['showModal']();
+			}
+		}
+
+		/**
+		 * show
+		 */
+		public function show():void
+		{
+			COMPILE::JS
+			{
+				dialog['show']();
+			}
+		}
+
+		/**
+		 * close
+		 */
+		public function close():void
+		{
+			COMPILE::JS
+			{
+				dialog['close']();
+			}
+		}
+
+		COMPILE::JS
+		private var dialog:HTMLElement; //HTMLDialogElement;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-dialog";
             
-            element = document.createElement('dialog') as WrappedHTMLElement;
+            dialog = document.createElement('dialog') as HTMLElement; //HTMLDialogElement;
+			element = dialog as WrappedHTMLElement;
 
-			//document.body.appendChild(element);
-            
 			positioner = element;
             
             // absolute positioned children need a non-null
