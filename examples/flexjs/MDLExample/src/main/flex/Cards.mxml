@@ -37,7 +37,6 @@ limitations under the License.
                 </mdl:CardSupportingText>
                 <mdl:CardActions border="true">
                     <mdl:Button text="Get Started" ripple="true" colored="true"/>
-                    
                 </mdl:CardActions>
                 <mdl:CardMenu>
                     <mdl:Button icon="true" ripple="true">
