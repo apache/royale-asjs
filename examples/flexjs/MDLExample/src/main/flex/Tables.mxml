@@ -29,7 +29,7 @@ limitations under the License.
 
     <mdl:Grid width="450" className="center-items">
 
-        <mdl:Table shadow="2" selectable="true" className="tableRowItemRenderer">
+        <mdl:Table shadow="2" selectable="true" className="customTableRowItemRenderer">
             <mdl:columns>
                 <mdl:TableColumn headerText="Material" nonNumeric="true"/>
                 <mdl:TableColumn headerText="Quantity"/>
@@ -48,7 +48,7 @@ limitations under the License.
                 <mdl:CardTitleText text="Card Header"/>
             </mdl:CardTitle>
 
-            <mdl:Table className="tableRowItemRenderer" width="100%">
+            <mdl:Table className="customTableRowItemRenderer" width="100%">
                 <mdl:columns>
                     <mdl:TableColumn headerText="Material" nonNumeric="true"/>
                     <mdl:TableColumn headerText="Quantity"/>
@@ -68,7 +68,7 @@ limitations under the License.
             </mdl:CardActions>
         </mdl:Card>
 
-        <mdl:Table shadow="8" className="tableItemRendererWithIcons">
+        <mdl:Table shadow="8" className="tableRowItemRendererWithIcons">
             <mdl:columns>
                 <mdl:TableColumn headerText="Material" nonNumeric="true"/>
                 <mdl:TableColumn headerText="Quantity"/>

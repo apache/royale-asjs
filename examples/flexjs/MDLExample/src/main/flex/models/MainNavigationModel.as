@@ -61,6 +61,7 @@ package models
             new NavigationLinkVO("Buttons", "buttons_panel"),
             new NavigationLinkVO("TextFields", "textfield_panel"),
             new NavigationLinkVO("Snackbar", "snackbar_panel"),
+            new NavigationLinkVO("Dialogs", "dialogs_panel"),
             new NavigationLinkVO("Toggles", "toggles_panel"),
             new NavigationLinkVO("Lists", "lists_panel"),
             new NavigationLinkVO("Tables", "tables_panel"),

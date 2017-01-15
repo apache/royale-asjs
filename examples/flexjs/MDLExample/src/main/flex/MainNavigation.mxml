@@ -73,6 +73,7 @@ limitations under the License.
         <local:TextFields id="textfield_panel"/>
         <local:Toggles id="toggles_panel"/>
         <local:Snackbar id="snackbar_panel"/>
+        <local:Dialogs id="dialogs_panel"/>
         <local:Lists id="lists_panel"/>
         <local:Tables id="tables_panel"/>
         <local:Loading id="loading_panel"/>

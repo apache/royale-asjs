@@ -83,14 +83,14 @@ js|Image
     IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
 }
 
-.tableRowItemRenderer
+.customTableRowItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.CustomTableRowItemRenderer");
 }
 
-.tableItemRendererWithIcons
+.tableRowItemRendererWithIcons
 {
-    IItemRenderer: ClassReference("itemRenderers.TableItemRendererWithIcons");
+    IItemRenderer: ClassReference("itemRenderers.TableRowItemRendererWithIcons");
 }
 
 .footerMiniLinkListItemRenderer
