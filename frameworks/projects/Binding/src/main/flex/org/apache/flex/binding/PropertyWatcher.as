@@ -238,7 +238,14 @@ package org.apache.flex.binding
                 {
                     if (getterFunction != null)
                     {
-                        value = getterFunction.apply(document, [ propertyName ]);
+                        try
+                        {
+                            value = getterFunction.apply(document, [ propertyName ]);
+                        }
+                        catch (e:Error)
+                        {
+                            value = null;
+                        }
                     }
                     else
                     {
