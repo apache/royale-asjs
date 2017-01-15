@@ -33,7 +33,7 @@ package org.apache.flex.mdl.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TableItemRenderer extends MXMLItemRenderer
+	public class TableRowItemRenderer extends MXMLItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -43,7 +43,7 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function TableItemRenderer()
+		public function TableRowItemRenderer()
 		{
 			super();
 			

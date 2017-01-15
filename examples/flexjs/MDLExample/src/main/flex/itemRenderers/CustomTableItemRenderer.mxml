@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mdl:TableItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+<mdl:TableRowItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                        xmlns:js="library://ns.apache.org/flexjs/basic"
                        xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                        xmlns="http://www.w3.org/1999/xhtml">
@@ -38,9 +38,9 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </mdl:beads>
     
-    <js:Td className="mdl-data-table__cell--non-numeric" text="{material.materialName}"/>
-    <js:Td text="{material.quantity}"/>
-    <js:Td text="{material.unitPrice}"/>
+    <mdl:TableCell text="{material.materialName}" nonNumeric="true"/>
+    <mdl:TableCell text="{material.quantity}"/>
+    <mdl:TableCell text="{material.unitPrice}"/>
     
-</mdl:TableItemRenderer>
+</mdl:TableRowItemRenderer>
 

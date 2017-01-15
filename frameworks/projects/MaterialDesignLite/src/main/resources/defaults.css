@@ -63,7 +63,7 @@ Table
     IBeadLayout: ClassReference(null); /*"org.apache.flex.html.beads.layouts.VerticalLayout"*/
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TableItemRenderer");
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TableRowItemRenderer");
 }
 
 Navigation
