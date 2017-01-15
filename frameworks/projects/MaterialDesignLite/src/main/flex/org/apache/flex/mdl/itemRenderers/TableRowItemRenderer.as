@@ -136,6 +136,11 @@ package org.apache.flex.mdl.itemRenderers
          * Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
          * Applies text formatting to data cell. Numeric is the default
 		 * Optional; goes on both table header and table data cells 
+		 * 
+		 * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
          */
         public function get nonNumeric():Boolean
         {

@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.mdl.List;
-	import org.apache.flex.utils.StringUtil;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IUIBase;
     
