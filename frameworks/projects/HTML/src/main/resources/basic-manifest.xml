@@ -149,6 +149,7 @@
     <component id="H4" class="org.apache.flex.html.H4" />
     <component id="H5" class="org.apache.flex.html.H5" />
     <component id="H6" class="org.apache.flex.html.H6" />
+    <component id="P" class="org.apache.flex.html.P" />
     <component id="Span" class="org.apache.flex.html.Span" />
     <component id="Div" class="org.apache.flex.html.Div" />
     <component id="I" class="org.apache.flex.html.I" />
