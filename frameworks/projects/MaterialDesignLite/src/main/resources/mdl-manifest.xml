@@ -62,6 +62,7 @@
     <component id="TableRowItemRenderer" class="org.apache.flex.mdl.itemRenderers.TableRowItemRenderer"/>
     <component id="TableCell" class="org.apache.flex.mdl.TableCell"/>
     <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
+    <component id="Dialog" class="org.apache.flex.mdl.Dialog"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
     <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
