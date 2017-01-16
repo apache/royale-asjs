@@ -187,7 +187,7 @@ under the License.
     </fileSet>
     <!-- Copy our custom index.html template as well as the history code -->
     <fileSet>
-      <directory>src/main/resources/templates/swfobject</directory>
+      <directory>../templates/swfobject</directory>
       <outputDirectory>templates/swfobject</outputDirectory>
       <includes>
         <include>**</include>

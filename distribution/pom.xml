@@ -501,7 +501,7 @@
                   <version>2.2</version>
                   <type>jar</type>
                   <outputDirectory>${project.build.directory}/swfobject-temp</outputDirectory>
-                  <includes>META-INF/resources/webjars/swfobject/*/**</includes>
+                  <includes>META-INF/resources/**</includes>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -640,7 +640,7 @@
       </dependencies>
       <build>
         <plugins>
-          <plugin>
+          <!--plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
             <executions>
@@ -656,10 +656,11 @@
                       <directory>${distributionTargetFolder}</directory>
                     </fileset>
                   </filesets>
+                  <failOnError>false</failOnError>
                 </configuration>
               </execution>
             </executions>
-          </plugin>
+          </plugin-->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
