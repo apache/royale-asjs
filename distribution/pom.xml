@@ -80,6 +80,12 @@
     <!-- Add the framework swc modules -->
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
@@ -123,6 +129,12 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Flat</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>FontAwesome</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
@@ -208,6 +220,13 @@
     <!-- Add the framework js-swc modules -->
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
@@ -262,18 +281,19 @@
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
+ 	  <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>FontAwesome</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Formatters</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
-    </dependency>
-	<dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>FontAwesome</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
-      <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -313,6 +333,13 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>MaterialDesignLite</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
