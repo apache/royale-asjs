@@ -134,9 +134,7 @@ package org.apache.flex.html
                 {
                     _selected = value;
 
-                    element.classList.toggle("toggleTextButton_Selected", _selected == true);
-                    element.classList.toggle("toggleTextButton", _selected == false);
-                    typeNames = element.className;
+                    internalSelected();
 
                     dispatchEvent(new Event("change"));
                 }
@@ -148,9 +146,7 @@ package org.apache.flex.html
         {
             super.createElement();
             element.addEventListener("click", clickHandler, false);
-            element.classList.toggle("toggleTextButton_Selected", _selected == true);
-            element.classList.toggle("toggleTextButton", _selected == false);
-            typeNames = element.className;
+            internalSelected();
 
             return element;
         }
@@ -165,6 +161,32 @@ package org.apache.flex.html
         private function internalMouseHandler(event:MouseEvent) : void
         {
             selected = !selected;
+        }
+
+        COMPILE::JS
+        private function internalSelected():void
+        {
+            var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
+            if (!isToggleTextButtonSelected && _selected == true)
+            {
+                element.classList.add("toggleTextButton_Selected");
+            }
+            else if (isToggleTextButtonSelected && _selected == false)
+            {
+                element.classList.toggle("toggleTextButton_Selected");
+            }
+
+            var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
+            if (!isToggleTextButton && _selected == false)
+            {
+                element.classList.add("toggleTextButton");
+            }
+            else if (isToggleTextButton && _selected == true)
+            {
+                element.classList.toggle("toggleTextButton");
+            }
+
+            typeNames = element.className;
         }
 	}
 }
