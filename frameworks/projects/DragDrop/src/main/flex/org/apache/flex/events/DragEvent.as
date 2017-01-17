@@ -24,6 +24,7 @@ package org.apache.flex.events
         import org.apache.flex.core.IUIBase;
         import window.Event;
         import window.MouseEvent;
+        import org.apache.flex.events.utils.EventUtils;
     }
     
 	/**
@@ -315,12 +316,12 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                var out:window.MouseEvent = new window.MouseEvent(type);
                 var e:window.Event = event as window.Event;
-                (out as window.Event).initMouseEvent(type, true, true,
-                    e.view, e.detail, e.screenX, e.screenY,
-                    e.clientX, e.clientY, e.ctrlKey, e.altKey,
-                    e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+                var out:window.MouseEvent = EventUtils.createMouseEvent(type, true, true, {
+                        view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
+                        clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
+                        shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
+
                 return out as DragEvent;
             }
         }
