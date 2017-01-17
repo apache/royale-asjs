@@ -121,6 +121,7 @@ internal class CoreClasses
 	import org.apache.flex.events.DetailEvent; DetailEvent;
 	import org.apache.flex.events.ValueEvent; ValueEvent;
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
+	import org.apache.flex.events.utils.EventUtils; EventUtils;
 	import org.apache.flex.geom.Matrix; Matrix;
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
