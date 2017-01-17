@@ -243,24 +243,24 @@ package org.apache.flex.core
 
         override public function dispatchEvent(e:Object):Boolean
         {
-            var t:String;
+            var eventType:String = "";
             if (typeof(e) === 'string')
             {
-                t = e as String;
+                eventType = e as String;
                 if (e === org.apache.flex.events.Event.CHANGE)
                 {
-                    e = EventUtils.createEvent(t);
+                    e = EventUtils.createEvent(eventType);
                 }
             }
             else
             {
-                t = e.type;
-                if (ElementEvents.elementEvents[t])
+                eventType = e.type;
+                if (ElementEvents.elementEvents[eventType])
                 {
-                    e = EventUtils.createEvent(t);
+                    e = EventUtils.createEvent(eventType);
                 }
             }
-            var source:Object = this.getActualDispatcher_(t);
+            var source:Object = this.getActualDispatcher_(eventType);
             if (source == this)
             {
                 return super.dispatchEvent(e);

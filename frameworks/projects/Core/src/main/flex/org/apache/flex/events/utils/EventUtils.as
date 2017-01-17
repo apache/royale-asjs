@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events.utils
 {
-    import org.apache.flex.events.Event;
-
     /**
 	 *  Provides static methods for creating custom events in JS
      *  
@@ -28,9 +26,9 @@ package org.apache.flex.events.utils
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
+    COMPILE::JS
 	public class EventUtils
 	{
-       COMPILE::JS
        public static function createEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false):Object
        {
            var customEvent:Object = null;
@@ -52,6 +50,40 @@ package org.apache.flex.events.utils
            }
 
            return customEvent;
+       }
+
+       public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable = false,
+                                               params:Object = null):Object
+       {
+           var mouseEvent:Object = null;
+
+           if (!params)
+           {
+               params = {};
+           }
+
+           try
+           {
+               params.bubbles = bubbles;
+               params.cancelable = cancelable;
+
+               mouseEvent = new window.MouseEvent(type, params);
+               return mouseEvent;
+           }
+           catch (e:Error)
+           {
+
+           }
+
+           if (!mouseEvent)
+           {
+               mouseEvent = document.createEvent('MouseEvent');
+               mouseEvent.initMouseEvent(type, bubbles, cancelable, params.view,
+                       params.detail, params.screenX, params.screenY, params.clientX, params.clientY,
+                       params.ctrlKey, params.altKey, params.shiftKey, params.metaKey, params.button, params.relatedTarget);
+           }
+
+           return mouseEvent;
        }
     }
 }
