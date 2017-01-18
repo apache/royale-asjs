@@ -25,13 +25,13 @@ package org.apache.flex.core
         
     COMPILE::JS
     {
-        import window.Event;
         import org.apache.flex.events.Event;        
         import org.apache.flex.events.BrowserEvent;
         import org.apache.flex.events.ElementEvents;
         import org.apache.flex.events.EventDispatcher;
         import goog.events;
         import goog.events.EventTarget;
+        import org.apache.flex.events.utils.EventUtils;
     }
 
     COMPILE::SWF
@@ -243,21 +243,28 @@ package org.apache.flex.core
 
         override public function dispatchEvent(e:Object):Boolean
         {
-            var t:String;
-            if (typeof(e) === 'string') {
-                t = e as String;
-                if (e === 'change')
-                    e = new window.Event(t);
-            }
-            else {
-                t = e.type;
-                if (ElementEvents.elementEvents[t]) {
-                    e = new window.Event(t);
+            var eventType:String = "";
+            if (typeof(e) === 'string')
+            {
+                eventType = e as String;
+                if (e === org.apache.flex.events.Event.CHANGE)
+                {
+                    e = EventUtils.createEvent(eventType);
                 }
             }
-            var source:Object = this.getActualDispatcher_(t);
+            else
+            {
+                eventType = e.type;
+                if (ElementEvents.elementEvents[eventType])
+                {
+                    e = EventUtils.createEvent(eventType);
+                }
+            }
+            var source:Object = this.getActualDispatcher_(eventType);
             if (source == this)
+            {
                 return super.dispatchEvent(e);
+            }
             
             return source.dispatchEvent(e);
         }

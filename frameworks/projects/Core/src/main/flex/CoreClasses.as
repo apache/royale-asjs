@@ -158,6 +158,7 @@ internal class CoreClasses
 	COMPILE::JS
 	{
 		import org.apache.flex.utils.URLUtils; URLUtils;
+        import org.apache.flex.events.utils.EventUtils; EventUtils;
 	}
 
 	import org.apache.flex.core.ClassFactory; ClassFactory;

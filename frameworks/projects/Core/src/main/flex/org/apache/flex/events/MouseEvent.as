@@ -27,10 +27,10 @@ package org.apache.flex.events
     COMPILE::JS
     {
         import window.MouseEvent;
+		import org.apache.flex.events.utils.EventUtils;
     }
     
     import org.apache.flex.core.IFlexJSElement;
-    import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
 
@@ -353,7 +353,8 @@ package org.apache.flex.events
 				// get all children
 				outs = targets.slice(index + 1);
 				m = outs.length;
-				for (j = 0; j < m; j++) {
+				for (j = 0; j < m; j++)
+				{
 					me = makeMouseEvent(
 						ROLL_OUT, e);
 					outs[j].element.dispatchEvent(me);
@@ -414,11 +415,10 @@ package org.apache.flex.events
 		 */
 		private static function makeMouseEvent(type:String, e:window.MouseEvent):window.MouseEvent
 		{
-			var out:window.MouseEvent = new window.MouseEvent(type);
-			out.initMouseEvent(type, false, false,
-				e.view, e.detail, e.screenX, e.screenY,
-				e.clientX, e.clientY, e.ctrlKey, e.altKey,
-				e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+			var out:window.MouseEvent = EventUtils.createMouseEvent(type, false, false, {
+                    view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
+					clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
+				    shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
 			return out;
 		};
 
