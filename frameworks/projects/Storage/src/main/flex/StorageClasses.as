@@ -39,6 +39,7 @@ internal class StorageClasses
 
 	import org.apache.flex.storage.providers.AirStorageProvider; AirStorageProvider;
 	import org.apache.flex.storage.providers.WebStorageProvider; WebStorageProvider;
+	import org.apache.flex.storage.providers.AndroidExternalStorageProvider; AndroidExternalStorageProvider;
 
 }
 
