@@ -90,13 +90,13 @@ package org.apache.flex.html.beads
             var className:String = IStyleableObject(_strand).className;
             if (toggleButtonModel.selected)
             {
-                if (className.indexOf(SELECTED) == className.length - SELECTED.length)
+                if (className && className.indexOf(SELECTED) == className.length - SELECTED.length)
                     IStyleableObject(_strand).className = className.substring(0, className.length - SELECTED.length);
                 setupSkins();
             }
             else
             {
-                if (className.indexOf(SELECTED) == -1)
+                if (className && className.indexOf(SELECTED) == -1)
                     IStyleableObject(_strand).className += SELECTED;
                 setupSkins();                
             }
