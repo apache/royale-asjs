@@ -40,10 +40,10 @@ package org.apache.flex.mdl
 		/**
 		 *  constructor.
          *  
-         *  <no_inject_html>
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css"></script>
-         *  </no_inject_html>
+         *  <inject_html>
+         *  <link rel="stylesheet" href="http://cdn.bootcss.com/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
+         *  <link rel="stylesheet" href="http://cdn.bootcss.com/dialog-polyfill/0.4.5/dialog-polyfill.min.js">
+         *  </inject_html>
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -55,11 +55,6 @@ package org.apache.flex.mdl
 			super();
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-
-			COMPILE::JS
-			{
-				addDialog();
-			}
 		}
 
 		COMPILE::JS
@@ -89,30 +84,37 @@ package org.apache.flex.mdl
         }
 
 		/**
-		 *  This function make the dialog be added to document.body.
-		 *  The parent in MDL must be the Application (IPopUpHost)
+		 * flag to ensure only one dialog is created
+		 */
+		private var lockDialogCreation:Boolean = false;
+
+		/**
+		 *  This function make the dialog be added to document.body only once
+		 *  The parent in MDL must be the Application (IPopUpHost) as MDL requisite
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		COMPILE::JS
-		public function addDialog() : void
-		{
-			if(Application.topLevelApplication != null)
-			{
-				Application.topLevelApplication.addElement(this);
-			}
-		}
-
-		/**
-		 * show modal
-		 */
 		public function showModal():void
 		{
 			COMPILE::JS
 			{
+				if(!lockDialogCreation)
+				{
+					lockDialogCreation = true;
+
+					if(Application.topLevelApplication != null)
+					{
+						Application.topLevelApplication.addElement(this);
+					}
+				}
+				
+				if (! dialog.showModal) {
+					//dialogPolyfill.registerDialog(dialog);
+				}
+
 				dialog.showModal();
 			}
 		}

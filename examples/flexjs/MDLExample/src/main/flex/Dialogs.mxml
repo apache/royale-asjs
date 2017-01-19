@@ -23,9 +23,14 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
+            private var dialog:TestDialog;
             private function showModal():void
             {
-                var dialog:TestDialog = new TestDialog();
+                if(dialog == null)
+                {
+                    dialog = new TestDialog();
+                }
+                
                 dialog.showModal();
             }
         ]]>
@@ -33,8 +38,7 @@ limitations under the License.
 
     <mdl:Grid>
         
-        <mdl:Button id="showdialog" text="Show Dialog" raised="true" 
-                    click="showModal()"/>
+        <mdl:Button id="showdialog" text="Show Dialog" raised="true" click="showModal()"/>
 
     </mdl:Grid>
 

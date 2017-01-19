@@ -21,16 +21,7 @@ limitations under the License.
             xmlns:js="library://ns.apache.org/flexjs/basic"
             xmlns:mdl="library://ns.apache.org/flexjs/mdl"
             xmlns="http://www.w3.org/1999/xhtml">
-
-    <fx:Script>
-        <![CDATA[
-            private function closeModal():void
-            {
-                close();
-            }
-        ]]>
-    </fx:Script>
-
+    
     <js:H4 text="Allow data collection?" className="mdl-dialog__title"/>
     
     <mdl:DialogContent>
@@ -39,7 +30,7 @@ limitations under the License.
     
     <mdl:DialogActions>
         <mdl:Button text="Agree" raised="true"/>
-        <mdl:Button text="Disagree" raised="true" click="closeModal()"/>
+        <mdl:Button text="Disagree" raised="true" click="close()"/>
     </mdl:DialogActions>
         
 </mdl:Dialog>
