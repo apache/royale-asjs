@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.mdl.Application;
+	import org.apache.flex.core.IPopUp;
     
     COMPILE::JS
     {
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Dialog extends ContainerBase
+	public class Dialog extends ContainerBase implements IPopUp
 	{
 		/**
 		 *  constructor.
@@ -55,43 +55,15 @@ package org.apache.flex.mdl
 			super();
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
-		
-		/**
-		 * showModal
-		 */
-		public function showModal():void
-		{
-			COMPILE::JS
-			{
-				dialog['showModal']();
-			}
-		}
 
-		/**
-		 * show
-		 */
-		public function show():void
-		{
 			COMPILE::JS
 			{
-				dialog['show']();
-			}
-		}
-
-		/**
-		 * close
-		 */
-		public function close():void
-		{
-			COMPILE::JS
-			{
-				dialog['close']();
+				addDialog();
 			}
 		}
 
 		COMPILE::JS
-		private var dialog:HTMLElement; //HTMLDialogElement;
+		private var dialog:HTMLDialogElement;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -102,7 +74,7 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-dialog";
             
-            dialog = document.createElement('dialog') as HTMLElement; //HTMLDialogElement;
+            dialog = document.createElement('dialog') as HTMLDialogElement;
 			element = dialog as WrappedHTMLElement;
 
 			positioner = element;
@@ -115,5 +87,56 @@ package org.apache.flex.mdl
 
             return element;
         }
+
+		/**
+		 *  This function make the dialog be added to document.body.
+		 *  The parent in MDL must be the Application (IPopUpHost)
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::JS
+		public function addDialog() : void
+		{
+			if(Application.topLevelApplication != null)
+			{
+				Application.topLevelApplication.addElement(this);
+			}
+		}
+
+		/**
+		 * show modal
+		 */
+		public function showModal():void
+		{
+			COMPILE::JS
+			{
+				dialog.showModal();
+			}
+		}
+		
+		/**
+		 * show
+		 */
+		public function show():void
+		{
+			COMPILE::JS
+			{
+				dialog.show();
+			}
+		}
+
+		/**
+		 * close
+		 */
+		public function close():void
+		{
+			COMPILE::JS
+			{
+				dialog.close();
+			}
+		}
 	}
 }
