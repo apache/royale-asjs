@@ -102,7 +102,6 @@ package org.apache.flex.html
 			element = h5 as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
 			element.flexjs_wrapper = this;
             
             //className = typeNames = 'H5';
