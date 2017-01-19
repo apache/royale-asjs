@@ -21,6 +21,7 @@
 
 <componentPackage>
 
+    <component id="Application" class="org.apache.flex.mdl.Application"/>
     <component id="Button" class="org.apache.flex.mdl.Button"/>
     <component id="IconToggle" class="org.apache.flex.mdl.IconToggle"/>
     <component id="TextField" class="org.apache.flex.mdl.TextField"/>
