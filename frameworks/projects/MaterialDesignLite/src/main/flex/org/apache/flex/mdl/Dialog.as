@@ -41,8 +41,8 @@ package org.apache.flex.mdl
 		 *  constructor.
          *  
          *  <inject_html>
-         *  <link rel="stylesheet" href="http://cdn.bootcss.com/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
-         *  <link rel="stylesheet" href="http://cdn.bootcss.com/dialog-polyfill/0.4.5/dialog-polyfill.min.js">
+         *  <link rel="stylesheet" type="text/css" href="http://cdn.css.net/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
+         *  <script src="http://cdn.css.net/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
          *  </inject_html>
 		 *
 		 *  @langversion 3.0
@@ -58,7 +58,7 @@ package org.apache.flex.mdl
 		}
 
 		COMPILE::JS
-		private var dialog:HTMLDialogElement;
+		private var dialog:HTMLElement;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -69,7 +69,7 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-dialog";
             
-            dialog = document.createElement('dialog') as HTMLDialogElement;
+            dialog = document.createElement('dialog') as HTMLElement;
 			element = dialog as WrappedHTMLElement;
 
 			positioner = element;
@@ -109,13 +109,13 @@ package org.apache.flex.mdl
 					{
 						Application.topLevelApplication.addElement(this);
 					}
+
+					if (!dialog["showModal"]) { //!dialog.showModal
+						window["dialogPolyfill"].registerDialog(dialog);//dialogPolyfill.registerDialog(dialog);
+					}
 				}
 				
-				if (! dialog.showModal) {
-					//dialogPolyfill.registerDialog(dialog);
-				}
-
-				dialog.showModal();
+				dialog["showModal"]();
 			}
 		}
 		
@@ -126,7 +126,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog.show();
+				dialog["show"]();//dialog.show();
 			}
 		}
 
@@ -137,7 +137,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog.close();
+				dialog["close"]();//dialog.close();
 			}
 		}
 	}
