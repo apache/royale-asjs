@@ -110,7 +110,8 @@ package org.apache.flex.mdl
 						Application.topLevelApplication.addElement(this);
 					}
 
-					if (!dialog["showModal"]) {
+					if (!("showModal" in dialog))
+					{
 						dialogPolyfill.registerDialog(dialog);
 					}
 				}
