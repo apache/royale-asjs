@@ -58,18 +58,18 @@ package org.apache.flex.mdl
 		}
 
 		COMPILE::JS
-		private var dialog:HTMLElement; //HTMLDialogElement
+		private var dialog:HTMLDialogElement;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLElement
+		 * @flexjsignorecoercion HTMLDialogElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-dialog";
             
-            dialog = document.createElement('dialog') as HTMLElement;
+            dialog = document.createElement('dialog') as HTMLDialogElement;
 			element = dialog as WrappedHTMLElement;
 
 			positioner = element;
@@ -110,12 +110,12 @@ package org.apache.flex.mdl
 						Application.topLevelApplication.addElement(this);
 					}
 
-					if (!dialog["showModal"]) { //!dialog.showModal
+					if (!dialog["showModal"]) {
 						dialogPolyfill.registerDialog(dialog);
 					}
 				}
 				
-				dialog["showModal"](); //dialog.showModal()
+				dialog.showModal()
 			}
 		}
 		
@@ -126,7 +126,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog["show"](); //dialog.show();
+				dialog.show();
 			}
 		}
 
@@ -137,7 +137,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog["close"](); //dialog.close();
+				dialog.close();
 			}
 		}
 	}

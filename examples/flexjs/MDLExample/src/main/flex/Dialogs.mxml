@@ -38,7 +38,7 @@ limitations under the License.
 
     <mdl:Grid>
         
-        <mdl:Button id="showdialog" text="Show Dialog" raised="true" click="showModal()"/>
+        <mdl:Button text="Show Dialog" raised="true" click="showModal()"/>
 
     </mdl:Grid>
 
