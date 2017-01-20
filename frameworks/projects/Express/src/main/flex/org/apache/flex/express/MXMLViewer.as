@@ -27,6 +27,8 @@ package org.apache.flex.express
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
 
+	[DefaultProperty("text")]
+	
 	/**
 	 * This class extends the standard Label and allows MXML content (ie, XML or HTML) 
 	 * to be displayed.
