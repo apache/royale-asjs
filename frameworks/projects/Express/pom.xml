@@ -43,17 +43,13 @@
         <configuration>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/flexjs/basic</uri>
-              <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
+              <uri>library://ns.apache.org/flexjs/express</uri>
+              <manifest>${project.basedir}/src/main/resources/express-manifest.xml</manifest>
             </namespace>
             <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/flexjs/basic</uri>
-              <manifest>${project.basedir}/src/main/resources/basic-as-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-              <uri>library://ns.apache.org/flexjs/svg</uri>
-              <manifest>${project.basedir}/src/main/resources/svg-manifest.xml</manifest>
+              <uri>library://ns.apache.org/flexjs/express</uri>
+              <manifest>${project.basedir}/src/main/resources/express-as-manifest.xml</manifest>
             </namespace>
           </namespaces>
           <includeClasses>
@@ -119,6 +115,19 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Collections</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>HTML</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>

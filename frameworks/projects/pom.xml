@@ -40,6 +40,7 @@
     <module>CreateJS</module>
     <module>DragDrop</module>
     <module>Effects</module>
+    <module>Express</module>
     <module>Flat</module>
     <module>Formatters</module>
 	<module>FontAwesome</module>
