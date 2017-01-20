@@ -111,7 +111,7 @@ package org.apache.flex.mdl
 					}
 
 					if (!dialog["showModal"]) { //!dialog.showModal
-						window["dialogPolyfill"].registerDialog(dialog);//dialogPolyfill.registerDialog(dialog);
+						dialogPolyfill.registerDialog(dialog);
 					}
 				}
 				
