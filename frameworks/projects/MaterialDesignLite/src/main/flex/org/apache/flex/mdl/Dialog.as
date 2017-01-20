@@ -58,7 +58,7 @@ package org.apache.flex.mdl
 		}
 
 		COMPILE::JS
-		private var dialog:HTMLElement;
+		private var dialog:HTMLElement; //HTMLDialogElement
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -115,7 +115,7 @@ package org.apache.flex.mdl
 					}
 				}
 				
-				dialog["showModal"]();
+				dialog["showModal"](); //dialog.showModal()
 			}
 		}
 		
@@ -126,7 +126,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog["show"]();//dialog.show();
+				dialog["show"](); //dialog.show();
 			}
 		}
 
@@ -137,7 +137,7 @@ package org.apache.flex.mdl
 		{
 			COMPILE::JS
 			{
-				dialog["close"]();//dialog.close();
+				dialog["close"](); //dialog.close();
 			}
 		}
 	}
