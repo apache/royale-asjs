@@ -28,6 +28,7 @@
     <component id="HView" class="org.apache.flex.express.HView"/>
     <component id="List" class="org.apache.flex.express.List"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.express.MXMLItemRenderer"/>
+    <component id="MXMLViewer" class="org.apache.flex.express.MXMLViewer"/>
     <component id="TextButton" class="org.apache.flex.express.TextButton"/>
     <component id="TextInput" class="org.apache.flex.express.TextInput"/>
     <component id="VContainer" class="org.apache.flex.express.VContainer"/>
