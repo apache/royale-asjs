@@ -19,14 +19,12 @@ limitations under the License.
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl">
-    <mdl:Grid>
-        <mdl:GridCell column="1">
+    <mdl:Grid width="120">
+        
             <mdl:Chip text="Basic Chip" />
-        </mdl:GridCell>
-        <mdl:GridCell column="2">
+        
             <mdl:ButtonChip text="Button Chip" />
-        </mdl:GridCell>
-        <mdl:GridCell column="3">
+            
             <mdl:Chip text="Deletable Chip">
                 <mdl:beads>
                     <mdl:DeletableChip />
@@ -35,8 +33,7 @@ limitations under the License.
                     <mdl:MaterialIconCancel />
                 </mdl:materialIcon>
             </mdl:Chip>
-        </mdl:GridCell>
-        <mdl:GridCell column="4">
+        
             <mdl:ButtonChip text="Deletable Button Chip">
                 <mdl:beads>
                     <mdl:DeletableChip />
@@ -45,8 +42,7 @@ limitations under the License.
                     <mdl:MaterialIconCancel />
                 </mdl:materialIcon>
             </mdl:ButtonChip>
-        </mdl:GridCell>
-        <mdl:GridCell column="5">
+        
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:MdlColor color="teal" />
@@ -54,8 +50,7 @@ limitations under the License.
                     <mdl:ContactChip contactText="A" />
                 </mdl:beads>
             </mdl:Chip>
-        </mdl:GridCell>
-       <mdl:GridCell column="5">
+        
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:MdlColor color="teal" />
@@ -67,8 +62,7 @@ limitations under the License.
                     <mdl:MaterialIconCancel />
                 </mdl:materialIcon>
             </mdl:Chip>
-        </mdl:GridCell>
-       <mdl:GridCell column="5">
+
             <mdl:Chip text="Contact Link Chip">
                 <mdl:beads>
                     <mdl:ContactImageChip />
@@ -78,6 +72,6 @@ limitations under the License.
                     <mdl:MaterialIconCancel />
                 </mdl:materialIcon>
             </mdl:Chip>
-        </mdl:GridCell>
+        
     </mdl:Grid>
 </mdl:TabBarPanel>

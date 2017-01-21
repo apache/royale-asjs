@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.flex.mdl.supportClasses
 {
-    import org.apache.flex.mdl.supportClasses.ChipBase;
+    import org.apache.flex.mdl.Button;
 
     COMPILE::JS
     {
@@ -26,7 +26,7 @@ package org.apache.flex.mdl
     }
 
     /**
-     *  ButtonChip class represents a MDL button chip variant
+     *  ChipBase class is the base class for Chip and ButtonChip
      *  Chips are complex entities in small blocks.
      *  
      *  The Material Design Lite (MDL) chip component is a small, interactive element.
@@ -37,37 +37,59 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class ButtonChip extends ChipBase
+    public class ChipBase extends Button
     {
-        COMPILE::JS
-        private var chip:HTMLButtonElement;
-
         /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLSpanElement
-         * @flexjsignorecoercion HTMLButtonElement
-         * @flexjsignorecoercion Text
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function ChipBase()
+        {
+            super();
+
+            className = "";
+        }
+        
+        /**
+         * The chip span element
          */
         COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            typeNames = "mdl-chip";
+        public var chipTextSpan:HTMLSpanElement;
+        
+        private var _text:String = "";
+        /**
+         *  The text of the chip
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+		override public function get text():String
+		{
+            return _text;            
+		}
+        override public function set text(value:String):void
+		{
+            _text = value;
 
-            chipTextSpan = document.createElement("span") as HTMLSpanElement;
-            chipTextSpan.classList.add("mdl-chip__text");
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
+		}
 
-            textNode = document.createTextNode('') as Text;
-            chipTextSpan.appendChild(textNode);
-
-            chip = document.createElement("button") as HTMLButtonElement;
-            chip.appendChild(chipTextSpan);
-
-            element = chip as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
-        }
+        COMPILE::JS
+        protected var textNode:Text;
     }
 }

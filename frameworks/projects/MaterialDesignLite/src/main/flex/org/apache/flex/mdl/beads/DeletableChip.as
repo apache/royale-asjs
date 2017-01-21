@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class DeletableChip implements IBead
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function DeletableChip()
         {
@@ -64,18 +64,17 @@ package org.apache.flex.mdl.beads
         {
             _strand = value;
 
+            var host:UIBase = value as UIBase;
+
             COMPILE::JS
-            {
-                var host:UIBase = value as UIBase;
+            {   
                 var element:HTMLElement = host.element as HTMLElement;
                 var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
 
                 if (isValidElement && element.className.search("mdl-chip") > -1)
                 {
                     element.classList.add("mdl-chip--deletable");
-
                     deleteButton = createDeleteButton();
-
                     element.appendChild(deleteButton.element as HTMLElement);
                 }
                 else

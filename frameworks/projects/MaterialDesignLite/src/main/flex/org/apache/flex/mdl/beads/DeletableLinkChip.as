@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class DeletableLinkChip implements IBead
     {
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function DeletableLinkChip()
         {
@@ -59,14 +59,19 @@ package org.apache.flex.mdl.beads
          * @flexjsignorecoercion HTMLButtonElement
          *
          * @param value
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.8
          */
         public function set strand(value:IStrand):void
         {
             _strand = value;
 
+            var host:UIBase = value as UIBase;
             COMPILE::JS
             {
-                var host:UIBase = value as UIBase;
                 var element:HTMLElement = host.element as HTMLElement;
                 var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
 
@@ -87,15 +92,14 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         * 
-         * Link
+         * The link
          * 
          * @param value
          * 
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function set href(value:String):void
         {
@@ -106,6 +110,11 @@ package org.apache.flex.mdl.beads
          * @flexjsignorecoercion HTMLElement
          *
          * @return Link represents cancel icon
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.8
          */
         COMPILE::JS
         private function createLinkElement():NavigationLink

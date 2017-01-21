@@ -23,7 +23,6 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.supportClasses.IMdlColor;
 
-
     /**
      *  The MdlColor bead apply color and colorWeight provided by google style color.
      *
@@ -33,34 +32,31 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    COMPILE::SWF
-    public class MdlColor implements IMdlColor
+    public class MdlColor implements IBead, IMdlColor
     {
-        private var _color:String;
-        private var _colorWeight:String;
-
         /**
          *  constructor.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function MdlColor()
         {
 
         }
 
+        private var _color:String = "";
         /**
          *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#color
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get color():String
         {
@@ -72,13 +68,14 @@ package org.apache.flex.mdl.beads
             _color = value;
         }
 
+        private var _colorWeight:String = "";
         /**
          *  @copy org.apache.flex.mdl.supportClasses.IMdlColor#colorWeight
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get colorWeight():String
         {
@@ -89,20 +86,8 @@ package org.apache.flex.mdl.beads
         {
             _colorWeight = value;
         }
-    }
-
-    COMPILE::JS
-    public class MdlColor implements IBead, IMdlColor
-    {
-        public function MdlColor()
-        {
-        }
-
-        private var _color:String = "";
-        private var _colorWeight:String = "";
-
+        
         private var _strand:IStrand;
-
         /**
          * @copy org.apache.flex.core.IBead#strand
          * 
@@ -113,49 +98,56 @@ package org.apache.flex.mdl.beads
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function set strand(value:IStrand):void
         {
             _strand = value;
 
             var host:UIBase = value as UIBase;
-            var element:HTMLElement = host.element as HTMLElement;
-
             var elementColor:String = getMdlElementColor();
-            element.classList.toggle(elementColor, hasColor || hasColorWeight);
+
+            COMPILE::JS
+            {
+                var element:HTMLElement = host.element as HTMLElement;
+                element.classList.toggle(elementColor, hasColor || hasColorWeight);
+            }
         }
 
-        public function get color():String
-        {
-            return _color;
-        }
-
-        public function set color(value:String):void
-        {
-            _color = value;
-        }
-
-        public function get colorWeight():String
-        {
-            return _colorWeight;
-        }
-
-        public function set colorWeight(value:String):void
-        {
-            _colorWeight = value;
-        }
-
+        /**
+         *  has color
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         private function get hasColor():Boolean
         {
             return _color != null && _color != "";
         }
 
+        /**
+         *  has color weight
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         private function get hasColorWeight():Boolean
         {
             return _colorWeight != null && _colorWeight != "";
         }
 
+        /**
+         *  get mdl element color
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function getMdlElementColor():String
         {
             if (hasColor && hasColorWeight)

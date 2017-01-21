@@ -22,11 +22,8 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.html.Span;
     import org.apache.flex.utils.StrandUtils;
+    import org.apache.flex.core.UIBase;
 
-    COMPILE::JS
-    {
-        import org.apache.flex.core.UIBase;
-    }
     /**
      *  The ContactChip bead class is a specialty bead that can be used to add additional
      *  button to Chip MDL control.
@@ -34,35 +31,8 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    COMPILE::SWF
-    public class ContactChip
-    {
-        private var _contactText:String;
-
-        public function ContactChip()
-        {
-
-        }
-
-        /**
-         *  The text displayed on ContactChip 
-         *
-         *  @param value
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function set contactText(value:String):void
-        {
-            _contactText = value;
-        }
-    }
-
-    COMPILE::JS
     public class ContactChip implements IBead
     {
         /**
@@ -71,20 +41,37 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function ContactChip()
         {
         }
 
         private var _contactText:String = "";
+        /**
+         *  The text displayed on ContactChip 
+         *
+         *  @param value
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function set contactText(value:String):void
+        {
+            _contactText = value;
+        }
 
         private var contact:Span;
+
+        COMPILE::JS
         private var textNode:Text;
 
-        private var _strand:IStrand;
+        COMPILE::JS
         private var _strandHtmlElement:HTMLElement;
 
+        private var _strand:IStrand;
         /**
          * @flexjsignorecoercion HTMLElement
          * @flexjsignorecoercion HTMLSpanElement
@@ -98,37 +85,44 @@ package org.apache.flex.mdl.beads
             _strand = value;
             
             var host:UIBase = value as UIBase;
-            _strandHtmlElement = host.element as HTMLElement;
-            var isValidElement:Boolean = _strandHtmlElement is HTMLSpanElement || _strandHtmlElement is HTMLButtonElement;
 
-            if (isValidElement && _strandHtmlElement.className.search("mdl-chip") > -1)
+            COMPILE::JS
             {
-                _strandHtmlElement.classList.add("mdl-chip--contact");
+                _strandHtmlElement = host.element as HTMLElement;
+                var isValidElement:Boolean = _strandHtmlElement is HTMLSpanElement || _strandHtmlElement is HTMLButtonElement;
 
-                textNode = document.createTextNode('') as Text;
-                textNode.nodeValue = _contactText;
+                if (isValidElement && _strandHtmlElement.className.search("mdl-chip") > -1)
+                {
+                    _strandHtmlElement.classList.add("mdl-chip--contact");
 
-                contact = new Span();
-                contact.element.classList.add("mdl-chip__contact");
+                    textNode = document.createTextNode('') as Text;
+                    textNode.nodeValue = _contactText;
 
-                loadColorBead();
-                loadTextColorBead();
+                    contact = new Span();
+                    contact.element.classList.add("mdl-chip__contact");
 
-                contact.element.appendChild(textNode);
+                    loadColorBead();
+                    loadTextColorBead();
 
-                _strandHtmlElement.insertBefore(contact.element, host["chipTextSpan"]);
-            }
-            else
-            {
-                throw new Error("Host component must be an MDL Host for Chips.");
+                    contact.element.appendChild(textNode);
+
+                    _strandHtmlElement.insertBefore(contact.element, host["chipTextSpan"]);
+                }
+                else
+                {
+                    throw new Error("Host component must be an MDL Host for Chips.");
+                }
             }
         }
 
-        public function set contactText(value:String):void
-        {
-            _contactText = value;
-        }
-
+        /**
+         *  load color bead
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         private function loadColorBead():void
         {
             var mdlColorBead:MdlColor = StrandUtils.loadBead(MdlColor, "MdlColor", _strand) as MdlColor;
@@ -141,11 +135,23 @@ package org.apache.flex.mdl.beads
                    throw new Error("MdlColor bead exists, but there is no color specified");
                 }
 
-                _strandHtmlElement.classList.remove(mdlColorElement);
+                COMPILE::JS
+                {
+                    _strandHtmlElement.classList.remove(mdlColorElement);
+                }
+
                 contact.addBead(mdlColorBead);
             }
         }
 
+        /**
+         *  load text color bead
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         private function loadTextColorBead():void
         {
             var mdlTextColorBead:MdlTextColor = StrandUtils.loadBead(MdlTextColor, "MdlTextColor", _strand)
@@ -159,7 +165,11 @@ package org.apache.flex.mdl.beads
                     throw new Error("MdlTextColor bead exists, but there is no textColor specified");
                 }
 
-                _strandHtmlElement.classList.remove(mdlTextElementTextColor);
+                COMPILE::JS
+                {
+                    _strandHtmlElement.classList.remove(mdlTextElementTextColor);
+                }
+                
                 contact.addBead(mdlTextColorBead);
             }
         }

@@ -29,18 +29,72 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    COMPILE::SWF
-    public class ContactImageChip
+    public class ContactImageChip implements IBead
     {
-        private var _source:String;
-
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function ContactImageChip()
         {
-
+            super();
         }
 
+        /**
+         * The image contact
+         */
+        COMPILE::JS
+        private var contact:HTMLImageElement;
+
+        private var _strand:IStrand;
+        /**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+         *  @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion HTMLSpanElement
+         *  @flexjsignorecoercion HTMLButtonElement
+         *  @flexjsignorecoercion HTMLImageElement
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+
+            var host:UIBase = value as UIBase;
+
+            COMPILE::JS
+            {
+                var element:HTMLElement = host.element as HTMLElement;
+                var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
+
+                if (isValidElement && element.className.search("mdl-chip") > -1)
+                {
+                    element.classList.add("mdl-chip--contact");
+
+                    contact = document.createElement("img") as HTMLImageElement;
+                    contact.classList.add("mdl-chip__contact");
+                    contact.src = _source;
+
+                    element.insertBefore(contact, host["chipTextSpan"]);
+                }
+                else
+                {
+                    throw new Error("Host component must be an MDL Host for Chips.");
+                }
+            }
+        }
+
+        private var _source:String = "";
         /**
          *  Source for displayed image
          *
@@ -49,51 +103,8 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
-        public function set source(value:String):void
-        {
-            _source = value;
-        }
-    }
-
-    COMPILE::JS
-    public class ContactImageChip implements IBead
-    {
-        public function ContactImageChip()
-        {
-            super();
-        }
-
-        private var _source:String = "";
-        private var _strand:IStrand;
-
-        private var contact:HTMLImageElement;
-
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
-
-            var host:UIBase = value as UIBase;
-            var element:HTMLElement = host.element as HTMLElement;
-            var isValidElement:Boolean = element is HTMLSpanElement || element is HTMLButtonElement;
-
-            if (isValidElement && element.className.search("mdl-chip") > -1)
-            {
-                element.classList.add("mdl-chip--contact");
-
-                contact = document.createElement("img") as HTMLImageElement;
-                contact.classList.add("mdl-chip__contact");
-                contact.src = _source;
-
-                element.insertBefore(contact, host["chipTextSpan"]);
-            }
-            else
-            {
-                throw new Error("Host component must be an MDL Host for Chips.");
-            }
-        }
-
         public function set source(value:String):void
         {
             _source = value;
