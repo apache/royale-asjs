@@ -28,12 +28,20 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Dialog class
+	 *  The MDL Dialog class creates modal windows for dedicated user input.
+	 *  The Material Design Lite (MDL) dialog component allows for verification of user actions, simple data input, 
+	 *  and alerts to provide extra information to users.
+	 *
+	 *  Note: Dialogs use the HTML <dialog> element, which currently has very limited cross-browser support.
+	 *  To ensure support across all modern browsers, we use use dialogPolyfill extern or creating your own.
+	 *  There is no polyfill included with MDL.
+	 *  
+	 *  Use DialogContent to insert content and DialogActions for the buttons to allow user interaction
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Dialog extends ContainerBase implements IPopUp
 	{
@@ -41,14 +49,14 @@ package org.apache.flex.mdl
 		 *  constructor.
          *  
          *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="http://cdn.css.net/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
-         *  <script src="http://cdn.css.net/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
+         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
+         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
          *  </inject_html>
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Dialog()
 		{
@@ -57,6 +65,9 @@ package org.apache.flex.mdl
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 
+		/**
+		 * The html dialog component that parents the dialog content
+		 */
 		COMPILE::JS
 		private var dialog:HTMLDialogElement;
 
@@ -95,9 +106,9 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
-		public function showModal():void
+		private function prepareDialog():void
 		{
 			COMPILE::JS
 			{
@@ -115,16 +126,41 @@ package org.apache.flex.mdl
 						dialogPolyfill.registerDialog(dialog);
 					}
 				}
-				
+			}
+		}
+
+		/**
+		 *  show modal dialog
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function showModal():void
+		{	
+			prepareDialog();
+
+			COMPILE::JS
+			{
 				dialog.showModal()
 			}
 		}
 		
 		/**
-		 * show
+		 *  show dialog.
+		 *  Note: It seems MDL does not support non modal dialogs, since there's no examples
+		 *  and dialogs are always added to "document.body" We could study change this.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		public function show():void
 		{
+			prepareDialog();
+
 			COMPILE::JS
 			{
 				dialog.show();
@@ -132,7 +168,12 @@ package org.apache.flex.mdl
 		}
 
 		/**
-		 * close
+		 * close dialog
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		public function close():void
 		{

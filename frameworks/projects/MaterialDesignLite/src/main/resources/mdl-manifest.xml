@@ -64,6 +64,7 @@
     <component id="TableCell" class="org.apache.flex.mdl.TableCell"/>
     <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
     <component id="Dialog" class="org.apache.flex.mdl.Dialog"/>
+    <component id="DialogTitle" class="org.apache.flex.mdl.beads.DialogTitle"/>
     <component id="DialogContent" class="org.apache.flex.mdl.DialogContent"/>
     <component id="DialogActions" class="org.apache.flex.mdl.DialogActions"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
