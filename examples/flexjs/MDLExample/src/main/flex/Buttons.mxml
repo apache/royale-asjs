@@ -45,7 +45,7 @@ limitations under the License.
         <!-- Fab with Ripple -->
         <mdl:Button fab="true" ripple="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconFace size="48"/>
+                <mdl:MaterialIconFace/>
             </mdl:materialIcon>
         </mdl:Button>
         

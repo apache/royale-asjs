@@ -18,6 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.materialIcons
 {
+    /**
+     *  The MaterialIconsType class list all possible icons
+     *  found in https://material.io/icons/ to use in its own 
+     *  Material Icon class.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
     public class MaterialIconsType
     {
         public static const CANCEL:String = "cancel";
@@ -31,7 +41,6 @@ package org.apache.flex.mdl.materialIcons
         public static const MORE_VERT:String = "more_vert";
         public static const SEARCH:String = "search";
         public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
-
         public static const FORMAT_BOLD:String = "format_bold";
         public static const FORMAT_ITALIC:String = "format_italic";
     }

@@ -40,7 +40,6 @@
     <component id="Menu" class="org.apache.flex.mdl.Menu"/>
     <component id="MenuItemRenderer" class="org.apache.flex.mdl.itemRenderers.MenuItemRenderer"/>
     <component id="Card" class="org.apache.flex.mdl.Card"/>
-    <component id="CardInner" class="org.apache.flex.mdl.supportClasses.CardInner"/>
     <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
     <component id="CardTitleText" class="org.apache.flex.mdl.CardTitleText"/>
     <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
@@ -114,6 +113,7 @@
     <component id="TabsView" class="org.apache.flex.mdl.beads.views.TabsView"/>
     <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
 
+    <component id="MaterialIcon" class="org.apache.flex.mdl.materialIcons.MaterialIcon"/>
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.materialIcons.MaterialIconAdd"/>
     <component id="MaterialIconPerson" class="org.apache.flex.mdl.materialIcons.MaterialIconPerson"/>

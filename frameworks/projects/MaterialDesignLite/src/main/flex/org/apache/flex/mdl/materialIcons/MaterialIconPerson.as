@@ -21,13 +21,13 @@ package org.apache.flex.mdl.materialIcons
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconPerson bead class is a specialty bead that add "person" icon
-     *  to component taken from "material-icons"
+     *  The MaterialIconAdd class is a the MDL "person" icon
+     *  from "material-icons" from https://material.io/icons/
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class MaterialIconPerson extends MaterialIconBase
     {
@@ -37,13 +37,21 @@ package org.apache.flex.mdl.materialIcons
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function MaterialIconPerson()
         {
             super();
         }
         
+        /**
+         *  The icon text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         override protected function get iconText():String
         {
             return MaterialIconsType.PERSON;

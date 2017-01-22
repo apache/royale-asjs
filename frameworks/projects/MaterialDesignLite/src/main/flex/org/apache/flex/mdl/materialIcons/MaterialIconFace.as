@@ -21,13 +21,13 @@ package org.apache.flex.mdl.materialIcons
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconFace bead class is a specialty bead that add "face" icon
-     *  to component taken from "material-icons"
+     *  The MaterialIconAdd class is a the MDL "face" icon
+     *  from "material-icons" from https://material.io/icons/
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class MaterialIconFace extends MaterialIconBase
     {
@@ -37,13 +37,21 @@ package org.apache.flex.mdl.materialIcons
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function MaterialIconFace()
         {
             super();
         }
         
+        /**
+         *  The icon text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         override protected function get iconText():String
         {
             return MaterialIconsType.FACE;

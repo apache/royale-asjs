@@ -21,15 +21,19 @@ package org.apache.flex.mdl.materialIcons
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
 
     /**
-     *  The MaterialIconAdd class is a the MDL "add" icon
-     *  from "material-icons" from https://material.io/icons/
+     *  Material icons are beautifully crafted, delightful, and easy to use in your web, 
+     *  Android, and iOS projects.
+     *  Material Design Icons are listed here : https://material.io/icons/
+     *  
+     *  This class could be used with is text property to use one of the mdl icons listed
+     *  in the before mentioned url.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class MaterialIconAdd extends MaterialIconBase
+    public class MaterialIcon extends MaterialIconBase
     {
         /**
          *  constructor.
@@ -39,11 +43,40 @@ package org.apache.flex.mdl.materialIcons
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function MaterialIconAdd()
+        public function MaterialIcon()
         {
             super();
         }
         
+        private var _text:String = "";
+        /**
+         *  The text of the icon
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+		public function get text():String
+		{
+            return _text;            
+		}
+        public function set text(value:String):void
+		{
+            _text = value;
+
+			COMPILE::JS
+			{
+                if(textNode == null)
+                {
+                    textNode = document.createTextNode('') as Text;
+                    element.appendChild(textNode);
+                }
+                
+                textNode.nodeValue = value;	
+			}
+		}
+
         /**
          *  The icon text
          *  
@@ -54,7 +87,7 @@ package org.apache.flex.mdl.materialIcons
          */
         override protected function get iconText():String
         {
-            return MaterialIconsType.ADD;
+            return text;
         }
     }
 }

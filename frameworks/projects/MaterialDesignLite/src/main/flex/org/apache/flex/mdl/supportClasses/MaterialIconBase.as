@@ -26,12 +26,16 @@ package org.apache.flex.mdl.supportClasses
     }
 
     /**
-     *  Provide common features for all material icons type
+     *  Material icons are beautifully crafted, delightful, and easy to use in your web,
+     *  Android, and iOS projects.
+     *  Material Design Icons are listed here : https://material.io/icons/
+     *  
+     *  This base class provide common features for all material icons type
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class MaterialIconBase extends UIBase
     {
@@ -41,9 +45,7 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         *
-         *  @flexjsignorecoercion HTMLElement
+         *  @productversion FlexJS 0.8
          */
         public function MaterialIconBase()
         {
@@ -58,6 +60,7 @@ package org.apache.flex.mdl.supportClasses
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 * @flexjsignorecoercion HTMLElement
+         * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -77,6 +80,15 @@ package org.apache.flex.mdl.supportClasses
             return element;
         }
 
+        /**
+         *  the icon text that matchs with MDL icon.
+         *  Check this url to see the icon list: https://material.io/icons/
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         protected function get iconText():String
         {
             return "";
@@ -86,15 +98,27 @@ package org.apache.flex.mdl.supportClasses
         /**
          * Although the icons in the font can be scaled to any size, 
          * in accordance with material design icons guidelines, 
-         * we recommend them to be shown in either 18, 24, 36 or 48px. 
+         * As recommended by Google be use css like this .material-icons.md-18 { font-size: 18px; }
+         * to uses 18, 24, 36 or 48px.
+         *
          * The default being 24px.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get size():Number
         {
             return _size;
         }
         /**
-         * Activate "md-48" class selector.
+         * Activate "md-XX" size class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function set size(value:Number):void
         {
@@ -113,7 +137,12 @@ package org.apache.flex.mdl.supportClasses
 
         private var _dark:Boolean;
         /**
-         * Activate "mdl-dark" class selector, for use in list item
+         * Activate "md-dark" class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get dark():Boolean
         {
@@ -125,13 +154,18 @@ package org.apache.flex.mdl.supportClasses
 
             COMPILE::JS
             {
-                element.classList.toggle("mdl-dark", _dark);
+                element.classList.toggle("md-dark", _dark);
             }
         }
 
         private var _light:Boolean;
         /**
-         * Activate "mdl-light" class selector, for use in list item
+         * Activate "md-light" class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get light():Boolean
         {
@@ -143,13 +177,18 @@ package org.apache.flex.mdl.supportClasses
 
             COMPILE::JS
             {
-                element.classList.toggle("mdl-light", _light);
+                element.classList.toggle("md-light", _light);
             }
         }
 
         private var _listItemIcon:Boolean;
         /**
-         * Activate "mdl-list__item-icon" class selector, for use in list item
+         * Activate "mdl-list__item-icon" class selector, for use in a list item
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get listItemIcon():Boolean
         {
@@ -167,7 +206,12 @@ package org.apache.flex.mdl.supportClasses
 
         private var _listItemAvatar:Boolean;
         /**
-         * Activate "mdl-list__item-avatar" class selector, for use in list item
+         * Activate "mdl-list__item-avatar" class selector, for use in a list item
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get listItemAvatar():Boolean
         {
@@ -185,7 +229,12 @@ package org.apache.flex.mdl.supportClasses
 
         private var _iconToggleLabel:Boolean;
         /**
-         * Activate "mdl-icon-toggle__label" class selector, for use in list item
+         * Activate "mdl-icon-toggle__label" class selector, for use in a list item
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get iconToggleLabel():Boolean
         {
