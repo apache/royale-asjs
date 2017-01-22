@@ -29,26 +29,23 @@ package org.apache.flex.mdl.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class SnackbarModel extends ToastModel implements ISnackbarModel
     {
-        private var _actionText:String = "";
-
-        private var _strand:IStrand;
-
         public function SnackbarModel()
         {
             super();
         }
 
+        private var _actionText:String = "";
         /**
          *  @copy org.apache.flex.mdl.beads.models.ISnackbarModel#actionText
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get actionText():String
         {
@@ -66,7 +63,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         override public function get snackbarData():Object
         {
@@ -78,13 +75,14 @@ package org.apache.flex.mdl.beads.models
             };
         }
 
+        private var _strand:IStrand;
         /**
          *  @copy org.apache.flex.mdl.beads.models.IToastModel#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         override public function set strand(value:IStrand):void
         {

@@ -36,13 +36,13 @@ package org.apache.flex.mdl.beads
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
-	 *  any TextField control. The bead places a string into the input field
+	 *  any MDL TextField control. The bead places a string into the input field
 	 *  when there is no value associated with the text property.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TextPrompt implements IBead
 	{
@@ -52,7 +52,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TextPrompt()
 		{
@@ -66,7 +66,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get prompt():String
 		{
@@ -85,7 +85,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 *  @flexjsignorecoercion HTMLInputElement
 		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
 		 */
@@ -120,9 +120,6 @@ package org.apache.flex.mdl.beads
 			{
 				mdlTi = value as ITextField;
                 mdlTi.textNode.nodeValue = prompt;
-				
-				//var e:HTMLInputElement = host.element as HTMLInputElement;
-				//e.placeholder = prompt;
 			}
 		}
 		
@@ -136,14 +133,20 @@ package org.apache.flex.mdl.beads
 		
 		
 		/**
-		 * @private
+		 *  see what the model currently has to determine if the prompt should be
+		 *  displayed or not.
+		 *  
+		 *  @private
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		private function handleTextChange( event:Event ):void
 		{
 			COMPILE::SWF
 			{
-				// see what the model currently has to determine if the prompt should be
-				// displayed or not.
 				var model:Object = UIBase(_strand).model;
 				
 				if (model.text != null && model.text.length > 0 ) {
@@ -159,8 +162,6 @@ package org.apache.flex.mdl.beads
 
 			COMPILE::JS
 			{
-				// see what the model currently has to determine if the prompt should be
-				// displayed or not.
 				var model:Object = UIBase(_strand).model;
 				
 				if (TextFieldBase(mdlTi).text != null && TextFieldBase(mdlTi).text.length > 0 )

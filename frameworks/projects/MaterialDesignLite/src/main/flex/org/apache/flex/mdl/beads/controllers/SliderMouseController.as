@@ -39,14 +39,15 @@ package org.apache.flex.mdl.beads.controllers
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.flex.mdl.Slider's component parts (thumb and track) and 
-	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
-	 *  changes (such as moving the thumb when the track has been tapped or clicked).
+	 *  org.apache.flex.mdl.Slider's component parts (in swf thumb and track) and 
+	 *  dispatches input and change events on behalf of the Slider (in swf, as well,
+     *  co-ordinating visual changes (such as moving the thumb when the track has 
+     *  been tapped or clicked).
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class SliderMouseController implements IBead, IBeadController
 	{
@@ -56,23 +57,30 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function SliderMouseController()
 		{
 		}
 		
+        /**
+         *  Range model
+         *   
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+         */
 		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -89,6 +97,7 @@ package org.apache.flex.mdl.beads.controllers
                 sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler, false, 99999);
                                     
             }
+
             COMPILE::JS
             {
 				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
@@ -103,6 +112,12 @@ package org.apache.flex.mdl.beads.controllers
 		}
 
         /**
+         *  Manages the change event to update the range model value
+         *   
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
          */
         COMPILE::JS
         private function handleChange(event:BrowserEvent):void
@@ -115,6 +130,12 @@ package org.apache.flex.mdl.beads.controllers
         }
 
         /**
+         *  Manages the input event to update the range model value and dispatch a input FlexJS event 
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
          */
         COMPILE::JS
         private function handleInput(event:BrowserEvent):void
@@ -132,7 +153,12 @@ package org.apache.flex.mdl.beads.controllers
 		private var thumb:Point;
 
 		/**
-		 * @private
+		 *  @private
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
         COMPILE::SWF
 		private function thumbDownHandler( event:MouseEvent ) : void
@@ -147,7 +173,12 @@ package org.apache.flex.mdl.beads.controllers
 		}
 		
 		/**
-		 * @private
+		 *  @private
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
         COMPILE::SWF
 		private function thumbUpHandler( event:MouseEvent ) : void
@@ -159,7 +190,12 @@ package org.apache.flex.mdl.beads.controllers
 		}
 		
 		/**
-		 * @private
+		 *  @private
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
         COMPILE::SWF
 		private function thumbMoveHandler( event:MouseEvent ) : void
@@ -179,7 +215,12 @@ package org.apache.flex.mdl.beads.controllers
 		}
 		
 		/**
-		 * @private
+		 *  @private
+         *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
         COMPILE::SWF
 		private function trackClickHandler( event:MouseEvent ) : void
@@ -196,101 +237,5 @@ package org.apache.flex.mdl.beads.controllers
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
 		}
-        
-        /**
-        COMPILE::JS
-        private var track:UIBase;
-        
-        COMPILE::JS
-        private var thumb:UIBase;
-        
-        COMPILE::JS
-        private var origin:Number;
-        
-        COMPILE::JS
-        private var position:int;
-
-        COMPILE::JS
-        private function handleTrackClickOLD(event:BrowserEvent):void
-        {
-            trace("handleTrackClickOLD...");
-            var host:Slider = _strand as Slider;
-            var xloc:Number = event.clientX;
-            var p:Number = Math.min(1, xloc / parseInt(host.element.style.width, 10));
-            var n:Number = p * (host.maximum - host.minimum) + host.minimum;
-            
-            host.value = n;
-            
-            origin = parseInt(host.element.style.left, 10);
-            position = parseInt(host.element.style.left, 10);
-            
-            calcValFromMousePosition(event, true);
-            
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
-        }
-
-        COMPILE::JS
-        private function handleThumbDown(event:BrowserEvent):void
-        {
-            trace("handleThumbDown...");
-            var host:Slider = _strand as Slider;
-            goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
-                handleThumbUp, false, this);
-            goog.events.listen(host.element, goog.events.EventType.MOUSEMOVE,
-                handleThumbMove, false, this);
-            
-            origin = event.clientX;
-            position = parseInt(host.element.style.left, 10);
-        }
-         
-        COMPILE::JS
-        private function handleThumbUp(event:BrowserEvent):void
-        {
-            trace("handleThumbUp...");
-            var host:Slider = _strand as Slider;
-            goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
-                handleThumbUp, false, this);
-            goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
-                handleThumbMove, false, this);
-            
-            calcValFromMousePosition(event, false);
-            
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
-        }
-         
-        COMPILE::JS
-        private function handleThumbMove(event:BrowserEvent):void
-        {
-            trace("handleThumbMove...");
-            var host:Slider = _strand as Slider;
-            calcValFromMousePosition(event, false);
-            
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
-        }
-
-        COMPILE::JS
-        private function calcValFromMousePosition(event:BrowserEvent, useOffset:Boolean):void
-        {
-            trace("calcValFromMousePosition...");
-            var host:Slider = _strand as Slider;
-            var deltaX:Number = (useOffset ? event.offsetX : event.clientX) - origin;
-            var thumbW:int = parseInt(host.element.style.width, 10) / 2;
-            var newX:Number = position + deltaX;
-            
-            var p:Number = newX / parseInt(host.element.style.width, 10);
-            var n:Number = p * (host.maximum - host.minimum) +
-                host.minimum;
-            n = host.snap(n);
-            if (n < host.minimum) n = host.minimum;
-            else if (n > host.maximum) n = host.maximum;
-            
-            p = (n - host.minimum) / (host.maximum - host.minimum);
-            newX = p * parseInt(host.element.style.width, 10);
-            
-            //thumb.element.style.left = String(newX -
-              //  parseInt(thumb.element.style.width, 10) / 2) + 'px';
-            
-            host.value = n;
-        }*/
     }
 }

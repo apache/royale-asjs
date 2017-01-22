@@ -23,11 +23,11 @@ package org.apache.flex.mdl.beads.models
     /**
      *  The ITabModel interface describes the minimum set of properties
      *  available to Tabs control
-     *
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public interface ITabModel extends ISelectionModel
     {
@@ -39,7 +39,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         function get tabIdField():String;
         function set tabIdField(value:String):void;

@@ -45,7 +45,7 @@ package org.apache.flex.mdl.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class TabsItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
     {
@@ -67,7 +67,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function set strand(value:IStrand):void
         {
@@ -76,6 +76,14 @@ package org.apache.flex.mdl.beads
             IEventDispatcher(value).addEventListener("initComplete",finishSetup);
         }
 
+        /**
+         *  finish setup
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         private function finishSetup(event:Event):void
         {
             IEventDispatcher(_strand).removeEventListener("beadsAdded",finishSetup);
@@ -107,7 +115,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
@@ -129,7 +137,7 @@ package org.apache.flex.mdl.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         protected var dataGroup:IItemRendererParent;
 

@@ -24,12 +24,13 @@ package org.apache.flex.mdl.beads
 
 	/**
 	 *  The ListItemSecondaryAction class decorates a tag element in a list item renderer
-     *  
+     *  Defines the Action sub-division
+	 *  Requires the host ListItemrenderer to have "twoLine" or "threeLine" set to true
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class ListItemSecondaryAction implements IBead
 	{
@@ -39,15 +40,13 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function ListItemSecondaryAction()
 		{
 			super();   
 		}
 		
-		private var host:UIBase;
-
 		private var _strand:IStrand;		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -55,8 +54,8 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 *  @productversion FlexJS 0.8
+		 *  @flexjsignorecoercion HTMLElement;
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -64,7 +63,7 @@ package org.apache.flex.mdl.beads
 			
 			COMPILE::JS
 			{
-				host = value as UIBase;
+				var host:UIBase = value as UIBase;
 				
 				if (host.element is HTMLElement)
 				{

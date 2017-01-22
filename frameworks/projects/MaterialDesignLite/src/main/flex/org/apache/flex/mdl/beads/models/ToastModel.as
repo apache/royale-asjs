@@ -28,27 +28,25 @@ package org.apache.flex.mdl.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class ToastModel extends EventDispatcher implements IToastModel
     {
-        private var _message:String = "";
-        private var _timeout:int = 2750;
-
-        private var _strand:IStrand;
-
         public function ToastModel()
         {
             super();
         }
 
+        private var _message:String = "";
         /**
+         *  The message of the toast
+         *  
          *  @copy org.apache.flex.mdl.beads.models.IToastModel#message
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get message():String
         {
@@ -59,15 +57,16 @@ package org.apache.flex.mdl.beads.models
         {
             _message = value;
         }
+
+        private var _timeout:int = 2750;
         /**
          *  @copy org.apache.flex.mdl.beads.models.IToastModel#timeout
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
-        
         public function get timeout():int
         {
             return _timeout;
@@ -84,7 +83,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get snackbarData():Object
         {
@@ -94,13 +93,14 @@ package org.apache.flex.mdl.beads.models
             };
         }
 
+        private var _strand:IStrand;
         /**
-         *   Set strand for model
+         *  Set strand for model
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          *
          * @param value
          */

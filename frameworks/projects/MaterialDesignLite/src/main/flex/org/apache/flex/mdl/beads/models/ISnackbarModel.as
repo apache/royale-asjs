@@ -27,7 +27,7 @@ package org.apache.flex.mdl.beads.models
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public interface ISnackbarModel extends IToastModel, IEventDispatcher
     {
@@ -38,7 +38,7 @@ package org.apache.flex.mdl.beads.models
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         function get actionText():String;
         function set actionText(value:String):void;

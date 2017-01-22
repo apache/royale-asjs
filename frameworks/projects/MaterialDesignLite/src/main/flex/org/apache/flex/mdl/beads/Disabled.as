@@ -28,7 +28,7 @@ package org.apache.flex.mdl.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Disabled implements IBead
 	{
@@ -38,7 +38,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Disabled()
 		{
@@ -51,7 +51,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get disabled():Boolean
         {
@@ -75,7 +75,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 *  @flexjsignorecoercion HTMLInputElement
 		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
 		 */
@@ -83,21 +83,11 @@ package org.apache.flex.mdl.beads
 		{
 			_strand = value;
 			
+			var host:UIBase = value as UIBase;
+
 			COMPILE::JS
 			{
 				updateHost();
-				/*var host:UIBase = value as UIBase;
-                if (host.element is HTMLInputElement)
-                {
-					var input:HTMLInputElement = host.element as HTMLInputElement;
-                    input.disabled = "disabled";
-                } else if (host.element is HTMLElement)
-                {
-					var elm:HTMLElement = host.element as HTMLElement;
-                    elm.disabled = "disabled";
-				}*/
-                 //   throw new Error("Host element component in not type input");
-                //}
 			}
 		}
 

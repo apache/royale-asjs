@@ -24,7 +24,8 @@ package org.apache.flex.mdl.beads
 	
 	
 	/**
-	 *  The Badge class provides a MDL UI-like appearance for a badge.
+	 *  The Badge class provides a small status descriptors for UI elements.
+	 *
 	 *  A Badge is an onscreen notification element consists of a small circle, 
      *  typically containing a number or other characters, that appears in 
      *  proximity to another object
@@ -32,7 +33,7 @@ package org.apache.flex.mdl.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Badge implements IBead
 	{
@@ -42,7 +43,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Badge()
 		{
@@ -56,7 +57,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get dataBadge():Number
 		{
@@ -75,7 +76,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get noBackground():Boolean
         {
@@ -103,7 +104,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get overlap():Boolean
         {
@@ -132,8 +133,10 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion org.apache.flex.mdl.TextInput;
+		 *  @productversion FlexJS 0.8
+		 *  @flexjsignorecoercion HTMLDivElement;
+		 *  @flexjsignorecoercion HTMLSpanElement;
+		 *  @flexjsignorecoercion HTMLElement;
 		 */
 		public function set strand(value:IStrand):void
 		{

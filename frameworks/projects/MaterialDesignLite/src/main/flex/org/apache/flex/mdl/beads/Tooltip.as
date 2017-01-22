@@ -23,13 +23,23 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.UIBase;
 
 	/**
-	 *  The Tooltip class represents
+	 *  The Tooltip class provides useful information on hover.
      *  
+     *  The Material Design Lite (MDL) tooltip component is an enhanced version of the 
+     *  standard HTML tooltip as produced by the title attribute. A tooltip consists 
+     *  of text and/or an image that clearly communicates additional information 
+     *  about an element when the user hovers over or, in a touch-based UI, 
+     *  touches the element.
 	 *  
+     *  The MDL tooltip component is pre-styled (colors, fonts, and other settings)
+     *  to provide a vivid, attractive visual element that displays related but 
+     *  typically non-essential content, e.g., a definition, clarification, 
+     *  or brief instruction.
+     *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Tooltip implements IBead
 	{
@@ -39,23 +49,21 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Tooltip()
 		{
 			
 		}
 
-        private var _strand:IStrand;
         private var _text:String = "";
-
         /**
-         *  The text of the heading
+         *  The text of the tooltip
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get text():String
 		{
@@ -69,12 +77,12 @@ package org.apache.flex.mdl.beads
 
         private var _dataMdlFor:String;
 		/**
-		 *  The id value of the associated button that opens this menu.
+		 *  The id value of the associated control for this tooltip
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get dataMdlFor():String
 		{
@@ -93,7 +101,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get large():Boolean
         {
@@ -112,7 +120,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get leftPosition():Boolean
         {
@@ -131,7 +139,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get rightPosition():Boolean
         {
@@ -150,7 +158,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get topPosition():Boolean
         {
@@ -169,7 +177,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get bottomPosition():Boolean
         {
@@ -180,20 +188,28 @@ package org.apache.flex.mdl.beads
              _bottomPosition = value;
         }
 
+        private var _strand:IStrand;
         /**
-         * @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion HTMLElement
+         *  @flexjsignorecoercion HTMLDivElement
+         *  @flexjsignorecoercion Text
          *
-         * @param value
+         *  @param value
+         *  
+         *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
          */
         public function set strand(value:IStrand):void
         {
             _strand = value;
 
-            COMPILE::JS
-            {
-                var host:UIBase = value as UIBase;
-                var element:HTMLElement = host.element as HTMLElement;
+            var host:UIBase = value as UIBase;
 
+            COMPILE::JS
+            {    
+                var element:HTMLElement = host.element as HTMLElement;
                 var divElemet:HTMLDivElement = document.createElement("div") as HTMLDivElement;
 
                 divElemet.classList.add("mdl-tooltip");

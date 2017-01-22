@@ -32,12 +32,12 @@ package org.apache.flex.mdl.beads
 
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
-	 *  org.apache.flex.html.Slider component.
+	 *  org.apache.flex.mdl.Slider component (swf version).
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class SliderThumbView extends BeadViewBase implements IBeadView
 	{
@@ -47,7 +47,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function SliderThumbView()
 		{
@@ -59,6 +59,11 @@ package org.apache.flex.mdl.beads
 		
 		/**
 		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
@@ -79,7 +84,7 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
          *  @flexjsignoreimport org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -108,6 +113,11 @@ package org.apache.flex.mdl.beads
         
 		/**
 		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
