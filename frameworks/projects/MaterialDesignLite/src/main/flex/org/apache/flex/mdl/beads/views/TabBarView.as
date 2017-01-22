@@ -35,11 +35,27 @@ package org.apache.flex.mdl.beads.views
      */
     public class TabBarView extends ListView
     {
+        /**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function TabBarView()
         {
             super();
         }
 
+        /**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
@@ -47,6 +63,14 @@ package org.apache.flex.mdl.beads.views
             host.addEventListener("initComplete", initCompleteHandler);
         }
 
+        /**
+		 *  init complete handler
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         private function initCompleteHandler(event:Event):void
         {
             host.removeEventListener("initComplete", initCompleteHandler);
@@ -54,11 +78,27 @@ package org.apache.flex.mdl.beads.views
             completeSetup();
         }
 
+        /**
+		 *  complete setup
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         protected function completeSetup():void
         {
             selectTabBarButton();
         }
 
+        /**
+		 *  select tabbar button
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         private function selectTabBarButton():void
         {
             if (listModel.selectedIndex < 0 ) return;

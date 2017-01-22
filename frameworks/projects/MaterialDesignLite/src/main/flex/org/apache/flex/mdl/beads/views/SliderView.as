@@ -34,13 +34,13 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.html.beads.ISliderView;
 	
 	/**
-	 *  The SliderView class creates the visual elements of the org.apache.flex.html.Slider 
-	 *  component. The Slider has a track and a thumb control which are also created with view beads.
+	 *  The SliderView class creates the visual elements of the org.apache.flex.mdl.Slider 
+	 *  component. In swf the Slider has a track and a thumb control which are also created with view beads.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class SliderView extends BeadViewBase implements ISliderView, IBeadView
 	{
@@ -50,7 +50,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function SliderView()
 		{
@@ -59,14 +59,13 @@ package org.apache.flex.mdl.beads.views
 		private var _track:Button;
 		private var _thumb:Button;
 		
-		
 		/**
 		 *  The track component.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get track():IUIBase
 		{
@@ -79,7 +78,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get thumb():IUIBase
 		{
@@ -94,7 +93,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -130,6 +129,11 @@ package org.apache.flex.mdl.beads.views
 		
 		/**
 		 * @private
+		 *
+		 * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.8
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{

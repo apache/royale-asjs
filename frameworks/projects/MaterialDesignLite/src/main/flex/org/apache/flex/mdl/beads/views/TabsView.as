@@ -37,13 +37,20 @@ package org.apache.flex.mdl.beads.views
      */
     public class TabsView extends ListView
     {
+        /**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function TabsView()
         {
             super();
         }
 
         private var _tabBar:TabBar;
-
         /**
          *  The org.apache.flex.mdl.TabBar component of the
          *  org.apache.flex.mdl.Tabs.
@@ -51,7 +58,7 @@ package org.apache.flex.mdl.beads.views
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get tabBar():TabBar
         {
@@ -63,6 +70,16 @@ package org.apache.flex.mdl.beads.views
             _tabBar = value;
         }
 
+        /**
+         * @copy org.apache.flex.core.BeadViewBase#strand
+         *
+         * @param value
+		 *
+		 * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.8
+         */
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
@@ -78,6 +95,14 @@ package org.apache.flex.mdl.beads.views
             host.addEventListener("initComplete", initCompleteHandler);
         }
 
+        /**
+		 *  init complete handler
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         private function initCompleteHandler(event:Event):void
         {
             host.removeEventListener("initComplete", initCompleteHandler);
@@ -85,6 +110,14 @@ package org.apache.flex.mdl.beads.views
             completeSetup();
         }
 
+        /**
+		 *  complete setup
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         protected function completeSetup():void
         {
             (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
@@ -92,6 +125,14 @@ package org.apache.flex.mdl.beads.views
             selectTabBarPanel();
         }
 
+        /**
+		 *  select tabbar panel
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         private function selectTabBarPanel():void
         {
             if (listModel.selectedIndex < 0 ) return;
