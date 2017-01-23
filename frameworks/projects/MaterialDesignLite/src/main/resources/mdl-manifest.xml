@@ -113,6 +113,7 @@
     <component id="TabsView" class="org.apache.flex.mdl.beads.views.TabsView"/>
     <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
 
+    <component id="MaterialIconsType" class="org.apache.flex.mdl.materialIcons.MaterialIconsType"/>
     <component id="MaterialIcon" class="org.apache.flex.mdl.materialIcons.MaterialIcon"/>
     <component id="MaterialIconCancel" class="org.apache.flex.mdl.materialIcons.MaterialIconCancel"/>
     <component id="MaterialIconAdd" class="org.apache.flex.mdl.materialIcons.MaterialIconAdd"/>
