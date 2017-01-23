@@ -181,6 +181,29 @@ package org.apache.flex.mdl.supportClasses
             }
         }
 
+        private var _inactive:Boolean;
+        /**
+         * Activate "md-inactive" class selector.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get inactive():Boolean
+        {
+            return _inactive;
+        }
+        public function set inactive(value:Boolean):void
+        {
+            _inactive = value;
+
+            COMPILE::JS
+            {
+                element.classList.toggle("md-inactive", _inactive);
+            }
+        }
+
         private var _listItemIcon:Boolean;
         /**
          * Activate "mdl-list__item-icon" class selector, for use in a list item

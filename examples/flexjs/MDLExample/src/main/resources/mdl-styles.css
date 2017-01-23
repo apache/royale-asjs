@@ -198,3 +198,7 @@ js|Image
 .mdl-grid.center-items > .mdl-card {
   margin: 10px;
 }
+
+
+/* Icons */
+.material-icons.orange600 { color: #FB8C00; }

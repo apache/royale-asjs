@@ -25,7 +25,13 @@ limitations under the License.
         <mdl:MaterialIconAdd size="36"/>
         <mdl:MaterialIconAdd size="48"/>
         <mdl:MaterialIconAdd dark="true"/>
-
+        <mdl:MaterialIconAdd inactive="true"/>
+        <mdl:MaterialIconAdd>
+            <mdl:beads>
+                <mdl:MdlTextColor textColor="teal" />
+            </mdl:beads>
+        </mdl:MaterialIconAdd>
+        <mdl:MaterialIconAdd className="orange600"/>
         <mdl:MaterialIcon text="book"/>
         <mdl:MaterialIconAdd/>
     </mdl:Grid>
@@ -33,5 +39,13 @@ limitations under the License.
     <mdl:Grid style="backgroundColor:'#000';">
         <mdl:MaterialIconAdd light="true"/>
         <mdl:MaterialIcon text="accessibility" size="48" light="true"/>
+        <mdl:MaterialIconAdd inactive="true" light="true"/>
+        <mdl:MaterialIconAdd>
+            <mdl:beads>
+                <mdl:MdlTextColor textColor="teal" />
+            </mdl:beads>
+        </mdl:MaterialIconAdd>
+        <mdl:MaterialIconAdd className="orange600"/>
+        <mdl:MaterialIcon text="book" light="true"/>
     </mdl:Grid>
 </mdl:TabBarPanel>
