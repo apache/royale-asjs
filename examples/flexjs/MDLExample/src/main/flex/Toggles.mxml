@@ -18,9 +18,20 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
     
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
     <mdl:Grid>
     
         <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
@@ -35,13 +46,13 @@ limitations under the License.
         
         <mdl:IconToggle dataMdlFor="mdlBoldIcon">
             <mdl:materialIcon>
-                <mdl:MaterialIconFormatBold />
+                <mdl:MaterialIcon text="{MaterialIconType.FORMAT_BOLD}"/>
             </mdl:materialIcon>
         </mdl:IconToggle>
         
         <mdl:IconToggle dataMdlFor="mdlItalicIcon">
             <mdl:materialIcon>
-                <mdl:MaterialIconFormatItalic />
+                <mdl:MaterialIcon text="{MaterialIconType.FORMAT_ITALIC}"/>
             </mdl:materialIcon>
         </mdl:IconToggle>
     </mdl:Grid>

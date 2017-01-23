@@ -23,7 +23,8 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.core.UIBase;
 
     import org.apache.flex.mdl.TextField;
-    import org.apache.flex.mdl.materialIcons.MaterialIconSearch;
+	import org.apache.flex.mdl.materialIcons.MaterialIconType;
+	import org.apache.flex.mdl.materialIcons.MaterialIcon;
 	
 	/**
 	 *  The ExpandableSearch bead class is a specialty bead that can be used to decorate a TextField MDL control.
@@ -81,12 +82,10 @@ package org.apache.flex.mdl.beads
                     label.className = "mdl-button mdl-js-button mdl-button--icon";
                     label.setAttribute('for', searchId);
                     
-                    var i:HTMLElement = document.createElement('i') as HTMLElement;
-                    i.className = "material-icons";
-                    i.innerHTML = "search";
-
-                    label.appendChild(i);
-
+                    var searchIcon:MaterialIcon = new MaterialIcon();
+					searchIcon.text = MaterialIconType.SEARCH;
+					label.appendChild(searchIcon.element);
+                    
                     host.positioner.appendChild(label);
 
                     var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;

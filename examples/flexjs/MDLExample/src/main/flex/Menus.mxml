@@ -18,9 +18,20 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
+                 xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns:models="models.*">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
     <mdl:model>
         <models:MenuModel id="menuModel"/>
     </mdl:model>
@@ -28,7 +39,7 @@ limitations under the License.
     <mdl:Grid width="100">
         <mdl:Button id="menu_btn" icon="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconMoreVert/>
+                <mdl:MaterialIcon text="{MaterialIconType.MORE_VERT}"/>
             </mdl:materialIcon>
         </mdl:Button>
 

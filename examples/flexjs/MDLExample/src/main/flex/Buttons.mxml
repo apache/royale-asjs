@@ -18,9 +18,20 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
     
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
     <!-- Buttons https://getmdl.io/components/index.html#buttons-section -->
     <mdl:Grid width="100">
         
@@ -32,20 +43,20 @@ limitations under the License.
                 <mdl:Tooltip text="A simple tooltip"/>
             </mdl:beads>
             <mdl:materialIcon>
-                <mdl:MaterialIconAdd/>
+                <mdl:MaterialIcon text="{MaterialIconType.ADD}"/>
             </mdl:materialIcon>
         </mdl:Button>
 
         <mdl:Button fab="true" colored="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconKeyboardArrowDown/>
+                <mdl:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}"/>
             </mdl:materialIcon>
         </mdl:Button>
         
         <!-- Fab with Ripple -->
         <mdl:Button fab="true" ripple="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconFace/>
+                <mdl:MaterialIcon text="{MaterialIconType.FACE}"/>
             </mdl:materialIcon>
         </mdl:Button>
         
@@ -84,28 +95,28 @@ limitations under the License.
         <!-- Icon button -->
         <mdl:Button icon="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconMood/>
+                <mdl:MaterialIcon text="{MaterialIconType.MOOD}"/>
             </mdl:materialIcon>
         </mdl:Button>
 
         <!-- Colored icon button -->
         <mdl:Button icon="true" colored="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconMood/>
+                <mdl:MaterialIcon text="{MaterialIconType.MOOD}"/>
             </mdl:materialIcon>
         </mdl:Button>
 
         <!-- Mini FAB button -->
         <mdl:Button fab="true" minifab="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconAdd/>
+                <mdl:MaterialIcon text="{MaterialIconType.ADD}"/>
             </mdl:materialIcon>
         </mdl:Button>
 
         <!-- Colored mini FAB button -->
         <mdl:Button fab="true" minifab="true" colored="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconAdd/>
+                <mdl:MaterialIcon text="{MaterialIconType.ADD}"/>
             </mdl:materialIcon>
         </mdl:Button>
     </mdl:Grid>

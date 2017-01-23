@@ -21,7 +21,17 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
-                 
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
     <mdl:Grid className="center-items">
         
             <mdl:Card id="mycard" shadow="2" className="demo-card-wide">
@@ -41,7 +51,7 @@ limitations under the License.
                 <mdl:CardMenu>
                     <mdl:Button icon="true" ripple="true">
                         <mdl:materialIcon>
-                            <mdl:MaterialIconShare/>
+                            <mdl:MaterialIcon text="{MaterialIconType.SHARE}"/>
                         </mdl:materialIcon>
                     </mdl:Button>
                 </mdl:CardMenu>
@@ -79,7 +89,7 @@ limitations under the License.
                 <mdl:CardActions border="true">
                     <mdl:Button colored="true" ripple="true" text="Add to Calendar"/>
                     <mdl:Spacer/>
-                    <mdl:MaterialIconEvent/>
+                    <mdl:MaterialIcon text="{MaterialIconType.EVENT}"/>
                 </mdl:CardActions>
             </mdl:Card>
         

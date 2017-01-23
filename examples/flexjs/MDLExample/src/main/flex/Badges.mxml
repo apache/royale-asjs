@@ -22,8 +22,18 @@ limitations under the License.
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
 
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
     <mdl:Grid width="50" style="margin:20px">
-        <js:Div text="account_box" style="color: rgba(0, 0, 0, 0.24);" className="material-icons">
+        <js:Div style="color: rgba(0, 0, 0, 0.24);" className="material-icons" text="{MaterialIconType.ACCOUNT_BOX}">
             <js:beads>
                 <mdl:Badge dataBadge="2" overlap="true"/>
             </js:beads>

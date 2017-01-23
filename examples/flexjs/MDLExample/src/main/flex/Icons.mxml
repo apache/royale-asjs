@@ -32,33 +32,33 @@ limitations under the License.
     </mdl:beads>
 
     <mdl:Grid>
-        <mdl:MaterialIconAdd size="18"/>
-        <mdl:MaterialIconAdd size="24"/>
-        <mdl:MaterialIconAdd size="36"/>
-        <mdl:MaterialIconAdd size="48"/>
-        <mdl:MaterialIconAdd dark="true"/>
-        <mdl:MaterialIconAdd inactive="true"/>
-        <mdl:MaterialIconAdd>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="18"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="24"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="36"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="48"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" dark="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}">
             <mdl:beads>
                 <mdl:MdlTextColor textColor="teal" />
             </mdl:beads>
-        </mdl:MaterialIconAdd>
-        <mdl:MaterialIconAdd className="orange600"/>
-        <mdl:MaterialIcon text="book"/>
+        </mdl:MaterialIcon>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
+        <mdl:MaterialIcon text="{MaterialIconType.BOOK}"/>
         <mdl:MaterialIcon text="{MaterialIconType.FACE}"/>
         
     </mdl:Grid>
 
     <mdl:Grid style="backgroundColor:'#000';">
-        <mdl:MaterialIconAdd light="true"/>
-        <mdl:MaterialIcon text="accessibility" size="48" light="true"/>
-        <mdl:MaterialIconAdd inactive="true" light="true"/>
-        <mdl:MaterialIconAdd>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" light="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ACCESSIBILITY}" size="48" light="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true" light="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}">
             <mdl:beads>
                 <mdl:MdlTextColor textColor="teal" />
             </mdl:beads>
-        </mdl:MaterialIconAdd>
-        <mdl:MaterialIconAdd className="orange600"/>
-        <mdl:MaterialIcon text="book" light="true"/>
+        </mdl:MaterialIcon>
+        <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
+        <mdl:MaterialIcon text="{MaterialIconType.BOOK}" light="true"/>
     </mdl:Grid>
 </mdl:TabBarPanel>

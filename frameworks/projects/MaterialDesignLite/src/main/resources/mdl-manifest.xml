@@ -91,17 +91,6 @@
     <component id="ProgressBar" class="org.apache.flex.mdl.ProgressBar"/>
     <component id="Toast" class="org.apache.flex.mdl.Toast"/>
     <component id="Snackbar" class="org.apache.flex.mdl.Snackbar"/>
-    <component id="Footer" class="org.apache.flex.mdl.Footer"/>
-    <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
-    <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
-    <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>
-    <component id="FooterBottomSection" class="org.apache.flex.mdl.FooterBottomSection"/>
-    <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
-    <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
-    <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
-    <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
-
-
     <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
     <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
     <component id="TabBarButtonTabsItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer"/>
@@ -112,20 +101,15 @@
     <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
     <component id="TabsView" class="org.apache.flex.mdl.beads.views.TabsView"/>
     <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
-
     <component id="MaterialIcon" class="org.apache.flex.mdl.materialIcons.MaterialIcon"/>
+    <component id="Footer" class="org.apache.flex.mdl.Footer"/>
+    <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
+    <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
+    <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>
+    <component id="FooterBottomSection" class="org.apache.flex.mdl.FooterBottomSection"/>
+    <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
+    <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
+    <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
+    <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
     
-    <component id="MaterialIconCancel" class="org.apache.flex.mdl.materialIcons.MaterialIconCancel"/>
-    <component id="MaterialIconAdd" class="org.apache.flex.mdl.materialIcons.MaterialIconAdd"/>
-    <component id="MaterialIconPerson" class="org.apache.flex.mdl.materialIcons.MaterialIconPerson"/>
-    <component id="MaterialIconStar" class="org.apache.flex.mdl.materialIcons.MaterialIconStar"/>
-    <component id="MaterialIconShare" class="org.apache.flex.mdl.materialIcons.MaterialIconShare"/>
-    <component id="MaterialIconEvent" class="org.apache.flex.mdl.materialIcons.MaterialIconEvent"/>
-    <component id="MaterialIconFace" class="org.apache.flex.mdl.materialIcons.MaterialIconFace"/>
-    <component id="MaterialIconMood" class="org.apache.flex.mdl.materialIcons.MaterialIconMood"/>
-    <component id="MaterialIconMoreVert" class="org.apache.flex.mdl.materialIcons.MaterialIconMoreVert"/>
-    <component id="MaterialIconSearch" class="org.apache.flex.mdl.materialIcons.MaterialIconSearch"/>
-    <component id="MaterialIconKeyboardArrowDown" class="org.apache.flex.mdl.materialIcons.MaterialIconKeyboardArrowDown"/>
-    <component id="MaterialIconFormatBold" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatBold" />
-    <component id="MaterialIconFormatItalic" class="org.apache.flex.mdl.materialIcons.MaterialIconFormatItalic"/>
 </componentPackage>

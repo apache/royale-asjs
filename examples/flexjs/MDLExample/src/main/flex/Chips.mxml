@@ -18,7 +18,19 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
+
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+    
     <mdl:Grid width="120">
         
             <mdl:Chip text="Basic Chip" />
@@ -30,7 +42,7 @@ limitations under the License.
                     <mdl:DeletableChip />
                 </mdl:beads>
                 <mdl:materialIcon>
-                    <mdl:MaterialIconCancel />
+                    <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:Chip>
         
@@ -39,7 +51,7 @@ limitations under the License.
                     <mdl:DeletableChip />
                 </mdl:beads>
                 <mdl:materialIcon>
-                    <mdl:MaterialIconCancel />
+                    <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:ButtonChip>
         
@@ -59,7 +71,7 @@ limitations under the License.
                     <mdl:DeletableChip />
                 </mdl:beads>
                 <mdl:materialIcon>
-                    <mdl:MaterialIconCancel />
+                    <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:Chip>
 
@@ -69,7 +81,7 @@ limitations under the License.
                     <mdl:DeletableLinkChip href="http://flex.apache.org/"/>
                 </mdl:beads>
                 <mdl:materialIcon>
-                    <mdl:MaterialIconCancel />
+                    <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:Chip>
         

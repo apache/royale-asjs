@@ -24,6 +24,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
 			import vos.ActorVO;
             
             [Bindable("dataChange")]
@@ -42,7 +43,7 @@ limitations under the License.
         <js:beads>
             <mdl:ListItemPrimaryContent/>
         </js:beads>
-        <mdl:MaterialIconPerson listItemIcon="true"/>
+        <mdl:MaterialIcon text="{MaterialIconType.PERSON}" listItemIcon="true"/>
     </js:Span>
       
 </mdl:ListItemRenderer>

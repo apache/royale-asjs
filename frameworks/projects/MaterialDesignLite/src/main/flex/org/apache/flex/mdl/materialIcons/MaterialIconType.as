@@ -31,7 +31,7 @@ package org.apache.flex.mdl.materialIcons
     public class MaterialIconType
     {
         public static const _3D_ROTATION:String = '3d_rotation';
-        public static const ACCESIBILITY:String = 'accessibility';
+        public static const ACCESSIBILITY:String = 'accessibility';
         public static const ACCESSIBLE:String = 'accessible';
         public static const ACCOUNT_BALANCE:String = 'account_balance';
         public static const ACCOUNT_BALANCE_WALLET:String = 'account_balance_wallet';
@@ -63,6 +63,28 @@ package org.apache.flex.mdl.materialIcons
         public static const BUG_REPORT:String = 'bug_report';
         public static const BUILD:String = 'build';
 
+        public static const CACHED:String = 'cached';
+        public static const CAMERA_ENHANCE:String = 'camera_enhance';
+        public static const CARD_GIFTCARD:String = 'card_giftcard';
+        public static const CARD_MEMBERSHIP:String = 'card_membership';
+        public static const CARD_TRAVEL:String = 'card_travel';
+        public static const CHANGE_HISTORY:String = 'change_history';
+        public static const CHECK_CIRCLE:String = 'check_circle';
+        public static const CHORME_READER_MODE:String = 'chrome_reader_mode';
+        public static const CLASS:String = 'class';
+        public static const CODE:String = 'code';
+
+        public static const COMPARE_ARROWS:String = 'compare_arrows';
+        public static const COPYRIGHT:String = 'copyright';
+        public static const CREDIT_CARD:String = 'credit_card';
+        public static const DASHBOARD:String = 'dashboard';
+        public static const DATE_RANGE:String = 'date_range';
+        public static const DELETE:String = 'delete';
+        public static const DELETE_FOREVER:String = 'delete_forever';
+        public static const DESCRIPTION:String = 'description';
+        public static const DNS:String = 'dns';
+        public static const DONE:String = 'done';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -75,26 +97,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'cached',
-        'camera_enhance',
-        'card_giftcard',
-        'card_membership',
-        'card_travel',
-        'change_history',
-        'check_circle',
-        'chrome_reader_mode',
-        'class',
-        'code',
-        'compare_arrows',
-        'copyright',
-        'credit_card',
-        'dashboard',
-        'date_range',
-        'delete',
-        'delete_forever',
-        'description',
-        'dns',
-        'done',
         'done_all',
         'donut_large',
         'donut_small',

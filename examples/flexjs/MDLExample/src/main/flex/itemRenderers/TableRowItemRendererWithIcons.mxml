@@ -24,6 +24,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
 			import vos.MaterialVO;
             
             [Bindable("dataChange")]
@@ -44,7 +45,7 @@ limitations under the License.
     <mdl:TableCell>
         <mdl:Button icon="true" colored="true">
             <mdl:materialIcon>
-                <mdl:MaterialIconMood/>
+                <mdl:MaterialIcon text="{MaterialIconType.MOOD}"/>
             </mdl:materialIcon>
         </mdl:Button>
     </mdl:TableCell>
