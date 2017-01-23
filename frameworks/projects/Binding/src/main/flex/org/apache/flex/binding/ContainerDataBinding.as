@@ -134,7 +134,11 @@ package org.apache.flex.binding
                             chb.setDocument(_strand);
                             _strand.addBead(chb);
                         }
-                    }
+                     }
+                     else
+                     {
+                        makeConstantBinding(binding);
+                     }
                 }
                 else if (binding.source is String && binding.destination is Array)
                 {

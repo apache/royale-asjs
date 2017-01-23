@@ -253,6 +253,21 @@ package org.apache.flex.binding
             return { watchers: watchers, watcherMap: watcherMap };
         }
 
+        protected function makeConstantBinding(binding:Object):void
+        {
+            var cb:ConstantBinding = new ConstantBinding();
+            cb.destinationPropertyName = binding.destination[1];
+            if (binding.source is String) {
+                cb.sourcePropertyName = binding.source;
+            } else {
+                cb.sourceID = binding.source[0];
+                cb.sourcePropertyName = binding.source[1];
+            }
+            cb.setDocument(_strand);
+
+            prepareCreatedBinding(cb as IBinding, binding);
+        }
+
         private function deferredBindingsHandler(event:Event):void
         {
             for (var p:String in deferredBindings)
