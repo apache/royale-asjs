@@ -41,6 +41,7 @@
         <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <additionalCompilerOptions>-include-lookup-only</additionalCompilerOptions>
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/flexjs/express</uri>
