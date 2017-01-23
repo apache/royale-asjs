@@ -31,7 +31,8 @@ package
 		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
 		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
 		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
-
+		import org.apache.flex.mdl.materialIcons.MaterialIconType; MaterialIconType;
+		
 		COMPILE::SWF
 		{
 			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
