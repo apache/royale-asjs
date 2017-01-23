@@ -54,7 +54,7 @@ package org.apache.flex.mdl.materialIcons
          */        
         override protected function get iconText():String
         {
-            return MaterialIconsType.CANCEL;
+            return MaterialIconType.CANCEL;
         }
     }
 }

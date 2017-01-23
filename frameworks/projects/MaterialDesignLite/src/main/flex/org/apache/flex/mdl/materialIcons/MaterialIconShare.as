@@ -54,7 +54,7 @@ package org.apache.flex.mdl.materialIcons
          */
         override protected function get iconText():String
         {
-            return MaterialIconsType.SHARE;
+            return MaterialIconType.SHARE;
         }
     }
 }

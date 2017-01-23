@@ -23,12 +23,12 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-            import org.apache.flex.mdl.materialIcons.MaterialIconsType;
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
         ]]>
 	</fx:Script>
 
     <mdl:beads>
-        <js:ViewDataBinding/>
+        <js:ContainerDataBinding/>
     </mdl:beads>
 
     <mdl:Grid>
@@ -45,7 +45,7 @@ limitations under the License.
         </mdl:MaterialIconAdd>
         <mdl:MaterialIconAdd className="orange600"/>
         <mdl:MaterialIcon text="book"/>
-        <mdl:MaterialIcon text="{MaterialIconsType.FACE}"/>
+        <mdl:MaterialIcon text="{MaterialIconType.FACE}"/>
         
     </mdl:Grid>
 

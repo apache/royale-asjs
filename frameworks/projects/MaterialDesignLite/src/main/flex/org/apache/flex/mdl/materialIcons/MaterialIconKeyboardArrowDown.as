@@ -54,7 +54,7 @@ package org.apache.flex.mdl.materialIcons
          */
         override protected function get iconText():String
         {
-            return MaterialIconsType.KEYBOARD_ARROW_DOWN;
+            return MaterialIconType.KEYBOARD_ARROW_DOWN;
         }
     }
 }

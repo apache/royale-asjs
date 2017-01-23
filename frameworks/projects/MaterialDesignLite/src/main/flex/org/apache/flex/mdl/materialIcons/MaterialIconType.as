@@ -19,7 +19,7 @@
 package org.apache.flex.mdl.materialIcons
 {
     /**
-     *  The MaterialIconsType class list all possible icons
+     *  The MaterialIconType class list all possible icons
      *  found in https://material.io/icons/ to use in its own 
      *  Material Icon class.
      *
@@ -28,7 +28,7 @@ package org.apache.flex.mdl.materialIcons
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class MaterialIconsType
+    public class MaterialIconType
     {
         public static const CANCEL:String = "cancel";
         public static const ADD:String = "add";
