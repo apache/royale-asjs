@@ -85,6 +85,28 @@ package org.apache.flex.mdl.materialIcons
         public static const DNS:String = 'dns';
         public static const DONE:String = 'done';
 
+        public static const DONE_ALL:String = 'done_all';
+        public static const DONUT_LARGE:String = 'donut_large';
+        public static const DONUT_SMALL:String = 'donut_small';
+        public static const EJECT:String = 'eject';
+        public static const EURO_SYMBOL:String = 'euro_symbol';
+        public static const EVENT:String = 'event';
+        public static const EVENT_SEAT:String = 'event_seat';
+        public static const EXIT_TO_APP:String = 'exit_to_app';
+        public static const EXPLORE:String = 'explore';
+        public static const EXTENSION:String = 'extension';
+
+        public static const FACE:String = 'face';
+        public static const FAVORITE:String = 'favorite';
+        public static const FAVORITE_BORDER:String = 'favorite_border';
+        public static const FEEDBACK:String = 'feedback';
+        public static const FIND_IN_PAGE:String = 'find_in_page';
+        public static const FIND_REPLACE:String = 'find_replace';
+        public static const FINGERPRINT:String = 'fingerprint';
+        public static const FLIGHT_LAND:String = 'flight_land';
+        public static const FLIGHT_TAKEOFF:String = 'flight_takeoff';
+        public static const FLIP_TO_BACK:String = 'flip_to_back';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -97,26 +119,16 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'done_all',
-        'donut_large',
-        'donut_small',
-        'eject',
-        'euro_symbol',
-        'event',
-        'event_seat',
-        'exit_to_app',
-        'explore',
-        'extension',
-        'face',
-        'favorite',
-        'favorite_border',
-        'feedback',
-        'find_in_page',
-        'find_replace',
-        'fingerprint',
-        'flight_land',
-        'flight_takeoff',
-        'flip_to_back',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
         'flip_to_front',
         'g_translate',
         'gavel',
@@ -986,8 +998,6 @@ package org.apache.flex.mdl.materialIcons
         public static const PERSON:String = "person";
         public static const STAR:String = "star";
         public static const SHARE:String = "share";
-        public static const EVENT:String = "event";
-        public static const FACE:String = "face";
         public static const MOOD:String = "mood";
         public static const MORE_VERT:String = "more_vert";
         public static const SEARCH:String = "search";
