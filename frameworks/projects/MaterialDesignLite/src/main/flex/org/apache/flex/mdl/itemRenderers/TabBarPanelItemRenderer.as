@@ -26,14 +26,13 @@ package org.apache.flex.mdl.itemRenderers
     }
 
     /**
-     *  Represents content of TabBarPanel
-     *  
+     *  Represents content for a TabBarPanel
      *  Creates MDL "mdl-tabs__panel" conponent
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      * */
     public class TabBarPanelItemRenderer extends TabItemRendererBase
     {
@@ -53,11 +52,6 @@ package org.apache.flex.mdl.itemRenderers
             element = document.createElement('div') as WrappedHTMLElement;
 
             positioner = element;
-
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;

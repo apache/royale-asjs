@@ -31,7 +31,7 @@ package org.apache.flex.mdl.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class ListItemRenderer extends MXMLItemRenderer
 	{
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function ListItemRenderer()
 		{
@@ -53,12 +53,12 @@ package org.apache.flex.mdl.itemRenderers
 		private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the renderer
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get text():String
 		{
@@ -81,7 +81,7 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		override public function set data(value:Object):void
 		{
@@ -105,6 +105,7 @@ package org.apache.flex.mdl.itemRenderers
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -127,8 +128,13 @@ package org.apache.flex.mdl.itemRenderers
 
 		private var _twoLine:Boolean;
         /**
-         * Activate "mdl-list__item--two-line" class selector, for use in list item.
-		 * Optional Two Line List Variant
+         *  Activate "mdl-list__item--two-line" class selector, for use in list item.
+		 *  Optional Two Line List Variant
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
          */
         public function get twoLine():Boolean
         {
@@ -147,8 +153,13 @@ package org.apache.flex.mdl.itemRenderers
 
 		private var _threeLine:Boolean;
         /**
-         * Activate "mdl-list__item--three-line" class selector, for use in list item.
-		 * Optional Three Line List Variant
+         *  Activate "mdl-list__item--three-line" class selector, for use in list item.
+		 *  Optional Three Line List Variant
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
          */
         public function get threeLine():Boolean
         {

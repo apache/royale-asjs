@@ -31,7 +31,7 @@ package org.apache.flex.mdl.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class NavigationLinkItemRenderer extends MXMLItemRenderer
 	{
@@ -52,12 +52,12 @@ package org.apache.flex.mdl.itemRenderers
 		
 		private var _href:String = "#";
         /**
-         *  the link url
+         *  the navigation link url
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get href():String
 		{
@@ -76,12 +76,12 @@ package org.apache.flex.mdl.itemRenderers
 		private var _label:String = "";
 
         /**
-         *  The label of the link
+         *  The label of the navigation link
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get label():String
 		{
@@ -104,7 +104,7 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		override public function set data(value:Object):void
 		{
@@ -133,6 +133,7 @@ package org.apache.flex.mdl.itemRenderers
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

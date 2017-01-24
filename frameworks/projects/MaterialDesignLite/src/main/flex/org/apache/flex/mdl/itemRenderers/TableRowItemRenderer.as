@@ -31,7 +31,7 @@ package org.apache.flex.mdl.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TableRowItemRenderer extends MXMLItemRenderer
 	{
@@ -41,24 +41,22 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TableRowItemRenderer()
 		{
 			super();
-			
-            //className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 		
 		private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the item renderer
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get text():String
 		{
@@ -81,7 +79,7 @@ package org.apache.flex.mdl.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		override public function set data(value:Object):void
 		{
@@ -105,6 +103,7 @@ package org.apache.flex.mdl.itemRenderers
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -140,7 +139,7 @@ package org.apache.flex.mdl.itemRenderers
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get nonNumeric():Boolean
         {
