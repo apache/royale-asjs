@@ -19,7 +19,12 @@
 package org.apache.flex.mdl.supportClasses
 {
     /**
-     * marker interface
+     *  Marker interface for all footer sections
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
      */
     public interface IFooterSection
     {

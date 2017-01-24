@@ -31,10 +31,18 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     * */
+     *  @productversion FlexJS 0.8
+     */
     public class TabBarButtonItemRendererBase extends MXMLItemRenderer implements ITabItemRenderer
     {
+        /**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function TabBarButtonItemRendererBase()
         {
             super();
@@ -43,18 +51,32 @@ package org.apache.flex.mdl.supportClasses
         }
 
         private var _tabIdField:String;
-        private var _isActive:Boolean;
-        
+        /**
+		 *  tabIdField.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function get tabIdField():String
         {
             return _tabIdField;
         }
-
         public function set tabIdField(value:String):void
         {
             _tabIdField = value;
         }
         
+        private var _isActive:Boolean;
+        /**
+		 *  isActive.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function get isActive():Boolean
         {
             return _isActive;
@@ -78,7 +100,7 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         override public function set data(value:Object):void
         {
@@ -100,6 +122,7 @@ package org.apache.flex.mdl.supportClasses
         
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @flexjsignorecoercion HTMLAnchorElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

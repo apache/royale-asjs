@@ -26,10 +26,18 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     * */
+     *  @productversion FlexJS 0.8
+     */
     public class TabItemRendererBase extends MXMLItemRenderer implements ITabItemRenderer
     {
+        /**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
         public function TabItemRendererBase()
         {
             super();
@@ -38,15 +46,13 @@ package org.apache.flex.mdl.supportClasses
         }
 
         private var _tabIdField:String;
-        private var _isActive:Boolean;
-
         /**
          *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#tabIdField
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get tabIdField():String
         {
@@ -58,13 +64,14 @@ package org.apache.flex.mdl.supportClasses
             _tabIdField = value;
         }
 
+        private var _isActive:Boolean;
         /**
          *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#isActive
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get isActive():Boolean
         {
@@ -89,7 +96,7 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         override public function set data(value:Object):void
         {

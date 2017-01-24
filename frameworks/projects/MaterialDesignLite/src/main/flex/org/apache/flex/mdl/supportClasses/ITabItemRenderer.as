@@ -26,7 +26,7 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public interface ITabItemRenderer extends ISelectableItemRenderer
     {
@@ -36,18 +36,18 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         function get tabIdField():String;
         function set tabIdField(value:String):void;
 
         /**
-         * Indicates whether specific Tab is currently selected/active
+         *  Indicates whether specific Tab is currently selected/active
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         function get isActive():Boolean;
         function set isActive(value:Boolean):void;

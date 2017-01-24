@@ -34,7 +34,7 @@ package org.apache.flex.mdl.supportClasses
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */    
 	public class TextFieldBase extends TextInput implements ITextField
 	{
@@ -44,7 +44,7 @@ package org.apache.flex.mdl.supportClasses
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function TextFieldBase()
 		{
@@ -56,14 +56,13 @@ package org.apache.flex.mdl.supportClasses
         COMPILE::JS
         {
             private var _textNode:Text;
-
             /**
              *  @copy org.apache.flex.mdl.supportClasses.ITextField#textNode
              *
              *  @langversion 3.0
              *  @playerversion Flash 10.2
              *  @playerversion AIR 2.6
-             *  @productversion FlexJS 0.0
+             *  @productversion FlexJS 0.8
              */
             public function get textNode():Text
             {
@@ -76,14 +75,13 @@ package org.apache.flex.mdl.supportClasses
             }
 
             private var _input:HTMLInputElement;
-
             /**
              *  @copy org.apache.flex.mdl.supportClasses.ITextField#input
              *
              *  @langversion 3.0
              *  @playerversion Flash 10.2
              *  @playerversion AIR 2.6
-             *  @productversion FlexJS 0.0
+             *  @productversion FlexJS 0.8
              */
             public function get input():HTMLInputElement
             {
@@ -96,7 +94,14 @@ package org.apache.flex.mdl.supportClasses
             }
 
             private var _label:HTMLLabelElement;
-
+            /**
+             *  @copy org.apache.flex.mdl.supportClasses.ITextField#label
+             *
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion FlexJS 0.8
+             */
             public function get label():HTMLLabelElement
             {
                 return _label;
@@ -109,6 +114,14 @@ package org.apache.flex.mdl.supportClasses
         }
 
         COMPILE::JS
+        /**
+		 *  override UIBase to affect positioner instead of element
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		override protected function setClassName(value:String):void
 		{
 			positioner.className = value;           
@@ -122,7 +135,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get floatingLabel():Boolean
         {
@@ -142,12 +155,13 @@ package org.apache.flex.mdl.supportClasses
         private var _isInvalid:Boolean = false;
         /**
 		 *  A boolean flag to activate "is-invalid" effect selector.
-         *  Defines the textfield as invalid on initial load.Optional
+         *  Defines the textfield as invalid on initial load.
+         *  Optional
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get isInvalid():Boolean
         {

@@ -19,16 +19,13 @@
 package org.apache.flex.mdl.supportClasses
 {
     /**
-     *  The IMdlColor interface must be implemented by any class that
-     *  will apply color and colorWeight provided by google style color.
-     *
-     *  https://material.google.com/style/color.html#color-color-palette
-     *  https://gitlab.com/material/colors/blob/master/colors.html
+     *  ITextField is the interface that all TextField MDL classes implement
+     *  It's used mainly in org.apache.flex.mdl.supportClasses.TextFieldBase
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public interface ITextField
     {
@@ -40,7 +37,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.0
+            * @productversion FlexJS 0.8
             */
             function get textNode():Text;
             function set textNode(value:Text):void;
@@ -51,7 +48,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.0
+            * @productversion FlexJS 0.8
             */
             function get input():HTMLInputElement;
             function set input(value:HTMLInputElement):void;
@@ -62,7 +59,7 @@ package org.apache.flex.mdl.supportClasses
             * @langversion 3.0
             * @playerversion Flash 10.2
             * @playerversion AIR 2.6
-            * @productversion FlexJS 0.0
+            * @productversion FlexJS 0.8
             */
             function get label():HTMLLabelElement;
             function set label(value:HTMLLabelElement):void;

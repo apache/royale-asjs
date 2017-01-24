@@ -26,20 +26,12 @@ package org.apache.flex.mdl.supportClasses
     }
     
 	/**
-	 *  The CardInner class is a Container component capable of parenting other
-	 *  four components (CardTitle, CardMedia, CardSupportingText and CardActions. 
-     *  The Panel uses the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Card.
+	 *  The CardInner class is a base class por all Card inner containers.
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class CardInner extends ContainerBase
 	{
@@ -49,7 +41,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function CardInner()
 		{
@@ -67,11 +59,6 @@ package org.apache.flex.mdl.supportClasses
             element = document.createElement('div') as WrappedHTMLElement;
             
             positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
@@ -80,12 +67,12 @@ package org.apache.flex.mdl.supportClasses
 		private var _border:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-card--border" effect selector.
-		 *  Adds a border to the card section that it's applied to
+		 *  Adds a border to the card section that it's applied to.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get border():Boolean
         {
@@ -110,7 +97,7 @@ package org.apache.flex.mdl.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get expand():Boolean
         {
