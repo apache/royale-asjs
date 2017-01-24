@@ -34,6 +34,17 @@
 	box-sizing: border-box;
 }
 
+Alert
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.AlertModel");
+	
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+}
+
+
 Application
 {
 	padding: 0px;
@@ -514,16 +525,10 @@ global
 	
 	Alert
 	{
-		IBeadModel: ClassReference("org.apache.flex.html.beads.models.AlertModel");
 		IBeadView:  ClassReference("org.apache.flex.html.beads.AlertView");
 		IBeadController: ClassReference("org.apache.flex.html.beads.controllers.AlertController");
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
-		
-		background-color: #FFFFFF;
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
 	}
 	
 	Border
