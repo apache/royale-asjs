@@ -25,6 +25,9 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import org.apache.flex.mdl.materialIcons.MaterialIconType;
+
+            [Bindable]
+            public var counter:int = 0;
         ]]>
 	</fx:Script>
 
@@ -35,7 +38,8 @@ limitations under the License.
     <mdl:Grid>
     
         <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-        <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example"/>
+        <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example" change="counter++"/>
+        <js:Label id="chklb" text="Chebox throw 'change' event {counter} times"/>
         <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
         
         <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
