@@ -176,7 +176,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		static public function show( text:String, parent:Object, title:String="", flags:uint=Alert.OK ) : void
+		static public function show( text:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
 		{
 			var alert:Alert = new Alert();
 			alert.message = text;
@@ -190,7 +190,10 @@ package org.apache.flex.html
                 alert.positioner.style.margin = 'auto';
 				alert.positioner.style.left = "50%";
 				alert.positioner.style.top = "50%";
+				alert.positioner.style.width = "200px";
             }
+			
+			return alert;
 		}
 		
 		/**
