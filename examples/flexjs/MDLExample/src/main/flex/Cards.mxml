@@ -36,7 +36,11 @@ limitations under the License.
         
             <mdl:Card id="mycard" shadow="2" className="demo-card-wide">
                 <mdl:CardTitle>
-                    <mdl:CardTitleText text="Welcome"/>
+                    <js:H2 text="Welcome">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:beads>
@@ -59,7 +63,11 @@ limitations under the License.
 
             <mdl:Card className="demo-card-square" shadow="2">
                 <mdl:CardTitle expand="true">
-                    <mdl:CardTitleText text="Update"/>
+                    <js:H2 text="Update">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <js:TextNode text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis."/>
@@ -78,13 +86,14 @@ limitations under the License.
 
             <mdl:Card className="demo-card-event" shadow="2">
                 <mdl:CardTitle expand="true">
-                    <mdl:CardTitleText>
-                        <mdl:beads>
+                    <js:H2 text="Welcome">
+                        <js:beads>
+                            <mdl:CardTitleText/>
                             <js:InnerHTML>
                                 <![CDATA[<h4>Featured event:<br>May 24, 2016<br>7-11pm</h4>]]>
                             </js:InnerHTML>
-                        </mdl:beads>
-                    </mdl:CardTitleText>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardActions border="true">
                     <mdl:Button colored="true" ripple="true" text="Add to Calendar"/>

@@ -26,20 +26,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Card class is a Container component capable of parenting other
-	 *  four components (CardTitle, CardMedia, CardSupportingText and CardActions. 
-     *  The Panel uses the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Card.
+	 *  The Card class is a self-contained pieces of paper with data.
+	 *  The Material Design Lite (MDL) card component is a user interface element 
+	 *  representing a virtual piece of paper that contains related data — such as a 
+	 *  photo, some text, and a link — that are all about a single subject.
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Card extends ContainerBase
 	{
@@ -49,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Card()
 		{
@@ -69,11 +64,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
@@ -83,11 +73,17 @@ package org.apache.flex.mdl
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
 		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
+		 *  
+		 *  Cards are a convenient means of coherently displaying related content 
+		 *  that is composed of different types of objects. They are also well-suited 
+		 *  for presenting similar objects whose size or supported actions can vary 
+		 *  considerably, like photos with captions of variable length. Cards have 
+		 *  a constant width and a variable height, depending on their content.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get shadow():Number
         {

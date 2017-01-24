@@ -18,6 +18,7 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  initComplete="initTextBoxes(event)">
 
@@ -53,7 +54,11 @@ limitations under the License.
         
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <mdl:CardTitleText id="slider1_txt"/>
+                    <js:H2 id="slider1_txt">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider id="slider1" change="onValueChange1(event)" input="onValueChange1(event)"/>
@@ -62,7 +67,11 @@ limitations under the License.
 
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <mdl:CardTitleText id="slider2_txt"/>
+                    <js:H2 id="slider2_txt">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider id="slider2" minimum="0" maximum="10" value="2" stepSize="2" width="200" change="onValueChange2(event)" input="onValueChange2(event)"/>
@@ -71,7 +80,11 @@ limitations under the License.
 
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <mdl:CardTitleText id="slider3_txt"/>
+                    <js:H2 id="slider3_txt">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200">

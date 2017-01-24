@@ -16,26 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
-{
-	import org.apache.flex.html.H2;
-
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
-
+package org.apache.flex.mdl.beads
+{	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
+	
 	/**
-	 *  The CardTitleText class represents an HTML <h2> element
-     *  used for Title in CardTitle
-     *  
+	 *  The CardTitleText bead class is used in MDL CardTitle to style the title.
+	 *  You could add to some heading (H1 to H4) or other text component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
-	public class CardTitleText extends H2
+	public class CardTitleText implements IBead
 	{
 		/**
 		 *  constructor.
@@ -43,35 +39,33 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function CardTitleText()
 		{
-			super();
-
-            className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
+
+		private var _strand:IStrand;
 		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            typeNames = "mdl-card__title-text";
-
-			var h2:HTMLElement = document.createElement('h2') as HTMLElement;
-            
-            textNode = document.createTextNode('') as Text;
-            h2.appendChild(textNode); 
-
-			element = h2 as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            return element;
-        }
-    }
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 *  @flexjsignorecoercion HTMLInputElement
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			
+			COMPILE::JS
+			{
+				var host:UIBase = value as UIBase;
+                host.className = "mdl-card__title-text";
+			}
+		}
+	}
 }

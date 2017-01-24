@@ -26,19 +26,14 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The CardActions class is a Container component capable of parenting other. 
-     *  The Panel uses the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Card.
-	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
+	 *  The CardActions class is a inner card container component.
+	 *  Its mission is to hold buttons or other ways to present
+	 *  actions for the user.
+     *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class CardActions extends CardInner
 	{
@@ -48,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function CardActions()
 		{
@@ -66,11 +61,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
             positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
             
             return element;
