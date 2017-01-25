@@ -33,7 +33,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class FooterRightSection extends ContainerBase implements IFooterSection
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function FooterRightSection()
 		{
@@ -63,11 +63,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
@@ -80,7 +75,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
         */ 
 		COMPILE::JS
 		override public function addedToParent():void

@@ -159,11 +159,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;

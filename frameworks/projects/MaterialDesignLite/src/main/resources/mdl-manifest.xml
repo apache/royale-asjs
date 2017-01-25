@@ -67,7 +67,7 @@
     <component id="DialogContent" class="org.apache.flex.mdl.DialogContent"/>
     <component id="DialogActions" class="org.apache.flex.mdl.DialogActions"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
-    <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
+    <component id="LayoutTitle" class="org.apache.flex.mdl.beads.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer"/>
     <component id="NavigationLink" class="org.apache.flex.mdl.NavigationLink"/>

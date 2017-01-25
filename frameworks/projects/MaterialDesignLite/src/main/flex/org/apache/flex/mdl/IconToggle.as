@@ -26,17 +26,36 @@ package org.apache.flex.mdl
     {    
         import org.apache.flex.core.WrappedHTMLElement;
     }
+
     /**
-     *  The IconToggle class provides a MDL UI-like appearance for
-     *  a IconToggle.
+     *  The Material Design Lite (MDL) icon-toggle component is an enhanced version of
+     *  the standard HTML <input type="checkbox"> element. An icon-toggle consists of a 
+     *  user defined icon that indicates, by visual highlighting, a binary condition that
+     *  will be set or unset when the user clicks or touches it. Like checkboxes, 
+     *  icon-toggles may appear individually or in groups, and can be selected and 
+     *  deselected individually.
+     *
+     *  Icon toggles, particularly as a replacement for certain checkboxes, can be a valuable
+     *  feature in user interfaces, regardless of a site's content or function.
+     *  
+     *  The icon-toggle component can have a more customized visual look than a standard
+     *  checkbox, and may be initially or programmatically disabled.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */    
     public class IconToggle extends UIBase implements IMaterialIcon
     {
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function IconToggle()
         {
             super();
@@ -45,15 +64,12 @@ package org.apache.flex.mdl
         }
 
         COMPILE::JS
-        private var label:HTMLLabelElement;
+        protected var label:HTMLLabelElement;
 
         COMPILE::JS
-        private var input:HTMLInputElement;
+        protected var input:HTMLInputElement;
 
         private var _dataMdlFor:String = "icon-toggle-1";
-        private var _ripple:Boolean = false;
-        private var _materialIcon:MaterialIconBase;
-        
         /**
          *  The id value of the associated input
          *  Need to specify for display content of IconToggle
@@ -61,7 +77,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get dataMdlFor():String
         {
@@ -81,6 +97,7 @@ package org.apache.flex.mdl
             }
         }
 
+        private var _ripple:Boolean = false;
         /**
          *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
          *  Applies ripple click effect. May be used in combination with any other classes
@@ -88,7 +105,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get ripple():Boolean
         {
@@ -106,13 +123,14 @@ package org.apache.flex.mdl
             }
         }
 
+        private var _materialIcon:MaterialIconBase;
         /**
-         *  A material icon. Optional
+         *  A material icon.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get materialIcon():MaterialIconBase
         {

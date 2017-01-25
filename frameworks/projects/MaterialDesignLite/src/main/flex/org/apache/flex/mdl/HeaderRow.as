@@ -26,13 +26,13 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The HeaderRow class is a Container component capable of parenting other
-	 *  components 
+	 *  The HeaderRow class is a Container component used normaly inside a Header
+	 *  to layout things like a title, a navigation component,...
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class HeaderRow extends ContainerBase
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function HeaderRow()
 		{
@@ -62,11 +62,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;

@@ -16,25 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
-{
-	import org.apache.flex.html.Span;
-    
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;
-    }
-    
+package org.apache.flex.mdl.beads
+{	
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
+	
 	/**
-	 *  The LayoutTitle class is a Container component capable of parenting other
-	 *  components 
-	 *
+	 *  The LayoutTitle bead class is used in MDL Layout Header inside a HeaderRow
+	 *  (normaly a Span) or in a Drawer to style the title.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
-	public class LayoutTitle extends Span
+	public class LayoutTitle implements IBead
 	{
 		/**
 		 *  constructor.
@@ -42,29 +39,33 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function LayoutTitle()
 		{
-			super();
-
-			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
+
+		private var _strand:IStrand;
 		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			typeNames = "mdl-layout-title";
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 *  @flexjsignorecoercion HTMLInputElement
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 			
-			element = document.createElement('span')  as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            return element;
-        }
+			COMPILE::JS
+			{
+				var host:UIBase = value as UIBase;
+                host.className = "mdl-layout-title";
+			}
+		}
 	}
 }

@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ContainerBase;
     
     COMPILE::JS
@@ -28,12 +26,13 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The DialogActions class
+	 *  The DialogActions class is a container to use inside Dialog class
+	 *  that holds buttons or other components to perform user actions
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DialogActions extends ContainerBase
 	{
@@ -43,7 +42,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DialogActions()
 		{
@@ -63,11 +62,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
 
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
@@ -76,13 +70,14 @@ package org.apache.flex.mdl
 		protected var _fullWidth:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-dialog__actions--full-width" effect selector.
-		 *  Modifies the actions to each take the full width of the container. This makes each take their own line.
+		 *  Modifies the actions to each take the full width of the container.
+		 *  This makes each take their own line.
 		 *  Optional on action container.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get fullWidth():Boolean
         {

@@ -26,13 +26,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Drawer class is a Container component capable of parenting other
-	 *  components 
+	 *  The Drawer class is a container component used for navigation
+	 *  in smaller screens. Can appear automatically in smaller screens
+	 *  and may be opened with the menu icon on any screen size.
+	 *  If fixed could serve as sidebar navigation on larger screens.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Drawer extends ContainerBase
 	{
@@ -42,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Drawer()
 		{
@@ -62,11 +64,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
             
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;

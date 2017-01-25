@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ContainerBase;
     
     COMPILE::JS
@@ -28,12 +26,14 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The DialogContent class
+	 *  The DialogContent class is a container to use inside Dialog class
+	 *  that holds content and information so the user gets notified and
+	 *  could take some action.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DialogContent extends ContainerBase
 	{
@@ -43,7 +43,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DialogContent()
 		{
@@ -63,11 +63,6 @@ package org.apache.flex.mdl
             element = document.createElement('div') as WrappedHTMLElement;
 			            
 			positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
             element.flexjs_wrapper = this;
 
             return element;
