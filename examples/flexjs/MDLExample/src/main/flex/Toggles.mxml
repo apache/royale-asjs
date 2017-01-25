@@ -28,6 +28,12 @@ limitations under the License.
 
             [Bindable]
             public var counter:int = 0;
+
+            [Bindable]
+            public var counter2:int = 0;
+
+            [Bindable]
+            public var counter3:int = 0;
         ]]>
 	</fx:Script>
 
@@ -35,11 +41,11 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </mdl:beads>
 
-    <mdl:Grid>
+    <mdl:Grid width="250">
     
         <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
         <mdl:CheckBox id="mdlchk" text="Disabled at start" className="mdlchk_example" change="counter++"/>
-        <js:Label id="chklb" text="Chebox throw 'change' event {counter} times"/>
+        <js:Label text="Chebox throw 'change' event {counter} times"/>
         <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
         
         <mdl:RadioButton groupName="g1" text="Black" className="mdlrb_example"/>
@@ -48,17 +54,22 @@ limitations under the License.
         
         <mdl:Switch text="Switch" ripple="true" selected="true"/>
         
-        <mdl:IconToggle dataMdlFor="mdlBoldIcon">
+        <mdl:IconToggle dataMdlFor="mdlBoldIcon" click="counter2++">
             <mdl:materialIcon>
                 <mdl:MaterialIcon text="{MaterialIconType.FORMAT_BOLD}"/>
             </mdl:materialIcon>
         </mdl:IconToggle>
+
+         <js:Label text="IconToggle throw 'click' event {counter2} times"/>
         
-        <mdl:IconToggle dataMdlFor="mdlItalicIcon">
+        <mdl:IconToggle dataMdlFor="mdlItalicIcon" change="counter3++">
             <mdl:materialIcon>
                 <mdl:MaterialIcon text="{MaterialIconType.FORMAT_ITALIC}"/>
             </mdl:materialIcon>
         </mdl:IconToggle>
+
+        <js:Label text="IconToggle throw 'change' event {counter3} times"/>
+       
     </mdl:Grid>
 
 </mdl:TabBarPanel>

@@ -151,6 +151,64 @@ package org.apache.flex.mdl.materialIcons
         public static const OPEN_IN_BROWSER:String = 'open_in_browser';
         public static const OPEN_IN_NEW:String = 'open_in_new';
 
+        public static const OPEN_WITH:String = 'open_with';
+        public static const PAGEVIEW:String = 'pageview';
+        public static const PAN_TOOL:String = 'pan_tool';
+        public static const PAYMENT:String = 'payment';
+        public static const PERM_CAMERA_MIC:String = 'perm_camera_mic';
+        public static const PERM_CONTACT_CALENDAR:String = 'perm_contact_calendar';
+        public static const PERM_DATA_SETTING:String = 'perm_data_setting';
+        public static const PERM_DEVICE_INFORMATION:String = 'perm_device_information';
+        public static const PERM_IDENTITY:String = 'perm_identity';
+        public static const PERM_MEDIA:String = 'perm_media';
+
+        public static const PERM_PHONE_MSG:String = 'perm_phone_msg';
+        public static const PERM_SCAN_WIFI:String = 'perm_scan_wifi';
+        public static const PETS:String = 'pets';
+        public static const PICTURE_IN_PICTURE:String = 'picture_in_picture';
+        public static const PICTURE_IN_PICTURE_ALT:String = 'picture_in_picture_alt';
+        public static const PLAY_FOR_WORK:String = 'play_for_work';
+        public static const POLYMER:String = 'polymer';
+        public static const POWER_SETTINGS_NEW:String = 'power_settings_new';
+        public static const PREGNANT_WOMAN:String = 'pregnant_woman';
+        public static const PRINT:String = 'print';
+        
+        public static const QUERY_BUILDER:String = 'query_builder';
+        public static const QUESTION_ANSWER:String = 'question_answer';
+        public static const RECEIPT:String = 'receipt';
+        public static const RECORD_VOICE_OVER:String = 'record_voice_over';
+        public static const REDEEM:String = 'redeem';
+        public static const REMOVE_SHOPPING_CART:String = 'remove_shopping_cart';
+        public static const REORDER:String = 'reorder';
+        public static const REPORT_PROBLEM:String = 'report_problem';
+        public static const RESTORE:String = 'restore';
+        public static const RESTORE_PAGE:String = 'restore_page';
+
+        public static const ROOM:String = 'room';
+        public static const ROUND_CORNER:String = 'rounded_corner';
+        public static const ROWING:String = 'rowing';
+        public static const SCHEDULE:String = 'schedule';
+        public static const SEARCH:String = 'search';
+        public static const SETTINGS:String = 'settings';
+        public static const SETTINGS_APPLICATIONS:String = 'settings_applications';
+        public static const SETTINGS_BACKUP_RESTORE:String = 'settings_backup_restore';
+        public static const SETTINGS_BLUETOOTH:String = 'settings_bluetooth';
+        public static const SETTINGS_BRIGHTNESS:String = 'settings_brightness';
+
+        public static const SETTINGS_CELL:String = 'settings_cell';
+        public static const SETTINGS_ETHERNET:String = 'settings_ethernet';
+        public static const SETTINGS_INPUT_ANTENNA:String = 'settings_input_antenna';
+        public static const SETTINGS_INPUT_COMPONENT:String = 'settings_input_component';
+        public static const SETTINGS_INPUT_COMPOSITE:String = 'settings_input_composite';
+        public static const SETTINGS_INPUT_HDMI:String = 'settings_input_hdmi';
+        public static const SETTINGS_INPUT_SVIDEO:String = 'settings_input_svideo';
+        public static const SETTINGS_OVERSCAN:String = 'settings_overscan';
+        public static const SETTINGS_PHONE:String = 'settings_phone';
+        public static const SETTINGS_POWER:String = 'settings_power';
+
+        public static const SETTINGS_REMOTE:String = 'settings_remote';
+        public static const SETTINGS_VOICE:String = 'settings_voice';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -163,58 +221,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'open_with',
-        'pageview',
-        'pan_tool',
-        'payment',
-        'perm_camera_mic',
-        'perm_contact_calendar',
-        'perm_data_setting',
-        'perm_device_information',
-        'perm_identity',
-        'perm_media',
-        'perm_phone_msg',
-        'perm_scan_wifi',
-        'pets',
-        'picture_in_picture',
-        'picture_in_picture_alt',
-        'play_for_work',
-        'polymer',
-        'power_settings_new',
-        'pregnant_woman',
-        'print',
-        'query_builder',
-        'question_answer',
-        'receipt',
-        'record_voice_over',
-        'redeem',
-        'remove_shopping_cart',
-        'reorder',
-        'report_problem',
-        'restore',
-        'restore_page',
-        'room',
-        'rounded_corner',
-        'rowing',
-        'schedule',
-        'search',
-        'settings',
-        'settings_applications',
-        'settings_backup_restore',
-        'settings_bluetooth',
-        'settings_brightness',
-        'settings_cell',
-        'settings_ethernet',
-        'settings_input_antenna',
-        'settings_input_component',
-        'settings_input_composite',
-        'settings_input_hdmi',
-        'settings_input_svideo',
-        'settings_overscan',
-        'settings_phone',
-        'settings_power',
-        'settings_remote',
-        'settings_voice',
         'shop',
         'shop_two',
         'shopping_basket',
@@ -994,7 +1000,6 @@ package org.apache.flex.mdl.materialIcons
         public static const SHARE:String = "share";
         public static const MOOD:String = "mood";
         public static const MORE_VERT:String = "more_vert";
-        public static const SEARCH:String = "search";
         public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
         public static const FORMAT_BOLD:String = "format_bold";
         public static const FORMAT_ITALIC:String = "format_italic";
