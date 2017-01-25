@@ -119,6 +119,7 @@ package org.apache.flex.mdl
         public function set selected(value:Boolean):void
         {
             IToggleButtonModel(model).selected = value;
+            dispatchEvent(new Event(Event.CHANGE))
         }
 
         private var _dataMdlFor:String = "icon-toggle-1";
@@ -227,7 +228,7 @@ package org.apache.flex.mdl
                 input.type = "checkbox";
                 input.checked = false;
                 input.classList.add("mdl-icon-toggle__input");
-
+                
                 label.appendChild(input);
             }
             else 
@@ -248,7 +249,10 @@ package org.apache.flex.mdl
         COMPILE::JS
         public function clickHandler(event:Event):void
         {
+            event.preventDefault();
             selected = !selected;
+            input.checked = selected;
+            label.classList.toggle("is-checked", selected);
         }
 
         COMPILE::SWF
