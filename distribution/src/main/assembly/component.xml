@@ -167,6 +167,7 @@ under the License.
       <outputDirectory></outputDirectory>
       <includes>
         <include>flex-sdk-description.xml</include>
+        <include>flexjs-sdk-description.xml</include>
       </includes>
       <filtered>true</filtered>
     </fileSet>
