@@ -107,6 +107,50 @@ package org.apache.flex.mdl.materialIcons
         public static const FLIGHT_TAKEOFF:String = 'flight_takeoff';
         public static const FLIP_TO_BACK:String = 'flip_to_back';
 
+        public static const FLIP_TO_FRONT:String = 'flip_to_front';
+        public static const G_TRANSLATE:String = 'g_translate';
+        public static const GAVEL:String = 'gavel';
+        public static const GET_APP:String = 'get_app';
+        public static const GIF:String = 'gif';
+        public static const GRADE:String = 'grade';
+        public static const GROUP_WORK:String = 'group_work';
+        public static const HELP:String = 'help';
+        public static const HELP_OUTLINE:String = 'help_outline';
+        public static const HIGHLIGHT_OFF:String = 'highlight_off';
+
+        public static const HISTORY:String = 'history';
+        public static const HOME:String = 'home';
+        public static const HOURGLASS_EMPTY:String = 'hourglass_empty';
+        public static const HOURGLASS_FULL:String = 'hourglass_full';
+        public static const HTTP:String = 'http';
+        public static const HTTPS:String = 'https';
+        public static const IMPORTANT_DEVICES:String = 'important_devices';
+        public static const INFO:String = 'info';
+        public static const INFO_OUTLINE:String = 'info_outline';
+        public static const INPUT:String = 'input';
+
+        public static const INVERT_COLORS:String = 'invert_colors';
+        public static const LABEL:String = 'label';
+        public static const LABEL_OUTLINE:String = 'label_outline';
+        public static const LANGUAGE:String = 'language';
+        public static const LAUNCH:String = 'launch';
+        public static const LIGHTBULB_OUTLINE:String = 'lightbulb_outline';
+        public static const LINE_STYLE:String = 'line_style';
+        public static const LINE_WEIGHT:String = 'line_weight';
+        public static const LIST:String = 'list';
+        public static const LOCK:String = 'lock';
+
+        public static const LOCK_OPEN:String = 'lock_open';
+        public static const LOCK_OUTLINE:String = 'lock_outline';
+        public static const LOYALTY:String = 'loyalty';
+        public static const MARKUNREAD_MAILBOX:String = 'markunread_mailbox';
+        public static const MOTORCYCLE:String = 'motorcycle';
+        public static const NOTE_ADD:String = 'note_add';
+        public static const OFFLINE_PIN:String = 'offline_pin';
+        public static const OPACITY:String = 'opacity';
+        public static const OPEN_IN_BROWSER:String = 'open_in_browser';
+        public static const OPEN_IN_NEW:String = 'open_in_new';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -119,56 +163,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        'flip_to_front',
-        'g_translate',
-        'gavel',
-        'get_app',
-        'gif',
-        'grade',
-        'group_work',
-        'help',
-        'help_outline',
-        'highlight_off',
-        'history',
-        'home',
-        'hourglass_empty',
-        'hourglass_full',
-        'http',
-        'https',
-        'important_devices',
-        'info',
-        'info_outline',
-        'input',
-        'invert_colors',
-        'label',
-        'label_outline',
-        'language',
-        'launch',
-        'lightbulb_outline',
-        'line_style',
-        'line_weight',
-        'list',
-        'lock',
-        'lock_open',
-        'lock_outline',
-        'loyalty',
-        'markunread_mailbox',
-        'motorcycle',
-        'note_add',
-        'offline_pin',
-        'opacity',
-        'open_in_browser',
-        'open_in_new',
         'open_with',
         'pageview',
         'pan_tool',
