@@ -53,6 +53,11 @@ CheckBox
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
 }
 
+IconToggle
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
+}
+
 Slider
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");

@@ -20,12 +20,43 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    import org.apache.flex.core.IToggleButtonModel;
     import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.html.TextButton;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IUIBase;
 
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
     }
+
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+
+    /**
+     *  Dispatched when the user clicks on IconToggle.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+
+    /**
+     *  Dispatched when IconToggle is being selected/unselected.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
 
     /**
      *  The Material Design Lite (MDL) icon-toggle component is an enhanced version of
@@ -46,7 +77,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */    
-    public class IconToggle extends UIBase implements IMaterialIcon
+    public class IconToggle extends TextButton implements IStrand, IEventDispatcher, IUIBase, IMaterialIcon
     {
         /**
          *  constructor.
@@ -60,14 +91,39 @@ package org.apache.flex.mdl
         {
             super();
 
+            COMPILE::SWF
+            {
+                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            }
+
             className = "";
         }
 
-        COMPILE::JS
-        protected var label:HTMLLabelElement;
+        [Bindable("change")]
+        /**
+         *  <code>true</code> if the Button is selected.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get selected():Boolean
+        {
+            return IToggleButtonModel(model).selected;
+        }
 
-        COMPILE::JS
-        protected var input:HTMLInputElement;
+        /**
+         *  @private
+         */
+        public function set selected(value:Boolean):void
+        {
+            if (IToggleButtonModel(model).selected != value)
+            {
+                IToggleButtonModel(model).selected = value;
+                dispatchEvent(new Event(Event.CHANGE))
+            }
+        }
 
         private var _dataMdlFor:String = "icon-toggle-1";
         /**
@@ -147,6 +203,12 @@ package org.apache.flex.mdl
             }
         }
 
+        COMPILE::JS
+        protected var label:HTMLLabelElement;
+
+        COMPILE::JS
+        protected var input:HTMLInputElement;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLLabelElement
@@ -169,7 +231,7 @@ package org.apache.flex.mdl
                 input.type = "checkbox";
                 input.checked = false;
                 input.classList.add("mdl-icon-toggle__input");
-
+                
                 label.appendChild(input);
             }
             else 
@@ -182,7 +244,24 @@ package org.apache.flex.mdl
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
 
+            element.addEventListener("click", clickHandler, false);
+
             return element;
+        }
+                
+        COMPILE::JS
+        public function clickHandler(event:Event):void
+        {
+            event.preventDefault();
+            selected = !selected;
+            input.checked = selected;
+            label.classList.toggle("is-checked", selected);
+        }
+
+        COMPILE::SWF
+        private function internalMouseHandler(event:MouseEvent) : void
+        {
+            //selected = !selected;
         }
     }
 }

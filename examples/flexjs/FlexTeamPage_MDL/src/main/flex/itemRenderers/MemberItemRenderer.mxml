@@ -52,7 +52,11 @@ limitations under the License.
 
     <mdl:Card className="demo-card-wide" shadow="8">
         <mdl:CardTitle>
-            <mdl:CardTitleText text="{member.name}"/>
+            <js:H2 text="{member.name}">
+                        <js:beads>
+                            <mdl:CardTitleText/>
+                        </js:beads>
+                    </js:H2>
             <js:H6 text="{member.apacheID}"></js:H6>
         </mdl:CardTitle>
         <mdl:CardSupportingText>
