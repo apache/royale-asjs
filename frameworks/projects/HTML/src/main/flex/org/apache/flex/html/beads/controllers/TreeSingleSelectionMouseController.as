@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -76,7 +77,10 @@ package org.apache.flex.html.beads.controllers
 				flatList.openNode(node);
 			}
 			
+			listModel.selectedItem = node;
 			listModel.dispatchEvent(new Event("dataProviderChanged"));
+			
+			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 	}
 }
