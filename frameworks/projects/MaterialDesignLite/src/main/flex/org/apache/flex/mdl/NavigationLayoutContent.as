@@ -26,13 +26,14 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The NavigationLayoutContent class is a Container component capable of parenting other
-	 *  components 
+	 *  The NavigationLayoutContent class is a Container component capable of parenting 
+	 *  the content of the NavigationLayout parent. If the navigation uses a TabBar component
+	 *  for navigation, each piece of content will be a TabBarPanel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class NavigationLayoutContent extends ContainerBase
 	{
@@ -42,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function NavigationLayoutContent()
 		{

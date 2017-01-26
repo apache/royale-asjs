@@ -26,13 +26,18 @@ package org.apache.flex.mdl
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
-     *  The ProgressBar class provides a MDL UI-like appearance for
-     *  a ProgressBar.
+     *  The ProgressBar indicate loading and progress states.
+     *  The Material Design Lite (MDL) progress component is a visual indicator of
+     *  background activity in a web page or application. A progress indicator consists
+     *  of a (typically) horizontal bar containing some animation that conveys a sense of
+     *  motion. While some progress devices indicate an approximate or specific percentage
+     *  of completion, the MDL progress component simply communicates the fact that an activity
+     *  is ongoing and is not yet complete.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class ProgressBar extends UIBase
     {
@@ -46,22 +51,21 @@ package org.apache.flex.mdl
         private var materialProgress:Object;
 
         private var _currentProgress:Number;
-        private var _currentBuffer:Number;
-        private var _indeterminate:Boolean;
-
         /**
          *  Current progress of the progressbar
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get currentProgress():Number
         {
             return _currentProgress;
         }
-
+        /**
+         *  @private
+         */
         public function set currentProgress(value:Number):void
         {
             _currentProgress = value;
@@ -69,19 +73,22 @@ package org.apache.flex.mdl
             setCurrentProgress(value);
         }
 
+        private var _currentBuffer:Number;
         /**
          *  Current progress of the buffer.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get currentBuffer():Number
         {
             return _currentBuffer;
         }
-
+        /**
+         *  @private
+         */
         public function set currentBuffer(value:Number):void
         {
             _currentBuffer = value;
@@ -89,13 +96,14 @@ package org.apache.flex.mdl
             setCurrentProgress(value);
         }
 
+        private var _indeterminate:Boolean;
         /**
          *  Indeterminate state.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function set indeterminate(value:Boolean):void
         {
@@ -126,6 +134,9 @@ package org.apache.flex.mdl
             return element;
         }
 
+        /**
+         *  @private
+         */
         private function setCurrentProgress(value:Number):void
         {
             if (materialProgress && !_indeterminate)
@@ -134,6 +145,9 @@ package org.apache.flex.mdl
             }
         }
 
+        /**
+         *  @private
+         */
         private function setCurrentBuffer(value:Number):void
         {
             if (materialProgress && !_indeterminate)
@@ -142,6 +156,9 @@ package org.apache.flex.mdl
             }
         }
 
+        /**
+         *  @private
+         */
         private function onElementMdlComponentUpgraded(event:Event):void
         {
             if (!event.currentTarget) return;

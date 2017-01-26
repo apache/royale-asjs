@@ -27,14 +27,38 @@ package org.apache.flex.mdl
         import org.apache.flex.core.WrappedHTMLElement;        
     }
 
+	//--------------------------------------
+    //  Events
+    //--------------------------------------
+
+     /**
+     *  Dispatched when Slider ends its change from one position to another.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
 	[Event(name="change", type="org.apache.flex.events.Event")]
 
+	/**
+     *  Dispatched each time user moves the slider thumb from one position to another
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
 	[Event(name="input", type="org.apache.flex.events.Event")]
 	
 	/**
-	 *  The Slider class provides a MDL UI-like appearance for a slider.
-	 *  It displays a range of values using a track and a thumb control. 
-	 *  The Slider uses the following bead types:
+	 *  The Slider class is used for selecting a value out of a range.
+	 *  The Material Design Lite (MDL) slider component is an enhanced version of the new
+	 *  HTML5 <input type="range"> element. A slider consists of a horizontal line upon which
+	 *  sits a small, movable disc (the thumb) and, typically, text that clearly communicates
+	 *  a value that will be set when the user moves it.
+	 *  
+	 *  In FlexJS the MDL Slider uses the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
@@ -43,7 +67,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Slider extends UIBase
 	{
@@ -53,7 +77,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Slider()
 		{
@@ -75,7 +99,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get value():Number
 		{
@@ -92,7 +116,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get minimum():Number
 		{
@@ -109,7 +133,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get maximum():Number
 		{
@@ -127,7 +151,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get snapInterval():Number
 		{
@@ -145,7 +169,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get stepSize():Number
         {
@@ -162,6 +186,7 @@ package org.apache.flex.mdl
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 * @flexjsignorecoercion HTMLInputElement
+		 * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

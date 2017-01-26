@@ -208,6 +208,69 @@ package org.apache.flex.mdl.materialIcons
 
         public static const SETTINGS_REMOTE:String = 'settings_remote';
         public static const SETTINGS_VOICE:String = 'settings_voice';
+        public static const SHOP:String = 'shop';
+        public static const SHOP_TWO:String = 'shop_two';
+        public static const SHOPPING_BASKET:String = 'shopping_basket';
+        public static const SHOPPING_CART:String = 'shopping_cart';
+        public static const SPEAKER_NOTES:String = 'speaker_notes';
+        public static const SPEAKER_NOTES_OFF:String = 'speaker_notes_off';
+        public static const SPELLCHECK:String = 'spellcheck';
+        public static const STAR_RATE:String = 'star_rate';
+
+        public static const STARS:String = 'stars';
+        public static const STORE:String = 'store';
+        public static const SUBJECT:String = 'subject';
+        public static const SUPERVISOR_ACCOUNT:String = 'supervisor_account';
+        public static const SWAP_HORIZ:String = 'swap_horiz';
+        public static const SWAP_VERT:String = 'swap_vert';
+        public static const SWAP_VERTICAL_CIRCLE:String = 'swap_vertical_circle';
+        public static const SYSTEM_UPDATE_ALT:String = 'system_update_alt';
+        public static const TAB:String = 'tab';
+        public static const TAB_UNSELECTED:String = 'tab_unselected';
+
+        public static const THEATERS:String = 'theaters';
+        public static const THUMB_DOWN:String = 'thumb_down';
+        public static const THUMB_UP:String = 'thumb_up';
+        public static const THUMB_UP_DOWN:String = 'thumbs_up_down';
+        public static const TIMELINE:String = 'timeline';
+        public static const TOC:String = 'toc';
+        public static const TODAY:String = 'today';
+        public static const TOLL:String = 'toll';
+        public static const TOUCH_APP:String = 'touch_app';
+        public static const TRACK_CHANGES:String = 'track_changes';
+        
+        public static const TRANSLATE:String = 'translate';
+        public static const TRENDING_DOWN:String = 'trending_down';
+        public static const TRENDING_FLAT:String = 'trending_flat';
+        public static const TRENDING_UP:String = 'trending_up';
+        public static const TURNED_IN:String = 'turned_in';
+        public static const TURNED_IN_NOT:String = 'turned_in_not';
+        public static const UPDATE:String = 'update';
+        public static const VERIFIED_USER:String = 'verified_user';
+        public static const VIEW_AGENDA:String = 'view_agenda';
+        public static const VIEW_ARRAY:String = 'view_array';
+
+        public static const VIEW_CAROUSEL:String = 'view_carousel';
+        public static const VIEW_COLUMN:String = 'view_column';
+        public static const VIEW_DAY:String = 'view_day';
+        public static const VIEW_HEADLINE:String = 'view_headline';
+        public static const VIEW_LIST:String = 'view_list';
+        public static const VIEW_MODULE:String = 'view_module';
+        public static const VIEW_QUILT:String = 'view_quilt';
+        public static const VIEW_STREAM:String = 'view_stream';
+        public static const VIEW_WEEK:String = 'view_week';
+        public static const VISIBILITY:String = 'visibility';
+
+        public static const VISIBILITY_OFF:String = 'visibility_off';
+        public static const WATCH_LATER:String = 'watch_later';
+        public static const WORK:String = 'work';
+        public static const YOUTUBE_SEARCHED_FOR:String = 'youtube_searched_for';
+        public static const ZOMM_IN:String = 'zoom_in';
+        public static const ZOOM_OUT:String = 'zoom_out';
+        public static const ADD_ALERT:String = 'add_alert';
+        public static const ERROR:String = 'error';
+        public static const ERROR_OUTLINE:String = 'error_outline';
+        public static const WARNING:String = 'warning';
 
       /*  
         public static const ACCESSIBLE:String = 'XXX';
@@ -221,64 +284,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'shop',
-        'shop_two',
-        'shopping_basket',
-        'shopping_cart',
-        'speaker_notes',
-        'speaker_notes_off',
-        'spellcheck',
-        'star_rate',
-        'stars',
-        'store',
-        'subject',
-        'supervisor_account',
-        'swap_horiz',
-        'swap_vert',
-        'swap_vertical_circle',
-        'system_update_alt',
-        'tab',
-        'tab_unselected',
-        'theaters',
-        'thumb_down',
-        'thumb_up',
-        'thumbs_up_down',
-        'timeline',
-        'toc',
-        'today',
-        'toll',
-        'touch_app',
-        'track_changes',
-        'translate',
-        'trending_down',
-        'trending_flat',
-        'trending_up',
-        'turned_in',
-        'turned_in_not',
-        'update',
-        'verified_user',
-        'view_agenda',
-        'view_array',
-        'view_carousel',
-        'view_column',
-        'view_day',
-        'view_headline',
-        'view_list',
-        'view_module',
-        'view_quilt',
-        'view_stream',
-        'view_week',
-        'visibility',
-        'visibility_off',
-        'watch_later',
-        'work',
-        'youtube_searched_for',
-        'zoom_in',
-        'zoom_out',
-        'add_alert',
-        'error',
-        'error_outline',
-        'warning',
         'add_to_queue',
         'airplay',
         'album',

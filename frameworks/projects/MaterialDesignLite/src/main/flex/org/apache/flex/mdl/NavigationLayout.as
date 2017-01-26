@@ -27,12 +27,13 @@ package org.apache.flex.mdl
     
 	/**
 	 *  The NavigationLayout class is a Container component capable of parenting other
-	 *  components 
+	 *  components.
+	 *  It normaly can host a Header, a Drawer and a NavigationLaoutContent
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class NavigationLayout extends ContainerBase
 	{
@@ -42,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function NavigationLayout()
 		{
@@ -75,7 +76,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get fixedHeader():Boolean
         {
@@ -100,7 +101,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get fixedDrawer():Boolean
         {

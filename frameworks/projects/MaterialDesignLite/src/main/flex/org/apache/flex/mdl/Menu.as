@@ -33,12 +33,21 @@ package org.apache.flex.mdl
     }
 	
     /**
-     *  The Menu class creates a MDL menu
+     *  The Menu class creates a MDL menu. A menu in MDL is a lists 
+     *  of clickable actions.
+     *
+     *  The Material Design Lite (MDL) menu component is a user interface 
+     *  element that allows users to select one of a number of options. 
+     *  The selection typically results in an action initiation, a setting 
+     *  change, or other observable effect. Menu options are always presented
+     *  in sets of two or more, and options may be programmatically enabled or
+     *  disabled as required. The menu appears when the user is asked to choose
+     *  among a series of options, and is usually dismissed after the choice is made.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */    
 	public class Menu extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
@@ -48,7 +57,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function Menu()
 		{
@@ -58,51 +67,103 @@ package org.apache.flex.mdl
         }
 
         /**
-         * default position for Menu in MDL is bottom/left (or no class selector specified)
+         *  Default position for Menu in MDL is bottom/left (or no class selector specified)
          *
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         private var currentMenuPosition:String = "";
 
+        /**
+         *  data provider
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function get dataProvider():Object
         {
             return ISelectionModel(model).dataProvider;
         }
-
+        /**
+         *  @private
+         */
         public function set dataProvider(value:Object):void
         {
             ISelectionModel(model).dataProvider = value;
         }
 
+        /**
+         *  label field
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function get labelField():String
         {
             return ISelectionModel(model).labelField;
         }
-
+        /**
+         *  @private
+         */
         public function set labelField(value:String):void
         {
             ISelectionModel(model).labelField = value;
         }
 
+        /**
+         *  get layout host
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function getLayoutHost():ILayoutHost
         {
             return this;
         }
 
+        /**
+         *  get content view
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function get contentView():IParentIUIBase
         {
             return this;
         }
 
+        /**
+         *  get item renderer for index
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {
             var child:IItemRenderer = getElementAt(index) as IItemRenderer;
             return child;
         }
 
+        /**
+         *  remove all elements
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function removeAllElements():void
         {
             while (numElements > 0) {
@@ -111,6 +172,14 @@ package org.apache.flex.mdl
             }
         }
 
+        /**
+         *  update all item renderers
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function updateAllItemRenderers():void
         {
 
@@ -133,7 +202,6 @@ package org.apache.flex.mdl
         }
 
         private var _bottom:Boolean = true;
-
 		/**
 		 *  Position the menu relative to the associated button.
          *  Used in conjunction with "left"
@@ -142,7 +210,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get bottom():Boolean
 		{
@@ -176,7 +244,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get left():Boolean
 		{
@@ -208,7 +276,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get dataMdlFor():String
 		{
@@ -227,11 +295,12 @@ package org.apache.flex.mdl
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
-		 *
+		 *  Applies ripple click effect to option links. Optional
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get ripple():Boolean
         {

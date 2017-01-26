@@ -26,13 +26,15 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The NavigationLink class is a Container component capable of parenting other
-	 *  components 
+	 *  The NavigationLink class is a link component used in some components
+	 *  and is created for convenience or to use alone as a component.
+	 *  Notice that Navigation does not use this component (as a List compomemt,
+	 *  it uses NavigationLinkItemRenderer).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class NavigationLink extends A
 	{
@@ -42,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function NavigationLink()
 		{

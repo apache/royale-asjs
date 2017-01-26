@@ -26,13 +26,14 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Navigation class is a Container component capable of parenting other
-	 *  components 
+	 *  The Navigation class is a <nav> tag in HTML. It parents a list of links
+	 *  In FlexJS Navigation is implemented as a List component and by default 
+	 *  it uses NavigationLinkItemRenderer class to define each item. 
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Navigation extends List
 	{
@@ -42,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Navigation()
 		{
