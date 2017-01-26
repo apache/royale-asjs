@@ -254,8 +254,8 @@ package org.apache.flex.mdl
         {
             event.preventDefault();
             selected = !selected;
-            //input.checked = selected;
-            //label.classList.toggle("is-checked", selected);
+            input.checked = selected;
+            label.classList.toggle("is-checked", selected);
         }
 
         COMPILE::SWF
