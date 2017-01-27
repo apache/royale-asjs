@@ -272,6 +272,127 @@ package org.apache.flex.mdl.materialIcons
         public static const ERROR_OUTLINE:String = 'error_outline';
         public static const WARNING:String = 'warning';
 
+        public static const ADD_TO_QUEUE:String = 'add_to_queue';
+        public static const AIRPLAY:String = 'airplay';
+        public static const ALBUM:String = 'album';
+        public static const ART_TRACK:String = 'art_track';
+        public static const AV_TIMER:String = 'av_timer';
+        public static const BRANDING_WATERMARK:String = 'branding_watermark';
+        public static const CALL_TO_ACTION:String = 'call_to_action';
+        public static const CLOSED_CAPTION:String = 'closed_caption';
+        public static const EQUALIZER:String = 'equalizer';
+        public static const EXPLICIT:String = 'explicit';
+
+        public static const FAST_FORWARD:String = 'fast_forward';
+        public static const FAST_REWIND:String = 'fast_rewind';
+        public static const FEATURE_PLAY_LIST:String = 'featured_play_list';
+        public static const FEATURE_VIDEO:String = 'featured_video';
+        public static const FIBER_DVR:String = 'fiber_dvr';
+        public static const FIBER_MANUAL_RECORD:String = 'fiber_manual_record';
+        public static const FIBER_NEW:String = 'fiber_new';
+        public static const FIBER_PIN:String = 'fiber_pin';
+        public static const FIBER_SMART_RECORD:String = 'fiber_smart_record';
+        public static const FORWARD_10:String = 'forward_10';
+
+        public static const FORWARD_30:String = 'forward_30';
+        public static const FORWARD_5:String = 'forward_5';
+        public static const GAMES:String = 'games';
+        public static const HD:String = 'hd';
+        public static const HEARING:String = 'hearing';
+        public static const HIGH_QUALITY:String = 'high_quality';
+        public static const LIBRARY_ADD:String = 'library_add';
+        public static const LIBRARY_BOOKS:String = 'library_books';
+        public static const LIBRARY_MUSIC:String = 'library_music';
+        public static const LOOP:String = 'loop';
+
+        public static const MIC_:String = 'mic';
+        public static const MIC_NONE:String = 'mic_none';
+        public static const MIC_OFF:String = 'mic_off';
+        public static const MOVIE:String = 'movie';
+        public static const MUSIC_VIDEO:String = 'music_video';
+        public static const NEW_RELEASES:String = 'new_releases';
+        public static const NOT_INTERESTED:String = 'not_interested';
+        public static const NOTE:String = 'note';
+        public static const PAUSE:String = 'pause';
+        public static const PAUSE_CIRCLE_FILLED:String = 'pause_circle_filled';
+
+        public static const PAUSE_CIRCLE_OUTLINE:String = 'pause_circle_outline';
+        public static const PLAY_ARROW:String = 'play_arrow';
+        public static const PLAY_CIRCLE_FILLED:String = 'play_circle_filled';
+        public static const PLAY_CIRCLE_OUTLINE:String = 'play_circle_outline';
+        public static const PLAYLIST_ADD:String = 'playlist_add';
+        public static const PLAYLIST_ADD_CHECK:String = 'playlist_add_check';
+        public static const PLAYLIST_PLAY:String = 'playlist_play';
+        public static const QUEUE:String = 'queue';
+        public static const QUEUE_MUSIC:String = 'queue_music';
+        public static const QUEUE_PLAY_NEXT:String = 'queue_play_next';
+
+        public static const RADIO:String = 'radio';
+        public static const RECENT_ACTORS:String = 'recent_actors';
+        public static const REMOVE_FROM_QUEUE:String = 'remove_from_queue';
+        public static const REPEAT:String = 'repeat';
+        public static const REPEAT_ONE:String = 'repeat_one';
+        public static const REPLAY:String = 'replay';
+        public static const REPLAY_10:String = 'replay_10';
+        public static const REPLAY_30:String = 'replay_30';
+        public static const REPLAY_5:String = 'replay_5';
+        public static const SHUFFLE:String = 'shuffle';
+
+        public static const SKIP_NEXT:String = 'skip_next';
+        public static const SKIP_PREVIOUS:String = 'skip_previous';
+        public static const SLOW_MOTION_VIDEO:String = 'slow_motion_video';
+        public static const SNOOZE:String = 'snooze';
+        public static const SORT_BY_ALPHA:String = 'sort_by_alpha';
+        public static const STOP:String = 'stop';
+        public static const SUBSCRIPTIONS:String = 'subscriptions';
+        public static const SUBTITLES:String = 'subtitles';
+        public static const SURROUND_SOUND:String = 'surround_sound';
+        public static const VIDEO_CALL:String = 'video_call';
+
+        public static const VIDEO_LABEL:String = 'video_label';
+        public static const VIDEO_LIBRARY:String = 'video_library';
+        public static const VIDEOCAM:String = 'videocam';
+        public static const VIDEOCAM_OFF:String = 'videocam_off';
+        public static const VOLUME_DOWN:String = 'volume_down';
+        public static const VOLUME_MUTE:String = 'volume_mute';
+        public static const VOLUME_OFF:String = 'volume_off';
+        public static const VOLUME_UP:String = 'volume_up';
+        public static const WEB:String = 'web';
+        public static const WEB_ASSET:String = 'web_asset';
+
+        public static const BUSINESS:String = 'business';
+        public static const CALL:String = 'call';
+        public static const CALL_END:String = 'call_end';
+        public static const CALL_MADE:String = 'call_made';
+        public static const CALL_MERGE:String = 'call_merge';
+        public static const CALL_MISSED:String = 'call_missed';
+        public static const CALL_MISSED_OUTGOING:String = 'call_missed_outgoing';
+        public static const CALL_RECEIVED:String = 'call_received';
+        public static const CALL_SPLIT:String = 'call_split';
+        public static const CHAT:String = 'chat';
+
+        public static const CHAT_BUBBLE:String = 'chat_bubble';
+        public static const CHAT_BUBBLE_OUTLINE:String = 'chat_bubble_outline';
+        public static const CLEAR_ALL:String = 'clear_all';
+        public static const COMMENT:String = 'comment';
+        public static const CONTACT_MAIL:String = 'contact_mail';
+        public static const CONTACT_PHONE:String = 'contact_phone';
+        public static const CONTACTS:String = 'contacts';
+        public static const DIALER_SIP:String = 'dialer_sip';
+        public static const DIALPAD:String = 'dialpad';
+        public static const EMAIL:String = 'email';
+
+        public static const forum:String = 'forum';
+        public static const import_contacts:String = 'import_contacts';
+        public static const import_export:String = 'import_export';
+        public static const invert_colors_off:String = 'invert_colors_off';
+        public static const live_help:String = 'live_help';
+        public static const location_off:String = 'location_off';
+        public static const location_on:String = 'location_on';
+        public static const mail_outline:String = 'mail_outline';
+        public static const message:String = 'message';
+        public static const no_sim:String = 'no_sim';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -284,116 +405,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'add_to_queue',
-        'airplay',
-        'album',
-        'art_track',
-        'av_timer',
-        'branding_watermark',
-        'call_to_action',
-        'closed_caption',
-        'equalizer',
-        'explicit',
-        'fast_forward',
-        'fast_rewind',
-        'featured_play_list',
-        'featured_video',
-        'fiber_dvr',
-        'fiber_manual_record',
-        'fiber_new',
-        'fiber_pin',
-        'fiber_smart_record',
-        'forward_10',
-        'forward_30',
-        'forward_5',
-        'games',
-        'hd',
-        'hearing',
-        'high_quality',
-        'library_add',
-        'library_books',
-        'library_music',
-        'loop',
-        'mic',
-        'mic_none',
-        'mic_off',
-        'movie',
-        'music_video',
-        'new_releases',
-        'not_interested',
-        'note',
-        'pause',
-        'pause_circle_filled',
-        'pause_circle_outline',
-        'play_arrow',
-        'play_circle_filled',
-        'play_circle_outline',
-        'playlist_add',
-        'playlist_add_check',
-        'playlist_play',
-        'queue',
-        'queue_music',
-        'queue_play_next',
-        'radio',
-        'recent_actors',
-        'remove_from_queue',
-        'repeat',
-        'repeat_one',
-        'replay',
-        'replay_10',
-        'replay_30',
-        'replay_5',
-        'shuffle',
-        'skip_next',
-        'skip_previous',
-        'slow_motion_video',
-        'snooze',
-        'sort_by_alpha',
-        'stop',
-        'subscriptions',
-        'subtitles',
-        'surround_sound',
-        'video_call',
-        'video_label',
-        'video_library',
-        'videocam',
-        'videocam_off',
-        'volume_down',
-        'volume_mute',
-        'volume_off',
-        'volume_up',
-        'web',
-        'web_asset',
-        'business',
-        'call',
-        'call_end',
-        'call_made',
-        'call_merge',
-        'call_missed',
-        'call_missed_outgoing',
-        'call_received',
-        'call_split',
-        'chat',
-        'chat_bubble',
-        'chat_bubble_outline',
-        'clear_all',
-        'comment',
-        'contact_mail',
-        'contact_phone',
-        'contacts',
-        'dialer_sip',
-        'dialpad',
-        'email',
-        'forum',
-        'import_contacts',
-        'import_export',
-        'invert_colors_off',
-        'live_help',
-        'location_off',
-        'location_on',
-        'mail_outline',
-        'message',
-        'no_sim',
         'phone',
         'phonelink_erase',
         'phonelink_lock',

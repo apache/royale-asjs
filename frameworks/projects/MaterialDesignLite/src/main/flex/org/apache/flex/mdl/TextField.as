@@ -28,13 +28,22 @@ package org.apache.flex.mdl
     }
     
     /**
-     *  The TextField class provides a Material Design Library UI-like appearance for
-     *  a TextInput.
+     *  The TextField is a input components.
+     *
+     *  The Material Design Lite (MDL) text field component is an enhanced version
+     *  of the standard HTML <input type="text"> elements.
+     *  A text field consists of a horizontal line indicating where keyboard input can
+     *  occur and, typically, text that clearly communicates the intended contents of
+     *  the text field. The MDL text field component provides various types of text fields,
+     *  and allows you to add both display and click effects.
+     *
+     *  To get more functionaluty in TextFields you can use beads to make the expandable,
+     *  or have a prompt for example.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */    
 	public class TextField extends TextFieldBase
 	{
@@ -44,7 +53,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function TextField()
 		{

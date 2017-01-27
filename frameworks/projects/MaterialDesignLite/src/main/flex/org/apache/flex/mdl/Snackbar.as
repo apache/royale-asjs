@@ -20,20 +20,38 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.mdl.beads.models.ISnackbarModel;
 
+    
+    [Event(name="action", type="org.apache.flex.events.Event")]
+
     /**
-     *  Dispatched when the user click on Snackbar
+     *  Snackbar are transient popup notifications without actions.
+     *  
+     *  The Material Design Lite (MDL) snackbar component is a container used to notify
+     *  a user of an operation's status. It displays at the bottom of the screen. 
+     *  A snackbar may contain an action button to execute a command for the user.
+     *  Actions should undo the committed action or retry it if it failed for example. 
+     *  Actions should not be to close the snackbar. 
+     *  By not providing an action, the snackbar becomes a toast component (see Toast class)
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    [Event(name="action", type="org.apache.flex.events.Event")]
-
-    COMPILE::SWF
     public class Snackbar extends Toast
     {
-        private var _actionText:String;
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function Snackbar()
+        {
+            super();
+        }
         
         /**
          *  Text which appears on action button
@@ -41,37 +59,28 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
-        public function get actionText():String
-        {
-            return _actionText;
-        }
-
-        public function set actionText(value:String):void
-        {
-            _actionText = value;
-        }
-    }
-
-    COMPILE::JS
-    public class Snackbar extends Toast
-    {
-        public function Snackbar()
-        {
-            super();
-        }
-        
         public function get actionText():String
         {
             return ISnackbarModel(model).actionText;
         }
-
+        /**
+         *  @private
+         */
         public function set actionText(value:String):void
         {
             ISnackbarModel(model).actionText = value;
         }
 
+        /**
+         *  Show the snackbar
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         override public function show():void
         {
             if (snackbar)

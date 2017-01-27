@@ -39,7 +39,7 @@ package org.apache.flex.mdl
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Tabs extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
 	{
@@ -49,7 +49,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Tabs()
 		{
@@ -64,12 +64,15 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get dataProvider():Object
         {
             return ITabModel(model).dataProvider;
         }
+        /**
+         *  @private
+         */
         public function set dataProvider(value:Object):void
         {
             ITabModel(model).dataProvider = value;
@@ -87,7 +90,9 @@ package org.apache.flex.mdl
 		{
 			return ITabModel(model).tabIdField;
 		}
-
+        /**
+         *  @private
+         */
 		public function set tabIdField(value:String):void
 		{
 			ITabModel(model).tabIdField = value;
@@ -105,6 +110,9 @@ package org.apache.flex.mdl
         {
             return ITabModel(model).labelField;
         }
+        /**
+         *  @private
+         */
         public function set labelField(value:String):void
         {
             ITabModel(model).labelField = value;
@@ -172,12 +180,15 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get ripple():Boolean
         {
             return _ripple;
         }
+        /**
+         *  @private
+         */
         public function set ripple(value:Boolean):void
         {
             _ripple = value;

@@ -18,26 +18,40 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.mdl.beads.models.IToastModel;
-
-    COMPILE::SWF
-    {
-        import flash.events.Event;
-    }
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
 
     COMPILE::JS
-    {
-        import org.apache.flex.events.Event;
-        import org.apache.flex.core.UIBase;
+    {    
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    COMPILE::SWF
-    public class Toast extends EventDispatcher
+    /**
+     *  Toast are transient popup notifications without actions like Snackbar (see
+     *  Snackbar class) without user actions implied.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    public class Toast extends UIBase
     {
-        private var _message:String;
-        private var _timeout:int = 2750;
+        /**
+         *  Constructor.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function Toast()
+        {
+            super();
+
+            className = "";
+        }
 
         /**
          *  Message to be displayed on Snackbar
@@ -45,16 +59,18 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get message():String
         {
-            return _message;
+            return IToastModel(model).message;
         }
-
+        /**
+         *  @private
+         */
         public function set message(value:String):void
         {
-            _message = value;
+            IToastModel(model).message = value;
         }
 
         /**
@@ -64,16 +80,18 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get timeout():int
         {
-            return _timeout;
+            return IToastModel(model).timeout;
         }
-
+        /**
+         *  @private
+         */
         public function set timeout(value:int):void
         {
-            _timeout = value;
+            IToastModel(model).timeout = value;
         }
 
         /**
@@ -82,49 +100,8 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
-        public function show():void
-        {
-            dispatchEvent(new Event("action"));
-        }
-    }
-
-    COMPILE::JS
-    public class Toast extends UIBase
-    {
-        public function Toast()
-        {
-            super();
-
-            className = "";
-        }
-
-        protected var snackbar:Object;
-
-        private var snackbarAction:HTMLButtonElement;
-        private var snackbarText:HTMLDivElement;
-
-        public function get message():String
-        {
-            return IToastModel(model).message;
-        }
-
-        public function set message(value:String):void
-        {
-            IToastModel(model).message = value;
-        }
-
-        public function get timeout():int
-        {
-            return IToastModel(model).timeout;
-        }
-
-        public function set timeout(value:int):void
-        {
-            IToastModel(model).timeout = value;
-        }
-
         public function show():void
         {
             if (snackbar)
@@ -132,7 +109,16 @@ package org.apache.flex.mdl
                 var snackbarData:Object = IToastModel(model).snackbarData;
                 snackbar.showSnackbar(snackbarData);
             }
+            //dispatchEvent(new Event("action"));
         }
+
+        protected var snackbar:Object;
+
+        COMPILE::JS
+        private var snackbarAction:HTMLButtonElement;
+
+        COMPILE::JS
+        private var snackbarText:HTMLDivElement;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -141,6 +127,7 @@ package org.apache.flex.mdl
          *
          * @return
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-js-snackbar mdl-snackbar";
@@ -162,6 +149,9 @@ package org.apache.flex.mdl
             return element;
         }
 
+        /**
+         *  @private
+         */
         private function onElementMdlComponentUpgraded(event:Event):void
         {
             if (!event.currentTarget) return;

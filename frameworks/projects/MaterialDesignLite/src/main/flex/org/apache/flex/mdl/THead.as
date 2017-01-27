@@ -26,13 +26,13 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The THead class is a Container component capable of parenting
-	 *  TableColumn for MDL Table
+	 *  The THead class is a Container component capable of parenting columns
+	 *  (see TableColumn class) for MDL Table
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class THead extends ContainerBase
 	{
@@ -42,7 +42,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function THead()
 		{

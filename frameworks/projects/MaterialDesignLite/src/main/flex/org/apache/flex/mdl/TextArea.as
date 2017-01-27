@@ -28,14 +28,23 @@ package org.apache.flex.mdl
     }
     
     /**
-     *  The TextArea class provides a Material Design Library UI-like appearance for
-     *  a TextField with multiple lines
+     *  The TextArea is a multiline input components.
+     *
+     *  The Material Design Lite (MDL) text area component is an enhanced version
+     *  of the standard HTML <input type="textarea"> elements.
+     *  A text area consists of a horizontal line indicating where keyboard input can
+     *  occur and, typically, text that clearly communicates the intended contents of
+     *  the text area. The MDL text area component provides various types of text fields,
+     *  and allows you to add both display and click effects.
+     *
+     *  To get more functionaluty in TextArea you can use beads to float a label 
+     *  or have a prompt for example.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */    
+     *  @productversion FlexJS 0.8
+     */   
 	public class TextArea extends TextFieldBase
 	{
         /**
@@ -44,7 +53,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function TextArea()
 		{
@@ -60,12 +69,15 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get rows():int
         {
             return _rows;
         }
+        /**
+         *  @private
+         */
         public function set rows(value:int):void
         {
             _rows = value;
@@ -78,17 +90,21 @@ package org.apache.flex.mdl
 
         private var _maxrows:int = 0;
         /**
-		 *  The max number of rows in the textarea. Defaults to 0
+		 *  The max number of rows in the textarea.
 		 *
+         *  @default 0
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get maxrows():int
         {
             return _maxrows;
         }
+        /**
+         *  @private
+         */
         public function set maxrows(value:int):void
         {
             _maxrows = value;
