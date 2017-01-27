@@ -34,13 +34,24 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The TabBar class is a Container component capable of parenting other
-	 *  components 
+	 *  The Material Design Lite (MDL) tab bar component is a user interface element that allows
+     *  different content blocks to share the same screen space in a mutually exclusive manner.
+     *  TabBars are always presented in sets of two or more, and they make it easy to explore and
+     *  switch among different views or functional aspects of an app, or to browse categorized
+     *  data sets individually. TabBars serve as "headings" for their respective content; the active
+     *  tab bar panel — the one whose content is currently displayed — is always visually distinguished from
+     *  the others so the user knows which heading the current content belongs to.
+     *  
+     *  Notice that tab bars are not designed in MDL to be nested (and not recommended), and doing so
+     *  will be cause mal function.
+     *
+     *  In FlexJS Tabs consume a dataprovider and uses item renderers to create each item (defaults
+     *  to TabBarButtonTabsItemRenderer)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TabBar extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost, IChrome
 	{
@@ -50,7 +61,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TabBar()
 		{
@@ -65,7 +76,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get dataProvider():Object
         {
@@ -82,7 +93,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get labelField():String
         {
@@ -99,7 +110,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get tabIdField():String
         {
@@ -169,7 +180,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
         */ 
 		COMPILE::JS
 		override public function addedToParent():void
@@ -199,7 +210,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get ripple():Boolean
         {

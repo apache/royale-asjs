@@ -25,13 +25,21 @@ package org.apache.flex.mdl
         import org.apache.flex.core.WrappedHTMLElement;
     }
     /**
-     *  The Spinner class provides a MDL UI-like appearance for
-     *  a Spinner.
+     *  The Material Design Lite (MDL) spinner component is an enhanced replacement for
+     *  the classic "wait cursor" (which varies significantly among hardware and software
+     *  versions) and indicates that there is an ongoing process, the results of which are
+     *  not yet available. A spinner consists of an open circle that changes colors as it 
+     *  animates in a clockwise direction, and clearly communicates that a process has been
+     *  started but not completed.
+     *
+     *  A spinner performs no action itself, either by its display nor when the user clicks
+     *  or touches it, and does not indicate a process's specific progress or degree of completion.
+     *  The MDL spinner component provides various types of spinners, and allows you to add display effects.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     public class Spinner extends UIBase
     {
@@ -49,13 +57,15 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get isActive():Boolean
         {
             return _isActive;
         }
-
+        /**
+         *  @private
+         */
         public function set isActive(value:Boolean):void
         {
             _isActive = value;

@@ -27,20 +27,21 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Table class is a Container component capable of parenting other
-	 *  four components (CardTitle, CardMedia, CardSupportingText and CardActions. 
-     *  The Panel uses the following bead types:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Card.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Card.
+	 *  The Material Design Lite (MDL) data-table component is an enhanced version of
+	 *  the standard HTML <table>. A data-table consists of rows and columns of well-formatted
+	 *  data, presented with appropriate user interaction capabilities.
+	 *
+	 *  The available row/column/cell types in a data-table are mostly self-formatting; that is,
+	 *  once the data-table is defined, the individual cells require very little specific attention.
+	 *  For example, the rows exhibit shading behavior on mouseover and selection, numeric values are
+	 *  automatically formatted by default, and the addition of a single class makes the table rows
+	 *  individually or collectively selectable. This makes the data-table component convenient and easy
+	 *  to code for the developer, as well as attractive and intuitive for the user.
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class Table extends List
 	{
@@ -50,7 +51,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function Table()
 		{
@@ -66,7 +67,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get columns():Array
         {
@@ -87,20 +88,30 @@ package org.apache.flex.mdl
 			}
         }
 
+		/**
+         *  @copy org.apache.flex.core.IParent#addElement()
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         *  @flexjsignorecoercion org.apache.flex.core.IUIBase
+         */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			/*COMPILE::SWF
+			COMPILE::SWF
             {
-                if(_elements == null)
+				// this part is not done for Table
+                /*if(_elements == null)
                     _elements = [];
                 _elements[_elements.length] = c;
                 $displayObjectContainer.addChild(c.$displayObject);
                 if (c is IUIBase)
                 {
                     IUIBase(c).addedToParent();
-                }
-                    
-            }*/
+                }*/
+            }
+
             COMPILE::JS
             {
 				if(c is THead) {
@@ -152,7 +163,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get shadow():Number
         {
@@ -183,7 +194,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get selectable():Boolean
         {

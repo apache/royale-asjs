@@ -62,7 +62,7 @@ package org.apache.flex.mdl
 		}
 
 		/**
-         *  data provider
+         *  @copy org.apache.flex.core.IDataProviderModel#dataProvider
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -82,7 +82,7 @@ package org.apache.flex.mdl
 		}
 
 		/**
-         *  label field
+         *  @copy org.apache.flex.core.IDataProviderModel#labelField
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

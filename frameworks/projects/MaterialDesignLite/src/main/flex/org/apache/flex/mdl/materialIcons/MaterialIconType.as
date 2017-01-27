@@ -393,6 +393,72 @@ package org.apache.flex.mdl.materialIcons
         public static const message:String = 'message';
         public static const no_sim:String = 'no_sim';
 
+        public static const PHONE:String = 'phone';
+        public static const PHONELINK_ERASE:String = 'phonelink_erase';
+        public static const PHONELINK_LOCK:String = 'phonelink_lock';
+        public static const PHONELINK_RING:String = 'phonelink_ring';
+        public static const PHONELINK_SETUP:String = 'phonelink_setup';
+        public static const PORTABLE_WIFI_OFF:String = 'portable_wifi_off';
+        public static const PRESENT_TO_ALL:String = 'present_to_all';
+        public static const RING_VOLUME:String = 'ring_volume';
+        public static const RSS_FEED:String = 'rss_feed';
+        public static const SCREEN_SHARE:String = 'screen_share';
+
+        public static const SPEAKER_PHONE:String = 'speaker_phone';
+        public static const STAY_CURRENT_LANDSCAPE:String = 'stay_current_landscape';
+        public static const STAY_CURRENT_PORTRAIT:String = 'stay_current_portrait';
+        public static const STAY_PRIMARY_LANDSCAPE:String = 'stay_primary_landscape';
+        public static const STAY_PRIMARY_PORTRAIT:String = 'stay_primary_portrait';
+        public static const STOP_SCREEN_SHARE:String = 'stop_screen_share';
+        public static const SWAP_CALLS:String = 'swap_calls';
+        public static const TEXTSMS:String = 'textsms';
+        public static const VOICEMAIL:String = 'voicemail';
+        public static const VPN_KEY:String = 'vpn_key';
+
+        public static const ADD:String = 'add';
+        public static const ADD_BOX:String = 'add_box';
+        public static const ADD_CIRCLE:String = 'add_circle';
+        public static const ADD_CIRCLE_OUTLINE:String = 'add_circle_outline';
+        public static const ARCHIVE:String = 'archive';
+        public static const BACKSPACE:String = 'backspace';
+        public static const BLOCK:String = 'block';
+        public static const CLEAR:String = 'clear';
+        public static const CONTENT_COPY:String = 'content_copy';
+        public static const CONTENT_CUT:String = 'content_cut';
+
+        public static const CONTENT_PASTE:String = 'content_paste';
+        public static const CREATE:String = 'create';
+        public static const DELETE_SWEEP:String = 'delete_sweep';
+        public static const DRAFTS:String = 'drafts';
+        public static const FILTER_LIST:String = 'filter_list';
+        public static const FLAG:String = 'flag';
+        public static const FONT_DOWNLOAD:String = 'font_download';
+        public static const FORWARD:String = 'forward';
+        public static const GESTURE:String = 'gesture';
+        public static const INBOX:String = 'inbox';
+
+        public static const LINK:String = 'link';
+        public static const LOW_PRIORITY:String = 'low_priority';
+        public static const MAIL:String = 'mail';
+        public static const MARKUNREAD:String = 'markunread';
+        public static const MOVE_TO_INBOX:String = 'move_to_inbox';
+        public static const NEXT_WEEK:String = 'next_week';
+        public static const REDO:String = 'redo';
+        public static const REMOVE:String = 'remove';
+        public static const REMOVE_CIRCLE:String = 'remove_circle';
+        public static const REMOVE_CIRCLE_OUTLINE:String = 'remove_circle_outline';
+
+        public static const REPLY:String = 'reply';
+        public static const REPLY_ALL:String = 'reply_all';
+        public static const REPORT:String = 'report';
+        public static const SAVE:String = 'save';
+        public static const SELECT_ALL:String = 'select_all';
+        public static const SEND:String = 'send';
+        public static const SORT:String = 'sort';
+        public static const TEXT_FORMAT:String = 'text_format';
+        public static const UNARCHIVE:String = 'unarchive';
+        public static const UNDO:String = 'undo';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -405,66 +471,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'phone',
-        'phonelink_erase',
-        'phonelink_lock',
-        'phonelink_ring',
-        'phonelink_setup',
-        'portable_wifi_off',
-        'present_to_all',
-        'ring_volume',
-        'rss_feed',
-        'screen_share',
-        'speaker_phone',
-        'stay_current_landscape',
-        'stay_current_portrait',
-        'stay_primary_landscape',
-        'stay_primary_portrait',
-        'stop_screen_share',
-        'swap_calls',
-        'textsms',
-        'voicemail',
-        'vpn_key',
-        'add',
-        'add_box',
-        'add_circle',
-        'add_circle_outline',
-        'archive',
-        'backspace',
-        'block',
-        'clear',
-        'content_copy',
-        'content_cut',
-        'content_paste',
-        'create',
-        'delete_sweep',
-        'drafts',
-        'filter_list',
-        'flag',
-        'font_download',
-        'forward',
-        'gesture',
-        'inbox',
-        'link',
-        'low_priority',
-        'mail',
-        'markunread',
-        'move_to_inbox',
-        'next_week',
-        'redo',
-        'remove',
-        'remove_circle',
-        'remove_circle_outline',
-        'reply',
-        'reply_all',
-        'report',
-        'save',
-        'select_all',
-        'send',
-        'sort',
-        'text_format',
-        'unarchive',
-        'undo',
         'weekend',
         'access_alarm',
         'access_alarms',
@@ -1010,7 +1016,6 @@ package org.apache.flex.mdl.materialIcons
         */
 
         public static const CANCEL:String = "cancel";
-        public static const ADD:String = "add";
         public static const PERSON:String = "person";
         public static const STAR:String = "star";
         public static const SHARE:String = "share";

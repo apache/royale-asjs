@@ -26,12 +26,12 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The TableCell class is a Cell for MDL Table used normaly in a TableItemRenderer
+	 *  The TableCell class is a Cell for MDL Table used normaly in a TableRowItemRenderer
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TableCell extends ContainerBase
 	{
@@ -41,7 +41,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TableCell()
 		{
@@ -56,7 +56,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get text():String
 		{
@@ -97,14 +97,14 @@ package org.apache.flex.mdl
 
 		private var _nonNumeric:Boolean;
         /**
-         * Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
-         * Applies text formatting to data cell. Numeric is the default
-		 * Optional; goes on both table header and table data cells 
+         *  Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
+         *  Applies text formatting to data cell. Numeric is the default
+		 *  Optional; goes on both table header and table data cells 
 		 * 
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+		 *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
          */
         public function get nonNumeric():Boolean
         {

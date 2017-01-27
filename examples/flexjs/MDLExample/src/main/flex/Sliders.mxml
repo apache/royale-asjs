@@ -35,13 +35,11 @@ limitations under the License.
 
             private function onValueChange1(event:Event):void
             {
-                trace("value 1 change: " + slider1.value);
                 slider1_txt.text = "Slider 1 Value: " + slider1.value;
             }
 
             private function onValueChange2(event:Event):void
             {
-                trace("value 2 change: " + slider2.value);
                 slider2_txt.text = "Slider 2 Value: " + slider2.value;
             }
         ]]>

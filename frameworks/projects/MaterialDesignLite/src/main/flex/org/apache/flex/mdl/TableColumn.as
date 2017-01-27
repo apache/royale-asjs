@@ -28,12 +28,13 @@ package org.apache.flex.mdl
 	/**
 	 *  The TableColumn class represents an HTML <th> element that
      *  be inside a <thead> in a MLD Table
+     *  Use instances of this class in columns Array property MDL Table
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TableColumn extends ContainerBase
 	{
@@ -43,7 +44,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TableColumn()
 		{
@@ -53,12 +54,12 @@ package org.apache.flex.mdl
         private var _headerText:String = "";
 
         /**
-         *  The text of the td
+         *  The text of the th
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get headerText():String
 		{
@@ -99,14 +100,14 @@ package org.apache.flex.mdl
 
         private var _nonNumeric:Boolean;
         /**
-         * Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
-         * Applies text formatting to data cell
-		 * Optional; goes on both table header and table data cells 
+         *  Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
+         *  Applies text formatting to data cell
+		 *  Optional; goes on both table header and table data cells 
 		 * 
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get nonNumeric():Boolean
         {
@@ -132,7 +133,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get ascending():Boolean
         {
@@ -158,7 +159,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
         public function get descending():Boolean
         {

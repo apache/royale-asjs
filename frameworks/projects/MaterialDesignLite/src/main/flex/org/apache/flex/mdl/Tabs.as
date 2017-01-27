@@ -33,8 +33,16 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The Tabs class is a Container component capable of parenting other
-	 *  components 
+	 *  The Material Design Lite (MDL) tab component is a user interface element that allows
+     *  different content blocks to share the same screen space in a mutually exclusive manner.
+     *  Tabs are always presented in sets of two or more, and they make it easy to explore and
+     *  switch among different views or functional aspects of an app, or to browse categorized
+     *  data sets individually. Tabs serve as "headings" for their respective content; the active
+     *  tab — the one whose content is currently displayed — is always visually distinguished from
+     *  the others so the user knows which heading the current content belongs to.
+     *
+     *  In FlexJS Tabs consume a dataprovider and uses item renderers to create each item (defaults
+     *  to TabBarPanelItemRenderer)
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -84,7 +92,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
 		public function get tabIdField():String
 		{
@@ -104,7 +112,7 @@ package org.apache.flex.mdl
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion FlexJS 0.0
+         * @productversion FlexJS 0.8
          */
         public function get labelField():String
         {
@@ -118,27 +126,67 @@ package org.apache.flex.mdl
             ITabModel(model).labelField = value;
         }
 
+        /**
+         *  selected index
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function set selectedIndex(value:int):void
         {
             ITabModel(model).selectedIndex = value;
         }
 
+        /**
+         *  get layout host
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function getLayoutHost():ILayoutHost
         {
             return this;
         }
 
+        /**
+         *  get content view
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function get contentView():IParentIUIBase
         {
             return this;
         }
 
+        /**
+         *  get item renderer for index
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {
             var child:IItemRenderer = getElementAt(index) as IItemRenderer;
             return child;
         }
 
+        /**
+         *  remove all elements
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function removeAllElements():void
         {
             while (numElements > 0) {
@@ -147,6 +195,14 @@ package org.apache.flex.mdl
             }
         }
 
+        /**
+         *  update all item renderers
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
         public function updateAllItemRenderers():void
         {
             //todo: IItemRenderer does not define update function but DataItemRenderer does

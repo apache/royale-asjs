@@ -18,29 +18,70 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-
-    COMPILE::SWF
-    {
-        import org.apache.flex.html.ToggleTextButton;
-    }
+    import org.apache.flex.core.IToggleButtonModel;
+    import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.html.TextButton;
+    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IUIBase;
 
     COMPILE::JS
-    {
+    {    
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.core.UIBase;
     }
 
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+
     /**
-     *  The Switch class provides a MDL UI-like appearance for
-     *  a Switch.
+     *  Dispatched when the text label is changed.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    COMPILE::SWF
-    public class Switch extends org.apache.flex.html.ToggleTextButton
+    [Event(name="textChange", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Dispatched when the user clicks on Switch.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+
+    /**
+     *  Dispatched when Switch is being selected/unselected.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
+
+    /**
+     *  The Material Design Lite (MDL) switch component is an enhanced version of the
+     *  standard HTML <input type="checkbox"> element. A switch consists of a short horizontal
+     *  "track" with a prominent circular state indicator and, typically, text that clearly 
+     *  communicates a binary condition that will be set or unset when the user clicks or touches
+     *  it. Like checkboxes, switches may appear individually or in groups, and can be selected 
+     *  and deselected individually. However, switches provide a more intuitive visual representation
+     *  of their state: left/gray for off, right/colored for on. The MDL switch component allows you
+     *  to add both display and click effects.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    public class Switch extends TextButton implements IStrand, IEventDispatcher, IUIBase
     {
         /**
          *  Constructor.
@@ -48,15 +89,75 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function Switch()
         {
             super();
+
+            COMPILE::SWF
+            {
+                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            }
+
+            className = "";
+        }
+
+        /**
+         *  @copy org.apache.flex.html.Label#text
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        override public function get text():String
+        {
+            return IToggleButtonModel(model).text;
+        }
+        /**
+         *  @private
+         */
+        override public function set text(value:String):void
+        {
+            IToggleButtonModel(model).text = value;
+
+            COMPILE::JS
+            {
+                span.textContent = value;
+                dispatchEvent('textChange');
+            }
+        }
+
+        [Bindable("change")]
+        /**
+         *  <code>true</code> if the Switch is selected.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get selected():Boolean
+        {
+            return IToggleButtonModel(model).selected;
+        }
+
+        public function set selected(value:Boolean):void
+        {
+            if (IToggleButtonModel(model).selected != value)
+            {
+                IToggleButtonModel(model).selected = value;
+                dispatchEvent(new Event(Event.CHANGE))
+            }
+            
+            COMPILE::JS
+            {
+                input.checked = value;
+            }
         }
 
         private var _ripple:Boolean = false;
-        
         /**
          *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.
          *  Applies ripple click effect. May be used in combination with any other classes
@@ -64,7 +165,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function get ripple():Boolean
         {
@@ -74,29 +175,21 @@ package org.apache.flex.mdl
         public function set ripple(value:Boolean):void
         {
             _ripple = value;
-        }
-    }
 
-    COMPILE::JS
-    public class Switch extends UIBase
-    {
-        /**
-         *  Constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function Switch()
-        {
-            super();
-
-            className = "";
+            COMPILE::JS
+            {
+                element.classList.toggle("mdl-js-ripple-effect", _ripple);
+                typeNames = element.className;
+            }
         }
 
-        private var label:HTMLLabelElement;
-        private var input:HTMLInputElement;
+        COMPILE::JS
+        protected var label:HTMLLabelElement;
+
+        COMPILE::JS
+        protected var input:HTMLInputElement;
+
+        COMPILE::JS
         private var span:HTMLSpanElement;
 
         /**
@@ -105,6 +198,7 @@ package org.apache.flex.mdl
          * @flexjsignorecoercion HTMLInputElement
          * @flexjsignorecoercion HTMLSpanElement
          */
+        COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-switch mdl-js-switch";
@@ -129,42 +223,24 @@ package org.apache.flex.mdl
             (span as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
 
+            element.addEventListener("click", clickHandler, false);
+
             return element;
         }
 
-        private var _ripple:Boolean = false;
-        
-        public function get ripple():Boolean
+        COMPILE::JS
+        public function clickHandler(event:Event):void
         {
-            return _ripple;
+            event.preventDefault();
+            selected = !selected;
+            input.checked = selected;
+            label.classList.toggle("is-checked", selected);
         }
 
-        public function set ripple(value:Boolean):void
+        COMPILE::SWF
+        private function internalMouseHandler(event:MouseEvent) : void
         {
-            _ripple = value;
-
-            element.classList.toggle("mdl-js-ripple-effect", _ripple);
-            typeNames = element.className;
-        }
-
-        public function get text():String
-        {
-            return span.textContent;
-        }
-
-        public function set text(value:String):void
-        {
-            span.textContent = value;
-        }
-
-        public function get selected():Boolean
-        {
-            return input.checked;
-        }
-
-        public function set selected(value:Boolean):void
-        {
-            input.checked = value;
+            //selected = !selected;
         }
     }
 }

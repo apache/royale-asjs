@@ -27,15 +27,13 @@ package org.apache.flex.mdl
     
 	/**
 	 *  The TabBarPanel class is a Container component capable of parenting other
-	 *  four components
+	 *  four components. This class is used along with Tabs to separate content and
+	 *  present and organize data for the user.
 	 *  
-	 *  @see PanelWithControlBar
-	 *  @see ControlBar
-	 *  @see TitleBar
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class TabBarPanel extends ContainerBase
 	{
@@ -45,7 +43,7 @@ package org.apache.flex.mdl
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function TabBarPanel()
 		{
@@ -74,7 +72,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		COMPILE::JS
 		override public function addedToParent():void
@@ -99,7 +97,7 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function get isActive():Boolean
 		{

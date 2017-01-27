@@ -58,6 +58,11 @@ IconToggle
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
 }
 
+Switch
+{
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
+}
+
 Slider
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
@@ -147,4 +152,10 @@ FooterLinkList
         iThumbView: ClassReference("org.apache.flex.mdl.beads.SliderThumbView");
         iTrackView: ClassReference("org.apache.flex.mdl.beads.SliderTrackView");
     }
+
+    RadioButton
+	{
+		IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
+		IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
+	}
 }
