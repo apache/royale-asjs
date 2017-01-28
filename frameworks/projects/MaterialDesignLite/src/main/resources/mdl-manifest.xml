@@ -78,6 +78,7 @@
     <component id="NavigationLayoutContent" class="org.apache.flex.mdl.NavigationLayoutContent"/>
     <component id="Grid" class="org.apache.flex.mdl.Grid"/>
     <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
+    <component id="GridCellBehaviour" class="org.apache.flex.mdl.beads.GridCellBehaviour"/>
     <component id="Chip" class="org.apache.flex.mdl.Chip"/>
     <component id="ButtonChip" class="org.apache.flex.mdl.ButtonChip"/>
     <component id="DeletableChip" class="org.apache.flex.mdl.beads.DeletableChip"/>
