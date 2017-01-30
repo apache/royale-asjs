@@ -25,6 +25,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import org.apache.flex.mdl.materialIcons.MaterialIconType;
+            import org.apache.flex.events.MouseEvent;
 
             [Bindable]
             public var counter:int = 0;
@@ -91,11 +92,11 @@ limitations under the License.
 
         <js:Label text="RadioButtons throw 'change' event {counter6} times"/>
 
-        <!--<mdl:RadioButton groupName="g2" text="Black" click="counter7++"/>
+        <mdl:RadioButton groupName="g2" text="Black" click="counter7++"/>
         <mdl:RadioButton groupName="g2" text="White" click="counter7++"/>
         <mdl:RadioButton groupName="g2" text="Red" click="counter7++"/>
 
-        <js:Label text="RadioButtons throw 'click' event {counter7} times"/>-->
+        <js:Label text="RadioButtons throw 'click' event {counter7} times"/>
 
     </mdl:Grid>
 
