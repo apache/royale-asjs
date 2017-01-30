@@ -321,19 +321,20 @@ package org.apache.flex.mdl
             (icon.element as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
 
-            //element.addEventListener("click", clickHandler, false);
+            element.addEventListener("click", clickHandler, false);
             
             return element;
         };
 
-        /*COMPILE::JS
+        COMPILE::JS
         public function clickHandler(event:Event):void
         {
             event.preventDefault();
+            unselectAll();
             selected = !selected;
             (icon.element as HTMLInputElement).checked = selected;
             label.classList.toggle("is-checked", selected);
-        }*/
+        }
 
         protected var _ripple:Boolean = false;
         /**
@@ -359,16 +360,6 @@ package org.apache.flex.mdl
                 typeNames = element.className;
             }
         }
-        
-        /**
-         * @param e The event object.
-         */
-        private function selectionChangeHandler(e:Event):void 
-        {
-            // this should reset the icons in the non-selected radio
-            selectedValue = value;
-        }
-        
         
         override public function set id(value:String):void
         {
@@ -418,17 +409,14 @@ package org.apache.flex.mdl
         
         public function get selectedValue():Object
         {
-            var buttons:NodeList;
-            var groupName:String;
-            var i:int;
-            var n:int;
+            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var buttons:NodeList = document.getElementsByName(groupName);
+            var n:int = buttons.length;
 
-            groupName = (icon.element as HTMLInputElement).name as String;
-            buttons = document.getElementsByName(groupName);
-            n = buttons.length;
-
-            for (i = 0; i < n; i++) {
-                if (buttons[i].checked) {
+            for (var i:int = 0; i < n; i++)
+            {
+                if (buttons[i].checked)
+                {
                     return buttons[i].value;
                 }
             }
@@ -440,22 +428,42 @@ package org.apache.flex.mdl
          */
         public function set selectedValue(value:Object):void
         {
-            var buttons:NodeList;
-            var groupName:String;
-            var i:int;
-            var n:int;
+            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var buttons:NodeList = document.getElementsByName(groupName);
+            var n:int = buttons.length;
 
-            groupName = (icon.element as HTMLInputElement).name as String;
-            buttons = document.getElementsByName(groupName);
-            n = buttons.length;
-            for (i = 0; i < n; i++) {
-                if (buttons[i].value === value) {
+            for (var i:int = 0; i < n; i++)
+            {
+                if (buttons[i].value === value)
+                {
                     buttons[i].checked = true;
                     break;
                 }
             }
         }
 
+        COMPILE::JS
+        private function unselectAll():void
+        {
+            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var buttons:NodeList = document.getElementsByName(groupName);
+            var n:int = buttons.length;
+
+            for (var i:int = 0; i < n; i++)
+            {
+                var radio:HTMLInputElement = buttons[i];
+                radio.checked = false;
+
+                var labels:NodeList = radio["labels"];
+                var labelsLength:int = labels.length;
+                
+                for (var l:int = 0; l < labelsLength; l++)
+                {
+                    var lbl:Object = labels[l];
+                    lbl.classList.remove("is-checked");
+                }
+            }
+        }
         /**
          * @param e The event object.
          */
