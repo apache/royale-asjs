@@ -21,6 +21,7 @@
 
 <componentPackage>
     <component id="ParallelPlayBead" class="org.apache.flex.effects.beads.ParallelPlayBead"/>
+    <component id="SequencePlayBead" class="org.apache.flex.effects.beads.SequencePlayBead"/>
     <component id="ParallelReverseBead" class="org.apache.flex.effects.beads.ParallelReverseBead"/>
     <component id="Fade" class="org.apache.flex.effects.Fade"/>
     <component id="Move" class="org.apache.flex.effects.Move"/>
