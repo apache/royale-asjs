@@ -25,6 +25,7 @@ package org.apache.flex.effects.beads
 	import org.apache.flex.effects.ICompoundEffect;
 	import org.apache.flex.effects.IEffect;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	
 	public class ParallelReverseBead implements IBead
 	{
@@ -62,6 +63,7 @@ package org.apache.flex.effects.beads
 		
 		private function effectEndHandler(event:Event):void
 		{
+			(event.target as IEventDispatcher).removeEventListener(Effect.EFFECT_END, effectEndHandler);
 			current++;
 			if (current >= host.numChildren)
 				host.dispatchEvent(new Event(Effect.EFFECT_END));
