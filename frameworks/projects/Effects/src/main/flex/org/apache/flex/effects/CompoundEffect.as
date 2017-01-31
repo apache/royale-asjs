@@ -29,7 +29,7 @@ package org.apache.flex.effects
 	[DefaultProperty("children")]
 	
 	/**
-	 *  The ParallelStrand implements ICompoundEffect by dispatching events that should be handled by pluggable beads.
+	 *  CompoundEffect implements ICompoundEffect by dispatching events that should be handled by pluggable beads.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

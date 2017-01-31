@@ -55,9 +55,10 @@ package org.apache.flex.effects
 		function addChild(c:IEffect):void;
 		
 		/**
-		 *  Add an effect to the parent.
+		 *  Add an effect to the parent at a certain position.
 		 * 
 		 *  @param c The subeffect to add.
+		 *  @param index The position where the subeffect is added.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -104,7 +105,7 @@ package org.apache.flex.effects
 		/**
 		 *  Get an effect from the parent.
 		 * 
-		 *  @param c The index of the subeffect.
+		 *  @param index The position of the subeffect.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
