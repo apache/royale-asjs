@@ -104,6 +104,8 @@
     <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
     <component id="MaterialIcon" class="org.apache.flex.mdl.materialIcons.MaterialIcon"/>
     <component id="Footer" class="org.apache.flex.mdl.Footer"/>
+    <component id="FooterMiddleSection" class="org.apache.flex.mdl.FooterMiddleSection"/>
+    <component id="FooterDropDownSection" class="org.apache.flex.mdl.FooterDropDownSection"/>
     <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
     <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
     <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>

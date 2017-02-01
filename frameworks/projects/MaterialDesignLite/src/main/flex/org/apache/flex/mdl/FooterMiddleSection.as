@@ -27,7 +27,7 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterLeftSection class is a Container component capable of parenting other
+	 *  The FooterMiddleSection class is a Container component capable of parenting other
 	 *  components 
 	 *  
 	 *  @langversion 3.0
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class FooterLeftSection extends ContainerBase implements IFooterSection
+	public class FooterMiddleSection extends ContainerBase implements IFooterSection
 	{
 		/**
 		 *  constructor.
@@ -45,7 +45,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function FooterLeftSection()
+		public function FooterMiddleSection()
 		{
 			super();
 
@@ -58,7 +58,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer__left-section";
+			typeNames = "mdl-mega-footer__middle-section";
 
             element = document.createElement('div') as WrappedHTMLElement;
             
@@ -69,7 +69,7 @@ package org.apache.flex.mdl
         }
 
 		/**
-         *  Configuration depends on parent Footer or IFooterSection.
+         *  Configuration depends on parent Footer.
 		 *  Check to see if is mega or mini.
          *  
          *  @langversion 3.0
@@ -87,19 +87,16 @@ package org.apache.flex.mdl
 				element.classList.remove(typeNames);
 				if(!Footer(parent).mini)
 				{
-					typeNames = "mdl-mega-footer__left-section";
+					typeNames = "mdl-mega-footer__middle-section";
 				} else
 				{
-					typeNames = "mdl-mini-footer__left-section";
+					typeNames = "mdl-mini-footer__middle-section";
 				}
 				element.classList.add(typeNames);
-			} else if(parent is IFooterSection)
-			{
-
 			}
 			else
 			{
-				throw new Error("FooterLeftSection can not be used if parent is not a MDL Footer or IFooterSection component.");
+				throw new Error("FooterMiddleSection can not be used if parent is not a MDL Footer component.");
 			}			
         }
 	}

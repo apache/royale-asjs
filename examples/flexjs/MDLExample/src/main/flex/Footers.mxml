@@ -48,6 +48,60 @@ limitations under the License.
                 <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
             </mdl:FooterRightSection>
         </mdl:Footer>
+
+        <mdl:Footer width="600">
+            
+            <mdl:FooterTopSection>
+                 
+                <mdl:FooterLeftSection>
+                </mdl:FooterLeftSection>
+
+                <mdl:FooterRightSection>
+                    <mdl:FooterSocialButton>1</mdl:FooterSocialButton>
+                    <mdl:FooterSocialButton>2</mdl:FooterSocialButton>
+                    <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
+                </mdl:FooterRightSection>
+            </mdl:FooterTopSection>
+
+            <mdl:FooterMiddleSection>
+                
+                <mdl:FooterDropDownSection>
+                    <mdl:FooterLinkList>
+                        <mdl:beads>
+                            <js:ConstantBinding
+                                sourceID="model"
+                                sourcePropertyName="links"
+                                destinationPropertyName="dataProvider" />
+                        </mdl:beads>
+                    </mdl:FooterLinkList>
+                </mdl:FooterDropDownSection>
+
+                <mdl:FooterDropDownSection>
+                    <mdl:FooterLinkList>
+                        <mdl:beads>
+                            <js:ConstantBinding
+                                sourceID="model"
+                                sourcePropertyName="links"
+                                destinationPropertyName="dataProvider" />
+                        </mdl:beads>
+                    </mdl:FooterLinkList>
+                </mdl:FooterDropDownSection>
+            </mdl:FooterMiddleSection>
+
+            <mdl:FooterBottomSection>
+                <mdl:FooterLogo text="Mega-Footer Bottom Section Heading"/>
+                <mdl:FooterLinkList className="footerMiniLinkListItemRenderer">
+                    <mdl:beads>
+                        <js:ConstantBinding
+                            sourceID="model"
+                            sourcePropertyName="links"
+                            destinationPropertyName="dataProvider" />
+                    </mdl:beads>
+                </mdl:FooterLinkList>
+            </mdl:FooterBottomSection>
+
+        </mdl:Footer>
+        
     </mdl:Grid>
 
 </mdl:TabBarPanel>

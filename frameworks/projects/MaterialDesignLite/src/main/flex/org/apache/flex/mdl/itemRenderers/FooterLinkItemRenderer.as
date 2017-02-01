@@ -68,6 +68,29 @@ package org.apache.flex.mdl.itemRenderers
              _text = value;
 		}
 
+		private var _href:String = "#";
+        /**
+         *  the link url
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+		public function get href():String
+		{
+            return _href;   
+		}
+		public function set href(value:String):void
+		{
+            _href = value;
+            
+            COMPILE::JS
+            {
+                (a as HTMLElement).setAttribute('href', value);
+            }
+		}
+
 		COMPILE::JS
         private var textNode:Text;
 
@@ -101,8 +124,12 @@ package org.apache.flex.mdl.itemRenderers
 			}
 		}
 
+		COMPILE::JS
+        private var a:HTMLElement;
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLElement
 		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
@@ -110,10 +137,15 @@ package org.apache.flex.mdl.itemRenderers
         {
             element = document.createElement('li') as WrappedHTMLElement;
             
+			var a:HTMLElement = document.createElement('a') as HTMLElement;
+            a.setAttribute('href', href);
+
+			element.appendChild(a);
+
 			if(MXMLDescriptor == null)
 			{
 				textNode = document.createTextNode('') as Text;
-				element.appendChild(textNode);
+				a.appendChild(textNode);
 			}
 
             positioner = element;

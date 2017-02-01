@@ -27,7 +27,7 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterLeftSection class is a Container component capable of parenting other
+	 *  The FooterDropDownSection class is a Container component capable of parenting other
 	 *  components 
 	 *  
 	 *  @langversion 3.0
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class FooterLeftSection extends ContainerBase implements IFooterSection
+	public class FooterDropDownSection extends ContainerBase implements IFooterSection
 	{
 		/**
 		 *  constructor.
@@ -45,7 +45,7 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function FooterLeftSection()
+		public function FooterDropDownSection()
 		{
 			super();
 
@@ -58,7 +58,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-mega-footer__left-section";
+			typeNames = "mdl-mega-footer__drop-down-section";
 
             element = document.createElement('div') as WrappedHTMLElement;
             
@@ -69,38 +69,35 @@ package org.apache.flex.mdl
         }
 
 		/**
-         *  Configuration depends on parent Footer or IFooterSection.
+         *  Configuration depends on parent Footer.
 		 *  Check to see if is mega or mini.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
-        */ 
+        
 		COMPILE::JS
 		override public function addedToParent():void
         {
 			super.addedToParent();
 
-			if(parent is Footer)
+			if(parent is FooterMiddleSection)
 			{
 				element.classList.remove(typeNames);
 				if(!Footer(parent).mini)
 				{
-					typeNames = "mdl-mega-footer__left-section";
+					typeNames = "mdl-mega-footer__drop-down-section";
 				} else
 				{
-					typeNames = "mdl-mini-footer__left-section";
+					typeNames = "mdl-mini-footer__drop-down-section";
 				}
 				element.classList.add(typeNames);
-			} else if(parent is IFooterSection)
-			{
-
 			}
 			else
 			{
-				throw new Error("FooterLeftSection can not be used if parent is not a MDL Footer or IFooterSection component.");
+				throw new Error("FooterDropDownSection can not be used if parent is not a MDL FooterMiddleSection component.");
 			}			
-        }
+        }*/ 
 	}
 }

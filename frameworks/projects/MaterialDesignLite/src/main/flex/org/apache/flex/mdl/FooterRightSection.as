@@ -69,7 +69,7 @@ package org.apache.flex.mdl
         }
 
 		/**
-         *  Configuration depends on parent Footer.
+         *  Configuration depends on parent Footer or IFooterSection.
 		 *  Check to see if is mega or mini.
          *  
          *  @langversion 3.0
@@ -93,10 +93,13 @@ package org.apache.flex.mdl
 					typeNames = "mdl-mini-footer__right-section";
 				}
 				element.classList.add(typeNames);
+			} else if(parent is IFooterSection)
+			{
+
 			}
 			else
 			{
-				throw new Error("FooterRightSection can not be used if parent is not a MDL Footer component.");
+				throw new Error("FooterRightSection can not be used if parent is not a MDL Footer or IFooterSection component.");
 			}			
         }
 	}

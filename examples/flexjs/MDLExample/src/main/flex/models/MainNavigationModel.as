@@ -57,6 +57,7 @@ package models
             new NavigationLinkVO("Chips", "chips_panel"),
             new NavigationLinkVO("Sliders", "sliders_panel"),
             new NavigationLinkVO("Grids", "grids_panel"),
+            new NavigationLinkVO("Footers", "footers_panel"),
             new NavigationLinkVO("Tabs", "tabs_panel"),
             new NavigationLinkVO("Buttons", "buttons_panel"),
             new NavigationLinkVO("TextFields", "textfield_panel"),
@@ -68,7 +69,6 @@ package models
             new NavigationLinkVO("Loading", "loading_panel"),
             new NavigationLinkVO("Menu", "menus_panel"),
             new NavigationLinkVO("Badges", "badges_panel"),
-            new NavigationLinkVO("Footers", "footers_panel"),
             new NavigationLinkVO("Icons", "icons_panel")
         ];
 
