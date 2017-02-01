@@ -114,5 +114,6 @@
     <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
     <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
     <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
+    <component id="FooterHeading" class="org.apache.flex.mdl.beads.FooterHeading"/>
     
 </componentPackage>

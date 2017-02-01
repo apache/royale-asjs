@@ -23,7 +23,7 @@ package org.apache.flex.mdl.beads
 	import org.apache.flex.core.UIBase;
 	
 	/**
-	 *  The DialogTitle bead class is used in MDL Dialog to style the title.
+	 *  The FooterHeading bead class is used in MDL Footer Mega Drop Down Section to style the heading.
 	 *  You could add to some heading (H1 to H6) or other text component.
 	 *  
 	 *  @langversion 3.0
@@ -31,7 +31,7 @@ package org.apache.flex.mdl.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class DialogTitle implements IBead
+	public class FooterHeading implements IBead
 	{
 		/**
 		 *  constructor.
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function DialogTitle()
+		public function FooterHeading()
 		{
 		}
 
@@ -64,7 +64,7 @@ package org.apache.flex.mdl.beads
 			COMPILE::JS
 			{
 				var host:UIBase = value as UIBase;
-                host.className = "mdl-dialog__title";
+                host.className = "mdl-mega-footer__heading";
 			}
 		}
 	}

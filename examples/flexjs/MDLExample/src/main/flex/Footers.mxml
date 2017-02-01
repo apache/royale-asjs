@@ -31,7 +31,7 @@ limitations under the License.
         <mdl:Footer mini="true" width="500">
 
             <mdl:FooterLeftSection>
-                <mdl:FooterLogo text="Title"/>
+                <mdl:FooterLogo text="Mini-Footer"/>
                 <mdl:FooterLinkList className="footerMiniLinkListItemRenderer">
                     <mdl:beads>
                         <js:ConstantBinding
@@ -66,6 +66,11 @@ limitations under the License.
             <mdl:FooterMiddleSection>
                 
                 <mdl:FooterDropDownSection>
+                    <js:H1 text="Learning and Support">
+                        <js:beads>
+                            <mdl:FooterHeading/>
+                        </js:beads>
+                    </js:H1>
                     <mdl:FooterLinkList>
                         <mdl:beads>
                             <js:ConstantBinding
@@ -77,6 +82,27 @@ limitations under the License.
                 </mdl:FooterDropDownSection>
 
                 <mdl:FooterDropDownSection>
+                    <js:H1 text="Learning and Support">
+                        <js:beads>
+                            <mdl:FooterHeading/>
+                        </js:beads>
+                    </js:H1>
+                    <mdl:FooterLinkList>
+                        <mdl:beads>
+                            <js:ConstantBinding
+                                sourceID="model"
+                                sourcePropertyName="links"
+                                destinationPropertyName="dataProvider" />
+                        </mdl:beads>
+                    </mdl:FooterLinkList>
+                </mdl:FooterDropDownSection>
+
+                <mdl:FooterDropDownSection>
+                    <js:H1 text="Learning and Support">
+                        <js:beads>
+                            <mdl:FooterHeading/>
+                        </js:beads>
+                    </js:H1>
                     <mdl:FooterLinkList>
                         <mdl:beads>
                             <js:ConstantBinding
@@ -101,7 +127,7 @@ limitations under the License.
             </mdl:FooterBottomSection>
 
         </mdl:Footer>
-        
+
     </mdl:Grid>
 
 </mdl:TabBarPanel>
