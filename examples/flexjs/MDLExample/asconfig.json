@@ -6,7 +6,7 @@
         "js-output-type": "flexjs",
         "output": "./target/javascript"
     },
-    "additionalOptions": "-html-template=src/main/resources/mdl-js-index-template.html",
+    "additionalOptions": "-html-template=src/main/resources/mdl-js-index-template.html -compiler.exclude-defaults-css-files=HTML.swc:defaults.css",
     "files":
     [
         "src/main/flex/App.mxml"
