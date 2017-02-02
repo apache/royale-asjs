@@ -313,7 +313,7 @@ package org.apache.flex.mdl
             label.appendChild(icon);
             label.appendChild(radio);
 
-            label.addEventListener("click", clickHandler, false);
+            //label.addEventListener("click", clickHandler, false);
             
             element = label as WrappedHTMLElement;
             
@@ -327,12 +327,25 @@ package org.apache.flex.mdl
         };
 
         COMPILE::JS
+        override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+        {
+            if (type == "click")
+            {
+                icon.addEventListener("click", clickHandler, false);
+            }
+            else
+            {
+               super.addEventListener(type, handler);
+            }
+        }
+
+        COMPILE::JS
         public function clickHandler(event:Event):void
         {
-            event.preventDefault();
-            unselectAll();
+            //event.preventDefault();
+            //unselectAll();
             selected = !selected;
-            element.classList.toggle("is-checked", selected);
+            //element.classList.toggle("is-checked", selected);
         }
 
         protected var _ripple:Boolean = false;
@@ -434,7 +447,7 @@ package org.apache.flex.mdl
             }
         }
 
-        COMPILE::JS
+        /*COMPILE::JS
         private function unselectAll():void
         {
             var groupName:String = icon.name as String;
@@ -455,7 +468,8 @@ package org.apache.flex.mdl
                     lbl.classList.remove("is-checked");
                 }
             }
-        }
+        }*/
+
         /**
          * @param e The event object.
          */
