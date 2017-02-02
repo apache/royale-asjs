@@ -27,13 +27,11 @@ package org.apache.flex.mdl
         import org.apache.flex.core.IStrand;
         import org.apache.flex.core.IValueToggleButtonModel;
         import org.apache.flex.events.MouseEvent;
-        import org.apache.flex.html.RadioButton;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.supportClasses.RadioButtonIcon;
     }
 
     //--------------------------------------
@@ -282,7 +280,7 @@ package org.apache.flex.mdl
         protected static var radioCounter:int = 0;
 
         private var radio:HTMLSpanElement;
-        private var icon:RadioButtonIcon;
+        private var icon:HTMLInputElement;
         private var label:HTMLLabelElement;
         private var textNode:Text;
         
@@ -297,32 +295,34 @@ package org.apache.flex.mdl
         {
             typeNames = "mdl-radio mdl-js-radio";
 
-            icon = new RadioButtonIcon();
+            icon = document.createElement("input") as HTMLInputElement;
+            icon.type = "radio";
             icon.className = 'mdl-radio__button';
             icon.id = '_radio_' + RadioButton.radioCounter++;
-            
+
             textNode = document.createTextNode('') as Text;
 
             radio = document.createElement('span') as HTMLSpanElement;
             radio.className = 'mdl-radio__label';
+            radio.appendChild(textNode);
+            
             //radio.addEventListener('mouseover', mouseOverHandler, false);
             //radio.addEventListener('mouseout', mouseOutHandler, false);
             
-            label = document.createElement('label') as HTMLLabelElement;
-            label.appendChild(icon.element);
+            label = document.createElement("label") as HTMLLabelElement;
+            label.appendChild(icon);
             label.appendChild(radio);
-            radio.appendChild(textNode);
+
+            label.addEventListener("click", clickHandler, false);
             
             element = label as WrappedHTMLElement;
             
             positioner = element;
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
-            (icon.element as WrappedHTMLElement).flexjs_wrapper = this;
+            (icon as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
 
-            element.addEventListener("click", clickHandler, false);
-            
             return element;
         };
 
@@ -332,8 +332,7 @@ package org.apache.flex.mdl
             event.preventDefault();
             unselectAll();
             selected = !selected;
-            (icon.element as HTMLInputElement).checked = selected;
-            label.classList.toggle("is-checked", selected);
+            element.classList.toggle("is-checked", selected);
         }
 
         protected var _ripple:Boolean = false;
@@ -360,21 +359,14 @@ package org.apache.flex.mdl
                 typeNames = element.className;
             }
         }
-        
-        override public function set id(value:String):void
-        {
-            super.id = value;
-            label.id = value;
-            icon.element.id = value;
-        }
-        
+
         public function get groupName():String
         {
-            return (icon.element as HTMLInputElement).name as String;
+            return icon.name as String;
         }
         public function set groupName(value:String):void
         {
-            (icon.element as HTMLInputElement).name = value;
+            icon.name = value;
         }
         
         public function get text():String
@@ -390,26 +382,26 @@ package org.apache.flex.mdl
         /** @export */
         public function get selected():Boolean
         {
-            return (icon.element as HTMLInputElement).checked;
+            return icon.checked;
         }
         public function set selected(value:Boolean):void
         {
-            (icon.element as HTMLInputElement).checked = value;
+            icon.checked = value;
             dispatchEvent(new Event(Event.CHANGE))
         }
         
         public function get value():Object
         {
-            return (icon.element as HTMLInputElement).value;
+            return icon.value;
         }
         public function set value(v:Object):void
         {
-            (icon.element as HTMLInputElement).value = v as String;
+            icon.value = v as String;
         }
         
         public function get selectedValue():Object
         {
-            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var groupName:String = icon.name as String;
             var buttons:NodeList = document.getElementsByName(groupName);
             var n:int = buttons.length;
 
@@ -428,7 +420,7 @@ package org.apache.flex.mdl
          */
         public function set selectedValue(value:Object):void
         {
-            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var groupName:String = icon.name as String;
             var buttons:NodeList = document.getElementsByName(groupName);
             var n:int = buttons.length;
 
@@ -445,7 +437,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         private function unselectAll():void
         {
-            var groupName:String = (icon.element as HTMLInputElement).name as String;
+            var groupName:String = icon.name as String;
             var buttons:NodeList = document.getElementsByName(groupName);
             var n:int = buttons.length;
 
