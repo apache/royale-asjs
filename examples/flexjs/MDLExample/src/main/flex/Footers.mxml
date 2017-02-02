@@ -66,11 +66,7 @@ limitations under the License.
             <mdl:FooterMiddleSection>
                 
                 <mdl:FooterDropDownSection>
-                    <js:H1 text="Learning and Support">
-                        <js:beads>
-                            <mdl:FooterHeading/>
-                        </js:beads>
-                    </js:H1>
+                    <mdl:FooterHeading text="Learning and Support"/>
                     <mdl:FooterLinkList>
                         <mdl:beads>
                             <js:ConstantBinding
@@ -82,11 +78,7 @@ limitations under the License.
                 </mdl:FooterDropDownSection>
 
                 <mdl:FooterDropDownSection>
-                    <js:H1 text="Learning and Support">
-                        <js:beads>
-                            <mdl:FooterHeading/>
-                        </js:beads>
-                    </js:H1>
+                    <mdl:FooterHeading text="Learning and Support"/>
                     <mdl:FooterLinkList>
                         <mdl:beads>
                             <js:ConstantBinding
@@ -98,11 +90,7 @@ limitations under the License.
                 </mdl:FooterDropDownSection>
 
                 <mdl:FooterDropDownSection>
-                    <js:H1 text="Learning and Support">
-                        <js:beads>
-                            <mdl:FooterHeading/>
-                        </js:beads>
-                    </js:H1>
+                    <mdl:FooterHeading text="Learning and Support"/>
                     <mdl:FooterLinkList>
                         <mdl:beads>
                             <js:ConstantBinding
@@ -112,6 +100,7 @@ limitations under the License.
                         </mdl:beads>
                     </mdl:FooterLinkList>
                 </mdl:FooterDropDownSection>
+
             </mdl:FooterMiddleSection>
 
             <mdl:FooterBottomSection>

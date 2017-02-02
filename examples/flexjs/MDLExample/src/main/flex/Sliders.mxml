@@ -49,11 +49,7 @@ limitations under the License.
         
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <js:H2 id="slider1_txt">
-                        <js:beads>
-                            <mdl:CardTitleText/>
-                        </js:beads>
-                    </js:H2>
+                    <mdl:CardTitleText id="slider1_txt"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider id="slider1" change="onValueChange1(event)" input="onValueChange1(event)"/>
@@ -62,11 +58,7 @@ limitations under the License.
 
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <js:H2 id="slider2_txt">
-                        <js:beads>
-                            <mdl:CardTitleText/>
-                        </js:beads>
-                    </js:H2>
+                    <mdl:CardTitleText id="slider2_txt"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider id="slider2" minimum="0" maximum="10" value="2" stepSize="2" width="200" change="onValueChange2(event)" input="onValueChange2(event)"/>
@@ -75,11 +67,7 @@ limitations under the License.
 
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
-                    <js:H2 id="slider3_txt">
-                        <js:beads>
-                            <mdl:CardTitleText/>
-                        </js:beads>
-                    </js:H2>
+                    <mdl:CardTitleText id="slider3_txt"/>
                 </mdl:CardTitle>
                 <mdl:CardSupportingText>
                     <mdl:Slider minimum="0" maximum="10" value="2" stepSize="2" width="200">

@@ -30,11 +30,7 @@ limitations under the License.
 
     <mdl:Header>
         <mdl:HeaderRow>
-            <js:Span text="FlexJS Material Design Layout">
-                <js:beads>
-                    <mdl:LayoutTitle/>
-                </js:beads>
-            </js:Span>
+            <mdl:LayoutTitle text="FlexJS Material Design Layout"/>
             <mdl:Spacer/>
             <mdl:Navigation>
                 <mdl:beads>
@@ -56,11 +52,7 @@ limitations under the License.
     </mdl:Header>
     
     <mdl:Drawer>
-        <js:Span text="Drawer">
-            <js:beads>
-                <mdl:LayoutTitle/>
-            </js:beads>
-        </js:Span>
+        <mdl:LayoutTitle text="Drawer"/>
         <mdl:Navigation>
                 <mdl:beads>
                     <js:ConstantBinding

@@ -41,7 +41,7 @@
     <component id="MenuItemRenderer" class="org.apache.flex.mdl.itemRenderers.MenuItemRenderer"/>
     <component id="Card" class="org.apache.flex.mdl.Card"/>
     <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
-    <component id="CardTitleText" class="org.apache.flex.mdl.beads.CardTitleText"/>
+    <component id="CardTitleText" class="org.apache.flex.mdl.CardTitleText"/>
     <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
     <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
     <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
@@ -63,11 +63,11 @@
     <component id="TableCell" class="org.apache.flex.mdl.TableCell"/>
     <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
     <component id="Dialog" class="org.apache.flex.mdl.Dialog"/>
-    <component id="DialogTitle" class="org.apache.flex.mdl.beads.DialogTitle"/>
+    <component id="DialogTitle" class="org.apache.flex.mdl.DialogTitle"/>
     <component id="DialogContent" class="org.apache.flex.mdl.DialogContent"/>
     <component id="DialogActions" class="org.apache.flex.mdl.DialogActions"/>
     <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
-    <component id="LayoutTitle" class="org.apache.flex.mdl.beads.LayoutTitle"/>
+    <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
     <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer"/>
     <component id="NavigationLink" class="org.apache.flex.mdl.NavigationLink"/>
@@ -114,6 +114,6 @@
     <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
     <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
     <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
-    <component id="FooterHeading" class="org.apache.flex.mdl.beads.FooterHeading"/>
+    <component id="FooterHeading" class="org.apache.flex.mdl.FooterHeading"/>
     
 </componentPackage>

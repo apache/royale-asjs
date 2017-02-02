@@ -16,22 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.flex.mdl
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.H2;
+
+	COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;   
+    }
 	
 	/**
-	 *  The DialogTitle bead class is used in MDL Dialog to style the title.
-	 *  You could add to some heading (H1 to H6) or other text component.
+	 *  The CardTitleText class is an extended H2 heading used in MDL CardTitle.
+	 *
+	 *  (This is implemented as a class H4 and not as a bead that decorates other html text
+	 *  classes since MDL generate the same visuals for all of them)
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class DialogTitle implements IBead
+	public class CardTitleText extends H2
 	{
 		/**
 		 *  constructor.
@@ -41,31 +46,31 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function DialogTitle()
+		public function CardTitleText()
 		{
+			super();
+
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 
-		private var _strand:IStrand;
-		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			COMPILE::JS
-			{
-				var host:UIBase = value as UIBase;
-                host.className = "mdl-dialog__title";
-			}
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion Text
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			typeNames = "mdl-card__title-text";
+
+			element = document.createElement('h2') as WrappedHTMLElement;
+            
+            textNode = document.createTextNode('') as Text;
+            element.appendChild(textNode);
+            
+            positioner = element;
+			element.flexjs_wrapper = this;
+            
+            return element;
 		}
 	}
 }

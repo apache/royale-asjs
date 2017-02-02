@@ -16,22 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
-{	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+package org.apache.flex.mdl
+{
+	import org.apache.flex.html.H4;
+
+	COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;   
+    }
 	
 	/**
-	 *  The FooterHeading bead class is used in MDL Footer Mega Drop Down Section to style the heading.
-	 *  You could add to some heading (H1 to H6) or other text component.
+	 *  The DialogTitle class is an extended H4 heading used in Dialog.
+	 *  (This is implemented as a class H4 and not as a bead that decorates other html text
+	 *  classes since MDL generate the same visuals for all of them)
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class FooterHeading implements IBead
+	public class DialogTitle extends H4
 	{
 		/**
 		 *  constructor.
@@ -41,31 +45,31 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function FooterHeading()
+		public function DialogTitle()
 		{
+			super();
+
+			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 
-		private var _strand:IStrand;
-		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion Text
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			typeNames = "mdl-dialog__title";
 			
-			COMPILE::JS
-			{
-				var host:UIBase = value as UIBase;
-                host.className = "mdl-mega-footer__heading";
-			}
+			element = document.createElement('h4') as WrappedHTMLElement;
+            
+            textNode = document.createTextNode('') as Text;
+            element.appendChild(textNode);
+            
+            positioner = element;
+			element.flexjs_wrapper = this;
+            
+            return element;
 		}
 	}
 }

@@ -22,11 +22,7 @@ limitations under the License.
             xmlns:mdl="library://ns.apache.org/flexjs/mdl"
             xmlns="http://www.w3.org/1999/xhtml">
     
-    <js:H4 text="Allow data collection?">
-        <js:beads>
-            <mdl:DialogTitle/>
-        </js:beads>
-    </js:H4>
+    <mdl:DialogTitle text="Allow data collection?"/>
     
     <mdl:DialogContent>
         <js:P text="This is an example of the Material Design Lite dialog component. Please use responsibly."/>

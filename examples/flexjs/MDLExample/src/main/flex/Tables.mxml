@@ -45,11 +45,7 @@ limitations under the License.
 
         <mdl:Card shadow="2" width="450">
             <mdl:CardTitle expand="true">
-                <js:H2 text="Card Header">
-                    <js:beads>
-                        <mdl:CardTitleText/>
-                    </js:beads>
-                </js:H2>
+                <mdl:CardTitleText text="Card Header"/>
             </mdl:CardTitle>
 
             <mdl:Table className="customTableRowItemRenderer" width="100%">
