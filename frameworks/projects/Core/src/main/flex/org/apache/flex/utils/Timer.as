@@ -129,14 +129,19 @@ public class Timer extends EventDispatcher
     public var delay:Number;
     public var repeatCount:int;
     
-    private var currentCount:int = 0;
+    private var _currentCount:int = 0;
+	
+	public function get currentCount():int
+	{
+		return _currentCount;
+	}
     
     private var timerInterval:int = -1;
     
     public function reset():void
     {
         stop();
-        currentCount = 0;
+        _currentCount = 0;
     }
     
     public function stop():void
@@ -153,7 +158,7 @@ public class Timer extends EventDispatcher
     
     private function timerHandler():void
     {
-        currentCount++;
+        _currentCount++;
         if (repeatCount > 0 && currentCount >= repeatCount) {
             stop();
         }
