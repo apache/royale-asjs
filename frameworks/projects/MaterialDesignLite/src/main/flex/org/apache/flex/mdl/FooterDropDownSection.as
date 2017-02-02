@@ -27,8 +27,8 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterDropDownSection class is a Container component capable of parenting other
-	 *  components 
+	 *  The FooterDropDownSection class is a footer drop-down container (vertical) 
+	 *  content area.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

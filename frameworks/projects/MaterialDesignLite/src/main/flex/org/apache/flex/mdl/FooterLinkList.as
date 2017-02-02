@@ -27,9 +27,10 @@ package org.apache.flex.mdl
     }
 
 	/**
-	 *  FooterLinkList relies on an itemRenderer factory to produce its children components
-	 *  and on a layout to arrange them. 
-     *  This is the only UI element aside from the itemRenderers.
+	 *  FooterLinkList class defines an footer unordered list as a drop-down (vertical) list
+     *  and relies on an itemRenderer factory to produce its children components
+	 *  and on a layout to arrange them. This is the only UI element aside from the 
+     *  itemRenderers.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2

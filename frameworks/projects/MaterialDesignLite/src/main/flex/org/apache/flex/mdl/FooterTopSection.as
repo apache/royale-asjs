@@ -27,8 +27,8 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterTopSection class is a Container component capable of parenting other
-	 *  components 
+	 *  The FooterTopSection class is a footer top container section capable
+	 *  of parenting other components
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

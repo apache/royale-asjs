@@ -28,8 +28,7 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterSocialButton class is a Container component capable of parenting other
-	 *  components 
+	 *  The FooterSocialButton class defines a footer decorative square within a footer
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

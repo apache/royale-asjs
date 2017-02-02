@@ -27,8 +27,8 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterBottomSection class is a Container component capable of parenting other
-	 *  components 
+	 *  The FooterBottomSection class is a footer bottom container section capable
+	 *  of parenting other components
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

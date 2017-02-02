@@ -26,8 +26,8 @@ package org.apache.flex.mdl
     }
     
 	/**
-	 *  The FooterLogo class is a Container component capable of parenting other
-	 *  components 
+	 *  The FooterLogo class defines a container as a styled section heading
+	 *  This is used in footer bottom or left sections 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
