@@ -177,6 +177,7 @@ package org.apache.flex.html
             select = event.currentTarget as HTMLSelectElement;
             
             selectedItem = select.options[select.selectedIndex].value;
+            (input as HTMLInputElement).value = selectedItem.toString();
             
             popup.parentNode.removeChild(popup);
             popup = null;
