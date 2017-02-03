@@ -141,11 +141,12 @@ package org.apache.flex.html.beads
 			_nextMonthButton.x = sw - _nextMonthButton.width;
 			_nextMonthButton.y = 0;
 
-			monthLabel.x = (sw - monthLabel.width)/2;
+            monthLabel.x = _prevMonthButton.x + _prevMonthButton.width;
 			monthLabel.y = 0;
+            monthLabel.width = sw - _prevMonthButton.width - _nextMonthButton.width;
 
 			dayContainer.x = 0;
-			dayContainer.y = monthLabel.y + monthLabel.height + 5;
+			dayContainer.y = monthLabel.y + monthLabel.height + 4;
 			dayContainer.width = sw;
 			dayContainer.height = sh - (monthLabel.height+5);
 			
@@ -181,6 +182,7 @@ package org.apache.flex.html.beads
 			UIBase(_strand).addElement(monthLabel);
 
 			dayContainer = new Container();
+            dayContainer.className = "DayContainer";
 			var tileLayout:TileLayout = new TileLayout();
 			dayContainer.addBead(tileLayout);
             UIBase(_strand).addElement(dayContainer, false);
