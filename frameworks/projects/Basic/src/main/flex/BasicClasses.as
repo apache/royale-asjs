@@ -93,10 +93,7 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
     import org.apache.flex.html.beads.models.RangeModel; RangeModel;
     import org.apache.flex.html.beads.models.RangeModelExtended; RangeModelExtended;
-	COMPILE::SWF
-	{
-	    import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
-	}
+	import org.apache.flex.html.beads.models.ComboBoxModel; ComboBoxModel;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.models.ImageModel; ImageModel;
