@@ -55,6 +55,9 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function addedToParent():void
 		{
+            MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
+            MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+            
 			super.addedToParent();
 			
             // very common for item renderers to be resized by their containers,
@@ -64,9 +67,6 @@ package org.apache.flex.html.supportClasses
 
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
-            
-            MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
-            MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
             
             dispatchEvent(new Event("initBindings"));
             dispatchEvent(new Event("initComplete"));

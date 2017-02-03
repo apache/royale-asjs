@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -147,7 +148,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function layout():Boolean
 		{
-            var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+            var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
             var contentView:IParentIUIBase = layoutParent ? layoutParent.contentView : IParentIUIBase(host);
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			actualChild = document[flexibleChild];
@@ -178,6 +179,7 @@ package org.apache.flex.html.beads.layouts
             for (var i:int = 0; i < n; i++)
             {
                 var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+                if (child == null || !child.visible) continue;
                 ilc = child as ILayoutChild;
                 left = ValuesManager.valuesImpl.getValue(child, "left");
                 right = ValuesManager.valuesImpl.getValue(child, "right");
@@ -260,6 +262,7 @@ package org.apache.flex.html.beads.layouts
                 for (i = n - 1; i > flexChildIndex; i--)
     			{
     				child = contentView.getElementAt(i) as IUIBase;
+                    if (child == null || !child.visible) continue;
                     ilc = child as ILayoutChild;
                     left = ValuesManager.valuesImpl.getValue(child, "left");
                     right = ValuesManager.valuesImpl.getValue(child, "right");

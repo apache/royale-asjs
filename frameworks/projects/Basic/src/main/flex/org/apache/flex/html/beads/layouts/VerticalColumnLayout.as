@@ -21,6 +21,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
@@ -98,7 +99,7 @@ package org.apache.flex.html.beads.layouts
 		public function layout():Boolean
 		{			
             var host:UIBase = UIBase(_strand);
-            var layoutParent:ILayoutHost = host.getBeadByType(ILayoutHost) as ILayoutHost;
+            var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
             var contentView:IParent = layoutParent.contentView;
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
@@ -130,6 +131,7 @@ package org.apache.flex.html.beads.layouts
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
 				e = contentView.getElementAt(i) as IUIBase;
+                if (e == null || !e.visible) continue;
                 margin = ValuesManager.valuesImpl.getValue(e, "margin");
                 marginLeft = ValuesManager.valuesImpl.getValue(e, "margin-left");
                 marginTop = ValuesManager.valuesImpl.getValue(e, "margin-top");
@@ -172,6 +174,7 @@ package org.apache.flex.html.beads.layouts
 			for (i = 0; i < n; i++) 
             {
 				e = contentView.getElementAt(i) as IUIBase;
+                if (e == null || !e.visible) continue;
 				e.x = curx + ml;
 				e.y = cury + data[i].mt;
 				curx += columns[col++];

@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
+    import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -135,7 +136,7 @@ package org.apache.flex.html.beads.layouts
 			{
 				// this is where the layout is calculated
 				var host:UIBase = _strand as UIBase;
-				var p:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
+                var p:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 				var area:UIBase = p.contentView as UIBase;
 
 				var xpos:Number = 0;
@@ -149,7 +150,7 @@ package org.apache.flex.html.beads.layouts
 				for(var j:int=0; j < n; j++)
 				{
 					var testChild:IUIBase = area.getElementAt(i) as IUIBase;
-					if (testChild && !testChild.visible) realN--;
+                    if (testChild || !testChild.visible) realN--;
 				}
 
 				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
@@ -165,7 +166,7 @@ package org.apache.flex.html.beads.layouts
 				for(var i:int=0; i < n; i++)
 				{
 					var child:IUIBase = area.getElementAt(i) as IUIBase;
-					if (child && !child.visible) continue;
+                    if (child == null || !child.visible) continue;
 					child.width = useWidth;
 					child.height = useHeight;
 					child.x = xpos;
@@ -206,7 +207,7 @@ package org.apache.flex.html.beads.layouts
 				var useHeight:Number;
 
 				var host:UIBase = _strand as UIBase;
-				var viewBead:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
+                var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 				var contentView:IParentIUIBase = viewBead.contentView;
 				children = contentView.internalChildren();
 				n = children.length;

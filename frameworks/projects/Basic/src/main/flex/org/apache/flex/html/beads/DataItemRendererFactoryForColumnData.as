@@ -130,9 +130,9 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
+                dataGroup.addElement(tf);
 				tf.index = i;
 				tf.labelField = view.column.dataField;
-				dataGroup.addElement(tf);
 				tf.data = dp[i];
 			}
 			

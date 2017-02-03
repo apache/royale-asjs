@@ -21,6 +21,8 @@ package org.apache.flex.html
 	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
+    import org.apache.flex.core.ILayoutParent;
+    import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IUIBase;
     COMPILE::JS
     {
@@ -65,7 +67,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase
+	public class Container extends ContainerBase implements ILayoutParent
 	{
         /**
          *  Constructor.
@@ -80,6 +82,11 @@ package org.apache.flex.html
 			super();
 		}
 
+        public function getLayoutHost():ILayoutHost
+        {
+            return view as ILayoutHost; 
+        }
+            
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */

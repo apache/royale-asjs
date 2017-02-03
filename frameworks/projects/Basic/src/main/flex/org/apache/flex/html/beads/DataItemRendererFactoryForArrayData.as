@@ -154,6 +154,7 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+                dataGroup.addElement(ir);
 				ir.index = i;
 				ir.labelField = labelField;
 				if (presentationModel) {
@@ -161,8 +162,8 @@ package org.apache.flex.html.beads
 					style.marginBottom = presentationModel.separatorThickness;
 					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
-				}
-				dataGroup.addElement(ir);
+                    UIBase(ir).percentWidth = 100;
+                }
 				ir.data = dp[i];
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
