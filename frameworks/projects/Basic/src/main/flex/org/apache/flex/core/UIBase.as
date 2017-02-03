@@ -793,7 +793,7 @@ package org.apache.flex.core
                 } 
                 else 
                 {
-                    if (displayStyleForLayout) 
+                    if (displayStyleForLayout != null) 
                         positioner.style.display = displayStyleForLayout;
                     dispatchEvent(new Event('show'));
                 }
