@@ -327,23 +327,6 @@ List
 	background-color: #FFFFFF;
 }
 
-Accordion
-{
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.AccordionView");			
-	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout");
-	IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
-	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.AccordionItemRenderer");
-	IViewport: ClassReference("org.apache.flex.html.supportClasses.ClippingViewport");
-	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
-	IAccordionCollapseBead: ClassReference("org.apache.flex.html.beads.AccordionCollapseBead");
-	border-style: solid;
-	border-color: #222222;
-}
-
 Tree
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArrayListSelectionModel");
@@ -421,12 +404,6 @@ StringItemRenderer
 {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
 	height: 16;
-}
-
-AccordionItemRenderer
-{
-	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.AccordionItemRendererMouseController");
-	IBeadView: ClassReference("org.apache.flex.html.beads.AccordionItemRendererView");
 }
 
 TreeItemRenderer
