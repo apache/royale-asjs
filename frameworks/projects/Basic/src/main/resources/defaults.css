@@ -109,6 +109,8 @@ ButtonBarButtonItemRenderer
 ComboBox
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
+    IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
+    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ComboBoxController");
 }
 
 Container
@@ -473,8 +475,6 @@ CloseButton
 
 ComboBox
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
-    IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ComboBoxController");
     IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");

@@ -117,12 +117,6 @@ package org.apache.flex.html
 			IComboBoxModel(model).selectedItem = value;
 		}
 		
-        COMPILE::JS
-        {
-            private var button:WrappedHTMLElement;
-            private var input:WrappedHTMLElement;
-        }
-        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -131,152 +125,11 @@ package org.apache.flex.html
         {            
             element = document.createElement('div') as WrappedHTMLElement;
             
-            input = document.createElement('input') as WrappedHTMLElement;
-            input.style.position = 'absolute';
-            input.style.width = '80px';
-            element.appendChild(input);
-            
-            button = document.createElement('div') as WrappedHTMLElement;
-            button.style.position = 'absolute';
-            button.style.top = '0px';
-            button.style.right = '0px';
-            button.style.background = '#bbb';
-            button.style.width = '16px';
-            button.style.height = '20px';
-            button.style.margin = '0';
-            button.style.border = 'solid #609 1px';
-            goog.events.listen(button, 'click', buttonClicked);
-            element.appendChild(button);
-            
             positioner = element;
             positioner.style.position = 'relative';
             
-            // add a click handler so that a click outside of the combo box can
-            // dismiss the pop-up should it be visible.
-            goog.events.listen(document, 'click',
-                dismissPopup);
-            
-            input.flexjs_wrapper = this;
-            
             return element;
         }        
-
-        COMPILE::JS
-        private var popup:HTMLElement;
-        
-        /**
-         * @param event The event.
-         * @flexjsignorecoercion HTMLSelectElement
-         * @flexjsignorecoercion HTMLInputElement
-         */
-        COMPILE::JS
-        private function selectChanged(event:Event):void
-        {
-            var select:HTMLSelectElement;
-            
-            select = event.currentTarget as HTMLSelectElement;
-            
-            selectedItem = select.options[select.selectedIndex].value;
-            (input as HTMLInputElement).value = selectedItem.toString();
-            
-            popup.parentNode.removeChild(popup);
-            popup = null;
-            
-            dispatchEvent(event);
-        }
-        
-        
-        /**
-         * @param event The event.
-         */
-        COMPILE::JS
-        private function dismissPopup(event:Event):void
-        {
-            // remove the popup if it already exists
-            if (popup) {
-                popup.parentNode.removeChild(popup);
-                popup = null;
-            }
-        }
-        
-        
-        /**
-         * @export
-         * @param {Object} event The event.
-         * @flexjsignorecoercion HTMLInputElement
-         * @flexjsignorecoercion HTMLElement
-         * @flexjsignorecoercion HTMLSelectElement
-         * @flexjsignorecoercion HTMLOptionElement
-         * @flexjsignorecoercion Array
-         */
-        COMPILE::JS
-        private function buttonClicked(event:Event):void
-        {
-            var dp:Array;
-            var i:int;
-            var input:HTMLInputElement;
-            var left:Number;
-            var n:int;
-            var opt:HTMLOptionElement;
-            var pn:HTMLElement;
-            var popup:HTMLElement;
-            var select:HTMLSelectElement;
-            var si:int;
-            var top:Number;
-            var width:Number;
-            
-            event.stopPropagation();
-            
-            if (popup) {
-                dismissPopup(null);
-                
-                return;
-            }
-            
-            input = element.childNodes.item(0) as HTMLInputElement;
-            
-            pn = element;
-            top = pn.offsetTop + input.offsetHeight;
-            left = pn.offsetLeft;
-            width = pn.offsetWidth;
-            
-            popup = document.createElement('div') as HTMLElement;
-            popup.className = 'popup';
-            popup.id = 'test';
-            popup.style.position = 'absolute';
-            popup.style.top = top.toString() + 'px';
-            popup.style.left = left.toString() + 'px';
-            popup.style.width = width.toString() + 'px';
-            popup.style.margin = '0px auto';
-            popup.style.padding = '0px';
-            popup.style.zIndex = '10000';
-            
-            select = document.createElement('select') as HTMLSelectElement;
-            select.style.width = width.toString() + 'px';
-            goog.events.listen(select, 'change', selectChanged);
-            
-            dp = dataProvider as Array;
-            n = dp.length;
-            for (i = 0; i < n; i++) {
-                opt = document.createElement('option') as HTMLOptionElement;
-                opt.text = dp[i];
-                select.add(opt, null);
-            }
-            
-            select.size = n;
-            
-            si = selectedIndex;
-            if (si < 0) {
-                select.value = null;
-            } else {
-                select.value = dp[si];
-            }
-            
-            this.popup = popup;
-            
-            popup.appendChild(select);
-            document.body.appendChild(popup);
-        }
 
 	}
 }
