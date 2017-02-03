@@ -547,6 +547,127 @@ package org.apache.flex.mdl.materialIcons
         public static const FORMAT_INDENT_DECREASE:String = 'format_indent_decrease';
         public static const FORMAT_INDENT_INCREASE:String = 'format_indent_increase';
 
+        public static const FORMAT_ITALIC:String = 'format_italic';
+        public static const FORMAT_LINE_SPACING:String = 'format_line_spacing';
+        public static const FORMAT_LIST_BULLETED:String = 'format_list_bulleted';
+        public static const FORMAT_LIST_NUMBERED:String = 'format_list_numbered';
+        public static const FORMAT_PAINT:String = 'format_paint';
+        public static const FORMAT_QUOTE:String = 'format_quote';
+        public static const FORMAT_SHAPES:String = 'format_shapes';
+        public static const FORMAT_SIZE:String = 'format_size';
+        public static const FORMAT_STRIKETHROUGH:String = 'format_strikethrough';
+        public static const FORMAT_TEXTDIRECTION_L_TO_R:String = 'format_textdirection_l_to_r';
+
+        public static const FORMAT_TEXTDIRECTION_R_TO_L:String = 'format_textdirection_r_to_l';
+        public static const FORMAT_UNDERLINED:String = 'format_underlined';
+        public static const FUNCTIONS:String = 'functions';
+        public static const HIGHLIGHT:String = 'highlight';
+        public static const INSERT_CHART:String = 'insert_chart';
+        public static const INSERT_COMMENT:String = 'insert_comment';
+        public static const INSERT_DRIVE_FILE:String = 'insert_drive_file';
+        public static const INSERT_EMOTICON:String = 'insert_emoticon';
+        public static const INSERT_INVITATION:String = 'insert_invitation';
+        public static const INSERT_LINK:String = 'insert_link';
+
+        public static const INSERT_PHOTO:String = 'insert_photo';
+        public static const LINEAR_SCALE:String = 'linear_scale';
+        public static const MERGE_TYPE:String = 'merge_type';
+        public static const MODE_COMMENT:String = 'mode_comment';
+        public static const MODE_EDIT:String = 'mode_edit';
+        public static const MONETIZATION_ON:String = 'monetization_on';
+        public static const MONEY_OFF:String = 'money_off';
+        public static const MULTILINE_CHART:String = 'multiline_chart';
+        public static const PIE_CHART:String = 'pie_chart';
+        public static const PIE_CHART_OUTLINED:String = 'pie_chart_outlined';
+
+        public static const PUBLISH:String = 'publish';
+        public static const SHORT_TEXT:String = 'short_text';
+        public static const SHOW_CHART:String = 'show_chart';
+        public static const SPACE_BAR:String = 'space_bar';
+        public static const STRIKETHROUGH_S:String = 'strikethrough_s';
+        public static const TEXT_FIELDS:String = 'text_fields';
+        public static const TITLE:String = 'title';
+        public static const VERTICAL_ALIGN_BOTTOM:String = 'vertical_align_bottom';
+        public static const VERTICAL_ALIGN_CENTER:String = 'vertical_align_center';
+        public static const VERTICAL_ALIGN_TOP:String = 'vertical_align_top';
+
+        public static const WRAP_TEXT:String = 'wrap_text';
+        public static const ATTACHMENT:String = 'attachment';
+        public static const CLOUD:String = 'cloud';
+        public static const CLOUD_CIRCLE:String = 'cloud_circle';
+        public static const CLOUD_DONE:String = 'cloud_done';
+        public static const CLOUD_DOWNLOAD:String = 'cloud_download';
+        public static const CLOUD_OFF:String = 'cloud_off';
+        public static const CLOUD_QUEUE:String = 'cloud_queue';
+        public static const CLOUD_UPLOAD:String = 'cloud_upload';
+        public static const CREATE_NEW_FOLDER:String = 'create_new_folder';
+
+        public static const FILE_DOWNLOAD:String = 'file_download';
+        public static const FILE_UPLOAD:String = 'file_upload';
+        public static const FOLDER:String = 'folder';
+        public static const FOLDER_OPEN:String = 'folder_open';
+        public static const FOLDER_SHARED:String = 'folder_shared';
+        public static const CAST:String = 'cast';
+        public static const CAST_CONNECTED:String = 'cast_connected';
+        public static const COMPUTER:String = 'computer';
+        public static const DESKTOP_MAC:String = 'desktop_mac';
+        public static const DESKTOP_WINDOWS:String = 'desktop_windows';
+
+        public static const DEVELOPER_BOARD:String = 'developer_board';
+        public static const DEVICE_HUB:String = 'device_hub';
+        public static const DEVICES_OTHER:String = 'devices_other';
+        public static const DOCK:String = 'dock';
+        public static const GAMEPAD:String = 'gamepad';
+        public static const HEADSET:String = 'headset';
+        public static const HEADSET_MIC:String = 'headset_mic';
+        public static const KEYBOARD:String = 'keyboard';
+        public static const KEYBOARD_ARROW_DOWN:String = 'keyboard_arrow_down';
+        public static const KEYBOARD_ARROW_LEFT:String = 'keyboard_arrow_left';
+
+        public static const KEYBOARD_ARROW_RIGHT:String = 'keyboard_arrow_right';
+        public static const KEYBOARD_ARROW_UP:String = 'keyboard_arrow_up';
+        public static const KEYBOARD_BACKSPACE:String = 'keyboard_backspace';
+        public static const KEYBOARD_CAPSLOCK:String = 'keyboard_capslock';
+        public static const KEYBOARD_HIDE:String = 'keyboard_hide';
+        public static const KEYBOARD_RETURN:String = 'keyboard_return';
+        public static const KEYBOARD_TAB:String = 'keyboard_tab';
+        public static const KEYBOARD_VOICE:String = 'keyboard_voice';
+        public static const LAPTOP:String = 'laptop';
+        public static const LAPTOP_CHROMEBOOK:String = 'laptop_chromebook';
+
+        public static const LAPTOP_MAC:String = 'laptop_mac';
+        public static const LAPTOP_WINDOWS:String = 'laptop_windows';
+        public static const MEMORY:String = 'memory';
+        public static const MOUSE:String = 'mouse';
+        public static const PHONE_ANDROID:String = 'phone_android';
+        public static const PHONE_IPHONE:String = 'phone_iphone';
+        public static const PHONELINK:String = 'phonelink';
+        public static const PHONELINK_OFF:String = 'phonelink_off';
+        public static const POWER_INPUT:String = 'power_input';
+        public static const ROUTER:String = 'router';
+
+        public static const scanner:String = 'scanner';
+        public static const security:String = 'security';
+        public static const sim_card:String = 'sim_card';
+        public static const smartphone:String = 'smartphone';
+        public static const speaker:String = 'speaker';
+        public static const speaker_group:String = 'speaker_group';
+        public static const tablet:String = 'tablet';
+        public static const tablet_android:String = 'tablet_android';
+        public static const tablet_mac:String = 'tablet_mac';
+        public static const toys:String = 'toys';
+
+        public static const TV:String = 'tv';
+        public static const VIDEOGAME_ASSET:String = 'videogame_asset';
+        public static const WATCH:String = 'watch';
+        public static const ADD_A_PHOTO:String = 'add_a_photo';
+        public static const ADD_TO_PHOTOS:String = 'add_to_photos';
+        public static const ADJUST:String = 'adjust';
+        public static const ASSISTANT:String = 'assistant';
+        public static const ASSISTANT_PHOTO:String = 'assistant_photo';
+        public static const AUDIOTRACK:String = 'audiotrack';
+        public static const BLUR_CIRCULAR:String = 'blur_circular';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -559,116 +680,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'format_italic',
-        'format_line_spacing',
-        'format_list_bulleted',
-        'format_list_numbered',
-        'format_paint',
-        'format_quote',
-        'format_shapes',
-        'format_size',
-        'format_strikethrough',
-        'format_textdirection_l_to_r',
-        'format_textdirection_r_to_l',
-        'format_underlined',
-        'functions',
-        'highlight',
-        'insert_chart',
-        'insert_comment',
-        'insert_drive_file',
-        'insert_emoticon',
-        'insert_invitation',
-        'insert_link',
-        'insert_photo',
-        'linear_scale',
-        'merge_type',
-        'mode_comment',
-        'mode_edit',
-        'monetization_on',
-        'money_off',
-        'multiline_chart',
-        'pie_chart',
-        'pie_chart_outlined',
-        'publish',
-        'short_text',
-        'show_chart',
-        'space_bar',
-        'strikethrough_s',
-        'text_fields',
-        'title',
-        'vertical_align_bottom',
-        'vertical_align_center',
-        'vertical_align_top',
-        'wrap_text',
-        'attachment',
-        'cloud',
-        'cloud_circle',
-        'cloud_done',
-        'cloud_download',
-        'cloud_off',
-        'cloud_queue',
-        'cloud_upload',
-        'create_new_folder',
-        'file_download',
-        'file_upload',
-        'folder',
-        'folder_open',
-        'folder_shared',
-        'cast',
-        'cast_connected',
-        'computer',
-        'desktop_mac',
-        'desktop_windows',
-        'developer_board',
-        'device_hub',
-        'devices_other',
-        'dock',
-        'gamepad',
-        'headset',
-        'headset_mic',
-        'keyboard',
-        'keyboard_arrow_down',
-        'keyboard_arrow_left',
-        'keyboard_arrow_right',
-        'keyboard_arrow_up',
-        'keyboard_backspace',
-        'keyboard_capslock',
-        'keyboard_hide',
-        'keyboard_return',
-        'keyboard_tab',
-        'keyboard_voice',
-        'laptop',
-        'laptop_chromebook',
-        'laptop_mac',
-        'laptop_windows',
-        'memory',
-        'mouse',
-        'phone_android',
-        'phone_iphone',
-        'phonelink',
-        'phonelink_off',
-        'power_input',
-        'router',
-        'scanner',
-        'security',
-        'sim_card',
-        'smartphone',
-        'speaker',
-        'speaker_group',
-        'tablet',
-        'tablet_android',
-        'tablet_mac',
-        'toys',
-        'tv',
-        'videogame_asset',
-        'watch',
-        'add_a_photo',
-        'add_to_photos',
-        'adjust',
-        'assistant',
-        'assistant_photo',
-        'audiotrack',
-        'blur_circular',
         'blur_linear',
         'blur_off',
         'blur_on',
@@ -1029,7 +1040,5 @@ package org.apache.flex.mdl.materialIcons
         public static const SHARE:String = "share";
         public static const MOOD:String = "mood";
         public static const MORE_VERT:String = "more_vert";
-        public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
-        public static const FORMAT_ITALIC:String = "format_italic";
     }
 }
