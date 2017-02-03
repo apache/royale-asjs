@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome against debug.html, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            "sourceMaps": true,
+            "preLaunchTask": "mvn"
+        },
+        {
+            "name": "Launch Firefox against debug.html, with sourcemaps",
+            "type": "firefox",
+            "request": "launch",
+            "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            "sourceMaps": true,
+            "preLaunchTask": "mvn"
+        }
+    ]
+}
