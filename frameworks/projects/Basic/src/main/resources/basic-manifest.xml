@@ -60,6 +60,7 @@
     <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"/>
     <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"/>
+    <component id="HorizontalFlowLayout" class="org.apache.flex.html.beads.layouts.HorizontalFlowLayout" />
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.flex.html.beads.AccordionView"/>

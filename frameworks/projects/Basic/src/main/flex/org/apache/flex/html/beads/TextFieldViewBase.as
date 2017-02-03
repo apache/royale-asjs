@@ -399,6 +399,13 @@ package org.apache.flex.html.beads
                 textField.autoSize = "none";
                 textField.width = host.width;
             }
+            
+            if (autoWidth) {
+                (host as UIBase).setWidth(textField.textWidth, true);
+            }
+            if (autoHeight) {
+                (host as UIBase).setHeight(textField.textHeight, true);
+            }
         }
     }
 }
