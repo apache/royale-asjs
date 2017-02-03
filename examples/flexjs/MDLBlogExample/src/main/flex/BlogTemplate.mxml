@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <!--
 
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +17,228 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
+<mdl:Grid xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                 xmlns="http://www.w3.org/1999/xhtml">
-    
-    
+                 xmlns:models="models.*">
 
-    
+    <fx:Script>
+        <![CDATA[
+            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        ]]>
+	</fx:Script>
 
-</mdl:TabBarPanel>
+    <mdl:beads>
+        <js:ContainerDataBinding/>
+    </mdl:beads>
+
+    <mdl:model>
+        <models:MenuModel id="blogMenuModel"/>
+    </mdl:model>
+
+    <mdl:NavigationLayout className="demo-blog" fixedDrawer="true">
+        <mdl:NavigationLayoutContent>
+            <mdl:Grid className="demo-blog__posts">
+                
+                <mdl:Card className="coffee-pic">
+                    <mdl:beads>
+                        <mdl:GridCellBehaviour column="8"/>
+                    </mdl:beads>
+                    <mdl:CardMedia>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<h3><a href="entry.html">Coffee Pic</a></h3>]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-50"/>
+                        </mdl:beads>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText className="meta">
+                        <mdl:beads>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                        <js:Div className="minilogo"/>
+                        <js:Div>
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </js:Div>
+                    </mdl:CardSupportingText>
+                </mdl:Card>
+                
+                <mdl:Card className="something-else">
+                    <mdl:beads>
+                        <mdl:GridCellBehaviour column="8" columnDesktop="4"/>
+                    </mdl:beads>
+                    <mdl:Button ripple="true" fab="true" accent="true">
+                        <!--<mdl:materialIcon>
+                            <mdl:MaterialIcon text="{MaterialIconType.ADD}">
+                                <mdl:beads>
+                                    <mdl:MdlTextColor textColor="white"/>
+                                </mdl:beads>
+                            </mdl:MaterialIcon>
+                        </mdl:materialIcon>-->
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">add</i><span class="visuallyhidden">add</span>]]>
+                            </js:InnerHTML>
+                        </mdl:beads>
+                    </mdl:Button>
+                    <mdl:CardMedia>
+                        <mdl:beads>
+                            <mdl:MdlColor color="white"/>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                        <js:Image url="images/logo.png"/>
+                        <js:TextNode text="+1,337"/>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText className="meta meta-fill">
+                        <mdl:beads>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                        <js:Div>
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<strong>The Newist</strong>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </js:Div>
+                        <mdl:Menu dataMdlFor="menubtn" ripple="true" bottom="true" left="false"
+                                labelField="label" className="customMenuItemRenderer">
+                            <mdl:beads>
+                                <js:ConstantBinding
+                                        sourceID="blogMenuModel"
+                                        sourcePropertyName="menuItems"
+                                        destinationPropertyName="dataProvider" />
+                            </mdl:beads>
+                        </mdl:Menu>
+                        <mdl:Button id="menubtn" icon="true" ripple="true">
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<i class="material-icons mdl-color-text--white" role="presentation">more_vert</i><span class="visuallyhidden">show menu</span>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </mdl:Button>
+                    </mdl:CardSupportingText>
+                </mdl:Card>
+
+                <mdl:Card className="on-the-road-again">
+                    <mdl:beads>
+                        <mdl:GridCellBehaviour column="12"/>
+                    </mdl:beads>
+                    <mdl:CardMedia>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<h3><a href="entry.html">On the road again</a></h3>]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-50"/>
+                        </mdl:beads>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                    </mdl:CardSupportingText>
+                    <mdl:CardSupportingText className="meta">
+                        <js:Div className="minilogo"/>
+                        <js:Div>
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </js:Div>
+                    </mdl:CardSupportingText>
+                </mdl:Card>
+
+                <mdl:Card className="amazing">
+                    <mdl:beads>
+                        <mdl:GridCellBehaviour column="12"/>
+                    </mdl:beads>
+                    <mdl:CardTitle>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<h3 class="quote"><a href="entry.html">I couldn’t take any pictures but this was an amazing thing…</a></h3>]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-50"/>
+                        </mdl:beads>
+                    </mdl:CardTitle>
+                    <mdl:CardSupportingText>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                    </mdl:CardSupportingText>
+                    <mdl:CardSupportingText className="meta">
+                        <js:Div className="minilogo"/>
+                        <js:Div>
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </js:Div>
+                    </mdl:CardSupportingText>
+                </mdl:Card>
+
+                <mdl:Card className="shopping">
+                    <mdl:beads>
+                        <mdl:GridCellBehaviour column="12"/>
+                    </mdl:beads>
+                    <mdl:CardMedia>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[<h3><a href="entry.html">Shopping</a></h3>]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-50"/>
+                        </mdl:beads>
+                    </mdl:CardMedia>
+                    <mdl:CardSupportingText>
+                        <mdl:beads>
+                            <js:InnerHTML>
+                                <![CDATA[Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.]]>
+                            </js:InnerHTML>
+                            <mdl:MdlTextColor textColor="grey-600"/>
+                        </mdl:beads>
+                    </mdl:CardSupportingText>
+                    <mdl:CardSupportingText className="meta">
+                        <js:Div className="minilogo"/>
+                        <js:Div>
+                            <mdl:beads>
+                                <js:InnerHTML>
+                                    <![CDATA[<strong>The Newist</strong><span>2 days ago</span>]]>
+                                </js:InnerHTML>
+                            </mdl:beads>
+                        </js:Div>
+                    </mdl:CardSupportingText>
+                </mdl:Card>
+                <mdl:Footer mini="true" width="500">
+
+                    <mdl:FooterLeftSection>
+                        <mdl:FooterLogo text="Title"/>
+                        <mdl:FooterLinkList className="footerMiniLinkListItemRenderer">
+                            <mdl:beads>
+                                <js:ConstantBinding
+                                    sourceID="model"
+                                    sourcePropertyName="links"
+                                    destinationPropertyName="dataProvider" />
+                            </mdl:beads>
+                        </mdl:FooterLinkList>
+                    </mdl:FooterLeftSection>
+
+                    <mdl:FooterRightSection>
+                        <mdl:FooterSocialButton>1</mdl:FooterSocialButton>
+                        <mdl:FooterSocialButton>2</mdl:FooterSocialButton>
+                        <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
+                    </mdl:FooterRightSection>
+                </mdl:Footer>
+            </mdl:Grid>
+        </mdl:NavigationLayoutContent>
+    </mdl:NavigationLayout>
+</mdl:Grid>
