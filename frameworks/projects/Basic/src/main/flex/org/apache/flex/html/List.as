@@ -90,7 +90,8 @@ package org.apache.flex.html
 		public function List()
 		{
 			super();
-		}
+            addEventListener("beadsAdded", beadsAddedHandler);
+        }
 		
 		/**
 		 *  The name of field within the data used for display. Each item of the
@@ -268,21 +269,27 @@ package org.apache.flex.html
 		{
             super.addedToParent();
             
+            dispatchEvent(new Event("initComplete"));
+        }
+
+        /**
+         * @private
+         */
+        private function beadsAddedHandler(e:Event):void
+        {
             if (getBeadByType(IDataProviderItemRendererMapper) == null)
             {
                 var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
                 addBead(mapper);
             }
-			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			if (!itemRendererFactory)
-			{
-				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-				addBead(itemRendererFactory);
-			}
-			
-			dispatchEvent(new Event("initComplete"));
-		}
-        
+            var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+            if (!itemRendererFactory)
+            {
+                itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+                addBead(itemRendererFactory);
+            }
+        }
+            
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
