@@ -23,8 +23,6 @@ package org.apache.flex.html
 
     COMPILE::JS
     {
-        import org.apache.flex.html.beads.SliderTrackView;
-        import org.apache.flex.html.beads.SliderThumbView;
         import org.apache.flex.html.beads.controllers.SliderMouseController;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
@@ -156,15 +154,6 @@ package org.apache.flex.html
             IRangeModel(model).stepSize = value;
         }
 
-        COMPILE::JS
-        private var track:SliderTrackView;
-        
-        COMPILE::JS
-        private var thumb:SliderThumbView;
-        
-        COMPILE::JS
-        private var controller:SliderMouseController;
-        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -172,17 +161,8 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('div') as WrappedHTMLElement;
-            element.style.width = '200px';
+            element.style.width = '100px';
             element.style.height = '30px';
-            
-            track = new SliderTrackView();
-            addBead(track);
-            
-            thumb = new SliderThumbView();
-            addBead(thumb);
-            
-            controller = new SliderMouseController();
-            addBead(controller);
             
             positioner = element;
             positioner.style.position = 'relative';
@@ -211,23 +191,6 @@ package org.apache.flex.html
                 return n + si;
             return n;
         }
-        
-        
-        /**
-         * @param {number} value The value used to calculate new position of the thumb.
-         * @return {void} Moves the thumb to the corresponding position.
-         */
-        COMPILE::JS
-        public function setThumbFromValue(value:Number):void
-        {
-            var min:Number = model.minimum;
-            var max:Number = model.maximum;
-            var p:Number = (value - min) / (max - min);
-            var xloc:Number = p * (parseInt(track.element.style.width, 10) -
-                parseInt(thumb.element.style.width, 10));
-            
-            thumb.element.style.left = "" + xloc + 'px';
-        }        
 
     }
 }

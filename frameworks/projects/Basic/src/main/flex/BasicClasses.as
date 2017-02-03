@@ -63,6 +63,7 @@ internal class BasicClasses
 	    import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
 	}
     import org.apache.flex.html.beads.PanelView; PanelView;
+    import org.apache.flex.html.beads.SliderView; SliderView;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
@@ -72,10 +73,9 @@ internal class BasicClasses
     	import org.apache.flex.html.beads.ScrollBarView; ScrollBarView;
 		import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;
     	import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
-		import org.apache.flex.html.beads.SliderView; SliderView;
+        import org.apache.flex.html.beads.SliderThumbView; SliderThumbView;
+        import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
 	}
-	import org.apache.flex.html.beads.SliderThumbView; SliderThumbView;
-	import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
 	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
 	COMPILE::SWF
 	{
@@ -123,9 +123,9 @@ internal class BasicClasses
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
+    import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
 	COMPILE::SWF
 	{
-		import org.apache.flex.html.beads.controllers.SliderMouseController; SliderMouseController;
 		import org.apache.flex.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
 	    import org.apache.flex.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
 		import org.apache.flex.html.beads.controllers.HScrollBarMouseController; HScrollBarMouseController;

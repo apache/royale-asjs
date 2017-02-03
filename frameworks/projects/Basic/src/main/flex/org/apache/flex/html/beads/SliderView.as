@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
+	COMPILE::SWF {
+		import flash.display.DisplayObject;
+		import flash.display.Sprite;
+	}
 	
     import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
@@ -28,15 +30,18 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Button;
+	import org.apache.flex.html.TextButton;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.flex.html.Slider 
 	 *  component. The Slider has a track and a thumb control which are also created with view beads.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -70,14 +75,31 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
-			_track = new Button();
-			Button(_track).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
-			
-			_thumb = new Button();
-			Button(_thumb).addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
-			
-			UIBase(_strand).addChild(_track);
-			UIBase(_strand).addChild(_thumb);
+			COMPILE::SWF {
+				var s:UIBase = UIBase(_strand);
+				
+				_track = new Button();
+				_track.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iTrackView")) as IBead);
+				_track.className = "SliderTrack";
+				s.addElement(_track);
+				
+				_thumb = new TextButton();
+				_thumb.text = '\u2B0C';
+				_thumb.addBead(new (ValuesManager.valuesImpl.getValue(_strand, "iThumbView")) as IBead);
+				_thumb.className = "SliderThumb";
+				s.addElement(_thumb);
+				
+			}
+			COMPILE::JS {
+				_track = new Button();
+				_track.className = "SliderTrack";
+				UIBase(_strand).addElement(_track);
+				
+				_thumb = new TextButton();
+				_thumb.className = "SliderThumb";
+				_thumb.text = '\u2B0C';
+				UIBase(_strand).addElement(_thumb);
+			}
 			
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
@@ -91,22 +113,12 @@ package org.apache.flex.html.beads
 			IEventDispatcher(rangeModel).addEventListener("stepSizeChange",modelChangeHandler);
 			IEventDispatcher(rangeModel).addEventListener("snapIntervalChange",modelChangeHandler);
 			
-			// set a minimum size to trigger the size change handler
-			var needsSizing:Boolean = true;
-			if( UIBase(_strand).width < 100 ) {
-				UIBase(_strand).width = 100;
-				needsSizing = false;
-			}
-			if( UIBase(_strand).height < 30 ) {
-				UIBase(_strand).height = 30;
-				needsSizing = false;
-			}
-			
-			if( needsSizing ) sizeChangeHandler(null);
+			sizeChangeHandler(null);
 		}
 		
-		private var _track:DisplayObject;
-		private var _thumb:DisplayObject;
+		private var _track:Button;
+		private var _thumb:TextButton;
+		
 		
 		/**
 		 *  The track component.
@@ -116,7 +128,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get track():DisplayObject
+		public function get track():IUIBase
 		{
 			return _track;
 		}
@@ -129,7 +141,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get thumb():DisplayObject
+		public function get thumb():IUIBase
 		{
 			return _thumb;
 		}
@@ -139,22 +151,22 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{
-			var w:Number = UIBase(_strand).width;
-			var h:Number = UIBase(_strand).height;
+			var host:UIBase = UIBase(_strand);
+			var w:Number = host.width;
+			var h:Number = host.height;
 			
 			_thumb.width = 20;
-			_thumb.height = UIBase(_strand).height;
-			
-			_thumb.x = 10;
-			_thumb.y = 0;
-			
+			_thumb.height = host.height;
+		
 			// the track is inset 1/2 of the thumbwidth so the thumb can
 			// overlay the track on either end with the thumb center being
 			// on the track's edge
-			_track.width = UIBase(_strand).width - _thumb.width;
+			_track.width = host.width - _thumb.width;
 			_track.height = 5;
 			_track.x = _thumb.width/2;
-			_track.y = (UIBase(_strand).height - _track.height)/2;
+			_track.y = (host.height - _track.height)/2;
+			
+			setThumbPositionFromValue(rangeModel.value);
 		}
 		
 		/**
@@ -171,8 +183,7 @@ package org.apache.flex.html.beads
 		private function setThumbPositionFromValue( value:Number ) : void
 		{
 			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
-			var xloc:Number = p*(UIBase(_strand).width - _thumb.width);
-			
+			var xloc:Number = (p*_track.width); 
 			_thumb.x = xloc;
 		}
 	}

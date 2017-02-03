@@ -325,6 +325,8 @@ SimpleList
 Slider
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+    iBeadView:  ClassReference("org.apache.flex.html.beads.SliderView");
+    iBeadController: ClassReference("org.apache.flex.html.beads.controllers.SliderMouseController");
 }
 
 Spinner
@@ -614,8 +616,6 @@ SimpleAlert
 
 Slider
 {
-    iBeadView:  ClassReference("org.apache.flex.html.beads.SliderView");
-    iBeadController: ClassReference("org.apache.flex.html.beads.controllers.SliderMouseController");
     iThumbView: ClassReference("org.apache.flex.html.beads.SliderThumbView");
     iTrackView: ClassReference("org.apache.flex.html.beads.SliderTrackView");
 }
