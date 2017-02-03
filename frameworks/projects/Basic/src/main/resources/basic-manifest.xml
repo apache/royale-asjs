@@ -90,6 +90,7 @@
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
      -->
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
+    <component id="ClippingViewport" class="org.apache.flex.html.supportClasses.ClippingViewport" />
     
     <component id="ArraySelectionModel" class="org.apache.flex.html.beads.models.ArraySelectionModel" />
     <component id="ArrayListSelectionModel" class="org.apache.flex.html.beads.models.ArrayListSelectionModel" />
