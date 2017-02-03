@@ -86,12 +86,13 @@ package org.apache.flex.html.beads
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
             
-            if (!itemRendererFactory)
+            _itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+            if (!_itemRendererFactory)
             {
                 _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
                 _strand.addBead(_itemRendererFactory);
             }
-            
+                            
 			dataProviderChangeHandler(null);
 		}
 		
