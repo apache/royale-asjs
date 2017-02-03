@@ -40,9 +40,9 @@ package org.apache.flex.html
     }
     
     /**
-     *  The Module class can load Flash or HTML content into a space within an application. Use Module to
-	 *  identify where the application should appear, then use its loadContent() function to load the
-	 *  application dynamically.
+     *  The SubAppLoader class can load Flash or HTML content into a space within an application. 
+	 *  Use SubAppLoader to identify where the application should appear, then use its loadApplication() 
+	 *  function to load the application dynamically.
 	 * 
      *  @toplevel
      *  @see org.apache.flex.html.beads.layout
@@ -52,7 +52,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Module extends UIBase
+	public class SubAppLoader extends UIBase
 	{
         /**
          *  Constructor.
@@ -62,7 +62,7 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function Module()
+		public function SubAppLoader()
 		{
 			super();
 		}
@@ -116,7 +116,7 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
 		 */
-		public function loadContent(swfURL:String, htmlURL:String):void
+		public function loadApplication(swfURL:String, htmlURL:String):void
 		{
 			createLoader();
 			

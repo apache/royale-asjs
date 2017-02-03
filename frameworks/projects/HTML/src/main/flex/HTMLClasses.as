@@ -215,7 +215,7 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.MultilineTextFieldView; MultilineTextFieldView;
 	}
 	
-	import org.apache.flex.html.Module; Module;
+	import org.apache.flex.html.SubAppLoader; SubAppLoader;
 }
 
 }
