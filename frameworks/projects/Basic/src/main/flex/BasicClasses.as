@@ -122,6 +122,7 @@ internal class BasicClasses
     	import org.apache.flex.html.beads.controllers.DropDownListController; DropDownListController;
 		import org.apache.flex.html.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
 	}
+    import org.apache.flex.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
 	import org.apache.flex.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
