@@ -218,28 +218,40 @@ limitations under the License.
                     </js:Div>
                 </mdl:CardSupportingText>
             </mdl:Card>
-            <mdl:Footer mini="true" width="500">
+            
+        </mdl:Grid>
+
+        <mdl:Footer mini="true">
 
                 <mdl:FooterLeftSection>
-                    <mdl:FooterLogo text="Title"/>
-                    <mdl:FooterLinkList className="footerMiniLinkListItemRenderer">
+                    <mdl:FooterSocialButton className="social-btn social-btn__twitter">
                         <mdl:beads>
-                            <js:ConstantBinding
-                                sourceID="model"
-                                sourcePropertyName="links"
-                                destinationPropertyName="dataProvider" />
+                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Twitter</span>]]></js:InnerHTML>
                         </mdl:beads>
-                    </mdl:FooterLinkList>
+                    </mdl:FooterSocialButton>
+                    <mdl:FooterSocialButton className="social-btn social-btn__blogger">
+                        <mdl:beads>
+                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Facebook</span>]]></js:InnerHTML>
+                        </mdl:beads>
+                    </mdl:FooterSocialButton>
+                    <mdl:FooterSocialButton className="social-btn social-btn__gplus">
+                        <mdl:beads>
+                            <js:InnerHTML><![CDATA[<span class="visuallyhidden">Google Plus</span>]]></js:InnerHTML>
+                        </mdl:beads>
+                    </mdl:FooterSocialButton>
                 </mdl:FooterLeftSection>
 
                 <mdl:FooterRightSection>
-                    <mdl:FooterSocialButton>1</mdl:FooterSocialButton>
-                    <mdl:FooterSocialButton>2</mdl:FooterSocialButton>
-                    <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
+                    <mdl:FooterSocialButton className="social-btn social-btn__share">
+                        <mdl:beads>
+                            <js:InnerHTML><![CDATA[<i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share</span>]]></js:InnerHTML>
+                        </mdl:beads>
+                    </mdl:FooterSocialButton>
                 </mdl:FooterRightSection>
             </mdl:Footer>
-        </mdl:Grid>
     </mdl:NavigationLayoutContent>
+
+    
 
 </mdl:NavigationLayout>
 
