@@ -104,7 +104,7 @@ package org.apache.flex.core
 		 */
 		public function getLayoutHost():ILayoutHost
 		{
-			return getBeadByType(ILayoutHost) as ILayoutHost;
+			return view as ILayoutHost;
 		}
 
     }
