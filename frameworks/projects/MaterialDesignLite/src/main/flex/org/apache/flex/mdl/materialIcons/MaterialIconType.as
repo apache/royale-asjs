@@ -459,6 +459,94 @@ package org.apache.flex.mdl.materialIcons
         public static const UNARCHIVE:String = 'unarchive';
         public static const UNDO:String = 'undo';
 
+        public static const WEEKEND:String = 'weekend';
+        public static const ACCESS_ALARM:String = 'access_alarm';
+        public static const ACCESS_ALARMS:String = 'access_alarms';
+        public static const ACCESS_TIME:String = 'access_time';
+        public static const ADD_ALARM:String = 'add_alarm';
+        public static const AIRPLANEMODE_ACTIVE:String = 'airplanemode_active';
+        public static const AIRPLANEMODE_INACTIVE:String = 'airplanemode_inactive';
+        public static const BATTERY_ALERT:String = 'battery_alert';
+        public static const BATTERY_CHARGING_FULL:String = 'battery_charging_full';
+        public static const BATTERY_FULL:String = 'battery_full';
+
+        public static const BATTERY_STD:String = 'battery_std';
+        public static const BATTERY_UNKNOWN:String = 'battery_unknown';
+        public static const BLUETOOTH:String = 'bluetooth';
+        public static const BLUETOOTH_CONNECTED:String = 'bluetooth_connected';
+        public static const BLUETOOTH_DISABLED:String = 'bluetooth_disabled';
+        public static const BLUETOOTH_SEARCHING:String = 'bluetooth_searching';
+        public static const BRIGHTNESS_AUTO:String = 'brightness_auto';
+        public static const BRIGHTNESS_HIGH:String = 'brightness_high';
+        public static const BRIGHTNESS_LOW:String = 'brightness_low';
+        public static const BRIGHTNESS_MEDIUM:String = 'brightness_medium';
+
+        public static const DATA_USAGE:String = 'data_usage';
+        public static const DEVELOPER_MODE:String = 'developer_mode';
+        public static const DEVICES:String = 'devices';
+        public static const DVR:String = 'dvr';
+        public static const GPS_FIXED:String = 'gps_fixed';
+        public static const GPS_NOT_FIXED:String = 'gps_not_fixed';
+        public static const GPS_OFF:String = 'gps_off';
+        public static const GRAPHIC_EQ:String = 'graphic_eq';
+        public static const LOCATION_DISABLED:String = 'location_disabled';
+        public static const LOCATION_SEARCHING:String = 'location_searching';
+        
+        public static const NETWORK_CELL:String = 'network_cell';
+        public static const NETWORK_WIFI:String = 'network_wifi';
+        public static const NFC:String = 'nfc';
+        public static const SCREEN_LOCK_LANDSCAPE:String = 'screen_lock_landscape';
+        public static const SCREEN_LOCK_PORTRAIT:String = 'screen_lock_portraitXXX';
+        public static const SCREEN_LOCK_ROTATION:String = 'screen_lock_rotation';
+        public static const SCREEN_ROTATION:String = 'screen_rotation';
+        public static const SD_STORAGE:String = 'sd_storage';
+        public static const SETTINGS_SYSTEM_DAYDREAM:String = 'settings_system_daydream';
+        public static const SIGNAL_CELLULAR_4_BAR:String = 'signal_cellular_4_bar';
+
+        public static const SIGNAL_CELLULAR_CONNECTED_NO_INTERNET_4_BAR:String = 'signal_cellular_connected_no_internet_4_bar';
+        public static const SIGNAL_CELLULAR_NO_SIM:String = 'signal_cellular_no_sim';
+        public static const SIGNAL_CELLULAR_NULL:String = 'signal_cellular_null';
+        public static const SIGNAL_CELLULAR_OFF:String = 'signal_cellular_off';
+        public static const SIGNAL_WIFI_4_BAR:String = 'signal_wifi_4_bar';
+        public static const SIGNAL_WIFI_4_BAR_LOCK:String = 'signal_wifi_4_bar_lock';
+        public static const SIGNAL_WIFI_OFF:String = 'signal_wifi_off';
+        public static const STORAGE:String = 'storage';
+        public static const USB:String = 'usb';
+        public static const WALLPAPER:String = 'wallpaper';
+
+        public static const WIDGETS:String = 'widgets';
+        public static const WIFI_LOCK:String = 'wifi_lock';
+        public static const WIFI_TETHERING:String = 'wifi_tethering';
+        public static const ATTACH_FILE:String = 'attach_file';
+        public static const ATTACH_MONEY:String = 'attach_money';
+        public static const BORDER_ALL:String = 'border_all';
+        public static const BORDER_BOTTOM:String = 'border_bottom';
+        public static const BORDER_CLEAR:String = 'border_clear';
+        public static const BORDER_COLOR:String = 'border_color';
+        public static const BORDER_HORIZONTAL:String = 'border_horizontal';
+
+        public static const BORDER_INNER:String = 'border_inner';
+        public static const BORDER_LEFT:String = 'border_left';
+        public static const BORDER_OUTER:String = 'border_outer';
+        public static const BORDER_RIGHT:String = 'border_right';
+        public static const BORDER_STYLE:String = 'border_style';
+        public static const BORDER_TOP:String = 'border_top';
+        public static const BORDER_VERTICAL:String = 'border_vertical';
+        public static const BUBBLE_CHART:String = 'bubble_chart';
+        public static const DRAG_HANDLE:String = 'drag_handle';
+        public static const FORMAT_ALIGN_CENTER:String = 'format_align_center';
+
+        public static const FORMAT_ALIGN_JUSTIFY:String = 'format_align_justify';
+        public static const FORMAT_ALIGN_LEFT:String = 'format_align_left';
+        public static const FORMAT_ALIGN_RIGHT:String = 'format_align_right';
+        public static const FORMAT_BOLD:String = 'format_bold';
+        public static const FORMAT_CLEAR:String = 'format_clear';
+        public static const FORMAT_COLOR_FILL:String = 'format_color_fill';
+        public static const FORMAT_COLOR_RESET:String = 'format_color_reset';
+        public static const FORMAT_COLOR_TEXT:String = 'format_color_text';
+        public static const FORMAT_INDENT_DECREASE:String = 'format_indent_decrease';
+        public static const FORMAT_INDENT_INCREASE:String = 'format_indent_increase';
+
       /*  
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
@@ -471,86 +559,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'weekend',
-        'access_alarm',
-        'access_alarms',
-        'access_time',
-        'add_alarm',
-        'airplanemode_active',
-        'airplanemode_inactive',
-        'battery_alert',
-        'battery_charging_full',
-        'battery_full',
-        'battery_std',
-        'battery_unknown',
-        'bluetooth',
-        'bluetooth_connected',
-        'bluetooth_disabled',
-        'bluetooth_searching',
-        'brightness_auto',
-        'brightness_high',
-        'brightness_low',
-        'brightness_medium',
-        'data_usage',
-        'developer_mode',
-        'devices',
-        'dvr',
-        'gps_fixed',
-        'gps_not_fixed',
-        'gps_off',
-        'graphic_eq',
-        'location_disabled',
-        'location_searching',
-        'network_cell',
-        'network_wifi',
-        'nfc',
-        'screen_lock_landscape',
-        'screen_lock_portrait',
-        'screen_lock_rotation',
-        'screen_rotation',
-        'sd_storage',
-        'settings_system_daydream',
-        'signal_cellular_4_bar',
-        'signal_cellular_connected_no_internet_4_bar',
-        'signal_cellular_no_sim',
-        'signal_cellular_null',
-        'signal_cellular_off',
-        'signal_wifi_4_bar',
-        'signal_wifi_4_bar_lock',
-        'signal_wifi_off',
-        'storage',
-        'usb',
-        'wallpaper',
-        'widgets',
-        'wifi_lock',
-        'wifi_tethering',
-        'attach_file',
-        'attach_money',
-        'border_all',
-        'border_bottom',
-        'border_clear',
-        'border_color',
-        'border_horizontal',
-        'border_inner',
-        'border_left',
-        'border_outer',
-        'border_right',
-        'border_style',
-        'border_top',
-        'border_vertical',
-        'bubble_chart',
-        'drag_handle',
-        'format_align_center',
-        'format_align_justify',
-        'format_align_left',
-        'format_align_right',
-        'format_bold',
-        'format_clear',
-        'format_color_fill',
-        'format_color_reset',
-        'format_color_text',
-        'format_indent_decrease',
-        'format_indent_increase',
         'format_italic',
         'format_line_spacing',
         'format_list_bulleted',
@@ -1022,7 +1030,6 @@ package org.apache.flex.mdl.materialIcons
         public static const MOOD:String = "mood";
         public static const MORE_VERT:String = "more_vert";
         public static const KEYBOARD_ARROW_DOWN:String = "keyboard_arrow_down";
-        public static const FORMAT_BOLD:String = "format_bold";
         public static const FORMAT_ITALIC:String = "format_italic";
     }
 }

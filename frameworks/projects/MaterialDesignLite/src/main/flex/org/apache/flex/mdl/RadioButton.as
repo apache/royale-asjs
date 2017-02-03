@@ -312,8 +312,6 @@ package org.apache.flex.mdl
             label = document.createElement("label") as HTMLLabelElement;
             label.appendChild(icon);
             label.appendChild(radio);
-
-            //label.addEventListener("click", clickHandler, false);
             
             element = label as WrappedHTMLElement;
             
@@ -331,21 +329,18 @@ package org.apache.flex.mdl
         {
             if (type == "click")
             {
-                icon.addEventListener("click", clickHandler, false);
+                icon.addEventListener(type, handler, opt_capture);
             }
             else
             {
-               super.addEventListener(type, handler);
+               super.addEventListener(type, handler, opt_capture, opt_handlerScope);
             }
         }
 
         COMPILE::JS
         public function clickHandler(event:Event):void
         {
-            //event.preventDefault();
-            //unselectAll();
             selected = !selected;
-            //element.classList.toggle("is-checked", selected);
         }
 
         protected var _ripple:Boolean = false;
@@ -446,29 +441,6 @@ package org.apache.flex.mdl
                 }
             }
         }
-
-        /*COMPILE::JS
-        private function unselectAll():void
-        {
-            var groupName:String = icon.name as String;
-            var buttons:NodeList = document.getElementsByName(groupName);
-            var n:int = buttons.length;
-
-            for (var i:int = 0; i < n; i++)
-            {
-                var radio:HTMLInputElement = buttons[i];
-                radio.checked = false;
-
-                var labels:NodeList = radio["labels"];
-                var labelsLength:int = labels.length;
-                
-                for (var l:int = 0; l < labelsLength; l++)
-                {
-                    var lbl:Object = labels[l];
-                    lbl.classList.remove("is-checked");
-                }
-            }
-        }*/
 
         /**
          * @param e The event object.
