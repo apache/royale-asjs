@@ -36,8 +36,8 @@
 
   <properties>
     <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
-    <primary>indigo</primary>
-    <accent>pink</accent>
+    <primary>grey</primary>
+    <accent>orange</accent>
   </properties>
 
   <build>
