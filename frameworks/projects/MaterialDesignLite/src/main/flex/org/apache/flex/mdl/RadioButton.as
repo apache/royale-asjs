@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
 
     COMPILE::SWF
     {
@@ -26,7 +27,6 @@ package org.apache.flex.mdl
         import org.apache.flex.core.UIButtonBase;
         import org.apache.flex.core.IStrand;
         import org.apache.flex.core.IValueToggleButtonModel;
-        import org.apache.flex.events.MouseEvent;
     }
     COMPILE::JS
     {
@@ -228,12 +228,12 @@ package org.apache.flex.mdl
 		/**
 		 * @private
 		 */
-		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
+		private function internalMouseHandler(event:MouseEvent) : void
 		{
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {
 				selected = !selected;
-				dispatchEvent(new Event("change"));
+				dispatchEvent(new Event(Event.CHANGE));
 			}
 		}
 
@@ -327,7 +327,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
-            if (type == "click")
+            if (type == MouseEvent.CLICK)
             {
                 icon.addEventListener(type, handler, opt_capture);
             }

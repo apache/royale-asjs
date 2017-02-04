@@ -21,7 +21,6 @@ package org.apache.flex.mdl
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
     import org.apache.flex.core.IToggleButtonModel;
-    import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.core.IStrand;
@@ -244,7 +243,7 @@ package org.apache.flex.mdl
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             element.flexjs_wrapper = this;
 
-            element.addEventListener("click", clickHandler, false);
+            element.addEventListener(MouseEvent.CLICK, clickHandler, false);
 
             return element;
         }
