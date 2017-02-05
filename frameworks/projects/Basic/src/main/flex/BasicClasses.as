@@ -199,6 +199,8 @@ internal class BasicClasses
 	import org.apache.flex.svg.Text; Text;
 	import org.apache.flex.svg.CompoundGraphic; CompoundGraphic;
 
+    import org.apache.flex.html.beads.models.DataProviderModel; DataProviderModel;
+    import org.apache.flex.html.beads.DataContainerView; DataContainerView;
 
 	COMPILE::SWF
 	{
