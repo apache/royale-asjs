@@ -66,7 +66,7 @@ package org.apache.flex.html.beads.models
 			_strand = value;
 		}
 
-		private var _text:String;
+		private var _text:String = "";
 
         /**
          *  @copy org.apache.flex.core.ITextModel#text
