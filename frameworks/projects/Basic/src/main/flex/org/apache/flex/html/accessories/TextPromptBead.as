@@ -142,6 +142,11 @@ package org.apache.flex.html.accessories
 				if (!promptAdded) UIBase(_strand).addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
+                promptField.x = 2;
+                promptField.y = 2;
+                promptField.width = UIBase(_strand).width-5;
+                promptField.height = UIBase(_strand).height-4;
+
 			}
 		}
 	}
