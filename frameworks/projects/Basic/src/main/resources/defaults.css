@@ -512,6 +512,17 @@ ControlBar
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");    
 }
 
+DateChooserList {
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+    IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #0000DD;
+    border-width: 1px;
+    background-color: #DDDDFF;
+}
+
 DataContainer
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataProviderModel");
