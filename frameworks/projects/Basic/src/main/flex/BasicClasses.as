@@ -33,6 +33,7 @@ internal class BasicClasses
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.accessories.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.beads.AlertView; AlertView;
+    import org.apache.flex.html.beads.models.AlertModel; AlertModel;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.BackgroundImageBead; BackgroundImageBead;

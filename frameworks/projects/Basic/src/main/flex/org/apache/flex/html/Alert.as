@@ -127,14 +127,34 @@ package org.apache.flex.html
             titleBar = new TitleBar();
             addElement(titleBar);
             titleBar.element.id = 'titleBar';
+            titleBar.percentWidth = 100;
+            titleBar.height = 24;
+            titleBar.element.style.top = "0px";
+            titleBar.element.style.right = "0px";
+            titleBar.element.style.left = "0px";
+            titleBar.element.style.marginBottom = "6px";
+
             
             label = new Label();
             addElement(label);
+            label.element.style.display = "block";
+            label.element.style.padding = "6px";
+            label.element.style.left = "0px";
+            label.element.style.right = "0px";
+            label.element.style.whiteSpace = "normal";
+
             label.element.id = 'message';
             
             // add a place for the buttons
             buttonArea = new Container();
+            buttonArea.percentWidth = 100;
+            buttonArea.height = 28;
             addElement(buttonArea);
+            buttonArea.element.style.marginTop = "6px";
+            buttonArea.element.style.marginBottom = "6px";
+            buttonArea.element.style.padding = "2px";
+            buttonArea.element.style.left = "0px";
+            buttonArea.element.style.right = "0px";
             buttonArea.element.id = 'buttonArea';
             
             return element;
@@ -168,10 +188,10 @@ package org.apache.flex.html
             
             COMPILE::JS
             {
-                alert.positioner.style.position = 'relative';
-                alert.positioner.style.width = '200px';
                 alert.positioner.style.margin = 'auto';
-                alert.positioner.style.top = '100px';
+                alert.positioner.style.left = "50%";
+                alert.positioner.style.top = "50%";
+
             }
 		}
 		
@@ -206,6 +226,10 @@ package org.apache.flex.html
 		public function set title(value:String):void
 		{
 			IAlertModel(model).title = value;
+            COMPILE::JS {
+                titleBar.title = value;
+            }
+
 		}
 		
 		/**
@@ -223,6 +247,10 @@ package org.apache.flex.html
 		public function set message(value:String):void
 		{
 			IAlertModel(model).message = value;
+            COMPILE::JS {
+                label.text = value;
+            }
+
 		}
 		
 		/**
@@ -248,24 +276,28 @@ package org.apache.flex.html
                     var ok:TextButton = new TextButton();
                     buttonArea.addElement(ok);
                     ok.text = 'OK';
+                    ok.element.style.margin = "4px";
                     goog.events.listen(ok.element, 'click', dismissAlert);
                 }
                 if (flags & Alert.CANCEL) {
                     var cancel:TextButton = new TextButton();
                     buttonArea.addElement(cancel);
                     cancel.text = 'Cancel';
+                    cancel.element.style.margin = "4px";
                     goog.events.listen(cancel.element, 'click', dismissAlert);
                 }
                 if (flags & Alert.YES) {
                     var yes:TextButton = new TextButton();
                     buttonArea.addElement(yes);
                     yes.text = 'YES';
+                    yes.element.style.margin = "4px";
                     goog.events.listen(yes.element, 'click', dismissAlert);
                 }
                 if (flags & Alert.NO) {
                     var nob:TextButton = new TextButton();
                     buttonArea.addElement(nob);
                     nob.text = 'NO';
+                    nob.element.style.margin = "4px";
                     goog.events.listen(nob.element, 'click', dismissAlert);
                 }
                 
