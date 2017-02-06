@@ -427,7 +427,7 @@ package org.apache.flex.html.beads.layouts
                     if (horizontalCenter)
                     {
                         child.positioner.style.position = 'absolute';
-                        child.positioner.style.left = ((w - child.width) / 2) + 'px';
+                        child.positioner.style.left = Math.max(((w - child.width) / 2),0) + 'px';
                     }
                     child.dispatchEvent('sizeChanged');
                     maxWidth = Math.max(maxWidth, child.positioner.offsetLeft + child.positioner.offsetWidth);
