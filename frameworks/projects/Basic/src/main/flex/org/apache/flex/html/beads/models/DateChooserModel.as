@@ -181,8 +181,10 @@ package org.apache.flex.html.beads.models
 				_selectedDate = value;
 				dispatchEvent( new Event("selectedDateChanged") );
 				
-				displayedMonth = value.getMonth();
-				displayedYear  = value.getFullYear();
+                if (value != null) {
+    				displayedMonth = value.getMonth();
+    				displayedYear  = value.getFullYear();
+                }
 			}
 		}
 	}

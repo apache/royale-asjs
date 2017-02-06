@@ -30,9 +30,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Container;
     import org.apache.flex.html.List;
 	import org.apache.flex.html.TextButton;
+    import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout;
 	import org.apache.flex.html.beads.models.DateChooserModel;
 	import org.apache.flex.html.supportClasses.DateHeaderButton;
+    import org.apache.flex.html.supportClasses.DateChooserHeader;
     import org.apache.flex.html.supportClasses.DateChooserList;
     
 	/**
@@ -77,8 +79,11 @@ package org.apache.flex.html.beads
 		private var _prevMonthButton:DateHeaderButton;
 		private var _nextMonthButton:DateHeaderButton;
 		private var monthLabel:DateHeaderButton;
-        private var daysContainer:List;
+        private var dayNamesContainer:DateChooserHeader;
+        private var daysContainer:DateChooserList;
+        
         private var _dayNames:Array;
+        private var _days:Array;
         
 		/**
 		 *  The button that causes the previous month to be displayed by the DateChooser.
@@ -111,14 +116,6 @@ package org.apache.flex.html.beads
             return daysContainer;
         }
             
-		/**
-		 * The array of DateChooserButton instances that represent each day of the month.
-		 */
-		public function get dayNames():Array
-		{
-			return _dayNames;
-		}
-
 		private function handleSizeChange(event:Event):void
 		{
 			layoutContents();
@@ -147,19 +144,17 @@ package org.apache.flex.html.beads
 			monthLabel.height = 20;
 			UIBase(_strand).addElement(monthLabel);
 
+            dayNamesContainer = new DateChooserHeader();
+            UIBase(_strand).addElement(dayNamesContainer, false);
+            
             daysContainer = new DateChooserList();
             UIBase(_strand).addElement(daysContainer, false);
             
-            //tileLayout.numColumns = 7;
             _dayNames = new Array();
             
 			// the calendar has 7 columns with 6 rows, the first row are the day names
 			for(var i:int=0; i < 7; i++) {
-                dayNames.push(model.dayNames[i]);
-			}
-
-			for(i=0; i < 42; i++) {
-                dayNames.push(String(i+1));
+                _dayNames.push(model.dayNames[i]);
 			}
 
 			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
@@ -182,16 +177,18 @@ package org.apache.flex.html.beads
             monthLabel.y = 0;
             monthLabel.width = sw - _prevMonthButton.width - _nextMonthButton.width;
             
+            dayNamesContainer.x = 0;
+            dayNamesContainer.y = monthLabel.y + monthLabel.height;
+            dayNamesContainer.width = sw;
+            dayNamesContainer.height = monthLabel.height;
+            
+            dayNamesContainer.dataProvider = _dayNames;
+            
             daysContainer.x = 0;
-            daysContainer.y = monthLabel.y + monthLabel.height + 4;
+            daysContainer.y = dayNamesContainer.y + dayNamesContainer.height;
             daysContainer.width = sw;
-            daysContainer.height = sh - (monthLabel.height+5);
-            
-            daysContainer.dataProvider = dayNames;
-            
-            COMPILE::SWF {
-                displayBackgroundAndBorder(_strand as UIBase);
-            }
+            daysContainer.height = sh - monthLabel.height - dayNamesContainer.height;
+            daysContainer.dataProvider = _days;
                 
             IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );
             IEventDispatcher(daysContainer).dispatchEvent( new Event("layoutNeeded") );
@@ -208,27 +205,26 @@ package org.apache.flex.html.beads
 
 			var firstDay:Date = new Date(model.displayedYear,model.displayedMonth,1);
 
+            _days = new Array(42);
+            
 			// blank out the labels for the first firstDay.day-1 entries.
 			for(var i:int=0; i < firstDay.getDay(); i++) {
-                dayNames[i+7] = "";
+                _days[i] = null;
             }
-
-			// flag today
-			var today:Date = new Date();
 
 			// renumber to the last day of the month
 			var dayNumber:int = 1;
 			var numDays:Number = numberOfDaysInMonth(model.displayedMonth, model.displayedYear);
 
-            for(; i < dayNames.length-7 && dayNumber <= numDays; i++) {
-                dayNames[i+7] = String(dayNumber++);
-			}
+            for(; i < _days.length && dayNumber <= numDays; i++) {
+                _days[i] = new Date(model.displayedYear, model.displayedMonth, dayNumber++);
+            }
 
 			// blank out the rest
-            for(; i < dayNames.length-7; i++) {
-                dayNames[i+7] = "";			
+            for(; i < _days.length; i++) {
+                _days[i] = null;
             }
-            daysContainer.dataProvider = dayNames;
+            daysContainer.dataProvider = _days;
 		}
 
 		/**
@@ -263,42 +259,5 @@ package org.apache.flex.html.beads
 			updateCalendar();
 		}
 		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		protected function displayBackgroundAndBorder(host:UIBase) : void
-		{
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (host.getBeadByType(IBackgroundBead) == null)
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBackgroundBead");
-				if (c) {
-					host.addBead( new c() as IBead );
-				}
-			}
-			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				if (host.getBeadByType(IBorderBead) == null) {
-					c = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
-					if (c) {
-						host.addBead( new c() as IBead );
-					}
-				}
-			}
-		}
 	}
 }
