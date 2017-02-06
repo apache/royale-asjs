@@ -122,7 +122,7 @@ package org.apache.flex.html.supportClasses
                 } while (needsLayout);
 
                 var rect:Rectangle = new Rectangle(0, 0, viewportWidth,viewportHeight);
-                contentArea.$sprite.scrollRect = rect;
+                contentArea.scrollRect = rect;
                 return contentSize;
 
             }

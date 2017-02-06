@@ -66,7 +66,7 @@ package org.apache.flex.html.beads
 			super(target);
 		}
 		
-        private var dataProviderModel:IDataProviderModel;
+        protected var dataProviderModel:IDataProviderModel;
 		
 		protected var labelField:String;
 		

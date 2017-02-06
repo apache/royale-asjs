@@ -22,7 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.UIBase;
 
     import org.apache.flex.core.IComboBoxModel;
-    import org.apache.flex.core.beads.models.ComboBoxModel;
+    import org.apache.flex.html.beads.models.ComboBoxModel;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
 	

@@ -278,7 +278,7 @@ package org.apache.flex.html.beads.models
             for(var i:int=0; i < _days.length; i++) {
                 var test:Date = _days[i] as Date;
                 if (test != null) {
-                    if (test.getMonth() == d.getMonth() && test.getDate() == d.getDate() && test.getFullYear()
+                    if (test.getMonth() == d.getMonth() && test.getDate() == d.getDate() && test.getFullYear())
                         return i;
 			    }
             }

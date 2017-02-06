@@ -44,7 +44,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class OneFlexibleChildHorizontalLayout implements IBeadLayout, IDocument
+	public class OneFlexibleChildHorizontalLayout implements IOneFlexibleChildLayout, IDocument
 	{
         /**
          *  Constructor.
