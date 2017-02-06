@@ -61,6 +61,26 @@ package org.apache.flex.html.beads
 		}
 
         /**
+         *  The default step size for up and down arrows as a divisor
+         *  to the height of the scroll bar.  In other words, if
+         *  STEP_RATE is set to 20, then it will take 20 clicks on
+         *  the thumb to move the bottom of the screen to the top.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public static var STEP_RATE:int = 20;
+        
+        override protected function changeHandler(event:Event):void
+        {
+            layout.layout();
+            sbModel = host.getBeadByType(IScrollBarModel) as IScrollBarModel;
+            sbModel.stepSize = Math.max(Math.round(host.height / STEP_RATE), 1);
+        }            
+
+        /**
          *  @copy org.apache.flex.core.IBead#strand
          *  
          *  @langversion 3.0
