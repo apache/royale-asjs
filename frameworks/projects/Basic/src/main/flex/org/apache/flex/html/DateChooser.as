@@ -51,6 +51,10 @@ package org.apache.flex.html
 			// fix the DateChooser's size
 			width = 280;
 			height = 240;
+            
+            // default to today
+            selectedDate = new Date();
+
 		}
 
 		/**

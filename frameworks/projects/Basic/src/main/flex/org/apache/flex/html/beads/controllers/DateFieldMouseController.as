@@ -21,11 +21,14 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IDateChooserModel;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.beads.DateFieldView;
+    import org.apache.flex.utils.Timer;
+    import org.apache.flex.utils.UIUtils;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -74,9 +77,41 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function clickHandler(event:MouseEvent):void
 		{
+            event.stopImmediatePropagation();
+            
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+                                   
+            removeDismissHandler();
+            
+            // use a timer to delay the installation of the event handler, otherwise
+            // the event handler is called immediately and will dismiss the popup.
+            var t:Timer = new Timer(0.25,1);
+            t.addEventListener("timer",addDismissHandler);
+            t.start();
+        }
+        
+        /**
+         * @private
+         */
+        private function addDismissHandler(event:Event):void
+        {
+            var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+            if (host) {
+                host.addEventListener("click", dismissHandler);
+            }
+        }
+        
+        /**
+         * @private
+         */
+        private function removeDismissHandler():void
+        {
+            var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+            if (host) {
+                host.removeEventListener("click", dismissHandler);
+            }
 		}
 		
 		/**
@@ -84,6 +119,8 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function changeHandler(event:Event):void
 		{
+            event.stopImmediatePropagation();
+            
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			
 			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
@@ -91,6 +128,39 @@ package org.apache.flex.html.beads.controllers
 
 			viewBead.popUpVisible = false;
 			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+            
+            removeDismissHandler();
 		}
+        
+        /**
+         * @private
+         */
+        private function dismissHandler(event:MouseEvent):void
+        {
+            var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
+            var popup:IUIBase = IUIBase(viewBead.popUp);
+            
+            COMPILE::SWF {
+                var before:IUIBase = event.targetBeforeBubbling["flexjs_wrapper"] as IUIBase;
+                if (before) {
+                    while (before != null) {
+                        if (before == popup) return;
+                        before = before.parent as IUIBase;
+                    }
+                }
+            }
+                COMPILE::JS {
+                    var before:IUIBase = event.target as IUIBase;
+                    if (before) {
+                        while (before != null) {
+                            if (before == popup) return;
+                            before = before.parent as IUIBase;
+                        }
+                    }
+                }
+                
+                viewBead.popUpVisible = false;
+            removeDismissHandler();
+        }
 	}
 }

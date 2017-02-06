@@ -82,9 +82,6 @@ package org.apache.flex.html.beads
         private var dayNamesContainer:DateChooserHeader;
         private var daysContainer:DateChooserList;
         
-        private var _dayNames:Array;
-        private var _days:Array;
-        
 		/**
 		 *  The button that causes the previous month to be displayed by the DateChooser.
 		 *
@@ -150,17 +147,10 @@ package org.apache.flex.html.beads
             daysContainer = new DateChooserList();
             UIBase(_strand).addElement(daysContainer, false);
             
-            _dayNames = new Array();
-            
-			// the calendar has 7 columns with 6 rows, the first row are the day names
-			for(var i:int=0; i < 7; i++) {
-                _dayNames.push(model.dayNames[i]);
-			}
-
 			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
 
-			updateCalendar();
-		}
+            model.addEventListener("selectedDateChanged", selectionChangeHandler);
+        }
 
         private function layoutContents():void
         {
@@ -176,19 +166,21 @@ package org.apache.flex.html.beads
             monthLabel.x = _prevMonthButton.x + _prevMonthButton.width;
             monthLabel.y = 0;
             monthLabel.width = sw - _prevMonthButton.width - _nextMonthButton.width;
-            
+            monthLabel.text = model.monthNames[model.displayedMonth] + " " +
+                String(model.displayedYear);
+
             dayNamesContainer.x = 0;
             dayNamesContainer.y = monthLabel.y + monthLabel.height;
             dayNamesContainer.width = sw;
             dayNamesContainer.height = monthLabel.height;
             
-            dayNamesContainer.dataProvider = _dayNames;
+            dayNamesContainer.dataProvider = model.dayNames;
             
             daysContainer.x = 0;
             daysContainer.y = dayNamesContainer.y + dayNamesContainer.height;
             daysContainer.width = sw;
             daysContainer.height = sh - monthLabel.height - dayNamesContainer.height;
-            daysContainer.dataProvider = _days;
+            daysContainer.dataProvider = model.days;
                 
             IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );
             IEventDispatcher(daysContainer).dispatchEvent( new Event("layoutNeeded") );
@@ -198,57 +190,11 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function updateCalendar():void
+        private function selectionChangeHandler(event:Event):void
 		{
-			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
-				String(model.displayedYear);
-
-			var firstDay:Date = new Date(model.displayedYear,model.displayedMonth,1);
-
-            _days = new Array(42);
-            
-			// blank out the labels for the first firstDay.day-1 entries.
-			for(var i:int=0; i < firstDay.getDay(); i++) {
-                _days[i] = null;
-            }
-
-			// renumber to the last day of the month
-			var dayNumber:int = 1;
-			var numDays:Number = numberOfDaysInMonth(model.displayedMonth, model.displayedYear);
-
-            for(; i < _days.length && dayNumber <= numDays; i++) {
-                _days[i] = new Date(model.displayedYear, model.displayedMonth, dayNumber++);
-            }
-
-			// blank out the rest
-            for(; i < _days.length; i++) {
-                _days[i] = null;
-            }
-            daysContainer.dataProvider = _days;
-		}
-
-		/**
-		 * @private
-		 */
-		private function numberOfDaysInMonth(month:Number, year:Number):Number
-		{
-			var n:int;
-
-			if (month == 1) // Feb
-			{
-				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year
-					n = 29;
-				else
-					n = 28;
-			}
-
-			else if (month == 3 || month == 5 || month == 8 || month == 10)
-				n = 30;
-
-			else
-				n = 31;
-
-			return n;
+            layoutContents();
+            var index:Number = model.getIndexForSelectedDate();
+            daysContainer.selectedIndex = index;
 		}
 
 		/**
@@ -256,7 +202,7 @@ package org.apache.flex.html.beads
 		 */
 		private function handleModelChange(event:Event):void
 		{
-			updateCalendar();
+            layoutContents();
 		}
 		
 	}
