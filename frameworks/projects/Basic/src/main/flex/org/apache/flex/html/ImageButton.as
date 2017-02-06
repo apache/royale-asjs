@@ -60,7 +60,8 @@ package org.apache.flex.html
 
 			var inputElement:HTMLInputElement = element as HTMLInputElement;
 			inputElement.type = "image";
-
+            inputElement.setAttribute("value", " ");
+            
 			return element;
 		}
 
