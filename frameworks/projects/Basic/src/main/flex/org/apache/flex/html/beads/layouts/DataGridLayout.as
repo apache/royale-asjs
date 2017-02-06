@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {	
-	import org.apache.flex.core.IBeadLayout;
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
@@ -71,16 +72,23 @@ package org.apache.flex.html.beads.layouts
 		{
 			_strand = value;
 			
-			var host:UIBase = _strand as UIBase;
-			host.addEventListener("widthChanged", handleSizeChanges);
-			host.addEventListener("heightChanged", handleSizeChanges);
-			host.addEventListener("sizeChanged", handleSizeChanges);
-			host.addEventListener("layoutNeeded", handleSizeChanges);
-			
+            var host:UIBase = value as UIBase;
+            
 			var view:DataGridView = host.view as DataGridView;
 			header = view.header;
 			listArea = view.listArea;
+            
+            var anylayout:IBead = listArea.getBeadByType(IBeadLayout);
+            if (anylayout != null) {
+                listArea.removeBead(anylayout);
+            }
 			listArea.addBead(new BasicLayout());
+            
+            host.addEventListener("widthChanged", handleSizeChanges);
+            host.addEventListener("heightChanged", handleSizeChanges);
+            host.addEventListener("sizeChanged", handleSizeChanges);
+            host.addEventListener("layoutNeeded", handleSizeChanges);
+
 		}
 		
 		private var _header:UIBase;
