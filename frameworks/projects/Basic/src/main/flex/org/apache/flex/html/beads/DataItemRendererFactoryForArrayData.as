@@ -65,9 +65,9 @@ package org.apache.flex.html.beads
 			super(target);
 		}
 		
-        private var dataProviderModel:IDataProviderModel;
+        protected var dataProviderModel:IDataProviderModel;
 		
-		private var labelField:String;
+        protected var labelField:String;
 		
 		private var _strand:IStrand;
 		
@@ -139,7 +139,7 @@ package org.apache.flex.html.beads
          */
 		protected var dataGroup:IItemRendererParent;
 		
-		private function dataProviderChangeHandler(event:Event):void
+        protected function dataProviderChangeHandler(event:Event):void
 		{
             var dp:Array = dataProviderModel.dataProvider as Array;
 			if (!dp)
