@@ -103,6 +103,11 @@ package org.apache.flex.html
 		{
 			return IDataGridModel(model).selectedIndex;
 		}
+        public function set selectedIndex(value:int):void
+        {
+            IDataGridModel(model).selectedIndex = value;
+        }
+
 		
 		/**
 		 *  The DataGrid's presentation model
