@@ -147,6 +147,12 @@ package org.apache.flex.svg
             }
 		}
 		
+        COMPILE::JS
+        override public function get transformElement():WrappedHTMLElement
+        {
+            return _rect;
+        }
+
 		override protected function draw():void
 		{
 			drawRect(0,0,width,height);
