@@ -24,6 +24,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
