@@ -23,10 +23,16 @@ package org.apache.flex.html
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.Event;
 
+    COMPILE::SWF
+    {
+        import flash.events.MouseEvent;
+    }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.MouseEvent;
     }
 
     //--------------------------------------
@@ -42,6 +48,16 @@ package org.apache.flex.html
      *  @productversion FlexJS 0.0
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+
+    /**
+     *  Dispatched when ToggleTextButton is being selected/unselected.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
 
     /**
      *  The ToggleButton class is a TextButton that supports
@@ -65,6 +81,10 @@ package org.apache.flex.html
 		public function ToggleTextButton()
 		{
 			super();
+            COMPILE::SWF
+            {
+                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            }
             COMPILE::JS
             {
                 this.typeNames = 'toggleTextButton';
@@ -77,6 +97,7 @@ package org.apache.flex.html
         COMPILE::JS
         private var SELECTED:String = "selected";
 
+        [Bindable("change")]
         /**
          *  <code>true</code> if the Button is selected.
          *
@@ -165,6 +186,15 @@ package org.apache.flex.html
         private function clickHandler(event:Event):void
         {
             selected = !selected;
+            dispatchEvent(new Event("change"));
         }
+        
+        COMPILE::SWF
+        private function internalMouseHandler(event:MouseEvent) : void
+        {
+            selected = !selected;
+            dispatchEvent(new Event("change"));
+        }
+
 	}
 }
