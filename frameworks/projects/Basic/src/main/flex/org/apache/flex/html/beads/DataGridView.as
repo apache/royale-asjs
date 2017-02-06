@@ -23,6 +23,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
+    import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
@@ -31,6 +32,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.html.DataGrid;
 	import org.apache.flex.html.DataGridButtonBar;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
@@ -38,7 +40,6 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.layouts.IDataGridLayout;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
-	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.ScrollingViewport;
@@ -148,16 +149,11 @@ package org.apache.flex.html.beads
 		 */
 		private function finishSetup(event:Event):void
 		{
-			var host:UIBase = _strand as UIBase;
-
+            var host:DataGrid = _strand as DataGrid;
+            
 			// see if there is a presentation model already in place. if not, add one.
-			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
-			if (presentationModel == null) {
-				presentationModel = new DataGridPresentationModel();
-				_strand.addBead(presentationModel);
-			}
-
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var presentationModel:IDataGridPresentationModel = host.presentationModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
             IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
@@ -254,8 +250,10 @@ package org.apache.flex.html.beads
 		 */
 		private function createLists():void
 		{
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
+            var host:DataGrid = _strand as DataGrid;
+            
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
+            var presentationModel:IDataGridPresentationModel = host.presentationModel;
 			var listWidth:Number = host.width / sharedModel.columns.length;
 
 			_lists = new Array();

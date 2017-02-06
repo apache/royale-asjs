@@ -22,6 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
@@ -110,6 +111,11 @@ package org.apache.flex.html
 
 		
 		/**
+         * @private
+         */
+        private var _presentationModel:IDataGridPresentationModel;
+               
+        /**
 		 *  The DataGrid's presentation model
 		 *
 		 *  @langversion 3.0
@@ -119,16 +125,22 @@ package org.apache.flex.html
 		 */
 		public function get presentationModel():IDataGridPresentationModel
 		{
-			var beadMod:IBead = getBeadByType(IDataGridPresentationModel);
-			var presModel:IDataGridPresentationModel;
-			
-			if (beadMod == null) {
-				presModel = new DataGridPresentationModel();
-				addBead(presModel);
-			} else {
-				presModel = beadMod as IDataGridPresentationModel;
-			}
-			return presModel;
+            if (_presentationModel == null) {
+                var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
+                if (c) {
+                    var presModel:Object = new c();
+                    _presentationModel = presModel as IDataGridPresentationModel;
+                    if (_presentationModel != null) {
+                        addBead(_presentationModel as IBead);
+                    }
+                }
+            }
+            return _presentationModel;
+        }
+        
+        public function set presentationModel(value:IDataGridPresentationModel):void
+        {
+            _presentationModel = value;
 		}
 				
 		/**
