@@ -122,6 +122,7 @@ package org.apache.flex.html
             COMPILE::SWF
             {
                 IToggleButtonModel(model).selected = value;
+                internalSelected()
                 dispatchEvent(new Event("change"));
             }
             COMPILE::JS
@@ -159,30 +160,44 @@ package org.apache.flex.html
             selected = !selected;
         }
 
-        COMPILE::JS
         private function internalSelected():void
         {
-            var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
-            if (!isToggleTextButtonSelected && _selected == true)
+            COMPILE::SWF
             {
-                element.classList.add("toggleTextButton_Selected");
+                var name:String = super.className;
+                if (selected)
+                {
+                    className = "toggleTextButton_Selected" + (name ? " " + name : "");
+                }
+                else
+                {
+                    className = "toggleTextButton" + (name ? " " + name : "");
+                }
             }
-            else if (isToggleTextButtonSelected && _selected == false)
+            COMPILE::JS
             {
-                element.classList.toggle("toggleTextButton_Selected");
+                var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
+                if (!isToggleTextButtonSelected && _selected == true)
+                {
+                    element.classList.add("toggleTextButton_Selected");
+                }
+                else if (isToggleTextButtonSelected && _selected == false)
+                {
+                    element.classList.toggle("toggleTextButton_Selected");
+                }
+                
+                var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
+                if (!isToggleTextButton && _selected == false)
+                {
+                    element.classList.add("toggleTextButton");
+                }
+                else if (isToggleTextButton && _selected == true)
+                {
+                    element.classList.toggle("toggleTextButton");
+                }
+                
+                typeNames = element.className;
             }
-            
-            var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
-            if (!isToggleTextButton && _selected == false)
-            {
-                element.classList.add("toggleTextButton");
-            }
-            else if (isToggleTextButton && _selected == true)
-            {
-                element.classList.toggle("toggleTextButton");
-            }
-            
-            typeNames = element.className;
         }
 
 	}
