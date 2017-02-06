@@ -81,7 +81,10 @@ package org.apache.flex.html.beads.layouts
 			host = value as ILayoutChild;
             COMPILE::JS
             {
-                ((value as IUIBase).element as HTMLElement).style.display = 'block';
+                var base:IUIBase = value as IUIBase;
+                if (base.element.style.display !== "none") {
+                    base.element.style.display = "block";
+                }
             }
 		}
 	
