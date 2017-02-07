@@ -646,16 +646,16 @@ package org.apache.flex.mdl.materialIcons
         public static const POWER_INPUT:String = 'power_input';
         public static const ROUTER:String = 'router';
 
-        public static const scanner:String = 'scanner';
-        public static const security:String = 'security';
-        public static const sim_card:String = 'sim_card';
-        public static const smartphone:String = 'smartphone';
-        public static const speaker:String = 'speaker';
-        public static const speaker_group:String = 'speaker_group';
-        public static const tablet:String = 'tablet';
-        public static const tablet_android:String = 'tablet_android';
-        public static const tablet_mac:String = 'tablet_mac';
-        public static const toys:String = 'toys';
+        public static const SCANNER:String = 'scanner';
+        public static const SECURITY:String = 'security';
+        public static const SIM_CARD:String = 'sim_card';
+        public static const SMARTPHONE:String = 'smartphone';
+        public static const SPEAKER:String = 'speaker';
+        public static const SPEAKER_GROUP:String = 'speaker_group';
+        public static const TABLET:String = 'tablet';
+        public static const TABLET_ANDROID:String = 'tablet_android';
+        public static const TABLET_MAC:String = 'tablet_mac';
+        public static const TOYS:String = 'toys';
 
         public static const TV:String = 'tv';
         public static const VIDEOGAME_ASSET:String = 'videogame_asset';
@@ -667,6 +667,215 @@ package org.apache.flex.mdl.materialIcons
         public static const ASSISTANT_PHOTO:String = 'assistant_photo';
         public static const AUDIOTRACK:String = 'audiotrack';
         public static const BLUR_CIRCULAR:String = 'blur_circular';
+
+        public static const BLUR_LINEAR:String = 'blur_linear';
+        public static const BLUR_OFF:String = 'blur_off';
+        public static const BLUR_ON:String = 'blur_on';
+        public static const BRIGHTNESS_1:String = 'brightness_1';
+        public static const BRIGHTNESS_2:String = 'brightness_2';
+        public static const BRIGHTNESS_3:String = 'brightness_3';
+        public static const BRIGHTNESS_4:String = 'brightness_4';
+        public static const BRIGHTNESS_5:String = 'brightness_5';
+        public static const BRIGHTNESS_6:String = 'brightness_6';
+        public static const BRIGHTNESS_7:String = 'brightness_7';
+
+        public static const BROKEN_IMAGE:String = 'broken_image';
+        public static const BRUSH:String = 'brush';
+        public static const BURST_MODE:String = 'burst_mode';
+        public static const CAMERA:String = 'camera';
+        public static const CAMERA_ALT:String = 'camera_alt';
+        public static const CAMERA_FRONT:String = 'camera_front';
+        public static const CAMERA_REAR:String = 'camera_rear';
+        public static const CAMERA_ROLL:String = 'camera_roll';
+        public static const CENTER_FOCUS_STRONG:String = 'center_focus_strong';
+        public static const CENTER_FOCUS_WEAK:String = 'center_focus_weak';
+
+        public static const COLLECTIONS:String = 'collections';
+        public static const COLLECTIONS_BOOKMARK:String = 'collections_bookmark';
+        public static const COLOR_LENS:String = 'color_lens';
+        public static const COLORIZE:String = 'colorize';
+        public static const COMPARE:String = 'compare';
+        public static const CONTROL_POINT:String = 'control_point';
+        public static const CONTROL_POINT_DUPLICATE:String = 'control_point_duplicate';
+        public static const CROP:String = 'crop';
+        public static const CROP_16_9:String = 'crop_16_9';
+        public static const CROP_3_2:String = 'crop_3_2';
+
+        public static const CROP_5_4:String = 'crop_5_4';
+        public static const CROP_7_5:String = 'crop_7_5';
+        public static const CROP_DIN:String = 'crop_din';
+        public static const CROP_FREE:String = 'crop_free';
+        public static const CROP_LANDSCAPE:String = 'crop_landscape';
+        public static const CROP_ORIGINAL:String = 'crop_original';
+        public static const CROP_PORTRAIT:String = 'crop_portrait';
+        public static const CROP_ROTATE:String = 'crop_rotate';
+        public static const CROP_SQUARE:String = 'crop_square';
+        public static const DEHAZE:String = 'dehaze';
+
+        public static const DETAILS:String = 'details';
+        public static const EDIT:String = 'edit';
+        public static const EXPOSURE:String = 'exposure';
+        public static const EXPOSURE_NEG_1:String = 'exposure_neg_1';
+        public static const EXPOSURE_NEG_2:String = 'exposure_neg_2';
+        public static const EXPOSURE_PLUS_1:String = 'exposure_plus_1';
+        public static const EXPOSURE_PLUS_2:String = 'exposure_plus_2';
+        public static const EXPOSURE_ZERO:String = 'exposure_zero';
+        public static const FILTER:String = 'filter';
+        public static const FILTER_1:String = 'filter_1';
+
+        public static const FILTER_2:String = 'filter_2';
+        public static const FILTER_3:String = 'filter_3';
+        public static const FILTER_4:String = 'filter_4';
+        public static const FILTER_5:String = 'filter_5';
+        public static const FILTER_6:String = 'filter_6';
+        public static const FILTER_7:String = 'filter_7';
+        public static const FILTER_8:String = 'filter_8';
+        public static const FILTER_9:String = 'filter_9';
+        public static const FILTER_9_PLUS:String = 'filter_9_plus';
+        public static const FILTER_B_AND_W:String = 'filter_b_and_w';
+
+        public static const FILTER_CENTER_FOCUS:String = 'filter_center_focus';
+        public static const FILTER_DRAMA:String = 'filter_drama';
+        public static const FILTER_FRAMES:String = 'filter_frames';
+        public static const FILTER_HDR:String = 'filter_hdr';
+        public static const FILTER_NONE:String = 'filter_none';
+        public static const FILTER_TILT_SHIFT:String = 'filter_tilt_shift';
+        public static const FILTER_VINTAGE:String = 'filter_vintage';
+        public static const FLARE:String = 'flare';
+        public static const FLASH_AUTO:String = 'flash_auto';
+        public static const FLASH_OFF:String = 'flash_off';
+
+        public static const FLASH_ON:String = 'flash_on';
+        public static const FLIP:String = 'flip';
+        public static const GRADIENT:String = 'gradient';
+        public static const GRAIN:String = 'grain';
+        public static const GRID_OFF:String = 'grid_off';
+        public static const GRID_ON:String = 'grid_on';
+        public static const HDR_OFF:String = 'hdr_off';
+        public static const HDR_ON:String = 'hdr_on';
+        public static const HDR_STRONG:String = 'hdr_strong';
+        public static const HDR_WEAK:String = 'hdr_weak';
+
+        public static const HEALING:String = 'healing';
+        public static const IMAGE:String = 'image';
+        public static const IMAGE_ASPECT_RATIO:String = 'image_aspect_ratio';
+        public static const ISO:String = 'iso';
+        public static const LANDSCAPE:String = 'landscape';
+        public static const LEAK_ADD:String = 'leak_add';
+        public static const LEAK_REMOVE:String = 'leak_remove';
+        public static const LENS:String = 'lens';
+        public static const LINKED_CAMERA:String = 'linked_camera';
+        public static const LOOKS:String = 'looks';
+
+        public static const LOOKS_3:String = 'looks_3';
+        public static const LOOKS_4:String = 'looks_4';
+        public static const LOOKS_5:String = 'looks_5';
+        public static const LOOKS_6:String = 'looks_6';
+        public static const LOOKS_ONE:String = 'looks_one';
+        public static const LOOKS_TWO:String = 'looks_two';
+        public static const LOUPE:String = 'loupe';
+        public static const MONOCHROME_PHOTOS:String = 'monochrome_photos';
+        public static const MOVIE_CREATION:String = 'movie_creation';
+        public static const MOVIE_FILTER:String = 'movie_filter';
+
+        public static const MUSIC_NOTE:String = 'music_note';
+        public static const NATURE:String = 'nature';
+        public static const NATURE_PEOPLE:String = 'nature_people';
+        public static const NAVIGATE_BEFORE:String = 'navigate_before';
+        public static const NAVIGATE_NEXT:String = 'navigate_next';
+        public static const PALETTE:String = 'palette';
+        public static const PANORAMA:String = 'panorama';
+        public static const PANORAMA_FISH_EYE:String = 'panorama_fish_eye';
+        public static const PANORAMA_HORIZONTAL:String = 'panorama_horizontal';
+        public static const PANORAMA_VERTICAL:String = 'panorama_vertical';
+
+        public static const PANORAMA_WIDE_ANGLE:String = 'panorama_wide_angle';
+        public static const PHOTO:String = 'photo';
+        public static const PHOTO_ALBUM:String = 'photo_album';
+        public static const PHOTO_CAMERA:String = 'photo_camera';
+        public static const PHOTO_FILTER:String = 'photo_filter';
+        public static const PHOTO_LIBRARY:String = 'photo_library';
+        public static const PHOTO_SIZE_SELECT_ACTUAL:String = 'photo_size_select_actual';
+        public static const PHOTO_SIZE_SELECT_LARGE:String = 'photo_size_select_large';
+        public static const PHOTO_SIZE_SELECT_SMALL:String = 'photo_size_select_small';
+        public static const PICTURE_AS_PDF:String = 'picture_as_pdf';
+
+        public static const PORTRAIT:String = 'portrait';
+        public static const REMOVE_RED_EYE:String = 'remove_red_eye';
+        public static const ROTATE_90_DEGREES_CCW:String = 'rotate_90_degrees_ccw';
+        public static const ROTATE_LEFT:String = 'rotate_left';
+        public static const ROTATE_RIGHT:String = 'rotate_right';
+        public static const SLIDESHOW:String = 'slideshow';
+        public static const STRAIGHTEN:String = 'straighten';
+        public static const STYLE:String = 'style';
+        public static const SWITCH_CAMERA:String = 'switch_camera';
+        public static const SWITCH_VIDEO:String = 'switch_video';
+
+        public static const TAG_FACES:String = 'tag_faces';
+        public static const TEXTURE:String = 'texture';
+        public static const TIMELAPSE:String = 'timelapse';
+        public static const TIMER:String = 'timer';
+        public static const TIMER_10:String = 'timer_10';
+        public static const TIMER_3:String = 'timer_3';
+        public static const TIMER_OFF:String = 'timer_off';
+        public static const TONALITY:String = 'tonality';
+        public static const TRANSFORM:String = 'transform';
+        public static const TUNE:String = 'tune';
+
+        public static const VIEW_COMFY:String = 'view_comfy';
+        public static const VIEW_COMPACT:String = 'view_compact';
+        public static const VIGNETTE:String = 'vignette';
+        public static const WB_AUTO:String = 'wb_auto';
+        public static const WB_CLOUDY:String = 'wb_cloudy';
+        public static const WB_INCANDESCENT:String = 'wb_incandescent';
+        public static const WB_IRIDESCENT:String = 'wb_iridescent';
+        public static const WB_SUNNY:String = 'wb_sunny';
+        public static const ADD_LOCATION:String = 'add_location';
+        public static const BEENHERE:String = 'beenhere';
+
+        public static const DIRECTIONS:String = 'directions';
+        public static const DIRECTIONS_BIKE:String = 'directions_bike';
+        public static const DIRECTIONS_BOAT:String = 'directions_boat';
+        public static const DIRECTIONS_BUS:String = 'directions_bus';
+        public static const DIRECTIONS_CAR:String = 'directions_car';
+        public static const DIRECTIONS_RAILWAY:String = 'directions_railway';
+        public static const DIRECTIONS_RUN:String = 'directions_run';
+        public static const DIRECTIONS_SUBWAY:String = 'directions_subway';
+        public static const DIRECTIONS_TRANSIT:String = 'directions_transit';
+        public static const DIRECTIONS_WALK:String = 'directions_walk';
+
+        public static const EDIT_LOCATION:String = 'edit_location';
+        public static const EV_STATION:String = 'ev_station';
+        public static const FLIGHT:String = 'flight';
+        public static const HOTEL:String = 'hotel';
+        public static const LAYERS:String = 'layers';
+        public static const LAYERS_CLEAR:String = 'layers_clear';
+        public static const LOCAL_ACTIVITY:String = 'local_activity';
+        public static const LOCAL_AIRPORT:String = 'local_airport';
+        public static const LOCAL_ATM:String = 'local_atm';
+        public static const LOCAL_BAR:String = 'local_bar';
+
+        public static const LOCAL_CAFE:String = 'local_cafe';
+        public static const LOCAL_CAR_WASH:String = 'local_car_wash';
+        public static const LOCAL_CONVENIENCE_STORE:String = 'local_convenience_store';
+        public static const LOCAL_DINING:String = 'local_dining';
+        public static const LOCAL_DRINK:String = 'local_drink';
+        public static const LOCAL_FLORIST:String = 'local_florist';
+        public static const LOCAL_GAS_STATION:String = 'local_gas_station';
+        public static const LOCAL_GROCERY_STORE:String = 'local_grocery_store';
+        public static const LOCAL_HOSPITAL:String = 'local_hospital';
+        public static const LOCAL_HOTEL:String = 'local_hotel';
+
+        public static const LOCAL_LAUNDRY_SERVICE:String = 'local_laundry_service';
+        public static const LOCAL_LIBRARY:String = 'local_library';
+        public static const LOCAL_MALL:String = 'local_mall';
+        public static const LOCAL_MOVIES:String = 'local_movies';
+        public static const LOCAL_OFFER:String = 'local_offer';
+        public static const LOCAL_PARKING:String = 'local_parking';
+        public static const LOCAL_PHARMACY:String = 'local_pharmacy';
+        public static const LOCAL_PHONE:String = 'local_phone';
+        public static const LOCAL_PIZZA:String = 'local_pizza';
+        public static const LOCAL_PLAY:String = 'local_play';
 
       /*  
         public static const ACCESSIBLE:String = 'XXX';
@@ -680,196 +889,6 @@ package org.apache.flex.mdl.materialIcons
         public static const ACCESSIBLE:String = 'XXX';
         public static const ACCESSIBLE:String = 'XXX';
         
-        'blur_linear',
-        'blur_off',
-        'blur_on',
-        'brightness_1',
-        'brightness_2',
-        'brightness_3',
-        'brightness_4',
-        'brightness_5',
-        'brightness_6',
-        'brightness_7',
-        'broken_image',
-        'brush',
-        'burst_mode',
-        'camera',
-        'camera_alt',
-        'camera_front',
-        'camera_rear',
-        'camera_roll',
-        'center_focus_strong',
-        'center_focus_weak',
-        'collections',
-        'collections_bookmark',
-        'color_lens',
-        'colorize',
-        'compare',
-        'control_point',
-        'control_point_duplicate',
-        'crop',
-        'crop_16_9',
-        'crop_3_2',
-        'crop_5_4',
-        'crop_7_5',
-        'crop_din',
-        'crop_free',
-        'crop_landscape',
-        'crop_original',
-        'crop_portrait',
-        'crop_rotate',
-        'crop_square',
-        'dehaze',
-        'details',
-        'edit',
-        'exposure',
-        'exposure_neg_1',
-        'exposure_neg_2',
-        'exposure_plus_1',
-        'exposure_plus_2',
-        'exposure_zero',
-        'filter',
-        'filter_1',
-        'filter_2',
-        'filter_3',
-        'filter_4',
-        'filter_5',
-        'filter_6',
-        'filter_7',
-        'filter_8',
-        'filter_9',
-        'filter_9_plus',
-        'filter_b_and_w',
-        'filter_center_focus',
-        'filter_drama',
-        'filter_frames',
-        'filter_hdr',
-        'filter_none',
-        'filter_tilt_shift',
-        'filter_vintage',
-        'flare',
-        'flash_auto',
-        'flash_off',
-        'flash_on',
-        'flip',
-        'gradient',
-        'grain',
-        'grid_off',
-        'grid_on',
-        'hdr_off',
-        'hdr_on',
-        'hdr_strong',
-        'hdr_weak',
-        'healing',
-        'image',
-        'image_aspect_ratio',
-        'iso',
-        'landscape',
-        'leak_add',
-        'leak_remove',
-        'lens',
-        'linked_camera',
-        'looks',
-        'looks_3',
-        'looks_4',
-        'looks_5',
-        'looks_6',
-        'looks_one',
-        'looks_two',
-        'loupe',
-        'monochrome_photos',
-        'movie_creation',
-        'movie_filter',
-        'music_note',
-        'nature',
-        'nature_people',
-        'navigate_before',
-        'navigate_next',
-        'palette',
-        'panorama',
-        'panorama_fish_eye',
-        'panorama_horizontal',
-        'panorama_vertical',
-        'panorama_wide_angle',
-        'photo',
-        'photo_album',
-        'photo_camera',
-        'photo_filter',
-        'photo_library',
-        'photo_size_select_actual',
-        'photo_size_select_large',
-        'photo_size_select_small',
-        'picture_as_pdf',
-        'portrait',
-        'remove_red_eye',
-        'rotate_90_degrees_ccw',
-        'rotate_left',
-        'rotate_right',
-        'slideshow',
-        'straighten',
-        'style',
-        'switch_camera',
-        'switch_video',
-        'tag_faces',
-        'texture',
-        'timelapse',
-        'timer',
-        'timer_10',
-        'timer_3',
-        'timer_off',
-        'tonality',
-        'transform',
-        'tune',
-        'view_comfy',
-        'view_compact',
-        'vignette',
-        'wb_auto',
-        'wb_cloudy',
-        'wb_incandescent',
-        'wb_iridescent',
-        'wb_sunny',
-        'add_location',
-        'beenhere',
-        'directions',
-        'directions_bike',
-        'directions_boat',
-        'directions_bus',
-        'directions_car',
-        'directions_railway',
-        'directions_run',
-        'directions_subway',
-        'directions_transit',
-        'directions_walk',
-        'edit_location',
-        'ev_station',
-        'flight',
-        'hotel',
-        'layers',
-        'layers_clear',
-        'local_activity',
-        'local_airport',
-        'local_atm',
-        'local_bar',
-        'local_cafe',
-        'local_car_wash',
-        'local_convenience_store',
-        'local_dining',
-        'local_drink',
-        'local_florist',
-        'local_gas_station',
-        'local_grocery_store',
-        'local_hospital',
-        'local_hotel',
-        'local_laundry_service',
-        'local_library',
-        'local_mall',
-        'local_movies',
-        'local_offer',
-        'local_parking',
-        'local_pharmacy',
-        'local_phone',
-        'local_pizza',
-        'local_play',
         'local_post_office',
         'local_printshop',
         'local_see',
