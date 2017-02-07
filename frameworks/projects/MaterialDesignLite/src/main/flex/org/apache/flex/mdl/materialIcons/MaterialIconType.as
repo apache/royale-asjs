@@ -877,187 +877,180 @@ package org.apache.flex.mdl.materialIcons
         public static const LOCAL_PIZZA:String = 'local_pizza';
         public static const LOCAL_PLAY:String = 'local_play';
 
-      /*  
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        
-        'local_post_office',
-        'local_printshop',
-        'local_see',
-        'local_shipping',
-        'local_taxi',
-        'map',
-        'my_location',
-        'navigation',
-        'near_me',
-        'person_pin',
-        'person_pin_circle',
-        'pin_drop',
-        'place',
-        'rate_review',
-        'restaurant',
-        'restaurant_menu',
-        'satellite',
-        'store_mall_directory',
-        'streetview',
-        'subway',
-        'terrain',
-        'traffic',
-        'train',
-        'tram',
-        'transfer_within_a_station',
-        'zoom_out_map',
-        'apps',
-        'arrow_back',
-        'arrow_downward',
-        'arrow_drop_down',
-        'arrow_drop_down_circle',
-        'arrow_drop_up',
-        'arrow_forward',
-        'arrow_upward',
-        'cancel',
-        'check',
-        'chevron_left',
-        'chevron_right',
-        'close',
-        'expand_less',
-        'expand_more',
-        'first_page',
-        'fullscreen',
-        'fullscreen_exit',
-        'last_page',
-        'menu',
-        'more_horiz',
-        'more_vert',
-        'refresh',
-        'subdirectory_arrow_left',
-        'subdirectory_arrow_right',
-        'adb',
-        'airline_seat_flat',
-        'airline_seat_flat_angled',
-        'airline_seat_individual_suite',
-        'airline_seat_legroom_extra',
-        'airline_seat_legroom_normal',
-        'airline_seat_legroom_reduced',
-        'airline_seat_recline_extra',
-        'airline_seat_recline_normal',
-        'bluetooth_audio',
-        'confirmation_number',
-        'disc_full',
-        'do_not_disturb',
-        'do_not_disturb_alt',
-        'do_not_disturb_off',
-        'do_not_disturb_on',
-        'drive_eta',
-        'enhanced_encryption',
-        'event_available',
-        'event_busy',
-        'event_note',
-        'folder_special',
-        'live_tv',
-        'mms',
-        'more',
-        'network_check',
-        'network_locked',
-        'no_encryption',
-        'ondemand_video',
-        'personal_video',
-        'phone_bluetooth_speaker',
-        'phone_forwarded',
-        'phone_in_talk',
-        'phone_locked',
-        'phone_missed',
-        'phone_paused',
-        'power',
-        'priority_high',
-        'sd_card',
-        'sim_card_alert',
-        'sms',
-        'sms_failed',
-        'sync',
-        'sync_disabled',
-        'sync_problem',
-        'system_update',
-        'tap_and_play',
-        'time_to_leave',
-        'vibration',
-        'voice_chat',
-        'vpn_lock',
-        'wc',
-        'wifi',
-        'ac_unit',
-        'airport_shuttle',
-        'all_inclusive',
-        'beach_access',
-        'business_center',
-        'casino',
-        'child_care',
-        'child_friendly',
-        'fitness_center',
-        'free_breakfast',
-        'golf_course',
-        'hot_tub',
-        'kitchen',
-        'pool',
-        'room_service',
-        'rv_hookup',
-        'smoke_free',
-        'smoking_rooms',
-        'spa',
-        'cake',
-        'domain',
-        'group',
-        'group_add',
-        'location_city',
-        'mood',
-        'mood_bad',
-        'notifications',
-        'notifications_active',
-        'notifications_none',
-        'notifications_off',
-        'notifications_paused',
-        'pages',
-        'party_mode',
-        'people',
-        'people_outline',
-        'person',
-        'person_add',
-        'person_outline',
-        'plus_one',
-        'poll',
-        'public',
-        'school',
-        'sentiment_dissatisfied',
-        'sentiment_neutral',
-        'sentiment_satisfied',
-        'sentiment_very_dissatisfied',
-        'sentiment_very_satisfied',
-        'share',
-        'whatshot',
-        'check_box',
-        'check_box_outline_blank',
-        'indeterminate_check_box',
-        'radio_button_checked',
-        'radio_button_unchecked',
-        'star',
-        'star_border',
-        'star_half'
+        public static const LOCAL_POST_OFFICE:String = 'local_post_office';
+        public static const LOCAL_PRINTSHOP:String = 'local_printshop';
+        public static const LOCAL_SEE:String = 'local_see';
+        public static const LOCAL_SHIPPING:String = 'local_shipping';
+        public static const LOCAL_TAXI:String = 'local_taxi';
+        public static const MAP:String = 'map';
+        public static const MY_LOCATION:String = 'my_location';
+        public static const NAVIGATION:String = 'navigation';
+        public static const NEAR_ME:String = 'near_me';
+        public static const PERSON_PIN:String = 'person_pin';
 
-        */
+        public static const PERSON_PIN_CIRCLE:String = 'person_pin_circle';
+        public static const PIN_DROP:String = 'pin_drop';
+        public static const PLACE:String = 'place';
+        public static const RATE_REVIEW:String = 'rate_review';
+        public static const RESTAURANT:String = 'restaurant';
+        public static const RESTAURANT_MENU:String = 'restaurant_menu';
+        public static const SATELLITE:String = 'satellite';
+        public static const STORE_MALL_DIRECTORY:String = 'store_mall_directory';
+        public static const STREETVIEW:String = 'streetview';
+        public static const SUBWAY:String = 'subway';
 
-        public static const CANCEL:String = "cancel";
-        public static const PERSON:String = "person";
-        public static const STAR:String = "star";
-        public static const SHARE:String = "share";
-        public static const MOOD:String = "mood";
-        public static const MORE_VERT:String = "more_vert";
+        public static const TERRAIN:String = 'terrain';
+        public static const TRAFFIC:String = 'traffic';
+        public static const TRAIN:String = 'train';
+        public static const TRAM:String = 'tram';
+        public static const TRANSFER_WITHIN_A_STATION:String = 'transfer_within_a_station';
+        public static const ZOOM_OUT_MAP:String = 'zoom_out_map';
+        public static const APPS:String = 'apps';
+        public static const ARROW_BACK:String = 'arrow_back';
+        public static const ARROW_DOWNWARD:String = 'arrow_downward';
+        public static const ARROW_DROP_DOWN:String = 'arrow_drop_down';
+
+        public static const ARROW_DROP_DOWN_CIRCLE:String = 'arrow_drop_down_circle';
+        public static const ARROW_DROP_UP:String = 'arrow_drop_up';
+        public static const ARROW_FORWARD:String = 'arrow_forward';
+        public static const ARROW_UPWARD:String = 'arrow_upward';
+        public static const CANCEL:String = 'cancel';
+        public static const CHECK:String = 'check';
+        public static const CHEVRON_LEFT:String = 'chevron_left';
+        public static const CHEVRON_RIGHT:String = 'chevron_right';
+        public static const CLOSE:String = 'close';
+        public static const EXPAND_LESS:String = 'expand_less';
+
+        public static const EXPAND_MORE:String = 'expand_more';
+        public static const FIRST_PAGE:String = 'first_page';
+        public static const FULLSCREEN:String = 'fullscreen';
+        public static const FULLSCREEN_EXIT:String = 'fullscreen_exit';
+        public static const LAST_PAGE:String = 'last_page';
+        public static const MENU:String = 'menu';
+        public static const MORE_HORIZ:String = 'more_horiz';
+        public static const MORE_VERT:String = 'more_vert';
+        public static const REFRESH:String = 'refresh';
+        public static const SUBDIRECTORY_ARROW_LEFT:String = 'subdirectory_arrow_left';
+
+        public static const SUBDIRECTORY_ARROW_RIGHT:String = 'subdirectory_arrow_right';
+        public static const ADB:String = 'adb';
+        public static const AIRLINE_SEAT_FLAT:String = 'airline_seat_flat';
+        public static const AIRLINE_SEAT_FLAT_ANGLED:String = 'airline_seat_flat_angled';
+        public static const AIRLINE_SEAT_INDIVIDUAL_SUITE:String = 'airline_seat_individual_suite';
+        public static const AIRLINE_SEAT_LEGROOM_EXTRA:String = 'airline_seat_legroom_extra';
+        public static const AIRLINE_SEAT_LEGROOM_NORMAL:String = 'airline_seat_legroom_normal';
+        public static const AIRLINE_SEAT_LEGROOM_REDUCED:String = 'airline_seat_legroom_reduced';
+        public static const AIRLINE_SEAT_RECLINE_EXTRA:String = 'airline_seat_recline_extra';
+        public static const AIRLINE_SEAT_RECLINE_NORMAL:String = 'airline_seat_recline_normal';
+
+        public static const BLUETOOTH_AUDIO:String = 'bluetooth_audio';
+        public static const CONFIRMATION_NUMBER:String = 'confirmation_number';
+        public static const DISC_FULL:String = 'disc_full';
+        public static const DO_NOT_DISTURB:String = 'do_not_disturb';
+        public static const DO_NOT_DISTURB_ALT:String = 'do_not_disturb_alt';
+        public static const DO_NOT_DISTURB_OFF:String = 'do_not_disturb_off';
+        public static const DO_NOT_DISTURB_ON:String = 'do_not_disturb_on';
+        public static const DRIVE_ETA:String = 'drive_eta';
+        public static const ENHANCED_ENCRYPTION:String = 'enhanced_encryption';
+        public static const EVENT_AVAILABLE:String = 'event_available';
+
+        public static const EVENT_BUSY:String = 'event_busy';
+        public static const EVENT_NOTE:String = 'event_note';
+        public static const FOLDER_SPECIAL:String = 'folder_special';
+        public static const LIVE_TV:String = 'live_tv';
+        public static const MMS:String = 'mms';
+        public static const MORE:String = 'more';
+        public static const NETWORK_CHECK:String = 'network_check';
+        public static const NETWORK_LOCKED:String = 'network_locked';
+        public static const NO_ENCRYPTION:String = 'no_encryption';
+        public static const ONDEMAND_VIDEO:String = 'ondemand_video';
+
+        public static const PERSONAL_VIDEO:String = 'personal_video';
+        public static const PHONE_BLUETOOTH_SPEAKER:String = 'phone_bluetooth_speaker';
+        public static const PHONE_FORWARDED:String = 'phone_forwarded';
+        public static const PHONE_IN_TALK:String = 'phone_in_talk';
+        public static const PHONE_LOCKED:String = 'phone_locked';
+        public static const PHONE_MISSED:String = 'phone_missed';
+        public static const PHONE_PAUSED:String = 'phone_paused';
+        public static const POWER:String = 'power';
+        public static const PRIORITY_HIGH:String = 'priority_high';
+        public static const SD_CARD:String = 'sd_card';
+
+        public static const SIM_CARD_ALERT:String = 'sim_card_alert';
+        public static const SMS:String = 'sms';
+        public static const SMS_FAILED:String = 'sms_failed';
+        public static const SYNC:String = 'sync';
+        public static const SYNC_DISABLED:String = 'sync_disabled';
+        public static const SYNC_PROBLEM:String = 'sync_problem';
+        public static const SYSTEM_UPDATE:String = 'system_update';
+        public static const TAP_AND_PLAY:String = 'tap_and_play';
+        public static const TIME_TO_LEAVE:String = 'time_to_leave';
+        public static const VIBRATION:String = 'vibration';
+
+        public static const VOICE_CHAT:String = 'voice_chat';
+        public static const VPN_LOCK:String = 'vpn_lock';
+        public static const WC:String = 'wc';
+        public static const WIFI:String = 'wifi';
+        public static const AC_UNIT:String = 'ac_unit';
+        public static const AIRPORT_SHUTTLE:String = 'airport_shuttle';
+        public static const ALL_INCLUSIVE:String = 'all_inclusive';
+        public static const BEACH_ACCESS:String = 'beach_access';
+        public static const BUSINESS_CENTER:String = 'business_center';
+        public static const CASINO:String = 'casino';
+
+        public static const CHILD_CARE:String = 'child_care';
+        public static const CHILD_FRIENDLY:String = 'child_friendly';
+        public static const FITNESS_CENTER:String = 'fitness_center';
+        public static const FREE_BREAKFAST:String = 'free_breakfast';
+        public static const GOLF_COURSE:String = 'golf_course';
+        public static const HOT_TUB:String = 'hot_tub';
+        public static const KITCHEN:String = 'kitchen';
+        public static const POOL:String = 'pool';
+        public static const ROOM_SERVICE:String = 'room_service';
+        public static const RV_HOOKUP:String = 'rv_hookup';
+
+        public static const SMOKING_ROOMS:String = 'smoke_free';
+        public static const SPA:String = 'spa';
+        public static const CAKE:String = 'cake';
+        public static const DOMAIN:String = 'domain';
+        public static const GROUP:String = 'group';
+        public static const GROUP_ADD:String = 'group_add';
+        public static const LOCATION_CITY:String = 'location_city';
+        public static const MOOD:String = 'mood';
+        public static const MOOD_BAD:String = 'mood_bad';
+        public static const NOTIFICATIONS:String = 'notifications';
+
+        public static const NOTIFICATIONS_ACTIVE:String = 'notifications_active';
+        public static const NOTIFICATIONS_NONE:String = 'notifications_none';
+        public static const NOTIFICATIONS_OFF:String = 'notifications_off';
+        public static const NOTIFICATIONS_PAUSED:String = 'notifications_paused';
+        public static const PAGES:String = 'pages';
+        public static const PARTY_MODE:String = 'party_mode';
+        public static const PEOPLE:String = 'people';
+        public static const PEOPLE_OUTLINE:String = 'people_outline';
+        public static const PERSON:String = 'person';
+        public static const PERSON_ADD:String = 'person_add';
+
+        public static const PERSON_OUTLINE:String = 'person_outline';
+        public static const PLUS_ONE:String = 'plus_one';
+        public static const POLL:String = 'poll';
+        public static const PUBLIC:String = 'public';
+        public static const SCHOOL:String = 'school';
+        public static const SENTIMENT_DISSATISFIED:String = 'sentiment_dissatisfied';
+        public static const SENTIMENT_NEUTRAL:String = 'sentiment_neutral';
+        public static const SENTIMENT_SATISFIED:String = 'sentiment_satisfied';
+        public static const SENTIMENT_VERY_DISSATISFIED:String = 'sentiment_very_dissatisfied';
+        public static const SENTIMENT_VERY_SATISFIED:String = 'sentiment_very_satisfied';
+
+        public static const SHARE:String = 'share';
+        public static const WHATSHOT:String = 'whatshot';
+        public static const CHECK_BOX:String = 'check_box';
+        public static const CHECK_BOX_OUTLINE_BLANK:String = 'check_box_outline_blank';
+        public static const INDETERMINATE_CHECK_BOX:String = 'indeterminate_check_box';
+        public static const RADIO_BUTTON_CHECKED:String = 'radio_button_checked';
+        public static const RADIO_BUTTON_UNCHECKED:String = 'radio_button_unchecked';
+        public static const STAR:String = 'star';
+        public static const STAR_BORDER:String = 'star_border';
+        public static const STAR_HALF:String = 'star_half';
     }
 }
