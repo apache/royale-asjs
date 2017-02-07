@@ -55,7 +55,7 @@
              will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
-            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
 
         <namespaces>

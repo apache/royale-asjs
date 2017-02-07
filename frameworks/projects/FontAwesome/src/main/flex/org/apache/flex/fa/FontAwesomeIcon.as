@@ -198,11 +198,13 @@ package org.apache.flex.fa
          *  @productversion FlexJS 0.0
          *
          */
+        COMPILE::JS
         public function get rotation():String
         {
             return _rotation;
         }
 
+        COMPILE::JS
         public function set rotation(value:String):void
         {
             COMPILE::JS

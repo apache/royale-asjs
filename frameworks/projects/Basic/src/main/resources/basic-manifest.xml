@@ -135,6 +135,7 @@
     <component id="OneFlexibleChildVerticalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout"/>
     <component id="OneFlexibleChildHorizontalLayout" class="org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout"/>
     <component id="MXMLBeadView" class="org.apache.flex.html.MXMLBeadView"/>
+    <component id="DisableBead" class="org.apache.flex.html.beads.DisableBead"/>
 
     <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
     

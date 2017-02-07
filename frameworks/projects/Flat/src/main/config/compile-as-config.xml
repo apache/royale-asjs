@@ -26,9 +26,10 @@
             <path-element>../../../../../libs/Binding.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
+            <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
+        <allow-subclass-overrides>true</allow-subclass-overrides>
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>

@@ -54,7 +54,7 @@
              if these swcs are on the external-library-path then their requires
              will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
-			<path-element>../../../../../libs/HTMLJS.swc</path-element>
+			<path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
         
         <source-path>

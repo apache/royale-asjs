@@ -32,6 +32,7 @@ package org.apache.flex.core
 	COMPILE::SWF {
 	    import org.apache.flex.events.utils.MouseEventConverter;
 	}
+    import org.apache.flex.utils.StringUtil;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -988,18 +989,24 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		public function set className(value:String):void
-		{
-			if (_className != value)
-			{
+        public function set className(value:String):void
+        {
+            if (_className != value)
+            {
                 COMPILE::JS
                 {
-                    element.className = typeNames ? value + ' ' + typeNames : value;             
+                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
                 }
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
-		}
+                _className = value;
+                dispatchEvent(new Event("classNameChanged"));
+            }
+        }
+        
+        COMPILE::JS
+        protected function setClassName(value:String):void
+        {
+            element.className = value;           
+        }
         
         /**
          *  @copy org.apache.flex.core.IUIBase#element

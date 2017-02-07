@@ -40,10 +40,12 @@ package org.apache.flex.express
 		/**
 		 * Can enable or disable interaction with the control.
 		 */
+		COMPILE::JS
 		public function get enabled():Boolean
 		{
 			return _enabled;
 		}
+		COMPILE::JS
 		public function set enabled(value:Boolean):void
 		{
 			_enabled = value;
@@ -57,5 +59,30 @@ package org.apache.flex.express
 				
 			dispatchEvent(new Event("enabledChanged"));
 		}
+		
+		[Bindable("enabledChanged")]
+		/**
+		 * Can enable or disable interaction with the control.
+		 */
+		COMPILE::SWF
+		override public function get enabled():Boolean
+		{
+			return _enabled;
+		}
+		COMPILE::SWF
+		override public function set enabled(value:Boolean):void
+		{
+			_enabled = value;
+			
+			if (_disableBead == null) {
+				_disableBead = new DisableBead();
+				addBead(_disableBead);
+			}
+			
+			_disableBead.disabled = !value;
+				
+			dispatchEvent(new Event("enabledChanged"));
+		}
+
 	}
 }

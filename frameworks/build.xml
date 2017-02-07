@@ -82,8 +82,8 @@
         <antcall target="Binding"/>
         <antcall target="Collections"/>
         <antcall target="HTML"/>
-        <antcall target="Effects"/>
         <antcall target="Basic"/>
+        <antcall target="Effects"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="DragDrop"/>

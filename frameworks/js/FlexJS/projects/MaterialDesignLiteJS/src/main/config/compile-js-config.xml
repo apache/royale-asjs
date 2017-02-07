@@ -53,6 +53,7 @@
       <path-element>../../../../../libs/GraphicsJS.swc</path-element>
       <path-element>../../../../../libs/CollectionsJS.swc</path-element>
       <path-element>../../../../../libs/HTMLJS.swc</path-element>
+      <path-element>../../../../../libs/BasicJS.swc</path-element>
     </library-path>
     <source-path>
       <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>

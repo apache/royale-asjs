@@ -37,7 +37,7 @@
     </target>
     
     <target name="copy-swc">
-        <!--<copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />-->
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>
     
     <target name="check-for-tests" >
