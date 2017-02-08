@@ -28,9 +28,28 @@
 
   <artifactId>flexjs-simple-library-archetype</artifactId>
   <version>0.8.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>maven-archetype</packaging>
 
-  <name>Apache Flex - FlexJS: Framework: Archetypes: Library</name>
-  <description>Maven archetype for creating flexjs maven project for building a library</description>
+  <name>Apache Flex - FlexJS: Framework: Archetypes: Simple FlexJS Library</name>
+  <description>Maven archetype for creating FlexJS Maven project for building a simple FlexJS library.</description>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.4</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>

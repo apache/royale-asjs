@@ -1,3 +1,4 @@
+#set( $symbol_dollar = '$' )
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
@@ -20,14 +21,67 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
+  <groupId>${groupId}</groupId>
   <version>${version}</version>
-  <packaging>jar</packaging>
+  <packaging>swc</packaging>
+
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.flex.flexjs.compiler</groupId>
+        <artifactId>flexjs-maven-plugin</artifactId>
+        <version>0.8.0-SNAPSHOT</version>
+        <extensions>true</extensions>
+        <configuration>
+          <namespaces>
+            <!-- Make the classes listed in the manifest be available under the given namespace -->
+            <namespace>
+              <uri>library://ns.apache.org/flexjs/mylib</uri>
+              <manifest>${symbol_dollar}{project.basedir}/src/main/resources/mylib-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <!-- Tell the compiler which classes to compile and include -->
+          <includeClasses>
+            <includeClass>MylibClasses</includeClass>
+          </includeClasses>
+          <skipExtern>false</skipExtern>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.flex.flexjs.compiler</groupId>
+            <artifactId>compiler-jx</artifactId>
+            <version>0.8.0-SNAPSHOT</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
+    <!-- For flash compilation, we need the airglobal or playerglobal -->
+    <dependency>
+      <groupId>com.adobe.air.framework</groupId>
+      <artifactId>airglobal</artifactId>
+      <version>20.0</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+    <!-- For JavaScript compilation, we need some other base classes -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-gcl</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+
+    <!-- Add dependencies you might be needing here -->
   </dependencies>
 
 </project>
