@@ -253,6 +253,7 @@ package org.apache.flex.html.beads.layouts
                 if (!hasWidth && n > 0 && !isNaN(computedWidth)) {
                     contentView.width = computedWidth + 1; // some browser need one more pixel
                 }
+				host.dispatchEvent( new Event("layoutComplete") );
                 return true;
             }
 		}

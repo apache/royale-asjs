@@ -68,6 +68,7 @@
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
     <component id="ListView" class="org.apache.flex.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.flex.html.beads.AccordionView"/>
+    <component id="CenterElement" class="org.apache.flex.html.beads.CenterElement"/>
     <!--<component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView"/>-->
     
     <component id="SimpleAlert" class="org.apache.flex.html.SimpleAlert"/>

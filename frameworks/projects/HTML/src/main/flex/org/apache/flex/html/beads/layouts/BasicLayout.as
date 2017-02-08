@@ -441,6 +441,7 @@ package org.apache.flex.html.beads.layouts
                 if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
                     contentView.height = maxHeight;
                 }
+				host.dispatchEvent( new Event("layoutComplete") );
                 return true;
             }
 		}

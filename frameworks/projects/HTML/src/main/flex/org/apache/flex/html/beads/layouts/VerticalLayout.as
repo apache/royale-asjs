@@ -302,6 +302,7 @@ package org.apache.flex.html.beads.layouts
 					maxWidth += npl + npr;
 					contentView.width = maxWidth;
 				}
+				host.dispatchEvent( new Event("layoutComplete") );
 				return true;
 			}
 		}
