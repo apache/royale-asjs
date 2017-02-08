@@ -29,7 +29,7 @@
   <artifactId>examples-tests</artifactId>
   <version>0.8.0-SNAPSHOT</version>
 
-  <name>Apache Flex - FlexJS: Framework: Example-Tests</name>
+  <name>Apache Flex - FlexJS: Examples: Example-Tests</name>
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>

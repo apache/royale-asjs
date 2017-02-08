@@ -34,6 +34,10 @@
 
   <name>Apache Flex - FlexJS: Examples: Integrationtests</name>
 
+  <properties>
+    <tomcat.version>8.5.11</tomcat.version>
+  </properties>
+
   <profiles>
     <profile>
       <id>integrationtests</id>
@@ -89,7 +93,7 @@
                 <containerId>tomcat8x</containerId>
                 <log>${project.build.directory}/tomcat8x/container.log</log>
                 <zipUrlInstaller>
-                  <url>http://ftp.fau.de/apache/tomcat/tomcat-8/v8.5.9/bin/apache-tomcat-8.5.9.zip</url>
+                  <url>http://www-us.apache.org/dist/tomcat/tomcat-8/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip</url>
                   <extractDir>${java.io.tmpdir}/cargo/installs</extractDir>
                 </zipUrlInstaller>
                 <!-- 3 Minutes -->
