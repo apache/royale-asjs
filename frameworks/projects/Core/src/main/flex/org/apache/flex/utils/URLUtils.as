@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.utils
 {
+		
+	COMPILE::SWF {
+		import org.apache.flex.core.IUIBase;
+	}
+		
 	/**
 	 *  The URLUtils class is a collection of static functions that wrap dealing with object URLs in the browser.
 	 *  
@@ -26,7 +31,6 @@ package org.apache.flex.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.7
 	 */
-	COMPILE::JS
 	public class URLUtils
 	{
 		/**
@@ -35,6 +39,7 @@ package org.apache.flex.utils
 		 * @param  win:*=null   The active window can be optionally specified
 		 * @return              The object URL
 		 */
+		COMPILE::JS
 		public static function createObjectURL(blobOrFile:*,win:*=null):String
 		{
 			win = win || window;
@@ -45,6 +50,7 @@ package org.apache.flex.utils
 
 			return "";
 		}
+		COMPILE::JS
 		public static function revokeObjectURL(objectURL:String,win:*=null):void
 		{
 			win = win || window;
@@ -52,6 +58,26 @@ package org.apache.flex.utils
 				win["URL"].revokeObjectURL(objectURL);
 			if(win.webkitURL)
 				win.webkitURL.revokeObjectURL(objectURL);
+		}
+		
+		public static function getFullPath(host:Object, url:String):String
+		{
+			COMPILE::SWF {
+				if (host is IUIBase) {
+					var loaderURL:String = host["$displayObject"]["loaderInfo"]["url"];
+					var lastPos:Number = loaderURL.lastIndexOf('/');
+					if (lastPos > 0) {
+						loaderURL = loaderURL.substr(0,lastPos+1); // want the '/'
+					}
+					return loaderURL + url;
+				} else {
+					return url;
+				}
+			}
+				
+			COMPILE::JS {
+				return url;
+			}
 		}
 	}
 

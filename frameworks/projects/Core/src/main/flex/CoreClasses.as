@@ -155,9 +155,9 @@ internal class CoreClasses
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
+	import org.apache.flex.utils.URLUtils; URLUtils;
 	COMPILE::JS
 	{
-		import org.apache.flex.utils.URLUtils; URLUtils;
         import org.apache.flex.events.utils.EventUtils; EventUtils;
 	}
 
