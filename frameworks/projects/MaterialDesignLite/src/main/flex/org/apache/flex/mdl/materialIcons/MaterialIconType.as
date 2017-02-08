@@ -646,16 +646,16 @@ package org.apache.flex.mdl.materialIcons
         public static const POWER_INPUT:String = 'power_input';
         public static const ROUTER:String = 'router';
 
-        public static const scanner:String = 'scanner';
-        public static const security:String = 'security';
-        public static const sim_card:String = 'sim_card';
-        public static const smartphone:String = 'smartphone';
-        public static const speaker:String = 'speaker';
-        public static const speaker_group:String = 'speaker_group';
-        public static const tablet:String = 'tablet';
-        public static const tablet_android:String = 'tablet_android';
-        public static const tablet_mac:String = 'tablet_mac';
-        public static const toys:String = 'toys';
+        public static const SCANNER:String = 'scanner';
+        public static const SECURITY:String = 'security';
+        public static const SIM_CARD:String = 'sim_card';
+        public static const SMARTPHONE:String = 'smartphone';
+        public static const SPEAKER:String = 'speaker';
+        public static const SPEAKER_GROUP:String = 'speaker_group';
+        public static const TABLET:String = 'tablet';
+        public static const TABLET_ANDROID:String = 'tablet_android';
+        public static const TABLET_MAC:String = 'tablet_mac';
+        public static const TOYS:String = 'toys';
 
         public static const TV:String = 'tv';
         public static const VIDEOGAME_ASSET:String = 'videogame_asset';
@@ -668,377 +668,389 @@ package org.apache.flex.mdl.materialIcons
         public static const AUDIOTRACK:String = 'audiotrack';
         public static const BLUR_CIRCULAR:String = 'blur_circular';
 
-      /*  
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        public static const ACCESSIBLE:String = 'XXX';
-        
-        'blur_linear',
-        'blur_off',
-        'blur_on',
-        'brightness_1',
-        'brightness_2',
-        'brightness_3',
-        'brightness_4',
-        'brightness_5',
-        'brightness_6',
-        'brightness_7',
-        'broken_image',
-        'brush',
-        'burst_mode',
-        'camera',
-        'camera_alt',
-        'camera_front',
-        'camera_rear',
-        'camera_roll',
-        'center_focus_strong',
-        'center_focus_weak',
-        'collections',
-        'collections_bookmark',
-        'color_lens',
-        'colorize',
-        'compare',
-        'control_point',
-        'control_point_duplicate',
-        'crop',
-        'crop_16_9',
-        'crop_3_2',
-        'crop_5_4',
-        'crop_7_5',
-        'crop_din',
-        'crop_free',
-        'crop_landscape',
-        'crop_original',
-        'crop_portrait',
-        'crop_rotate',
-        'crop_square',
-        'dehaze',
-        'details',
-        'edit',
-        'exposure',
-        'exposure_neg_1',
-        'exposure_neg_2',
-        'exposure_plus_1',
-        'exposure_plus_2',
-        'exposure_zero',
-        'filter',
-        'filter_1',
-        'filter_2',
-        'filter_3',
-        'filter_4',
-        'filter_5',
-        'filter_6',
-        'filter_7',
-        'filter_8',
-        'filter_9',
-        'filter_9_plus',
-        'filter_b_and_w',
-        'filter_center_focus',
-        'filter_drama',
-        'filter_frames',
-        'filter_hdr',
-        'filter_none',
-        'filter_tilt_shift',
-        'filter_vintage',
-        'flare',
-        'flash_auto',
-        'flash_off',
-        'flash_on',
-        'flip',
-        'gradient',
-        'grain',
-        'grid_off',
-        'grid_on',
-        'hdr_off',
-        'hdr_on',
-        'hdr_strong',
-        'hdr_weak',
-        'healing',
-        'image',
-        'image_aspect_ratio',
-        'iso',
-        'landscape',
-        'leak_add',
-        'leak_remove',
-        'lens',
-        'linked_camera',
-        'looks',
-        'looks_3',
-        'looks_4',
-        'looks_5',
-        'looks_6',
-        'looks_one',
-        'looks_two',
-        'loupe',
-        'monochrome_photos',
-        'movie_creation',
-        'movie_filter',
-        'music_note',
-        'nature',
-        'nature_people',
-        'navigate_before',
-        'navigate_next',
-        'palette',
-        'panorama',
-        'panorama_fish_eye',
-        'panorama_horizontal',
-        'panorama_vertical',
-        'panorama_wide_angle',
-        'photo',
-        'photo_album',
-        'photo_camera',
-        'photo_filter',
-        'photo_library',
-        'photo_size_select_actual',
-        'photo_size_select_large',
-        'photo_size_select_small',
-        'picture_as_pdf',
-        'portrait',
-        'remove_red_eye',
-        'rotate_90_degrees_ccw',
-        'rotate_left',
-        'rotate_right',
-        'slideshow',
-        'straighten',
-        'style',
-        'switch_camera',
-        'switch_video',
-        'tag_faces',
-        'texture',
-        'timelapse',
-        'timer',
-        'timer_10',
-        'timer_3',
-        'timer_off',
-        'tonality',
-        'transform',
-        'tune',
-        'view_comfy',
-        'view_compact',
-        'vignette',
-        'wb_auto',
-        'wb_cloudy',
-        'wb_incandescent',
-        'wb_iridescent',
-        'wb_sunny',
-        'add_location',
-        'beenhere',
-        'directions',
-        'directions_bike',
-        'directions_boat',
-        'directions_bus',
-        'directions_car',
-        'directions_railway',
-        'directions_run',
-        'directions_subway',
-        'directions_transit',
-        'directions_walk',
-        'edit_location',
-        'ev_station',
-        'flight',
-        'hotel',
-        'layers',
-        'layers_clear',
-        'local_activity',
-        'local_airport',
-        'local_atm',
-        'local_bar',
-        'local_cafe',
-        'local_car_wash',
-        'local_convenience_store',
-        'local_dining',
-        'local_drink',
-        'local_florist',
-        'local_gas_station',
-        'local_grocery_store',
-        'local_hospital',
-        'local_hotel',
-        'local_laundry_service',
-        'local_library',
-        'local_mall',
-        'local_movies',
-        'local_offer',
-        'local_parking',
-        'local_pharmacy',
-        'local_phone',
-        'local_pizza',
-        'local_play',
-        'local_post_office',
-        'local_printshop',
-        'local_see',
-        'local_shipping',
-        'local_taxi',
-        'map',
-        'my_location',
-        'navigation',
-        'near_me',
-        'person_pin',
-        'person_pin_circle',
-        'pin_drop',
-        'place',
-        'rate_review',
-        'restaurant',
-        'restaurant_menu',
-        'satellite',
-        'store_mall_directory',
-        'streetview',
-        'subway',
-        'terrain',
-        'traffic',
-        'train',
-        'tram',
-        'transfer_within_a_station',
-        'zoom_out_map',
-        'apps',
-        'arrow_back',
-        'arrow_downward',
-        'arrow_drop_down',
-        'arrow_drop_down_circle',
-        'arrow_drop_up',
-        'arrow_forward',
-        'arrow_upward',
-        'cancel',
-        'check',
-        'chevron_left',
-        'chevron_right',
-        'close',
-        'expand_less',
-        'expand_more',
-        'first_page',
-        'fullscreen',
-        'fullscreen_exit',
-        'last_page',
-        'menu',
-        'more_horiz',
-        'more_vert',
-        'refresh',
-        'subdirectory_arrow_left',
-        'subdirectory_arrow_right',
-        'adb',
-        'airline_seat_flat',
-        'airline_seat_flat_angled',
-        'airline_seat_individual_suite',
-        'airline_seat_legroom_extra',
-        'airline_seat_legroom_normal',
-        'airline_seat_legroom_reduced',
-        'airline_seat_recline_extra',
-        'airline_seat_recline_normal',
-        'bluetooth_audio',
-        'confirmation_number',
-        'disc_full',
-        'do_not_disturb',
-        'do_not_disturb_alt',
-        'do_not_disturb_off',
-        'do_not_disturb_on',
-        'drive_eta',
-        'enhanced_encryption',
-        'event_available',
-        'event_busy',
-        'event_note',
-        'folder_special',
-        'live_tv',
-        'mms',
-        'more',
-        'network_check',
-        'network_locked',
-        'no_encryption',
-        'ondemand_video',
-        'personal_video',
-        'phone_bluetooth_speaker',
-        'phone_forwarded',
-        'phone_in_talk',
-        'phone_locked',
-        'phone_missed',
-        'phone_paused',
-        'power',
-        'priority_high',
-        'sd_card',
-        'sim_card_alert',
-        'sms',
-        'sms_failed',
-        'sync',
-        'sync_disabled',
-        'sync_problem',
-        'system_update',
-        'tap_and_play',
-        'time_to_leave',
-        'vibration',
-        'voice_chat',
-        'vpn_lock',
-        'wc',
-        'wifi',
-        'ac_unit',
-        'airport_shuttle',
-        'all_inclusive',
-        'beach_access',
-        'business_center',
-        'casino',
-        'child_care',
-        'child_friendly',
-        'fitness_center',
-        'free_breakfast',
-        'golf_course',
-        'hot_tub',
-        'kitchen',
-        'pool',
-        'room_service',
-        'rv_hookup',
-        'smoke_free',
-        'smoking_rooms',
-        'spa',
-        'cake',
-        'domain',
-        'group',
-        'group_add',
-        'location_city',
-        'mood',
-        'mood_bad',
-        'notifications',
-        'notifications_active',
-        'notifications_none',
-        'notifications_off',
-        'notifications_paused',
-        'pages',
-        'party_mode',
-        'people',
-        'people_outline',
-        'person',
-        'person_add',
-        'person_outline',
-        'plus_one',
-        'poll',
-        'public',
-        'school',
-        'sentiment_dissatisfied',
-        'sentiment_neutral',
-        'sentiment_satisfied',
-        'sentiment_very_dissatisfied',
-        'sentiment_very_satisfied',
-        'share',
-        'whatshot',
-        'check_box',
-        'check_box_outline_blank',
-        'indeterminate_check_box',
-        'radio_button_checked',
-        'radio_button_unchecked',
-        'star',
-        'star_border',
-        'star_half'
+        public static const BLUR_LINEAR:String = 'blur_linear';
+        public static const BLUR_OFF:String = 'blur_off';
+        public static const BLUR_ON:String = 'blur_on';
+        public static const BRIGHTNESS_1:String = 'brightness_1';
+        public static const BRIGHTNESS_2:String = 'brightness_2';
+        public static const BRIGHTNESS_3:String = 'brightness_3';
+        public static const BRIGHTNESS_4:String = 'brightness_4';
+        public static const BRIGHTNESS_5:String = 'brightness_5';
+        public static const BRIGHTNESS_6:String = 'brightness_6';
+        public static const BRIGHTNESS_7:String = 'brightness_7';
 
-        */
+        public static const BROKEN_IMAGE:String = 'broken_image';
+        public static const BRUSH:String = 'brush';
+        public static const BURST_MODE:String = 'burst_mode';
+        public static const CAMERA:String = 'camera';
+        public static const CAMERA_ALT:String = 'camera_alt';
+        public static const CAMERA_FRONT:String = 'camera_front';
+        public static const CAMERA_REAR:String = 'camera_rear';
+        public static const CAMERA_ROLL:String = 'camera_roll';
+        public static const CENTER_FOCUS_STRONG:String = 'center_focus_strong';
+        public static const CENTER_FOCUS_WEAK:String = 'center_focus_weak';
 
-        public static const CANCEL:String = "cancel";
-        public static const PERSON:String = "person";
-        public static const STAR:String = "star";
-        public static const SHARE:String = "share";
-        public static const MOOD:String = "mood";
-        public static const MORE_VERT:String = "more_vert";
+        public static const COLLECTIONS:String = 'collections';
+        public static const COLLECTIONS_BOOKMARK:String = 'collections_bookmark';
+        public static const COLOR_LENS:String = 'color_lens';
+        public static const COLORIZE:String = 'colorize';
+        public static const COMPARE:String = 'compare';
+        public static const CONTROL_POINT:String = 'control_point';
+        public static const CONTROL_POINT_DUPLICATE:String = 'control_point_duplicate';
+        public static const CROP:String = 'crop';
+        public static const CROP_16_9:String = 'crop_16_9';
+        public static const CROP_3_2:String = 'crop_3_2';
+
+        public static const CROP_5_4:String = 'crop_5_4';
+        public static const CROP_7_5:String = 'crop_7_5';
+        public static const CROP_DIN:String = 'crop_din';
+        public static const CROP_FREE:String = 'crop_free';
+        public static const CROP_LANDSCAPE:String = 'crop_landscape';
+        public static const CROP_ORIGINAL:String = 'crop_original';
+        public static const CROP_PORTRAIT:String = 'crop_portrait';
+        public static const CROP_ROTATE:String = 'crop_rotate';
+        public static const CROP_SQUARE:String = 'crop_square';
+        public static const DEHAZE:String = 'dehaze';
+
+        public static const DETAILS:String = 'details';
+        public static const EDIT:String = 'edit';
+        public static const EXPOSURE:String = 'exposure';
+        public static const EXPOSURE_NEG_1:String = 'exposure_neg_1';
+        public static const EXPOSURE_NEG_2:String = 'exposure_neg_2';
+        public static const EXPOSURE_PLUS_1:String = 'exposure_plus_1';
+        public static const EXPOSURE_PLUS_2:String = 'exposure_plus_2';
+        public static const EXPOSURE_ZERO:String = 'exposure_zero';
+        public static const FILTER:String = 'filter';
+        public static const FILTER_1:String = 'filter_1';
+
+        public static const FILTER_2:String = 'filter_2';
+        public static const FILTER_3:String = 'filter_3';
+        public static const FILTER_4:String = 'filter_4';
+        public static const FILTER_5:String = 'filter_5';
+        public static const FILTER_6:String = 'filter_6';
+        public static const FILTER_7:String = 'filter_7';
+        public static const FILTER_8:String = 'filter_8';
+        public static const FILTER_9:String = 'filter_9';
+        public static const FILTER_9_PLUS:String = 'filter_9_plus';
+        public static const FILTER_B_AND_W:String = 'filter_b_and_w';
+
+        public static const FILTER_CENTER_FOCUS:String = 'filter_center_focus';
+        public static const FILTER_DRAMA:String = 'filter_drama';
+        public static const FILTER_FRAMES:String = 'filter_frames';
+        public static const FILTER_HDR:String = 'filter_hdr';
+        public static const FILTER_NONE:String = 'filter_none';
+        public static const FILTER_TILT_SHIFT:String = 'filter_tilt_shift';
+        public static const FILTER_VINTAGE:String = 'filter_vintage';
+        public static const FLARE:String = 'flare';
+        public static const FLASH_AUTO:String = 'flash_auto';
+        public static const FLASH_OFF:String = 'flash_off';
+
+        public static const FLASH_ON:String = 'flash_on';
+        public static const FLIP:String = 'flip';
+        public static const GRADIENT:String = 'gradient';
+        public static const GRAIN:String = 'grain';
+        public static const GRID_OFF:String = 'grid_off';
+        public static const GRID_ON:String = 'grid_on';
+        public static const HDR_OFF:String = 'hdr_off';
+        public static const HDR_ON:String = 'hdr_on';
+        public static const HDR_STRONG:String = 'hdr_strong';
+        public static const HDR_WEAK:String = 'hdr_weak';
+
+        public static const HEALING:String = 'healing';
+        public static const IMAGE:String = 'image';
+        public static const IMAGE_ASPECT_RATIO:String = 'image_aspect_ratio';
+        public static const ISO:String = 'iso';
+        public static const LANDSCAPE:String = 'landscape';
+        public static const LEAK_ADD:String = 'leak_add';
+        public static const LEAK_REMOVE:String = 'leak_remove';
+        public static const LENS:String = 'lens';
+        public static const LINKED_CAMERA:String = 'linked_camera';
+        public static const LOOKS:String = 'looks';
+
+        public static const LOOKS_3:String = 'looks_3';
+        public static const LOOKS_4:String = 'looks_4';
+        public static const LOOKS_5:String = 'looks_5';
+        public static const LOOKS_6:String = 'looks_6';
+        public static const LOOKS_ONE:String = 'looks_one';
+        public static const LOOKS_TWO:String = 'looks_two';
+        public static const LOUPE:String = 'loupe';
+        public static const MONOCHROME_PHOTOS:String = 'monochrome_photos';
+        public static const MOVIE_CREATION:String = 'movie_creation';
+        public static const MOVIE_FILTER:String = 'movie_filter';
+
+        public static const MUSIC_NOTE:String = 'music_note';
+        public static const NATURE:String = 'nature';
+        public static const NATURE_PEOPLE:String = 'nature_people';
+        public static const NAVIGATE_BEFORE:String = 'navigate_before';
+        public static const NAVIGATE_NEXT:String = 'navigate_next';
+        public static const PALETTE:String = 'palette';
+        public static const PANORAMA:String = 'panorama';
+        public static const PANORAMA_FISH_EYE:String = 'panorama_fish_eye';
+        public static const PANORAMA_HORIZONTAL:String = 'panorama_horizontal';
+        public static const PANORAMA_VERTICAL:String = 'panorama_vertical';
+
+        public static const PANORAMA_WIDE_ANGLE:String = 'panorama_wide_angle';
+        public static const PHOTO:String = 'photo';
+        public static const PHOTO_ALBUM:String = 'photo_album';
+        public static const PHOTO_CAMERA:String = 'photo_camera';
+        public static const PHOTO_FILTER:String = 'photo_filter';
+        public static const PHOTO_LIBRARY:String = 'photo_library';
+        public static const PHOTO_SIZE_SELECT_ACTUAL:String = 'photo_size_select_actual';
+        public static const PHOTO_SIZE_SELECT_LARGE:String = 'photo_size_select_large';
+        public static const PHOTO_SIZE_SELECT_SMALL:String = 'photo_size_select_small';
+        public static const PICTURE_AS_PDF:String = 'picture_as_pdf';
+
+        public static const PORTRAIT:String = 'portrait';
+        public static const REMOVE_RED_EYE:String = 'remove_red_eye';
+        public static const ROTATE_90_DEGREES_CCW:String = 'rotate_90_degrees_ccw';
+        public static const ROTATE_LEFT:String = 'rotate_left';
+        public static const ROTATE_RIGHT:String = 'rotate_right';
+        public static const SLIDESHOW:String = 'slideshow';
+        public static const STRAIGHTEN:String = 'straighten';
+        public static const STYLE:String = 'style';
+        public static const SWITCH_CAMERA:String = 'switch_camera';
+        public static const SWITCH_VIDEO:String = 'switch_video';
+
+        public static const TAG_FACES:String = 'tag_faces';
+        public static const TEXTURE:String = 'texture';
+        public static const TIMELAPSE:String = 'timelapse';
+        public static const TIMER:String = 'timer';
+        public static const TIMER_10:String = 'timer_10';
+        public static const TIMER_3:String = 'timer_3';
+        public static const TIMER_OFF:String = 'timer_off';
+        public static const TONALITY:String = 'tonality';
+        public static const TRANSFORM:String = 'transform';
+        public static const TUNE:String = 'tune';
+
+        public static const VIEW_COMFY:String = 'view_comfy';
+        public static const VIEW_COMPACT:String = 'view_compact';
+        public static const VIGNETTE:String = 'vignette';
+        public static const WB_AUTO:String = 'wb_auto';
+        public static const WB_CLOUDY:String = 'wb_cloudy';
+        public static const WB_INCANDESCENT:String = 'wb_incandescent';
+        public static const WB_IRIDESCENT:String = 'wb_iridescent';
+        public static const WB_SUNNY:String = 'wb_sunny';
+        public static const ADD_LOCATION:String = 'add_location';
+        public static const BEENHERE:String = 'beenhere';
+
+        public static const DIRECTIONS:String = 'directions';
+        public static const DIRECTIONS_BIKE:String = 'directions_bike';
+        public static const DIRECTIONS_BOAT:String = 'directions_boat';
+        public static const DIRECTIONS_BUS:String = 'directions_bus';
+        public static const DIRECTIONS_CAR:String = 'directions_car';
+        public static const DIRECTIONS_RAILWAY:String = 'directions_railway';
+        public static const DIRECTIONS_RUN:String = 'directions_run';
+        public static const DIRECTIONS_SUBWAY:String = 'directions_subway';
+        public static const DIRECTIONS_TRANSIT:String = 'directions_transit';
+        public static const DIRECTIONS_WALK:String = 'directions_walk';
+
+        public static const EDIT_LOCATION:String = 'edit_location';
+        public static const EV_STATION:String = 'ev_station';
+        public static const FLIGHT:String = 'flight';
+        public static const HOTEL:String = 'hotel';
+        public static const LAYERS:String = 'layers';
+        public static const LAYERS_CLEAR:String = 'layers_clear';
+        public static const LOCAL_ACTIVITY:String = 'local_activity';
+        public static const LOCAL_AIRPORT:String = 'local_airport';
+        public static const LOCAL_ATM:String = 'local_atm';
+        public static const LOCAL_BAR:String = 'local_bar';
+
+        public static const LOCAL_CAFE:String = 'local_cafe';
+        public static const LOCAL_CAR_WASH:String = 'local_car_wash';
+        public static const LOCAL_CONVENIENCE_STORE:String = 'local_convenience_store';
+        public static const LOCAL_DINING:String = 'local_dining';
+        public static const LOCAL_DRINK:String = 'local_drink';
+        public static const LOCAL_FLORIST:String = 'local_florist';
+        public static const LOCAL_GAS_STATION:String = 'local_gas_station';
+        public static const LOCAL_GROCERY_STORE:String = 'local_grocery_store';
+        public static const LOCAL_HOSPITAL:String = 'local_hospital';
+        public static const LOCAL_HOTEL:String = 'local_hotel';
+
+        public static const LOCAL_LAUNDRY_SERVICE:String = 'local_laundry_service';
+        public static const LOCAL_LIBRARY:String = 'local_library';
+        public static const LOCAL_MALL:String = 'local_mall';
+        public static const LOCAL_MOVIES:String = 'local_movies';
+        public static const LOCAL_OFFER:String = 'local_offer';
+        public static const LOCAL_PARKING:String = 'local_parking';
+        public static const LOCAL_PHARMACY:String = 'local_pharmacy';
+        public static const LOCAL_PHONE:String = 'local_phone';
+        public static const LOCAL_PIZZA:String = 'local_pizza';
+        public static const LOCAL_PLAY:String = 'local_play';
+
+        public static const LOCAL_POST_OFFICE:String = 'local_post_office';
+        public static const LOCAL_PRINTSHOP:String = 'local_printshop';
+        public static const LOCAL_SEE:String = 'local_see';
+        public static const LOCAL_SHIPPING:String = 'local_shipping';
+        public static const LOCAL_TAXI:String = 'local_taxi';
+        public static const MAP:String = 'map';
+        public static const MY_LOCATION:String = 'my_location';
+        public static const NAVIGATION:String = 'navigation';
+        public static const NEAR_ME:String = 'near_me';
+        public static const PERSON_PIN:String = 'person_pin';
+
+        public static const PERSON_PIN_CIRCLE:String = 'person_pin_circle';
+        public static const PIN_DROP:String = 'pin_drop';
+        public static const PLACE:String = 'place';
+        public static const RATE_REVIEW:String = 'rate_review';
+        public static const RESTAURANT:String = 'restaurant';
+        public static const RESTAURANT_MENU:String = 'restaurant_menu';
+        public static const SATELLITE:String = 'satellite';
+        public static const STORE_MALL_DIRECTORY:String = 'store_mall_directory';
+        public static const STREETVIEW:String = 'streetview';
+        public static const SUBWAY:String = 'subway';
+
+        public static const TERRAIN:String = 'terrain';
+        public static const TRAFFIC:String = 'traffic';
+        public static const TRAIN:String = 'train';
+        public static const TRAM:String = 'tram';
+        public static const TRANSFER_WITHIN_A_STATION:String = 'transfer_within_a_station';
+        public static const ZOOM_OUT_MAP:String = 'zoom_out_map';
+        public static const APPS:String = 'apps';
+        public static const ARROW_BACK:String = 'arrow_back';
+        public static const ARROW_DOWNWARD:String = 'arrow_downward';
+        public static const ARROW_DROP_DOWN:String = 'arrow_drop_down';
+
+        public static const ARROW_DROP_DOWN_CIRCLE:String = 'arrow_drop_down_circle';
+        public static const ARROW_DROP_UP:String = 'arrow_drop_up';
+        public static const ARROW_FORWARD:String = 'arrow_forward';
+        public static const ARROW_UPWARD:String = 'arrow_upward';
+        public static const CANCEL:String = 'cancel';
+        public static const CHECK:String = 'check';
+        public static const CHEVRON_LEFT:String = 'chevron_left';
+        public static const CHEVRON_RIGHT:String = 'chevron_right';
+        public static const CLOSE:String = 'close';
+        public static const EXPAND_LESS:String = 'expand_less';
+
+        public static const EXPAND_MORE:String = 'expand_more';
+        public static const FIRST_PAGE:String = 'first_page';
+        public static const FULLSCREEN:String = 'fullscreen';
+        public static const FULLSCREEN_EXIT:String = 'fullscreen_exit';
+        public static const LAST_PAGE:String = 'last_page';
+        public static const MENU:String = 'menu';
+        public static const MORE_HORIZ:String = 'more_horiz';
+        public static const MORE_VERT:String = 'more_vert';
+        public static const REFRESH:String = 'refresh';
+        public static const SUBDIRECTORY_ARROW_LEFT:String = 'subdirectory_arrow_left';
+
+        public static const SUBDIRECTORY_ARROW_RIGHT:String = 'subdirectory_arrow_right';
+        public static const ADB:String = 'adb';
+        public static const AIRLINE_SEAT_FLAT:String = 'airline_seat_flat';
+        public static const AIRLINE_SEAT_FLAT_ANGLED:String = 'airline_seat_flat_angled';
+        public static const AIRLINE_SEAT_INDIVIDUAL_SUITE:String = 'airline_seat_individual_suite';
+        public static const AIRLINE_SEAT_LEGROOM_EXTRA:String = 'airline_seat_legroom_extra';
+        public static const AIRLINE_SEAT_LEGROOM_NORMAL:String = 'airline_seat_legroom_normal';
+        public static const AIRLINE_SEAT_LEGROOM_REDUCED:String = 'airline_seat_legroom_reduced';
+        public static const AIRLINE_SEAT_RECLINE_EXTRA:String = 'airline_seat_recline_extra';
+        public static const AIRLINE_SEAT_RECLINE_NORMAL:String = 'airline_seat_recline_normal';
+
+        public static const BLUETOOTH_AUDIO:String = 'bluetooth_audio';
+        public static const CONFIRMATION_NUMBER:String = 'confirmation_number';
+        public static const DISC_FULL:String = 'disc_full';
+        public static const DO_NOT_DISTURB:String = 'do_not_disturb';
+        public static const DO_NOT_DISTURB_ALT:String = 'do_not_disturb_alt';
+        public static const DO_NOT_DISTURB_OFF:String = 'do_not_disturb_off';
+        public static const DO_NOT_DISTURB_ON:String = 'do_not_disturb_on';
+        public static const DRIVE_ETA:String = 'drive_eta';
+        public static const ENHANCED_ENCRYPTION:String = 'enhanced_encryption';
+        public static const EVENT_AVAILABLE:String = 'event_available';
+
+        public static const EVENT_BUSY:String = 'event_busy';
+        public static const EVENT_NOTE:String = 'event_note';
+        public static const FOLDER_SPECIAL:String = 'folder_special';
+        public static const LIVE_TV:String = 'live_tv';
+        public static const MMS:String = 'mms';
+        public static const MORE:String = 'more';
+        public static const NETWORK_CHECK:String = 'network_check';
+        public static const NETWORK_LOCKED:String = 'network_locked';
+        public static const NO_ENCRYPTION:String = 'no_encryption';
+        public static const ONDEMAND_VIDEO:String = 'ondemand_video';
+
+        public static const PERSONAL_VIDEO:String = 'personal_video';
+        public static const PHONE_BLUETOOTH_SPEAKER:String = 'phone_bluetooth_speaker';
+        public static const PHONE_FORWARDED:String = 'phone_forwarded';
+        public static const PHONE_IN_TALK:String = 'phone_in_talk';
+        public static const PHONE_LOCKED:String = 'phone_locked';
+        public static const PHONE_MISSED:String = 'phone_missed';
+        public static const PHONE_PAUSED:String = 'phone_paused';
+        public static const POWER:String = 'power';
+        public static const PRIORITY_HIGH:String = 'priority_high';
+        public static const SD_CARD:String = 'sd_card';
+
+        public static const SIM_CARD_ALERT:String = 'sim_card_alert';
+        public static const SMS:String = 'sms';
+        public static const SMS_FAILED:String = 'sms_failed';
+        public static const SYNC:String = 'sync';
+        public static const SYNC_DISABLED:String = 'sync_disabled';
+        public static const SYNC_PROBLEM:String = 'sync_problem';
+        public static const SYSTEM_UPDATE:String = 'system_update';
+        public static const TAP_AND_PLAY:String = 'tap_and_play';
+        public static const TIME_TO_LEAVE:String = 'time_to_leave';
+        public static const VIBRATION:String = 'vibration';
+
+        public static const VOICE_CHAT:String = 'voice_chat';
+        public static const VPN_LOCK:String = 'vpn_lock';
+        public static const WC:String = 'wc';
+        public static const WIFI:String = 'wifi';
+        public static const AC_UNIT:String = 'ac_unit';
+        public static const AIRPORT_SHUTTLE:String = 'airport_shuttle';
+        public static const ALL_INCLUSIVE:String = 'all_inclusive';
+        public static const BEACH_ACCESS:String = 'beach_access';
+        public static const BUSINESS_CENTER:String = 'business_center';
+        public static const CASINO:String = 'casino';
+
+        public static const CHILD_CARE:String = 'child_care';
+        public static const CHILD_FRIENDLY:String = 'child_friendly';
+        public static const FITNESS_CENTER:String = 'fitness_center';
+        public static const FREE_BREAKFAST:String = 'free_breakfast';
+        public static const GOLF_COURSE:String = 'golf_course';
+        public static const HOT_TUB:String = 'hot_tub';
+        public static const KITCHEN:String = 'kitchen';
+        public static const POOL:String = 'pool';
+        public static const ROOM_SERVICE:String = 'room_service';
+        public static const RV_HOOKUP:String = 'rv_hookup';
+
+        public static const SMOKING_ROOMS:String = 'smoke_free';
+        public static const SPA:String = 'spa';
+        public static const CAKE:String = 'cake';
+        public static const DOMAIN:String = 'domain';
+        public static const GROUP:String = 'group';
+        public static const GROUP_ADD:String = 'group_add';
+        public static const LOCATION_CITY:String = 'location_city';
+        public static const MOOD:String = 'mood';
+        public static const MOOD_BAD:String = 'mood_bad';
+        public static const NOTIFICATIONS:String = 'notifications';
+
+        public static const NOTIFICATIONS_ACTIVE:String = 'notifications_active';
+        public static const NOTIFICATIONS_NONE:String = 'notifications_none';
+        public static const NOTIFICATIONS_OFF:String = 'notifications_off';
+        public static const NOTIFICATIONS_PAUSED:String = 'notifications_paused';
+        public static const PAGES:String = 'pages';
+        public static const PARTY_MODE:String = 'party_mode';
+        public static const PEOPLE:String = 'people';
+        public static const PEOPLE_OUTLINE:String = 'people_outline';
+        public static const PERSON:String = 'person';
+        public static const PERSON_ADD:String = 'person_add';
+
+        public static const PERSON_OUTLINE:String = 'person_outline';
+        public static const PLUS_ONE:String = 'plus_one';
+        public static const POLL:String = 'poll';
+        public static const PUBLIC:String = 'public';
+        public static const SCHOOL:String = 'school';
+        public static const SENTIMENT_DISSATISFIED:String = 'sentiment_dissatisfied';
+        public static const SENTIMENT_NEUTRAL:String = 'sentiment_neutral';
+        public static const SENTIMENT_SATISFIED:String = 'sentiment_satisfied';
+        public static const SENTIMENT_VERY_DISSATISFIED:String = 'sentiment_very_dissatisfied';
+        public static const SENTIMENT_VERY_SATISFIED:String = 'sentiment_very_satisfied';
+
+        public static const SHARE:String = 'share';
+        public static const WHATSHOT:String = 'whatshot';
+        public static const CHECK_BOX:String = 'check_box';
+        public static const CHECK_BOX_OUTLINE_BLANK:String = 'check_box_outline_blank';
+        public static const INDETERMINATE_CHECK_BOX:String = 'indeterminate_check_box';
+        public static const RADIO_BUTTON_CHECKED:String = 'radio_button_checked';
+        public static const RADIO_BUTTON_UNCHECKED:String = 'radio_button_unchecked';
+        public static const STAR:String = 'star';
+        public static const STAR_BORDER:String = 'star_border';
+        public static const STAR_HALF:String = 'star_half';
     }
 }
