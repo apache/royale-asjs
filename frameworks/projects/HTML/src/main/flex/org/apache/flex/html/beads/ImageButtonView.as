@@ -96,6 +96,8 @@ COMPILE::SWF {
 				setupBackground(upSprite);
 				setupBackground(overSprite, "hover");
 				setupBackground(downSprite, "active");
+				
+				IEventDispatcher(value).addEventListener("sourceChanged", handleSourceChange);
 			}
 		}
 
@@ -145,6 +147,17 @@ COMPILE::SWF {
                     updateHitArea();
 				});
 			}
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		private function handleSourceChange(event:org.apache.flex.events.Event):void
+		{
+			setupBackground(upSprite);
+			setupBackground(overSprite, "hover");
+			setupBackground(downSprite, "active");
 		}
 
 		/**

@@ -19,6 +19,8 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.events.Event;
+	
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -66,6 +68,7 @@ package org.apache.flex.html
 			return element;
 		}
 
+		[Bindable("sourceChanged")]
 		/**
 		 * Sets the image for the button. This is a URL.
 		 * TODO: figure out how to set the source in the style, rather than using
@@ -86,6 +89,8 @@ package org.apache.flex.html
             	var inputElement:HTMLInputElement = element as HTMLInputElement;
 				inputElement.src = url;
             }
+			
+			dispatchEvent(new Event("sourceChanged"));
         }
 	}
 }
