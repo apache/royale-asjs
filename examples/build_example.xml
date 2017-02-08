@@ -113,6 +113,7 @@
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -160,6 +161,7 @@
             <arg value="${theme_arg}" />
             <arg value="-target-player=${playerglobal.version}" />
             <arg value="-swf-version=${swf.version}" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -196,6 +198,7 @@
             <arg value="${theme_arg}" />
             <arg value="-define=CONFIG::as_only,true" />
             <arg value="-define=CONFIG::js_only,false" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -237,6 +240,7 @@
             <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
@@ -284,6 +288,7 @@
             <arg value="-debug=false" />
             <arg value="${theme_arg}" />
             <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
@@ -332,6 +337,7 @@
             <arg value="-define=CONFIG::as_only,false" />
             <arg value="-define=CONFIG::js_only,true" />
             <arg value="-compiler.mxml.children-as-data" />
+            <arg value="-compiler.allow-subclass-overrides" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-type=valueChange" />
