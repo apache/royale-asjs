@@ -107,7 +107,7 @@ package org.apache.flex.html.beads
 		private function updateHost():void
 		{
 			COMPILE::SWF {
-				var interactiveObject:InteractiveObject = (_strand as UIHTMLElementWrapper).$displayObject as InteractiveObject;
+				var interactiveObject:InteractiveObject = _strand as InteractiveObject;
 				interactiveObject.mouseEnabled = !disabled;
 			}
 			
