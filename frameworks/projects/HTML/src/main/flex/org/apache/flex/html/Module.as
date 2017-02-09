@@ -81,7 +81,7 @@ package org.apache.flex.html
 		{
 			COMPILE::SWF {				
 				if (swfLoader != null) {
-					$displayObjectContainer.removeChild(swfLoader);
+					removeChild(swfLoader);
 				}
 				
 				swfLoader = new Loader();
@@ -125,7 +125,7 @@ package org.apache.flex.html
 				var loaderContext:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain, null);
 				swfLoader.load(url, loaderContext);
 				if (swfLoader.parent == null) {
-					$displayObjectContainer.addChild(swfLoader);
+					addChild(swfLoader);
 				}
 			}
 				

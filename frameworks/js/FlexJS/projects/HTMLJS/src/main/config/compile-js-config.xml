@@ -57,16 +57,13 @@
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
         
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../../../../../../../projects/HTML/src/main/resources/basic-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>../../../../../../../projects/HTML/src/main/resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -89,7 +86,6 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>
         
 

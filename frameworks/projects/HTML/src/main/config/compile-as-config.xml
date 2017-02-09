@@ -27,8 +27,10 @@
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
+        <allow-subclass-overrides>true</allow-subclass-overrides>
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -53,10 +55,6 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>../resources/svg-manifest.xml</manifest>
-            </namespace>
         </namespaces>
         
         <source-path>
@@ -72,7 +70,6 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.apache.org/flexjs/svg</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

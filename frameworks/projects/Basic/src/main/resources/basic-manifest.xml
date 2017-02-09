@@ -30,6 +30,7 @@
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"/>
     <component id="DropDownListList" class="org.apache.flex.html.supportClasses.DropDownListList"/>
     <component id="Image" class="org.apache.flex.html.Image"/>
+    <component id="BinaryImage" class="org.apache.flex.html.BinaryImage"/>
     <component id="Label" class="org.apache.flex.html.Label"/>
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"/>
     <component id="ImageAndTextButton" class="org.apache.flex.html.ImageAndTextButton"/>
