@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.UIBase;
+    import org.apache.flex.core.ImageBase;
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -39,7 +38,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Image extends UIBase
+	public class Image extends ImageBase
 	{
 		/**
 		 *  constructor.
@@ -54,24 +53,6 @@ package org.apache.flex.html
 			super();
 		}
 		
-		/**
-		 *  The location of the bitmap, usually a URL.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
-		 */
-		public function get url():String
-		{
-			return (model as IImageModel).url;
-		}
-		public function set url(value:String):void
-		{
-			(model as IImageModel).url = value;
-		}
-        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -87,7 +68,20 @@ package org.apache.flex.html
             element.flexjs_wrapper = this;
          
             return element;
-        }        
+        }
+        
+        COMPILE::JS
+        override public function get imageElement():Element
+        {
+            return element;
+        }
+        
+        COMPILE::JS
+        override public function applyImageData(binaryDataAsString:String):void
+        {
+            (element as HTMLImageElement).src = binaryDataAsString;
+        }
+
 
 	}
 }

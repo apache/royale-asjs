@@ -27,7 +27,7 @@ package org.apache.flex.svg
 	[DefaultProperty("mxmlContent")]
 
 	COMPILE::SWF
-    public class GraphicContainer extends ContainerBase
+    public class GraphicContainer extends ContainerBase implements ITransformHost
     {
         public function GraphicContainer()
         {
@@ -37,7 +37,7 @@ package org.apache.flex.svg
     }
 	
 	COMPILE::JS
-	public class GraphicContainer extends UIBase implements IContainer
+	public class GraphicContainer extends UIBase implements ITransformHost, IContainer
 	{
 		private var graphicGroup:ContainerBase;
 		
@@ -67,7 +67,12 @@ package org.apache.flex.svg
 			return element;
 		}
 
-		
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            element.setAttribute('class', value);           
+        }
+
 		override public function get transformElement():org.apache.flex.core.WrappedHTMLElement
 		{
 			return graphicGroup.element;

@@ -175,6 +175,11 @@ package org.apache.flex.svg
             return fillStr + ';' + strokeStr;
         }
 
+        COMPILE::JS
+        override protected function setClassName(value:String):void
+        {
+            element.setAttribute('class', value);           
+        }
 
         /**
          * @param x X position.

@@ -306,6 +306,13 @@ ImageButton:active
     border-style: none;
 }
 
+BinaryImage
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.BinaryImageModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+	IBinaryImageLoader:  ClassReference("org.apache.flex.html.beads.BinaryImageLoader");
+}
+
 VContainer
 {
     IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");

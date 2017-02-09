@@ -214,6 +214,15 @@ package org.apache.flex.core
             }
 		}
 		
+        /**
+         *  @private
+         */
+        override public function get numElements():int
+        {
+            var contentView:IParent = view as IParent;
+            return contentView != null ? contentView.numElements : super.numElements;
+        }
+                
 		/**
 		 * @private
          * @suppress {undefinedNames}
