@@ -38,6 +38,7 @@
     <module>flexjs-simple-application-pure-js-archetype</module>
     <module>flexjs-simple-application-pure-swf-archetype</module>
     <module>flexjs-simple-library-archetype</module>
+    <module>flexjs-simple-typedef-archetype</module>
   </modules>
 
   <build>
