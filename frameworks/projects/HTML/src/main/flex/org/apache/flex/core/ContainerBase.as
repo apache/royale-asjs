@@ -231,7 +231,7 @@ package org.apache.flex.core
 		 */
 		public function $numElements():int
 		{
-			return super.numElements();
+			return super.numElements;
 		}
 		
 		/**

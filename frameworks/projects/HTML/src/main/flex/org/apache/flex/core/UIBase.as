@@ -799,6 +799,8 @@ package org.apache.flex.core
         COMPILE::JS
         public function internalChildren():Array
         {
+            if (!element) return [];
+            
             return element.childNodes as Array;
         }
         		
