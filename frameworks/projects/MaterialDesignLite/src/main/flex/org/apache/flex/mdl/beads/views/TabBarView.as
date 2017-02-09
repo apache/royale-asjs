@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
+    import org.apache.flex.core.IParent;
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IContentViewHost;
     import org.apache.flex.core.IStrand;
@@ -101,9 +102,12 @@ package org.apache.flex.mdl.beads.views
 		 */
         private function selectTabBarButton():void
         {
-            if (listModel.selectedIndex < 0 ) return;
+            var strandChildren:IParent = (host as IContentViewHost).strandChildren;
+            if (strandChildren.numElements <= 0) return;
+            if (listModel.selectedIndex < 0) return;
 
-            var tabBarButton:Object = (host as IContentViewHost).strandChildren.getElementAt(listModel.selectedIndex);
+            var tabBarButton:Object = strandChildren.getElementAt(listModel.selectedIndex);
+            
             if (tabBarButton is ITabItemRenderer || tabBarButton is TabBarButton)
             {
                 tabBarButton.isActive = true;

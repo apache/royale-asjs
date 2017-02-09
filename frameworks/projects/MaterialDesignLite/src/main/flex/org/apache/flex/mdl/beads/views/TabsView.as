@@ -19,6 +19,7 @@
 package org.apache.flex.mdl.beads.views
 {
     import org.apache.flex.core.IContentViewHost;
+    import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStrandWithModel;
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IStrand;
@@ -135,10 +136,13 @@ package org.apache.flex.mdl.beads.views
 		 */
         private function selectTabBarPanel():void
         {
-            if (listModel.selectedIndex < 0 ) return;
-
+            var strandChildren:IParent = (host as IContentViewHost).strandChildren;
             var indexElementAfterTabBar:int = listModel.selectedIndex + 1;
-            var tabBarPanel:Object = (host as IContentViewHost).strandChildren.getElementAt(indexElementAfterTabBar);
+            if (strandChildren.numElements <= 0) return;
+            if (strandChildren.numElements < indexElementAfterTabBar) return;
+            if (listModel.selectedIndex < 0) return;
+
+            var tabBarPanel:Object = strandChildren.getElementAt(indexElementAfterTabBar);
             if (tabBarPanel is ITabItemRenderer || tabBarPanel is TabBarPanel)
             {
                 tabBarPanel.isActive = true;
