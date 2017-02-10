@@ -430,12 +430,15 @@
         Cleanup
     -->
     
-    <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
+    <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
+        <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+    </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
         <ant dir="${basedir}/frameworks" target="thirdparty-clean"/>
         <delete dir="${basedir}/in"/>
         <delete dir="${basedir}/lib"/>
+        <delete dir="${basedir}/marmotinni/java/lib/selenium/libs"/>
     </target>
 
     <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
