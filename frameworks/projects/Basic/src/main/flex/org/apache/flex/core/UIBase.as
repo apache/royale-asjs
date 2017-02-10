@@ -1537,7 +1537,7 @@ package org.apache.flex.core
         
         COMPILE::SWF
         {
-        [SWFOverride(params="flash.events.Event")]
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.flex.events.Event:org.apache.flex.events.MouseEvent")]
         override public function dispatchEvent(event:org.apache.flex.events.Event):Boolean
         {
             return super.dispatchEvent(event);
