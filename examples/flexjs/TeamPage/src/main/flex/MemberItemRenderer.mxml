@@ -37,7 +37,7 @@ limitations under the License.
 				super.data = value;
 				
 				_member = value as Person;
-				memberPhoto.url = _member.photoURL;
+				memberPhoto.src = _member.photoURL;
 				memberName.text = _member.name;
 				memberBio.text = _member.bio;
 				memberID.text = _member.apacheID;

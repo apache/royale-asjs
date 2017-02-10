@@ -58,7 +58,7 @@ limitations under the License.
         <mdl:CardSupportingText>
             <js:Container className="cardRow1">
                 <js:HTMLText html="{member.bio}" className="bio" />
-                <js:Image url="http://flex.apache.org/{member.photoURL}" className="photo" />
+                <js:Image src="http://flex.apache.org/{member.photoURL}" className="photo" />
             </js:Container>
             <!--<js:TextNode text="{member.bio}"/>-->
         </mdl:CardSupportingText>

@@ -90,7 +90,7 @@ limitations under the License.
                         <mdl:MdlColor color="white"/>
                         <mdl:MdlTextColor textColor="grey-600"/>
                     </mdl:beads>
-                    <js:Image url="images/logo.png"/>
+                    <js:Image src="images/logo.png"/>
                     <js:TextNode text="+1,337"/>
                 </mdl:CardMedia>
                 <mdl:CardSupportingText className="meta meta-fill">
