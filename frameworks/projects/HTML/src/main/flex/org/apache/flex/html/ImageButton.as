@@ -68,18 +68,18 @@ package org.apache.flex.html
 			return element;
 		}
 
-		[Bindable("sourceChanged")]
+		[Bindable("srcChanged")]
 		/**
 		 * Sets the image for the button. This is a URL.
 		 * TODO: figure out how to set the source in the style, rather than using
 		 * backgroundImage behind the scenes.
 		 */
-        public function get source():String
+        public function get src():String
         {
             return style.backgroundImage;
         }
 
-        public function set source(url:String):void
+        public function set src(url:String):void
         {
             if (!style)
                 style = new SimpleCSSStyles();
@@ -90,7 +90,7 @@ package org.apache.flex.html
 				inputElement.src = url;
             }
 			
-			dispatchEvent(new Event("sourceChanged"));
+			dispatchEvent(new Event("srcChanged"));
         }
 	}
 }

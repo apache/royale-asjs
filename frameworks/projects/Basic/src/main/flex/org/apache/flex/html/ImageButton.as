@@ -69,12 +69,12 @@ package org.apache.flex.html
 		 * TODO: figure out how to set the source in the style, rather than using
 		 * backgroundImage behind the scenes.
 		 */
-        public function get source():String
+        public function get src():String
         {
             return style.backgroundImage;
         }
 
-        public function set source(url:String):void
+        public function set src(url:String):void
         {
             if (!style)
                 style = new SimpleCSSStyles();

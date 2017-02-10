@@ -106,10 +106,10 @@ package org.apache.flex.html.beads
 			(_labelBox.stroke as SolidColorStroke).weight = 1.0;
 
 			_incrementButton = new ImageButton();
-			_incrementButton.source = "assets/up-arrow.png";
+			_incrementButton.src = "assets/up-arrow.png";
 
 			_decrementButton = new ImageButton();
-			_decrementButton.source = "assets/down-arrow.png";
+			_decrementButton.src = "assets/down-arrow.png";
 
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
