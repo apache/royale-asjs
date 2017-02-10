@@ -80,7 +80,8 @@
          <path-element>libs</path-element>
          <path-element>{airHome}/frameworks/libs/air</path-element>
       </library-path>
-     
+      
+      <allow-subclass-overrides>true</allow-subclass-overrides>
      <mxml>
          <children-as-data>true</children-as-data>
          <imports>

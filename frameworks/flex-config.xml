@@ -82,6 +82,7 @@
          <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
       </library-path>
 
+      <allow-subclass-overrides>true</allow-subclass-overrides>
       <mxml>
           <children-as-data>true</children-as-data>
           <imports>
