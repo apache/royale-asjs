@@ -25,6 +25,7 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
     import org.apache.flex.mdl.TabBarPanel;
+    import org.apache.flex.mdl.beads.models.ITabModel;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
     /**
@@ -107,6 +108,22 @@ package org.apache.flex.mdl.beads.views
         private function initCompleteHandler(event:Event):void
         {
             host.removeEventListener("initComplete", initCompleteHandler);
+
+            var model:ITabModel = (_strand as IStrandWithModel).model as ITabModel;
+            if (!model.dataProvider)
+            {
+                model.addEventListener("dataProviderChanged", onTabsDataProviderChangedHandler);
+            }
+            else
+            {
+                completeSetup();
+            }
+        }
+
+        private function onTabsDataProviderChangedHandler(event:Event):void
+        {
+            var model:ITabModel = (_strand as IStrandWithModel).model as ITabModel;
+            model.removeEventListener("dataProviderChanged", onTabsDataProviderChangedHandler);
 
             completeSetup();
         }
