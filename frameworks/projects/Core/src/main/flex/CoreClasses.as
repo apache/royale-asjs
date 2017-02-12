@@ -146,16 +146,19 @@ internal class CoreClasses
 		import org.apache.flex.utils.HTMLLoader; HTMLLoader;
 	}
 	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
+    import org.apache.flex.utils.CompressionUtils; CompressionUtils;
 	import org.apache.flex.utils.Endian; Endian;
 	import org.apache.flex.utils.JXON; JXON;
     import org.apache.flex.utils.StringPadder; StringPadder;
 	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.StringUtil; StringUtil;
+	import org.apache.flex.utils.ObjectMap;ObjectMap;
 	import org.apache.flex.utils.ObjectUtil; ObjectUtil;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
 	import org.apache.flex.utils.UIUtils; UIUtils;
 	import org.apache.flex.utils.URLUtils; URLUtils;
+	import org.apache.flex.utils.undo.UndoManager; UndoManager;
 	COMPILE::JS
 	{
         import org.apache.flex.events.utils.EventUtils; EventUtils;
