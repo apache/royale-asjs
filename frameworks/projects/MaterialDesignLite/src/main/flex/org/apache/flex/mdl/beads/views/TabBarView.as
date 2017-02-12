@@ -21,7 +21,6 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.core.IParent;
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IContentViewHost;
-    import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBarButton;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
@@ -49,32 +48,9 @@ package org.apache.flex.mdl.beads.views
             super();
         }
 
-        /**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        override public function set strand(value:IStrand):void
+        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
         {
-            super.strand = value;
-
-            host.addEventListener("initComplete", initCompleteHandler);
-        }
-
-        /**
-		 *  init complete handler
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        private function initCompleteHandler(event:Event):void
-        {
-            host.removeEventListener("initComplete", initCompleteHandler);
+            super.itemsCreatedHandler(event);
 
             completeSetup();
         }

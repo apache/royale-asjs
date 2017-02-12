@@ -25,7 +25,6 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
     import org.apache.flex.mdl.TabBarPanel;
-    import org.apache.flex.mdl.beads.models.ITabModel;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
     /**
@@ -93,37 +92,11 @@ package org.apache.flex.mdl.beads.views
             }
 
             _tabBar.model = (value as IStrandWithModel).model;
-
-            host.addEventListener("initComplete", initCompleteHandler);
         }
 
-        /**
-		 *  init complete handler
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        private function initCompleteHandler(event:Event):void
+        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
         {
-            host.removeEventListener("initComplete", initCompleteHandler);
-
-            var model:ITabModel = (_strand as IStrandWithModel).model as ITabModel;
-            if (!model.dataProvider)
-            {
-                model.addEventListener("dataProviderChanged", onTabsDataProviderChangedHandler);
-            }
-            else
-            {
-                completeSetup();
-            }
-        }
-
-        private function onTabsDataProviderChangedHandler(event:Event):void
-        {
-            var model:ITabModel = (_strand as IStrandWithModel).model as ITabModel;
-            model.removeEventListener("dataProviderChanged", onTabsDataProviderChangedHandler);
+            super.itemsCreatedHandler(event);
 
             completeSetup();
         }
