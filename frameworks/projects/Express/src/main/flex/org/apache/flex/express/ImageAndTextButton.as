@@ -19,48 +19,21 @@
 package org.apache.flex.express
 {
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.beads.DisableBead;
+	import org.apache.flex.html.ImageAndTextButton;
 	import org.apache.flex.html.accessories.ToolTipBead;
-
+	
 	/**
-	 * This class extends TextButton and adds the toolTip bead
+	 * This class extends ImageAndTextButton and adds the toolTip bead
 	 * as a convenience.
 	 */
-	public class TextButton extends org.apache.flex.html.TextButton
+	public class ImageAndTextButton extends org.apache.flex.html.ImageAndTextButton
 	{
-		public function TextButton()
+		public function ImageAndTextButton()
 		{
 			super();
 		}
 		
-		private var _disableBead:DisableBead;
-		private var _enabled:Boolean = true;
 		private var _toolTipBead:ToolTipBead = null;
-		
-		[Bindable("enabledChanged")]
-		/**
-		 * Can enable or disable interaction with the control.
-		 */
-		public function get enabled():Boolean
-		{
-			return _enabled;
-		}
-		public function set enabled(value:Boolean):void
-		{
-			_enabled = value;
-			
-			_disableBead = getBeadByType(DisableBead) as DisableBead;
-			
-			if (_disableBead == null) {
-				_disableBead = new DisableBead();
-				addBead(_disableBead);
-			}
-			
-			_disableBead.disabled = !value;
-				
-			dispatchEvent(new Event("enabledChanged"));
-		}
 		
 		[Bindable("toolTipChanged")]
 		/**
