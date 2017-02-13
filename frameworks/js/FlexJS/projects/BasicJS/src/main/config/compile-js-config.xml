@@ -57,7 +57,6 @@
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
-            <path-element>../../../../../libs/EffectsJS.swc</path-element>
         </library-path>
         
         <namespaces>
