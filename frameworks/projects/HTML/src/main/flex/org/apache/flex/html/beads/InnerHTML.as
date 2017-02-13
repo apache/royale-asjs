@@ -64,7 +64,11 @@ package org.apache.flex.html.beads
 
 		public function set text(value:String):void
 		{
-            _text = value;
+			if (_text != value)
+            {
+                _text = value;
+				updateHost();
+            }
 		}
 		
         private var host:UIBase;
@@ -83,7 +87,12 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 
-            host = value as UIBase;
+            updateHost();
+		}
+
+		private function updateHost():void
+		{
+            host = _strand as UIBase;
 
             if(_text != null && _text != "" && host != null)
             {
