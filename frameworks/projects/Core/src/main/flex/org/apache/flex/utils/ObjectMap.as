@@ -43,10 +43,14 @@ package org.apache.flex.utils
                 if(weak)
                 {
                     if(typeof WeakMap == "function")
+                    {
                         _map = new WeakMap();
+                        assignFunctions();
+                    }
                     else if(typeof Map == "function")//Map is supported, fall back to that
                     {
                         _map = new Map();
+                        assignFunctions();
                         _weak = false;
                     }
                     else
@@ -56,11 +60,15 @@ package org.apache.flex.utils
                     }
                 }
                 else if(typeof Map == "function")
+                {
                     _map = new Map();
+                    assignFunctions();
+                }
                 else
                 {
                     _map = {};
                     _usesObjects = true;
+                    assignFunctions();
                 }
             }
 
@@ -68,6 +76,7 @@ package org.apache.flex.utils
         private var _weak:Boolean;
         private var _map:Object;
         private var _usesObjects:Boolean = false;
+
         COMPILE::SWF
         public function delete(key:Object):void
         {
@@ -96,65 +105,64 @@ package org.apache.flex.utils
         }
 
         COMPILE::JS
-        public function delete(key:Object):void
         {
-            if(_usesObjects)
-                delete _map[key];
-            else {
-                _map.delete(key);
-            }
+            public var get:Function = objectGet;
+            public var set:Function = objectSet;
+            public var has:Function = objectHas;
+            public var delete:Function = objectDelete;
         }
 
         COMPILE::JS
-        public function get(key:Object):*
+        private function assignFunctions():void
         {
-            if(_usesObjects)
+            this.get = _map.get;
+            this.has = _map.has;
+            this.set = _map.set;
+            this.delete = _map.delete;
+        }
+
+        COMPILE::JS
+        private function objectDelete(key:Object):void
+        {
+            delete _map[key];
+        }
+        COMPILE::JS
+        private function objectGet(key:Object):*
+        {
+            switch(key.constructor)
             {
-                switch(key.constructor)
-                {
-                    case Number:
-                    case String:
-                        return _map[key];
-                    case Object:
-                        if(key.object_map_uid)
-                            return _map[key["object_map_uid"]];
-                        else
-                            return undefined;
-                    default:
+                case Number:
+                case String:
+                    return _map[key];
+                case Object:
+                    if(key.object_map_uid)
+                        return _map[key["object_map_uid"]];
+                    else
                         return undefined;
-                }
+                default:
+                    return undefined;
             }
-            else
-                return _map.get(key);
         }
         COMPILE::JS
-        public function has(key:Object):Boolean
+        private function objectHas(key:Object):Boolean
         {
-            if(_usesObjects)
-                return _map[key] === undefined;
-            else
-                return _map.has(key);
+            return _map[key] === undefined;
         }
         COMPILE::JS
-        public function set(key:Object,value:*):void
+        private function objectSet(key:Object,value:*):void
         {
-            if(_usesObjects)
+            switch(key.constructor)
             {
-                switch(key.constructor)
-                {
-                    case Number:
-                    case String:
-                        _map[key] = value;
-                    case Object:
-                        if(!key.object_map_uid)
-                            key.object_map_uid = UIDUtil.createUID();
-                            _map[key["object_map_uid"]] = value;
-                    default:
-                        return;
-                }
+                case Number:
+                case String:
+                    _map[key] = value;
+                case Object:
+                    if(!key.object_map_uid)
+                        key.object_map_uid = UIDUtil.createUID();
+                        _map[key["object_map_uid"]] = value;
+                default:
+                    return;
             }
-            else
-                _map.set(key,value);
         }
         COMPILE::JS
         public function clear():void
@@ -162,9 +170,15 @@ package org.apache.flex.utils
             if(_usesObjects)
                 _map = {};
             else if(_weak)
+            {
                 _map = new WeakMap();
+                assignFunctions();
+            }
             else
+            {
                 _map = new Map();
+                assignFunctions();
+            }
         }
 
     }    
