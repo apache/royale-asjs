@@ -23,9 +23,9 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
+        
+        <allow-subclass-overrides>true</allow-subclass-overrides>
         
 		<mxml>
 			<children-as-data>true</children-as-data>
@@ -33,6 +33,15 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+        
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -40,6 +49,7 @@
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>SWFOverride</name>
         </keep-as3-metadata>
 	  
         <locale/>
@@ -58,17 +68,20 @@
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
+        
+        <!-- Use of the instanceof operator. -->
+        <warn-instance-of-changes>false</warn-instance-of-changes>
     </compiler>
     
     <include-classes>
-        <class>FormattersClasses</class>
+        <class>CoreClasses</class>
     </include-classes>
     
     <include-namespaces>
         <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>  
         
-    <target-player>${playerglobal.version}</target-player>
+    <target-player>20.0</target-player>
 	
 
 </flex-config>

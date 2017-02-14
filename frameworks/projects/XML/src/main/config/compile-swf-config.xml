@@ -33,6 +33,15 @@
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
+
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
@@ -50,10 +59,6 @@
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>../resources/svg-manifest.xml</manifest>
-            </namespace>
         </namespaces>
         
         <source-path>
@@ -63,13 +68,8 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-    
     <include-classes>
-        <class>GraphicsClasses</class>
+        <class>XMLClasses</class>
     </include-classes>
     
     <include-namespaces>

@@ -23,14 +23,11 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Binding.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>
-        
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -38,13 +35,21 @@
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
+
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
-          <name>SWFOverride</name>
         </keep-as3-metadata>
 	  
         <locale/>
@@ -53,16 +58,8 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../resources/basic-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../resources/basic-as-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>../resources/svg-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/html5</uri>
+                <manifest>../resources/html5-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -79,12 +76,11 @@
     </include-file>
 
     <include-classes>
-        <class>BasicClasses</class>
+        <class>HTML5Classes</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
-        <uri>library://ns.apache.org/flexjs/svg</uri>
+        <uri>library://ns.apache.org/flexjs/html5</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

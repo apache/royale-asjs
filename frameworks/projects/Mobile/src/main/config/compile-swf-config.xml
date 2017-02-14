@@ -23,7 +23,6 @@
         
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Binding.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Basic.swc</path-element>
@@ -37,12 +36,22 @@
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
+
         <keep-as3-metadata>
           <name>Bindable</name>
           <name>Managed</name>
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>Mixin</name>
         </keep-as3-metadata>
 	  
         <locale/>
@@ -51,12 +60,12 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/fa</uri>
-                <manifest>../resources/fa-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/fa</uri>
-                <manifest>../resources/fa-as-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/cordova</uri>
+                <manifest>../resources/cordova-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -72,14 +81,13 @@
         <path>../resources/defaults.css</path>
     </include-file>
 
-    <include-lookup-only>true</include-lookup-only>
-    
     <include-classes>
-        <class>FAClasses</class>
+        <class>MobileClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/fa</uri>
+        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/cordova</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

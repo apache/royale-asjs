@@ -24,6 +24,7 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
+			<path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -32,6 +33,15 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -59,13 +69,8 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-
     <include-classes>
-        <class>StorageClasses</class>
+        <class>EffectsClasses</class>
     </include-classes>
     
     <include-namespaces>

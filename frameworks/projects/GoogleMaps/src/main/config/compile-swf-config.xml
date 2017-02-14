@@ -24,8 +24,6 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Collections.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
@@ -36,6 +34,15 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -51,8 +58,8 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>../resources/basic-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/google</uri>
+                <manifest>../resources/google-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -69,11 +76,12 @@
     </include-file>
 
     <include-classes>
-        <class>ChartsClasses</class>
+        <class>GoogleStubClasses</class>
+        <class>GoogleMapsClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/basic</uri>
+        <uri>library://ns.apache.org/flexjs/google</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

@@ -26,7 +26,7 @@
             <path-element>../../../../../libs/Binding.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
+            <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
@@ -37,6 +37,15 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -52,12 +61,8 @@
 
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/flexjs/mdl</uri>
-                <manifest>../resources/mdl-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/flexjs/mdl</uri>
-                <manifest>../resources/mdl-as-manifest.xml</manifest>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
@@ -68,19 +73,12 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
-    <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-
-    <include-lookup-only>true</include-lookup-only>
-    
     <include-classes>
-        <class>MDLClasses</class>
+        <class>HTMLClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/flexjs/mdl</uri>
+        <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>

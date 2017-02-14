@@ -33,7 +33,7 @@
     <property file="${basedir}/${target.name}.properties"/>
     <delete file="${basedir}/${target.name}.properties"/>
     
-    <target name="main" depends="clean,check-compiler,compile-js-swc,compile-asjs" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="clean">
@@ -49,7 +49,7 @@
         </delete>
     </target>
     
-    <target name="compile-asjs" depends="check-compiler">
+    <target name="compile" depends="check-compiler">
         <echo message="Cross-compiling ${target.name}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
@@ -59,29 +59,12 @@
             <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
             <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+flexlib=${FLEX_HOME}/frameworks" />
-            <arg value="-js-output-type=FLEXJS" />
             <arg value="-compiler.strict-xml=true" />
-            <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
+            <arg value="-compiler.targets=SWF,JSFlex" />
+            <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/jquery-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>
-    </target>
-    
-    <target name="compile-js-swc" description="Compiles .as files into .swc used for cross-compiling other projects">
-        <echo message="Compiling target/${target.name}"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
-        <mkdir dir="${FLEXJS_HOME}/frameworks/js/FlexJS/libs"/>
-        <mkdir dir="${basedir}/target"/>
-        
-        <compc fork="true"
-            output="${basedir}/target/${target.name}">
-            <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="${FLEX_HOME}/frameworks/jquery-config.xml" />
-            <load-config filename="src/main/config/compile-js-config.xml" />
-            <arg value="-compiler.strict-xml=true" />
-        </compc>
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name}" />
     </target>
     
