@@ -431,6 +431,7 @@
        <class>org.apache.flex.html.beads.CSSTextButtonView</class>
        <class>org.apache.flex.maps.google.beads.MapView_original</class>
        <class>org.apache.flex.events.utils.EventUtils</class>
+	   <class>org.apache.flex.utils.ObjectMap</class>
     </exclude-classes>
    
    <exclude-sources>
@@ -440,6 +441,7 @@
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/BrowserEvent.as</path-element>
        <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/utils/EventUtils.as</path-element>
        <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org/apache/flex/maps/google/beads/MapView_original.as</path-element>
+	   <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/utils/ObjectMap.as</path-element>
     </exclude-sources>
    
    <!-- source path for asdoc -->
