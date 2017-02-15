@@ -80,6 +80,7 @@ internal class HTMLClasses
     	import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
 	}
 	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
+	import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead; SolidBackgroundWithChangeListenerBead;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.SolidBackgroundBead; SolidBackgroundBead;

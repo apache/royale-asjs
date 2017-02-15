@@ -143,6 +143,7 @@
     <component id="SubAppLoader" class="org.apache.flex.html.SubAppLoader" />
 
     <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
+    <component id="SolidBackgroundWithChangeListenerBead" class="org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead"/>
     
     <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
 
