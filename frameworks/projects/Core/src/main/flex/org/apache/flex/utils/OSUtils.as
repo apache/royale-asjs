@@ -40,6 +40,11 @@ package org.apache.flex.utils
         public function OSUtils ()
         {
         }
+        public static const MAC_OS:String = "MacOS";
+        public static const WIN_OS:String = "Windows";
+        public static const LINUX_OS:String = "Linux";
+        public static const UNIX_OS:String = "UNIX";
+        public static const UNKNOWN_OS:String = "Unknown OS";
 
         /**
          * Gets the name of the operating system.
