@@ -57,29 +57,13 @@
   </build>
 
   <dependencies>
-    
-    <!-- Needed for Flash compilation -->
-    <!--dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>20.0</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency-->
-
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
       <artifactId>flexjs-typedefs-gcl</artifactId>
       <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
+      <scope>runtime</scope>
     </dependency>
     <!--
       By declaring this dependency here, we force the flexjs-externs-js to be
