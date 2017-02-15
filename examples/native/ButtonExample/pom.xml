@@ -35,20 +35,70 @@
   <name>Apache Flex - FlexJS: Examples: Native: ButtonExample</name>
 
   <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>ButtonExample.as</mainClass>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 
   <dependencies>
-  </dependencies>
+    
+    <!-- Needed for Flash compilation -->
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>20.0</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.air.framework</groupId>
+      <artifactId>airglobal</artifactId>
+      <version>${air.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
 
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-gcl</artifactId>
+      <version>${flexjs.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
+    <!--
+      By declaring this dependency here, we force the flexjs-externs-js to be
+      added to the external library path of all modules. Without this it would
+      have gone to the library path.
+    -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-js</artifactId>
+      <version>${flexjs.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
 </project>
