@@ -115,10 +115,10 @@ package org.apache.flex.utils
         COMPILE::JS
         private function assignFunctions():void
         {
-            this.get = _map.get;
-            this.has = _map.has;
-            this.set = _map.set;
-            this.delete = _map.delete;
+            this.get = _map.get.bind(_map);
+            this.has = _map.has.bind(_map);
+            this.set = _map.set.bind(_map);
+            this.delete = _map.delete.bind(_map);
         }
 
         COMPILE::JS

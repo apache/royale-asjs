@@ -149,6 +149,7 @@ internal class CoreClasses
     import org.apache.flex.utils.CompressionUtils; CompressionUtils;
 	import org.apache.flex.utils.Endian; Endian;
 	import org.apache.flex.utils.JXON; JXON;
+	import org.apache.flex.utils.OSUtils; OSUtils;
     import org.apache.flex.utils.StringPadder; StringPadder;
 	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.StringUtil; StringUtil;
