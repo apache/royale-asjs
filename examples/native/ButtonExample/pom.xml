@@ -35,19 +35,13 @@
   <name>Apache Flex - FlexJS: Examples: Native: ButtonExample</name>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
+          <outputJavaScript>true</outputJavaScript>
           <mainClass>ButtonExample.as</mainClass>
         </configuration>
       </plugin>
@@ -65,7 +59,7 @@
   <dependencies>
     
     <!-- Needed for Flash compilation -->
-    <dependency>
+    <!--dependency>
       <groupId>com.adobe.flash.framework</groupId>
       <artifactId>playerglobal</artifactId>
       <version>20.0</version>
@@ -78,7 +72,7 @@
       <version>${air.version}</version>
       <type>swc</type>
       <scope>provided</scope>
-    </dependency>
+    </dependency-->
 
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>

@@ -36,7 +36,7 @@
 
   <modules>
     <!-- Seems to be missing a module with the angular types -->
-    <module>AngularExample</module>
+    <!--module>AngularExample</module-->
     <!-- Also seems to be missing something -->
     <module>ButtonExample</module>
     <!-- Also seems to be missing something -->
