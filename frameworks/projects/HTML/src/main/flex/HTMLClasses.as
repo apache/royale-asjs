@@ -78,6 +78,7 @@ internal class HTMLClasses
 		import org.apache.flex.html.beads.SliderTrackView; SliderTrackView;
 		import org.apache.flex.html.beads.SimpleAlertView; SimpleAlertView;
     	import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
+		import org.apache.flex.html.beads.SingleLineBorderWithChangeListenerBead; SingleLineBorderWithChangeListenerBead;
 	}
 	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
 	COMPILE::SWF

@@ -71,6 +71,7 @@ package org.apache.flex.core
             "backgroundAlpha": 1,
             "backgroundColor": 1,
             "backgroundImage": 1,
+			"border": 1,
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
@@ -100,6 +101,7 @@ package org.apache.flex.core
         public var backgroundAlpha:*;
         public var backgroundColor:*;
         public var backgroundImage:*;
+		public var border:*;
         public var borderColor:*;
         public var borderStyle:*;
         public var borderRadius:*;

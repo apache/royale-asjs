@@ -18,27 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import flash.display.Graphics;
-	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.utils.CSSBorderUtils;
+	import org.apache.flex.events.StyleChangeEvent;
 
     /**
-     *  The SingleLineBorderBead class draws a single line solid border.
-     *  The color and thickness can be specified in CSS.
+     *  The SingleLineBorderWithChangeListenerBead adds the ability to react to
+	 *  changes in border style at runtime.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class SingleLineBorderBead implements IBead, IBorderBead, IGraphicsDrawing
+	public class SingleLineBorderWithChangeListenerBead extends SingleLineBorderBead
 	{
         /**
          *  Constructor.
@@ -48,8 +41,9 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function SingleLineBorderBead()
+		public function SingleLineBorderWithChangeListenerBead()
 		{
+			super();
 		}
 		
 		private var _strand:IStrand;
@@ -62,30 +56,18 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
-            IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
-            changeHandler(null);
+			super.strand = value;
+			IEventDispatcher(value).addEventListener(StyleChangeEvent.STYLE_CHANGE, handleStyleChange);
 		}
-		        
-		protected function changeHandler(event:Event):void
+		
+		/**
+		 * @private
+		 */
+		private function handleStyleChange(event:StyleChangeEvent):void
 		{
-            var host:UIBase = UIBase(_strand);
-            var g:Graphics = (host.$displayObject as Object).graphics as Graphics;
-            var w:Number = host.width;
-            var h:Number = host.height;
-            var state:String;
-            if (host is IStatesObject)
-                state = IStatesObject(host).currentState;
-			
-			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
-			if( this == gd ) g.clear();
-            
-            CSSBorderUtils.draw(g, w, h, host, state, false, false);
+			changeHandler(null);
 		}
 	}
 }
