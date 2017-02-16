@@ -107,9 +107,11 @@ internal class CoreClasses
 		import org.apache.flex.core.IViewportScroller; IViewportScroller;
 	}
     import org.apache.flex.core.SimpleStatesImpl; SimpleStatesImpl;
+	import org.apache.flex.core.StyleChangeNotifier; StyleChangeNotifier;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
     import org.apache.flex.events.Event; Event;
     import org.apache.flex.events.ProgressEvent; ProgressEvent;
+	import org.apache.flex.events.StyleChangeEvent; StyleChangeEvent;
     import org.apache.flex.events.EventDispatcher; EventDispatcher;
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;

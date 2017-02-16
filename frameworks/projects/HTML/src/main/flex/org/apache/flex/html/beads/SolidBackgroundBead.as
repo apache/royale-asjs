@@ -78,6 +78,13 @@ package org.apache.flex.html.beads
 			IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
 			IEventDispatcher(host).addEventListener("initComplete", changeHandler);
 			
+			setupStyle();
+            
+            changeHandler(null);
+		}
+		
+		protected function setupStyle():void
+		{
 			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			if ((bgColor is String) && (bgColor == "transparent")) {
 				bgColor = null;
@@ -91,13 +98,11 @@ package org.apache.flex.html.beads
 			if( bgAlpha != null ) {
 				opacity = Number(bgAlpha);
 			}
-            
-            var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
-            if( corner != null ) {
-                borderRadius = Number(corner);
-            }
-            
-            changeHandler(null);
+			
+			var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
+			if( corner != null ) {
+				borderRadius = Number(corner);
+			}
 		}
 		
 		private var _backgroundColor:uint;
@@ -175,7 +180,7 @@ package org.apache.flex.html.beads
                 changeHandler(null);
         }
         
-		private function changeHandler(event:Event):void
+		protected function changeHandler(event:Event):void
 		{
             var g:Graphics = (host.$displayObject as Object).graphics as Graphics;
             var w:Number = host.width;

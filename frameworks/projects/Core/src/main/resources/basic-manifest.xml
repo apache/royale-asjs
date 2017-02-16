@@ -42,5 +42,7 @@
     <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
     <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
     
+    <component id="StyleChangeNotifier" class="org.apache.flex.core.StyleChangeNotifier"/>
+    
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>

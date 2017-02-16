@@ -80,10 +80,10 @@ internal class HTMLClasses
     	import org.apache.flex.html.beads.SingleLineBorderBead; SingleLineBorderBead;
 	}
 	import org.apache.flex.html.beads.SpinnerView; SpinnerView;
-	import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead; SolidBackgroundWithChangeListenerBead;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.SolidBackgroundBead; SolidBackgroundBead;
+		import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead; SolidBackgroundWithChangeListenerBead;
     	import org.apache.flex.html.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 		import org.apache.flex.html.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
     	import org.apache.flex.html.beads.TextAreaView; TextAreaView;
