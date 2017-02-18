@@ -21,7 +21,7 @@ package org.apache.flex.mdl.beads.models
     import org.apache.flex.html.beads.models.ArraySelectionModel;
 
     /**
-     *  The TabModel class defines the data associated with an org.apache.flex.mdl.Tabs
+     *  The TabArrayModel class defines the data associated with an org.apache.flex.mdl.Tabs
      *  component.
      *
      *  @langversion 3.0
@@ -29,9 +29,9 @@ package org.apache.flex.mdl.beads.models
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class TabModel extends ArraySelectionModel implements ITabModel
+    public class TabArrayModel extends ArraySelectionModel implements ITabModel
     {
-        public function TabModel()
+        public function TabArrayModel()
         {
             super();
         }
