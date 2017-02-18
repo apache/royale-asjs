@@ -31,6 +31,7 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
         </external-library-path>
         
 		<mxml>
