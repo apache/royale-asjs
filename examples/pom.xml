@@ -144,6 +144,7 @@
         <version>2.2</version>
         <configuration>
           <ignorePackaging>true</ignorePackaging>
+          <port>8081</port>
           <warSourceDirectory>${build.directory}/${artifactId}-${version}</warSourceDirectory>
         </configuration>
       </plugin>
