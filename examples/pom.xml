@@ -136,6 +136,18 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <!-- Makes it possible to run the example directly by running 'mvn tomcat7:run' -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <ignorePackaging>true</ignorePackaging>
+          <warSourceDirectory>${build.directory}/${artifactId}-${version}</warSourceDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <!--
