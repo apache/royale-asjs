@@ -113,7 +113,7 @@ Menu
 Tabs
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabsView");
-    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
@@ -123,7 +123,7 @@ Tabs
 TabBar
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabBarView");
-    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
