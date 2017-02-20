@@ -34,6 +34,7 @@ package
 		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
 		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
 		import org.apache.flex.mdl.materialIcons.MaterialIconType; MaterialIconType;
+		import org.apache.flex.mdl.beads.UpgradeElement; UpgradeElement;
 		
 		COMPILE::SWF
 		{
