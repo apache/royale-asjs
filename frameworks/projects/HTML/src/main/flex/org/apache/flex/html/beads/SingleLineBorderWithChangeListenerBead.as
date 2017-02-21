@@ -19,6 +19,8 @@
 package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IStyleableObject;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.StyleChangeEvent;
 
@@ -59,6 +61,7 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			_strand = value;
 			IEventDispatcher(value).addEventListener(StyleChangeEvent.STYLE_CHANGE, handleStyleChange);
 		}
 		
@@ -66,8 +69,21 @@ package org.apache.flex.html.beads
 		 * @private
 		 */
 		private function handleStyleChange(event:StyleChangeEvent):void
-		{
-			changeHandler(null);
+		{			
+			// see if border style needs to be converted into an array
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(_strand, "border");
+			if (borderStyles is String) {
+				// it may be just "solid"
+				var list:Array = String(borderStyles).split(" ");
+				if (list.length == 3) {
+					// set it on the strand's style (IValuesImpl does not have setStyle exposed).
+					var host:IStyleableObject = _strand as IStyleableObject;
+					// setting this will trigger this event listener again
+					host.style.border = list;
+				}
+			} else {
+				changeHandler(null);
+			}
 		}
 	}
 }
