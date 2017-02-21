@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.html.TextButton;
+    import org.apache.flex.mdl.beads.UpgradeElement;
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;    
     
@@ -51,6 +52,7 @@ package org.apache.flex.mdl
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            addBead(new UpgradeElement());
 		}
         
         /**
