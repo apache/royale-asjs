@@ -291,6 +291,7 @@ ImageAndTextButton
 
 ImageButton
 {
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	border-style: none;
 }
 

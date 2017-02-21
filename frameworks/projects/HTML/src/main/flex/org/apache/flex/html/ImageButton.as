@@ -20,6 +20,7 @@ package org.apache.flex.html
 {
     import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.html.beads.models.ImageModel;
 	
     COMPILE::JS
     {
@@ -55,18 +56,17 @@ package org.apache.flex.html
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			element = document.createElement("input") as WrappedHTMLElement;
-			positioner = element;
-			element.flexjs_wrapper = this;
-
-			var inputElement:HTMLInputElement = element as HTMLInputElement;
-			inputElement.type = "image";
-			inputElement.setAttribute("value", " ");
-
-			return element;
-		}
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('button') as WrappedHTMLElement;
+            element.setAttribute('type', 'button');
+            
+            positioner = element;
+            positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
+            
+            return element;
+        }        
 
 		[Bindable("srcChanged")]
 		/**
@@ -76,18 +76,25 @@ package org.apache.flex.html
 		 */
         public function get src():String
         {
-            return style.backgroundImage;
+            return ImageModel(model).url;
         }
 
         public function set src(url:String):void
         {
-            if (!style)
-                style = new SimpleCSSStyles();
-            style.backgroundImage = url;
+            ImageModel(model).url = url;
+            COMPILE::SWF
+            {
+                if (!style)
+                    style = new SimpleCSSStyles();
+                style.backgroundImage = url;
+            }
 
-            COMPILE::JS {
-            	var inputElement:HTMLInputElement = element as HTMLInputElement;
-				inputElement.src = url;
+            COMPILE::JS
+            {
+                var inner:String = '';
+                if (url)
+                    inner = "<img src='" + url + "'/>";
+                element.innerHTML = inner;
             }
 			
 			dispatchEvent(new Event("srcChanged"));
