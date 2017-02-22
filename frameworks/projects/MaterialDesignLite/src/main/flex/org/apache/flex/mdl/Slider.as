@@ -191,14 +191,12 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			typeNames = "mdl-slider mdl-js-slider";
-
 			var p:HTMLElement = document.createElement('p') as HTMLElement;
             p.style.width = '300px';
 
 			input = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
-			input.className = typeNames;
+			input.className = "mdl-slider mdl-js-slider";
 			
 			p.appendChild(input);
 
