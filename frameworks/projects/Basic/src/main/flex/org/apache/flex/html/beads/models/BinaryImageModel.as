@@ -52,7 +52,7 @@ package org.apache.flex.html.beads.models
 		
 		override public function set url(value:String):void
 		{
-			if (value && value != _url)
+			if (value && value != url)
 				_binary = null;
 
 			super.url = value;
@@ -78,7 +78,7 @@ package org.apache.flex.html.beads.models
 			if (value != _binary) {
 				_binary = value;
 				if(value)
-					_url = "";
+					url = "";
 				dispatchEvent( new Event("binaryChanged") );
 			}
 		}
