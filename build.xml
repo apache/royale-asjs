@@ -438,7 +438,7 @@
         <ant dir="${basedir}/frameworks" target="thirdparty-clean"/>
         <delete dir="${basedir}/in"/>
         <delete dir="${basedir}/lib"/>
-        <delete dir="${basedir}/marmotinni/java/lib/selenium/libs"/>
+        <delete dir="${basedir}/marmotinni/java/lib"/>
     </target>
 
     <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
