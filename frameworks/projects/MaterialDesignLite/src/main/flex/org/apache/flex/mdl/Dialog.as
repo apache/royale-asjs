@@ -96,7 +96,6 @@ package org.apache.flex.mdl
 
 		/**
 		 *  This function make the dialog be added to document.body only once
-		 *  The parent in MDL must be the Application (IPopUpHost) as MDL requisite
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -110,11 +109,9 @@ package org.apache.flex.mdl
 				if(!lockDialogCreation)
 				{
 					lockDialogCreation = true;
-
-					if(Application.topLevelApplication != null)
-					{
-						Application.topLevelApplication.addElement(this);
-					}
+					var body:HTMLElement = document.getElementsByTagName('body')[0];
+					body.appendChild(element);
+					this.addedToParent();
 
 					if (!("showModal" in dialog))
 					{
