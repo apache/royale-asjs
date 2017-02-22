@@ -18,20 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
-    import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	
-    import org.apache.flex.mdl.Button;
-    import org.apache.flex.html.beads.ISliderView;
+	import org.apache.flex.graphics.IEllipse;
+	import org.apache.flex.html.beads.ISliderView;
+	import org.apache.flex.mdl.Button;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.flex.mdl.Slider 
@@ -84,7 +84,7 @@ package org.apache.flex.mdl.beads.views
 		{
 			return _thumb;
 		}
-
+		
 		private var rangeModel:IRangeModel;
 		
 		/**
@@ -113,8 +113,8 @@ package org.apache.flex.mdl.beads.views
 				s.addElement(_thumb);
 				
 			}
-			
-			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+				
+				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			
 			// listen for changes to the model and adjust the UI accordingly.
 			IEventDispatcher(rangeModel).addEventListener("stepSizeChange",modelChangeHandler);
@@ -131,19 +131,28 @@ package org.apache.flex.mdl.beads.views
 		 * @private
 		 *
 		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.8
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
 			COMPILE::JS
-			{
-				(UIBase(_strand).element as HTMLInputElement).step = rangeModel.stepSize.toString();
-				(UIBase(_strand).element as HTMLInputElement).min = rangeModel.minimum.toString();
-				(UIBase(_strand).element as HTMLInputElement).max = rangeModel.maximum.toString();
-				(UIBase(_strand).element as HTMLInputElement).value = rangeModel.value.toString();
-			}
+				{
+					var inputElement:HTMLInputElement = (UIBase(_strand).element as HTMLInputElement);
+					inputElement.step = rangeModel.stepSize.toString();
+					inputElement.min = rangeModel.minimum.toString();
+					inputElement.max = rangeModel.maximum.toString();
+					//				(UIBase(_strand).element as HTMLInputElement).value = rangeModel.value.toString();
+					var materialSlider:Object = (inputElement as Object)["MaterialSlider"];
+					if (materialSlider)
+					{
+						materialSlider["change"](rangeModel.value);
+					} else
+					{
+						inputElement.value = rangeModel.value.toString();
+					}
+				}
 		}
 	}
 }
