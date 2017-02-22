@@ -62,6 +62,7 @@
           <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
@@ -96,6 +97,12 @@
       </include-libraries>
       -->
 
+    <allow-subclass-overrides>true</allow-subclass-overrides>
+
+    <mxml>
+        <children-as-data>true</children-as-data>
+    </mxml>
+
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
          <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
@@ -103,6 +110,10 @@
 
         <!-- namespace declaration for asdoc -->
         <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>${frameworks_dir}/projects/Basic/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
                 <manifest>${frameworks_dir}/projects/Binding/src/main/resources/basic-manifest.xml</manifest>
@@ -165,7 +176,7 @@
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/svg</uri>
-                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/svg-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Basic/src/main/resources/svg-manifest.xml</manifest>
             </namespace>
         </namespaces>
 
@@ -461,6 +472,7 @@
             <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org</path-element>
             <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
