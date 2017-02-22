@@ -138,7 +138,9 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
     import org.apache.flex.html.beads.layouts.VerticalLayout; VerticalLayout;
+	import org.apache.flex.html.beads.layouts.VerticalFlexLayout; VerticalFlexLayout;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout; HorizontalLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalFlexLayout; HorizontalFlexLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
