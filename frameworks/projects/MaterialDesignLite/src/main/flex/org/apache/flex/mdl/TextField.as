@@ -48,19 +48,25 @@ package org.apache.flex.mdl
 	public class TextField extends TextFieldBase
 	{
         /**
+         * 
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
+         *
+         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function TextField()
+		public function TextField(isDynamic:Boolean = false)
 		{
-			super();
+            _isDynamic = isDynamic;
 
+			super();
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
+
+        private var _isDynamic:Boolean;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -77,7 +83,10 @@ package org.apache.flex.mdl
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
 
-            addBead(new UpgradeElement(div));
+            if (_isDynamic)
+            {
+                addBead(new UpgradeElement(div));
+            }
 
             input = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');
