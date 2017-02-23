@@ -105,6 +105,248 @@ package org.apache.flex.core
             return _info;
         }
         
+        private var _width:Number;
+        
+        [Bindable("widthChanged")]
+        [PercentProxy("percentWidth")]
+        /**
+         * @flexjsignorecoercion String
+         */
+        public function get width():Number
+        {
+            var pixels:Number;
+            var strpixels:String = element.style.width as String;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+                pixels = NaN;
+            else
+                pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+                pixels = element.offsetWidth;
+                if (pixels === 0 && element.scrollWidth !== 0) {
+                    // invisible child elements cause offsetWidth to be 0.
+                    pixels = element.scrollWidth;
+                }
+            }
+            return pixels;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set width(value:Number):void
+        {
+            if (explicitWidth != value)
+            {
+                explicitWidth = value;
+            }
+            
+            setWidth(value);
+        }
+        
+        private var _height:Number;
+        
+        [Bindable("heightChanged")]
+        [PercentProxy("percentHeight")]
+        /**
+         * @flexjsignorecoercion String
+         */
+        public function get height():Number
+        {
+            var pixels:Number;
+            var strpixels:String = element.style.height as String;
+            if (strpixels !== null && strpixels.indexOf('%') != -1)
+                pixels = NaN;
+            else
+                pixels = parseFloat(strpixels);
+            if (isNaN(pixels)) {
+                pixels = element.offsetHeight;
+                if (pixels === 0 && element.scrollHeight !== 0) {
+                    // invisible child elements cause offsetHeight to be 0.
+                    pixels = element.scrollHeight;
+                }
+            }
+            return pixels;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set height(value:Number):void
+        {
+            if (explicitHeight != value)
+            {
+                explicitHeight = value;
+            }
+            
+            setHeight(value);
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setHeight(value:Number, noEvent:Boolean = false):void
+        {
+            if (_height != value)
+            {
+                _height = value;
+                this.element.style.height = value.toString() + 'px';        
+                if (!noEvent)
+                    dispatchEvent(new Event("heightChanged"));
+            }            
+        }
+        
+        /**
+         *  @copy org.apache.flex.core.ILayoutChild#setWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function setWidth(value:Number, noEvent:Boolean = false):void
+        {
+            if (_width != value)
+            {
+                _width = value;
+                this.element.style.width = value.toString() + 'px';        
+                if (!noEvent)
+                    dispatchEvent(new Event("widthChanged"));
+            }
+        }
+        
+        private var _explicitWidth:Number;
+        
+        /**
+         *  The explicitly set width (as opposed to measured width
+         *  or percentage width).
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get explicitWidth():Number
+        {
+            return _explicitWidth;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set explicitWidth(value:Number):void
+        {
+            if (_explicitWidth == value)
+                return;
+            
+            // width can be pixel or percent not both
+            if (!isNaN(value))
+                _percentWidth = NaN;
+            
+            _explicitWidth = value;
+            
+            dispatchEvent(new Event("explicitWidthChanged"));
+        }
+        
+        private var _explicitHeight:Number;
+        
+        /**
+         *  The explicitly set width (as opposed to measured width
+         *  or percentage width).
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get explicitHeight():Number
+        {
+            return _explicitHeight;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set explicitHeight(value:Number):void
+        {
+            if (_explicitHeight == value)
+                return;
+            
+            // height can be pixel or percent not both
+            if (!isNaN(value))
+                _percentHeight = NaN;
+            
+            _explicitHeight = value;
+            
+            dispatchEvent(new Event("explicitHeightChanged"));
+        }
+        
+        private var _percentWidth:Number;
+        
+        /**
+         *  The requested percentage width this component
+         *  should have in the parent container.  Note that
+         *  the actual percentage may be different if the 
+         *  total is more than 100% or if there are other
+         *  components with explicitly set widths.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get percentWidth():Number
+        {
+            return _percentWidth;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set percentWidth(value:Number):void
+        {
+            this._percentWidth = value;
+            this.element.style.width = value.toString() + '%';
+            if (!isNaN(value))
+                this._explicitWidth = NaN;
+            dispatchEvent(new Event("percentWidthChanged"));
+        }
+        
+        private var _percentHeight:Number;
+        
+        /**
+         *  The requested percentage height this component
+         *  should have in the parent container.  Note that
+         *  the actual percentage may be different if the 
+         *  total is more than 100% or if there are other
+         *  components with explicitly set heights.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+        public function get percentHeight():Number
+        {
+            return _percentHeight;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set percentHeight(value:Number):void
+        {
+            this._percentHeight = value;
+            this.element.style.height = value.toString() + '%';
+            if (!isNaN(value))
+                this._explicitHeight = NaN;
+            dispatchEvent(new Event("percentHeightChanged"));
+        }
+
 
     }
 }
