@@ -358,6 +358,8 @@ package org.apache.flex.core
 			return w;
 		}
         
+        [Bindable("widthChanged")]
+        [PercentProxy("percentWidth")]
         /**
          * @flexjsignorecoercion String
          */
@@ -448,6 +450,8 @@ package org.apache.flex.core
 			return h;
 		}
         
+        [Bindable("heightChanged")]
+        [PercentProxy("percentHeight")]
         /**
          * @flexjsignorecoercion String
          */
