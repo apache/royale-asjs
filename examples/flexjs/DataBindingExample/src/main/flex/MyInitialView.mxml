@@ -85,7 +85,6 @@ limitations under the License.
         }
 		
 		.symbolInput {
-			width: 50%;
 		}
         
         .rightSide {
@@ -96,7 +95,6 @@ limitations under the License.
         .quoteButton {
             margin-top: 10px;
             margin-bottom: 10px;
-			width: 50%;
         }
 	</fx:Style>
     <js:states>
@@ -111,17 +109,17 @@ limitations under the License.
 		
     <js:Label text="Enter Stock Symbol or choose from list:" />
 	
-    <js:Container className="inner">
+    <js:Container className="inner" width="400">
         <js:beads>
             <js:HorizontalFlexLayout />
         </js:beads>
 		
         <js:Container className="leftSide">
             <js:beads>
-                <js:VerticalFlexLayout />
+                <js:VerticalLayout />
             </js:beads>
-            <js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" className="symbolInput" />
-            <js:TextButton text="Get Quote" className="quoteButton" 
+            <js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" className="symbolInput" width="50%" />
+            <js:TextButton text="Get Quote" className="quoteButton" width="50%"
                               click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
             <js:Label id="field" text="{fieldText}"/>
             <js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
@@ -131,7 +129,7 @@ limitations under the License.
             <js:beads>
                 <js:VerticalFlexLayout />
             </js:beads>
-            <js:DropDownList id="list"
+            <js:DropDownList id="list" width="50%"
                                 change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
                                 dataProvider="{MyModel(applicationModel).strings}" />
             <js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
