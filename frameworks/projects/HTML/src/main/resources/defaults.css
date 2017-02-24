@@ -268,6 +268,7 @@ HContainer
 {
 	IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+	white-space: nowrap;
 }
 
 Image
