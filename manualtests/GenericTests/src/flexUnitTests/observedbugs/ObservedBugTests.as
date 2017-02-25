@@ -69,7 +69,7 @@ package flexUnitTests.observedbugs
                 js = 2;
             }
 			
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1));
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1)));
 
         }
 		
@@ -91,7 +91,7 @@ package flexUnitTests.observedbugs
             /* if (check == null) {
                 js = true;
             }*/
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == true) : (js == false));
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == true) : (js == false)));
 
 
         }
