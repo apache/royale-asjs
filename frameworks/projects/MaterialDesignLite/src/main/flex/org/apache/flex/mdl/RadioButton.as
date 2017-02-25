@@ -20,6 +20,7 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.events.Event;
     import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::SWF
     {
@@ -32,6 +33,7 @@ package org.apache.flex.mdl
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.Span;
     }
 
     //--------------------------------------
@@ -84,16 +86,17 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function RadioButton()
+		public function RadioButton(isDynamic:Boolean)
 		{
-			super();
+            _isDynamic = isDynamic;
 
+            super();
 			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
 		protected static var dict:Dictionary = new Dictionary(true);
 
-		private var _groupName:String;
+		private var _isDynamic:Boolean;
 
 		/**
 		 *  The name of the group. Only one RadioButton in a group is selected.
@@ -261,29 +264,40 @@ package org.apache.flex.mdl
     {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
+         *
+         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function RadioButton()
+		public function RadioButton(isDynamic:Boolean = false)
 		{
-			super();
+            _isDynamic = isDynamic;
+            super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
+
+            if (isDynamic)
+            {
+                addBead(new UpgradeElement());
+            }
+        }
 
         /**
          * Provides unique name
          */
         protected static var radioCounter:int = 0;
 
+        private var _isDynamic:Boolean;
+
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
         private var label:HTMLLabelElement;
         private var textNode:Text;
-        
+
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLLabelElement
@@ -305,16 +319,17 @@ package org.apache.flex.mdl
             radio = document.createElement('span') as HTMLSpanElement;
             radio.className = 'mdl-radio__label';
             radio.appendChild(textNode);
-            
+
             //radio.addEventListener('mouseover', mouseOverHandler, false);
             //radio.addEventListener('mouseout', mouseOutHandler, false);
-            
+
             label = document.createElement("label") as HTMLLabelElement;
             label.appendChild(icon);
             label.appendChild(radio);
-            
+
             element = label as WrappedHTMLElement;
-            
+            element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
+
             positioner = element;
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
@@ -442,6 +457,31 @@ package org.apache.flex.mdl
             }
         }
 
+        private function onElementMdlComponentUpgraded(event:Event):void
+        {
+            if (!event.currentTarget) return;
+            upgradeChildren();
+        }
+
+        private function upgradeChildren():void
+        {
+            if (_isDynamic && ripple)
+            {
+                var elementChildren:Object = element.children;
+                for (var i:int = 0; i < elementChildren.length; i++)
+                {
+                    var child:Object = elementChildren[i];
+                    var isUpgraded:Object = child.getAttribute("data-upgraded");
+
+                    if (child.classList.contains("mdl-radio__ripple-container") && isUpgraded == null)
+                    {
+                        var componentHandler:Object = window["componentHandler"];
+                        componentHandler.upgradeElement(child);
+                        break;
+                    }
+                }
+            }
+        }
         /**
          * @param e The event object.
          */

@@ -31,7 +31,7 @@ package org.apache.flex.mdl
     /**
      *  The Button class provides a Material Design Library UI-like appearance for
      *  a Button.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -41,18 +41,24 @@ package org.apache.flex.mdl
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
+         *
+         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function Button()
+		public function Button(isDynamic:Boolean = false)
 		{
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-            addBead(new UpgradeElement());
+
+            if (isDynamic)
+            {
+                addBead(new UpgradeElement());
+            }
 		}
         
         /**
