@@ -19,12 +19,14 @@
 package org.apache.flex.mdl.beads.views
 {
     import org.apache.flex.core.IContentViewHost;
+    import org.apache.flex.core.IDataProviderItemRendererMapper;
     import org.apache.flex.core.IParent;
     import org.apache.flex.core.IStrandWithModel;
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
     import org.apache.flex.mdl.TabBarPanel;
+    import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
     /**
@@ -92,13 +94,24 @@ package org.apache.flex.mdl.beads.views
             }
 
             _tabBar.model = (value as IStrandWithModel).model;
+
+            if (isTabsDynamic())
+            {
+                _tabBar.addEventListener("itemsCreated", tabBarItemsCreatedHandler);
+                _tabBar.addBead(new TabsItemRendererFactoryForArrayListData());
+            }
         }
 
-        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
+        override protected function itemsCreatedHandler(event:Event):void
         {
             super.itemsCreatedHandler(event);
 
             completeSetup();
+        }
+
+        private function tabBarItemsCreatedHandler(event:Event):void
+        {
+            forceUpgradeTabs();
         }
 
         /**
@@ -111,7 +124,11 @@ package org.apache.flex.mdl.beads.views
 		 */
         protected function completeSetup():void
         {
-            (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
+            var tb:TabBar = (host as IContentViewHost).strandChildren.getElementAt(0) as TabBar;
+            if (!tb)
+            {
+                (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
+            }
 
             selectTabBarPanel();
         }
@@ -137,6 +154,30 @@ package org.apache.flex.mdl.beads.views
             {
                 tabBarPanel.isActive = true;
             }
+        }
+
+        private function forceUpgradeTabs():void
+        {
+            if (!isTabsDynamic()) return;
+            
+            COMPILE::JS
+            {
+                var componentHandler:Object = window["componentHandler"];
+
+                if (componentHandler)
+                {
+                    host.element.removeAttribute("data-upgraded");
+                    host.element.classList.remove("is-upgraded");
+                    componentHandler.upgradeElement(host.element);
+                }
+            }
+        }
+
+        public function isTabsDynamic():Boolean
+        {
+            var arrayListMapper:TabsItemRendererFactoryForArrayListData =
+                    _strand.getBeadByType(IDataProviderItemRendererMapper) as TabsItemRendererFactoryForArrayListData;
+            return arrayListMapper != null;
         }
     }
 }
