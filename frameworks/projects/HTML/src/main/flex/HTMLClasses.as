@@ -30,6 +30,7 @@ internal class HTMLClasses
 
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
+	import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.flex.html.accessories.TextPromptBead; TextPromptBead;
     import org.apache.flex.html.beads.AlertView; AlertView;
