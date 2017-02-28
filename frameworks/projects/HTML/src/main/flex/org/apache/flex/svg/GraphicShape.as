@@ -92,8 +92,6 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
-			element.style.left = "0px";
-			element.style.top = "0px";
 			//element.offsetParent = null;
 			positioner = element;
 			positioner.style.position = 'relative';
@@ -180,7 +178,7 @@ package org.apache.flex.svg
 		COMPILE::JS
 		override protected function setClassName(value:String):void
 		{
-			element.setAttribute('class', value);           
+			element.setAttribute('class', value);
 		}
 
 
@@ -198,8 +196,14 @@ package org.apache.flex.svg
             element.style.position = 'absolute';
             if (!isNaN(x)) element.style.top = x + "px";
             if (!isNaN(y)) element.style.left = y + "px";
+			// element.setAttribute("width", useWidth);
+			// element.setAttribute("height", useHeight);
             element.style.width = useWidth;
             element.style.height = useHeight;
+			// Needed for SVG inside SVG
+			element.setAttribute("x", x);
+			element.setAttribute("y", y);
+			//Needed for SVG inside DOM elements
             element.style.left = x + "px";
             element.style.top = y + "px";
         }
@@ -226,6 +230,10 @@ package org.apache.flex.svg
             _y = y;
             _xOffset = xOffset;
             _yOffset = yOffset;
+			// Needed for SVG inside SVG
+			element.setAttribute("x", xOffset);
+			element.setAttribute("y", yOffset);
+			//Needed for SVG inside DOM elements
             element.style.left = xOffset + "px";
             element.style.top = yOffset + "px";
         }
