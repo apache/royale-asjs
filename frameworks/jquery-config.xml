@@ -28,6 +28,10 @@
    <swf-version>14</swf-version>
 
    <compiler>
+      <!-- build both SWF and JS. -->
+      <targets>
+          <target>JS</target>
+      </targets>
 
       <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
       <!-- not set -->
@@ -90,6 +94,7 @@
       <binding-value-change-event-type>valueChange</binding-value-change-event-type>
       <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
       <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
+      <binding-event-handler-interface>org.apache.flex.events.IEventDispatcher</binding-event-handler-interface>
       <states-class>org.apache.flex.states.State</states-class>
       <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
       <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
