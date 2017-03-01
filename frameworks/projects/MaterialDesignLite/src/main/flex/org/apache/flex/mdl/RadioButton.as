@@ -467,7 +467,7 @@ package org.apache.flex.mdl
         {
             if (_isDynamic && ripple)
             {
-                var elementChildren:Object = element.children;
+                var elementChildren:Object = (element as HTMLElement).children;
                 for (var i:int = 0; i < elementChildren.length; i++)
                 {
                     var child:Object = elementChildren[i];

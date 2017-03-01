@@ -28,6 +28,8 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.SimpleCSSStyles;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.CollectionEvent;
+
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.events.ItemRendererEvent;
@@ -94,6 +96,7 @@ package org.apache.flex.mdl.beads
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             dataGroup = listView.dataGroup;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+            dataProviderModel.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 
             tabsIdField = dataProviderModel.tabIdField;
             labelField = dataProviderModel.labelField;
@@ -174,6 +177,36 @@ package org.apache.flex.mdl.beads
                 newEvent.itemRenderer = ir;
                 dispatchEvent(newEvent);
             }
+
+            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+        }
+
+        private function itemAddedHandler(event:CollectionEvent):void
+        {
+            var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
+            if (!dp)
+                return;
+
+            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+
+            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
+            dataGroup.addElement(ir);
+            ir.index = dp.length - 1;
+            ir.labelField = labelField;
+            ir.tabIdField = tabsIdField;
+
+            if (presentationModel) {
+                var style:SimpleCSSStyles = new SimpleCSSStyles();
+                style.marginBottom = presentationModel.separatorThickness;
+                UIBase(ir).style = style;
+                UIBase(ir).height = presentationModel.rowHeight;
+                UIBase(ir).percentWidth = 100;
+            }
+            ir.data = event.item;
+
+            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+            newEvent.itemRenderer = ir;
+            dispatchEvent(newEvent);
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }
