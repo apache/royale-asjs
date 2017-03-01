@@ -30,26 +30,7 @@
     
     <include file="${basedir}/../../build_example.xml" />
     
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/jquery.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FLEXJS_HOME}/js/libs/jquery.swc" type="file" />
-        </and>
-    </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/jquery.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FALCONJX_HOME}/../js/libs/jquery.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/jquery/out/bin/jquery-1.9.swc"/>
-    <property name="opt1_arg" value="-js-output-optimization=skipFunctionCoercions" />
-    
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
         <mkdir dir="${basedir}/bin-debug/data" />
         <copy file="${basedir}/src/main/resources/data/catalog.json" tofile="${basedir}/bin-debug/data/catalog.json" />
         <mkdir dir="${basedir}/bin/js-debug/data" />

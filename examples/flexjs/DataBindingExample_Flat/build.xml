@@ -22,8 +22,6 @@
 <project name="databindingexample_flat" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../../.."/>
     <property name="example" value="DataBindingExample" />
-    <property name="theme_arg" value="-theme=${FLEXJS_HOME}/frameworks/libs/Flat.swc" />
-    <property name="opt1_arg" value="-js-output-optimization=skipAsCoercions" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
@@ -32,7 +30,7 @@
     
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">

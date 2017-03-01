@@ -29,29 +29,11 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-remove-circulars" />
+    <property name="config_arg" value="air" />
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/google_maps.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FLEXJS_HOME}/js/libs/google_maps.swc" type="file" />
-        </and>
-    </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/google_maps.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FALCONJX_HOME}/../js/libs/google_maps.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/google_maps.swc"/>
-
-    <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="cordova" description="Executes the Cordova build script to create Cordova app">

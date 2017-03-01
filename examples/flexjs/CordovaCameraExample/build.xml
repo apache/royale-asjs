@@ -33,6 +33,7 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
+    <property name="config_arg" value="air"/>
     
     
     <condition property="adl" value="adl.exe">
@@ -53,11 +54,10 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
-        <echo>playerglobal.version = ${playerglobal.version}</echo>
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />

@@ -27,11 +27,10 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-js-output-optimization=skipAsCoercions" />
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="build_example.compile" description="Clean build of ${example}">
         <available file="${basedir}/bin-debug/classes.json"
         type="file"
         property="json.exists"/>

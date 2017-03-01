@@ -93,35 +93,28 @@
     </condition>
 
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
     </path>
     
     <target name="compile" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <!-- this is a dummy var placeholder in case some example needs to define a theme
-            then they would set theme_arg=-theme=<path to theme> -->
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
+        <property name="config_arg" value="flex" />
+        <property name="file_suffix" value="mxml" />
         <mxmlc fork="true"
-               file="${basedir}/src/main/flex/${example}.mxml"
+               debug="true"
+               configname="${config_arg}"
+               closure-lib="${GOOG_HOME}"
+               file="${basedir}/src/main/flex/${example}.${file_suffix}"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
         
         <html-wrapper 
@@ -140,226 +133,21 @@
                 <include name="**/*.swf" />
             </fileset>
         </copy>
+        <antcall target="build_example.compile-js-release" />
     </target>
     
-    <target name="compileair" description="Compiles ${example}">
-        <echo message="Compiling ${example}.swf"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        
-        <!-- Load the <compc> task. We can't do this at the <project> level -->
-        <!-- because targets that run before flexTasks.jar gets built would fail. -->
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
+    <target name="compile-js-release">
+        <property name="js.release.target" value="JSFlex" />
         <mxmlc fork="true"
-            file="${basedir}/src/main/flex/${example}.mxml"
-            output="${basedir}/bin-debug/${example}.swf">
+            debug="false"
+            configname="${config_arg}"
+            closure-lib="${GOOG_HOME}"
+            file="${basedir}/src/main/flex/${example}.${file_suffix}"
+            output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
-            <arg value="+configname=air" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-target-player=${playerglobal.version}" />
-            <arg value="-swf-version=${swf.version}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
-        
-        <antcall target="build_example.copy-resources" />
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}">
-                <include name="*-app.xml" />
-            </fileset>
-        </copy>
     </target>
     
-    <target name="compileas" description="Compiles ${example}">
-        <echo message="Compiling ${example}.swf"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-
-        <!-- Load the <compc> task. We can't do this at the <project> level -->
-        <!-- because targets that run before flexTasks.jar gets built would fail. -->
-        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <mxmlc fork="true"
-               file="${basedir}/src/main/flex/${example}.as"
-               output="${basedir}/bin-debug/${example}.swf">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-define=CONFIG::as_only,true" />
-            <arg value="-define=CONFIG::js_only,false" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-        </mxmlc>
-        
-        <html-wrapper 
-            height="300" 
-            width="400"
-            bgcolor="#ffffff"
-            name="${example}"
-            versionmajor="11"
-            versionminor="1"
-            versionrevision="0" 
-            output="${basedir}/bin-debug"/> 
- 
-    </target>
-
-    <target name="compilejs" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
-        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
-
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug=false" />
-            <arg value="${theme_arg}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="${extlib_arg}" />
-            <arg value="${opt1_arg}" />
-            <arg value="${opt2_arg}" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/main/flex/${example}.mxml" />
-        </java>
-        <fail>
-			<condition>
-				<not>
-					<or>
-						<equals arg1="${errorCode}" arg2="0" />
-						<equals arg1="${errorCode}" arg2="2" />
-					</or>
-				</not>
-			</condition>
-		</fail>
-    </target>
-
-    <target name="compilejsair" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
-        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
-        
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="+configname=air" />
-            <arg value="-debug=false" />
-            <arg value="${theme_arg}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="${extlib_arg}" />
-            <arg value="${opt1_arg}" />
-            <arg value="${opt2_arg}" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/main/flex/${example}.mxml" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
-    </target>
-
-    <target name="compileasjs" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        <property name="opt1_arg" value="-define=CONFIG::opt1,false" />
-        <property name="opt2_arg" value="-define=CONFIG::opt2,false" />
-
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug=false" />
-            <arg value="${theme_arg}" />
-            <arg value="-define=CONFIG::as_only,false" />
-            <arg value="-define=CONFIG::js_only,true" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-			<arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="${extlib_arg}" />
-            <arg value="${opt1_arg}" />
-            <arg value="${opt2_arg}" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/generated-sources" />
-            <arg value="${basedir}/src/main/flex/${example}.as" />
-        </java>
-        <fail>
-			<condition>
-				<not>
-					<or>
-						<equals arg1="${errorCode}" arg2="0" />
-						<equals arg1="${errorCode}" arg2="2" />
-					</or>
-				</not>
-			</condition>
-		</fail>        
-    </target>
-
     <macrodef name="html-wrapper">
         <attribute name="width"/>
         <attribute name="height"/>

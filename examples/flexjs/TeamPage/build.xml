@@ -26,29 +26,10 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FLEXJS_HOME}/js/libs/js.swc" type="file" />
-        </and>
-    </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/js.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FALCONJX_HOME}/../js/libs/js.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
-
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     	<copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin-debug/team.json" />
         <copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin/js-debug/team.json" />
         <copy file="${basedir}/src/main/resources/team.json" tofile="${basedir}/bin/js-release/team.json" />

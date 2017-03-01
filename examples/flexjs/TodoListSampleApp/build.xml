@@ -25,16 +25,11 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-js-output-optimization=skipAsCoercions" />
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
-    <!-- Uncomment to reproduce cross-compilation error in compilejs step
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
-    </target>
-    -->
     
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
