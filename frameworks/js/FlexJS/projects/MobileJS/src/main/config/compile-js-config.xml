@@ -82,8 +82,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/Mobile/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-sources>
     </include-sources>
     

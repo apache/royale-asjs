@@ -75,6 +75,11 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
 
+    <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/GoogleMaps/src/main/resources/defaults.css</path>
+    </include-file>
+
     <include-classes>
         <class>GoogleStubClasses</class>
         <class>GoogleMapsClasses</class>

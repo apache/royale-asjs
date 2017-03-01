@@ -73,8 +73,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/Charts/src/main/resources/defaults.css</path>
     </include-file>
-    
+        
     <include-classes>
         <class>ChartsClasses</class>
     </include-classes>

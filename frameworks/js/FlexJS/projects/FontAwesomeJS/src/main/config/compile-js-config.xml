@@ -72,8 +72,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/FontAwesome/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-classes>
         <class>FAClasses</class>
     </include-classes>

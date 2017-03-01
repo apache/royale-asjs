@@ -71,6 +71,11 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
 
+    <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/HTML5/src/main/resources/defaults.css</path>
+    </include-file>
+
     <include-classes>
         <class>HTML5Classes</class>
     </include-classes>

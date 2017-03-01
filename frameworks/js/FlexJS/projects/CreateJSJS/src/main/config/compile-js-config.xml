@@ -68,8 +68,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/CreateJS/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-sources>
     </include-sources>
     

@@ -72,8 +72,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/Flat/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-classes>
         <class>FlatClasses</class>
     </include-classes>

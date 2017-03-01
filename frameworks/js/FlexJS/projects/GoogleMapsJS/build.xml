@@ -53,6 +53,19 @@
         <echo message="Cross-compiling ${target.name}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <mkdir dir="${basedir}/target/generated-sources/flexjs"/>
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
+            <jvmarg value="-Dflexlib=${FLEXJS_HOME}/frameworks" />
+            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <arg value="-compiler.strict-xml=true" />
+            <arg value="-compiler.targets=SWF,JSFlex" />
+            <arg value="-output=${basedir}/target/${target.name}" />
+            <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
+            <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
+        </java>
+        <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/js/FlexJS/libs/${target.name}" />
     </target>
     
     <target name="copy-js" >
