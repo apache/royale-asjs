@@ -83,21 +83,11 @@ package org.apache.flex.mobile
 			ViewManagerModel(model).title = value;
 		}
 		
-		COMPILE::SWF
 		override public function toString():String
 		{
 			return ViewManagerModel(model).title;
 		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::JS
-		public function toString():String
-		{
-			return ViewManagerModel(model).title;
-		}
-		
+				
 		/**
 		 * True if this view manager instance is displaying a NavigationBar.
 		 *  

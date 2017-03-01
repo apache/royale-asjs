@@ -89,6 +89,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    
     /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the

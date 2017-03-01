@@ -99,5 +99,10 @@ package org.apache.flex.events
 			}
 			return false;
 		}
+        
+        public function toString():String
+        {
+            return "EventDispatcher";
+        }
 	}
 }

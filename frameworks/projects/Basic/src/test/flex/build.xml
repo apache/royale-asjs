@@ -88,7 +88,7 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
 
     <target name="compile" description="Compiles FlexUnitApplication.swf">
@@ -119,6 +119,7 @@
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
+            <arg value="-compiler.targets=SWF" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />

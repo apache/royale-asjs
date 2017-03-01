@@ -49,14 +49,7 @@ package org.apache.flex.mobile
 			_title = value;
 		}
 		
-		COMPILE::SWF
 		override public function toString():String
-		{
-			return _title;
-		}
-		
-		COMPILE::JS
-		public function toString():String
 		{
 			return _title;
 		}

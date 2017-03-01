@@ -256,6 +256,26 @@ package org.apache.flex.mdl
         }
 	}
     
+    /**
+     *  Dispatched when the user clicks on RadioButton.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    [Event(name="click", type="org.apache.flex.events.MouseEvent")]
+    
+    /**
+     *  Dispatched when RadioButton is being selected/unselected.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
     COMPILE::JS
     public class RadioButton extends UIBase
     {

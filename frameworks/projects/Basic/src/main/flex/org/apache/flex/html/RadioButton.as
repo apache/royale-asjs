@@ -221,6 +221,8 @@ package org.apache.flex.html
 		}
 	}
 
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
     COMPILE::JS
     public class RadioButton extends UIBase
     {
