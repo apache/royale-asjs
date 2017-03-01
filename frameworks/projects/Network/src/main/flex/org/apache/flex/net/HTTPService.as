@@ -601,8 +601,6 @@ package org.apache.flex.net
                 }
                 
                 if (contentData) {
-                    element.setRequestHeader('Content-length', contentData.length.toString());
-                    element.setRequestHeader('Connection', 'close');
                     element.send(contentData);
                 } else {
                     element.send();
