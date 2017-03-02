@@ -1239,6 +1239,7 @@
     </target>
     
     <target name="basictests-compile-js">
+        <!-- now built by dual mode
         <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
         <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
@@ -1275,6 +1276,7 @@
                 </not>
             </condition>
         </fail>
+         -->
     </target>
     
     <target name="basictests-compile-java" >
@@ -1391,21 +1393,33 @@
     <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${FALCON_HOME}/lib/falcon-flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${FALCONJX_HOME}/lib/falcon-flexTasks.jar"/>
     </target>
 
     <target name="basictests" depends="check-flex-home,load-task" description="run basic tests using mustella">
 
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
+               closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg line="-compiler.mxml.children-as-data=true" />
             <library-path dir="${FLEX_SDK_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
                 <include name="frameworks/libs/framework.swc"/>
                 <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </library-path>
+            <js-external-library-path dir="${env.PLAYERGLOBAL_HOME}">
+                <include name="${playerglobal.version}/playerglobal.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/libs"/>
+            </js-library-path>
+            <js-library-path dir="${FLEX_SDK_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+                <include name="frameworks/libs/framework.swc"/>
+                <include name="frameworks/locale/en_US/framework_rb.swc"/>
+            </js-library-path>
+            <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
         </mxmlc>
         <mkdir dir="${basedir}/mustella/tests/basicTests/fonts" />
         <copy todir="${basedir}/mustella/tests/basicTests/fonts" >
