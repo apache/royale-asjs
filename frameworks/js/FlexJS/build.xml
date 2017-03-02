@@ -126,8 +126,10 @@
         <ant dir="${basedir}/projects/CreateJSJS" target="clean"/>
         <ant dir="${basedir}/projects/DragDropJS" target="clean"/>
         <ant dir="${basedir}/projects/EffectsJS" target="clean"/>
+        <ant dir="${basedir}/projects/ExpressJS" target="clean"/>
         <ant dir="${basedir}/projects/FlatJS" target="clean"/>
         <ant dir="${basedir}/projects/FormattersJS" target="clean"/>
+        <ant dir="${basedir}/projects/FontAwesomeJS" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMapsJS" target="clean"/>
         <ant dir="${basedir}/projects/GraphicsJS" target="clean"/>
         <ant dir="${basedir}/projects/BasicJS" target="clean"/>

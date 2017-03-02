@@ -95,7 +95,7 @@
 
     <target name="check-compiler" depends="check-falcon-home,check-falconjx-home">
         <path id="lib.path">
-            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+            <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
