@@ -59,7 +59,7 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 
