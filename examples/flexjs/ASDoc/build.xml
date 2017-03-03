@@ -54,7 +54,7 @@
             <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
             <arg value="-external-library-path+=${FLEXJS_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${FLEXJS_HOME}/frameworks" />
-            <arg value="-load-config=${basedir}/src/main/config/asdoc-config.xml" />
+            <arg value="-load-config=&quot;${basedir}/src/main/config/asdoc-config.xml&quot;" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache FlexJS API Reference" />
