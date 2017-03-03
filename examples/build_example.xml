@@ -102,12 +102,16 @@
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <available file="${basedir}/src/main/config/compile-app-config.xml"
+            type="file"
+            property="optional_arg" value="-load-config+=${basedir}/src/main/config/compile-app-config.xml" />
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="config_arg" value="flex" />
         <property name="file_suffix" value="mxml" />
+        <property name="optional_arg" value="-define=CONFIG::dummy,true" />
         <mxmlc fork="true"
                debug="true"
                configname="${config_arg}"
@@ -115,6 +119,7 @@
                file="${basedir}/src/main/flex/${example}.${file_suffix}"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg line="${optional_arg}" />
         </mxmlc>
         
         <html-wrapper 
@@ -145,6 +150,7 @@
             file="${basedir}/src/main/flex/${example}.${file_suffix}"
             output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg line="${optional_arg}" />
         </mxmlc>
     </target>
     

@@ -81,12 +81,14 @@
         <ant dir="${basedir}/flexjs/DataBindingExample_as"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
         <ant dir="${basedir}/flexjs/DataGridExample"/>
+        <ant dir="${basedir}/flexjs/DateControlsExample"/>
         <ant dir="${basedir}/flexjs/DesktopMap"/>
         <ant dir="${basedir}/flexjs/FlexTeamPage_MDL"/>
         <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer"/>
         <ant dir="${basedir}/flexjs/FlexJSStore"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery"/>
         <ant dir="${basedir}/flexjs/HelloWorld"/>
+        <ant dir="${basedir}/flexjs/ListExample"/>
         <ant dir="${basedir}/flexjs/MapSearch"/>
         <ant dir="${basedir}/flexjs/MDLExample"/>
         <ant dir="${basedir}/flexjs/MobileMap"/>
@@ -120,12 +122,14 @@
         <ant dir="${basedir}/flexjs/DataBindingExample_as" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
         <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="clean"/>
         <ant dir="${basedir}/flexjs/HelloWorld" target="clean"/>
+        <ant dir="${basedir}/flexjs/ListExample" target="clean"/>
         <ant dir="${basedir}/flexjs/MapSearch" target="clean"/>
         <ant dir="${basedir}/flexjs/MDLExample" target="clean"/>
         <ant dir="${basedir}/flexjs/MobileTrader" target="clean"/>
