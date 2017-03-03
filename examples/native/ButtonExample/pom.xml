@@ -43,6 +43,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>ButtonExample.as</mainClass>
+          <targets>JS</targets>
         </configuration>
       </plugin>
     </plugins>

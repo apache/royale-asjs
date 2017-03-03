@@ -43,6 +43,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>AngularExample.as</mainClass>
+          <targets>JS</targets>
         </configuration>
       </plugin>
     </plugins>

@@ -43,6 +43,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>USStatesMap.as</mainClass>
+          <targets>JS</targets>
         </configuration>
       </plugin>
     </plugins>
