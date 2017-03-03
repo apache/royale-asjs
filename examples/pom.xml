@@ -40,7 +40,7 @@
 
   <modules>
     <module>flexjs</module>
-    <module>native</module>
+    <!--<module>native</module>-->
 
     <module>examples-tests</module>
     <module>examples-integrationtests</module>
