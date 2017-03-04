@@ -27,18 +27,10 @@ package org.apache.flex.html
     {
         import org.apache.flex.core.WrappedHTMLElement;            
     }
-	
-	/*
-	 *  Label probably should extend TextField directly,
-	 *  but the player's APIs for TextLine do not allow
-	 *  direct instantiation, and we might want to allow
-	 *  Labels to be declared and have their actual
-	 *  view be swapped out.
-	 */
 
     /**
-     *  The Label class implements the basic control for labeling
-     *  other controls.  
+     *  The MultilineLabel class implements the basic control for displaying
+     *  multiline labels.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
