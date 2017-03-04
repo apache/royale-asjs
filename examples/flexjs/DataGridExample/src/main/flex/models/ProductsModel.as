@@ -18,43 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.collections.ArrayList;
-
 	import products.Product;
 
-	public class ProductsModel extends EventDispatcher
+	public class ProductsModel
 	{
-		public function ProductsModel()
-		{
-			_productList = new ArrayList();
-			_productList.source = source;
-		}
-
-		private var source:Array = [
-			new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
-			new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
-			new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
-			new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
-			new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
-			];
-
-		private var _productList:ArrayList;
-
-		override public function toString():String
-		{
-			return "ProductsModel";
-		}
+		private var _productList:ArrayList = new ArrayList([
+            new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
+            new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
+            new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
+            new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
+            new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
+		]);
 
 		public function get productList():ArrayList
 		{
 			return _productList;
-		}
-
-		private var _labelFields:Array = [ "id", "title", "sales", "detail" ];
-		public function get labelFields():Array
-		{
-			return _labelFields;
 		}
 	}
 }

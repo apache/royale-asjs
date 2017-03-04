@@ -476,7 +476,7 @@ package org.apache.flex.mdl
                     if (child.classList.contains("mdl-radio__ripple-container") && isUpgraded == null)
                     {
                         var componentHandler:Object = window["componentHandler"];
-                        componentHandler.upgradeElement(child);
+                        componentHandler["upgradeElement"](child);
                         break;
                     }
                 }

@@ -115,7 +115,7 @@ package org.apache.flex.mdl.beads
             if (componentHandler && host && (host.element || _element))
             {
                 var upgradeElement:Object = _element ? _element : host.element;
-                componentHandler.upgradeElement(upgradeElement, _className);
+                componentHandler["upgradeElement"](upgradeElement, _className);
             }
         }
     }

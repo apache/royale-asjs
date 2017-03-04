@@ -20,11 +20,24 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.ITextModel;
 	import org.apache.flex.core.UIBase;
+    import org.apache.flex.events.Event;
+
     COMPILE::JS
     {
+        import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;            
     }
-	
+
+    /**
+     *  Dispatched when the user changes the text.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8.0
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
+
     /**
      *  The TextArea class implements the basic control for
      *  multi-line text input.
@@ -48,6 +61,11 @@ package org.apache.flex.html
 		public function TextArea()
 		{
 			super();
+
+            COMPILE::SWF
+            {
+                model.addEventListener("textChange", textChangeHandler);
+            }
 		}
 		
         /**
@@ -59,6 +77,7 @@ package org.apache.flex.html
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLInputElement
          */
+        [Bindable(event="change")]
 		public function get text():String
 		{
             COMPILE::SWF
@@ -79,11 +98,14 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                ITextModel(model).text = value;                    
+                inSetter = true;
+                ITextModel(model).text = value;
+                inSetter = false;
             }
             COMPILE::JS
             {
                 (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
             }
 		}
 		
@@ -95,9 +117,17 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function get html():String
+        [Bindable(event="change")]
+        public function get html():String
 		{
-			return ITextModel(model).html;
+            COMPILE::SWF
+            {
+                return ITextModel(model).html;
+            }
+            COMPILE::JS
+            {
+                return (element as HTMLInputElement).value;
+            }
 		}
 
         /**
@@ -105,7 +135,15 @@ package org.apache.flex.html
          */
 		public function set html(value:String):void
 		{
-			ITextModel(model).html = value;
+            COMPILE::SWF
+            {
+                ITextModel(model).html = value;
+            }
+            COMPILE::JS
+            {
+                (element as HTMLInputElement).value = value;
+                dispatchEvent(new Event('textChange'));
+            }
 		}
 		
         /**
@@ -117,11 +155,32 @@ package org.apache.flex.html
             element = document.createElement('textarea') as WrappedHTMLElement;
             positioner = element;
             positioner.style.position = 'relative';
+
+            goog.events.listen(element, 'input', textChangeHandler);
+            
             element.flexjs_wrapper = this;
             element.className = 'TextArea';
             typeNames = 'TextArea';
             
             return element;
-        }        
+        }
+
+        private var inSetter:Boolean;
+
+        /**
+         *  dispatch change event in response to a textChange event
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8.0
+         */
+        public function textChangeHandler(event:Event):void
+        {
+            if (!inSetter)
+            {
+                dispatchEvent(new Event(Event.CHANGE));
+            }
+        }
 	}
 }

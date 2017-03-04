@@ -168,7 +168,7 @@ package org.apache.flex.mdl.beads.views
                 {
                     host.element.removeAttribute("data-upgraded");
                     host.element.classList.remove("is-upgraded");
-                    componentHandler.upgradeElement(host.element);
+                    componentHandler["upgradeElement"](host.element);
                 }
             }
         }
