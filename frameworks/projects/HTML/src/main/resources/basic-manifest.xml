@@ -54,6 +54,7 @@
     <component id="PanelView" class="org.apache.flex.html.beads.PanelView"/>
     <component id="ImageView" class="org.apache.flex.html.beads.ImageView"/>
     <component id="PanelWithControlBar" class="org.apache.flex.html.PanelWithControlBar"/>
+    <component id="PanelWithControlBarView" class="org.apache.flex.html.beads.PanelWithControlBarView"/>
     <component id="ControlBar" class="org.apache.flex.html.ControlBar"/>
     <component id="RangeStepper" class="org.apache.flex.html.RangeStepper" />
     <component id="TitleBar" class="org.apache.flex.html.TitleBar"/>

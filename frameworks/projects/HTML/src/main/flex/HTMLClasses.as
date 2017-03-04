@@ -68,9 +68,9 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.PanelView; PanelView;
 	import org.apache.flex.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	import org.apache.flex.html.beads.SliderView; SliderView;
+    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	COMPILE::SWF
 	{
-	    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 		import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
 		import org.apache.flex.html.beads.VScrollBarView; VScrollBarView;
 		import org.apache.flex.html.beads.HScrollBarView; HScrollBarView;
