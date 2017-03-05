@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IText;
 	import org.apache.flex.graphics.SolidColor;
 
@@ -42,7 +43,7 @@ package org.apache.flex.svg
      *  // TODO (aharui) ignore imports of external linkage interfaces?
      *  @flexjsignoreimport SVGLocatable
 	 */
-	public class Text extends GraphicShape implements IText
+	public class Text extends GraphicShape implements IText, IDrawable
 	{
 		/**
 		 *  constructor.
@@ -149,11 +150,15 @@ package org.apache.flex.svg
             }
 		}
         
-        COMPILE::JS
         override protected function drawImpl():void
         {
             drawText(text,x,y);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
 
 	}
 }

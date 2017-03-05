@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IEllipse;
 
     COMPILE::SWF
@@ -30,7 +31,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Ellipse extends GraphicShape implements IEllipse
+    public class Ellipse extends GraphicShape implements IEllipse, IDrawable
     {
 		/**
 		 *  constructor.
@@ -162,8 +163,13 @@ package org.apache.flex.svg
         
         override protected function drawImpl():void
         {
-            drawEllipse(0, 0);    
+            drawEllipse(0, 0);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
         
     }
 }

@@ -15,6 +15,7 @@
 package org.apache.flex.svg
 {
 	import org.apache.flex.graphics.ICircle;
+    import org.apache.flex.graphics.IDrawable;
 
     COMPILE::SWF
     {
@@ -27,7 +28,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Circle extends GraphicShape implements ICircle
+    public class Circle extends GraphicShape implements ICircle, IDrawable
     {
 		/**
 		 *  constructor.
@@ -114,6 +115,11 @@ package org.apache.flex.svg
         {
             drawCircle(0, 0, radius);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
         
     }
 }
