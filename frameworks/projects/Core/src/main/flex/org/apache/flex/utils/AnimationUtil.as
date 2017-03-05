@@ -63,8 +63,9 @@ package org.apache.flex.utils
 
 				var uid:String  = UIDUtil.createUID();
 				var wrappedCallback:Function = function(event:Event):void{
-					callback.call(element,new Date().getTime());
+					callback.call(listener,new Date().getTime());
 					requests[uid] = null;
+					listener.removeEventListener(Event.ENTER_FRAME,callback);
 				};
 				requests[uid] = {callback:wrappedCallback,listener:listener};
 				listener.addEventListener(Event.ENTER_FRAME,wrappedCallback);
