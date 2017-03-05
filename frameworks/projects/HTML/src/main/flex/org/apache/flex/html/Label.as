@@ -28,6 +28,16 @@ package org.apache.flex.html
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    /**
+     *  Dispatched when the user clicks on a Label.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.8.0
+     */
+    [Event(name="click", type="org.apache.flex.events.MouseEvent")]
+
 	/*
 	 *  Label probably should extend TextField directly,
 	 *  but the player's APIs for TextLine do not allow
@@ -135,29 +145,6 @@ package org.apache.flex.html
                 this.dispatchEvent('textChange');
             }
 		}
-        private var _selectable:Boolean;
-
-        public function get selectable():Boolean
-        {
-            return _selectable;
-        }
-        public function set selectable(value:Boolean):void
-        {
-            if(value != _selectable)
-            {
-                _selectable = value;
-                COMPILE::JS
-                {
-                    if(element)
-                    {
-                        element.style.cursor = _selectable ? "auto" : "default";
-                        element.style.pointerEvents = _selectable ? "auto" : "none";
-                    }
-                }
-            }
-
-        }
-
 
         /**
          *  @private
@@ -180,11 +167,6 @@ package org.apache.flex.html
             positioner = element;
             element.flexjs_wrapper = this;
             element.style.whiteSpace = "nowrap";
-            if(!selectable)
-            {
-                element.style.cursor = "default";
-                element.style.pointerEvents = "none";
-            }
 
             className = "Label";
             typeNames = "Label";

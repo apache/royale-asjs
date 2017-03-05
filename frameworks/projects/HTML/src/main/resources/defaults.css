@@ -34,6 +34,15 @@
 	box-sizing: border-box;
 }
 
+.unselectable
+{
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
 Alert
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.AlertModel");
