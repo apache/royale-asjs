@@ -153,7 +153,7 @@ package org.apache.flex.svg
 			return _rect;
 		}
 
-		override protected function draw():void
+		override protected function drawImpl():void
 		{
 			drawRect(0,0,width,height);
 		}

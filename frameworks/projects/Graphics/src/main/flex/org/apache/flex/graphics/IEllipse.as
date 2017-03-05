@@ -15,6 +15,38 @@ package org.apache.flex.graphics
 {
 	public interface IEllipse extends IGraphicShape
 	{
+
+		/**
+		 * The horizontal radius of the ellipse.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.7
+		 */
+		function get rx():Number;
+		function set rx(value:Number):void;
+		/**
+		 * The vertical radius of the ellipse.
+		 * 
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion FlexJS 0.7
+		 */
+		function get ry():Number;
+		function set ry(value:Number):void;
+		/**
+         *  Draw the ellipse. (The same behavior as the default draw() method, but requires specifying the x and y explicitly.)
+         *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
+         *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+		function drawEllipse(xp:Number, yp:Number):void;
 		
 	}
 }

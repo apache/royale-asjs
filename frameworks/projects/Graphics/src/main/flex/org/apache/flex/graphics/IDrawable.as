@@ -11,28 +11,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.flex.graphics
 {
-	public interface ICircle extends IGraphicShape
+	public interface IDrawable
 	{
 		/**
-		 *  The size of the circle's radius.
+		 *  Performs the default draw command.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
 		 *  @productversion FlexJS 0.8
 		 */
-		function get radius():Number;
-		function set radius(value:Number):void;
-		/**
-		 *  Draws the circle. (The same behavior as the default draw() method, but requires specifying the center x and y and radius explicitly.)
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion FlexJS 0.8
-		 */
-		function drawCircle(cx:Number, cy:Number, radius:Number):void
+		function draw():void;
+
 	}
 }

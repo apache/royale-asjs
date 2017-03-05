@@ -125,7 +125,7 @@ package org.apache.flex.svg
             }
         }
 
-        override protected function draw():void
+        override protected function drawImpl():void
         {
             drawStringPath(0, 0, data);
         }

@@ -44,6 +44,7 @@ internal class GraphicsClasses
 	}
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
 	import org.apache.flex.graphics.ICircle; ICircle;
+	import org.apache.flex.graphics.IDrawable; IDrawable;
 	import org.apache.flex.graphics.ICompoundGraphic; ICompoundGraphic;
 	import org.apache.flex.graphics.IEllipse; IEllipse;
 	import org.apache.flex.graphics.IPath; IPath;

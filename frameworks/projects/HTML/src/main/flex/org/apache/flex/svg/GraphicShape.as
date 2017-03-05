@@ -130,7 +130,7 @@ package org.apache.flex.svg
 		/**
 		 * This is where the drawing methods get called from
 		 */
-		protected function draw():void
+		protected function drawImpl():void
 		{
 			//Overwrite in subclass
 		}
@@ -138,7 +138,7 @@ package org.apache.flex.svg
 		override public function addedToParent():void
 		{
             super.addedToParent();
-			draw();
+			drawImpl();
             COMPILE::JS
             {
                 element.style.overflow = 'visible';

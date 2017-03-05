@@ -31,7 +31,7 @@ internal class CoreClasses
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
-		import Promise; Promise;
+		// import Promise; Promise;
 		import org.apache.flex.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;

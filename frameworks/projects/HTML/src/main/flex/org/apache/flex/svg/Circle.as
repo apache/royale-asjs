@@ -72,7 +72,7 @@ package org.apache.flex.svg
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion SVGCircleElement
          */
-        public function drawCircle(cx:Number, cy:Number, radius):void
+        public function drawCircle(cx:Number, cy:Number, radius:Number):void
         {
             COMPILE::SWF
             {
@@ -110,7 +110,7 @@ package org.apache.flex.svg
             }
         }
         
-        override protected function draw():void
+        override protected function drawImpl():void
         {
             drawCircle(0, 0, radius);
         }

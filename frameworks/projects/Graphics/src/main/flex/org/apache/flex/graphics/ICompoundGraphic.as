@@ -16,12 +16,26 @@ package org.apache.flex.graphics
 {
 	public interface ICompoundGraphic extends IGraphicShape
 	{
+        /**
+         *  Clears all of the drawn path data.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.7.0
+         */
 		function clear():void;
 		function drawRect(x:Number, y:Number, width:Number, height:Number):void;
+		function drawRoundRect(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number = NaN):void;
+		function drawRoundRectComplex(x:Number, y:Number,  width:Number, height:Number, topLeftRadius:Number, topRightRadius:Number, bottomLeftRadius:Number, bottomRightRadius:Number):void;
+		function drawRoundRectComplex2(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number,
+			topLeftRadiusX:Number, topLeftRadiusY:Number,topRightRadiusX:Number, topRightRadiusY:Number,
+			bottomLeftRadiusX:Number, bottomLeftRadiusY:Number,bottomRightRadiusX:Number, bottomRightRadiusY:Number):void;
 		function drawEllipse(x:Number, y:Number, width:Number, height:Number):void;
 		function drawCircle(x:Number, y:Number, radius:Number):void;
 		function drawStringPath(data:String):void;
-		function drawPathCommands(data:PathBuilder):void
+		function drawPathCommands(data:PathBuilder):void;
+
 		function drawText(value:String, x:Number, y:Number):Object;
 		function get textFill():IFill;
 		function set textFill(value:IFill):void;

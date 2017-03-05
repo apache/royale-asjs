@@ -115,8 +115,6 @@ package org.apache.flex.svg
          *  Draw the ellipse.
          *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
          *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
-         *  @param width The width of the ellipse.
-         *  @param height The height of the ellipse.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -162,7 +160,7 @@ package org.apache.flex.svg
             }
         }
         
-        override protected function draw():void
+        override protected function drawImpl():void
         {
             drawEllipse(0, 0);    
         }
