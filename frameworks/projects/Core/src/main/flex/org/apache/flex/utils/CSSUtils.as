@@ -139,19 +139,21 @@ package org.apache.flex.utils
                 stringValue = stringValue.substring(c + 4, c2);
                 var parts3:Array = stringValue.split(",");
                 return (0xFF000000 + 
-                        uint(parts3[0]) << 16 +
-                        uint(parts3[1]) << 8 +
+                        (uint(parts3[0]) << 16) +
+                        (uint(parts3[1]) << 8) +
                         uint(parts3[2]));
             }
             else if ((c = stringValue.indexOf("rgba(")) != -1)
             {
                 c2 = stringValue.indexOf(")");
-                stringValue = stringValue.substring(c + 4, c2);
+                stringValue = stringValue.substring(c + 5, c2);
                 var parts4:Array = stringValue.split(",");
-                return (uint(parts4[3]) << 24 + 
-                    uint(parts3[0]) << 16 +
-                    uint(parts3[1]) << 8 +
-                    uint(parts3[2]));
+                parts4[3] *= 255; // range is 0 to 1
+
+                return ((uint(parts4[3]) << 24) +
+                        (uint(parts4[0]) << 16) +
+                        (uint(parts4[1]) << 8) +
+                        uint(parts4[2]));
             }
             
             if (colorMap.hasOwnProperty(stringValue))
