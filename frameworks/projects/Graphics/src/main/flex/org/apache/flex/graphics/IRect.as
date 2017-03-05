@@ -15,6 +15,10 @@ package org.apache.flex.graphics
 {
 	public interface IRect extends IGraphicShape
 	{
-		
+		function get rx():Number;
+		function set rx(value:Number):void;
+		function get ry():Number;
+		function set ry(value:Number):void;
+		function drawRect(xp:Number, yp:Number, width:Number, height:Number):void;
 	}
 }
