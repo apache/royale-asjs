@@ -50,6 +50,7 @@
           <includeClasses>
             <includeClass>CollectionsClasses</includeClass>
           </includeClasses>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

@@ -62,6 +62,7 @@
             </include-file>
           </includeFiles>
           <includeLookupOnly>true</includeLookupOnly>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

@@ -50,6 +50,7 @@
           <includeClasses>
             <includeClass>DragDropClasses</includeClass>
           </includeClasses>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

@@ -50,6 +50,7 @@
           <includeClasses>
             <includeClass>FormattersClasses</includeClass>
           </includeClasses>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

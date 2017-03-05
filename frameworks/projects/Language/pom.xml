@@ -44,7 +44,7 @@
           <includeClasses>
             <includeClass>LanguageClasses</includeClass>
           </includeClasses>
-          <skipExtern>false</skipExtern>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

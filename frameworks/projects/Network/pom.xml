@@ -50,6 +50,7 @@
           <includeClasses>
             <includeClass>NetworkClasses</includeClass>
           </includeClasses>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

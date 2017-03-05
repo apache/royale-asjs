@@ -57,6 +57,7 @@
               <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

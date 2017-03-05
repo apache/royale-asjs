@@ -66,6 +66,7 @@
             </include-file>
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

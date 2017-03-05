@@ -48,6 +48,7 @@
             </namespace>
           </namespaces>
           <includeSources>true</includeSources>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>

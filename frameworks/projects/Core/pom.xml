@@ -50,7 +50,7 @@
           <includeClasses>
             <includeClass>CoreClasses</includeClass>
           </includeClasses>
-          <skipExtern>false</skipExtern>
+          <skipExtern>true</skipExtern>
           <allowSubclassOverrides>true</allowSubclassOverrides>
         </configuration>
         <!-- As a test, add asdoc generation to the compile step -->
