@@ -604,7 +604,7 @@ package org.apache.flex.core
                     var n:Number = Number(value);
                     if (isNaN(n))
                     {
-                        if (value.charAt(0) == "#")
+                        if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
                         {                            
                             obj[pieces[0]] = CSSUtils.toColor(value);
                         }
