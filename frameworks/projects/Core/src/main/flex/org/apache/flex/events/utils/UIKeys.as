@@ -20,13 +20,13 @@ package org.apache.flex.events.utils
 {
 	/**
 	 *  This class holds constants for special keys
-     *  See: https://w3c.github.io/uievents-key/#keys-special
-     *  See: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values#Special_values
+     *  See: https://w3c.github.io/uievents-key/#keys-ui
+     *  See: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values#UI_keys
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
     public class UIKeys
     {
