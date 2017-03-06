@@ -19,6 +19,7 @@
 package org.apache.flex.mdl.supportClasses
 {
     import org.apache.flex.core.UIBase;
+    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
 
     COMPILE::JS
     {
@@ -37,7 +38,7 @@ package org.apache.flex.mdl.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class MaterialIconBase extends UIBase
+    public class MaterialIconBase extends UIBase implements org.apache.flex.mdl.materialIcons.IMaterialIcon
     {
         /**
          *  constructor.

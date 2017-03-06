@@ -16,20 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.materialIcons
+package org.apache.flex.mdl.supportClasses
 {
-    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
 
     /**
-     *  IMaterialIcon interface provides abstraction for easiest way to implements custom MaterialIcon class
+     *  Implement if a class will need ability to display Material icon
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public interface IMaterialIcon extends IUIBase
+    public interface IMaterialIconProvider
     {
-
+        function get materialIcon():org.apache.flex.mdl.materialIcons.IMaterialIcon;
+        function set materialIcon(value:org.apache.flex.mdl.materialIcons.IMaterialIcon):void;
     }
 }

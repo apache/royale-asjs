@@ -22,7 +22,7 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
     import org.apache.flex.mdl.Button;
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
+    import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
 
     /**
      *  The DeletableChip bead class is a specialty bead that can be used to add additional
@@ -92,7 +92,7 @@ package org.apache.flex.mdl.beads
         COMPILE::JS
         private function createDeleteButton():Button
         {
-            var materialIcon:IMaterialIcon = _strand as IMaterialIcon;
+            var materialIcon:IMaterialIconProvider = _strand as IMaterialIconProvider;
 
             if (materialIcon == null)
             {
