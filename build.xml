@@ -1403,11 +1403,11 @@
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <library-path dir="${FLEX_SDK_HOME}" append="true">
+            <swf-library-path dir="${FLEX_SDK_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
                 <include name="frameworks/libs/framework.swc"/>
                 <include name="frameworks/locale/en_US/framework_rb.swc"/>
-            </library-path>
+            </swf-library-path>
             <js-external-library-path dir="${env.PLAYERGLOBAL_HOME}">
                 <include name="${playerglobal.version}/playerglobal.swc"/>
             </js-external-library-path>
