@@ -18,19 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	COMPILE::SWF 
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
+	COMPILE::SWF
 	{
 		import flash.display.BlendMode;
+		import org.apache.flex.core.IRenderedObject;
+		import org.apache.flex.core.IStyleableObject;
+		import org.apache.flex.core.ValuesManager;
 	}
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IRenderedObject;
-	import org.apache.flex.core.IStrand;
-	
 	/**
-	 *  The BlendBead class applies blend style in a uniform syntax
-	 *  to SWF and HTML. Check browser support for blend to see if
-	 *  this bead will work for you in HTML.
+	 *  The BlendBead class translates HTML mixBlendMode CSS values to flash.
+	 *  The JS implementation is degenerated and exists only to enable output
+	 *  agnostic compilation.
 	 *  
 	 *  
 	 *  @langversion 3.0
@@ -38,6 +39,8 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	
+		
 	public class BlendBead implements IBead
 	{
 		/**
@@ -50,53 +53,45 @@ package org.apache.flex.html.beads
 		 */
 		public function BlendBead()
 		{
-			COMPILE::SWF
-			{
-				valueMap = {
-					normal: BlendMode.NORMAL,
-					multiply : BlendMode.MULTIPLY,
-					screen: BlendMode.SCREEN,
-					overlay: BlendMode.OVERLAY,
-					darken: BlendMode.DARKEN,
-					lighten: BlendMode.LIGHTEN,
-					'color-dodge': 'colordodge',
-					'color-burn': 'colorburn',					
-					'hard-light': BlendMode.HARDLIGHT,
-					'soft-light': 'softlight',
-					difference: BlendMode.DIFFERENCE,
-					exclusion: BlendMode.DIFFERENCE, // TODO write custom blend
-					hue: 'hue',
-					saturation: 'saturation',
-					color: 'color',
-					luminosity: 'luminosity'
-				}
-			}
 		}
 		
-		public var value:String;
-		private var valueMap:Object;
-			
-			
-			/**
-			 *  @copy org.apache.flex.core.IBead#strand
-			 *  
-			 *  @langversion 3.0
-			 *  @playerversion Flash 10.2
-			 *  @playerversion AIR 2.6
-			 *  @productversion FlexJS 0.0
-			 */
-			public function set strand(value:IStrand):void
+		COMPILE::SWF
+		private static var MAP:Object = {
+			normal: BlendMode.NORMAL,
+			multiply : BlendMode.MULTIPLY,
+			screen: BlendMode.SCREEN,
+			overlay: BlendMode.OVERLAY,
+			darken: BlendMode.DARKEN,
+			lighten: BlendMode.LIGHTEN,
+			'color-dodge': 'colordodge',
+			'color-burn': 'colorburn',					
+			'hard-light': BlendMode.HARDLIGHT,
+			'soft-light': 'softlight',
+			difference: BlendMode.DIFFERENCE,
+			exclusion: BlendMode.DIFFERENCE, // TODO write custom blend
+			hue: 'hue',
+			saturation: 'saturation',
+			color: 'color',
+			luminosity: 'luminosity'
+		}
+		
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
+			COMPILE::SWF
 			{
 				var host:IRenderedObject = value as IRenderedObject;
-				COMPILE::JS 
-				{
-					host.element.style.blendMode = value;
-				}
-				COMPILE::SWF
-				{
-					host.$displayObject.blendMode = valueMap[value];
-				}
+				var blendModeValue:String = ValuesManager.valuesImpl.getValue(IStyleableObject(value), "mix-blend-mode") as String;
+				host.$displayObject.blendMode = MAP[blendModeValue];
 			}
-		
+		}
 	}
 }
