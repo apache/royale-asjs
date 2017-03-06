@@ -273,6 +273,10 @@ Form {
 	
 }
 
+Group {
+	IBeadView: ClassReference("org.apache.flex.html.beads.GroupView");
+}
+
 HContainer
 {
 	IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
@@ -622,6 +626,12 @@ global
 		border-color: #000000;
 		border-width: 1px;
 		background-color: #FFFFFF;
+	}
+	
+	Group
+	{
+		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 	}
 	
 	HRule

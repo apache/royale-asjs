@@ -374,73 +374,28 @@ package org.apache.flex.html.beads.layouts
                 return true;
                 
             }
+			
             COMPILE::JS
             {
                 var i:int
                 var n:int;
-                var h:Number;
-                var w:Number;
                 
                 var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
                 var contentView:IParentIUIBase = viewBead.contentView;
-                w = contentView.width;
-                var hasWidth:Boolean = !host.isWidthSizedToContent();
-                h = contentView.height;
-                var hasHeight:Boolean = !host.isHeightSizedToContent();
-                var maxHeight:Number = 0;
-                var maxWidth:Number = 0;
+
                 n = contentView.numElements;
-                for (i = 0; i < n; i++) {
-                    var child:UIBase = contentView.getElementAt(i) as UIBase;
-					if (child == null || !child.visible) continue;
-                    child.setDisplayStyleForLayout('block');
-                    var left:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'left');
-                    var right:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'right');
-                    var top:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'top');
-                    var bottom:Number = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'bottom');
-                    var margin:String = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin');
-                    var marginLeft:String = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-left');
-                    var marginRight:String = org.apache.flex.core.ValuesManager.valuesImpl.getValue(child, 'margin-right');
-                    var horizontalCenter:Boolean =
-                        (marginLeft == 'auto' && marginRight == 'auto') ||
-                        (typeof(margin) === 'string' && margin == 'auto') ||
-                        (margin && margin.hasOwnProperty('length') &&
-                            ((margin.length < 4 && margin[1] == 'auto') ||
-                                (margin.length == 4 && margin[1] == 'auto' && margin[3] == 'auto')));
-                    
-                    if (!isNaN(left)) {
-                        child.positioner.style.position = 'absolute';
-                        child.positioner.style.left = left + 'px';
-                    }
-                    if (!isNaN(top)) {
-                        child.positioner.style.position = 'absolute';
-                        child.positioner.style.top = top + 'px';
-                    }
-                    if (!isNaN(right)) {
-                        child.positioner.style.position = 'absolute';
-                        child.positioner.style.right = right + 'px';
-                    }
-                    if (!isNaN(bottom)) {
-                        child.positioner.style.position = 'absolute';
-                        child.positioner.style.bottom = bottom + 'px';
-                    }
-                    if (horizontalCenter)
-                    {
-                        child.positioner.style.position = 'absolute';
-                        child.positioner.style.left = Math.max(((w - child.width) / 2),0) + 'px';
-                    }
-                    child.dispatchEvent('sizeChanged');
-                    maxWidth = Math.max(maxWidth, child.positioner.offsetLeft + child.positioner.offsetWidth);
-                    maxHeight = Math.max(maxHeight, child.positioner.offsetTop + child.positioner.offsetHeight);
-                }
-                // if there are children and maxHeight is ok, use it.
-                // maxHeight can be NaN if the child hasn't been rendered yet.
-                if (!hasWidth && n > 0 && !isNaN(maxWidth)) {
-                    contentView.width = maxWidth;
-                }
-                if (!hasHeight && n > 0 && !isNaN(maxHeight)) {
-                    contentView.height = maxHeight;
-                }
+				
+				// host must have either have position:absolute or position:relative
+				if (host.element.style.position != "absolute" && host.element.style.position != "relative") {
+					host.element.style.position = "relative";
+				}
+				
+				// each child must have position:absolute for BasicLayout to work
+				for (i=0; i < n; i++) {
+					var child:UIBase = contentView.getElementAt(i) as UIBase;
+					child.positioner.style.position = "absolute";
+				}
+				
 				host.dispatchEvent( new Event("layoutComplete") );
                 return true;
             }
