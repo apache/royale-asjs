@@ -42,6 +42,7 @@ internal class CoreClasses
 		import org.apache.flex.core.WrappedSimpleButton; WrappedSimpleButton;
 		import org.apache.flex.core.WrappedSprite; WrappedSprite;
 		import org.apache.flex.core.WrappedTextField; WrappedTextField;
+		import org.apache.flex.core.ByteArrayAsset; ByteArrayAsset;
 	}
 	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
