@@ -163,6 +163,22 @@ ControlBar
     border-width: 1px;*/
 }
 
+DataContainer
+{
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataProviderModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.DataContainerView");			
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
+	IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
+	border-style: solid;
+	border-color: #222222;
+}
+
+
 /* ASJS */
 DataGrid
 {
@@ -559,21 +575,6 @@ ControlBar
     iMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
     iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
     iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");    
-}
-
-DataContainer
-{
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataProviderModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.DataContainerView");			
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
-	IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
-	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
-	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
-	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
-	border-style: solid;
-	border-color: #222222;
 }
 
 DateChooserList {
