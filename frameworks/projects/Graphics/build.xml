@@ -83,6 +83,7 @@
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-define=COMPILE::SWF,true" />
             <arg value="-define=COMPILE::JS,false" />
+            <arg value="-compiler.byte-array-embed-class=org.apache.flex.core.ByteArrayAsset" />
         </compc>
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>
