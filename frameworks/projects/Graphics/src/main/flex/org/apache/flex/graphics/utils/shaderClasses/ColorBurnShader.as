@@ -20,8 +20,6 @@
 package org.apache.flex.graphics.utils.shaderClasses
 {
 import flash.display.Shader;
-import org.apache.flex.core.ByteArrayAsset;
-
 	
 /**
  *  Creates a blend shader that is equivalent to 
