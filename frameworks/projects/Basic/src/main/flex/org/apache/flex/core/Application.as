@@ -129,6 +129,11 @@ package org.apache.flex.core
 
                 loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
             }
+			COMPILE::JS {
+				element = document.getElementsByTagName('body')[0];
+				element.flexjs_wrapper = this;
+				element.className = 'Application';			
+			}
         }
 
         COMPILE::SWF
@@ -590,10 +595,6 @@ package org.apache.flex.core
 		COMPILE::JS
 		public function start():void
 		{
-			element = document.getElementsByTagName('body')[0];
-			element.flexjs_wrapper = this;
-			element.className = 'Application';
-			
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
 			
