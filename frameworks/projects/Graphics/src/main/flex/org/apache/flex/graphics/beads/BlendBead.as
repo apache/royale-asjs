@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.graphics.beads
 {
-	import flash.display.Shader;
 	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
@@ -33,6 +32,7 @@ package org.apache.flex.graphics.beads
 
 	COMPILE::SWF
 	{
+		import flash.display.Shader;
 		import flash.display.BlendMode;
 		import org.apache.flex.core.IRenderedObject;
 		import org.apache.flex.core.IStyleableObject;
