@@ -83,7 +83,6 @@
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.flex.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.flex.html.beads.AccordionCollapseBead"/>
-    <component id="BlendBead" class="org.apache.flex.html.beads.BlendBead"/>
     <component id="DispatchInputFinishedBead" class="org.apache.flex.html.beads.DispatchInputFinishedBead"/>
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>

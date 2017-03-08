@@ -41,15 +41,6 @@ internal class GraphicsClasses
 	COMPILE::SWF
 	{
 		import org.apache.flex.graphics.utils.PathHelper; PathHelper;
-		import org.apache.flex.graphics.utils.shaderClasses.ColorBurnShader; ColorBurnShader;
-		import org.apache.flex.graphics.utils.shaderClasses.ColorDodgeShader; ColorDodgeShader;
-		import org.apache.flex.graphics.utils.shaderClasses.ColorShader; ColorShader;
-		import org.apache.flex.graphics.utils.shaderClasses.ExclusionShader; ExclusionShader;
-		import org.apache.flex.graphics.utils.shaderClasses.HueShader; HueShader;
-		import org.apache.flex.graphics.utils.shaderClasses.LuminosityMaskShader; LuminosityMaskShader;
-		import org.apache.flex.graphics.utils.shaderClasses.LuminosityShader; LuminosityShader;
-		import org.apache.flex.graphics.utils.shaderClasses.SaturationShader; SaturationShader;
-		import org.apache.flex.graphics.utils.shaderClasses.SoftLightShader; SoftLightShader;
 	}
 	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
 	import org.apache.flex.graphics.ICircle; ICircle;
