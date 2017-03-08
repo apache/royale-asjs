@@ -54,6 +54,7 @@
           <includeClasses>
             <includeClass>GraphicsClasses</includeClass>
           </includeClasses>
+          <additionalCompilerOptions>-compiler.byte-array-embed-class=org.apache.flex.core.ByteArrayAsset</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
