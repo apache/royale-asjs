@@ -75,7 +75,11 @@
     </target>
 
     <target name="pixelbender-clean" description="Deletes pbj files.">
-        <ant dir="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses" target="pixelbender-clean" />
+	    <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses">
+                <include name="*.pbj"/>
+            </fileset>
+        </delete>
     </target>
 
     <!-- swfobject.js (Version 2.2) -->
