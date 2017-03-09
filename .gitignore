@@ -48,6 +48,7 @@ thirdparty/
 3.0.33/
 3.0.33
 
+*.pbj
 *.vms
 *.ser
 *.mxp
