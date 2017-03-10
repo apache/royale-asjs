@@ -32,9 +32,64 @@
 
   <name>Apache Flex - FlexJS: Framework: Libs: Graphics</name>
 
+  <properties>
+    <!-- TODO: This is a fix till we release this via Maven -->
+    <pixelbender.download-url>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
+  </properties>
+
   <build>
     <sourceDirectory>src/main/flex</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${project.build.directory}/downloads/frameworks/projects/framework/src/mx/graphics/shaderClasses</directory>
+        <includes>
+          <include>*.pbj</include>
+        </includes>
+        <targetPath>${project.build.directory}/generated-resources/pixelbender/org/apache/flex/graphics/utils/shaderClasses</targetPath>
+      </resource>
+    </resources>
     <plugins>
+      <!-- Download the pixelbender binaries and put them somewhere the compiler can find them -->
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>get-pixelbender-artifacts</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>wget</goal>
+            </goals>
+            <configuration>
+              <url>${pixelbender.download-url}</url>
+              <outputFileName>apache-flex-sdk-pixel-bender-1.0.0-bin.zip</outputFileName>
+              <outputDirectory>${project.build.directory}/downloads</outputDirectory>
+              <unpack>true</unpack>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-resources/pixelbender</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
