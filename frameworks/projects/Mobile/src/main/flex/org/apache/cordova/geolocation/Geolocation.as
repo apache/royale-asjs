@@ -23,6 +23,19 @@ package org.apache.cordova.geolocation
 	 */
 
 	[Mixin]
+	/**
+	 * The Geolocation class implements Cordova geolocation plugin
+	 * 
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
+	 * @flexjscordovaplugin cordova-plugin-geolocation
+	 * @flexjsignorecoercion FileEntry
+	 * @flexjsignorecoercion FileWriter
+	 * @flexjsignorecoercion window
+     * @flexjsignorecoercion Blob
+	 */
 	public class Geolocation
 	{
 		/**

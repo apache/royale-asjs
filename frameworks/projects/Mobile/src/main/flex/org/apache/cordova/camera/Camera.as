@@ -40,6 +40,19 @@ package org.apache.cordova.camera
     }
     
 	[Mixin]
+	/**
+	 * The Camera class implements the Cordova Camera
+	 * 
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion FlexJS 0.0
+	 * @flexjscordovaplugin cordova-plugin-camera
+	 * @flexjsignorecoercion FileEntry
+	 * @flexjsignorecoercion FileWriter
+	 * @flexjsignorecoercion window
+     * @flexjsignorecoercion Blob
+	 */
 	public class Camera
 	{
 		public static var DestinationType:Object = {
