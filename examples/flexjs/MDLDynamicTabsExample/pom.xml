@@ -54,14 +54,6 @@
           <additionalCompilerOptions>-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
 
