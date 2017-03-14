@@ -119,6 +119,7 @@ internal class CoreClasses
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
 	import org.apache.flex.events.KeyboardEvent; KeyboardEvent;
+	import org.apache.flex.events.utils.KeyboardEventConverter; KeyboardEventConverter;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.StageProxy; StageProxy;

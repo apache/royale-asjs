@@ -21,8 +21,8 @@ package org.apache.flex.events
     public class KeyboardEvent extends Event
     {
         
-        public static const KEY_DOWN:String = "keyDown";
-        public static const KEY_UP:String = "keyUp";
+        public static const KEY_DOWN:String = "key_down";
+        public static const KEY_UP:String = "key_up";
 
         public function KeyboardEvent(
             type:String,
@@ -101,7 +101,20 @@ package org.apache.flex.events
         
         public function get modifierKey():Boolean
         {
-            return false;
+            return shiftKey || ctrlKey || metaKey;
         }
+		
+        private var _specialKey:Boolean;
+		public function get specialKey():Boolean
+
+		{
+			return _specialKey;
+		}
+
+		public function set specialKey(value:Boolean):void
+		{
+			_specialKey = value;
+		}
+
     }
 }
