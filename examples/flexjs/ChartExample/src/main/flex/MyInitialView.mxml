@@ -19,29 +19,26 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
-				xmlns:local="*" 
-				xmlns:models="models.*"
-                initComplete="testit()"
-				>
+                initComplete="onInitComplete(event)">
 	<fx:Script>
 		<![CDATA[
-			
-			import models.ProductsModel;
-			
-			private function testit():void
-			{
-				var m:ProductsModel = applicationModel as ProductsModel;
-				m.generateWaves(50);
-				waveChart.dataProvider = m.wave1;
-			}
-			
+		import models.ProductsModel;
+
+		import org.apache.flex.events.Event;
+
+		private function onInitComplete(event:Event):void
+		{
+			var m:ProductsModel = applicationModel as ProductsModel;
+			m.generateWaves(50);
+			waveChart.dataProvider = m.wave1;
+		}
 		]]>
 	</fx:Script>
 	
 	<fx:Style>
 		@namespace js "library://ns.apache.org/flexjs/basic";
 		.AllCharts {
-			border-width: 0px;
+			border-width: 1px;
 			padding-left: 2px;
 			padding-top: 10px;
 			padding-bottom: 2px;
