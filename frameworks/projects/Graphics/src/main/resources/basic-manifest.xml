@@ -23,4 +23,5 @@
     <component id="GradientEntry" class="org.apache.flex.graphics.GradientEntry" />
     <component id="SolidColor" class="org.apache.flex.graphics.SolidColor" />
     <component id="SolidColorStroke" class="org.apache.flex.graphics.SolidColorStroke" />
+    <component id="BlendBead" class="org.apache.flex.graphics.beads.BlendBead"/>
 </componentPackage>

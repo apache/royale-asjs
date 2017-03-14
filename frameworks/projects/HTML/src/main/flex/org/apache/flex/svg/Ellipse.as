@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IEllipse;
 
     COMPILE::SWF
@@ -30,7 +31,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Ellipse extends GraphicShape implements IEllipse
+    public class Ellipse extends GraphicShape implements IEllipse, IDrawable
     {
 		/**
 		 *  constructor.
@@ -115,8 +116,6 @@ package org.apache.flex.svg
          *  Draw the ellipse.
          *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
          *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
-         *  @param width The width of the ellipse.
-         *  @param height The height of the ellipse.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -162,10 +161,15 @@ package org.apache.flex.svg
             }
         }
         
-        override protected function draw():void
+        override protected function drawImpl():void
         {
-            drawEllipse(0, 0);    
+            drawEllipse(0, 0);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
         
     }
 }

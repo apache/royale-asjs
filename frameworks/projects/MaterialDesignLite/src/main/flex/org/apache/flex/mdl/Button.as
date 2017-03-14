@@ -20,9 +20,9 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.html.TextButton;
     import org.apache.flex.mdl.beads.UpgradeElement;
+    import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;    
-    
+   
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -37,7 +37,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class Button extends TextButton implements IMaterialIcon
+	public class Button extends TextButton implements IMaterialIconProvider
 	{
         /**
          *  Constructor.
@@ -78,7 +78,7 @@ package org.apache.flex.mdl
             return element;
 		}
 
-        private var _materialIcon:MaterialIconBase;
+        private var _materialIcon:IMaterialIcon;
         /**
 		 *  A material icon to use with the button.
          *  Optional
@@ -88,11 +88,11 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-        public function get materialIcon():MaterialIconBase
+        public function get materialIcon():IMaterialIcon
         {
             return _materialIcon;
         }
-        public function set materialIcon(value:MaterialIconBase):void
+        public function set materialIcon(value:IMaterialIcon):void
         {
             _materialIcon = value;
 

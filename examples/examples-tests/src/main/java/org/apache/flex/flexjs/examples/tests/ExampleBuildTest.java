@@ -56,12 +56,6 @@ public class ExampleBuildTest {
 
         File buildDirectory = getBuildDirectory();
 
-        File explodedWarDirectory = new File(buildDirectory, getArtifactId() + "-" + getVersion());
-        Assert.assertTrue("The exploded WAR directory doesn't exist.", explodedWarDirectory.exists());
-        Assert.assertTrue("The exploded WAR directory is not a directory.", explodedWarDirectory.isDirectory());
-        File[] content = explodedWarDirectory.listFiles();
-        Assert.assertTrue("The exploded WAR directory is empty.", content != null && content.length > 0);
-
         File warFile = new File(buildDirectory, getArtifactId() + "-" + getVersion() + ".war");
         Assert.assertTrue("The WAR file doesn't exist.", warFile.exists());
         Assert.assertTrue("The WAR file is not a file.", warFile.isFile());

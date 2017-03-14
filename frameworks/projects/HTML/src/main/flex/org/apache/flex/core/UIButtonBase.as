@@ -98,14 +98,12 @@ package org.apache.flex.core
 		 */
 		override public function set x(value:Number):void
 		{
-			if (_button.x != value) {
-				_button.x = _x = value;
-                if (!style)
-                    style = { left: value };
-                else
-                    style.left = value;
-				dispatchEvent(new Event("xChanged"));
-			}
+			_button.x = _x = value;
+			if (!style)
+				style = { left: value };
+			else
+				style.left = value;
+			dispatchEvent(new Event("xChanged"));
 		}
 		
         private var _y:Number;
@@ -115,14 +113,12 @@ package org.apache.flex.core
 		 */
 		override public function set y(value:Number):void
 		{
-			if (_button.y != value) {
-				_button.y = _y = value;
-                if (!style)
-                    style = { top: value };
-                else
-                    style.top = value;
-				dispatchEvent(new Event("yChanged"));
-			}
+			_button.y = _y = value;
+			if (!style)
+				style = { top: value };
+			else
+				style.top = value;
+			dispatchEvent(new Event("yChanged"));
 		}
 
 		/**

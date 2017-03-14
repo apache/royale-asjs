@@ -26,8 +26,7 @@ package
  *  from the classes specified in manifest.xml.
  */
 internal class HTMLClasses
-{
-
+{	
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
@@ -45,6 +44,7 @@ internal class HTMLClasses
 	}
 	import org.apache.flex.html.beads.ComboBoxView; ComboBoxView;
     import org.apache.flex.html.beads.ContainerView; ContainerView;
+	import org.apache.flex.html.beads.GroupView; GroupView;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;

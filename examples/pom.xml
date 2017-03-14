@@ -85,51 +85,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>2.6</version>
-          <executions>
-            <execution>
-              <id>package-javascript</id>
-              <phase>package</phase>
-              <goals>
-                <goal>war</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <warSourceDirectory>${compiler.output-dir}</warSourceDirectory>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
-            <!--webResources>
-              <resource>
-                <directory>${compiler.output-dir}</directory>
-              </resource>
-            </webResources-->
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>1.11</version>
-          <executions>
-            <execution>
-              <id>attach-war</id>
-              <phase>package</phase>
-              <goals>
-                <goal>attach-artifact</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <artifacts>
-              <artifact>
-                <file>${basedir}/target/${project.artifactId}-${project.version}.war</file>
-                <type>war</type>
-              </artifact>
-            </artifacts>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.jboss.errai</groupId>
           <artifactId>cordova-maven-plugin</artifactId>
           <version>4.0.0.Beta2</version>

@@ -63,12 +63,21 @@ package org.apache.flex.svg
             }
 		}
 		
+		private var _text:String;
+		public function get text():String
+		{
+			return _text;
+		}
+		public function set text(value:String):void
+		{
+			_text = value;
+		}
 
         COMPILE::SWF
 		private var _textField:CSSTextField;
 		
 		COMPILE::JS
-		private var _text:WrappedHTMLElement;
+		private var _textElem:WrappedHTMLElement;
 		
 		/**
 		 *  @copy org.apache.flex.core.ITextModel#textField
@@ -121,21 +130,21 @@ package org.apache.flex.svg
             COMPILE::JS
             {
                 var style:String = this.getStyleStr();
-				if (_text == null) {
-                	_text = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
-                	_text.flexjs_wrapper = this;
-					element.appendChild(_text);
+				if (_textElem == null) {
+                	_textElem = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                	_textElem.flexjs_wrapper = this;
+					element.appendChild(_textElem);
 				}
 				else {
-					_text.removeChild(_text.childNodes[0]);
+					_textElem.removeChild(_textElem.childNodes[0]);
 				}
-                _text.setAttribute('style', style);
-                _text.setAttribute('x', xt);
-                _text.setAttribute('y', yt);
+                _textElem.setAttribute('style', style);
+                _textElem.setAttribute('x', xt);
+                _textElem.setAttribute('y', yt);
 				var textNode:Text = document.createTextNode(value) as Text;
-				_text.appendChild(textNode as Node);
+				_textElem.appendChild(textNode as Node);
                 
-                resize(x, y, (_text as SVGLocatable).getBBox());
+                resize(x, y, (_textElem as SVGLocatable).getBBox());
 
             }
 		}
@@ -143,7 +152,7 @@ package org.apache.flex.svg
         COMPILE::JS
         override protected function draw():void
         {
-            
+            drawText(text, x, y);
         }
 
 	}

@@ -31,6 +31,7 @@ internal class CoreClasses
     import org.apache.flex.core.BrowserWindow; BrowserWindow;
 	COMPILE::SWF
 	{
+		// import Promise; Promise;
 		import org.apache.flex.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.flex.core.CSSShape; CSSShape;
 		import org.apache.flex.core.CSSSprite; CSSSprite;
@@ -41,6 +42,7 @@ internal class CoreClasses
 		import org.apache.flex.core.WrappedSimpleButton; WrappedSimpleButton;
 		import org.apache.flex.core.WrappedSprite; WrappedSprite;
 		import org.apache.flex.core.WrappedTextField; WrappedTextField;
+		import org.apache.flex.core.ByteArrayAsset; ByteArrayAsset;
 	}
 	import org.apache.flex.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.flex.core.ItemRendererClassFactory; ItemRendererClassFactory;
@@ -116,17 +118,27 @@ internal class CoreClasses
     import org.apache.flex.events.EventDispatcher; EventDispatcher;
     import org.apache.flex.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.flex.events.MouseEvent; MouseEvent;
+	import org.apache.flex.events.KeyboardEvent; KeyboardEvent;
+	import org.apache.flex.events.utils.KeyboardEventConverter; KeyboardEventConverter;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.core.StageProxy; StageProxy;
 		import org.apache.flex.events.utils.MouseEventConverter; MouseEventConverter;
 	}
+	import org.apache.flex.events.utils.KeyConverter; KeyConverter;
 	import org.apache.flex.events.DetailEvent; DetailEvent;
 	import org.apache.flex.events.ValueEvent; ValueEvent;
     import org.apache.flex.events.utils.MouseUtils; MouseUtils;
+	import org.apache.flex.events.utils.EditingKeys; EditingKeys;
+	import org.apache.flex.events.utils.ModifierKeys; ModifierKeys;
+	import org.apache.flex.events.utils.NavigationKeys; NavigationKeys;
+	import org.apache.flex.events.utils.SpecialKeys; SpecialKeys;
+	import org.apache.flex.events.utils.WhitespaceKeys; WhitespaceKeys;
+	import org.apache.flex.events.utils.UIKeys; UIKeys;
 	import org.apache.flex.geom.Matrix; Matrix;
     import org.apache.flex.geom.Point; Point;
     import org.apache.flex.geom.Rectangle; Rectangle;
+    import org.apache.flex.utils.AnimationUtil; AnimationUtil;
     import org.apache.flex.utils.BinaryData; BinaryData;
 	COMPILE::SWF
 	{
@@ -156,7 +168,7 @@ internal class CoreClasses
     import org.apache.flex.utils.StringPadder; StringPadder;
 	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.StringUtil; StringUtil;
-	// import org.apache.flex.utils.ObjectMap;ObjectMap;
+	// import org.apache.flex.utils.ObjectMap; ObjectMap;
 	import org.apache.flex.utils.ObjectUtil; ObjectUtil;
 	import org.apache.flex.utils.Timer; Timer;
 	import org.apache.flex.utils.UIDUtil; UIDUtil;
