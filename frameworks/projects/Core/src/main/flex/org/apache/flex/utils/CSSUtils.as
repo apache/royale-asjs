@@ -49,7 +49,7 @@ package org.apache.flex.utils
                 {
                     rgba[i] = parseInt(rgba[i], 16);
                 }
-                rgba[3] = parseInt(""+(rgba[3]/255)*1000) / 1000;
+                rgba[3] = parseInt(""+(rgba[3]/255)*1000, 10) / 1000;
 				return "rgba(" + rgba.join(",") + ")";
 			}
             return "#" + StringPadder.pad(hexVal,"0",6);
