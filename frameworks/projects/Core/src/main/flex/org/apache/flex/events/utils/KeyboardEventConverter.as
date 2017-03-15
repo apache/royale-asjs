@@ -74,7 +74,7 @@ package org.apache.flex.events.utils
 			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, oldEvent.key, oldEvent.code);
 			newEvent.altKey = oldEvent.altKey;
 			newEvent.ctrlKey = oldEvent.ctrlKey;
-			newEvent.mataKey = oldEvent.metaKey;
+			newEvent.metaKey = oldEvent.metaKey;
 			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? oldEvent.metaKey : oldEvent.ctrlKey;
 			return newEvent;
 		}
