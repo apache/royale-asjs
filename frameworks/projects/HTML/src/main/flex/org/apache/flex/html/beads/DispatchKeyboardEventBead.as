@@ -123,6 +123,10 @@ package org.apache.flex.html.beads
 			event.stopImmediatePropagation();
 			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
+			if(newEvent.defaultPrevented)
+			{
+				event.preventDefault();
+			}
 		}
 		
 		/**
@@ -131,8 +135,13 @@ package org.apache.flex.html.beads
 		COMPILE::JS
 		protected function keyEventHandler(event:KeyboardEvent):void
 		{
+			event.stopImmediatePropagation();
 			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
+			if(newEvent.defaultPrevented)
+			{
+				event.preventDefault();
+			}
 		}
 		
 	}

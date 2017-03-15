@@ -19,6 +19,7 @@
 package org.apache.flex.events.utils
 {	
 	import org.apache.flex.events.KeyboardEvent;
+	import org.apache.flex.utils.OSUtils;
 
 	COMPILE::SWF
 	{
@@ -53,7 +54,7 @@ package org.apache.flex.events.utils
 				org.apache.flex.events.KeyboardEvent.KEY_UP;
 			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code);
 			newEvent.altKey = oldEvent.altKey;
-			// newEvent.ctrlKey = oldEvent.controlKey; // TODO
+//			newEvent.ctrlKey = oldEvent.controlKey; // TODO
 			newEvent.specialKey = oldEvent.ctrlKey;
 			return newEvent;
 		}
@@ -72,8 +73,9 @@ package org.apache.flex.events.utils
 			var type:String = oldEvent.type == "keydown" ? "key_down" : "key_up"; 
 			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, oldEvent.key, oldEvent.code);
 			newEvent.altKey = oldEvent.altKey;
-			// newEvent.ctrlKey = oldEvent.controlKey; // TODO
-			newEvent.specialKey = oldEvent.ctrlKey;
+			newEvent.ctrlKey = oldEvent.ctrlKey;
+			newEvent.mataKey = oldEvent.metaKey;
+			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? oldEvent.metaKey : oldEvent.ctrlKey;
 			return newEvent;
 		}
 	}
