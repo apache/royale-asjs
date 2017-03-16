@@ -16,14 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
+package org.apache.flex.textLayout.operations
+{
 	import org.apache.flex.textLayout.edit.SelectionState;
 	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
 
-
-
-	
 	/**
 	 * The ApplyElementTypeNameOperation class encapsulates a type name change.
 	 *
@@ -36,10 +33,10 @@ package org.apache.flex.textLayout.operations {
 	 * @langversion 3.0 
 	 */
 	public class ApplyElementTypeNameOperation extends FlowElementOperation
-	{	
+	{
 		private var _undoTypeName:String;
 		private var _typeName:String;
-		
+
 		/** 
 		 * Creates a ApplyElementTypeNameOperation object. 
 		 * 
@@ -55,46 +52,51 @@ package org.apache.flex.textLayout.operations {
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function ApplyElementTypeNameOperation(operationState:SelectionState, targetElement:IFlowElement, typeName:String, relativeStart:int = 0, relativeEnd:int = -1)
 		{
 			_typeName = typeName;
-			super(operationState,targetElement,relativeStart,relativeEnd);
+			super(operationState, targetElement, relativeStart, relativeEnd);
 		}
-		
+
 		/** 
 		 * The type name assigned by this operation.
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function get typeName():String
-		{ return _typeName; }
+		{
+			return _typeName;
+		}
+
 		public function set typeName(val:String):void
-		{ _typeName = val; }
+		{
+			_typeName = val;
+		}
 
 		/** @private */
 		public override function doOperation():Boolean
 		{
 			var targetElement:IFlowElement = getTargetElement();
 			_undoTypeName = targetElement.typeName;
-			
+
 			adjustForDoOperation(targetElement);
-			
+
 			targetElement.typeName = _typeName;
 			return true;
-		}	
-		
+		}
+
 		/** @private */
 		public override function undo():SelectionState
 		{
 			var targetElement:IFlowElement = getTargetElement();
 			targetElement.typeName = _undoTypeName;
-			
+
 			adjustForUndoOperation(targetElement);
-			
+
 			return originalSelectionState;
 		}
 	}

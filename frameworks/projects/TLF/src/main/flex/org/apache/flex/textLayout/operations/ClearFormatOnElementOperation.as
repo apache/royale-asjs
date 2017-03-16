@@ -16,16 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
+package org.apache.flex.textLayout.operations
+{
 	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.FlowElement;
 	import org.apache.flex.textLayout.elements.IFlowElement;
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 
-
-
-	
 	/**
 	 * The ClearFormatOnElementOperation class encapsulates a style change to an element.
 	 *
@@ -44,28 +41,27 @@ package org.apache.flex.textLayout.operations {
 	public class ClearFormatOnElementOperation extends FlowElementOperation
 	{
 		private var _format:ITextLayoutFormat;
-		
 		private var _undoStyles:TextLayoutFormat;
-				
+
 		/** 
-		* Creates an ClearFormatOnElementOperation object. 
-		* 
-		* @param operationState Specifies the text flow containing the element to which this operation is applied.
-		* @param targetElement specifies the element to which this operation is applied.
-		* @param format The formats to apply in this operation.
+		 * Creates an ClearFormatOnElementOperation object. 
 		 * 
-		* @playerversion Flash 10
-		* @playerversion AIR 1.5
-	 	* @langversion 3.0 
-		*/
+		 * @param operationState Specifies the text flow containing the element to which this operation is applied.
+		 * @param targetElement specifies the element to which this operation is applied.
+		 * @param format The formats to apply in this operation.
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+		 * @langversion 3.0 
+		 */
 		public function ClearFormatOnElementOperation(operationState:SelectionState, targetElement:IFlowElement, format:ITextLayoutFormat, relativeStart:int = 0, relativeEnd:int = -1)
 		{
-			super(operationState,targetElement,relativeStart,relativeEnd);
-				
+			super(operationState, targetElement, relativeStart, relativeEnd);
+
 			// split up the properties by category
 			_format = format;
 		}
-				
+
 		/** 
 		 * The character formats applied in this operation.
 		 * 
@@ -73,26 +69,27 @@ package org.apache.flex.textLayout.operations {
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function get format():ITextLayoutFormat
 		{
 			return _format;
 		}
+
 		public function set format(value:ITextLayoutFormat):void
 		{
 			_format = value;
 		}
-		
+
 		/** @private */
 		public override function doOperation():Boolean
 		{
 			var targetElement:IFlowElement = getTargetElement();
-			
+
 			adjustForDoOperation(targetElement);
-			
+
 			_undoStyles = new TextLayoutFormat(targetElement.format);
-			
+
 			if (_format)
 			{
 				var newFormat:TextLayoutFormat = new TextLayoutFormat(targetElement.format);
@@ -101,22 +98,22 @@ package org.apache.flex.textLayout.operations {
 				{
 					if (_format[prop] !== undefined)
 						newFormat[prop] = undefined;
-				} 
+				}
 				targetElement.format = newFormat;
 			}
-			
+
 			return true;
-		}	
-		
+		}
+
 		/** @private */
 		public override function undo():SelectionState
 		{
 			var targetElement:IFlowElement = getTargetElement();
-			
+
 			targetElement.format = new TextLayoutFormat(_undoStyles);
-			
+
 			adjustForUndoOperation(targetElement);
-			
+
 			return originalSelectionState;
 		}
 	}

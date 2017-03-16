@@ -18,18 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.operations
 {
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
 	import org.apache.flex.textLayout.debug.assert;
 	import org.apache.flex.textLayout.edit.IMemento;
 	import org.apache.flex.textLayout.edit.ModelEdit;
 	import org.apache.flex.textLayout.edit.SelectionState;
 	import org.apache.flex.textLayout.edit.TextFlowEdit;
-	import org.apache.flex.textLayout.elements.FlowLeafElement;
+	import org.apache.flex.textLayout.elements.IFlowLeafElement;
 	import org.apache.flex.textLayout.elements.TCYElement;
 
-	
-
-	
 	/** 
 	 * The ApplyTCYOperation class encapsulates a TCY transformation.
 	 *
@@ -43,14 +39,12 @@ package org.apache.flex.textLayout.operations
 	 */
 	public class ApplyTCYOperation extends FlowTextOperation
 	{
-		
 		private var makeBegIdx:int;
 		private var makeEndIdx:int;
 		private var removeBegIdx:int;
 		private var removeEndIdx:int;
 		private var removeRedoBegIdx:int;
 		private var removeRedoEndIdx:int;
-		
 		private var _memento:IMemento;
 		private var _tcyOn:Boolean;
 		private var _tcyElement:TCYElement;
@@ -63,13 +57,13 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function ApplyTCYOperation(operationState:SelectionState, tcyOn:Boolean)
 		{
 			super(operationState);
-			
-			if(tcyOn)
+
+			if (tcyOn)
 			{
 				makeBegIdx = operationState.absoluteStart;
 				makeEndIdx = operationState.absoluteEnd;
@@ -79,7 +73,7 @@ package org.apache.flex.textLayout.operations
 				removeBegIdx = operationState.absoluteStart;
 				removeEndIdx = operationState.absoluteEnd;
 			}
-			
+
 			_tcyOn = tcyOn;
 		}
 
@@ -94,18 +88,18 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function get tcyOn():Boolean
 		{
 			return _tcyOn;
 		}
-		
+
 		public function set tcyOn(val:Boolean):void
 		{
 			_tcyOn = val;
 		}
-		
+
 		/** 
 		 * The TCYElement that was created by doOperation.
 		 * 
@@ -117,7 +111,7 @@ package org.apache.flex.textLayout.operations
 		{
 			return _tcyElement;
 		}
-		
+
 		/** @private */
 		public override function doOperation():Boolean
 		{
@@ -127,14 +121,14 @@ package org.apache.flex.textLayout.operations
 			{
 				return false;
 			}
-			else if(!_tcyOn && removeEndIdx <= removeBegIdx)
+			else if (!_tcyOn && removeEndIdx <= removeBegIdx)
 			{
 				return false;
 			}
-			
+
 			if (_tcyOn)
 			{
-				//save it off so that we can restore the flow on undo - make and remove need different scraps		
+				// save it off so that we can restore the flow on undo - make and remove need different scraps
 				_memento = ModelEdit.saveCurrentState(textFlow, makeBegIdx, makeEndIdx);
 				if (TextFlowEdit.makeTCY(textFlow, makeBegIdx, makeEndIdx))
 				{
@@ -146,33 +140,35 @@ package org.apache.flex.textLayout.operations
 			{
 				leaf = textFlow.findLeaf(removeBegIdx);
 				tcyElem = leaf.getParentByType("TCYElement") as TCYElement;
-				CONFIG::debug{ assert(tcyElem != null, "Trying to remove TCY from a non-TCY element!"); }
-				
-				//collect the bounds for redo of removal - redo bounds are only the selection, while do bounds are the whole
-				//tcyElement
+				CONFIG::debug
+				{
+					assert(tcyElem != null, "Trying to remove TCY from a non-TCY element!"); }
+
+				// collect the bounds for redo of removal - redo bounds are only the selection, while do bounds are the whole
+				// tcyElement
 				removeRedoBegIdx = removeBegIdx;
 				removeRedoEndIdx = removeEndIdx;
-				
-				//now reset the beg and end idx's	
+
+				// now reset the beg and end idx's
 				removeBegIdx = tcyElem.getAbsoluteStart();
 				removeEndIdx = removeBegIdx + tcyElem.textLength;
-				
-				//create the scrap of the whole TCY element
+
+				// create the scrap of the whole TCY element
 				_memento = ModelEdit.saveCurrentState(textFlow, removeBegIdx, removeEndIdx);
-			
-				//use the removeRedoBegIdx/removeRedoEndIdx
+
+				// use the removeRedoBegIdx/removeRedoEndIdx
 				TextFlowEdit.removeTCY(textFlow, removeRedoBegIdx, removeRedoEndIdx);
-			} 
-			return true;				
+			}
+			return true;
 		}
-		
+
 		/** @private */
 		public override function undo():SelectionState
 		{
 			_memento.undo();
-			return originalSelectionState;				
+			return originalSelectionState;
 		}
-	
+
 		/** @private */
 		public override function redo():SelectionState
 		{
@@ -182,8 +178,8 @@ package org.apache.flex.textLayout.operations
 			}
 			else
 			{
-				TextFlowEdit.removeTCY(textFlow, removeRedoBegIdx, removeRedoEndIdx);				
-			} 
+				TextFlowEdit.removeTCY(textFlow, removeRedoBegIdx, removeRedoEndIdx);
+			}
 			return originalSelectionState;
 		}
 	}

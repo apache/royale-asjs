@@ -18,16 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.property
 {
-	import org.apache.flex.textLayout.elements.GlobalSettings;
 	import org.apache.flex.textLayout.formats.FormatValue;
-		
+
 	// [ExcludeClass]
 	/** Base class of property metadata.  Each property in the various TextLayout attributes structures has a metadata singletion Property class instance.  The instance
 	 * can be used to process the property to and from xml, find out range information and help with the attribute cascade.  The Property class also contains static functions
 	 * for processing all the properties collected in a TextLayout Format object. @private  */
 	public class Property
-	{		
-		
+	{
 	
 		// storing name here is redundant but is more efficient 
 		private var _name:String;
@@ -176,6 +174,5 @@ package org.apache.flex.textLayout.property
 			var rslt:Number =  percentInput * (percent / 100);
 			return _numberPropertyHandler ? _numberPropertyHandler.clampToRange(rslt) : rslt;
 		}
-
 	}
 }

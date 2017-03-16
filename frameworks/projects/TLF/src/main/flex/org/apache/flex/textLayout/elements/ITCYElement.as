@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.elements
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextLine;
-
 	public interface ITCYElement extends ISubParagraphGroupElementBase
 	{
 	}

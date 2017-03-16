@@ -19,13 +19,10 @@
 package org.apache.flex.textLayout.edit
 {
 	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.FlowElement;
 	import org.apache.flex.textLayout.elements.ILinkElement;
 	import org.apache.flex.textLayout.elements.ITCYElement;
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-
-
 	
 	// [ExcludeClass]
 	/**

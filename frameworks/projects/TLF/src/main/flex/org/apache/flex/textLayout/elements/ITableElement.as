@@ -19,7 +19,6 @@
 package org.apache.flex.textLayout.elements
 {
 	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.TextFlowTableBlock;
 	public interface ITableElement extends ITableFormattedElement
 	{
 		function getRowAt(rIdx:int):ITableRowElement;

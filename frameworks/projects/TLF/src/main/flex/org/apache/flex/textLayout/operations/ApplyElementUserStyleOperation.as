@@ -16,14 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
+package org.apache.flex.textLayout.operations
+{
 	import org.apache.flex.textLayout.edit.SelectionState;
 	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
 
-
-
-	
 	/**
 	 * The ApplyElementUserStyleOperation class encapsulates a change in a style value of an element.
 	 *
@@ -36,12 +33,11 @@ package org.apache.flex.textLayout.operations {
 	 * @langversion 3.0 
 	 */
 	public class ApplyElementUserStyleOperation extends FlowElementOperation
-	{	
+	{
 		private var _styleName:String;
-		
 		private var _origValue:*;
 		private var _newValue:*;
-		
+
 		/** 
 		 * Creates a ApplyElementUserStyleOperation object.
 		 * 
@@ -58,60 +54,70 @@ package org.apache.flex.textLayout.operations {
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function ApplyElementUserStyleOperation(operationState:SelectionState, targetElement:IFlowElement, styleName:String, value:*, relativeStart:int = 0, relativeEnd:int = -1)
 		{
 			_styleName = styleName;
 			_newValue = value;
-			
-			super(operationState,targetElement,relativeStart,relativeEnd);
+
+			super(operationState, targetElement, relativeStart, relativeEnd);
 		}
-		
+
 		/** 
 		 * The name of the style changed. 
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function get styleName():String
-		{ return _styleName; }
+		{
+			return _styleName;
+		}
+
 		public function set styleName(val:String):void
-		{ _styleName = val; }
-		
+		{
+			_styleName = val;
+		}
+
 		/** 
 		 * The new style value.
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function get newValue():*
-		{ return _newValue; }
+		{
+			return _newValue;
+		}
+
 		public function set newValue(val:*):void
-		{ _newValue = val; }
+		{
+			_newValue = val;
+		}
 
 		/** @private */
 		public override function doOperation():Boolean
 		{
 			var targetElement:IFlowElement = getTargetElement();
 			_origValue = targetElement.getStyle(_styleName);
-			
+
 			adjustForDoOperation(targetElement);
-			
-			targetElement.setStyle(_styleName,_newValue);
+
+			targetElement.setStyle(_styleName, _newValue);
 			return true;
-		}	
-		
+		}
+
 		/** @private */
 		public override function undo():SelectionState
 		{
 			var targetElement:IFlowElement = getTargetElement();
-			targetElement.setStyle(_styleName,_origValue);
-			
+			targetElement.setStyle(_styleName, _origValue);
+
 			adjustForUndoOperation(targetElement);
-			
+
 			return originalSelectionState;
 		}
 	}

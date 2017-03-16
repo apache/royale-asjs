@@ -16,17 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose {
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.text.engine.ITextLine;
-	
+package org.apache.flex.textLayout.compose
+{
 	/** 
 	 * The IVerticalJustificationLine interface defines the methods and properties required to allow
 	 * the vertical justification of text lines.
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
- 	 * @langversion 3.0
+	 * @langversion 3.0
 	 */
 	public interface IVerticalJustificationLine
 	{
@@ -36,60 +34,58 @@ package org.apache.flex.textLayout.compose {
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
-	 	 *
-	 	 * @see #y
+		 * @langversion 3.0
+		 *
+		 * @see #y
 		 */
 		function get x():Number;
-		
+
 		/** Set X location for the line.  Used only during vertical justification. @private */
 		function set x(val:Number):void;
-		
+
 		/** 
 		 * The vertical position of the line relative to its container, expressed as the offset in pixels from the top 
 		 * of the container.
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
-	 	 * 
-	 	 * @see #x
+		 * @langversion 3.0
+		 * 
+		 * @see #x
 		 */
 		function get y():Number;
-		
+
 		/** Set Y location for the line.  Used only during vertical justification. @private */
 		function set y(val:Number):void;
-		
+
 		/** 
 		 * @copy org.apache.flex.text.engine.TextLine#ascent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
+		 * @langversion 3.0
 		 */
 		function get ascent():Number;
-		
+
 		/** 
 		 * @copy org.apache.flex.text.engine.TextLine#descent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
+		 * @langversion 3.0
 		 */
 		function get descent():Number;
-		
+
 		/** The height of the line in pixels.
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
-	 	 *
+		 * @langversion 3.0
+		 *
 		 */
 		function get height():Number;
-		
 
 		// TODO for TextFlowTableBloack
 		function set height(value:Number):void;
 	}
-
 }

@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.events
 {
-	
 	import org.apache.flex.events.IFlexJSEvent;
-	import org.apache.flex.events.Event;
+	
 	
 	/**
 	 *  Represents events that are dispatched when the TextFlow does automatic scrolling.

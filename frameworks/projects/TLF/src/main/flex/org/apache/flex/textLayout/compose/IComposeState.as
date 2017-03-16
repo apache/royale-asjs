@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.compose
 {
-	import org.apache.flex.textLayout.elements.ITextFlow;
-
 	public interface IComposeState extends IComposer
 	{
 	}

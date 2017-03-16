@@ -19,10 +19,6 @@
 package org.apache.flex.textLayout
 {
  	
- 	import org.apache.flex.textLayout.compose.IComposeState;
- 	import org.apache.flex.textLayout.compose.IComposer;
- 	import org.apache.flex.textLayout.compose.IFactoryComposer;
- 	import org.apache.flex.textLayout.compose.ISimpleCompose;
  	internal class CoreClasses
 	{
 		
@@ -30,8 +26,8 @@ package org.apache.flex.textLayout
 		
 		import org.apache.flex.textLayout.TextLayoutVersion; TextLayoutVersion;
 
-		import org.apache.flex.textLayout.compose.BaseCompose; IComposer;
-		import org.apache.flex.textLayout.compose.ComposeState; IComposeState;
+		import org.apache.flex.textLayout.compose.BaseCompose; BaseCompose;
+		import org.apache.flex.textLayout.compose.ComposeState; ComposeState;
 		import org.apache.flex.textLayout.compose.FlowComposerBase; FlowComposerBase;
 		import org.apache.flex.textLayout.compose.FloatCompositionData; FloatCompositionData;
 		import org.apache.flex.textLayout.compose.FlowDamageType; FlowDamageType;
@@ -40,7 +36,7 @@ package org.apache.flex.textLayout
 		import org.apache.flex.textLayout.compose.IVerticalJustificationLine; IVerticalJustificationLine;
 		import org.apache.flex.textLayout.compose.Parcel; Parcel;
 		import org.apache.flex.textLayout.compose.ParcelList; ParcelList;
-		import org.apache.flex.textLayout.compose.SimpleCompose; ISimpleCompose;
+		import org.apache.flex.textLayout.compose.SimpleCompose; SimpleCompose;
 		import org.apache.flex.textLayout.compose.Slug; Slug;
 		import org.apache.flex.textLayout.compose.TextFlowLine; TextFlowLine;
 		import org.apache.flex.textLayout.compose.TextFlowLineLocation; TextFlowLineLocation;

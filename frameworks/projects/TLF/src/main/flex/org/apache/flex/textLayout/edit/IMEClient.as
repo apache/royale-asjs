@@ -16,23 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit {
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.undo.UndoManager;
-	import org.apache.flex.utils.undo.IOperation;
-	import org.apache.flex.text.ime.IIMEClient;
+package org.apache.flex.textLayout.edit
+{
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.ime.IME;
 	import org.apache.flex.text.engine.ITextLine;
 	import org.apache.flex.text.ime.CompositionAttributeRange;
-	
+	import org.apache.flex.text.ime.IIMEClient;
+	import org.apache.flex.text.ime.IME;
 	import org.apache.flex.textLayout.compose.IFlowComposer;
 	import org.apache.flex.textLayout.compose.ITextFlowLine;
 	import org.apache.flex.textLayout.container.IContainerController;
 	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.FlowLeafElement;
+	import org.apache.flex.textLayout.elements.IFlowLeafElement;
 	import org.apache.flex.textLayout.elements.ITextFlow;
 	import org.apache.flex.textLayout.elements.TextRange;
 	import org.apache.flex.textLayout.formats.BlockProgression;
@@ -42,25 +38,24 @@ package org.apache.flex.textLayout.edit {
 	import org.apache.flex.textLayout.operations.ApplyFormatToElementOperation;
 	import org.apache.flex.textLayout.operations.FlowOperation;
 	import org.apache.flex.textLayout.operations.InsertTextOperation;
-
 	import org.apache.flex.textLayout.utils.GeometryUtil;
-	
-
+	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.utils.undo.IOperation;
+	import org.apache.flex.utils.undo.UndoManager;
 
 	internal class IMEClient implements IIMEClient
 	{
 		private var _editManager:EditManager;
 		private var _undoManager:UndoManager;
-
 		/** Maintain position of text we've inserted while in the middle of processing IME. */
 		private var _imeAnchorPosition:int;		// start of IME text
 		private var _imeLength:int;				// length of IME text
 		private var _controller:IContainerController;		// controller that had focus at the start of the IME session -- we want this one to keep focus
 		private var _closing:Boolean;
-		CONFIG::debug { 
+		CONFIG::debug
+		{
 			private var _imeOperation:IOperation; 	// IME in-progress edits - used for debugging to confirm that operation we're undoing is the one we did via IME
 		}
-		
 		public function IMEClient(editManager:EditManager)
 		{
 			_editManager = editManager;
@@ -68,7 +63,7 @@ package org.apache.flex.textLayout.edit {
 			if (_editManager.textFlow)
 			{
 				var flowComposer:IFlowComposer = _editManager.textFlow.flowComposer;
-				if (flowComposer) 
+				if (flowComposer)
 				{
 					var controllerIndex:int = flowComposer.findControllerIndexAtPosition(_imeAnchorPosition);
 					_controller = flowComposer.getControllerAt(controllerIndex);
@@ -83,77 +78,79 @@ package org.apache.flex.textLayout.edit {
 				_editManager.setUndoManager(_undoManager);
 			}
 		}
-		
+
 		/** @private
 		 * Handler function called when the selection has been changed.
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
- 	 	 * @langversion 3.0
+		 * @langversion 3.0
 		 */
 		public function selectionChanged():void
-		{	
-		//	trace("IMEClient.selectionChanged", _editManager.anchorPosition, _editManager.activePosition);
-			
-			// If we change the selection to something outside the session, abort the 
+		{
+			// trace("IMEClient.selectionChanged", _editManager.anchorPosition, _editManager.activePosition);
+
+			// If we change the selection to something outside the session, abort the
 			// session. If we just moved the selection within the session, we tell the IME about the changes.
 			if (_editManager.absoluteStart > _imeAnchorPosition + _imeLength || _editManager.absoluteEnd < _imeAnchorPosition)
 			{
-				//trace("selection changed to out of IME session");
+				// trace("selection changed to out of IME session");
 				compositionAbandoned();
 			}
-			else 
+			else
 			{
 				// This code doesn't with current version of Argo, but should work in future
-				//trace("selection changed within IME session");
-			//	var imeCompositionSelectionChanged:Function = IME["compositionSelectionChanged"];
-			//	if (IME["compositionSelectionChanged"] !== undefined)
-			 //		imeCompositionSelectionChanged(_editManager.absoluteStart - _imeAnchorPosition, _editManager.absoluteEnd - (_imeAnchorPosition + _imeLength));
+				// trace("selection changed within IME session");
+				// var imeCompositionSelectionChanged:Function = IME["compositionSelectionChanged"];
+				// if (IME["compositionSelectionChanged"] !== undefined)
+				// imeCompositionSelectionChanged(_editManager.absoluteStart - _imeAnchorPosition, _editManager.absoluteEnd - (_imeAnchorPosition + _imeLength));
 			}
 		}
 
 		private function doIMEClauseOperation(selState:SelectionState, clause:int):void
 		{
- 		    var leaf:IFlowLeafElement = _editManager.textFlow.findLeaf(selState.absoluteStart);;
-		    var leafAbsoluteStart:int = leaf.getAbsoluteStart();
+			var leaf:IFlowLeafElement = _editManager.textFlow.findLeaf(selState.absoluteStart);
+			;
+			var leafAbsoluteStart:int = leaf.getAbsoluteStart();
 			var format:TextLayoutFormat = new TextLayoutFormat();
 			format.setStyle(IMEStatus.IME_CLAUSE, clause.toString());
 			_editManager.doOperation(new ApplyFormatToElementOperation(selState, leaf, format, selState.absoluteStart - leafAbsoluteStart, selState.absoluteEnd - leafAbsoluteStart));
 		}
-		
+
 		private function doIMEStatusOperation(selState:SelectionState, attrRange:CompositionAttributeRange):void
 		{
 			var imeStatus:String;
-			
+
 			// Get the IME status from the converted & selected flags
 			if (attrRange == null)
 				imeStatus = IMEStatus.DEAD_KEY_INPUT_STATE;
-    		else if (!attrRange.converted)
-    		{
-    			if(!attrRange.selected)
-    				imeStatus = IMEStatus.NOT_SELECTED_RAW;
-    			else
-    				imeStatus = IMEStatus.SELECTED_RAW;
-    		}
-    		else
-    		{
-    			if (!attrRange.selected)
-    				imeStatus = IMEStatus.NOT_SELECTED_CONVERTED;
-    			else
-    				imeStatus = IMEStatus.SELECTED_CONVERTED;
-    		}
-
+			else if (!attrRange.converted)
+			{
+				if (!attrRange.selected)
+					imeStatus = IMEStatus.NOT_SELECTED_RAW;
+				else
+					imeStatus = IMEStatus.SELECTED_RAW;
+			}
+			else
+			{
+				if (!attrRange.selected)
+					imeStatus = IMEStatus.NOT_SELECTED_CONVERTED;
+				else
+					imeStatus = IMEStatus.SELECTED_CONVERTED;
+			}
 
 			// refind since the previous operation changed the spans
-    		var leaf:IFlowLeafElement = _editManager.textFlow.findLeaf(selState.absoluteStart);
-			CONFIG::debug { assert(	leaf != null, "found null FlowLeafELement at" + (selState.absoluteStart).toString()); }						    		
-    		var leafAbsoluteStart:int = leaf.getAbsoluteStart();
-			
+			var leaf:IFlowLeafElement = _editManager.textFlow.findLeaf(selState.absoluteStart);
+			CONFIG::debug
+			{
+				assert(leaf != null, "found null FlowLeafELement at" + (selState.absoluteStart).toString()); }
+			var leafAbsoluteStart:int = leaf.getAbsoluteStart();
+
 			var format:TextLayoutFormat = new TextLayoutFormat();
 			format.setStyle(IMEStatus.IME_STATUS, imeStatus);
 
 			_editManager.doOperation(new ApplyFormatToElementOperation(selState, leaf, format, selState.absoluteStart - leafAbsoluteStart, selState.absoluteEnd - leafAbsoluteStart));
 		}
-		
+
 		private function deleteIMEText(textFlow:ITextFlow):void
 		{
 			// Delete any leaves that have IME attributes applied
@@ -174,7 +171,7 @@ package org.apache.flex.textLayout.edit {
 					leaf = leaf.getNextLeaf();
 			}
 		}
-		
+
 		private function rollBackIMEChanges():void
 		{
 			// Undo the previous interim ime operation, if there is one. This deletes any text that came in a previous updateComposition call.
@@ -183,10 +180,14 @@ package org.apache.flex.textLayout.edit {
 			var previousIMEOperation:FlowOperation = _editManager.undoManager.peekUndo() as FlowOperation;
 			if (_imeLength > 0 && previousIMEOperation && previousIMEOperation.endGeneration == _editManager.textFlow.generation && previousIMEOperation.canUndo())
 			{
-				CONFIG::debug { assert(_editManager.undoManager.peekUndo() == _imeOperation, "Unexpected operation in undo stack at end of IME update"); }
+				CONFIG::debug
+				{
+					assert(_editManager.undoManager.peekUndo() == _imeOperation, "Unexpected operation in undo stack at end of IME update"); }
 				if (_editManager.undoManager)
 					_editManager.undoManager.undo();
-				CONFIG::debug { assert(_editManager.undoManager.peekRedo() == _imeOperation, "Unexpected operation in redo stack at end of IME session"); }
+				CONFIG::debug
+				{
+					assert(_editManager.undoManager.peekRedo() == _imeOperation, "Unexpected operation in redo stack at end of IME session"); }
 				_editManager.undoManager.popRedo();
 			}
 			else		// there's been a model change since the last IME change that blocks undo, just find IME text and delete it.
@@ -195,15 +196,17 @@ package org.apache.flex.textLayout.edit {
 				deleteIMEText(_editManager.textFlow);
 			}
 			_imeLength = 0; // prevent double deletion
-			CONFIG::debug {  _imeOperation = null; }
+			CONFIG::debug
+			{
+				_imeOperation = null; }
 		}
-		
+
 		// IME-related functions
 		public function updateComposition(text:String, attributes:Vector.<CompositionAttributeRange>, compositionStartIndex:int, compositionEndIndex:int):void
-	    {
-		//	CONFIG::debug { Debugging.traceOut("updateComposition ", compositionStartIndex, compositionEndIndex, text.length); }
-		//	CONFIG::debug { Debugging.traceOut("updateComposition selection ", _editManager.absoluteStart, _editManager.absoluteEnd); }
-			
+		{
+			// CONFIG::debug { Debugging.traceOut("updateComposition ", compositionStartIndex, compositionEndIndex, text.length); }
+			// CONFIG::debug { Debugging.traceOut("updateComposition selection ", _editManager.absoluteStart, _editManager.absoluteEnd); }
+
 			// Undo the previous interim ime operation, if there is one. This deletes any text that came in a previous updateComposition call.
 			// Doing it via undo keeps the undo stack in sync.
 			if (_imeLength > 0)
@@ -214,16 +217,16 @@ package org.apache.flex.textLayout.edit {
 				// Insert the supplied string, using the current editing format.
 				var pointFormat:ITextLayoutFormat = _editManager.getSelectionState().pointFormat;
 				var selState:SelectionState = new SelectionState(_editManager.textFlow, _imeAnchorPosition, _imeAnchorPosition + _imeLength, pointFormat);
-				
+
 				_editManager.beginIMEOperation();
-				
+
 				if (_editManager.absoluteStart != _editManager.absoluteEnd)
 					_editManager.deleteText();		// delete current selection
-				
+
 				var insertOp:InsertTextOperation = new InsertTextOperation(selState, text);
 				_imeLength = text.length;
 				_editManager.doOperation(insertOp);
-				
+
 				if (attributes && attributes.length > 0)
 				{
 					var attrLen:int = attributes.length;
@@ -231,18 +234,18 @@ package org.apache.flex.textLayout.edit {
 					{
 						var attrRange:CompositionAttributeRange = attributes[i];
 						var clauseSelState:SelectionState = new SelectionState(_editManager.textFlow, _imeAnchorPosition + attrRange.relativeStart, _imeAnchorPosition + attrRange.relativeEnd);
-						
+
 						doIMEClauseOperation(clauseSelState, i);
 						doIMEStatusOperation(clauseSelState, attrRange);
 					}
 				}
 				else // composing accented characters
-				{	
+				{
 					clauseSelState = new SelectionState(_editManager.textFlow, _imeAnchorPosition, _imeAnchorPosition + _imeLength, pointFormat);
 					doIMEClauseOperation(clauseSelState, 0);
 					doIMEStatusOperation(clauseSelState, null);
 				}
-				
+
 				var newSelectionStart:int = _imeAnchorPosition + compositionStartIndex;
 				var newSelectionEnd:int = _imeAnchorPosition + compositionEndIndex;
 				if (_editManager.absoluteStart != newSelectionStart || _editManager.absoluteEnd != newSelectionEnd)
@@ -250,21 +253,25 @@ package org.apache.flex.textLayout.edit {
 					_editManager.selectRange(_imeAnchorPosition + compositionStartIndex, _imeAnchorPosition + compositionEndIndex);
 				}
 
-				CONFIG::debug {  _imeOperation = null; }
-				_editManager.endIMEOperation();	
-				CONFIG::debug {  _imeOperation = _editManager.undoManager.peekUndo(); }
+				CONFIG::debug
+				{
+					_imeOperation = null; }
+				_editManager.endIMEOperation();
+				CONFIG::debug
+				{
+					_imeOperation = _editManager.undoManager.peekUndo(); }
 			}
-	    }
-	    
-	    public function confirmComposition(text:String = null, preserveSelection:Boolean = false):void
+		}
+
+		public function confirmComposition(text:String = null, preserveSelection:Boolean = false):void
 		{
-		//	trace("confirmComposition", text, preserveSelection);
+			// trace("confirmComposition", text, preserveSelection);
 			endIMESession();
 		}
-		
+
 		public function compositionAbandoned():void
 		{
-		//	trace("compositionAbandoned");
+			// trace("compositionAbandoned");
 
 			// In Argo we could just do this:
 			// IME.compositionAbandoned();
@@ -273,16 +280,16 @@ package org.apache.flex.textLayout.edit {
 			if (IME["compositionAbandoned"] !== undefined)
 				imeCompositionAbandoned();
 		}
-		
+
 		private function endIMESession():void
 		{
 			if (!_editManager || _closing)
 				return;
-			
-		//	trace("end IME session");
-			
+
+			// trace("end IME session");
+
 			_closing = true;
-			
+
 			// Undo the IME operation. We're going to re-add the text, without all the special attributes, as part of handling
 			// the textInput event that comes next.
 			if (_imeLength > 0)
@@ -295,42 +302,40 @@ package org.apache.flex.textLayout.edit {
 			_editManager.endIMESession();
 			_editManager = null;
 		}
-		
+
 		// CONFIG::debug
 		// {		// debugging code for displaying IME bounds rectangle
-			
-		// 	private function displayRectInContainer(container:Sprite, r:Rectangle):void
-		// 	{
-		// 		var g:Graphics = container.graphics;
-		// 		g.beginFill(0xff0000);
-		// 		g.moveTo(r.x, r.y);
-		// 		g.lineTo(r.right, r.y);
-		// 		g.lineTo(r.right, r.bottom);
-		// 		g.lineTo(r.x, r.bottom);
-		// 		g.lineTo(r.x, r.y);
-		// 		g.endFill(); 
-		// 	}
+		// private function displayRectInContainer(container:Sprite, r:Rectangle):void
+		// {
+		// var g:Graphics = container.graphics;
+		// g.beginFill(0xff0000);
+		// g.moveTo(r.x, r.y);
+		// g.lineTo(r.right, r.y);
+		// g.lineTo(r.right, r.bottom);
+		// g.lineTo(r.x, r.bottom);
+		// g.lineTo(r.x, r.y);
+		// g.endFill();
 		// }
-		
+		// }
 		public function getTextBounds(startIndex:int, endIndex:int):Rectangle
 		{
-			if(startIndex >= 0 && startIndex < _editManager.textFlow.textLength && endIndex >= 0 && endIndex < _editManager.textFlow.textLength)
+			if (startIndex >= 0 && startIndex < _editManager.textFlow.textLength && endIndex >= 0 && endIndex < _editManager.textFlow.textLength)
 			{
 				if (startIndex != endIndex)
 				{
 					var boundsResult:Array = GeometryUtil.getHighlightBounds(new TextRange(_editManager.textFlow, startIndex, endIndex));
-				    //bail out if we don't have any results to show
+					// bail out if we don't have any results to show
 					if (boundsResult.length > 0)
 					{
-						var bounds:Rectangle = boundsResult[0].rect; 
-					    	var textLine:ITextLine = boundsResult[0].textLine; 
-					    	var resultTopLeft:Point = PointUtils.localToGlobal(bounds.topLeft, textLine);// textLine.localToGlobal(bounds.topLeft);
-					    	var resultBottomRight:Point = PointUtils.localToGlobal(bounds.bottomRight, textLine);// textLine.localToGlobal(bounds.bottomRight);
+						var bounds:Rectangle = boundsResult[0].rect;
+						var textLine:ITextLine = boundsResult[0].textLine;
+						var resultTopLeft:Point = PointUtils.localToGlobal(bounds.topLeft, textLine);// textLine.localToGlobal(bounds.topLeft);
+						var resultBottomRight:Point = PointUtils.localToGlobal(bounds.bottomRight, textLine);// textLine.localToGlobal(bounds.bottomRight);
 						if (textLine.parent)
 						{
 							var containerTopLeft:Point = PointUtils.globalToLocal(resultTopLeft, textLine.parent);// textLine.parent.globalToLocal(resultTopLeft);
 							var containerBottomLeft:Point = PointUtils.globalToLocal(resultBottomRight, textLine.parent);// textLine.parent.globalToLocal(resultBottomRight);
-						//	CONFIG::debug { displayRectInContainer(Sprite(textLine.parent), new Rectangle(containerTopLeft.x, containerTopLeft.y, containerBottomLeft.x - containerTopLeft.x, containerBottomLeft.y - containerTopLeft.y));}
+							// CONFIG::debug { displayRectInContainer(Sprite(textLine.parent), new Rectangle(containerTopLeft.x, containerTopLeft.y, containerBottomLeft.x - containerTopLeft.x, containerBottomLeft.y - containerTopLeft.y));}
 							return new Rectangle(containerTopLeft.x, containerTopLeft.y, containerBottomLeft.x - containerTopLeft.x, containerBottomLeft.y - containerTopLeft.y);
 						}
 					}
@@ -339,54 +344,54 @@ package org.apache.flex.textLayout.edit {
 				{
 					var flowComposer:IFlowComposer = _editManager.textFlow.flowComposer;
 					var lineIndex:int = flowComposer.findLineIndexAtPosition(startIndex);
-	
+
 					// Stick to the end of the last line
 					if (lineIndex == flowComposer.numLines)
 						lineIndex--;
 					if (flowComposer.getLineAt(lineIndex).controller == _controller)
 					{
 						var line:ITextFlowLine = flowComposer.getLineAt(lineIndex);
-						var previousLine:ITextFlowLine = lineIndex != 0 ? flowComposer.getLineAt(lineIndex-1) : null;
-						var nextLine:ITextFlowLine = lineIndex != flowComposer.numLines-1 ? flowComposer.getLineAt(lineIndex+1) : null;
-					//	CONFIG::debug { displayRectInContainer(_controller.container, line.computePointSelectionRectangle(startIndex, _controller.container, previousLine, nextLine, true));}
+						var previousLine:ITextFlowLine = lineIndex != 0 ? flowComposer.getLineAt(lineIndex - 1) : null;
+						var nextLine:ITextFlowLine = lineIndex != flowComposer.numLines - 1 ? flowComposer.getLineAt(lineIndex + 1) : null;
+						// CONFIG::debug { displayRectInContainer(_controller.container, line.computePointSelectionRectangle(startIndex, _controller.container, previousLine, nextLine, true));}
 						return line.computePointSelectionRectangle(startIndex, _controller.container, previousLine, nextLine, true);
 					}
 				}
 			}
-			
-			return new Rectangle(0,0,0,0);
+
+			return new Rectangle(0, 0, 0, 0);
 		}
-		
+
 		public function get compositionStartIndex():int
 		{
-		//	trace("compositionStartIndex");
+			// trace("compositionStartIndex");
 			return _imeAnchorPosition;
 		}
-		
+
 		public function get compositionEndIndex():int
 		{
-		//	trace("compositionEndIndex");
+			// trace("compositionEndIndex");
 			return _imeAnchorPosition + _imeLength;
 		}
-		
+
 		public function get verticalTextLayout():Boolean
 		{
-		//	trace("verticalTextLayout ", _editManager.textFlow.computedFormat.blockProgression == BlockProgression.RL ? "true" : "false");
+			// trace("verticalTextLayout ", _editManager.textFlow.computedFormat.blockProgression == BlockProgression.RL ? "true" : "false");
 			return _editManager.textFlow.computedFormat.blockProgression == BlockProgression.RL;
 		}
 
 		public function get selectionActiveIndex():int
 		{
-			//trace("selectionActiveIndex");
+			// trace("selectionActiveIndex");
 			return _editManager.activePosition;
 		}
-		
+
 		public function get selectionAnchorIndex():int
 		{
-			//trace("selectionAnchorIndex");
+			// trace("selectionAnchorIndex");
 			return _editManager.anchorPosition;
 		}
-		
+
 		public function selectRange(anchorIndex:int, activeIndex:int):void
 		{
 			_editManager.selectRange(anchorIndex, activeIndex);
@@ -394,11 +399,11 @@ package org.apache.flex.textLayout.edit {
 
 		public function setFocus():void
 		{
-//TODO deal with stage and focus
-//			if (_controller && _controller.container && _controller.container.stage && _controller.container.stage.focus != _controller.container)
-//				_controller.setFocus();
+			// TODO deal with stage and focus
+			// if (_controller && _controller.container && _controller.container.stage && _controller.container.stage.focus != _controller.container)
+			// _controller.setFocus();
 		}
-		
+
 		/** 
 		 * Gets the specified range of text from a component implementing ITextSupport.
 		 * To retrieve all text in the component, do not specify values for <code>startIndex</code> and <code>endIndex</code>.
@@ -411,12 +416,12 @@ package org.apache.flex.textLayout.edit {
 		 */
 		public function getTextInRange(startIndex:int, endIndex:int):String
 		{
-			//trace("getTextInRange");
+			// trace("getTextInRange");
 			// Check for valid indices
 			var textFlow:ITextFlow = _editManager.textFlow;
 			if (startIndex < -1 || endIndex < -1 || startIndex > (textFlow.textLength - 1) || endIndex > (textFlow.textLength - 1))
 				return null;
-			
+
 			// Make sure they're in the right order
 			if (endIndex < startIndex)
 			{
@@ -424,11 +429,11 @@ package org.apache.flex.textLayout.edit {
 				endIndex = startIndex;
 				startIndex = tempIndex;
 			}
-			
+
 			if (startIndex == -1)
 				startIndex = 0;
-			
+
 			return textFlow.getText(startIndex, endIndex);
-		} 
+		}
 	}
 }

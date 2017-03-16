@@ -20,11 +20,7 @@ package org.apache.flex.textLayout.operations
 {
 	import org.apache.flex.textLayout.edit.SelectionState;
 	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
 
-
-
-	
 	/**
 	 * The ChangeElementIDOperation class encapsulates an element ID change.
 	 *
@@ -37,10 +33,10 @@ package org.apache.flex.textLayout.operations
 	 * @langversion 3.0 
 	 */
 	public class ApplyElementIDOperation extends FlowElementOperation
-	{	
+	{
 		private var _origID:String;
 		private var _newID:String;
-		
+
 		/** 
 		 * Creates a ChangeElementIDOperation object. 
 		 * 
@@ -57,25 +53,30 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function ApplyElementIDOperation(operationState:SelectionState, targetElement:IFlowElement, newID:String, relativeStart:int = 0, relativeEnd:int = -1)
 		{
 			_newID = newID;
-			super(operationState,targetElement,relativeStart,relativeEnd);
+			super(operationState, targetElement, relativeStart, relativeEnd);
 		}
-		
+
 		/** 
 		 * The ID assigned by this operation.
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
+		 * @langversion 3.0 
 		 */
 		public function get newID():String
-		{ return _newID; }
+		{
+			return _newID;
+		}
+
 		public function set newID(val:String):void
-		{ _newID = val; }
+		{
+			_newID = val;
+		}
 
 		/** @private */
 		public override function doOperation():Boolean
@@ -84,19 +85,19 @@ package org.apache.flex.textLayout.operations
 			_origID = targetElement.id;
 
 			adjustForDoOperation(targetElement);
-			
+
 			targetElement.id = _newID;
 			return true;
-		}	
-		
+		}
+
 		/** @private */
 		public override function undo():SelectionState
 		{
 			var targetElement:IFlowElement = getTargetElement();
 			targetElement.id = _origID;
-			
+
 			adjustForUndoOperation(targetElement);
-			
+
 			return originalSelectionState;
 		}
 	}

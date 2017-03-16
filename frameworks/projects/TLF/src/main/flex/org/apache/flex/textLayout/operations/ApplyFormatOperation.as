@@ -18,18 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.operations
 {
-	import org.apache.flex.textLayout.elements.IParagraphElement;
 	import org.apache.flex.textLayout.edit.ElementRange;
 	import org.apache.flex.textLayout.edit.ParaEdit;
 	import org.apache.flex.textLayout.edit.PointFormat;
 	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.ParagraphElement;
+	import org.apache.flex.textLayout.elements.IParagraphElement;
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 
-
-
-		
 	/**
 	 * The ApplyFormatOperation class encapsulates a style change.
 	 * 
@@ -52,13 +48,12 @@ package org.apache.flex.textLayout.operations
 		private var applyLeafFormat:ITextLayoutFormat;
 		private var applyParagraphFormat:ITextLayoutFormat;
 		private var applyContainerFormat:ITextLayoutFormat;
-
 		// helper array of styles to revert
 		// each entry has a begIdx, endIdx, ContainerFormat
-		private var undoLeafArray:Array;	
-		private var undoParagraphArray:Array;	
-		private var undoContainerArray:Array;	
-		
+		private var undoLeafArray:Array;
+		private var undoParagraphArray:Array;
+		private var undoContainerArray:Array;
+
 		/** 
 		 * Creates an ApplyFormatOperation object.
 		 *
@@ -69,8 +64,8 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		 */		
+		 * @langversion 3.0 
+		 */
 		public function ApplyFormatOperation(operationState:SelectionState, leafFormat:ITextLayoutFormat, paragraphFormat:ITextLayoutFormat, containerFormat:ITextLayoutFormat = null)
 		{
 			super(operationState);
@@ -87,17 +82,18 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function get leafFormat():ITextLayoutFormat
 		{
 			return applyLeafFormat;
 		}
+
 		public function set leafFormat(value:ITextLayoutFormat):void
 		{
 			applyLeafFormat = value ? new TextLayoutFormat(value) : null;
 		}
-		
+
 		/** 
 		 * The format properties to apply to the paragraphs in the range.
 		 * 
@@ -107,17 +103,18 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function get paragraphFormat():ITextLayoutFormat
 		{
 			return applyParagraphFormat;
 		}
+
 		public function set paragraphFormat(value:ITextLayoutFormat):void
 		{
 			applyParagraphFormat = value ? new TextLayoutFormat(value) : null;
 		}
-		
+
 		/** 
 		 * The format properties to apply to the containers in the range.
 		 * 
@@ -127,27 +124,28 @@ package org.apache.flex.textLayout.operations
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0 
-		*/
+		 * @langversion 3.0 
+		 */
 		public function get containerFormat():ITextLayoutFormat
 		{
 			return applyContainerFormat;
 		}
+
 		public function set containerFormat(value:ITextLayoutFormat):void
 		{
 			applyContainerFormat = value ? new TextLayoutFormat(value) : null;
 		}
-		
+
 		private function doInternal():SelectionState
 		{
 			var anyNewSelectionState:SelectionState;
-			
+
 			// Apply character format
 			if (applyLeafFormat)
 			{
 				var begSel:int = absoluteStart;
 				var endSel:int = absoluteEnd;
-				
+
 				if (absoluteStart == absoluteEnd)
 				{
 					// On a caret selection, apply the leaf format to the SelectionManager's pointFormat, so it will be applied to the next insert.
@@ -162,7 +160,7 @@ package org.apache.flex.textLayout.operations
 					else if (originalSelectionState.selectionManagerOperationState && textFlow.interactionManager)
 					{
 						// on point selection remember pendling leaf formats for next char typed
-						
+
 						anyNewSelectionState = originalSelectionState.clone();
 						var newFormat:PointFormat = new PointFormat(anyNewSelectionState.pointFormat);
 						newFormat.apply(applyLeafFormat);
@@ -171,20 +169,20 @@ package org.apache.flex.textLayout.operations
 				}
 				if (begSel != endSel)
 				{
-					var range:ElementRange = ElementRange.createElementRange(textFlow, begSel,endSel);
-					
+					var range:ElementRange = ElementRange.createElementRange(textFlow, begSel, endSel);
+
 					begSel = range.absoluteStart;
 					endSel = range.absoluteEnd;
-					if(endSel == textFlow.textLength - 1)
+					if (endSel == textFlow.textLength - 1)
 						++endSel;
-						
-				//	CONFIG::debug { if (begSel != absoluteStart || endSel != absoluteEnd) trace("found mismatch ApplyFormatOperation"); }
+
+					// CONFIG::debug { if (begSel != absoluteStart || endSel != absoluteEnd) trace("found mismatch ApplyFormatOperation"); }
 					if (!undoLeafArray)
 					{
 						undoLeafArray = new Array();
-						ParaEdit.cacheStyleInformation(textFlow,begSel,endSel,undoLeafArray);
+						ParaEdit.cacheStyleInformation(textFlow, begSel, endSel, undoLeafArray);
 					}
-					ParaEdit.applyTextStyleChange(textFlow,begSel,endSel,applyLeafFormat,null);
+					ParaEdit.applyTextStyleChange(textFlow, begSel, endSel, applyLeafFormat, null);
 				}
 			}
 
@@ -193,50 +191,50 @@ package org.apache.flex.textLayout.operations
 				if (!undoParagraphArray)
 				{
 					undoParagraphArray = new Array();
-					ParaEdit.cacheParagraphStyleInformation(textFlow,absoluteStart, absoluteEnd,undoParagraphArray);
+					ParaEdit.cacheParagraphStyleInformation(textFlow, absoluteStart, absoluteEnd, undoParagraphArray);
 				}
-				ParaEdit.applyParagraphStyleChange(textFlow,absoluteStart, absoluteEnd,applyParagraphFormat,null);
+				ParaEdit.applyParagraphStyleChange(textFlow, absoluteStart, absoluteEnd, applyParagraphFormat, null);
 			}
 			if (applyContainerFormat)
 			{
 				if (!undoContainerArray)
 				{
 					undoContainerArray = new Array();
-					ParaEdit.cacheContainerStyleInformation(textFlow,absoluteStart,absoluteEnd,undoContainerArray);
+					ParaEdit.cacheContainerStyleInformation(textFlow, absoluteStart, absoluteEnd, undoContainerArray);
 				}
-				ParaEdit.applyContainerStyleChange(textFlow,absoluteStart,absoluteEnd,applyContainerFormat,null);
+				ParaEdit.applyContainerStyleChange(textFlow, absoluteStart, absoluteEnd, applyContainerFormat, null);
 			}
 			return anyNewSelectionState;
 		}
-		
+
 		/** @private */
 		public override function doOperation():Boolean
-		{ 
+		{
 			var newSelectionState:SelectionState = doInternal();
 			if (newSelectionState && textFlow.interactionManager)
 				textFlow.interactionManager.setSelectionState(newSelectionState);
 			return true;
-		}	
-		
+		}
+
 		/** @private */
 		override public function redo():SelectionState
 		{
 			var newSelectionState:SelectionState = doInternal();
-			return newSelectionState? newSelectionState : originalSelectionState;
+			return newSelectionState ? newSelectionState : originalSelectionState;
 		}
-		
+
 		/** @private */
 		public override function undo():SelectionState
-		{ 
+		{
 			var obj:Object;
-			
+
 			// Undo character format changes
 			for each (obj in undoLeafArray)
-				ParaEdit.setTextStyleChange(textFlow,obj.begIdx,obj.endIdx,obj.style);
+				ParaEdit.setTextStyleChange(textFlow, obj.begIdx, obj.endIdx, obj.style);
 
 			// Undo paragraph format changes
 			for each (obj in undoParagraphArray)
-				ParaEdit.setParagraphStyleChange(textFlow,obj.begIdx,obj.endIdx,obj.attributes);
+				ParaEdit.setParagraphStyleChange(textFlow, obj.begIdx, obj.endIdx, obj.attributes);
 
 			// Undo container format changes
 			for each (obj in undoContainerArray)
@@ -244,6 +242,5 @@ package org.apache.flex.textLayout.operations
 
 			return originalSelectionState;
 		}
-		
 	}
 }

@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.compose
 {
+	import org.apache.flex.textLayout.elements.CellContainer;
 	import org.apache.flex.textLayout.elements.CellCoordinates;
+	import org.apache.flex.textLayout.elements.ITableCellElement;
 	import org.apache.flex.textLayout.elements.ITableElement;
 	import org.apache.flex.textLayout.elements.TableBlockContainer;
-	import org.apache.flex.textLayout.elements.CellContainer;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.TableCellElement;
 
 	public interface ITextFlowTableBlock extends ITextFlowLine
 	{

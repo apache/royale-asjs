@@ -18,26 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.container
 {
+	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.elements.ITextFlow;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
+	import org.apache.flex.text.engine.ITextLine;
+	import org.apache.flex.textLayout.compose.FloatCompositionData;
 	import org.apache.flex.textLayout.compose.IFlowComposer;
+	import org.apache.flex.textLayout.compose.ITextFlowLine;
+	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.flex.textLayout.edit.ISelectionManager;
+	import org.apache.flex.textLayout.edit.SelectionFormat;
+	import org.apache.flex.textLayout.elements.CellCoordinates;
+	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
+	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.flex.textLayout.elements.TableBlockContainer;
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.utils.ObjectMap;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.TextFlowTableBlock;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.textLayout.compose.FloatCompositionData;
 
 	public interface IContainerController
 	{
@@ -71,11 +69,8 @@ package org.apache.flex.textLayout.container
 		function get contentHeight():Number;
 		function get rootElement():IContainerFormattedElement;
 		function get verticalScrollPolicy():String;
-
 		function get horizontalScrollPolicy():String;
-
 		function get format():ITextLayoutFormat;
-
 		function set format(format:ITextLayoutFormat):void;
 		function addSelectionShapes(selFormat:SelectionFormat, selectionAbsoluteStart:int, selectionAbsoluteEnd:int):void;
 		function getContentBounds():Rectangle;

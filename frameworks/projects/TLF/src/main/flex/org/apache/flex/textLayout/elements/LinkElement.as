@@ -20,18 +20,13 @@ package org.apache.flex.textLayout.elements
 {
 	import org.apache.flex.core.BrowserWindow;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
-	
 	import org.apache.flex.textLayout.debug.assert;
 	import org.apache.flex.textLayout.events.FlowElementMouseEventManager;
 	import org.apache.flex.textLayout.events.ModelChange;
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 
-	
-
-	
 	/** 
 	 * Dispatched when the mouse is pressed down over a link.
 	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_DOWN
@@ -40,7 +35,6 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	[Event(name="mouseDown", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
-	
 	/** 
 	 * Dispatched when the mouse is released over a link. 
 	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_UP
@@ -48,7 +42,7 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="mouseUp", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]	
+	[Event(name="mouseUp", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the mouse passes over the link. 
 	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_MOVE
@@ -56,14 +50,14 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="mouseMove", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]	
+	[Event(name="mouseMove", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
 	/**
 	 * Dispatched when the mouse first enters the link. 
 	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.ROLL_OVER
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
-	 */			
+	 */
 	[Event(name="rollOver", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the mouse goes out of the link. 
@@ -72,7 +66,7 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="rollOut", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]	
+	[Event(name="rollOut", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the link is clicked. 
 	 * Clients may override how the link handles the event by handling it themselves, and calling preventDefault().
@@ -80,9 +74,8 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
-	 */	
+	 */
 	[Event(name="click", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
-	
 	/** The LinkElement class defines a link to a URI (Universal Resource Identifier), which is executed when the user clicks it.
 	 * The LinkElement class is a subclass of the SubParagraphGroupElementBase class and it can contain
 	 * one or more FlowElement objects, such as a SpanElement object that stores the link text. An empty
@@ -127,14 +120,13 @@ package org.apache.flex.textLayout.elements
 	 * @see FlowElement#linkNormalFormat FlowElement.linkNormalFormat
 	 * @see ITextFlow
 	 *
-	 */ 
-	
+	 */
 	public final class LinkElement extends SubParagraphGroupElementBase implements ILinkElement
 	{
 		private var _uriString:String;
 		private var _targetString:String;
 		private var _linkState:String;
-		
+
 		/** Constructor - creates a new LinkElement instance.
 		 *
 		 * @playerversion Flash 10
@@ -144,17 +136,21 @@ package org.apache.flex.textLayout.elements
 		public function LinkElement()
 		{
 			super();
-			
+
 			_linkState = LinkState.LINK;
 		}
-		override public function get className():String{
+
+		override public function get className():String
+		{
 			return "LinkElement";
 		}
-		
+
 		/** @private */
-		public override function get precedence():uint 
-		{ return 800; }
-		
+		public override function get precedence():uint
+		{
+			return 800;
+		}
+
 		/**
 		 * @param type The type of event.
 		 * @param listener The listener function that processes the event. This function must accept an event object 
@@ -188,12 +184,11 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false): void
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
 		{
 			getEventMirror().addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
-		
+
 		/**
 		 * @copy org.apache.flex.events.IEventDispatcher#dispatchEvent()
 		 *
@@ -201,14 +196,13 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		
 		public function dispatchEvent(evt:Event):Boolean
 		{
 			if (!hasActiveEventMirror())
 				return false;
 			return _eventMirror.dispatchEvent(evt);
 		}
-		
+
 		/**
 		 * @copy org.apache.flex.events.IEventDispatcher#hasEventListener()
 		 *
@@ -216,14 +210,13 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		
 		public function hasEventListener(type:String):Boolean
 		{
 			if (!hasActiveEventMirror())
 				return false;
 			return _eventMirror.hasEventListener(type);
 		}
-		
+
 		/**
 		 *
 		 * @param type The type of event.
@@ -236,13 +229,12 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		
-		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false): void
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
 		{
 			if (hasActiveEventMirror())
 				_eventMirror.removeEventListener(type, listener, useCapture);
 		}
-		
+
 		/**
 		 * @copy org.apache.flex.events.IEventDispatcher#willTrigger()
 		 * 
@@ -250,24 +242,26 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		
 		public function willTrigger(type:String):Boolean
 		{
 			if (!hasActiveEventMirror())
 				return false;
 			return _eventMirror.willTrigger(type);
 		}
+
 		// end of IEventDispatcher functions
-		
 		/** @private */
 		override protected function get abstract():Boolean
-		{ return false; }
-		
+		{
+			return false;
+		}
+
 		/** @private */
 		public override function get defaultTypeName():String
-		{ return "a"; }	
-		
-		
+		{
+			return "a";
+		}
+
 		/**
 		 * The Uniform Resource Identifier (URI) associated with the LinkElement object.  The URI can be any URI 
 		 * supported by the <code>flash.net.navigateToURL()</code> method. This property maps
@@ -277,22 +271,21 @@ package org.apache.flex.textLayout.elements
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
-	 	 *
-	 	 * @see ../../../flash/net/package.html#navigateToURL() flash.net.navigateToURL()
+		 * @langversion 3.0
+		 *
+		 * @see ../../../flash/net/package.html#navigateToURL() flash.net.navigateToURL()
 		 */
-		
 		public function get href():String
 		{
 			return _uriString;
 		}
-		
+
 		public function set href(newUriString:String):void
 		{
 			_uriString = newUriString;
-			modelChanged(ModelChange.ELEMENT_MODIFIED,this,0,textLength);
+			modelChanged(ModelChange.ELEMENT_MODIFIED, this, 0, textLength);
 		}
-		
+
 		/**
 		 * The Target value associated with the LinkElement. Possible values are "_self", "_blank",
 		 * "_parent", and "_top". This value maps to the <code>window</code> parameter of the
@@ -300,21 +293,21 @@ package org.apache.flex.textLayout.elements
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
-	 	 * @langversion 3.0
-	 	 *
-	 	 * @see ../../../flash/net/package.html#navigateToURL() flash.net.navigateToURL()
+		 * @langversion 3.0
+		 *
+		 * @see ../../../flash/net/package.html#navigateToURL() flash.net.navigateToURL()
 		 */
-		
 		public function get target():String
 		{
 			return _targetString;
 		}
+
 		public function set target(newTargetString:String):void
 		{
 			_targetString = newTargetString;
-			modelChanged(ModelChange.ELEMENT_MODIFIED,this,0,textLength);
+			modelChanged(ModelChange.ELEMENT_MODIFIED, this, 0, textLength);
 		}
-		
+
 		/**
 		 * The current state of the link.
 		 *
@@ -324,10 +317,11 @@ package org.apache.flex.textLayout.elements
 		 *
 		 * @see LinkState
 		 */
-		
 		public function get linkState():String
-		{ return _linkState; }
-		
+		{
+			return _linkState;
+		}
+
 		/**
 		 *  @private
 		 *  @flexjsignorecoercion org.apache.flex.textLayout.elements.LinkElement
@@ -336,17 +330,17 @@ package org.apache.flex.textLayout.elements
 		{
 			if (endPos == -1)
 				endPos = textLength;
-			
+
 			var retFlow:LinkElement = super.shallowCopy(startPos, endPos) as LinkElement;
 			retFlow.href = href;
 			retFlow.target = target;
 			return retFlow;
 		}
-		
+
 		/** @private */
 		public override function mergeToPreviousIfPossible():Boolean
-		{		
-			// In links the eventMirror exists.  TLF ignores that when merging.  
+		{
+			// In links the eventMirror exists.  TLF ignores that when merging.
 			// The risk is that everything matches but the user has added a custom listener to the eventMirror.
 			if (parent && !bindableElement)
 			{
@@ -356,25 +350,25 @@ package org.apache.flex.textLayout.elements
 					parent.replaceChildren(myidx, myidx + 1, null);
 					return true;
 				}
-				
+
 				if (myidx != 0 && !hasActiveEventMirror())
 				{
-					var sib:LinkElement = parent.getChildAt(myidx-1) as LinkElement;
+					var sib:LinkElement = parent.getChildAt(myidx - 1) as LinkElement;
 					if (sib != null && !sib.hasActiveEventMirror())
 					{
 						if ((this.href == sib.href) && (this.target == sib.target) && equalStylesForMerge(sib))
-						{							
+						{
 							parent.removeChildAt(myidx);
 							if (numChildren > 0)
-								sib.replaceChildren(sib.numChildren,sib.numChildren,this.mxmlChildren);
+								sib.replaceChildren(sib.numChildren, sib.numChildren, this.mxmlChildren);
 							return true;
 						}
 					}
 				}
-			} 
+			}
 			return false;
 		}
-		
+
 		/** 
 		 * Specifies the name of the text format element of a LinkElement when the link is in the normal state.
 		 * @private
@@ -383,7 +377,6 @@ package org.apache.flex.textLayout.elements
 		 * @langversion 3.0
 		 */
 		static public const LINK_NORMAL_FORMAT_NAME:String = "linkNormalFormat";
-		
 		/** 
 		 * Specifies the name of the text format element of a LinkElement when the link is in the active state. 
 		 * @private
@@ -392,15 +385,14 @@ package org.apache.flex.textLayout.elements
 		 * @langversion 3.0
 		 */
 		static public const LINK_ACTIVE_FORMAT_NAME:String = "linkActiveFormat";
-		
 		/** Specifies the name of the text format element of a LinkElement when the cursor is hovering over the link. 
 		 * @private
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		static public const LINK_HOVER_FORMAT_NAME:String  = "linkHoverFormat";
-		
+		static public const LINK_HOVER_FORMAT_NAME:String = "linkHoverFormat";
+
 		private function computeLinkFormat(formatName:String):ITextLayoutFormat
 		{
 			var linkStyle:ITextLayoutFormat = getUserStyleWorker(formatName) as ITextLayoutFormat;
@@ -410,16 +402,16 @@ package org.apache.flex.textLayout.elements
 				if (tf)
 					linkStyle = tf.configuration["defaultL" + formatName.substr(1)];
 			}
-			
+
 			return linkStyle;
 		}
+
 		/** 
 		 * The state-dependent character attributes for the link.
 		 * @private
 		 */
-		
 		public function get effectiveLinkElementTextLayoutFormat():ITextLayoutFormat
-		{	
+		{
 			var cf:ITextLayoutFormat;
 
 			if (_linkState == LinkState.SUPPRESSED)
@@ -436,10 +428,10 @@ package org.apache.flex.textLayout.elements
 				if (cf)
 					return cf;
 			}
-			
+
 			return computeLinkFormat("linkNormalFormat");
 		}
-		
+
 		/** @private TODO: Possible optimization - replace this with prototype chaining?? */
 		public override function get formatForCascade():ITextLayoutFormat
 		{
@@ -458,21 +450,19 @@ package org.apache.flex.textLayout.elements
 			}
 			return null;
 		}
-		
 		/** @private */
-		CONFIG::debug public override function setParentAndRelativeStart(newParent:IFlowGroupElement,newStart:int):void
+		CONFIG::debug
+		public override function setParentAndRelativeStart(newParent:IFlowGroupElement, newStart:int):void
 		{
-			
 			if (groupElement)
 			{
 				var groupTextLength:int = groupElement.rawText ? groupElement.rawText.length : null;
 				assert(groupTextLength == this.textLength, "LinkElement - gc = " + this.groupElement.rawText + " this.textLength = " + this.textLength);
 			}
-			
-			super.setParentAndRelativeStart(newParent,newStart);
-			
+
+			super.setParentAndRelativeStart(newParent, newStart);
 		}
-		
+
 		/** @private */
 		private function setToState(linkState:String):void
 		{
@@ -487,10 +477,10 @@ package org.apache.flex.textLayout.elements
 					var tf:ITextFlow = getTextFlow();
 					if (tf && tf.flowComposer)
 						tf.flowComposer.updateAllControllers();
-				}		
+				}
 			}
 		}
-		
+
 		/** @private */
 		public function chgLinkState(linkState:String):void
 		{
@@ -500,7 +490,7 @@ package org.apache.flex.textLayout.elements
 				formatChanged(false);
 			}
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
@@ -509,9 +499,9 @@ package org.apache.flex.textLayout.elements
 		{
 			mgr.setHandCursor(true);
 			setToState(LinkState.ACTIVE);
-			evt.stopImmediatePropagation();								
+			evt.stopImmediatePropagation();
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
@@ -521,7 +511,7 @@ package org.apache.flex.textLayout.elements
 			mgr.setHandCursor(true);
 			setToState(evt.buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
@@ -531,7 +521,7 @@ package org.apache.flex.textLayout.elements
 			mgr.setHandCursor(false);
 			setToState(LinkState.LINK);
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
@@ -541,18 +531,18 @@ package org.apache.flex.textLayout.elements
 			mgr.setHandCursor(true);
 			setToState(evt.buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
 		 */
 		public function mouseUpHandler(mgr:FlowElementMouseEventManager, evt:MouseEvent):void
 		{
-			mgr.setHandCursor(true);				
+			mgr.setHandCursor(true);
 			setToState(LinkState.HOVER);
 			evt.stopImmediatePropagation();
 		}
-		
+
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
@@ -564,30 +554,34 @@ package org.apache.flex.textLayout.elements
 				if ((_uriString.length > 6) && (_uriString.substr(0, 6) == "event:"))
 				{
 					mgr.dispatchFlowElementMouseEvent(_uriString.substring(6, _uriString.length), evt);
-				} 
-				else 
+				}
+				else
 				{
 					BrowserWindow.open(_uriString, target);
-//					var u:URLRequest = new URLRequest(encodeURI(_uriString));
-//					flash.net.navigateToURL(u, target);
+					// var u:URLRequest = new URLRequest(encodeURI(_uriString));
+					// flash.net.navigateToURL(u, target);
 				}
 			}
-			evt.stopImmediatePropagation();		
+			evt.stopImmediatePropagation();
 		}
-				
+
 		/** @private */
-		public override function acceptTextBefore():Boolean 
-		{ return false; }
-		
+		public override function acceptTextBefore():Boolean
+		{
+			return false;
+		}
+
 		/** @private */
 		public override function acceptTextAfter():Boolean
-		{ return false; }
-		
+		{
+			return false;
+		}
+
 		/** @private This is done so that the TextContainerManager can discover LinkElements in a ITextFlow. 
 		 * Links don't use the mouseeventdispatcher for link related events - that's a bug that should be fixed.
 		 * A link may increment the interactiveObjectCount twice - once as as Link and once if it has listeners attached via getEventMirror  */
-		public override function appendElementsForDelayedUpdate(tf:ITextFlow,changeType:String):void
-		{ 
+		public override function appendElementsForDelayedUpdate(tf:ITextFlow, changeType:String):void
+		{
 			if (changeType == ModelChange.ELEMENT_ADDED)
 			{
 				tf.incInteractiveObjectCount();
@@ -600,12 +594,13 @@ package org.apache.flex.textLayout.elements
 				// This is to detect if current paragraph has interactive child
 				getParagraph().decInteractiveChildrenCount() ;
 			}
-			super.appendElementsForDelayedUpdate(tf,changeType);
+			super.appendElementsForDelayedUpdate(tf, changeType);
 		}
-		
+
 		/** @private This API supports the inputmanager */
 		public override function updateForMustUseComposer(textFlow:ITextFlow):Boolean
-		{ return true; }
-		
+		{
+			return true;
+		}
 	}
 }
