@@ -69,6 +69,8 @@
             <arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
+            <arg value="-define=CONFIG::debug,${dbg}" />
+            <arg value="-define=CONFIG::release,${rel}" />
         </java>
     </target>
     

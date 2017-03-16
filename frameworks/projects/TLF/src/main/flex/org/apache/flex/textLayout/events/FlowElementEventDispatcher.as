@@ -50,44 +50,45 @@ package org.apache.flex.textLayout.events
 			_element = element;
 			super(null);
 		}
-		
+
+//TODO Do we need these two methods? (They were causing a compiler error)		
 		/** @private 
 		 * The addEventListener() method increments a counter.
 		 */
-		public override function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
-		{
-			super.addEventListener(type, listener, useCapture, priority, useWeakReference);
-			_listenerCount++;
-			if (_listenerCount == 1)
-			{
-				var tf:ITextFlow = _element.getTextFlow();
-				if (tf)
-					tf.incInteractiveObjectCount();
+		// public override function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+		// {
+		// 	super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		// 	_listenerCount++;
+		// 	if (_listenerCount == 1)
+		// 	{
+		// 		var tf:ITextFlow = _element.getTextFlow();
+		// 		if (tf)
+		// 			tf.incInteractiveObjectCount();
 				
-				var pg:IParagraphElement = _element.getParagraph() ;
-				if (pg)
-					pg.incInteractiveChildrenCount() ;
-			}
-			_element.modelChanged(ModelChange.ELEMENT_MODIFIED,_element,0,_element.textLength);
-		}
+		// 		var pg:IParagraphElement = _element.getParagraph() ;
+		// 		if (pg)
+		// 			pg.incInteractiveChildrenCount() ;
+		// 	}
+		// 	_element.modelChanged(ModelChange.ELEMENT_MODIFIED,_element,0,_element.textLength);
+		// }
 		
 		/** @private 
 		 * The removeEventListener() method decrements a counter.
 		 */
-		public override function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
-		{
-			super.removeEventListener(type, listener, useCapture);
-			_listenerCount--;			
-			if (_listenerCount == 0)
-			{
-				var tf:ITextFlow = _element.getTextFlow();
-				if (tf)
-					tf.decInteractiveObjectCount();
-				var pg:IParagraphElement = _element.getParagraph() ;
-				if (pg)
-					pg.decInteractiveChildrenCount() ;
-			}
-			_element.modelChanged(ModelChange.ELEMENT_MODIFIED,_element,0,_element.textLength);
-		}
+		// public override function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
+		// {
+		// 	super.removeEventListener(type, listener, useCapture);
+		// 	_listenerCount--;			
+		// 	if (_listenerCount == 0)
+		// 	{
+		// 		var tf:ITextFlow = _element.getTextFlow();
+		// 		if (tf)
+		// 			tf.decInteractiveObjectCount();
+		// 		var pg:IParagraphElement = _element.getParagraph() ;
+		// 		if (pg)
+		// 			pg.decInteractiveChildrenCount() ;
+		// 	}
+		// 	_element.modelChanged(ModelChange.ELEMENT_MODIFIED,_element,0,_element.textLength);
+		// }
 	}
 }

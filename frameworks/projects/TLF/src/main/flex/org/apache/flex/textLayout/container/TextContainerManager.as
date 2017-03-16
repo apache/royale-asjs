@@ -2530,12 +2530,12 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 	}
 
 	// override methods/getters for things we couldn't set in the base class	
-
-	public override function get target():Object
-	{ return _event.currentTarget; }
+//TODO FalconJX did not like these overrides
+	// public override function get target():Object
+	// { return _event.currentTarget; }
 	
-	public override function get currentTarget():Object
-	{ return _event.currentTarget; }
+	// public override function get currentTarget():Object
+	// { return _event.currentTarget; }
 	
 	public override function get eventPhase():uint
 	{ return _event.eventPhase; }

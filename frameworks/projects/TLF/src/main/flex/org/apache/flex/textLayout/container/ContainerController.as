@@ -1958,9 +1958,10 @@ package org.apache.flex.textLayout.container
 			// we need a timer so that the mouse doesn't have to continue moving when the mouse is outside the content area
 			if (scrollDirection != 0 && !_scrollTimer) 
 			{
-				_scrollTimer = new Timer(textFlow.configuration.scrollDragDelay);	// 35 ms is the default auto-repeat interval for ScrollBars.
-				_scrollTimer.addEventListener(Timer.TIMER, scrollTimerHandler, false, 0, true);
 //TODO deal with platform specific events
+//				_scrollTimer = new Timer(textFlow.configuration.scrollDragDelay);	// 35 ms is the default auto-repeat interval for ScrollBars.
+//				_scrollTimer.addEventListener(Timer.TIMER, scrollTimerHandler, false, 0, true);
+
 //				if (getContainerRoot())
 //				{
 //					getContainerRoot().addEventListener(MouseEvent.MOUSE_UP, scrollTimerHandler, false, 0, true);
@@ -2341,9 +2342,10 @@ package org.apache.flex.textLayout.container
 		{
 			if (interactionManager && !event.isDefaultPrevented())
 			{
+//TODO fix this
 				// only autoscroll if we haven't hit something on the stage related to this particular TextFlow
 				if (event.buttonDown && !hitOnMyFlowExceptLastContainer(event))
-					autoScrollIfNecessary(event.stageX, event.stageY);
+					// autoScrollIfNecessary(event.stageX, event.stageY);
 				interactionManager.mouseMoveHandler(event);
 			}
 		}
@@ -2766,7 +2768,9 @@ package org.apache.flex.textLayout.container
 			if (!blinkTimer)
 				blinkTimer = new Timer(blinkInterval,0);
 			blinkObject = obj;
-			blinkTimer.addEventListener(Timer.TIMER,blinkTimerHandler, false, 0, true);
+//It was using weak references which FlexJS does not support
+			// blinkTimer.addEventListener(Timer.TIMER,blinkTimerHandler, false, 0, true);
+			blinkTimer.addEventListener(Timer.TIMER,blinkTimerHandler);
 			blinkTimer.start();
 		}
 		
@@ -5214,9 +5218,10 @@ class PsuedoMouseEvent extends org.apache.flex.events.MouseEvent
 	{
 		super(type,bubbles,cancelable,localX,localY,relatedObject,ctrlKey,altKey,shiftKey,buttonDown);
 	}
-	public override function get currentTarget():Object
-	{ return relatedObject; }
-	public override function get target():Object
-	{ return relatedObject; }
+//TODO FalconJX did not like these overrides
+	// public override function get currentTarget():Object
+	// { return relatedObject; }
+	// public override function get target():Object
+	// { return relatedObject; }
 }
 

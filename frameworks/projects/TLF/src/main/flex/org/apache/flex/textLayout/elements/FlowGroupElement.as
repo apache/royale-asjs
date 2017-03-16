@@ -721,7 +721,7 @@ package org.apache.flex.textLayout.elements
 
 						if (!canOwnFlowElement(newChild))
 						{
-							throw ArgumentError(GlobalSettings.resourceStringFunction("invalidChildType") + ". " + defaultTypeName + " cannot own " + newChild.defaultTypeName);
+							throw new Error(GlobalSettings.resourceStringFunction("invalidChildType") + ". " + defaultTypeName + " cannot own " + newChild.defaultTypeName);
 						}
 
 						// manage as an array or a single child
@@ -871,7 +871,7 @@ package org.apache.flex.textLayout.elements
 		{
 			var index:int = getChildIndex(child);
 			if (index == -1)
-				throw ArgumentError(GlobalSettings.resourceStringFunction("badRemoveChild"));
+				throw new Error(GlobalSettings.resourceStringFunction("badRemoveChild"));
 
 			removeChildAt(index);
 			return child;

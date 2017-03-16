@@ -849,14 +849,16 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
  		 */
- 		 
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false): void
+//TODO removed priority and weak reference 		 
+		// public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false): void
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false): void
 		{
 			if (!_eventDispatcher)
 				_eventDispatcher = new EventDispatcher();
 //TODO is the target necessary?
 //				_eventDispatcher = new EventDispatcher(this);
-			_eventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
+			// _eventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
+			_eventDispatcher.addEventListener(type, listener, useCapture);
 		}
 
 		/**
@@ -911,12 +913,12 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
  		 */								
-		public function willTrigger(type:String):Boolean
-		{
-			if (!_eventDispatcher)
-				return false;
-			return _eventDispatcher.willTrigger(type);
-		}
+		// public function willTrigger(type:String):Boolean
+		// {
+		// 	if (!_eventDispatcher)
+		// 		return false;
+		// 	return _eventDispatcher.willTrigger(type);
+		// }
 		
 		// elements which are images or blocks that *may* have children requiring activation or deactivation
 		private var _elemsToUpdate:ObjectMap;

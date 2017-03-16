@@ -4,9 +4,6 @@
     "compilerOptions": {
         "debug": false,
         "js-output-type": "flexjs",
-        "library-path": [
-            "libs"
-        ],
         "define": [
             {
                 "name": "COMPILE::SWF",
@@ -28,6 +25,6 @@
     },
     "files":
     [
-        "src/TLFClasses.as"
+        "src/main/flex/TLFClasses.as"
     ]
 }

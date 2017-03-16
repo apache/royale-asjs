@@ -184,10 +184,15 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false):void
 		{
-			getEventMirror().addEventListener(type, listener, useCapture, priority, useWeakReference);
+			getEventMirror().addEventListener(type, listener, useCapture);
 		}
+//TODO
+		// public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+		// {
+		// 	getEventMirror().addEventListener(type, listener, useCapture, priority, useWeakReference);
+		// }
 
 		/**
 		 * @copy org.apache.flex.events.IEventDispatcher#dispatchEvent()
@@ -242,12 +247,12 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 */
-		public function willTrigger(type:String):Boolean
-		{
-			if (!hasActiveEventMirror())
-				return false;
-			return _eventMirror.willTrigger(type);
-		}
+		// public function willTrigger(type:String):Boolean
+		// {
+		// 	if (!hasActiveEventMirror())
+		// 		return false;
+		// 	return _eventMirror.willTrigger(type);
+		// }
 
 		// end of IEventDispatcher functions
 		/** @private */

@@ -57,7 +57,8 @@ package org.apache.flex.textLayout.elements
 		function normalize():void;
 		function findAbsoluteFlowGroupElement(pos:int):IFlowGroupElement;
 		function set flowComposer(composer:IFlowComposer):void;
-		function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void;
+		function addEventListener(type:String, listener:Function, useCapture:Boolean = false):void;
+		// function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void;
 		function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void;
 		function invalidateAllFormats():void;
 		function clearBackgroundManager():void;
