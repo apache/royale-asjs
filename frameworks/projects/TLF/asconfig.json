@@ -1,0 +1,33 @@
+{
+    "config": "flex",
+    "type": "app",
+    "compilerOptions": {
+        "debug": false,
+        "js-output-type": "flexjs",
+        "library-path": [
+            "libs"
+        ],
+        "define": [
+            {
+                "name": "COMPILE::SWF",
+                "value": true
+            },
+            {
+                "name": "COMPILE::JS",
+                "value": false
+            },
+            {
+                "name": "CONFIG::release",
+                "value":true
+            },
+            {
+                "name": "CONFIG::debug",
+                "value":false
+            }
+        ]
+    },
+    "files":
+    [
+        "src/TLFClasses.as"
+    ]
+}

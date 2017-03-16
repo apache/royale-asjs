@@ -20,8 +20,8 @@
 
 
 <project name="TextJS" default="main" basedir=".">
-    <property name="FLEXJS_HOME" location="/FlexSDK/FlexJSNightly"/>
-    <!--<property name="FLEXJS_HOME" location="../../../../.."/>-->
+    <!--<property name="FLEXJS_HOME" location="/FlexSDK/FlexJSNightly"/>-->
+    <property name="FLEXJS_HOME" location="../../../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
@@ -63,8 +63,8 @@
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
-            <arg value="-output=${basedir}/../../../../projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
-            <!--<arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />-->
+            <!--<arg value="-output=${basedir}/../../../../projects/${target.name.nojs}/target/${target.name.nojs}.swc" />-->
+            <arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
         </java>

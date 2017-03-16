@@ -20,7 +20,6 @@
 
 
 <project name="Text" default="main" basedir=".">
-    <!--<property name="FLEXJS_HOME" location="/FlexSDK/FlexJSNightly"/>-->
     <property name="FLEXJS_HOME" location="../../.."/>
     
     <property file="${FLEXJS_HOME}/env.properties"/>
