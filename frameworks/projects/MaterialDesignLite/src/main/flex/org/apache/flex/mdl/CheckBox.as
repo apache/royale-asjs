@@ -19,8 +19,10 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.html.CheckBox; 
-    import org.apache.flex.core.IToggleButtonModel;          
-    
+    import org.apache.flex.core.IToggleButtonModel;
+    import org.apache.flex.mdl.beads.UpgradeChildren;
+    import org.apache.flex.mdl.beads.UpgradeElement;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -57,7 +59,10 @@ package org.apache.flex.mdl
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
+
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-checkbox__ripple-container"]));
+        }
         
         COMPILE::JS
         protected var input:HTMLInputElement;
