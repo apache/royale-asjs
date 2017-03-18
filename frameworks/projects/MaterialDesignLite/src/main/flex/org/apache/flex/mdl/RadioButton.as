@@ -20,6 +20,7 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.events.Event;
     import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.mdl.beads.UpgradeChildren;
     import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::SWF
@@ -33,7 +34,6 @@ package org.apache.flex.mdl
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.Span;
     }
 
     //--------------------------------------
@@ -86,17 +86,13 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function RadioButton(isDynamic:Boolean)
+		public function RadioButton()
 		{
-            _isDynamic = isDynamic;
-
             super();
 			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
 		protected static var dict:Dictionary = new Dictionary(true);
-
-		private var _isDynamic:Boolean;
 
 		/**
 		 *  The name of the group. Only one RadioButton in a group is selected.
@@ -269,28 +265,21 @@ package org.apache.flex.mdl
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
-         *
-         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function RadioButton(isDynamic:Boolean = false)
+		public function RadioButton()
 		{
-            _isDynamic = isDynamic;
             super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 
-            if (isDynamic)
-            {
-                addBead(new UpgradeElement());
-            }
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-radio__ripple-container"]));
         }
 
         /**
          * Provides unique name
          */
         protected static var radioCounter:int = 0;
-
-        private var _isDynamic:Boolean;
 
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
@@ -328,7 +317,6 @@ package org.apache.flex.mdl
             label.appendChild(radio);
 
             element = label as WrappedHTMLElement;
-            element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 
             positioner = element;
             (element as WrappedHTMLElement).flexjs_wrapper = this;
@@ -457,31 +445,6 @@ package org.apache.flex.mdl
             }
         }
 
-        private function onElementMdlComponentUpgraded(event:Event):void
-        {
-            if (!event.currentTarget) return;
-            upgradeChildren();
-        }
-
-        private function upgradeChildren():void
-        {
-            if (_isDynamic && ripple)
-            {
-                var elementChildren:Object = (element as HTMLElement).children;
-                for (var i:int = 0; i < elementChildren.length; i++)
-                {
-                    var child:Object = elementChildren[i];
-                    var isUpgraded:Object = child.getAttribute("data-upgraded");
-
-                    if (child.classList.contains("mdl-radio__ripple-container") && isUpgraded == null)
-                    {
-                        var componentHandler:Object = window["componentHandler"];
-                        componentHandler["upgradeElement"](child);
-                        break;
-                    }
-                }
-            }
-        }
         /**
          * @param e The event object.
          */

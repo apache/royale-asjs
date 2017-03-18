@@ -46,19 +46,14 @@ package org.apache.flex.mdl
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
-         *
-         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function Button(isDynamic:Boolean = false)
+		public function Button()
 		{
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 
-            if (isDynamic)
-            {
-                addBead(new UpgradeElement());
-            }
+            addBead(new UpgradeElement());
 		}
         
         /**

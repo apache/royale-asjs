@@ -18,7 +18,6 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.mdl.beads.UpgradeElement;
-
     import org.apache.flex.mdl.supportClasses.TextFieldBase;
 
     COMPILE::JS
@@ -55,19 +54,13 @@ package org.apache.flex.mdl
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
-         *
-         *  @param isDynamic indicates whether component can be created dynamically
          */
-		public function TextField(isDynamic:Boolean = false)
+		public function TextField()
 		{
-            _isDynamic = isDynamic;
-
 			super();
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
-
-        private var _isDynamic:Boolean;
-
+        }
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLDivElement
@@ -83,10 +76,7 @@ package org.apache.flex.mdl
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
 
-            if (_isDynamic)
-            {
-                addBead(new UpgradeElement(div));
-            }
+            addBead(new UpgradeElement(div));
 
             input = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');
