@@ -25,6 +25,8 @@ package org.apache.flex.mdl
     import org.apache.flex.html.TextButton;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.core.IUIBase;
+    import org.apache.flex.mdl.beads.UpgradeChildren;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {    
@@ -100,6 +102,9 @@ package org.apache.flex.mdl
             }
 
             className = "";
+            
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-switch__ripple-container"]));
         }
 
         /**
