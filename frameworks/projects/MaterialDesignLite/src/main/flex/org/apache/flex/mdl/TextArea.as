@@ -18,7 +18,8 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.events.Event;
-    
+    import org.apache.flex.mdl.beads.UpgradeElement;
+
     import org.apache.flex.mdl.supportClasses.TextFieldBase;
     
     COMPILE::JS
@@ -129,6 +130,8 @@ package org.apache.flex.mdl
 
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
+
+            addBead(new UpgradeElement(div));
 
             input = document.createElement('textarea') as HTMLInputElement;
             input.setAttribute('type', 'text');
