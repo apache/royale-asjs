@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+    import org.apache.flex.mdl.beads.UpgradeChildren;
+    import org.apache.flex.mdl.beads.UpgradeElement;
     import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
     import org.apache.flex.mdl.supportClasses.MaterialIconBase;
@@ -97,6 +99,9 @@ package org.apache.flex.mdl
             }
 
             className = "";
+
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-icon-toggle__ripple-container"]));
         }
 
         [Bindable("change")]
