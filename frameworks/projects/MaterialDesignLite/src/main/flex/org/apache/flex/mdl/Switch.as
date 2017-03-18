@@ -96,11 +96,6 @@ package org.apache.flex.mdl
         {
             super();
 
-            COMPILE::SWF
-            {
-                addEventListener(MouseEvent.CLICK, internalMouseHandler);
-            }
-
             className = "";
             
             addBead(new UpgradeElement());
@@ -241,12 +236,6 @@ package org.apache.flex.mdl
             selected = !selected;
             input.checked = selected;
             label.classList.toggle("is-checked", selected);
-        }
-
-        COMPILE::SWF
-        private function internalMouseHandler(event:MouseEvent) : void
-        {
-            //selected = !selected;
         }
     }
 }
