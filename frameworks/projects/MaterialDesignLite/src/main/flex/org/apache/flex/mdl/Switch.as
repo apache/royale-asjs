@@ -147,12 +147,14 @@ package org.apache.flex.mdl
             if (IToggleButtonModel(model).selected != value)
             {
                 IToggleButtonModel(model).selected = value;
+
+
+                COMPILE::JS
+                {
+                    input.checked = value;
+                }
+                
                 dispatchEvent(new Event(Event.CHANGE))
-            }
-            
-            COMPILE::JS
-            {
-                input.checked = value;
             }
         }
 
