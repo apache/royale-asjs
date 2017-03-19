@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.EventDispatcher;
-
     import vos.TabVO;
 
-    public class TabsModel extends EventDispatcher
+    public class TabsModel
     {
         private var _tabs:Array = [
                 new TabVO("tab1", "Tab One"),
