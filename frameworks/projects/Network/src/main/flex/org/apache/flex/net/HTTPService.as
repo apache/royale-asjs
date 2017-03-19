@@ -269,7 +269,7 @@ package org.apache.flex.net
                 var part2:String;
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
                 
-                if (_responseHeaders === undefined) {
+                if (_responseHeaders === void 0) {
                     allHeaders = element.getAllResponseHeaders();
                     _responseHeaders = allHeaders.split('\n');
                     n = _responseHeaders.length;
