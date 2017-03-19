@@ -316,6 +316,18 @@ package org.apache.flex.net
 		{
 			return _status;
 		}
+
+        /**
+         *
+         *  Status text contains more information about the HTTP request made.
+         *
+         *  @productversion FlexJS 0.8
+         */
+        COMPILE::JS
+        public function get statusText():String
+        {
+            return (element as XMLHttpRequest).statusText;
+        }
 		
 		private var _url:String;
 
