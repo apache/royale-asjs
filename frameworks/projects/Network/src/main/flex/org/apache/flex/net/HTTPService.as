@@ -677,10 +677,10 @@ package org.apache.flex.net
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
             if (element.readyState === 2) {
                 _status = element.status;
-                dispatchEvent('httpResponseStatus');
-                dispatchEvent('httpStatus');
+                dispatchEvent(HTTPConstants.RESPONSE_STATUS);
+                dispatchEvent(HTTPConstants.STATUS);
             } else if (element.readyState === 4) {
-                dispatchEvent('complete');
+                dispatchEvent(HTTPConstants.COMPLETE);
             }
         }
 
