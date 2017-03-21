@@ -44,7 +44,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class HContainer extends Container implements IContainer
+	public class HContainer extends Container
 	{
         /**
          *  Constructor.

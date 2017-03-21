@@ -19,10 +19,15 @@
 package org.apache.flex.html.beads
 {
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IContentViewHost;
+	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IViewport;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -30,11 +35,18 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.geom.Size;
+	import org.apache.flex.html.Group;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.Panel;
 	import org.apache.flex.html.TitleBar;
 	import org.apache.flex.utils.CSSContainerUtils;
 	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.html.beads.layouts.VerticalFlexLayout;
+	import org.apache.flex.html.supportClasses.PanelLayoutProxy;
+	
+	COMPILE::SWF {
+		import org.apache.flex.core.SimpleCSSStyles;
+	}
 	
 	/**
 	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
@@ -47,7 +59,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PanelView extends ContainerView implements IBeadView
+	public class PanelView extends GroupView implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -85,6 +97,27 @@ package org.apache.flex.html.beads
         {
             _titleBar = value;
         }
+		
+		private var _contentArea:Container;
+		
+		/**
+		 * The content area of the panel.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function get contentArea():Container
+		{
+			return _contentArea;
+		}
+		public function set contentArea(value:Container):void
+		{
+			_contentArea = value;
+		}
+		
+		private var _strand:IStrand;
 				
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -96,74 +129,136 @@ package org.apache.flex.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
+			_strand = value;
+			
             var host:UIBase = UIBase(value);
             
             if (!_titleBar) {
                 _titleBar = new TitleBar();
 				_titleBar.id = "panelTitleBar";
-				_titleBar.height = 30;
+				
+				COMPILE::SWF {
+					_titleBar.percentWidth = 100;
+					
+					if (_titleBar.style == null) {
+						_titleBar.style = new SimpleCSSStyles();
+					}
+					_titleBar.style.flexGrow = 0;
+					_titleBar.style.order = 1;
+				}
+				
+				COMPILE::JS {
+					_titleBar.element.style["flex-grow"] = "0";
+					_titleBar.element.style["order"] = "1";
+				}
 			}
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will 
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
+			
+			if (!_contentArea) {
+				_contentArea = new Container();
+				_contentArea.id = "panelContent";
+				_contentArea.className = "PanelContent";
+				
+				COMPILE::SWF {
+					_contentArea.percentWidth = 100;
+					
+					if (_contentArea.style == null) {
+						_contentArea.style = new SimpleCSSStyles();
+					}
+					_contentArea.style.flexGrow = 1;
+					_contentArea.style.order = 2;
+				}
+				
+				COMPILE::JS {
+					_contentArea.element.style["flex-grow"] = "1";
+					_contentArea.element.style["order"] = "2";
+					_contentArea.element.style["overflow"] = "auto"; // temporary
+				}
+			}
+			
+			COMPILE::SWF {
+				IEventDispatcher(value).addEventListener("widthChanged", handleSizeChange);
+				IEventDispatcher(value).addEventListener("heightChanged", handleSizeChange);
+				IEventDispatcher(value).addEventListener("sizeChanged", handleSizeChange);
+				IEventDispatcher(value).addEventListener("childrenAdded", handleChildrenAdded);
+			}
 			            
             super.strand = value;
+			
+			// If the Panel was given a layout, transfer it to the content area.
+			var layoutBead:IBeadLayout = value.getBeadByType(IBeadLayout) as IBeadLayout;
+			if (layoutBead) {
+				value.removeBead(layoutBead);
+				
+				var contentLayout:IBeadLayout = _contentArea.getBeadByType(IBeadLayout) as IBeadLayout;
+				if (contentLayout) {
+					_contentArea.removeBead(contentLayout);
+				}
+				_contentArea.addBead(layoutBead);
+			}
+			
+			// If the Panel was given a viewport, transfer it to the content area.
+			var viewportBead:IViewport = value.getBeadByType(IViewport) as IViewport;
+			if (viewportBead) {
+				value.removeBead(viewportBead);
+				_contentArea.addBead(viewportBead);
+			}
+			
+			// Now give the Panel its own layout
+			layoutBead = new VerticalFlexLayout();
+			value.addBead(layoutBead);
+		}
+		
+		private var _panelLayoutProxy:PanelLayoutProxy;
+		
+		/**
+		 * The sub-element used as the parent of the container's elements. This does not
+		 * include the chrome elements.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		override public function get contentView():ILayoutObject
+		{
+			// we want to return a proxy for the host which will have numElements, getElementAt, etc.
+			// functions that will use the host.$numElements, host.$getElementAt, etc. functions
+			if (_panelLayoutProxy == null) {
+				_panelLayoutProxy = new PanelLayoutProxy(_strand);
+			}
+			return _panelLayoutProxy;
 		}
 		
 		override protected function completeSetup():void
 		{
-			(host as IContentViewHost).strandChildren.addElement(titleBar);
+			if (titleBar.parent == null) {
+				(_strand as Panel).$addElement(titleBar);
+			}
+			if (contentArea.parent == null) {
+				(_strand as Panel).$addElement(contentArea as IChild);
+			}
+			
 			super.completeSetup();
 		}
 		
-        /**
-         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        override protected function getChromeMetrics():Rectangle
-        {
-            return new Rectangle(0, titleBar.height, 0, 0 - titleBar.height);
-        }
-        
-        override protected function layoutViewBeforeContentLayout():void
-        {
-            var vm:IViewportModel = viewportModel;
-            var host:ILayoutChild = this.host as ILayoutChild;
-            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
-            titleBar.x = vm.borderMetrics.left;
-            titleBar.y = vm.borderMetrics.top;
-            if (!host.isWidthSizedToContent())
-                titleBar.width = host.width - vm.borderMetrics.left - vm.borderMetrics.right;
-            vm.chromeMetrics = getChromeMetrics();
-            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
-                vm.borderMetrics.top + vm.chromeMetrics.top);
-            viewport.layoutViewportBeforeContentLayout(
-                !host.isWidthSizedToContent() ? 
-                host.width - vm.borderMetrics.left - vm.borderMetrics.right -
-                vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
-                !host.isHeightSizedToContent() ?
-                host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
-                vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
-        }
-        
-		override protected function layoutViewAfterContentLayout():void
+		protected function handleSizeChange(event:Event):void
 		{
-            var vm:IViewportModel = viewportModel;
-            var viewportSize:Size = this.viewport.layoutViewportAfterContentLayout();
-            var host:ILayoutChild = this.host as ILayoutChild;
-            var hasWidth:Boolean = !host.isWidthSizedToContent();
-            var hasHeight:Boolean = !host.isHeightSizedToContent();
-            if (!hasWidth) {
-                titleBar.width = viewportSize.width; // should get titlebar to layout and get new height
-                vm.chromeMetrics = this.getChromeMetrics();
-                vm.chromeMetrics.top = titleBar.height;
-            }
-            super.layoutViewAfterContentLayout();
+			COMPILE::JS {
+				_titleBar.percentWidth = 100;
+				_contentArea.percentWidth = 100;
+			}
+				
+			performLayout(event);
+		}
+		
+		private function handleChildrenAdded(event:Event):void
+		{
+			_contentArea.dispatchEvent(new Event("layoutNeeded"));
+			performLayout(event);
 		}       
 	}
 }

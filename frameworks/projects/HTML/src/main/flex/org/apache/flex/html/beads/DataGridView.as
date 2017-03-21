@@ -39,7 +39,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.layouts.VerticalLayout;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.layouts.IDataGridLayout;
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.beads.models.ButtonBarModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.ScrollingViewport;
@@ -124,12 +124,10 @@ package org.apache.flex.html.beads
 			var host:UIBase = value as UIBase;
 
 			_header = new DataGridButtonBar();
-			_header.id = "dataGridHeader";
 
 			var scrollPort:ScrollingViewport = new ScrollingViewport();
 
 			_listArea = new Container();
-			_listArea.id = "dataGridListArea";
 			_listArea.className = "DataGridListArea";
 			_listArea.addBead(scrollPort);
 			
@@ -166,10 +164,11 @@ package org.apache.flex.html.beads
 			}
 
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
-			var buttonBarModel:ArraySelectionModel = new ArraySelectionModel();
-			buttonBarModel.dataProvider = columnLabels;
+			//var buttonBarModel:ButtonBarModel = new ButtonBarModel();
+			//buttonBarModel.dataProvider = columnLabels;
 
-			_header.addBead(buttonBarModel);
+			_header.dataProvider = columnLabels;
+			//_header.addBead(buttonBarModel);
 			_header.addBead(bblayout);
 			_header.addBead(new Viewport());
 			host.addElement(_header);
@@ -255,7 +254,7 @@ package org.apache.flex.html.beads
 			
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			var presentationModel:IDataGridPresentationModel = host.presentationModel;
-			var listWidth:Number = host.width / sharedModel.columns.length;
+			//var listWidth:Number = host.width / sharedModel.columns.length;
 
 			_lists = new Array();
 

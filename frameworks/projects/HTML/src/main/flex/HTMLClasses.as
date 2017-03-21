@@ -66,9 +66,10 @@ internal class HTMLClasses
 	    import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
 	}
 	import org.apache.flex.html.beads.PanelView; PanelView;
+	import org.apache.flex.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
+	import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	import org.apache.flex.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	import org.apache.flex.html.beads.SliderView; SliderView;
-    import org.apache.flex.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	COMPILE::SWF
 	{
 		import org.apache.flex.html.beads.RadioButtonView; RadioButtonView;
@@ -150,6 +151,7 @@ internal class HTMLClasses
 	{
 		import org.apache.flex.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
     	import org.apache.flex.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
+		import org.apache.flex.html.supportClasses.ContainerContentArea; ContainerContentArea;
 	}
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
@@ -192,7 +194,6 @@ internal class HTMLClasses
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 
 	import org.apache.flex.core.ListBase; ListBase;
-	import org.apache.flex.core.ListBaseStrandChildren; ListBaseStrandChildren;
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.UIBase; UIBase;
     import org.apache.flex.core.SimpleApplication; SimpleApplication;

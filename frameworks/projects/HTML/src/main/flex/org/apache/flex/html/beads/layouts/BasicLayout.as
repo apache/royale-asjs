@@ -23,7 +23,8 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
@@ -85,7 +86,7 @@ package org.apache.flex.html.beads.layouts
             COMPILE::SWF
             {
 				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:IParentIUIBase = viewBead.contentView;
+				var contentView:ILayoutObject = viewBead.contentView;
 				
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -215,13 +216,13 @@ package org.apache.flex.html.beads.layouts
                 var n:int;
                 
                 var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-                var contentView:IParentIUIBase = viewBead.contentView;
+                var contentView:ILayoutObject = viewBead.contentView;
 
                 n = contentView.numElements;
 				
 				// host must have either have position:absolute or position:relative
-				if (host.element.style.position != "absolute" && host.element.style.position != "relative") {
-					host.element.style.position = "relative";
+				if (contentView.element.style.position != "absolute" && contentView.element.style.position != "relative") {
+					contentView.element.style.position = "relative";
 				}
 				
 				// each child must have position:absolute for BasicLayout to work

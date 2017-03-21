@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-    COMPILE::SWF
-    {
-        import flash.geom.Rectangle;
-    }
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
+	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -33,12 +30,15 @@ package org.apache.flex.html.supportClasses
     COMPILE::SWF
     {
         import org.apache.flex.core.IViewportScroller;
+		import org.apache.flex.utils.CSSContainerUtils;
+		import flash.geom.Rectangle;
     }
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.ScrollBarView;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
+	import org.apache.flex.geom.Rectangle;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -51,6 +51,66 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::JS
+	public class ScrollingViewport extends Viewport implements IBead, IViewport
+	{
+		/**
+		 * Constructor
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function ScrollingViewport()
+		{
+		}
+		
+		public function get verticalScrollPosition():Number
+		{
+			return this.contentView.positioner.scrollTop;
+		}
+		public function set verticalScrollPosition(value:Number):void
+		{
+			this.contentView.positioner.scrollTop = value;
+		}
+		
+		public function get horizontalScrollPosition():Number
+		{
+			return this.contentView.positioner.scrollLeft;
+		}
+		public function set horizontalScrollPosition(value:Number):void
+		{
+			this.contentView.positioner.scrollLeft = value;
+		}
+		
+		/**
+		 * @flexjsignorecoercion HTMLElement 
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			(value as UIBase).element.style.overflow = "auto";
+		}
+		
+		/**
+		* @copy org.apache.flex.core.IViewport
+		*/
+		override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
+		{
+			// does nothing for the JS platform
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IViewport
+		 */
+		override public function layoutViewportAfterContentLayout(contentSize:Size):void
+		{
+			// does nothing for the JS platform
+		}
+	}
+	
+	COMPILE::SWF
 	public class ScrollingViewport extends Viewport implements IBead, IViewport
 	{
 		/**
@@ -65,86 +125,42 @@ package org.apache.flex.html.supportClasses
 		{
 		}
 
-        COMPILE::SWF
 		private var _verticalScroller:ScrollBar;
 
-        COMPILE::SWF
 		public function get verticalScroller():IViewportScroller
 		{
 			return _verticalScroller;
 		}
 
-        COMPILE::SWF
 		private var _horizontalScroller:ScrollBar
 
-        COMPILE::SWF
 		public function get horizontalScroller():IViewportScroller
 		{
 			return _horizontalScroller;
 		}
 
-        COMPILE::SWF
         private var _verticalScrollPosition:Number = 0;
 
         public function get verticalScrollPosition():Number
         {
-            COMPILE::SWF
-            {
-                return _verticalScrollPosition;
-            }
-            COMPILE::JS
-            {
-                return this.contentView.positioner.scrollTop;
-            }
+			return _verticalScrollPosition;
         }
         public function set verticalScrollPosition(value:Number):void
         {
-            COMPILE::SWF
-            {
-                _verticalScrollPosition = value;
-                handleVerticalScrollChange();
-            }
-            COMPILE::JS
-            {
-                this.contentView.positioner.scrollTop = value;
-            }
+			_verticalScrollPosition = value;
+			handleVerticalScrollChange();
         }
 
-        COMPILE::SWF
         private var _horizontalScrollPosition:Number = 0;
 
         public function get horizontalScrollPosition():Number
         {
-            COMPILE::SWF
-            {
-                return _horizontalScrollPosition;
-            }
-            COMPILE::JS
-            {
-                return this.contentView.positioner.scrollLeft;
-            }
+			return _horizontalScrollPosition;
         }
         public function set horizontalScrollPosition(value:Number):void
         {
-            COMPILE::SWF
-            {
-                _horizontalScrollPosition = value;
-                handleHorizontalScrollChange();
-            }
-            COMPILE::JS
-            {
-                this.contentView.positioner.scrollLeft = value;
-            }
-        }
-
-        /**
-         * @flexjsignorecoercion HTMLElement 
-         */
-        COMPILE::JS
-        override public function set strand(value:IStrand):void
-        {
-            super.strand = value;
-            (contentView.element as HTMLElement).style.overflow = 'auto';
+			_horizontalScrollPosition = value;
+			handleHorizontalScrollChange();
         }
 
         private var viewportWidth:Number;
@@ -155,127 +171,85 @@ package org.apache.flex.html.supportClasses
          */
         override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
         {
-           super.layoutViewportBeforeContentLayout(width, height);
-           viewportWidth = width;
-           viewportHeight = height;
+           	super.layoutViewportBeforeContentLayout(width, height);
+           	viewportWidth = width;
+           	viewportHeight = height;
         }
 
         /**
          * @copy org.apache.flex.core.IViewport
          */
-		override public function layoutViewportAfterContentLayout():Size
+		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
-            COMPILE::SWF
-            {
-                var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
-                var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
-                var contentSize:Size;
-                do
-                {
-                    contentSize = super.layoutViewportAfterContentLayout();
-                    if (isNaN(viewportHeight))
-                        viewportHeight = contentSize.height;
-                    if (isNaN(viewportWidth))
-                        viewportWidth = contentSize.width;
-
-                    var host:UIBase = UIBase(_strand);
-                    var visibleWidth:Number;
-                    var visibleHeight:Number;
-                    var needV:Boolean = contentSize.height > viewportHeight;
-                    var needH:Boolean = contentSize.width > viewportWidth;
-
-                    if (needV)
-                    {
-                        if (_verticalScroller == null) {
-                            _verticalScroller = createVerticalScrollBar();
-                            (host as IContentViewHost).strandChildren.addElement(_verticalScroller);
-                        }
-                    }
-                    if (needH)
-                    {
-                        if (_horizontalScroller == null) {
-                            _horizontalScroller = createHorizontalScrollBar();
-                            (host as IContentViewHost).strandChildren.addElement(_horizontalScroller);
-                        }
-                    }
-
-                    if (needV)
-                    {
-                        _verticalScroller.visible = true;
-                        _verticalScroller.x = contentArea.x + viewportWidth - _verticalScroller.width;
-                        _verticalScroller.y = contentArea.y;
-                        _verticalScroller.setHeight(viewportHeight - (needH ? _horizontalScroller.height : 0), true);
-                        visibleWidth = _verticalScroller.x;
-                    }
-                    else if (_verticalScroller)
-                        _verticalScroller.visible = false;
-
-                    if (needH)
-                    {
-                        _horizontalScroller.visible = true;
-                        _horizontalScroller.x = contentArea.x;
-                        _horizontalScroller.y = contentArea.y + viewportHeight - _horizontalScroller.height;
-                        _horizontalScroller.setWidth(viewportWidth - (needV ? _verticalScroller.width : 0), true);
-                        visibleHeight = _horizontalScroller.y;
-                    }
-
-                    var needsLayout:Boolean = false;
-                    // resize content area if needed to get out from under scrollbars
-                    if (!isNaN(visibleWidth) || !isNaN(visibleHeight))
-                    {
-                        if (!isNaN(visibleWidth))
-                            needsLayout = visibleWidth != contentView.width;
-                        if (!isNaN(visibleHeight))
-                            needsLayout = visibleHeight != contentView.height;
-                        if (!isNaN(visibleWidth) && !isNaN(visibleHeight))
-                            contentArea.setWidthAndHeight(visibleWidth, visibleHeight, false);
-                        else if (!isNaN(visibleWidth))
-                            contentArea.setWidth(visibleWidth, false);
-                        else if (!isNaN(visibleHeight))
-                            contentArea.setHeight(visibleHeight, false);
-                    }
-                    if (needsLayout)
-                    {
-                        var layout:IBeadLayout = host.getBeadByType(IBeadLayout) as IBeadLayout;
-                        layout.layout();
-                    }
-                } while (needsLayout && (needV != hadV || needH == hadH));
-                if (_verticalScroller)
-                {
-                    ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
-                    ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
-                    ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
-                    if (contentSize.height > contentArea.height &&
-                        (contentSize.height - contentArea.height) < _verticalScrollPosition)
-                        _verticalScrollPosition = contentSize.height - contentArea.height;
-                }
-                if (_horizontalScroller)
-                {
-                    ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
-                    ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
-                    ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
-                    if (contentSize.width > contentArea.width &&
-                        (contentSize.width - contentArea.width) < _horizontalScrollPosition)
-                        _horizontalScrollPosition = contentSize.width - contentArea.width;
-                }
-
-                var rect:Rectangle = new Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
-                    (_verticalScroller != null && _verticalScroller.visible) ?
-                    _verticalScroller.x : viewportWidth,
-                    (_horizontalScroller != null && _horizontalScroller.visible) ?
-                    _horizontalScroller.y : viewportHeight);
-                contentArea.$sprite.scrollRect = rect;
-                return contentSize;
-
-            }
-            COMPILE::JS
-            {
-                return new Size(contentView.width, contentView.height);
-            }
-
+			var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
+			var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
+			
+			var hostWidth:Number = UIBase(_strand).width;
+			var hostHeight:Number = UIBase(_strand).height;
+			
+			var needV:Boolean = contentSize.height > viewportHeight;
+			var needH:Boolean = contentSize.width > viewportWidth;
+			
+			if (needV)
+			{
+				if (_verticalScroller == null) {
+					_verticalScroller = createVerticalScrollBar();
+					(_strand as IContainer).$addElement(_verticalScroller);
+				}
+			}
+			if (needH)
+			{
+				if (_horizontalScroller == null) {
+					_horizontalScroller = createHorizontalScrollBar();
+					(_strand as IContainer).$addElement(_horizontalScroller);
+				}
+			}
+			
+			if (needV)
+			{
+				_verticalScroller.visible = true;
+				_verticalScroller.x = hostWidth - _verticalScroller.width;
+				_verticalScroller.y = 0;
+				_verticalScroller.setHeight(hostHeight - (needH ? _horizontalScroller.height : 0), true);
+				
+				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;// + paddingMetrics.top + paddingMetrics.bottom;
+				ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
+				ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
+				
+				if (contentSize.height > contentArea.height &&
+					(contentSize.height - contentArea.height) < _verticalScrollPosition)
+					_verticalScrollPosition = contentSize.height - contentArea.height;
+			}
+			else if (_verticalScroller) {
+				_verticalScroller.visible = false;
+			}
+			
+			if (needH)
+			{
+				_horizontalScroller.visible = true;
+				_horizontalScroller.x = 0;
+				_horizontalScroller.y = hostHeight - _horizontalScroller.height;
+				_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), true);
+				
+				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;// + paddingMetrics.left + paddingMetrics.right;
+				ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
+				ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
+				
+				if (contentSize.width > contentArea.width &&
+					(contentSize.width - contentArea.width) < _horizontalScrollPosition)
+					_horizontalScrollPosition = contentSize.width - contentArea.width;
+			} 
+			else if (_horizontalScroller) {
+				_horizontalScroller.visible = false;
+			}
+			
+			var rect:flash.geom.Rectangle = new flash.geom.Rectangle(_horizontalScrollPosition, _verticalScrollPosition,
+				(_verticalScroller != null && _verticalScroller.visible) ? _verticalScroller.x : hostWidth,
+				(_horizontalScroller != null && _horizontalScroller.visible) ? _horizontalScroller.y : hostHeight);
+			
+			contentArea.$sprite.scrollRect = rect;
 		}
 
-		COMPILE::SWF
 		private function createVerticalScrollBar():ScrollBar
 		{
 			var vsbm:ScrollBarModel = new ScrollBarModel();
@@ -293,7 +267,6 @@ package org.apache.flex.html.supportClasses
 			return vsb;
 		}
 
-        COMPILE::SWF
 		private function createHorizontalScrollBar():ScrollBar
 		{
 			var hsbm:ScrollBarModel = new ScrollBarModel();
@@ -311,31 +284,28 @@ package org.apache.flex.html.supportClasses
 			return hsb;
 		}
 
-        COMPILE::SWF
 		private function handleVerticalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
 			var vpos:Number = ScrollBarModel(_verticalScroller.model).value;
-			var rect:Rectangle = contentArea.$sprite.scrollRect;
+			var rect:flash.geom.Rectangle = contentArea.$sprite.scrollRect;
 			rect.y = vpos;
 			contentArea.$sprite.scrollRect = rect;
 
 			_verticalScrollPosition = vpos;
 		}
 
-        COMPILE::SWF
 		private function handleHorizontalScroll(event:Event):void
 		{
 			var host:UIBase = UIBase(_strand);
 			var hpos:Number = ScrollBarModel(_horizontalScroller.model).value;
-			var rect:Rectangle = contentArea.$sprite.scrollRect;
+			var rect:flash.geom.Rectangle = contentArea.$sprite.scrollRect;
 			rect.x = hpos;
 			contentArea.$sprite.scrollRect = rect;
 
 			_horizontalScrollPosition = hpos;
 		}
 
-        COMPILE::SWF
 		private function handleVerticalScrollChange():void
 		{
 			if (_verticalScroller) {
@@ -343,7 +313,6 @@ package org.apache.flex.html.supportClasses
 			}
 		}
 
-        COMPILE::SWF
 		private function handleHorizontalScrollChange():void
 		{
 			if (_horizontalScroller) {

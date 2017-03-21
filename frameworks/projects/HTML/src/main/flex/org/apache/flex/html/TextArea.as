@@ -25,7 +25,7 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
     /**
@@ -41,18 +41,18 @@ package org.apache.flex.html
     /**
      *  The TextArea class implements the basic control for
      *  multi-line text input.
-     *  
+     *
      *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
 	public class TextArea extends UIBase
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -67,10 +67,10 @@ package org.apache.flex.html
                 model.addEventListener("textChange", textChangeHandler);
             }
 		}
-		
+
         /**
          *  @copy org.apache.flex.html.Label#text
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -82,7 +82,7 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).text;                    
+                return ITextModel(model).text;
             }
             COMPILE::JS
             {
@@ -108,10 +108,10 @@ package org.apache.flex.html
                 dispatchEvent(new Event('textChange'));
             }
 		}
-		
+
         /**
          *  @copy org.apache.flex.html.Label#html
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -145,7 +145,7 @@ package org.apache.flex.html
                 dispatchEvent(new Event('textChange'));
             }
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -154,14 +154,14 @@ package org.apache.flex.html
         {
             element = document.createElement('textarea') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             goog.events.listen(element, 'input', textChangeHandler);
-            
+
             element.flexjs_wrapper = this;
             element.className = 'TextArea';
             typeNames = 'TextArea';
-            
+
             return element;
         }
 

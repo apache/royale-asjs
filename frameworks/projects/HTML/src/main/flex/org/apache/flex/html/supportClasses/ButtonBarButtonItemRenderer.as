@@ -107,6 +107,7 @@ package org.apache.flex.html.supportClasses
 			var added:Boolean = false;
 			if (textButton == null) {
 				textButton = new TextButton();
+				textButton.percentWidth = 100;
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.

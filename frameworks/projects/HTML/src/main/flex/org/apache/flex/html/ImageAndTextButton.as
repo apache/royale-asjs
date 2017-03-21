@@ -22,24 +22,24 @@ package org.apache.flex.html
     import org.apache.flex.html.beads.models.ImageAndTextModel;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
     /**
      *  The ImageTextButton class implements a basic button that
      *  displays and image and text.
-     *  
+     *
      *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
 	public class ImageAndTextButton extends TextButton
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -49,7 +49,7 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
+
         /**
          *  @private
          */
@@ -58,7 +58,7 @@ package org.apache.flex.html
         {
             return ImageAndTextModel(model).text;
         }
-        
+
         /**
          *  @private
          */
@@ -68,13 +68,13 @@ package org.apache.flex.html
             ImageAndTextModel(model).text = value;
             COMPILE::JS
             {
-                setInnerHTML();                    
+                setInnerHTML();
             }
         }
-        
+
         /**
          *  The URL of an icon to use in the button
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -84,7 +84,7 @@ package org.apache.flex.html
         {
             return ImageAndTextModel(model).image;
         }
-        
+
         /**
          *  @private
          */
@@ -93,10 +93,10 @@ package org.apache.flex.html
             ImageAndTextModel(model).image = value;
             COMPILE::JS
             {
-                setInnerHTML();                    
+                setInnerHTML();
             }
         }
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -105,13 +105,13 @@ package org.apache.flex.html
         {
             element = document.createElement('button') as WrappedHTMLElement;
             element.setAttribute('type', 'button');
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
+
             return element;
-        }        
+        }
 
         /**
          */

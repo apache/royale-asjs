@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
@@ -56,10 +57,72 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::JS
 	public class ListView extends ContainerView implements IListView
 	{
 		public function ListView()
 		{
+			super();
+		}
+		
+		protected var listModel:ISelectionModel;
+		protected var lastSelectedIndex:int = -1;
+		
+		public function get dataGroup():IItemRendererParent
+		{
+			return (_strand as IList).dataGroup;
+		}
+		
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			
+			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			host.addEventListener("itemsCreated", itemsCreatedHandler);
+			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			//listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			
+			super.beadsAddedHandler(event);
+		}
+		
+		protected function selectionChangeHandler(event:Event):void
+		{
+			if (lastSelectedIndex != -1)
+			{
+				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+				if (ir != null) ir.selected = false;
+			}
+			if (listModel.selectedIndex != -1)
+			{
+				ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+				if (ir != null) ir.selected = true;
+			}
+			lastSelectedIndex = listModel.selectedIndex;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function itemsCreatedHandler(event:Event):void
+		{
+			performLayout(event);
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function dataProviderChangeHandler(event:Event):void
+		{
+			performLayout(event);
+		}
+	}
+	
+	COMPILE::SWF
+	public class ListView extends ContainerView implements IListView
+	{
+		public function ListView()
+		{
+			super();
 		}
 						
 		protected var listModel:ISelectionModel;
@@ -78,28 +141,6 @@ package org.apache.flex.html.beads
         {
             return _border;
         }
-		
-		/**
-		 *  The area holding the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			(contentView as UIBase).className = "ListDataGroup";
-			return contentView as IItemRendererParent;
-		}
-				
-		/**
-		 * @private
-		 */
-		override public function get resizableView():IUIBase
-		{
-			return _strand as IUIBase;
-		}
         
         /**
          * @private
@@ -129,15 +170,24 @@ package org.apache.flex.html.beads
 			
 			// list is not interested in UI children, it wants to know when new items
 			// have been added or the dataProvider has changed.
-			
 			host.removeEventListener("childrenAdded", childrenChangedHandler);
 			host.removeEventListener("childrenAdded", performLayout);
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
+		}
+		
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			super.beadsAddedHandler(event);
 			
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		public function get dataGroup():IItemRendererParent
+		{
+			return (_strand as IList).dataGroup;
 		}
 		
 		protected var lastSelectedIndex:int = -1;

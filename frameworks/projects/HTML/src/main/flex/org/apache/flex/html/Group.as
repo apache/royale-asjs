@@ -22,11 +22,11 @@ package org.apache.flex.html
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -39,7 +39,7 @@ package org.apache.flex.html
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	[Event(name="childrenAdded", type="org.apache.flex.events.Event")]
 	
@@ -59,9 +59,9 @@ package org.apache.flex.html
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */    
-	public class Group extends GroupBase implements ILayoutParent, IParentIUIBase
+	public class Group extends GroupBase implements ILayoutParent, ILayoutObject
 	{
         /**
          *  Constructor.
@@ -69,7 +69,7 @@ package org.apache.flex.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
 		public function Group()
 		{
@@ -82,7 +82,7 @@ package org.apache.flex.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function getLayoutHost():ILayoutHost
 		{

@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutObject;
     import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
@@ -34,6 +35,7 @@ package org.apache.flex.html.beads.layouts
     import org.apache.flex.geom.Rectangle;
     import org.apache.flex.html.supportClasses.Viewport;
     import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.flex.utils.CSSUtils;
 
     /**
      *  The FlexibleFirstChildHorizontalLayout class is a simple layout
@@ -129,117 +131,125 @@ package org.apache.flex.html.beads.layouts
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
+		COMPILE::SWF
 		public function layout():Boolean
-		{
-			var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
-            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-            var hostSizedToContent:Boolean = host.isHeightSizedToContent();
+		{			
+			var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost(); 
+			var contentView:ILayoutObject = layoutHost.contentView;
 			
-			var n:int = contentView.numElements;
+			var n:Number = contentView.numElements;
+			if (n == 0) return false;
+			
+			var maxWidth:Number = 0;
+			var maxHeight:Number = 0;
+			var hostSizedToContent:Boolean = host.isHeightSizedToContent();
+			var hostWidth:Number = contentView.width;
+			var hostHeight:Number = hostSizedToContent ? 0 : contentView.height;
+			
+			var ilc:ILayoutChild;
+			var data:Object;
+			var canAdjust:Boolean = false;
 			var marginLeft:Object;
 			var marginRight:Object;
 			var marginTop:Object;
 			var marginBottom:Object;
 			var margin:Object;
-			maxHeight = 0;
-			var verticalMargins:Array = [];
 			
-            var xx:Number = contentView.width;
-            if (isNaN(xx) || xx <= 0)
-                return true;
-            xx -= padding.right + 1; // some browsers won't layout to the edge
-            
-            for (var i:int = n - 1; i >= 0; i--)
+			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			
+			var xpos:Number = hostWidth - borderMetrics.right - paddingMetrics.right;
+			var ypos:Number = borderMetrics.top + paddingMetrics.left;
+			var adjustedWidth:Number = 0;
+			
+			for(var i:int=(n-1); i >= 0; i--)
 			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 				if (child == null || !child.visible) continue;
+				var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
+				var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
 				margin = ValuesManager.valuesImpl.getValue(child, "margin");
-				if (margin is Array)
-				{
-					if (margin.length == 1)
-						marginLeft = marginTop = marginRight = marginBottom = margin[0];
-					else if (margin.length <= 3)
-					{
-						marginLeft = marginRight = margin[1];
-						marginTop = marginBottom = margin[0];
-					}
-					else if (margin.length == 4)
-					{
-						marginLeft = margin[3];
-						marginBottom = margin[2];
-						marginRight = margin[1];
-						marginTop = margin[0];					
-					}
-				}
-				else if (margin == null)
-				{
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-				}
-				else
-				{
-					marginLeft = marginTop = marginBottom = marginRight = margin;
-				}
-				var ml:Number;
-				var mr:Number;
-				var mt:Number;
-				var mb:Number;
-				var lastmr:Number;
-				mt = Number(marginTop);
-				if (isNaN(mt))
-					mt = 0;
-				mb = Number(marginBottom);
-				if (isNaN(mb))
-					mb = 0;
+				marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
+				marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
+				marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
+				marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
+				var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, hostWidth);
+				var mr:Number = CSSUtils.getRightValue(marginRight, margin, hostWidth);
+				var mt:Number = CSSUtils.getTopValue(marginTop, margin, hostHeight);
+				var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, hostHeight);
 				if (marginLeft == "auto")
 					ml = 0;
-				else
-				{
-					ml = Number(marginLeft);
-					if (isNaN(ml))
-						ml = 0;
-				}
 				if (marginRight == "auto")
 					mr = 0;
-				else
-				{
-					mr = Number(marginRight);
-					if (isNaN(mr))
-						mr = 0;
+				
+				ilc = child as ILayoutChild;
+								
+				var childYpos:Number = ypos + mt; // default y position
+				
+				if (!hostSizedToContent) {
+					var childHeight:Number = child.height;
+					if (ilc != null && !isNaN(ilc.percentHeight)) {
+						childHeight = (hostHeight-borderMetrics.top-borderMetrics.bottom-paddingMetrics.top-paddingMetrics.bottom) * ilc.percentHeight/100.0;
+						ilc.setHeight(childHeight);
+					}			
+					// the following code middle-aligns the child
+					childYpos = hostHeight/2 - (childHeight + mt + mb)/2;
 				}
-				child.y = mt + padding.top;
-				if (i == 0)
-                {
-                    child.x = ml + padding.left;
-                    child.width = xx - mr - child.x;
-                }
-				else
-                    child.x = xx - child.width - mr;
-                maxHeight = Math.max(maxHeight, mt + child.height + mb);
-				xx -= child.width + mr + ml;
-				lastmr = mr;
-				var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-				verticalMargins.push({ marginTop: mt, marginBottom: mb, valign: valign });
+				
+				if (ilc) {
+					if (!isNaN(ilc.percentWidth)) {
+						ilc.setWidth((contentView.width-borderMetrics.left-borderMetrics.right-paddingMetrics.left-paddingMetrics.right) * ilc.percentWidth / 100);
+					}
+				}
+				
+				if (i > 0) {
+					xpos -= child.width + mr;
+					adjustedWidth = child.width;
+				} else {
+					adjustedWidth = xpos - (borderMetrics.left + paddingMetrics.left + ml + mr);
+					xpos = borderMetrics.left + paddingMetrics.left + ml;
+				}
+				
+				if (ilc) {
+					ilc.setX(xpos);
+					ilc.setY(childYpos);
+					ilc.setWidth(adjustedWidth);
+					
+				} else {
+					child.x = xpos;
+					child.y = childYpos;
+					child.width = adjustedWidth;
+				}
+				
+				xpos -= ml;
 			}
-			for (i = 0; i < n; i++)
-			{
-				var obj:Object = verticalMargins[0]
-				child = contentView.getElementAt(i) as IUIBase;
-				if (child == null || !child.visible) continue;
-				if (obj.valign == "middle")
-					child.y = (maxHeight - child.height) / 2;
-				else if (valign == "bottom")
-					child.y = maxHeight - child.height - obj.marginBottom;
-				else
-					child.y = obj.marginTop;
-			}
-            if (hostSizedToContent)
-                ILayoutChild(contentView).setHeight(maxHeight + padding.top + padding.bottom, true);
 			
-            return true;
+			host.dispatchEvent( new Event("layoutComplete") );
+			
+			return true;
+		}
+		
+		COMPILE::JS
+		public function layout():Boolean
+		{
+			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
+			var contentView:ILayoutObject = viewBead.contentView;
+			
+			// set the display on the contentView
+			contentView.element.style["display"] = "flex";
+			contentView.element.style["flex-flow"] = "row";
+			contentView.element.style["align-items"] = "center";
+			
+			var n:int = contentView.numElements;
+			if (n == 0) return false;
+			
+			for(var i:int=0; i < n; i++) {
+				var child:UIBase = contentView.getElementAt(i) as UIBase;
+				child.element.style["flex-grow"] = (i == 0) ? "1" : "0";
+				child.element.style["flex-shrink"] = "0";
+			}
+			
+			return true;
 		}
 
     }

@@ -28,7 +28,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IContainerView;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -40,6 +42,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
     import org.apache.flex.geom.Size;
+	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.models.ViewportModel;
 	import org.apache.flex.html.supportClasses.Border;
 	import org.apache.flex.html.supportClasses.ContainerContentArea;
@@ -63,7 +66,8 @@ package org.apache.flex.html.beads
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
 	 */
-	public class ContainerView extends BeadViewBase implements IBeadView, IContainerView, ILayoutHost
+	COMPILE::SWF
+	public class ContainerView extends GroupView
 	{
 		/**
      	 *  The ContainerView class is the default view for
@@ -79,8 +83,6 @@ package org.apache.flex.html.beads
 		public function ContainerView()
 		{
 			super();
-			
-			layoutRunning = false;
 		}
 		
 		/**
@@ -92,22 +94,9 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get contentView():IParentIUIBase
+		override public function get contentView():ILayoutObject
 		{
-			return viewport.contentView as IParentIUIBase;
-		}
-		
-		/**
-		 * The view that can be resized.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get resizableView():IUIBase
-		{
-			return host;
+			return viewport.contentView as ILayoutObject;
 		}
 		
 		/**
@@ -143,54 +132,6 @@ package org.apache.flex.html.beads
 		private var layoutRunning:Boolean;
 		
 		/**
-		 * @private
-		 */
-		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			contentView.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-		{
-			contentView.addElementAt(c, index, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		public function getElementIndex(c:IChild):int
-		{
-			return contentView.getElementIndex(c);
-		}
-		
-		/**
-		 * @private
-		 */
-		public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			contentView.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get numElements():int
-		{
-			return contentView.numElements;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function getElementAt(index:int):IChild
-		{
-			return contentView.getElementAt(index);
-		}
-		
-		/**
 		 * Strand setter.
 		 *  
 		 *  @langversion 3.0
@@ -201,69 +142,13 @@ package org.apache.flex.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			super.strand = value;
 			
             createViewport();
 			
-			(host as IContentViewHost).strandChildren.addElement(viewport.contentView, false);
+			var chost:IContainer = host as IContainer;
+			chost.$addElement(viewport.contentView);
 			
-			displayBackgroundAndBorder(host as UIBase);
-			
-			// listen for initComplete to signal that the strand is set with its size
-			// and beads.
-			host.addEventListener("beadsAdded", beadsAddedHandler);
-		}
-		
-		/**
-		 * Handles the initComplete event by completing the setup and kicking off the
-		 * presentation of the Container.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function beadsAddedHandler(event:Event):void
-		{
-            var ilc:ILayoutChild = host as ILayoutChild;
-			// Complete the setup if the height is sized to content or has been explicitly set
-            // and the width is sized to content or has been explicitly set
-			if ((ilc.isHeightSizedToContent() || !isNaN(ilc.explicitHeight)) &&
-                (ilc.isWidthSizedToContent() || !isNaN(ilc.explicitWidth))) {
-				completeSetup();
-				
-				var num:Number = contentView.numElements;
-				if (num > 0) performLayout(event);
-			}
-			else {
-				// otherwise, wait until the unknown sizes have been set and then finish
-				host.addEventListener("sizeChanged", deferredSizeHandler);
-                host.addEventListener("widthChanged", deferredSizeHandler);
-                host.addEventListener("heightChanged", deferredSizeHandler);
-			}
-		}
-		
-		/**
-		 * Handles the case where the size of the host is not immediately known, usually do
-		 * to one of its dimensions being indicated as a percent size.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		private function deferredSizeHandler(event:Event):void
-		{
-            host.removeEventListener("sizeChanged", deferredSizeHandler);
-            host.removeEventListener("widthChanged", deferredSizeHandler);
-            host.removeEventListener("heightChanged", deferredSizeHandler);
-			completeSetup();
-			
-			var num:Number = contentView.numElements;
-			if (num > 0) 
-            {
-                performLayout(event);
-            }
+			super.strand = value;
 		}
 		
 		/**
@@ -275,48 +160,18 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function completeSetup():void
+		override protected function completeSetup():void
 		{
+			super.completeSetup();
+			
 			// when the first layout is complete, set up listeners for changes
 			// to the childrens' sizes.
 			host.addEventListener("layoutComplete", childrenChangedHandler);
 			
-			host.addEventListener("childrenAdded", performLayout);
-			host.addEventListener("layoutNeeded", performLayout);
 			host.addEventListener("widthChanged", resizeHandler);
 			host.addEventListener("heightChanged", resizeHandler);
 			host.addEventListener("sizeChanged", resizeHandler);
-			host.addEventListener("viewCreated", viewCreatedHandler);
 		}
-		
-		/**
-		 * Handles the viewCreated event by performing the first layout if
-		 * there are children already present (ie, from MXML).
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function viewCreatedHandler(event:Event):void
-		{			
-			if ((host as UIBase).numElements > 0) {
-				performLayout(null);
-			}
-		}
-		
-        /**
-         * Calculate the space taken up by non-content children like a TItleBar in a Panel.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        protected function getChromeMetrics():Rectangle
-        {
-            return new Rectangle(0, 0, 0, 0);
-        }
         
 		/**
 		 * Creates the Viewport (or ScrollableViewport) through which the content
@@ -356,6 +211,20 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
+		 * Calculate the space taken up by non-content children like a TitleBar in a Panel.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function getChromeMetrics():Rectangle
+		{
+			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			return paddingMetrics;
+		}
+		
+		/**
 		 *  Positions the viewport, then sets any known sizes of the Viewport prior
          *  to laying out its content.
 		 *  
@@ -368,18 +237,16 @@ package org.apache.flex.html.beads
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
-            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
-            vm.chromeMetrics = getChromeMetrics();
-            viewport.setPosition(vm.borderMetrics.left + vm.chromeMetrics.left,
-                                 vm.borderMetrics.top + vm.chromeMetrics.top)
-            viewport.layoutViewportBeforeContentLayout(
-                !host.isWidthSizedToContent() ? 
-			        host.width - vm.borderMetrics.left - vm.borderMetrics.right -
-                        vm.chromeMetrics.left - vm.chromeMetrics.right : NaN,
-                !host.isHeightSizedToContent() ? 
-                    host.height - vm.borderMetrics.top - vm.borderMetrics.bottom -
-                        vm.chromeMetrics.top - vm.chromeMetrics.bottom : NaN);
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 			
+            vm.borderMetrics = CSSContainerUtils.getBorderMetrics(host);
+			
+            viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
+			
+			viewport.layoutViewportBeforeContentLayout(
+				host.isWidthSizedToContent() ? NaN : hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
+				host.isHeightSizedToContent() ? NaN : hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
 		}
 		
 		/**
@@ -392,8 +259,10 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function performLayout(event:Event):void
+		override protected function performLayout(event:Event):void
 		{
+			if (layoutRunning) return;
+			
 			layoutRunning = true;
 			
 			layoutViewBeforeContentLayout();
@@ -432,32 +301,17 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function layoutViewAfterContentLayout():void
+		override protected function layoutViewAfterContentLayout():void
 		{
-			var host:UIBase = _strand as UIBase;
-            var vm:IViewportModel = viewportModel;
-            
+			if (adjusting) return;
+
 			adjusting = true;
 			
-            var viewportSize:Size = viewport.layoutViewportAfterContentLayout();
-            
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {					
-				host.setWidthAndHeight(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
-                                           vm.chromeMetrics.left + vm.chromeMetrics.right, 
-					                   viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
-                                           vm.chromeMetrics.top + vm.chromeMetrics.bottom,
-                                       false);
-			}
-			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
-			{
-				host.setHeight(viewportSize.height + vm.borderMetrics.top + vm.borderMetrics.bottom +
-                    vm.chromeMetrics.top + vm.chromeMetrics.bottom, false);
-			}
-			else if (host.isWidthSizedToContent() && !host.isHeightSizedToContent())
-			{
-				host.setWidth(viewportSize.width + vm.borderMetrics.left + vm.borderMetrics.right +
-                    vm.chromeMetrics.left + vm.chromeMetrics.right, false);
-			}			
+			super.layoutViewAfterContentLayout();
+			
+			var contentSize:Size = calculateContentSize();
+			viewport.layoutViewportAfterContentLayout(contentSize);
+				
 			adjusting = false;
 		}
 		
@@ -517,36 +371,50 @@ package org.apache.flex.html.beads
 			if (layoutRunning) return;			
 			performLayout(event);
 		}
+	}
+	
+	COMPILE::JS
+	public class ContainerView extends GroupView //??implements IParent
+	{			
+		private var _viewport:IViewport;
 		
-		protected function displayBackgroundAndBorder(host:UIBase) : void
+		/**
+		 * The viewport used to present the content and may display
+		 * scroll bars (depending on the actual type of viewport).
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		protected function get viewport():IViewport
 		{
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (host.getBeadByType(IBackgroundBead) == null)
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBackgroundBead");
-				if (c) {
-					host.addBead( new c() as IBead );
-				}
-			}
+			return _viewport;
+		}
+		
+		/**
+		 * Strand setter.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
 			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				if (host.getBeadByType(IBorderBead) == null) {
-					c = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
-					if (c) {
-						host.addBead( new c() as IBead );
+			var c:Class;
+			
+			if (viewport == null) {
+				_viewport = _strand.getBeadByType(IViewport) as IViewport;
+				if (viewport == null) {
+					c = ValuesManager.valuesImpl.getValue(host, "iViewport");
+					if (c)
+					{
+						_viewport = new c() as IViewport;
+						_strand.addBead(viewport);
 					}
 				}
 			}

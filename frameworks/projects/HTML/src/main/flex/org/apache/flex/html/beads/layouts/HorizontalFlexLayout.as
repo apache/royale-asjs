@@ -22,13 +22,14 @@ package org.apache.flex.html.beads.layouts
 	
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.UIBase;
 	
 	COMPILE::SWF {
-		import org.apache.flex.core.UIBase;
 		import org.apache.flex.core.IUIBase;
-		import org.apache.flex.core.IParentIUIBase;
 		import org.apache.flex.core.ValuesManager;
 		import org.apache.flex.events.Event;
 		import org.apache.flex.events.IEventDispatcher;
@@ -39,6 +40,14 @@ package org.apache.flex.html.beads.layouts
 	
 	public class HorizontalFlexLayout extends HorizontalLayout
 	{
+		/**
+		 * Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function HorizontalFlexLayout()
 		{
 			super();
@@ -55,27 +64,71 @@ package org.apache.flex.html.beads.layouts
 			host = value as ILayoutChild;
 		}
 		
+		private var _grow:Number = -1;
+		
+		/**
+		 * Sets the amount items grow in proportion to other items.
+		 * The default is 0 which prevents the items from expanding to
+		 * fit the space. Use a negative value to unset this property.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function get grow():Number {
+			return _grow;
+		}
+		public function set grow(value:Number):void {
+			_grow = value;
+		}
+		
+		private var _shrink:Number = -1;
+		
+		/**
+		 * Sets the amount an item may shrink in proportion to other items.
+		 * The default is 1 which allows items to shrink to fit into the space. 
+		 * Set this to 0 if you want to allow scrolling of the space. Use a 
+		 * negative value to unset this property.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function get shrink():Number {
+			return _shrink;
+		}
+		public function set shrink(value:Number):void {
+			_shrink = value;
+		}
+		
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
 		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		override public function layout():Boolean
 		{
 			COMPILE::SWF {
 				//return super.layout();
 				// this is where the layout is calculated
-				var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost(); 
-				var contentView:IParentIUIBase = layoutParent.contentView;
+				var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost(); 
+				var contentView:ILayoutObject = layoutHost.contentView;
 				
 				var n:Number = contentView.numElements;
 				if (n == 0) return false;
-				
-				trace("HorizontalFlexLayout: contentView size: "+contentView.width+" x "+contentView.height+"; explicit: "+UIBase(contentView).explicitWidth+" x "+UIBase(contentView).explicitHeight);
-				
+								
 				var spacing:String = "none";
 				
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
+				var growCount:Number = 0;
+				var remainingWidth:Number = contentView.width;
 				var childData:Array = [];
 				
 				var ilc:ILayoutChild;
@@ -98,11 +151,12 @@ package org.apache.flex.html.beads.layouts
 					
 					ilc = child as ILayoutChild;
 					
-					var useWidth:Number = -1;
-					if (ilc) {
-						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
-						else if (!isNaN(ilc.percentWidth)) useWidth = contentView.width * (ilc.percentWidth/100.0);
-						else canAdjust = true;
+					var flexGrow:Object = ValuesManager.valuesImpl.getValue(child, "flex-grow");
+					var growValue:Number = -1;
+					if (flexGrow != null) {
+						growValue = Number(flexGrow);
+						if (!isNaN(growValue) && growValue > 0) growCount++;
+						else growValue = 0;
 					}
 					
 					var useHeight:Number = -1;
@@ -110,6 +164,14 @@ package org.apache.flex.html.beads.layouts
 						if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
 						else if (!isNaN(ilc.percentHeight)) useHeight = contentView.height * (ilc.percentHeight/100.0);
 						else useHeight = contentView.height;
+					}
+					if (useHeight > contentView.height) useHeight = contentView.height;
+					
+					var useWidth:Number = -1;
+					if (ilc) {
+						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
+						else if (!isNaN(ilc.percentWidth)) useWidth = contentView.width * (ilc.percentWidth/100.0);
+						else useWidth = ilc.width;
 					}
 					
 					margin = ValuesManager.valuesImpl.getValue(child, "margin");
@@ -129,7 +191,7 @@ package org.apache.flex.html.beads.layouts
 					if (maxWidth < useWidth) maxWidth = useWidth;
 					if (maxHeight < useHeight) maxHeight = useHeight;
 					
-					childData.push({width:useWidth, height:useHeight, mt:mt, ml:ml, mr:mr, mb:mb, canAdjust:canAdjust});
+					childData.push({width:useWidth, height:useHeight, mt:mt, ml:ml, mr:mr, mb:mb, grow:growValue, canAdjust:canAdjust});
 				}
 				
 				var xpos:Number = 0;
@@ -142,15 +204,23 @@ package org.apache.flex.html.beads.layouts
 					data = childData[i];
 					if (data.width == 0 || data.height == 0) continue;
 					
-					useWidth = (data.width < 0 ? maxWidth : data.width);
 					useHeight = (data.height < 0 ? maxHeight : data.height);
+					if (data.width > 0) {
+						if (data.grow > 0 && growCount > 0) {
+							useWidth = remainingWidth / growCount;
+						} else {
+							useWidth = data.width;
+						}
+					} else {
+						useWidth = child.width;
+					}
 					
 					ilc = child as ILayoutChild;
 					if (ilc) {
 						ilc.setX(xpos + data.ml);
 						ilc.setY(ypos + data.mt);
 						ilc.setHeight(useHeight - data.mt - data.mb);
-						if (data.width > 0) {
+						if (useWidth > 0) {
 							ilc.setWidth(useWidth - data.ml - data.mr);
 						}
 					} else {
@@ -162,7 +232,7 @@ package org.apache.flex.html.beads.layouts
 						}
 					}
 					
-					xpos += child.width + data.ml + data.mr;
+					xpos += useWidth + data.ml + data.mr;
 					
 					trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}
@@ -176,11 +246,20 @@ package org.apache.flex.html.beads.layouts
 				
 			COMPILE::JS {
 				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
+				var contentView:ILayoutObject = viewBead.contentView;
 				
 				// set the display on the contentView
-				viewBead.contentView.width = host.width;
-				viewBead.contentView.element.style["display"] = "flex";
-				viewBead.contentView.element.style["flex-flow"] = "row";
+				contentView.element.style["display"] = "flex";
+				contentView.element.style["flex-flow"] = "row";
+				
+				var n:int = contentView.numElements;
+				if (n == 0) return false;
+				
+				for(var i:int=0; i < n; i++) {
+					var child:UIBase = contentView.getElementAt(i) as UIBase;
+					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
+					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
+				}
 				
 				return true;
 			}

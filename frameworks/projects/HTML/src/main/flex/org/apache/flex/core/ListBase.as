@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
 	import org.apache.flex.core.IMXMLDocument;
+	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
@@ -34,7 +35,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ListBase extends UIBase implements IContentViewHost, ILayoutParent
+	public class ListBase extends UIBase implements ILayoutParent, IParentIUIBase, IContainer
 	{
         /**
          *  Constructor.
@@ -46,45 +47,50 @@ package org.apache.flex.core
          */
 		public function ListBase()
 		{
-			super();
-            
-			_strandChildren = new ListBaseStrandChildren(this);
+			super();            
 		}
 		
-		private var _strandChildren:ListBaseStrandChildren;
-		
 		/**
-		 * @private
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
-		public function get strandChildren():IParent
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
 		{
-			return _strandChildren;
+			element = document.createElement('div') as WrappedHTMLElement;
+			element.flexjs_wrapper = this;
+			
+			positioner = element;
+			
+			return element;
 		}
 		
 		/**
-		 * @private
+		 * Returns the ILayoutHost which is its view. From ILayoutParent.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		public function getLayoutHost():ILayoutHost
 		{
 			return view as ILayoutHost; 
-		}
+		} 
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
 		 */
-		public function $numElements():int
+		public function childrenAdded():void
 		{
-			return super.numElements();
+			dispatchEvent(new Event("childrenAdded"));
 		}
-		
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
+		 * This is a hidden function used by ContainerView to insert the nested contentView
+		 * into this outer shell.
 		 */
+		COMPILE::SWF
 		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			super.addElement(c, dispatchEvent);
@@ -92,42 +98,68 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
 		 */
-		public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		COMPILE::SWF
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			super.addElementAt(c, index, dispatchEvent);
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.addElement(c, dispatchEvent);
 		}
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
 		 */
-		public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
+		COMPILE::SWF
+		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
-			super.removeElement(c, dispatchEvent);
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.addElementAt(c, index, dispatchEvent);
 		}
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
 		 */
-		public function $getElementIndex(c:IChild):int
+		COMPILE::SWF
+		override public function getElementIndex(c:IChild):int
 		{
-			return super.getElementIndex(c);
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.getElementIndex(c);
 		}
 		
 		/**
 		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
 		 */
-		public function $getElementAt(index:int):IChild
+		COMPILE::SWF
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			return super.getElementAt(index);
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.removeElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function get numElements():int
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.numElements;
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function getElementAt(index:int):IChild
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.getElementAt(index);
 		}
 
     }

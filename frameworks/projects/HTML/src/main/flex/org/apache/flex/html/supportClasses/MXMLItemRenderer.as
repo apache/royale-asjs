@@ -20,6 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
@@ -35,7 +36,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand
+	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand, ILayoutObject
 	{
 		/**
 		 *  constructor.
@@ -65,7 +66,7 @@ package org.apache.flex.html.supportClasses
 			return this; 
 		}
 		
-		public function get contentView():IParentIUIBase
+		public function get contentView():ILayoutObject
 		{
 			return this;
 		}

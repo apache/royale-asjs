@@ -21,6 +21,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IParent;
@@ -100,7 +101,7 @@ package org.apache.flex.html.beads.layouts
 		{			
             var host:UIBase = UIBase(_strand);
             var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-            var contentView:IParent = layoutParent.contentView;
+            var contentView:ILayoutObject = layoutParent.contentView;
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
 			var sh:Number = host.height;

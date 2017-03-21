@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -30,6 +31,8 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.ButtonBar;
 	import org.apache.flex.html.beads.DataGridView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
 	/**
@@ -82,13 +85,20 @@ package org.apache.flex.html.beads.layouts
 			if (anylayout != null) {
 				listArea.removeBead(anylayout);
 			}
-			listArea.addBead(new HorizontalLayout());
+			listArea.addBead(new BasicLayout());
 			
 			host.addEventListener("widthChanged", handleSizeChanges);
 			host.addEventListener("heightChanged", handleSizeChanges);
 			host.addEventListener("sizeChanged", handleSizeChanges);
 			host.addEventListener("layoutNeeded", handleSizeChanges);
+			
+			// listen for beadsAdded to signal that the strand is set with its size
+			// and beads.
+			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
+		
+		private var runNeeded:Boolean = false;
+		private var hostReady:Boolean = false;
 		
 		private var _header:UIBase;
 		
@@ -139,71 +149,140 @@ package org.apache.flex.html.beads.layouts
 			_listArea = value;
 		}
 		
-        /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-         */
+		private function beadsAddedHandler(event:Event):void
+		{
+			var host:UIBase = _strand as UIBase;
+			
+			var useWidth:Number = host.width;
+			var useHeight:Number = host.height;
+			
+			hostReady = true;
+			if (runNeeded) {
+				runNeeded = false;
+				layout();
+			}
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 */
+		COMPILE::SWF
 		public function layout():Boolean
 		{			
-			if (columns == null || columns.length == 0) {
+			if (!hostReady) {
+				runNeeded = true;
 				return false;
 			}
 			
+			if (columns == null || columns.length == 0) {
+				return false;
+			}
 			var host:UIBase = _strand as UIBase;
 			
-			var sw:Number = host.width;
-			var sh:Number = host.height;
+			var useWidth:Number = host.width;
+			var useHeight:Number = host.height;
 			
-			var columnHeight:Number = Math.floor(sh - header.height);
-			var columnWidth:Number  = Math.floor(sw / columns.length);
-			
-			var xpos:Number = 0;
-			var ypos:Number = 26;
-			
-			_header.x = 0;
-			_header.y = 0;
-			_header.width = sw;
-			_header.height = 25;
-			
-			if (sh > 0) {
-				sh = sh - _header.height;
-			}
-			
-			// TODO: change the layout so that the model's DataGridColumn.columnWidth
-			// isn't used blindly, but is considered in the overall width. In other words,
-			// right now the width could exceed the strand's width.
-			var model:IDataGridModel = host.model as IDataGridModel;
-			
-			var buttonWidths:Array = new Array();
-						
-			for(var i:int=0; i < columns.length; i++) {
-				var column:UIBase = columns[i] as UIBase;
-				column.percentHeight = 100;
-
-				var dgc:DataGridColumn = model.columns[i];
-				if (!isNaN(dgc.columnWidth)) {
-					column.percentWidth = dgc.columnWidth;
-					columnWidth = sw * (dgc.columnWidth/100.0);
-				}
-				else column.explicitWidth = columnWidth;
-				
-				buttonWidths.push(columnWidth);
+			if (host.height > 0) {
+				useHeight = host.height - _header.height;
 			}
 			
 			_listArea.x = 0;
 			_listArea.y = 26;
-			_listArea.width = sw;
-			_listArea.height = sh;
-			_listArea.dispatchEvent(new Event("layoutNeeded"));
+			_listArea.width = useWidth;
+			_listArea.height = useHeight;
+			
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			var buttonWidths:Array = [];
+			
+			if (_columns != null && _columns.length > 0) {
+				var xpos:Number = 0;
+				var listWidth:Number = host.width / _columns.length;
+				for (var i:int=0; i < _columns.length; i++) {
+					var list:DataGridColumnList = _columns[i] as DataGridColumnList;
+					list.x = xpos;
+					list.y = 0;
+					
+					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var colWidth:Number = dataGridColumn.columnWidth;
+					if (!isNaN(colWidth)) {
+						list.percentWidth = colWidth;
+						colWidth = host.width * (colWidth/100.0);
+					}
+					else {
+						list.width = listWidth;
+						colWidth = listWidth;
+					}
+					
+					xpos += colWidth;
+					
+					buttonWidths.push(colWidth);
+				}
+			}
 			
 			var bar:ButtonBar = header as ButtonBar;
-			var barLayout:ButtonBarLayout = bar.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
-			barLayout.buttonWidths = buttonWidths;
+			bar.buttonWidths = buttonWidths;
+			bar.widthType = ButtonBarModel.PERCENT_WIDTHS;
+			bar.dispatchEvent(new Event("layoutNeeded"));
 			
 			_header.x = 0;
 			_header.y = 0;
-			_header.width = sw;
+			_header.width = useWidth;
 			_header.height = 25;
 			_header.dispatchEvent(new Event("layoutNeeded"));
+			
+			return true;
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 */
+		COMPILE::JS
+		public function layout():Boolean
+		{						
+			if (columns == null || columns.length == 0) {
+				return false;
+			}
+			var host:UIBase = _strand as UIBase;
+			
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			var buttonWidths:Array = [];
+			
+			if (_columns != null && _columns.length > 0) {
+				var listWidth:Number = host.width / _columns.length;
+				for (var i:int=0; i < _columns.length; i++) {
+					var list:DataGridColumnList = _columns[i] as DataGridColumnList;
+					list.element.style["position"] = null;
+					list.element.style["height"] = null;
+					
+					
+					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var colWidth:Number = dataGridColumn.columnWidth;
+					if (!isNaN(colWidth)) list.percentWidth = colWidth;
+					else list.width = listWidth;
+					
+					buttonWidths.push(list.width);
+				}
+			}
+			
+			var bar:ButtonBar = header as ButtonBar;
+			bar.buttonWidths = buttonWidths;
+			bar.widthType = ButtonBarModel.PERCENT_WIDTHS;
+			bar.dispatchEvent(new Event("layoutNeeded"));
+			
+			host.element.style.display = "flex";
+			host.element.style["flex-flow"] = "column";
+			host.element.style["justify-content"] = "stretch";
+			
+			_header.height = 25;
+			_header.percentWidth = 100;
+			
+			_listArea.element.style["flex-grow"] = "2";
+			_listArea.element.style["position"] = null;
+			_listArea.element.style["height"] = null;
+			
+			var listView:ILayoutHost = UIBase(_listArea).view as ILayoutHost;
+			listView.contentView.element.style["display"] = "flex";
+			listView.contentView.element.style["flex-flow"] = "row";
 			
 			return true;
 		}

@@ -35,7 +35,8 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ItemRendererEvent;
-	import org.apache.flex.html.List;
+	//import org.apache.flex.html.List;
+	import org.apache.flex.core.IList;
 	
 	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
@@ -88,21 +89,15 @@ package org.apache.flex.html.beads
 		}
 		
 		private function finishSetup(event:Event):void
-		{
+		{			
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
 			labelField = dataProviderModel.labelField;
 			
-			if (!itemRendererFactory)
-			{
-				_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-				if (_itemRendererFactory == null) {
-					_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-					_strand.addBead(_itemRendererFactory);
-				}
+			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (itemRendererFactory == null) {
+				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+				_strand.addBead(_itemRendererFactory);
 			}
 			
 			dataProviderChangeHandler(null);
@@ -132,17 +127,6 @@ package org.apache.flex.html.beads
 			_itemRendererFactory = value;
 		}
 		
-        /**
-         *  The org.apache.flex.core.IItemRendererParent that will
-         *  parent the item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		protected var dataGroup:IItemRendererParent;
-		
 		/**
 		 * @private
 		 */
@@ -162,24 +146,24 @@ package org.apache.flex.html.beads
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
 			
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			dataGroup.removeAllItemRenderers();
+			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				dataGroup.addElement(ir);
+				dataGroup.addItemRenderer(ir);
 				if (presentationModel) {
-					UIBase(ir).height = presentationModel.rowHeight;
-					
-					// ensure that the IR spans the width of its column
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.right = 0;
-					style.left = 0;
+					style.marginBottom = presentationModel.separatorThickness;
 					UIBase(ir).style = style;
+					UIBase(ir).height = presentationModel.rowHeight;
+					UIBase(ir).percentWidth = 100;
 				}
 				setData(ir, dp.getItemAt(i), i);
 				

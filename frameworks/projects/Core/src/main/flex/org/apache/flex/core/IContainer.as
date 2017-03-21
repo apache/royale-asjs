@@ -43,5 +43,11 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
 		function childrenAdded():void;
+		
+		/**
+		 * This method is for internal use only
+		 */
+		COMPILE::SWF
+		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
 	}
 }

@@ -32,13 +32,13 @@ package org.apache.flex.core
 	public interface ILayoutHost
 	{
         /**
-         *  The container that parents all of the content.
+         *  The container whose children are to be the subject of the layout.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
-		function get contentView():IParentIUIBase;
+		function get contentView():ILayoutObject;
 	}
 }

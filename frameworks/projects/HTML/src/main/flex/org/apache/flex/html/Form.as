@@ -19,17 +19,17 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.ContainerBase;
-    
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
     [DefaultProperty("mxmlContent")]
 
     /**
      *  The Form class is a simple form.
-     *  
+     *
      *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -40,7 +40,7 @@ package org.apache.flex.html
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -50,7 +50,7 @@ package org.apache.flex.html
         {
             super();
         }
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -58,15 +58,15 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {HTMLFormElement
             element = document.createElement('form') as WrappedHTMLElement;
-             
+
             positioner = element;
-             
-            positioner.style.position = 'relative';
+
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             return element;
         }
 
-        
+
         private var _action:String = "#";
 
         [Bindable("actionChange")]
@@ -96,5 +96,5 @@ package org.apache.flex.html
                 this.dispatchEvent('actionChange');
             }
         }
-    }        
+    }
 }

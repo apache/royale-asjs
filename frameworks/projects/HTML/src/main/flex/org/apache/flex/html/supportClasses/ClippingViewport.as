@@ -82,14 +82,14 @@ package org.apache.flex.html.supportClasses
         /**
          * @copy org.apache.flex.core.IViewport
          */
-		override public function layoutViewportAfterContentLayout():Size
+		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
             COMPILE::SWF
             {
-	             var contentSize:Size;
+	             //var contentSize:Size;
                 do
                 {
-                    contentSize = super.layoutViewportAfterContentLayout();
+                    /*contentSize = */super.layoutViewportAfterContentLayout(contentSize);
                     if (isNaN(viewportHeight))
                         viewportHeight = contentSize.height;
                     if (isNaN(viewportWidth))
@@ -123,12 +123,7 @@ package org.apache.flex.html.supportClasses
 
                 var rect:Rectangle = new Rectangle(0, 0, viewportWidth,viewportHeight);
                 contentArea.$sprite.scrollRect = rect;
-                return contentSize;
 
-            }
-            COMPILE::JS
-            {
-                return new Size(contentView.width, contentView.height);
             }
 
 		}

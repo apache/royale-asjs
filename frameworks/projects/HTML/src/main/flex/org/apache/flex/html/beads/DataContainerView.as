@@ -127,10 +127,11 @@ package org.apache.flex.html.beads
 			
 			// list is not interested in UI children, it wants to know when new items
 			// have been added or the dataProvider has changed.
-			
+			COMPILE::SWF {
 			host.removeEventListener("childrenAdded", childrenChangedHandler);
 			host.removeEventListener("childrenAdded", performLayout);
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
+			}
 			
 			listModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -141,6 +142,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
+		COMPILE::SWF
 		protected function itemsCreatedHandler(event:Event):void
 		{
 			performLayout(event);
@@ -162,6 +164,7 @@ package org.apache.flex.html.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+		COMPILE::SWF
 		override protected function resizeHandler(event:Event):void
 		{
 			super.resizeHandler(event);

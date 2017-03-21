@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -210,14 +211,14 @@ package org.apache.flex.html.beads.layouts
 
 				var host:UIBase = _strand as UIBase;
 				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:IParentIUIBase = viewBead.contentView;
+				var contentView:IParentIUIBase = viewBead.contentView as IParentIUIBase;
 				children = contentView.internalChildren();
 				n = children.length;
 				if (n === 0) return false;
 
-				viewBead.contentView.width = host.width;
-				viewBead.contentView.element.style["display"] = "flex";
-				viewBead.contentView.element.style["flex-flow"] = "row wrap";
+				contentView.width = host.width;
+				contentView.element.style["display"] = "flex";
+				contentView.element.style["flex-flow"] = "row wrap";
 
 				var realN:int = n;
 				for (i = 0; i < n; i++)
