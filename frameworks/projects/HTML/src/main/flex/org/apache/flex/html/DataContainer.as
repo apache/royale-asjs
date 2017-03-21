@@ -20,10 +20,14 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.ContainerBaseStrandChildren;
 	import org.apache.flex.core.IContentViewHost;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRendererProvider;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.IDataProviderModel;
@@ -38,7 +42,11 @@ package org.apache.flex.html
     }
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ItemAddedEvent;
+	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.flex.events.ItemRemovedEvent;
 	import org.apache.flex.html.beads.models.ListPresentationModel;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -51,7 +59,7 @@ package org.apache.flex.html
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
 	
 	/**
-	 *  The List class is a component that displays multiple data items. The List uses
+	 *  The DataContainer class is a component that displays multiple data items. The DataContainer uses
 	 *  the following bead types:
 	 * 
 	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider.
@@ -66,7 +74,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataContainer extends ListBase implements IItemRendererProvider
+	public class DataContainer extends ListBase implements IList, IItemRendererParent, ILayoutObject
 	{
 		/**
 		 *  constructor.
@@ -116,6 +124,14 @@ package org.apache.flex.html
         {
             IDataProviderModel(model).dataProvider = value;
         }
+		
+		/**
+		 * Returns the sub-component that parents all of the item renderers.
+		 */
+		public function get dataGroup():IItemRendererParent
+		{
+			return this;
+		}
 
 			
 		/**
@@ -198,6 +214,90 @@ package org.apache.flex.html
 			return result;
 		}
 		
+		/*
+		* IItemRendererParent
+		*/
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 * @private
+		 */
+		public function addItemRenderer(renderer:IItemRenderer):void
+		{			
+			addElement(renderer, true);
+			
+			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 * @private
+		 */
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{				
+			removeElement(renderer, true);
+			
+			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 * @private
+		 */
+		public function removeAllItemRenderers():void
+		{			
+			while (numElements > 0) {
+				var child:IChild = getElementAt(0);
+				removeElement(child);
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function getItemRendererForIndex(index:int):IItemRenderer
+		{			
+			if (index < 0 || index >= numElements) return null;
+			return getElementAt(index) as IItemRenderer;
+		}
+		
+		/**
+		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
+		 *  
+		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function updateAllItemRenderers():void
+		{			
+			var n:Number = numElements;
+			for (var i:Number = 0; i < n; i++)
+			{
+				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
+				if (renderer) {
+					renderer.setWidth(this.width,true);
+					renderer.adjustSize();
+				}
+			}
+		}
+		
+		/*
+		* UIBase
+		*/
+		
 		
 		/**
 		 * @private
@@ -234,22 +334,9 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             super.createElement();
-            className = 'List';
+            className = 'DataContainer';
             
             return element;
-        }        
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.html.beads.ListView 
-         * @flexjsignorecoercion org.apache.flex.html.supportClasses.DataGroup 
-         */
-        COMPILE::JS
-        override public function internalChildren():Array
-        {
-            var listView:ListView = getBeadByType(ListView) as ListView;
-            var dg:DataGroup = listView.dataGroup as DataGroup;
-            var renderers:Array = dg.internalChildren();
-            return renderers;
-        };
+        } 
    	}
 }

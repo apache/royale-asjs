@@ -139,6 +139,8 @@ package org.apache.flex.html.beads.layouts
 				var marginBottom:Object;
 				var margin:Object;
 				
+				trace("VerticalFlexLayout for "+UIBase(host).id+" with remainingHeight: "+remainingHeight);
+				
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
 				{
@@ -172,6 +174,7 @@ package org.apache.flex.html.beads.layouts
 						else if (!isNaN(ilc.percentHeight)) useHeight = contentView.height * (ilc.percentHeight/100.0);
 						else useHeight = ilc.height;
 					}
+					if (growValue == 0 && useHeight > 0) remainingHeight -= useHeight;
 					
 					margin = ValuesManager.valuesImpl.getValue(child, "margin");
 					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");

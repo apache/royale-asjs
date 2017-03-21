@@ -140,6 +140,8 @@ package org.apache.flex.html.beads.layouts
 				var marginBottom:Object;
 				var margin:Object;
 				
+				trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
+				
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
 				{
@@ -173,6 +175,7 @@ package org.apache.flex.html.beads.layouts
 						else if (!isNaN(ilc.percentWidth)) useWidth = contentView.width * (ilc.percentWidth/100.0);
 						else useWidth = ilc.width;
 					}
+					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth;
 					
 					margin = ValuesManager.valuesImpl.getValue(child, "margin");
 					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");

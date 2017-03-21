@@ -214,10 +214,11 @@ DataGridColumnList {
 
 DateChooser {
 	IBeadView:   ClassReference("org.apache.flex.html.beads.DateChooserView");
-	IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
+	IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");			
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");	
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateChooserMouseController");
 	width:  280px;
-	height: 230px;
+	height: 240px;
 }
 
 DateChooserList {
@@ -231,11 +232,17 @@ DateChooserList {
 }
 
 DateChooserHeader {	
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DayNameItemRenderer");		
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DayNameItemRenderer");
+	height: 20px;
 	border-style: solid;
 	border-color: #000000;
 	border-width: 1px;
 	background-color: #FFFFFF;
+}
+
+.DateChooserMonthButtons {				
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");	
+	height: 20px;
 }
 
 DateItemRenderer

@@ -126,21 +126,6 @@ package org.apache.flex.html.beads
 		}
 						
 		protected var listModel:ISelectionModel;
-		
-		private var _border:Border;
-		
-		/**
-		 *  The border surrounding the org.apache.flex.html.List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get border():Border
-        {
-            return _border;
-        }
         
         /**
          * @private

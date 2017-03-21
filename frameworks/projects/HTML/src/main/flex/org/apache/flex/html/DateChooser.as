@@ -19,7 +19,7 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.Group;
 
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -35,7 +35,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooser extends UIBase
+	public class DateChooser extends Group
 	{
 		/**
 		 *  constructor.
