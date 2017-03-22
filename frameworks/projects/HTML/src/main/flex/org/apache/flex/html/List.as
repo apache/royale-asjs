@@ -21,7 +21,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.ContainerBaseStrandChildren;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.IItemRendererClassFactory;
@@ -45,15 +45,15 @@ package org.apache.flex.html
 	import org.apache.flex.events.ItemAddedEvent;
 	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.events.ItemRemovedEvent;
-	
+
 	import org.apache.flex.core.IList;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IItemRendererProvider;
 	import org.apache.flex.core.ListBase;
-	
+
 	/**
 	 *  Indicates that the initialization of the list is complete.
-	 *  
+	 *
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -61,21 +61,21 @@ package org.apache.flex.html
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 * The change event is dispatched whenever the list's selection changes.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
     [Event(name="change", type="org.apache.flex.events.Event")]
-    
+
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
@@ -83,7 +83,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
 	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
 	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -138,7 +138,7 @@ package org.apache.flex.html
 		{
 			IRollOverModel(model).rollOverIndex = value;
 		}
-		
+
 		/**
 		 *  The default height of each cell in every column
 		 *
@@ -155,9 +155,9 @@ package org.apache.flex.html
 		{
 			presentationModel.rowHeight = value;
 		}
-		
+
 		/**
-		 *  The item currently selected. Changing this value also 
+		 *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
 		 *
 		 *  @langversion 3.0
@@ -173,11 +173,11 @@ package org.apache.flex.html
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
+
 		/*
 		 * UIBase
 		 */
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -186,7 +186,7 @@ package org.apache.flex.html
         {
             super.createElement();
             className = 'List';
-            
+
             return element;
         }
    	}

@@ -77,7 +77,7 @@ internal class CoreClasses
     import org.apache.flex.core.IItemRendererProvider; IItemRendererProvider;
     import org.apache.flex.core.ILayoutChild; ILayoutChild;
 	import org.apache.flex.core.ILayoutHost; ILayoutHost;
-	import org.apache.flex.core.ILayoutObject; ILayoutObject;
+	import org.apache.flex.core.ILayoutView; ILayoutView;
 	import org.apache.flex.core.ILayoutParent; ILayoutParent;
     import org.apache.flex.core.IListPresentationModel; IListPresentationModel;
 	import org.apache.flex.core.IMeasurementBead; IMeasurementBead;

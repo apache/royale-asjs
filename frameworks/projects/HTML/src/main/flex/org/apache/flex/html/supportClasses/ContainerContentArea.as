@@ -22,22 +22,22 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ILayoutObject;
-	
+	import org.apache.flex.core.ILayoutView;
+
     /**
      *  The ContainerContentArea class implements the contentView for
      *  a Container on the SWF platform.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerContentArea extends UIBase implements ILayoutObject
+	public class ContainerContentArea extends UIBase implements ILayoutView
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -48,39 +48,11 @@ package org.apache.flex.html.supportClasses
 			super();
             addEventListener("layoutNeeded", forwardEventHandler);
 		}
-        
+
         private function forwardEventHandler(event:Event):void
         {
             if (parent is IEventDispatcher)
                 (parent as IEventDispatcher).dispatchEvent(event);
         }
-		
-		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-//		public function removeAllElements():void
-//		{
-//			COMPILE::SWF
-//			{
-//				var n:Number = numElements;
-//				for (var i:Number = n-1; i >= 0; i--) {
-//					var child:IChild = getElementAt(i);
-//					removeElement(child,false);
-//				}
-//				$sprite.removeChildren(0);
-//			}
-//			COMPILE::JS
-//			{
-//				while (element.hasChildNodes()) 
-//				{
-//					element.removeChild(element.lastChild);
-//				}
-//			}
-//		}
 	}
 }

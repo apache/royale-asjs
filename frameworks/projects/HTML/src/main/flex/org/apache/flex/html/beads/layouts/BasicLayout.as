@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	
+
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -38,7 +38,7 @@ package org.apache.flex.html.beads.layouts
      *  bead.  It takes the set of children and lays them out
      *  as specified by CSS properties like left, right, top
      *  and bottom.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.layouts
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -57,15 +57,15 @@ package org.apache.flex.html.beads.layouts
 		public function BasicLayout()
 		{
 		}
-		
+
         // the strand/host container is also an ILayoutChild because
         // can have its size dictated by the host's parent which is
         // important to know for layout optimization
         private var host:ILayoutChild;
-        		
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -75,7 +75,7 @@ package org.apache.flex.html.beads.layouts
 		{
             host = value as ILayoutChild;
 		}
-	        
+
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
 		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
@@ -86,35 +86,35 @@ package org.apache.flex.html.beads.layouts
             COMPILE::SWF
             {
 				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:ILayoutObject = viewBead.contentView;
-				
+				var contentView:ILayoutView = viewBead.contentView;
+
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				
+
 				var w:Number = hostWidthSizedToContent ? 0 : contentView.width;
 				var h:Number = hostHeightSizedToContent ? 0 : contentView.height;
-				
+
 				var n:int = contentView.numElements;
-                
+
                 var gotMargin:Boolean;
                 var marginLeft:Object;
                 var marginRight:Object;
                 var marginTop:Object;
                 var marginBottom:Object;
                 var margin:Object;
-				
+
                 for (var i:int = 0; i < n; i++)
                 {
                     var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 					if (child == null || !child.visible) continue;
-					
+
                     var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
                     var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
                     var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
                     var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
                     var ww:Number = w;
                     var hh:Number = h;
-					
+
 					margin = ValuesManager.valuesImpl.getValue(child, "margin");
 					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
 					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
@@ -128,9 +128,9 @@ package org.apache.flex.html.beads.layouts
 						ml = 0;
 					if (marginRight == "auto")
 						mr = 0;
-                    
+
                     var ilc:ILayoutChild = child as ILayoutChild;
-					
+
 					// set the top edge of the child
                     if (!isNaN(left))
                     {
@@ -140,7 +140,7 @@ package org.apache.flex.html.beads.layouts
                             child.x = left+ml;
                         ww -= left + ml;
                     }
-					
+
 					// set the left edge of the child
                     if (!isNaN(top))
                     {
@@ -150,7 +150,7 @@ package org.apache.flex.html.beads.layouts
                             child.y = top+mt;
                         hh -= top + mt;
                     }
-					
+
 					// set the right edge of the child
 					if (!isNaN(right))
 					{
@@ -176,7 +176,7 @@ package org.apache.flex.html.beads.layouts
 					{
 						ilc.setWidth((ww - mr - ml) * ilc.percentWidth/100, false);
 					}
-					
+
 					// set the bottm edge of the child
 					if (!isNaN(bottom))
 					{
@@ -197,40 +197,40 @@ package org.apache.flex.html.beads.layouts
 									child.y = h - bottom - child.height - mb;
 							}
 						}
-					} 
+					}
 					else if (ilc != null && !isNaN(ilc.percentHeight) && !hostHeightSizedToContent)
 					{
 						ilc.setHeight((hh - mt - mb) * ilc.percentHeight/100, false);
 					}
                 }
-                
+
                 host.dispatchEvent( new Event("layoutComplete") );
-                
+
                 return true;
-                
+
             }
-			
+
             COMPILE::JS
             {
                 var i:int
                 var n:int;
-                
+
                 var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-                var contentView:ILayoutObject = viewBead.contentView;
+                var contentView:ILayoutView = viewBead.contentView;
 
                 n = contentView.numElements;
-				
+
 				// host must have either have position:absolute or position:relative
 				if (contentView.element.style.position != "absolute" && contentView.element.style.position != "relative") {
 					contentView.element.style.position = "relative";
 				}
-				
+
 				// each child must have position:absolute for BasicLayout to work
 				for (i=0; i < n; i++) {
 					var child:UIBase = contentView.getElementAt(i) as UIBase;
 					child.positioner.style.position = "absolute";
 				}
-				
+
 				host.dispatchEvent( new Event("layoutComplete") );
                 return true;
             }

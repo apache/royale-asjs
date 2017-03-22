@@ -21,7 +21,7 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.effects.Effect;
@@ -31,7 +31,7 @@ package org.apache.flex.utils
 	import org.apache.flex.events.EventDispatcher;
 
 	/**
-	 * 
+	 *
 	 * @author Yishay
 	 */
 	public class LayoutTweener extends EventDispatcher
@@ -41,7 +41,7 @@ package org.apache.flex.utils
 		private var _mockLayoutParent:MockLayoutParent;
 		private var _effectGenerators:Vector.<IEffectsGenerator>;
 		/**
-		 * 
+		 *
 		 * @param sourceLayout
 		 * @param sourceLayoutParent
 		 */
@@ -50,7 +50,7 @@ package org.apache.flex.utils
 			this.sourceLayout = sourceLayout;
 			this.sourceLayoutParent = sourceLayoutParent;
 		}
-		
+
 		public function get effectGenerators():Vector.<IEffectsGenerator>
 		{
 			return _effectGenerators;
@@ -62,8 +62,8 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * 
-		 * @return 
+		 *
+		 * @return
 		 */
 		public function get mockLayoutParent():MockLayoutParent
 		{
@@ -71,16 +71,16 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		public function setBaseline():void
 		{
 			_mockLayoutParent = new MockLayoutParent(sourceLayoutParent);
 			sourceLayout.strand = _mockLayoutParent as IStrand;
 		}
-		
+
 		/**
-		 * 
+		 *
 		 */
 		public function play():void
 		{
@@ -95,20 +95,20 @@ package org.apache.flex.utils
 				parallel.play();
 			}
 		}
-		
+
 		/**
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function effectEndHandler(event:Event):void
 		{
 			dispatchEvent(event);
 		}
-		
+
 		private function getEffects(originalLayoutParent:ILayoutParent, mockLayoutParent:ILayoutParent):Array
 		{
-			var originalContentView:ILayoutObject = originalLayoutParent.getLayoutHost().contentView;
-			var mockContentView:ILayoutObject = mockLayoutParent.getLayoutHost().contentView;
+			var originalContentView:ILayoutView = originalLayoutParent.getLayoutHost().contentView;
+			var mockContentView:ILayoutView = mockLayoutParent.getLayoutHost().contentView;
 			var numElements:int = originalContentView.numElements;
 			var effects:Array = [];
 			for (var i:int = 0; i < numElements; i++)
@@ -126,6 +126,6 @@ package org.apache.flex.utils
 			}
 			return effects;
 		}
-		
+
 	}
 }

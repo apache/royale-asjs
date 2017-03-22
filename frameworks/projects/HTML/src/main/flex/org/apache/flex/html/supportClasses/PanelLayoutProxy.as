@@ -19,16 +19,16 @@
 package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.events.IEventDispatcher;
-	
+
 	import org.apache.flex.html.Panel;
-	
+
 	COMPILE::JS {
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
-	
+
     /**
      *  The PanelLayoutProxy class is used by Panel in order for layouts to operate
 	 *  on the Panel itself. If Panel were being used, its numElements, getElementAt, etc.
@@ -36,17 +36,17 @@ package org.apache.flex.html.supportClasses
 	 *  to work on the Panel directly (its TitleBar, Container, and ControlBar children),
 	 *  this proxy is used which will invoke the Panel's $numElements, $getElementAt, etc
 	 *  functions.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class PanelLayoutProxy implements ILayoutObject
+	public class PanelLayoutProxy implements ILayoutView
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -57,17 +57,17 @@ package org.apache.flex.html.supportClasses
 			super();
 			_host = host;
 		}
-		
+
 		private var _host:Object;
-		
+
 		public function get host():Object
 		{
 			return _host;
 		}
-				
+
 		/**
 		 *  The width of the bounding box.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -76,10 +76,10 @@ package org.apache.flex.html.supportClasses
 		public function get width():Number {
 			return (host as Panel).width;
 		}
-		
+
 		/**
 		 * The height of the bounding box.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -88,10 +88,10 @@ package org.apache.flex.html.supportClasses
 		public function get height():Number {
 			return (host as Panel).height;
 		}
-		
+
 		/**
 		 *  The number of elements in the parent.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -101,12 +101,12 @@ package org.apache.flex.html.supportClasses
 		{
 			return (host as Panel).$numElements;
 		}
-		
+
 		/**
 		 *  Get a component from the parent.
-		 * 
+		 *
 		 *  @param c The index of the subcomponent.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -116,13 +116,13 @@ package org.apache.flex.html.supportClasses
 		{
 			return (host as Panel).$getElementAt(index);
 		}
-		
+
 		COMPILE::JS
 		public function get somethingelse():WrappedHTMLElement
 		{
 			return (host as Panel).element;
 		}
-			
+
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{

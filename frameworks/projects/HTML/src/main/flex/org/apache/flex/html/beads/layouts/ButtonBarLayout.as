@@ -17,10 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{	
+{
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.ISelectableItemRenderer;
@@ -35,13 +35,13 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.ButtonBarView;
 	import org.apache.flex.html.beads.models.ButtonBarModel;
-	
+
 	/**
-	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
-	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons 
+	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button
+	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons
 	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -60,12 +60,12 @@ package org.apache.flex.html.beads.layouts
 		public function ButtonBarLayout()
 		{
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -75,14 +75,14 @@ package org.apache.flex.html.beads.layouts
 		{
 			_strand = value;
 		}
-		
+
 		private var _widthType:Number = ButtonBarModel.PIXEL_WIDTHS;
 		private var _buttonWidths:Array = null;
-		
+
 		/**
 		 *  An array of widths (Number), one per button. These values supersede the
 		 *  default of equally-sized buttons.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -96,39 +96,39 @@ package org.apache.flex.html.beads.layouts
 		{
 			_buttonWidths = value;
 		}
-		
+
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
 		 */
 		public function layout():Boolean
 		{
-			var layoutHost:ILayoutHost = (_strand as ILayoutParent).getLayoutHost(); 
-			var contentView:ILayoutObject = layoutHost.contentView;
-			
+			var layoutHost:ILayoutHost = (_strand as ILayoutParent).getLayoutHost();
+			var contentView:ILayoutView = layoutHost.contentView;
+
 			var model:ButtonBarModel = _strand.getBeadByType(ButtonBarModel) as ButtonBarModel;
 			if (model) {
 				buttonWidths = model.buttonWidths;
 				_widthType = model.widthType;
 			}
-			
+
 			var n:int = contentView.numElements;
 			var realN:int = n;
-			
+
 			COMPILE::JS {
 				contentView.element.style["display"] = "flex";
 				contentView.element.style["flex-flow"] = "row";
 			}
-			
+
 			for (var j:int=0; j < n; j++)
 			{
 				var child:IUIBase = contentView.getElementAt(j) as IUIBase;
 				if (child == null || !child.visible) realN--;
 			}
-			
+
 			var xpos:Number = 0;
 			var useWidth:Number = contentView.width / realN;
 			var useHeight:Number = contentView.height;
-			
+
 			for (var i:int=0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = contentView.getElementAt(i) as ISelectableItemRenderer;
@@ -139,7 +139,7 @@ package org.apache.flex.html.beads.layouts
 
 					if (buttonWidths) {
 						var widthValue:* = buttonWidths[i];
-						
+
 						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
 							if (widthValue != null) UIBase(ir).width = Number(widthValue);
 						}
@@ -153,12 +153,12 @@ package org.apache.flex.html.beads.layouts
 						UIBase(ir).width = useWidth;
 					}
 				}
-				
+
 				COMPILE::JS {
 					// otherwise let the flexbox layout handle matters on its own.
 					if (buttonWidths) {
 						var widthValue:* = buttonWidths[i];
-						
+
 						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
 							if (widthValue != null) UIBase(ir).width = Number(widthValue);
 						}
@@ -174,9 +174,9 @@ package org.apache.flex.html.beads.layouts
 				}
 				xpos += UIBase(ir).width;
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-			
+
             return true;
 		}
 	}

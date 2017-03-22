@@ -39,6 +39,6 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-		function get contentView():ILayoutObject;
+		function get contentView():ILayoutView;
 	}
 }

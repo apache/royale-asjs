@@ -22,7 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutObject;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -30,20 +30,20 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;			
+		import org.apache.flex.core.WrappedHTMLElement;
 	}
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSContainerUtils;
 	import org.apache.flex.utils.CSSUtils;
-	
+
 	/**
 	 *  The VerticalLayout class is a simple layout
 	 *  bead.  It takes the set of children and lays them out
 	 *  vertically in one column, separating them according to
 	 *  CSS layout rules for margin and horizontal-align styles.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -53,7 +53,7 @@ package org.apache.flex.html.beads.layouts
 	{
 		/**
 		 *  Constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -62,15 +62,15 @@ package org.apache.flex.html.beads.layouts
 		public function VerticalLayout()
 		{
 		}
-		
+
 		// the strand/host container is also an ILayoutChild because
 		// can have its size dictated by the host's parent which is
 		// important to know for layout optimization
 		private var host:ILayoutChild;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -78,12 +78,12 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function set strand(value:IStrand):void
 		{
-			host = value as ILayoutChild; 
+			host = value as ILayoutChild;
 		}
-		
+
 		/**
 		 *  Layout children vertically
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -94,18 +94,18 @@ package org.apache.flex.html.beads.layouts
 		{
 			COMPILE::SWF
 			{
-				var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost(); 
-				var contentView:ILayoutObject = layoutHost.contentView;
-				
+				var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost();
+				var contentView:ILayoutView = layoutHost.contentView;
+
 				var n:Number = contentView.numElements;
 				if (n == 0) return false;
-				
+
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
 				var hostSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostWidth:Number = hostSizedToContent ? 0 : contentView.width;
 				var hostHeight:Number = contentView.height;
-				
+
 				var ilc:ILayoutChild;
 				var data:Object;
 				var canAdjust:Boolean = false;
@@ -114,13 +114,13 @@ package org.apache.flex.html.beads.layouts
 				var marginTop:Object;
 				var marginBottom:Object;
 				var margin:Object;
-				
+
 				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
-				
+
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
 				var ypos:Number = borderMetrics.top + paddingMetrics.left;
-				
+
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
 				{
@@ -141,13 +141,13 @@ package org.apache.flex.html.beads.layouts
 						ml = 0;
 					if (marginRight == "auto")
 						mr = 0;
-					
+
 					ilc = child as ILayoutChild;
-					
+
 					ypos += mt;
-					
+
 					var childXpos:Number = xpos + ml; // default x position
-					
+
 					if (!hostSizedToContent) {
 						var childWidth:Number = child.width;
 						if (ilc != null && !isNaN(ilc.percentWidth)) {
@@ -159,34 +159,34 @@ package org.apache.flex.html.beads.layouts
 						// horizontally centered elements in a vertical column).
 						//					childXpos = hostWidth/2 - (childWidth + ml + mr)/2;
 					}
-					
+
 					if (ilc) {
 						ilc.setX(childXpos);
 						ilc.setY(ypos);
-						
+
 						if (!isNaN(ilc.percentHeight)) {
 							var newHeight:Number = (contentView.height-borderMetrics.top-borderMetrics.bottom-paddingMetrics.top-paddingMetrics.bottom) * ilc.percentHeight / 100;
 							ilc.setHeight(newHeight - mt - mb);
 						}
-						
+
 					} else {
 						child.x = childXpos;
 						child.y = ypos;
 					}
-					
+
 					ypos += child.height + mb;
 				}
-				
+
 				host.dispatchEvent( new Event("layoutComplete") );
-				
-				return true;	
+
+				return true;
 			}
 			COMPILE::JS
 			{
 				var children:Array;
 				var i:int;
 				var n:int;
-				
+
 				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 				var contentView:IParentIUIBase = viewBead.contentView as IParentIUIBase;
 				children = contentView.internalChildren();
@@ -195,11 +195,11 @@ package org.apache.flex.html.beads.layouts
 				{
 					var child:WrappedHTMLElement = children[i];
 					child.flexjs_wrapper.setDisplayStyleForLayout('block');
-					if (child.style.display === 'none') 
+					if (child.style.display === 'none')
 					{
 						child.flexjs_wrapper.setDisplayStyleForLayout('block');
-					} 
-					else 
+					}
+					else
 					{
 						// block elements don't measure width correctly so set to inline for a second
 						child.style.display = 'inline-block';
@@ -211,6 +211,6 @@ package org.apache.flex.html.beads.layouts
 				return true;
 			}
 		}
-		
+
 	}
 }

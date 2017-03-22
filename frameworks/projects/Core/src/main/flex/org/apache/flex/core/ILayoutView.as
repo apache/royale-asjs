@@ -19,7 +19,7 @@
 package org.apache.flex.core
 {
     /**
-     *  The ILayoutObject interface is implemented by any component that
+     *  The ILayoutView interface is implemented by any component that
 	 *  has ILayoutChild children.
      * 
      *  @langversion 3.0
@@ -27,7 +27,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public interface ILayoutObject
+	public interface ILayoutView
 	{
 		/**
 		 * Returns the width of the layout object's content area. This
@@ -74,11 +74,11 @@ package org.apache.flex.core
 		COMPILE::JS {
 			/**
 			 * Returns the native element of the layout object itself.
-	     * 
-	     *  @langversion 3.0
-	     *  @playerversion Flash 10.2
-	     *  @playerversion AIR 2.6
-	     *  @productversion FlexJS 0.8
+		     * 
+		     *  @langversion 3.0
+		     *  @playerversion Flash 10.2
+		     *  @playerversion AIR 2.6
+		     *  @productversion FlexJS 0.8
 			 */
 			function get element():WrappedHTMLElement;
 		}
