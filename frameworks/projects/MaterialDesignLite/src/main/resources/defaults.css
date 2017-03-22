@@ -65,7 +65,7 @@ Switch
 
 Slider
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.SliderRangeModel");
 	iBeadView:  ClassReference("org.apache.flex.mdl.beads.views.SliderView");
 	iBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
 }
