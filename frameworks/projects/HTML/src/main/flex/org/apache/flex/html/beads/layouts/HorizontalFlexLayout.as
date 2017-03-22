@@ -140,7 +140,7 @@ package org.apache.flex.html.beads.layouts
 				var marginBottom:Object;
 				var margin:Object;
 				
-				trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
+				//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
 				
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
@@ -208,9 +208,12 @@ package org.apache.flex.html.beads.layouts
 					if (data.width == 0 || data.height == 0) continue;
 					
 					useHeight = (data.height < 0 ? maxHeight : data.height);
+					
+					var setWidth:Boolean = true;
 					if (data.width > 0) {
 						if (data.grow > 0 && growCount > 0) {
 							useWidth = remainingWidth / growCount;
+							setWidth = false;
 						} else {
 							useWidth = data.width;
 						}
@@ -224,7 +227,8 @@ package org.apache.flex.html.beads.layouts
 						ilc.setY(ypos + data.mt);
 						ilc.setHeight(useHeight - data.mt - data.mb);
 						if (useWidth > 0) {
-							ilc.setWidth(useWidth - data.ml - data.mr);
+							if (setWidth) ilc.setWidth(useWidth - data.ml - data.mr);
+							else ilc.width = useWidth;
 						}
 					} else {
 						child.x = xpos + data.ml;
@@ -237,12 +241,12 @@ package org.apache.flex.html.beads.layouts
 					
 					xpos += useWidth + data.ml + data.mr;
 					
-					trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
+					//trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}
 				
 				IEventDispatcher(host).dispatchEvent( new Event("layoutComplete") );
 				
-				trace("HorizontalFlexLayout: complete");
+				//trace("HorizontalFlexLayout: complete");
 				
 				return true;
 			}

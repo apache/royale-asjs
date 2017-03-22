@@ -27,6 +27,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.events.Event;
     import org.apache.flex.events.IEventDispatcher;
 	
@@ -57,7 +58,7 @@ package org.apache.flex.html.beads
 		private function drawView(g:Graphics, bgColor:uint):void
 		{
             var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
-			var w:Number = button.width;
+			var w:Number = Button(_strand).width;
 			
 			g.clear();
 			g.lineStyle(1, 0x808080);
@@ -73,7 +74,7 @@ package org.apache.flex.html.beads
 			button.scaleY = 1.0;
 			button.scaleX = 1.0;
 			
-			var w:Number = button.width;
+			var w:Number = Button(_strand).width;
 			
 			drawView(upView.graphics, 0xf8f8f8);
 			drawView(downView.graphics, 0xd8d8d8);

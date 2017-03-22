@@ -139,7 +139,7 @@ package org.apache.flex.html.beads.layouts
 				var marginBottom:Object;
 				var margin:Object;
 				
-				trace("VerticalFlexLayout for "+UIBase(host).id+" with remainingHeight: "+remainingHeight);
+				//trace("VerticalFlexLayout for "+UIBase(host).id+" with remainingHeight: "+remainingHeight);
 				
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
@@ -207,9 +207,12 @@ package org.apache.flex.html.beads.layouts
 					if (data.width == 0 || data.height == 0) continue;
 					
 					useWidth = (data.width < 0 ? maxWidth : data.width);
+					
+					var setHeight:Boolean = true;
 					if (data.height > 0) {
 						if (data.grow > 0 && growCount > 0) {
 							useHeight = remainingHeight / growCount;
+							setHeight = false;
 						} else {
 							useHeight = data.height;
 						}
@@ -223,7 +226,8 @@ package org.apache.flex.html.beads.layouts
 						ilc.setY(ypos + data.mt);
 						ilc.setWidth(useWidth - data.ml - data.mr);
 						if (useHeight > 0) {
-							ilc.setHeight(useHeight);
+							if (setHeight) ilc.setHeight(useHeight);
+							else ilc.height = useHeight;
 						}
 					} else {
 						child.x = xpos + data.ml;
@@ -236,12 +240,12 @@ package org.apache.flex.html.beads.layouts
 					
 					ypos += useHeight + data.mt + data.mb;
 					
-					trace("VerticalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
+					//trace("VerticalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}
 				
 				IEventDispatcher(host).dispatchEvent( new Event("layoutComplete") );
 				
-				trace("VerticalFlexLayout: complete");
+				//trace("VerticalFlexLayout: complete");
 				
 				return true;
 			}

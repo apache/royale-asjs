@@ -660,6 +660,7 @@ global
 		IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
 		IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 		IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 		border-style: solid;
 		border-radius: 4px;
@@ -672,6 +673,7 @@ global
 	{
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+		iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
 	}
 	
 	HRule
@@ -698,6 +700,7 @@ global
 	
 	List
 	{
+		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
 		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");

@@ -21,6 +21,7 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.effects.Effect;
@@ -106,8 +107,8 @@ package org.apache.flex.utils
 		
 		private function getEffects(originalLayoutParent:ILayoutParent, mockLayoutParent:ILayoutParent):Array
 		{
-			var originalContentView:IParentIUIBase = originalLayoutParent.getLayoutHost().contentView;
-			var mockContentView:IParentIUIBase = mockLayoutParent.getLayoutHost().contentView;
+			var originalContentView:ILayoutObject = originalLayoutParent.getLayoutHost().contentView;
+			var mockContentView:ILayoutObject = mockLayoutParent.getLayoutHost().contentView;
 			var numElements:int = originalContentView.numElements;
 			var effects:Array = [];
 			for (var i:int = 0; i < numElements; i++)

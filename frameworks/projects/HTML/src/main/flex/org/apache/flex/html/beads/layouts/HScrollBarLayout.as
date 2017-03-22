@@ -91,20 +91,20 @@ package org.apache.flex.html.beads.layouts
 			var track:Button = sbView.track;
 			var thumb:Button = sbView.thumb;
 			
-			decrement.x = 0;
+			decrement.x = 1;
 			decrement.y = 0;
-			decrement.height = host.height;
+			decrement.height = host.height - 2;
 			decrement.width = host.height;
 			
-			increment.height = host.height;
+			increment.height = host.height - 2;
 			increment.width = host.height;
-			increment.x = w - increment.width - 1;
+			increment.x = w - increment.width - 2;
 			increment.y = 0;
 
-			track.x = decrement.width;
+			track.x = decrement.width + 4;
 			track.y = 0;
 			track.height = host.height;
-			track.width = increment.x - decrement.width;
+			track.width = increment.x - decrement.width - 5;
             thumb.width = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.width;
 			if (track.width > thumb.width)
 			{

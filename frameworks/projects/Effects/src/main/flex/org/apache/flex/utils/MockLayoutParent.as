@@ -32,6 +32,7 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
@@ -145,7 +146,7 @@ package org.apache.flex.utils
 			return _layoutHost;
 		}
 		
-		public function get contentView():IParentIUIBase
+		public function get contentView():ILayoutObject
 		{
 			return _layoutHost.contentView;
 		}

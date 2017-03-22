@@ -212,7 +212,7 @@ package org.apache.flex.html.supportClasses
 				_verticalScroller.y = 0;
 				_verticalScroller.setHeight(hostHeight - (needH ? _horizontalScroller.height : 0), true);
 				
-				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;// + paddingMetrics.top + paddingMetrics.bottom;
+				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
 				ScrollBarModel(_verticalScroller.model).pageSize = contentArea.height;
 				ScrollBarModel(_verticalScroller.model).pageStepSize = contentArea.height;
 				
@@ -228,10 +228,10 @@ package org.apache.flex.html.supportClasses
 			{
 				_horizontalScroller.visible = true;
 				_horizontalScroller.x = 0;
-				_horizontalScroller.y = hostHeight - _horizontalScroller.height;
+				_horizontalScroller.y = hostHeight - _horizontalScroller.height - 1;
 				_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), true);
 				
-				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;// + paddingMetrics.left + paddingMetrics.right;
+				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;
 				ScrollBarModel(_horizontalScroller.model).pageSize = contentArea.width;
 				ScrollBarModel(_horizontalScroller.model).pageStepSize = contentArea.width;
 				

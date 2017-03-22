@@ -31,11 +31,12 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutObject;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class MockContentView implements IContentView, IParentIUIBase
+	public class MockContentView implements IContentView, IParentIUIBase, ILayoutObject
 	{
 		private var _x:Number;
 		private var _y:Number;
@@ -43,12 +44,14 @@ package org.apache.flex.utils
 		private var _height:Number;
 		private var elements:Array = [];
 		
-		public function MockContentView(source:IParentIUIBase)
+		public function MockContentView(source:ILayoutObject)
 		{
-			x = source.x;
-			y = source.y;
-			width = source.width;
-			height = source.height;
+			var p:IParentIUIBase = source as IParentIUIBase;
+			
+			x = p.x;
+			y = p.y;
+			width = p.width;
+			height = p.height;
 			for (var i:int = 0; i < source.numElements; i++)
 			{
 				var mock:ILayoutChild = new MockLayoutChild(source.getElementAt(i) as ILayoutChild);
