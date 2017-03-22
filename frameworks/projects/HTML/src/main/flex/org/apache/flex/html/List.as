@@ -89,7 +89,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends ListBase implements IList, IItemRendererParent, ILayoutObject
+	public class List extends DataContainer
 	{
 		/**
 		 *  constructor.
@@ -102,43 +102,7 @@ package org.apache.flex.html
 		public function List()
 		{
 			super();
-			addEventListener("beadsAdded", beadsAddedHandler);
 		}
-		
-		/**
-		 *  The name of field within the data used for display. Each item of the
-		 *  data should have a property with this name.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get labelField():String
-		{
-			return ISelectionModel(model).labelField;
-		}
-		public function set labelField(value:String):void
-		{
-			ISelectionModel(model).labelField = value;
-		}
-		
-		/**
-		 *  The data being display by the List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get dataProvider():Object
-        {
-            return ISelectionModel(model).dataProvider;
-        }
-        public function set dataProvider(value:Object):void
-        {
-            ISelectionModel(model).dataProvider = value;
-        }
 
 		/**
 		 *  The index of the currently selected item. Changing this value
@@ -173,24 +137,6 @@ package org.apache.flex.html
 		public function set rollOverIndex(value:int):void
 		{
 			IRollOverModel(model).rollOverIndex = value;
-		}
-			
-		/**
-		 *  The presentation model for the list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get presentationModel():IListPresentationModel
-		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
-			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
-			}
-			return presModel;
 		}
 		
 		/**
@@ -229,178 +175,8 @@ package org.apache.flex.html
 		}
 		
 		/*
-		 * IList and IItemRendererProvider
-		 */
-		
-		/**
-		 * Provides the DataGroup for this List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			return this;
-		}
-		
-		private var _itemRenderer:IFactory;
-		
-		/**
-		 *  The class or factory used to display each item.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get itemRenderer():IFactory
-		{
-			return _itemRenderer;
-		}
-		public function set itemRenderer(value:IFactory):void
-		{
-			_itemRenderer = value;
-		}
-		
-		/**
-		 * Returns whether or not the itemRenderer property has been set.
-		 *
-		 *  @see org.apache.flex.core.IItemRendererProvider
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get hasItemRenderer():Boolean
-		{
-			var result:Boolean = false;
-			
-			COMPILE::SWF {
-				result = _itemRenderer != null;
-			}
-			
-			COMPILE::JS {
-				var test:* = _itemRenderer;
-				result = _itemRenderer !== null && test !== undefined;
-			}
-			
-			return result;
-		}
-		
-		/*
-		 * IItemRendererParent
-		 */
-		
-		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-		 * @private
-		 */
-		public function addItemRenderer(renderer:IItemRenderer):void
-		{			
-			addElement(renderer, true);
-			
-			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-			newEvent.item = renderer;
-			
-			dispatchEvent(newEvent);
-		}
-		
-		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-		 * @private
-		 */
-		public function removeItemRenderer(renderer:IItemRenderer):void
-		{				
-			removeElement(renderer, true);
-			
-			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
-			newEvent.item = renderer;
-			
-			dispatchEvent(newEvent);
-		}
-		
-		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-		 * @private
-		 */
-		public function removeAllItemRenderers():void
-		{			
-			while (numElements > 0) {
-				var child:IChild = getElementAt(0);
-				removeElement(child);
-			}
-		}
-		
-		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function getItemRendererForIndex(index:int):IItemRenderer
-		{			
-			if (index < 0 || index >= numElements) return null;
-			return getElementAt(index) as IItemRenderer;
-		}
-		
-		/**
-		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
-		 *  
-		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function updateAllItemRenderers():void
-		{			
-			var n:Number = numElements;
-			for (var i:Number = 0; i < n; i++)
-			{
-				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
-				if (renderer) {
-					renderer.setWidth(this.width,true);
-					renderer.adjustSize();
-				}
-			}
-		}
-		
-		/*
 		 * UIBase
 		 */
-		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-            super.addedToParent();
-            		
-			dispatchEvent(new Event("initComplete"));
-		}
-        
-		/**
-		 * @private
-		 */
-	    private function beadsAddedHandler(e:Event):void
-		{
-            if (getBeadByType(IDataProviderItemRendererMapper) == null)
-            {
-                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
-                addBead(mapper);
-            }
-			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-			if (!itemRendererFactory)
-			{
-				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-				addBead(itemRendererFactory);
-			}
-		}
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

@@ -124,14 +124,6 @@ package org.apache.flex.html
         {
             IDataProviderModel(model).dataProvider = value;
         }
-		
-		/**
-		 * Returns the sub-component that parents all of the item renderers.
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			return this;
-		}
 
 			
 		/**
@@ -152,23 +144,23 @@ package org.apache.flex.html
 			return presModel;
 		}
 		
+		/*
+		 * IList and IItemRendererParent
+		 */
+		
 		/**
-		 *  The default height of each cell in every column
+		 * Returns the sub-component that parents all of the item renderers.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function get rowHeight():Number
+		public function get dataGroup():IItemRendererParent
 		{
-			return presentationModel.rowHeight;
+			return this;
 		}
-		public function set rowHeight(value:Number):void
-		{
-			presentationModel.rowHeight = value;
-		}
-				
+		
 		private var _itemRenderer:IFactory;
 		
 		/**
@@ -205,18 +197,18 @@ package org.apache.flex.html
 			COMPILE::SWF {
 				result = _itemRenderer != null;
 			}
-			
+				
 			COMPILE::JS {
 				var test:* = _itemRenderer;
 				result = _itemRenderer !== null && test !== undefined;
 			}
-			
-			return result;
+				
+				return result;
 		}
 		
 		/*
-		* IItemRendererParent
-		*/
+		 * IItemRendererParent
+		 */
 		
 		/**
 		 * @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
@@ -295,9 +287,8 @@ package org.apache.flex.html
 		}
 		
 		/*
-		* UIBase
-		*/
-		
+		 * UIBase
+		 */
 		
 		/**
 		 * @private

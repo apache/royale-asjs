@@ -62,7 +62,7 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
-		protected var listModel:IDataProviderModel;
+		protected var dataModel:IDataProviderModel;
 		
 		public function get dataGroup():IItemRendererParent
 		{
@@ -72,9 +72,9 @@ package org.apache.flex.html.beads
 		override protected function beadsAddedHandler(event:Event):void
 		{
 			
-			listModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			super.beadsAddedHandler(event);
 		}
@@ -104,7 +104,7 @@ package org.apache.flex.html.beads
 			super();
 		}
 						
-		protected var listModel:IDataProviderModel;
+		protected var dataModel:IDataProviderModel;
 		
 		/**
 		 * @private
@@ -137,9 +137,14 @@ package org.apache.flex.html.beads
 			host.removeEventListener("childrenAdded", childrenChangedHandler);
 			host.removeEventListener("childrenAdded", performLayout);
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
+		}
+		
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			super.beadsAddedHandler(event);
 			
-			listModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
 		
 		/**
@@ -189,6 +194,7 @@ package org.apache.flex.html.beads
          */
 		override protected function resizeHandler(event:Event):void
 		{
+			// might need to do something here, not sure yet.
 			super.resizeHandler(event);
 		}
 	}
