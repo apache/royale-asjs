@@ -23,13 +23,13 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IChild;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IContainerView;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -41,7 +41,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.geom.Size;
+	import org.apache.flex.geom.Size;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.models.ViewportModel;
 	import org.apache.flex.html.supportClasses.Border;
@@ -223,7 +223,7 @@ package org.apache.flex.html.beads
 			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			return paddingMetrics;
 		}
-
+		
 		/**
 		 *  Positions the viewport, then sets any known sizes of the Viewport prior
          *  to laying out its content.
@@ -233,7 +233,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function layoutViewBeforeContentLayout():void
+		override protected function layoutViewBeforeContentLayout():void
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
@@ -247,44 +247,6 @@ package org.apache.flex.html.beads
 			viewport.layoutViewportBeforeContentLayout(
 				host.isWidthSizedToContent() ? NaN : hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
 				host.isHeightSizedToContent() ? NaN : hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
-		}
-
-		/**
-		 * Executes the layout associated with this container. Once the layout has been
-		 * run, it may affect the size of the host or may cause the host to present scroll
-		 * bars view its viewport.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override protected function performLayout(event:Event):void
-		{
-			if (layoutRunning) return;
-
-			layoutRunning = true;
-
-			layoutViewBeforeContentLayout();
-
-			var host:UIBase = _strand as UIBase;
-
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-				if (c) {
-					layout = new c() as IBeadLayout;
-					_strand.addBead(layout);
-				}
-			}
-
-			if (layout) {
-				layout.layout();
-			}
-
-			layoutViewAfterContentLayout();
-
-			layoutRunning = false;
 		}
 
 		/**

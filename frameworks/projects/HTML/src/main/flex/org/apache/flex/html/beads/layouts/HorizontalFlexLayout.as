@@ -244,8 +244,6 @@ package org.apache.flex.html.beads.layouts
 					//trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}
 
-				IEventDispatcher(host).dispatchEvent( new Event("layoutComplete") );
-
 				//trace("HorizontalFlexLayout: complete");
 
 				return true;

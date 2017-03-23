@@ -204,8 +204,6 @@ package org.apache.flex.html.beads.layouts
 					}
                 }
 
-                host.dispatchEvent( new Event("layoutComplete") );
-
                 return true;
 
             }
@@ -231,7 +229,6 @@ package org.apache.flex.html.beads.layouts
 					child.positioner.style.position = "absolute";
 				}
 
-				host.dispatchEvent( new Event("layoutComplete") );
                 return true;
             }
 		}

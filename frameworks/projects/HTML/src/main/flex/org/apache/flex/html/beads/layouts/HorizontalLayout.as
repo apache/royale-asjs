@@ -184,8 +184,6 @@ package org.apache.flex.html.beads.layouts
 					xpos += child.width + mr;
 				}
 
-				host.dispatchEvent( new Event("layoutComplete") );
-
 				return true;
 
             }
@@ -214,7 +212,7 @@ package org.apache.flex.html.beads.layouts
 						child.style.display = 'inline-block';
 					}
 				}
-				host.dispatchEvent( new Event("layoutComplete") );
+
                 return true;
             }
 		}

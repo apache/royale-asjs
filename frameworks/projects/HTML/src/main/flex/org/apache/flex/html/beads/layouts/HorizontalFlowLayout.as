@@ -226,8 +226,6 @@ package org.apache.flex.html.beads.layouts
 					xpos += childWidth + columnGap;
 				}
 
-				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-
 				return true;
 			}
 			COMPILE::JS
@@ -279,8 +277,6 @@ package org.apache.flex.html.beads.layouts
 					children[i].style["margin-left"] = String(_columnGap/2)+"px";
 					children[i].style["margin-right"] = String(_columnGap/2)+"px";
 				}
-
-				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
 
 				return true;
 			}

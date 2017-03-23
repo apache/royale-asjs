@@ -194,8 +194,6 @@ package org.apache.flex.html.beads.layouts
 				// size is stored in the model.
 				var sizeChanged:Boolean = true;
 
-				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-
 				return sizeChanged;
 			}
 			COMPILE::JS

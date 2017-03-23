@@ -661,10 +661,11 @@ global
 		IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 		IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
+		iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
 		border-style: solid;
 		border-radius: 4px;
-		border-color: #000000;
+		border-color: #333333;
 		border-width: 1px;
 		background-color: #FFFFFF;
 	}

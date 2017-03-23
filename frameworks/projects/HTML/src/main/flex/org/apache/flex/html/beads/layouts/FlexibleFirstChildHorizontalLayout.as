@@ -224,8 +224,6 @@ package org.apache.flex.html.beads.layouts
 				xpos -= ml;
 			}
 
-			host.dispatchEvent( new Event("layoutComplete") );
-
 			return true;
 		}
 

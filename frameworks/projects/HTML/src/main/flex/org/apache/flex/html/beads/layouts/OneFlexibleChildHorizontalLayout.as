@@ -351,8 +351,6 @@ package org.apache.flex.html.beads.layouts
 				}
 			}
 
-			host.dispatchEvent( new Event("layoutComplete") );
-
             return true;
 		}
 

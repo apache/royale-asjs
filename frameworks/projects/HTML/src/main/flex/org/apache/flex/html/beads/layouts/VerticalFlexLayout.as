@@ -243,8 +243,6 @@ package org.apache.flex.html.beads.layouts
 					//trace("VerticalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}
 
-				IEventDispatcher(host).dispatchEvent( new Event("layoutComplete") );
-
 				//trace("VerticalFlexLayout: complete");
 
 				return true;

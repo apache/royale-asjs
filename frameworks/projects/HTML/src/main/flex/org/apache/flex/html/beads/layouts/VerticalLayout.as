@@ -177,8 +177,6 @@ package org.apache.flex.html.beads.layouts
 					ypos += child.height + mb;
 				}
 
-				host.dispatchEvent( new Event("layoutComplete") );
-
 				return true;
 			}
 			COMPILE::JS
@@ -207,7 +205,7 @@ package org.apache.flex.html.beads.layouts
 					}
 					child.flexjs_wrapper.dispatchEvent('sizeChanged');
 				}
-				host.dispatchEvent( new Event("layoutComplete") );
+
 				return true;
 			}
 		}

@@ -230,6 +230,20 @@ package org.apache.flex.html.beads
 
 				performLayout(event);
 		}
+		
+		/**
+		 * Provides a place for pre-layout actions.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		COMPILE::SWF
+		protected function layoutViewBeforeContentLayout():void
+		{
+			// This has no use for Group but is here so a subclass can override it.
+		}
 
 		/**
 		 * Executes the layout associated with this container. Once the layout has been
@@ -246,6 +260,11 @@ package org.apache.flex.html.beads
 			if (layoutRunning) return;
 
 			layoutRunning = true;
+			
+			COMPILE::SWF {
+				// the HTML/JS side do not need any preparations
+				layoutViewBeforeContentLayout();
+			}
 
 			var host:UIBase = _strand as UIBase;
 
@@ -269,6 +288,8 @@ package org.apache.flex.html.beads
 			}
 
 			layoutRunning = false;
+			
+			host.dispatchEvent(new Event("layoutComplete"));
 		}
 
 		/**

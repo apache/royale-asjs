@@ -175,8 +175,6 @@ package org.apache.flex.html.beads.layouts
 				xpos += UIBase(ir).width;
 			}
 
-			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-
             return true;
 		}
 	}

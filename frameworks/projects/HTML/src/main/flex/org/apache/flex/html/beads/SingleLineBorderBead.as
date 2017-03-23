@@ -65,11 +65,11 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener("layoutNeeded", changeHandler);
             IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
             IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
-            changeHandler(null);
+			IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
+			IEventDispatcher(value).addEventListener("initComplete", changeHandler);
+			IEventDispatcher(value).addEventListener("layoutComplete", changeHandler);
 		}
 		        
 		protected function changeHandler(event:Event):void
