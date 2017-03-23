@@ -18,13 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
     import org.apache.flex.core.IChild;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
     import org.apache.flex.core.ILayoutParent;
     import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.html.Group;
+	import org.apache.flex.events.ItemAddedEvent;
+	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.flex.events.ItemRemovedEvent;
     import org.apache.flex.mdl.beads.models.ITabModel;
 
     COMPILE::JS
@@ -49,7 +53,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class Tabs extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
+	public class Tabs extends Group implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView
 	{
 		/**
 		 *  constructor.
@@ -147,8 +151,9 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function getLayoutHost():ILayoutHost
+        override public function getLayoutHost():ILayoutHost
         {
+			// can probably eliminate this function now
             return this;
         }
 
@@ -160,7 +165,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function get contentView():IParentIUIBase
+        public function get contentView():ILayoutView
         {
             return this;
         }
@@ -178,6 +183,26 @@ package org.apache.flex.mdl
             var child:IItemRenderer = getElementAt(index) as IItemRenderer;
             return child;
         }
+		
+		public function addItemRenderer(renderer:IItemRenderer):void
+		{
+			addElement(renderer, true);
+			
+			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
+		
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+			removeElement(renderer, true);
+			
+			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
 
         /**
          *  remove all elements
@@ -187,7 +212,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function removeAllElements():void
+        public function removeAllItemRenderers():void
         {
             while (numElements > 0) {
                 var child:IChild = getElementAt(0);

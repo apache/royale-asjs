@@ -18,14 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.core.GroupBase;
     import org.apache.flex.core.IChild;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ILayoutHost;
     import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutView;
     import org.apache.flex.core.IParentIUIBase;
     import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.events.ItemAddedEvent;
+	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.flex.events.ItemRemovedEvent;
 
     COMPILE::JS
     {
@@ -49,7 +53,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */    
-	public class Menu extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
+	public class Menu extends GroupBase implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView
 	{
         /**
          *  Constructor.
@@ -137,10 +141,48 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function get contentView():IParentIUIBase
+        public function get contentView():ILayoutView
         {
             return this;
         }
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function addItemRenderer(renderer:IItemRenderer):void
+		{
+			addElement(renderer, true);
+			
+			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+			removeElement(renderer, true);
+			
+			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			newEvent.item = renderer;
+			
+			dispatchEvent(newEvent);
+		}
 
         /**
          *  get item renderer for index
@@ -164,7 +206,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function removeAllElements():void
+        public function removeAllItemRenderers():void
         {
             while (numElements > 0) {
                 var child:IChild = getElementAt(0);
