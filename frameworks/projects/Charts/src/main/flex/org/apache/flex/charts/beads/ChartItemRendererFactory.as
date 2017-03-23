@@ -58,7 +58,7 @@ package org.apache.flex.charts.beads
 		}
 		
 		private var selectionModel:ISelectionModel;
-		protected var dataGroup:IItemRendererParent;
+		//protected var dataGroup:IItemRendererParent;
 		
 		private var _seriesRenderers:Array;
 		
@@ -92,10 +92,21 @@ package org.apache.flex.charts.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listView:IListView = value.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
-			//			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
+			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+			
+		}
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
+		
+		private function finishSetup(event:Event):void
+		{
+			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			
+			var dataGroup:IItemRendererParent = listView.dataGroup;
 			
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
@@ -103,7 +114,7 @@ package org.apache.flex.charts.beads
 			
 			_seriesRenderers = new Array();
 			
-			dataGroup.removeAllElements();
+			dataGroup.removeAllItemRenderers();
 			
 			var series:Array = IChart(_strand).series;
 			
@@ -124,17 +135,13 @@ package org.apache.flex.charts.beads
 					
 					renderers.push(k);
 					
-					dataGroup.addElement(k);
+					dataGroup.addItemRenderer(k);
 				}
 				
 				_seriesRenderers.push(renderers);
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-		}
-		public function get strand():IStrand
-		{
-			return _strand;
 		}
 		
 		/**

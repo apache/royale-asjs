@@ -112,9 +112,9 @@ package org.apache.flex.charts.beads
 		 */
 		override protected function completeSetup():void
 		{
-			if (border) {
-				IParent(_strand).removeElement(border);
-			}
+//			if (border) {
+//				IParent(_strand).removeElement(border);
+//			}
 					
 			super.completeSetup();
 		}
@@ -158,7 +158,7 @@ package org.apache.flex.charts.beads
 				horizontalAxisGroup.removeAllElements();
 			}
 			
-			dataGroup.removeAllElements();
+			dataGroup.removeAllItemRenderers();
 		}
 				
 		/**
@@ -166,6 +166,13 @@ package org.apache.flex.charts.beads
 		 * be calculated so the chart's layout algorithm knows precisely the dimensions of 
 		 * chart for its item renderers.
 		 */
+		COMPILE::JS
+		protected function layoutViewBeforeContentLayout():void
+		{
+			// to do
+		}
+		
+		COMPILE::SWF
 		override protected function layoutViewBeforeContentLayout():void
 		{			
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
@@ -242,6 +249,12 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		//protected var lastRollOverIndex:Number = -1;
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
 		override protected function rollOverIndexChangeHandler(event:Event):void
 		{
 			var model:IChartDataModel = event.currentTarget as IChartDataModel;
