@@ -193,6 +193,7 @@ package org.apache.flex.html.beads
 		
         private function drawBorder(sprite:Sprite, color:uint, ww:Number, hh:Number):void
         {
+			sprite.graphics.clear();
             SolidBorderUtil.drawBorder(sprite.graphics, 0, 0,
                 ww, hh,
                 0x808080, color, 1, 1, 4);

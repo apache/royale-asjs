@@ -155,7 +155,7 @@ package org.apache.flex.html
             element.appendChild(document.createTextNode(''));
 
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
 			_icon.element.flexjs_wrapper = this;
 

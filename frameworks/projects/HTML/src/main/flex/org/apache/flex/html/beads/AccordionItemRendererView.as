@@ -56,8 +56,10 @@ package org.apache.flex.html.beads
 				super.performLayout(event);
 			} else // skip layout for viewport children
 			{
-				layoutViewBeforeContentLayout();
+				COMPILE::SWF {
+				// no longer needed layoutViewBeforeContentLayout();
 				layoutViewAfterContentLayout();
+				}
 			}
 		}
 	}

@@ -17,10 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{	
+{
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IMeasurementBead;
 	import org.apache.flex.core.IParent;
@@ -32,13 +33,13 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.CSSContainerUtils;    
-	
+    import org.apache.flex.utils.CSSContainerUtils;
+
 	/**
 	 * ColumnLayout is a class that organizes the positioning of children
 	 * of a container into a set of columns where each column's width is set to
 	 * the maximum size of all of the children in that column.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -48,7 +49,7 @@ package org.apache.flex.html.beads.layouts
 	{
 		/**
 		 *  constructor
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -57,12 +58,12 @@ package org.apache.flex.html.beads.layouts
 		public function VerticalColumnLayout()
 		{
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -72,13 +73,13 @@ package org.apache.flex.html.beads.layouts
 		{
 			_strand = value;
 		}
-		
-		
+
+
 		private var _numColumns:int;
-		
+
 		/**
 		 * The number of columns.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -92,19 +93,19 @@ package org.apache.flex.html.beads.layouts
 		{
 			_numColumns = value;
 		}
-		
+
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
 		public function layout():Boolean
-		{			
+		{
             var host:UIBase = UIBase(_strand);
             var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-            var contentView:IParent = layoutParent.contentView;
+            var contentView:ILayoutView = layoutParent.contentView;
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
 			var sh:Number = host.height;
-			
+
             var hasWidth:Boolean = !host.isWidthSizedToContent();
             var hasHeight:Boolean = !host.isHeightSizedToContent();
 			var e:IUIBase;
@@ -127,7 +128,7 @@ package org.apache.flex.html.beads.layouts
             var mb:Number;
 			var n:int = contentView.numElements;
             var rowData:Object = { rowHeight: 0 };
-			
+
 			// determine max widths of columns
 			for (i = 0; i < n; i++) {
 				e = contentView.getElementAt(i) as IUIBase;
@@ -149,11 +150,11 @@ package org.apache.flex.html.beads.layouts
 					if (measure)
 						thisPrefWidth = measure.measuredWidth + ml + mr;
 					else
-						thisPrefWidth = e.width + ml + mr;						
+						thisPrefWidth = e.width + ml + mr;
 				}
 				else
 					thisPrefWidth = e.width + ml + mr;
-				
+
                 rowData.rowHeight = Math.max(rowData.rowHeight, e.height + mt + mb);
 				columns[col] = Math.max(columns[col], thisPrefWidth);
                 col = col + 1;
@@ -164,14 +165,14 @@ package org.apache.flex.html.beads.layouts
                     col = 0;
                 }
 			}
-			
+
             var lastmb:Number = 0;
 			var curx:int = padding.left;
 			var cury:int = padding.top;
 			var maxHeight:int = 0;
             var maxWidth:int = 0;
 			col = 0;
-			for (i = 0; i < n; i++) 
+			for (i = 0; i < n; i++)
             {
 				e = contentView.getElementAt(i) as IUIBase;
 				if (e == null || !e.visible) continue;

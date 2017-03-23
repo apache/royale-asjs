@@ -39,7 +39,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PanelWithControlBar extends Container
+	public class PanelWithControlBar extends Panel
 	{
 		/**
 		 *  constructor.
@@ -52,52 +52,6 @@ package org.apache.flex.html
 		public function PanelWithControlBar()
 		{
 			super();
-		}
-		
-		/**
-		 *  The string to display in the org.apache.flex.html.TitleBar.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get title():String
-		{
-			return IPanelModel(model).title;
-		}
-		public function set title(value:String):void
-		{
-			IPanelModel(model).title = value;
-		}
-		
-		/**
-		 *  The HTML string to display in the org.apache.flex.html.TitleBar.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get htmlTitle():String
-		{
-			return IPanelModel(model).htmlTitle;
-		}
-		public function set htmlTitle(value:String):void
-		{
-			IPanelModel(model).htmlTitle = value;
-		}
-		
-		/**
-		 * Whether or not to show a Close button in the org.apache.flex.html.TitleBar.
-		 */
-		public function get showCloseButton():Boolean
-		{
-			return IPanelModel(model).showCloseButton;
-		}
-		public function set showCloseButton(value:Boolean):void
-		{
-			IPanelModel(model).showCloseButton = value;
 		}
 		
 		/**

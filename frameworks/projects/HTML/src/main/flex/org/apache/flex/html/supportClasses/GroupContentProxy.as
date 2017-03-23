@@ -16,35 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
+	import org.apache.flex.core.IContentProxy;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.IChild;
 	
-	[DefaultProperty("mxmlContent")]
-    
+	COMPILE::JS {
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
+	
     /**
-     *  A Container that has a VerticalLayout.
-     * 
-     *  This is effectively the same as the pattern
-     *  <code>
-     *  <basic:Container xmlns:basic="library://ns.apache.org/flexjs/basic">
-     *    <basic:layout>
-     *       <basic:VerticalLayout />
-     *    </basic:layout>
-     *  </basic:Container>
-     *  </code>
+     *  The ContainerContentArea class implements the contentView for
+     *  a Container on the SWF platform.
      *  
-     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
-	public class VContainer extends Container
+     */
+	public class GroupContentProxy implements IContentProxy
 	{
         /**
          *  Constructor.
@@ -54,10 +45,47 @@ package org.apache.flex.html
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function VContainer()
+		public function GroupContentProxy(host:Object)
 		{
 			super();
+			_host = host;
 		}
 		
+		private var _host:Object;
+		
+		public function set host(value:Object):void
+		{
+			_host = value;
+		}
+		public function get host():Object
+		{
+			return _host;
+		}
+		
+		public function get numElements():Number
+		{
+			return (host as UIBase).numElements;
+		}
+		
+		public function getElementAt(index):IChild
+		{
+			return (host as UIBase).getElementAt(index);
+		}
+		
+		public function get width():Number
+		{
+			return (host as UIBase).width;
+		}
+		
+		public function get height():Number
+		{
+			return (host as UIBase).height;
+		}
+		
+		COMPILE::JS
+		public function get element():WrappedHTMLElement
+		{
+			return (host as UIBase).element;
+		}
 	}
 }

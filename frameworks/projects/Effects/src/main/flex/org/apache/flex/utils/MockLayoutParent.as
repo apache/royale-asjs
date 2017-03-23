@@ -23,7 +23,7 @@ package org.apache.flex.utils
 		import flash.display.DisplayObject;
 		import flash.events.Event;
 	}
-	
+
 	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
@@ -32,12 +32,13 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.IEventDispatcher;
-	
+
 	public class MockLayoutParent implements ILayoutParent, ILayoutHost, IStrand, ILayoutChild
 	{
 		private var _layoutHost:ILayoutHost;
@@ -47,255 +48,255 @@ package org.apache.flex.utils
 			_layoutHost = new MockLayoutHost(source.getLayoutHost());
 			_source = source;
 		}
-		
+
 		public function get parent():IParent
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
-		
+
+
 		public function addedToParent():void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get alpha():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set alpha(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get height():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set height(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get topMostEventDispatcher():IEventDispatcher
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function get visible():Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		public function set visible(value:Boolean):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get width():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set width(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get x():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set x(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get y():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set y(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
-		
+
+
 		public function getLayoutHost():ILayoutHost
 		{
 			return _layoutHost;
 		}
-		
-		public function get contentView():IParentIUIBase
+
+		public function get contentView():ILayoutView
 		{
 			return _layoutHost.contentView;
 		}
-		
+
 		public function addBead(bead:IBead):void
 		{
 			// TODO Auto Generated method stub
 		}
-		
+
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
-			return (_source as IStrand).getBeadByType(classOrInterface);	
+			return (_source as IStrand).getBeadByType(classOrInterface);
 		}
-		
+
 		public function removeBead(bead:IBead):IBead
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function get explicitHeight():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function get explicitWidth():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function isHeightSizedToContent():Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		public function isWidthSizedToContent():Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		public function get percentHeight():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set percentHeight(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get percentWidth():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set percentWidth(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function setHeight(value:Number, noEvent:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function setWidth(value:Number, noEvent:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function setX(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function setY(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		COMPILE::JS
 		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
 		{
 		}
-		
+
 		COMPILE::SWF
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
 		{
 		}
-		
+
 		COMPILE::SWF
 		public function dispatchEvent(event:Event):Boolean
 		{
 			return false;
 		}
-		
+
 		COMPILE::JS
 		public function dispatchEvent(event:Object):Boolean
 		{
 			return false;
 		}
-		
+
 		public function hasEventListener(type:String):Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		COMPILE::SWF
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
 		{
 		}
-		
+
 		COMPILE::JS
 		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
 		{
 			// TODO Auto Generated method stub
 		}
-		
+
 		public function willTrigger(type:String):Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		COMPILE::SWF
 		public function get $displayObject():DisplayObject
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		COMPILE::JS
 		public function get positioner():WrappedHTMLElement
 		{
@@ -308,6 +309,6 @@ package org.apache.flex.utils
 			return null;
 		}
 
-		
+
 	}
 }

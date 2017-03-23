@@ -161,7 +161,7 @@ package org.apache.flex.html
         {
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             input = new TextInput();
             input.className = "NumericStepperInput";

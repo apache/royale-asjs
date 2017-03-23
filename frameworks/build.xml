@@ -83,9 +83,9 @@
         <antcall target="Collections"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
-        <antcall target="Basic"/>
+       <!-- <antcall target="Basic"/> -->
         <antcall target="Flat"/>
-        <antcall target="Charts"/>
+        <!--<antcall target="Charts"/>-->
         <antcall target="DragDrop"/>
         <antcall target="Formatters"/>
         <antcall target="GoogleMaps"/>
@@ -97,7 +97,7 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
-		<antcall target="MaterialDesignLite"/>
+		<!--<antcall target="MaterialDesignLite"/>-->
 		<antcall target="FontAwesome"/>
 		<antcall target="Express"/>
     </target>

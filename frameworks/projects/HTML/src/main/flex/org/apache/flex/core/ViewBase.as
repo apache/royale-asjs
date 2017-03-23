@@ -23,36 +23,36 @@ package org.apache.flex.core
     //--------------------------------------
     //  Events
     //--------------------------------------
-    
+
     /**
      *  Dispatched at startup. Attributes and sub-instances of
      *  the MXML document have been created and assigned.
      *  The component lifecycle is different
      *  than the Flex SDK.  There is no creationComplete event.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
-    
+
 	[DefaultProperty("mxmlContent")]
-    
+
     /**
      *  The ViewBase class is the base class for most views in a FlexJS
      *  application.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewBase extends ContainerBase implements IPopUpHost, IApplicationView, ILayoutParent
+	public class ViewBase extends GroupBase implements IPopUpHost, IApplicationView, ILayoutParent, ILayoutView
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -61,19 +61,19 @@ package org.apache.flex.core
 		public function ViewBase()
 		{
 			super();
-            
+
 			className = "flexjs";
 		}
-		
+
 		private var _applicationModel:Object;
-		
+
 		[Bindable("modelChanged")]
-        
+
         /**
          *  A reference to the Application's model.  Usually,
          *  a view is displaying the main model for an
          *  application.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -83,7 +83,7 @@ package org.apache.flex.core
 		{
 			return _applicationModel;
 		}
-        
+
         /**
          *  @private
          */
@@ -98,7 +98,7 @@ package org.apache.flex.core
 		 */
 		public function getLayoutHost():ILayoutHost
 		{
-			return view as ILayoutHost; 
+			return view as ILayoutHost;
 		}
 
     }

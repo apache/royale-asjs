@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {	
+	import org.apache.flex.core.IBead;
+	
     import org.apache.flex.core.IChild;
     import org.apache.flex.core.IContentView;
     import org.apache.flex.core.IItemRenderer;
@@ -41,7 +43,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataGroup extends ContainerContentArea implements IContentView
+	public class DataContent implements IBead
 	{
         /**
          *  Constructor.
@@ -51,7 +53,7 @@ package org.apache.flex.html.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function DataGroup()
+		public function DataContent()
 		{
 			super();
 		}
@@ -117,14 +119,6 @@ package org.apache.flex.html.supportClasses
 					renderer.adjustSize();
 				}
 			}
-		}
-		
-		/**
-		 * Removes all of the elements
-		 */
-		public function removeAllElements():void
-		{
-			// TBD
 		}
 	}
 }

@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IDataGridModel;
+	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -31,6 +32,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.ButtonBar;
 	import org.apache.flex.html.beads.DataGridView;
 	import org.apache.flex.html.beads.layouts.BasicLayout;
+	import org.apache.flex.html.beads.models.ButtonBarModel;
 	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	
@@ -143,6 +145,7 @@ package org.apache.flex.html.beads.layouts
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
+		COMPILE::SWF
 		public function layout():Boolean
 		{						
 			if (columns == null || columns.length == 0) {
@@ -157,8 +160,6 @@ package org.apache.flex.html.beads.layouts
 				useHeight = host.height - _header.height;
 			}
 			
-			var thisisnothing:Number = -1234;
-
 			_listArea.x = 0;
 			_listArea.y = 26;
 			_listArea.width = useWidth;
@@ -187,8 +188,8 @@ package org.apache.flex.html.beads.layouts
 			}
 			
 			var bar:ButtonBar = header as ButtonBar;
-			var barLayout:ButtonBarLayout = bar.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
-			barLayout.buttonWidths = buttonWidths;
+			bar.buttonWidths = buttonWidths;
+			bar.widthType = ButtonBarModel.PIXEL_WIDTHS;
 			bar.dispatchEvent(new Event("layoutNeeded"));
 			
 			_header.x = 0;
@@ -196,6 +197,60 @@ package org.apache.flex.html.beads.layouts
 			_header.width = useWidth;
 			_header.height = 25;
 			_header.dispatchEvent(new Event("layoutNeeded"));
+			
+			return true;
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 */
+		COMPILE::JS
+		public function layout():Boolean
+		{						
+			if (columns == null || columns.length == 0) {
+				return false;
+			}
+			var host:UIBase = _strand as UIBase;
+			
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			var buttonWidths:Array = [];
+			
+			if (_columns != null && _columns.length > 0) {
+				var listWidth:Number = host.width / _columns.length;
+				for (var i:int=0; i < _columns.length; i++) {
+					var list:DataGridColumnList = _columns[i] as DataGridColumnList;
+					list.element.style["position"] = null;
+					list.element.style["height"] = null;
+					
+					
+					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+					var colWidth:Number = dataGridColumn.columnWidth;
+					if (!isNaN(colWidth)) list.width = colWidth;
+					else list.width = listWidth;
+										
+					buttonWidths.push(list.width);
+				}
+			}
+			
+			var bar:ButtonBar = header as ButtonBar;
+			bar.buttonWidths = buttonWidths;
+			bar.widthType = ButtonBarModel.PIXEL_WIDTHS;
+			bar.dispatchEvent(new Event("layoutNeeded"));
+			
+			host.element.style.display = "flex";
+			host.element.style["flex-flow"] = "column";
+			host.element.style["justify-content"] = "stretch";
+			
+			_header.height = 25;
+			_header.percentWidth = 100;
+			
+			_listArea.element.style["flex-grow"] = "2";
+			_listArea.element.style["position"] = null;
+			_listArea.element.style["height"] = null;
+			
+			var listView:ILayoutHost = UIBase(_listArea).view as ILayoutHost;
+			listView.contentView.element.style["display"] = "flex";
+			listView.contentView.element.style["flex-flow"] = "row";
 			
 			return true;
 		}

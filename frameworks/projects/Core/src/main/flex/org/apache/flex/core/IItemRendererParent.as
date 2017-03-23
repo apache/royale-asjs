@@ -45,8 +45,10 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
+		function addItemRenderer(renderer:IItemRenderer):void;
+		function removeItemRenderer(renderer:IItemRenderer):void;
 		function getItemRendererForIndex(index:int):IItemRenderer;
-		function removeAllElements():void;
+		function removeAllItemRenderers():void;
 		function updateAllItemRenderers():void;
 	}
 }

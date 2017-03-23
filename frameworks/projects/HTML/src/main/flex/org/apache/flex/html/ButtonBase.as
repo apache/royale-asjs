@@ -84,7 +84,6 @@ package org.apache.flex.html
             element.setAttribute('type', 'button');
             
             positioner = element;
-            positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
             
             /* AJH comment out until we figure out why it is needed

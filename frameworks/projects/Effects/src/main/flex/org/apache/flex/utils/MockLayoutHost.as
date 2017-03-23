@@ -19,17 +19,17 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.IParentIUIBase;
-	
+	import org.apache.flex.core.ILayoutView;
+
 	public class MockLayoutHost implements ILayoutHost
 	{
-		private var _contentView:IParentIUIBase;
+		private var _contentView:ILayoutView;
 		public function MockLayoutHost(source:ILayoutHost)
 		{
 			_contentView = new MockContentView(source.contentView);
 		}
-		
-		public function get contentView():IParentIUIBase
+
+		public function get contentView():ILayoutView
 		{
 			return _contentView;
 		}

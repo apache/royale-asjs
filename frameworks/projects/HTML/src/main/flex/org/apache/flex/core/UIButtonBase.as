@@ -697,7 +697,7 @@ package org.apache.flex.core
             super.addBead(bead);
             if (bead is IBeadView)
                 _view = bead as IBeadView;
-			bead.strand = this;
+			//bead.strand = this; // super.addBead already did this!
 		}
 		
         /**

@@ -18,7 +18,7 @@ package org.apache.flex.svg
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;            
+		import org.apache.flex.core.WrappedHTMLElement;
 	}
     public class Image extends ImageBase
     {
@@ -34,7 +34,7 @@ package org.apache.flex.svg
         {
 			super();
        }
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -47,14 +47,14 @@ package org.apache.flex.svg
 			element.setAttribute('y', 0);
 			//element.offsetParent = null;
 			positioner = element;
-			positioner.style.position = 'relative';
+			//positioner.style.position = 'relative';
 			addImageElement();
 			return element;
 		}
-		
+
 		COMPILE::JS
 		protected var _image:WrappedHTMLElement;
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -69,19 +69,19 @@ package org.apache.flex.svg
 				element.appendChild(_image);
 			}
 		}
-		
+
 		COMPILE::JS
 		override public function get imageElement():Element
 		{
 			return _image;
 		}
-		
+
 		COMPILE::JS
 		override public function get transformElement():WrappedHTMLElement
 		{
 			return _image;
 		}
-		
+
 		COMPILE::JS
 		override public function applyImageData(binaryDataAsString:String):void
 		{
@@ -100,7 +100,7 @@ package org.apache.flex.svg
 			super.setHeight(value, noEvent);
 			positioner.setAttribute("height", value);
 		}
-		
+
 		COMPILE::JS
 		override public function setX(value:Number):void
 		{
@@ -113,16 +113,16 @@ package org.apache.flex.svg
 		{
 			super.setY(value);
 			positioner.setAttribute("y", value);
-			
+
 		}
-		
+
 		COMPILE::JS
 		override public function set x(value:Number):void
 		{
 			super.x = value;
 			positioner.setAttribute("x", value);
 		}
-		
+
 		COMPILE::JS
 		override public function set y(value:Number):void
 		{

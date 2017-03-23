@@ -35,7 +35,7 @@ package org.apache.flex.svg
 
 	public class GraphicShape extends UIBase implements IGraphicShape
 	{
-        
+
 		private var _fill:IFill;
 		private var _stroke:IStroke;
 
@@ -83,7 +83,7 @@ package org.apache.flex.svg
         {
 			super();
         }
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -94,8 +94,8 @@ package org.apache.flex.svg
 			element.flexjs_wrapper = this;
 			//element.offsetParent = null;
 			positioner = element;
-			positioner.style.position = 'relative';
-			
+			//positioner.style.position = 'relative';
+
 			return element;
 		}
 

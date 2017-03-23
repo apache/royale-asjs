@@ -27,7 +27,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IStatesImpl;
 	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.html.beads.ContainerView;
+    import org.apache.flex.html.beads.GroupView;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.utils.MXMLDataInterpreter;
@@ -44,7 +44,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class MXMLBeadView extends ContainerView implements IStrand, ILayoutHost
+	public class MXMLBeadView extends GroupView implements IStrand, ILayoutHost
 	{
         /**
          *  Constructor.
