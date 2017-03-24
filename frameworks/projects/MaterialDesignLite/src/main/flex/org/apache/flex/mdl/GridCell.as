@@ -18,25 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The GridCell class represents a cell in MDL component.
 	 *  This cell is a container component capable of parenting other
 	 *  components. It has several properties to allow multiple layouts
 	 *  configurations
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class GridCell extends ContainerBase
+	public class GridCell extends Group
 	{
 		/**
 		 *  constructor.
@@ -52,7 +52,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -62,7 +62,7 @@ package org.apache.flex.mdl
 			typeNames = "mdl-cell";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 
@@ -72,7 +72,7 @@ package org.apache.flex.mdl
 		protected var _column:Number = 4;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-col" effect selector.
-		 *  Sets the column size for the cell to N. N is 1-12 inclusive. 
+		 *  Sets the column size for the cell to N. N is 1-12 inclusive.
 		 *  Defaults to 4. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -89,22 +89,22 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _column + "-col");
-				
+
 				if(value > 0 || value < 13)
 				{
 					_column = value;
 
 					element.classList.add("mdl-cell--" + _column + "-col");
 				}
-				
+
 				typeNames = element.className;
-			}  
+			}
         }
 
 		protected var _columnDesktop:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-col-desktop" effect selector.
-		 *  Sets the column size for the cell to N in desktop mode only. 
+		 *  Sets the column size for the cell to N in desktop mode only.
 		 *  N is 1-12 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -121,7 +121,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _columnDesktop + "-col-desktop");
-				
+
 				if(value > 0 || value < 13)
 				{
 					_columnDesktop = value;
@@ -130,13 +130,13 @@ package org.apache.flex.mdl
 				}
 
 				typeNames = element.className;
-			} 
+			}
         }
 
 		protected var _columnTablet:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-col-tablet" effect selector.
-		 *  Sets the column size for the cell to N in tablet mode only. 
+		 *  Sets the column size for the cell to N in tablet mode only.
 		 *  N is 1-8 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -153,7 +153,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _columnTablet + "-col-tablet");
-				
+
 				if(value > 0 || value < 9)
 				{
 					_columnTablet = value;
@@ -168,7 +168,7 @@ package org.apache.flex.mdl
 		protected var _columnPhone:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-col-phone" effect selector.
-		 *  Sets the column size for the cell to N in phone mode only. 
+		 *  Sets the column size for the cell to N in phone mode only.
 		 *  N is 1-4 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -185,7 +185,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _columnPhone + "-col-phone");
-				
+
 				if(value > 0 || value < 5)
 				{
 					_columnPhone = value;
@@ -194,13 +194,13 @@ package org.apache.flex.mdl
 				}
 
 				typeNames = element.className;
-			} 
+			}
         }
 
 		protected var _offset:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-offset" effect selector.
-		 *  Adds N columns of whitespace before the cell. 
+		 *  Adds N columns of whitespace before the cell.
 		 *  N is 1-11 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -217,7 +217,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _offset + "-offset");
-				
+
 				if(value > 0 || value < 12)
 				{
 					_offset = value;
@@ -232,7 +232,7 @@ package org.apache.flex.mdl
 		protected var _offsetDesktop:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-offset-desktop" effect selector.
-		 *  Adds N columns of whitespace before the cell in desktop mode. 
+		 *  Adds N columns of whitespace before the cell in desktop mode.
 		 *  N is 1-11 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -249,7 +249,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _offsetDesktop + "-offset-desktop");
-				
+
 				if(value > 0 || value < 12)
 				{
 					_offsetDesktop = value;
@@ -264,7 +264,7 @@ package org.apache.flex.mdl
 		protected var _offsetTablet:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-offset-tablet" effect selector.
-		 *  Adds N columns of whitespace before the cell in tablet mode. 
+		 *  Adds N columns of whitespace before the cell in tablet mode.
 		 *  N is 1-11 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -281,7 +281,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _offsetTablet + "-offset-tablet");
-				
+
 				if(value > 0 || value < 12)
 				{
 					_offsetTablet = value;
@@ -296,7 +296,7 @@ package org.apache.flex.mdl
 		protected var _offsetPhone:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--N-offset-phone" effect selector.
-		 *  Adds N columns of whitespace before the cell in phone mode. 
+		 *  Adds N columns of whitespace before the cell in phone mode.
 		 *  N is 1-11 inclusive. Optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -313,7 +313,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--" + _offsetPhone + "-offset-phone");
-				
+
 				if(value > 0 || value < 12)
 				{
 					_offsetPhone = value;
@@ -328,7 +328,7 @@ package org.apache.flex.mdl
 		protected var _order:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--order-N" effect selector.
-		 *  Reorders cell to position N. 
+		 *  Reorders cell to position N.
 		 *  N is 1-12 inclusive; optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -345,7 +345,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--order-" + _order);
-				
+
 				if(value > 0 || value < 13)
 				{
 					_order = value;
@@ -360,7 +360,7 @@ package org.apache.flex.mdl
 		protected var _orderDesktop:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--order-N-desktop" effect selector.
-		 *  Reorders cell to position N when in desktop mode. 
+		 *  Reorders cell to position N when in desktop mode.
 		 *  N is 1-12 inclusive; optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -377,7 +377,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--order-" + _orderDesktop + "-desktop");
-				
+
 				if(value > 0 || value < 13)
 				{
 					_orderDesktop = value;
@@ -392,7 +392,7 @@ package org.apache.flex.mdl
 		protected var _orderTablet:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--order-N-tablet" effect selector.
-		 *  Reorders cell to position N when in tablet mode. 
+		 *  Reorders cell to position N when in tablet mode.
 		 *  N is 1-12 inclusive; optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -409,7 +409,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--order-" + _orderTablet + "-tablet");
-				
+
 				if(value > 0 || value < 13)
 				{
 					_orderTablet = value;
@@ -424,7 +424,7 @@ package org.apache.flex.mdl
 		protected var _orderPhone:Number;
         /**
 		 *  A boolean flag to activate "mdl-cell--order-N-phone" effect selector.
-		 *  Reorders cell to position N when in phone mode. 
+		 *  Reorders cell to position N when in phone mode.
 		 *  N is 1-12 inclusive; optional on "inner" div elements
 		 *
 		 *  @langversion 3.0
@@ -441,7 +441,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-cell--order-" + _orderPhone + "-phone");
-				
+
 				if(value > 0 || value < 13)
 				{
 					_orderPhone = value;
@@ -452,7 +452,7 @@ package org.apache.flex.mdl
 				typeNames = element.className;
 			}
         }
-		
+
 		protected var _hideDesktop:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-cell--hide-desktop" effect selector.

@@ -19,6 +19,7 @@
 package org.apache.flex.core
 {
 	import org.apache.flex.core.IMXMLDocument;
+	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
@@ -75,7 +76,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject
+	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -112,6 +113,9 @@ package org.apache.flex.core
             dispatchEvent(new Event("childrenAdded"));
         }
 		
+		/**
+		 * @private
+		 */
 		override public function addedToParent():void
 		{
 			if (!_initialized)
@@ -132,6 +136,19 @@ package org.apache.flex.core
 				
 				childrenAdded();
 			}
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IContentViewHost#strandChildren
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		public function get strandChildren():IParent
+		{
+			return this;
 		}
 
         private var _mxmlDescriptor:Array;

@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
-	 *  The NavigationLayoutContent class is a Container component capable of parenting 
+	 *  The NavigationLayoutContent class is a Container component capable of parenting
 	 *  the content of the NavigationLayout parent. If the navigation uses a TabBar component
 	 *  for navigation, each piece of content will be a TabBarPanel.
 	 *
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class NavigationLayoutContent extends ContainerBase
+	public class NavigationLayoutContent extends Group
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -61,7 +61,7 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout__content";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 

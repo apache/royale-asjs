@@ -20,11 +20,13 @@ package org.apache.flex.mdl
 {
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.IFactory;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.events.ItemAddedEvent;
@@ -48,7 +50,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */  
-	public class List extends UIBase implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView
+	public class List extends UIBase implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView, IList
 	{
         /**
          *  Constructor.
@@ -129,6 +131,59 @@ package org.apache.flex.mdl
 		public function get contentView():ILayoutView
 		{
 			return this;
+		}
+		
+		/**
+		 * 
+		 */
+		public function get dataGroup():IItemRendererParent
+		{
+			return this;
+		}
+		
+		private var _itemRenderer:IFactory;
+		
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
+		}
+		
+		/**
+		 * Returns whether or not the itemRenderer property has been set.
+		 *
+		 *  @see org.apache.flex.core.IItemRendererProvider
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get hasItemRenderer():Boolean
+		{
+			var result:Boolean = false;
+			
+			COMPILE::SWF {
+				result = _itemRenderer != null;
+			}
+				
+				COMPILE::JS {
+					var test:* = _itemRenderer;
+					result = _itemRenderer !== null && test !== undefined;
+				}
+				
+				return result;
 		}
 		
 		/**

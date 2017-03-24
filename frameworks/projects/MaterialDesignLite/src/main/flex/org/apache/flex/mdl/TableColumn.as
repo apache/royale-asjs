@@ -18,25 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.html.Group;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The TableColumn class represents an HTML <th> element that
      *  be inside a <thead> in a MLD Table
      *  Use instances of this class in columns Array property MDL Table
-	 *  
+	 *
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TableColumn extends ContainerBase
+	public class TableColumn extends Group
 	{
 		/**
 		 *  constructor.
@@ -55,7 +55,7 @@ package org.apache.flex.mdl
 
         /**
          *  The text of the th
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -76,11 +76,11 @@ package org.apache.flex.mdl
                     textNode = document.createTextNode('') as Text;
                     element.appendChild(textNode);
                 }
-                
-                textNode.nodeValue = value;	
+
+                textNode.nodeValue = value;
 			}
 		}
-		
+
         COMPILE::JS
         protected var textNode:Text;
 
@@ -94,7 +94,7 @@ package org.apache.flex.mdl
 
             positioner = element;
             element.flexjs_wrapper = this;
-            
+
             return element;
         }
 
@@ -102,8 +102,8 @@ package org.apache.flex.mdl
         /**
          *  Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
          *  Applies text formatting to data cell
-		 *  Optional; goes on both table header and table data cells 
-		 * 
+		 *  Optional; goes on both table header and table data cells
+		 *
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
