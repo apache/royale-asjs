@@ -21,7 +21,7 @@ limitations under the License.
 		  xmlns:js="library://ns.apache.org/flexjs/basic"
 		  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
 		  xmlns="http://www.w3.org/1999/xhtml"
-		  xmlns:models="models.*" xmlns:local="*">
+		  xmlns:models="models.*">
 		<fx:Script>
 		<![CDATA[
 		    import org.apache.flex.events.MouseEvent;
