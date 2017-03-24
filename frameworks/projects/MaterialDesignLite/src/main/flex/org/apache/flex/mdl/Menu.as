@@ -20,15 +20,15 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.core.GroupBase;
     import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IFactory;
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.IItemRendererParent;
     import org.apache.flex.core.ILayoutHost;
     import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ILayoutView;
-    import org.apache.flex.core.IParentIUIBase;
+    import org.apache.flex.core.IList;
     import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.events.ItemRemovedEvent;
 
     COMPILE::JS
@@ -53,7 +53,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */    
-	public class Menu extends GroupBase implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView
+	public class Menu extends GroupBase implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView, IList
 	{
         /**
          *  Constructor.
@@ -145,7 +145,65 @@ package org.apache.flex.mdl
         {
             return this;
         }
-		
+
+        /**
+         *  @copy org.apache.flex.core.IList#dataGroup
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get dataGroup():IItemRendererParent
+        {
+            return this;
+        }
+
+        private var _itemRenderer:IFactory;
+
+        /**
+         *  The class or factory used to display each item.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get itemRenderer():IFactory
+        {
+            return _itemRenderer;
+        }
+        public function set itemRenderer(value:IFactory):void
+        {
+            _itemRenderer = value;
+        }
+
+        /**
+         * Returns whether or not the itemRenderer property has been set.
+         *
+         *  @see org.apache.flex.core.IItemRendererProvider
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get hasItemRenderer():Boolean
+        {
+            var result:Boolean = false;
+
+            COMPILE::SWF {
+                result = _itemRenderer != null;
+            }
+
+            COMPILE::JS {
+                var test:* = _itemRenderer;
+                result = _itemRenderer !== null && test !== undefined;
+            }
+
+            return result;
+        }
+
 		/**
 		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
 		 * @private
@@ -216,7 +274,7 @@ package org.apache.flex.mdl
 
         /**
          *  update all item renderers
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
