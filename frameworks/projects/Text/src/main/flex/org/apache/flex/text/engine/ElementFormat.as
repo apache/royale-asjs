@@ -20,53 +20,62 @@ package org.apache.flex.text.engine
 {
 	public class ElementFormat
 	{
-		public function ElementFormat(fontDescription:FontDescription = null, fontSize:Number = 12.0, color:uint = 0x000000, alpha:Number = 1.0, textRotation:String = "auto", dominantBaseline:String = "roman", alignmentBaseline:String = "useDominantBaseline", baselineShift:Number = 0.0, kerning:String = "on", trackingRight:Number = 0.0, trackingLeft:Number = 0.0, locale:String = "en", breakOpportunity:String = "auto", digitCase:String = "default", digitWidth:String = "default", ligatureLevel:String = "common", typographicCase:String = "default")
+		public function ElementFormat()
 		{
-			this.alignmentBaseline = alignmentBaseline;
-			this.alpha = alpha;
-			this.baselineShift = baselineShift;
-			this.breakOpportunity = breakOpportunity;
-			this.color = color;
-			this.digitCase = digitCase;
-			this.digitWidth = digitWidth;
-			this.dominantBaseline = dominantBaseline;
-			this.fontDescription = fontDescription;
-			this.fontSize = fontSize;
-			this.kerning = kerning;
-			this.ligatureLevel = ligatureLevel;
-			this.locale = locale;
-			this.textRotation = textRotation;
-			this.trackingLeft = trackingLeft;
-			this.trackingRight = trackingRight;
-			this.typographicCase = typographicCase;
 		}
 
-		public var alignmentBaseline : String;
-		public var alpha : Number;
-		public var baselineShift : Number;
-		public var breakOpportunity : String;
-		public var color : uint;
-		public var strokeColor : uint;
+		public var alignmentBaseline:String ="useDominantBaseline";
+		public var alpha:Number = 1;
+		public var baselineShift:Number = 0;
+		public var breakOpportunity:String = "auto";
+		public var color:uint = 0;
+		public var strokeColor:uint = 0;
 		public var strokeWeight:Number = 0;
 		public var strokeAlpha:Number = 1;
-		public var digitCase : String;
-		public var digitWidth : String;
-		public var dominantBaseline : String;
-		public var fontDescription : FontDescription;
-		public var fontSize : Number;
-		public var kerning : String;
-		public var ligatureLevel : String;
-		public var locale : String;
-		public var locked : Boolean;
-		public var textRotation : String;
-		public var trackingLeft : Number;
-		public var trackingRight : Number;
-		public var typographicCase : String;
+		public var digitCase:String = "default";
+		public var digitWidth:String = "default";
+		public var dominantBaseline:String = "roman";
+		public var fontDescription:FontDescription;
+		public var fontSize:Number = 12;
+		public var kerning:String = "on";
+		public var ligatureLevel:String = "common";
+		public var locale:String = "en";
+		public var locked:Boolean;
+		public var textRotation:String = "auto";
+		public var trackingLeft:Number = 0;
+		public var trackingRight:Number = 0;
+		public var typographicCase:String = "default";
+		public var xScale:Number;
+		public var yScale:Number;
 
  	
 		public function clone():ElementFormat
 		{
-			return new ElementFormat(fontDescription, fontSize, color, alpha, textRotation, dominantBaseline, alignmentBaseline, baselineShift, kerning, trackingRight, trackingLeft, locale, breakOpportunity, digitCase, digitWidth, ligatureLevel, typographicCase)
+			var val:ElementFormat = new ElementFormat();
+			val.alignmentBaseline = alignmentBaseline;
+			val.alpha = alpha;
+			val.baselineShift = baselineShift;
+			val.breakOpportunity = breakOpportunity;
+			val.color = color;
+			val.strokeColor = strokeColor;
+			val.strokeWeight = strokeWeight;
+			val.strokeAlpha = strokeAlpha;
+			val.digitCase = digitCase;
+			val.digitWidth = digitWidth;
+			val.dominantBaseline = dominantBaseline;
+			val.fontDescription = fontDescription;
+			val.fontSize = fontSize;
+			val.kerning = kerning;
+			val.ligatureLevel = ligatureLevel;
+			val.locale = locale;
+			val.locked = locked;
+			val.textRotation = textRotation;
+			val.trackingLeft = trackingLeft;
+			val.trackingRight = trackingRight;
+			val.typographicCase = typographicCase;
+			val.xScale = xScale;
+			val.yScale = yScale;
+			return val;
 		}
  	 	
 		public function getFontMetrics():FontMetrics
