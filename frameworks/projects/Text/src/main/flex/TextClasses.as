@@ -26,8 +26,9 @@ package
 	*/
 	internal class TextClasses
 	{
-		import org.apache.flex.text.html.TextLine;org.apache.flex.text.html.TextLine;
-		import org.apache.flex.text.html.TextBlock;org.apache.flex.text.html.TextBlock;
+		import org.apache.flex.text.html.TextLine; TextLine;
+		import org.apache.flex.text.html.TextBlock; TextBlock;
+		import org.apache.flex.text.html.HTMLTextFactory; HTMLTextFactory;
 
 		import org.apache.flex.text.engine.BreakOpportunity;BreakOpportunity;
 		import org.apache.flex.text.engine.CFFHinting;CFFHinting;

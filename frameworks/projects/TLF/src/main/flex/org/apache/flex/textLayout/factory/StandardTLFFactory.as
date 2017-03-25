@@ -25,6 +25,7 @@ package org.apache.flex.textLayout.factory {
 	import org.apache.flex.graphics.ICompoundGraphic;
 	import org.apache.flex.graphics.IRect;
 	import org.apache.flex.text.engine.ITextFactory;
+	import org.apache.flex.text.html.HTMLTextFactory;
 
 	public class StandardTLFFactory implements ITLFFactory {
 		public function getRect() : IRect {
@@ -42,6 +43,8 @@ package org.apache.flex.textLayout.factory {
 //TODO add a basic factory when it's ready		
 		private static var factory:ITextFactory;
 		public function get textFactory() : ITextFactory {
+			if(!factory)
+				factory = new HTMLTextFactory();
 			return factory;
 		}
 	}

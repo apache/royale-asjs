@@ -23,8 +23,9 @@ package org.apache.flex.text.html
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.Div;
 	
-	public class TextLine extends UIBase implements ITextLine
+	public class TextLine extends Div implements ITextLine
 	{
 		public function TextLine()
 		{

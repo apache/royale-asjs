@@ -25,6 +25,10 @@ package org.apache.flex.text.html
 	import org.apache.flex.text.engine.TabStop;
 	import org.apache.flex.text.engine.TextJustifier;
 	import org.apache.flex.text.engine.ITextFactory;
+	import org.apache.flex.text.engine.TextElement;
+	import org.apache.flex.text.engine.ElementFormat;
+	import org.apache.flex.text.html.TextLine;
+	import org.apache.flex.html.Span;
 	
 	public class TextBlock implements ITextBlock
 	{
@@ -178,7 +182,15 @@ package org.apache.flex.text.html
 		
 		public function createTextLine(previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{
-			return null;
+			// Not a very good implementation at this point...
+			var textElem:TextElement = content as TextElement;
+			var format:ElementFormat = content.elementFormat;
+			var tl:TextLine = new TextLine();
+			var span:Span = new Span();
+			span.text = textElem.text;
+			tl.addElement(span);
+
+			return tl;
 		}
 		public function dump():String{
 			return null;
