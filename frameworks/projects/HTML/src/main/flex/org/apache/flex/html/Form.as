@@ -56,7 +56,7 @@ package org.apache.flex.html
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {HTMLFormElement
+        {
             element = document.createElement('form') as WrappedHTMLElement;
 
             positioner = element;
