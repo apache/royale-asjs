@@ -18,24 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.html.Group;
 	import org.apache.flex.mdl.supportClasses.IFooterSection;
-    
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The FooterRightSection class is a footer right container section capable
-	 *  of parenting other components 
-	 *  
+	 *  of parenting other components
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class FooterRightSection extends ContainerBase implements IFooterSection
+	public class FooterRightSection extends Group implements IFooterSection
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -61,7 +61,7 @@ package org.apache.flex.mdl
 			typeNames = "mdl-mega-footer__right-section";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 
@@ -71,12 +71,12 @@ package org.apache.flex.mdl
 		/**
          *  Configuration depends on parent Footer or IFooterSection.
 		 *  Check to see if is mega or mini.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
-        */ 
+        */
 		COMPILE::JS
 		override public function addedToParent():void
         {
@@ -100,7 +100,7 @@ package org.apache.flex.mdl
 			else
 			{
 				throw new Error("FooterRightSection can not be used if parent is not a MDL Footer or IFooterSection component.");
-			}			
+			}
         }
 	}
 }

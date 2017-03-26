@@ -25,6 +25,8 @@ package org.apache.flex.mdl
     import org.apache.flex.html.TextButton;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.core.IUIBase;
+    import org.apache.flex.mdl.beads.UpgradeChildren;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {    
@@ -94,12 +96,10 @@ package org.apache.flex.mdl
         {
             super();
 
-            COMPILE::SWF
-            {
-                addEventListener(MouseEvent.CLICK, internalMouseHandler);
-            }
-
             className = "";
+            
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-switch__ripple-container"]));
         }
 
         /**
@@ -147,12 +147,14 @@ package org.apache.flex.mdl
             if (IToggleButtonModel(model).selected != value)
             {
                 IToggleButtonModel(model).selected = value;
+
+
+                COMPILE::JS
+                {
+                    input.checked = value;
+                }
+                
                 dispatchEvent(new Event(Event.CHANGE))
-            }
-            
-            COMPILE::JS
-            {
-                input.checked = value;
             }
         }
 
@@ -234,12 +236,6 @@ package org.apache.flex.mdl
             selected = !selected;
             input.checked = selected;
             label.classList.toggle("is-checked", selected);
-        }
-
-        COMPILE::SWF
-        private function internalMouseHandler(event:MouseEvent) : void
-        {
-            //selected = !selected;
         }
     }
 }

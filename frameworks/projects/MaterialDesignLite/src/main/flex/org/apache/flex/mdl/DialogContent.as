@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The DialogContent class is a container to use inside Dialog class
 	 *  that holds content and information so the user gets notified and
@@ -35,11 +35,11 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class DialogContent extends ContainerBase
+	public class DialogContent extends Group
 	{
 		/**
 		 *  constructor.
-         *  
+         *
          *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -59,9 +59,9 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-dialog__content";
-            
+
             element = document.createElement('div') as WrappedHTMLElement;
-			            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 

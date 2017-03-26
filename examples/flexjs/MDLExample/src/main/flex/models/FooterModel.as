@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
-	//import vos.*;
-
-	public class FooterModel extends EventDispatcher
+	public class FooterModel 
 	{
 		/**
 		 * Used in the Footer example.

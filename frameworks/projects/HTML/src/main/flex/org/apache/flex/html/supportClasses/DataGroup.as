@@ -41,7 +41,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataGroup extends ContainerContentArea implements IItemRendererParent, IContentView
+	public class DataGroup extends ContainerContentArea implements IContentView
 	{
         /**
          *  Constructor.
@@ -117,6 +117,14 @@ package org.apache.flex.html.supportClasses
 					renderer.adjustSize();
 				}
 			}
+		}
+		
+		/**
+		 * Removes all of the elements
+		 */
+		public function removeAllElements():void
+		{
+			// TBD
 		}
 	}
 }

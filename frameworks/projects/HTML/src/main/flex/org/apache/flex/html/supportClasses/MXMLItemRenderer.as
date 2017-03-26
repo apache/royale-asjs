@@ -20,6 +20,7 @@ package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
@@ -35,7 +36,7 @@ package org.apache.flex.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand
+	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand, ILayoutView
 	{
 		/**
 		 *  constructor.
@@ -49,7 +50,7 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 		}
-		
+
         [Bindable("dataChange")]
         override public function set data(value:Object):void
         {
@@ -59,17 +60,17 @@ package org.apache.flex.html.supportClasses
                 dispatchEvent(new Event("dataChange"));
             }
         }
-        
+
 		public function getLayoutHost():ILayoutHost
-		{
-			return this; 
-		}
-		
-		public function get contentView():IParentIUIBase
 		{
 			return this;
 		}
-		
+
+		public function get contentView():ILayoutView
+		{
+			return this;
+		}
+
 		override public function adjustSize():void
 		{
 			var layout:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;

@@ -23,13 +23,16 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Container;
+	import org.apache.flex.html.Group;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.beads.GroupView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout;
 	import org.apache.flex.html.beads.models.DateChooserModel;
@@ -44,7 +47,7 @@ package org.apache.flex.html.beads
 	 * of the month.
 	 *  @viewbead	 
 	 */
-	public class DateChooserView extends BeadViewBase implements IBeadView
+	public class DateChooserView extends GroupView implements IBeadView
 	{
 		/**
 		 *  constructor
@@ -56,6 +59,7 @@ package org.apache.flex.html.beads
 		 */
 		public function DateChooserView()
 		{
+			super();
 		}
 		
 		override public function set strand(value:IStrand):void
@@ -69,12 +73,8 @@ package org.apache.flex.html.beads
 			model.addEventListener("displayedMonthChanged",handleModelChange);
 			model.addEventListener("displayedYearChanged",handleModelChange);
 			
-			var host:UIBase = value as UIBase;
-			host.addEventListener("widthChanged", handleSizeChange);
-			host.addEventListener("heightChanged", handleSizeChange);
-			
 			createChildren();
-			layoutContents();
+			updateDisplay();
 		}
 		
 		private var model:DateChooserModel;
@@ -82,6 +82,7 @@ package org.apache.flex.html.beads
 		private var _prevMonthButton:DateHeaderButton;
 		private var _nextMonthButton:DateHeaderButton;
 		private var monthLabel:DateHeaderButton;
+		private var monthButtonsContainer:Group;
 		private var dayNamesContainer:DateChooserHeader;
 		private var daysContainer:DateChooserList;
 		
@@ -116,79 +117,100 @@ package org.apache.flex.html.beads
 			return daysContainer;
 		}
 		
-		private function handleSizeChange(event:Event):void
-		{
-			layoutContents();
-		}
-		
 		
 		/**
 		 * @private
 		 */
 		private function createChildren():void
 		{
+			// HEADER BUTTONS
+			
+			monthButtonsContainer = new Group();
+			monthButtonsContainer.id = "DateChooserMonthButtons";
+			monthButtonsContainer.className = "DateChooserMonthButtons";
+			monthButtonsContainer.style = new SimpleCSSStyles();
+			monthButtonsContainer.style.flexGrow = 0;
+			COMPILE::JS {
+				monthButtonsContainer.element.style["flex-grow"] = "0";
+			}
+			
 			_prevMonthButton = new DateHeaderButton();
 			_prevMonthButton.width = 40;
-			_prevMonthButton.height = 20;
 			_prevMonthButton.text = "<";
-			UIBase(_strand).addElement(_prevMonthButton);
-			
-			_nextMonthButton = new DateHeaderButton();
-			_nextMonthButton.width = 40;
-			_nextMonthButton.height = 20;
-			_nextMonthButton.text = ">";
-			UIBase(_strand).addElement(_nextMonthButton);
+			if (_prevMonthButton.style == null) {
+				_prevMonthButton.style = new SimpleCSSStyles();
+			}
+			_prevMonthButton.style.flexGrow = 0;
+			COMPILE::JS {
+				_prevMonthButton.element.style["flex-grow"] = "0";
+			}
+			monthButtonsContainer.addElement(_prevMonthButton);
 			
 			monthLabel = new DateHeaderButton();
 			monthLabel.text = "Month Here";
-			monthLabel.width = 100;
-			monthLabel.height = 20;
-			UIBase(_strand).addElement(monthLabel);
+			if (monthLabel.style == null) {
+				monthLabel.style = new SimpleCSSStyles();
+			}
+			monthLabel.style.flexGrow = 1;
+			COMPILE::JS {
+				monthLabel.element.style["flex-grow"] = "1";
+			}
+			monthButtonsContainer.addElement(monthLabel);
+			
+			_nextMonthButton = new DateHeaderButton();
+			_nextMonthButton.width = 40;
+			_nextMonthButton.text = ">";
+			if (_nextMonthButton.style == null) {
+				_nextMonthButton.style = new SimpleCSSStyles();
+			}
+			COMPILE::JS {
+				_nextMonthButton.element.style["flex-grow"] = "0";
+			}
+			_nextMonthButton.style.flexGrow = 0;
+			monthButtonsContainer.addElement(_nextMonthButton);
+			
+			UIBase(_strand).addElement(monthButtonsContainer, false);
+			
+			// DAY NAMES
 			
 			dayNamesContainer = new DateChooserHeader();
+			dayNamesContainer.id = "DateChooserDayNames";
+			dayNamesContainer.percentWidth = 100;
+			dayNamesContainer.style = new SimpleCSSStyles();
+			dayNamesContainer.style.flexGrow = 0;
+			COMPILE::JS {
+				dayNamesContainer.element.style["flex-grow"] = "0";
+			}
 			UIBase(_strand).addElement(dayNamesContainer, false);
 			
+			// DAYS
+			
 			daysContainer = new DateChooserList();
+			daysContainer.id = "DateChooserList";
+			daysContainer.percentWidth = 100;
+			daysContainer.style = new SimpleCSSStyles();
+			daysContainer.style.flexGrow = 1;
+			COMPILE::JS {
+				daysContainer.element.style["flex-grow"] = "1";
+			}
 			UIBase(_strand).addElement(daysContainer, false);
 			
-			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
 			
+			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 		
-		private function layoutContents():void
+		/**
+		 * @private
+		 */
+		private function updateDisplay():void
 		{
-			var sw:Number = UIBase(_strand).width;
-			var sh:Number = UIBase(_strand).height;
-			
-			_prevMonthButton.x = 0;
-			_prevMonthButton.y = 0;
-			
-			_nextMonthButton.x = sw - _nextMonthButton.width;
-			_nextMonthButton.y = 0;
-			
-			monthLabel.x = _prevMonthButton.x + _prevMonthButton.width;
-			monthLabel.y = 0;
-			monthLabel.width = sw - _prevMonthButton.width - _nextMonthButton.width;
 			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
 				String(model.displayedYear);
 			
-			dayNamesContainer.x = 0;
-			dayNamesContainer.y = monthLabel.y + monthLabel.height;
-			dayNamesContainer.width = sw;
-			dayNamesContainer.height = monthLabel.height;
-			
 			dayNamesContainer.dataProvider = model.dayNames;
 			
-			daysContainer.x = 0;
-			daysContainer.y = dayNamesContainer.y + dayNamesContainer.height;
-			daysContainer.width = sw;
-			daysContainer.height = sh - monthLabel.height - dayNamesContainer.height;
-			
 			daysContainer.dataProvider = model.days;
-			
-			IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );
-			IEventDispatcher(daysContainer).dispatchEvent( new Event("layoutNeeded") );
 		}
 		
 		/**
@@ -196,7 +218,7 @@ package org.apache.flex.html.beads
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{
-			layoutContents();
+			updateDisplay();
 			
 			var index:Number = model.getIndexForSelectedDate();
 			daysContainer.selectedIndex = index;
@@ -207,7 +229,7 @@ package org.apache.flex.html.beads
 		 */
 		private function handleModelChange(event:Event):void
 		{
-			layoutContents();
+			updateDisplay();
 		}
 	}
 }

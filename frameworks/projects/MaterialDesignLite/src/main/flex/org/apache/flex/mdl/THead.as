@@ -18,23 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The THead class is a Container component capable of parenting columns
 	 *  (see TableColumn class) for MDL Table
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class THead extends ContainerBase
+	public class THead extends Group
 	{
 		/**
 		 *  constructor.
@@ -50,7 +50,7 @@ package org.apache.flex.mdl
 
 			//className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -58,7 +58,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('thead') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 

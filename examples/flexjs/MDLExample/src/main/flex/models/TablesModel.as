@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
-	import vos.*;
+	import vos.MaterialVO;
 
-	public class TablesModel extends EventDispatcher
+	public class TablesModel
 	{
 		/**
 		 * Used in the Tables example.

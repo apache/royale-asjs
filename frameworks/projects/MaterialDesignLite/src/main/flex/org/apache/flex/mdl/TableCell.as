@@ -18,22 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The TableCell class is a Cell for MDL Table used normaly in a TableRowItemRenderer
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TableCell extends ContainerBase
+	public class TableCell extends Group
 	{
 		/**
 		 *  constructor.
@@ -47,12 +47,12 @@ package org.apache.flex.mdl
 		{
 			super();
 		}
-		
+
 		private var _text:String = "";
 
         /**
          *  The text of the td
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -73,8 +73,8 @@ package org.apache.flex.mdl
                     textNode = document.createTextNode('') as Text;
                     element.appendChild(textNode);
                 }
-                
-                textNode.nodeValue = value;	
+
+                textNode.nodeValue = value;
 			}
 		}
 
@@ -91,7 +91,7 @@ package org.apache.flex.mdl
 
             positioner = element;
             element.flexjs_wrapper = this;
-            
+
             return element;
         }
 
@@ -99,8 +99,8 @@ package org.apache.flex.mdl
         /**
          *  Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
          *  Applies text formatting to data cell. Numeric is the default
-		 *  Optional; goes on both table header and table data cells 
-		 * 
+		 *  Optional; goes on both table header and table data cells
+		 *
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

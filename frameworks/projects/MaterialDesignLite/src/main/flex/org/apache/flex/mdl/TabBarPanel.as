@@ -18,24 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The TabBarPanel class is a Container component capable of parenting other
 	 *  four components. This class is used along with Tabs to separate content and
 	 *  present and organize data for the user.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TabBarPanel extends ContainerBase
+	public class TabBarPanel extends Group
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -59,7 +59,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			element = document.createElement('section') as WrappedHTMLElement;
-			
+
             positioner = element;
             element.flexjs_wrapper = this;
 
@@ -68,7 +68,7 @@ package org.apache.flex.mdl
 
 		/**
          *  If TabBarPanel is used inside Tabs use a different config
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -85,15 +85,15 @@ package org.apache.flex.mdl
 			} else {
 				typeNames = "mdl-layout__tab-panel";
 			}
-			
+
 			element.classList.add(typeNames);
         }
 
 		private var _isActive:Boolean;
-		
+
         /**
          *  Marks this Button as the active one in the TabBar
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -101,13 +101,13 @@ package org.apache.flex.mdl
          */
 		public function get isActive():Boolean
 		{
-            return _isActive;   
+            return _isActive;
 		}
 
 		public function set isActive(value:Boolean):void
 		{
             _isActive = value;
-            
+
             COMPILE::JS
             {
                 element.classList.toggle("is-active", _isActive);

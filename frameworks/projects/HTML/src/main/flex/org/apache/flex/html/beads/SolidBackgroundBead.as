@@ -77,10 +77,9 @@ package org.apache.flex.html.beads
             IEventDispatcher(host).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
 			IEventDispatcher(host).addEventListener("initComplete", changeHandler);
+			IEventDispatcher(host).addEventListener("layoutComplete", changeHandler);
 			
 			setupStyle();
-            
-            changeHandler(null);
 		}
 		
 		protected function setupStyle():void
@@ -91,17 +90,17 @@ package org.apache.flex.html.beads
 				opacity = 0;
 			}
 			else if( bgColor != null ) {
-				backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
+				_backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
 			}
 			
 			var bgAlpha:Object = ValuesManager.valuesImpl.getValue(host, "opacity");
 			if( bgAlpha != null ) {
-				opacity = Number(bgAlpha);
+				_opacity = Number(bgAlpha);
 			}
 			
 			var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
 			if( corner != null ) {
-				borderRadius = Number(corner);
+				_borderRadius = Number(corner);
 			}
 		}
 		

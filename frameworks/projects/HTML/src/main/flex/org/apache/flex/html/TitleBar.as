@@ -47,7 +47,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TitleBar extends Container implements IChrome
+	public class TitleBar extends Group implements IChrome
 	{
 		/**
 		 *  constructor.
@@ -136,10 +136,7 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
-            className = 'TitleBar';
             
             return element;
         }        

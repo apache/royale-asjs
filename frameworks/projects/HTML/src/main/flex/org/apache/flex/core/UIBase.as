@@ -637,7 +637,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set x(value:Number):void
         {
-            positioner.style.position = 'absolute';
+//            positioner.style.position = 'absolute';
             positioner.style.left = value + 'px';
         }
 
@@ -670,7 +670,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+//				positioner.style.position = 'absolute';
 				positioner.style.left = value + 'px';
 			}
         }
@@ -693,7 +693,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            positioner.style.position = 'absolute';
+//            positioner.style.position = 'absolute';
             positioner.style.top = value + 'px';
         }
         
@@ -726,7 +726,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+//				positioner.style.position = 'absolute';
 				positioner.style.top = value + 'px';				
 			}
         }
@@ -1358,7 +1358,7 @@ package org.apache.flex.core
             if (positioner == null)
                 positioner = element;
             positioner.style.display = 'block';
-            positioner.style.position = 'relative';
+//            positioner.style.position = 'relative';
             
             element.flexjs_wrapper = this;
             

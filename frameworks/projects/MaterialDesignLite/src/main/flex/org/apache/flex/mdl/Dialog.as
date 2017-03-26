@@ -18,24 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.html.Group;
 	import org.apache.flex.mdl.Application;
 	import org.apache.flex.core.IPopUp;
-    
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The MDL Dialog class creates modal windows for dedicated user input.
-	 *  The Material Design Lite (MDL) dialog component allows for verification of user actions, simple data input, 
+	 *  The Material Design Lite (MDL) dialog component allows for verification of user actions, simple data input,
 	 *  and alerts to provide extra information to users.
 	 *
 	 *  Note: Dialogs use the HTML <dialog> element, which currently has very limited cross-browser support.
 	 *  To ensure support across all modern browsers, we use use dialogPolyfill extern or creating your own.
 	 *  There is no polyfill included with MDL.
-	 *  
+	 *
 	 *  Use DialogContent to insert content and DialogActions for the buttons to allow user interaction
 	 *
 	 *  @langversion 3.0
@@ -43,11 +43,11 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class Dialog extends ContainerBase implements IPopUp
+	public class Dialog extends Group implements IPopUp
 	{
 		/**
 		 *  constructor.
-         *  
+         *
          *  <inject_html>
          *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
          *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
@@ -79,7 +79,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-dialog";
-            
+
             dialog = document.createElement('dialog') as HTMLDialogElement;
 			element = dialog as WrappedHTMLElement;
 
@@ -130,7 +130,7 @@ package org.apache.flex.mdl
 		 *  @productversion FlexJS 0.8
 		 */
 		public function showModal():void
-		{	
+		{
 			prepareDialog();
 
 			COMPILE::JS
@@ -138,7 +138,7 @@ package org.apache.flex.mdl
 				dialog.showModal()
 			}
 		}
-		
+
 		/**
 		 *  show dialog.
 		 *  Note: It seems MDL does not support non modal dialogs, since there's no examples

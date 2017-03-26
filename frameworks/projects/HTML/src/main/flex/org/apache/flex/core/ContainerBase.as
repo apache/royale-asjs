@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
+	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -84,8 +85,6 @@ package org.apache.flex.core
 		public function ContainerBase()
 		{
 			super();
-            
-			_strandChildren = new ContainerBaseStrandChildren(this);
 		}
 		
 		private var _strandChildren:ContainerBaseStrandChildren;
@@ -95,6 +94,9 @@ package org.apache.flex.core
 		 */
 		public function get strandChildren():IParent
 		{
+			if (_strandChildren == null) {
+				_strandChildren = new ContainerBaseStrandChildren(this);
+			}
 			return _strandChildren;
 		}
         
@@ -134,6 +136,11 @@ package org.apache.flex.core
          */
         override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
+			if (c is IChrome) {
+				super.addElement(c, dispatchEvent);
+				return;
+			}
+			
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.addElement(c, dispatchEvent);
@@ -150,6 +157,11 @@ package org.apache.flex.core
          */
         override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
+			if (c is IChrome) {
+				super.addElementAt(c, index, dispatchEvent);
+				return;
+			}
+			
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.addElementAt(c, index, dispatchEvent);
@@ -166,6 +178,11 @@ package org.apache.flex.core
          */
         override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
         {
+			if (c is IChrome) {
+				super.removeElement(c, dispatchEvent);
+				return;
+			}
+			
 			var contentView:IParent = view as IParent;
 			if (contentView != null) {
 				contentView.removeElement(c, dispatchEvent);

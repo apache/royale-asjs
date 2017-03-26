@@ -31,143 +31,146 @@ package org.apache.flex.utils
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.events.IEventDispatcher;
-	
-	public class MockContentView implements IContentView, IParentIUIBase
+
+	public class MockContentView implements IContentView, IParentIUIBase, ILayoutView
 	{
 		private var _x:Number;
 		private var _y:Number;
 		private var _width:Number;
 		private var _height:Number;
 		private var elements:Array = [];
-		
-		public function MockContentView(source:IParentIUIBase)
+
+		public function MockContentView(source:ILayoutView)
 		{
-			x = source.x;
-			y = source.y;
-			width = source.width;
-			height = source.height;
+			var p:IParentIUIBase = source as IParentIUIBase;
+
+			x = p.x;
+			y = p.y;
+			width = p.width;
+			height = p.height;
 			for (var i:int = 0; i < source.numElements; i++)
 			{
 				var mock:ILayoutChild = new MockLayoutChild(source.getElementAt(i) as ILayoutChild);
 				elements.push(mock);
 			}
 		}
-		
+
 		public function get x():Number
 		{
 			return _x;
 		}
-		
+
 		public function set x(value:Number):void
 		{
 			_x = value;
 		}
-		
+
 		public function get y():Number
 		{
 			return _y;
 		}
-		
+
 		public function set y(value:Number):void
 		{
 			_y = value;
 		}
-		
+
 		public function get width():Number
 		{
 			return _width;
 		}
-		
+
 		public function set width(value:Number):void
 		{
 			_width = value;
 		}
-		
+
 		public function get height():Number
 		{
 			return _height;
 		}
-		
+
 		public function set height(value:Number):void
 		{
 			_height = value;
 		}
-		
+
 		public function removeAllElements():void
 		{
-			elements = [];	
+			elements = [];
 		}
-		
+
 		public function addElement(c:IChild, dispatchEvent:Boolean=true):void
 		{
 			elements.push(c);
 		}
-		
+
 		public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean=true):void
 		{
 			elements.splice(index, 0, c);
 		}
-		
+
 		public function getElementIndex(c:IChild):int
 		{
 			return elements.indexOf(c);
 		}
-		
+
 		public function removeElement(c:IChild, dispatchEvent:Boolean=true):void
 		{
 			var i:int = getElementIndex(c);
 			elements.removeAt(i);
 		}
-		
+
 		public function get numElements():int
 		{
 			return elements.length;
 		}
-		
+
 		public function getElementAt(index:int):IChild
 		{
 			return elements[index] as IChild;
 		}
-		
+
 		COMPILE::SWF
 		public function get $displayObject():DisplayObject
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function addBead(bead:IBead):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function removeBead(bead:IBead):IBead
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		COMPILE::SWF
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
 		{
 			// TODO Auto Generated method stub
 		}
-		
+
 		COMPILE::JS
 		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
 		{
 		}
-		
+
 		COMPILE::SWF
 		public function dispatchEvent(event:flash.events.Event):Boolean
 		{
@@ -181,13 +184,13 @@ package org.apache.flex.utils
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		public function hasEventListener(type:String):Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		COMPILE::SWF
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
 		{
@@ -205,67 +208,67 @@ package org.apache.flex.utils
 			// TODO Auto Generated method stub
 			return false;
 		}
-		
+
 		public function get parent():IParent
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function addedToParent():void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get alpha():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
 		}
-		
+
 		public function set alpha(value:Number):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get topMostEventDispatcher():IEventDispatcher
 		{
 			// TODO Auto Generated method stub
 			return null;
 		}
-		
+
 		public function set visible(value:Boolean):void
 		{
 			// TODO Auto Generated method stub
-			
+
 		}
-		
+
 		public function get visible():Boolean
 		{
 			// TODO Auto Generated method stub
 			return false;
 		}
-	
+
 		COMPILE::JS
 		public function get positioner():WrappedHTMLElement
 		{
 			return null;
 		}
-		
+
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{
 			return null;
 		}
-		
+
 		COMPILE::JS
 		public function internalChildren():Array
 		{
 			return elements;
 		}
 
-		
+
 	}
 }

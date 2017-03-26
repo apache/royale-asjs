@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The Navigation class is a <nav> tag in HTML. It parents a list of links
-	 *  In FlexJS Navigation is implemented as a List component and by default 
-	 *  it uses NavigationLinkItemRenderer class to define each item. 
+	 *  In FlexJS Navigation is implemented as a List component and by default
+	 *  it uses NavigationLinkItemRenderer class to define each item.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -61,10 +61,10 @@ package org.apache.flex.mdl
 			typeNames = "mdl-navigation";
 
             element = document.createElement('nav') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
-            
+
             return element;
         }
 	}

@@ -101,7 +101,7 @@ package org.apache.flex.charts.beads
 			
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			var dataGroup:IChartDataGroup = listView.dataGroup as IChartDataGroup;
-			dataGroup.removeAllElements();
+			dataGroup.removeAllItemRenderers();
 			
 			var chart:IChart = _strand as IChart;
 			var series:Array = chart.series;
@@ -116,7 +116,7 @@ package org.apache.flex.charts.beads
 					if (chartSeries.itemRenderer)
 					{
 						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
-						dataGroup.addElement(ir);
+						dataGroup.addItemRenderer(ir);
 						ir.itemRendererParent = dataGroup;
 						ir.index = i;
 						ir.data = dp[i];

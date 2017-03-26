@@ -115,5 +115,6 @@
     <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
     <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
     <component id="FooterHeading" class="org.apache.flex.mdl.FooterHeading"/>
-    
+    <component id="UpgradeElement" class="org.apache.flex.mdl.beads.UpgradeElement"/>
+    <component id="UpgradeChildren" class="org.apache.flex.mdl.beads.UpgradeChildren"/>
 </componentPackage>

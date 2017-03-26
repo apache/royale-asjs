@@ -269,7 +269,7 @@ package org.apache.flex.net
                 var part2:String;
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
                 
-                if (typeof _responseHeaders === 'undefined') {
+                if (_responseHeaders === undefined) {
                     allHeaders = element.getAllResponseHeaders();
                     _responseHeaders = allHeaders.split('\n');
                     n = _responseHeaders.length;
@@ -316,6 +316,18 @@ package org.apache.flex.net
 		{
 			return _status;
 		}
+
+        /**
+         *
+         *  Status text contains more information about the HTTP request made.
+         *
+         *  @productversion FlexJS 0.8
+         */
+        COMPILE::JS
+        public function get statusText():String
+        {
+            return (element as XMLHttpRequest).statusText;
+        }
 		
 		private var _url:String;
 
@@ -665,10 +677,10 @@ package org.apache.flex.net
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
             if (element.readyState === 2) {
                 _status = element.status;
-                dispatchEvent('httpResponseStatus');
-                dispatchEvent('httpStatus');
+                dispatchEvent(HTTPConstants.RESPONSE_STATUS);
+                dispatchEvent(HTTPConstants.STATUS);
             } else if (element.readyState === 4) {
-                dispatchEvent('complete');
+                dispatchEvent(HTTPConstants.COMPLETE);
             }
         }
 

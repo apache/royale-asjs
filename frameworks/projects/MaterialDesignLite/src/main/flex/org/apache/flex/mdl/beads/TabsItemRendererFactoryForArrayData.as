@@ -149,7 +149,7 @@ package org.apache.flex.mdl.beads
                 return;
             }
 
-            dataGroup.removeAllElements();
+            dataGroup.removeAllItemRenderers();
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 
@@ -157,7 +157,7 @@ package org.apache.flex.mdl.beads
             for (var i:int = 0; i < n; i++)
             {
                 var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-                dataGroup.addElement(ir);
+                dataGroup.addItemRenderer(ir);
                 ir.index = i;
                 ir.labelField = labelField;
                 ir.tabIdField = tabsIdField;

@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
-{    
+{    	
     /**
      *  The View class is the class for most views in a FlexJS
      *  application.  It is generally used as the root tag of MXML
@@ -29,6 +29,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
 	public class View extends ViewBase
-	{
+	{		
+		
     }
 }

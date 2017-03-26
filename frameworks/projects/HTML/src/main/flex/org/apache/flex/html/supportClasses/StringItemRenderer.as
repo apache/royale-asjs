@@ -22,17 +22,17 @@ package org.apache.flex.html.supportClasses
     {
         import flash.text.TextFieldAutoSize;
         import flash.text.TextFieldType;
-        
-        import org.apache.flex.core.CSSTextField;            
+
+        import org.apache.flex.core.CSSTextField;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;        
+        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
     }
     import org.apache.flex.events.Event;
     import org.apache.flex.html.beads.ITextItemRenderer;
-    
+
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
 	 *  function.
@@ -55,20 +55,20 @@ package org.apache.flex.html.supportClasses
 		public function StringItemRenderer()
 		{
 			super();
-			
+
             COMPILE::SWF
             {
                 textField = new CSSTextField();
                 textField.type = TextFieldType.DYNAMIC;
                 textField.autoSize = TextFieldAutoSize.LEFT;
                 textField.selectable = false;
-                textField.parentDrawsBackground = true;         
+                textField.parentDrawsBackground = true;
             }
 		}
-		
+
         COMPILE::SWF
 		public var textField:CSSTextField;
-		
+
 		/**
 		 * @private
 		 */
@@ -76,12 +76,12 @@ package org.apache.flex.html.supportClasses
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
+
 			$sprite.addChild(textField);
 
 			adjustSize();
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -89,14 +89,14 @@ package org.apache.flex.html.supportClasses
 		override public function adjustSize():void
 		{
 			var cy:Number = height/2;
-			
+
 			textField.x = 0;
 			textField.y = cy - textField.height/2;
 			textField.width = width;
-			
+
 			updateRenderer();
 		}
-		
+
 		/**
 		 *  The text currently displayed by the itemRenderer instance.
 		 *
@@ -109,29 +109,29 @@ package org.apache.flex.html.supportClasses
 		{
             COMPILE::SWF
             {
-                return textField.text;                    
+                return textField.text;
             }
             COMPILE::JS
             {
                 return this.element.innerHTML;
             }
 		}
-		
+
 		public function set text(value:String):void
 		{
             COMPILE::SWF
             {
-                textField.text = value;                    
+                textField.text = value;
             }
             COMPILE::JS
             {
                 this.element.innerHTML = value;
             }
 		}
-		
+
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
-		 * 
+		 *
 		 *  @param Object data The object being displayed by the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
@@ -146,33 +146,33 @@ package org.apache.flex.html.supportClasses
 			if (labelField) text = String(value[labelField]);
 			else if (dataField) text = String(value[dataField]);
 			else text = String(value);
-            
+
             this.text = text;
 		}
-		
+
         COMPILE::JS
         private var controller:ItemRendererMouseController;
-            
+
         COMPILE::JS
         private var backgroundView:WrappedHTMLElement;
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {            
+        {
             element = document.createElement('span') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
-            
+            //positioner.style.position = 'relative';
+
             element.flexjs_wrapper = this;
             className = 'StringItemRenderer';
-            
+
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
             backgroundView = element;
-            
+
             return element;
         }
 

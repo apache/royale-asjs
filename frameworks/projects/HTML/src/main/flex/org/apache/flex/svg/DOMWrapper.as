@@ -33,7 +33,7 @@ package org.apache.flex.svg
         {
 			super();
         }
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -46,8 +46,8 @@ package org.apache.flex.svg
 			element.style.top = "0px";
 			//element.offsetParent = null;
 			positioner = element;
-			positioner.style.position = 'relative';
-			
+			//positioner.style.position = 'relative';
+
 			return element;
 		}
 

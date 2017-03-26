@@ -36,6 +36,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.ItemRendererEvent;
 	import org.apache.flex.html.List;
 	
+	import org.apache.flex.core.IList;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParentIUIBase;
+	
 	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
     /**
@@ -86,17 +91,17 @@ package org.apache.flex.html.beads
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function finishSetup(event:Event):void
-		{
+		{			
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
 			labelField = dataProviderModel.labelField;
 			
-			if (!itemRendererFactory)
-			{
+			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (itemRendererFactory == null) {
 				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				_strand.addBead(_itemRendererFactory);
 			}
@@ -136,25 +141,25 @@ package org.apache.flex.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */
-		protected var dataGroup:IItemRendererParent;
-		
+         */		
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = dataProviderModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
 			
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			dataGroup.removeAllItemRenderers();
+			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-
+			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				dataGroup.addElement(ir);
+				dataGroup.addItemRenderer(ir);
 				ir.index = i;
 				ir.labelField = labelField;
 				if (presentationModel) {

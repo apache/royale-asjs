@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The HeaderRow class is a Container component used normaly inside a Header
 	 *  to layout things like a title, a navigation component,...
@@ -34,7 +34,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class HeaderRow extends ContainerBase
+	public class HeaderRow extends Group
 	{
 		/**
 		 *  constructor.
@@ -50,7 +50,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -60,7 +60,7 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout__header-row";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 

@@ -251,7 +251,7 @@ package org.apache.flex.html
             element = labelFor as WrappedHTMLElement;
 
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;

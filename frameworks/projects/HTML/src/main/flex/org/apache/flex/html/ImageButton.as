@@ -21,7 +21,7 @@ package org.apache.flex.html
     import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.events.Event;
     import org.apache.flex.html.beads.models.ImageModel;
-	
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -60,13 +60,13 @@ package org.apache.flex.html
         {
             element = document.createElement('button') as WrappedHTMLElement;
             element.setAttribute('type', 'button');
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
+
             return element;
-        }        
+        }
 
 		[Bindable("srcChanged")]
 		/**
@@ -96,7 +96,7 @@ package org.apache.flex.html
                     inner = "<img src='" + url + "'/>";
                 element.innerHTML = inner;
             }
-			
+
 			dispatchEvent(new Event("srcChanged"));
         }
 	}

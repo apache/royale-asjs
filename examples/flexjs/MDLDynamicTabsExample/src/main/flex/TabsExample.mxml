@@ -29,6 +29,8 @@ limitations under the License.
 	</js:valuesImpl>
 
 	<js:initialView>
-		<views:InitialView/>
+		<js:View>
+			<views:InitialView/>
+		</js:View>
 	</js:initialView>
 </mdl:Application>

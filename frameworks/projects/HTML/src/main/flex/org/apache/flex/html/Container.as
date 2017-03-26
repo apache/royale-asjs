@@ -18,20 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IChrome;
 	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.IUIBase;
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
-	import org.apache.flex.events.Event;
 	
-	[DefaultProperty("mxmlContent")]
-    
+	COMPILE::SWF {
+		import org.apache.flex.core.IChild;
+		import org.apache.flex.core.ILayoutHost;
+		import org.apache.flex.core.IParent;
+	}
+	
     /**
      *  The Container class implements a basic container for
      *  other controls and containers.  The position and size
@@ -68,7 +62,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase implements ILayoutParent
+	public class Container extends Group implements IContainer
 	{
         /**
          *  Constructor.
@@ -81,36 +75,83 @@ package org.apache.flex.html
 		public function Container()
 		{
 			super();
+		} 
+		
+		/**
+		 * @private
+		 * This is a hidden function used by ContainerView to insert the nested contentView
+		 * into this outer shell.
+		 */
+		COMPILE::SWF
+		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			super.addElement(c, dispatchEvent);
 		}
 		
-		public function getLayoutHost():ILayoutHost
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			return view as ILayoutHost; 
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.addElement(c, dispatchEvent);
 		}
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            element = document.createElement('div') as WrappedHTMLElement;
-            
-            positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-            
-            /*addEventListener('childrenAdded',
-            runLayoutHandler);
-            addEventListener('elementRemoved',
-            runLayoutHandler);*/
-            
-            return element;
-        }        
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.addElementAt(c, index, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function getElementIndex(c:IChild):int
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.getElementIndex(c);
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			contentView.removeElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function get numElements():int
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.numElements;
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function getElementAt(index:int):IChild
+		{
+			var layoutHost:ILayoutHost = view as ILayoutHost;
+			var contentView:IParent = layoutHost.contentView as IParent;
+			return contentView.getElementAt(index);
+		}
 	}
 }

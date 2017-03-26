@@ -18,25 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The Card class is a self-contained pieces of paper with data.
-	 *  The Material Design Lite (MDL) card component is a user interface element 
-	 *  representing a virtual piece of paper that contains related data — such as a 
+	 *  The Material Design Lite (MDL) card component is a user interface element
+	 *  representing a virtual piece of paper that contains related data — such as a
 	 *  photo, some text, and a link — that are all about a single subject.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class Card extends ContainerBase
+	public class Card extends Group
 	{
 		/**
 		 *  constructor.
@@ -52,7 +52,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -62,22 +62,22 @@ package org.apache.flex.mdl
 			typeNames = "mdl-card";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
         }
-		
+
 		protected var _shadow:Number = 0;
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
 		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
-		 *  
-		 *  Cards are a convenient means of coherently displaying related content 
-		 *  that is composed of different types of objects. They are also well-suited 
-		 *  for presenting similar objects whose size or supported actions can vary 
-		 *  considerably, like photos with captions of variable length. Cards have 
+		 *
+		 *  Cards are a convenient means of coherently displaying related content
+		 *  that is composed of different types of objects. They are also well-suited
+		 *  for presenting similar objects whose size or supported actions can vary
+		 *  considerably, like photos with captions of variable length. Cards have
 		 *  a constant width and a variable height, depending on their content.
 		 *
 		 *  @langversion 3.0
@@ -94,7 +94,7 @@ package org.apache.flex.mdl
 			COMPILE::JS
 			{
 				element.classList.remove("mdl-shadow--" + _shadow + "dp");
-				
+
 				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
 				{
 					_shadow = value;

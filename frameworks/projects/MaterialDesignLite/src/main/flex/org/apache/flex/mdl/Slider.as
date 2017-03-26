@@ -84,13 +84,6 @@ package org.apache.flex.mdl
 			super();
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-			
-			//default model values 
-			IRangeModel(model).value = 0;
-			IRangeModel(model).minimum = 0;
-			IRangeModel(model).maximum = 100;
-			IRangeModel(model).stepSize = 1;
-			IRangeModel(model).snapInterval = 1;
 		}
 		
 		/**
@@ -143,25 +136,7 @@ package org.apache.flex.mdl
 		{
 			IRangeModel(model).maximum = value;
 		}
-		
-		/**
-		 *  The modulus of the Slider value. The thumb will be positioned
-		 *  at the nearest multiple of this value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-		public function get snapInterval():Number
-		{
-			return IRangeModel(model).snapInterval;
-		}
-		public function set snapInterval(value:Number):void
-		{
-			IRangeModel(model).snapInterval = value;
-		}
-        
+
 		/**
 		 *  The amount to move the thumb when the track is selected. This value is
 		 *  adjusted to fit the nearest snapInterval.
@@ -175,13 +150,11 @@ package org.apache.flex.mdl
         {
             return IRangeModel(model).stepSize;
         }
+
         public function set stepSize(value:Number):void
         {
             IRangeModel(model).stepSize = value;
         }
-        
-		COMPILE::JS
-		private var input:HTMLInputElement;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -193,13 +166,13 @@ package org.apache.flex.mdl
         {
 			var div:HTMLElement = document.createElement('div') as HTMLElement;
 
-			input = document.createElement('input') as HTMLInputElement;
+			var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
 			input.type = "range";
 			input.className = "mdl-slider mdl-js-slider";
 			
 			div.appendChild(input);
 
-			element = input as WrappedHTMLElement; 
+			element = input as WrappedHTMLElement;
             
             positioner = div as WrappedHTMLElement;
 			(input as WrappedHTMLElement).flexjs_wrapper = this;
@@ -226,25 +199,5 @@ package org.apache.flex.mdl
 				dispatchEvent(new Event("classNameChanged"));
 			}
 		}
-
-        /**
-		 * @private
-         */
-        COMPILE::JS
-        public function snap(value:Number):Number
-        {
-            var si:Number = snapInterval;
-            var n:Number = Math.round((value - minimum) / si) *
-                si + minimum;
-            if (value > 0)
-            {
-                if (value - n < n + si - value)
-                    return n;
-                return n + si;
-            }
-            if (value - n > n + si - value)
-                return n + si;
-            return n;
-        }
     }
 }

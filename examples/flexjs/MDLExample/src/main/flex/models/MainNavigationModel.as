@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.EventDispatcher;
-
     import vos.NavigationLinkVO;
 
-    public class MainNavigationModel extends EventDispatcher
+    public class MainNavigationModel
     {
         private var _mainNavigation:Array = [
                 new NavigationLinkVO("About", "https://getmdl.io/index.html"),

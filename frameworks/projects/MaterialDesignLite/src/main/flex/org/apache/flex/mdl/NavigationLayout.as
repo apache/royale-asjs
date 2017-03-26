@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The NavigationLayout class is a Container component capable of parenting other
 	 *  components.
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class NavigationLayout extends ContainerBase
+	public class NavigationLayout extends Group
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -61,13 +61,13 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout mdl-js-layout";
 
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
         }
-		
+
 		protected var _fixedHeader:Boolean;
         /**
 		 *  A boolean flag to activate "mdl-layout--fixed-header" effect selector.
@@ -90,7 +90,7 @@ package org.apache.flex.mdl
             {
                 element.classList.toggle("mdl-layout--fixed-header", _fixedHeader);
 				typeNames = element.className;
-            } 
+            }
         }
 
 		protected var _fixedDrawer:Boolean;

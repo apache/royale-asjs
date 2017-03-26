@@ -19,7 +19,7 @@
 package org.apache.flex.html.supportClasses
 {
 	import org.apache.flex.html.DataContainer;
-	import org.apache.flex.html.beads.layouts.TileLayout;
+	import org.apache.flex.html.beads.layouts.HorizontalFlexLayout;
 	
 	/**
 	 *  The DateChooserHeader is the container for the days of the week labels
@@ -44,15 +44,14 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 			
-			tileLayout = new TileLayout();
-			tileLayout.numColumns = 7;
-			addBead(tileLayout);
+			myLayout = new HorizontalFlexLayout();
+			addBead(myLayout);
 		}
 		
 		/**
 		 * @private
 		 */
-		private var tileLayout:TileLayout;
+		private var myLayout:HorizontalFlexLayout;
 		
 		/**
 		 * @private
@@ -60,7 +59,6 @@ package org.apache.flex.html.supportClasses
 		override public function set height(value:Number):void
 		{
 			super.height = value;
-			tileLayout.rowHeight = value;
 		}
 	}
 }

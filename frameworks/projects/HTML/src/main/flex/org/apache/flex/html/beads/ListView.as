@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
@@ -56,58 +57,53 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ListView extends ContainerView implements IListView
+	COMPILE::JS
+	public class ListView extends DataContainerView
 	{
 		public function ListView()
 		{
+			super();
 		}
-						
+		
 		protected var listModel:ISelectionModel;
 		
-		private var _border:Border;
+		protected var lastSelectedIndex:int = -1;
 		
-		/**
-		 *  The border surrounding the org.apache.flex.html.List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get border():Border
-        {
-            return _border;
-        }
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			
+			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			//listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+			
+			super.beadsAddedHandler(event);
+		}
 		
-		/**
-		 *  The area holding the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get dataGroup():IItemRendererParent
+		protected function selectionChangeHandler(event:Event):void
 		{
-			(contentView as UIBase).className = "ListDataGroup";
-			return contentView as IItemRendererParent;
+			if (lastSelectedIndex != -1)
+			{
+				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+				if (ir != null) ir.selected = false;
+			}
+			if (listModel.selectedIndex != -1)
+			{
+				ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+				if (ir != null) ir.selected = true;
+			}
+			lastSelectedIndex = listModel.selectedIndex;
 		}
-				
-		/**
-		 * @private
-		 */
-		override public function get resizableView():IUIBase
+	}
+	
+	COMPILE::SWF
+	public class ListView extends DataContainerView
+	{
+		public function ListView()
 		{
-			return _strand as IUIBase;
+			super();
 		}
-        
-        /**
-         * @private
-         */
-        override public function get host():IUIBase
-        {
-            return _strand as IUIBase;
-        }
+		
+		protected var listModel:ISelectionModel;
         		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -123,40 +119,16 @@ package org.apache.flex.html.beads
 			super.strand = value;
 		}
 		
-		override protected function completeSetup():void
+		override protected function beadsAddedHandler(event:Event):void
 		{
-			super.completeSetup();
-			
-			// list is not interested in UI children, it wants to know when new items
-			// have been added or the dataProvider has changed.
-			
-			host.removeEventListener("childrenAdded", childrenChangedHandler);
-			host.removeEventListener("childrenAdded", performLayout);
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
+			super.beadsAddedHandler(event);
 			
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
 		
 		protected var lastSelectedIndex:int = -1;
-		
-		/**
-		 * @private
-		 */
-		protected function itemsCreatedHandler(event:Event):void
-		{
-			performLayout(event);
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			performLayout(event);
-		}
 		
 		/**
 		 * @private
@@ -194,19 +166,6 @@ package org.apache.flex.html.beads
 	            ir.hovered = true;
 			}
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
-		}
-        
-        /**
-         *  respond to a change in size or request to re-layout everything
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		override protected function resizeHandler(event:Event):void
-		{
-			super.resizeHandler(event);
 		}
 	}
 }

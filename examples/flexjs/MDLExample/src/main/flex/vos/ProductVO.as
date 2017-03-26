@@ -21,7 +21,6 @@ package vos
     [Bindable]
 	public class ProductVO
 	{
-
 		public var label:String;
 	}
 }

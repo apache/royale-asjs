@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads
 {
+    import org.apache.flex.events.Event;
+
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.core.UIBase;
@@ -55,6 +57,11 @@ package org.apache.flex.mdl.beads
 		{
 			
 		}
+
+        private var _host:UIBase;
+
+        COMPILE::JS
+        private var _tooltipDiv:HTMLDivElement;
 
         private var _text:String = "";
         /**
@@ -205,27 +212,64 @@ package org.apache.flex.mdl.beads
         {
             _strand = value;
 
-            var host:UIBase = value as UIBase;
-
+            _host = value as UIBase;
             COMPILE::JS
-            {    
-                var element:HTMLElement = host.element as HTMLElement;
-                var divElemet:HTMLDivElement = document.createElement("div") as HTMLDivElement;
+            {
+                _tooltipDiv = document.createElement("div") as HTMLDivElement;
 
-                divElemet.classList.add("mdl-tooltip");
-                divElemet.classList.toggle("mdl-tooltip--top", _topPosition);
-                divElemet.classList.toggle("mdl-tooltip--left", _leftPosition);
-                divElemet.classList.toggle("mdl-tooltip--right", _rightPosition);
-                divElemet.classList.toggle("mdl-tooltip--bottom", _bottomPosition);
+                _tooltipDiv.classList.add("mdl-tooltip");
+                _tooltipDiv.classList.toggle("mdl-tooltip--top", _topPosition);
+                _tooltipDiv.classList.toggle("mdl-tooltip--left", _leftPosition);
+                _tooltipDiv.classList.toggle("mdl-tooltip--right", _rightPosition);
+                _tooltipDiv.classList.toggle("mdl-tooltip--bottom", _bottomPosition);
 
-                divElemet.classList.toggle("mdl-tooltip--large", _large);
-                divElemet.setAttribute('for', host.id);
+                _tooltipDiv.classList.toggle("mdl-tooltip--large", _large);
+                _tooltipDiv.setAttribute('for', _host.id);
 
                 var textNode:Text = document.createTextNode('');
                 textNode.nodeValue = _text;
-                divElemet.appendChild(textNode);
+                _tooltipDiv.appendChild(textNode);
 
-                element.parentElement.appendChild(divElemet);
+                var isElementAdded:Boolean = addTooltipToParent();
+                if (!isElementAdded)
+                {
+                    _host.addEventListener("beadsAdded", beadsAddedHandler);
+                }
+            }
+        }
+
+        COMPILE::JS
+        private function beadsAddedHandler(event:Event):void
+        {
+            var host:UIBase = _strand as UIBase;
+            host.removeEventListener("beadsAdded", beadsAddedHandler);
+
+            addTooltipToParent();
+            upgradeTooltip();
+        }
+
+        COMPILE::JS
+        private function addTooltipToParent():Boolean
+        {
+            var element:HTMLElement = _host.element as HTMLElement;
+
+            if (!element.parentElement)
+            {
+                return false;
+            }
+
+            element.parentElement.appendChild(_tooltipDiv);
+            return true;
+        }
+
+        COMPILE::JS
+        private function upgradeTooltip():void
+        {
+            var componentHandler:Object = window["componentHandler"];
+
+            if (componentHandler && _tooltipDiv)
+            {
+                componentHandler["upgradeElement"](_tooltipDiv);
             }
         }
     }

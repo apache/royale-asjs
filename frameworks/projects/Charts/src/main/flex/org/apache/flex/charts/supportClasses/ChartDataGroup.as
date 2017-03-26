@@ -23,7 +23,10 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartSeries;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.supportClasses.DataGroup;
+	import org.apache.flex.html.supportClasses.ContainerContentArea;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The ChartDataGroup class provides the actual space for rendering the
@@ -34,7 +37,7 @@ package org.apache.flex.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartDataGroup extends DataGroup implements IChartDataGroup
+	public class ChartDataGroup extends ContainerContentArea implements IChartDataGroup
 	{
 		/**
 		 *  constructor.
@@ -95,6 +98,101 @@ package org.apache.flex.charts.supportClasses
 			}
 			
 			return null;
+		}
+		
+		/*
+		* IItemRendererParent
+		*/
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function addItemRenderer(renderer:IItemRenderer):void
+		{
+			addElement(renderer, true);
+			
+//			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
+//			newEvent.item = renderer;
+//			
+//			dispatchEvent(newEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+			removeElement(renderer, true);
+			
+//			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+//			newEvent.item = renderer;
+//			
+//			dispatchEvent(newEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeAllItemRenderers()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function removeAllItemRenderers():void
+		{
+			while (numElements > 0) {
+				var child:IChild = getElementAt(0);
+				removeElement(child);
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function getItemRendererForIndex(index:int):IItemRenderer
+		{
+			if (index < 0 || index >= numElements) return null;
+			return getElementAt(index) as IItemRenderer;
+		}
+		
+		/**
+		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
+		 *
+		 *  @copy org.apache.flex.core.IItemRendererParent#updateAllItemRenderers()
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function updateAllItemRenderers():void
+		{
+			var n:Number = numElements;
+			for (var i:Number = 0; i < n; i++)
+			{
+				var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
+				if (renderer) {
+					renderer.setWidth(this.width,true);
+					renderer.adjustSize();
+				}
+			}
 		}
 	}
 }

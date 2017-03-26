@@ -47,12 +47,12 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
-    <js:Label id="titleLabel" text="{ITitleBarModel(model).title}" >
+    <js:Label id="titleLabel" text="{ITitleBarModel(model).title}" className="TitleBarTitle" >
         <js:style>
-            <js:SimpleCSSStyles fontWeight="inherit" margin="5" />
+            <js:SimpleCSSStyles fontWeight="inherit" marginRight="5" marginLeft="5" />
         </js:style>
     </js:Label>
-    <js:CloseButton id="closeButton" click="clickHandler()"
-                       visible="{ITitleBarModel(model).showCloseButton}"/>
+    <js:CloseButton id="closeButton" click="clickHandler()" className="TitleBarCloseButton"
+                    visible="{ITitleBarModel(model).showCloseButton}"/>
     
 </js:MXMLBeadView>

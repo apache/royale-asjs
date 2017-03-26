@@ -66,6 +66,8 @@ package org.apache.flex.html.supportClasses
 			var added:Boolean = false;
 			if (textButton == null) {
 				textButton = new DataGridButtonBarTextButton();
+				textButton.percentWidth = 100;
+				textButton.percentHeight = 100;
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.
@@ -76,6 +78,15 @@ package org.apache.flex.html.supportClasses
 			super.data = value;
 			
 			if (added) addElement(textButton);
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		override public function adjustSize():void
+		{
+			// not neeed for JS platform
 		}
 	}
 }

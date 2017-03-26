@@ -19,10 +19,10 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.ImageBase;
-	
+
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	  /**
@@ -48,7 +48,7 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -58,14 +58,14 @@ package org.apache.flex.html
             element = document.createElement('img') as WrappedHTMLElement;
             element.className = 'Image';
             typeNames = 'Image';
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-         
+
             return element;
         }
-		
+
 		COMPILE::JS
 		override public function get imageElement():Element
 		{
