@@ -46,6 +46,7 @@ package org.apache.flex.html
 	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.events.ItemRemovedEvent;
 	import org.apache.flex.html.beads.models.ListPresentationModel;
+	import org.apache.flex.html.beads.IListView;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 
 	/**
@@ -158,7 +159,8 @@ package org.apache.flex.html
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			return this;
+			//return this;
+			return (view as IListView).dataGroup;
 		}
 
 		private var _itemRenderer:IFactory;

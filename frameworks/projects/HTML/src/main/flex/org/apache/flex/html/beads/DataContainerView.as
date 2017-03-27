@@ -66,7 +66,7 @@ package org.apache.flex.html.beads
 		
 		public function get dataGroup():IItemRendererParent
 		{
-			return (_strand as IList).dataGroup;
+			return super.contentView as IItemRendererParent;
 		}
 		
 		override protected function beadsAddedHandler(event:Event):void
@@ -157,7 +157,7 @@ package org.apache.flex.html.beads
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			return (_strand as IList).dataGroup;
+			return super.contentView as IItemRendererParent;
 		}
 				
 		/**

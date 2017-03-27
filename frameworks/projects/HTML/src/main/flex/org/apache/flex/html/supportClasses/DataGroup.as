@@ -41,7 +41,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataGroup extends ContainerContentArea implements IContentView
+	public class DataGroup extends ContainerContentArea implements IItemRendererParent
 	{
         /**
          *  Constructor.
@@ -56,55 +56,87 @@ package org.apache.flex.html.supportClasses
 			super();
 		}
 		
+		/*
+		* IItemRendererParent
+		*/
+		
 		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
 		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		public function addItemRenderer(renderer:IItemRenderer):void
 		{
-			super.addElement(c, dispatchEvent);
+			addElement(renderer, true);
 			
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-			newEvent.item = c;
+			newEvent.item = renderer;
 			
-			var strand:IEventDispatcher = parent as IEventDispatcher;
-			strand.dispatchEvent(newEvent);
+			dispatchEvent(newEvent);
 		}
 		
 		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
 		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
-		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{	
-			super.removeElement(c, dispatchEvent);
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+			removeElement(renderer, true);
 			
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
-			newEvent.item = c;
+			newEvent.item = renderer;
 			
-			var strand:IEventDispatcher = parent as IEventDispatcher;
-			strand.dispatchEvent(newEvent);
+			dispatchEvent(newEvent);
 		}
-
-        /**
-         *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        public function getItemRendererForIndex(index:int):IItemRenderer
-        {
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeAllItemRenderers()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function removeAllItemRenderers():void
+		{
+			while (numElements > 0) {
+				var child:IChild = getElementAt(0);
+				removeElement(child);
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function getItemRendererForIndex(index:int):IItemRenderer
+		{
 			if (index < 0 || index >= numElements) return null;
-            return getElementAt(index) as IItemRenderer;
-        }
+			return getElementAt(index) as IItemRenderer;
+		}
 		
 		/**
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+		 *
+		 *  @copy org.apache.flex.core.IItemRendererParent#updateAllItemRenderers()
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
 		public function updateAllItemRenderers():void
 		{
@@ -117,14 +149,6 @@ package org.apache.flex.html.supportClasses
 					renderer.adjustSize();
 				}
 			}
-		}
-		
-		/**
-		 * Removes all of the elements
-		 */
-		public function removeAllElements():void
-		{
-			// TBD
 		}
 	}
 }

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.List;
+	import org.apache.flex.charts.core.IChart;
+	import org.apache.flex.events.Event
 	
 	/**
 	 *  The ChartBase class contains all of the properties common to most
@@ -38,7 +38,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartBase extends List implements IChart
+	public class ChartBase extends List implements IChart 
 	{
 		/**
 		 *  constructor. 
@@ -46,7 +46,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function ChartBase()
 		{
@@ -62,7 +62,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get series():Array
 		{
@@ -73,5 +73,23 @@ package org.apache.flex.charts.core
 			_series = value;
 			dispatchEvent(new Event("seriesChanged"));
 		}
+		
+		/*
+		 * IList
+		 */
+				
+		/**
+		*  @copy org.apache.flex.core.IList#dataGroup
+		* 
+		*  @langversion 3.0
+		*  @playerversion Flash 10.2
+		*  @playerversion AIR 2.6
+		*  @productversion FlexJS 0.8
+		*/
+//		public function get dataGroup():IItemRendererParent
+//		{
+//			var chartView:ChartView = view as ChartView;
+//			return chartView.contentView as IItemRendererParent;
+//		}
 	}
 }

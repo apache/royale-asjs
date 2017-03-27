@@ -562,7 +562,7 @@ global
 @media -flex-flash
 {
 	Accordion {
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	Alert
@@ -589,7 +589,7 @@ global
 	
 	ButtonBar
 	{
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	CheckBox
@@ -622,11 +622,11 @@ global
 	}
 	
 	DataContainer {
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	DataGridButtonBar {
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	DateChooserList {
@@ -704,7 +704,7 @@ global
 		iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	MultilineLabel
@@ -808,7 +808,7 @@ global
 	}
 	
 	Tree {
-		IContentView: ClassReference("org.apache.flex.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	
 	/*
