@@ -59,7 +59,7 @@ package org.apache.flex.charts.beads.layouts
 		 */
 		override protected function performLayout():void
 		{
-			var selectionModel:ISelectionModel = chart.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
@@ -133,8 +133,6 @@ package org.apache.flex.charts.beads.layouts
 					start += arc;
 				}
 			}
-			
-			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

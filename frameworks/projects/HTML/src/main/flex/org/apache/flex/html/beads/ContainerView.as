@@ -394,6 +394,16 @@ package org.apache.flex.html.beads
 					}
 				}
 			}
+			
+			if (viewport != null) {
+				var chost:IContainer = host as IContainer;
+				// add the viewport's contentView to this host ONLY if
+				// the contentView is not the host itself, which is likely
+				// most situations.
+				if (chost != viewport.contentView) {
+					chost.addElement(viewport.contentView);
+				}
+			}
 		}
 	}
 }

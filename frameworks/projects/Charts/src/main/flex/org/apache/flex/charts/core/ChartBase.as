@@ -19,7 +19,8 @@
 package org.apache.flex.charts.core
 {
 	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.events.Event
+	import org.apache.flex.events.Event;
+	import org.apache.flex.html.List;
 	
 	/**
 	 *  The ChartBase class contains all of the properties common to most
@@ -73,23 +74,5 @@ package org.apache.flex.charts.core
 			_series = value;
 			dispatchEvent(new Event("seriesChanged"));
 		}
-		
-		/*
-		 * IList
-		 */
-				
-		/**
-		*  @copy org.apache.flex.core.IList#dataGroup
-		* 
-		*  @langversion 3.0
-		*  @playerversion Flash 10.2
-		*  @playerversion AIR 2.6
-		*  @productversion FlexJS 0.8
-		*/
-//		public function get dataGroup():IItemRendererParent
-//		{
-//			var chartView:ChartView = view as ChartView;
-//			return chartView.contentView as IItemRendererParent;
-//		}
 	}
 }

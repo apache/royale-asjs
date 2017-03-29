@@ -39,11 +39,12 @@ package org.apache.flex.charts.beads
 //	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.DataContainer;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.geom.Rectangle;
     import org.apache.flex.geom.Size;
-	import org.apache.flex.html.beads.GroupView;
+	import org.apache.flex.html.beads.ListView;
 //	import org.apache.flex.html.beads.models.ViewportModel;
 //	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.utils.CSSContainerUtils;
@@ -57,7 +58,7 @@ package org.apache.flex.charts.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartView extends GroupView implements IBeadView
+	public class ChartView extends ListView implements IBeadView
 	{
 		/**
 		 *  Constructor
@@ -72,7 +73,7 @@ package org.apache.flex.charts.beads
 			super();
 		}
 		
-		protected var dataModel:IChartDataModel;
+		//protected var dataModel:IChartDataModel;
 		
 		private var _horizontalAxisGroup:IAxisGroup;
 		private var _verticalAxisGroup:IAxisGroup;
@@ -94,28 +95,24 @@ package org.apache.flex.charts.beads
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.core.IChild
 		 */
 		override protected function completeSetup():void
 		{	
 			super.completeSetup();
-		}
-		
-		override protected function beadsAddedHandler(event:Event):void
-		{
-			super.beadsAddedHandler(event);
 			
 			dataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
-			IParent(_strand).addElement(dataGroup as IChild, false);
-						
+//			DataContainer(_strand).$addElement(dataGroup as IChild);
+			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			if (haxis && _horizontalAxisGroup == null) {
 				var m1:Class = ValuesManager.valuesImpl.getValue(_strand, "iHorizontalAxisGroup");
 				_horizontalAxisGroup = new m1();
 				haxis.axisGroup = _horizontalAxisGroup;
 				UIBase(_horizontalAxisGroup).className = "HorizontalAxis";
-				IParent(_strand).addElement(_horizontalAxisGroup, false);
+				DataContainer(_strand).$addElement(_horizontalAxisGroup, false);
 			}
 			
 			var vaxis:IVerticalAxisBead = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
@@ -124,30 +121,13 @@ package org.apache.flex.charts.beads
 				_verticalAxisGroup = new m2();
 				vaxis.axisGroup = _verticalAxisGroup;
 				UIBase(_verticalAxisGroup).className = "VerticalAxis";
-				IParent(_strand).addElement(_verticalAxisGroup, false);
+				DataContainer(_strand).$addElement(_verticalAxisGroup, false);
 			}
 		}
 		
-		override public function get contentView():ILayoutView
+		override protected function beadsAddedHandler(event:Event):void
 		{
-			return dataGroup as ILayoutView;
-		}
-		
-		private var _chartDataGroup:IChartDataGroup;
-		
-		/**
-		 * 
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			if (_chartDataGroup == null) {
-				// pull out of valuesManager
-				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iContentView");
-				if (c) {
-					_chartDataGroup = new c();
-				}
-			}
-			return _chartDataGroup;
+			super.beadsAddedHandler(event);
 		}
 		
 		/**
@@ -179,7 +159,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			if (verticalAxisGroup) {
 				verticalAxisGroup.removeAllElements();
@@ -190,6 +170,12 @@ package org.apache.flex.charts.beads
 			}
 			
 			dataGroup.removeAllItemRenderers();
+		}
+		
+		override protected function handleChildrenAdded(event:Event):void
+		{
+			// ignore this for charts.
+			trace("Ignoring children added");
 		}
 				
 		/**
@@ -218,6 +204,9 @@ package org.apache.flex.charts.beads
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
 			
+			trace("widthAdjustment="+widthAdjustment+"; heightAdjustment="+heightAdjustment);
+			trace("strand width="+strandWidth+"; strand height="+strandHeight);
+			
 			var chartArea:UIBase = dataGroup as UIBase;
 			
 			chartArea.x = widthAdjustment + metrics.left;
@@ -227,6 +216,8 @@ package org.apache.flex.charts.beads
 			COMPILE::JS {
 				chartArea.element.style.position = "absolute";
 			}
+				
+			trace("Chart area x:"+chartArea.x+", y:"+chartArea.y+"; width="+chartArea.width+"; height="+chartArea.height);
 			
 //            viewport.setPosition(widthAdjustment + metrics.left, metrics.top);
 //			viewport.layoutViewportBeforeContentLayout(strandWidth - widthAdjustment - metrics.right - metrics.left,
@@ -237,9 +228,12 @@ package org.apache.flex.charts.beads
 				UIBase(verticalAxisGroup).y = metrics.top;
 				UIBase(verticalAxisGroup).width = widthAdjustment;
 				UIBase(verticalAxisGroup).height = strandHeight - heightAdjustment - metrics.bottom - metrics.top;
-				COMPILE::JS {
-					verticalAxisGroup.element.style.position = "absolute";
-				}
+//				COMPILE::JS {
+//					verticalAxisGroup.element.style.position = "absolute";
+//				}
+					
+				var vga:UIBase = verticalAxisGroup as UIBase;
+				trace("vertical axis x:"+vga.x+"; y:"+vga.y+"; width="+vga.width+"; height="+vga.height);
 			}
 			
 			if (horizontalAxisGroup) {
@@ -247,10 +241,18 @@ package org.apache.flex.charts.beads
 				UIBase(horizontalAxisGroup).y = strandHeight - heightAdjustment - metrics.bottom;
 				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment - metrics.left - metrics.right;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
-				COMPILE::JS {
-					horizontalAxisGroup.element.style.position = "absolute";
-				}
+//				COMPILE::JS {
+//					horizontalAxisGroup.element.style.position = "absolute";
+//				}
+					
+				var hga:UIBase = horizontalAxisGroup as UIBase;
+				trace("horizontal axis x:"+hga.x+"; y:"+hga.y+"; width="+hga.width+"; height="+hga.height);
 			}
+		}
+		
+		override protected function layoutViewAfterContentLayout():void
+		{
+			trace("Ignore this for charts, too");	
 		}
 		
 		/**
@@ -261,7 +263,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		protected function selectionChangeHandler(event:Event):void
+		override protected function selectionChangeHandler(event:Event):void
 		{
 			var model:IChartDataModel = event.currentTarget as IChartDataModel;
 			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
@@ -289,18 +291,18 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		protected var lastRollOverIndex:Number = -1;
+		//protected var lastRollOverIndex:Number = -1;
 		
 		/**
 		 * @private
 		 */
-		protected var lastSelectedIndex:Number = -1
+		//protected var lastSelectedIndex:Number = -1
 		
 		/**
 		 * @private
 		 */
 		COMPILE::SWF
-		protected function rollOverIndexChangeHandler(event:Event):void
+		override protected function rollOverIndexChangeHandler(event:Event):void
 		{
 			var model:IChartDataModel = event.currentTarget as IChartDataModel;
 			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
