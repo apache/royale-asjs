@@ -198,14 +198,14 @@ package org.apache.flex.html.supportClasses
 			{
 				if (_verticalScroller == null) {
 					_verticalScroller = createVerticalScrollBar();
-					(_strand as IContainer).$addElement(_verticalScroller);
+					(_strand as IContainer).strandChildren.addElement(_verticalScroller);
 				}
 			}
 			if (needH)
 			{
 				if (_horizontalScroller == null) {
 					_horizontalScroller = createHorizontalScrollBar();
-					(_strand as IContainer).$addElement(_horizontalScroller);
+					(_strand as IContainer).strandChildren.addElement(_horizontalScroller);
 				}
 			}
 			

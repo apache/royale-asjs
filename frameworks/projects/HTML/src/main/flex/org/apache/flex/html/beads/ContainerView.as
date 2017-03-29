@@ -146,7 +146,7 @@ package org.apache.flex.html.beads
             createViewport();
 
 			var chost:IContainer = host as IContainer;
-			chost.$addElement(viewport.contentView);
+			chost.strandChildren.addElement(viewport.contentView);
 
 			super.strand = value;
 		}

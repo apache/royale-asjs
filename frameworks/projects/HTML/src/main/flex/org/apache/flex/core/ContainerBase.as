@@ -18,13 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.states.State;
-	import org.apache.flex.utils.MXMLDataInterpreter;
 
     /**
      *  Indicates that the state change has completed.  All properties
@@ -60,6 +56,14 @@ package org.apache.flex.core
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
+	/**
+	 * Indicates that the default property of the Container is MXML elements.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+	 */
 	[DefaultProperty("mxmlContent")]
     
     /**
@@ -72,7 +76,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerBase extends GroupBase implements IContainer
+	public class ContainerBase extends GroupBase implements IContainer, IStrandPrivate
 	{
         /**
          *  Constructor.
@@ -177,6 +181,8 @@ package org.apache.flex.core
 		 * operate directly at strand level. While these function are available on
 		 * both SWF and JS platforms, they really only have meaning on the SWF-side. 
 		 * Other subclasses may provide use on the JS-side.
+		 *
+		 * @see org.apache.flex.core.IContainer#strandChildren
 		 */
 		
 		/**

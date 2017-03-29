@@ -20,6 +20,7 @@ package org.apache.flex.core
 {
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ItemAddedEvent;
@@ -49,7 +50,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataContainerBase extends UIBase implements ILayoutParent, ILayoutView, IItemRendererParent, IContentViewHost, IContainer
+	public class DataContainerBase extends UIBase implements ILayoutParent, ILayoutView, IItemRendererParent, IContentViewHost, IContainer, IParent, IStrandPrivate
 	{
         /**
          *  Constructor.

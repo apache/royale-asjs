@@ -19,39 +19,21 @@
 package org.apache.flex.core
 {
     /**
-     *  The IContainer interface is used to mark certain components as Containers.
-     *  While most components are containers in the sense that they are composited
-     *  from a set of child components, the term Container is commonly used in Flex
-     *  to denote components that take an arbitrary set or sets of children and do
-     *  not try to abstract away that fact. 
+     *  The IStrandPrivate interface is implemented by components that permit 
+	 *  access to their direct children.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
-    public interface IContainer extends IParent
+	public interface IStrandPrivate
 	{
-        /**
-         *  This method is called after children have been
-         *  added to the container so the container doesn't
-         *  have to re-layout as each child is added.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		function childrenAdded():void;
-		
-		/**
-		 * Returns a object to access the immediate children of the strand.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-		 */
-		function get strandChildren():IParent;
+		function $numElements():int;
+		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
+		function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void;
+		function $removeElement(c:IChild, dispatchEvent:Boolean = true):void;
+		function $getElementIndex(c:IChild):int;
+		function $getElementAt(index:int):IChild;
 	}
 }
