@@ -128,7 +128,7 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function getLayoutHost():ILayoutHost
+        override public function getLayoutHost():ILayoutHost
         {
             return this;
         }
