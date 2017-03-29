@@ -353,6 +353,20 @@ package org.apache.flex.html.beads
 		{
 			return _viewport;
 		}
+		
+		/**
+		 * The sub-element used as the parent of the container's elements. This does not
+		 * include the chrome elements.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function get contentView():ILayoutView
+		{
+			return viewport.contentView as ILayoutView;
+		}
 
 		/**
 		 * Strand setter.

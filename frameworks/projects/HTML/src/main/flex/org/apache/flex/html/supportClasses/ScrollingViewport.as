@@ -90,7 +90,11 @@ package org.apache.flex.html.supportClasses
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			(value as UIBase).element.style.overflow = "auto";
+			if (contentView == null) {
+				(value as UIBase).element.style.overflow = "auto";
+			} else {
+				(contentView as UIBase).element.style.overflow = "auto";
+			}
 		}
 		
 		/**

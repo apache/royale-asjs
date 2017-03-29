@@ -19,12 +19,8 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IContainer;
-	
-	COMPILE::SWF {
-		import org.apache.flex.core.IChild;
-		import org.apache.flex.core.ILayoutHost;
-		import org.apache.flex.core.IParent;
-	}
+	import org.apache.flex.core.ContainerBase;
+
 	
     /**
      *  The Container class implements a basic container for
@@ -62,7 +58,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends Group implements IContainer
+	public class Container extends ContainerBase implements IContainer
 	{
         /**
          *  Constructor.
@@ -75,83 +71,6 @@ package org.apache.flex.html
 		public function Container()
 		{
 			super();
-		} 
-		
-		/**
-		 * @private
-		 * This is a hidden function used by ContainerView to insert the nested contentView
-		 * into this outer shell.
-		 */
-		COMPILE::SWF
-		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElementAt(c, index, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function getElementIndex(c:IChild):int
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementIndex(c);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function get numElements():int
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.numElements;
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function getElementAt(index:int):IChild
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementAt(index);
 		}
 	}
 }

@@ -100,7 +100,23 @@ package org.apache.flex.html.supportClasses
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			contentArea = value as UIBase;
+			
+			contentArea = _strand.getBeadByType(IContentView) as UIBase;
+			if (!contentArea)
+			{
+				var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
+				if (c != null) {
+					var result:Object = new c();
+					if (result != null) {
+						contentArea = result as UIBase;
+					}
+				}
+			}
+			
+			if (contentArea == null) {
+				contentArea = value as UIBase;
+			}
+			
 			contentArea.element.style.overflow = "hidden";
 		}
 

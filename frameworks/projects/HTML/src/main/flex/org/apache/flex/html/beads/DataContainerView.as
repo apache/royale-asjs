@@ -64,6 +64,9 @@ package org.apache.flex.html.beads
 		
 		protected var dataModel:IDataProviderModel;
 		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IItemRendererParent
+		 */
 		public function get dataGroup():IItemRendererParent
 		{
 			return super.contentView as IItemRendererParent;

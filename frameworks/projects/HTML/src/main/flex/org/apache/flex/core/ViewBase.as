@@ -93,13 +93,5 @@ package org.apache.flex.core
             dispatchEvent(new Event("modelChanged"));
         }
 
-		/**
-		 * @private
-		 */
-		public function getLayoutHost():ILayoutHost
-		{
-			return view as ILayoutHost;
-		}
-
     }
 }

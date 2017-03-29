@@ -20,6 +20,9 @@ package org.apache.flex.core
 {
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IContentViewHost;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
@@ -76,7 +79,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject, IContentViewHost
+	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject, ILayoutParent, ILayoutView, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -136,6 +139,19 @@ package org.apache.flex.core
 				
 				childrenAdded();
 			}
+		}
+		
+		/**
+		 * Returns the ILayoutHost which is its view. From ILayoutParent.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function getLayoutHost():ILayoutHost
+		{
+			return view as ILayoutHost;
 		}
 		
 		/**

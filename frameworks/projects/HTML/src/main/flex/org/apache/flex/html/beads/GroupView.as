@@ -239,7 +239,6 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		COMPILE::SWF
 		protected function layoutViewBeforeContentLayout():void
 		{
 			// This has no use for Group but is here so a subclass can override it.
@@ -261,10 +260,8 @@ package org.apache.flex.html.beads
 
 			layoutRunning = true;
 			
-			COMPILE::SWF {
-				// the HTML/JS side do not need any preparations
-				layoutViewBeforeContentLayout();
-			}
+			// pre-process before layout
+			layoutViewBeforeContentLayout();
 
 			var host:UIBase = _strand as UIBase;
 
@@ -281,11 +278,8 @@ package org.apache.flex.html.beads
 				layout.layout();
 			}
 
-			COMPILE::SWF {
-				// the HTML/JS side automatically handles changes in child sizes and
-				// will adjust the div if needed.
-				layoutViewAfterContentLayout();
-			}
+			// cleanup or adjust after layout
+			layoutViewAfterContentLayout();
 
 			layoutRunning = false;
 			
@@ -361,6 +355,12 @@ package org.apache.flex.html.beads
 			}
 
 			adjusting = false;
+		}
+		
+		COMPILE::JS
+		protected function layoutViewAfterContentLayout():void
+		{
+			// maybe useful in a subclass on the JS side.
 		}
 
 		/**
