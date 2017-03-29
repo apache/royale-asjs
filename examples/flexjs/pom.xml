@@ -50,7 +50,7 @@
     <module>FlexTeamPage_MDL</module>
     <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
-    <!--<module>ListExample</module>-->
+    <module>ListExample</module>
     <module>MapSearch</module>
     <!--module>MDLBlogExample</module>-->
     <module>MDLDynamicTabsExample</module>
