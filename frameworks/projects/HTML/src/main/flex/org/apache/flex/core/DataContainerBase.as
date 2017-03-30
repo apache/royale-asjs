@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.core.IMXMLDocument;
-	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -28,7 +26,6 @@ package org.apache.flex.core
 	import org.apache.flex.events.ItemRemovedEvent;
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.states.State;
-	import org.apache.flex.utils.MXMLDataInterpreter;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
@@ -50,7 +47,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataContainerBase extends UIBase implements ILayoutParent, ILayoutView, IItemRendererParent, IContentViewHost, IContainer, IParent, IStrandPrivate
+	public class DataContainerBase extends ContainerBase implements IItemRendererParent, IParent
 	{
         /**
          *  Constructor.
@@ -67,52 +64,33 @@ package org.apache.flex.core
 			addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
+		/*
+		* UIBase
+		*/
+		
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElement('div') as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-			
-			positioner = element;
+			super.createElement();
+			className = 'DataContainer';
 			
 			return element;
 		}
 		
-		private var _strandChildren:ContainerBaseStrandChildren;
-		
-		/**
-		 * @private
-		 */
-		public function get strandChildren():IParent
-		{
-			if (_strandChildren == null) {
-				_strandChildren = new ContainerBaseStrandChildren(this);
-			}
-			return _strandChildren;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function childrenAdded():void
-		{
-			dispatchEvent(new Event("childrenAdded"));
-		}
-		
-		private var _initialized:Boolean;
+		private var _DCinitialized:Boolean;
 		
 		/**
 		 * @private
 		 */
 		override public function addedToParent():void
 		{
-			if (!_initialized)
+			if (!_DCinitialized)
 			{
-				// each MXML file can also have styles in fx:Style block
 				ValuesManager.valuesImpl.init(this);
+				_DCinitialized = true;
 			}
 			
 			super.addedToParent();
@@ -136,91 +114,6 @@ package org.apache.flex.core
 				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				addBead(itemRendererFactory);
 			}
-		}
-		
-		/**
-		 * Returns the ILayoutHost which is its view. From ILayoutParent.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-		public function getLayoutHost():ILayoutHost
-		{
-			return view as ILayoutHost; 
-		}
-		
-		/*
-		* The following functions are for the SWF-side only and re-direct element functions
-		* to the content area, enabling scrolling and clipping which are provided automatically
-		* in the JS-side.
-		*/
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElementAt(c, index, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function getElementIndex(c:IChild):int
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementIndex(c);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function get numElements():int
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.numElements;
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function getElementAt(index:int):IChild
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementAt(index);
 		}
 		
 		/*
@@ -316,73 +209,6 @@ package org.apache.flex.core
 					renderer.adjustSize();
 				}
 			}
-		}
-		
-		/*
-		* These "internal" function provide a backdoor way for proxy classes to
-		* operate directly at strand level. While these function are available on
-		* both SWF and JS platforms, they really only have meaning on the SWF-side. 
-		* Other subclasses may provide use on the JS-side.
-		*/
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $numElements():int
-		{
-			return super.numElements;
-		}
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-		{
-			super.addElementAt(c, index, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $getElementIndex(c:IChild):int
-		{
-			return super.getElementIndex(c);
-		}
-		
-		/**
-		 * @private
-		 * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $getElementAt(index:int):IChild
-		{
-			return super.getElementAt(index);
 		}
 
     }

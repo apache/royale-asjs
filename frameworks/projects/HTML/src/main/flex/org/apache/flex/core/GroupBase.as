@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.core.IMXMLDocument;
+//	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IContentViewHost;
 	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.ILayoutHost;
@@ -67,7 +67,7 @@ package org.apache.flex.core
 	 * The default property uses when additional MXML content appears within an element's
 	 * definition in an MXML file.
 	 */
-	[DefaultProperty("mxmlContent")]
+//	[DefaultProperty("mxmlContent")]
     
     /**
      *  The GroupBase class is the base class for most simple containers
@@ -79,7 +79,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject, ILayoutParent, ILayoutView, IContentViewHost
+	public class GroupBase extends UIBase implements IStatesObject, ILayoutParent, ILayoutView, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -119,27 +119,27 @@ package org.apache.flex.core
 		/**
 		 * @private
 		 */
-		override public function addedToParent():void
-		{
-			if (!_initialized)
-			{
-				// each MXML file can also have styles in fx:Style block
-				ValuesManager.valuesImpl.init(this);
-			}
-			
-			super.addedToParent();
-			
-			if (!_initialized)
-			{
-				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-				
-				dispatchEvent(new Event("initBindings"));
-				dispatchEvent(new Event("initComplete"));
-				_initialized = true;
-				
-				childrenAdded();
-			}
-		}
+//		override public function addedToParent():void
+//		{
+//			if (!_initialized)
+//			{
+//				// each MXML file can also have styles in fx:Style block
+//				ValuesManager.valuesImpl.init(this);
+//			}
+//			
+//			super.addedToParent();
+//			
+//			if (!_initialized)
+//			{
+//				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+//				
+//				dispatchEvent(new Event("initBindings"));
+//				dispatchEvent(new Event("initComplete"));
+//				_initialized = true;
+//				
+//				childrenAdded();
+//			}
+//		}
 		
 		/**
 		 * Returns the ILayoutHost which is its view. From ILayoutParent.
@@ -167,9 +167,9 @@ package org.apache.flex.core
 			return this;
 		}
 
-        private var _mxmlDescriptor:Array;
-        private var _mxmlDocument:Object = this;
-        private var _initialized:Boolean;
+//        private var _mxmlDescriptor:Array;
+//        private var _mxmlDocument:Object = this;
+//        private var _initialized:Boolean;
         
         /**
          *  @copy org.apache.flex.core.Application#MXMLDescriptor
@@ -179,19 +179,19 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-		public function get MXMLDescriptor():Array
-		{
-			return _mxmlDescriptor;
-		}
+//		public function get MXMLDescriptor():Array
+//		{
+//			return _mxmlDescriptor;
+//		}
 
         /**
          *  @private
          */
-        public function setMXMLDescriptor(document:Object, value:Array):void
-        {
-            _mxmlDocument = document;
-            _mxmlDescriptor = value;
-        }
+//        public function setMXMLDescriptor(document:Object, value:Array):void
+//        {
+//            _mxmlDocument = document;
+//            _mxmlDescriptor = value;
+//        }
 
         /**
          *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
@@ -201,10 +201,10 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-		public function generateMXMLAttributes(data:Array):void
-		{
-            MXMLDataInterpreter.generateMXMLProperties(this, data);
-		}
+//		public function generateMXMLAttributes(data:Array):void
+//		{
+//            MXMLDataInterpreter.generateMXMLProperties(this, data);
+//		}
 		
         /**
          *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
@@ -214,7 +214,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-		public var mxmlContent:Array;
+//		public var mxmlContent:Array;
 		
         private var _states:Array;
         

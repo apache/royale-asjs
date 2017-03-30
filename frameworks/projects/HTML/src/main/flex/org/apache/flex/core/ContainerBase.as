@@ -56,16 +56,6 @@ package org.apache.flex.core
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
-	/**
-	 * Indicates that the default property of the Container is MXML elements.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-	 */
-	[DefaultProperty("mxmlContent")]
-    
     /**
      *  The ContainerBase class is the base class for most containers
      *  in FlexJS.  It is usable as the root tag of MXML
@@ -177,6 +167,8 @@ package org.apache.flex.core
 		}
 
 		/*
+		 * IStrandPrivate
+		 *
 		 * These "internal" function provide a backdoor way for proxy classes to
 		 * operate directly at strand level. While these function are available on
 		 * both SWF and JS platforms, they really only have meaning on the SWF-side. 

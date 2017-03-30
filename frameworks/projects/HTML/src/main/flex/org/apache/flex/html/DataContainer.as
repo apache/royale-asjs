@@ -204,21 +204,5 @@ package org.apache.flex.html
 
 				return result;
 		}
-
-		/*
-		 * UIBase
-		 */
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            super.createElement();
-            className = 'DataContainer';
-
-            return element;
-        }
    	}
 }

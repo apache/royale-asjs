@@ -20,6 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.core.IMXMLDocument;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 
 	
     /**
@@ -58,7 +62,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase implements IContainer
+	public class Container extends ContainerBase implements IMXMLDocument, IContainer
 	{
         /**
          *  Constructor.
@@ -72,5 +76,79 @@ package org.apache.flex.html
 		{
 			super();
 		}
+		
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				childrenAdded();
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public var mxmlContent:Array;
 	}
 }
