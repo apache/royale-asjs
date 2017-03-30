@@ -141,7 +141,7 @@ package simple
 			if (!dp)
 				return;
 
-			dataGroup.removeAllElements();
+			dataGroup.removeAllItemRenderers();
 
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
