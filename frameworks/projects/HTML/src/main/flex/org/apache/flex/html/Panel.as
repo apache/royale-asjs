@@ -133,6 +133,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -143,6 +144,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -153,6 +155,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function getElementIndex(c:IChild):int
 		{
@@ -162,6 +165,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -171,6 +175,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function get numElements():int
 		{
@@ -180,6 +185,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
 		 */
 		override public function getElementAt(index:int):IChild
 		{

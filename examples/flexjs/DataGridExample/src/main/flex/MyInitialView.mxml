@@ -29,30 +29,31 @@ limitations under the License.
 		]]>
     </fx:Script>
 	
-	<js:Label id="output" x="450" y="30" width="100" />
+	<js:Label id="output" x="450" y="30"/>
+	
 		
-	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="300" change="dataGridChange()" rowHeight="30">
+	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="200" change="dataGridChange()" rowHeight="40">
 		<js:beads>
-			<js:DataGridPercentageLayout />
+			<!--<js:DataGridPercentageLayout />-->
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="25" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="50" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
 		</js:columns>
 	</js:DataGrid>
 		
-	<js:DataGrid id="dataGrid2" x="20" y="400" width="400" height="300" change="dataGridChange()" rowHeight="40">
+	<js:DataGrid id="dataGrid2" x="20" y="300" width="400" height="245" change="dataGridChange()" rowHeight="40">
 		<js:beads>
-		    <js:DataGridLinesBead>
+		    <!--<js:DataGridLinesBead>
 		       <js:stroke>
 		           <js:SolidColorStroke color="#FF8800" weight="2" />
 		       </js:stroke>
-		    </js:DataGridLinesBead>
+		    </js:DataGridLinesBead>-->
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"

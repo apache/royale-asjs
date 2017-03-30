@@ -598,6 +598,12 @@ global
 		IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
 	}
 	
+	CSSCheckBox
+	{
+		IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
+		IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
+	}
+	
 	CloseButton
 	{
 		IBeadView: ClassReference("org.apache.flex.html.beads.CloseButtonView");

@@ -56,10 +56,10 @@ limitations under the License.
             <js:H6 text="{member.apacheID}"></js:H6>
         </mdl:CardTitle>
         <mdl:CardSupportingText>
-            <js:Container className="cardRow1">
+            <js:Group className="cardRow1">
                 <js:HTMLText html="{member.bio}" className="bio"/>
                 <js:Image src="http://flex.apache.org/{member.photoURL}" className="photo"/>
-            </js:Container>
+            </js:Group>
             <!--<js:TextNode text="{member.bio}"/>-->
         </mdl:CardSupportingText>
         <mdl:Spacer height="20"/>
