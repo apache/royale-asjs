@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+//	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
@@ -51,17 +51,6 @@ package org.apache.flex.html.beads.layouts
 		public function HorizontalFlexLayout()
 		{
 			super();
-		}
-
-		// the strand/host container is also an ILayoutChild because
-		// can have its size dictated by the host's parent which is
-		// important to know for layout optimization
-		private var host:ILayoutChild;
-
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			host = value as ILayoutChild;
 		}
 
 		private var _grow:Number = -1;
@@ -115,10 +104,7 @@ package org.apache.flex.html.beads.layouts
 		override public function layout():Boolean
 		{
 			COMPILE::SWF {
-				//return super.layout();
-				// this is where the layout is calculated
-				var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:ILayoutView = layoutHost.contentView;
+				var contentView:ILayoutView = layoutView;
 
 				var n:Number = contentView.numElements;
 				if (n == 0) return false;
@@ -134,11 +120,6 @@ package org.apache.flex.html.beads.layouts
 				var ilc:ILayoutChild;
 				var data:Object;
 				var canAdjust:Boolean = false;
-				var marginLeft:Object;
-				var marginRight:Object;
-				var marginTop:Object;
-				var marginBottom:Object;
-				var margin:Object;
 
 				//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
 
@@ -177,24 +158,14 @@ package org.apache.flex.html.beads.layouts
 					}
 					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth;
 
-					margin = ValuesManager.valuesImpl.getValue(child, "margin");
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-					var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, contentView.width);
-					var mr:Number = CSSUtils.getRightValue(marginRight, margin, contentView.width);
-					var mt:Number = CSSUtils.getTopValue(marginTop, margin, contentView.height);
-					var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, contentView.height);
-					if (marginLeft == "auto")
-						ml = 0;
-					if (marginRight == "auto")
-						mr = 0;
+					var margins:Object = childMargins(child, contentView.width, contentView.height);
 
 					if (maxWidth < useWidth) maxWidth = useWidth;
 					if (maxHeight < useHeight) maxHeight = useHeight;
 
-					childData.push({width:useWidth, height:useHeight, mt:mt, ml:ml, mr:mr, mb:mb, grow:growValue, canAdjust:canAdjust});
+					childData.push({width:useWidth, height:useHeight, 
+						            mt:margins.top, ml:margins.left, mr:margins.right, mb:margins.bottom, 
+									grow:growValue, canAdjust:canAdjust});
 				}
 
 				var xpos:Number = 0;
@@ -250,8 +221,7 @@ package org.apache.flex.html.beads.layouts
 			}
 
 			COMPILE::JS {
-				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:ILayoutView = viewBead.contentView;
+				var contentView:ILayoutView = layoutView;
 
 				// set the display on the contentView
 				contentView.element.style["display"] = "flex";

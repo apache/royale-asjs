@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ILayoutHost;
@@ -45,7 +46,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class VerticalColumnLayout implements IBeadLayout
+	public class VerticalColumnLayout extends LayoutBase implements IBeadLayout
 	{
 		/**
 		 *  constructor
@@ -57,21 +58,7 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function VerticalColumnLayout()
 		{
-		}
-
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
+			super();
 		}
 
 
@@ -97,11 +84,10 @@ package org.apache.flex.html.beads.layouts
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
-            var host:UIBase = UIBase(_strand);
-            var layoutParent:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-            var contentView:ILayoutView = layoutParent.contentView;
+			var contentView:ILayoutView = layoutView;
+			
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
 			var sh:Number = host.height;
@@ -117,15 +103,6 @@ package org.apache.flex.html.beads.layouts
 			for (i = 0; i < numColumns; i++)
 				columns[i] = 0;
 
-            var marginLeft:Object;
-            var marginRight:Object;
-            var marginTop:Object;
-            var marginBottom:Object;
-            var margin:Object;
-            var ml:Number;
-            var mr:Number;
-            var mt:Number;
-            var mb:Number;
 			var n:int = contentView.numElements;
             var rowData:Object = { rowHeight: 0 };
 
@@ -133,29 +110,22 @@ package org.apache.flex.html.beads.layouts
 			for (i = 0; i < n; i++) {
 				e = contentView.getElementAt(i) as IUIBase;
 				if (e == null || !e.visible) continue;
-                margin = ValuesManager.valuesImpl.getValue(e, "margin");
-                marginLeft = ValuesManager.valuesImpl.getValue(e, "margin-left");
-                marginTop = ValuesManager.valuesImpl.getValue(e, "margin-top");
-                marginRight = ValuesManager.valuesImpl.getValue(e, "margin-right");
-                marginBottom = ValuesManager.valuesImpl.getValue(e, "margin-bottom");
-                mt = CSSUtils.getTopValue(marginTop, margin, sh);
-                mb = CSSUtils.getBottomValue(marginBottom, margin, sh);
-                mr = CSSUtils.getRightValue(marginRight, margin, sw);
-                ml = CSSUtils.getLeftValue(marginLeft, margin, sw);
-                data.push({ mt: mt, mb: mb, mr: mr, ml: ml});
+				var margins:Object = childMargins(e, sw, sh);
+				
+                data.push({ mt: margins.top, mb: margins.bottom, mr: margins.right, ml: margins.left});
 				var thisPrefWidth:int = 0;
 				if (e is IStrand)
 				{
 					var measure:IMeasurementBead = e.getBeadByType(IMeasurementBead) as IMeasurementBead;
 					if (measure)
-						thisPrefWidth = measure.measuredWidth + ml + mr;
+						thisPrefWidth = measure.measuredWidth + margins.left + margins.right;
 					else
-						thisPrefWidth = e.width + ml + mr;
+						thisPrefWidth = e.width + margins.left + margins.right;
 				}
 				else
-					thisPrefWidth = e.width + ml + mr;
+					thisPrefWidth = e.width + margins.left + margins.right;
 
-                rowData.rowHeight = Math.max(rowData.rowHeight, e.height + mt + mb);
+                rowData.rowHeight = Math.max(rowData.rowHeight, e.height + margins.top + margins.bottom);
 				columns[col] = Math.max(columns[col], thisPrefWidth);
                 col = col + 1;
                 if (col == numColumns)
@@ -176,7 +146,7 @@ package org.apache.flex.html.beads.layouts
             {
 				e = contentView.getElementAt(i) as IUIBase;
 				if (e == null || !e.visible) continue;
-				e.x = curx + ml;
+				e.x = curx + data[i].ml;
 				e.y = cury + data[i].mt;
 				curx += columns[col++];
                 maxHeight = Math.max(maxHeight, e.y + e.height + data[i].mb);
@@ -189,14 +159,6 @@ package org.apache.flex.html.beads.layouts
 					curx = padding.left;
 				}
 			}
-			if (!hasWidth && n > 0 && !isNaN(maxWidth))
-            {
-                UIBase(contentView).setWidth(maxWidth, true);
-            }
-            if (!hasHeight && n > 0 && !isNaN(maxHeight))
-            {
-                UIBase(contentView).setHeight(maxHeight, true);
-            }
 			return true;
 		}
 	}

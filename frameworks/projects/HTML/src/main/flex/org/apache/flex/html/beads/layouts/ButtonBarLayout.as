@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutView;
@@ -47,7 +48,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonBarLayout implements IBeadLayout
+	public class ButtonBarLayout extends LayoutBase implements IBeadLayout
 	{
 		/**
 		 *  constructor.
@@ -59,21 +60,7 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function ButtonBarLayout()
 		{
-		}
-
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
+			super();
 		}
 
 		private var _widthType:Number = ButtonBarModel.PIXEL_WIDTHS;
@@ -100,12 +87,11 @@ package org.apache.flex.html.beads.layouts
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
 		 */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
-			var layoutHost:ILayoutHost = (_strand as ILayoutParent).getLayoutHost();
-			var contentView:ILayoutView = layoutHost.contentView;
+			var contentView:ILayoutView = layoutView;
 
-			var model:ButtonBarModel = _strand.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
 			if (model) {
 				buttonWidths = model.buttonWidths;
 				_widthType = model.widthType;

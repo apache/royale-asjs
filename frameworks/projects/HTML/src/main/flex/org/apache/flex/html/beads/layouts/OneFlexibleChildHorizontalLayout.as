@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
@@ -46,7 +47,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class OneFlexibleChildHorizontalLayout implements IOneFlexibleChildLayout, IDocument
+	public class OneFlexibleChildHorizontalLayout extends LayoutBase implements IOneFlexibleChildLayout, IDocument
 	{
         /**
          *  Constructor.
@@ -58,17 +59,13 @@ package org.apache.flex.html.beads.layouts
          */
 		public function OneFlexibleChildHorizontalLayout()
 		{
+			super();
 		}
 
 
         private var _flexibleChild:String;
 
         private var actualChild:ILayoutChild;
-
-        // the strand/host container is also an ILayoutChild because
-        // can have its size dictated by the host's parent which is
-        // important to know for layout optimization
-        private var host:ILayoutChild;
 
         /**
          *  @private
@@ -95,19 +92,6 @@ package org.apache.flex.html.beads.layouts
 		public function set flexibleChild(value:String):void
 		{
 			_flexibleChild = value;
-		}
-
-        /**
-         *  @copy org.apache.flex.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-            host = value as ILayoutChild;
 		}
 
         private var _maxWidth:Number;
@@ -160,10 +144,9 @@ package org.apache.flex.html.beads.layouts
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
 		COMPILE::JS
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
-			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-			var contentView:ILayoutView = viewBead.contentView;
+			var contentView:ILayoutView = layoutView;
 
 			actualChild = document[flexibleChild];
 
@@ -185,30 +168,9 @@ package org.apache.flex.html.beads.layouts
 		}
 
 		COMPILE::SWF
-		protected function childMargins(child:Object, hostWidth:Number, hostHeight:Number):Object
+		override public function layout():Boolean
 		{
-			var margin:Object = ValuesManager.valuesImpl.getValue(child, "margin");
-			var marginLeft:Object = ValuesManager.valuesImpl.getValue(child, "margin-left");
-			var marginTop:Object = ValuesManager.valuesImpl.getValue(child, "margin-top");
-			var marginRight:Object = ValuesManager.valuesImpl.getValue(child, "margin-right");
-			var marginBottom:Object = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-			var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, hostWidth);
-			var mr:Number = CSSUtils.getRightValue(marginRight, margin, hostWidth);
-			var mt:Number = CSSUtils.getTopValue(marginTop, margin, hostHeight);
-			var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, hostHeight);
-			if (marginLeft == "auto")
-				ml = 0;
-			if (marginRight == "auto")
-				mr = 0;
-
-			return {left:ml, top:mt, right:mr, bottom:mb};
-		}
-
-		COMPILE::SWF
-		public function layout():Boolean
-		{
-			var layoutHost:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-			var contentView:ILayoutView = layoutHost.contentView;
+			var contentView:ILayoutView = layoutView;
 			var actualChild:IUIBase = document.hasOwnProperty(flexibleChild) ? document[flexibleChild] : null;
 
 			var n:Number = contentView.numElements;
@@ -223,15 +185,6 @@ package org.apache.flex.html.beads.layouts
 			var ilc:ILayoutChild;
 			var data:Object;
 			var canAdjust:Boolean = false;
-			var marginLeft:Object;
-			var marginRight:Object;
-			var marginTop:Object;
-			var marginBottom:Object;
-			var margin:Object;
-			var ml:Number;
-			var mr:Number;
-			var mt:Number;
-			var mb:Number;
 			var margins:Object;
 
 			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
