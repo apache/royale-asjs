@@ -24,6 +24,12 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
+	
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("mxmlContent")]
 
 	
     /**
