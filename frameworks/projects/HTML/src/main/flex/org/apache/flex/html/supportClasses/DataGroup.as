@@ -76,7 +76,7 @@ package org.apache.flex.html.supportClasses
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
 			newEvent.item = renderer;
 			
-			dispatchEvent(newEvent);
+			(host as IEventDispatcher).dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -95,7 +95,7 @@ package org.apache.flex.html.supportClasses
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
 			newEvent.item = renderer;
 			
-			dispatchEvent(newEvent);
+			(host as IEventDispatcher).dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -111,7 +111,7 @@ package org.apache.flex.html.supportClasses
 		{
 			while (numElements > 0) {
 				var child:IChild = getElementAt(0);
-				removeElement(child);
+				removeItemRenderer(child as IItemRenderer);
 			}
 		}
 		

@@ -90,6 +90,7 @@ package org.apache.flex.html.supportClasses
             {
                 var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
                 contentArea = new c() as UIBase;
+				_strand.addBead(contentArea as IBead);
             }
 		}
 		
@@ -109,6 +110,7 @@ package org.apache.flex.html.supportClasses
 					var result:Object = new c();
 					if (result != null) {
 						contentArea = result as UIBase;
+						_strand.addBead(contentArea as IBead);
 					}
 				}
 			}
