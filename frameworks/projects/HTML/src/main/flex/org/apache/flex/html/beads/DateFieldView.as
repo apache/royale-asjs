@@ -110,8 +110,11 @@ package org.apache.flex.html.beads
 			_button = new TextButton();
 			_button.text = "M";
 			UIBase(_strand).addElement(_button);
-			_button.x = _textInput.width;
-			_button.y = _textInput.y;
+			
+			COMPILE::SWF {
+				_button.x = _textInput.width;
+				_button.y = _textInput.y;
+			}
 			
 			IEventDispatcher(_strand).addEventListener("beadsAdded",handleBeadsAdded);
 		}
@@ -175,11 +178,14 @@ package org.apache.flex.html.beads
 					_popUp.selectedDate = model.selectedDate;
 					
 					var host:IPopUpHost = UIUtils.findPopUpHost(UIBase(_strand));
-					var point:Point = new Point(_button.x, _button.y+_button.height);
+					var point:Point = new Point(_textInput.width, _button.height);
 					var p2:Point = PointUtils.localToGlobal(point, _strand);
 					var p3:Point = PointUtils.globalToLocal(p2, host);
 					_popUp.x = p3.x;
 					_popUp.y = p3.y;
+					COMPILE::JS {
+						_popUp.element.style.position = "absolute";
+					}
 					
 					host.addElement(_popUp);
 				}
