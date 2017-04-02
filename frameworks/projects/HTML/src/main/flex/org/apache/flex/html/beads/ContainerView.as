@@ -365,7 +365,11 @@ package org.apache.flex.html.beads
 		 */
 		override public function get contentView():ILayoutView
 		{
-			return viewport.contentView as ILayoutView;
+			if (viewport != null) {
+				return viewport.contentView as ILayoutView;
+			} else {
+				return host as ILayoutView;
+			}
 		}
 
 		/**
