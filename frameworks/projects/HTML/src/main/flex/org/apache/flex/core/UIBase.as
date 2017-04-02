@@ -1087,6 +1087,11 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var children:Array = internalChildren();
+                if (children.length == 0)
+                {
+                    return null;
+                }
+
                 return children[index].flexjs_wrapper;
             }
         }        
