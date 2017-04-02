@@ -63,7 +63,7 @@ package org.apache.flex.mdl.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-        protected function completeSetup():void
+        override protected function completeSetup():void
         {
             selectTabBarButton();
         }
