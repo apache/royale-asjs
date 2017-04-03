@@ -20,6 +20,7 @@ package org.apache.flex.html.beads.layouts
 {
 //	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutView;
@@ -38,7 +39,7 @@ package org.apache.flex.html.beads.layouts
 		import org.apache.flex.utils.CSSContainerUtils;
 	}
 
-	public class HorizontalFlexLayout extends HorizontalLayout
+	public class HorizontalFlexLayout extends LayoutBase
 	{
 		/**
 		 * Constructor.
@@ -114,12 +115,25 @@ package org.apache.flex.html.beads.layouts
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
 				var growCount:Number = 0;
-				var remainingWidth:Number = contentView.width;
 				var childData:Array = [];
+				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
+				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
+				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
 				var canAdjust:Boolean = false;
+				
+				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				
+				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
+				// resulting adjusted value may be less than zero.
+				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				
+				var remainingWidth:Number = hostWidth;
 
 				//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
 
@@ -133,9 +147,11 @@ package org.apache.flex.html.beads.layouts
 					}
 
 					ilc = child as ILayoutChild;
+					
+					var margins:Object = childMargins(child, hostWidth, hostHeight);
 
 					var flexGrow:Object = ValuesManager.valuesImpl.getValue(child, "flex-grow");
-					var growValue:Number = -1;
+					var growValue:Number = 0;
 					if (flexGrow != null) {
 						growValue = Number(flexGrow);
 						if (!isNaN(growValue) && growValue > 0) growCount++;
@@ -145,20 +161,19 @@ package org.apache.flex.html.beads.layouts
 					var useHeight:Number = -1;
 					if (ilc) {
 						if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
-						else if (!isNaN(ilc.percentHeight)) useHeight = contentView.height * (ilc.percentHeight/100.0);
-						else useHeight = contentView.height;
+						else if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
+						else useHeight = hostHeight;
 					}
-					if (useHeight > contentView.height) useHeight = contentView.height;
+					if (useHeight > hostHeight) useHeight = hostHeight;
 
 					var useWidth:Number = -1;
 					if (ilc) {
 						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
-						else if (!isNaN(ilc.percentWidth)) useWidth = contentView.width * (ilc.percentWidth/100.0);
+						else if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
 						else useWidth = ilc.width;
 					}
-					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth;
-
-					var margins:Object = childMargins(child, contentView.width, contentView.height);
+					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth + margins.left + margins.right;
+					else remainingWidth -= margins.left + margins.right;
 
 					if (maxWidth < useWidth) maxWidth = useWidth;
 					if (maxHeight < useHeight) maxHeight = useHeight;
@@ -168,8 +183,8 @@ package org.apache.flex.html.beads.layouts
 									grow:growValue, canAdjust:canAdjust});
 				}
 
-				var xpos:Number = 0;
-				var ypos:Number = 0;
+				var xpos:Number = borderMetrics.left + paddingMetrics.left;
+				var ypos:Number = borderMetrics.top + paddingMetrics.top;
 
 				// Second pass sizes and positions the children based on the data gathered.
 				for(i=0; i < n; i++)
@@ -196,21 +211,21 @@ package org.apache.flex.html.beads.layouts
 					if (ilc) {
 						ilc.setX(xpos + data.ml);
 						ilc.setY(ypos + data.mt);
-						ilc.setHeight(useHeight - data.mt - data.mb);
+						ilc.height = useHeight; //setHeight(useHeight);
 						if (useWidth > 0) {
-							if (setWidth) ilc.setWidth(useWidth - data.ml - data.mr);
+							if (setWidth) ilc.setWidth(useWidth);
 							else ilc.width = useWidth;
 						}
 					} else {
 						child.x = xpos + data.ml;
 						child.y = ypos + data.mt;
-						child.height = useHeight - data.mt - data.b;
+						child.height = useHeight;
 						if (data.width > 0) {
-							child.width = useWidth - data.mr - data.ml;
+							child.width = useWidth;
 						}
 					}
 
-					xpos += useWidth + data.ml + data.mr;
+					xpos += useWidth + data.mr + data.ml;
 
 					//trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 				}

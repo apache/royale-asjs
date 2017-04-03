@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class FlexibleFirstChildHorizontalLayout extends LayoutBase implements IBeadLayout
+	public class FlexibleFirstChildHorizontalLayout extends HorizontalLayout
 	{
         /**
          *  Constructor.
@@ -122,6 +122,12 @@ package org.apache.flex.html.beads.layouts
 
 			var n:Number = contentView.numElements;
 			if (n == 0) return false;
+			
+			// if the layoutView has no width yet, this layout cannot
+			// be run successfully, so default to HorizontalLayout.
+			if (host.isWidthSizedToContent()) {
+				return super.layout();
+			}
 
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
@@ -135,8 +141,13 @@ package org.apache.flex.html.beads.layouts
 
 			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			
+			// adjust the host's usable size by the metrics. If hostSizedToContent, then the
+			// resulting adjusted value may be less than zero.
+			hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+			hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
-			var xpos:Number = hostWidth - borderMetrics.right - paddingMetrics.right;
+			var xpos:Number = hostWidth + borderMetrics.left + paddingMetrics.left;
 			var ypos:Number = borderMetrics.top + paddingMetrics.left;
 			var adjustedWidth:Number = 0;
 
@@ -154,16 +165,16 @@ package org.apache.flex.html.beads.layouts
 				if (!hostSizedToContent) {
 					var childHeight:Number = child.height;
 					if (ilc != null && !isNaN(ilc.percentHeight)) {
-						childHeight = (hostHeight-borderMetrics.top-borderMetrics.bottom-paddingMetrics.top-paddingMetrics.bottom) * ilc.percentHeight/100.0;
+						childHeight = hostHeight * ilc.percentHeight/100.0;
 						ilc.setHeight(childHeight);
 					}
 					// the following code middle-aligns the child
-					childYpos = hostHeight/2 - (childHeight + margins.top + margins.bottom)/2;
+					childYpos = hostHeight/2 - childHeight/2;
 				}
 
 				if (ilc) {
 					if (!isNaN(ilc.percentWidth)) {
-						ilc.setWidth((contentView.width-borderMetrics.left-borderMetrics.right-paddingMetrics.left-paddingMetrics.right) * ilc.percentWidth / 100);
+						ilc.setWidth(hostWidth * ilc.percentWidth / 100);
 					}
 				}
 
