@@ -107,9 +107,10 @@ package org.apache.flex.html.beads.layouts
 
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
-				var hostSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = contentView.width;
-				var hostHeight:Number = hostSizedToContent ? 0 : contentView.height;
+				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
+				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
+				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -117,6 +118,11 @@ package org.apache.flex.html.beads.layouts
 
 				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				
+				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
+				// resulting adjusted value may be less than zero.
+				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
 				var ypos:Number = borderMetrics.top + paddingMetrics.left;
@@ -135,11 +141,11 @@ package org.apache.flex.html.beads.layouts
 
 					var childYpos:Number = ypos + margins.top; // default y position
 
-					if (!hostSizedToContent) {
+					if (!hostHeightSizedToContent) {
 						var childHeight:Number = child.height;
 						if (ilc != null && !isNaN(ilc.percentHeight)) {
-							childHeight = (hostHeight-borderMetrics.top-borderMetrics.bottom-paddingMetrics.top-paddingMetrics.bottom) * ilc.percentHeight/100.0;
-							ilc.setHeight(childHeight - margins.top - margins.bottom);
+							childHeight = hostHeight * ilc.percentHeight/100.0;
+							ilc.setHeight(childHeight);
 						}
 						// the following code middle-aligns the child, but since HTML does not
 						// do this normally, this code is commented. (Use HorizontalFlexLayout for
@@ -151,9 +157,9 @@ package org.apache.flex.html.beads.layouts
 						ilc.setX(xpos);
 						ilc.setY(childYpos);
 
-						if (!isNaN(ilc.percentWidth)) {
-							var newWidth:Number = (contentView.width-borderMetrics.left-borderMetrics.right-paddingMetrics.left-paddingMetrics.right) * ilc.percentWidth / 100;
-							ilc.setWidth(newWidth - margins.right - margins.left);
+						if (!hostWidthSizedToContent && !isNaN(ilc.percentWidth)) {
+							var newWidth:Number = hostWidth * ilc.percentWidth / 100;
+							ilc.setWidth(newWidth);
 						}
 
 					} else {

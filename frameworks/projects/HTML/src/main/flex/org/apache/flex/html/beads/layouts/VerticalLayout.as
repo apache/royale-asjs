@@ -86,9 +86,10 @@ package org.apache.flex.html.beads.layouts
 
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
-				var hostSizedToContent:Boolean = host.isWidthSizedToContent();
-				var hostWidth:Number = hostSizedToContent ? 0 : contentView.width;
-				var hostHeight:Number = contentView.height;
+				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
+				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
+				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -96,6 +97,11 @@ package org.apache.flex.html.beads.layouts
 
 				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+				
+				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
+				// resulting adjusted value may be less than zero.
+				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
 				var ypos:Number = borderMetrics.top + paddingMetrics.left;
@@ -114,11 +120,11 @@ package org.apache.flex.html.beads.layouts
 
 					var childXpos:Number = xpos + margins.left; // default x position
 
-					if (!hostSizedToContent) {
+					if (!hostWidthSizedToContent) {
 						var childWidth:Number = child.width;
 						if (ilc != null && !isNaN(ilc.percentWidth)) {
-							childWidth = (hostWidth-borderMetrics.left-borderMetrics.right-paddingMetrics.left-paddingMetrics.right) * ilc.percentWidth/100.0;
-							ilc.setWidth(childWidth - margins.right - margins.left);
+							childWidth = hostWidth * ilc.percentWidth/100.0;
+							ilc.setWidth(childWidth);
 						}
 						// the following code center-aligns the child, but since HTML does not
 						// do this normally, this code is commented. (Use VerticalFlexLayout for
@@ -130,9 +136,9 @@ package org.apache.flex.html.beads.layouts
 						ilc.setX(childXpos);
 						ilc.setY(ypos);
 
-						if (!isNaN(ilc.percentHeight)) {
-							var newHeight:Number = (contentView.height-borderMetrics.top-borderMetrics.bottom-paddingMetrics.top-paddingMetrics.bottom) * ilc.percentHeight / 100;
-							ilc.setHeight(newHeight - margins.top - margins.bottom);
+						if (!hostHeightSizedToContent && !isNaN(ilc.percentHeight)) {
+							var newHeight:Number = hostHeight * ilc.percentHeight / 100;
+							ilc.setHeight(newHeight);
 						}
 
 					} else {
