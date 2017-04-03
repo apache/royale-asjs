@@ -293,7 +293,7 @@ package org.apache.flex.html.beads.layouts
 					childWidth = actualChild.width;
 					if (ilc != null && !isNaN(ilc.percentWidth)) {
 						childWidth = (hostWidth-borderMetrics.left-borderMetrics.right-paddingMetrics.left-paddingMetrics.right) * ilc.percentWidth/100.0;
-						ilc.width = childWidth;
+						ilc.setWidth(childWidth);
 					}
 				}
 				actualChild.x = hostWidth/2 - (childWidth + margins.left + margins.right)/2;
