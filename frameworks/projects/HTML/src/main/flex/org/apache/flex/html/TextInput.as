@@ -169,7 +169,7 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('input') as WrappedHTMLElement;
-            element.setAttribute('type', 'input');
+            element.setAttribute('type', 'text');
             element.className = 'TextInput';
             typeNames = 'TextInput';
 
