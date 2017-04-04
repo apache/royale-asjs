@@ -30,7 +30,7 @@ using x and y, especially when percentage widths and heights are used.
 
 Width and height are hard-coded in the root tag to help the Design view.
 -->
-<js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:js="library://ns.apache.org/flexjs/basic" 
            xmlns="*" width="990" height="550"
            initComplete="updateMapImage()">
@@ -48,24 +48,33 @@ Width and height are hard-coded in the root tag to help the Design view.
     <js:beads>
         <js:ContainerDataBinding />
     </js:beads>
-	<js:HContainer width="100%" height="100%" y="0" x="0" className="colorPanel">
-		<js:VContainer width="230" height="100%">
-			<js:Container width="100%" height="100%">
+	<js:Group width="100%" height="100%" y="0" x="0" className="colorPanel">
+		<js:beads>
+			<js:HorizontalLayout />
+		</js:beads>
+		<js:Group width="230" height="100%">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Group width="100%" height="100%">
 			
-				<js:Container height="60" className="homeSection">
+				<js:Group height="60" className="homeSection">
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="10" right="10"/>
                     </js:style>
 					<js:Label style="left:10;top:10" text="Search Developers" height="22" className="sectionHeader" />
 					<js:TextButton id="developerSearchButton" style="left:168;top:30" text="Go" width="27" height="20" className="glass" click="SimpleAlert.show('This feature is not implemented in this sample', 'Go')"/>
 					<js:TextInput id="developerSearchInput" style="left:10;top:30" height="20" width="150"/>
-				</js:Container>
+				</js:Group>
 				
-				<js:Container height="280" className="homeSection">
+				<js:Group height="280" className="homeSection">
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="#ffffff" left="10" top="78" right="10" />                        
                     </js:style>
-					<js:VContainer width="100%" height="100%">
+					<js:Group width="100%" height="100%">
+						<js:beads>
+							<js:VerticalLayout />
+						</js:beads>
                         <js:style>
                             <js:SimpleCSSStyles left="10" top="10" />                        
                         </js:style>
@@ -83,14 +92,17 @@ Width and height are hard-coded in the root tag to help the Design view.
 						<js:Label text="Students" className="homeProgramHeader"/>
 						<js:Label text="Free Assistance" style="fontSize:9"/>
 						<js:Spacer height="8" width="100%"/>
-					</js:VContainer>
-				</js:Container>
+					</js:Group>
+				</js:Group>
 				
-				<js:Container height="174" className="homeSection">
+				<js:Group height="174" className="homeSection">
+					<js:beads>
+						<js:VerticalLayout />
+					</js:beads>
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="#ebebe9" left="10" top="366" right="10" />
                     </js:style>
-					<js:VContainer width="100%" height="100%">
+					<js:Group width="100%" height="100%">
                         <js:style>
                             <js:SimpleCSSStyles left="10" top="10" />
                         </js:style>
@@ -98,7 +110,10 @@ Width and height are hard-coded in the root tag to help the Design view.
 						
 						<js:Label text="Phone Number"/>
 						
-						<js:HContainer width="100%" height="25" >
+						<js:Group width="100%" height="25" >
+							<js:beads>
+								<js:HorizontalLayout />
+							</js:beads>
                             <js:style>
                                 <js:SimpleCSSStyles verticalAlign="middle" />
                             </js:style>
@@ -119,7 +134,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 									<js:NumericOnlyTextInputBead/>
 								</js:beads>
 							</js:TextInput>
-						</js:HContainer>
+						</js:Group>
 						
 						<js:Label text="Password"/>
 						<js:TextInput height="20">
@@ -134,18 +149,21 @@ Width and height are hard-coded in the root tag to help the Design view.
 						
 						<js:TextButton text="Login" className="glass" height="20" width="55" click="SimpleAlert.show('This feature is not implemented in this sample', 'Login')"/>
 						
-					</js:VContainer>
-				</js:Container>
+					</js:Group>
+				</js:Group>
 				
-			</js:Container>
+			</js:Group>
 			
-		</js:VContainer>
+		</js:Group>
 		
-		<js:VContainer width="750" height="100%">
-			<js:Container width="100%" height="100%">
+		<js:Group width="750" height="100%">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Group width="100%" height="100%">
 			
 			    <!-- can't use binding to set the mapImage source because the style isn't available early enough -->
-				<js:Container id="mapCanvas" height="35%" className="homeMap">
+				<js:Group id="mapCanvas" height="35%" className="homeMap">
                     <js:style>
                         <js:SimpleCSSStyles left="0" right="10" top="10" />
                     </js:style>
@@ -154,57 +172,69 @@ Width and height are hard-coded in the root tag to help the Design view.
 					<js:Label text="Learn More &gt;&gt;" width="95" style="fontSize:12;fontFamily:'Arial';bottom:10;right:10"/>
 					<js:Label text="$60/hr" style="color:#ffffff;fontWeight:'bold';fontFamily:'Arial';fontSize:20;right:10:top:10"/>
 					<js:Label text="Rates as low as" x="551" y="16" style="fontSize:12"/>
-				</js:Container>
+				</js:Group>
 				
-				<js:Container height="330" >
+				<js:Group height="330" >
                     <js:style>
                         <js:SimpleCSSStyles backgroundColor="#ffffff" borderStyle="solid" bottom="10" right="10" left="0" /> <!-- cornerRadius="4" -->
                     </js:style>
 					
 					<js:Label style="left:10;top:10" text="Featured Developers" width="173" height="25" className="sectionHeader"/>
 					
-					<js:HContainer style="left:10;top:43" width="100%" height="100%">
-						<js:VContainer width="33%" height="100%">
-							<js:Container width="100%">
+					<js:Group style="left:10;top:43" width="100%" height="100%">
+						<js:beads>
+							<js:HorizontalLayout />
+						</js:beads>
+						<js:Group width="33%" height="100%">
+							<js:beads>
+								<js:VerticalLayout />
+							</js:beads>
+							<js:Group width="100%">
 								<js:Image id="image1" src="assets/akotter.jpg" style="margin:auto;verticalCenter:0"/>
-							</js:Container>
+							</js:Group>
 							
-							<js:Container width="100%">
+							<js:Group width="100%">
 								<js:Label text="Annette Kotter" id="feat_prod_1" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Container>
+							</js:Group>
 							
-						</js:VContainer>
+						</js:Group>
 						
-						<js:VContainer width="33%" height="100%">							
-							<js:Container width="100%">
+						<js:Group width="33%" height="100%">							
+							<js:beads>
+								<js:VerticalLayout />
+							</js:beads>
+							<js:Group width="100%">
 								<js:Image id="image2" style="margin:auto;verticalCenter:0" src="assets/bcrater.jpg"/>
-							</js:Container>
+							</js:Group>
 							
-							<js:Container width="100%">
+							<js:Group width="100%">
 								<js:Label text="Ben Crater" id="feat_prod_2" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Container>
+							</js:Group>
 							
-						</js:VContainer>
+						</js:Group>
 						
-						<js:VContainer width="33%" height="100%">
-							<js:Container width="100%">
+						<js:Group width="33%" height="100%">
+							<js:beads>
+								<js:VerticalLayout />
+							</js:beads>
+							<js:Group width="100%">
 								<js:Image id="image3" style="margin:auto;verticalCenter:0" src="assets/jproctor.jpg"/>
-							</js:Container>
+							</js:Group>
 							
-							<js:Container width="100%">
+							<js:Group width="100%">
 								<js:Label text="Jane Proctor" id="feat_prod_3" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Container>
+							</js:Group>
 							
-						</js:VContainer>
+						</js:Group>
 						
-					</js:HContainer>
+					</js:Group>
 					
-				</js:Container>
+				</js:Group>
 				
-			</js:Container>
+			</js:Group>
 		
-		</js:VContainer>
+		</js:Group>
 		
-	</js:HContainer>
+	</js:Group>
 	
-</js:Container>
+</js:Group>
