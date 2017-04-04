@@ -18,17 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IItemRenderer;
-    import org.apache.flex.core.IItemRendererParent;
-    import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-    import org.apache.flex.core.ILayoutParent;
-    import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
+	import org.apache.flex.html.List;
     import org.apache.flex.mdl.beads.models.ITabModel;
 
     COMPILE::JS
@@ -53,7 +43,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class Tabs extends Group implements IItemRendererParent, ILayoutParent, ILayoutHost, ILayoutView
+	public class Tabs extends org.apache.flex.html.List
 	{
 		/**
 		 *  constructor.
@@ -78,14 +68,14 @@ package org.apache.flex.mdl
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.8
          */
-        public function get dataProvider():Object
+        override public function get dataProvider():Object
         {
             return ITabModel(model).dataProvider;
         }
         /**
          *  @private
          */
-        public function set dataProvider(value:Object):void
+        override public function set dataProvider(value:Object):void
         {
             ITabModel(model).dataProvider = value;
         }
@@ -118,14 +108,14 @@ package org.apache.flex.mdl
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.8
          */
-        public function get labelField():String
+        override public function get labelField():String
         {
             return ITabModel(model).labelField;
         }
         /**
          *  @private
          */
-        public function set labelField(value:String):void
+        override public function set labelField(value:String):void
         {
             ITabModel(model).labelField = value;
         }
@@ -138,103 +128,9 @@ package org.apache.flex.mdl
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        public function set selectedIndex(value:int):void
+        override public function set selectedIndex(value:int):void
         {
             ITabModel(model).selectedIndex = value;
-        }
-
-        /**
-         *  get layout host
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        override public function getLayoutHost():ILayoutHost
-        {
-			// can probably eliminate this function now
-            return this;
-        }
-
-        /**
-         *  get content view
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function get contentView():ILayoutView
-        {
-            return this;
-        }
-
-        /**
-         *  get item renderer for index
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function getItemRendererForIndex(index:int):IItemRenderer
-        {
-            var child:IItemRenderer = getElementAt(index) as IItemRenderer;
-            return child;
-        }
-		
-		public function addItemRenderer(renderer:IItemRenderer):void
-		{
-			addElement(renderer, true);
-			
-			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
-			newEvent.item = renderer;
-			
-			dispatchEvent(newEvent);
-		}
-		
-		public function removeItemRenderer(renderer:IItemRenderer):void
-		{
-			removeElement(renderer, true);
-			
-			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
-			newEvent.item = renderer;
-			
-			dispatchEvent(newEvent);
-		}
-
-        /**
-         *  remove all elements
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function removeAllItemRenderers():void
-        {
-            while (numElements > 0) {
-                var child:IChild = getElementAt(0);
-                removeElement(child);
-            }
-        }
-
-        /**
-         *  update all item renderers
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function updateAllItemRenderers():void
-        {
-            //todo: IItemRenderer does not define update function but DataItemRenderer does
-            //for(var i:int = 0; i < numElements; i++) {
-            //	var child:IItemRenderer = getElementAt(i) as IItemRenderer;
-            //	child.update();
-            //}
         }
 
         /**

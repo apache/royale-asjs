@@ -95,7 +95,7 @@ package org.apache.flex.mdl.beads.views
 
             _tabBar.model = (value as IStrandWithModel).model;
 
-            if (isTabsDynamic())
+            if (!isTabsDynamic())
             {
                 _tabBar.addEventListener("itemsCreated", tabBarItemsCreatedHandler);
                 _tabBar.addBead(new TabsItemRendererFactoryForArrayListData());
@@ -124,11 +124,7 @@ package org.apache.flex.mdl.beads.views
 		 */
         override protected function completeSetup():void
         {
-            var tb:TabBar = (host as IContentViewHost).strandChildren.getElementAt(0) as TabBar;
-            if (!tb)
-            {
-                (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
-            }
+			(host as IContentViewHost).addElementAt(tabBar,0);
 
             selectTabBarPanel();
         }
