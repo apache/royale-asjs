@@ -39,6 +39,7 @@
   </properties>
 
   <modules>
+    <module>express</module>
     <module>flexjs</module>
     <module>native</module>
 
