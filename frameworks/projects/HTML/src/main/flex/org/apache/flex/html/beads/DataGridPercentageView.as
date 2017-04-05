@@ -42,9 +42,10 @@ package org.apache.flex.html.beads
 	}
 
 	/**
-	 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid.
+	 *  The DataGridPercentageView class is the visual bead for the org.apache.flex.html.DataGrid.
 	 *  This class constructs the items that make the DataGrid: Lists for each column and a
-	 *  org.apache.flex.html.ButtonBar for the column headers.
+	 *  org.apache.flex.html.ButtonBar for the column headers. This class interprets the
+	 *  columnWidth value of each column to be a percentage rather than a pixel value.
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -52,7 +53,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGridView extends GroupView implements IBeadView
+	public class DataGridPercentageView extends GroupView implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -62,7 +63,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DataGridView()
+		public function DataGridPercentageView()
 		{
 			super();
 		}
@@ -153,21 +154,16 @@ package org.apache.flex.html.beads
 
 			var columnLabels:Array = new Array();
 			var buttonWidths:Array = new Array();
-			
-			var marginBorderOffset:int = 0;
-			COMPILE::SWF {
-				marginBorderOffset = 1;
-			}
 
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
 				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
 				columnLabels.push(dgc.label);
-				var colWidth:Number = dgc.columnWidth - marginBorderOffset;
+				var colWidth:Number = dgc.columnWidth;
 				buttonWidths.push(colWidth);
 				
 				var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 				if (!isNaN(colWidth)) {
-					list.width = Number(colWidth - marginBorderOffset);
+					list.percentWidth = Number(colWidth);
 				} else {
 					COMPILE::SWF {
 						list.style = new SimpleCSSStyles();
@@ -181,7 +177,7 @@ package org.apache.flex.html.beads
 
 			var bblayout:ButtonBarLayout = new ButtonBarLayout();
 			_header.buttonWidths = buttonWidths
-			_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
+			_header.widthType = ButtonBarModel.PERCENT_WIDTHS;
 			_header.dataProvider = columnLabels;
 			_header.addBead(bblayout);
 			_header.addBead(new Viewport());

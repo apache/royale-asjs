@@ -56,6 +56,7 @@ package org.apache.flex.html.supportClasses
 		public function DataGridColumnList()
 		{
 			super();
+			typeNames = "DataGridColumnList";
 		}
 	}
 }

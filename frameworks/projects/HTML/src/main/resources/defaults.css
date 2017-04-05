@@ -114,9 +114,15 @@ ComboBox
 
 ComboBoxList
 {
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ListView");			
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-radius: 4px;
 	border-color: #000000;
@@ -169,7 +175,7 @@ DataGrid
 	IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("org.apache.flex.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.DataGridLayout");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 	
 	background-color: #FFFFFF;
 	border-style: solid;
@@ -206,8 +212,9 @@ DataGridColumnList {
 
 .DataGridListArea {
 	background-color: #FFFFFF;
-	border-style: solid;
-	border-color: #333333;
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 }
 
 /* DateChooser */
@@ -441,7 +448,7 @@ Spinner
 StringItemRenderer
 {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
-	height: 16;
+	height: 24;
 	flex-shrink: 0;
 	flex-grow: 1;
 }

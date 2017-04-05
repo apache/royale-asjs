@@ -32,6 +32,7 @@ package org.apache.flex.html.supportClasses
         import org.apache.flex.core.IViewportScroller;
 		import org.apache.flex.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
+		import org.apache.flex.geom.Rectangle;
     }
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
@@ -127,6 +128,7 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function ScrollingViewport()
 		{
+			super();
 		}
 
 		private var _verticalScroller:ScrollBar;
@@ -191,6 +193,11 @@ package org.apache.flex.html.supportClasses
 			var hostWidth:Number = UIBase(_strand).width;
 			var hostHeight:Number = UIBase(_strand).height;
 			
+			var borderMetrics:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			
+			hostWidth -= borderMetrics.left + borderMetrics.right;
+			hostHeight -= borderMetrics.top + borderMetrics.bottom;
+			
 			var needV:Boolean = contentSize.height > viewportHeight;
 			var needH:Boolean = contentSize.width > viewportWidth;
 			
@@ -212,8 +219,8 @@ package org.apache.flex.html.supportClasses
 			if (needV)
 			{
 				_verticalScroller.visible = true;
-				_verticalScroller.x = hostWidth - _verticalScroller.width;
-				_verticalScroller.y = 0;
+				_verticalScroller.x = UIBase(_strand).width - borderMetrics.right - _verticalScroller.width;
+				_verticalScroller.y = borderMetrics.top;
 				_verticalScroller.setHeight(hostHeight - (needH ? _horizontalScroller.height : 0), true);
 				
 				ScrollBarModel(_verticalScroller.model).maximum = contentSize.height;
@@ -232,7 +239,7 @@ package org.apache.flex.html.supportClasses
 			{
 				_horizontalScroller.visible = true;
 				_horizontalScroller.x = 0;
-				_horizontalScroller.y = hostHeight - _horizontalScroller.height - 1;
+				_horizontalScroller.y = UIBase(_strand).height - borderMetrics.bottom - _horizontalScroller.height;
 				_horizontalScroller.setWidth(hostWidth - (needV ? _verticalScroller.width : 0), true);
 				
 				ScrollBarModel(_horizontalScroller.model).maximum = contentSize.width;

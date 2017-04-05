@@ -18,25 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.core.LayoutBase;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.ButtonBarView;
 	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button
@@ -111,6 +114,10 @@ package org.apache.flex.html.beads.layouts
 
 						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
 							if (widthValue != null) UIBase(ir).width = Number(widthValue);
+							if (UIBase(ir).style == null) {
+								UIBase(ir).style = new SimpleCSSStyles();
+							}
+							UIBase(ir).style.flexGrow = 0;
 						}
 						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
 							if (widthValue != null) {
@@ -122,6 +129,10 @@ package org.apache.flex.html.beads.layouts
 						}
 						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
 							if (widthValue != null) UIBase(ir).percentWidth = Number(widthValue);
+							if (UIBase(ir).style == null) {
+								UIBase(ir).style = new SimpleCSSStyles();
+							}
+							UIBase(ir).style.flexGrow = 0;
 						}
 					} else {
 						if (UIBase(ir).style == null) {

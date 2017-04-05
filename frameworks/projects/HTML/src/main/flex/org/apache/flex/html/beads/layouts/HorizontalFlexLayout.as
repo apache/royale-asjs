@@ -133,6 +133,8 @@ package org.apache.flex.html.beads.layouts
 				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
 				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 				
+				if ((hostWidth <= 0 && !hostWidthSizedToContent) || (hostHeight <= 0 && !hostHeightSizedToContent)) return false;
+				
 				var remainingWidth:Number = hostWidth;
 
 				//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
@@ -159,18 +161,19 @@ package org.apache.flex.html.beads.layouts
 					}
 
 					var useHeight:Number = -1;
-					if (ilc) {
-						if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
-						else if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
-						else useHeight = hostHeight;
+					if (!hostHeightSizedToContent) {
+						if (ilc) {
+							if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
+							else if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
+							else useHeight = hostHeight;
+						}
 					}
-					if (useHeight > hostHeight) useHeight = hostHeight;
 
 					var useWidth:Number = -1;
 					if (ilc) {
 						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
 						else if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
-						else useWidth = ilc.width;
+						else if (ilc.width > 0) useWidth = ilc.width;
 					}
 					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth + margins.left + margins.right;
 					else remainingWidth -= margins.left + margins.right;
@@ -191,12 +194,12 @@ package org.apache.flex.html.beads.layouts
 				{
 					child = contentView.getElementAt(i) as IUIBase;
 					data = childData[i];
-					if (data.width == 0 || data.height == 0) continue;
+					//if (data.width == 0 || data.height == 0) continue;
 
 					useHeight = (data.height < 0 ? maxHeight : data.height);
 
 					var setWidth:Boolean = true;
-					if (data.width > 0) {
+					if (data.width != 0) {
 						if (data.grow > 0 && growCount > 0) {
 							useWidth = remainingWidth / growCount;
 							setWidth = false;
@@ -211,7 +214,9 @@ package org.apache.flex.html.beads.layouts
 					if (ilc) {
 						ilc.setX(xpos + data.ml);
 						ilc.setY(ypos + data.mt);
-						ilc.height = useHeight; //setHeight(useHeight);
+						if (data.height > 0) {
+							ilc.height = useHeight; //setHeight(useHeight);
+						}
 						if (useWidth > 0) {
 							if (setWidth) ilc.setWidth(useWidth);
 							else ilc.width = useWidth;

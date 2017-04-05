@@ -159,18 +159,19 @@ package org.apache.flex.html.beads.layouts
 					}
 
 					var useWidth:Number = -1;
-					if (ilc) {
-						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
-						else if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
-						else useWidth = hostWidth;
+					if (!hostWidthSizedToContent) {
+						if (ilc) {
+							if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
+							else if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
+							else useWidth = hostWidth;
+						}
 					}
-					if (useWidth > hostWidth) useWidth = hostWidth;
 
 					var useHeight:Number = -1;
 					if (ilc) {
 						if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
 						else if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
-						else useHeight = ilc.height;
+						else if (ilc.height > 0) useHeight = ilc.height;
 					}
 					if (growValue == 0 && useHeight > 0) remainingHeight -= useHeight + margins.top + margins.bottom;
 					else remainingHeight -= margins.top + margins.bottom;
@@ -191,12 +192,12 @@ package org.apache.flex.html.beads.layouts
 				{
 					child = contentView.getElementAt(i) as IUIBase;
 					data = childData[i];
-					if (data.width == 0 || data.height == 0) continue;
+					//if (data.width == 0 || data.height == 0) continue;
 
 					useWidth = (data.width < 0 ? maxWidth : data.width);
 
 					var setHeight:Boolean = true;
-					if (data.height > 0) {
+					if (data.height != 0) {
 						if (data.grow > 0 && growCount > 0) {
 							useHeight = remainingHeight / growCount;
 							setHeight = false;
@@ -211,7 +212,9 @@ package org.apache.flex.html.beads.layouts
 					if (ilc) {
 						ilc.setX(xpos + data.ml);
 						ilc.setY(ypos + data.mt);
-						ilc.width = useWidth; //setWidth(useWidth);
+						if (data.width > 0) {
+							ilc.width = useWidth; //setWidth(useWidth);
+						}
 						if (useHeight > 0) {
 							if (setHeight) ilc.setHeight(useHeight);
 							else ilc.height = useHeight;

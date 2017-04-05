@@ -112,14 +112,19 @@ package org.apache.flex.html.beads
 		{
 			super.strand = value;
 			
+			var host:UIBase = value as UIBase;
+			
 			input = new TextInput();
-			input.className = "ComboBoxTextInput";
-			UIBase(host).addElement(input);
+			input.className = "ComboBoxTextInput";			
 			
 			button = new TextButton();
 			button.className = "ComboBoxButton";
 			button.text = '\u25BC';
-			UIBase(host).addElement(button);
+			
+			if (isNaN(host.width)) input.width = 100;
+			
+			host.addElement(input);
+			host.addElement(button);
 			
 			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
 			list = new popUpClass() as UIBase;
@@ -157,12 +162,16 @@ package org.apache.flex.html.beads
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 				list.model = model;
 				list.width = input.width;
+				list.height = 200;
 				list.visible = true;
 				
 				var origin:Point = new Point(0, button.y+button.height);
 				var relocated:Point = PointUtils.localToGlobal(origin,_strand);
 				list.x = relocated.x
 				list.y = relocated.y;
+				COMPILE::JS {
+					list.element.style.position = "absolute";
+				}
 				
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.addElement(list);
@@ -178,9 +187,15 @@ package org.apache.flex.html.beads
 		 */
 		private function handleSizeChange(event:Event):void
 		{
+			var host:UIBase = UIBase(_strand);
+			
 			input.x = 0;
 			input.y = 0;
-			input.width = host.width - 20;
+			if (host.isWidthSizedToContent()) {
+				input.width = 100;
+			} else {
+				input.width = host.width - 20;
+			}
 			
 			button.x = input.width;
 			button.y = 0;
@@ -188,10 +203,15 @@ package org.apache.flex.html.beads
 			button.height = input.height;
 			
 			COMPILE::JS {
-				// because the strand is a <div> it does not have a size so one is
-				// assigned here based on the max height of the two components.
-				var element:Object = UIBase(_strand).element;
-				element["style"]["height"] = String(Math.max(input.height,button.height)) + "px";
+				input.element.style.position = "absolute";
+				button.element.style.position = "absolute";
+			}
+				
+			if (host.isHeightSizedToContent()) {
+				host.height = input.height;
+			}
+			if (host.isWidthSizedToContent()) {
+				host.width = input.width + button.width;
 			}
 		}
 		
