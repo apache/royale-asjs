@@ -197,7 +197,6 @@ package org.apache.flex.html.beads.layouts
 				n = children.length;
 				if (n === 0) return false;
 
-				contentView.width = host.width;
 				contentView.element.style["display"] = "flex";
 				contentView.element.style["flex-flow"] = "row wrap";
 

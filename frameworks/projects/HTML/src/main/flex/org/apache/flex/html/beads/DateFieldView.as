@@ -171,7 +171,7 @@ package org.apache.flex.html.beads
 					{
 						_popUp = new DateChooser();
 						_popUp.width = 210;
-						_popUp.height = 220;
+						_popUp.height = 230;
 					}
 					
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;

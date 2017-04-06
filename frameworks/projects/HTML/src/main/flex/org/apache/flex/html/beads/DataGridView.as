@@ -115,8 +115,10 @@ package org.apache.flex.html.beads
 
 			_header = new DataGridButtonBar();
 			_header.height = 30;
+			_header.percentWidth = 100;
 
 			_listArea = new Container();
+			_listArea.percentWidth = 100;
 			_listArea.className = "DataGridListArea";
 			
 			COMPILE::SWF {
@@ -190,6 +192,9 @@ package org.apache.flex.html.beads
 			host.addElement(_listArea);
 
 			handleDataProviderChanged(event);
+			
+			host.addEventListener("widthChanged", handleSizeChanges);
+			host.addEventListener("heightChanged", handleSizeChanges);
 		}
 
 		/**

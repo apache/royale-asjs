@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
@@ -26,11 +27,10 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 
 	COMPILE::SWF {
 		import org.apache.flex.geom.Size;

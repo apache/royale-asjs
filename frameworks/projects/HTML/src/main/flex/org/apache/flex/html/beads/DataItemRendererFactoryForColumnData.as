@@ -79,7 +79,7 @@ package org.apache.flex.html.beads
 		 */
 		private function finishSetup(event:Event):void
 		{			
-			selectionModel = value.getBeadByType(IDataGridModel) as IDataGridModel;
+			selectionModel = _strand.getBeadByType(IDataGridModel) as IDataGridModel;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			

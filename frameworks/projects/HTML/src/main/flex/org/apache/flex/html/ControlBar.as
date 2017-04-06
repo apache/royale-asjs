@@ -69,12 +69,12 @@ package org.apache.flex.html
 		 */
 		override public function addedToParent():void
 		{
+			super.addedToParent();
+			
 			if( getBeadByType(IBeadLayout) == null ) {
 				var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBeadLayout;
 				addBead(layout);
 			}
-			
-			super.addedToParent();
 		}
 
         /**

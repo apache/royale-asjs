@@ -110,6 +110,19 @@ package org.apache.flex.core
         }
 		
 		/**
+		 * Dispatches a "layoutNeeded" event
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		public function layoutNeeded():void
+		{
+			dispatchEvent( new Event("layoutNeeded") );
+		}
+		
+		/**
 		 * Returns the ILayoutHost which is its view. From ILayoutParent.
 		 *
 		 *  @langversion 3.0

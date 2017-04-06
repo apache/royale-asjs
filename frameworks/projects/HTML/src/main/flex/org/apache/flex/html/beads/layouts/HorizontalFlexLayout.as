@@ -118,8 +118,8 @@ package org.apache.flex.html.beads.layouts
 				var childData:Array = [];
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
-				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
+				var hostWidth:Number = hostWidthSizedToContent ? host.width : contentView.width;
+				var hostHeight:Number = hostHeightSizedToContent ? host.height : contentView.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -215,7 +215,8 @@ package org.apache.flex.html.beads.layouts
 						ilc.setX(xpos + data.ml);
 						ilc.setY(ypos + data.mt);
 						if (data.height > 0) {
-							ilc.height = useHeight; //setHeight(useHeight);
+							//ilc.height = useHeight;
+							ilc.setHeight(useHeight);
 						}
 						if (useWidth > 0) {
 							if (setWidth) ilc.setWidth(useWidth);
