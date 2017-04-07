@@ -30,6 +30,9 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -121,6 +124,9 @@ package org.apache.flex.html.beads.layouts
          */
 		override public function layout():Boolean
 		{
+			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			
 			COMPILE::SWF
 			{
 				var area:UIBase = layoutView as UIBase;
@@ -131,6 +137,9 @@ package org.apache.flex.html.beads.layouts
 				var useHeight:Number = rowHeight;
 				var n:Number = area.numElements;
 				if (n == 0) return false;
+				
+				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
 				var realN:Number = n;
 				for(var j:int=0; j < n; j++)
@@ -139,12 +148,12 @@ package org.apache.flex.html.beads.layouts
 					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN/numColumns);
 					if (host.isHeightSizedToContent) useHeight = 30; // default height
-					else useHeight = Math.floor(host.height / numRows);
+					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
 				var maxWidth:Number = useWidth;
@@ -190,6 +199,8 @@ package org.apache.flex.html.beads.layouts
 				var ypos:Number;
 				var useWidth:Number;
 				var useHeight:Number;
+				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
 				
@@ -212,12 +223,14 @@ package org.apache.flex.html.beads.layouts
 				useWidth = columnWidth;
 				useHeight = rowHeight;
 
-				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useWidth)) {
+					useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+				}
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN / numColumns);
 					if (host.isHeightSizedToContent) useHeight = 30; // default height
-					else useHeight = Math.floor(host.height / numRows);
+					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
 				for (i = 0; i < n; i++)
