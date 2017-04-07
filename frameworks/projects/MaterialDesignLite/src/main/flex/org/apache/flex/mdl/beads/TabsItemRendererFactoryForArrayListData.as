@@ -208,7 +208,8 @@ package org.apache.flex.mdl.beads
             newEvent.itemRenderer = ir;
             dispatchEvent(newEvent);
 
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            //??IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			IEventDispatcher(_strand).dispatchEvent(new Event("itemAdded"));
         }
     }
 }

@@ -98,7 +98,7 @@ package org.apache.flex.mdl.beads.views
             if (!isTabsDynamic())
             {
                 _tabBar.addEventListener("itemsCreated", tabBarItemsCreatedHandler);
-                _tabBar.addBead(new TabsItemRendererFactoryForArrayListData());
+				_tabBar.addEventListener("itemAdded", tabBarItemsCreatedHandler);
             }
         }
 

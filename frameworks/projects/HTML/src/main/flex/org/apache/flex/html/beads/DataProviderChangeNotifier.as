@@ -26,16 +26,48 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.CollectionEvent;
 	import org.apache.flex.collections.ArrayList;
 	
 	/**
-	 *  The DataProviderChangeNotifier notifies listeners when a selection model's
-	 *  ArrayList dataProvider has changed.
+	 * Dispatched when a new item has been added to the dataProvider being watched.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
+	 */
+	[Event(name="itemAdded", type="org.apache.flex.events.CollectionEvent")]
+	
+	/**
+	 * Dispatched when an item has been removed from the dataProvider being watched.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
+	 */
+	[Event(name="itemRemved", type="org.apache.flex.events.CollectionEvent")]
+	
+	/**
+	 * Dispatched when an item has updated in the dataProvider being watched.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
+	 */
+	[Event(name="itemUpdated", type="org.apache.flex.events.CollectionEvent")]
+	
+	/**
+	 *  The DataProviderChangeNotifier notifies listeners when a selection model's
+	 *  ArrayList dataProvider has changed. It does this by forwarding events on
+	 *  the dataProvider to the model associated with the strand.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DataProviderChangeNotifier implements IBead, IDocument
 	{
@@ -45,12 +77,15 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DataProviderChangeNotifier()
 		{
 		}
 		
+		/**
+		 * @private
+		 */
 		protected var _dataProvider:ArrayList;
 		
 		private var _strand:IStrand;
@@ -61,7 +96,7 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -76,6 +111,9 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function destinationChangedHandler(event:Event):void
 		{
 			if (_dataProvider == null) {
@@ -169,8 +207,11 @@ package org.apache.flex.html.beads
 		 */
 		private function handleItemAdded(event:Event):void
 		{
+			var e:CollectionEvent = event as CollectionEvent;
 			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+
+			var newEvent:Event = e.cloneEvent() as Event;
+			selectionModel.dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -178,8 +219,11 @@ package org.apache.flex.html.beads
 		 */
 		private function handleItemRemoved(event:Event):void
 		{
+			var e:CollectionEvent = event as CollectionEvent;
 			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+			
+			var newEvent:Event = e.cloneEvent() as Event;
+			selectionModel.dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -187,8 +231,11 @@ package org.apache.flex.html.beads
 		 */
 		private function handleItemUpdated(event:Event):void
 		{
+			var e:CollectionEvent = event as CollectionEvent;
 			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+			
+			var newEvent:Event = e.cloneEvent() as Event;
+			selectionModel.dispatchEvent(newEvent);
 		}
 	}
 }
