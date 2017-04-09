@@ -32,7 +32,6 @@ package org.apache.flex.mdl.beads
 
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.ItemRendererEvent;
     import org.apache.flex.html.beads.IListView;
     import org.apache.flex.mdl.beads.models.ITabModel;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
@@ -89,7 +88,6 @@ package org.apache.flex.mdl.beads
          */
         private function finishSetup(event:Event):void
         {
-            IEventDispatcher(_strand).removeEventListener("beadsAdded",finishSetup);
             IEventDispatcher(_strand).removeEventListener("initComplete",finishSetup);
 
             dataProviderModel = _strand.getBeadByType(ITabModel) as ITabModel;
@@ -172,10 +170,6 @@ package org.apache.flex.mdl.beads
                     UIBase(ir).percentWidth = 100;
                 }
                 ir.data = dp.getItemAt(i);
-
-                var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-                newEvent.itemRenderer = ir;
-                dispatchEvent(newEvent);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
@@ -190,7 +184,8 @@ package org.apache.flex.mdl.beads
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 
             var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-            dataGroup.addElement(ir);
+            dataGroup.addItemRenderer(ir);
+            
             ir.index = dp.length - 1;
             ir.labelField = labelField;
             ir.tabIdField = tabsIdField;
@@ -204,12 +199,7 @@ package org.apache.flex.mdl.beads
             }
             ir.data = event.item;
 
-            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-            newEvent.itemRenderer = ir;
-            dispatchEvent(newEvent);
-
-            //??IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemAdded"));
+            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }
     }
 }
