@@ -42,8 +42,10 @@ limitations under the License.
 	<mdl:Tabs id="myTabs" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabs"
 			  dataProvider="{tabsModel.tabs}" width="500">
 		<mdl:beads>
-			<js:DataProviderChangeNotifier sourceID="tabsModel" propertyName="tabs"
-										   destinationPropertyName="dataProvider" changeEventName="dataProviderChanged" />
+			<js:DataProviderCollectionChangeNotifier sourceID="tabsModel" propertyName="tabs"
+													 destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
+			<js:DataProviderItemsChangeNotifier sourceID="tabsModel" propertyName="tabs"
+												destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
 		</mdl:beads>
 	</mdl:Tabs>
 	<mdl:Button text="Add new Tab" click="onAddNewTabClick(event)"/>
