@@ -52,19 +52,6 @@ package org.apache.flex.mdl.beads.views
         {
             super.itemsCreatedHandler(event);
 
-            completeSetup();
-        }
-
-        /**
-		 *  complete setup
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        override protected function completeSetup():void
-        {
             selectTabBarButton();
         }
 

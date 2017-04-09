@@ -72,7 +72,6 @@ package org.apache.flex.mdl.beads
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
             IEventDispatcher(value).addEventListener("initComplete",finishSetup);
         }
 
@@ -86,7 +85,6 @@ package org.apache.flex.mdl.beads
          */
         private function finishSetup(event:Event):void
         {
-            IEventDispatcher(_strand).removeEventListener("beadsAdded",finishSetup);
             IEventDispatcher(_strand).removeEventListener("initComplete",finishSetup);
 
             dataProviderModel = _strand.getBeadByType(ITabModel) as ITabModel;
@@ -170,10 +168,6 @@ package org.apache.flex.mdl.beads
                     UIBase(ir).percentWidth = 100;
                 }
                 ir.data = dp[i];
-
-                var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-                newEvent.itemRenderer = ir;
-                dispatchEvent(newEvent);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
