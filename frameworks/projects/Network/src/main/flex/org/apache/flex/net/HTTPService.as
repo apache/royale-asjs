@@ -505,6 +505,18 @@ package org.apache.flex.net
 			return null;
 		}
 
+        /**
+         *  Allows Javascript cross-site Access-Control requests to be made
+         *  using credentials such as cookies or authorization headers
+         *
+         *  @productversion FlexJS 0.8
+         */
+        COMPILE::JS
+        public function set withCredentials(value:Boolean):void {
+            var element:XMLHttpRequest = this.element as XMLHttpRequest;
+            element.withCredentials = value;
+        }
+
         COMPILE::SWF
         private var urlLoader:flash.net.URLLoader;
         
@@ -606,6 +618,7 @@ package org.apache.flex.net
                     }
                 }
                 
+
                 if (_method !== HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
