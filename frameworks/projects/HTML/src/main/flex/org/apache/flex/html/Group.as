@@ -93,7 +93,7 @@ package org.apache.flex.html
 				dispatchEvent(new Event("initComplete"));
 				_initialized = true;
 				
-				childrenAdded();
+				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
 			}
 		}
 		

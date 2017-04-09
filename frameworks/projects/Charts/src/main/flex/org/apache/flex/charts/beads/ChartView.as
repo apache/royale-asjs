@@ -92,9 +92,19 @@ package org.apache.flex.charts.beads
 		{	
 			super.completeSetup();
 			
+			performLayout(null);
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			super.beadsAddedHandler(event);
+			
 			dataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-						
+			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			if (haxis && _horizontalAxisGroup == null) {
 				var m1:Class = ValuesManager.valuesImpl.getValue(_strand, "iHorizontalAxisGroup");
@@ -112,14 +122,6 @@ package org.apache.flex.charts.beads
 				UIBase(_verticalAxisGroup).className = "VerticalAxis";
 				IContainer(_strand).strandChildren.addElement(_verticalAxisGroup, false);
 			}
-		}
-		
-		/**
-		 * @private
-		 */
-		override protected function beadsAddedHandler(event:Event):void
-		{
-			super.beadsAddedHandler(event);
 		}
 		
 		/**

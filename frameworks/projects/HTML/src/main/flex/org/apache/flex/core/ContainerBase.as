@@ -66,7 +66,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerBase extends GroupBase implements IContainer, IStrandPrivate
+	public class ContainerBase extends GroupBase implements IStrandPrivate
 	{
         /**
          *  Constructor.

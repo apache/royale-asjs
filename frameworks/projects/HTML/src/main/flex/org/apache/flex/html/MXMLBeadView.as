@@ -19,7 +19,7 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.states.State;
-	
+
 	import org.apache.flex.core.IBead;
     import org.apache.flex.core.ILayoutHost;
     import org.apache.flex.core.IParent;
@@ -33,12 +33,12 @@ package org.apache.flex.html
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
     [DefaultProperty("mxmlContent")]
-    
+
     /**
      *  The MXMLBeadView class extends ContainerView
      *  and adds support for databinding and specification
      *  of children in MXML.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -48,7 +48,7 @@ package org.apache.flex.html
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -58,12 +58,12 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
+
         [Bindable("strandChanged")]
         /**
          *  An MXMLBeadView doesn't create its children until it is added to
          *  the strand.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -74,21 +74,21 @@ package org.apache.flex.html
             super.strand = value;
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
-            
-            dispatchEvent(new Event("strandChanged"));  
-            
+
+            dispatchEvent(new Event("strandChanged"));
+
             for each (var bead:IBead in beads)
                 addBead(bead);
-            
+
             dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
 
             MXMLDataInterpreter.generateMXMLInstances(this, IParent(value), MXMLDescriptor);
-            
-            dispatchEvent(new Event("initBindings"))
-            dispatchEvent(new Event("initComplete"))
+
             dispatchEvent(new Event("childrenAdded"));
+            dispatchEvent(new Event("initBindings"));
+            dispatchEvent(new Event("initComplete"));
         }
-        
+
         [Bindable("__NoChangeEvent__")]
         /**
          *  The model object.
@@ -97,10 +97,10 @@ package org.apache.flex.html
         {
             return _strand["model"];
         }
-        
+
         /**
          *  @copy org.apache.flex.core.Application#MXMLDescriptor
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -110,10 +110,10 @@ package org.apache.flex.html
         {
             return null;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -123,23 +123,23 @@ package org.apache.flex.html
         {
             MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
-        
+
         /**
          *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
         public var mxmlContent:Array;
-        
+
         private var _states:Array;
-        
+
         /**
          *  The array of view states. These should
          *  be instances of org.apache.flex.states.State.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -149,7 +149,7 @@ package org.apache.flex.html
         {
             return _states;
         }
-        
+
         /**
          *  @private
          */
@@ -157,7 +157,7 @@ package org.apache.flex.html
         {
             _states = value;
             _currentState = _states[0].name;
-            
+
             try{
                 if (getBeadByType(IStatesImpl) == null)
                     addBead(new (ValuesManager.valuesImpl.getValue(this, "iStatesImpl")) as IBead);
@@ -167,19 +167,19 @@ package org.apache.flex.html
             {
                 COMPILE::SWF
                 {
-                    trace(e.message);                        
+                    trace(e.message);
                 }
             }
-            
+
         }
-        
+
         /**
          *  <code>true</code> if the array of states
          *  contains a state with this name.
-         * 
+         *
          *  @param state The state namem.
          *  @return True if state in state array
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -194,13 +194,13 @@ package org.apache.flex.html
             }
             return false;
         }
-        
+
         private var _currentState:String;
-        
+
         [Bindable("currentStateChange")]
         /**
          *  The name of the current state.
-         * 
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -208,9 +208,9 @@ package org.apache.flex.html
          */
         public function get currentState():String
         {
-            return _currentState;   
+            return _currentState;
         }
-        
+
         /**
          *  @private
          */
@@ -220,12 +220,12 @@ package org.apache.flex.html
             _currentState = value;
             dispatchEvent(event);
         }
-        
+
         private var _transitions:Array;
-        
+
         /**
          *  The array of transitions.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -233,48 +233,48 @@ package org.apache.flex.html
          */
         public function get transitions():Array
         {
-            return _transitions;   
+            return _transitions;
         }
-        
+
         /**
          *  @private
          */
         public function set transitions(value:Array):void
         {
-            _transitions = value;   
+            _transitions = value;
         }
 
         /**
          *  @copy org.apache.flex.core.Application#beads
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
         public var beads:Array;
-        
+
         private var _beads:Array;
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#addBead()
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */        
+         */
         public function addBead(bead:IBead):void
         {
             if (!_beads)
                 _beads = [];
             _beads.push(bead);
-            bead.strand = this;            
+            bead.strand = this;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#getBeadByType()
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -289,16 +289,16 @@ package org.apache.flex.html
             }
             return null;
         }
-        
+
         /**
          *  @copy org.apache.flex.core.IStrand#removeBead()
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function removeBead(value:IBead):IBead	
+        public function removeBead(value:IBead):IBead
         {
             var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)

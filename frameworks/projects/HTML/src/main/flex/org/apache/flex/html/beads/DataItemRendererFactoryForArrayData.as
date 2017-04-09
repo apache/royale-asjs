@@ -87,7 +87,6 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
@@ -100,6 +99,8 @@ package org.apache.flex.html.beads
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
 			
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// already have been loaded by DataContainerBase.addedToParent function.
 			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
 			if (itemRendererFactory == null) {
 				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;

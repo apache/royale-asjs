@@ -72,7 +72,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class GroupBase extends UIBase implements IStatesObject, ILayoutParent, ILayoutView, IContentViewHost
+	public class GroupBase extends UIBase implements IStatesObject, IContainer, ILayoutParent, ILayoutView, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -100,6 +100,10 @@ package org.apache.flex.core
 			
 			return element;
 		}
+		
+		/*
+		 * IContainer
+		 */
         
         /**
          *  @private
@@ -108,6 +112,10 @@ package org.apache.flex.core
         {
             dispatchEvent(new Event("childrenAdded"));
         }
+		
+		/*
+		 * Utility
+		 */
 		
 		/**
 		 * Dispatches a "layoutNeeded" event
@@ -121,6 +129,10 @@ package org.apache.flex.core
 		{
 			dispatchEvent( new Event("layoutNeeded") );
 		}
+		
+		/*
+		 * ILayoutParent
+		 */
 		
 		/**
 		 * Returns the ILayoutHost which is its view. From ILayoutParent.

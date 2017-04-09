@@ -73,7 +73,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataContainer extends DataContainerBase implements IList
+	public class DataContainer extends DataContainerBase
 	{
 		/**
 		 *  constructor.
@@ -140,69 +140,6 @@ package org.apache.flex.html
 				addBead(presModel);
 			}
 			return presModel;
-		}
-
-		/*
-		 * IList and IItemRendererProvider
-		 */
-
-		/**
-		 * Returns the sub-component that parents all of the item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get dataGroup():IItemRendererParent
-		{
-			//return this;
-			return (view as IListView).dataGroup;
-		}
-
-		private var _itemRenderer:IFactory;
-
-		/**
-		 *  The class or factory used to display each item.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get itemRenderer():IFactory
-		{
-			return _itemRenderer;
-		}
-		public function set itemRenderer(value:IFactory):void
-		{
-			_itemRenderer = value;
-		}
-
-		/**
-		 * Returns whether or not the itemRenderer property has been set.
-		 *
-		 *  @see org.apache.flex.core.IItemRendererProvider
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get hasItemRenderer():Boolean
-		{
-			var result:Boolean = false;
-
-			COMPILE::SWF {
-				result = _itemRenderer != null;
-			}
-
-			COMPILE::JS {
-				var test:* = _itemRenderer;
-				result = _itemRenderer !== null && test !== undefined;
-			}
-
-				return result;
 		}
    	}
 }

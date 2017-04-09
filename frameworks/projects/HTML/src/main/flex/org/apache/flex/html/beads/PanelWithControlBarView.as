@@ -135,6 +135,7 @@ package org.apache.flex.html.beads
 				for each(var comp:IUIBase in controlBarItems) {
 					controlBar.addElement(comp, false);
 				}
+				controlBar.childrenAdded();
 			}
 			
 			super.completeSetup();

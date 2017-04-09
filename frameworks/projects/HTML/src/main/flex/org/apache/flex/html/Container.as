@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.ValuesManager;
@@ -68,7 +67,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase implements IMXMLDocument, IContainer
+	public class Container extends ContainerBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -108,7 +107,7 @@ package org.apache.flex.html
 				dispatchEvent(new Event("initComplete"));
 				_initialized = true;
 				
-				childrenAdded();
+				//?? why is this here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will have already called it
 			}
 		}
 		

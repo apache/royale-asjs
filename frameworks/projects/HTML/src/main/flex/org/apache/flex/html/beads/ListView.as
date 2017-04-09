@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
-{	
+{
 	import org.apache.flex.core.BeadViewBase;
 	import org.apache.flex.core.ContainerBase;
 	import org.apache.flex.core.IBead;
@@ -47,10 +47,10 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
 	/**
-	 *  The List class creates the visual elements of the org.apache.flex.html.List 
-	 *  component. A List consists of the area to display the data (in the dataGroup), any 
+	 *  The List class creates the visual elements of the org.apache.flex.html.List
+	 *  component. A List consists of the area to display the data (in the dataGroup), any
 	 *  scrollbars, and so forth.
-	 *  
+	 *
 	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -64,21 +64,23 @@ package org.apache.flex.html.beads
 		{
 			super();
 		}
-		
+
 		protected var listModel:ISelectionModel;
-		
+
 		protected var lastSelectedIndex:int = -1;
-		
-		override protected function beadsAddedHandler(event:Event):void
+
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
 		{
-			
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			//listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			
-			super.beadsAddedHandler(event);
+			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+
+			super.handleInitComplete(event);
 		}
-		
+
 		protected function selectionChangeHandler(event:Event):void
 		{
 			if (lastSelectedIndex != -1)
@@ -93,8 +95,28 @@ package org.apache.flex.html.beads
 			}
 			lastSelectedIndex = listModel.selectedIndex;
 		}
+
+		protected var lastRollOverIndex:int = -1;
+
+		/**
+		 * @private
+		 */
+		protected function rollOverIndexChangeHandler(event:Event):void
+		{
+			if (lastRollOverIndex != -1)
+			{
+				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+				ir.hovered = false;
+			}
+			if (IRollOverModel(listModel).rollOverIndex != -1)
+			{
+				ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
+				ir.hovered = true;
+			}
+			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
+		}
 	}
-	
+
 	COMPILE::SWF
 	public class ListView extends DataContainerView
 	{
@@ -102,12 +124,12 @@ package org.apache.flex.html.beads
 		{
 			super();
 		}
-		
+
 		protected var listModel:ISelectionModel;
-        		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -118,18 +140,21 @@ package org.apache.flex.html.beads
 			_strand = value;
 			super.strand = value;
 		}
-		
-		override protected function beadsAddedHandler(event:Event):void
+
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
 		{
-			super.beadsAddedHandler(event);
-			
+			super.handleInitComplete(event);
+
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 		}
-		
+
 		protected var lastSelectedIndex:int = -1;
-		
+
 		/**
 		 * @private
 		 */
@@ -147,9 +172,9 @@ package org.apache.flex.html.beads
 			}
             lastSelectedIndex = listModel.selectedIndex;
 		}
-		
+
 		protected var lastRollOverIndex:int = -1;
-		
+
 		/**
 		 * @private
 		 */

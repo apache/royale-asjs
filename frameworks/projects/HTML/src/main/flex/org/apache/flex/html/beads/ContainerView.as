@@ -167,10 +167,6 @@ package org.apache.flex.html.beads
 			// when the first layout is complete, set up listeners for changes
 			// to the childrens' sizes.
 			host.addEventListener("layoutComplete", childrenChangedHandler);
-
-			host.addEventListener("widthChanged", resizeHandler);
-			host.addEventListener("heightChanged", resizeHandler);
-			host.addEventListener("sizeChanged", resizeHandler);
 		}
 
 		/**
@@ -286,7 +282,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function resizeHandler(event:Event):void
+		override protected function resizeHandler(event:Event):void
 		{
 			if (!adjusting) {
 				performLayout(event);
@@ -314,24 +310,6 @@ package org.apache.flex.html.beads
 				child.addEventListener("heightChanged", childResizeHandler);
 				child.addEventListener("sizeChanged", childResizeHandler);
 			}
-		}
-
-		/**
-		 * This event handles changes to the size of children of the container by running
-		 * the layout again and adjusting the size of the container or viewport as necessary.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function childResizeHandler(event:Event):void
-		{
-			// during this process we don't want the layout to trigger
-			// an endless event chain should any children get resized
-			// by the layout.
-			if (layoutRunning) return;
-			performLayout(event);
 		}
 	}
 

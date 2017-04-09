@@ -62,6 +62,22 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
+		}
+		
 		protected var dataModel:IDataProviderModel;
 		
 		/**
@@ -72,14 +88,19 @@ package org.apache.flex.html.beads
 			return super.contentView as IItemRendererParent;
 		}
 		
-		override protected function beadsAddedHandler(event:Event):void
+		protected function beadsAddedHandler(event:Event):void
 		{
-			
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
-			super.beadsAddedHandler(event);
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
 		}
 		
 		/**
@@ -129,6 +150,8 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
 		override protected function completeSetup():void
@@ -142,12 +165,15 @@ package org.apache.flex.html.beads
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 		}
 		
-		override protected function beadsAddedHandler(event:Event):void
+		protected function beadsAddedHandler(event:Event):void
 		{
-			super.beadsAddedHandler(event);
-			
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
 		}
 		
 		/**
