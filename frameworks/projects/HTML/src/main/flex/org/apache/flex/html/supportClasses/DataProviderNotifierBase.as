@@ -27,17 +27,17 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.events.CollectionEvent;
+	
 	/**
-	 *  The DataProviderAddRemoveNotifier notifies listeners when a selection model's to
-	 *  ArrayList dataProvider has been added or removed item.
+	 *  The DataProviderChangeNotifier notifies listeners when a selection model's
+	 *  ArrayList dataProvider has changed.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataProviderAddRemoveNotifier implements IBead, IDocument
+	public class DataProviderChangeNotifier implements IBead, IDocument
 	{
 		/**
 		 *  constructor.
@@ -47,7 +47,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DataProviderAddRemoveNotifier()
+		public function DataProviderChangeNotifier()
 		{
 		}
 		
@@ -83,12 +83,16 @@ package org.apache.flex.html.beads
 				_dataProvider = object[propertyName] as ArrayList;
 			}
 			else {
-				_dataProvider.removeEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
-				_dataProvider.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
+				_dataProvider.removeEventListener("itemAdded", handleDataProviderChanges);
+				_dataProvider.removeEventListener("itemRemoved", handleDataProviderChanges);
+				_dataProvider.removeEventListener("itemUpdated", handleDataProviderChanges);
+                _dataProvider.removeEventListener("collectionChanged", handleDataProviderChanges);
 			}
 			
-			_dataProvider.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
-			_dataProvider.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
+			_dataProvider.addEventListener("itemAdded", handleDataProviderChanges);
+			_dataProvider.addEventListener("itemRemoved", handleDataProviderChanges);
+			_dataProvider.addEventListener("itemUpdated", handleDataProviderChanges);
+			_dataProvider.addEventListener("collectionChanged", handleDataProviderChanges);
 		}
 		
 		protected var document:Object;
@@ -161,23 +165,11 @@ package org.apache.flex.html.beads
 		{
 			_propertyName = value;
 		}
-		
-		/**
-		 * @private
-		 */
-		private function handleItemAdded(event:CollectionEvent):void
+
+		private function handleDataProviderChanges(event:Event):void
 		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleItemRemoved(event:CollectionEvent):void
-		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
+            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            selectionModel.dispatchEvent(new Event("dataProviderChanged"));
 		}
 	}
 }

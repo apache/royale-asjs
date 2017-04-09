@@ -25,15 +25,15 @@ package org.apache.flex.html.beads
     import org.apache.flex.html.supportClasses.DataProviderNotifierBase;
 
     /**
-	 *  The DataProviderChangeNotifier notifies listeners when a selection model's
-	 *  ArrayList dataProvider has changed.
+	 *  The DataProviderCollectionChangeNotifier notifies listeners when a selection model's
+	 *  ArrayList dataProvider disptached collectionChanged event.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataProviderChangeNotifier extends DataProviderNotifierBase
+	public class DataProviderCollectionChangeNotifier extends DataProviderNotifierBase
 	{
 		/**
 		 *  constructor.
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function DataProviderChangeNotifier()
+		public function DataProviderCollectionChangeNotifier()
 		{
 		}
 		
@@ -56,19 +56,13 @@ package org.apache.flex.html.beads
 			}
 			else
 			{
-                dataProvider.removeEventListener("itemAdded", handleDataProviderChanges);
-                dataProvider.removeEventListener("itemRemoved", handleDataProviderChanges);
-                dataProvider.removeEventListener("itemUpdated", handleDataProviderChanges);
-                dataProvider.removeEventListener("collectionChanged", handleDataProviderChanges);
+                dataProvider.removeEventListener("collectionChanged", handleCollectionChanged);
 			}
 
-            dataProvider.addEventListener("itemAdded", handleDataProviderChanges);
-            dataProvider.addEventListener("itemRemoved", handleDataProviderChanges);
-            dataProvider.addEventListener("itemUpdated", handleDataProviderChanges);
-            dataProvider.addEventListener("collectionChanged", handleDataProviderChanges);
+            dataProvider.addEventListener("collectionChanged", handleCollectionChanged);
 		}
 
-		private function handleDataProviderChanges(event:Event):void
+		private function handleCollectionChanged(event:Event):void
 		{
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.dispatchEvent(new Event("dataProviderChanged"));
