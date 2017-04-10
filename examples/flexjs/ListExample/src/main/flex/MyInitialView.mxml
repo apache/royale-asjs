@@ -31,6 +31,9 @@ limitations under the License.
 			IDataProviderItemRendererMapper: ClassReference("simple.IRFactoryForArrayData");
 			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+			
+			overflow: auto;
+			border: 1px solid #CCCCCC;
 		}
 	</fx:Style>
 	

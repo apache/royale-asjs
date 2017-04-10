@@ -16,8 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 */
-package 
-{    
+package
+{
 
 //import mx.states.State;
 
@@ -27,7 +27,7 @@ import org.apache.flex.binding.ConstantBinding;
 import org.apache.flex.binding.SimpleBinding;
 import org.apache.flex.core.SimpleCSSValuesImpl;
 import org.apache.flex.core.ValuesManager;
-import org.apache.flex.core.ViewBase;
+import org.apache.flex.core.View;
 import org.apache.flex.events.CustomEvent;
 import org.apache.flex.events.Event;
 import org.apache.flex.html.CheckBox;
@@ -41,7 +41,7 @@ import org.apache.flex.html.TextInput;
 import org.apache.flex.html.beads.layouts.HorizontalLayout;
 import org.apache.flex.html.beads.layouts.VerticalLayout;
 
-public class MyInitialView extends ViewBase
+public class MyInitialView extends View
 {
 
     public function MyInitialView()
@@ -61,55 +61,55 @@ public class MyInitialView extends ViewBase
         vi.addRule(".output", {
             "font-size": 20
         });
-        
+
         vi.addRule(".topContainer", {
             "padding": 10
         });
-        
+
         vi.addRule(".leftSide", {
             "vertical-align": "top",
             "margin-right": 10
         });
-        
+
         vi.addRule(".rightSide", {
             "vertical-align": "top",
             "margin-left": 10,
             "padding-left": 10
         });
-        
+
         vi.addRule(".quoteButton", {
             "margin-top": 10,
             "margin-bottom": 10
         });
-        
+
     }
-    
+
     private function initCompleteHandler(event:Event):void
     {
         initControls();
     }
-			
+
 	private var _symbol:String;
-	
+
     public function get symbol():String
     {
         return _symbol;
     }
-	
+
 	public function get requestedField():String
 	{
 		return radio1.selectedValue as String;
 	}
-	
+
     [Bindable]
     public var fieldText:String;
-    
+
 	private function radioChanged(e:org.apache.flex.events.Event):void
 	{
 		dispatchEvent(new CustomEvent("radioClicked"));
 		fieldText = RadioButton(e.target).text;
 	}
-	
+
 	private function initControls():void
 	{
 		list.selectedItem = MyModel(applicationModel).stockSymbol;
@@ -122,14 +122,14 @@ public class MyInitialView extends ViewBase
 			fieldText = radio3.text;
 		else if (radio4.selected)
 			fieldText = radio4.text;
-		
+
 	}
-    
+
     private function setState():void
     {
-        currentState = showAllData.selected ? "showAll" : "hideAll";    
+        currentState = showAllData.selected ? "showAll" : "hideAll";
     }
-    
+
     override public function get MXMLDescriptor():Array
     {
         var c:Container = new Container();
@@ -186,7 +186,7 @@ public class MyInitialView extends ViewBase
         addBead(sb);
         c3.addElement(output);
         c3.childrenAdded();
-        
+
         c3 = new Container();
         c3.className="rightSide";
         c3.addBead(new VerticalLayout());
@@ -246,11 +246,11 @@ public class MyInitialView extends ViewBase
         c.addElement(ta);
         c2.childrenAdded();
         c.childrenAdded();
-        
+
         return super.MXMLDescriptor;
 
     }
-    
+
     public var symbolTI:TextInput;
     public var output:Label;
     public var field:Label;
@@ -261,19 +261,19 @@ public class MyInitialView extends ViewBase
     public var radio4:RadioButton;
     public var showAllData:CheckBox;
     public var ta:TextArea;
-    
+
     private function tb_clickHandler(event:Event):void
     {
         _symbol = symbolTI.text;
         dispatchEvent(new CustomEvent('buttonClicked'));
     }
-    
+
     private function list_changeHandler(event:Event):void
     {
         _symbol = list.selectedItem as String;
         dispatchEvent(new CustomEvent('listChanged'));
     }
-    
+
     private function showAllData_changeHandler(event:Event):void
     {
         setState();

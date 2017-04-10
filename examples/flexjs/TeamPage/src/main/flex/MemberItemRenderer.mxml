@@ -69,7 +69,7 @@ limitations under the License.
 	<js:Image id="memberPhoto" width="128" height="128" />
 	<js:Spacer width="10" />
 	
-	<js:VContainer id="contentArea" >
+	<js:VContainer id="contentArea" width="100%" >
 		<js:style>
 			<js:SimpleCSSStyles verticalAlign="top" />
 		</js:style>

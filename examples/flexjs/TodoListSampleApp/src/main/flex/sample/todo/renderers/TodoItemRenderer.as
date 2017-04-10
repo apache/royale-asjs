@@ -18,22 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package sample.todo.renderers {
 
+    import org.apache.flex.core.SimpleCSSStyles;
     import org.apache.flex.events.Event;
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.html.Button;
     import org.apache.flex.html.CheckBox;
+    import org.apache.flex.html.Group;
     import org.apache.flex.html.Label;
+    import org.apache.flex.html.beads.layouts.HorizontalFlexLayout;
     import org.apache.flex.html.supportClasses.DataItemRenderer;
-    
+
 	[Event("checkChanged","org.apache.flex.events.Event")]
 	[Event("removeRequest","org.apache.flex.events.Event")]
 
     public class TodoItemRenderer extends DataItemRenderer {
-		
+
         public function TodoItemRenderer() {
             super();
 			className = "TodoItemRenderer";
         }
+
+		private var group:Group;
 
         private var checkbox:CheckBox;
         private var title:Label;
@@ -42,15 +47,23 @@ package sample.todo.renderers {
         override public function addedToParent():void {
             super.addedToParent();
 
+			group = new Group();
+			group.percentWidth = 100;
+			group.percentHeight = 100;
+			group.addBead(new HorizontalFlexLayout());
+			addElement(group);
+
             checkbox = new CheckBox();
-            addElement(checkbox);
+            group.addElement(checkbox);
 			checkbox.addEventListener("change", checkBoxChange);
 
             title = new Label();
-            addElement(title);
+            title.className = "RendererText";
+            group.addElement(title);
 
             removeButton = new Button();
-            addElement(removeButton);
+            removeButton.className = "RemoveButton";
+            group.addElement(removeButton);
 			removeButton.addEventListener("click", removeClick);
         }
 
@@ -62,18 +75,6 @@ package sample.todo.renderers {
         }
 
         override public function adjustSize():void {
-        	var hgt:Number = this.height;
-            var cy:Number = this.height / 2;
-
-            checkbox.x = 10;
-            checkbox.y = cy;
-
-            title.x = 60;
-            title.y = cy;
-
-            removeButton.x = 300;
-            removeButton.y = cy;
-
             updateRenderer();
         }
 

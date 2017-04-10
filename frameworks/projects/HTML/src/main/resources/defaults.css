@@ -631,6 +631,8 @@ global
 	}
 	
 	DataContainer {
+		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 		IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
 	}
 	

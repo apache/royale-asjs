@@ -165,7 +165,18 @@ limitations under the License.
         renderers|TodoItemRenderer {
 			backgroundColor: #FFFFFF;
             height: 40px;
+            padding: 4px;
             IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+        }
+        
+        .RendererText {
+        	flex-grow: 1;
+        }
+        
+        .RemoveButton {
+        	width: 16px;
+        	height: 16px;
+        	border: solid 1px red;
         }
     </fx:Style>
 
