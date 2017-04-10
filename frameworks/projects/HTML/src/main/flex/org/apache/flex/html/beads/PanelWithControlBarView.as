@@ -139,6 +139,8 @@ package org.apache.flex.html.beads
 			}
 			
 			super.completeSetup();
+			
+			performLayout(null);
 		}
 		
 		override protected function handleSizeChange(event:Event):void
