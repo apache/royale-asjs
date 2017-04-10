@@ -65,6 +65,7 @@ package org.apache.flex.html.supportClasses
 		 */
 		public function ScrollingViewport()
 		{
+			super();
 		}
 		
 		public function get verticalScrollPosition():Number

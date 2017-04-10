@@ -131,10 +131,11 @@ package org.apache.flex.html.beads
 			}
 			COMPILE::JS {
 				_header.element.style["flex-grow"] = "0";
+				_header.element.style["min-height"] = "30px";
 				_listArea.element.style["flex-grow"] = "1";
 			}
-
-			finishSetup(null);
+			
+			IEventDispatcher(_strand).addEventListener("initComplete", finishSetup);
 		}
 
 		/**
