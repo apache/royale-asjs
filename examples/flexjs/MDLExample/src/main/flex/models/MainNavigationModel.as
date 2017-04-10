@@ -19,6 +19,7 @@
 package models
 {
     import vos.NavigationLinkVO;
+    import org.apache.flex.collections.ArrayList;
 
     public class MainNavigationModel
     {
@@ -50,7 +51,7 @@ package models
             return _drawerNavigation;
         }
 
-        private var _componentsTabs:Array = [
+        private var _componentsTabs:ArrayList = new ArrayList([
             new NavigationLinkVO("Cards", "cards_panel"),
             new NavigationLinkVO("Chips", "chips_panel"),
             new NavigationLinkVO("Sliders", "sliders_panel"),
@@ -68,9 +69,9 @@ package models
             new NavigationLinkVO("Menu", "menus_panel"),
             new NavigationLinkVO("Badges", "badges_panel"),
             new NavigationLinkVO("Icons", "icons_panel")
-        ];
+        ]);
 
-        public function get componentsTabs():Array
+        public function get componentsTabs():ArrayList
         {
             return _componentsTabs;
         }
