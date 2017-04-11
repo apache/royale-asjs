@@ -32,7 +32,6 @@ package org.apache.flex.mdl.beads
 
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.ItemRendererEvent;
     import org.apache.flex.html.beads.IListView;
     import org.apache.flex.mdl.beads.models.ITabModel;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
@@ -75,7 +74,6 @@ package org.apache.flex.mdl.beads
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
             IEventDispatcher(value).addEventListener("initComplete",finishSetup);
         }
 
@@ -89,7 +87,6 @@ package org.apache.flex.mdl.beads
          */
         private function finishSetup(event:Event):void
         {
-            IEventDispatcher(_strand).removeEventListener("beadsAdded",finishSetup);
             IEventDispatcher(_strand).removeEventListener("initComplete",finishSetup);
 
             dataProviderModel = _strand.getBeadByType(ITabModel) as ITabModel;
@@ -100,12 +97,6 @@ package org.apache.flex.mdl.beads
 
             tabsIdField = dataProviderModel.tabIdField;
             labelField = dataProviderModel.labelField;
-
-            if (!itemRendererFactory)
-            {
-                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-                _strand.addBead(_itemRendererFactory);
-            }
 
             dataProviderChangeHandler(null);
         }
@@ -123,6 +114,14 @@ package org.apache.flex.mdl.beads
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
+			if (_itemRendererFactory == null) {
+				var factory:IItemRendererClassFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+				if (factory == null) {
+					factory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+					_strand.addBead(factory);
+				}
+				_itemRendererFactory = factory;
+			}
             return _itemRendererFactory;
         }
 
@@ -172,10 +171,6 @@ package org.apache.flex.mdl.beads
                     UIBase(ir).percentWidth = 100;
                 }
                 ir.data = dp.getItemAt(i);
-
-                var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-                newEvent.itemRenderer = ir;
-                dispatchEvent(newEvent);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
@@ -190,7 +185,8 @@ package org.apache.flex.mdl.beads
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 
             var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-            dataGroup.addElement(ir);
+            dataGroup.addItemRenderer(ir);
+            
             ir.index = dp.length - 1;
             ir.labelField = labelField;
             ir.tabIdField = tabsIdField;
@@ -203,10 +199,6 @@ package org.apache.flex.mdl.beads
                 UIBase(ir).percentWidth = 100;
             }
             ir.data = event.item;
-
-            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-            newEvent.itemRenderer = ir;
-            dispatchEvent(newEvent);
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }

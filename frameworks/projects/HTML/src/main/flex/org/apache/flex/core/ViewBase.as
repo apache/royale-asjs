@@ -48,7 +48,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ViewBase extends GroupBase implements IPopUpHost, IApplicationView, ILayoutParent, ILayoutView
+	public class ViewBase extends GroupBase implements IPopUpHost, IApplicationView
 	{
         /**
          *  Constructor.
@@ -92,14 +92,6 @@ package org.apache.flex.core
             _applicationModel = value;
             dispatchEvent(new Event("modelChanged"));
         }
-
-		/**
-		 * @private
-		 */
-		public function getLayoutHost():ILayoutHost
-		{
-			return view as ILayoutHost;
-		}
 
     }
 }

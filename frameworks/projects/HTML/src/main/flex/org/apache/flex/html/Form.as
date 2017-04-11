@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-    import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.html.Container;
 
     COMPILE::JS
     {
@@ -36,7 +36,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Form extends ContainerBase
+    public class Form extends Container
 	{
         /**
          *  Constructor.

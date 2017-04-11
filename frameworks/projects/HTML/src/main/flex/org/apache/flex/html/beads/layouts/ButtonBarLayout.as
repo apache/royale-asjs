@@ -20,14 +20,16 @@ package org.apache.flex.html.beads.layouts
 {
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.core.LayoutBase;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -35,6 +37,9 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.ButtonBarView;
 	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button
@@ -47,7 +52,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonBarLayout implements IBeadLayout
+	public class ButtonBarLayout extends HorizontalFlexLayout implements IBeadLayout
 	{
 		/**
 		 *  constructor.
@@ -59,21 +64,7 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function ButtonBarLayout()
 		{
-		}
-
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
+			super();
 		}
 
 		private var _widthType:Number = ButtonBarModel.PIXEL_WIDTHS;
@@ -100,57 +91,54 @@ package org.apache.flex.html.beads.layouts
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
 		 */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
-			var layoutHost:ILayoutHost = (_strand as ILayoutParent).getLayoutHost();
-			var contentView:ILayoutView = layoutHost.contentView;
+			var contentView:ILayoutView = layoutView;
 
-			var model:ButtonBarModel = _strand.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
 			if (model) {
 				buttonWidths = model.buttonWidths;
 				_widthType = model.widthType;
 			}
 
 			var n:int = contentView.numElements;
-			var realN:int = n;
-
-			COMPILE::JS {
-				contentView.element.style["display"] = "flex";
-				contentView.element.style["flex-flow"] = "row";
-			}
-
-			for (var j:int=0; j < n; j++)
-			{
-				var child:IUIBase = contentView.getElementAt(j) as IUIBase;
-				if (child == null || !child.visible) realN--;
-			}
-
-			var xpos:Number = 0;
-			var useWidth:Number = contentView.width / realN;
-			var useHeight:Number = contentView.height;
 
 			for (var i:int=0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = contentView.getElementAt(i) as ISelectableItemRenderer;
 				if (ir == null || !UIBase(ir).visible) continue;
+				
 				COMPILE::SWF {
-					UIBase(ir).y = 0;
-					UIBase(ir).x = xpos;
-
 					if (buttonWidths) {
 						var widthValue:* = buttonWidths[i];
 
 						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
 							if (widthValue != null) UIBase(ir).width = Number(widthValue);
+							if (UIBase(ir).style == null) {
+								UIBase(ir).style = new SimpleCSSStyles();
+							}
+							UIBase(ir).style.flexGrow = 0;
 						}
 						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
-							if (widthValue != null) UIBase(ir).width = useWidth; // - need to replicate this for SWF side element.style["flex-grow"] = String(widthValue);
+							if (widthValue != null) {
+								if (UIBase(ir).style == null) {
+									UIBase(ir).style = new SimpleCSSStyles();
+								}
+								UIBase(ir).style.flexGrow = Number(widthValue);
+							}
 						}
 						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
 							if (widthValue != null) UIBase(ir).percentWidth = Number(widthValue);
+							if (UIBase(ir).style == null) {
+								UIBase(ir).style = new SimpleCSSStyles();
+							}
+							UIBase(ir).style.flexGrow = 0;
 						}
 					} else {
-						UIBase(ir).width = useWidth;
+						if (UIBase(ir).style == null) {
+							UIBase(ir).style = new SimpleCSSStyles();
+						}
+						UIBase(ir).style.flexGrow = 1;
 					}
 				}
 
@@ -169,13 +157,15 @@ package org.apache.flex.html.beads.layouts
 							if (widthValue != null) UIBase(ir).percentWidth = Number(widthValue);
 						}
 					} else {
-						UIBase(ir).width = useWidth;
+						UIBase(ir).element.style["flex-grow"] = "1";
 					}
+					
+					UIBase(ir).height = contentView.height;
 				}
-				xpos += UIBase(ir).width;
 			}
 
-            return true;
+			// now let the horizontal layout take care of things.
+			return super.layout();
 		}
 	}
 }

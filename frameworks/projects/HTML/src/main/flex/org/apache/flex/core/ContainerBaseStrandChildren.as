@@ -43,10 +43,10 @@ package org.apache.flex.core
 		{
 			super();
 			
-			this.owner = owner as ContainerBase;
+			this.owner = owner as IStrandPrivate;
 		}
 		
-		public var owner:ContainerBase;
+		public var owner:IStrandPrivate;
 		
 		/**
 		 *  @private

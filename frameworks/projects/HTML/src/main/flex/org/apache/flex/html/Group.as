@@ -18,17 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.GroupBase;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IMXMLDocument;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.GroupBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.utils.MXMLDataInterpreter;
@@ -42,9 +33,10 @@ package org.apache.flex.html
 	 *  @productversion FlexJS 0.8
 	 */
 	[Event(name="childrenAdded", type="org.apache.flex.events.Event")]
-
+	
 	/**
-	 * Default property
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
 	 */
 	[DefaultProperty("mxmlContent")]
 
@@ -61,7 +53,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class Group extends GroupBase implements ILayoutParent, ILayoutView
+	public class Group extends GroupBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -75,18 +67,79 @@ package org.apache.flex.html
 		{
 			super();
 		}
-
+		
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
+		
 		/**
-		 * Returns the ILayoutHost which is its view. From ILayoutParent.
-		 *
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function getLayoutHost():ILayoutHost
+		public function get MXMLDescriptor():Array
 		{
-			return view as ILayoutHost;
+			return _mxmlDescriptor;
 		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public var mxmlContent:Array;
 	}
 }

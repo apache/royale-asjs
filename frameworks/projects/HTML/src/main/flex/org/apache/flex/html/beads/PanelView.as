@@ -243,6 +243,8 @@ package org.apache.flex.html.beads
 			}
 
 			super.completeSetup();
+			
+			performLayout(null);
 		}
 
 		protected function handleSizeChange(event:Event):void

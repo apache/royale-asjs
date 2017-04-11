@@ -117,6 +117,8 @@ package org.apache.flex.html.beads
 			return daysContainer;
 		}
 		
+		private const controlHeight:int = 26;
+		private const commonButtonWidth:int = 40;
 		
 		/**
 		 * @private
@@ -126,7 +128,8 @@ package org.apache.flex.html.beads
 			// HEADER BUTTONS
 			
 			monthButtonsContainer = new Group();
-			monthButtonsContainer.id = "DateChooserMonthButtons";
+			monthButtonsContainer.height = controlHeight;
+			monthButtonsContainer.id = "dateChooserMonthButtons";
 			monthButtonsContainer.className = "DateChooserMonthButtons";
 			monthButtonsContainer.style = new SimpleCSSStyles();
 			monthButtonsContainer.style.flexGrow = 0;
@@ -135,7 +138,7 @@ package org.apache.flex.html.beads
 			}
 			
 			_prevMonthButton = new DateHeaderButton();
-			_prevMonthButton.width = 40;
+			_prevMonthButton.width = commonButtonWidth;
 			_prevMonthButton.text = "<";
 			if (_prevMonthButton.style == null) {
 				_prevMonthButton.style = new SimpleCSSStyles();
@@ -158,7 +161,7 @@ package org.apache.flex.html.beads
 			monthButtonsContainer.addElement(monthLabel);
 			
 			_nextMonthButton = new DateHeaderButton();
-			_nextMonthButton.width = 40;
+			_nextMonthButton.width = commonButtonWidth;
 			_nextMonthButton.text = ">";
 			if (_nextMonthButton.style == null) {
 				_nextMonthButton.style = new SimpleCSSStyles();
@@ -174,24 +177,32 @@ package org.apache.flex.html.beads
 			// DAY NAMES
 			
 			dayNamesContainer = new DateChooserHeader();
-			dayNamesContainer.id = "DateChooserDayNames";
-			dayNamesContainer.percentWidth = 100;
+			dayNamesContainer.id = "dateChooserDayNames";
+			dayNamesContainer.className = "DateChooserHeader";
+			dayNamesContainer.height = controlHeight;
 			dayNamesContainer.style = new SimpleCSSStyles();
 			dayNamesContainer.style.flexGrow = 0;
 			COMPILE::JS {
 				dayNamesContainer.element.style["flex-grow"] = "0";
+				dayNamesContainer.element.style["align-items"] = "center";
+			}
+			COMPILE::SWF {
+				dayNamesContainer.percentWidth = 100;
 			}
 			UIBase(_strand).addElement(dayNamesContainer, false);
 			
 			// DAYS
 			
 			daysContainer = new DateChooserList();
-			daysContainer.id = "DateChooserList";
-			daysContainer.percentWidth = 100;
+			daysContainer.className = "DateChooserList";
+			daysContainer.id = "dateChooserList";
 			daysContainer.style = new SimpleCSSStyles();
 			daysContainer.style.flexGrow = 1;
 			COMPILE::JS {
 				daysContainer.element.style["flex-grow"] = "1";
+			}
+			COMPILE::SWF {
+				daysContainer.percentWidth = 100;
 			}
 			UIBase(_strand).addElement(daysContainer, false);
 			

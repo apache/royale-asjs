@@ -41,7 +41,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGrid extends UIBase
+	public class DataGrid extends Group
 	{
 		/**
 		 *  constructor.

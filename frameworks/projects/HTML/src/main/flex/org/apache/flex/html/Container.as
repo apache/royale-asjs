@@ -18,13 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IContainer;
+	import org.apache.flex.core.ContainerBase;
+	import org.apache.flex.core.IMXMLDocument;
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 	
-	COMPILE::SWF {
-		import org.apache.flex.core.IChild;
-		import org.apache.flex.core.ILayoutHost;
-		import org.apache.flex.core.IParent;
-	}
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("mxmlContent")]
+
 	
     /**
      *  The Container class implements a basic container for
@@ -62,7 +67,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends Group implements IContainer
+	public class Container extends ContainerBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -75,83 +80,80 @@ package org.apache.flex.html
 		public function Container()
 		{
 			super();
-		} 
-		
-		/**
-		 * @private
-		 * This is a hidden function used by ContainerView to insert the nested contentView
-		 * into this outer shell.
-		 */
-		COMPILE::SWF
-		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.addElement(c, dispatchEvent);
 		}
+		
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
 		
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		override public function addedToParent():void
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElement(c, dispatchEvent);
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why is this here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will have already called it
+			}
 		}
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
-		COMPILE::SWF
-		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		public function get MXMLDescriptor():Array
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.addElementAt(c, index, dispatchEvent);
+			return _mxmlDescriptor;
 		}
 		
 		/**
-		 * @private
+		 *  @private
 		 */
-		COMPILE::SWF
-		override public function getElementIndex(c:IChild):int
+		public function setMXMLDescriptor(document:Object, value:Array):void
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementIndex(c);
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
 		}
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
-		COMPILE::SWF
-		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+		public function generateMXMLAttributes(data:Array):void
 		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			contentView.removeElement(c, dispatchEvent);
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
 		}
 		
 		/**
-		 * @private
+		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
 		 */
-		COMPILE::SWF
-		override public function get numElements():int
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.numElements;
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function getElementAt(index:int):IChild
-		{
-			var layoutHost:ILayoutHost = view as ILayoutHost;
-			var contentView:IParent = layoutHost.contentView as IParent;
-			return contentView.getElementAt(index);
-		}
+		public var mxmlContent:Array;
 	}
 }

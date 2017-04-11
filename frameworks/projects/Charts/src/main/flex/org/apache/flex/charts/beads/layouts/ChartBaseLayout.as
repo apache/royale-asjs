@@ -79,7 +79,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get horizontalAxisBead():IHorizontalAxisBead
 		{
 			if (_xAxis == null) {
-				if (chart.getBeadByType(IHorizontalAxisBead)) _xAxis = chart.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+				if (_strand.getBeadByType(IHorizontalAxisBead)) _xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			}
 			return _xAxis;
 		}
@@ -97,7 +97,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get verticalAxisBead():IVerticalAxisBead
 		{
 			if (_yAxis == null) {
-				if (chart.getBeadByType(IVerticalAxisBead)) _yAxis = chart.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+				if (_strand.getBeadByType(IVerticalAxisBead)) _yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			}
 			return _yAxis;
 		}
@@ -116,7 +116,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get chartDataGroup():IChartDataGroup
 		{
 			if (_chartDataGroup == null) {
-				var layoutParent:ILayoutHost = chart.getBeadByType(ILayoutHost) as ILayoutHost;
+				var layoutParent:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
 				_chartDataGroup = layoutParent.contentView as IChartDataGroup;
 			}
 			return _chartDataGroup;

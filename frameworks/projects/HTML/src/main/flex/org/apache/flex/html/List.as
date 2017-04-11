@@ -18,38 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.ContainerBaseStrandChildren;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IFactory;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ListBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.ListView;
-        import org.apache.flex.html.supportClasses.DataGroup;
-    }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ListPresentationModel;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
 
-	import org.apache.flex.core.IList;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IItemRendererProvider;
-	import org.apache.flex.core.ListBase;
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
 
 	/**
 	 *  Indicates that the initialization of the list is complete.

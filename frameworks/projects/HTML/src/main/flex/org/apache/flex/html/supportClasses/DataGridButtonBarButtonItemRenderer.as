@@ -67,7 +67,6 @@ package org.apache.flex.html.supportClasses
 			if (textButton == null) {
 				textButton = new DataGridButtonBarTextButton();
 				textButton.percentWidth = 100;
-				textButton.percentHeight = 100;
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.

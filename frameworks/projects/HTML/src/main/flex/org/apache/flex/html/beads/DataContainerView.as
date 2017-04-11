@@ -62,21 +62,45 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
-		protected var dataModel:IDataProviderModel;
-		
-		public function get dataGroup():IItemRendererParent
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		override public function set strand(value:IStrand):void
 		{
-			return (_strand as IList).dataGroup;
+			_strand = value;
+			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
-		override protected function beadsAddedHandler(event:Event):void
+		protected var dataModel:IDataProviderModel;
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IItemRendererParent
+		 */
+		public function get dataGroup():IItemRendererParent
 		{
-			
+			return super.contentView as IItemRendererParent;
+		}
+		
+		protected function beadsAddedHandler(event:Event):void
+		{
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
-			super.beadsAddedHandler(event);
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
 		}
 		
 		/**
@@ -126,6 +150,8 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
 		override protected function completeSetup():void
@@ -139,12 +165,15 @@ package org.apache.flex.html.beads
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 		}
 		
-		override protected function beadsAddedHandler(event:Event):void
+		protected function beadsAddedHandler(event:Event):void
 		{
-			super.beadsAddedHandler(event);
-			
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
 		}
 		
 		/**
@@ -157,7 +186,7 @@ package org.apache.flex.html.beads
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			return (_strand as IList).dataGroup;
+			return super.contentView as IItemRendererParent;
 		}
 				
 		/**

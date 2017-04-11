@@ -19,6 +19,7 @@
 package org.apache.flex.charts.core
 {
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.geom.Point;
 
 	/**
@@ -30,7 +31,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public interface IChartDataGroup extends IItemRendererParent
+	public interface IChartDataGroup extends IItemRendererParent, ILayoutView
 	{
 		/**
 		 *  Returns the itemRenderer that matches both the series and child index value.

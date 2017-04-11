@@ -146,7 +146,7 @@ package org.apache.flex.html.beads
             createViewport();
 
 			var chost:IContainer = host as IContainer;
-			chost.$addElement(viewport.contentView);
+			chost.strandChildren.addElement(viewport.contentView);
 
 			super.strand = value;
 		}
@@ -167,10 +167,6 @@ package org.apache.flex.html.beads
 			// when the first layout is complete, set up listeners for changes
 			// to the childrens' sizes.
 			host.addEventListener("layoutComplete", childrenChangedHandler);
-
-			host.addEventListener("widthChanged", resizeHandler);
-			host.addEventListener("heightChanged", resizeHandler);
-			host.addEventListener("sizeChanged", resizeHandler);
 		}
 
 		/**
@@ -286,7 +282,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function resizeHandler(event:Event):void
+		override protected function resizeHandler(event:Event):void
 		{
 			if (!adjusting) {
 				performLayout(event);
@@ -315,24 +311,6 @@ package org.apache.flex.html.beads
 				child.addEventListener("sizeChanged", childResizeHandler);
 			}
 		}
-
-		/**
-		 * This event handles changes to the size of children of the container by running
-		 * the layout again and adjusting the size of the container or viewport as necessary.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		protected function childResizeHandler(event:Event):void
-		{
-			// during this process we don't want the layout to trigger
-			// an endless event chain should any children get resized
-			// by the layout.
-			if (layoutRunning) return;
-			performLayout(event);
-		}
 	}
 
 	COMPILE::JS
@@ -352,6 +330,24 @@ package org.apache.flex.html.beads
 		protected function get viewport():IViewport
 		{
 			return _viewport;
+		}
+		
+		/**
+		 * The sub-element used as the parent of the container's elements. This does not
+		 * include the chrome elements.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function get contentView():ILayoutView
+		{
+			if (viewport != null) {
+				return viewport.contentView as ILayoutView;
+			} else {
+				return host as ILayoutView;
+			}
 		}
 
 		/**
@@ -378,6 +374,16 @@ package org.apache.flex.html.beads
 						_viewport = new c() as IViewport;
 						_strand.addBead(viewport);
 					}
+				}
+			}
+			
+			if (viewport != null) {
+				var chost:IContainer = host as IContainer;
+				// add the viewport's contentView to this host ONLY if
+				// the contentView is not the host itself, which is likely
+				// most situations.
+				if (chost != viewport.contentView) {
+					chost.addElement(viewport.contentView);
 				}
 			}
 		}

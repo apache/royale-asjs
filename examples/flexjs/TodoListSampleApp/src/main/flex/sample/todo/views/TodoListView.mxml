@@ -23,6 +23,32 @@ limitations under the License.
 				initComplete="setup()" 
 				xmlns:renderers="sample.todo.renderers.*">
 
+    <fx:Style>
+        @namespace basic "library://ns.apache.org/flexjs/basic";
+        @namespace renderers "sample.todo.renderers.*";
+
+        renderers|TodoItemRenderer2 {
+			backgroundColor: #FFFF;
+            height: 40px;
+            padding: 4px;
+            IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+        }
+        
+        .RendererText {
+        	flex-grow: 1;
+        }
+        
+        .RemoveButton {
+        	width: 16px;
+        	height: 16px;
+        	border: solid 1px red;
+        }
+        
+        .StatusText {
+        	flex-grow: 1;
+        }
+    </fx:Style>
+    
     <fx:Script>
 		<![CDATA[
 			import org.apache.flex.events.Event;
@@ -127,7 +153,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 
-    <js:Panel title="FlexJS TODO List" width="600">
+    <js:PanelWithControlBar title="FlexJS TODO List" width="600">
         <js:beads>
             <js:VerticalLayout/>
         </js:beads>
@@ -147,26 +173,13 @@ limitations under the License.
 			</js:beads>
         </js:List>
 
-        <js:Container>
-            <js:beads>
-                <js:HorizontalLayout/>
-            </js:beads>
-            <js:Label id="statusLabel" text="N items left" width="295"/>
-            <svg:TextButton text="All" width="100" height="30" click="showAll()" />
-            <svg:TextButton text="Active" width="100" height="30" click="showActive()" />
-            <svg:TextButton text="Completed" width="100" height="30" click="showCompleted()" />
-        </js:Container>
-    </js:Panel>
-
-    <fx:Style>
-        @namespace basic "library://ns.apache.org/flexjs/basic";
-        @namespace renderers "sample.todo.renderers.*";
-
-        renderers|TodoItemRenderer {
-			backgroundColor: #FFFFFF;
-            height: 40px;
-            IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
-        }
-    </fx:Style>
+		<js:controlBar>
+            <js:Label id="statusLabel" text="N items left" className="StatusText" />
+            <svg:TextButton text="All" width="100" click="showAll()" />
+            <svg:TextButton text="Active" width="100" click="showActive()" />
+            <svg:TextButton text="Completed" width="100" click="showCompleted()" />
+		</js:controlBar>
+		
+    </js:PanelWithControlBar>
 
 </js:View>

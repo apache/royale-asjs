@@ -16,32 +16,38 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
-{	
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IContentView;
-    import org.apache.flex.core.IItemRenderer;
-    import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.IEventDispatcher;
+package org.apache.flex.core
+{
+	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.html.beads.IListView;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ItemAddedEvent;
 	import org.apache.flex.events.ItemClickedEvent;
 	import org.apache.flex.events.ItemRemovedEvent;
-
+	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.flex.states.State;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	
+	/**
+	 *  Indicates that the initialization of the list is complete.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+    
     /**
-     *  The DataGroup class is the IItemRendererParent used internally
-     *  by org.apache.flex.html.List class.
+     *  The DataContainerBase class is the base class for components that
+	 *  that have generated content, like lists.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class DataGroup extends ContainerContentArea implements IItemRendererParent
+	public class DataContainerBase extends ContainerBase implements IItemRendererParent, IList
 	{
         /**
          *  Constructor.
@@ -51,9 +57,126 @@ package org.apache.flex.html.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function DataGroup()
+		public function DataContainerBase()
 		{
 			super();
+		}
+		
+		/*
+		* UIBase
+		*/
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			super.createElement();
+			className = 'DataContainer';
+			
+			return element;
+		}
+		
+		private var _DCinitialized:Boolean;
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_DCinitialized)
+			{
+				ValuesManager.valuesImpl.init(this);
+				_DCinitialized = true;
+			}
+			
+			super.addedToParent();
+			
+			// Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
+			// and item factory beads. These beads are added after super.addedToParent is called in case substitutions
+			// were made; these are just defaults extracted from CSS.
+			
+			if (getBeadByType(IDataProviderItemRendererMapper) == null)
+			{
+				var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
+				addBead(mapper);
+			}
+			var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (!itemRendererFactory)
+			{
+				itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+				addBead(itemRendererFactory);
+			}
+			
+			dispatchEvent(new Event("initComplete"));
+		}
+		
+		/*
+		 * IList
+		 */
+		
+		/**
+		 * Returns the sub-component that parents all of the item renderers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get dataGroup():IItemRendererParent
+		{
+			// The JS-side's view.dataGroup is actually this instance of DataContainerBase
+			return (view as IListView).dataGroup;
+		}
+		
+		/*
+		* IItemRendererProvider
+		*/
+		
+		private var _itemRenderer:IFactory;
+		
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
+		}
+		
+		/**
+		 * Returns whether or not the itemRenderer property has been set.
+		 *
+		 *  @see org.apache.flex.core.IItemRendererProvider
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function get hasItemRenderer():Boolean
+		{
+			var result:Boolean = false;
+			
+			COMPILE::SWF {
+				result = _itemRenderer != null;
+			}
+				
+				COMPILE::JS {
+					var test:* = _itemRenderer;
+					result = _itemRenderer !== null && test !== undefined;
+				}
+				
+				return result;
 		}
 		
 		/*
@@ -76,7 +199,7 @@ package org.apache.flex.html.supportClasses
 			var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
 			newEvent.item = renderer;
 			
-			(host as IEventDispatcher).dispatchEvent(newEvent);
+			dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -95,7 +218,7 @@ package org.apache.flex.html.supportClasses
 			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
 			newEvent.item = renderer;
 			
-			(host as IEventDispatcher).dispatchEvent(newEvent);
+			dispatchEvent(newEvent);
 		}
 		
 		/**
@@ -111,7 +234,7 @@ package org.apache.flex.html.supportClasses
 		{
 			while (numElements > 0) {
 				var child:IChild = getElementAt(0);
-				removeItemRenderer(child as IItemRenderer);
+				removeElement(child);
 			}
 		}
 		
@@ -150,5 +273,6 @@ package org.apache.flex.html.supportClasses
 				}
 			}
 		}
-	}
+
+    }
 }

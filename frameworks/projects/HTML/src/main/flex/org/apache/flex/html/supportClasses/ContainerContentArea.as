@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -33,7 +35,7 @@ package org.apache.flex.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerContentArea extends UIBase implements ILayoutView
+	public class ContainerContentArea extends UIBase implements IBead, ILayoutView
 	{
         /**
          *  Constructor.
@@ -47,6 +49,13 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
             addEventListener("layoutNeeded", forwardEventHandler);
+		}
+		
+		protected var host:IStrand;
+		
+		public function set strand(value:IStrand):void
+		{
+			host = value;
 		}
 
         private function forwardEventHandler(event:Event):void

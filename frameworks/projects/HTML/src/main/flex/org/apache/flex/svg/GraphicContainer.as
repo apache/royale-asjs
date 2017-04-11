@@ -37,7 +37,7 @@ package org.apache.flex.svg
     }
 
 	COMPILE::JS
-	public class GraphicContainer extends UIBase implements ITransformHost, IContainer
+	public class GraphicContainer extends ContainerBase implements ITransformHost
 	{
 		private var graphicGroup:ContainerBase;
 
@@ -134,19 +134,6 @@ package org.apache.flex.svg
 			graphicGroup.removeElement(c, dispatchEvent);
 			if (dispatchEvent)
 				this.dispatchEvent(new Event("childrenRemoved"));
-		}
-
-		/**
-		 *  @copy org.apache.flex.core.IContainer#childrenAdded()
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function childrenAdded():void
-		{
-			dispatchEvent(new Event("childrenAdded"));
 		}
 
 		/**

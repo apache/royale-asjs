@@ -337,9 +337,9 @@ public class MXMLDataInterpreter
      */
     public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
-		if (!data) return;
-		
-        generateMXMLArray(document, parent, data);
+		if (data != null) {
+        	generateMXMLArray(document, parent, data);
+		}
         // maybe we can remove this.  All IContainers should be IMXMLDocuments?
         if (parent is IContainer)
         {

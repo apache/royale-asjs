@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IContentViewHost;
+	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.ValueChangeEvent;
@@ -60,12 +62,6 @@ package org.apache.flex.core
      */
     [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
     
-	/**
-	 * The default property uses when additional MXML content appears within an element's
-	 * definition in an MXML file.
-	 */
-	[DefaultProperty("mxmlContent")]
-    
     /**
      *  The GroupBase class is the base class for most simple containers
      *  in FlexJS.  It is usable as the root tag of MXML
@@ -76,7 +72,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class GroupBase extends UIBase implements IMXMLDocument, IStatesObject, IContentViewHost
+	public class GroupBase extends UIBase implements IStatesObject, IContainer, ILayoutParent, ILayoutView, IContentViewHost
 	{
         /**
          *  Constructor.
@@ -104,6 +100,10 @@ package org.apache.flex.core
 			
 			return element;
 		}
+		
+		/*
+		 * IContainer
+		 */
         
         /**
          *  @private
@@ -113,29 +113,38 @@ package org.apache.flex.core
             dispatchEvent(new Event("childrenAdded"));
         }
 		
-		/**
-		 * @private
+		/*
+		 * Utility
 		 */
-		override public function addedToParent():void
+		
+		/**
+		 * Dispatches a "layoutNeeded" event
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		public function layoutNeeded():void
 		{
-			if (!_initialized)
-			{
-				// each MXML file can also have styles in fx:Style block
-				ValuesManager.valuesImpl.init(this);
-			}
-			
-			super.addedToParent();
-			
-			if (!_initialized)
-			{
-				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-				
-				dispatchEvent(new Event("initBindings"));
-				dispatchEvent(new Event("initComplete"));
-				_initialized = true;
-				
-				childrenAdded();
-			}
+			dispatchEvent( new Event("layoutNeeded") );
+		}
+		
+		/*
+		 * ILayoutParent
+		 */
+		
+		/**
+		 * Returns the ILayoutHost which is its view. From ILayoutParent.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function getLayoutHost():ILayoutHost
+		{
+			return view as ILayoutHost;
 		}
 		
 		/**
@@ -150,55 +159,6 @@ package org.apache.flex.core
 		{
 			return this;
 		}
-
-        private var _mxmlDescriptor:Array;
-        private var _mxmlDocument:Object = this;
-        private var _initialized:Boolean;
-        
-        /**
-         *  @copy org.apache.flex.core.Application#MXMLDescriptor
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-		public function get MXMLDescriptor():Array
-		{
-			return _mxmlDescriptor;
-		}
-
-        /**
-         *  @private
-         */
-        public function setMXMLDescriptor(document:Object, value:Array):void
-        {
-            _mxmlDocument = document;
-            _mxmlDescriptor = value;
-        }
-
-        /**
-         *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-		public function generateMXMLAttributes(data:Array):void
-		{
-            MXMLDataInterpreter.generateMXMLProperties(this, data);
-		}
-		
-        /**
-         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-		public var mxmlContent:Array;
 		
         private var _states:Array;
         

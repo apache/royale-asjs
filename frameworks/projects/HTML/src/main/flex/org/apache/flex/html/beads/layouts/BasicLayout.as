@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-
+	import org.apache.flex.core.LayoutBase;
+	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutHost;
@@ -44,7 +45,7 @@ package org.apache.flex.html.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class BasicLayout implements IBeadLayout
+	public class BasicLayout extends LayoutBase implements IBeadLayout
 	{
         /**
          *  Constructor.
@@ -56,24 +57,7 @@ package org.apache.flex.html.beads.layouts
          */
 		public function BasicLayout()
 		{
-		}
-
-        // the strand/host container is also an ILayoutChild because
-        // can have its size dictated by the host's parent which is
-        // important to know for layout optimization
-        private var host:ILayoutChild;
-
-        /**
-         *  @copy org.apache.flex.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-            host = value as ILayoutChild;
+			super();
 		}
 
         /**
@@ -81,12 +65,11 @@ package org.apache.flex.html.beads.layouts
 		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
 		 * @flexjsignorecoercion org.apache.flex.core.UIBase
          */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
             COMPILE::SWF
             {
-				var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:ILayoutView = viewBead.contentView;
+				var contentView:ILayoutView = layoutView;
 
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -96,111 +79,88 @@ package org.apache.flex.html.beads.layouts
 
 				var n:int = contentView.numElements;
 
-                var gotMargin:Boolean;
-                var marginLeft:Object;
-                var marginRight:Object;
-                var marginTop:Object;
-                var marginBottom:Object;
-                var margin:Object;
-
                 for (var i:int = 0; i < n; i++)
                 {
                     var child:IUIBase = contentView.getElementAt(i) as IUIBase;
 					if (child == null || !child.visible) continue;
 
-                    var left:Number = ValuesManager.valuesImpl.getValue(child, "left");
-                    var right:Number = ValuesManager.valuesImpl.getValue(child, "right");
-                    var top:Number = ValuesManager.valuesImpl.getValue(child, "top");
-                    var bottom:Number = ValuesManager.valuesImpl.getValue(child, "bottom");
+					var positions:Object = childPositions(child);
+					var margins:Object = childMargins(child, contentView.width, contentView.height);
                     var ww:Number = w;
                     var hh:Number = h;
-
-					margin = ValuesManager.valuesImpl.getValue(child, "margin");
-					marginLeft = ValuesManager.valuesImpl.getValue(child, "margin-left");
-					marginTop = ValuesManager.valuesImpl.getValue(child, "margin-top");
-					marginRight = ValuesManager.valuesImpl.getValue(child, "margin-right");
-					marginBottom = ValuesManager.valuesImpl.getValue(child, "margin-bottom");
-					var ml:Number = CSSUtils.getLeftValue(marginLeft, margin, contentView.width);
-					var mr:Number = CSSUtils.getRightValue(marginRight, margin, contentView.width);
-					var mt:Number = CSSUtils.getTopValue(marginTop, margin, contentView.height);
-					var mb:Number = CSSUtils.getBottomValue(marginBottom, margin, contentView.height);
-					if (marginLeft == "auto")
-						ml = 0;
-					if (marginRight == "auto")
-						mr = 0;
 
                     var ilc:ILayoutChild = child as ILayoutChild;
 
 					// set the top edge of the child
-                    if (!isNaN(left))
+                    if (!isNaN(positions.left))
                     {
                         if (ilc)
-                            ilc.setX(left+ml);
+                            ilc.setX(positions.left+margins.left);
                         else
-                            child.x = left+ml;
-                        ww -= left + ml;
+                            child.x = positions.left+margins.left;
+                        ww -= positions.left + margins.left;
                     }
 
 					// set the left edge of the child
-                    if (!isNaN(top))
+                    if (!isNaN(positions.top))
                     {
                         if (ilc)
-                            ilc.setY(top+mt);
+                            ilc.setY(positions.top+margins.top);
                         else
-                            child.y = top+mt;
-                        hh -= top + mt;
+                            child.y = positions.top+margins.top;
+                        hh -= positions.top + margins.top;
                     }
 
 					// set the right edge of the child
-					if (!isNaN(right))
+					if (!isNaN(positions.right))
 					{
 						if (!hostWidthSizedToContent)
 						{
-							if (!isNaN(left))
+							if (!isNaN(positions.left))
 							{
 								if (ilc)
-									ilc.setWidth(ww - right - mr, false);
+									ilc.setWidth(ww - positions.right - margins.right, false);
 								else
-									child.width = ww - right - mr;
+									child.width = ww - positions.right - margins.right;
 							}
 							else
 							{
 								if (ilc)
-									ilc.setX( w - right - mr - child.width - mr);
+									ilc.setX( w - positions.right - margins.left - child.width - margins.right);
 								else
-									child.x = w - right - mr - child.width - mr;
+									child.x = w - positions.right - margins.left - child.width - margins.right;
 							}
 						}
 					}
 					else if (ilc != null && !isNaN(ilc.percentWidth) && !hostWidthSizedToContent)
 					{
-						ilc.setWidth((ww - mr - ml) * ilc.percentWidth/100, false);
+						ilc.setWidth((ww - margins.right - margins.left) * ilc.percentWidth/100, false);
 					}
 
 					// set the bottm edge of the child
-					if (!isNaN(bottom))
+					if (!isNaN(positions.bottom))
 					{
 						if (!hostHeightSizedToContent)
 						{
-							if (!isNaN(top))
+							if (!isNaN(positions.top))
 							{
 								if (ilc)
-									ilc.setHeight(hh - bottom - mb, false);
+									ilc.setHeight(hh - positions.bottom - margins.bottom, false);
 								else
-									child.height = hh - bottom - mb;
+									child.height = hh - positions.bottom - margins.bottom;
 							}
 							else
 							{
 								if (ilc)
-									ilc.setY( h - bottom - child.height - mb);
+									ilc.setY( h - positions.bottom - child.height - margins.bottom);
 								else
-									child.y = h - bottom - child.height - mb;
+									child.y = h - positions.bottom - child.height - margins.bottom;
 							}
 						}
 					}
 					else if (ilc != null && !isNaN(ilc.percentHeight) && !hostHeightSizedToContent)
 					{
-						ilc.setHeight((hh - mt - mb) * ilc.percentHeight/100, false);
+						ilc.setHeight((hh - margins.top - margins.bottom) * ilc.percentHeight/100, false);
 					}
                 }
 
@@ -212,9 +172,7 @@ package org.apache.flex.html.beads.layouts
             {
                 var i:int
                 var n:int;
-
-                var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-                var contentView:ILayoutView = viewBead.contentView;
+				var contentView:ILayoutView = layoutView;
 
                 n = contentView.numElements;
 

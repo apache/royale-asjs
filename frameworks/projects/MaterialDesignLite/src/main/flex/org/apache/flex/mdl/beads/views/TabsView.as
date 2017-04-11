@@ -94,11 +94,10 @@ package org.apache.flex.mdl.beads.views
             }
 
             _tabBar.model = (value as IStrandWithModel).model;
-
-            if (isTabsDynamic())
+            
+            if (!isTabsDynamic())
             {
                 _tabBar.addEventListener("itemsCreated", tabBarItemsCreatedHandler);
-                _tabBar.addBead(new TabsItemRendererFactoryForArrayListData());
             }
         }
 
@@ -106,7 +105,7 @@ package org.apache.flex.mdl.beads.views
         {
             super.itemsCreatedHandler(event);
 
-            completeSetup();
+            completeTabBarSetup();
         }
 
         private function tabBarItemsCreatedHandler(event:Event):void
@@ -114,17 +113,9 @@ package org.apache.flex.mdl.beads.views
             forceUpgradeTabs();
         }
 
-        /**
-		 *  complete setup
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        protected function completeSetup():void
+        protected function completeTabBarSetup():void
         {
-            var tb:TabBar = (host as IContentViewHost).strandChildren.getElementAt(0) as TabBar;
+			var tb:TabBar = (host as IContentViewHost).getElementAt(0) as TabBar;
             if (!tb)
             {
                 (host as IContentViewHost).strandChildren.addElementAt(tabBar, 0);
