@@ -52,6 +52,15 @@ package org.apache.flex.charts.core
 		public function ChartBase()
 		{
 			super();
+			
+			COMPILE::SWF {
+				// give charts a default size to help their layouts
+				setWidthAndHeight(200, 200, true);
+			}
+			
+			COMPILE::JS {
+				element.style.position = "relative";
+			}
 		}
 		
 		private var _series:Array;
