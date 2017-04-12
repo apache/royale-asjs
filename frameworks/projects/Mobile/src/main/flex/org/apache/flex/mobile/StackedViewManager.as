@@ -26,6 +26,7 @@ package org.apache.flex.mobile
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.flex.mobile.beads.StackedViewManagerView;
 	
 	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
 	
@@ -127,6 +128,22 @@ package org.apache.flex.mobile
 		{
 			return _topView;
 		}
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+//			var tabbedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
+//			
+//			var n:int = ViewManagerModel(model).views.length;
+//			if (n > 0) {
+//				var view:IViewManagerView = ViewManagerModel(model).views[0] as IViewManagerView;
+//				push(view);
+//			}
+		}
 
 		
 		/**
@@ -142,13 +159,15 @@ package org.apache.flex.mobile
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
 			
-			if (_topView != null) {
-				removeElement(_topView);
-			}
-			_topView = nextView;
-			addElement(_topView);
-			
-			dispatchEvent( new Event("viewChanged") );
+//			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
+//			
+//			if (_topView != null) {
+//				stackedView.contentArea.removeElement(_topView);
+//			}
+//			_topView = nextView;
+//			stackedView.contentArea.addElement(_topView);
+//			
+//			dispatchEvent( new Event("viewChanged") );
 		}
 		
 		/**
@@ -161,14 +180,16 @@ package org.apache.flex.mobile
 		 */
 		public function pop():void
 		{
-			if (ViewManagerModel(model).views.length > 1) {
-				var lastView:IChild = ViewManagerModel(model).popView() as IChild;
-				removeElement(_topView);
-				addElement(lastView);
-				_topView = lastView as IViewManagerView;
-				
-				dispatchEvent( new Event("viewChanged") );
-			}
+			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
+			
+//			if (ViewManagerModel(model).views.length > 1) {
+//				var lastView:IChild = ViewManagerModel(model).popView() as IChild;
+//				stackedView.contentArea.removeElement(_topView);
+//				stackedView.contentArea.addElement(lastView);
+//				_topView = lastView as IViewManagerView;
+//				
+//				dispatchEvent( new Event("viewChanged") );
+//			}
 		}
 
 	}

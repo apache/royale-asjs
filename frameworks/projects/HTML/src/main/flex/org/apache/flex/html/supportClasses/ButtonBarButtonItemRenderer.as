@@ -26,6 +26,11 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ITextItemRenderer;
 	import org.apache.flex.events.ItemClickedEvent;
+	
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;            
+	}
 
 	/**
 	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the 
@@ -50,6 +55,18 @@ package org.apache.flex.html.supportClasses
 		public function ButtonBarButtonItemRenderer()
 		{
 			super();
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion HTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			var result:WrappedHTMLElement = super.createElement();
+			trace("Element "+element+"; positioner "+positioner);
+			return result;
 		}
 		
 		protected var textButton:TextButton;
@@ -96,8 +113,14 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function setWidth(value:Number, noEvent:Boolean = false):void
 		{
-			super.setWidth(value, noEvent);
+			super.setWidth(value, true);
 			textButton.width = value;
+			COMPILE::SWF {
+				textButton.height = height;
+			}
+			COMPILE::JS {
+				textButton.percentHeight = 100;
+			}
 		}
 		
 		/**
@@ -105,8 +128,14 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function setHeight(value:Number, noEvent:Boolean = false):void
 		{
-			super.setHeight(value, noEvent);
+			super.setHeight(value, true);
 			textButton.height = value;
+			COMPILE::SWF {
+				textButton.width = width;
+			}
+			COMPILE::JS {
+				textButton.percentWidth = 100;
+			}
 		}
 		
 		/**
@@ -125,7 +154,6 @@ package org.apache.flex.html.supportClasses
 			var added:Boolean = false;
 			if (textButton == null) {
 				textButton = new TextButton();
-				textButton.percentWidth = 100;
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.
