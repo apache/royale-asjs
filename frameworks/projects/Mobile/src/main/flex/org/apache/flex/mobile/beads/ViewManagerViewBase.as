@@ -28,6 +28,7 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.html.beads.GroupView;
 	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -41,7 +42,7 @@ package org.apache.flex.mobile.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ViewManagerViewBase implements IBeadView
+	public class ViewManagerViewBase extends GroupView implements IBeadView
 	{
 		/**
 		 * Constructor.
@@ -56,23 +57,15 @@ package org.apache.flex.mobile.beads
 			super();
 		}
 		
-		public function get host():IUIBase
-		{
-			return _strand as IUIBase;
-		}
-		public function set host(value:IUIBase):void
-		{
-			// not implemented; getter only.
-		}
-		
-		private var _navigationBar:NavigationBar;
 		public function get navigationBar():NavigationBar
 		{
-			return _navigationBar;
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			return model.navigationBar;
 		}
 		public function set navigationBar(value:NavigationBar):void
 		{
-			// not implemented; getter only.
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			model.navigationBar = value;
 		}
 		
 		private var _strand:IStrand;
@@ -80,22 +73,29 @@ package org.apache.flex.mobile.beads
 		{
 			return _strand;
 		}
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
+			super.strand = value;
 			_strand = value;
-			UIBase(_strand).addEventListener("sizeChanged", sizeChangedHandler);
-			UIBase(_strand).addEventListener("widthChanged", sizeChangedHandler);
-			UIBase(_strand).addEventListener("heightChanged", sizeChangedHandler);
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.addEventListener("selectedIndexChanged", viewsChangedHandler);
 
 			if (model.navigationBarItems)
 			{
-				_navigationBar = new NavigationBar();
-				_navigationBar.controls = model.navigationBarItems;
-				_navigationBar.addBead(new HorizontalLayout());
-				UIBase(_strand).addElement(_navigationBar, false);
+				var navBar:NavigationBar = new NavigationBar();
+				navBar.controls = model.navigationBarItems;
+				navBar.addBead(new HorizontalLayout());
+				navigationBar = navBar;
+			}
+		}
+		
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
+			
+			if (navigationBar) {
+				UIBase(_strand).addElement(navigationBar);
 			}
 		}
 		
@@ -110,56 +110,57 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		protected function sizeChangedHandler(event:Event):void
-		{
-			layoutChromeElements();
-		}
+//		protected function sizeChangedHandler(event:Event):void
+//		{
+//			layoutChromeElements();
+//		}
 		
 		/**
 		 * @private
 		 */
 		protected function layoutChromeElements():void
 		{
-			var host:UIBase = _strand as UIBase;
-			var contentAreaY:Number = 0;
-			var contentAreaHeight:Number = host.height;
-			
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
-			
-			if (_navigationBar)
-			{
-				_navigationBar.x = 0;
-				_navigationBar.y = 0;
-				_navigationBar.width = host.width;
-				
-				contentAreaHeight -= _navigationBar.height;
-				contentAreaY = _navigationBar.height;
-				
-				model.navigationBar = _navigationBar;
-			}
-			
-			model.contentX = 0;
-			model.contentY = contentAreaY;
-			model.contentWidth = host.width;
-			model.contentHeight = contentAreaHeight;
-			
-			sizeViewsToFitContentArea();
+			performLayout(null);
+//			var host:UIBase = _strand as UIBase;
+//			var contentAreaY:Number = 0;
+//			var contentAreaHeight:Number = host.height;
+//			
+//			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+//			
+//			if (_navigationBar)
+//			{
+//				_navigationBar.x = 0;
+//				_navigationBar.y = 0;
+//				_navigationBar.width = host.width;
+//				
+//				contentAreaHeight -= _navigationBar.height;
+//				contentAreaY = _navigationBar.height;
+//				
+//				model.navigationBar = _navigationBar;
+//			}
+//			
+//			model.contentX = 0;
+//			model.contentY = contentAreaY;
+//			model.contentWidth = host.width;
+//			model.contentHeight = contentAreaHeight;
+//			
+//			sizeViewsToFitContentArea();
 		}
 		
 		protected function sizeViewsToFitContentArea():void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
-			
-			var n:int = ViewManagerModel(model).views.length;
-			if (n > 0) {
-				for (var i:int = 0; i < n; i++)
-				{
-					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
-					UIBase(view).x = model.contentX;
-					UIBase(view).y = model.contentY;
-					UIBase(view).setWidthAndHeight(model.contentWidth, model.contentHeight, true);
-				}
-			}
+//			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+//			
+//			var n:int = ViewManagerModel(model).views.length;
+//			if (n > 0) {
+//				for (var i:int = 0; i < n; i++)
+//				{
+//					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
+//					UIBase(view).x = model.contentX;
+//					UIBase(view).y = model.contentY;
+//					UIBase(view).setWidthAndHeight(model.contentWidth, model.contentHeight, true);
+//				}
+//			}
 		}
 	}
 }

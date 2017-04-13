@@ -33,6 +33,7 @@ internal class MobileClasses
 	import org.apache.flex.mobile.beads.DatePickerView; DatePickerView;
 	import org.apache.flex.mobile.ToggleSwitch; ToggleSwitch;
 	import org.apache.flex.mobile.ViewManagerBase; ViewManagerBase;
+	import org.apache.flex.mobile.ManagedContentArea; ManagedContentArea;
 	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
 	import org.apache.flex.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
 	import org.apache.flex.mobile.beads.ViewManagerViewBase; ViewManagerViewBase;
