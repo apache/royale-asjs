@@ -109,8 +109,11 @@ package org.apache.flex.core
 			var layout:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;
 			if (!layout)
 			{
-				layout = new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBeadLayout;
-				addBead(layout);
+				var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadLayout") as Class;
+				if (c) {
+					layout = new c() as IBeadLayout;
+					addBead(layout);
+				}
 			}
 		}
 		
