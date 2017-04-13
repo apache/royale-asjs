@@ -56,12 +56,12 @@ package org.apache.flex.charts.beads.layouts
 		/**
 		 * @private
 		 */
-		override protected function performLayout():void
+		override public function layout():Boolean
 		{
 			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
 			if (!dp)
-				return;
+				return false;
 			
 			var n:int = dp.length;
 			var xpos:Number = 0;
@@ -126,6 +126,8 @@ package org.apache.flex.charts.beads.layouts
 				
 				xpos += gap;
 			}
+			
+			return true;
 		}
 	}
 }

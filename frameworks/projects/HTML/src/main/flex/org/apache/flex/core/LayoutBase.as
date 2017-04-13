@@ -27,6 +27,8 @@ package org.apache.flex.core
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.Event;
     import org.apache.flex.utils.CSSUtils;
 
     /**
@@ -76,6 +78,92 @@ package org.apache.flex.core
 		public function set strand(value:IStrand):void
 		{
             host = value as ILayoutChild;
+			
+			IEventDispatcher(host).addEventListener("widthChanged", handleSizeChange);
+			IEventDispatcher(host).addEventListener("heightChanged", handleSizeChange);
+			IEventDispatcher(host).addEventListener("sizeChanged", handleSizeChange);
+			
+			IEventDispatcher(host).addEventListener("childrenAdded", handleChildrenAdded);
+			IEventDispatcher(host).addEventListener("initComplete", handleInitComplete);
+			
+			IEventDispatcher(host).addEventListener("layoutNeeded", handleLayoutNeeded);
+		}
+		
+		/**
+		 * Changes in size to the host strand are handled (by default) by running the
+		 * layout sequence. Subclasses can override this function and use event.type
+		 * to handle specific changes in dimension.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		protected function handleSizeChange(event:Event):void
+		{
+			performLayout();
+		}
+		
+		/**
+		 * Handles the addition of children to the host's layoutView by listening for
+		 * size changes in the children.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		protected function handleChildrenAdded(event:Event):void
+		{
+			COMPILE::SWF {
+				var n:Number = layoutView.numElements;
+				for(var i:int=0; i < n; i++) {
+					var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
+					child.addEventListener("widthChanged", childResizeHandler);
+					child.addEventListener("heightChanged", childResizeHandler);
+					child.addEventListener("sizeChanged", childResizeHandler);
+				}
+			}
+		}
+		
+		/**
+		 * If changes happen to a layoutView's child, this function will perform the
+		 * layout again.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		protected function childResizeHandler(event:Event):void
+		{
+			performLayout();
+		}
+		
+		/**
+		 * Called whenever "layoutNeeded" event is dispatched against the host strand.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		protected function handleLayoutNeeded(event:Event):void
+		{
+			performLayout();
+		}
+		
+		/**
+		 * Handles the final start-up condition by running the layout an initial time.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		protected function handleInitComplete(event:Event):void
+		{
+			performLayout();
 		}
 		
 		/**
@@ -147,6 +235,36 @@ package org.apache.flex.core
 		{
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			return viewBead.contentView;
+		}
+		
+		private var isLayoutRunning:Boolean = false;
+		
+		/**
+		 * Performs the layout in three parts: before, layout, after.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		public function performLayout():void
+		{
+			// avoid running this layout instance recursively.
+			if (isLayoutRunning) return;
+			
+			isLayoutRunning = true;
+			
+			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
+			
+			viewBead.beforeLayout();
+			
+			if (layout()) {
+				viewBead.afterLayout();
+			}
+			
+			isLayoutRunning = false;
+			
+			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
 		}
 
         /**

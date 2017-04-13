@@ -78,6 +78,16 @@ package org.apache.flex.html.supportClasses
 				layout.layout();
 			}
 		}
+		
+		public function beforeLayout():void
+		{
+			
+		}
+		
+		public function afterLayout():void
+		{
+			
+		}
 
 
 	}

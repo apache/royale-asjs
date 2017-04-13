@@ -155,8 +155,13 @@ package org.apache.flex.html.supportClasses
 		 */
 		override public function adjustSize():void
 		{
-			textButton.width = this.width;
-			textButton.height = this.height;
+			COMPILE::SWF {
+				textButton.width = this.width;
+				textButton.height = this.height;
+			}
+			COMPILE::JS {
+				textButton.percentWidth = 100;
+			}
 			
 			updateRenderer();
 		}

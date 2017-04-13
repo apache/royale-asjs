@@ -493,6 +493,7 @@ TitleBar
 	padding: 2px;
 	height: 30px;
 	flex-grow: 0;
+	min-height: 30px;
 }
 
 TitleBar .TitleBarCloseButton {

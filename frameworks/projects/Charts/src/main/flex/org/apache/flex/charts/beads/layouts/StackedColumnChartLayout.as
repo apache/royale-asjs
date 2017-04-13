@@ -76,12 +76,12 @@ package org.apache.flex.charts.beads.layouts
 		/**
 		 * @private
 		 */
-		override protected function performLayout():void
+		override public function layout():Boolean
 		{
 			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
-				return;
+				return false;
 			
             var layoutParent:ILayoutHost = strand.getBeadByType(ILayoutHost) as ILayoutHost;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
@@ -158,6 +158,8 @@ package org.apache.flex.charts.beads.layouts
 				
 				xpos += gap + itemWidth;
 			}
+			
+			return true;
 		}
 	}
 }

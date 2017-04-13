@@ -37,6 +37,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.ButtonBarView;
 	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.flex.html.supportClasses.UIItemRendererBase;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSUtils;
 	import org.apache.flex.utils.CSSContainerUtils;
@@ -162,6 +163,8 @@ package org.apache.flex.html.beads.layouts
 					
 					UIBase(ir).height = contentView.height;
 				}
+				
+				UIItemRendererBase(ir).adjustSize();
 			}
 
 			// now let the horizontal layout take care of things.

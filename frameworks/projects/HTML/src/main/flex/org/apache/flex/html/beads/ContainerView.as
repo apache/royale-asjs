@@ -166,7 +166,7 @@ package org.apache.flex.html.beads
 
 			// when the first layout is complete, set up listeners for changes
 			// to the childrens' sizes.
-			host.addEventListener("layoutComplete", childrenChangedHandler);
+//			host.addEventListener("layoutComplete", childrenChangedHandler);
 		}
 
 		/**
@@ -229,7 +229,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override protected function layoutViewBeforeContentLayout():void
+		override public function beforeLayout():void
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
@@ -259,13 +259,13 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override protected function layoutViewAfterContentLayout():void
+		override public function afterLayout():void
 		{
 			if (adjusting) return;
 
 			adjusting = true;
 
-			super.layoutViewAfterContentLayout();
+			super.afterLayout();
 
 			var contentSize:Size = calculateContentSize();
 			viewport.layoutViewportAfterContentLayout(contentSize);
@@ -282,12 +282,12 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override protected function resizeHandler(event:Event):void
-		{
-			if (!adjusting) {
-				performLayout(event);
-			}
-		}
+//		override protected function resizeHandler(event:Event):void
+//		{
+//			if (!adjusting) {
+//				performLayout(event);
+//			}
+//		}
 
 		/**
 		 * Whenever children are added, listeners are added to detect changes
@@ -298,19 +298,19 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function childrenChangedHandler(event:Event):void
-		{
-			var host:UIBase = _strand as UIBase;
-			host.removeEventListener(event.type, childrenChangedHandler);
-
-			var n:Number = contentView.numElements;
-			for (var i:int=0; i < n; i++) {
-				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-				child.addEventListener("widthChanged", childResizeHandler);
-				child.addEventListener("heightChanged", childResizeHandler);
-				child.addEventListener("sizeChanged", childResizeHandler);
-			}
-		}
+//		protected function childrenChangedHandler(event:Event):void
+//		{
+//			var host:UIBase = _strand as UIBase;
+//			host.removeEventListener(event.type, childrenChangedHandler);
+//
+//			var n:Number = contentView.numElements;
+//			for (var i:int=0; i < n; i++) {
+//				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+//				child.addEventListener("widthChanged", childResizeHandler);
+//				child.addEventListener("heightChanged", childResizeHandler);
+//				child.addEventListener("sizeChanged", childResizeHandler);
+//			}
+//		}
 	}
 
 	COMPILE::JS

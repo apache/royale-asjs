@@ -118,13 +118,6 @@ package org.apache.flex.html.beads
 			// listen for initComplete to signal that the strand has been initialized
 			// with its beads and children.
 			host.addEventListener("initComplete", handleInitComplete);
-			
-			// listen for when children have been added so additional event listeners
-			// can be placed upon them.
-			host.addEventListener("childrenAdded", handleChildrenAdded);
-			
-			// listen for requests to run the layout.
-			host.addEventListener("layoutNeeded", performLayout);
 		}
 
 		/**
@@ -169,12 +162,6 @@ package org.apache.flex.html.beads
             host.removeEventListener("heightChanged", deferredSizeHandler);
 			
 			completeSetup();
-
-			var num:Number = contentView.numElements;
-			if (num > 0)
-            {
-                performLayout(event);
-            }
 		}
 
 		/**
@@ -193,42 +180,6 @@ package org.apache.flex.html.beads
 			host.addEventListener("widthChanged", resizeHandler);
 			host.addEventListener("heightChanged", resizeHandler);
 		}
-
-		/**
-		 * Handles the viewCreated event by performing the first layout if
-		 * there are children already present (ie, from MXML).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-		protected function viewCreatedHandler(event:Event):void
-		{
-			var num:Number = contentView.numElements;
-			if (num > 0)
-			{
-				performLayout(event);
-			}
-		}
-
-		/**
-		 * @private
-		 */
-		protected function handleChildrenAdded(event:Event):void
-		{
-			COMPILE::SWF {
-				var n:Number = contentView.numElements;
-				for(var i:int=0; i < n; i++) {
-					var child:IEventDispatcher = contentView.getElementAt(i) as IEventDispatcher;
-					child.addEventListener("widthChanged", childResizeHandler);
-					child.addEventListener("heightChanged", childResizeHandler);
-					child.addEventListener("sizeChanged", childResizeHandler);
-				}
-			}
-
-			performLayout(event);
-		}
 		
 		/**
 		 * Invoked in response to the strand being resized.
@@ -240,20 +191,8 @@ package org.apache.flex.html.beads
 		 */
 		protected function resizeHandler(event:Event):void
 		{
-			performLayout(event);
-		}
-		
-		/**
-		 * Invoked in response to any child being resized.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-		protected function childResizeHandler(event:Event):void
-		{
-			performLayout(event);
+			// override in subclasses in case there is something besides running
+			// the layout (which is handled automatically by the layout itself).
 		}
 		
 		/**
@@ -264,7 +203,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		protected function layoutViewBeforeContentLayout():void
+		public function beforeLayout():void
 		{
 			// This has no use for Group but is here so a subclass can override it.
 		}
@@ -281,34 +220,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function performLayout(event:Event):void
 		{
-			if (layoutRunning) return;
-
-			layoutRunning = true;
-			
-			// pre-process before layout
-			layoutViewBeforeContentLayout();
-
-			var host:UIBase = _strand as UIBase;
-
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-				if (c) {
-					layout = new c() as IBeadLayout;
-					_strand.addBead(layout);
-				}
-			}
-
-			if (layout) {
-				layout.layout();
-			}
-
-			// cleanup or adjust after layout
-			layoutViewAfterContentLayout();
-
-			layoutRunning = false;
-			
-			host.dispatchEvent(new Event("layoutComplete"));
+			trace("CALLING performLayout !!!!");
 		}
 
 		/**
@@ -344,11 +256,6 @@ package org.apache.flex.html.beads
 		}
 
 		/**
-		 * @private
-		 */
-		private var adjusting:Boolean = false;
-
-		/**
 		 * Adjusts the size of the host after the layout has been run.
 		 *
 		 *  @langversion 3.0
@@ -357,14 +264,9 @@ package org.apache.flex.html.beads
 		 *  @productversion FlexJS 0.0
 		 */
 		COMPILE::SWF
-		protected function layoutViewAfterContentLayout():void
+		public function afterLayout():void
 		{
-			if (adjusting) return;
-
 			var host:UIBase = _strand as UIBase;
-
-			adjusting = true;
-
 			var contentSize:Size = calculateContentSize();
 
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
@@ -378,12 +280,10 @@ package org.apache.flex.html.beads
 			{
 				host.setWidth(contentSize.width, true);
 			}
-
-			adjusting = false;
 		}
 		
 		COMPILE::JS
-		protected function layoutViewAfterContentLayout():void
+		public function afterLayout():void
 		{
 			// maybe useful in a subclass on the JS side.
 		}
