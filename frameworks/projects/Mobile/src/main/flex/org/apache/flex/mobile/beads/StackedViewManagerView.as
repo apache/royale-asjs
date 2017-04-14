@@ -22,13 +22,13 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.ManagedContentArea;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -63,13 +63,6 @@ package org.apache.flex.mobile.beads
 		 * Children
 		 */
 		
-		private var _contentArea:ManagedContentArea;
-		
-		public function get contentArea():ManagedContentArea
-		{
-			return _contentArea;
-		}
-		
 		public function get toolBar():ToolBar
 		{
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -94,9 +87,6 @@ package org.apache.flex.mobile.beads
 			_strand = value;
 			super.strand = value;
 			
-			// The content area will hold the views
-			_contentArea = new ManagedContentArea();
-			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (model.toolBarItems)
@@ -115,11 +105,6 @@ package org.apache.flex.mobile.beads
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			IEventDispatcher(model).addEventListener("viewPushed", handlePushEvent);
 			IEventDispatcher(model).addEventListener("viewPopped", handlePopEvent);
-			
-			COMPILE::SWF {
-				_contentArea.percentWidth = 100;
-			}
-			UIBase(_strand).addElement(_contentArea);
 			
 			if (toolBar) {
 				UIBase(_strand).addElement(toolBar);
@@ -164,11 +149,11 @@ package org.apache.flex.mobile.beads
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (_topView != null) {
-				contentArea.removeElement(_topView);
+				UIBase(_strand).removeElement(_topView);
 			}
 			_topView = model.views[index] as IViewManagerView;
 			_topView.viewManager = _strand as IViewManager;
-			contentArea.addElement(_topView);
+			UIBase(_strand).addElementAt(_topView,1);
 			
 			COMPILE::JS {
 				if (_topView) {
@@ -176,22 +161,15 @@ package org.apache.flex.mobile.beads
 				}
 			}
 			COMPILE::SWF {
-				UIBase(_topView).percentWidth = 100;
-				UIBase(_topView).percentHeight = 100;
-				contentArea.layoutNeeded();
-			}
-		}
-		
-		override public function afterLayout():void
-		{
-			super.afterLayout();
-			
-			COMPILE::SWF {
-				if (_topView) {
-					UIBase(_topView).width = contentArea.width;
-					UIBase(_topView).height = contentArea.height;
+				if (UIBase(_topView).style == null) {
+					UIBase(_topView).style = new SimpleCSSStyles();
 				}
+				UIBase(_topView).style.flexGrow = 1;
+				UIBase(_topView).percentWidth = 100;
 			}
+			
+			// Now that a view has changed, refresh the layout for this component.
+			UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }

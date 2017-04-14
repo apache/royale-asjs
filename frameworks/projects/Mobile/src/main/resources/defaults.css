@@ -42,13 +42,6 @@ TabbedViewManager
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 }
 
-ManagedContentArea
-{
-	display: flex;
-	flex-grow: 1;
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
-}
-
 TabBar {
 	flex-grow: 0;
 	height: 40px;

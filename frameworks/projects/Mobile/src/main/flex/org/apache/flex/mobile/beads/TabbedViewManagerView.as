@@ -22,13 +22,13 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.ManagedContentArea;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.TabBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -64,8 +64,6 @@ package org.apache.flex.mobile.beads
 		 * Children
 		 */
 		
-		private var _contentArea:ManagedContentArea;
-		
 		public function get tabBar():TabBar
 		{
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -75,11 +73,6 @@ package org.apache.flex.mobile.beads
 		{
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.tabBar = value;
-		}
-		
-		public function get contentArea():ManagedContentArea
-		{
-			return _contentArea;
 		}
 		
 		/*
@@ -95,9 +88,6 @@ package org.apache.flex.mobile.beads
 			_strand = value;
 			super.strand = value;
 			
-			// The content area will hold the views
-			_contentArea = new ManagedContentArea();
-			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			// TabbedViewManager always has a TabBar
@@ -111,11 +101,6 @@ package org.apache.flex.mobile.beads
 		override protected function handleInitComplete(event:Event):void
 		{			
 			super.handleInitComplete(event);
-			
-			COMPILE::SWF {
-				_contentArea.percentWidth = 100;
-			}
-			UIBase(_strand).addElement(_contentArea);
 			
 			if (tabBar) {
 				UIBase(_strand).addElement(tabBar);
@@ -131,34 +116,28 @@ package org.apache.flex.mobile.beads
 			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (_currentView != null) {
-				contentArea.removeElement(_currentView);
+				UIBase(_strand).removeElement(_currentView);
 			}
 			_currentView = model.views[index] as IViewManagerView;
 			_currentView.viewManager = _strand as IViewManager;
-			contentArea.addElement(_currentView);
+			UIBase(_strand).addElementAt(_currentView,1);
 			
 			COMPILE::JS {
 				if (_currentView) {
 					UIBase(_currentView).element.style["flex-grow"] = "1";
 				}
+				UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
 			}
 			COMPILE::SWF {
-				UIBase(_currentView).percentWidth = 100;
-				UIBase(_currentView).percentHeight = 100;
-				contentArea.layoutNeeded();
-			}
-		}
-		
-		override public function afterLayout():void
-		{
-			super.afterLayout();
-			
-			COMPILE::SWF {
-				if (_currentView) {
-					UIBase(_currentView).width = contentArea.width;
-					UIBase(_currentView).height = contentArea.height;
+				if (UIBase(_currentView).style == null) {
+					UIBase(_currentView).style = new SimpleCSSStyles();
 				}
+				UIBase(_currentView).style.flexGrow = 1;
+				UIBase(_currentView).percentWidth = 100;
 			}
+			
+			// Now that the view has changed, refresh the layout on this component.
+			UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**

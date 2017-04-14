@@ -23,7 +23,6 @@
     <component id="StackedViewManager" class="org.apache.flex.mobile.StackedViewManager" />
     <component id="TabbedViewManager" class="org.apache.flex.mobile.TabbedViewManager" />
     <component id="TitleView" class="org.apache.flex.mobile.TitleView" />
-    <component id="ManagedContentArea" class="org.apache.flex.mobile.ManagedContentArea" />
     <component id="NavigationBar" class="org.apache.flex.mobile.chrome.NavigationBar" />
     <component id="ToolBar" class="org.apache.flex.mobile.chrome.ToolBar" />
     <component id="TabBar" class="org.apache.flex.mobile.chrome.TabBar" />
