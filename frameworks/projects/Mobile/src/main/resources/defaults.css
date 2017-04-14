@@ -22,7 +22,10 @@
 
 NavigationBar
 {
+	height: 55px;
+	min-height: 55px;
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");
+	flex-grow: 0;
 }
 
 StackedViewManager 
@@ -43,6 +46,19 @@ ManagedContentArea
 {
 	display: flex;
 	flex-grow: 1;
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
+}
+
+TabBar {
+	flex-grow: 0;
+	height: 40px;
+	min-height: 40px;
+}
+
+ToolBar {
+	flex-grow: 0;
+	height: 40px;
+	min-height: 40px;
 }
 
 ToggleSwitch

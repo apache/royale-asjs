@@ -53,10 +53,6 @@ package org.apache.flex.mobile
 		{
 			super();
 			
-			// views always fill their space
-			percentWidth = 100;
-			percentHeight = 100;
-			
 			model.addEventListener("selectedIndexChanged", changeView);
 
 		}

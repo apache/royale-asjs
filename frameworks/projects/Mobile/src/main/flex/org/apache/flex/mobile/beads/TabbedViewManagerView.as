@@ -26,6 +26,7 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.ManagedContentArea;
 	import org.apache.flex.mobile.chrome.NavigationBar;
@@ -58,6 +59,11 @@ package org.apache.flex.mobile.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/*
+		 * Children
+		 */
+		
 		private var _contentArea:ManagedContentArea;
 		
 		public function get tabBar():TabBar
@@ -75,6 +81,10 @@ package org.apache.flex.mobile.beads
 		{
 			return _contentArea;
 		}
+		
+		/*
+		 * ViewBead
+		 */
 		
 		override public function get strand():IStrand
 		{
@@ -104,15 +114,12 @@ package org.apache.flex.mobile.beads
 			
 			COMPILE::SWF {
 				_contentArea.percentWidth = 100;
-				_contentArea.percentHeight = 100;
 			}
 			UIBase(_strand).addElement(_contentArea);
 			
 			if (tabBar) {
 				UIBase(_strand).addElement(tabBar);
 			}
-			
-			performLayout(event);
 			
 			showViewByIndex(0);
 		}
@@ -127,6 +134,7 @@ package org.apache.flex.mobile.beads
 				contentArea.removeElement(_currentView);
 			}
 			_currentView = model.views[index] as IViewManagerView;
+			_currentView.viewManager = _strand as IViewManager;
 			contentArea.addElement(_currentView);
 			
 			COMPILE::JS {
@@ -134,11 +142,16 @@ package org.apache.flex.mobile.beads
 					UIBase(_currentView).element.style["flex-grow"] = "1";
 				}
 			}
+			COMPILE::SWF {
+				UIBase(_currentView).percentWidth = 100;
+				UIBase(_currentView).percentHeight = 100;
+				contentArea.layoutNeeded();
+			}
 		}
 		
-		override protected function layoutViewAfterContentLayout():void
+		override public function afterLayout():void
 		{
-			super.layoutViewAfterContentLayout();
+			super.afterLayout();
 			
 			COMPILE::SWF {
 				if (_currentView) {
@@ -162,51 +175,5 @@ package org.apache.flex.mobile.beads
 			
 			showViewByIndex(newIndex);
 		}
-		
-		/**
-		 * @private
-		 */
-//		override protected function layoutChromeElements():void
-//		{
-//			var host:UIBase = _strand as UIBase;
-//			var contentAreaY:Number = 0;
-//			var contentAreaHeight:Number = host.height;
-//			
-//			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
-//			
-//			if (navigationBar)
-//			{
-//				navigationBar.x = 0;
-//				navigationBar.y = 0;
-//				navigationBar.width = host.width;
-//				
-//				contentAreaHeight -= navigationBar.height;
-//				contentAreaY = navigationBar.height;
-//				
-//				model.navigationBar = navigationBar;
-//			}
-//			
-//			if (_tabBar)
-//			{
-//				_tabBar.x = 0;
-//				_tabBar.y = host.height - _tabBar.height;
-//				_tabBar.width = host.width;
-//				_tabBar.dispatchEvent(new Event("layoutNeeded"));
-//				
-//				contentAreaHeight -= _tabBar.height;
-//				
-//				model.tabBar = _tabBar;
-//			}
-//			
-//			model.contentX = 0;
-//			model.contentY = contentAreaY;
-//			model.contentWidth = host.width;
-//			model.contentHeight = contentAreaHeight;
-//			
-//			sizeViewsToFitContentArea();
-//			
-//			// notify the views that the content size has changed
-//			IEventDispatcher(strand).dispatchEvent( new Event("contentSizeChanged") );
-//		}
 	}
 }

@@ -57,6 +57,10 @@ package org.apache.flex.mobile.beads
 			super();
 		}
 		
+		/*
+		 * Children
+		 */
+		
 		public function get navigationBar():NavigationBar
 		{
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
@@ -67,6 +71,10 @@ package org.apache.flex.mobile.beads
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.navigationBar = value;
 		}
+		
+		/*
+		 * ViewBead
+		 */
 		
 		private var _strand:IStrand;
 		public function get strand():IStrand
@@ -79,7 +87,7 @@ package org.apache.flex.mobile.beads
 			_strand = value;
 			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
-			model.addEventListener("selectedIndexChanged", viewsChangedHandler);
+//			model.addEventListener("selectedIndexChanged", viewsChangedHandler);
 
 			if (model.navigationBarItems)
 			{
@@ -102,10 +110,10 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		protected function viewsChangedHandler(event:Event):void
-		{
-			layoutChromeElements();
-		}
+//		protected function viewsChangedHandler(event:Event):void
+//		{
+//			layoutChromeElements();
+//		}
 		
 		/**
 		 * @private

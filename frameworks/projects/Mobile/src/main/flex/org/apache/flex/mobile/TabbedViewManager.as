@@ -91,38 +91,6 @@ package org.apache.flex.mobile
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-//			var tabbedView:TabbedViewManagerView = getBeadByType(TabbedViewManagerView) as TabbedViewManagerView;
-//			
-//			var n:int = ViewManagerModel(model).views.length;
-//			if (n > 0) {
-//				for (var i:int = 0; i < n; i++)
-//				{
-//					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
-//					view.viewManager = this;
-//					if (i == 0) {
-//						tabbedView.contentArea.addElement(view, true);
-//					}
-//				}
-//				ViewManagerModel(model).selectedIndex = 0;
-//			}
-		}
-		
-		/**
-		 * @private
-		 */
-		override protected function changeView( event:Event ):void
-		{
-//			var tabbedView:TabbedViewManagerView = getBeadByType(TabbedViewManagerView) as TabbedViewManagerView;
-//			
-//			var index:Number = ViewManagerModel(model).selectedIndex;
-//			if (currentView) {
-//				tabbedView.contentArea.removeElement(currentView);
-//			}
-//			currentView = views[index];
-//			tabbedView.contentArea.addElement(currentView);
-//
-//			dispatchEvent( new Event("viewChanged") );
 		}
 
 	}

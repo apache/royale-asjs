@@ -135,14 +135,6 @@ package org.apache.flex.mobile
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-//			var tabbedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
-//			
-//			var n:int = ViewManagerModel(model).views.length;
-//			if (n > 0) {
-//				var view:IViewManagerView = ViewManagerModel(model).views[0] as IViewManagerView;
-//				push(view);
-//			}
 		}
 
 		
@@ -158,16 +150,6 @@ package org.apache.flex.mobile
 		{
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
-			
-//			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
-//			
-//			if (_topView != null) {
-//				stackedView.contentArea.removeElement(_topView);
-//			}
-//			_topView = nextView;
-//			stackedView.contentArea.addElement(_topView);
-//			
-//			dispatchEvent( new Event("viewChanged") );
 		}
 		
 		/**
@@ -178,18 +160,10 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function pop():void
+		public function pop():IChild
 		{
 			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
-			
-//			if (ViewManagerModel(model).views.length > 1) {
-//				var lastView:IChild = ViewManagerModel(model).popView() as IChild;
-//				stackedView.contentArea.removeElement(_topView);
-//				stackedView.contentArea.addElement(lastView);
-//				_topView = lastView as IViewManagerView;
-//				
-//				dispatchEvent( new Event("viewChanged") );
-//			}
+			return ViewManagerModel(model).popView();
 		}
 
 	}

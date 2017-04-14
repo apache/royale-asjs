@@ -26,6 +26,7 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.ManagedContentArea;
 	import org.apache.flex.mobile.chrome.NavigationBar;
@@ -57,6 +58,11 @@ package org.apache.flex.mobile.beads
 		}
 		
 		private var _strand:IStrand;
+		
+		/*
+		 * Children
+		 */
+		
 		private var _contentArea:ManagedContentArea;
 		
 		public function get contentArea():ManagedContentArea
@@ -74,6 +80,10 @@ package org.apache.flex.mobile.beads
 			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			model.toolBar = value;
 		}
+		
+		/*
+		 * ViewBead
+		 */
 		
 		override public function get strand():IStrand
 		{
@@ -102,9 +112,12 @@ package org.apache.flex.mobile.beads
 		{			
 			super.handleInitComplete(event);
 			
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			IEventDispatcher(model).addEventListener("viewPushed", handlePushEvent);
+			IEventDispatcher(model).addEventListener("viewPopped", handlePopEvent);
+			
 			COMPILE::SWF {
 				_contentArea.percentWidth = 100;
-				_contentArea.percentHeight = 100;
 			}
 			UIBase(_strand).addElement(_contentArea);
 			
@@ -112,12 +125,39 @@ package org.apache.flex.mobile.beads
 				UIBase(_strand).addElement(toolBar);
 			}
 			
-			performLayout(event);
-			
 			showViewByIndex(0);
 		}
 		
 		private var _topView:IViewManagerView;
+		
+		private function handlePushEvent(event:Event):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var n:int = model.views.length;
+			if (n > 0) {
+				showViewByIndex(n-1);
+			}
+		}
+		
+		private function handlePopEvent(event:Event):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var n:int = model.views.length;
+			if (n > 0) {
+				showViewByIndex(n-1);
+			}
+		}
+		
+		public function showView(view:IViewManagerView):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			for(var i:int=0; i < model.views.length; i++) {
+				if (view == model.views[i]) {
+					showViewByIndex(i);
+					break;
+				}
+			}
+		}
 		
 		protected function showViewByIndex(index:int):void
 		{
@@ -127,6 +167,7 @@ package org.apache.flex.mobile.beads
 				contentArea.removeElement(_topView);
 			}
 			_topView = model.views[index] as IViewManagerView;
+			_topView.viewManager = _strand as IViewManager;
 			contentArea.addElement(_topView);
 			
 			COMPILE::JS {
@@ -134,11 +175,16 @@ package org.apache.flex.mobile.beads
 					UIBase(_topView).element.style["flex-grow"] = "1";
 				}
 			}
+			COMPILE::SWF {
+				UIBase(_topView).percentWidth = 100;
+				UIBase(_topView).percentHeight = 100;
+				contentArea.layoutNeeded();
+			}
 		}
 		
-		override protected function layoutViewAfterContentLayout():void
+		override public function afterLayout():void
 		{
-			super.layoutViewAfterContentLayout();
+			super.afterLayout();
 			
 			COMPILE::SWF {
 				if (_topView) {
@@ -147,54 +193,5 @@ package org.apache.flex.mobile.beads
 				}
 			}
 		}
-		
-		/**
-		 * @private
-		 */
-//		override protected function layoutChromeElements():void
-//		{
-//			var host:UIBase = strand as UIBase;
-//			var contentAreaY:Number = 0;
-//			var contentAreaHeight:Number = host.height;
-//			var toolbarHeight:Number = _toolBar == null ? 0 : _toolBar.height;
-//			
-//			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
-//			
-//			if (navigationBar)
-//			{
-//				navigationBar.x = 0;
-//				navigationBar.y = 0;
-//				navigationBar.width = host.width;
-//				
-//				contentAreaHeight -= navigationBar.height;
-//				contentAreaY = navigationBar.height;
-//				
-//				model.navigationBar = navigationBar;
-//			}
-//			
-//			if (_toolBar)
-//			{
-//				_toolBar.x = 0;
-//				_toolBar.y = host.height - toolbarHeight;
-//				_toolBar.width = host.width;
-//				
-//				contentAreaHeight -= toolbarHeight;
-//				
-//				model.toolBar = _toolBar;
-//			}
-//			
-//			if (contentAreaY < 0) contentAreaY = 0;
-//			if (contentAreaHeight < 0) contentAreaHeight = 0;
-//			
-//			model.contentX = 0;
-//			model.contentY = contentAreaY;
-//			model.contentWidth = host.width;
-//			model.contentHeight = contentAreaHeight;
-//			
-//			sizeViewsToFitContentArea();
-//			
-//			// notify the views that the content size has changed
-//			IEventDispatcher(strand).dispatchEvent( new Event("contentSizeChanged") );
-//		}
 	}
 }
