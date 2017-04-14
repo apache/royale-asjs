@@ -30,38 +30,28 @@ limitations under the License.
 		@namespace js  "library://ns.apache.org/flexjs/basic";
 		@namespace views  "views.*";
 		
-		js|Container {
+		js|StackedViewManager {
 			background-color: #FFFFFF;
 		}
 		
-		js|StackedViewManager {
-			padding-top: 0px;
-			padding-bottom: 0px;
-			padding-left: 0px;
-			padding-right: 0px;
-		}
-		
 		js|TabbedViewManager {
-			position : absolute ;
-			height : 100% ;
-			width : 100% ;
-			left : 0px ;
-			top : 0px ;
-			border: solid 1px #444444;
 			background-color: #FFFFFF;
 		}
 		
 		.NavigationBar {
 			background-image: url("assets/background.png");
 			height: 55px;
+			min-height: 55px;
+			flex-grow: 0;
 			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 		}
 		
 		.TabBar {
-			background-color: #DEDEDE;
-			height: 55px;
+			height: 40px;
 			vertical-align: middle;
-			line-height: 55px;
+			line-height: 40px;
+			min-height: 40px;
+			flex-grow: 0;
 		}
 		
 		.BackButton:hover {
@@ -76,52 +66,95 @@ limitations under the License.
 			background-image: url('assets/arrow_left_24.png');
 		}
 		
+		/* Assets
+		*/
+		
+		views|AssetsView {
+			padding: 10px;
+			background-color: aliceblue;
+		}
+		
 		.AssetsInner {
 			padding-top: 5px;
 			background-color: #FFFFFF;
 		}
 		
-		views|AssetsView {
-			width: 100%;
-			height: 100%;
+		.AssetsViewTitle {
+			flex-grow: 0;
+			height: 30px;
+			min-height: 30px;
 		}
+		
+		.AssetsViewGrid {
+			flex-grow: 0;
+			min-height: 150px;
+			border: solid 1px #333333;
+		}
+		
+		.AssetsViewGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		.AssetsViewChart {
+			flex-grow: 1;
+		}
+		
+		/* WatchList
+		*/
 		
 		views|WatchListView {
-			width: 100%;
-			height: 100%;
+			padding: 10px;
+			background-color: aliceblue;
 			IBeadController:ClassReference('controller.WatchListController');
-			background-color: #FFFFFF;
-		}
-		
-		.WatchListInner {
-			height: 480px;
-			width:  100%;
-			background-color: #FFFFFF;
-		}
-		
-		.WatchListDataGrid {
-			height: 480px;
-			width:  100%;
 		}
 		
 		.WatchListInputArea {
-			background-color: #FFFFFF;
-			width: 480px;
-			height: 25px;
-			padding-top: 5px;
-			padding-bottom: 2px;
+			flex-grow: 0;
+			height: 40px;
+			min-height: 40px;
 		}
 		
-		views|StockView {
-			width: 100%;
-			height: 100%;
+		.WatchListDataGrid {
+			flex-grow: 1;
+			backgroundColor: #FFFFFF;
+			border: solid 1px #333333;
 		}
+		
+		.WatchListDataGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		/* Alerts
+		*/
 		
 		views|AlertsView {
-			width: 100%;
-			height: 100%;
+			padding: 10px;
+			background-color: aliceblue;
 			IBeadController:ClassReference('controller.AlertsViewController');
 		}
+		
+		.AlertsInput {
+			flex-grow: 0;
+			height: 40px;
+			min-height: 40px;
+			backgroundColor: aliceblue;
+		}
+		
+		.AlertsDataGrid {
+			flex-grow: 1;
+			backgroundColor: #FFFFFF;
+			border: solid 1px #333333;
+		}
+		
+		.AlertsDataGrid .midde .DataGridColumnList {
+			border-right: solid 1px #333333;
+			border-left: solid 1px #333333;
+		}
+		
+		/* Supplements
+		 */
 		
 		.redCell {
 			color: #FF0000;
@@ -208,17 +241,17 @@ limitations under the License.
 			private function watchListStackChanged(event:org.apache.flex.events.Event):void
 			{
 				trace("watchlist stack changed");
-				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
-				
-				var currentView:IViewManagerView = manager.selectedView;
-				backButton.visible = manager.views.length > 1;
+//				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
+//				
+//				var currentView:IViewManagerView = manager.selectedView;
+//				backButton.visible = manager.views.length > 1;
 			}
 			
 			private function goBack(event:org.apache.flex.events.MouseEvent):void
 			{
-				if (navController.selectedIndex == 1) {
-					watchListStack.pop();
-				}
+//				if (navController.selectedIndex == 1) {
+//					watchListStack.pop();
+//				}
 			}
 		]]>
 	</fx:Script>
@@ -227,7 +260,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	<js:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+	<js:TabbedViewManager id="navController" width="700" height="500" x="0" y="0" viewChanged="tabbedViewChanged(event)">
 		<js:navigationBarItems>
 			<js:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
 				<js:beads>

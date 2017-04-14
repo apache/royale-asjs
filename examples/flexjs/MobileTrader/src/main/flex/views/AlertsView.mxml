@@ -21,7 +21,9 @@ limitations under the License.
 			 title="Alerts"
 				       xmlns:js="library://ns.apache.org/flexjs/basic"
 				       xmlns:local="*"
-				       className="AlertsView" xmlns:renderers="renderers.*">
+					   xmlns:controller="controller.*"
+				       className="AlertsView" 
+					   xmlns:renderers="renderers.*">
 	
 	<fx:Metadata>
 		[Event("next")]
@@ -51,8 +53,12 @@ limitations under the License.
 			}
 		]]>
 	</fx:Script>
+	
+	<js:beads>
+		<js:VerticalFlexLayout />
+	</js:beads>
 		
-	<js:Container x="4" y="10" >
+	<js:Group x="4" y="10" width="100%" className="AlertsInput" >
 		<js:beads>
 			<js:HorizontalLayout />
 		</js:beads>
@@ -62,11 +68,12 @@ limitations under the License.
 		<js:TextInput id="valueField" width="50" />
 		<js:CheckBox text="Higher?" id="higherCheck" />
 		<js:TextButton text="Set" click="onAlertSet()" />
-	</js:Container>
+	</js:Group>
 	
-	<js:DataGrid id="dataGrid" x="0" y="40" width="100%" height="200">
+	<js:DataGrid id="dataGrid" x="0" y="40" width="100%" className="AlertsDataGrid">
 		<js:beads>
-			<js:DataProviderChangeNotifier sourceID="dataModel" propertyName="alerts" />
+			<js:DataGridPercentageView />
+			<!--<controller:DataModelChangeNotifier />-->
 			<js:SimpleBinding
 				eventName="alertsUpdate"
 				sourceID="dataModel"
@@ -74,21 +81,21 @@ limitations under the License.
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Symbol" dataField="symbol">
+			<js:DataGridColumn label="Symbol" dataField="symbol" columnWidth="50">
 				<js:itemRenderer>
 					<fx:Component>
 						<js:StringItemRenderer />
 					</fx:Component>
 				</js:itemRenderer>
 			</js:DataGridColumn>
-			<js:DataGridColumn label="Alert" dataField="greaterThan">
+			<js:DataGridColumn label="Alert" dataField="greaterThan" columnWidth="25">
 				<js:itemRenderer>
 					<fx:Component>
 						<renderers:AlertRenderer />
 					</fx:Component>
 				</js:itemRenderer>
 			</js:DataGridColumn>
-			<js:DataGridColumn label="Message" dataField="message">
+			<js:DataGridColumn label="Message" dataField="message" columnWidth="25">
 				<js:itemRenderer>
 					<fx:Component>
 						<js:StringItemRenderer />

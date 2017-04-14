@@ -153,7 +153,8 @@ package org.apache.flex.mobile.beads
 			}
 			_topView = model.views[index] as IViewManagerView;
 			_topView.viewManager = _strand as IViewManager;
-			UIBase(_strand).addElementAt(_topView,1);
+			
+			UIBase(_strand).addElementAt(_topView,(navigationBar == null ? 0 : 1));
 			
 			COMPILE::JS {
 				if (_topView) {

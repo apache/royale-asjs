@@ -120,7 +120,7 @@ package org.apache.flex.mobile.beads
 			}
 			_currentView = model.views[index] as IViewManagerView;
 			_currentView.viewManager = _strand as IViewManager;
-			UIBase(_strand).addElementAt(_currentView,1);
+			UIBase(_strand).addElementAt(_currentView,(navigationBar == null ? 0 : 1));
 			
 			COMPILE::JS {
 				if (_currentView) {
