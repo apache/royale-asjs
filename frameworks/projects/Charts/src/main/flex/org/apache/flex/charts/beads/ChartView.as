@@ -81,22 +81,6 @@ package org.apache.flex.charts.beads
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.IChild
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override protected function completeSetup():void
-		{	
-			super.completeSetup();
-			
-			performLayout(null);
-		}
-		
-		/**
-		 * @private
 		 */
 		override protected function beadsAddedHandler(event:Event):void
 		{

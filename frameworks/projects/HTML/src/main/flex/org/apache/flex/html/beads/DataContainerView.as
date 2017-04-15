@@ -205,7 +205,6 @@ package org.apache.flex.html.beads
 		 */
 		protected function itemsCreatedHandler(event:Event):void
 		{
-			trace("DataContainerView: itemsCreatedHandler");
 			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
@@ -214,8 +213,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			trace("DataContainerView: dataProviderChangeHandler");
-			performLayout(event);
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		        
         /**
