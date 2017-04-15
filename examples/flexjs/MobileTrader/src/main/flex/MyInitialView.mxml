@@ -38,6 +38,11 @@ limitations under the License.
 			background-color: #FFFFFF;
 		}
 		
+		.StringItemRenderer {
+			padding-left: 4px;
+			padding-top: 2px;
+		}
+		
 		.NavigationBar {
 			background-image: url("assets/background.png");
 			height: 55px;
@@ -225,6 +230,7 @@ limitations under the License.
 			
 			private function onInitComplete():void
 			{
+				
 			}
 			
 			private function onAssetsNext():void
@@ -260,7 +266,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	<js:TabbedViewManager id="navController" width="700" height="500" x="0" y="0" viewChanged="tabbedViewChanged(event)">
+	<js:TabbedViewManager id="navController" width="100%" height="100%" x="0" y="0" viewChanged="tabbedViewChanged(event)">
 		<js:navigationBarItems>
 			<js:TextButton id="backButton" width="45" height="45" className="BackButton" visible="false" click="goBack(event)">
 				<js:beads>
