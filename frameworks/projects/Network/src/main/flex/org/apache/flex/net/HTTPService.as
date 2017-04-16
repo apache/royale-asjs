@@ -119,7 +119,7 @@ package org.apache.flex.net
             }
 		}
 		
-		private var _contentType:String = "application/x-www-form-urlencoded";
+		private var _contentType:String = HTTPConstants.FORM_URL_ENCODED;
         
         /**
          *  @copy org.apache.flex.net.BinaryUploader#contentType

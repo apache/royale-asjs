@@ -59,7 +59,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */	
-        public var contentType:String = "application/x-www-form-urlencoded";
+        public var contentType:String = HTTPConstants.FORM_URL_ENCODED;
 		
 		/**
 		 *   Controls the HTTP form submission method.
