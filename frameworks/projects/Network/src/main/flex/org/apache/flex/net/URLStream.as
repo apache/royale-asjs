@@ -124,8 +124,8 @@ package org.apache.flex.net
 				var contentSet:Boolean = false;
 				for each (var requestHeader:org.apache.flex.net.URLRequestHeader in urlRequest.requestHeaders)
 				{
-					if(requestHeader.name.toLowerCase() == HTTPHeader.CONTENT_TYPE.toLocaleLowerCase())
-					{
+					if(requestHeader.name.toLowerCase() == HTTPHeader.CONTENT_TYPE.toLowerCase())
+					{                             	
 						contentSet = true;
 						req.contentType = requestHeader.value;
 					}
