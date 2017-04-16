@@ -79,15 +79,15 @@ package org.apache.flex.net
         public function get response():BinaryData
         {
             COMPILE::JS
-                {
+			{
                     return new BinaryData(xhr.response as ArrayBuffer);
-                }
-                COMPILE::SWF
-                {
-                    var ba:ByteArray = new ByteArray();
-                    flashUrlStream.readBytes(ba);
-                    return new BinaryData(ba);
-                }
+			}
+			COMPILE::SWF
+			{
+				var ba:ByteArray = new ByteArray();
+				flashUrlStream.readBytes(ba);
+				return new BinaryData(ba);
+			}
         }
 
         public function load(urlRequest:org.apache.flex.net.URLRequest):void
@@ -124,7 +124,7 @@ package org.apache.flex.net
 				var contentSet:Boolean = false;
 				for each (var requestHeader:org.apache.flex.net.URLRequestHeader in urlRequest.requestHeaders)
 				{
-					if(requestHeader.name.toLowerCase() == "content-type")
+					if(requestHeader.name.toLowerCase() == HTTPHeader.CONTENT_TYPE.toLocaleLowerCase())
 					{
 						contentSet = true;
 						req.contentType = requestHeader.value;
@@ -133,7 +133,7 @@ package org.apache.flex.net
 				}
 				if(!contentSet)
 				{
-					req.requestHeaders.push(new flash.net.URLRequestHeader("Content-type", urlRequest.contentType));
+					req.requestHeaders.push(new flash.net.URLRequestHeader(HTTPHeader.CONTENT_TYPE, urlRequest.contentType));
 					
 				}
 				if (urlRequest.data)
@@ -152,12 +152,29 @@ package org.apache.flex.net
                 flashUrlStream.load(req);
             }
         }
+
+		/**
+		 *  HTTP status changed (Flash only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::SWF
-		private function flash_status(ev:HTTPStatusEvent):void
+		private function flash_status(event:HTTPStatusEvent):void
 		{
-			setStatus(ev.status);
+			setStatus(event.status);
 		}
-		
+
+		/**
+		 *  IO error occurred (Flash only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::SWF 
         protected function flash_onIoError(event:IOErrorEvent):void
         {
@@ -168,16 +185,32 @@ package org.apache.flex.net
 				onError(this);
 			cleanupCallbacks();
         }
-		
+
+		/**
+		 *  Security error occurred (Flash only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
 		COMPILE::SWF
-		private function flash_onSecurityError(ev:flash.events.Event):void
+		private function flash_onSecurityError(event:flash.events.Event):void
 		{
 			dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,HTTPConstants.SECURITY_ERROR));
 			if(onError)
 				onError(this);
 			cleanupCallbacks();
 		}
-            
+
+		/**
+		 *  Upload complete (Flash only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::SWF
         protected function flash_complete(event:flash.events.Event):void
         {
@@ -186,32 +219,57 @@ package org.apache.flex.net
 				onComplete(this);
 			cleanupCallbacks();
         }
+
+		/**
+		 *  Upload is progressing (Flash only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::SWF
-        protected function flash_progress(ev:flash.events.ProgressEvent):void
+        protected function flash_progress(event:flash.events.ProgressEvent):void
         {
             var progEv:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
 			
-			progEv.current = bytesLoaded = ev.bytesLoaded;
-			progEv.total = bytesTotal = ev.bytesTotal;
+			progEv.current = bytesLoaded = event.bytesLoaded;
+			progEv.total = bytesTotal = event.bytesTotal;
             dispatchEvent(progEv);
 			if(onProgress)
 				onProgress(this);
         }
-        
+
+		/**
+		 *  Upload is progressing (JS only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::JS
-        private function xhr_progress(e:Object):void 
+        private function xhr_progress(error:Object):void
         {
 			var progEv:ProgressEvent = new ProgressEvent(ProgressEvent.PROGRESS);
-			progEv.current = bytesLoaded = e.loaded;
-			progEv.total = bytesTotal = e.total;
+			progEv.current = bytesLoaded = error.loaded;
+			progEv.total = bytesTotal = error.total;
 			
             dispatchEvent(progEv);
 			if(onProgress)
 				onProgress(this);
         }
-        
+
+		/**
+		 *  HTTP status change (JS only).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         COMPILE::JS
-        private function xhr_onreadystatechange(e:*):void
+        private function xhr_onreadystatechange(error:*):void
         {
 			setStatus(xhr.status);
 			//we only need to deal with the status when it's done.
@@ -245,7 +303,15 @@ package org.apache.flex.net
 			}
 			cleanupCallbacks();
         }
-		
+
+		/**
+		 *  Set the HTTP request status.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
 		private function setStatus(value:int):void
 		{
 			if(value != requestStatus)
@@ -257,6 +323,14 @@ package org.apache.flex.net
 			}
 		}
 
+		/**
+		 *  Abort an connection.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function close():void
         {
             COMPILE::SWF
@@ -294,6 +368,14 @@ package org.apache.flex.net
 		 */        
 		public var endian:String = Endian.BIG_ENDIAN;
 
+		/**
+		 *  Cleanup all callbacks.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
 		private function cleanupCallbacks():void
 		{
 			onComplete = null;
@@ -301,6 +383,7 @@ package org.apache.flex.net
 			onProgress = null;
 			onStatus = null;
 		}
+
 		/**
 		 *  Callback for complete event.
 		 *  
