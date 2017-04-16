@@ -28,11 +28,7 @@ package
 internal class NetworkClasses
 {	
     import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
-	import org.apache.flex.net.HTTPConstants; HTTPConstants;
-
-    COMPILE::JS {
-        import org.apache.flex.net.beads.CORSCredentialsBead; CORSCredentialsBead;
-    }
+    import org.apache.flex.net.HTTPConstants; HTTPConstants;
 }
 
 }
