@@ -618,7 +618,6 @@ package org.apache.flex.net
                     }
                 }
                 
-
                 if (_method !== HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
