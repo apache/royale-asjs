@@ -536,7 +536,9 @@ package org.apache.flex.net
                 for each (var bead:IBead in beads)
                     addBead(bead);
             }
-            
+
+            dispatchEvent(new Event("preSend"));
+
             COMPILE::SWF
             {
                 if (!urlLoader)
@@ -631,6 +633,8 @@ package org.apache.flex.net
                 }
 
             }
+
+            dispatchEvent(new Event("postSend"));
         }
         
         /**
