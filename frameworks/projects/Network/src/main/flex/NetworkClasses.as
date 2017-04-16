@@ -22,13 +22,17 @@ package
 /**
  *  @private
  *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
+ *  beyond those that are found by dependency analysis starting
  *  from the classes specified in manifest.xml.
  */
 internal class NetworkClasses
 {	
     import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
 	import org.apache.flex.net.HTTPConstants; HTTPConstants;
+
+    COMPILE::JS {
+        import org.apache.flex.net.beads.CORSCredentialsBead; CORSCredentialsBead;
+    }
 }
 
 }
