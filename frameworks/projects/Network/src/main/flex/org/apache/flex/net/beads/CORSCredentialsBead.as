@@ -85,13 +85,11 @@ public class CORSCredentialsBead implements IBead {
      *
      *  @productversion FlexJS 0.8
      */
-    public function get withCredentials():Boolean
-    {
+    public function get withCredentials():Boolean {
         return _withCredentials;
     }
 
-    public function set withCredentials(value:Boolean):void
-    {
+    public function set withCredentials(value:Boolean):void {
         _withCredentials = value;
     }
 }
