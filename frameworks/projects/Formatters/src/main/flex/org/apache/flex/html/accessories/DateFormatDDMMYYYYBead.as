@@ -26,7 +26,7 @@ package org.apache.flex.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DateFormatDDMMYYYYBead extends SimpleDateFormatBead
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DateFormatDDMMYYYYBead()
 		{
