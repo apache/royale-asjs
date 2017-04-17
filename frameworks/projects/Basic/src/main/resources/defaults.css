@@ -174,7 +174,7 @@ DateField {
     IBeadView:   ClassReference("org.apache.flex.html.beads.DateFieldView");
     IBeadModel:  ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DateFieldMouseController");
-    IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatMMDDYYYYBead");
+    IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatYYYYMMDDBead");
 }
 
 RangeStepper {
