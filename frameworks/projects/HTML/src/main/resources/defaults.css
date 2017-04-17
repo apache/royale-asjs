@@ -91,17 +91,9 @@ ButtonBar
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.TextButtonItemRenderer");
 	
 	border-style: none;
-}
-
-ButtonBarButtonItemRenderer
-{
-	width: 80;
-	height: 30;
-	flex-shrink: 0;
-	flex-grow: 1;
 }
 
 ComboBox
@@ -190,7 +182,7 @@ DataGridButtonBar
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.DataGridButtonBarButtonItemRenderer");
+	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.TextButtonItemRenderer");
 	
 	border-style: none;
 }
