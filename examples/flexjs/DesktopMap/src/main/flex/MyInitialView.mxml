@@ -91,57 +91,90 @@ limitations under the License.
 	
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.MapPanel {
+			border: 1px solid #555555;
+			backgroundColor: darkgray;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.LocationGroup {
+			flex-grow: 0;
+			padding: 4px;
+		}
+		
+		.Map {
+			flex-grow: 1;
+		}
+		
+		.SearchGroup {
+			flex-grow: 0;
+			padding: 4px;
+			backgroundColor: lightgray;
+		}
+		
+		.InputGroup {
+			flex-grow: 0;
+			padding: 4px;
+			margin-top: 10px;
+		}
 	
 	</fx:Style>
 	
 	<js:beads>
 		<js:ViewDataBinding />
+		<local:NoLayout />
 	</js:beads>
 	
-	
-	<js:Container x="5" y="5" className="topContainer" >
+	<js:Panel title="Map" width="50%" height="600" className="MapPanel">
 		<js:beads>
-			<js:VerticalLayout />
+			<js:VerticalFlexLayout />
 		</js:beads>
 		
-		<js:Container>
+		<js:Group className="LocationGroup">
 			<js:beads>
-				<js:HorizontalLayout />
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="mapLocation" />
 			</js:beads>
 			<js:Label text="Location:" />
 			<js:TextInput id="mapLocation" />
 			<js:TextButton text="Go" click="orientMap()" />
-		</js:Container>
+		</js:Group>
 		
-		<google:Map id="map" width="450" height="300" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+		<google:Map id="map" className="Map" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
 		
-		<js:Container>
+		<js:Group className="SearchGroup">
 			<js:beads>
-				<js:HorizontalLayout />
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="search" />
 			</js:beads>
 			<js:Label text="Search on Map:" />
 			<js:TextInput id="search" />
 			<js:TextButton text="Find" click="searchOnMap()" />
 			<js:TextButton text="Clear" click="clearSearchResults()" />
-		</js:Container>
+		</js:Group>
 		
-		<js:Label text="History:" />
-		
-		<!--<js:List id="historyList" />-->
-		<js:DropDownList id="list" width="100" height="17"
-							change="changeCity(event)"
-							dataProvider="{MyModel(applicationModel).cities}" />
-		
-		<js:Label text="Lat:" />
-		<js:TextInput id="latInput" text="-34.397" />
-		
-		<js:Label text="Long:" />
-		<js:TextInput id="longInput" text="150.644" />
-		
-		<js:Label text="Zoom:" />
-		<js:TextInput id="zoomInput" text="8" />
-		
-		<js:TextButton text="MapIt" click="mapIt()" />
-	</js:Container>
+		<js:Group className="InputGroup">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="History" />
+			<js:DropDownList id="list" width="100" height="17"
+							 change="changeCity(event)"
+							 dataProvider="{MyModel(applicationModel).cities}" />
+			
+			<js:Label text="Lat:" />
+			<js:TextInput id="latInput" text="-34.397" />
+			
+			<js:Label text="Long:" />
+			<js:TextInput id="longInput" text="150.644" />
+			
+			<js:Label text="Zoom:" />
+			<js:TextInput id="zoomInput" text="8" />
+			
+			<js:TextButton text="MapIt" click="mapIt()" />
+		</js:Group>
+
+	</js:Panel>
 
 </js:View>
