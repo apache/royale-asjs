@@ -37,7 +37,7 @@ package models
 			_strand = value;
 		}
 		
-		private var _cities:Array = ["Sydney", "NYC", "Mexico City", "London", "Rio de Janeiro"];
+		private var _cities:Array = ["San Jose, CA", "Sydney", "NYC", "Mexico City", "London", "Rio de Janeiro"];
 		
 		[Bindable]
 		public function get cities():Array
@@ -45,7 +45,8 @@ package models
 			return _cities;
 		}
 		
-		private var _coordinates:Array = [{lat:-33.86, lng:151.211},
+		private var _coordinates:Array = [{lat:-37.3, lng: -121.5},
+			{lat:-33.86, lng:151.211},
 			{lat:40.712, lng:-74.0059},
 			{lat:19.26, lng:-99.03},
 			{lat:51.4, lng:-0.1},
