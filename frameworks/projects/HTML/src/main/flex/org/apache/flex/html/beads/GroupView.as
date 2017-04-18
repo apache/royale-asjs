@@ -304,26 +304,41 @@ package org.apache.flex.html.beads
 					host.addBead( new c() as IBead );
 				}
 			}
-
+			
+			if (setupForBorder(host, "border")) return;
+			if (setupForBorder(host, "border-top")) return;
+			if (setupForBorder(host, "border-bottom")) return;
+			if (setupForBorder(host, "border-left")) return;
+			if (setupForBorder(host, "border-right")) return;
+		}
+		
+		COMPILE::SWF
+		protected function setupForBorder(host:UIBase, borderType:String):Boolean
+		{
+			var result:Boolean = false;
+			
 			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, borderType);
 			if (borderStyles is Array)
 			{
 				borderStyle = borderStyles[1];
 			}
 			if (borderStyle == null)
 			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
+				borderStyle = ValuesManager.valuesImpl.getValue(host, borderType+"-style") as String;
 			}
 			if (borderStyle != null && borderStyle != "none")
 			{
 				if (host.getBeadByType(IBorderBead) == null) {
-					c = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
+					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
 					if (c) {
 						host.addBead( new c() as IBead );
+						result = true;
 					}
 				}
 			}
+			
+			return result;
 		}
 	}
 }
