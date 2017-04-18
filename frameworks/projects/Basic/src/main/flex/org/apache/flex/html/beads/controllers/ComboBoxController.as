@@ -58,12 +58,12 @@ package org.apache.flex.html.beads.controllers
 			}
 			
 			IEventDispatcher(viewBead.popupButton).addEventListener("click", handleButtonClick);
-			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
 		}
 		
 		private function handleButtonClick(event:MouseEvent):void
 		{			
 			viewBead.popUpVisible = !viewBead.popUpVisible;
+			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
 		}
 		
 		private function handleListChange(event:Event):void

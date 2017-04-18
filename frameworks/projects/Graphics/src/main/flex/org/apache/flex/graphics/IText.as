@@ -15,6 +15,27 @@ package org.apache.flex.graphics
 {
 	public interface IText extends IGraphicShape
 	{
-		
+		/**
+         *  The text to draw.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+		function get text():String;
+		function set text(value:String):void;
+
+		/**
+         *  Draw the text. (The same behavior as the default draw() method, but requires specifying the text, x and y explicitly.)
+         *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
+         *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+		function drawText(value:String, xt:Number, yt:Number):void
 	}
 }

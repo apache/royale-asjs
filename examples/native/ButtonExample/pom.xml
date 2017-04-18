@@ -39,9 +39,9 @@
       <plugin>
         <groupId>org.apache.flex.flexjs.compiler</groupId>
         <artifactId>flexjs-maven-plugin</artifactId>
-        <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <outputJavaScript>true</outputJavaScript>
           <mainClass>ButtonExample.as</mainClass>
           <targets>JS</targets>
         </configuration>
@@ -58,6 +58,26 @@
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-gcl</artifactId>
+      <version>${flexjs.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+      <scope>runtime</scope>
+    </dependency>
+    <!--
+      By declaring this dependency here, we force the flexjs-externs-js to be
+      added to the external library path of all modules. Without this it would
+      have gone to the library path.
+    -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-js</artifactId>
+      <version>${flexjs.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
-
 </project>

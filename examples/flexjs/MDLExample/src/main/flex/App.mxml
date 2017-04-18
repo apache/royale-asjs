@@ -29,6 +29,8 @@ limitations under the License.
     </js:valuesImpl>
     
     <js:initialView>
-        <local:MainNavigation/>
+        <js:View width="100%" height="100%">
+            <local:MainNavigation/>
+        </js:View>
     </js:initialView>
 </mdl:Application>

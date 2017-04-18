@@ -90,6 +90,7 @@
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/FlexJS/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
+            <arg value="-compiler.byte-array-embed-class=org.apache.flex.core.ByteArrayAsset" />
         </java>
     </target>
     

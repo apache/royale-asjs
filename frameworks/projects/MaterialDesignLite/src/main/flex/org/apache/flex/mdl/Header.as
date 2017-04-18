@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The Header class is a Container component mainly used in NavigationLayout
 	 *  and Tabs components. It used to hold a HeaderRow and/or a TabBar components
@@ -35,7 +35,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class Header extends ContainerBase
+	public class Header extends Group
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -61,13 +61,13 @@ package org.apache.flex.mdl
 			typeNames = "mdl-layout__header";
 
             element = document.createElement('header') as WrappedHTMLElement;
-            
+
 			positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
         }
-		
+
 		protected var _transparent:Boolean;
         /**
 		 *  A boolean flag to activate "mdl-transparent--Xdp" effect selector.

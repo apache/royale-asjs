@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
+    import org.apache.flex.core.IParent;
     import org.apache.flex.events.Event;
     import org.apache.flex.core.IContentViewHost;
-    import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBarButton;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
@@ -48,46 +48,10 @@ package org.apache.flex.mdl.beads.views
             super();
         }
 
-        /**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        override public function set strand(value:IStrand):void
+        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
         {
-            super.strand = value;
+            super.itemsCreatedHandler(event);
 
-            host.addEventListener("initComplete", initCompleteHandler);
-        }
-
-        /**
-		 *  init complete handler
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        private function initCompleteHandler(event:Event):void
-        {
-            host.removeEventListener("initComplete", initCompleteHandler);
-
-            completeSetup();
-        }
-
-        /**
-		 *  complete setup
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-        protected function completeSetup():void
-        {
             selectTabBarButton();
         }
 
@@ -101,9 +65,12 @@ package org.apache.flex.mdl.beads.views
 		 */
         private function selectTabBarButton():void
         {
-            if (listModel.selectedIndex < 0 ) return;
+            var strandChildren:IParent = (host as IContentViewHost).strandChildren;
+            if (strandChildren.numElements <= 0) return;
+            if (listModel.selectedIndex < 0) return;
 
-            var tabBarButton:Object = (host as IContentViewHost).strandChildren.getElementAt(listModel.selectedIndex);
+            var tabBarButton:Object = strandChildren.getElementAt(listModel.selectedIndex);
+            
             if (tabBarButton is ITabItemRenderer || tabBarButton is TabBarButton)
             {
                 tabBarButton.isActive = true;

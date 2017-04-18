@@ -20,10 +20,6 @@ limitations under the License.
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:gen="simple.*">
-    <fx:Script>
-        
-    </fx:Script>
-	
 	<fx:Style>
 		@namespace gen "simple.*";
 		@namespace js "library://ns.apache.org/flexjs/basic";
@@ -35,6 +31,9 @@ limitations under the License.
 			IDataProviderItemRendererMapper: ClassReference("simple.IRFactoryForArrayData");
 			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+			
+			overflow: auto;
+			border: 1px solid #CCCCCC;
 		}
 	</fx:Style>
 	

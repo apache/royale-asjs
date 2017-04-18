@@ -99,7 +99,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 				
 				<js:Label y="355" text="Option 2: Drag this marker into the map" style="margin:auto" className="instructions"/>
 				
-				<js:Image y="380" style="margin:auto" url="assets/support_mapmarker_plus.png"/>
+				<js:Image y="380" style="margin:auto" src="assets/support_mapmarker_plus.png"/>
 				
 				<js:HRule y="415" style="margin:auto" width="200" alpha="0.6"/>
 				
@@ -125,7 +125,7 @@ The width and height are hard-coded in the root tag to help the Design view.
                                             }
                                         ]]>
                                     </fx:Script>
-                                    <js:Image width="21" height="25" url="{product.image}" />
+                                    <js:Image width="21" height="25" src="{product.image}" />
                                     <js:Label width="100%" text="{product.name}" />
                                 </js:DataItemRenderer>                                                            
                             </fx:Component>
@@ -137,7 +137,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 		</js:VContainer>
 		
 		<js:Container width="68%" height="100%">
-			<js:Image url="assets/427px-Bayarea_map.png">
+			<js:Image src="assets/427px-Bayarea_map.png">
                 <js:style>
                     <js:SimpleCSSStyles left="12" top="12"/>
                 </js:style>

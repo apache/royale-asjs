@@ -65,7 +65,7 @@ Switch
 
 Slider
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.SliderRangeModel");
 	iBeadView:  ClassReference("org.apache.flex.mdl.beads.views.SliderView");
 	iBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
 }
@@ -113,9 +113,9 @@ Menu
 Tabs
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabsView");
-    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarPanelItemRenderer");
 }
@@ -123,9 +123,9 @@ Tabs
 TabBar
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabBarView");
-    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabModel");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer");
 }

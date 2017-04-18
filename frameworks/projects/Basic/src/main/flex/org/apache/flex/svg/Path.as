@@ -14,6 +14,7 @@
 
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
     import org.apache.flex.graphics.IPath;
     import org.apache.flex.graphics.PathBuilder;
 
@@ -30,7 +31,7 @@ package org.apache.flex.svg
     }
 
 
-    public class Path extends GraphicShape implements IPath
+    public class Path extends GraphicShape implements IPath, IDrawable
     {
 
         private var _data:String;
@@ -125,9 +126,14 @@ package org.apache.flex.svg
             }
         }
 
-        override protected function draw():void
+        override protected function drawImpl():void
         {
             drawStringPath(0, 0, data);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
     }
 }

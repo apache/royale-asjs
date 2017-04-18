@@ -149,7 +149,7 @@ limitations under the License.
 	<js:Container height="45%" width="100%">
 		<js:DataGrid id="assetGrid" height="100%" width="100%" rowHeight="25" change="gridSelected()" className="LaunchGrid">
 			<js:beads>
-				<js:DataGridPercentageLayout />
+				<js:DataGridPercentageView />
 				<js:SimpleBinding
 					eventName="update"
 					sourceID="dataModel"

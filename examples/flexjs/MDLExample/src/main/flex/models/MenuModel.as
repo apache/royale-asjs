@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
-
     import vos.MenuItemVO;
 
-    public class MenuModel extends EventDispatcher
+    public class MenuModel
     {
         private var _menuItems:Array = [
             new MenuItemVO("Some Action"),

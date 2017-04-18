@@ -604,7 +604,7 @@ package org.apache.flex.core
                     var n:Number = Number(value);
                     if (isNaN(n))
                     {
-                        if (value.charAt(0) == "#")
+                        if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
                         {                            
                             obj[pieces[0]] = CSSUtils.toColor(value);
                         }
@@ -691,6 +691,14 @@ package org.apache.flex.core
             'borderColor': 1,
             'color': 1
         }
+
+        /**
+         * The styles that can use raw numbers
+         */
+        COMPILE::JS
+        public static var numericStyles:Object = {
+            'fontWeight': 1
+        }
         
         
         /**
@@ -714,6 +722,7 @@ package org.apache.flex.core
             var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
             var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
             var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
+            var numericStyles:Object = SimpleCSSValuesImpl.numericStyles;
             var listObj:Object = styles;
             if (styles.styleList)
                 listObj = styles.styleList;
@@ -728,6 +737,8 @@ package org.apache.flex.core
                 if (typeof(value) == 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
+                    else if (numericStyles[p])
+                        value = value.toString();
                     else
                         value = value.toString() + 'px';
                 }

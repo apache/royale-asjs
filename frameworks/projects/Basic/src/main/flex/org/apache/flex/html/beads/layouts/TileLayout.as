@@ -18,16 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IBeadLayout;
-    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.ILayoutHost;
-    import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutView;
+	import org.apache.flex.core.ILayoutParent;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.utils.CSSUtils;
+	import org.apache.flex.utils.CSSContainerUtils;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -40,7 +45,7 @@ package org.apache.flex.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TileLayout implements IBeadLayout
+	public class TileLayout extends LayoutBase implements IBeadLayout
 	{
 		/**
 		 *  constructor.
@@ -52,21 +57,7 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function TileLayout()
 		{
-		}
-
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
+			super();
 		}
 
 		private var _numColumns:Number = 4;
@@ -131,14 +122,14 @@ package org.apache.flex.html.beads.layouts
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
+			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			
 			COMPILE::SWF
 			{
-				// this is where the layout is calculated
-				var host:UIBase = _strand as UIBase;
-                var p:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var area:UIBase = p.contentView as UIBase;
+				var area:UIBase = layoutView as UIBase;
 
 				var xpos:Number = 0;
 				var ypos:Number = 0;
@@ -146,20 +137,23 @@ package org.apache.flex.html.beads.layouts
 				var useHeight:Number = rowHeight;
 				var n:Number = area.numElements;
 				if (n == 0) return false;
+				
+				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
 				var realN:Number = n;
 				for(var j:int=0; j < n; j++)
 				{
 					var testChild:IUIBase = area.getElementAt(i) as IUIBase;
-                    if (testChild == null || !testChild.visible) realN--;
+					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN/numColumns);
-                    if (host.isHeightSizedToContent) useHeight = 30; // default height
-                    else useHeight = Math.floor(host.height / numRows);
+					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
 				var maxWidth:Number = useWidth;
@@ -168,7 +162,7 @@ package org.apache.flex.html.beads.layouts
 				for(var i:int=0; i < n; i++)
 				{
 					var child:IUIBase = area.getElementAt(i) as IUIBase;
-                    if (child == null || !child.visible) continue;
+					if (child == null || !child.visible) continue;
 					child.width = useWidth;
 					child.height = useHeight;
 					child.x = xpos;
@@ -193,8 +187,6 @@ package org.apache.flex.html.beads.layouts
 				// size is stored in the model.
 				var sizeChanged:Boolean = true;
 
-				IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-
 				return sizeChanged;
 			}
 			COMPILE::JS
@@ -207,17 +199,17 @@ package org.apache.flex.html.beads.layouts
 				var ypos:Number;
 				var useWidth:Number;
 				var useHeight:Number;
+				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 
-				var host:UIBase = _strand as UIBase;
-                var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
-				var contentView:IParentIUIBase = viewBead.contentView;
+				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				
 				children = contentView.internalChildren();
 				n = children.length;
 				if (n === 0) return false;
 
-				viewBead.contentView.width = host.width;
-                viewBead.contentView.element.style["display"] = "flex";
-                viewBead.contentView.element.style["flex-flow"] = "row wrap";
+				contentView.element.style["display"] = "flex";
+				contentView.element.style["flex-flow"] = "row wrap";
 
 				var realN:int = n;
 				for (i = 0; i < n; i++)
@@ -231,12 +223,14 @@ package org.apache.flex.html.beads.layouts
 				useWidth = columnWidth;
 				useHeight = rowHeight;
 
-				if (isNaN(useWidth)) useWidth = Math.floor(host.width / numColumns); // + gap
+				if (isNaN(useWidth)) {
+					useWidth = Math.floor(adjustedWidth / numColumns); // + gap
+				}
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
 					var numRows:Number = Math.floor(realN / numColumns);
-                    if (host.isHeightSizedToContent) useHeight = 30; // default height
-                    else useHeight = Math.floor(host.height / numRows);
+					if (host.isHeightSizedToContent) useHeight = 30; // default height
+					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
 
 				for (i = 0; i < n; i++)

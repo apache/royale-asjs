@@ -19,6 +19,9 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.mdl.beads.UpgradeChildren;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::SWF
     {
@@ -26,7 +29,6 @@ package org.apache.flex.mdl
         import org.apache.flex.core.UIButtonBase;
         import org.apache.flex.core.IStrand;
         import org.apache.flex.core.IValueToggleButtonModel;
-        import org.apache.flex.events.MouseEvent;
     }
     COMPILE::JS
     {
@@ -86,14 +88,11 @@ package org.apache.flex.mdl
 		 */
 		public function RadioButton()
 		{
-			super();
-
+            super();
 			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
 		protected static var dict:Dictionary = new Dictionary(true);
-
-		private var _groupName:String;
 
 		/**
 		 *  The name of the group. Only one RadioButton in a group is selected.
@@ -228,12 +227,12 @@ package org.apache.flex.mdl
 		/**
 		 * @private
 		 */
-		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
+		private function internalMouseHandler(event:MouseEvent) : void
 		{
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {
 				selected = !selected;
-				dispatchEvent(new Event("change"));
+				dispatchEvent(new Event(Event.CHANGE));
 			}
 		}
 
@@ -281,7 +280,7 @@ package org.apache.flex.mdl
     {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -289,10 +288,13 @@ package org.apache.flex.mdl
          */
 		public function RadioButton()
 		{
-			super();
+            super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
+
+            addBead(new UpgradeElement());
+            addBead(new UpgradeChildren(["mdl-radio__ripple-container"]));
+        }
 
         /**
          * Provides unique name
@@ -303,7 +305,8 @@ package org.apache.flex.mdl
         private var icon:HTMLInputElement;
         private var label:HTMLLabelElement;
         private var textNode:Text;
-        
+
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLLabelElement
@@ -325,18 +328,16 @@ package org.apache.flex.mdl
             radio = document.createElement('span') as HTMLSpanElement;
             radio.className = 'mdl-radio__label';
             radio.appendChild(textNode);
-            
+
             //radio.addEventListener('mouseover', mouseOverHandler, false);
             //radio.addEventListener('mouseout', mouseOutHandler, false);
-            
+
             label = document.createElement("label") as HTMLLabelElement;
             label.appendChild(icon);
             label.appendChild(radio);
 
-            //label.addEventListener("click", clickHandler, false);
-            
             element = label as WrappedHTMLElement;
-            
+
             positioner = element;
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
@@ -349,23 +350,20 @@ package org.apache.flex.mdl
         COMPILE::JS
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
-            if (type == "click")
+            if (type == MouseEvent.CLICK)
             {
-                icon.addEventListener("click", clickHandler, false);
+                icon.addEventListener(type, handler, opt_capture);
             }
             else
             {
-               super.addEventListener(type, handler);
+               super.addEventListener(type, handler, opt_capture, opt_handlerScope);
             }
         }
 
         COMPILE::JS
         public function clickHandler(event:Event):void
         {
-            //event.preventDefault();
-            //unselectAll();
             selected = !selected;
-            //element.classList.toggle("is-checked", selected);
         }
 
         protected var _ripple:Boolean = false;
@@ -466,29 +464,6 @@ package org.apache.flex.mdl
                 }
             }
         }
-
-        /*COMPILE::JS
-        private function unselectAll():void
-        {
-            var groupName:String = icon.name as String;
-            var buttons:NodeList = document.getElementsByName(groupName);
-            var n:int = buttons.length;
-
-            for (var i:int = 0; i < n; i++)
-            {
-                var radio:HTMLInputElement = buttons[i];
-                radio.checked = false;
-
-                var labels:NodeList = radio["labels"];
-                var labelsLength:int = labels.length;
-                
-                for (var l:int = 0; l < labelsLength; l++)
-                {
-                    var lbl:Object = labels[l];
-                    lbl.classList.remove("is-checked");
-                }
-            }
-        }*/
 
         /**
          * @param e The event object.

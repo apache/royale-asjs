@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-
     /**
      *  The ISelectionModel interface describes the minimum set of properties
      *  available to control that let the user select from within a

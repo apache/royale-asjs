@@ -39,8 +39,9 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.7
          */
-        function get url():String;
-        function set url(value:String):void;
+        function get src():String;
+        function set src(value:String):void;
+		
 		COMPILE::JS
 		function get imageElement():Element;
 		COMPILE::JS

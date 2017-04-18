@@ -17,8 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package vos {
-    public class MemberVO {
 
+    [Bindable]
+    public class MemberVO
+    {
         public function MemberVO(name:String,apacheID:String,photoURL:String,bio:String,twitter:String,linkedIn:String,facebook:String){
             this.name = name;
             this.apacheID = apacheID;
@@ -29,13 +31,12 @@ package vos {
             this.facebook = facebook;
         }
 
-        [Bindable] public var name:String;
-        [Bindable] public var title:String;
-        [Bindable] public var apacheID:String;
-        [Bindable] public var photoURL:String;
-        [Bindable] public var bio:String;
-        [Bindable] public var twitter:String;
-        [Bindable] public var linkedIn:String;
-        [Bindable] public var facebook:String;
+        public var name:String;
+        public var apacheID:String;
+        public var photoURL:String;
+        public var bio:String;
+        public var twitter:String;
+        public var linkedIn:String;
+        public var facebook:String;
     }
 }

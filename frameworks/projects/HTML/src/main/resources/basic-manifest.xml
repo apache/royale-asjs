@@ -42,5 +42,6 @@
 
     <component id="InnerHTML" class="org.apache.flex.html.beads.InnerHTML" />
     <component id="TextNode" class="org.apache.flex.html.TextNode" />
+    <component id="HTMLText" class="org.apache.flex.html.HTMLText"/>
 
 </componentPackage>

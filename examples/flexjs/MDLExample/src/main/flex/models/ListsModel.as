@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
-	import vos.*;
+	import vos.ActorVO;
 
-	public class ListsModel extends EventDispatcher
+	public class ListsModel 
 	{
 		/**
 		 * Used in the List example.
@@ -51,6 +50,5 @@ package models
 		{
 			return _actors;
 		}		
-
 	}
 }

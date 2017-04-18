@@ -21,9 +21,14 @@ package org.apache.flex.charts.supportClasses
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Point;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.supportClasses.DataGroup;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.geom.Point;
 	
 	/**
 	 *  The ChartDataGroup class provides the actual space for rendering the
@@ -48,6 +53,10 @@ package org.apache.flex.charts.supportClasses
 		{
 			super();
 		}
+		
+		/*
+		 * IChartDataGroup
+		 */
 		
 		/**
 		 *  Returns the itemRenderer that matches both the series and child index. A null return is

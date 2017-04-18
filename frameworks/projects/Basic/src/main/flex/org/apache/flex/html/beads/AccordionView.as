@@ -76,6 +76,7 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		COMPILE::SWF
 		override protected function itemsCreatedHandler(event:Event):void
 		{
 			var n:int = dataGroup.numElements;

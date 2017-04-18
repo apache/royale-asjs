@@ -57,6 +57,7 @@ package org.apache.flex.html
      *  The CheckBox class implements the common user interface
      *  control.  The CheckBox includes its text label.
      *
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -131,20 +132,6 @@ package org.apache.flex.html
 		}
 	}
 
-    //--------------------------------------
-    //  Events
-    //--------------------------------------
-    
-    /**
-     *  Dispatched when the user checks or un-checks the CheckBox.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    [Event(name="change", type="org.apache.flex.events.Event")]
-    
     COMPILE::JS
     public class CheckBox extends UIBase
     {
@@ -168,7 +155,7 @@ package org.apache.flex.html
             element.appendChild(document.createTextNode(''));
 
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
 			_icon.element.flexjs_wrapper = this;
 
@@ -188,7 +175,6 @@ package org.apache.flex.html
             _label.childNodes.item(1).nodeValue = value;
         }
 
-        [Bindable("change")]
         public function get selected():Boolean
         {
             return (_icon.element as HTMLInputElement).checked;

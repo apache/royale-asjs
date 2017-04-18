@@ -23,8 +23,7 @@ package org.apache.flex.collections
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.collections.parsers.IInputParser;
-    import org.apache.flex.collections.converters.IItemConverter;
+    import org.apache.flex.events.CollectionEvent;
 
     //--------------------------------------
     //  Events
@@ -39,7 +38,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="collectionChanged", type="org.apache.flex.events.Event")]
+	[Event(name="collectionChanged", type="org.apache.flex.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has added an item.
@@ -49,7 +48,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="itemAdded", type="org.apache.flex.events.Event")]
+	[Event(name="itemAdded", type="org.apache.flex.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has removed an item.
@@ -59,7 +58,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="itemRemoved", type="org.apache.flex.events.Event")]
+	[Event(name="itemRemoved", type="org.apache.flex.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has updated an item.
@@ -69,7 +68,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	[Event(name="itemUpdated", type="org.apache.flex.events.Event")]
+	[Event(name="itemUpdated", type="org.apache.flex.events.CollectionEvent")]
 
     /**
      *  The ArrayList class provides an event-driven wrapper for the
@@ -159,9 +158,16 @@ package org.apache.flex.collections
 		public function set source(value:Array):void
 		{
 			if (_source != value) {
-				if (value == null) _source = [];
-				else _source = value;
-				dispatchEvent(new Event("collectionChanged"));
+				if (value == null)
+				{
+					_source = [];
+                }
+				else
+				{
+					_source = value;
+                }
+
+				dispatchEvent(new CollectionEvent(CollectionEvent.COLLECTION_CHANGED));
 			}
 		}
 
@@ -252,7 +258,9 @@ package org.apache.flex.collections
 				return;
 			}
 
-			dispatchEvent(new Event("itemAdded"));
+			var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_ADDED);
+			collectionEvent.item = item;
+			dispatchEvent(collectionEvent);
 		}
 
 		/**
@@ -272,7 +280,10 @@ package org.apache.flex.collections
 			if (index >= 0 && index < spliceUpperBound) {
 				oldItem = source[index];
 				source[index] = item;
-				dispatchEvent(new Event("itemUpdated"));
+
+                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+                collectionEvent.item = item;
+				dispatchEvent(collectionEvent);
 			}
 			else {
 				// error
@@ -330,7 +341,10 @@ package org.apache.flex.collections
 				return null;
 			}
 
-			dispatchEvent(new Event("itemRemoved"));
+            var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
+            collectionEvent.item = removed;
+            dispatchEvent(collectionEvent);
+
 			return removed;
 		}
 
@@ -344,9 +358,11 @@ package org.apache.flex.collections
 		 */
 		public function removeAll():void
 		{
-			if (length > 0) {
-				source.splice(0, length);
-				dispatchEvent(new Event("itemRemoved"));
+			if (length > 0)
+			{
+                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
+                collectionEvent.items = source.splice(0, length);
+                dispatchEvent(collectionEvent);
 			}
 		}
 
@@ -361,8 +377,11 @@ package org.apache.flex.collections
 		public function itemUpdated(item:Object):void
 		{
 			var index:int = getItemIndex(item);
-			if (index >= 0) {
-				dispatchEvent(new Event("itemUpdated"));
+			if (index >= 0)
+			{
+                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+                collectionEvent.item = item;
+                dispatchEvent(collectionEvent);
 			}
 		}
 
@@ -376,7 +395,9 @@ package org.apache.flex.collections
 		 */
 		public function itemUpdatedAt(index:int):void
 		{
-			dispatchEvent(new Event("itemUpdated"));
+            var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+            collectionEvent.item = getItemAt(index);
+            dispatchEvent(collectionEvent);
 		}
 
         /**

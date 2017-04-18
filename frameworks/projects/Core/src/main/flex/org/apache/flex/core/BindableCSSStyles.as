@@ -31,6 +31,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
+    [Bindable]
 	public class BindableCSSStyles extends EventDispatcher
 	{
         /**
@@ -70,65 +71,40 @@ package org.apache.flex.core
             "backgroundAlpha": 1,
             "backgroundColor": 1,
             "backgroundImage": 1,
+			"border": 1,
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
             "borderWidth": 1
         };
-		
-        [Bindable]
+
         public var top:*;
-        [Bindable]
         public var bottom:*;
-        [Bindable]
         public var left:*;
-        [Bindable]
         public var right:*;
-        [Bindable]
         public var padding:*;
-        [Bindable]
 		public var paddingLeft:*;
-        [Bindable]
         public var paddingRight:*;
-        [Bindable]
         public var paddingTop:*;
-        [Bindable]
         public var paddingBottom:*;
-        [Bindable]
         public var margin:*;
-        [Bindable]
         public var marginLeft:*;
-        [Bindable]
         public var marginRight:*;
-        [Bindable]
         public var marginTop:*;
-        [Bindable]
         public var marginBottom:*;
-        [Bindable]
         public var verticalAlign:*;
-        [Bindable]
         public var fontFamily:*;
-        [Bindable]
         public var fontSize:*;
-        [Bindable]
         public var color:*;
-        [Bindable]
         public var fontWeight:*;
-        [Bindable]
         public var fontStyle:*;
-        [Bindable]
         public var backgroundAlpha:*;
-        [Bindable]
         public var backgroundColor:*;
-        [Bindable]
         public var backgroundImage:*;
-        [Bindable]
+		public var border:*;
         public var borderColor:*;
-        [Bindable]
         public var borderStyle:*;
-        [Bindable]
         public var borderRadius:*;
-        [Bindable]
         public var borderWidth:*;
 	}
 }

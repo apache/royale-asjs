@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.materialIcons
 {
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    import org.apache.flex.core.IUIBase;
 
     /**
-     *  Implement if a class will need ability to display Material icon
+     *  IMaterialIcon interface provides abstraction for easiest way to implements custom MaterialIcon class
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public interface IMaterialIcon
+    public interface IMaterialIcon extends IUIBase
     {
-        function get materialIcon():MaterialIconBase;
-        function set materialIcon(value:MaterialIconBase):void;
+
     }
 }

@@ -54,46 +54,6 @@
           </dependency>
         </dependencies>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <id>package-javascript</id>
-            <phase>package</phase>
-            <goals>
-              <goal>war</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <warSourceDirectory>${basedir}/target/javascript/bin/js-debug</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.11</version>
-        <executions>
-          <execution>
-            <id>attach-war</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <artifacts>
-            <artifact>
-              <file>${basedir}/target/${project.artifactId}-${project.version}.war</file>
-              <type>war</type>
-            </artifact>
-          </artifacts>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 

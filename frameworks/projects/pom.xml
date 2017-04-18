@@ -43,10 +43,10 @@
     <module>Express</module>
     <module>Flat</module>
     <module>Formatters</module>
-	<module>FontAwesome</module>
+    <module>FontAwesome</module>
     <module>GoogleMaps</module>
     <module>Graphics</module>
-    <module>Basic</module>
+    <!--<module>Basic</module>-->
     <module>HTML</module>
     <module>HTML5</module>
     <module>JQuery</module>

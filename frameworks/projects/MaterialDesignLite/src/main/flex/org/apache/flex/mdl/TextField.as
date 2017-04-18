@@ -17,8 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.events.Event;
-
+    import org.apache.flex.mdl.beads.UpgradeElement;
     import org.apache.flex.mdl.supportClasses.TextFieldBase;
 
     COMPILE::JS
@@ -48,8 +47,9 @@ package org.apache.flex.mdl
 	public class TextField extends TextFieldBase
 	{
         /**
+         * 
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -58,10 +58,9 @@ package org.apache.flex.mdl
 		public function TextField()
 		{
 			super();
-
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-		}
-
+        }
+        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLDivElement
@@ -76,6 +75,8 @@ package org.apache.flex.mdl
 
             var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
             div.className = typeNames;
+
+            addBead(new UpgradeElement(div));
 
             input = document.createElement('input') as HTMLInputElement;
             input.setAttribute('type', 'text');

@@ -36,6 +36,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.ItemRendererEvent;
 	import org.apache.flex.html.List;
 	
+	import org.apache.flex.core.IList;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.IParentIUIBase;
+	
 	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
     /**
@@ -64,11 +69,11 @@ package org.apache.flex.html.beads
 		{
 			super(target);
 		}
-		
-        protected var dataProviderModel:IDataProviderModel;
-		
-        protected var labelField:String;
-		
+
+		protected var dataProviderModel:IDataProviderModel;
+
+		protected var labelField:String;
+
 		private var _strand:IStrand;
 		
         /**
@@ -82,21 +87,22 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
+		/**
+		 * @private
+		 */
 		private function finishSetup(event:Event):void
-		{
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
-            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		{			
+			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			labelField = dataProviderModel.labelField;
 			
-            labelField = dataProviderModel.labelField;
-			
-			if (!itemRendererFactory)
-			{
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// already have been loaded by DataContainerBase.addedToParent function.
+			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (itemRendererFactory == null) {
 				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				_strand.addBead(_itemRendererFactory);
 			}
@@ -136,25 +142,25 @@ package org.apache.flex.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */
-		protected var dataGroup:IItemRendererParent;
-		
-        protected function dataProviderChangeHandler(event:Event):void
+         */		
+		protected function dataProviderChangeHandler(event:Event):void
 		{
-            var dp:Array = dataProviderModel.dataProvider as Array;
+			var dp:Array = dataProviderModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
 			
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+			dataGroup.removeAllItemRenderers();
+			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                dataGroup.addElement(ir);
+				dataGroup.addItemRenderer(ir);
 				ir.index = i;
 				ir.labelField = labelField;
 				if (presentationModel) {
@@ -162,8 +168,8 @@ package org.apache.flex.html.beads
 					style.marginBottom = presentationModel.separatorThickness;
 					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
-                    UIBase(ir).percentWidth = 100;
-                }
+					UIBase(ir).percentWidth = 100;
+				}
 				ir.data = dp[i];
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

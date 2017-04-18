@@ -19,7 +19,7 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.html.Group;
 
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -29,12 +29,13 @@ package org.apache.flex.html
 	/**
 	 *  The DateChooser class is a component that displays a calendar.
 	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DateChooser extends UIBase
+	public class DateChooser extends Group
 	{
 		/**
 		 *  constructor.
@@ -47,14 +48,9 @@ package org.apache.flex.html
 		public function DateChooser()
 		{
 			super();
-
-			// fix the DateChooser's size
-			width = 280;
-			height = 240;
-            
-            // default to today
-            selectedDate = new Date();
-
+			
+			// default to today
+			selectedDate = new Date();
 		}
 
 		/**

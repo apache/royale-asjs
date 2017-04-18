@@ -37,6 +37,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
 	 *  org.apache.flex.core.IBeadController: handles the input events.
 	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -160,7 +161,7 @@ package org.apache.flex.html
         {
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             input = new TextInput();
             input.className = "NumericStepperInput";

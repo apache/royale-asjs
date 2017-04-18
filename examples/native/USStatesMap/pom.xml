@@ -42,6 +42,7 @@
         <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <outputJavaScript>true</outputJavaScript>
           <mainClass>USStatesMap.as</mainClass>
           <targets>JS</targets>
         </configuration>
@@ -58,6 +59,15 @@
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.typedefs</groupId>
+      <artifactId>flexjs-typedefs-js</artifactId>
+      <version>${flexjs.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+      <scope>runtime</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>

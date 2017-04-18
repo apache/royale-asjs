@@ -32,6 +32,7 @@
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
+    <component id="AllCSSStyles" class="org.apache.flex.core.AllCSSStyles"/>
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />
     <component id="ViewSourceContextMenuOption" class="org.apache.flex.utils.ViewSourceContextMenuOption" />
@@ -41,6 +42,8 @@
     <component id="TransformMoveXModel" class="org.apache.flex.core.TransformMoveXModel" />
     <component id="TransformMoveYModel" class="org.apache.flex.core.TransformMoveYModel" />
     <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
+    
+    <component id="StyleChangeNotifier" class="org.apache.flex.core.StyleChangeNotifier"/>
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>

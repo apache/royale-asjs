@@ -34,6 +34,7 @@ package org.apache.flex.html.beads
 	 *  The RangeStepperView bead creates the visual elements of the RangeStepper. This
 	 *  includes an increment button, a decrement button, and label to display the value.
 	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -106,10 +107,10 @@ package org.apache.flex.html.beads
 			(_labelBox.stroke as SolidColorStroke).weight = 1.0;
 
 			_incrementButton = new ImageButton();
-			_incrementButton.source = "assets/up-arrow.png";
+			_incrementButton.src = "assets/up-arrow.png";
 
 			_decrementButton = new ImageButton();
-			_decrementButton.source = "assets/down-arrow.png";
+			_decrementButton.src = "assets/down-arrow.png";
 
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);

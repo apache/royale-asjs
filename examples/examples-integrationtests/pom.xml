@@ -34,6 +34,10 @@
 
   <name>Apache Flex - FlexJS: Examples: Integrationtests</name>
 
+  <properties>
+    <tomcat.version>8.5.13</tomcat.version>
+  </properties>
+
   <profiles>
     <profile>
       <id>integrationtests</id>
@@ -89,7 +93,7 @@
                 <containerId>tomcat8x</containerId>
                 <log>${project.build.directory}/tomcat8x/container.log</log>
                 <zipUrlInstaller>
-                  <url>http://ftp.fau.de/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.zip</url>
+                  <url>https://repo1.maven.org/maven2/org/apache/tomcat/tomcat/${tomcat.version}/tomcat-${tomcat.version}.zip</url>
                   <extractDir>${java.io.tmpdir}/cargo/installs</extractDir>
                 </zipUrlInstaller>
                 <!-- 3 Minutes -->
@@ -394,13 +398,13 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-firefox-driver</artifactId>
-      <version>3.0.1</version>
+      <version>${selenium.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -18,14 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
-
-	public class ProductsModel extends EventDispatcher
+	public class ProductsModel
 	{
-		public function ProductsModel()
-		{
-		}
-
 		/**
 		 * Used for the GenericList example.
 		 */

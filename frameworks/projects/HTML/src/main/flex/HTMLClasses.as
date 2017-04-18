@@ -27,7 +27,7 @@ package
  */
 internal class HTMLClasses
 {
-	import org.apache.flex.html.Module; Module;
+
 }
 
 }

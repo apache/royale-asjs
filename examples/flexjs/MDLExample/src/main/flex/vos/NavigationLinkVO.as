@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package vos
 {
+    [Bindable]
     public class NavigationLinkVO
     {
-        [Bindable]
         public var label:String;
-        [Bindable]
         public var href:String;
 
         public function NavigationLinkVO(label:String, href:String)

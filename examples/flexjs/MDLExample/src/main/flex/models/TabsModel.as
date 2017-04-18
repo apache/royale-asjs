@@ -18,30 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.EventDispatcher;
-
     import vos.TabVO;
+    import org.apache.flex.collections.ArrayList;
 
-    public class TabsModel extends EventDispatcher
+    public class TabsModel
     {
-        private var _tabs:Array = [
+        private var _tabs:ArrayList = new ArrayList([
                 new TabVO("tab1", "Tab One"),
                 new TabVO("tab2", "Tab Two"),
                 new TabVO("tab3", "Tab Three")
-        ];
+        ]);
 
-        private var _tabsLayout:Array = [
+        private var _tabsLayout:ArrayList = new ArrayList([
             new TabVO("starks_panel", "Starks"),
             new TabVO("lannisters_panel", "Lannisters"),
             new TabVO("targaryens_panel", "Targaryens")
-        ];
+        ]);
 
-        public function get tabs():Array
+        public function get tabs():ArrayList
         {
             return _tabs;
         }
 
-        public function get tabsLayout():Array
+        public function get tabsLayout():ArrayList
         {
             return _tabsLayout;
         }

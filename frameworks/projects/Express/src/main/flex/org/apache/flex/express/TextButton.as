@@ -21,10 +21,11 @@ package org.apache.flex.express
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.DisableBead;
+	import org.apache.flex.html.accessories.ToolTipBead;
 
 	/**
-	 * This class extends Container and adds the HorizontalLayout
-	 * bead for convenience.
+	 * This class extends TextButton and adds the toolTip bead
+	 * as a convenience.
 	 */
 	public class TextButton extends org.apache.flex.html.TextButton
 	{
@@ -35,6 +36,7 @@ package org.apache.flex.express
 		
 		private var _disableBead:DisableBead;
 		private var _enabled:Boolean = true;
+		private var _toolTipBead:ToolTipBead = null;
 		
 		[Bindable("enabledChanged")]
 		/**
@@ -49,6 +51,8 @@ package org.apache.flex.express
 		public function set enabled(value:Boolean):void
 		{
 			_enabled = value;
+			
+			_disableBead = getBeadByType(DisableBead) as DisableBead;
 			
 			if (_disableBead == null) {
 				_disableBead = new DisableBead();
@@ -84,5 +88,30 @@ package org.apache.flex.express
 			dispatchEvent(new Event("enabledChanged"));
 		}
 
+		[Bindable("toolTipChanged")]
+		/**
+		 * Displays a hint when the mouse hovers over the button
+		 */
+		public function get toolTip():String
+		{
+			if (_toolTipBead) {
+				return _toolTipBead.toolTip;
+			}
+			else {
+				return null;
+			}
+		}
+		public function set toolTip(value:String):void
+		{
+			_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
+			
+			if (_toolTipBead == null) {
+				_toolTipBead = new ToolTipBead();
+				addBead(_toolTipBead);
+			}
+			_toolTipBead.toolTip = value;
+			
+			dispatchEvent(new Event("toolTipChanged"));
+		}
 	}
 }

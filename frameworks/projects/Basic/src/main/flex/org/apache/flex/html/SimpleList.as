@@ -21,14 +21,15 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-        
+
 	/**
 	 *  The SimpleList class is a component that displays data in a vertical column. This
-	 *  component differs from org.apache.flex.html.List in that it displays 
+	 *  component differs from org.apache.flex.html.List in that it displays
 	 *  only string values and maps to the &lt;select&gt; HTML element.
-	 *  
+	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -48,7 +49,7 @@ package org.apache.flex.html
 		{
 			super();
 		}
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLSelectElement
@@ -61,12 +62,12 @@ package org.apache.flex.html
             goog.events.listen(element, 'change',
                 changeHandler);
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             className = 'SimpleList';
-            
+
             return element;
-        }   
-        
+        }
+
         /**
          * @flexjsignorecoercion HTMLSelectElement
          */

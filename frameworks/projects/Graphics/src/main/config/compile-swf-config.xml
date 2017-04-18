@@ -32,6 +32,7 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+		<byte-array-embed-class>org.apache.flex.core.ByteArrayAsset</byte-array-embed-class>
 
         <define>
             <name>COMPILE::SWF</name>

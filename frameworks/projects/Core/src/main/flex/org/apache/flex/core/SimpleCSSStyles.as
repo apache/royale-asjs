@@ -72,7 +72,10 @@ package org.apache.flex.core
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
-            "borderWidth": 1
+            "borderWidth": 1,
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"order": 1
         };
 		
         public var top:*;
@@ -102,5 +105,8 @@ package org.apache.flex.core
         public var borderStyle:*;
         public var borderRadius:*;
         public var borderWidth:*;
+		public var flexGrow:*;
+		public var flexShrink:*;
+		public var order:*;
 	}
 }

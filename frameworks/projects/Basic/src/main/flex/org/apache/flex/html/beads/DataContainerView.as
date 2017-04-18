@@ -24,12 +24,14 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
     import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IDataProviderModel;
+	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
     import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.Strand;
@@ -44,38 +46,135 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.ScrollBar;
 
 	/**
-	 *  The List class creates the visual elements of the org.apache.flex.html.List 
-	 *  component. A List consists of the area to display the data (in the dataGroup), any 
-	 *  scrollbars, and so forth.
+	 *  The DataContainerView provides the visual elements for the DataContainer.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
+	COMPILE::JS
 	public class DataContainerView extends ContainerView implements IListView
 	{
 		public function DataContainerView()
 		{
+			super();
 		}
-						
-		protected var listModel:IDataProviderModel;
-		
-		private var _border:Border;
 		
 		/**
-		 *  The border surrounding the org.apache.flex.html.List.
-		 *
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
-        public function get border():Border
-        {
-            return _border;
-        }
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
+		}
+		
+		protected var dataModel:IDataProviderModel;
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IItemRendererParent
+		 */
+		public function get dataGroup():IItemRendererParent
+		{
+			return super.contentView as IItemRendererParent;
+		}
+		
+		protected function beadsAddedHandler(event:Event):void
+		{
+			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			host.addEventListener("itemsCreated", itemsCreatedHandler);
+			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function itemsCreatedHandler(event:Event):void
+		{
+			performLayout(event);
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function dataProviderChangeHandler(event:Event):void
+		{
+			performLayout(event);
+		}
+	}
+	
+	COMPILE::SWF
+	public class DataContainerView extends ContainerView implements IListView
+	{
+		public function DataContainerView()
+		{
+			super();
+		}
+						
+		protected var dataModel:IDataProviderModel;
+		
+		/**
+		 * @private
+		 */
+		override public function get host():IUIBase
+		{
+			return _strand as IUIBase;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
+			
+			host.addEventListener("beadsAdded", beadsAddedHandler);
+		}
+		
+		override protected function completeSetup():void
+		{
+			super.completeSetup();
+			
+			// list is not interested in UI children, it wants to know when new items
+			// have been added or the dataProvider has changed.
+			host.removeEventListener("childrenAdded", childrenChangedHandler);
+			host.removeEventListener("childrenAdded", performLayout);
+			host.addEventListener("itemsCreated", itemsCreatedHandler);
+		}
+		
+		protected function beadsAddedHandler(event:Event):void
+		{
+			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		override protected function handleInitComplete(event:Event):void
+		{
+			super.handleInitComplete(event);
+		}
 		
 		/**
 		 *  The area holding the itemRenderers.
@@ -83,12 +182,11 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
-			(contentView as UIBase).className = "ListDataGroup";
-			return contentView as IItemRendererParent;
+			return super.contentView as IItemRendererParent;
 		}
 				
 		/**
@@ -98,45 +196,6 @@ package org.apache.flex.html.beads
 		{
 			return _strand as IUIBase;
 		}
-        
-        /**
-         * @private
-         */
-        override public function get host():IUIBase
-        {
-            return _strand as IUIBase;
-        }
-        		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-		
-		override protected function completeSetup():void
-		{
-			super.completeSetup();
-			
-			// list is not interested in UI children, it wants to know when new items
-			// have been added or the dataProvider has changed.
-			
-			host.removeEventListener("childrenAdded", childrenChangedHandler);
-			host.removeEventListener("childrenAdded", performLayout);
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
-			
-			listModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-		}
-		
-		protected var lastSelectedIndex:int = -1;
 		
 		/**
 		 * @private
@@ -164,6 +223,7 @@ package org.apache.flex.html.beads
          */
 		override protected function resizeHandler(event:Event):void
 		{
+			// might need to do something here, not sure yet.
 			super.resizeHandler(event);
 		}
 	}

@@ -51,7 +51,7 @@ package org.apache.flex.charts.beads.layouts
 		 */
 		override protected function performLayout():void
 		{
-			var selectionModel:ISelectionModel = chart.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
@@ -140,6 +140,10 @@ package org.apache.flex.charts.beads.layouts
 						child.y = childY - 5;
 						child.width = 10;
 						child.height = 10;
+						
+						COMPILE::JS {
+							child.element.style.position = "absolute";
+						}
 					}
 				}
 			}
@@ -159,8 +163,6 @@ package org.apache.flex.charts.beads.layouts
 					renderer.points = seriesPoints[s].points;
 				}
 			}
-			
-			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

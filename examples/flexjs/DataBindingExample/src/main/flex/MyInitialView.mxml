@@ -71,23 +71,29 @@ limitations under the License.
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 		
+		.inner {
+			width: 400px;
+		}
+		
 		.output {
 			font-size: 20px;
 		}
 
         .topContainer {
-            padding: 10px;
-            
+            backgroundColor: white;
         }
+		
         .leftSide {
-            vertical-align: top;
-            margin-right: 10px;
+			flex-grow: 1;
+			margin: 6px;
         }
+		
+		.symbolInput {
+		}
         
         .rightSide {
-            vertical-align: top;
-            margin-left: 10px;
-            padding-left: 10px;
+			flex-grow: 1;
+			margin: 6px;
         }
         
         .quoteButton {
@@ -99,46 +105,48 @@ limitations under the License.
         <js:State name="hideAll" />        
         <js:State name="showAll" />        
     </js:states>
+	
     <js:beads>
         <js:ViewDataBinding />
+		<js:VerticalFlexLayout />
     </js:beads>
-    <js:Container x="0" y="0" className="topContainer" >
-        <js:beads>
-            <js:VerticalLayout />
-        </js:beads>
-        <js:Label width="300" text="Enter Stock Symbol or choose from list:" />
-        <js:Container>
-            <js:beads>
-                <js:HorizontalLayout />
-            </js:beads>
-            <js:Container className="leftSide">
-                <js:beads>
-                    <js:VerticalLayout />
-                </js:beads>
-                <js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" />
-                <js:TextButton text="Get Quote" className="quoteButton" 
-                                  click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
-                <js:Label id="field" text="{fieldText}"/>
-                <js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
-            </js:Container>
-            <js:Container className="rightSide">
-                <js:beads>
-                    <js:VerticalLayout />
-                </js:beads>
-                <js:DropDownList id="list" width="100"
-                                    change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
-                                    dataProvider="{MyModel(applicationModel).strings}" />
-                <js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
-                <js:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
-                <js:CheckBox id="showAllData" text="Show All Data" change="setState()" />
-            </js:Container>
-        </js:Container>
-        <js:Label id="bindtest" text="{fieldText + ' expression binding'}" />
-        <js:Label width="300" text.showAll="110" includeIn="showAll" />
-        <js:TextArea id="ta" width="300" height="100" height.showAll="110" 
-                        includeIn="showAll"
-                        text="{MyModel(applicationModel).allData}" />
-    </js:Container>	
+		
+    <js:Label text="Enter Stock Symbol or choose from list:" />
+	
+	<js:Group className="inner">
+		<js:beads>
+			<js:HorizontalFlexLayout />
+		</js:beads>
+		
+		<js:Group className="leftSide">
+			<js:beads>
+				<js:VerticalFlexLayout />
+			</js:beads>
+			<js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" className="symbolInput" width="50%" />
+			<js:TextButton text="Get Quote" className="quoteButton" width="50%"
+						   click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
+			<js:Label id="field" text="{fieldText}"/>
+			<js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
+		</js:Group>
+		
+		<js:Group className="rightSide">
+			<js:beads>
+				<js:VerticalFlexLayout />
+			</js:beads>
+			<js:DropDownList id="list" width="50%"
+							 change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
+							 dataProvider="{MyModel(applicationModel).strings}" />
+			<js:RadioButton id="radio1" text="Price" value="Ask" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio2" text="Change" value="Change" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio3" text="Day's High" value="DaysHigh" groupName="group1" change="radioChanged(event)"/>
+			<js:RadioButton id="radio4" text="Day's Low" value="DaysLow" groupName="group1" change="radioChanged(event)"/>
+			<js:CheckBox id="showAllData" text="Show All Data" change="setState()" />
+		</js:Group>
+	</js:Group>
+	
+	<js:Label id="bindtest" text="{fieldText + ' expression binding'}" />
+	<js:Label width="300" text.showAll="110" includeIn="showAll" />
+	<js:TextArea id="ta" width="100%" height="100" height.showAll="110" 
+				 includeIn="showAll"
+				 text="{MyModel(applicationModel).allData}" />
 </js:View>

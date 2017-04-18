@@ -158,6 +158,7 @@ package org.apache.flex.core
             COMPILE::SWF
             {
                 MouseEventConverter.setupInstanceConverters(this);
+                doubleClickEnabled = true; // make JS and flash consistent
             }
             
             COMPILE::JS
@@ -651,7 +652,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set x(value:Number):void
         {
-            positioner.style.position = 'absolute';
+            //positioner.style.position = 'absolute';
             positioner.style.left = value.toString() + 'px';
         }
 
@@ -684,7 +685,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+				//positioner.style.position = 'absolute';
 				positioner.style.left = value.toString() + 'px';
 			}
         }
@@ -707,7 +708,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            positioner.style.position = 'absolute';
+            //positioner.style.position = 'absolute';
             positioner.style.top = value.toString() + 'px';
         }
         
@@ -740,7 +741,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+				//positioner.style.position = 'absolute';
 				positioner.style.top = value.toString() + 'px';				
 			}
         }
@@ -1192,6 +1193,10 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var children:Array = internalChildren();
+                if (children.length == 0)
+                {
+                    return null;
+                }
                 return children[index].flexjs_wrapper;
             }
         }        
@@ -1469,7 +1474,7 @@ package org.apache.flex.core
             if (positioner == null)
                 positioner = element;
             positioner.style.display = 'block';
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             
             element.flexjs_wrapper = this;
             

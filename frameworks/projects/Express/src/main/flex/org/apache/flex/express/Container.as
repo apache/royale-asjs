@@ -22,6 +22,14 @@ package org.apache.flex.express
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.supportClasses.ScrollingViewport;
 	
+	import org.apache.flex.core.BindableCSSStyles;
+	import org.apache.flex.core.StyleChangeNotifier;
+	
+	COMPILE::SWF {
+		import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead;
+		import org.apache.flex.html.beads.SingleLineBorderWithChangeListenerBead;
+	}
+	
 	/**
 	 * This class extends the standard Container and adds the
 	 * ContainerDataBinding bead and ScrollingViewport beads for
@@ -33,8 +41,18 @@ package org.apache.flex.express
 		{
 			super();
 			
+			var wasStyle:Object = style;
+			
+			style = new BindableCSSStyles();
+			
 			addBead(new ContainerDataBinding());
 			addBead(new ScrollingViewport());
+			addBead(new StyleChangeNotifier());
+			
+			COMPILE::SWF {
+				addBead(new SolidBackgroundWithChangeListenerBead());
+				addBead(new SingleLineBorderWithChangeListenerBead());
+			}
 		}
 	}
 }

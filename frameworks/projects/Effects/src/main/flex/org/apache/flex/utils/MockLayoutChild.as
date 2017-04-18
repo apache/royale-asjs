@@ -263,7 +263,6 @@ package org.apache.flex.utils
 			return false;
 		}
 		
-		COMPILE::SWF
 		public function hasEventListener(type:String):Boolean
 		{
 			return (_source as IEventDispatcher).hasEventListener(type);

@@ -18,22 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.supportClasses
 {
-	import org.apache.flex.core.ContainerBase;
-    
+	import org.apache.flex.html.Group;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-    
+
 	/**
 	 *  The CardInner class is a base class por all Card inner containers.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class CardInner extends ContainerBase
+	public class CardInner extends Group
 	{
 		/**
 		 *  constructor.
@@ -49,7 +49,7 @@ package org.apache.flex.mdl.supportClasses
 
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-		
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -57,7 +57,7 @@ package org.apache.flex.mdl.supportClasses
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('div') as WrappedHTMLElement;
-            
+
             positioner = element;
             element.flexjs_wrapper = this;
 
@@ -111,6 +111,6 @@ package org.apache.flex.mdl.supportClasses
     		{
 				element.classList.toggle("mdl-card--expand", _expand);
 			}
-        } 
+        }
 	}
 }

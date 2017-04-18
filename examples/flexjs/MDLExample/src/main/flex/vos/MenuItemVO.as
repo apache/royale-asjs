@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package vos
 {
+    [Bindable]
     public class MenuItemVO
     {
-        [Bindable]
         public var label:String;
-        [Bindable]
         public var disabled:Boolean;
-        [Bindable]
         public var hasDivider:Boolean;
 
         public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = false)

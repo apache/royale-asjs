@@ -92,6 +92,24 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
+		 * @private
+		 */
+		override public function setWidth(value:Number, noEvent:Boolean = false):void
+		{
+			super.setWidth(value, noEvent);
+			textButton.width = value;
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function setHeight(value:Number, noEvent:Boolean = false):void
+		{
+			super.setHeight(value, noEvent);
+			textButton.height = value;
+		}
+		
+		/**
 		 *  The data to be displayed by the itemRenderer instance. For ButtonBarItemRenderer, the
 		 *  data's string version is used as the label for the Button.
 		 *
@@ -107,6 +125,7 @@ package org.apache.flex.html.supportClasses
 			var added:Boolean = false;
 			if (textButton == null) {
 				textButton = new TextButton();
+				textButton.percentWidth = 100;
 				
 				// listen for clicks on the button and translate them into
 				// an itemClicked event.

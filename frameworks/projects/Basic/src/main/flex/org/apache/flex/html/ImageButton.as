@@ -19,6 +19,9 @@
 package org.apache.flex.html
 {
     import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.events.Event;
+    import org.apache.flex.html.beads.models.ImageModel;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -27,6 +30,7 @@ package org.apache.flex.html
     /**
      *  The ImageButton class presents an image as a button.
      *
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -52,39 +56,48 @@ package org.apache.flex.html
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			element = document.createElement("input") as WrappedHTMLElement;
-			positioner = element;
-			element.flexjs_wrapper = this;
+        override protected function createElement():WrappedHTMLElement
+        {
+            element = document.createElement('button') as WrappedHTMLElement;
+            element.setAttribute('type', 'button');
 
-			var inputElement:HTMLInputElement = element as HTMLInputElement;
-			inputElement.type = "image";
-            inputElement.setAttribute("value", " ");
-            
-			return element;
-		}
+            positioner = element;
+            //positioner.style.position = 'relative';
+            element.flexjs_wrapper = this;
 
+            return element;
+        }
+
+		[Bindable("srcChanged")]
 		/**
 		 * Sets the image for the button. This is a URL.
 		 * TODO: figure out how to set the source in the style, rather than using
 		 * backgroundImage behind the scenes.
 		 */
-        public function get source():String
+        public function get src():String
         {
-            return style.backgroundImage;
+            return ImageModel(model).url;
         }
 
-        public function set source(url:String):void
+        public function set src(url:String):void
         {
-            if (!style)
-                style = new SimpleCSSStyles();
-            style.backgroundImage = url;
-
-            COMPILE::JS {
-            	var inputElement:HTMLInputElement = element as HTMLInputElement;
-				inputElement.src = url;
+            ImageModel(model).url = url;
+            COMPILE::SWF
+            {
+                if (!style)
+                    style = new SimpleCSSStyles();
+                style.backgroundImage = url;
             }
+
+            COMPILE::JS
+            {
+                var inner:String = '';
+                if (url)
+                    inner = "<img src='" + url + "'/>";
+                element.innerHTML = inner;
+            }
+
+			dispatchEvent(new Event("srcChanged"));
         }
 	}
 }

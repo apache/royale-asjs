@@ -19,9 +19,10 @@
 package org.apache.flex.mdl
 {
     import org.apache.flex.html.TextButton;
+    import org.apache.flex.mdl.beads.UpgradeElement;
+    import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
     import org.apache.flex.mdl.materialIcons.IMaterialIcon;
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;    
-    
+   
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -30,17 +31,17 @@ package org.apache.flex.mdl
     /**
      *  The Button class provides a Material Design Library UI-like appearance for
      *  a Button.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class Button extends TextButton implements IMaterialIcon
+	public class Button extends TextButton implements IMaterialIconProvider
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -51,6 +52,8 @@ package org.apache.flex.mdl
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+
+            addBead(new UpgradeElement());
 		}
         
         /**
@@ -70,7 +73,7 @@ package org.apache.flex.mdl
             return element;
 		}
 
-        private var _materialIcon:MaterialIconBase;
+        private var _materialIcon:IMaterialIcon;
         /**
 		 *  A material icon to use with the button.
          *  Optional
@@ -80,11 +83,11 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-        public function get materialIcon():MaterialIconBase
+        public function get materialIcon():IMaterialIcon
         {
             return _materialIcon;
         }
-        public function set materialIcon(value:MaterialIconBase):void
+        public function set materialIcon(value:IMaterialIcon):void
         {
             _materialIcon = value;
 

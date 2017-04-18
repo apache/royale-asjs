@@ -22,7 +22,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.models.DataGridPresentationModel;
 	
 	[Event(name="change", type="org.apache.flex.events.Event")]
@@ -35,12 +35,13 @@ package org.apache.flex.html
 	 *  view bead (usually org.apache.flex.html.beads.DataGridView) constructs these parts while 
 	 *  itemRenderer factories contruct the elements to display the data in each cell.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class DataGrid extends UIBase
+	public class DataGrid extends Group
 	{
 		/**
 		 *  constructor.
@@ -104,18 +105,17 @@ package org.apache.flex.html
 		{
 			return IDataGridModel(model).selectedIndex;
 		}
-        public function set selectedIndex(value:int):void
-        {
-            IDataGridModel(model).selectedIndex = value;
-        }
-
+		public function set selectedIndex(value:int):void
+		{
+			IDataGridModel(model).selectedIndex = value;
+		}
 		
 		/**
-         * @private
-         */
-        private var _presentationModel:IDataGridPresentationModel;
-               
-        /**
+		 * @private
+		 */
+		private var _presentationModel:IDataGridPresentationModel;
+		
+		/**
 		 *  The DataGrid's presentation model
 		 *
 		 *  @langversion 3.0
@@ -125,22 +125,22 @@ package org.apache.flex.html
 		 */
 		public function get presentationModel():IDataGridPresentationModel
 		{
-            if (_presentationModel == null) {
-                var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
-                if (c) {
-                    var presModel:Object = new c();
-                    _presentationModel = presModel as IDataGridPresentationModel;
-                    if (_presentationModel != null) {
-                        addBead(_presentationModel as IBead);
-                    }
-                }
-            }
-            return _presentationModel;
-        }
-        
-        public function set presentationModel(value:IDataGridPresentationModel):void
-        {
-            _presentationModel = value;
+			if (_presentationModel == null) {
+				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
+				if (c) {
+					var presModel:Object = new c();
+					_presentationModel = presModel as IDataGridPresentationModel;
+					if (_presentationModel != null) {
+						addBead(_presentationModel as IBead);
+					}
+				}
+			}
+			
+			return _presentationModel;
+		}
+		public function set presentationModel(value:IDataGridPresentationModel):void
+		{
+			_presentationModel = value;
 		}
 				
 		/**

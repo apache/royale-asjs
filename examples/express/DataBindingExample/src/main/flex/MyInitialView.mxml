@@ -106,7 +106,8 @@ limitations under the License.
         <js:HContainer>
             <js:VContainer className="leftSide">
                 <js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" prompt="symbol" />
-                <js:TextButton text="Get Quote" className="quoteButton" 
+                <js:TextButton text="Get Quote" className="quoteButton"
+                               toolTip="Requests stock quote from Yahoo!"
                                   click="_symbol = symbolTI.text; dispatchEvent(new CustomEvent('buttonClicked'))" />
                 <js:Label id="field" text="{fieldText}"/>
                 <js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />

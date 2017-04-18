@@ -18,52 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.ContainerBaseStrandChildren;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IFactory;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRendererProvider;
-	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.IRollOverModel;
 	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ListBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.ListView;
-        import org.apache.flex.html.supportClasses.DataGroup;
-    }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ListPresentationModel;
-	
+
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
+
 	/**
 	 *  Indicates that the initialization of the list is complete.
-	 *  
+	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="initComplete", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 * The change event is dispatched whenever the list's selection changes.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
     [Event(name="change", type="org.apache.flex.events.Event")]
-    
+
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
@@ -71,13 +58,13 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
 	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
 	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class List extends ListBase implements IItemRendererProvider
+	public class List extends DataContainer
 	{
 		/**
 		 *  constructor.
@@ -90,43 +77,7 @@ package org.apache.flex.html
 		public function List()
 		{
 			super();
-            addEventListener("beadsAdded", beadsAddedHandler);
-        }
-		
-		/**
-		 *  The name of field within the data used for display. Each item of the
-		 *  data should have a property with this name.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get labelField():String
-		{
-			return ISelectionModel(model).labelField;
 		}
-		public function set labelField(value:String):void
-		{
-			ISelectionModel(model).labelField = value;
-		}
-		
-		/**
-		 *  The data being display by the List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-        public function get dataProvider():Object
-        {
-            return ISelectionModel(model).dataProvider;
-        }
-        public function set dataProvider(value:Object):void
-        {
-            ISelectionModel(model).dataProvider = value;
-        }
 
 		/**
 		 *  The index of the currently selected item. Changing this value
@@ -162,25 +113,7 @@ package org.apache.flex.html
 		{
 			IRollOverModel(model).rollOverIndex = value;
 		}
-			
-		/**
-		 *  The presentation model for the list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get presentationModel():IListPresentationModel
-		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
-			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
-			}
-			return presModel;
-		}
-		
+
 		/**
 		 *  The default height of each cell in every column
 		 *
@@ -197,9 +130,9 @@ package org.apache.flex.html
 		{
 			presentationModel.rowHeight = value;
 		}
-		
+
 		/**
-		 *  The item currently selected. Changing this value also 
+		 *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
 		 *
 		 *  @langversion 3.0
@@ -215,81 +148,11 @@ package org.apache.flex.html
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
-		private var _itemRenderer:IFactory;
-		
-		/**
-		 *  The class or factory used to display each item.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get itemRenderer():IFactory
-		{
-			return _itemRenderer;
-		}
-		public function set itemRenderer(value:IFactory):void
-		{
-			_itemRenderer = value;
-		}
-		
-		/**
-		 * Returns whether or not the itemRenderer property has been set.
-		 *
-		 *  @see org.apache.flex.core.IItemRendererProvider
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get hasItemRenderer():Boolean
-		{
-			var result:Boolean = false;
-			
-			COMPILE::SWF {
-				result = _itemRenderer != null;
-			}
-			
-			COMPILE::JS {
-				var test:* = _itemRenderer;
-				result = _itemRenderer !== null && test !== undefined;
-			}
-			
-			return result;
-		}
-		
-		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-            super.addedToParent();
-            
-            dispatchEvent(new Event("initComplete"));
-        }
 
-        /**
-         * @private
-         */
-        private function beadsAddedHandler(e:Event):void
-        {
-            if (getBeadByType(IDataProviderItemRendererMapper) == null)
-            {
-                var mapper:IDataProviderItemRendererMapper = new (ValuesManager.valuesImpl.getValue(this, "iDataProviderItemRendererMapper")) as IDataProviderItemRendererMapper;
-                addBead(mapper);
-            }
-            var itemRendererFactory:IItemRendererClassFactory = getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
-            if (!itemRendererFactory)
-            {
-                itemRendererFactory = new (ValuesManager.valuesImpl.getValue(this, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-                addBead(itemRendererFactory);
-            }
-        }
-            
+		/*
+		 * UIBase
+		 */
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -298,21 +161,8 @@ package org.apache.flex.html
         {
             super.createElement();
             className = 'List';
-            
-            return element;
-        }        
 
-        /**
-         * @flexjsignorecoercion org.apache.flex.html.beads.ListView 
-         * @flexjsignorecoercion org.apache.flex.html.supportClasses.DataGroup 
-         */
-        COMPILE::JS
-        override public function internalChildren():Array
-        {
-            var listView:ListView = getBeadByType(ListView) as ListView;
-            var dg:DataGroup = listView.dataGroup as DataGroup;
-            var renderers:Array = dg.internalChildren();
-            return renderers;
-        };
+            return element;
+        }
    	}
 }

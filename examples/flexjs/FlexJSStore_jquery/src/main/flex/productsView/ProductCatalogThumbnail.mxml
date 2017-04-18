@@ -150,7 +150,7 @@ limitations under the License.
             <js:Image id="img" height="45" width="45" 
                      width.x3cols="60" height.x3cols="60"
                      width.x2cols="60" height.x2cols="60"
-                     url="{product.image}" />
+                     src="{product.image}" />
 
             <js:VContainer id="descr" height="100%" >
                 <js:style>
@@ -182,21 +182,21 @@ limitations under the License.
         <js:style>
             <js:SimpleCSSStyles paddingRight="8" right="8" top="12" /> <!-- gap="4" -->
         </js:style>
-        <js:ImageButton id="purchase" source="assets/button_cart_empty.png" className="hoverButton"
+        <js:ImageButton id="purchase" src="assets/button_cart_empty.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.PURCHASE, product))" 
             width="30">
             <js:beads>
                 <js:ToolTipBead toolTip="Add to cart"/>
             </js:beads>
         </js:ImageButton>
-        <js:ImageButton id="compare" source="assets/button_compare.png" className="hoverButton"
+        <js:ImageButton id="compare" src="assets/button_compare.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.COMPARE, product))" 
             width="30">
             <js:beads>
                 <js:ToolTipBead toolTip="Add to compare list"/>
             </js:beads>
         </js:ImageButton>
-        <js:ImageButton id="details" source="assets/button_details.png" className="hoverButton"
+        <js:ImageButton id="details" src="assets/button_details.png" className="hoverButton"
             click="dispatchEvent(new ProductThumbEvent(ProductThumbEvent.DETAILS, product))" 
             width="30">
             <js:beads>

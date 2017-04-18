@@ -18,36 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	
+
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.ValuesManager;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position
-	 *  additional controls. The ControlBar appears at the bottom of the 
+	 *  additional controls. The ControlBar appears at the bottom of the
 	 *  org.apache.flex.html.Panel
 	 *  and is not part of the Panel's scrollable content area. The ControlBar
 	 *  is a Container and implements the org.apache.flex.core.IChrome interface, indicating that is
 	 *  outside of the Container's content area. The ControlBar uses the following
 	 *  beads:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model for the component.
 	 *  org.apache.flex.core.IMeasurementBead: helps determine the overlay size of the ControlBar for layout.
 	 *  org.apache.flex.core.IBorderBead: if present, displays a border around the component.
 	 *  org.apache.flex.core.IBackgroundBead: if present, displays a solid background below the ControlBar.
-	 *  
+	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ControlBar extends Container implements IContainer, IChrome
+	public class ControlBar extends Group implements IChrome
 	{
 		/**
 		 *  constructor.
@@ -60,40 +60,36 @@ package org.apache.flex.html
 		public function ControlBar()
 		{
 			super();
-			
+
 			className = "ControlBar";
 		}
-		
+
 		/**
 		 * @private
 		 */
 		override public function addedToParent():void
 		{
-			super.addedToParent();	
+			super.addedToParent();
 			
 			if( getBeadByType(IBeadLayout) == null ) {
 				var layout:IBeadLayout = new (ValuesManager.valuesImpl.getValue(this, "iBeadLayout")) as IBeadLayout;
 				addBead(layout);
 			}
 		}
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
-            element.className = 'ControlBar';
-            element.style.display = 'inline';
-            typeNames = 'ControlBar';
-            
-            positioner = element;
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-            
+			element = document.createElement('div') as WrappedHTMLElement;
+			
+			positioner = element;
+			element.flexjs_wrapper = this;
+
             return element;
-        }        
+        }
 
 	}
 }

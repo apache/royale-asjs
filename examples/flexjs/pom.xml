@@ -52,6 +52,8 @@
     <module>HelloWorld</module>
     <module>ListExample</module>
     <module>MapSearch</module>
+    <!--module>MDLBlogExample</module>-->
+    <module>MDLDynamicTabsExample</module>
     <module>MDLExample</module>
     <module>MobileMap</module>
     <module>MobileStocks</module>

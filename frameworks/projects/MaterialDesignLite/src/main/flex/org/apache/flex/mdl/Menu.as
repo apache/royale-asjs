@@ -18,14 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.core.ContainerBase;
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IItemRenderer;
-    import org.apache.flex.core.IItemRendererParent;
-    import org.apache.flex.core.ILayoutHost;
-    import org.apache.flex.core.ILayoutParent;
-    import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.html.DataContainer;
 
     COMPILE::JS
     {
@@ -49,7 +42,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */    
-	public class Menu extends ContainerBase implements IItemRendererParent, ILayoutParent, ILayoutHost
+	public class Menu extends DataContainer
 	{
         /**
          *  Constructor.
@@ -76,114 +69,6 @@ package org.apache.flex.mdl
          */
         private var currentMenuPosition:String = "";
 
-        /**
-         *  data provider
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function get dataProvider():Object
-        {
-            return ISelectionModel(model).dataProvider;
-        }
-        /**
-         *  @private
-         */
-        public function set dataProvider(value:Object):void
-        {
-            ISelectionModel(model).dataProvider = value;
-        }
-
-        /**
-         *  label field
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function get labelField():String
-        {
-            return ISelectionModel(model).labelField;
-        }
-        /**
-         *  @private
-         */
-        public function set labelField(value:String):void
-        {
-            ISelectionModel(model).labelField = value;
-        }
-
-        /**
-         *  get layout host
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function getLayoutHost():ILayoutHost
-        {
-            return this;
-        }
-
-        /**
-         *  get content view
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function get contentView():IParentIUIBase
-        {
-            return this;
-        }
-
-        /**
-         *  get item renderer for index
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function getItemRendererForIndex(index:int):IItemRenderer
-        {
-            var child:IItemRenderer = getElementAt(index) as IItemRenderer;
-            return child;
-        }
-
-        /**
-         *  remove all elements
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function removeAllElements():void
-        {
-            while (numElements > 0) {
-                var child:IChild = getElementAt(0);
-                removeElement(child);
-            }
-        }
-
-        /**
-         *  update all item renderers
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function updateAllItemRenderers():void
-        {
-
-        }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement

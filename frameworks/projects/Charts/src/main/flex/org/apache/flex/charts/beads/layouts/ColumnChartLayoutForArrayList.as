@@ -58,7 +58,7 @@ package org.apache.flex.charts.beads.layouts
 		 */
 		override protected function performLayout():void
 		{
-			var selectionModel:ISelectionModel = chart.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
 			if (!dp)
 				return;
@@ -118,12 +118,14 @@ package org.apache.flex.charts.beads.layouts
 					child.width = seriesWidth;
 					child.height = yValue;
 					xpos += seriesWidth;
+					
+					COMPILE::JS {
+						child.element.style.position = "absolute";
+					}
 				}
 				
 				xpos += gap;
 			}
-			
-			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));
 		}
 	}
 }

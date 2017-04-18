@@ -692,7 +692,7 @@ COMPILE::SWF {
                accessors : AccessorDefinition,
                methods : MethodDefinition
            };
-           if (!collection in lookups) throw new Error("ArgumentError: name must be a standard name [variables,accessors,methods]") ;
+           if (!(collection in lookups)) throw new Error("ArgumentError: name must be a standard name [variables,accessors,methods]") ;
            var isStatic:Boolean =  type == "static";
            var results:Array = [];
 
@@ -729,10 +729,13 @@ COMPILE::SWF {
                         var itemDef:Object = items[item];
                         if (isStatic) {
                             //we are looking for static members only
-                            if ( itemDef.isStatic) results[i++] = new itemClass(item, itemDef);
+							if (item.charAt(0)=="|") results[i++] = new itemClass(item.substr(1), itemDef);
+							
+                           // if ( itemDef.isStatic) results[i++] = new itemClass(item, itemDef);
                         } else {
                             //ignore statics here, because this is for instance members:
-                            if (itemDef.isStatic) continue;
+							if (item.charAt(0)=="|") continue;
+                            //if (itemDef.isStatic) continue;
                             //instance member:
                             var itemClassDef:DefinitionWithMetaData = new itemClass(item, itemDef);
                             if (resolve) {

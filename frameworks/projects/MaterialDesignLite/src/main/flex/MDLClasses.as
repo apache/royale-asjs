@@ -28,10 +28,15 @@ package
 	internal class MDLClasses
 	{
 		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.models.TabModel; TabModel;
+		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData; TabsItemRendererFactoryForArrayListData;
+		import org.apache.flex.mdl.beads.models.TabArrayModel; TabArrayModel;
+		import org.apache.flex.mdl.beads.models.TabArrayListModel; TabArrayListModel;
 		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
 		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
+		import org.apache.flex.mdl.beads.models.SliderRangeModel; SliderRangeModel;
 		import org.apache.flex.mdl.materialIcons.MaterialIconType; MaterialIconType;
+		import org.apache.flex.mdl.beads.UpgradeElement; UpgradeElement;
+		import org.apache.flex.mdl.beads.UpgradeChildren; UpgradeChildren;
 		
 		COMPILE::SWF
 		{

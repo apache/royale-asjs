@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.EventDispatcher;
-	
 	import products.Product;
 	
-	public class ProductsModel extends EventDispatcher
+	public class ProductsModel
 	{
 		public function ProductsModel()
 		{
