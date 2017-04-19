@@ -465,7 +465,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function appendChild(child:XML):XML
+		public function appendChild(child:*):XML
 		{
 			/*
 				[[Insert]] (P, V)
@@ -486,6 +486,19 @@ package
 				  a. Call the [[Replace]] method of x with arguments i and V
 				12. Return
 			*/
+			var childType:String = typeof child;
+			if(childType != "object")
+			{
+				child = child.toString();
+				var xml:XML = new XML();
+				xml.setNodeKind("text");
+				xml.setValue(child);
+				child = xml;				
+			}
+
+			if(child is XMLList)
+				child = child[0];
+
 			child.setParent(this);
 			
 			_children.push(child);

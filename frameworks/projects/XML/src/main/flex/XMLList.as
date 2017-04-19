@@ -148,7 +148,7 @@ package
 			}while(false);
 		}
 
-		public function appendChild(child:XML):XML
+		public function appendChild(child:*):XML
 		{
 			if(isSingle())
 				return _xmlArray[0].appendChild(child);

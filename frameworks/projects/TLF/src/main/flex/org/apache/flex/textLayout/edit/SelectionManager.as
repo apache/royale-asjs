@@ -2215,7 +2215,7 @@ package org.apache.flex.textLayout.edit
 				{
 					var leftEdge:int = 5;
 					var topEdge:int = 5;
-					var globalPoint:Point = new Point(event.stageX, event.stageY);
+					var globalPoint:Point = new Point(event.screenX, event.screenX);
 					var cellContainer:CellContainer = event.currentTarget as CellContainer;
 					var point:Point;
 

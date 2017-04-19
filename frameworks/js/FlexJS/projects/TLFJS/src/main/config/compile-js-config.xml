@@ -62,6 +62,7 @@
             <path-element>../../../../../libs/HTMLJS.swc</path-element>
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../libs/XMLJS.swc</path-element>
             <path-element>../../../../../libs/TextJS.swc</path-element>
         </library-path>
         

@@ -59,6 +59,7 @@ package
 		import org.apache.flex.textLayout.edit.SelectionFormat; SelectionFormat;
 		import org.apache.flex.textLayout.edit.SelectionState; SelectionState;
 		import org.apache.flex.textLayout.edit.SelectionType; SelectionType;
+		import org.apache.flex.textLayout.edit.EditManager; EditManager;
 		
 		import org.apache.flex.textLayout.elements.SubParagraphGroupElementBase; SubParagraphGroupElementBase;
 		import org.apache.flex.textLayout.elements.BreakElement; BreakElement;
