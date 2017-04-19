@@ -37,18 +37,19 @@ package org.apache.flex.textLayout.compose.utils
 		/** @private */
 		static public function findNumberLine(textLine:ITextLine):ITextLine
 		{
-			if (textLine == null)
-				return null;
-			// not always going to be a numberLine - listStyleType may be "none"
-			// have to hunt for it because inlinegraphics get pushed at the beginning
-			// risk here is that clients decorate TextLines with other TextLines.
-			for (var idx:int = 0; idx < textLine.numElements; idx++)
-			{
-				var numberLine:ITextLine = textLine.getElementAt(idx) as ITextLine;
-				if (numberLine && (numberLine.userData is NumberLineUserData))
-					break;
-			}
-			return numberLine;
+			return textLine.numberLine;
+			// if (textLine == null)
+			// 	return null;
+			// // not always going to be a numberLine - listStyleType may be "none"
+			// // have to hunt for it because inlinegraphics get pushed at the beginning
+			// // risk here is that clients decorate TextLines with other TextLines.
+			// for (var idx:int = 0; idx < textLine.numElements; idx++)
+			// {
+			// 	var numberLine:ITextLine = textLine.getElementAt(idx) as ITextLine;
+			// 	if (numberLine && (numberLine.userData is NumberLineUserData))
+			// 		break;
+			// }
+			// return numberLine;
 		}
 
 		/** @private */

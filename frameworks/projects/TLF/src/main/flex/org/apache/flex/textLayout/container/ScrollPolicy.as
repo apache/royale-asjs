@@ -77,8 +77,13 @@ package org.apache.flex.textLayout.container
 	 	 
 		public static const ON:String = "on";		
 		
+		static private var _scrollPolicyPropertyDefinition:Property;
 		/** Shared definition of the scrollPolicy property. @private */
-		static public const scrollPolicyPropertyDefinition:Property = PropertyFactory.enumString("scrollPolicy", ScrollPolicy.AUTO, false, null, 
-			ScrollPolicy.AUTO, ScrollPolicy.OFF, ScrollPolicy.ON);	
+		static public function get scrollPolicyPropertyDefinition():Property{
+			if(_scrollPolicyPropertyDefinition == null)
+				_scrollPolicyPropertyDefinition = PropertyFactory.enumString("scrollPolicy", ScrollPolicy.AUTO, false, null, ScrollPolicy.AUTO, ScrollPolicy.OFF, ScrollPolicy.ON);
+			
+			return _scrollPolicyPropertyDefinition;
+		}
 	}
 }

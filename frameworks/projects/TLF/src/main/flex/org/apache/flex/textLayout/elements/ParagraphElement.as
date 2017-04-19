@@ -46,6 +46,7 @@ package org.apache.flex.textLayout.elements
 	import org.apache.flex.textLayout.property.PropertyUtil;
 	import org.apache.flex.textLayout.utils.CharacterUtil;
 	import org.apache.flex.textLayout.utils.LocaleUtil;
+	import org.apache.flex.textLayout.elements.ITextFlow;
 	
 
 
@@ -98,13 +99,16 @@ package org.apache.flex.textLayout.elements
 		/** @private */
 		public function createTextBlock():void
 		{
+			var tf:ITextFlow = getTextFlow();
+			if(tf == null)// if it's not in a text flow, we cannot create text blocaks yet
+				return;
 //			CONFIG::debug { assert(_textBlock == null,"createTextBlock called when there is already a textblock"); }
 			calculateComputedFormat();	// recreate the format BEFORE the _textBlock is created
 			var tbs:Vector.<ITextBlock> = getTextBlocks();
 			//tbs.length = 0;
 			var tableCount:int = 0;
 			if(tbs.length == 0 && !(getChildAt(0) is ITableElement) )
-				tbs.push(getTextFlow().tlfFactory.textFactory.getTextBlock());
+				tbs.push(tf.tlfFactory.textFactory.getTextBlock());
 			//getTextBlocks()[0] = new ITextBlock();
 //			CONFIG::debug { Debugging.traceFTECall(_textBlock,null,"new ITextBlock()"); }
 			for (var i:int = 0; i < numChildren; i++)
@@ -120,7 +124,7 @@ package org.apache.flex.textLayout.elements
 				}
 			}
 			while(tableCount >= tbs.length)
-				tbs.push(getTextFlow().tlfFactory.textFactory.getTextBlock());
+				tbs.push(tf.tlfFactory.textFactory.getTextBlock());
 			
 			for (i = 0; i < numChildren; i++)
 			{

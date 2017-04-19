@@ -225,28 +225,29 @@ package org.apache.flex.textLayout.events
 			var elements:Array = [];
 			if (textFlow.interactiveObjectCount != 0 && startPos != endPos)	// check for empty container
 			{
-				//New algorithm here to improve performance when there are link elements 
-				var uniqueDictionary:ObjectMap = container.interactiveObjects;
-				var o:Object ;
-				var f:IFlowElement;
-				for each (o in uniqueDictionary)
-				{
-					f = o as IFlowElement ;
-					if (f && f.getAbsoluteStart() < endPos && f.getAbsoluteStart() + f.textLength >= startPos)
-						elements.push(o) ;
-				}
-				//ensure there is no bug when you paste many words, which causes the link across containers
-				var interactiveObjects_LastTime:Array = container.oldInteractiveObjects;
-				for each (o in interactiveObjects_LastTime)
-				{
-					f = o as IFlowElement ;
-					if (f && f.getAbsoluteStart() < endPos && f.getAbsoluteStart() + f.textLength >= startPos)
-					{
-						elements.push(o) ;
-						uniqueDictionary[o] = o;//push back the interactive object, make sure the total number is correct 
-					}
+//TODO commenting this out until we figure out what to do with interactive objects
+				// //New algorithm here to improve performance when there are link elements 
+				// var uniqueDictionary:ObjectMap = container.interactiveObjects;
+				// var o:Object ;
+				// var f:IFlowElement;
+				// for each (o in uniqueDictionary)
+				// {
+				// 	f = o as IFlowElement ;
+				// 	if (f && f.getAbsoluteStart() < endPos && f.getAbsoluteStart() + f.textLength >= startPos)
+				// 		elements.push(o) ;
+				// }
+				// //ensure there is no bug when you paste many words, which causes the link across containers
+				// var interactiveObjects_LastTime:Array = container.oldInteractiveObjects;
+				// for each (o in interactiveObjects_LastTime)
+				// {
+				// 	f = o as IFlowElement ;
+				// 	if (f && f.getAbsoluteStart() < endPos && f.getAbsoluteStart() + f.textLength >= startPos)
+				// 	{
+				// 		elements.push(o) ;
+				// 		uniqueDictionary[o] = o;//push back the interactive object, make sure the total number is correct 
+				// 	}
 					
-				}
+				// }
 				
 				CONFIG::debug
 				{

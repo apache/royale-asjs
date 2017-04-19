@@ -22,6 +22,7 @@ package org.apache.flex.text.engine
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.text.engine.ITextLine;
 
 	public interface ITextLine extends IParentIUIBase
 	{
@@ -48,11 +49,13 @@ package org.apache.flex.text.engine
 		function get unjustifiedTextWidth():Number;
 		function get userData():*;
 		function get validity():String;
+		function get numberLine():ITextLine;
 
 //setters
 		function set userData(value:*):void;
 		function set doubleClickEnabled(value:Boolean):void;
 		function set validity(value:String):void;
+		function set numberLine(value:ITextLine):void;
 
 		function dump():String;
 		function getAtomBidiLevel(atomIndex:int):int;
@@ -66,6 +69,7 @@ package org.apache.flex.text.engine
 		function getAtomTextRotation(atomIndex:int):String;
 		function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean;
 		function getBaselinePosition(baseline:String):Number;
+		
 
 	}
 }

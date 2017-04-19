@@ -21,9 +21,10 @@ package org.apache.flex.textLayout.dummy {
 	import org.apache.flex.core.IUIBase;
 	public class BoundsUtil {
 		static public function getBounds(child:IUIBase,parent:IUIBase):Rectangle{
-			//TODO implement getting bounds
-			child;parent;
-			return null;
+			if(child == parent)
+				return new Rectangle(child.x,child.y,child.width,child.height);
+			//TODO implement getting relative bounds
+			throw new Error("bounds type not yet implemented")
 		}
 	}
 }

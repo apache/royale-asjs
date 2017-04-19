@@ -57,7 +57,14 @@ public class UIDUtil
 		55, 56, 57, 65, 66, 67, 68, 69, 70];
 
     private static const DASH:int = 45;       // dash ascii
-    private static const UIDBuffer:BinaryData = new BinaryData();       // static ByteArray used for UID generation to save memory allocation cost
+    
+    private static var _UIDBuffer:BinaryData;
+    private static function get UIDBuffer():BinaryData{
+        if(_UIDBuffer == null)
+            _UIDBuffer = new BinaryData();       // static ByteArray used for UID generation to save memory allocation cost
+        
+        return _UIDBuffer;
+    }
 
 
     //--------------------------------------------------------------------------

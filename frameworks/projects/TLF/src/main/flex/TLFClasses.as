@@ -160,7 +160,8 @@ package
 		import org.apache.flex.textLayout.utils.GeometryUtil; GeometryUtil;
 		import org.apache.flex.textLayout.utils.HitTestArea; HitTestArea;
 		import org.apache.flex.textLayout.utils.Twips; Twips;
-				
+		import org.apache.flex.textLayout.factory.ITLFFactory; ITLFFactory;
+		
 		// CONFIG::release public function exportAssert():void
 		// {
 		// 	assert();

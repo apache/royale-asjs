@@ -18,23 +18,68 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.property {
 	import org.apache.flex.textLayout.formats.FormatValue;
+	import org.apache.flex.textLayout.property.EnumPropertyHandler;
+	import org.apache.flex.textLayout.property.UndefinedPropertyHandler;
+	import org.apache.flex.textLayout.property.UintPropertyHandler;
 	public class PropertyFactory {
 		// shared propertyHandler instances
 		/** @private */
-		public static const sharedStringHandler:StringPropertyHandler = new StringPropertyHandler();
+		static private var _sharedStringHandler:StringPropertyHandler;
+		public static function get sharedStringHandler():StringPropertyHandler{
+			if(_sharedStringHandler == null)
+				_sharedStringHandler = new StringPropertyHandler();
+			
+			return _sharedStringHandler;
+		}
 		/** @private */
-		public static const sharedInheritEnumHandler:EnumPropertyHandler = new EnumPropertyHandler([ FormatValue.INHERIT ]);
+		private static var _sharedInheritEnumHandler:EnumPropertyHandler;
+		public static function get sharedInheritEnumHandler():EnumPropertyHandler{
+			if(_sharedInheritEnumHandler == null)
+				_sharedInheritEnumHandler  = new EnumPropertyHandler([ FormatValue.INHERIT ]);
+			
+			return _sharedInheritEnumHandler;
+		}
 		/** @private */
-		public static const sharedUndefinedHandler:UndefinedPropertyHandler = new UndefinedPropertyHandler();
+		private static var _sharedUndefinedHandler:UndefinedPropertyHandler;
+		public static function get sharedUndefinedHandler():UndefinedPropertyHandler{
+			 if(_sharedUndefinedHandler == null)
+				_sharedUndefinedHandler = new UndefinedPropertyHandler();
+			
+			return _sharedUndefinedHandler;
+		}
 		/** @private */
-		public static const sharedUintHandler:UintPropertyHandler = new UintPropertyHandler();
+		private static var _sharedUintHandler:UintPropertyHandler;
+		public static function get sharedUintHandler():UintPropertyHandler{
+			if(_sharedUintHandler == null)
+				_sharedUintHandler = new UintPropertyHandler();
+			
+			return _sharedUintHandler;
+		}
 		/** @private */
-		public static const sharedBooleanHandler:BooleanPropertyHandler = new BooleanPropertyHandler();
+		private static var _sharedBooleanHandler:BooleanPropertyHandler;
+		public static function get sharedBooleanHandler():BooleanPropertyHandler{
+			if(_sharedBooleanHandler == null)
+			 	_sharedBooleanHandler = new BooleanPropertyHandler();
+			
+			return _sharedBooleanHandler;
+		}
 		
 		/** @private */
-		public static const sharedTextLayoutFormatHandler:FormatPropertyHandler = new FormatPropertyHandler();
+		private static var _sharedTextLayoutFormatHandler:FormatPropertyHandler;
+		public static function get sharedTextLayoutFormatHandler():FormatPropertyHandler{
+			if(_sharedTextLayoutFormatHandler == null)
+			 	_sharedTextLayoutFormatHandler = new FormatPropertyHandler();
+			
+			return _sharedTextLayoutFormatHandler;
+		}
 		/** @private */
-		public static const sharedListMarkerFormatHandler:FormatPropertyHandler = new FormatPropertyHandler();
+		private static var _sharedListMarkerFormatHandler:FormatPropertyHandler;
+		public static function get sharedListMarkerFormatHandler():FormatPropertyHandler{
+			if(_sharedListMarkerFormatHandler == null)
+				_sharedListMarkerFormatHandler = new FormatPropertyHandler();
+			
+			return _sharedListMarkerFormatHandler;
+		}
 		
 		public static function bool(nameValue:String, defaultValue:Boolean, inherited:Boolean, categories:Vector.<String>):Property
 		{			

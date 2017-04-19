@@ -565,7 +565,16 @@ package org.apache.flex.textLayout.elements {
 			_immutableClone = null;
 		}
 
-		public static var defaultConfiguration:IConfiguration = new Configuration();		
+		private static var _defaultConfiguration:IConfiguration;
+		public static function get defaultConfiguration():IConfiguration{
+			if(_defaultConfiguration == null)
+				_defaultConfiguration = new Configuration();
+			
+			return _defaultConfiguration;
+		}
+		public static function set defaultConfiguration(value:IConfiguration):void{
+			_defaultConfiguration = value;
+		}
 		
 		/** Returns true if the ActionScript text engine was built with debugging code enabled. @private */
 		static public function get debugCodeEnabled():Boolean

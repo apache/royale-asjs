@@ -270,7 +270,7 @@ package org.apache.flex.textLayout.container
 			_tableBlocksInView = [];
 			
 			setCompositionSize(compositionWidth, compositionHeight);
-			format = _containerControllerInitialFormat;
+			format = containerControllerInitialFormat;
 		}
 		
 		/** @private */
@@ -3100,7 +3100,7 @@ package org.apache.flex.textLayout.container
 			return ccif;
 		}
 		
-		static private var _containerControllerInitialFormat:ITextLayoutFormat = createContainerControllerInitialFormat();
+		static private var _containerControllerInitialFormat:ITextLayoutFormat;
 		
 		/** 
 		* @private
@@ -3117,7 +3117,12 @@ package org.apache.flex.textLayout.container
 		*/
 		
 		static public function get containerControllerInitialFormat():ITextLayoutFormat
-		{ return _containerControllerInitialFormat; }
+		{
+			if(_containerControllerInitialFormat == null)
+				_containerControllerInitialFormat = createContainerControllerInitialFormat();
+			
+			return _containerControllerInitialFormat;
+		}
 		static public function set containerControllerInitialFormat(val:ITextLayoutFormat):void
 		{ _containerControllerInitialFormat = val; }
 		
@@ -3147,8 +3152,13 @@ package org.apache.flex.textLayout.container
 				_composedFloats.length = 0;
 		//	trace("clear composedFloats for container", flowComposer ? flowComposer.getControllerIndex(this) : 0);
 		}
-		
-		private static var scratchRectangle:Rectangle = new Rectangle();
+		private static var _scratchRectangle:Rectangle;
+		private static function get scratchRectangle():Rectangle{
+			if(_scratchRectangle == null)
+				_scratchRectangle = new Rectangle();
+			
+			return _scratchRectangle;
+		}
 		
 		private function intersperseTableBlocks(targetArray:Array):void{
 			if(_tableBlocksInView.length == 0)
@@ -4760,7 +4770,7 @@ package org.apache.flex.textLayout.container
 		}
 		private function calculateComputedFormat():void
 		{
-			var parentPrototype:TextLayoutFormat = _rootElement ? TextLayoutFormat(_rootElement.computedFormat): null;
+			var parentPrototype:TextLayoutFormat = _rootElement ? (_rootElement.computedFormat as TextLayoutFormat): null;
 			_computedFormat =  CreateTLFUtil.createTLF(formatForCascade,parentPrototype);
 			
 			resetColumnState();

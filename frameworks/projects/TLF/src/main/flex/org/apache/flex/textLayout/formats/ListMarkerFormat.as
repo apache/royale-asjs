@@ -63,26 +63,68 @@ package org.apache.flex.textLayout.formats
 		}
 
 		/** @private */
-		static public const counterResetProperty:Property = createCounterResetProperty("counterReset", FormatValue.NONE, false, Vector.<String>([Category.LIST]));
+		static private var _counterResetProperty:Property;
+		static public function get counterResetProperty():Property{
+			if(_counterResetProperty == null)
+				_counterResetProperty = createCounterResetProperty("counterReset", FormatValue.NONE, false, Vector.<String>([Category.LIST]));
+			
+			return _counterResetProperty;
+		}
 		/** @private */
-		static public const counterIncrementProperty:Property = createCounterResetProperty("counterIncrement", "ordered 1", false, Vector.<String>([Category.LIST]));
+		static private var _counterIncrementProperty:Property;
+		static public function get counterIncrementProperty():Property{
+			if(_counterIncrementProperty == null)
+				_counterIncrementProperty = createCounterResetProperty("counterIncrement", "ordered 1", false, Vector.<String>([Category.LIST]));
+			
+			return _counterIncrementProperty;
+		}
 		/** @private */
-		static public const beforeContentProperty:Property = PropertyFactory.string("beforeContent", null, false, Vector.<String>([Category.LIST]));
+		static private var _beforeContentProperty:Property;
+		static public function get beforeContentProperty():Property{
+			if(_beforeContentProperty == null)
+				_beforeContentProperty = PropertyFactory.string("beforeContent", null, false, Vector.<String>([Category.LIST]));
+			
+			return _beforeContentProperty;
+		}
 		/** @private */
-		static public const contentProperty:Property = createCounterContentProperty("content", "counter(ordered)", false, Vector.<String>([Category.LIST]));
+		static private var _contentProperty:Property;
+		static public function get contentProperty():Property{
+			if(_contentProperty == null)
+				_contentProperty = createCounterContentProperty("content", "counter(ordered)", false, Vector.<String>([Category.LIST]));
+			
+			return _contentProperty;
+		}
 		/** @private */
-		static public const afterContentProperty:Property  = PropertyFactory.string("afterContent", null, false, Vector.<String>([Category.LIST]));
+		static private var _afterContentProperty:Property;
+		static public function get afterContentProperty():Property{
+			if(_afterContentProperty == null)
+			 	_afterContentProperty = PropertyFactory.string("afterContent", null, false, Vector.<String>([Category.LIST]));
+				
+				return _afterContentProperty;
+		}
 		/** @private */
-		static public const suffixProperty:Property = PropertyFactory.enumString("suffix", Suffix.AUTO, false, Vector.<String>([Category.LIST]), Suffix.AUTO, Suffix.NONE);
+		static private var _suffixProperty:Property;
+		static public function get suffixProperty():Property{
+			if(_suffixProperty == null)
+				_suffixProperty = PropertyFactory.enumString("suffix", Suffix.AUTO, false, Vector.<String>([Category.LIST]), Suffix.AUTO, Suffix.NONE);
+			
+			return _suffixProperty;
+		}
 		
-		static private var _lmfDescription:Object = {
-			counterReset:counterResetProperty,
-			counterIncrement:counterIncrementProperty,
-			beforeContent:beforeContentProperty,
-			content:contentProperty,
-			afterContent:afterContentProperty,
-			suffix:suffixProperty
-		};
+		static private var _lmfDescription:Object;
+		static private function get lmfDescription():Object{
+			if(_lmfDescription == null){
+				_lmfDescription = {
+					"counterReset":counterResetProperty,
+					"counterIncrement":counterIncrementProperty,
+					"beforeContent":beforeContentProperty,
+					"content":contentProperty,
+					"afterContent":afterContentProperty,
+					"suffix":suffixProperty
+				};
+			}
+			return _lmfDescription;
+		}
 		
 		// at this point we know that both TextLayoutFormat and ListMarkerFormat are initialized so can setup the Property objects
 		PropertyFactory.sharedTextLayoutFormatHandler.converter = TextLayoutFormat.createTextLayoutFormat;
@@ -113,7 +155,7 @@ package org.apache.flex.textLayout.formats
 		/** @private */
 		public override function setStyle(styleProp:String,newValue:*):void
 		{
-			var lmfStyle:Property = _lmfDescription[styleProp];
+			var lmfStyle:Property = lmfDescription[styleProp];
 			if (lmfStyle)
 				setLMFStyle(lmfStyle,newValue);
 			else
@@ -242,8 +284,9 @@ package org.apache.flex.textLayout.formats
 			{
 				// use prototype chaining
 				_description = PropertyUtil.createObjectWithPrototype(TextLayoutFormat.description);
-				for (var key:String in _lmfDescription)
-					_description[key] = _lmfDescription[key];
+				var lmfd:Object = lmfDescription;
+				for (var key:String in lmfd)
+					_description[key] = lmfd[key];
 			}
 			return _description; 
 		}
@@ -256,7 +299,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for (var key:String in _lmfDescription)
+				var lmfd:Object = lmfDescription;
+				for (var key:String in lmfd)
 					this[key] = lmf[key];
 			}
 		}
@@ -268,7 +312,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for each (var prop:Property in _lmfDescription)
+				var lmfd:Object = lmfDescription
+				for each (var prop:Property in lmfd)
 				{
 					var name:String = prop.name;
 					setLMFStyle(prop,prop.concatHelper(this[name],lmf[name]));
@@ -283,7 +328,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for each (var prop:Property in _lmfDescription)
+				var lmfd:Object = lmfDescription;
+				for each (var prop:Property in lmfd)
 				{
 					var name:String = prop.name;
 					setLMFStyle(prop,prop.concatInheritOnlyHelper(this[name],lmf[name]));
@@ -298,7 +344,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for each (var prop:Property in _lmfDescription)
+				var lmfd:Object = lmfDescription;
+				for each (var prop:Property in lmfd)
 				{
 					var name:String = prop.name;
 					var val:* = lmf[name];
@@ -315,7 +362,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for each (var prop:Property in _lmfDescription)
+				var lmfd:Object = lmfDescription;
+				for each (var prop:Property in lmfd)
 				{
 					var name:String = prop.name;
 					if (prop.equalHelper(this[name],lmf[name]))
@@ -332,7 +380,8 @@ package org.apache.flex.textLayout.formats
 			var lmf:IListMarkerFormat = incoming as IListMarkerFormat;
 			if (lmf)
 			{
-				for each (var prop:Property in _lmfDescription)
+				var lmfd:Object = lmfDescription;
+				for each (var prop:Property in lmfd)
 				{
 					var name:String = prop.name;
 					if (!prop.equalHelper(this[name],lmf[name]))

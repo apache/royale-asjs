@@ -440,7 +440,7 @@ package org.apache.flex.textLayout.elements
 		/** @private TODO: Possible optimization - replace this with prototype chaining?? */
 		public override function get formatForCascade():ITextLayoutFormat
 		{
-			var superFormat:TextLayoutFormat = TextLayoutFormat(format);
+			var superFormat:TextLayoutFormat = format as TextLayoutFormat;
 			var effectiveFormat:ITextLayoutFormat = effectiveLinkElementTextLayoutFormat;
 			if (effectiveFormat || superFormat)
 			{

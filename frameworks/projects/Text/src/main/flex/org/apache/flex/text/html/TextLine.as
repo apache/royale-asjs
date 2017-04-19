@@ -270,5 +270,16 @@ package org.apache.flex.text.html
 			}
 			return 0;
 		}
+
+		private var _numberLine:ITextLine;
+		public function get numberLine():ITextLine
+		{
+			return _numberLine;
+		}
+		public function set numberLine(value:ITextLine):void
+		{
+			_numberLine = value;
+		}
+
 	}
 }

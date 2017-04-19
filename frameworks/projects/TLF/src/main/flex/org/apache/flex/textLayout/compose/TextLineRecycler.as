@@ -52,7 +52,17 @@ package org.apache.flex.textLayout.compose
 		
 		// manage a cache of ITextLine's that can be reused
 		// This version uses a dictionary that holds the TextLines as weak references
-		static private var reusableLineCache:ObjectMap = new ObjectMap(true);
+		static private var _reusableLineCache:ObjectMap;
+		static public function get reusableLineCache():ObjectMap
+		{
+			if(_reusableLineCache == null)
+				_reusableLineCache = new ObjectMap(true);
+			return _reusableLineCache;
+		}
+		static public function set reusableLineCache(value:ObjectMap):void
+		{
+			_reusableLineCache = value;
+		}
 		
 		/**
 		 * Add a ITextLine to the pool for reuse. TextLines for reuse should have null userData and null parent. 
@@ -63,19 +73,21 @@ package org.apache.flex.textLayout.compose
 
 		static public function addLineForReuse(textLine:ITextLine):void
 		{
-			CONFIG::debug { assert(textLine.parent == null && textLine.userData == null && (textLine.validity == "invalid" || textLine.validity == "static"),"textLine not ready for reuse"); }
-			if (_textLineRecyclerEnabled)
-			{
-				CONFIG::debug 
-				{
-					for each (var line:ITextLine in reusableLineCache)
-					{
-						 assert(line != textLine,"READDING LINE TO CACHE");
-					}
-				}
-				CONFIG::debug { cacheTotal++; }
-				reusableLineCache[textLine] = null;
-			}
+//TODO make this work...
+			return;
+			// CONFIG::debug { assert(textLine.parent == null && textLine.userData == null && (textLine.validity == "invalid" || textLine.validity == "static"),"textLine not ready for reuse"); }
+			// if (_textLineRecyclerEnabled)
+			// {
+			// 	CONFIG::debug 
+			// 	{
+			// 		for each (var line:ITextLine in reusableLineCache)
+			// 		{
+			// 			 assert(line != textLine,"READDING LINE TO CACHE");
+			// 		}
+			// 	}
+			// 	CONFIG::debug { cacheTotal++; }
+			// 	reusableLineCache[textLine] = null;
+			// }
 		} 
 		CONFIG::debug
 		{
@@ -105,18 +117,19 @@ package org.apache.flex.textLayout.compose
 
 		static public function getLineForReuse():ITextLine
 		{
-			if (_textLineRecyclerEnabled)
-			{
-				for (var obj:Object in reusableLineCache)
-				{
-					// remove from the cache
-					delete reusableLineCache[obj];
-					CONFIG::debug { assert(reusableLineCache[obj] === undefined,"Bad delete"); }
-					CONFIG::debug { recordFetch(1); }
-					return obj as ITextLine;
-				}
-				CONFIG::debug { recordFetch(0); }
-			}
+//TODO make this work
+			// if (_textLineRecyclerEnabled)
+			// {
+			// 	for (var obj:Object in reusableLineCache)
+			// 	{
+			// 		// remove from the cache
+			// 		delete reusableLineCache[obj];
+			// 		CONFIG::debug { assert(reusableLineCache[obj] === undefined,"Bad delete"); }
+			// 		CONFIG::debug { recordFetch(1); }
+			// 		return obj as ITextLine;
+			// 	}
+			// 	CONFIG::debug { recordFetch(0); }
+			// }
 			return null;
 		}
 		

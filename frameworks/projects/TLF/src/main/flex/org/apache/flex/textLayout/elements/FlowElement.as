@@ -654,7 +654,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/** @private  Shared scratch element for use in computedFormat methods only */
-		static public var _scratchTextLayoutFormat:TextLayoutFormat = new TextLayoutFormat();
+		// static public var _scratchTextLayoutFormat:TextLayoutFormat = new TextLayoutFormat();
 
 		/** 
 		 * Returns the computed format attributes that are in effect for this element.
@@ -682,7 +682,7 @@ package org.apache.flex.textLayout.elements
 		/** @private */
 		public function doComputeTextLayoutFormat():TextLayoutFormat
 		{
-			var parentPrototype:TextLayoutFormat = _parent ? TextLayoutFormat(_parent.computedFormat) : null;
+			var parentPrototype:TextLayoutFormat = _parent ? (_parent.computedFormat as TextLayoutFormat) : null;
 			return CreateTLFUtil.createTLF(formatForCascade, parentPrototype);
 		}
 
@@ -1019,7 +1019,11 @@ package org.apache.flex.textLayout.elements
 			var elem:IFlowElement = this;
 			while (elem.parent != null)
 				elem = elem.parent;
-			return elem as ITextFlow;
+			
+			if(elem.className == "TextFlow")
+				return elem as ITextFlow;
+			
+			return null;
 		}
 
 		/**
@@ -1044,11 +1048,12 @@ package org.apache.flex.textLayout.elements
 			var rslt:IFlowElement = this;
 			while (rslt)
 			{
+				if(rslt.className == "ParagraphElement")
+					return rslt as IParagraphElement;
+				
 				rslt = rslt.parent;
-				if (!rslt)
-					throw new Error("No ParagraphElement found!");
 			}
-			return rslt as IParagraphElement;
+			return null;
 		}
 
 		public function isInTable():Boolean

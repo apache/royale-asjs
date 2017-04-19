@@ -313,7 +313,9 @@ package org.apache.flex.textLayout.formats
 		static public function get fontStyleProperty():Property
 		{
 			if (!_fontStyleProperty)
-				_fontStyleProperty = PropertyFactory.enumString("fontStyle", FontPosture.NORMAL, true, Vector.<String>([Category.CHARACTER]), FontPosture.NORMAL, FontPosture.ITALIC);
+				_fontStyleProperty = PropertyFactory.string("fontStyle", "Regular", true, Vector.<String>([Category.CHARACTER]));
+			// if (!_fontStyleProperty)
+			// 	_fontStyleProperty = PropertyFactory.enumString("fontStyle", FontPosture.NORMAL, true, Vector.<String>([Category.CHARACTER]), FontPosture.NORMAL, FontPosture.ITALIC);
 			return _fontStyleProperty;
 		}
 
@@ -3667,7 +3669,7 @@ package org.apache.flex.textLayout.formats
 			if (_defaults == null)
 			{
 				_defaults = new TextLayoutFormat();
-				PropertyUtil.defaultsAllHelper(_description, _defaults);
+				PropertyUtil.defaultsAllHelper(description, _defaults);
 			}
 			return _defaults;
 		}

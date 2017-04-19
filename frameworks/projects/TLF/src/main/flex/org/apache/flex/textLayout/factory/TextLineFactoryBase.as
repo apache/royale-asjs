@@ -77,7 +77,13 @@ package org.apache.flex.textLayout.factory
 		private var _containerController:IContainerController;
 
 //TODO figure out what this should be
-		static private var _tc:IParentIUIBase = new UIBase();
+		static private var _tc:IParentIUIBase;
+		static private function get tc():IParentIUIBase{
+			if(_tc == null)
+				_tc = new UIBase();
+			
+			return _tc;
+		}
 		
 		private var _swfContext:ISWFContext;
 		
@@ -125,7 +131,7 @@ package org.apache.flex.textLayout.factory
 		 */
 		public function TextLineFactoryBase()
 		{
-			_containerController = ContainerUtil.getController(_tc);
+			_containerController = ContainerUtil.getController(tc);
 			_horizontalScrollPolicy = _verticalScrollPolicy = String(ScrollPolicy.scrollPolicyPropertyDefinition.defaultValue);
 		}
 		

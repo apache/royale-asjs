@@ -66,6 +66,7 @@
             <arg value="-compiler.strict-xml=true" />
             <arg value="-keep-asdoc" /><!-- allows compiler to see @flexjsignorecoercion annotations -->
             <!--<arg value="-output=${basedir}/../../../../projects/${target.name.nojs}/target/${target.name.nojs}.swc" />-->
+            <arg value="-js-output-optimization=skipAsCoercions"/>
             <arg value="-output=${FLEX_HOME}/frameworks/projects/${target.name.nojs}/target/${target.name.nojs}.swc" />
             <arg value="-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />

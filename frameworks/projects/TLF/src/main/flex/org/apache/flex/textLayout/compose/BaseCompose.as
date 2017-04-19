@@ -318,7 +318,12 @@ package org.apache.flex.textLayout.compose
 		{	
 			var child:IFlowElement;
 			var rslt:Boolean;	// scratch
-			var isInTableCell:Boolean = elem.className == "TextFlow" && ITextFlow(elem).parentElement.className == "TableCellElement" ? true : false;
+			var isInTableCell:Boolean = false;
+			if(elem && elem.className == "TextFlow" &&
+				(elem as ITextFlow).parentElement &&
+				(elem as ITextFlow).parentElement.className == "TableCellElement")
+				isInTableCell = true;
+				
 			var cellSpacing:Number = 0;
 			
 			if (isInTableCell) {
@@ -719,25 +724,27 @@ package org.apache.flex.textLayout.compose
 			_curElementStart = _curElement.getAbsoluteStart();
 			_curElementOffset = _startComposePosition - _curElementStart;
 			
-			//clear interactiveObject 
-			var curInteractiveObjects:ObjectMap = _startController.interactiveObjects;
-			var interactiveObjects_lastTime:Array = _startController.oldInteractiveObjects;
-			var curElem:Object;
-			interactiveObjects_lastTime.splice(0);
-			for each(curElem in curInteractiveObjects)
-			{
-				if(curElem && (curElem as IFlowElement).getAbsoluteStart() >= _startComposePosition)
-				{
-					interactiveObjects_lastTime.push(curInteractiveObjects[curElem]);
-					delete curInteractiveObjects[curElem];
-				}
-			}
+//TODO fix once interactive objects is worked out
+			// //clear interactiveObject 
+			// var curInteractiveObjects:ObjectMap = _startController.interactiveObjects;
+			// var interactiveObjects_lastTime:Array = _startController.oldInteractiveObjects;
+			// var curElem:Object;
+			// interactiveObjects_lastTime.splice(0);
+			// for each(curElem in curInteractiveObjects)
+			// {
+			// 	if(curElem && (curElem as IFlowElement).getAbsoluteStart() >= _startComposePosition)
+			// 	{
+			// 		interactiveObjects_lastTime.push(curInteractiveObjects[curElem]);
+			// 		delete curInteractiveObjects[curElem];
+			// 	}
+			// }
 			for(var cidx:int = _flowComposer.getControllerIndex(_startController) + 1; cidx <= controllerEndIndex; cidx ++)
 			{
-				curInteractiveObjects = _flowComposer.getControllerAt(cidx).interactiveObjects;
-				for each(curElem in curInteractiveObjects)
-					if(curElem)
-						delete curInteractiveObjects[curElem];
+//TODO fix once interactive objects is worked out
+				// curInteractiveObjects = _flowComposer.getControllerAt(cidx).interactiveObjects;
+				// for each(curElem in curInteractiveObjects)
+				// 	if(curElem)
+				// 		delete curInteractiveObjects[curElem];
 					
 				// Clear previous composition results
 				_flowComposer.getControllerAt(cidx).clearCompositionResults();
@@ -1304,13 +1311,15 @@ package org.apache.flex.textLayout.compose
 							while (curElement && (curElement != _curParaElement))
 							{
 								// It's a link element?
-								if (curElement is ILinkElement)
+								if (curElement.className == "LinkElement")
 								{
-									_curInteractiveObjects[curElement] = curElement;
+//TODO interactive objects
+									// _curInteractiveObjects[curElement] = curElement;
 								}
 								else if (curElement.hasActiveEventMirror())
 								{
-									_curInteractiveObjects[curElement] = curElement;
+//TODO interactive objects
+									// _curInteractiveObjects[curElement] = curElement;
 								}
 								curElement = curElement.parent ;
 							}
@@ -1355,19 +1364,21 @@ package org.apache.flex.textLayout.compose
 		):ITextLine
 		{
 			var lineOffset:Number = (_curParaFormat.direction == Direction.LTR) ? _lineSlug.leftMargin : _lineSlug.rightMargin;     		
-			
+
+//TODO maybe implement recycling
 			var textLine:ITextLine = null;
-			textLine = TextLineRecycler.getLineForReuse();
+			// textLine = TextLineRecycler.getLineForReuse();
 			var textBlock:ITextBlock = _curParaElement.getTextBlockAtPosition(_curElement.getElementRelativeStart(_curParaElement));
-			if (textLine)
-			{
-				CONFIG::debug { assert(_textFlow.backgroundManager == null || _textFlow.backgroundManager.getEntry(textLine) === undefined,"createTextLine - Bad ITextLine in recycler cache"); }
-				textLine = swfContext.callInContext(textBlock["recreateTextLine"],textBlock,[textLine, _previousLine, targetWidth, lineOffset, true]);
-			}
-			else
-			{
+			// if (textLine)
+			// {
+			// 	CONFIG::debug { assert(_textFlow.backgroundManager == null || _textFlow.backgroundManager.getEntry(textLine) === undefined,"createTextLine - Bad ITextLine in recycler cache"); }
+			// 	textLine = swfContext.callInContext(textBlock["recreateTextLine"],textBlock,[textLine, _previousLine, targetWidth, lineOffset, true]);
+			// }
+			// else
+			// {
+//TODO is swfContext necessary?
 				textLine = swfContext.callInContext(textBlock.createTextLine,textBlock,[_previousLine, targetWidth, lineOffset, true]);
-			}
+			// }
 			CONFIG::debug { assert(!_previousLine || !textLine || _previousLine.textBlockBeginIndex + _previousLine.rawTextLength == textLine.textBlockBeginIndex, "FTE made non-contiguous ITextLine"); }
 			if (!allowEmergencyBreaks && textBlock.textLineCreationResult == TextLineCreationResult.EMERGENCY)
 				textLine = null;
@@ -1621,11 +1632,13 @@ package org.apache.flex.textLayout.compose
 					// It's a link element?
 					if (curElement is ILinkElement)
 					{
-						_curInteractiveObjects[curElement] = curElement;					
+//TODO interactive objects
+						// _curInteractiveObjects[curElement] = curElement;					
 					}
 					else if (curElement.hasActiveEventMirror())
 					{
-						_curInteractiveObjects[curElement] = curElement;
+//TODO interactive objects
+						// _curInteractiveObjects[curElement] = curElement;
 					}
 					curElement = curElement.parent ;
 				}
@@ -2721,7 +2734,8 @@ package org.apache.flex.textLayout.compose
 					}
 					if (oldController)		// advance the start pos to the next controller if newController isn't the first controller
 						_startComposePosition = newController.absoluteStart;
-					_curInteractiveObjects = newController.interactiveObjects;
+//TODO interactive objects
+					// _curInteractiveObjects = newController.interactiveObjects;
 					calculateControllerVisibleBounds(newController);
 				}
 					

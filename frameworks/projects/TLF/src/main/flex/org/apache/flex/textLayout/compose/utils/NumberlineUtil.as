@@ -139,6 +139,7 @@ package org.apache.flex.textLayout.compose.utils
 				rslt.push(o);
 			});
 
+//TODO make sure this works
 			// position it relative to the parent line - later need to take inside/outside into account
 			var numberLine:ITextLine = rslt[0] as ITextLine;
 			if (numberLine)

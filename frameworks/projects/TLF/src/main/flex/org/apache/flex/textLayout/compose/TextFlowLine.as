@@ -90,7 +90,13 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** @private - the selection block cache */
-		static private var _selectionBlockCache:ObjectMap = new ObjectMap(true);
+		static private var _selectionBlockCache:ObjectMap;
+		static private function get selectionBlockCache():ObjectMap{
+			if(_selectionBlockCache == null)
+				_selectionBlockCache = new ObjectMap(true);
+			
+			return _selectionBlockCache;
+		}
 
 		public function get composable():Boolean
 		{
@@ -629,14 +635,20 @@ package org.apache.flex.textLayout.compose
 			return new Rectangle(shapeX, shapeY, textLine.width, textLine.height);
 		}
 
-		private const _validities:Array = ["invalid", "possiblyInvalid", "static", "valid", FlowDamageType.GEOMETRY];
+		private var _validities:Array;
+		private function get validities():Array{
+			if(_validities == null)
+				_validities  = ["invalid", "possiblyInvalid", "static", "valid", FlowDamageType.GEOMETRY];
+			
+			return _validities;
+		}
 
 		private function setValidity(value:String):void
 		{
 			CONFIG::debug
 			{
-				assert(_validities.indexOf(value) != -1, "Bad alignment passed to TextFlowLine"); }
-			setFlag(_validities.indexOf(value), VALIDITY_MASK);
+				assert(validities.indexOf(value) != -1, "Bad alignment passed to TextFlowLine"); }
+			setFlag(validities.indexOf(value), VALIDITY_MASK);
 		}
 
 		/** The validity of the line. 
@@ -655,7 +667,7 @@ package org.apache.flex.textLayout.compose
 		 */
 		public function get validity():String
 		{
-			return _validities[getFlag(VALIDITY_MASK)];
+			return validities[getFlag(VALIDITY_MASK)];
 		}
 
 		/** 
@@ -713,12 +725,18 @@ package org.apache.flex.textLayout.compose
 			_accumulatedMinimumStart = value;
 		}
 
-		static private const _alignments:Array = [TextAlign.LEFT, TextAlign.CENTER, TextAlign.RIGHT];
+		static private var _alignments:Array;
+		static private function get alignments():Array{
+			if(_alignments == null)
+				_alignments = [TextAlign.LEFT, TextAlign.CENTER, TextAlign.RIGHT];
+			
+			return _alignments;
+		}
 
 		/** @private */
 		public function get alignment():String
 		{
-			return _alignments[getFlag(ALIGNMENT_MASK) >> ALIGNMENT_SHIFT];
+			return alignments[getFlag(ALIGNMENT_MASK) >> ALIGNMENT_SHIFT];
 		}
 
 		/** @private */
@@ -726,8 +744,8 @@ package org.apache.flex.textLayout.compose
 		{
 			CONFIG::debug
 			{
-				assert(_alignments.indexOf(value) != -1, "Bad alignment passed to TextFlowLine"); }
-			setFlag(_alignments.indexOf(value) << ALIGNMENT_SHIFT, ALIGNMENT_MASK);
+				assert(alignments.indexOf(value) != -1, "Bad alignment passed to TextFlowLine"); }
+			setFlag(alignments.indexOf(value) << ALIGNMENT_SHIFT, ALIGNMENT_MASK);
 		}
 
 		/** @private 
@@ -982,15 +1000,16 @@ package org.apache.flex.textLayout.compose
 			}
 
 			// trace("Recreating line from", absoluteStart, "to", absoluteStart + textLength);
-			textLine = TextLineRecycler.getLineForReuse();
-			if (textLine)
-			{
-				CONFIG::debug
-				{
-					assert(textFlow.backgroundManager == null || textFlow.backgroundManager.getEntry(textLine) === undefined, "Bad ITextLine in recycler cache"); }
-				textLine = swfContext.callInContext(textBlock["recreateTextLine"], textBlock, [textLine, previousLine, _targetWidth, effLineOffset, true]);
-			}
-			else
+//TODO implement line reuse
+			// textLine = TextLineRecycler.getLineForReuse();
+			// if (textLine)
+			// {
+			// 	CONFIG::debug
+			// 	{
+			// 		assert(textFlow.backgroundManager == null || textFlow.backgroundManager.getEntry(textLine) === undefined, "Bad ITextLine in recycler cache"); }
+			// 	textLine = swfContext.callInContext(textBlock["recreateTextLine"], textBlock, [textLine, previousLine, _targetWidth, effLineOffset, true]);
+			// }
+			// else
 				textLine = swfContext.callInContext(textBlock.createTextLine, textBlock, [previousLine, _targetWidth, effLineOffset, true]);
 
 			if (textLine == null)
@@ -1095,7 +1114,7 @@ package org.apache.flex.textLayout.compose
 			{
 				_adornCount++;
 				setFlag(NUMBERLINE_MASK, NUMBERLINE_MASK);
-				textLine.addElement(numberLine);
+				textLine.numberLine = numberLine;
 				CONFIG::debug
 				{
 					Debugging.traceFTECall(null, textLine, "addChildNumberLine", numberLine); }
@@ -1321,7 +1340,7 @@ package org.apache.flex.textLayout.compose
 			}
 
 			// the cached selection bounds and rects
-			var selectionCache:SelectionCache = _selectionBlockCache[this];
+			var selectionCache:SelectionCache = selectionBlockCache.get(this);
 			if (selectionCache && selectionCache.begIdx == begIdx && selectionCache.endIdx == endIdx)
 				return selectionCache;
 
@@ -1332,7 +1351,7 @@ package org.apache.flex.textLayout.compose
 			if (selectionCache == null)
 			{
 				selectionCache = new SelectionCache();
-				_selectionBlockCache[this] = selectionCache;
+				selectionBlockCache.set(this,selectionCache);
 			}
 			else
 			{
@@ -2137,9 +2156,27 @@ package org.apache.flex.textLayout.compose
 			rect.height = height;
 		}
 
-		static private const localZeroPoint:Point = new Point(0, 0);
-		static private const localOnePoint:Point = new Point(1, 0);
-		static private const rlLocalOnePoint:Point = new Point(0, 1);
+		static private var _localZeroPoint:Point;
+		static private function get localZeroPoint():Point{
+			if(_localZeroPoint == null)
+				_localZeroPoint = new Point(0, 0);
+			
+			return localZeroPoint;
+		}
+		static private var _localOnePoint:Point;
+		static private function get localOnePoint():Point{
+			if(_localOnePoint == null)
+				_localOnePoint = new Point(1, 0);
+			
+			return localOnePoint;
+		}
+		static private var _rlLocalOnePoint:Point;
+		static private function get rlLocalOnePoint():Point{
+			if(_rlLocalOnePoint == null)
+				_rlLocalOnePoint = new Point(0, 1);
+			
+			return rlLocalOnePoint;
+		}
 
 		// TODO generalize this so we're not relying on UIBase
 		/** @private */

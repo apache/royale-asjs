@@ -320,13 +320,37 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/** Definition of the height property @private */
-		static public const heightPropertyDefinition:Property = PropertyFactory.numPercentEnum("height", "auto", false, null, 0, 32000, "0%", "1000000%", "auto");
+		static private var _heightPropertyDefinition:Property;
+		static public function get heightPropertyDefinition():Property{
+			if(_heightPropertyDefinition == null)
+				_heightPropertyDefinition = PropertyFactory.numPercentEnum("height", "auto", false, null, 0, 32000, "0%", "1000000%", "auto");
+			
+			return _heightPropertyDefinition;
+		}
 		/** Definition of the width property @private */
-		static public const widthPropertyDefinition:Property = PropertyFactory.numPercentEnum("width", "auto", false, null, 0, 32000, "0%", "1000000%", "auto");
+		static private var _widthPropertyDefinition:Property;
+		static public function get widthPropertyDefinition():Property{
+			if(_widthPropertyDefinition == null)
+				_widthPropertyDefinition = PropertyFactory.numPercentEnum("width", "auto", false, null, 0, 32000, "0%", "1000000%", "auto");
+			
+			return _widthPropertyDefinition;
+		}
 		/** Disabled due to player bug.  @private */
-		static public const rotationPropertyDefinition:Property = PropertyFactory.enumString("rotation", "rotate0", false, null, "rotate0", "rotate90", "rotate180", "rotate270");
+		static private var _rotationPropertyDefinition:Property;
+		static public function get rotationPropertyDefinition():Property{
+			if(_rotationPropertyDefinition == null)
+				_rotationPropertyDefinition = PropertyFactory.enumString("rotation", "rotate0", false, null, "rotate0", "rotate90", "rotate180", "rotate270");
+			
+			return _rotationPropertyDefinition;
+		}
 		/** Definition of the float property @private */
-		static public const floatPropertyDefinition:Property = PropertyFactory.enumString("float", "none", false, null, "none", "left", "right", "start", "end");
+		static private var _floatPropertyDefinition:Property;
+		static public function get floatPropertyDefinition():Property{
+			if(_floatPropertyDefinition == null)
+				_floatPropertyDefinition = PropertyFactory.enumString("float", "none", false, null, "none", "left", "right", "start", "end");
+			
+			return _floatPropertyDefinition;
+		}
 
 		/** The current status of the image. On each status change the owning TextFlow sends a StatusChangeEvent.
 		 *
