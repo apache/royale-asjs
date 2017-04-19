@@ -16,49 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.html.accessories
 {
-    /**
-     *  The ILayoutHost interface is the basic interface for the 
-     *  container views that have an IBeadLayout.  The layout implementation
-     *  often needs to know certain things about other objects in
-     *  the view.
+	import org.apache.flex.html.accessories.SimpleDateFormatBead;
+	
+	/**
+	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
      * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-	public interface ILayoutHost
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
+	 */
+	public class DateFormatYYYYMMDDBead extends SimpleDateFormatBead
 	{
         /**
-         *  The container whose children are to be the subject of the layout.
-         * 
+         * constructor.
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-		function get contentView():ILayoutView;
-		
-		/**
-		 * Invoked prior to performing the layout.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-		 */
-		function beforeLayout():void;
-		
-		/**
-		 * Invoked after performing the layout.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-		 */
-		function afterLayout():void;
-	}
+        public function DateFormatYYYYMMDDBead()
+		{
+            format = "YYYY-MM-DD";
+        }
+    }
 }

@@ -88,9 +88,9 @@
     <component id="TreeItemRenderer" class="org.apache.flex.html.supportClasses.TreeItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.flex.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLItemRenderer" class="org.apache.flex.html.supportClasses.MXMLItemRenderer"/>
-    <component id="ButtonBarButtonItemRenderer" class="org.apache.flex.html.supportClasses.ButtonBarButtonItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.flex.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.flex.html.supportClasses.DayNameItemRenderer"/>
+    <component id="TextButtonItemRenderer" class="org.apache.flex.html.supportClasses.TextButtonItemRenderer"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
      <component id="HScrollBar" class="org.apache.flex.html.supportClasses.HScrollBar"/>

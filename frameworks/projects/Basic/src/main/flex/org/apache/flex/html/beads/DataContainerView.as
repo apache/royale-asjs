@@ -24,16 +24,17 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IList;
-	import org.apache.flex.core.ISelectableItemRenderer;
+	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IDataProviderModel;
+	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.Strand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
@@ -108,7 +109,8 @@ package org.apache.flex.html.beads
 		 */
 		protected function itemsCreatedHandler(event:Event):void
 		{
-			performLayout(event);
+			trace("DataContainerView: itemsCreatedHandler");
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**
@@ -116,6 +118,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
+			trace("DataContainerView: dataProviderChangeHandler");
 			performLayout(event);
 		}
 	}
@@ -152,6 +155,7 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			
 			host.addEventListener("beadsAdded", beadsAddedHandler);
+			host.addEventListener("itemsCreated", itemsCreatedHandler);
 		}
 		
 		override protected function completeSetup():void
@@ -160,9 +164,8 @@ package org.apache.flex.html.beads
 			
 			// list is not interested in UI children, it wants to know when new items
 			// have been added or the dataProvider has changed.
-			host.removeEventListener("childrenAdded", childrenChangedHandler);
-			host.removeEventListener("childrenAdded", performLayout);
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
+//			host.removeEventListener("childrenAdded", childrenChangedHandler);
+//			host.removeEventListener("childrenAdded", performLayout);
 		}
 		
 		protected function beadsAddedHandler(event:Event):void
@@ -202,7 +205,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function itemsCreatedHandler(event:Event):void
 		{
-			performLayout(event);
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**
@@ -210,7 +213,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			performLayout(event);
+			host.dispatchEvent(new Event("layoutNeeded"));
 		}
 		        
         /**

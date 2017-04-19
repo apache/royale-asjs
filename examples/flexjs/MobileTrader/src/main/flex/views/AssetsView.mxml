@@ -34,35 +34,34 @@ limitations under the License.
 	</fx:Metadata>
 	
 	<js:beads>
-		<js:VerticalLayout />
+		<js:VerticalFlexLayout />
 	</js:beads>
 	
 	<js:model>
 		<models:AssetsModel />
 	</js:model>
 
-	<js:Label text="Summary" height="10%" />
+	<js:Label text="Summary" className="AssetsViewTitle" />
 	
-	<js:DataGrid height="150" width="100%">
-		<js:style>
-			<js:SimpleCSSStyles top="0" left="0" right="0" />
-		</js:style>
+	<js:DataGrid height="150" width="100%" className="AssetsViewGrid">
 		<js:beads>
+			<js:DataGridPercentageView />
 			<js:ConstantBinding
 				sourceID="model"
 				sourcePropertyName="assetsData"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Type" dataField="label" />
-			<js:DataGridColumn label="Value" dataField="value" />
-			<js:DataGridColumn label="Change" dataField="netChange" />
+			<js:DataGridColumn label="Type" dataField="label" columnWidth="50" />
+			<js:DataGridColumn label="Value" dataField="value" columnWidth="25" />
+			<js:DataGridColumn label="Change" dataField="netChange" columnWidth="25" />
 		</js:columns>
 	</js:DataGrid>
 		
-	<js:Label text="Performance History" height="10%" />
+	<js:Spacer height="10" />
+	<js:Label text="Performance History" className="AssetsViewTitle" />
 		
-	<js:BarChart id="barChart" width="100%" height="40%">
+	<js:BarChart id="barChart" className="AssetsViewChart" >
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="model"

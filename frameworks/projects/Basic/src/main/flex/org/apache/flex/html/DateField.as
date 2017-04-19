@@ -20,6 +20,7 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDateChooserModel;
+	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	
@@ -33,6 +34,7 @@ package org.apache.flex.html
 	 * and a pop-up calendar control for picking a date as an alternative to
 	 * the text field.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -73,6 +75,27 @@ package org.apache.flex.html
             }
             
 			super.addedToParent();
+		}
+
+		/**
+		 *  Replace existing format bead if it exists.
+		 *
+		 *  @copy org.apache.flex.core.IStrand#addBead()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		override public function addBead(bead:IBead):void
+		{
+			if (bead is IFormatBead) {
+				var formatBead:IBead = getBeadByType(IFormatBead);
+				if (formatBead != null) {
+					removeBead(formatBead);
+				}
+			}
+			super.addBead(bead);
 		}
 		
 		/**

@@ -42,6 +42,7 @@
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"  lookupOnly="true" />
+    <component id="Group" class="org.apache.flex.html.Group" lookupOnly="true" />
     <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"  lookupOnly="true" />

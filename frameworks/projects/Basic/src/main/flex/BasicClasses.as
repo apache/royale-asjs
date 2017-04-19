@@ -161,7 +161,7 @@ internal class BasicClasses
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.flex.html.supportClasses.Viewport; Viewport;
 	import org.apache.flex.html.supportClasses.ScrollingViewport; ScrollingViewport;
-	import org.apache.flex.html.supportClasses.DataGridButtonBarButtonItemRenderer; DataGridButtonBarButtonItemRenderer;
+	import org.apache.flex.html.supportClasses.TextButtonItemRenderer; TextButtonItemRenderer;
 
 	import org.apache.flex.html.DataGridButtonBarTextButton; DataGridButtonBarTextButton;
 	import org.apache.flex.html.DataGridButtonBar; DataGridButtonBar;

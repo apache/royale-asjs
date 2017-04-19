@@ -56,14 +56,14 @@ package org.apache.flex.charts.beads.layouts
 		/**
 		 * @private
 		 */
-		override protected function performLayout():void
+		override public function layout():Boolean
 		{			
 			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
 			if (!dp)
-				return;
+				return false;
 			if (dp.length == 0)
-				return;
+				return false;
 			
 			var n:int = dp.length;
 			var useWidth:Number = UIBase(chartDataGroup).width;
@@ -130,6 +130,8 @@ package org.apache.flex.charts.beads.layouts
 				
 				ypos -= gap;
 			}
+			
+			return true;
 		}
 	}
 }

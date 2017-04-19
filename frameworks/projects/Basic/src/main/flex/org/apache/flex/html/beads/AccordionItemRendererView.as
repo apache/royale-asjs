@@ -58,7 +58,7 @@ package org.apache.flex.html.beads
 			{
 				COMPILE::SWF {
 				// no longer needed layoutViewBeforeContentLayout();
-				layoutViewAfterContentLayout();
+				afterLayout();
 				}
 			}
 		}

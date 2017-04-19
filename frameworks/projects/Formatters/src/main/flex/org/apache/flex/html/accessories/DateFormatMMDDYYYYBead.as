@@ -18,140 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IFormatBead;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.beads.DateFieldView;
-	
+	import org.apache.flex.html.accessories.SimpleDateFormatBead;
+
 	/**
 	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
-	 *  
-     *  @flexjsignoreimport org.apache.flex.core.IStrandWithModel
-     * 
+     *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
-	public class DateFormatMMDDYYYYBead extends EventDispatcher implements IBead, IFormatBead
+	public class DateFormatMMDDYYYYBead extends SimpleDateFormatBead
 	{
 		/**
 		 * constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DateFormatMMDDYYYYBead()
 		{
+			format = "MM/DD/YYYY";
 		}
-		
-		private var _propertyName:String;
-		private var _eventName:String;
-		private var _formattedResult:String;
-		
-		/**
-		 *  The name of the property on the model holding the value to be formatted.
-		 *  The default is selectedDate.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get propertyName():String
-		{
-			if (_propertyName == null) {
-				return "selectedDate";
-			}
-			return _propertyName;
-		}
-		public function set propertyName(value:String):void
-		{
-			_propertyName = value;
-		}
-		
-		/**
-		 *  The name of the event dispatched when the property changes. The
-		 *  default is selectedDateChanged.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get eventName():String
-		{
-			if (_eventName == null) {
-				return _propertyName+"Changed";
-			}
-			return _eventName;
-		}
-		public function set eventName(value:String):void
-		{
-			_eventName = value;
-		}
-		
-		/**
-		 *  The formatted result.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function get formattedString():String
-		{
-			return _formattedResult;
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-         *  @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
-         * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
-			model.addEventListener("selectedDateChanged",handleTextChange);
-		}
-		
-		/**
-		 * @private
-         * 
-         * @flexjsignorecoercion org.apache.flex.core.IStrandWithModel
-		 */
-		private function handleTextChange(event:Event):void
-		{
-			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
-			
-			var d:Date = model.selectedDate;
-			if (d != null) {
-				var month:String = String(d.getMonth()+1);
-				if (Number(month)<10) month = "0"+month;
-				var date:String = String(d.getDate());
-				if (Number(date)<10) date = "0"+date;
-				var fmt:String = month+"/"+date+"/"+String(d.getFullYear());
-				_formattedResult = month+"/"+date+"/"+String(d.getFullYear());
-				
-				dispatchEvent( new Event("formatChanged") );
-			}
-		}
-		
+
 	}
 }
+

@@ -26,6 +26,7 @@ package org.apache.flex.mobile
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.flex.mobile.beads.StackedViewManagerView;
 	
 	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
 	
@@ -127,6 +128,14 @@ package org.apache.flex.mobile
 		{
 			return _topView;
 		}
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+		}
 
 		
 		/**
@@ -141,14 +150,6 @@ package org.apache.flex.mobile
 		{
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
-			
-			if (_topView != null) {
-				removeElement(_topView);
-			}
-			_topView = nextView;
-			addElement(_topView);
-			
-			dispatchEvent( new Event("viewChanged") );
 		}
 		
 		/**
@@ -159,16 +160,10 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function pop():void
+		public function pop():IChild
 		{
-			if (ViewManagerModel(model).views.length > 1) {
-				var lastView:IChild = ViewManagerModel(model).popView() as IChild;
-				removeElement(_topView);
-				addElement(lastView);
-				_topView = lastView as IViewManagerView;
-				
-				dispatchEvent( new Event("viewChanged") );
-			}
+			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
+			return ViewManagerModel(model).popView();
 		}
 
 	}

@@ -50,7 +50,14 @@ package org.apache.flex.net
         public var value:String;
 		
 		
-        
+		/**
+		 *  Set the name and value of a URL request header.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function URLRequestHeader(name:String, value:String)
         {
 			this.name = name;

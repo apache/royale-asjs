@@ -33,10 +33,6 @@ package org.apache.flex.mobile
 		public function TitleView()
 		{
 			super();
-			
-			// views always take up 100% of their space
-			percentWidth = 100;
-			percentHeight = 100;
 		}
 		
 		private var _title:String;

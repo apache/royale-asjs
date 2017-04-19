@@ -101,6 +101,22 @@ package org.apache.flex.core
 			return element;
 		}
 		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			// Load the layout bead if it hasn't already been loaded.
+			var layout:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;
+			if (!layout)
+			{
+				var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadLayout") as Class;
+				if (c) {
+					layout = new c() as IBeadLayout;
+					addBead(layout);
+				}
+			}
+		}
+		
 		/*
 		 * IContainer
 		 */

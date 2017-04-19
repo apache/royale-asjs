@@ -119,7 +119,7 @@ package org.apache.flex.net
             }
 		}
 		
-		private var _contentType:String = "application/x-www-form-urlencoded";
+		private var _contentType:String = HTTPConstants.FORM_URL_ENCODED;
         
         /**
          *  @copy org.apache.flex.net.BinaryUploader#contentType
@@ -536,7 +536,9 @@ package org.apache.flex.net
                 for each (var bead:IBead in beads)
                     addBead(bead);
             }
-            
+
+            dispatchEvent(new Event("preSend"));
+
             COMPILE::SWF
             {
                 if (!urlLoader)
@@ -618,7 +620,6 @@ package org.apache.flex.net
                     }
                 }
                 
-
                 if (_method !== HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
@@ -632,6 +633,8 @@ package org.apache.flex.net
                 }
 
             }
+
+            dispatchEvent(new Event("postSend"));
         }
         
         /**

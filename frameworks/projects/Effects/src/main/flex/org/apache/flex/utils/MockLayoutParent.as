@@ -48,6 +48,16 @@ package org.apache.flex.utils
 			_layoutHost = new MockLayoutHost(source.getLayoutHost());
 			_source = source;
 		}
+		
+		public function beforeLayout():void
+		{
+			// TODO ??
+		}
+		
+		public function afterLayout():void
+		{
+			// TODO ??	
+		}
 
 		public function get parent():IParent
 		{

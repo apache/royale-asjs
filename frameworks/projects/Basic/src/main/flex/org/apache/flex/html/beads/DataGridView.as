@@ -134,7 +134,7 @@ package org.apache.flex.html.beads
 					_listArea.element.style["flex-grow"] = "1";
 				}
 				
-				IEventDispatcher(_strand).addEventListener("initComplete", finishSetup);
+				IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
 			}
 			
 			/**

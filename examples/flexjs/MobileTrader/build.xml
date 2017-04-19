@@ -29,7 +29,40 @@
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/libs/js.swc" type="file" />
+        </and>
+    </condition>
+    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/js.swc" >
+        <and>
+            <not>
+                <isset property="extlib_arg" />
+            </not>
+            <available file="${FALCONJX_HOME}/../js/libs/js.swc" type="file" />
+        </and>
+    </condition>
+    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
+
+    <target name="main" depends="clean,build_example.compile,copyassets" description="Clean build of ${example}">
+    </target>
+    
+    <target name="copyassets">
+    	<mkdir dir="${basedir}/bin/js-debug/assets" />
+    	<copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">

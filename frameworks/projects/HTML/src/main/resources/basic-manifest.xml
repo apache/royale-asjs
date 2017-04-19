@@ -21,8 +21,6 @@
 
 <componentPackage>
 
-	<component id="HTMLText" class="org.apache.flex.html.HTMLText"/>
-
     <component id="A" class="org.apache.flex.html.A" />
     <component id="H1" class="org.apache.flex.html.H1" />
     <component id="H2" class="org.apache.flex.html.H2" />

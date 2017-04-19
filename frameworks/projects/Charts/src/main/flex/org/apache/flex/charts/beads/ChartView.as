@@ -81,22 +81,6 @@ package org.apache.flex.charts.beads
 		
 		/**
 		 * @private
-		 * @flexjsignorecoercion org.apache.flex.core.IChild
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override protected function completeSetup():void
-		{	
-			super.completeSetup();
-			
-			performLayout(null);
-		}
-		
-		/**
-		 * @private
 		 */
 		override protected function beadsAddedHandler(event:Event):void
 		{
@@ -165,14 +149,6 @@ package org.apache.flex.charts.beads
 			
 			dataGroup.removeAllItemRenderers();
 		}
-		
-		/**
-		 * @private
-		 */
-		override protected function handleChildrenAdded(event:Event):void
-		{
-			// ignore for charts.
-		}
 				
 		/**
 		 * ChartView overrides performLayout so that the exact area of the ChartDataGroup can
@@ -184,7 +160,7 @@ package org.apache.flex.charts.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */		
-		override protected function layoutViewBeforeContentLayout():void
+		override public function beforeLayout():void
 		{			
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
@@ -233,7 +209,7 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
-		override protected function layoutViewAfterContentLayout():void
+		override public function afterLayout():void
 		{
 			// ignore for charts
 		}

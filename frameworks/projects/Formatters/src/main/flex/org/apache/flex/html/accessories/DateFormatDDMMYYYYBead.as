@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,26 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:local="*"
-				   xmlns:models="models.*"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 
-				   xmlns:controller="controller.*" 
-				   >
-	<js:beads>
-		<js:DeviceSizeBead />
-	</js:beads>
+package org.apache.flex.html.accessories
+{
+	import org.apache.flex.html.accessories.SimpleDateFormatBead;
 	
-	<js:valuesImpl>
-		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
-	
-	<js:model>
-		<models:ProductsModel />
-	</js:model>
-	
-	<js:initialView>
-	   <local:MyInitialView width="100%" height="100%" />
-	</js:initialView>
-</js:Application>
+	/**
+	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.
+     * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
+	 */
+	public class DateFormatDDMMYYYYBead extends SimpleDateFormatBead
+	{
+		/**
+		 * constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function DateFormatDDMMYYYYBead()
+		{
+			format = "DD/MM/YYYY";
+		}
+	}
+}

@@ -30,13 +30,34 @@ package org.apache.flex.net
 	{
         /**
          *  The Content-type header.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
 		public static const CONTENT_TYPE:String = "Content-type";
+
+		/**
+		 *  The Content-length header.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const CONTENT_LENGTH:String = "Content-length";
+
+
+		/**
+		 *  The Connection header.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const CONNECTION:String = "Connection";
 
         /**
          *  Constructor.
