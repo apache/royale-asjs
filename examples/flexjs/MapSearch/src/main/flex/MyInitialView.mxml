@@ -142,11 +142,22 @@ limitations under the License.
 			
 		.Results {
 			backgroundColor: lightgray;
-			flex-grow: 1;
+			flex-grow: 0;
+			height: 200px;
+			min-height: 200px;
 			border: 1px solid #555555;
 			margin-left: 10px;
 			margin-right: 10px;
 			margin-bottom: 10px;
+		}
+			
+		.ResultPlaceName {
+			font-weight: bold;
+			font-size: 12;
+		}
+		.ResultPlaceAddress {
+			font-weight: normal;
+			font-size: 10;
 		}
 		
 		.FormLabel {
@@ -213,13 +224,14 @@ limitations under the License.
 			<js:TextButton text="Clear"click="clearSearchResults()" className="FormButton" />
 		</js:Group>
 		
-		<js:List id="resultsList" className="Results">
+		<js:List id="resultsList" className="Results" itemRenderer="SearchResultItemRenderer" rowHeight="40">
 			<js:beads>
 				<js:SimpleBinding
 					sourceID="applicationModel"
 					sourcePropertyName="searchResults"
 					eventName="searchResultsChanged"
 					destinationPropertyName="dataProvider" />
+				<js:ScrollingViewport />
 			</js:beads>
 		</js:List>
 		
