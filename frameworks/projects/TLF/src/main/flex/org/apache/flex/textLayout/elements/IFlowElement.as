@@ -105,5 +105,7 @@ package org.apache.flex.textLayout.elements
 		function getEventMirror():IEventDispatcher;
 		function set listMarkerFormat(listMarkerFormat:*):void;
 		function calculateComputedFormat():ITextLayoutFormat;
+		function set fontSize(value:*):void;
+		function set columnWidth(columnWidthValue:*):void;
 	}
 }

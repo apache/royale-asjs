@@ -31,7 +31,7 @@ package org.apache.flex.textLayout.compose
 	
 	public interface ITextFlowLine extends IVerticalJustificationLine
 	{
-		function get composable():Boolean;
+		function get composable():Boolean;//TextFlowTableBlocks are not composable
 		function initialize(paragraph:IParagraphElement, outerTargetWidth:Number = 0, lineOffset:Number = 0, absoluteStart:int = 0, numChars:int = 0, textLine:ITextLine = null):void;
 		function get heightTW():int;
 		function get outerTargetWidthTW():int;

@@ -23,6 +23,7 @@ package org.apache.flex.textLayout.elements
 	public interface IParagraphElement extends IFlowGroupElement
 	{
 		function getTextBlock():ITextBlock;
+		function getPreviousParagraph():IParagraphElement;
 		function getNextParagraph():IParagraphElement;
 		function getEffectiveDominantBaseline():String;
 		function decInteractiveChildrenCount():void;
