@@ -72,7 +72,7 @@ package org.apache.flex.html.accessories
 			
 			COMPILE::SWF
 			{
-				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
+				IEventDispatcher(value).addEventListener("beadsAdded",beadsAddedHandler);					
 			}
 			COMPILE::JS
 			{
@@ -86,7 +86,7 @@ package org.apache.flex.html.accessories
 		 * @private
 		 */
 		COMPILE::SWF
-		private function viewChangeHandler(event:Event):void
+		private function beadsAddedHandler(event:Event):void
 		{			
 			// get the ITextFieldView bead, which is required for this bead to work
 			var textView:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
