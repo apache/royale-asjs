@@ -451,6 +451,22 @@ AccordionItemRenderer
 	flex-grow: 1;
 }
 
+Table
+{
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.SimpleTableLayout");
+}
+
+TableHeader
+{
+	font-weight: bold;
+	border: 1px solid #999999;
+}
+
+TableCell
+{
+	border: 1px solid #999999;
+}
+
 TreeItemRenderer
 {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
@@ -789,6 +805,24 @@ global
 	Spinner
 	{
 		IBeadController: ClassReference("org.apache.flex.html.beads.controllers.SpinnerMouseController");
+	}
+	
+	Table
+	{
+		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+	}
+	
+	TableCell
+	{
+		IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.TableCellLayout");
+		IBeadView: ClassReference("org.apache.flex.html.beads.TableCellView");
+	}
+	
+	TableHeader
+	{
+		IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.TableHeaderLayout");
+		IBeadView: ClassReference("org.apache.flex.html.beads.TableCellView");
 	}
 	
 	TextArea

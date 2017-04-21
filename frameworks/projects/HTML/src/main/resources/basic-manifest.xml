@@ -174,5 +174,10 @@
 
     <component id="InnerHTML" class="org.apache.flex.html.beads.InnerHTML" />
     <component id="TextNode" class="org.apache.flex.html.TextNode" />
+    
+    <component id="Table" class="org.apache.flex.html.Table"/>
+    <component id="TableRow" class="org.apache.flex.html.TableRow"/>
+    <component id="TableCell" class="org.apache.flex.html.TableCell"/>
+    <component id="TableHeader" class="org.apache.flex.html.TableHeader"/>
 
 </componentPackage>

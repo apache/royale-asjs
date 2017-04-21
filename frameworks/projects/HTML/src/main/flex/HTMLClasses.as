@@ -222,6 +222,15 @@ internal class HTMLClasses
 	}
 	
 	import org.apache.flex.html.SubAppLoader; SubAppLoader;
+	
+	import org.apache.flex.html.Table; Table;
+	import org.apache.flex.html.TableRow; TableRow;
+	import org.apache.flex.html.TableCell; TableCell;
+	import org.apache.flex.html.TableHeader; TableHeader;
+	import org.apache.flex.html.beads.TableCellView; TableCellView;
+	import org.apache.flex.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;
+	import org.apache.flex.html.beads.layouts.TableCellLayout; TableCellLayout;
+	import org.apache.flex.html.beads.layouts.TableHeaderLayout; TableHeaderLayout;
 }
 
 }
