@@ -33,41 +33,7 @@
     <property name="config_arg" value="js" />
     <property name="file_suffix" value="as" />
     
-<<<<<<< HEAD
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
-=======
-    <target name="build">
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
-            <arg value="-define=CONFIG::as_only,false" />
-            <arg value="-define=CONFIG::js_only,true" />
-            <arg value="-external-library-path=${JS.SWC}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/src/main/flex/${example}.as" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>        
->>>>>>> develop
     </target>
     
     <target name="clean">
