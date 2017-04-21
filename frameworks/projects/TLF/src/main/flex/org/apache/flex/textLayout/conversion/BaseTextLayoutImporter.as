@@ -92,8 +92,7 @@ package org.apache.flex.textLayout.conversion
 			}
 			catch (e:Error)
 			{
-//TODO for some reason toString() is causing a compiler error
-				// reportError(e.toString());
+				reportError(e.toString());
 			}
 			PropertyUtil.errorHandler = savedErrorHandler;
 			return rslt;
