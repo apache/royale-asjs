@@ -195,32 +195,3 @@ package org.apache.flex.svg
 	}
 }
 
-import org.apache.flex.core.ContainerBase;
-
-class GraphicGroup extends ContainerBase
-{
-	/**
-	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-	 */
-	COMPILE::JS
-	override protected function createElement():org.apache.flex.core.WrappedHTMLElement
-	{
-		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.flex.core.WrappedHTMLElement;
-
-		positioner = element;
-
-		// absolute positioned children need a non-null
-		// position value in the parent.  It might
-		// get set to 'absolute' if the container is
-		// also absolutely positioned
-		//positioner.style.position = 'relative';
-		element.flexjs_wrapper = this;
-
-		/*addEventListener('childrenAdded',
-		runLayoutHandler);
-		addEventListener('elementRemoved',
-		runLayoutHandler);*/
-
-		return element;
-	}
-}
