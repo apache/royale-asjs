@@ -41,7 +41,15 @@ package org.apache.flex.textLayout.conversion
 	 */
 	internal class TextLayoutExporter extends BaseTextLayoutExporter
 	{	
-		static private var _formatDescription:Object= TextLayoutFormat.description;
+		static private var _formatDescription_:Object;
+		static private function get _formatDescription():Object
+		{
+			if(_formatDescription_ == null)
+			{
+				_formatDescription_ = TextLayoutFormat.description;
+			}
+			return _formatDescription_;
+		}
 
 		public function TextLayoutExporter()
 		{

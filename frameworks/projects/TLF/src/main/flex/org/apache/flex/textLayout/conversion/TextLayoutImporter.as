@@ -48,6 +48,9 @@ package org.apache.flex.textLayout.conversion
 	import org.apache.flex.textLayout.property.PropertyFactory;
 	import org.apache.flex.textLayout.utils.FactoryUtil;
 	import org.apache.flex.utils.ObjectMap;
+	import org.apache.flex.textLayout.conversion.TLFormatImporter;
+	import org.apache.flex.textLayout.conversion.SingletonAttributeImporter;
+	import org.apache.flex.textLayout.conversion.CustomFormatImporter;
 	
 
 
@@ -118,12 +121,46 @@ package org.apache.flex.textLayout.conversion
 			_defaultConfiguration = null;
 		}
 				
-		static private const _formatImporter:TLFormatImporter = new TLFormatImporter(TextLayoutFormat,TextLayoutFormat.description);
-		static private const _idImporter:SingletonAttributeImporter = new SingletonAttributeImporter("id");
-		static private const _typeNameImporter:SingletonAttributeImporter = new SingletonAttributeImporter("typeName");
-		static private const _customFormatImporter:CustomFormatImporter = new CustomFormatImporter();
+		static private var _formatImporter:TLFormatImporter;
+		static private function get formatImporter():TLFormatImporter{
+			if(_formatImporter == null)
+				_formatImporter = new TLFormatImporter(TextLayoutFormat,TextLayoutFormat.description);
+			
+			return _formatImporter;
+		}
+		static private var _idImporter:SingletonAttributeImporter;
+		static private function get idImporter():SingletonAttributeImporter
+		{
+			if(_idImporter == null)
+				_idImporter = new SingletonAttributeImporter("id");
+			
+			return _idImporter;
+		}
+		static private var _typeNameImporter:SingletonAttributeImporter;
+		static private function get typeNameImporter():SingletonAttributeImporter
+		{
+			if(_typeNameImporter == null)
+				_typeNameImporter = new SingletonAttributeImporter("typeName");
+			
+			return _typeNameImporter;
+		}
+		static private var _customFormatImporter:CustomFormatImporter;
+		static private function get customFormatImporter():CustomFormatImporter
+		{
+			if(_customFormatImporter == null)
+				_customFormatImporter = new CustomFormatImporter();
+			
+			return _customFormatImporter;
+		}
 		
-		static private const _flowElementFormatImporters:Array = [ _formatImporter,_idImporter,_typeNameImporter,_customFormatImporter ];
+		static private var _flowElementFormatImporters:Array;
+		static private function get flowElementFormatImporters():Array
+		{
+			if(_flowElementFormatImporters == null)
+				_flowElementFormatImporters = [ formatImporter,idImporter,typeNameImporter,customFormatImporter ];
+			
+			return _flowElementFormatImporters;
+		}
 		
 		private var _imageSourceResolveFunction:Function;
 
@@ -183,21 +220,21 @@ package org.apache.flex.textLayout.conversion
 			// all the standard ones have to be in importers - some check needed
 			parseAttributes(xmlToParse,importers);
 			
-			var textFormat:TextLayoutFormat = extractTextFormatAttributesHelper(flowElem.format,_formatImporter) as TextLayoutFormat;
+			var textFormat:TextLayoutFormat = extractTextFormatAttributesHelper(flowElem.format,formatImporter) as TextLayoutFormat;
 			if (textFormat)
 			{
 				CONFIG::debug { assert(textFormat.getStyles() != null,"Bad TextFormat in parseStandardFlowElementAttributes"); }
 				flowElem.format = textFormat;
 			}
 
-			if (_idImporter.result)
-				flowElem.id = _idImporter.result as String;
-			if (_typeNameImporter.result)
-				flowElem.typeName = _typeNameImporter.result as String;
-			if (_customFormatImporter.result)
+			if (idImporter.result)
+				flowElem.id = idImporter.result as String;
+			if (typeNameImporter.result)
+				flowElem.typeName = typeNameImporter.result as String;
+			if (customFormatImporter.result)
 			{
-				for (var styleName:String in _customFormatImporter.result)
-					flowElem.setStyle(styleName,_customFormatImporter.result[styleName]);
+				for (var styleName:String in customFormatImporter.result)
+					flowElem.setStyle(styleName,customFormatImporter.result[styleName]);
 			}
 		}
 		
@@ -327,12 +364,34 @@ package org.apache.flex.textLayout.conversion
 		}
 		
 		
-		static internal const _linkDescription:Object = {
-			"href" : PropertyFactory.string("href",null, false, null),
-			"target" : PropertyFactory.string("target",null, false, null)
-		};
-		static private const _linkFormatImporter:TLFormatImporter = new TLFormatImporter(ObjectMap,_linkDescription);
-		static private const _linkElementFormatImporters:Array = [ _linkFormatImporter, _formatImporter,_idImporter,_typeNameImporter,_customFormatImporter ];
+		// static internal const _linkDescription:Object = {
+		// 	"href" : PropertyFactory.string("href",null, false, null),
+		// 	"target" : PropertyFactory.string("target",null, false, null)
+		// };
+		static private var _linkFormatImporter:TLFormatImporter;
+		static private function get linkFormatImporter():TLFormatImporter
+		{
+			if(_linkFormatImporter == null)
+			{
+				_linkFormatImporter  = new TLFormatImporter(
+					ObjectMap,
+					{
+						"href" : PropertyFactory.string("href",null, false, null),
+						"target" : PropertyFactory.string("target",null, false, null)
+					}
+				);
+			}
+
+			return _linkFormatImporter;
+		}
+		static private var _linkElementFormatImporters:Array;
+		static private function get linkElementFormatImporters():Array
+		{
+			if(_linkElementFormatImporters == null)
+				_linkElementFormatImporters = [ linkFormatImporter, formatImporter,idImporter,typeNameImporter,customFormatImporter ];
+			
+			return _linkElementFormatImporters;
+		}
 
 		/** 
 		 * Parse a LinkElement Block.
@@ -345,11 +404,11 @@ package org.apache.flex.textLayout.conversion
 		public function createLinkFromXML(xmlToParse:XML):LinkElement
 		{
 			var linkElem:LinkElement = new LinkElement();
-			parseStandardFlowElementAttributes(linkElem,xmlToParse,_linkElementFormatImporters);
-			if (_linkFormatImporter.result)
+			parseStandardFlowElementAttributes(linkElem,xmlToParse,linkElementFormatImporters);
+			if (linkFormatImporter.result)
 			{
-				linkElem.href = _linkFormatImporter.result["href"] as String;
-				linkElem.target = _linkFormatImporter.result["target"] as String;
+				linkElem.href = linkFormatImporter.result["href"] as String;
+				linkElem.target = linkFormatImporter.result["target"] as String;
 			}
 
 			return linkElem;
@@ -367,15 +426,31 @@ package org.apache.flex.textLayout.conversion
 			return spanElem;
 		}
 		
-		static private const _imageDescription:Object = {
-			"height":InlineGraphicElement.heightPropertyDefinition,
-			"width":InlineGraphicElement.widthPropertyDefinition,
-			"source": PropertyFactory.string("source", null, false, null),
-			"float": PropertyFactory.string("float", null, false, null),
-			"rotation": InlineGraphicElement.rotationPropertyDefinition };
-		
-		static private const _ilgFormatImporter:TLFormatImporter = new TLFormatImporter(ObjectMap,_imageDescription);
-		static private const _ilgElementFormatImporters:Array = [ _ilgFormatImporter, _formatImporter, _idImporter, _typeNameImporter, _customFormatImporter ];
+		static private var _ilgFormatImporter:TLFormatImporter;
+		static private function get ilgFormatImporter():TLFormatImporter
+		{
+			if(_ilgFormatImporter == null)
+				_ilgFormatImporter = new TLFormatImporter(
+					ObjectMap,
+					{
+						"height":InlineGraphicElement.heightPropertyDefinition,
+						"width":InlineGraphicElement.widthPropertyDefinition,
+						"source": PropertyFactory.string("source", null, false, null),
+						"float": PropertyFactory.string("float", null, false, null),
+						"rotation": InlineGraphicElement.rotationPropertyDefinition
+					}
+				);
+			return _ilgFormatImporter;
+		}
+		static private var _ilgElementFormatImporters:Array;
+		static private function get ilgElementFormatImporters():Array
+		{
+			if(_ilgElementFormatImporters == null)
+			{
+				_ilgElementFormatImporters = [ ilgFormatImporter, formatImporter, idImporter, typeNameImporter, customFormatImporter ];
+			}
+			return _ilgElementFormatImporters;
+		}
 
 		/**
 		 * Create an inline graphic from XML
@@ -384,19 +459,19 @@ package org.apache.flex.textLayout.conversion
 		{				
 			var imgElem:InlineGraphicElement = new InlineGraphicElement();
 			
-			parseStandardFlowElementAttributes(imgElem,xmlToParse,_ilgElementFormatImporters);
+			parseStandardFlowElementAttributes(imgElem,xmlToParse,ilgElementFormatImporters);
 			
-			if (_ilgFormatImporter.result)
+			if (ilgFormatImporter.result)
 			{
-				var source:String = _ilgFormatImporter.result["source"];
+				var source:String = ilgFormatImporter.result["source"];
 				imgElem.source = _imageSourceResolveFunction != null ? _imageSourceResolveFunction(source) : source;
 				
 				// if not defined then let InlineGraphic set its own default
-				imgElem.height = _ilgFormatImporter.result["height"];
-				imgElem.width  = _ilgFormatImporter.result["width"];
+				imgElem.height = ilgFormatImporter.result["height"];
+				imgElem.width  = ilgFormatImporter.result["width"];
 				/*	We don't support rotation yet because of bugs in the player. */		
-				// imgElem.rotation  = InlineGraphicElement.heightPropertyDefinition.setHelper(imgElem.rotation,_ilgFormatImporter.result["rotation"]);
-				imgElem.float = _ilgFormatImporter.result["float"];
+				// imgElem.rotation  = InlineGraphicElement.heightPropertyDefinition.setHelper(imgElem.rotation,ilgFormatImporter.result["rotation"]);
+				imgElem.float = ilgFormatImporter.result["float"];
 			}
 			
 			return imgElem;
@@ -493,7 +568,7 @@ package org.apache.flex.textLayout.conversion
 		
 		public function createDictionaryFromXML(xmlToParse:XML):ObjectMap
 		{
-			var formatImporters:Array = [ _customFormatImporter ];
+			var formatImporters:Array = [ customFormatImporter ];
 
 			// parse the TextLayoutFormat child object		
 			var formatList:XMLList = xmlToParse..*::TextLayoutFormat;
@@ -502,7 +577,7 @@ package org.apache.flex.textLayout.conversion
 			
 			var parseThis:XML = formatList.length() > 0 ? formatList[0] : xmlToParse;
 			parseAttributes(parseThis,formatImporters);
-			return _customFormatImporter.result as ObjectMap;
+			return customFormatImporter.result as ObjectMap;
 		}
 
 		static public function parseLinkNormalFormat(importFilter:BaseTextLayoutImporter, xmlToParse:XML, parent:FlowGroupElement):void
@@ -514,7 +589,7 @@ package org.apache.flex.textLayout.conversion
 		
 		public function createListMarkerFormatDictionaryFromXML(xmlToParse:XML):ObjectMap
 		{
-			var formatImporters:Array = [ _customFormatImporter ];
+			var formatImporters:Array = [ customFormatImporter ];
 			
 			// parse the TextLayoutFormat child object		
 			var formatList:XMLList = xmlToParse..*::ListMarkerFormat;
@@ -523,7 +598,7 @@ package org.apache.flex.textLayout.conversion
 			
 			var parseThis:XML = formatList.length() > 0 ? formatList[0] : xmlToParse;
 			parseAttributes(parseThis,formatImporters);
-			return _customFormatImporter.result as ObjectMap;
+			return customFormatImporter.result as ObjectMap;
 		}
 		
 		static public function parseListMarkerFormat(importFilter:BaseTextLayoutImporter, xmlToParse:XML, parent:FlowGroupElement):void

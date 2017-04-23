@@ -60,29 +60,109 @@ package org.apache.flex.textLayout.conversion
 	public class TextFieldHtmlImporter extends BaseTextLayoutImporter implements IHTMLImporter {
 		// TLF formats to which <font/> attributes map directly
 		/** @private */
-		static public const _fontDescription:Object = {"color":TextLayoutFormat.colorProperty, "trackingRight":TextLayoutFormat.trackingRightProperty, "fontFamily":TextLayoutFormat.fontFamilyProperty};
+		static private var _fontDescription_:Object;
+		static private function get _fontDescription():Object
+		{
+			if(_fontDescription_ == null)
+			{
+				_fontDescription_ = {"color":TextLayoutFormat.colorProperty, "trackingRight":TextLayoutFormat.trackingRightProperty, "fontFamily":TextLayoutFormat.fontFamilyProperty};
+			}
+			return _fontDescription_;
+		}
 		// <font/> attributes that require custom logic for mapping to TLF formats
 		/** @private */
-		static public const _fontMiscDescription:Object = {"size":PropertyFactory.string("size", null, false, null), "kerning":PropertyFactory.string("kerning", null, false, null)};
+		static private var _fontMiscDescription_:Object;
+		static private function get _fontMiscDescription():Object
+		{
+			if(_fontMiscDescription_ == null)
+			{
+				_fontMiscDescription_ = {"size":PropertyFactory.string("size", null, false, null), "kerning":PropertyFactory.string("kerning", null, false, null)};
+			}
+			return _fontMiscDescription_;
+		}
 		// TLF formats to which <textformat/> attributes map directly
 		/** @private */
-		static public const _textFormatDescription:Object = {"paragraphStartIndent":TextLayoutFormat.paragraphStartIndentProperty, "paragraphEndIndent":TextLayoutFormat.paragraphEndIndentProperty, "textIndent":TextLayoutFormat.textIndentProperty, "lineHeight":TextLayoutFormat.lineHeightProperty, "tabStops":TextLayoutFormat.tabStopsProperty};
+		static private var _textFormatDescription_:Object;
+		static private function get _textFormatDescription():Object
+		{
+			if(_textFormatDescription_ == null)
+			{
+				_textFormatDescription_ = {"paragraphStartIndent":TextLayoutFormat.paragraphStartIndentProperty, "paragraphEndIndent":TextLayoutFormat.paragraphEndIndentProperty, "textIndent":TextLayoutFormat.textIndentProperty, "lineHeight":TextLayoutFormat.lineHeightProperty, "tabStops":TextLayoutFormat.tabStopsProperty};
+			}
+			return _textFormatDescription_;
+		}
 		// <textformat/> attributes that require custom logic for mapping to TLF formats
 		/** @private */
-		static public const _textFormatMiscDescription:Object = {"blockIndent":PropertyFactory.string("blockIndent", null, false, null)};
+		static private var _textFormatMiscDescription_:Object;
+		static private function get _textFormatMiscDescription():Object
+		{
+			if(_textFormatMiscDescription_ == null)
+			{
+				_textFormatMiscDescription_ = {"blockIndent":PropertyFactory.string("blockIndent", null, false, null)};
+			}
+			return _textFormatMiscDescription_;
+		}
 		/** @private */
-		static public const _paragraphFormatDescription:Object = {"textAlign":TextLayoutFormat.textAlignProperty};
+		static private var _paragraphFormatDescription_:Object;
+		static private function get _paragraphFormatDescription():Object
+		{
+			if(_paragraphFormatDescription_ == null)
+			{
+				_paragraphFormatDescription_ = {"textAlign":TextLayoutFormat.textAlignProperty};
+			}
+			return _paragraphFormatDescription_;
+		}
 		/** @private */
-		static public const _linkHrefDescription:Object = {"href":PropertyFactory.string("href", null, false, null)};
+		static private var _linkHrefDescription_:Object;
+		static private function get _linkHrefDescription():Object
+		{
+			if(_linkHrefDescription_ == null)
+			{
+				_linkHrefDescription_ = {"href":PropertyFactory.string("href", null, false, null)};
+			}
+			return _linkHrefDescription_;
+		}
 		/** @private */
-		static public const _linkTargetDescription:Object = {"target":PropertyFactory.string("target", null, false, null)};
+		static private var _linkTargetDescription_:Object;
+		static private function get _linkTargetDescription():Object
+		{
+			if(_linkTargetDescription_ == null)
+			{
+				_linkTargetDescription_ = {"target":PropertyFactory.string("target", null, false, null)};
+			}
+			return _linkTargetDescription_;
+		}
 		/** @private */
-		static public const _imageDescription:Object = {"height":InlineGraphicElement.heightPropertyDefinition, "width":InlineGraphicElement.widthPropertyDefinition};
+		static private var _imageDescription_:Object;
+		static private function get _imageDescription():Object
+		{
+			if(_imageDescription_ == null)
+			{
+				_imageDescription_ = {"height":InlineGraphicElement.heightPropertyDefinition, "width":InlineGraphicElement.widthPropertyDefinition};
+			}
+			return _imageDescription_;
+		}
 		// Separate description because id value is case-sensitive unlike others
 		/** @private */
-		static public const _imageMiscDescription:Object = {"src":PropertyFactory.string("src", null, false, null), "align":PropertyFactory.string("align", null, false, null)};
+		static private var _imageMiscDescription_:Object;
+		static private function get _imageMiscDescription():Object
+		{
+			if(_imageMiscDescription_ == null)
+			{
+				_imageMiscDescription_ = {"src":PropertyFactory.string("src", null, false, null), "align":PropertyFactory.string("align", null, false, null)};
+			}
+			return _imageMiscDescription_;
+		}
 		/** @private Finish defining at run time because it has a member variable "CLASS" which is a reserved keyword. */
-		static public const _classAndIdDescription:Object = {"id":PropertyFactory.string("ID", null, false, null)};
+		static private var _classAndIdDescription_:Object;
+		static private function get _classAndIdDescription():Object
+		{
+			if(_classAndIdDescription_ == null)
+			{
+				_classAndIdDescription_ = {"id":PropertyFactory.string("ID", null, false, null)};
+			}
+			return _classAndIdDescription_;
+		}
 		// For some reason, the following can't be initialized here
 		/** @private */
 		static public var _fontImporter:FontImporter;
@@ -106,9 +186,25 @@ package org.apache.flex.textLayout.conversion
 		static public var _classAndIdImporter:CaseInsensitiveTLFFormatImporter;
 		// Formats specified by formatting elements in the ancestry of the element being parsed currently
 		/** @private */
-		static public var _activeFormat:TextLayoutFormat = new TextLayoutFormat(); // to be applied to all flow elements
+		static private var _activeFormat_:TextLayoutFormat; // to be applied to all flow elements
+		static private function get _activeFormat():TextLayoutFormat
+		{
+			if(_activeFormat_ == null)
+			{
+				_activeFormat_ = new TextLayoutFormat();
+			}
+			return _activeFormat_;
+		}
 		/** @private */
-		static public var _activeParaFormat:TextLayoutFormat = new TextLayoutFormat(); // to be applied to paras only
+		static private var _activeParaFormat_:TextLayoutFormat = new TextLayoutFormat(); // to be applied to paras only
+		static private function get _activeParaFormat():TextLayoutFormat
+		{
+			if(_activeParaFormat_ == null)
+			{
+				_activeParaFormat_ = new TextLayoutFormat();
+			}
+			return _activeParaFormat_;
+		}
 		/** @private */
 		static public var _activeImpliedParaFormat:TextLayoutFormat = null;
 		// The basis for relative font size calculation
@@ -279,11 +375,11 @@ package org.apache.flex.textLayout.conversion
 			var rslt:IParagraphElement;
 			var savedActiveFormat:TextLayoutFormat = _activeFormat;
 			if (_activeImpliedParaFormat)
-				_activeFormat = _activeImpliedParaFormat;
+				_activeFormat_ = _activeImpliedParaFormat;
 			try {
 				rslt = super.createImpliedParagraph();
 			} finally {
-				_activeFormat = savedActiveFormat;
+				_activeFormat_ = savedActiveFormat;
 			}
 			return rslt;
 		}
