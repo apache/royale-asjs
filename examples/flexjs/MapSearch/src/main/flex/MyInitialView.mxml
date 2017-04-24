@@ -122,14 +122,47 @@ limitations under the License.
 	
 		<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
+			
+		.TopContainer {
+			backgroundColor: darkgray;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+			border: 1px solid #555555;
+		}
+			
+		.InnerBox {
+			padding: 10px;
+			flex-grow: 0;
+		}
+			
+		.MainMap {
+			flex-grow: 2;
+		}
+			
+		.Results {
+			backgroundColor: lightgray;
+			flex-grow: 0;
+			height: 200px;
+			min-height: 200px;
+			border: 1px solid #555555;
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+			
+		.ResultPlaceName {
+			font-weight: bold;
+			font-size: 12;
+		}
+		.ResultPlaceAddress {
+			font-weight: normal;
+			font-size: 10;
+		}
 		
 		.FormLabel {
 			font-weight: bold;
 			font-size: 12;
-			padding-left: 20px;
-			padding-right: 20px;
-			padding-top: 20px;
-			padding-bottom: 20px;
 			height: 22px;
 		}
 		
@@ -147,65 +180,61 @@ limitations under the License.
 		
 		.FormInput {
 			font-weight: normal;
-			font-size: 12;
-			color: #0000DE;
-			padding: 0px;
-			height: 20px;
-		}
-		
-		.InnerBox {
-			margin-top: 11px;
-			margin-bottom: 10px;
+			font-size: 14;
+			margin-left: 5px;
+			margin-right: 5px;
 		}
 	</fx:Style>
 	
 	<js:beads>
+		<local:NoLayout />
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	
-	<js:Container x="5" y="5" className="topContainer" >
+	<js:Group className="TopContainer" width="50%" height="600">
 		<js:beads>
-			<js:VerticalLayout />
+			<js:VerticalFlexLayout />
 		</js:beads>
 		
-		<js:Container className="InnerBox">
+		<js:Group className="InnerBox">
 			<js:beads>
-				<js:HorizontalLayout />
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="mapLocation" />
 			</js:beads>
 			<js:Label id="label1" text="Location:" className="FormLabel"  />
-			<js:TextInput id="mapLocation" />
+			<js:TextInput id="mapLocation" className="FormInput" />
 			<js:TextButton text="Go" id="goButton" click="orientMap()" className="FormButton" />
+			<js:Spacer width="5" />
 			
-			<js:DropDownList id="list" width="100" height="20"
-								change="changeCity(event)"
-								dataProvider="{MyModel(applicationModel).cities}" />
-		</js:Container>
+			<js:DropDownList id="list" width="100"
+							 change="changeCity(event)"
+							 dataProvider="{MyModel(applicationModel).cities}" />
+		</js:Group>
 		
-		<google:Map id="map" width="450" height="300" className="MainMap"
-				   token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
-				   ready="onMapReady()"/>
+		<google:Map id="map" className="MainMap"
+					token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
+					ready="onMapReady()"/>
 		
-		<js:Container className="InnerBox">
+		<js:Group className="InnerBox">
 			<js:beads>
-				<js:HorizontalLayout />
+				<js:OneFlexibleChildHorizontalLayout flexibleChild="search" />
 			</js:beads>
 			<js:Label id="label2" text="Search on Map:" className="FormLabel" />
-			<js:TextInput id="search" />
+			<js:TextInput id="search" className="FormInput" />
 			<js:TextButton text="Find" click="searchOnMap()" className="FormButton" />
 			<js:TextButton text="Clear"click="clearSearchResults()" className="FormButton" />
-		</js:Container>
+		</js:Group>
 		
-		<js:List id="resultsList" width="450" height="200">
+		<js:List id="resultsList" className="Results" itemRenderer="SearchResultItemRenderer" rowHeight="40">
 			<js:beads>
 				<js:SimpleBinding
 					sourceID="applicationModel"
 					sourcePropertyName="searchResults"
 					eventName="searchResultsChanged"
 					destinationPropertyName="dataProvider" />
+				<js:ScrollingViewport />
 			</js:beads>
 		</js:List>
 		
-	</js:Container>
+	</js:Group>
 	
 </js:View>

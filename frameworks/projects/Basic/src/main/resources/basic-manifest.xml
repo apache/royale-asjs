@@ -153,5 +153,10 @@
     <component id="Border" class="org.apache.flex.html.supportClasses.Border"/>
 
     <component id="WebBrowser" class="org.apache.flex.html.WebBrowser" />
+    
+    <component id="Table" class="org.apache.flex.html.Table"/>
+    <component id="TableRow" class="org.apache.flex.html.TableRow"/>
+    <component id="TableCell" class="org.apache.flex.html.TableCell"/>
+    <component id="TableHeader" class="org.apache.flex.html.TableHeader"/>
 
 </componentPackage>

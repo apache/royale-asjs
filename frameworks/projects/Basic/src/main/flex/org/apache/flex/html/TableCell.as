@@ -16,45 +16,53 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package models
+package org.apache.flex.html
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;            
+    }
 	
-	public class MyModel extends EventDispatcher implements IBeadModel
+	/**
+	 *  The TableCell class defines a table data cell in the Table component. This element
+	 *  may have nearly any type of FlexJS component as children.
+     *  
+	 *  
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class TableCell extends Group
 	{
-		public function MyModel()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public function TableCell()
 		{
 			super();
+			
+			className = "TableCell";
 		}
 		
-		private var _strand:IStrand;
-		
-		public function set strand(value:IStrand):void
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
 		{
-			_strand = value;
+			element = document.createElement('td') as WrappedHTMLElement;
+			
+			positioner = element;
+			element.flexjs_wrapper = this;
+			
+			return element;
 		}
-		
-		private var _cities:Array = ["San Jose, CA", "Sydney", "NYC", "Mexico City", "London", "Rio de Janeiro"];
-		
-		[Bindable]
-		public function get cities():Array
-		{
-			return _cities;
-		}
-		
-		private var _coordinates:Array = [
-			{lat:37.3, lng: -121.5},
-			{lat:-33.86, lng:151.211},
-			{lat:40.712, lng:-74.0059},
-			{lat:19.26, lng:-99.03},
-			{lat:51.4, lng:-0.1},
-			{lat:-22.95, lng:-43.12}];
-		public function get coordinates():Array
-		{
-			return _coordinates;
-		}
-	}
+    }
 }
