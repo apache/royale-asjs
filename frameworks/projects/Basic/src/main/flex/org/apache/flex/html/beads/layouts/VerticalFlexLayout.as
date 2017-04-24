@@ -159,11 +159,11 @@ package org.apache.flex.html.beads.layouts
 					}
 
 					var useWidth:Number = -1;
-					if (!hostWidthSizedToContent) {
-						if (ilc) {
-							if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
-							else if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
-							else useWidth = hostWidth;
+					if (ilc) {
+						if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
+						else if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
+						else if (!hostWidthSizedToContent) {
+							useWidth = hostWidth;
 						}
 					}
 
