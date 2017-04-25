@@ -47,6 +47,8 @@
     <component id="ComboBoxList" class="org.apache.flex.html.supportClasses.ComboBoxList"/>
     <component id="Container" class="org.apache.flex.html.Container"/>
     <component id="Group" class="org.apache.flex.html.Group"/>
+    <component id="HGroup" class="org.apache.flex.html.HGroup"/>
+    <component id="VGroup" class="org.apache.flex.html.VGroup"/>
     <component id="Accordion" class="org.apache.flex.html.Accordion"/>
     <component id="Form" class="org.apache.flex.html.Form"/>
     <component id="HContainer" class="org.apache.flex.html.HContainer"/>

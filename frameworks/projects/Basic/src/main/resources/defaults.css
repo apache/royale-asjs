@@ -267,6 +267,16 @@ DateField {
 	IFormatBead: ClassReference("org.apache.flex.html.accessories.DateFormatYYYYMMDDBead");
 }
 
+/* Groups */
+
+HGroup {
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+}
+
+VGroup {
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
+}
+
 /* RangeStepper */
 
 RangeStepper {
