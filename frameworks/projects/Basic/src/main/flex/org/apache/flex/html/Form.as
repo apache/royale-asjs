@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-    import org.apache.flex.html.Container;
-
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -36,7 +34,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Form extends Container
+    public class Form extends Group
 	{
         /**
          *  Constructor.
