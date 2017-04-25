@@ -97,6 +97,7 @@
         <ant dir="${basedir}/flexjs/ChartExample"/>
         <ant dir="${basedir}/flexjs/StorageExample"/>
         <ant dir="${basedir}/flexjs/StyleExample"/>
+        <ant dir="${basedir}/flexjs/TableExample"/>
         <ant dir="${basedir}/flexjs/TodoListSampleApp"/>
         <ant dir="${basedir}/flexjs/TeamPage"/>
         <ant dir="${basedir}/flexjs/TreeExample"/>
@@ -138,6 +139,7 @@
         <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
         <ant dir="${basedir}/flexjs/StorageExample" target="clean"/>
         <ant dir="${basedir}/flexjs/StyleExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/TableExample" target="clean"/>
         <ant dir="${basedir}/flexjs/TodoListSampleApp" target="clean"/>
         <ant dir="${basedir}/flexjs/TeamPage" target="clean"/>
         <ant dir="${basedir}/flexjs/TreeExample" target="clean"/>
