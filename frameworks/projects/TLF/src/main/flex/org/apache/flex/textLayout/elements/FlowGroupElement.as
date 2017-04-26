@@ -198,7 +198,7 @@ package org.apache.flex.textLayout.elements
 			var lo:int = 0;
 			while (lo <= hi)
 			{
-				var mid:int = (lo + hi) / 2;
+				var mid:int = Math.floor((lo + hi) / 2);
 				var p:IFlowElement = _childArray[mid];
 				if (p.parentRelativeStart == child.parentRelativeStart)
 				{
