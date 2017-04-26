@@ -21,6 +21,8 @@ package org.apache.flex.textLayout.property {
 	import org.apache.flex.textLayout.property.EnumPropertyHandler;
 	import org.apache.flex.textLayout.property.UndefinedPropertyHandler;
 	import org.apache.flex.textLayout.property.UintPropertyHandler;
+	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.flex.textLayout.formats.ListMarkerFormat;
 	public class PropertyFactory {
 		// shared propertyHandler instances
 		/** @private */
@@ -68,7 +70,10 @@ package org.apache.flex.textLayout.property {
 		private static var _sharedTextLayoutFormatHandler:FormatPropertyHandler;
 		public static function get sharedTextLayoutFormatHandler():FormatPropertyHandler{
 			if(_sharedTextLayoutFormatHandler == null)
-			 	_sharedTextLayoutFormatHandler = new FormatPropertyHandler();
+			{
+				_sharedTextLayoutFormatHandler = new FormatPropertyHandler();
+				_sharedTextLayoutFormatHandler.converter = TextLayoutFormat.createTextLayoutFormat;
+			}
 			
 			return _sharedTextLayoutFormatHandler;
 		}
@@ -76,7 +81,10 @@ package org.apache.flex.textLayout.property {
 		private static var _sharedListMarkerFormatHandler:FormatPropertyHandler;
 		public static function get sharedListMarkerFormatHandler():FormatPropertyHandler{
 			if(_sharedListMarkerFormatHandler == null)
+			{
 				_sharedListMarkerFormatHandler = new FormatPropertyHandler();
+				_sharedListMarkerFormatHandler.converter = ListMarkerFormat.createListMarkerFormat;
+			}
 			
 			return _sharedListMarkerFormatHandler;
 		}

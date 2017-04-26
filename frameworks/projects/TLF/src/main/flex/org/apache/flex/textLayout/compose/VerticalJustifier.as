@@ -41,7 +41,8 @@ package org.apache.flex.textLayout.compose
 		 * */
 		static public function applyVerticalAlignmentToColumn(controller:IContainerController, verticalAlignAttr:String, lines:Array, startIndex:int, numLines:int,beginFloatIndex:int,endFloatIndex:int):Number
 		{
-			var helper:IVerticalAdjustmentHelper;
+			// var helper:IVerticalAdjustmentHelper;
+			var helper:Object;
 			if (controller.rootElement.computedFormat.blockProgression == BlockProgression.RL)
 				helper = new RL_VJHelper(controller);
 			else
@@ -88,21 +89,21 @@ import org.apache.flex.textLayout.container.IContainerController;
 import org.apache.flex.textLayout.elements.IInlineGraphicElement;
 import org.apache.flex.textLayout.formats.Float;
 
-interface IVerticalAdjustmentHelper
-{
-	function getBottom(line:IVerticalJustificationLine, controller:IContainerController, beginFloat:int, endFloat:int):Number;
+// interface IVerticalAdjustmentHelper
+// {
+// 	function getBottom(line:IVerticalJustificationLine, controller:IContainerController, beginFloat:int, endFloat:int):Number;
 	
-	function computeMiddleAdjustment(bottom:Number):Number;
-	function applyAdjustment(line:IVerticalJustificationLine):void;
-	function applyAdjustmentToFloat(floatInfo:FloatCompositionData):void;
+// 	function computeMiddleAdjustment(bottom:Number):Number;
+// 	function applyAdjustment(line:IVerticalJustificationLine):void;
+// 	function applyAdjustmentToFloat(floatInfo:FloatCompositionData):void;
 	
-	function computeBottomAdjustment(bottom:Number):Number;
+// 	function computeBottomAdjustment(bottom:Number):Number;
 	
-	function computeJustifyAdjustment(lineArray:Array, firstLine:int, numLines:int):Number;
-	function applyJustifyAdjustment(lineArray:Array, firstLine:int, numLines:int):void;
-}
+// 	function computeJustifyAdjustment(lineArray:Array, firstLine:int, numLines:int):Number;
+// 	function applyJustifyAdjustment(lineArray:Array, firstLine:int, numLines:int):void;
+// }
 
-class TB_VJHelper implements IVerticalAdjustmentHelper
+class TB_VJHelper/* implements IVerticalAdjustmentHelper*/
 {
 	
 
@@ -239,7 +240,7 @@ class TB_VJHelper implements IVerticalAdjustmentHelper
 	}
 }
 
-class RL_VJHelper implements IVerticalAdjustmentHelper
+class RL_VJHelper/* implements IVerticalAdjustmentHelper*/
 {
 	
 

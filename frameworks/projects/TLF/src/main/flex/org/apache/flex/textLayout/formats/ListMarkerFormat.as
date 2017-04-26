@@ -127,8 +127,8 @@ package org.apache.flex.textLayout.formats
 		}
 		
 		// at this point we know that both TextLayoutFormat and ListMarkerFormat are initialized so can setup the Property objects
-		PropertyFactory.sharedTextLayoutFormatHandler.converter = TextLayoutFormat.createTextLayoutFormat;
-		PropertyFactory.sharedListMarkerFormatHandler.converter = ListMarkerFormat.createListMarkerFormat;
+		// PropertyFactory.sharedTextLayoutFormatHandler.converter = TextLayoutFormat.createTextLayoutFormat;
+		// PropertyFactory.sharedListMarkerFormatHandler.converter = ListMarkerFormat.createListMarkerFormat;
 
 		
 		/** Create a ListMarkerFormat that holds all the properties possible for a list marker.  

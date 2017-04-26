@@ -39,9 +39,10 @@ package org.apache.flex.textLayout.property {
 				return newVal;
 				
 			// Accepts either an array or a string representation
-			var tabStops:Array = newVal as Array;
-			if (tabStops)
+			var tabStops:Array;
+			if (newVal is Array)
 			{
+				tabStops = newVal as Array;
 				if (!checkArrayTypes(tabStops))
 				{
 					PropertyUtil.errorHandler(this,newVal);
@@ -58,7 +59,7 @@ package org.apache.flex.textLayout.property {
 				}
 					
 				// Parse the string representation and create an equivalent array
-				tabStops = new Array();
+				tabStops = [];
 				
 				// Replace escape sequences (\ followed by a space or \) with placeholder strings
 				// that can't naturally occur in the passed-in string 
@@ -116,7 +117,8 @@ package org.apache.flex.textLayout.property {
 							tabStop.decimalAlignmentToken = tabStop.decimalAlignmentToken.replace(_spacePlaceholderRegex, " ");
 						}
 					}
-					else if (result[3] != "")
+					//This was originally a check for an empty string but it appears to be undefined in Javascript
+					else if (result[3])
 					{
 						PropertyUtil.errorHandler(this,newVal);
 						return currVal; // if alignment is not decimal, the alignment token is not allowed

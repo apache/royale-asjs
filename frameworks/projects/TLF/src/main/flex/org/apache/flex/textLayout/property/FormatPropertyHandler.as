@@ -39,7 +39,7 @@ package org.apache.flex.textLayout.property
 		{ return newVal is String ? undefined : newVal; }
 				
 		public override function setHelper(newVal:*):*
-		{ return _converter(newVal); }
+		{ return converter(newVal); }
 	}
 }
 
