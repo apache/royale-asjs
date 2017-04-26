@@ -2046,7 +2046,7 @@ package
 			for(i=0;i<_children.length;i++)
 			{
 				if(_children[i].nodeKind() == "text")
-					list.append(_attributes[i]);
+					list.append(_children[i]);
 			}
 			list.targetObject = this;
 			return list;
