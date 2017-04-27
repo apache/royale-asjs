@@ -53,6 +53,8 @@ package org.apache.flex.core
 		{
 		}
 
+		private var sawInitComplete:Boolean;
+		
         /**
 		 * The strand/host container is also an ILayoutChild because
          * it can have its size dictated by the host's parent which is
@@ -116,12 +118,19 @@ package org.apache.flex.core
 		protected function handleChildrenAdded(event:Event):void
 		{
 			COMPILE::SWF {
-				var n:Number = layoutView.numElements;
-				for(var i:int=0; i < n; i++) {
-					var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
-					child.addEventListener("widthChanged", childResizeHandler);
-					child.addEventListener("heightChanged", childResizeHandler);
-					child.addEventListener("sizeChanged", childResizeHandler);
+				if (sawInitComplete)
+				{
+					performLayout();
+				}
+				else
+				{
+					var n:Number = layoutView.numElements;
+					for(var i:int=0; i < n; i++) {
+						var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
+						child.addEventListener("widthChanged", childResizeHandler);
+						child.addEventListener("heightChanged", childResizeHandler);
+						child.addEventListener("sizeChanged", childResizeHandler);
+					}
 				}
 			}
 		}
@@ -163,7 +172,13 @@ package org.apache.flex.core
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
-			performLayout();
+			sawInitComplete = true;
+			
+			// Complete the setup if the height is sized to content or has been explicitly set
+            // and the width is sized to content or has been explicitly set
+			if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+                (host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+	    		performLayout();
 		}
 		
 		/**
@@ -195,8 +210,10 @@ package org.apache.flex.core
 				ml = 0;
 			if (marginRight == "auto")
 				mr = 0;
+			if (margin == "auto")
+			    ml = mr = mt = mb = 0;
 			
-			return {left:ml, top:mt, right:mr, bottom:mb};
+			return {left:ml, top:mt, right:mr, bottom:mb, auto: (marginLeft == "auto" && marginRight == "auto") || margin == "auto"};
 		}
 		
 		/**
