@@ -147,10 +147,11 @@ package org.apache.flex.html.beads.layouts
 							childHeight = hostHeight * ilc.percentHeight/100.0;
 							ilc.setHeight(childHeight);
 						}
-						// the following code middle-aligns the child, but since HTML does not
-						// do this normally, this code is commented. (Use HorizontalFlexLayout for
-						// vertically centered elements in a horizontal row).
-//						childYpos = hostHeight/2 - (childHeight + mt + mb)/2;
+						var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
+						if (valign == "middle")
+						{
+							childYpos = hostHeight/2 - (childHeight + margins.top + margins.bottom)/2;
+						}
 					}
 
 					if (ilc) {

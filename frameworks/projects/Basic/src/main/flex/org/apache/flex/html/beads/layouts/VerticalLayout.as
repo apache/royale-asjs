@@ -126,12 +126,9 @@ package org.apache.flex.html.beads.layouts
 							childWidth = hostWidth * ilc.percentWidth/100.0;
 							ilc.setWidth(childWidth);
 						}
-						// the following code center-aligns the child, but since HTML does not
-						// do this normally, this code is commented. (Use VerticalFlexLayout for
-						// horizontally centered elements in a vertical column).
-						//					childXpos = hostWidth/2 - (childWidth + ml + mr)/2;
+						if (margins.auto)
+							childXpos = (hostWidth - childWidth) / 2;
 					}
-
 					if (ilc) {
 						ilc.setX(childXpos);
 						ilc.setY(ypos);

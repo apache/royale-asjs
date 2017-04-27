@@ -126,9 +126,13 @@ package org.apache.flex.html.beads.layouts
 							else
 							{
 								if (ilc)
+								{
 									ilc.setX( w - positions.right - margins.left - child.width - margins.right);
+								}
 								else
+								{
 									child.x = w - positions.right - margins.left - child.width - margins.right;
+								}
 							}
 						}
 					}
@@ -161,6 +165,14 @@ package org.apache.flex.html.beads.layouts
 					else if (ilc != null && !isNaN(ilc.percentHeight) && !hostHeightSizedToContent)
 					{
 						ilc.setHeight((hh - margins.top - margins.bottom) * ilc.percentHeight/100, false);
+					}
+					
+					if (margins.auto)
+					{
+						if (ilc)
+							ilc.setX( (w - child.width) / 2);
+						else
+							child.x = (w - child.width) / 2;
 					}
                 }
 
