@@ -649,6 +649,11 @@ global
 		IBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 	}
 	
+	DataGrid {
+		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+	}
+	
 	DataContainer {
 		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
