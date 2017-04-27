@@ -174,11 +174,19 @@ package org.apache.flex.core
 		{
 			sawInitComplete = true;
 			
+			COMPILE::SWF
+			{
 			// Complete the setup if the height is sized to content or has been explicitly set
             // and the width is sized to content or has been explicitly set
 			if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
                 (host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
 	    		performLayout();
+			}
+			COMPILE::JS
+			{
+				// always run layout since there are no size change events
+	    		performLayout();
+			}
 		}
 		
 		/**
