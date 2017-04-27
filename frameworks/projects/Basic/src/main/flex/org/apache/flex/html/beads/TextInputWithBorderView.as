@@ -61,6 +61,11 @@ package org.apache.flex.html.beads
 			
             value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBackgroundBead")) as IBead);
 			value.addBead(new (ValuesManager.valuesImpl.getValue(value, "iBorderBead")) as IBead);
+			
+			// if we aren't going to get resized, draw the border now
+            var ilc:ILayoutChild = host as ILayoutChild;
+            if (ilc.isWidthSizedToContent() && !isNaN(ilc.explicitHeight))
+				ilc.dispatchEvent(new Event("initComplete"));
 		}
 
         /**
