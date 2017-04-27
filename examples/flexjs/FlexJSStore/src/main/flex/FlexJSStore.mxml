@@ -250,6 +250,9 @@ limitations under the License.
                                 click="headToSupport()"/>            
             </js:ControlBar>
             <js:Group width="990" id="viewholder">
+			    <js:beads>
+					<js:BasicLayout />
+			    </js:beads>
                 <js:style>
                     <js:SimpleCSSStyles paddingLeft="0" paddingRight="0"/>
                 </js:style>
