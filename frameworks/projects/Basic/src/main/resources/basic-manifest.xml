@@ -67,8 +67,10 @@
     <component id="Tree" class="org.apache.flex.html.Tree"/>
     <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"/>
     <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"/>
+    <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.flex.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
     <component id="VerticalFlexLayout" class="org.apache.flex.html.beads.layouts.VerticalFlexLayout"/>
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"/>
+    <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.flex.html.beads.layouts.HorizontalLayoutWithPaddingAndGap"/>
     <component id="HorizontalFlexLayout" class="org.apache.flex.html.beads.layouts.HorizontalFlexLayout"/>
     <component id="HorizontalFlowLayout" class="org.apache.flex.html.beads.layouts.HorizontalFlowLayout" />
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"/>
