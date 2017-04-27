@@ -80,6 +80,16 @@ package org.apache.flex.html.beads
 			IEventDispatcher(host).addEventListener("layoutComplete", changeHandler);
 			
 			setupStyle();
+			
+			var ilc:ILayoutChild = value as ILayoutChild;
+			if (ilc)
+			{
+				if (!isNaN(ilc.explicitWidth) && !isNaN(ilc.explicitHeight))
+				{
+					changeHandler(null);
+				}
+			}
+
 		}
 		
 		protected function setupStyle():void

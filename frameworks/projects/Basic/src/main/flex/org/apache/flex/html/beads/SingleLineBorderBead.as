@@ -21,6 +21,7 @@ package org.apache.flex.html.beads
 	import flash.display.Graphics;
 
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.IStatesObject;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
@@ -70,6 +71,14 @@ package org.apache.flex.html.beads
 			IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
 			IEventDispatcher(value).addEventListener("initComplete", changeHandler);
 			IEventDispatcher(value).addEventListener("layoutComplete", changeHandler);
+			var ilc:ILayoutChild = value as ILayoutChild;
+			if (ilc)
+			{
+				if (!isNaN(ilc.explicitWidth) && !isNaN(ilc.explicitHeight))
+				{
+					changeHandler(null);
+				}
+			}
 		}
 		        
 		protected function changeHandler(event:Event):void
