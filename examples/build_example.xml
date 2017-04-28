@@ -168,7 +168,7 @@
 			<arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
 			<arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
         </mxmlc>
         
         <antcall target="build_example.copy-resources" />
