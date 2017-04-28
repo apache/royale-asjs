@@ -208,13 +208,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 								<js:VerticalLayout />
 							</js:beads>
  							<js:Image id="image1" src="assets/akotter.jpg" style="margin:auto;"/>							
-							<js:Group width="100%">
-							    <js:beads>
-									<js:BasicLayout />
-							    </js:beads>
-								<js:Label text="Annette Kotter" id="feat_prod_1" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Group>
-							
+							<js:Label text="Annette Kotter" id="feat_prod_1" style="textAlign:center;fontWeight:'bold';fontSize:12;"/>
 						</js:Group>
 						
 						<js:Group width="33%" height="100%">							
@@ -222,13 +216,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 								<js:VerticalLayout />
 							</js:beads>
 							<js:Image id="image2" style="margin:auto;" src="assets/bcrater.jpg"/>
-							<js:Group width="100%">
-							    <js:beads>
-									<js:BasicLayout />
-							    </js:beads>
-								<js:Label text="Ben Crater" id="feat_prod_2" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Group>
-							
+							<js:Label text="Ben Crater" id="feat_prod_2" style="textAlign:center;fontWeight:'bold';fontSize:12;"/>
 						</js:Group>
 						
 						<js:Group width="33%" height="100%">
@@ -236,13 +224,7 @@ Width and height are hard-coded in the root tag to help the Design view.
 								<js:VerticalLayout />
 							</js:beads>
 							<js:Image id="image3" style="margin:auto;" src="assets/jproctor.jpg"/>
-							<js:Group width="100%">
-							    <js:beads>
-									<js:BasicLayout />
-							    </js:beads>
-								<js:Label text="Jane Proctor" id="feat_prod_3" style="margin:auto;fontWeight:'bold';fontSize:12"/>
-							</js:Group>
-							
+							<js:Label text="Jane Proctor" id="feat_prod_3" style="textAlign:center;fontWeight:'bold';fontSize:12;"/>
 						</js:Group>
 						
 					</js:Group>
