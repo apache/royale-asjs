@@ -126,6 +126,11 @@ package org.apache.flex.html.beads.layouts
 							childWidth = hostWidth * ilc.percentWidth/100.0;
 							ilc.setWidth(childWidth);
 						}
+						else if (ilc.isWidthSizedToContent() && !margins.auto)
+						{
+							childWidth = hostWidth;
+							ilc.setWidth(childWidth);
+						}
 						if (margins.auto)
 							childXpos = (hostWidth - childWidth) / 2;
 					}
