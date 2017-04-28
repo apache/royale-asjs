@@ -182,11 +182,19 @@ package org.apache.flex.utils
 			// TODO Auto Generated method stub
 			return 0;
 		}
+		public function set explicitHeight(value:Number):void
+		{
+			// TODO Auto Generated method stub
+		}
 
 		public function get explicitWidth():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
+		}
+		public function set explicitWidth(value:Number):void
+		{
+			// TODO Auto Generated method stub
 		}
 
 		public function isHeightSizedToContent():Boolean

@@ -68,6 +68,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get explicitWidth():Number;
+        function set explicitWidth(value:Number):void;
         
         /**
          *  The height of this component 
@@ -79,6 +80,7 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         function get explicitHeight():Number;
+        function set explicitHeight(value:Number):void;
         
         /**
          * Sets the height of the component without

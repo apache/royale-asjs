@@ -74,6 +74,11 @@ package org.apache.flex.utils
 			return _explicitHeight;
 		}
 		
+		public function set explicitHeight(value:Number):void
+		{
+			_explicitHeight = value;
+		}
+		
 		public function isHeightSizedToContent():Boolean
 		{
 			return _isHeightSizedToContent;
@@ -129,7 +134,11 @@ package org.apache.flex.utils
 		{
 			return _explicitWidth;
 		}
-		
+		public function set explicitWidth(value:Number):void
+		{
+			_explicitWidth = value;
+		}
+
 		public function isWidthSizedToContent():Boolean
 		{
 			return _isWidthSizedToContent;
