@@ -24,6 +24,8 @@ package org.apache.flex.html
     {
         import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.IEventDispatcher;
+        import org.apache.flex.core.IBead;
     }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
@@ -171,6 +173,7 @@ package org.apache.flex.html
             input.positioner.style.width = '100px';
 
             spinner = new Spinner();
+			spinner.addBead(model as IBead);
             addElement(spinner);
 
             /* TODO: ajh move to view and css */
@@ -182,6 +185,12 @@ package org.apache.flex.html
             className = 'NumericStepper';
 
             input.text = String(spinner.value);
+
+			IEventDispatcher(model).addEventListener("valueChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("minimumChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("maximumChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("stepSizeChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("snapIntervalChange",modelChangeHandler);
 
             return element;
         }
@@ -198,6 +207,14 @@ package org.apache.flex.html
             dispatchEvent(new Event('valueChange'));
         };
 
+        /**
+         * @private
+         */
+        COMPILE::JS
+        private function modelChangeHandler(event:Event):void
+        {
+            input.text = String(model.value);
+        }
 
 	}
 }
