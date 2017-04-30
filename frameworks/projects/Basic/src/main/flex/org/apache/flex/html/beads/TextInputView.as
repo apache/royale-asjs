@@ -99,6 +99,8 @@ package org.apache.flex.html.beads
                     textField.text = s;                    
                 }
                 ilc.setHeight(h + uiMetrics.top + uiMetrics.bottom, true);
+				// TextInput doesn't stretch if no height like divs do
+				ilc.explicitHeight = ilc.height;
             }
 			
 			heightChangeHandler(null);
