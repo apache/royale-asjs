@@ -192,8 +192,8 @@ package org.apache.flex.textLayout.property {
 		private static const _escapeSpaceRegex:RegExp = /\\ /g;
 		private static const _backslashRegex:RegExp = /\\/g;
 		private static const _spaceRegex:RegExp = / /g;
-		private static const _backslashPlaceholderRegex:RegExp = /\uE000/g;
-		private static const _spacePlaceholderRegex:RegExp = /\uE001/g;
+		private static const _backslashPlaceholderRegex:RegExp = new RegExp("\\" + "uE000", "g");
+		private static const _spacePlaceholderRegex:RegExp = new RegExp("\\" + "uE001", "g");
 		
 		// Replace escape sequences (\ followed by a space or \) with placeholder strings
 		// containing characters from Unicode private use area (won't naturally occur in the passed-in string) 

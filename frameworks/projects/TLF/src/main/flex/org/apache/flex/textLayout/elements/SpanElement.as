@@ -222,7 +222,7 @@ package org.apache.flex.textLayout.elements
 //TODO regex
 		 private static const _newLineTabPattern:RegExp = /foo/g;
 		//  private static const _newLineTabPattern:RegExp = /[\u0009\u000a\u000d]/g;
-		 private static const _tabPlaceholderPattern:RegExp = /\uE000/g;
+		 private static const _tabPlaceholderPattern:RegExp = new RegExp("\\" + "uE000", "g");
 		 
 		 // static private const anyPrintChar:RegExp = /[^\s]/g;
 		 // Consider only tab, line feed, carriage return, and space as characters used for pretty-printing. 
