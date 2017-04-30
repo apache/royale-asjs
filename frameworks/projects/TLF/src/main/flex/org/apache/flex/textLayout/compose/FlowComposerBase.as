@@ -422,7 +422,7 @@ package org.apache.flex.textLayout.compose
 			var hi:int = _lines.length-1;
 			while (lo <= hi)
 			{
-				var mid:int = (lo+hi)/2;
+				var mid:int = Math.floor((lo+hi)/2);
 				var line:ITextFlowLine = _lines[mid];
 				if (line.absoluteStart <= absolutePosition)
 				{
