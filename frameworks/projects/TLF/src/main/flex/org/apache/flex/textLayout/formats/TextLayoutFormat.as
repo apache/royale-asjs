@@ -3677,12 +3677,11 @@ package org.apache.flex.textLayout.formats
 		/** @private */
 		public static function resetModifiedNoninheritedStyles(stylesObject:Object):void
 		{
-			var format:TextLayoutFormat = stylesObject as TextLayoutFormat;
-			if (format)
+			if (stylesObject is TextLayoutFormat)
 			{
 				// DO THIS possible optimization if (format.getStyles() == _emptyStyles) return;
-				format.writableStyles();
-				stylesObject = format.getStyles();
+				stylesObject.writableStyles();
+				stylesObject = stylesObject.getStyles();
 			}
 
 			if (stylesObject.columnBreakBefore != undefined && stylesObject.columnBreakBefore != TextLayoutFormat.columnBreakBeforeProperty.defaultValue)
