@@ -161,6 +161,20 @@ package org.apache.flex.utils
                 return ret.join( delimiter );
             }
         }
+        public static function addNonEnumerableProperty(obj:Object,name:String,value:*):void
+        {
+
+            COMPILE::JS
+            {
+                Object.defineProperty(obj, name, { "value": value, "enumerable": false });
+            }
+
+            COMPILE::SWF
+            {
+                obj[name] = value;
+                obj.setPropertyIsEnumerable(name,value);
+            }
+        }
 
     }
 }

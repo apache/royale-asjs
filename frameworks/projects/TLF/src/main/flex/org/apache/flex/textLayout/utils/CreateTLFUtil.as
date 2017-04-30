@@ -24,6 +24,7 @@ package org.apache.flex.textLayout.utils
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 	import org.apache.flex.textLayout.property.Property;
 	import org.apache.flex.textLayout.property.PropertyUtil;
+	import org.apache.flex.utils.ObjectUtil;
 	public class CreateTLFUtil
 	{
 		public static function createTLF(localStyles:ITextLayoutFormat, parentPrototype:TextLayoutFormat):TextLayoutFormat
@@ -180,12 +181,11 @@ package org.apache.flex.textLayout.utils
 				{
 					assert(stylesObject.hasNonInheritedStyles !== hasNonInheritedStyles, "unexpected nonInheritedStyles"); }
 				stylesObject.hasNonInheritedStyles = true;
-				stylesObject.setPropertyIsEnumerable("hasNonInheritedStyles", false);
+				ObjectUtil.addNonEnumerableProperty(stylesObject,"hasNonInheritedStyles", true);
 			}
 			else if (stylesObject.hasNonInheritedStyles !== undefined)
 			{
-				stylesObject.hasNonInheritedStyles = undefined;
-				stylesObject.setPropertyIsEnumerable("hasNonInheritedStyles", false);
+				ObjectUtil.addNonEnumerableProperty(stylesObject,"hasNonInheritedStyles", undefined);
 			}
 
 			rslt = new TextLayoutFormat();
