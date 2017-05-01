@@ -46,17 +46,17 @@ package org.apache.flex.mdl.beads.views
             super();
         }
 
-        protected var _displayList:Menu;
-        protected var _displayLabel:Div;
+        protected var _dropDown:Menu;
+        protected var _labelDisplay:Div;
 
-        public function get displayList():Menu
+        public function get dropDown():Menu
         {
-            return _displayList;
+            return _dropDown;
         }
 
-        public function get displayLabel():Div
+        public function get labelDisplay():Div
         {
-            return _displayLabel;
+            return _labelDisplay;
         }
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -72,15 +72,15 @@ package org.apache.flex.mdl.beads.views
             
             var dropDownList:DropDownList = (value as DropDownList);
 
-            _displayList = new Menu();
-            _displayList.bottom = true;
+            _dropDown = new Menu();
+            _dropDown.bottom = true;
 
             COMPILE::JS
             {
                 setIdForDisplayList();
             }
             
-            _displayLabel = new Div();
+            _labelDisplay = new Div();
 
             if (!dropDownList.icon)
             {
@@ -90,11 +90,11 @@ package org.apache.flex.mdl.beads.views
             }
 
             var model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            _displayList.model = model;
+            _dropDown.model = model;
 
-            dropDownList.addElement(_displayLabel);
+            dropDownList.addElement(_labelDisplay);
             dropDownList.addElement(dropDownList.icon);
-            dropDownList.addElement(_displayList);
+            dropDownList.addElement(_dropDown);
         }
 
         override protected function handleInitComplete(event:org.apache.flex.events.Event):void
@@ -105,8 +105,8 @@ package org.apache.flex.mdl.beads.views
             {
                 host.element.classList.add("DropDownList");
             }
-            _displayList.width = isNaN(host.width) ? 100 : host.width - 1;
-            _displayLabel.width = isNaN(host.width) ? 100 : host.width - 25;
+            _dropDown.width = isNaN(host.width) ? 100 : host.width - 1;
+            _labelDisplay.width = isNaN(host.width) ? 100 : host.width - 25;
         }
 
         COMPILE::JS
@@ -117,7 +117,7 @@ package org.apache.flex.mdl.beads.views
                host.element.id = "dropDownList" + Math.random();
             }
 
-            _displayList.dataMdlFor = host.element.id;
+            _dropDown.dataMdlFor = host.element.id;
         }
     }
 }
