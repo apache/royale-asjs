@@ -75,7 +75,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/js/FlexJS/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:*:swc:typedefs</include>
+        <include>org.apache.flex.flexjs.framework:*:swc:js</include>
       </includes>
     </dependencySet>
 
@@ -204,6 +204,21 @@ under the License.
       <destName>basic-manifest-binding.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest-basic.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/Charts/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-charts.xml</destName>
@@ -267,11 +282,6 @@ under the License.
       <source>../frameworks/projects/HTML/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-html.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/HTML/src/main/resources/svg-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>svg-manifest-html.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</source>
