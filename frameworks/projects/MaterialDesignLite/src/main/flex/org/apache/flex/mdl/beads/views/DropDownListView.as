@@ -75,6 +75,11 @@ package org.apache.flex.mdl.beads.views
             _displayList = new Menu();
             _displayList.bottom = true;
 
+            COMPILE::JS
+            {
+                setIdForDisplayList();
+            }
+            
             _displayLabel = new Div();
 
             if (!dropDownList.icon)
@@ -99,7 +104,6 @@ package org.apache.flex.mdl.beads.views
             COMPILE::JS
             {
                 host.element.classList.add("DropDownList");
-                setIdForDisplayList();
             }
             _displayList.width = isNaN(host.width) ? 100 : host.width;
             _displayLabel.width = isNaN(host.width) ? 100 : host.width - 25;
