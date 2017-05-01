@@ -80,19 +80,5 @@ package org.apache.flex.html
 		
         COMPILE::JS
         protected var textNode:Text;
-		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			element = document.createElement('div') as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
-        }
     }
 }
