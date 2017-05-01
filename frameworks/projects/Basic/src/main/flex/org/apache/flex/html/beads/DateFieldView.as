@@ -116,10 +116,10 @@ package org.apache.flex.html.beads
 				_button.y = _textInput.y;
 			}
 			
-			IEventDispatcher(_strand).addEventListener("beadsAdded",handleBeadsAdded);
+			IEventDispatcher(_strand).addEventListener("initComplete",handleInitComplete);
 		}
 		
-		private function handleBeadsAdded(event:Event):void
+		private function handleInitComplete(event:Event):void
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);

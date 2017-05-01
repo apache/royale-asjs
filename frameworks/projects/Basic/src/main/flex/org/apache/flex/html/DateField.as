@@ -23,6 +23,7 @@ package org.apache.flex.html
 	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
 	
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -77,6 +78,8 @@ package org.apache.flex.html
                     addBead(bead);
                 }
             }
+			
+			dispatchEvent(new Event("initComplete"));
 		}
 		
 		/**
