@@ -253,6 +253,11 @@ package org.apache.flex.html.beads.layouts
 
 				for(var i:int=0; i < n; i++) {
 					var child:UIBase = contentView.getElementAt(i) as UIBase;
+					if (!child)
+					{
+						continue;
+                    }
+					
 					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
 					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
 					child.dispatchEvent(new Event("layoutNeeded"));
