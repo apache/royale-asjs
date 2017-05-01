@@ -164,7 +164,8 @@ package org.apache.flex.html.beads.layouts
 				n = children.length;
 				for (i = 0; i < n; i++)
 				{
-					var child:WrappedHTMLElement = children[i];
+					var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
+					if (child == null) continue;
 					child.flexjs_wrapper.setDisplayStyleForLayout('block');
 					if (child.style.display === 'none')
 					{
