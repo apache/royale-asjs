@@ -42,8 +42,8 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <outputJavaScript>true</outputJavaScript>
           <debug>\${compiler.debug}</debug>
+          <targets>JS</targets>
         </configuration>
         <dependencies>
           <dependency>

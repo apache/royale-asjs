@@ -42,7 +42,6 @@
         <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <outputJavaScript>true</outputJavaScript>
           <mainClass>USStatesMap.as</mainClass>
           <targets>JS</targets>
         </configuration>

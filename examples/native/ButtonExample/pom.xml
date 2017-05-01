@@ -41,7 +41,6 @@
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <outputJavaScript>true</outputJavaScript>
           <mainClass>ButtonExample.as</mainClass>
           <targets>JS</targets>
         </configuration>

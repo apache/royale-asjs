@@ -43,7 +43,7 @@
         <configuration>
           <debug>true</debug>
           <mainClass>HelloWorld.mxml</mainClass>
-          <outputJavaScript>true</outputJavaScript>
+          <targets>JS</targets>
           <htmlTemplate>${basedir}/src/main/template/custom-js-index-template.html</htmlTemplate>
         </configuration>
         <dependencies>
