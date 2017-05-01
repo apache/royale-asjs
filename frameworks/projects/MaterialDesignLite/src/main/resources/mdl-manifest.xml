@@ -117,4 +117,6 @@
     <component id="FooterHeading" class="org.apache.flex.mdl.FooterHeading"/>
     <component id="UpgradeElement" class="org.apache.flex.mdl.beads.UpgradeElement"/>
     <component id="UpgradeChildren" class="org.apache.flex.mdl.beads.UpgradeChildren"/>
+    <component id="DropDownList" class="org.apache.flex.mdl.DropDownList"/>
+    <component id="DropDownListView" class="org.apache.flex.mdl.beads.views.DropDownListView"/>
 </componentPackage>

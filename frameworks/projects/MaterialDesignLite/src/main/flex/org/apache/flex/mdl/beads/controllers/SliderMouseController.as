@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.controllers
 {
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
@@ -49,7 +48,7 @@ package org.apache.flex.mdl.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class SliderMouseController implements IBead, IBeadController
+	public class SliderMouseController implements IBeadController
 	{
 		/**
 		 *  constructor.

@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.flex.mdl.beads.views
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
-	import flash.display.SimpleButton;
-
-    import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IStrand;
+	import flash.display.SimpleButton;			
+	
+	import org.apache.flex.core.BeadViewBase;
+	import org.apache.flex.core.IBeadView;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.html.Button;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.core.IChild;
-
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.core.IChild;
+	
 	/**
-	 *  The SliderThumbView class creates the draggable input element for the 
-	 *  org.apache.flex.mdl.Slider component (swf version).
+	 *  The SliderTrackView class creates the track area for the org.apache.flex.mdl.Slider
+	 *  component (swf version).
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class SliderThumbView extends BeadViewBase implements IBeadView
+	public class SliderTrackView extends BeadViewBase implements IBeadView
 	{
 		/**
 		 *  constructor.
@@ -47,14 +47,14 @@ package org.apache.flex.mdl.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
+		 *  @productversion FlexJS 0.0
 		 */
-		public function SliderThumbView()
+		public function SliderTrackView()
 		{
-            hitArea = new Shape();
-            upView = new Shape();
-            downView = new Shape();
-            overView = new Shape();                
+			hitArea = new Shape();
+			upView = new Shape();
+			downView = new Shape();
+			overView = new Shape();					
 		}
 		
 		/**
@@ -71,8 +71,8 @@ package org.apache.flex.mdl.beads
             var button:SimpleButton = IChild(_strand).$displayObject as SimpleButton;
 			g.clear();
 			g.lineStyle(1,0x000000);
-			g.beginFill(bgColor,1.0);
-			g.drawCircle(host.width/2, host.height/2, 10);
+			g.beginFill(bgColor);
+			g.drawRect(0, 0, host.width, host.height);
 			g.endFill();
 		}
 		
@@ -85,32 +85,31 @@ package org.apache.flex.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
-         *  @flexjsignoreimport org.apache.flex.core.WrappedHTMLElement
          *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
 			
-            drawView(hitArea.graphics, 0xDD0000);
-            drawView(upView.graphics, 0xFFFFFF);
-            drawView(downView.graphics, 0x999999);
-            drawView(overView.graphics, 0xDDDDDD);
-            
+			drawView(hitArea.graphics, 0xDD0000);
+			drawView(upView.graphics, 0xCCCCCC);
+			drawView(downView.graphics, 0x808080);
+			drawView(overView.graphics, 0xEEEEEE);
+			
             var button:SimpleButton = IChild(value).$displayObject as SimpleButton;
-            button.upState = upView;
-            button.downState = downView;
-            button.overState = overView;
-            button.hitTestState = hitArea;
-            
-            IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-            IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);                
+			button.upState = upView;
+			button.downState = downView;
+			button.overState = overView;
+			button.hitTestState = hitArea;
+			
+			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);					
 		}
 		
 		private var upView:Shape;
 		private var downView:Shape;
 		private var overView:Shape;
-        
+		
 		/**
 		 * @private
 		 *
@@ -122,9 +121,9 @@ package org.apache.flex.mdl.beads
 		private function sizeChangeHandler( event:Event ) : void
 		{
 			drawView(hitArea.graphics, 0xDD0000);
-			drawView(upView.graphics, 0xFFFFFF);
-			drawView(downView.graphics, 0x999999);
-			drawView(overView.graphics, 0xDDDDDD);
+			drawView(upView.graphics, 0xCCCCCC);
+			drawView(downView.graphics, 0x808080);
+			drawView(overView.graphics, 0xEEEEEE);
 		}
 	}
 }
