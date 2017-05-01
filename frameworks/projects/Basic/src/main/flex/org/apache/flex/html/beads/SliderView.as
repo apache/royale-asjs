@@ -184,6 +184,10 @@ package org.apache.flex.html.beads
 		{
 			var p:Number = (value-rangeModel.minimum)/(rangeModel.maximum-rangeModel.minimum);
 			var xloc:Number = (p*_track.width); 
+			COMPILE::JS
+			{
+				_thumb.element.style.position = 'absolute';
+			}
 			_thumb.x = xloc;
 		}
 	}

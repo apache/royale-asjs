@@ -68,34 +68,15 @@ package org.apache.flex.html
 		 */
 		override public function addedToParent():void
 		{
-            var klass:* = ValuesManager.valuesImpl.getValue(this,"iFormatBead");
-            var bead:IBead = new klass() as IBead;
-            if (bead) {
-                addBead(bead);
-            }
-            
 			super.addedToParent();
-		}
 
-		/**
-		 *  Replace existing format bead if it exists.
-		 *
-		 *  @copy org.apache.flex.core.IStrand#addBead()
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		override public function addBead(bead:IBead):void
-		{
-			if (bead is IFormatBead) {
-				var formatBead:IBead = getBeadByType(IFormatBead);
-				if (formatBead != null) {
-					removeBead(formatBead);
-				}
-			}
-			super.addBead(bead);
+			if (getBeadByType(IFormatBead) == null) {
+                var klass:* = ValuesManager.valuesImpl.getValue(this, "iFormatBead");
+                var bead:IBead = new klass() as IBead;
+                if (bead) {
+                    addBead(bead);
+                }
+            }
 		}
 		
 		/**

@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.express
 {
+	import org.apache.flex.binding.ApplicationDataBinding;
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.SimpleCSSValuesImpl;
 	
@@ -32,6 +33,7 @@ package org.apache.flex.express
 			super();
 			
 			this.valuesImpl = new SimpleCSSValuesImpl();
+			addBead(new ApplicationDataBinding());
 		}
 	}
 }
