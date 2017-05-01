@@ -56,10 +56,10 @@ package org.apache.flex.html.beads
 			}
 			else
 			{
-                dataProvider.removeEventListener("collectionChanged", handleCollectionChanged);
+				dataProvider.removeEventListener(changeEventName == null ? "collectionChanged":changeEventName, handleCollectionChanged);
 			}
 
-            dataProvider.addEventListener("collectionChanged", handleCollectionChanged);
+			dataProvider.addEventListener(changeEventName == null ? "collectionChanged":changeEventName, handleCollectionChanged);
 		}
 
 		private function handleCollectionChanged(event:Event):void
