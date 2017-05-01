@@ -20,12 +20,8 @@ package org.apache.flex.utils
 {
     import flash.display.DisplayObject;
     import flash.display.Graphics;
-    
-    import org.apache.flex.core.IStatesObject;
-    import org.apache.flex.core.IUIBase;
+
     import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.utils.SolidBorderUtil;
-    import org.apache.flex.utils.StringTrimmer;
 
 	/**
 	 *  The CSSBorderUtils class is shared code for getting the styles
