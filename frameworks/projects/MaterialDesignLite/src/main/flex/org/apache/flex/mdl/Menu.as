@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.html.DataContainer;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {
@@ -57,6 +58,7 @@ package org.apache.flex.mdl
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
+            addBead(new UpgradeElement());
         }
 
         /**
