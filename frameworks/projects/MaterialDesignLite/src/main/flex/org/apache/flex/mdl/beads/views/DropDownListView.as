@@ -105,7 +105,7 @@ package org.apache.flex.mdl.beads.views
             {
                 host.element.classList.add("DropDownList");
             }
-            _displayList.width = isNaN(host.width) ? 100 : host.width;
+            _displayList.width = isNaN(host.width) ? 100 : host.width - 1;
             _displayLabel.width = isNaN(host.width) ? 100 : host.width - 25;
         }
 
