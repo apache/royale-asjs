@@ -73,12 +73,16 @@ limitations under the License.
 	<js:DataGrid id="dataGrid" x="0" y="40" width="100%" className="AlertsDataGrid">
 		<js:beads>
 			<js:DataGridPercentageView />
-			<controller:DataModelChangeNotifier />
 			<js:SimpleBinding
 				eventName="alertsUpdate"
 				sourceID="dataModel"
 				sourcePropertyName="alerts"
 				destinationPropertyName="dataProvider" />
+			<js:DataProviderCollectionChangeNotifier 
+				destinationPropertyName="dataProvider" 
+				sourceID="dataModel" 
+				propertyName="alerts" 
+				changeEventName="itemUpdated" />
 		</js:beads>
 		<js:columns>
 			<js:DataGridColumn label="Symbol" dataField="symbol" columnWidth="50">
