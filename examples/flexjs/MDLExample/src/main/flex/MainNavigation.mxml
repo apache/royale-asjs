@@ -81,6 +81,7 @@ limitations under the License.
         <local:Badges id="badges_panel"/>
         <local:Footers id="footers_panel"/>
         <local:Icons id="icons_panel"/>
+        <local:DropDownList id="dropdownlist_panel"/>
     </mdl:NavigationLayoutContent>
     
 </mdl:NavigationLayout>
