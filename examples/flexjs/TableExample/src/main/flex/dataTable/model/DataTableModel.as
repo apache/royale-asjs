@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,20 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				   xmlns:local="*"
-				   xmlns:models="models.*"
-				   xmlns:js="library://ns.apache.org/flexjs/basic" 
-				   >
+package dataTable.model
+{
+	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
 	
-	<js:valuesImpl>
-		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
-	<js:model>
-		<models:ProductsModel />
-	</js:model>
-	<js:initialView>
-		<local:MyInitialView />
-	</js:initialView>
-</js:Application>
+	public class DataTableModel extends ArrayListSelectionModel
+	{
+		public function DataTableModel()
+		{
+			super();
+		}
+		
+		private var _columns:Array;
+		public function get columns():Array
+		{
+			return _columns;
+		}
+		public function set columns(value:Array):void
+		{
+			_columns = value;
+		}
+	}
+}

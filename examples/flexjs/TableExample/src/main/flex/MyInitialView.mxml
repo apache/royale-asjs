@@ -18,7 +18,9 @@ limitations under the License.
 
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:js="library://ns.apache.org/flexjs/basic">
+				xmlns:js="library://ns.apache.org/flexjs/basic" 
+				xmlns:dataTable="dataTable.*" 
+				xmlns:model="dataTable.model.*">
     
 	<fx:Style>
 		@namespace js "library://ns.apache.org/flexjs/basic";
@@ -42,6 +44,10 @@ limitations under the License.
 		.CellGroup {
 			backgroundColor: aliceblue;
 			padding: 6px;
+		}
+		
+		.DataTable {
+			iBeadModel: ClassReference("dataTable.model.DataTableModel");
 		}
 		
 	</fx:Style>
@@ -117,5 +123,28 @@ limitations under the License.
 			</js:TableCell>
 		</js:TableRow>
 	</js:Table>
+	
+	<!-- Generates a Table structure from a data source -->
+	
+	<dataTable:DataTable x="600" y="0" width="400" height="400">
+		<dataTable:beads>
+			<js:ConstantBinding 
+				sourceID="applicationModel"
+				sourcePropertyName="products"
+				destinationPropertyName="dataProvider" />
+		</dataTable:beads>
+		<dataTable:DataColumn 
+			dataField="name" 
+			label="State" 
+			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+		<dataTable:DataColumn 
+			dataField="capital"
+			label="Capital" 
+			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+		<dataTable:DataColumn 
+			dataField="country" 
+			label="Country" 
+			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+	</dataTable:DataTable>
 
 </js:View>
