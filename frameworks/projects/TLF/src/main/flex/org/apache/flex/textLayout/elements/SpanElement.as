@@ -77,7 +77,7 @@ package org.apache.flex.textLayout.elements
 				return;
 			
 			calculateComputedFormat();	// BEFORE creating the element
-			_blockElement = new TextElement(text,null);			
+			_blockElement = new TextElement(_text,null);			
 			CONFIG::debug { Debugging.traceFTECall(_blockElement,null,"new TextElement()"); }
 			CONFIG::debug { Debugging.traceFTEAssign(_blockElement, "text", _text); }
 			super.createContentElement();
