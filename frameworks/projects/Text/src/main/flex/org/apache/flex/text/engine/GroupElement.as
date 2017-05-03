@@ -19,30 +19,43 @@
 package org.apache.flex.text.engine
 {
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.text.engine.TextElement;
 	
 	public class GroupElement extends ContentElement
 	{
 		public function GroupElement(elements:Vector.<ContentElement> = null, elementFormat:ElementFormat = null, eventMirror:EventDispatcher = null, textRotation:String = "rotate0")
 		{
 			super(elementFormat, eventMirror, textRotation);
+			if(elements)
+				_elements = elements;
+			else
+				_elements = new Vector.<ContentElement>();
 		}
-		private var _elementCount:int=0;
 		public function get elementCount():int
 		{
-			return _elementCount;
+			return _elements.length;
 		}
-
+		private var _elements:Vector.<ContentElement>;
 		public function getElementAt(index:int):ContentElement
 		{
-			return null;
+			return _elements[index];
 		}
 		public function getElementAtCharIndex(charIndex:int):ContentElement
 		{
+			var curIdx:int = 0;
+			var len:int = elementCount;
+			for(var i:int=0;i<len;i++)
+			{
+				curIdx += _elements[i].rawText.length;
+				if(curIdx > charIndex)
+					return _elements[i];
+			}
+
 			return null;
 		}
 		public function getElementIndex(element:ContentElement):int
 		{
-			return -1;
+			return _elements.indexOf(element);
 		}
 		public function groupElements(beginIndex:int, endIndex:int):GroupElement
 		{
@@ -54,19 +67,44 @@ package org.apache.flex.text.engine
 		}
 		public function replaceElements(beginIndex:int, endIndex:int, newElements:Vector.<ContentElement>):Vector.<ContentElement>
 		{
-			return null;
+			//TODO will this work correctly in Flash? -- using Array.concat with a Vector and Vector splice with an array.
+			var args:Array = [beginIndex, endIndex-beginIndex].concat(newElements);
+			_elements.splice.apply(_elements, args);
+			// _elements.splice(beginIndex,endIndex-beginIndex);
+			return _elements;
 		}
 		public function setElements(value:Vector.<ContentElement>):void
 		{
-			//TODO
+			_elements = value;
 		}
 		public function splitTextElement(elementIndex:int, splitIndex:int):TextElement
 		{
-			return null;
+			var elem:ContentElement = _elements[elementIndex];
+			if(!elem is TextElement)
+				throw new Error("Specified element is not a TextElement");
+			var textElem:TextElement  = elem as TextElement;
+			if(splitIndex >= textElem.rawText.length)
+				throw new Error("Split index is out of range");
+			var firstText:String = textElem.rawText.substr(0,splitIndex);
+			var nextText:String = textElem.rawText.substr(splitIndex);
+			var newElem:TextElement = new TextElement(nextText,textElem.elementFormat,textElem.eventMirror,textElem.textRotation);
+			textElem.text = firstText;
+			_elements.splice(elementIndex+1,0,newElem);
+			return newElem;
 		}
 		public function ungroupElements(groupIndex:int):void
 		{
 			//TODO
+		}
+		override public function get rawText():String
+		{
+			var val:String = "";
+			var len:int = elementCount;
+			for(var i:int = 0;i<len;i++)
+			{
+				val += _elements[i].rawText;
+			}
+			return val;
 		}
 
 	}
