@@ -63,7 +63,7 @@ package dataTable
 			
 			addBead(new DataTableMapperForArrayListData());
 			
-			dispatchEvent( new Event("initComplete") );
+			dispatchEvent( new Event("dataTableComplete") );
 		}
 	}
 }

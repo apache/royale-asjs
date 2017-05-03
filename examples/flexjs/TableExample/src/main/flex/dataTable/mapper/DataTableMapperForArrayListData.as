@@ -46,7 +46,7 @@ package dataTable.mapper
 		{
 			_strand = value;
 			
-			IEventDispatcher(_strand).addEventListener("initComplete", handleInitComplete);
+			IEventDispatcher(_strand).addEventListener("dataTableComplete", handleInitComplete);
 		}
 		
 		private function handleInitComplete(event:Event):void
