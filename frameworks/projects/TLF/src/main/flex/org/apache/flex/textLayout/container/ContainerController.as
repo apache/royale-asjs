@@ -4858,21 +4858,27 @@ package org.apache.flex.textLayout.container
 				if (!textLine)
 					textLine = textFlowLine.getTextLine(true);
 				textFlowLine.createShape(wmode, textLine);
-				if (textLine.numElements == 0)
-				{
-					// Get it the new way
-					if (wmode == BlockProgression.TB)
-						textFlowLine.cacheLineBounds(wmode, textLine.x, textLine.y - textLine.ascent, textLine.textWidth, textLine.textHeight);
-					else
-						textFlowLine.cacheLineBounds(wmode, textLine.x - textLine.descent, textLine.y, textLine.textHeight, textLine.textWidth);
-				}
-				else	// Phase this out after composition is updated to handle inline case correctly
-				{
-					var lineBounds:Rectangle = getPlacedTextLineBounds(textLine);
-					if (textLine.hasGraphicElement)
-						lineBounds = computeLineBoundsWithGraphics(textFlowLine, textLine, lineBounds);		
-					textFlowLine.cacheLineBounds(wmode, lineBounds.x, lineBounds.y, lineBounds.width, lineBounds.height);
-				}
+//TODO I'm not sure what all these calculations are for. We're doing it the simple way for now.
+				if (wmode == BlockProgression.TB)
+					textFlowLine.cacheLineBounds(wmode, textLine.x, textLine.y - textLine.ascent, textLine.textWidth, textLine.textHeight);
+				else
+					textFlowLine.cacheLineBounds(wmode, textLine.x - textLine.descent, textLine.y, textLine.textHeight, textLine.textWidth);
+
+				// if (textLine.numElements == 0)
+				// {
+				// 	// Get it the new way
+				// 	if (wmode == BlockProgression.TB)
+				// 		textFlowLine.cacheLineBounds(wmode, textLine.x, textLine.y - textLine.ascent, textLine.textWidth, textLine.textHeight);
+				// 	else
+				// 		textFlowLine.cacheLineBounds(wmode, textLine.x - textLine.descent, textLine.y, textLine.textHeight, textLine.textWidth);
+				// }
+				// else	// Phase this out after composition is updated to handle inline case correctly
+				// {
+				// 	var lineBounds:Rectangle = getPlacedTextLineBounds(textLine);
+				// 	if (textLine.hasGraphicElement)
+				// 		lineBounds = computeLineBoundsWithGraphics(textFlowLine, textLine, lineBounds);		
+				// 	textFlowLine.cacheLineBounds(wmode, lineBounds.x, lineBounds.y, lineBounds.width, lineBounds.height);
+				// }
 			}
 			var rslt:* = (wmode == BlockProgression.TB ? _measureHeight : _measureWidth) ? 0 : textFlowLine.testLineVisible(wmode, scrollXTW, scrollYTW, scrollWidthTW, scrollHeightTW);
 			return (rslt == 0) ? (textLine ? textLine : textFlowLine.getTextLine(true)) : rslt;
