@@ -1408,11 +1408,11 @@
                 <include name="frameworks/libs/framework.swc"/>
                 <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </swf-library-path>
-            <js-external-library-path dir="${env.PLAYERGLOBAL_HOME}">
-                <include name="${playerglobal.version}/playerglobal.swc"/>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
             </js-external-library-path>
             <js-library-path dir="${basedir}" >
-                <include name="frameworks/libs"/>
+                <include name="frameworks/js/FlexJS/libs"/>
             </js-library-path>
             <js-library-path dir="${FLEX_SDK_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
