@@ -74,6 +74,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean
 		{
