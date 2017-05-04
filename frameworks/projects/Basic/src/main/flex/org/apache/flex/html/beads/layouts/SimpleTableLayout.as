@@ -75,13 +75,12 @@ package org.apache.flex.html.beads.layouts
 				var hostWidth:Number = hostWidthSizedToContent ? host.width : contentView.width;
 				var hostHeight:Number = hostHeightSizedToContent ? host.height : contentView.height;
 				
-				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				hostWidth -= borderMetrics.left + borderMetrics.right;
+				hostHeight -= borderMetrics.top + borderMetrics.bottom;
 				
 				var numRows:int = n;
 				var numCols:int = 0;
@@ -172,7 +171,7 @@ package org.apache.flex.html.beads.layouts
 				defaultColWidth = remainingWidth / needsDefaultColWidthCount;
 				defaultRowHeight = remainingHeight / needsDefaultRowHeightCount;
 				
-				var ypos:Number = paddingMetrics.top + borderMetrics.top;
+				var ypos:Number = borderMetrics.top;
 				
 				// pass4: size everything
 				for(i=0; i < n; i++)
@@ -180,7 +179,13 @@ package org.apache.flex.html.beads.layouts
 					row = contentView.getElementAt(i) as TableRow;
 					if (row == null || !row.visible) continue;
 					
-					var xpos:Number = paddingMetrics.left + borderMetrics.left;
+					var xpos:Number = borderMetrics.left;
+					
+					// the row is an actual display object that can have border and
+					// background so it must be placed and sized.
+					row.x = xpos;
+					row.y = ypos;
+					row.setWidthAndHeight(hostWidth, rowHeights[i]);
 					
 					for(j=0; j < row.numElements; j++)
 					{
@@ -191,12 +196,12 @@ package org.apache.flex.html.beads.layouts
 						var useHeight:Number = rowHeights[i] > 0 ? rowHeights[i] : defaultRowHeight;
 						
 						cell.x = xpos;
-						cell.y = ypos;
+						cell.y = 0;
 						cell.setWidthAndHeight(useWidth, useHeight);
 						
 						xpos += useWidth;
 					}
-					
+										
 					ypos += rowHeights[i] > 0 ? rowHeights[i] : defaultRowHeight;
 				}
 

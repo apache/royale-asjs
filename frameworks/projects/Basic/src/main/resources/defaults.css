@@ -376,17 +376,19 @@ Accordion
 Table
 {
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.SimpleTableLayout");
+	
+	/* mimic SWF version which does not support border-collapse */
+	border-collapse: collapse;
 }
 
 TableHeader
 {
-	font-weight: bold;
-	border: 1px solid #999999;
+	/* use browser default style */
 }
 
 TableCell
 {
-	border: 1px solid #999999;
+	/* use browser default style */
 }
 
 Tree
