@@ -1870,6 +1870,8 @@
         <mxmlc fork="true" debug="true"
             file="${file}">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
     </target>
     
