@@ -2537,15 +2537,19 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 	// public override function get currentTarget():Object
 	// { return _event.currentTarget; }
 	
+	COMPILE::SWF
 	public override function get eventPhase():uint
 	{ return _event.eventPhase; }
 	
+	COMPILE::SWF
 	public override function get isRelatedObjectInaccessible():Boolean
 	{ return _event.isRelatedObjectInaccessible; }
 	
+	COMPILE::SWF
 	public override function get stageX():Number
 	{ return _event.stageX; }
 	
+	COMPILE::SWF
 	public override function get stageY():Number
 	{ return _event.stageY; }
 	
@@ -2557,6 +2561,7 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 		return rslt;
 	}
 	
+	COMPILE::SWF
 	public override function updateAfterEvent():void
 	{ _event.updateAfterEvent(); }
 	

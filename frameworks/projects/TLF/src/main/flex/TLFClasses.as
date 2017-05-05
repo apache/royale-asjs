@@ -24,6 +24,7 @@ package
 		
 		// import org.apache.flex.textLayout.accessibility.TextAccImpl; TextAccImpl;
 		
+		import org.apache.flex.textLayout.container.TextContainerManager; TextContainerManager;
 		import org.apache.flex.textLayout.TextLayoutVersion; TextLayoutVersion;
 
 		import org.apache.flex.textLayout.compose.BaseCompose; BaseCompose;
