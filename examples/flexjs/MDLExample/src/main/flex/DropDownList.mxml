@@ -21,12 +21,16 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*">
-    
+
+    <mdl:beads>
+        <js:ContainerDataBinding />
+    </mdl:beads>
     <mdl:model>
         <models:MenuModel id="menuModel"/>
     </mdl:model>
     <mdl:Grid width="100">
-      <mdl:DropDownList id="dropDownList" labelField="label" width="150">
+      <mdl:DropDownList id="dropDownList" labelField="label" width="150"
+                        selectedIndex="0" change="onDplChange(event)">
           <mdl:beads>
               <js:ConstantBinding
                       sourceID="menuModel"
@@ -34,5 +38,14 @@ limitations under the License.
                       destinationPropertyName="dataProvider" />
           </mdl:beads>
       </mdl:DropDownList>
+        <js:Label text="Selected index: {dropDownList.selectedIndex}"/>
+        <js:Label id="selectedItemChange"
+                  text="Selected item on 'change' event: "/>
     </mdl:Grid>
+    <fx:Script><![CDATA[        
+        public function onDplChange(event:Event):void
+        {
+            selectedItemChange.text = "Selected item on 'change' event:" + dropDownList.selectedItem.label;
+        }
+        ]]></fx:Script>
 </mdl:TabBarPanel>
