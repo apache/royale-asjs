@@ -20,13 +20,11 @@ limitations under the License.
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:local="*" 
-				xmlns:models="models.*" className="MyDates">
+				xmlns:models="models.*">
 	<fx:Style>
 		@namespace js "library://ns.apache.org/flexjs/basic";
 		
-		.MyDates {
-			background-color: #FFFFFF;
-		}
+		
 	</fx:Style>
 	<fx:Script>
 		<![CDATA[
@@ -52,12 +50,15 @@ limitations under the License.
 		
 	<js:DateChooser id="dateChooser" x="20" y="30" width="280" height="240" change="dateChanged()" />
 	
-	<js:VContainer x="400" y="35" width="300" height="200" className="Container1">
+	<js:Group x="400" y="35" width="300" height="200" className="Container1">
+		<js:beads>
+			<js:VerticalLayout />
+		</js:beads>
 		<js:Label id="output" text="Selected dates appear here" />
 		<js:Spacer height="20" />
 		<js:DateField id="dateField" change="dateChanged2()" />
 		<js:Spacer height="20" />
 		<js:TextButton text="Today!" click="toToday()" />
-	</js:VContainer>
+	</js:Group>
 	
 </js:View>

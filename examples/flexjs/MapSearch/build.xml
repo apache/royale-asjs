@@ -32,6 +32,7 @@
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
+    <property name="config_arg" value="air"/>
     
     <condition property="adl" value="adl.exe">
         <os family="windows"/>
@@ -51,30 +52,10 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/google_maps.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FLEXJS_HOME}/js/libs/google_maps.swc" type="file" />
-        </and>
-    </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/google_maps.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FALCONJX_HOME}/../js/libs/google_maps.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/google_maps/out/bin/google_maps.swc"/>
-    <property name="opt1_arg" value="-remove-circulars" />
-
-    <target name="main" depends="clean,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
-        <echo>playerglobal.version = ${playerglobal.version}</echo>
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />

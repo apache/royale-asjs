@@ -145,6 +145,15 @@ package org.apache.flex.mdl.beads.views
 				inputElement.step = String(rangeModel.stepSize);
 				inputElement.min = String(rangeModel.minimum);
 				inputElement.max = String(rangeModel.maximum);
+				// This makes sure that materialslider can accept programmatic changes to its values
+				var materialSlider:Object = (inputElement as Object)["MaterialSlider"];
+				if (materialSlider)
+				{
+					materialSlider["change"](rangeModel.value);
+				} else
+				{
+					inputElement.value = rangeModel.value.toString();
+				}
 			}
 		}
 	}

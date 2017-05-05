@@ -153,7 +153,7 @@ package org.apache.flex.maps.google.beads
 		{
 			mapit(37.333, -121.900, 12);
 			initialized = true;
-			dispatchEvent(new Event('ready'));
+			IEventDispatcher(_strand).dispatchEvent(new Event('ready'));
 		}
 
 		/**
@@ -453,7 +453,7 @@ package org.apache.flex.maps.google.beads
 			model.addEventListener("zoomChanged", handleZoomChange);
 			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
 
-			(_strand as UIBase).$sprite.addChild(_loader);
+			(_strand as UIBase).addChild(_loader);
 
 			var token:String = GoogleMap(_strand).token;
 			if (token)

@@ -33,5 +33,15 @@ package org.apache.flex.utils
 		{
 			return _contentView;
 		}
+		
+		public function beforeLayout():void
+		{
+			
+		}
+		
+		public function afterLayout():void
+		{
+			
+		}
 	}
 }

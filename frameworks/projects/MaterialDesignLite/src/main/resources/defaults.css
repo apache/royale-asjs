@@ -67,7 +67,7 @@ Slider
 {
 	IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.SliderRangeModel");
 	iBeadView:  ClassReference("org.apache.flex.mdl.beads.views.SliderView");
-	iBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
+    IBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.SliderMouseController");
 }
 
 List
@@ -115,7 +115,7 @@ Tabs
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabsView");
     IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarPanelItemRenderer");
 }
@@ -125,7 +125,7 @@ TabBar
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.TabBarView");
     IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.TabArrayModel");
     IBeadLayout: ClassReference(null);
-    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData");
     IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer");
 }
@@ -145,12 +145,21 @@ FooterLinkList
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer");
 }
 
+DropDownList
+{
+    IBeadView: ClassReference("org.apache.flex.mdl.beads.views.DropDownListView");
+    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");
+    IBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.DropDownListController");
+    border: 1.2px solid #F8F8F8;
+}
+
 @media -flex-flash
 {
     Slider
     {
-        iThumbView: ClassReference("org.apache.flex.mdl.beads.SliderThumbView");
-        iTrackView: ClassReference("org.apache.flex.mdl.beads.SliderTrackView");
+        iThumbView: ClassReference("org.apache.flex.mdl.beads.views.SliderThumbView");
+        iTrackView: ClassReference("org.apache.flex.mdl.beads.views.SliderTrackView");
     }
 
     RadioButton

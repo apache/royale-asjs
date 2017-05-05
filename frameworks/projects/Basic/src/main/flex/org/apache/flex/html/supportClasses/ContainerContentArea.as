@@ -18,26 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.supportClasses
 {
-	import org.apache.flex.core.IContentView;
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
     import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.ILayoutView;
+
     /**
      *  The ContainerContentArea class implements the contentView for
-     *  a Container.  Container's don't always parent their children directly as
-     *  that makes it harder to handle scrolling.
-     *  
+     *  a Container on the SWF platform.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ContainerContentArea extends UIBase implements IContentView
+	public class ContainerContentArea extends UIBase implements IBead, ILayoutView
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -48,34 +50,18 @@ package org.apache.flex.html.supportClasses
 			super();
             addEventListener("layoutNeeded", forwardEventHandler);
 		}
-        
+		
+		protected var host:IStrand;
+		
+		public function set strand(value:IStrand):void
+		{
+			host = value;
+		}
+
         private function forwardEventHandler(event:Event):void
         {
             if (parent is IEventDispatcher)
                 (parent as IEventDispatcher).dispatchEvent(event);
         }
-		
-		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function removeAllElements():void
-		{
-			COMPILE::SWF
-			{
-				removeChildren(0);					
-			}
-			COMPILE::JS
-			{
-				while (element.hasChildNodes()) 
-				{
-					element.removeChild(element.lastChild);
-				}
-			}
-		}
 	}
 }

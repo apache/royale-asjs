@@ -94,10 +94,9 @@ package org.apache.flex.html.beads.controllers
             }
             COMPILE::JS
             {
-                track = value.getBeadByType(
-                    SliderTrackView) as SliderTrackView;
-                thumb = value.getBeadByType(
-                    SliderThumbView) as SliderThumbView;
+				var sliderView:ISliderView = value.getBeadByType(ISliderView) as ISliderView;
+				track = sliderView.track as UIBase;
+				thumb = sliderView.thumb as UIBase;
                 
                 goog.events.listen(track.element, goog.events.EventType.CLICK,
                     handleTrackClick, false, this);
@@ -109,10 +108,10 @@ package org.apache.flex.html.beads.controllers
 		}
 		
         COMPILE::JS
-        private var track:SliderTrackView;
+        private var track:UIBase;
         
         COMPILE::JS
-        private var thumb:SliderThumbView;
+        private var thumb:UIBase;
         
 		/**
 		 * @private
@@ -158,7 +157,7 @@ package org.apache.flex.html.beads.controllers
 			var thumbW:Number = sliderView.thumb.width/2;
 			var newX:Number = thumb.x + deltaX;
 			
-			var p:Number = newX/UIBase(_strand).width;
+			var p:Number = newX/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 		
 			rangeModel.value = n;
@@ -177,7 +176,7 @@ package org.apache.flex.html.beads.controllers
 			var sliderView:ISliderView = _strand.getBeadByType(ISliderView) as ISliderView;
 			
 			var xloc:Number = event.localX;
-			var p:Number = xloc/UIBase(_strand).width;
+			var p:Number = xloc/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 			
 			rangeModel.value = n;

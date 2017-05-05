@@ -26,12 +26,12 @@
     <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
     <binding-value-change-event-type>valueChange</binding-value-change-event-type>
     <define>
-      <name>COMPILE::SWF</name>
-      <value>false</value>
+        <name>COMPILE::SWF</name>
+        <value>false</value>
     </define>
     <define>
-      <name>COMPILE::JS</name>
-      <value>true</value>
+        <name>COMPILE::JS</name>
+        <value>true</value>
     </define>
     <keep-as3-metadata>
       <name>Bindable</name>
@@ -53,6 +53,7 @@
       <path-element>../../../../../libs/GraphicsJS.swc</path-element>
       <path-element>../../../../../libs/CollectionsJS.swc</path-element>
       <path-element>../../../../../libs/HTMLJS.swc</path-element>
+      <path-element>../../../../../libs/BasicJS.swc</path-element>
     </library-path>
     <source-path>
       <path-element>../../../../../../../projects/MaterialDesignLite/src/main/flex</path-element>

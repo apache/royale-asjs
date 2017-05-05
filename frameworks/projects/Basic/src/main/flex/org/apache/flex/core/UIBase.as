@@ -32,6 +32,7 @@ package org.apache.flex.core
 	COMPILE::SWF {
 	    import org.apache.flex.events.utils.MouseEventConverter;
 	}
+    import org.apache.flex.utils.StringUtil;
 	
 	/**
 	 *  Set a different class for click events so that
@@ -157,6 +158,7 @@ package org.apache.flex.core
             COMPILE::SWF
             {
                 MouseEventConverter.setupInstanceConverters(this);
+                doubleClickEnabled = true; // make JS and flash consistent
             }
             
             COMPILE::JS
@@ -357,6 +359,8 @@ package org.apache.flex.core
 			return w;
 		}
         
+        [Bindable("widthChanged")]
+        [PercentProxy("percentWidth")]
         /**
          * @flexjsignorecoercion String
          */
@@ -447,6 +451,8 @@ package org.apache.flex.core
 			return h;
 		}
         
+        [Bindable("heightChanged")]
+        [PercentProxy("percentHeight")]
         /**
          * @flexjsignorecoercion String
          */
@@ -646,7 +652,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set x(value:Number):void
         {
-            positioner.style.position = 'absolute';
+            //positioner.style.position = 'absolute';
             positioner.style.left = value.toString() + 'px';
         }
 
@@ -679,7 +685,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+				//positioner.style.position = 'absolute';
 				positioner.style.left = value.toString() + 'px';
 			}
         }
@@ -702,7 +708,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set y(value:Number):void
         {
-            positioner.style.position = 'absolute';
+            //positioner.style.position = 'absolute';
             positioner.style.top = value.toString() + 'px';
         }
         
@@ -735,7 +741,7 @@ package org.apache.flex.core
 			}
 			COMPILE::JS
 			{
-				positioner.style.position = 'absolute';
+				//positioner.style.position = 'absolute';
 				positioner.style.top = value.toString() + 'px';				
 			}
         }
@@ -793,7 +799,7 @@ package org.apache.flex.core
                 } 
                 else 
                 {
-                    if (displayStyleForLayout) 
+                    if (displayStyleForLayout != null) 
                         positioner.style.display = displayStyleForLayout;
                     dispatchEvent(new Event('show'));
                 }
@@ -911,6 +917,10 @@ package org.apache.flex.core
 				_id = value;
 				dispatchEvent(new Event("idChanged"));
 			}
+            COMPILE::JS
+            {
+                element.id = _id;
+            }
 		}
 		
         private var _style:Object;
@@ -984,18 +994,24 @@ package org.apache.flex.core
         /**
          *  @private
          */
-		public function set className(value:String):void
-		{
-			if (_className != value)
-			{
+        public function set className(value:String):void
+        {
+            if (_className != value)
+            {
                 COMPILE::JS
                 {
-                    element.className = typeNames ? value + ' ' + typeNames : value;             
+                    setClassName(typeNames ? StringUtil.trim(value + ' ' + typeNames) : value);             
                 }
-				_className = value;
-				dispatchEvent(new Event("classNameChanged"));
-			}
-		}
+                _className = value;
+                dispatchEvent(new Event("classNameChanged"));
+            }
+        }
+        
+        COMPILE::JS
+        protected function setClassName(value:String):void
+        {
+            element.className = value;           
+        }
         
         /**
          *  @copy org.apache.flex.core.IUIBase#element
@@ -1177,6 +1193,10 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var children:Array = internalChildren();
+                if (children.length == 0)
+                {
+                    return null;
+                }
                 return children[index].flexjs_wrapper;
             }
         }        
@@ -1454,7 +1474,7 @@ package org.apache.flex.core
             if (positioner == null)
                 positioner = element;
             positioner.style.display = 'block';
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             
             element.flexjs_wrapper = this;
             
@@ -1526,7 +1546,7 @@ package org.apache.flex.core
         
         COMPILE::SWF
         {
-        [SWFOverride(params="flash.events.Event")]
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.flex.events.Event:org.apache.flex.events.MouseEvent")]
         override public function dispatchEvent(event:org.apache.flex.events.Event):Boolean
         {
             return super.dispatchEvent(event);

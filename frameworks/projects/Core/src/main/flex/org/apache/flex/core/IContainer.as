@@ -45,9 +45,13 @@ package org.apache.flex.core
 		function childrenAdded():void;
 		
 		/**
-		 * This method is for internal use only
+		 * Returns a object to access the immediate children of the strand.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
 		 */
-		COMPILE::SWF
-		function $addElement(c:IChild, dispatchEvent:Boolean = true):void;
+		function get strandChildren():IParent;
 	}
 }

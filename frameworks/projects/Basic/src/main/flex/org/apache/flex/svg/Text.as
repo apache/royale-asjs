@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IText;
 	import org.apache.flex.graphics.SolidColor;
 
@@ -32,7 +33,7 @@ package org.apache.flex.svg
     }
 	
 	/**
-	 *  Draws a string of characters at a specific location using the stroke
+	 *  Draws a string of characters at a specific location using the fill
 	 *  value of color and alpha.
 	 *
 	 *  @langversion 3.0
@@ -42,7 +43,7 @@ package org.apache.flex.svg
      *  // TODO (aharui) ignore imports of external linkage interfaces?
      *  @flexjsignoreimport SVGLocatable
 	 */
-	public class Text extends GraphicShape implements IText
+	public class Text extends GraphicShape implements IText, IDrawable
 	{
 		/**
 		 *  constructor.
@@ -59,7 +60,7 @@ package org.apache.flex.svg
             COMPILE::SWF
             {
                 _textField = new CSSTextField();
-                addChild(_textField);                    
+                addChild(_textField);
             }
 		}
 		
@@ -149,11 +150,15 @@ package org.apache.flex.svg
             }
 		}
         
-        COMPILE::JS
-        override protected function draw():void
+        override protected function drawImpl():void
         {
-            drawText(text, x, y);
+            drawText(text,x,y);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
 
 	}
 }

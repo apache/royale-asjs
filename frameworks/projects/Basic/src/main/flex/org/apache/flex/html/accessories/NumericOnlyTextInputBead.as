@@ -30,6 +30,7 @@ package org.apache.flex.html.accessories
 	}
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	COMPILE::SWF
@@ -81,7 +82,8 @@ package org.apache.flex.html.accessories
 			}
 			COMPILE::JS
 			{
-				IEventDispatcher(value).addEventListener("keypress",validateInput);									
+                var host:UIBase = _strand as UIBase;
+                host.element.addEventListener("keypress", validateInput, false);
 			}
 		}
 		

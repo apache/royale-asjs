@@ -22,21 +22,17 @@ package org.apache.flex.mobile
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.Container;
+	import org.apache.flex.html.Group;
 	
 	/**
 	 * The TitleView class represents a view in a mobile app that has
 	 * a title and is typically used in a ViewManager.
 	 */
-	public class TitleView extends Container implements IViewManagerView
+	public class TitleView extends Group implements IViewManagerView
 	{
 		public function TitleView()
 		{
 			super();
-			
-			// views always take up 100% of their space
-			percentWidth = 100;
-			percentHeight = 100;
 		}
 		
 		private var _title:String;
@@ -49,14 +45,7 @@ package org.apache.flex.mobile
 			_title = value;
 		}
 		
-		COMPILE::SWF
 		override public function toString():String
-		{
-			return _title;
-		}
-		
-		COMPILE::JS
-		public function toString():String
 		{
 			return _title;
 		}

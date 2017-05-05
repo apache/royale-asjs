@@ -23,7 +23,7 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	/**
@@ -39,17 +39,18 @@ package org.apache.flex.html
     /**
      *  The TextInput class implements the basic control for
      *  single-line text input.
-     *  
+     *
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
 	public class TextInput extends UIBase
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -61,13 +62,13 @@ package org.apache.flex.html
 
             COMPILE::SWF
             {
-                model.addEventListener("textChange", textChangeHandler);                    
+                model.addEventListener("textChange", textChangeHandler);
             }
 		}
-		
+
         /**
          *  @copy org.apache.flex.html.Label#text
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -79,7 +80,7 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).text;                    
+                return ITextModel(model).text;
             }
             COMPILE::JS
             {
@@ -97,7 +98,7 @@ package org.apache.flex.html
             {
                 inSetter = true;
                 ITextModel(model).text = value;
-                inSetter = false;                    
+                inSetter = false;
             }
             COMPILE::JS
             {
@@ -105,22 +106,22 @@ package org.apache.flex.html
                 dispatchEvent(new Event('textChange'));
             }
 		}
-		
+
         /**
          *  @copy org.apache.flex.html.Label#html
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          *  @flexjsignorecoercion HTMLInputElement
          */
-		[Bindable(event="change")] 
+		[Bindable(event="change")]
 		public function get html():String
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).html;                    
+                return ITextModel(model).html;
             }
             COMPILE::JS
             {
@@ -136,7 +137,7 @@ package org.apache.flex.html
 		{
             COMPILE::SWF
             {
-                ITextModel(model).html = value;                    
+                ITextModel(model).html = value;
             }
             COMPILE::JS
             {
@@ -146,7 +147,7 @@ package org.apache.flex.html
 		}
 
         private var inSetter:Boolean;
-        
+
 		/**
 		 *  dispatch change event in response to a textChange event
 		 *
@@ -160,7 +161,7 @@ package org.apache.flex.html
             if (!inSetter)
                 dispatchEvent(new Event(Event.CHANGE));
 		}
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -168,20 +169,20 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('input') as WrappedHTMLElement;
-            element.setAttribute('type', 'input');
+            element.setAttribute('type', 'text');
             element.className = 'TextInput';
             typeNames = 'TextInput';
-            
+
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(element, 'input', textChangeHandler);
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
+
             return element;
-        }        
-        
+        }
+
 	}
 }

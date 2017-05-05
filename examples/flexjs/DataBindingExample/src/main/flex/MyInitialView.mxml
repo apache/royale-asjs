@@ -146,7 +146,7 @@ limitations under the License.
 	
 	<js:Label id="bindtest" text="{fieldText + ' expression binding'}" />
 	<js:Label width="300" text.showAll="110" includeIn="showAll" />
-	<js:TextArea id="ta" width="100%" height="100" height.showAll="110" 
+	<js:TextArea id="ta" width="300" height="100" height.showAll="110" 
 				 includeIn="showAll"
 				 text="{MyModel(applicationModel).allData}" />
 </js:View>

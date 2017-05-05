@@ -40,5 +40,25 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.8
          */
 		function get contentView():ILayoutView;
+		
+		/**
+		 * Invoked prior to performing the layout.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		function beforeLayout():void;
+		
+		/**
+		 * Invoked after performing the layout.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+		 */
+		function afterLayout():void;
 	}
 }

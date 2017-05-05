@@ -22,8 +22,10 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IItemRendererClassFactory;
     import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IList;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
@@ -74,15 +76,26 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
+			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
 		private function finishSetup(event:Event):void
 		{
 			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
-			selectionModel.addEventListener("dataProviderChange", dataProviderChangeHandler);
+			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// already have been loaded by DataContainerBase.addedToParent function.
+			if (!itemRendererFactory)
+			{
+				_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+				if (!_itemRendererFactory)
+				{
+					_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+					_strand.addBead(_itemRendererFactory);
+				}
+			}
+			
 			dataProviderChangeHandler(null);
 		}
 		
@@ -123,14 +136,17 @@ package org.apache.flex.html.beads
 		{
 			var dp:Vector.<String> = selectionModel.dataProvider as Vector.<String>;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
+			
+			dataGroup.removeAllItemRenderers();
 			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addElement(tf);
+                dataGroup.addItemRenderer(tf);
 				tf.text = dp[i];
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

@@ -54,7 +54,7 @@
              if these swcs are on the external-library-path then their requires
              will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
-            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -70,6 +70,11 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
+
+    <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/HTML5/src/main/resources/defaults.css</path>
+    </include-file>
 
     <include-classes>
         <class>HTML5Classes</class>

@@ -28,6 +28,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+    import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.Alert;
@@ -182,7 +183,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleOK(event:Event):void
+		private function handleOK(event:MouseEvent):void
 		{
 			// create some custom event where the detail value
 			// is the OK button flag. Do same for other event handlers
@@ -192,7 +193,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleCancel(event:Event):void
+		private function handleCancel(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.CANCEL);
 		}
@@ -200,7 +201,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleYes(event:Event):void
+		private function handleYes(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.YES);
 		}
@@ -208,7 +209,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleNo(event:Event):void
+		private function handleNo(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.NO);
 		}

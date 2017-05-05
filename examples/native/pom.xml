@@ -44,13 +44,19 @@
   </modules>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
+      <!--
+       By declaring this dependency here, we force the flexjs-externs-js to be
+       added to the external library path of all modules. Without this it would
+       have gone to the library path.
+       -->
+      <dependency>
+          <groupId>org.apache.flex.flexjs.typedefs</groupId>
+          <artifactId>flexjs-typedefs-js</artifactId>
+          <version>${flexjs.typedefs.version}</version>
+          <type>swc</type>
+          <classifier>typedefs</classifier>
+          <scope>runtime</scope>
+      </dependency>
   </dependencies>
 
 </project>

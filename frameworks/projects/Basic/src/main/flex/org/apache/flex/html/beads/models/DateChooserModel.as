@@ -38,9 +38,9 @@ package org.apache.flex.html.beads.models
 		public function DateChooserModel()
 		{
 			// default displayed year and month to "today"
-			var today:Date = new Date();
-			displayedYear = today.getFullYear();
-			displayedMonth = today.getMonth();
+//			var today:Date = new Date();
+//			displayedYear = today.getFullYear();
+//			displayedMonth = today.getMonth();
 		}
 		
 		private var _strand:IStrand;
@@ -60,6 +60,7 @@ package org.apache.flex.html.beads.models
 		
 		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        private var _days:Array;
 		private var _displayedYear:Number;
 		private var _displayedMonth:Number;
 		private var _firstDayOfWeek:Number = 0;
@@ -119,6 +120,7 @@ package org.apache.flex.html.beads.models
 		{
 			if (value != _displayedYear) {
 				_displayedYear = value;
+                updateCalendar();
 				dispatchEvent( new Event("displayedYearChanged") );
 			}
 		}
@@ -139,6 +141,7 @@ package org.apache.flex.html.beads.models
 		{
 			if (_displayedMonth != value) {
 				_displayedMonth = value;
+                updateCalendar();
 				dispatchEvent( new Event("displayedMonthChanged") );
 			}
 		}
@@ -163,6 +166,18 @@ package org.apache.flex.html.beads.models
 			}
 		}
 		
+        public function get days():Array
+        {
+            return _days;
+        }
+        public function set days(value:Array):void
+        {
+            if (value != _days) {
+                _days = value;
+                dispatchEvent( new Event("daysChanged") );
+            }
+        }
+
 		/**
 		 *  The currently selected date or null if no date has been selected.
 		 *  
@@ -179,11 +194,95 @@ package org.apache.flex.html.beads.models
 		{
 			if (value != _selectedDate) {
 				_selectedDate = value;
-				dispatchEvent( new Event("selectedDateChanged") );
 				
-				displayedMonth = value.getMonth();
-				displayedYear  = value.getFullYear();
-			}
+                if (value != null) {
+                    var needsUpdate:Boolean = false;
+                    if (value.getMonth() != _displayedMonth) {
+                        needsUpdate = true;
+                        _displayedMonth = value.getMonth();
+                    }
+                    if (value.getFullYear() != _displayedYear) {
+                        needsUpdate = true;
+                        _displayedYear  = value.getFullYear();
+                    }
+                    if (needsUpdate) updateCalendar();
+                }
+                
+                dispatchEvent( new Event("selectedDateChanged") );
+            }
+        }
+        
+        // Utilities
+        
+        
+        /**
+         * @private
+         */
+        private function updateCalendar():void
+        {       
+            var firstDay:Date = new Date(displayedYear,displayedMonth,1);
+            
+            _days = new Array(42);
+            
+            // blank out the labels for the first firstDay.day-1 entries.
+            for(var i:int=0; i < firstDay.getDay(); i++) {
+                _days[i] = null;
+            }
+            
+            // renumber to the last day of the month
+            var dayNumber:int = 1;
+            var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
+            
+            for(; i < _days.length && dayNumber <= numDays; i++) {
+                _days[i] = new Date(displayedYear, displayedMonth, dayNumber++);
+            }
+            
+            // blank out the rest
+            for(; i < _days.length; i++) {
+                _days[i] = null;
+            }
+        }
+        
+        /**
+         * @private
+         */
+        private function numberOfDaysInMonth(month:Number, year:Number):Number
+        {
+            var n:int;
+            
+            if (month == 1) // Feb
+            {
+                if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year
+                    n = 29;
+                else
+                    n = 28;
+            }
+                
+            else if (month == 3 || month == 5 || month == 8 || month == 10)
+                n = 30;
+                
+            else
+                n = 31;
+            
+            return n;
+        }
+        
+        /**
+         * @private
+         */
+        public function getIndexForSelectedDate():Number
+        {
+            var d:Date = _selectedDate;
+            if (d == null) return -1;
+            
+            for(var i:int=0; i < _days.length; i++) {
+                var test:Date = _days[i] as Date;
+                if (test != null) {
+                    if (test.getMonth() == d.getMonth() && test.getDate() == d.getDate() && test.getFullYear())
+                        return i;
+			    }
+            }
+            return -1;
 		}
 	}
 }

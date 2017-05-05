@@ -96,14 +96,16 @@ package org.apache.flex.html.beads
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
 			DisplayObjectContainer(value).addChild(_textField);
-			if (_textModel.text !== null)
-				text = _textModel.text;
-			if (_textModel.html !== null)
-				html = _textModel.html;
-            
+
             var ilc:ILayoutChild = host as ILayoutChild;
             autoHeight = ilc.isHeightSizedToContent();
             autoWidth = ilc.isWidthSizedToContent();
+			
+			if (_textModel.text !== null)
+				text = _textModel.text;
+			if (_textModel.html !== null)
+				html = _textModel.html;            
+			
             if (!autoWidth && !isNaN(ilc.explicitWidth))
             {
                 widthChangeHandler(null);
@@ -398,6 +400,13 @@ package org.apache.flex.html.beads
             {
                 textField.autoSize = "none";
                 textField.width = host.width;
+            }
+            
+            if (autoWidth) {
+                (host as UIBase).setWidth(textField.textWidth, true);
+            }
+            if (autoHeight) {
+                (host as UIBase).setHeight(textField.textHeight, true);
             }
         }
     }

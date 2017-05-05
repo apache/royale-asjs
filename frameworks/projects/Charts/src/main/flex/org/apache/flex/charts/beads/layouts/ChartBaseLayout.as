@@ -22,16 +22,18 @@ package org.apache.flex.charts.beads.layouts
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IHorizontalAxisBead;
 	import org.apache.flex.charts.core.IVerticalAxisBead;
+	import org.apache.flex.core.LayoutBase;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	
-	public class ChartBaseLayout implements IBeadLayout
+	public class ChartBaseLayout extends LayoutBase implements IBeadLayout
 	{
 		public function ChartBaseLayout()
 		{
+			super();
 		}
 		
 		private var _strand:IStrand;
@@ -44,8 +46,9 @@ package org.apache.flex.charts.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
+			super.strand = value;
 			_strand = value;
 		}
 		public function get strand():IStrand
@@ -79,7 +82,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get horizontalAxisBead():IHorizontalAxisBead
 		{
 			if (_xAxis == null) {
-				if (chart.getBeadByType(IHorizontalAxisBead)) _xAxis = chart.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
+				if (_strand.getBeadByType(IHorizontalAxisBead)) _xAxis = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			}
 			return _xAxis;
 		}
@@ -97,7 +100,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get verticalAxisBead():IVerticalAxisBead
 		{
 			if (_yAxis == null) {
-				if (chart.getBeadByType(IVerticalAxisBead)) _yAxis = chart.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
+				if (_strand.getBeadByType(IVerticalAxisBead)) _yAxis = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
 			}
 			return _yAxis;
 		}
@@ -116,7 +119,7 @@ package org.apache.flex.charts.beads.layouts
 		public function get chartDataGroup():IChartDataGroup
 		{
 			if (_chartDataGroup == null) {
-				var layoutParent:ILayoutHost = chart.getBeadByType(ILayoutHost) as ILayoutHost;
+				var layoutParent:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
 				_chartDataGroup = layoutParent.contentView as IChartDataGroup;
 			}
 			return _chartDataGroup;
@@ -125,11 +128,11 @@ package org.apache.flex.charts.beads.layouts
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
          */
-		public function layout():Boolean
-		{
-			performLayout();
-            return true;
-		}
+//		public function layout():Boolean
+//		{
+//			performLayout();
+//            return true;
+//		}
 		
 		/**
 		 *  Subclasses should implement this to draw the chart, adding elements to the chartDataGroup.
@@ -139,9 +142,9 @@ package org.apache.flex.charts.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected function performLayout():void
-		{
-			// implement in subclass
-		}
+//		protected function performLayout():void
+//		{
+//			// implement in subclass
+//		}
 	}
 }

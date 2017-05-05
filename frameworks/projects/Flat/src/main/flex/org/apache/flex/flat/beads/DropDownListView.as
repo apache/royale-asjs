@@ -136,10 +136,10 @@ package org.apache.flex.flat.beads
 			shape.graphics.beginFill(0xCCCCCC);
 			shape.graphics.drawRect(0, 0, 10, 10);
 			shape.graphics.endFill();
-			b.$button.upState = upSprite;
-			b.$button.downState = downSprite;
-			b.$button.overState = overSprite;
-			b.$button.hitTestState = shape;
+			b.upState = upSprite;
+			b.downState = downSprite;
+			b.overState = overSprite;
+			b.hitTestState = shape;
 			if (selectionModel.selectedIndex !== -1)
 				selectionChangeHandler(null);
             else

@@ -108,7 +108,7 @@ package org.apache.flex.core
         /**
          * allow access from overrides
          */
-		protected var _model:IBeadModel;
+		protected var _model:Object;
         
         /**
          * @flexjsignorecoercion Class 
@@ -127,11 +127,15 @@ package org.apache.flex.core
             return _model;
         }
         
+        [Bindable("modelChanged")]
         public function set model(value:Object):void
         {
             if (_model != value)
             {
-                addBead(value as IBead);
+                if (value is IBead)
+                    addBead(value as IBead);
+                else
+                    _model = value;
                 dispatchEvent(new org.apache.flex.events.Event("modelChanged"));
             }
         }

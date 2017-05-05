@@ -107,7 +107,7 @@ limitations under the License.
 		
 	<js:DataGrid id="dataGrid" width="100%" height="85%" change="selectRow()" className="WatchListDataGrid">
 		<js:beads>
-			<js:DataGridPercentageLayout />
+			<js:DataGridPercentageView />
 			<js:SimpleBinding
 				eventName="update"
 				sourceID="dataModel"

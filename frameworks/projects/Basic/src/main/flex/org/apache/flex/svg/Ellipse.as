@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IEllipse;
 
     COMPILE::SWF
@@ -30,7 +31,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Ellipse extends GraphicShape implements IEllipse
+    public class Ellipse extends GraphicShape implements IEllipse, IDrawable
     {
 		/**
 		 *  constructor.
@@ -68,7 +69,7 @@ package org.apache.flex.svg
 			_rx = value;
 		}
 
-		private var _ry:Number;
+ 		private var _ry:Number;
 
 		/**
 		 * The vertical radius of the ellipse.
@@ -88,6 +89,25 @@ package org.apache.flex.svg
 			_ry = value;
 		}
 
+        override public function get width():Number
+        {
+            return _rx*2;
+        }
+
+        override public function set width(value:Number):void
+        {
+            _rx = value/2;
+        }
+
+        override public function get height():Number
+        {
+            return _ry*2;
+        }
+
+        override public function set height(value:Number):void
+        {
+            _ry = value/2;
+        }
         
         COMPILE::JS
         private var _ellipse:WrappedHTMLElement;
@@ -96,8 +116,6 @@ package org.apache.flex.svg
          *  Draw the ellipse.
          *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
          *  @param yp The y position of the top-left corner of the bounding box of the ellipse.
-         *  @param width The width of the ellipse.
-         *  @param height The height of the ellipse.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -127,26 +145,31 @@ package org.apache.flex.svg
                 _ellipse.setAttribute('style', style);
                 if (stroke)
                 {
-                    _ellipse.setAttribute('cx', width / 2 + stroke.weight);
-                    _ellipse.setAttribute('cy', height / 2 + stroke.weight);
+                    _ellipse.setAttribute('cx', rx + stroke.weight);
+                    _ellipse.setAttribute('cy', ry + stroke.weight);
                 }
                 else
                 {
-                    _ellipse.setAttribute('cx', width / 2);
-                    _ellipse.setAttribute('cy', height / 2);
+                    _ellipse.setAttribute('cx', rx);
+                    _ellipse.setAttribute('cy', ry);
                 }
-                _ellipse.setAttribute('rx', width / 2);
-                _ellipse.setAttribute('ry', height / 2);
+                _ellipse.setAttribute('rx', rx);
+                _ellipse.setAttribute('ry', ry);
                 
                 resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
 
             }
         }
         
-        override protected function draw():void
+        override protected function drawImpl():void
         {
-            drawEllipse(0, 0);    
+            drawEllipse(0, 0);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
         
     }
 }

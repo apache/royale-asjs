@@ -41,9 +41,17 @@
         <artifactId>flexjs-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <outputJavaScript>true</outputJavaScript>
           <mainClass>ButtonExample.as</mainClass>
+          <targets>JS</targets>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

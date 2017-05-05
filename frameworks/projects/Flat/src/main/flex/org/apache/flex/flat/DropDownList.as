@@ -61,6 +61,20 @@ package org.apache.flex.flat
 		}
 	}
     
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the user selects an item.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
     COMPILE::JS
     public class DropDownList extends ListBase
     {

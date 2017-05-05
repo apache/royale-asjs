@@ -17,15 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.core
-{
-	import org.apache.flex.core.IMXMLDocument;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.states.State;
-	import org.apache.flex.utils.MXMLDataInterpreter;
-    
+{    
+	/*
+	 *************
+	 * THIS CLASS IS NO LONGER NEEDED. INHERIT FROM DataContainerBase
+	 */
+	
     /**
      *  The ListBase class is the base class for most lists
      *  in FlexJS.
@@ -35,7 +32,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ListBase extends UIBase implements IContentViewHost, ILayoutParent
+	public class ListBase extends DataContainerBase
 	{
         /**
          *  Constructor.
@@ -47,89 +44,7 @@ package org.apache.flex.core
          */
 		public function ListBase()
 		{
-			super();
-            
-			_strandChildren = new ListBaseStrandChildren(this);
+			super();            
 		}
-		
-		private var _strandChildren:ListBaseStrandChildren;
-		
-		/**
-		 * @private
-		 */
-		public function get strandChildren():IParent
-		{
-			return _strandChildren;
-		}
-		
-		/**
-		 * @private
-		 */
-		public function getLayoutHost():ILayoutHost
-		{
-			return view as ILayoutHost; 
-		}
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $numElements():int
-		{
-			return super.numElements();
-		}
-		
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.addElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-		{
-			super.addElementAt(c, index, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.removeElement(c, dispatchEvent);
-		}
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $getElementIndex(c:IChild):int
-		{
-			return super.getElementIndex(c);
-		}
-		
-		/**
-		 * @private
-         * @suppress {undefinedNames}
-		 * Support strandChildren.
-		 */
-		public function $getElementAt(index:int):IChild
-		{
-			return super.getElementAt(index);
-		}
-
     }
 }

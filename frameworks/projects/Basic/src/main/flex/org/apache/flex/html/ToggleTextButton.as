@@ -23,10 +23,16 @@ package org.apache.flex.html
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.events.Event;
 
+    COMPILE::SWF
+    {
+        import flash.events.MouseEvent;
+    }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.MouseEvent;
     }
 
     //--------------------------------------
@@ -42,6 +48,16 @@ package org.apache.flex.html
      *  @productversion FlexJS 0.0
      */
 	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+
+    /**
+     *  Dispatched when ToggleTextButton is being selected/unselected.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
 
     /**
      *  The ToggleButton class is a TextButton that supports
@@ -65,18 +81,19 @@ package org.apache.flex.html
 		public function ToggleTextButton()
 		{
 			super();
+            COMPILE::SWF
+            {
+                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            }
             COMPILE::JS
             {
                 this.typeNames = 'toggleTextButton';
             }
 		}
 
-        COMPILE::JS
-        private var _selected:Boolean;
-
-        COMPILE::JS
-        private var SELECTED:String = "selected";
-
+        private var _selected:Boolean = false;
+        
+        [Bindable("change")]
         /**
          *  <code>true</code> if the Button is selected.
          *
@@ -105,52 +122,20 @@ package org.apache.flex.html
             COMPILE::SWF
             {
                 IToggleButtonModel(model).selected = value;
+                internalSelected()
+                dispatchEvent(new Event("change"));
             }
             COMPILE::JS
             {
                 if (_selected != value)
                 {
                     _selected = value;
-
-                    var className:String = this.className;
-                    var typeNames:String = this.typeNames;
-                    if (value) {
-                        if (typeNames.indexOf(SELECTED) == -1) {
-                            typeNames = typeNames + SELECTED;
-                            if (className)
-                                element.className = typeNames + ' ' + className;
-                            else
-                                element.className = typeNames;
-                        }
-                    }
-                    else {
-                        if (typeNames.indexOf(SELECTED) == typeNames.length - SELECTED.length) {
-                            typeNames = typeNames.substring(0, typeNames.length - SELECTED.length);
-                            if (className)
-                                element.className = typeNames + ' ' + className;
-                            else
-                                element.className = typeNames;
-                        }
-                    }
+                    
+                    internalSelected();
+                    
+                    dispatchEvent(new Event("change"));
                 }
             }
-        }
-
-        /**
-         *  @private
-         *  add another class selector
-         */
-        override public function get className():String
-        {
-            // we don't have a model yet so just pass through otherwise you will loop
-            if (!parent)
-                return super.className;
-
-            var name:String = super.className;
-            if (selected)
-                return "toggleTextButton_Selected" + (name ? " " + name : "");
-            else
-                return "toggleTextButton" + (name ? " " + name : "");
         }
 
         COMPILE::JS
@@ -158,6 +143,8 @@ package org.apache.flex.html
         {
             super.createElement();
             element.addEventListener("click", clickHandler, false);
+            internalSelected();
+            
             return element;
         }
 
@@ -166,5 +153,52 @@ package org.apache.flex.html
         {
             selected = !selected;
         }
+        
+        COMPILE::SWF
+        private function internalMouseHandler(event:MouseEvent) : void
+        {
+            selected = !selected;
+        }
+
+        private function internalSelected():void
+        {
+            COMPILE::SWF
+            {
+                var name:String = super.className;
+                if (selected)
+                {
+                    className = "toggleTextButton_Selected" + (name ? " " + name : "");
+                }
+                else
+                {
+                    className = "toggleTextButton" + (name ? " " + name : "");
+                }
+            }
+            COMPILE::JS
+            {
+                var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
+                if (!isToggleTextButtonSelected && _selected == true)
+                {
+                    element.classList.add("toggleTextButton_Selected");
+                }
+                else if (isToggleTextButtonSelected && _selected == false)
+                {
+                    element.classList.toggle("toggleTextButton_Selected");
+                }
+                
+                var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
+                if (!isToggleTextButton && _selected == false)
+                {
+                    element.classList.add("toggleTextButton");
+                }
+                else if (isToggleTextButton && _selected == true)
+                {
+                    element.classList.toggle("toggleTextButton");
+                }
+                
+                typeNames = element.className;
+            }
+        }
+
 	}
 }

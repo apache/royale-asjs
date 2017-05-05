@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads
 {
     import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
     import org.apache.flex.core.IItemRendererClassFactory;
     import org.apache.flex.core.IItemRendererParent;
@@ -75,21 +76,24 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("beadsAdded",finishSetup);
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
 		
 		private function finishSetup(event:Event):void
 		{
 			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
             
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// already have been loaded by DataContainerBase.addedToParent function.
             if (!itemRendererFactory)
             {
-                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
-                _strand.addBead(_itemRendererFactory);
+				_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+				if (!_itemRendererFactory)
+				{
+	                _itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
+    	            _strand.addBead(_itemRendererFactory);
+				}
             }
             
 			dataProviderChangeHandler(null);
@@ -125,23 +129,24 @@ package org.apache.flex.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */
-		protected var dataGroup:IItemRendererParent;
-		
+         */		
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
+			
+			dataGroup.removeAllItemRenderers();
 			
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
-                dataGroup.addElement(tf);
+                dataGroup.addItemRenderer(tf);
                 if (selectionModel.labelField)
                     tf.text = dp[i][selectionModel.labelField];
                 else

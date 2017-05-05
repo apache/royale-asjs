@@ -56,7 +56,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/mdl-js-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-compiler.exclude-defaults-css-files=HTML-0.8.0-SNAPSHOT.swc:defaults.css</additionalCompilerOptions>
+          <additionalCompilerOptions>-compiler.exclude-defaults-css-files=Basic-0.8.0-SNAPSHOT-js.swc:defaults.css</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -71,7 +71,27 @@
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>MaterialDesignLite</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>FontAwesome</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>FontAwesome</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Network</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
@@ -80,6 +100,7 @@
       <artifactId>Network</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
     <!-- Needed for Flash compilation -->

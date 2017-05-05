@@ -18,28 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.ImageBase;
+
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
-        import org.apache.flex.html.beads.models.ImageModel;
-        import org.apache.flex.html.beads.ImageView;
+        import org.apache.flex.core.WrappedHTMLElement;
     }
-	
-	/**
-	 *  The Image class is a component that displays a bitmap. The Image uses
-	 *  the following beads:
-	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the source property.
-	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
-	public class Image extends UIBase
+
+	  /**
+	   *  Load Images.
+	   *
+	   *  @toplevel
+	   *  @langversion 3.0
+	   *  @playerversion Flash 10.2
+	   *  @playerversion AIR 2.6
+	   *  @productversion FlexJS 0.0
+	   */
+	public class Image extends ImageBase
 	{
 		/**
 		 *  constructor.
@@ -53,25 +48,7 @@ package org.apache.flex.html
 		{
 			super();
 		}
-		
-		/**
-		 *  The location of the bitmap, usually a URL.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-         *  @flexjsignorecoercion org.apache.flex.core.IImageModel
-		 */
-		public function get src():String
-		{
-			return (model as IImageModel).url;
-		}
-		public function set src(value:String):void
-		{
-			(model as IImageModel).url = value;
-		}
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -81,13 +58,25 @@ package org.apache.flex.html
             element = document.createElement('img') as WrappedHTMLElement;
             element.className = 'Image';
             typeNames = 'Image';
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-         
+
             return element;
-        }        
+        }
+
+		COMPILE::JS
+		override public function get imageElement():Element
+		{
+			return element;
+		}
+
+		COMPILE::JS
+		override public function applyImageData(binaryDataAsString:String):void
+		{
+			(element as HTMLImageElement).src = binaryDataAsString;
+		}
 
 	}
 }

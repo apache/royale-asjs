@@ -26,6 +26,7 @@ package org.apache.flex.mdl.beads.views
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.html.beads.IListView;
+	import org.apache.flex.html.beads.ListView;
 
 	import org.apache.flex.events.Event;
 
@@ -37,99 +38,11 @@ package org.apache.flex.mdl.beads.views
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-	public class ListView extends BeadViewBase implements IListView
+	public class ListView extends org.apache.flex.html.beads.ListView
 	{
 		public function ListView()
 		{
 			super();
-		}
-
-		public function get dataGroup():IItemRendererParent
-		{
-			return _strand as IItemRendererParent;
-		}
-
-		protected var listModel:ISelectionModel;
-
-        /**
-         * @copy org.apache.flex.core.BeadViewBase#strand
-         *
-         * @param value
-		 *
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
-         */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-
-			var mapper:IDataProviderItemRendererMapper = _strand.getBeadByType(IDataProviderItemRendererMapper) as IDataProviderItemRendererMapper;
-			if (mapper == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iDataProviderItemRendererMapper");
-				if (c) {
-					mapper = new c() as IDataProviderItemRendererMapper;
-					_strand.addBead(mapper);
-				}
-			}
-
-			host.addEventListener("itemsCreated", itemsCreatedHandler);
-
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-
-			performLayout(null);
-		}
-
-		/**
-		 * @private
-		 *
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
-		 */
-		protected function itemsCreatedHandler(event:Event):void
-		{
-			performLayout(event);
-		}
-
-		/**
-		 * @private
-		 *
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			performLayout(event);
-		}
-
-		/**
-		 * @private
-		 *
-		 * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion FlexJS 0.8
-		 */
-		protected function performLayout(event:Event):void
-		{
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(host, "iBeadLayout");
-				if (c) {
-					layout = new c() as IBeadLayout;
-					_strand.addBead(layout);
-				}
-			}
-
-			if (layout) {
-				layout.layout();
-			}
 		}
 	}
 }

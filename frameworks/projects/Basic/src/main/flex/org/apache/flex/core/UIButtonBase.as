@@ -103,14 +103,12 @@ package org.apache.flex.core
 		 */
 		override public function set x(value:Number):void
 		{
-			if (super.x != value) {
-				super.x = _x = value;
-                if (!style)
-                    style = { left: value };
-                else
-                    style.left = value;
-				dispatchEvent(new Event("xChanged"));
-			}
+			super.x = _x = value;
+			if (!style)
+				style = { left: value };
+			else
+				style.left = value;
+			dispatchEvent(new Event("xChanged"));
 		}
 		
         private var _y:Number;
@@ -120,14 +118,12 @@ package org.apache.flex.core
 		 */
 		override public function set y(value:Number):void
 		{
-			if (super.y != value) {
-				super.y = _y = value;
-                if (!style)
-                    style = { top: value };
-                else
-                    style.top = value;
-				dispatchEvent(new Event("yChanged"));
-			}
+			super.y = _y = value;
+			if (!style)
+				style = { top: value };
+			else
+				style.top = value;
+			dispatchEvent(new Event("yChanged"));
 		}
 		
 		/**
@@ -750,7 +746,7 @@ package org.apache.flex.core
 				_model = bead as IBeadModel;
             else if (bead is IBeadView)
                 _view = bead as IBeadView;
-			bead.strand = this;
+			bead.strand = this; // super.addBead already did this!
 		}
 		
         /**

@@ -58,12 +58,12 @@ package org.apache.flex.charts.beads.layouts
 		/**
 		 * @private
 		 */
-		override protected function performLayout():void
+		override public function layout():Boolean
 		{
-			var selectionModel:ISelectionModel = chart.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
 			if (!dp)
-				return;
+				return false;
 			
 			var layoutParent:ILayoutHost = strand.getBeadByType(ILayoutHost) as ILayoutHost;
 			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
@@ -133,13 +133,17 @@ package org.apache.flex.charts.beads.layouts
 					child.y = Math.floor(ypos - seriesHeight);
 					child.height = seriesHeight;
 					
+					COMPILE::JS {
+						child.element.style.position = "absolute";
+					}
+					
 					xpos += xValue;
 				}
 				
 				ypos -= (itemHeight + gap);
 			}
 			
-			IEventDispatcher(chart).dispatchEvent(new Event("layoutComplete"));
+			return true;
 		}
 	}
 }

@@ -32,6 +32,7 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
+    <property name="config_arg" value="air"/>
     
     <condition property="adl" value="adl.exe">
         <os family="windows"/>
@@ -51,14 +52,10 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <property name="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/google_maps.swc"/>
-    <property name="opt1_arg" value="-remove-circulars" />
-
-    <target name="main" depends="clean,build_example.compileair,build_example.compilejsair" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
-        <echo>playerglobal.version = ${playerglobal.version}</echo>
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />

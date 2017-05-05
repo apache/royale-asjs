@@ -21,39 +21,47 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/flexjs/basic">
     <fx:Script>
         <![CDATA[
-		 private function dataGridChange() : void
+		 import org.apache.flex.html.DataGrid;
+			
+		 private function dataGridChange(grid:DataGrid) : void
 		 {
-			 output.text = "Clicked on row "+dataGrid.selectedIndex;
-			 trace("Click on row "+dataGrid.selectedIndex);
+			 output.text = "Clicked on row "+grid.selectedIndex;
+			 trace("Click on row "+grid.selectedIndex);
 		 }
 		]]>
     </fx:Script>
 	
+	<fx:Style>
+		@namespace js "library://ns.apache.org/flexjs/basic";
+		
+		/* These border lines currently show only on HTML */
+		.DataGridListArea .middle {
+			border-left: solid 1px #333333;
+			border-right: solid 1px #333333;
+		}
+
+	</fx:Style>
+	
 	<js:Label id="output" x="450" y="30"/>
 	
 		
-	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="200" change="dataGridChange()" rowHeight="40">
+	<js:DataGrid id="dataGrid" x="20" y="30" width="400" height="150" change="dataGridChange(dataGrid)" rowHeight="40">
 		<js:beads>
-			<!--<js:DataGridPercentageLayout />-->
+			<js:DataGridPercentageView />
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
 				destinationPropertyName="dataProvider" />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="100" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="200" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="15" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="60" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
 		</js:columns>
 	</js:DataGrid>
 		
-	<js:DataGrid id="dataGrid2" x="20" y="300" width="400" height="245" change="dataGridChange()" rowHeight="40">
+	<js:DataGrid id="dataGrid2" x="20" y="300" width="400" height="150" change="dataGridChange(dataGrid2)" rowHeight="40">
 		<js:beads>
-		    <!--<js:DataGridLinesBead>
-		       <js:stroke>
-		           <js:SolidColorStroke color="#FF8800" weight="2" />
-		       </js:stroke>
-		    </js:DataGridLinesBead>-->
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
@@ -65,5 +73,14 @@ limitations under the License.
 			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
 		</js:columns>
 	</js:DataGrid>
+	
+	
+	<!--
+	  This bead is not working yet. It can be added to either DataGrid when it works.
+		<js:DataGridLinesBead>
+			<js:stroke>
+				<js:SolidColorStroke color="#FF8800" weight="2" />
+			</js:stroke>
+		</js:DataGridLinesBead>-->
 
 </js:View>

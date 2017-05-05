@@ -24,7 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.SimpleCSSStyles;
@@ -95,7 +95,7 @@ package org.apache.flex.html.beads
 		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
 			// Set the listData with the depth of this item
-			var flatList:FlattenedList = selectionModel.dataProvider as FlattenedList;
+			var flatList:FlattenedList = dataProviderModel.dataProvider as FlattenedList;
 			var depth:int = flatList.getDepth(data);
 			var isOpen:Boolean = flatList.isOpen(data);
 			var hasChildren:Boolean = flatList.hasChildren(data);

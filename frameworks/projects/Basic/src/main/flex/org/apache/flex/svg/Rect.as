@@ -14,6 +14,7 @@
 
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
 	import org.apache.flex.graphics.IRect;
 
     COMPILE::SWF
@@ -26,7 +27,7 @@ package org.apache.flex.svg
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-	public class Rect extends GraphicShape implements IRect
+	public class Rect extends GraphicShape implements IRect, IDrawable
 	{
 		/**
 		 *  constructor.
@@ -111,12 +112,12 @@ package org.apache.flex.svg
                 applyStroke();
                 beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
                 if(isNaN(rx))
-                    graphics.drawRect(x, y, width, height);
+                    graphics.drawRect(0, 0, width, height);
                 else
                 {
                     var dx:Number = rx*2;
                     var dy:Number = isNaN(ry) ? ry : ry*2;
-                    graphics.drawRoundRect(x, y, width, height,dx ,dy);
+                    graphics.drawRoundRect(0, 0, width, height,dx ,dy);
                 }
                 endFill();                    
             }
@@ -147,9 +148,20 @@ package org.apache.flex.svg
             }
 		}
 		
-		override protected function draw():void
+		COMPILE::JS
+		override public function get transformElement():WrappedHTMLElement
+		{
+			return _rect;
+		}
+
+		override protected function drawImpl():void
 		{
 			drawRect(0,0,width,height);
+		}
+
+		public function draw():void
+		{
+			drawImpl();
 		}
 		
 	}

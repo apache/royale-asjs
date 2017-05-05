@@ -48,6 +48,16 @@ package org.apache.flex.utils
 			_layoutHost = new MockLayoutHost(source.getLayoutHost());
 			_source = source;
 		}
+		
+		public function beforeLayout():void
+		{
+			// TODO ??
+		}
+		
+		public function afterLayout():void
+		{
+			// TODO ??	
+		}
 
 		public function get parent():IParent
 		{
@@ -172,11 +182,19 @@ package org.apache.flex.utils
 			// TODO Auto Generated method stub
 			return 0;
 		}
+		public function set explicitHeight(value:Number):void
+		{
+			// TODO Auto Generated method stub
+		}
 
 		public function get explicitWidth():Number
 		{
 			// TODO Auto Generated method stub
 			return 0;
+		}
+		public function set explicitWidth(value:Number):void
+		{
+			// TODO Auto Generated method stub
 		}
 
 		public function isHeightSizedToContent():Boolean

@@ -68,8 +68,11 @@
     </target>
 
     
-    <target name="prepare" depends="thirdparty-downloads"/>
-            
+    <target name="prepare" depends="thirdparty-downloads">
+        <mkdir dir="${basedir}/js/FlexJS/libs" />
+        <mkdir dir="${basedir}/libs" />
+    </target>
+
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
         <ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>
     </target>
@@ -81,9 +84,9 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
+        <antcall target="Basic"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
-       <!-- <antcall target="Basic"/> -->
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="DragDrop"/>

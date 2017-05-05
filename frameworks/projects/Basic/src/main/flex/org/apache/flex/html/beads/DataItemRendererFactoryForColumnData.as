@@ -24,6 +24,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IDataProviderItemRendererMapper;
 	import org.apache.flex.core.IItemRendererClassFactory;
 	import org.apache.flex.core.IItemRendererParent;
+	import org.apache.flex.core.IList;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -69,13 +70,21 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(IDataGridModel) as IDataGridModel;
-			var listView:IListView = value.getBeadByType(IListView) as IListView;
-			dataGroup = listView.dataGroup;
+			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+		}
+		
+		/**
+		 * @private
+		 */
+		private function finishSetup(event:Event):void
+		{			
+			selectionModel = _strand.getBeadByType(IDataGridModel) as IDataGridModel;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
-			if (!itemRendererFactory)
-			{
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// already have been loaded by DataContainerBase.addedToParent function.
+			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
+			if (itemRendererFactory == null) {
 				_itemRendererFactory = new (ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory")) as IItemRendererClassFactory;
 				_strand.addBead(_itemRendererFactory);
 			}
@@ -110,7 +119,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		protected var dataGroup:IItemRendererParent;
+//		protected var dataGroup:IItemRendererParent;
 		
 		/**
 		 * @private
@@ -121,8 +130,11 @@ package org.apache.flex.html.beads
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllElements();
+			var list:IList = _strand as IList;
+			var dataGroup:IItemRendererParent = list.dataGroup;
 			
+			dataGroup.removeAllItemRenderers();
+						
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
 						
@@ -130,9 +142,9 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
+				dataGroup.addItemRenderer(tf);
 				tf.index = i;
 				tf.labelField = view.column.dataField;
-				dataGroup.addElement(tf);
 				tf.data = dp[i];
 			}
 			

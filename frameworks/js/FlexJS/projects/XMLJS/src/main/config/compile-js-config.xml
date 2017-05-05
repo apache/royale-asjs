@@ -71,6 +71,8 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
+    <keep-asdoc>true</keep-asdoc>
+    
     <include-file>
     </include-file>
 

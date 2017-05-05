@@ -26,7 +26,6 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
 
@@ -48,7 +47,22 @@
     </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,copyassets" description="Clean build of ${example}">
+    </target>
+    
+    <target name="copyassets">
+    	<mkdir dir="${basedir}/bin/js-debug/assets" />
+    	<copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">

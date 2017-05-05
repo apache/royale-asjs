@@ -249,7 +249,10 @@ limitations under the License.
                                 className="storeButtonBar"
                                 click="headToSupport()"/>            
             </js:ControlBar>
-            <js:Container width="990" id="viewholder">
+            <js:Group width="990" id="viewholder">
+			    <js:beads>
+					<js:BasicLayout />
+			    </js:beads>
                 <js:style>
                     <js:SimpleCSSStyles paddingLeft="0" paddingRight="0"/>
                 </js:style>
@@ -262,7 +265,7 @@ limitations under the License.
                 <SupportView id="supportView" includeIn="Support"
                              width="100%" height="550"
                              />
-            </js:Container>
+            </js:Group>
         </js:View>        
     </js:initialView>    
 </js:Application>

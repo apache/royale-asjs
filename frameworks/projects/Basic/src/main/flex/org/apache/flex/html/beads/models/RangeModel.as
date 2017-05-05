@@ -192,8 +192,8 @@ package org.apache.flex.html.beads.models
 				// value must lie within the boundaries of minimum & maximum
 				// and be on a step interval, so the value is adjusted to 
 				// what is coming in.
-				newValue = Math.max(minimum, newValue - stepSize);
-				newValue = Math.min(maximum, newValue + stepSize);
+				newValue = Math.max(minimum, newValue);
+				newValue = Math.min(maximum, newValue);
 				_value = snap(newValue);
 				dispatchEvent(new Event("valueChange"));
 			}

@@ -72,7 +72,7 @@ package org.apache.flex.net
         public var bytesLoaded:uint = 0;
         
 		/**
-		 *  The total number of bytes (if avaailable).
+		 *  The total number of bytes (if available).
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -143,7 +143,7 @@ package org.apache.flex.net
         }
         
 		/**
-		 *  Cancels the URL request
+		 *  Cancels the URL request.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -153,7 +153,7 @@ package org.apache.flex.net
         public function close():void
         {
             stream.close();
-			//TODO do we need a callback for camceling?
+			//TODO do we need a callback for canceling?
         }
         
         private function completeHandler(event:Event):void
@@ -178,7 +178,7 @@ package org.apache.flex.net
         
         private function progressHandler(event:ProgressEvent):void
         {
-            this.bytesLoaded = event.current
+            this.bytesLoaded = event.current;
             this.bytesTotal = event.total;
             dispatchEvent(event);
 			if(onProgress)

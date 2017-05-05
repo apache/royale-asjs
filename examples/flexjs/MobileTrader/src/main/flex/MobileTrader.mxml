@@ -24,6 +24,9 @@
 				   xmlns:js="library://ns.apache.org/flexjs/basic" 
 				   xmlns:controller="controller.*" 
 				   >
+	<js:beads>
+		<js:DeviceSizeBead />
+	</js:beads>
 	
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />

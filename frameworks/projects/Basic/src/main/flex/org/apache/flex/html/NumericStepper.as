@@ -24,6 +24,8 @@ package org.apache.flex.html
     {
         import goog.events;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.events.IEventDispatcher;
+        import org.apache.flex.core.IBead;
     }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
@@ -37,6 +39,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
 	 *  org.apache.flex.core.IBeadController: handles the input events.
 	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -160,7 +163,7 @@ package org.apache.flex.html
         {
             element = document.createElement('div') as WrappedHTMLElement;
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             input = new TextInput();
             input.className = "NumericStepperInput";
@@ -170,6 +173,7 @@ package org.apache.flex.html
             input.positioner.style.width = '100px';
 
             spinner = new Spinner();
+			spinner.addBead(model as IBead);
             addElement(spinner);
 
             /* TODO: ajh move to view and css */
@@ -181,6 +185,12 @@ package org.apache.flex.html
             className = 'NumericStepper';
 
             input.text = String(spinner.value);
+
+			IEventDispatcher(model).addEventListener("valueChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("minimumChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("maximumChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("stepSizeChange",modelChangeHandler);
+			IEventDispatcher(model).addEventListener("snapIntervalChange",modelChangeHandler);
 
             return element;
         }
@@ -197,6 +207,14 @@ package org.apache.flex.html
             dispatchEvent(new Event('valueChange'));
         };
 
+        /**
+         * @private
+         */
+        COMPILE::JS
+        private function modelChangeHandler(event:Event):void
+        {
+            input.text = String(model.value);
+        }
 
 	}
 }

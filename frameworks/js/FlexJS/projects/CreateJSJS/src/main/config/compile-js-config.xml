@@ -60,7 +60,7 @@
         
         <library-path>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
-            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
         </library-path>
         
@@ -68,8 +68,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/CreateJS/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-sources>
     </include-sources>
     

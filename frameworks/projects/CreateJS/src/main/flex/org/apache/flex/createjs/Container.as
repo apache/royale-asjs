@@ -20,6 +20,7 @@ package org.apache.flex.createjs
 {	
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IChrome;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.IMXMLDocument;
@@ -83,6 +84,11 @@ package org.apache.flex.createjs
 		public function Container()
 		{
 			super();
+		}
+		
+		public function get strandChildren():IParent
+		{
+			return this;
 		}
 		
 		/**

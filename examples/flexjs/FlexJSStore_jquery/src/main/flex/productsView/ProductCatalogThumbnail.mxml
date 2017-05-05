@@ -101,7 +101,6 @@ limitations under the License.
                 var dragEvent:DragEvent = new DragEvent(DragEvent.DRAG_START, true);
                 dragEvent.clientX = dragStartPoint.x;
                 dragEvent.clientY = dragStartPoint.y;
-                dragEvent.buttonDown = true;
                 dispatchEvent(dragEvent);
 
                 rollOutHandler(event);

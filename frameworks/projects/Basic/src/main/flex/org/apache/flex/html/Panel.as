@@ -19,6 +19,9 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.IPanelModel;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.html.beads.PanelView;
+	import org.apache.flex.events.Event;
 
     COMPILE::JS
     {
@@ -40,6 +43,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
 	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
+     *  @toplevel
 	 *  @see PanelWithControlBar
 	 *  @see ControlBar
 	 *  @see TitleBar
@@ -48,7 +52,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Panel extends Container
+	public class Panel extends Group
 	{
 		/**
 		 *  constructor.
@@ -61,6 +65,23 @@ package org.apache.flex.html
 		public function Panel()
 		{
 			super();
+			
+			className = "Panel";
+		}
+		
+		public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			super.addElement(c, dispatchEvent);
+		}
+		
+		public function get $numElements():Number
+		{
+			return super.numElements;
+		}
+		
+		public function $getElementAt(index:Number):IChild
+		{
+			return super.getElementAt(index);
 		}
 		
 		/**
@@ -109,13 +130,67 @@ package org.apache.flex.html
 			IPanelModel(model).showCloseButton = value;
 		}
 		
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            super.createElement();
-            element.className = "Panel";
-            typeNames = "Panel";
-            return element;
-        }
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			var panelView:PanelView = view as PanelView;
+			panelView.contentArea.addElement(c, dispatchEvent);
+			panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		{
+			var panelView:PanelView = view as PanelView;
+			panelView.contentArea.addElementAt(c, index, dispatchEvent);
+			panelView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function getElementIndex(c:IChild):int
+		{
+			var panelView:PanelView = view as PanelView;
+			return panelView.contentArea.getElementIndex(c);
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			var panelView:PanelView = view as PanelView;
+			panelView.contentArea.removeElement(c, dispatchEvent);
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function get numElements():int
+		{
+			var panelView:PanelView = view as PanelView;
+			return panelView.contentArea.numElements;
+		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion org.apache.flex.html.beads.PanelView
+		 */
+		override public function getElementAt(index:int):IChild
+		{
+			var panelView:PanelView = view as PanelView;
+			return panelView.contentArea.getElementAt(index);
+		}
 	}
 }

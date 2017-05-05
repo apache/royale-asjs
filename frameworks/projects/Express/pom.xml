@@ -62,6 +62,7 @@
               <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>
@@ -79,7 +80,7 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -92,7 +93,7 @@
       <artifactId>Binding</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -105,7 +106,7 @@
       <artifactId>Graphics</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -118,20 +119,20 @@
       <artifactId>Collections</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>HTML</artifactId>
+      <artifactId>Basic</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>HTML</artifactId>
+      <artifactId>Basic</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 

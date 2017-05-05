@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.core
 {
+	import org.apache.flex.charts.core.IChart;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.List;
 	
@@ -38,7 +39,7 @@ package org.apache.flex.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ChartBase extends List implements IChart
+	public class ChartBase extends List implements IChart 
 	{
 		/**
 		 *  constructor. 
@@ -46,11 +47,20 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function ChartBase()
 		{
 			super();
+			
+			COMPILE::SWF {
+				// give charts a default size to help their layouts
+				setWidthAndHeight(200, 200, true);
+			}
+			
+			COMPILE::JS {
+				element.style.position = "relative";
+			}
 		}
 		
 		private var _series:Array;
@@ -62,7 +72,7 @@ package org.apache.flex.charts.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function get series():Array
 		{

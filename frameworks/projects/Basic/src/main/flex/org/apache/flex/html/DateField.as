@@ -20,8 +20,10 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDateChooserModel;
+	import org.apache.flex.core.IFormatBead;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.events.Event;
 	
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -33,6 +35,7 @@ package org.apache.flex.html
 	 * and a pop-up calendar control for picking a date as an alternative to
 	 * the text field.
 	 *  
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -66,13 +69,17 @@ package org.apache.flex.html
 		 */
 		override public function addedToParent():void
 		{
-            var klass:* = ValuesManager.valuesImpl.getValue(this,"iFormatBead");
-            var bead:IBead = new klass() as IBead;
-            if (bead) {
-                addBead(bead);
-            }
-            
 			super.addedToParent();
+
+			if (getBeadByType(IFormatBead) == null) {
+                var klass:* = ValuesManager.valuesImpl.getValue(this, "iFormatBead");
+                var bead:IBead = new klass() as IBead;
+                if (bead) {
+                    addBead(bead);
+                }
+            }
+			
+			dispatchEvent(new Event("initComplete"));
 		}
 		
 		/**

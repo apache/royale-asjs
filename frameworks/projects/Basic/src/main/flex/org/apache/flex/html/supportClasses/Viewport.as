@@ -32,10 +32,15 @@ package org.apache.flex.html.supportClasses
     import org.apache.flex.geom.Size;
 	import org.apache.flex.html.beads.models.ScrollBarModel;
     import org.apache.flex.utils.CSSContainerUtils;
+	COMPILE::SWF
+	{
+		import flash.geom.Rectangle;
+	}
 
     /**
      * A Viewport is the area of a Container set aside for displaying
-     * content and any scrolling controls.
+     * content. If the content exceeds the visible area of the viewport
+	 * it will be clipped or hidden.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -76,6 +81,7 @@ package org.apache.flex.html.supportClasses
         /**
          * @flexjsignorecoercion Class
          */
+		COMPILE::SWF
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -84,7 +90,36 @@ package org.apache.flex.html.supportClasses
             {
                 var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
                 contentArea = new c() as UIBase;
+				_strand.addBead(contentArea as IBead);
             }
+		}
+		
+		/**
+		 * @flexjsignorecoercion Class
+		 */
+		COMPILE::JS
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			
+			contentArea = _strand.getBeadByType(IContentView) as UIBase;
+			if (!contentArea)
+			{
+				var c:Class = ValuesManager.valuesImpl.getValue(_strand, 'iContentView') as Class;
+				if (c != null) {
+					var result:Object = new c();
+					if (result != null) {
+						contentArea = result as UIBase;
+						_strand.addBead(contentArea as IBead);
+					}
+				}
+			}
+			
+			if (contentArea == null) {
+				contentArea = value as UIBase;
+			}
+			
+			contentArea.element.style.overflow = "hidden";
 		}
 
         /**
@@ -97,8 +132,10 @@ package org.apache.flex.html.supportClasses
          */
         public function setPosition(x:Number, y:Number):void
         {
-            contentArea.x = x;
-            contentArea.y = y;
+			COMPILE::SWF {
+            	contentArea.x = x;
+            	contentArea.y = y;
+			}
         }
 
         /**
@@ -111,10 +148,12 @@ package org.apache.flex.html.supportClasses
          */
 		public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
+			COMPILE::SWF {
 			if (!isNaN(width))
                 contentArea.width = width;
             if (!isNaN(height))
                 contentArea.height = height;
+			}
 		}
 
         /**
@@ -125,26 +164,17 @@ package org.apache.flex.html.supportClasses
 	     *  @playerversion AIR 2.6
 	     *  @productversion FlexJS 0.0
          */
-		public function layoutViewportAfterContentLayout():Size
+		public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
-            // pass through all of the children and determine the maxWidth and maxHeight
-            // note: this is not done on the JavaScript side because the browser handles
-            // this automatically.
-            var maxWidth:Number = 0;
-            var maxHeight:Number = 0;
-            var num:Number = contentArea.numElements;
-
-            for (var i:int=0; i < num; i++) {
-                var child:IUIBase = contentArea.getElementAt(i) as IUIBase;
-                if (child == null || !child.visible) continue;
-                var childXMax:Number = child.x + child.width;
-                var childYMax:Number = child.y + child.height;
-                maxWidth = Math.max(maxWidth, childXMax);
-                maxHeight = Math.max(maxHeight, childYMax);
-            }
-
-            var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
-            return new Size(maxWidth + padding.right, maxHeight + padding.bottom);
+			COMPILE::SWF {
+				var hostWidth:Number = UIBase(_strand).width;
+				var hostHeight:Number = UIBase(_strand).height;
+				
+				var rect:flash.geom.Rectangle = new flash.geom.Rectangle(0, 0, hostWidth, hostHeight);
+				contentArea.scrollRect = rect;
+				
+				return;
+			}
 		}
 
 	}

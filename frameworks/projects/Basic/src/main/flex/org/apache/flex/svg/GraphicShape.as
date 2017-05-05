@@ -16,14 +16,18 @@ package org.apache.flex.svg
 {
 	COMPILE::SWF
     {
-        import flash.geom.Point;
-        import flash.geom.Rectangle;
+		import flash.display.Graphics;
+		import flash.display.Sprite;
+		import flash.geom.Point;
+		import flash.geom.Rectangle;
+		import org.apache.flex.core.WrappedSprite;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    import org.apache.flex.core.IFlexJSElement;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.IStroke;
@@ -31,6 +35,7 @@ package org.apache.flex.svg
 
 	public class GraphicShape extends UIBase implements IGraphicShape
 	{
+
 		private var _fill:IFill;
 		private var _stroke:IStroke;
 
@@ -78,7 +83,7 @@ package org.apache.flex.svg
         {
 			super();
         }
-		
+
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
@@ -87,12 +92,10 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
 			element.flexjs_wrapper = this;
-			element.style.left = "0px";
-			element.style.top = "0px";
 			//element.offsetParent = null;
 			positioner = element;
-			positioner.style.position = 'relative';
-			
+			//positioner.style.position = 'relative';
+
 			return element;
 		}
 
@@ -127,18 +130,15 @@ package org.apache.flex.svg
 		/**
 		 * This is where the drawing methods get called from
 		 */
-		protected function draw():void
+		protected function drawImpl():void
 		{
 			//Overwrite in subclass
 		}
 
 		override public function addedToParent():void
 		{
-            COMPILE::SWF
-            {
-                super.addedToParent();
-            }
-			draw();
+            super.addedToParent();
+			drawImpl();
             COMPILE::JS
             {
                 element.style.overflow = 'visible';
@@ -175,6 +175,12 @@ package org.apache.flex.svg
             return fillStr + ';' + strokeStr;
         }
 
+		COMPILE::JS
+		override protected function setClassName(value:String):void
+		{
+			element.setAttribute('class', value);
+		}
+
 
         /**
          * @param x X position.
@@ -190,8 +196,14 @@ package org.apache.flex.svg
             element.style.position = 'absolute';
             if (!isNaN(x)) element.style.top = x + "px";
             if (!isNaN(y)) element.style.left = y + "px";
+			// element.setAttribute("width", useWidth);
+			// element.setAttribute("height", useHeight);
             element.style.width = useWidth;
             element.style.height = useHeight;
+			// Needed for SVG inside SVG
+			element.setAttribute("x", x);
+			element.setAttribute("y", y);
+			//Needed for SVG inside DOM elements
             element.style.left = x + "px";
             element.style.top = y + "px";
         }
@@ -218,6 +230,10 @@ package org.apache.flex.svg
             _y = y;
             _xOffset = xOffset;
             _yOffset = yOffset;
+			// Needed for SVG inside SVG
+			element.setAttribute("x", xOffset);
+			element.setAttribute("y", yOffset);
+			//Needed for SVG inside DOM elements
             element.style.left = xOffset + "px";
             element.style.top = yOffset + "px";
         }

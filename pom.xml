@@ -17,7 +17,9 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -161,14 +163,6 @@
         </executions>
         <configuration>
           <excludes>
-            <!--
-              As the examples and distribution are not build in every case, we
-              have to exclude them. This skips the checks if they are not included
-              but if they are included, the checks inside distribution and examples
-              kick in and do the checks.
-            -->
-            <exclude>distribution/**</exclude>
-            <exclude>examples/**</exclude>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
             <!-- This is appended to the LICENSE file for binary packages-->
@@ -177,19 +171,22 @@
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
             <exclude>vf2js/**</exclude>
-            <!-- frameworks/fb.properties contains Alex' path entries and should be removed -->
-            <exclude>fb.properties</exclude>
             <!-- Should probably also be removed -->
             <exclude>js/*jshint*</exclude>
-            <!-- If checked in, they should have apache headers -->
+            <!-- FlashBuilder settings. frameworks/fb.properties contains Alex' path entries and should be removed -->
+            <exclude>fb.properties</exclude>
+            <!-- FlashBuilder / Eclipse settings. If checked in, they should have apache headers -->
             <exclude>**/.settings/**</exclude>
-            <!-- Examples needs to be fixed -->
-            <exclude>native/**</exclude>
-            <!-- After running the testsuite, the target directory is full of non-header files -->
-            <exclude>testsuite/**</exclude>
-			<!-- Ignore IntelliJ IDEA project files -->
-			<exclude>**/*.iml</exclude>
-			<exclude>**/.idea/**</exclude>
+            <!-- Ignore IntelliJ IDEA project files -->
+            <exclude>**/*.iml</exclude>
+            <exclude>**/.idea/**</exclude>
+            <!--
+                Exclude any eventually existing content of target directories.
+                Some times when building with a bigger maven reactor and then
+                with a smaller one, RAT will complain about stuff still in the
+                target directories. We don't want that.
+            -->
+            <exclude>**/target/**</exclude>
           </excludes>
         </configuration>
         <dependencies>

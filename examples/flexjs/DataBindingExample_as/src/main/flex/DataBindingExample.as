@@ -126,7 +126,7 @@ public class DataBindingExample extends Application
 			iViewportModel: ViewportModel
         };
 		
-        CONFIG::as_only {
+        COMPILE::SWF {
             o.iBackgroundBead = SolidBackgroundBead;
             o.iBorderBead = SingleLineBorderBead;
         }
@@ -151,7 +151,7 @@ public class DataBindingExample extends Application
             border: [1, "solid", 0x000000],
             padding: 4
         };
-        CONFIG::as_only {
+        COMPILE::SWF {
             o.iBeadView = CSSButtonView;
         }
             
@@ -169,7 +169,7 @@ public class DataBindingExample extends Application
             padding: 4
         };
         
-        CONFIG::as_only {
+        COMPILE::SWF {
             viv["org.apache.flex.html::CheckBox"] =
             {
                 iBeadModel: ToggleButtonModel,
@@ -280,7 +280,7 @@ public class DataBindingExample extends Application
     
     private function makeDefinitionName(s:String):String
     {
-        CONFIG::js_only {
+        COMPILE::JS {
             s = s.replace("::", ".");
         }
         return s;

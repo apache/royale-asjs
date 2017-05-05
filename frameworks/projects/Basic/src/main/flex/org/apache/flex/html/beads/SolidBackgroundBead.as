@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+    import flash.display.Graphics;
     import flash.display.Sprite;
-	import flash.display.Graphics;
-	
-	import org.apache.flex.core.IBead;
+    
+    import org.apache.flex.core.IBead;
     import org.apache.flex.core.IBeadView;
     import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.core.IStrand;
+    import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.Event;
+    import org.apache.flex.events.IEventDispatcher;
 
     /**
      *  The SolidBackgroundBead class draws a solid filled background.
@@ -77,27 +77,41 @@ package org.apache.flex.html.beads
             IEventDispatcher(host).addEventListener("widthChanged", changeHandler);
 			IEventDispatcher(host).addEventListener("sizeChanged", changeHandler);
 			IEventDispatcher(host).addEventListener("initComplete", changeHandler);
+			IEventDispatcher(host).addEventListener("layoutComplete", changeHandler);
 			
+			setupStyle();
+			
+			var ilc:ILayoutChild = value as ILayoutChild;
+			if (ilc)
+			{
+				if (!isNaN(ilc.explicitWidth) && !isNaN(ilc.explicitHeight))
+				{
+					changeHandler(null);
+				}
+			}
+
+		}
+		
+		protected function setupStyle():void
+		{
 			var bgColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			if ((bgColor is String) && (bgColor == "transparent")) {
 				bgColor = null;
 				opacity = 0;
 			}
 			else if( bgColor != null ) {
-				backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
+				_backgroundColor = ValuesManager.valuesImpl.convertColor(bgColor);
 			}
 			
 			var bgAlpha:Object = ValuesManager.valuesImpl.getValue(host, "opacity");
 			if( bgAlpha != null ) {
-				opacity = Number(bgAlpha);
+				_opacity = Number(bgAlpha);
 			}
-            
-            var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
-            if( corner != null ) {
-                borderRadius = Number(corner);
-            }
-            
-            changeHandler(null);
+			
+			var corner:Object = ValuesManager.valuesImpl.getValue(host, "border-radius");
+			if( corner != null ) {
+				_borderRadius = Number(corner);
+			}
 		}
 		
 		private var _backgroundColor:uint;
@@ -175,9 +189,9 @@ package org.apache.flex.html.beads
                 changeHandler(null);
         }
         
-		private function changeHandler(event:Event):void
+		protected function changeHandler(event:Event):void
 		{
-            var g:Graphics = Sprite(host).graphics;
+            var g:Graphics = Sprite(host).graphics as Graphics;
             var w:Number = host.width;
             var h:Number = host.height;
 			

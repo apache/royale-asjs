@@ -21,6 +21,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.html.beads.DateChooserView;
 	import org.apache.flex.html.beads.models.DateChooserModel;
 	import org.apache.flex.html.supportClasses.DateChooserButton;
+    import org.apache.flex.html.supportClasses.DateChooserList;
 	
 	import org.apache.flex.core.IBeadController;
 	import org.apache.flex.core.IBeadModel;
@@ -68,21 +69,28 @@ package org.apache.flex.html.beads.controllers
 		{
 			_strand = value;
 			
-			var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
+            var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
-			var dayButtons:Array = view.dayButtons;
-			for(var i:int=0; i < dayButtons.length; i++) {
-				IEventDispatcher(dayButtons[i]).addEventListener("click", dayButtonClickHandler);
-			}
+            IEventDispatcher(view.dayList).addEventListener("change", listHandler);
 		}
 		
+        private function listHandler(event:Event):void
+        {
+            var list:DateChooserList = event.target as DateChooserList;
+            var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
+            model.selectedDate = list.selectedItem as Date;
+            IEventDispatcher(_strand).dispatchEvent( new Event("change") );
+        }
+
 		/**
 		 * @private
 		 */
-		private function prevMonthClickHandler(event:Event):void
+		private function prevMonthClickHandler(event:MouseEvent):void
 		{
+            event.preventDefault();
+            
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth - 1;
 			var year:Number  = model.displayedYear;
@@ -97,8 +105,10 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function nextMonthClickHandler(event:Event):void
+		private function nextMonthClickHandler(event:MouseEvent):void
 		{
+            event.preventDefault();
+            
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth + 1;
 			var year:Number  = model.displayedYear;
@@ -110,18 +120,5 @@ package org.apache.flex.html.beads.controllers
 			model.displayedYear = year;
 		}
 		
-		/**
-		 * @private
-		 */
-		private function dayButtonClickHandler(event:MouseEvent):void
-		{
-			var dateButton:DateChooserButton = event.target as DateChooserButton;
-			if (dateButton.dayOfMonth > 0) {
-				var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-				var newDate:Date = new Date(model.displayedYear,model.displayedMonth,dateButton.dayOfMonth);
-				model.selectedDate = newDate;
-				IEventDispatcher(_strand).dispatchEvent( new Event("change") );
-			}
-		}
 	}
 }

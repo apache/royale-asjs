@@ -51,6 +51,7 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
 	 *
+	 *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -221,6 +222,8 @@ package org.apache.flex.html
 		}
 	}
 
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
     COMPILE::JS
     public class RadioButton extends UIBase
     {
@@ -250,7 +253,7 @@ package org.apache.flex.html
             element = labelFor as WrappedHTMLElement;
 
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
 
             (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;

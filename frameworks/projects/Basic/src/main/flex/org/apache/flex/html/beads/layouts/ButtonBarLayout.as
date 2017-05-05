@@ -17,40 +17,31 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
-{	
+{
 	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.ILayoutChild;
+	import org.apache.flex.core.ILayoutView;
+	import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.beads.ButtonBarView;
-	
+	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.flex.html.supportClasses.UIItemRendererBase;
+
 	/**
-	 *  The ButtonBarLayout class bead sizes and positions the org.apache.flex.html.Button 
-	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons 
+	 *  The ButtonBarLayout class bead sizes and positions the button
+	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons
 	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ButtonBarLayout implements IBeadLayout
+	public class ButtonBarLayout extends HorizontalFlexLayout implements IBeadLayout
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -58,29 +49,16 @@ package org.apache.flex.html.beads.layouts
 		 */
 		public function ButtonBarLayout()
 		{
+			super();
 		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
+
+		private var _widthType:Number = ButtonBarModel.PIXEL_WIDTHS;
 		private var _buttonWidths:Array = null;
-		
+
 		/**
 		 *  An array of widths (Number), one per button. These values supersede the
 		 *  default of equally-sized buttons.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -94,50 +72,75 @@ package org.apache.flex.html.beads.layouts
 		{
 			_buttonWidths = value;
 		}
-		
+
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
 		 */
-		public function layout():Boolean
+		override public function layout():Boolean
 		{
-			var layoutParent:ILayoutHost = _strand.getBeadByType(ILayoutHost) as ILayoutHost;
-			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
-			var itemRendererParent:IItemRendererParent = contentView as IItemRendererParent;
-			var viewportModel:IViewportModel = (layoutParent as ButtonBarView).viewportModel;
-			
+			var contentView:ILayoutView = layoutView;
+
+			var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
+			if (model) {
+				buttonWidths = model.buttonWidths;
+				_widthType = model.widthType;
+			}
+
 			var n:int = contentView.numElements;
-			var realN:int = n;
-			
-			for (var j:int=0; j < n; j++)
-			{
-				var child:IUIBase = itemRendererParent.getElementAt(j) as IUIBase;
-				if (child == null || !child.visible) realN--;
-			}
-			
-			var xpos:Number = 0;
-			var useWidth:Number = contentView.width / realN;
-			var useHeight:Number = contentView.height;
-			
+			if (n <= 0) return false;
+
 			for (var i:int=0; i < n; i++)
-			{
-				var ir:ISelectableItemRenderer = itemRendererParent.getElementAt(i) as ISelectableItemRenderer;
-				if (ir == null || !UIBase(ir).visible) continue;
-				UIBase(ir).y = 0;
-				UIBase(ir).x = xpos;
-				if (!isNaN(useHeight) && useHeight > 0) {
-					UIBase(ir).height = useHeight;
-				}
+			{	
+				var ilc:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
+				if (ilc == null || !ilc.visible) continue;
+				if (!(ilc is IStyleableObject)) continue;
 				
-				if (buttonWidths) UIBase(ir).width = Number(buttonWidths[i]);
-				else if (!isNaN(useWidth) && useWidth > 0) {
-					UIBase(ir).width = useWidth;
+				COMPILE::SWF {
+					if (buttonWidths) {
+						var widthValue:* = buttonWidths[i];
+
+						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
+							if (widthValue != null) ilc.width = Number(widthValue);
+							IStyleableObject(ilc).style.flexGrow = 0;
+						}
+						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
+							if (widthValue != null) {
+								IStyleableObject(ilc).style.flexGrow = Number(widthValue);
+							}
+						}
+						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
+							if (widthValue != null) ilc.percentWidth = Number(widthValue);
+							IStyleableObject(ilc).style.flexGrow = 0;
+						}
+					} else {
+						IStyleableObject(ilc).style.flexGrow = 1;
+					}
 				}
-				xpos += UIBase(ir).width;
+
+				COMPILE::JS {
+					// otherwise let the flexbox layout handle matters on its own.
+					if (buttonWidths) {
+						var widthValue:* = buttonWidths[i];
+
+						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
+							if (widthValue != null) ilc.width = Number(widthValue);
+						}
+						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
+							if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);
+						}
+						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
+							if (widthValue != null) ilc.percentWidth = Number(widthValue);
+						}
+					} else {
+						ilc.element.style["flex-grow"] = "1";
+					}
+					
+					ilc.height = contentView.height;
+				}
 			}
-			
-			IEventDispatcher(_strand).dispatchEvent( new Event("layoutComplete") );
-			
-            return true;
+
+			// now let the horizontal layout take care of things.
+			return super.layout();
 		}
 	}
 }

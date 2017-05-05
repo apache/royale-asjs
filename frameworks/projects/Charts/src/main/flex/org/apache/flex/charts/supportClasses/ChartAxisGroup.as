@@ -62,7 +62,7 @@ package org.apache.flex.charts.supportClasses
 		{
 			COMPILE::SWF
 			{
-				$sprite.removeChildren(0);
+				removeChildren(0);
 			}
 			
 			COMPILE::JS

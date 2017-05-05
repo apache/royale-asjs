@@ -20,9 +20,26 @@ package org.apache.flex.net
 {
     public class HTTPUtils
     {
+        /**
+         *  HTTP utility methods.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
         public function HTTPUtils()
         {
         }
+
+        /**
+         *  Encode URL variables.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
 		public static function encodeUrlVariables(data:Object):String
         {
             if(!data)
@@ -37,7 +54,7 @@ package org.apache.flex.net
                 b.push("&");
             }
             if(b.length)
-                b.pop()
+                b.pop();
             return b.join("");
         }
 		

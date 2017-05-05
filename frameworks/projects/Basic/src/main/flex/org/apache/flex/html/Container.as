@@ -19,17 +19,18 @@
 package org.apache.flex.html
 {
 	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IUIBase;
-    COMPILE::JS
-    {
-        import org.apache.flex.core.WrappedHTMLElement;            
-    }
+	import org.apache.flex.core.IMXMLDocument;
+	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.utils.MXMLDataInterpreter;
 	
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
 	[DefaultProperty("mxmlContent")]
-    
+
+	
     /**
      *  The Container class implements a basic container for
      *  other controls and containers.  The position and size
@@ -58,6 +59,7 @@ package org.apache.flex.html
      *  control and not a Container because the Alert does not
      *  support an arbitrary set of children.
      *  
+     *  @toplevel
      *  @see org.apache.flex.html.beads.layout
      *  @see org.apache.flex.html.supportClasses.ScrollingViewport
      *  @langversion 3.0
@@ -65,7 +67,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */    
-	public class Container extends ContainerBase
+	public class Container extends ContainerBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -79,30 +81,79 @@ package org.apache.flex.html
 		{
 			super();
 		}
-
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            element = document.createElement('div') as WrappedHTMLElement;
-            
-            positioner = element;
-            
-            // absolute positioned children need a non-null
-            // position value in the parent.  It might
-            // get set to 'absolute' if the container is
-            // also absolutely positioned
-            positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-            
-            /*addEventListener('childrenAdded',
-            runLayoutHandler);
-            addEventListener('elementRemoved',
-            runLayoutHandler);*/
-            
-            return element;
-        }        
+		
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why is this here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will have already called it
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
+		/**
+		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public var mxmlContent:Array;
 	}
 }

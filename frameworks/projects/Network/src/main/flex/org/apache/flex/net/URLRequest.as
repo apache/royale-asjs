@@ -59,7 +59,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */	
-        public var contentType:String = "application/x-www-form-urlencoded";
+        public var contentType:String = HTTPConstants.FORM_URL_ENCODED;
 		
 		/**
 		 *   Controls the HTTP form submission method.
@@ -71,7 +71,15 @@ package org.apache.flex.net
 		 */	
 		public var method:String = HTTPConstants.GET;
 		private var _requestHeaders:Array;
-        
+
+		/**
+		 *   Set the URL request string.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function URLRequest(url:String = null)
         {
             super();
@@ -81,12 +89,28 @@ package org.apache.flex.net
             }
             this.requestHeaders = [];
         }
-        
+
+		/**
+		 *   Set the URL request headers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function get requestHeaders():Array
         {
             return _requestHeaders;
         }
-        
+
+		/**
+		 *   Get the URL request headers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function set requestHeaders(value:Array) : void
         {
 			_requestHeaders = value;

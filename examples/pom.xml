@@ -39,6 +39,7 @@
   </properties>
 
   <modules>
+    <module>express</module>
     <module>flexjs</module>
     <module>native</module>
 
@@ -70,19 +71,6 @@
           <artifactId>flexjs-maven-plugin</artifactId>
           <version>${flexjs.compiler.version}</version>
           <extensions>true</extensions>
-          <executions>
-            <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-            <execution>
-              <id>compile-javascript</id>
-              <phase>compile</phase>
-              <goals>
-                <goal>compile-app</goal>
-              </goals>
-              <configuration>
-                <outputJavaScript>true</outputJavaScript>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.jboss.errai</groupId>

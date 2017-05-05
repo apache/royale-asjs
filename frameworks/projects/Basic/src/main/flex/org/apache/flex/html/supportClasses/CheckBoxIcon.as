@@ -82,7 +82,7 @@ package org.apache.flex.html.supportClasses
 			element = input as WrappedHTMLElement;
 
 			positioner = element;
-			positioner.style.position = 'relative';
+			//positioner.style.position = 'relative';
 
 			(element as WrappedHTMLElement).flexjs_wrapper = this;
 

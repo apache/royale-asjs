@@ -71,8 +71,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/Graphics/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-sources>
     </include-sources>
     

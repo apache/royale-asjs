@@ -18,15 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.layouts
 {
-	import flash.display.DisplayObject;
 	
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IScrollBarModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.beads.IScrollBarView;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.utils.CSSContainerUtils;
 
     /**
@@ -82,27 +83,28 @@ package org.apache.flex.html.beads.layouts
                 sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
 					
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
-                    
-			var w:Number = DisplayObject(_strand).width + metrics.left + metrics.right;
-			var increment:DisplayObject = sbView.increment;
-			var decrement:DisplayObject = sbView.decrement;
-			var track:DisplayObject = sbView.track;
-			var thumb:DisplayObject = sbView.thumb;
+            
+            var host:UIBase = UIBase(_strand);
+			var w:Number = host.width + metrics.left + metrics.right;
+			var increment:Button = sbView.increment;
+			var decrement:Button = sbView.decrement;
+			var track:Button = sbView.track;
+			var thumb:Button = sbView.thumb;
 			
-			decrement.x = 0;
+			decrement.x = 1;
 			decrement.y = 0;
-			decrement.height = DisplayObject(_strand).height;
-			decrement.width = DisplayObject(_strand).height;
+			decrement.height = host.height - 2;
+			decrement.width = host.height;
 			
-			increment.height = DisplayObject(_strand).height;
-			increment.width = DisplayObject(_strand).height;
-			increment.x = w - increment.width - 1;
+			increment.height = host.height - 2;
+			increment.width = host.height;
+			increment.x = w - increment.width - 2;
 			increment.y = 0;
 
-			track.x = decrement.width;
+			track.x = decrement.width + 4;
 			track.y = 0;
-			track.height = DisplayObject(_strand).height;
-			track.width = increment.x - decrement.width;
+			track.height = host.height;
+			track.width = increment.x - decrement.width - 5;
             thumb.width = sbModel.pageSize / (sbModel.maximum - sbModel.minimum) * track.width;
 			if (track.width > thumb.width)
 			{

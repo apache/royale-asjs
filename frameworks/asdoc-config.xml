@@ -62,7 +62,7 @@
           <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Language/src/main/flex</path-element>
@@ -147,7 +147,7 @@
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/basic</uri>
-                <manifest>${frameworks_dir}/projects/HTML/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>${frameworks_dir}/projects/Basic/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/flexjs/html5</uri>
@@ -467,7 +467,7 @@
             <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org</path-element>
             <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
+            <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
             <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>

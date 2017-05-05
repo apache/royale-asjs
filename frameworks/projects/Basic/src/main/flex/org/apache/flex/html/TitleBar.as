@@ -41,12 +41,13 @@ package org.apache.flex.html
 	 *  org.apache.flex.core.IMeasurementBead: a bead that helps determine the size of the 
 	 *  org.apache.flex.html.TitleBar for layout.
 	 * 
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class TitleBar extends Container implements IChrome
+	public class TitleBar extends Group implements IChrome
 	{
 		/**
 		 *  constructor.
@@ -135,10 +136,7 @@ package org.apache.flex.html
             element = document.createElement('div') as WrappedHTMLElement;
             
             positioner = element;
-            positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
-            className = 'TitleBar';
             
             return element;
         }        

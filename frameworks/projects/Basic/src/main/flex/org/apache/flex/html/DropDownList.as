@@ -23,24 +23,25 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.html.beads.models.ArraySelectionModel;
     }
-    
+
     //--------------------------------------
     //  Events
     //--------------------------------------
-    
+
     /**
      *  Dispatched when the user selects an item.
-     *  
+     *
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
     [Event(name="change", type="org.apache.flex.events.Event")]
-    
+
     /**
      *  The DropDownList class implements the basic equivalent of
      *  the <code>&lt;select&gt;</code> tag in HTML.
@@ -48,23 +49,23 @@ package org.apache.flex.html
      *  choose from an array of strings.  More complex controls
      *  would display icons as well as strings, or colors instead
      *  of strings or just about anything.
-     * 
-     *  The default behavior only lets the user choose one and 
+     *
+     *  The default behavior only lets the user choose one and
      *  only one item.  More complex controls would allow
      *  mutiple selection by not dismissing the dropdown as soon
      *  as a selection is made.
-     * 
-     *  
+     *
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
-     */    
+     */
 	public class DropDownList extends Button
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -77,12 +78,12 @@ package org.apache.flex.html
                 model = new ArraySelectionModel();
             }
 		}
-		
+
         /**
          *  The data set to be displayed.  Usually a simple
          *  array of strings.  A more complex component
          *  would allow more complex data and data sets.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -108,14 +109,14 @@ package org.apache.flex.html
                 var n:int;
                 var opt:HTMLOptionElement;
                 var dd:HTMLSelectElement = element as HTMLSelectElement;
-                
+
                 model.dataProvider = value;
                 dp = dd.options;
                 n = dp.length;
                 for (i = 0; i < n; i++) {
                     dd.remove(0);
                 }
-                
+
                 var lf:String = labelField;
                 n = value.length;
                 for (i = 0; i < n; i++) {
@@ -129,11 +130,11 @@ package org.apache.flex.html
 
             }
         }
-        
+
         [Bindable("change")]
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -156,12 +157,12 @@ package org.apache.flex.html
                 (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
             }
         }
-        
+
 
         [Bindable("change")]
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedItem
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -184,7 +185,7 @@ package org.apache.flex.html
                 (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
             }
         }
-                        
+
         /**
          *  The name of field within the data used for display. Each item of the
          *  data should have a property with this name.
@@ -202,7 +203,7 @@ package org.apache.flex.html
         {
             ISelectionModel(model).labelField = value;
         }
-        
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLSelectElement
@@ -214,15 +215,15 @@ package org.apache.flex.html
             (element as HTMLSelectElement).size = 1;
             goog.events.listen(element, 'change',
                 changeHandler);
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
-            
+            //positioner.style.position = 'relative';
+
             element.flexjs_wrapper = this;
-            
+
             return element;
-        } 
-        
+        }
+
         /**
          * @flexjsignorecoercion HTMLSelectElement
          */

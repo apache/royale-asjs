@@ -52,6 +52,28 @@
   </build>
 
   <dependencies>
+    <!-- Already added in parent -->
+    <!--dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency-->
+    
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.8.0-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
     <!-- Needed for Flash compilation -->
     <dependency>
       <groupId>com.adobe.flash.framework</groupId>

@@ -42,6 +42,7 @@
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
     <component id="DropDownList" class="org.apache.flex.html.DropDownList"  lookupOnly="true" />
+    <component id="Group" class="org.apache.flex.html.Group" lookupOnly="true" />
     <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
     <component id="MultilineLabel" class="org.apache.flex.html.MultilineLabel"  lookupOnly="true" />
@@ -60,7 +61,9 @@
     <component id="ToolTip" class="org.apache.flex.html.ToolTip"  lookupOnly="true" />
     <component id="BasicLayout" class="org.apache.flex.html.beads.layouts.BasicLayout"  lookupOnly="true" />
     <component id="VerticalLayout" class="org.apache.flex.html.beads.layouts.VerticalLayout"  lookupOnly="true" />
+    <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.flex.html.beads.layouts.VerticalLayoutWithPaddingAndGap"  lookupOnly="true" />
     <component id="HorizontalLayout" class="org.apache.flex.html.beads.layouts.HorizontalLayout"  lookupOnly="true" />
+    <component id="HorizontalLayoutWithPaddingAndGap" class="org.apache.flex.html.beads.layouts.HorizontalLayoutWithPaddingAndGap"  lookupOnly="true" />
     <component id="TileLayout" class="org.apache.flex.html.beads.layouts.TileLayout"  lookupOnly="true" />
     <component id="ListView" class="org.apache.flex.html.beads.ListView" lookupOnly="true" />
     <component id="MultilineTextFieldView" class="org.apache.flex.html.beads.MultilineTextFieldView" lookupOnly="true" />

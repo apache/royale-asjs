@@ -23,24 +23,23 @@ package org.apache.flex.html
 
     COMPILE::JS
     {
-        import org.apache.flex.html.beads.SliderTrackView;
-        import org.apache.flex.html.beads.SliderThumbView;
         import org.apache.flex.html.beads.controllers.SliderMouseController;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
     }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]
-	
+
 	/**
 	 *  The Slider class is a component that displays a range of values using a
 	 *  track and a thumb control. The Slider uses the following bead types:
-	 * 
+	 *
 	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
 	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
 	 *  org.apache.flex.core.IBeadController: the bead that handles input.
 	 *  org.apache.flex.core.IThumbValue: the bead responsible for the display of the thumb control.
 	 *  org.apache.flex.core.ITrackView: the bead responsible for the display of the track.
-	 *  
+	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -59,16 +58,16 @@ package org.apache.flex.html
 		public function Slider()
 		{
 			super();
-			
+
 			className = "Slider";
-			
+
 			IRangeModel(model).value = 0;
 			IRangeModel(model).minimum = 0;
 			IRangeModel(model).maximum = 100;
 			IRangeModel(model).stepSize = 1;
 			IRangeModel(model).snapInterval = 1;
 		}
-		
+
 		/**
 		 *  The current value of the Slider.
 		 *
@@ -85,7 +84,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).value = newValue;
 		}
-		
+
 		/**
 		 *  The minimum value of the Slider.
 		 *
@@ -102,7 +101,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).minimum = value;
 		}
-		
+
 		/**
 		 *  The maximum value of the Slider.
 		 *
@@ -119,7 +118,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).maximum = value;
 		}
-		
+
 		/**
 		 *  The modulus of the Slider value. The thumb will be positioned
 		 *  at the nearest multiple of this value.
@@ -137,7 +136,7 @@ package org.apache.flex.html
 		{
 			IRangeModel(model).snapInterval = value;
 		}
-        
+
 		/**
 		 *  The amount to move the thumb when the track is selected. This value is
 		 *  adjusted to fit the nearest snapInterval.
@@ -156,15 +155,6 @@ package org.apache.flex.html
             IRangeModel(model).stepSize = value;
         }
 
-        COMPILE::JS
-        private var track:SliderTrackView;
-        
-        COMPILE::JS
-        private var thumb:SliderThumbView;
-        
-        COMPILE::JS
-        private var controller:SliderMouseController;
-        
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
@@ -172,28 +162,22 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('div') as WrappedHTMLElement;
-            element.style.width = '200px';
+
+			// just to give it some default values
+            element.style.width = '100px';
             element.style.height = '30px';
-            
-            track = new SliderTrackView();
-            addBead(track);
-            
-            thumb = new SliderThumbView();
-            addBead(thumb);
-            
-            controller = new SliderMouseController();
-            addBead(controller);
-            
+
             positioner = element;
-            positioner.style.position = 'relative';
+            //positioner.style.position = 'relative';
             element.flexjs_wrapper = this;
-            
+
             className = 'Slider';
-            
+
             return element;
-        } 
-        
+        }
+
         /**
+		 * @private
          */
         COMPILE::JS
         public function snap(value:Number):Number
@@ -211,23 +195,5 @@ package org.apache.flex.html
                 return n + si;
             return n;
         }
-        
-        
-        /**
-         * @param {number} value The value used to calculate new position of the thumb.
-         * @return {void} Moves the thumb to the corresponding position.
-         */
-        COMPILE::JS
-        public function setThumbFromValue(value:Number):void
-        {
-            var min:Number = model.minimum;
-            var max:Number = model.maximum;
-            var p:Number = (value - min) / (max - min);
-            var xloc:Number = p * (parseInt(track.element.style.width, 10) -
-                parseInt(thumb.element.style.width, 10));
-            
-            thumb.element.style.left = "" + xloc + 'px';
-        }        
-
     }
 }

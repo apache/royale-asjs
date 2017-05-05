@@ -37,11 +37,12 @@ package
 		import org.apache.flex.mdl.materialIcons.MaterialIconType; MaterialIconType;
 		import org.apache.flex.mdl.beads.UpgradeElement; UpgradeElement;
 		import org.apache.flex.mdl.beads.UpgradeChildren; UpgradeChildren;
-		
+		import org.apache.flex.mdl.beads.controllers.DropDownListController; DropDownListController;
+
 		COMPILE::SWF
 		{
-			import org.apache.flex.mdl.beads.SliderThumbView; SliderThumbView;
-			import org.apache.flex.mdl.beads.SliderTrackView; SliderTrackView;
+			import org.apache.flex.mdl.beads.views.SliderThumbView; org.apache.flex.mdl.beads.views.SliderThumbView;
+			import org.apache.flex.mdl.beads.views.SliderTrackView; org.apache.flex.mdl.beads.views.SliderTrackView;
 		}
 	}
 

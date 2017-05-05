@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-    COMPILE::SWF
-    {
-        import flash.display.DisplayObject;            
-    }
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IUIBase;
 	
 	/**
 	 *  The ISliderView interface provides the protocol for any bead that
@@ -43,8 +40,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        COMPILE::SWF
-		function get track():DisplayObject;
+		function get track():IUIBase;
 		
 		/**
 		 *  The component used for the thumb button of the org.apache.flex.html.Slider.
@@ -54,7 +50,6 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-        COMPILE::SWF
-		function get thumb():DisplayObject;
+		function get thumb():IUIBase;
 	}
 }

@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.ContainerBase;
-
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;            
@@ -35,7 +33,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Div extends ContainerBase
+	public class Div extends Group
 	{
 		/**
 		 *  constructor.
@@ -82,19 +80,5 @@ package org.apache.flex.html
 		
         COMPILE::JS
         protected var textNode:Text;
-		
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			element = document.createElement('div') as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
-        }
     }
 }

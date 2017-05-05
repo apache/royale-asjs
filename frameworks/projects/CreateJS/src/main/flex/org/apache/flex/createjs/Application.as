@@ -90,6 +90,7 @@ package org.apache.flex.createjs
 	 *  @productversion FlexJS 0.0
 	 */
 	[Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    
 	/**
 	 *  The Application class is the main class and entry point for a FlexJS
 	 *  application.  This Application class is different than the
@@ -116,6 +117,56 @@ package org.apache.flex.createjs
 		// does nothing different for SWF side
 	}
 	
+    /**
+     *  Dispatched at startup. Attributes and sub-instances of
+     *  the MXML document have been created and assigned.
+     *  The component lifecycle is different
+     *  than the Flex SDK.  There is no creationComplete event.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="initialize", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Dispatched at startup before the instances get created.
+     *  Beads can call preventDefault and defer initialization.
+     *  This event will be dispatched on every frame until no
+     *  listeners call preventDefault(), then the initialize()
+     *  method will be called.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="preinitialize", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Dispatched at startup after the initial view has been
+     *  put on the display list. This event is sent before
+     *  applicationComplete is dispatched.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="viewChanged", type="org.apache.flex.events.Event")]
+    
+    /**
+     *  Dispatched at startup after the initial view has been
+     *  put on the display list.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    
 	COMPILE::JS
 	public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
 	{

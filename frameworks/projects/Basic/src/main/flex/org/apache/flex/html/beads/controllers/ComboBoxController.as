@@ -18,87 +18,63 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.controllers
 {
-	import flash.display.DisplayObject;
-	
 	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.flex.core.IComboBoxModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.html.TextInput;
+	import org.apache.flex.html.List;
 	import org.apache.flex.html.beads.IComboBoxView;
-
-	/**
-	 *  The ComboBoxController class bead handles mouse events on the elements of
-	 *  the org.apache.flex.html.ComboBox. This includes selecting the 
-	 *  button to display the selection list pop-up as well as selecting an item from the 
-	 *  pop-up list.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
-	 */
+	
 	public class ComboBoxController implements IBeadController
 	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
 		public function ComboBoxController()
 		{
 		}
 		
 		private var _strand:IStrand;
 		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
+		private var viewBead:IComboBoxView;
+		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener(MouseEvent.CLICK, clickHandler);
+			
+			viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			if (viewBead) {
+				finishSetup(null);
+			} else {
+				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
+			}
 		}
 		
-		/**
-		 * @private
-		 */
-        private function clickHandler(event:MouseEvent):void
-        {
-            var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
-            viewBead.popUpVisible = true;
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
-            popUpModel.dataProvider = selectionModel.dataProvider;
-            popUpModel.selectedIndex = selectionModel.selectedIndex;
-			DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
-			DisplayObject(viewBead.popUp).height = 200;
-			DisplayObject(viewBead.popUp).x = DisplayObject(_strand).x;
-			DisplayObject(viewBead.popUp).y = DisplayObject(_strand).y;
-            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
-        }
-        
-		/**
-		 * @private
-		 */
-        private function changeHandler(event:Event):void
-        {
-            var viewBead:IComboBoxView = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
-            viewBead.popUpVisible = false;
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            var popUpModel:ISelectionModel = viewBead.popUp.getBeadByType(ISelectionModel) as ISelectionModel;
-            selectionModel.selectedIndex = popUpModel.selectedIndex;
+		private function finishSetup(event:Event):void
+		{
+			if (viewBead == null) {
+				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+			}
+			
+			IEventDispatcher(viewBead.popupButton).addEventListener("click", handleButtonClick);
+		}
+		
+		private function handleButtonClick(event:MouseEvent):void
+		{			
+			viewBead.popUpVisible = !viewBead.popUpVisible;
+			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
+		}
+		
+		private function handleListChange(event:Event):void
+		{
+			var list:List = viewBead.popUp as List;
+			var input:TextInput = viewBead.textInputField as TextInput;
+			input.text = list.selectedItem as String;
+			
+			viewBead.popUpVisible = false;
+			
 			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
-        }
-	
+		}
 	}
 }

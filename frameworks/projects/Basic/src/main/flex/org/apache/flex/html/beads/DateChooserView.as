@@ -23,24 +23,31 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.SimpleCSSStyles;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.Container;
+	import org.apache.flex.html.Group;
+	import org.apache.flex.html.List;
 	import org.apache.flex.html.TextButton;
+	import org.apache.flex.html.beads.GroupView;
+	import org.apache.flex.html.beads.layouts.HorizontalLayout;
 	import org.apache.flex.html.beads.layouts.TileLayout;
 	import org.apache.flex.html.beads.models.DateChooserModel;
-	import org.apache.flex.html.supportClasses.DateChooserButton;
 	import org.apache.flex.html.supportClasses.DateHeaderButton;
+	import org.apache.flex.html.supportClasses.DateChooserHeader;
+	import org.apache.flex.html.supportClasses.DateChooserList;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class
 	 * creates the elements for the DateChooser: the buttons to move between
 	 * months, the labels for the days of the week, and the buttons for each day
 	 * of the month.
+	 *  @viewbead	 
 	 */
-	public class DateChooserView extends BeadViewBase implements IBeadView
+	public class DateChooserView extends GroupView implements IBeadView
 	{
 		/**
 		 *  constructor
@@ -52,45 +59,33 @@ package org.apache.flex.html.beads
 		 */
 		public function DateChooserView()
 		{
+			super();
 		}
 		
-		/**
-		 *  @copy org.apache.flex.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_strand = value;
-
-			// make sure there is a model.
+			
 			model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			if (model == null) {
 				model = new (ValuesManager.valuesImpl.getValue(_strand,"iBeadModel")) as DateChooserModel;
 			}
 			model.addEventListener("displayedMonthChanged",handleModelChange);
 			model.addEventListener("displayedYearChanged",handleModelChange);
-
-			var host:UIBase = value as UIBase;
-			host.addEventListener("widthChanged", handleSizeChange);
-			host.addEventListener("heightChanged", handleSizeChange);
-
+			
 			createChildren();
-			layoutContents();
+			updateDisplay();
 		}
-
+		
+		private var model:DateChooserModel;
+		
 		private var _prevMonthButton:DateHeaderButton;
 		private var _nextMonthButton:DateHeaderButton;
-		private var _dayButtons:Array;
 		private var monthLabel:DateHeaderButton;
-		private var dayContainer:Container;
-
-		private var model:DateChooserModel;
-
+		private var monthButtonsContainer:Group;
+		private var dayNamesContainer:DateChooserHeader;
+		private var daysContainer:DateChooserList;
+		
 		/**
 		 *  The button that causes the previous month to be displayed by the DateChooser.
 		 *
@@ -103,7 +98,7 @@ package org.apache.flex.html.beads
 		{
 			return _prevMonthButton;
 		}
-
+		
 		/**
 		 *  The button that causes the next month to be displayed by the DateChooser.
 		 *
@@ -116,213 +111,136 @@ package org.apache.flex.html.beads
 		{
 			return _nextMonthButton;
 		}
-
-		/**
-		 * The array of DateChooserButton instances that represent each day of the month.
-		 */
-		public function get dayButtons():Array
+		
+		public function get dayList():List
 		{
-			return _dayButtons;
+			return daysContainer;
 		}
-
-		private function handleSizeChange(event:Event):void
-		{
-			layoutContents();
-		}
-
-		private function layoutContents():void
-		{
-			var sw:Number = UIBase(_strand).width;
-			var sh:Number = UIBase(_strand).height;
-
-			_prevMonthButton.x = 0;
-			_prevMonthButton.y = 0;
-
-			_nextMonthButton.x = sw - _nextMonthButton.width;
-			_nextMonthButton.y = 0;
-
-			monthLabel.x = (sw - monthLabel.width)/2;
-			monthLabel.y = 0;
-
-			dayContainer.x = 0;
-			dayContainer.y = monthLabel.y + monthLabel.height + 5;
-			dayContainer.width = sw;
-			dayContainer.height = sh - (monthLabel.height+5);
-			
-			COMPILE::SWF {
-				displayBackgroundAndBorder(_strand as UIBase);
-			}
-
-			IEventDispatcher(_strand).dispatchEvent( new Event("layoutNeeded") );
-			IEventDispatcher(dayContainer).dispatchEvent( new Event("layoutNeeded") );
-		}
-
+		
+		private const controlHeight:int = 26;
+		private const commonButtonWidth:int = 40;
+		
 		/**
 		 * @private
 		 */
 		private function createChildren():void
 		{
+			// HEADER BUTTONS
+			
+			monthButtonsContainer = new Group();
+			monthButtonsContainer.height = controlHeight;
+			monthButtonsContainer.id = "dateChooserMonthButtons";
+			monthButtonsContainer.className = "DateChooserMonthButtons";
+			monthButtonsContainer.style = new SimpleCSSStyles();
+			monthButtonsContainer.style.flexGrow = 0;
+			COMPILE::JS {
+				monthButtonsContainer.element.style["flex-grow"] = "0";
+			}
+			
 			_prevMonthButton = new DateHeaderButton();
-			_prevMonthButton.width = 40;
-			_prevMonthButton.height = 20;
+			_prevMonthButton.width = commonButtonWidth;
 			_prevMonthButton.text = "<";
-			UIBase(_strand).addElement(_prevMonthButton);
-
-			_nextMonthButton = new DateHeaderButton();
-			_nextMonthButton.width = 40;
-			_nextMonthButton.height = 20;
-			_nextMonthButton.text = ">";
-			UIBase(_strand).addElement(_nextMonthButton);
-
+			if (_prevMonthButton.style == null) {
+				_prevMonthButton.style = new SimpleCSSStyles();
+			}
+			_prevMonthButton.style.flexGrow = 0;
+			COMPILE::JS {
+				_prevMonthButton.element.style["flex-grow"] = "0";
+			}
+			monthButtonsContainer.addElement(_prevMonthButton);
+			
 			monthLabel = new DateHeaderButton();
 			monthLabel.text = "Month Here";
-			monthLabel.width = 100;
-			monthLabel.height = 20;
-			UIBase(_strand).addElement(monthLabel);
-
-			dayContainer = new Container();
-			var tileLayout:TileLayout = new TileLayout();
-			dayContainer.addBead(tileLayout);
-            UIBase(_strand).addElement(dayContainer, false);
-
-			tileLayout.numColumns = 7;
-
-			// the calendar has 7 columns with 6 rows, the first row are the day names
-			for(var i:int=0; i < 7; i++) {
-				var dayName:DateChooserButton = new DateChooserButton();
-				dayName.text = model.dayNames[i];
-				dayName.dayOfMonth = 0;
-				dayContainer.addElement(dayName, false);
+			if (monthLabel.style == null) {
+				monthLabel.style = new SimpleCSSStyles();
 			}
-
-			_dayButtons = new Array();
-
-			for(i=0; i < 42; i++) {
-				var date:DateChooserButton = new DateChooserButton();
-				date.text = String(i+1);
-				dayContainer.addElement(date, false);
-				dayButtons.push(date);
+			monthLabel.style.flexGrow = 1;
+			COMPILE::JS {
+				monthLabel.element.style["flex-grow"] = "1";
 			}
-
-			IEventDispatcher(dayContainer).dispatchEvent( new Event("itemsCreated") );
-
-			updateCalendar();
-		}
-
-		/**
-		 * @private
-		 */
-		private function updateCalendar():void
-		{
-			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
-				String(model.displayedYear);
-
-			var firstDay:Date = new Date(model.displayedYear,model.displayedMonth,1);
-
-			// blank out the labels for the first firstDay.day-1 entries.
-			for(var i:int=0; i < firstDay.getDay(); i++) {
-				var dateButton:DateChooserButton = dayButtons[i] as DateChooserButton;
-				dateButton.dayOfMonth = -1;
-				dateButton.text = "";
+			monthButtonsContainer.addElement(monthLabel);
+			
+			_nextMonthButton = new DateHeaderButton();
+			_nextMonthButton.width = commonButtonWidth;
+			_nextMonthButton.text = ">";
+			if (_nextMonthButton.style == null) {
+				_nextMonthButton.style = new SimpleCSSStyles();
 			}
-
-			// flag today
-			var today:Date = new Date();
-
-			// renumber to the last day of the month
-			var dayNumber:int = 1;
-			var numDays:Number = numberOfDaysInMonth(model.displayedMonth, model.displayedYear);
-
-			for(; i < dayButtons.length && dayNumber <= numDays; i++) {
-				dateButton = dayButtons[i] as DateChooserButton;
-				dateButton.dayOfMonth = dayNumber;
-				dateButton.text = String(dayNumber++);
-
-				if (model.displayedMonth == today.getMonth() &&
-				    model.displayedYear == today.getFullYear() &&
-				    (dayNumber-1) == today.getDate()) {
-				    dateButton.id = "todayDateChooserButton";
-				} else {
-					dateButton.id = "";
-				}
+			COMPILE::JS {
+				_nextMonthButton.element.style["flex-grow"] = "0";
 			}
-
-			// blank out the rest
-			for(; i < dayButtons.length; i++) {
-				dateButton = dayButtons[i] as DateChooserButton;
-				dateButton.dayOfMonth = -1;
-				dateButton.text = "";
+			_nextMonthButton.style.flexGrow = 0;
+			monthButtonsContainer.addElement(_nextMonthButton);
+			
+			UIBase(_strand).addElement(monthButtonsContainer, false);
+			
+			// DAY NAMES
+			
+			dayNamesContainer = new DateChooserHeader();
+			dayNamesContainer.id = "dateChooserDayNames";
+			dayNamesContainer.className = "DateChooserHeader";
+			dayNamesContainer.height = controlHeight;
+			dayNamesContainer.style = new SimpleCSSStyles();
+			dayNamesContainer.style.flexGrow = 0;
+			COMPILE::JS {
+				dayNamesContainer.element.style["flex-grow"] = "0";
+				dayNamesContainer.element.style["align-items"] = "center";
 			}
-		}
-
-		/**
-		 * @private
-		 */
-		private function numberOfDaysInMonth(month:Number, year:Number):Number
-		{
-			var n:int;
-
-			if (month == 1) // Feb
-			{
-				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year
-					n = 29;
-				else
-					n = 28;
+			COMPILE::SWF {
+				dayNamesContainer.percentWidth = 100;
 			}
-
-			else if (month == 3 || month == 5 || month == 8 || month == 10)
-				n = 30;
-
-			else
-				n = 31;
-
-			return n;
-		}
-
-		/**
-		 * @private
-		 */
-		private function handleModelChange(event:Event):void
-		{
-			updateCalendar();
+			UIBase(_strand).addElement(dayNamesContainer, false);
+			
+			// DAYS
+			
+			daysContainer = new DateChooserList();
+			daysContainer.className = "DateChooserList";
+			daysContainer.id = "dateChooserList";
+			daysContainer.style = new SimpleCSSStyles();
+			daysContainer.style.flexGrow = 1;
+			COMPILE::JS {
+				daysContainer.element.style["flex-grow"] = "1";
+			}
+			COMPILE::SWF {
+				daysContainer.percentWidth = 100;
+			}
+			UIBase(_strand).addElement(daysContainer, false);
+			
+			
+			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
+			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 		
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
-		protected function displayBackgroundAndBorder(host:UIBase) : void
+		private function updateDisplay():void
 		{
-			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
-			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
-			if (backgroundColor != null || backgroundImage != null)
-			{
-				if (host.getBeadByType(IBackgroundBead) == null)
-					var c:Class = ValuesManager.valuesImpl.getValue(host, "iBackgroundBead");
-				if (c) {
-					host.addBead( new c() as IBead );
-				}
-			}
+			monthLabel.text = model.monthNames[model.displayedMonth] + " " +
+				String(model.displayedYear);
 			
-			var borderStyle:String;
-			var borderStyles:Object = ValuesManager.valuesImpl.getValue(host, "border");
-			if (borderStyles is Array)
-			{
-				borderStyle = borderStyles[1];
-			}
-			if (borderStyle == null)
-			{
-				borderStyle = ValuesManager.valuesImpl.getValue(host, "border-style") as String;
-			}
-			if (borderStyle != null && borderStyle != "none")
-			{
-				if (host.getBeadByType(IBorderBead) == null) {
-					c = ValuesManager.valuesImpl.getValue(host, "iBorderBead");
-					if (c) {
-						host.addBead( new c() as IBead );
-					}
-				}
-			}
+			dayNamesContainer.dataProvider = model.dayNames;
+			
+			daysContainer.dataProvider = model.days;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function selectionChangeHandler(event:Event):void
+		{
+			updateDisplay();
+			
+			var index:Number = model.getIndexForSelectedDate();
+			daysContainer.selectedIndex = index;
+		}
+		
+		/**
+		 * @private
+		 */
+		private function handleModelChange(event:Event):void
+		{
+			updateDisplay();
 		}
 	}
 }

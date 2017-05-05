@@ -89,6 +89,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    
     /**
      *  The Application class is the main class and entry point for a FlexJS
      *  application.  This Application class is different than the
@@ -103,7 +104,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
     {
         /**
          *  Constructor.
@@ -128,6 +129,11 @@ package org.apache.flex.core
 
                 loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
             }
+			COMPILE::JS {
+				element = document.getElementsByTagName('body')[0];
+				element.flexjs_wrapper = this;
+				element.className = 'Application';			
+			}
         }
 
         COMPILE::SWF
@@ -589,10 +595,6 @@ package org.apache.flex.core
 		COMPILE::JS
 		public function start():void
 		{
-			element = document.getElementsByTagName('body')[0];
-			element.flexjs_wrapper = this;
-			element.className = 'Application';
-			
 			if (model is IBead) addBead(model as IBead);
 			if (controller is IBead) addBead(controller as IBead);
 			
@@ -656,5 +658,22 @@ package org.apache.flex.core
         {
             return this;
         }
+        
+        COMPILE::SWF
+        override public function set width(value:Number):void
+        {
+            // just eat this.  
+            // The stageWidth will be set by SWF metadata. 
+            // Setting this directly doesn't do anything
+        }
+        
+        COMPILE::SWF
+        override public function set height(value:Number):void
+        {
+            // just eat this.  
+            // The stageWidth will be set by SWF metadata. 
+            // Setting this directly doesn't do anything
+        }
+
     }
 }

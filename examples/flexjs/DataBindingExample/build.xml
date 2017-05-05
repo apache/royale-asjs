@@ -31,7 +31,7 @@
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">

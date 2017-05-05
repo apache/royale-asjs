@@ -48,6 +48,7 @@
             </namespace>
           </namespaces>
           <includeSources>true</includeSources>
+          <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>
@@ -65,7 +66,7 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -78,7 +79,7 @@
       <artifactId>Language</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 

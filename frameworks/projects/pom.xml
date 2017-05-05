@@ -37,6 +37,7 @@
     <module>Charts</module>
     <module>Collections</module>
     <module>Core</module>
+    <module>Basic</module>
     <module>CreateJS</module>
     <module>DragDrop</module>
     <module>Effects</module>
@@ -46,7 +47,6 @@
     <module>FontAwesome</module>
     <module>GoogleMaps</module>
     <module>Graphics</module>
-    <!--<module>Basic</module>-->
     <module>HTML</module>
     <module>HTML5</module>
     <module>JQuery</module>

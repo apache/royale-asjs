@@ -118,7 +118,7 @@ package org.apache.flex.html.beads.controllers
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
 		
-		protected function handleItemRemoved(event:ItemAddedEvent):void
+		protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
