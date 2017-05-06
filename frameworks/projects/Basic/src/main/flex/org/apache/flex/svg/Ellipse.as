@@ -24,7 +24,7 @@ package org.apache.flex.svg
     COMPILE::SWF
     {
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
     COMPILE::JS
     {
@@ -48,12 +48,12 @@ package org.apache.flex.svg
 			this.rx = rx;
 			this.ry = ry;
 		}
-		
+
 		private var _rx:Number;
 
 		/**
 		 * The horizontal radius of the ellipse.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
@@ -73,7 +73,7 @@ package org.apache.flex.svg
 
 		/**
 		 * The vertical radius of the ellipse.
-		 * 
+		 *
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
@@ -108,10 +108,10 @@ package org.apache.flex.svg
         {
             _ry = value/2;
         }
-        
+
         COMPILE::JS
         private var _ellipse:WrappedHTMLElement;
-        
+
         /**
          *  Draw the ellipse.
          *  @param xp The x position of the top-left corner of the bounding box of the ellipse.
@@ -132,7 +132,7 @@ package org.apache.flex.svg
                 applyStroke();
                 beginFill(new Rectangle(xp, yp, width, height), new Point(xp,yp));
                 graphics.drawEllipse(xp,yp,width,height);
-                endFill();                    
+                endFill();
             }
             COMPILE::JS
             {
@@ -155,12 +155,13 @@ package org.apache.flex.svg
                 }
                 _ellipse.setAttribute('rx', rx);
                 _ellipse.setAttribute('ry', ry);
-                
-                resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
+
+                //resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
+                resize(x, y, getBBox(_ellipse));
 
             }
         }
-        
+
         override protected function drawImpl():void
         {
             drawEllipse(0, 0);
@@ -170,6 +171,6 @@ package org.apache.flex.svg
 		{
 			drawImpl();
 		}
-        
+
     }
 }

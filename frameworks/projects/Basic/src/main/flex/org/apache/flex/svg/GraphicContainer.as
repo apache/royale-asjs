@@ -13,7 +13,7 @@
  */
 package org.apache.flex.svg
 {
-    import org.apache.flex.core.ContainerBase;
+    import org.apache.flex.core.GroupBase;
     import org.apache.flex.core.IChild;
     import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.core.ITransformHost;
@@ -27,7 +27,7 @@ package org.apache.flex.svg
 	[DefaultProperty("mxmlContent")]
 
 	COMPILE::SWF
-    public class GraphicContainer extends ContainerBase implements ITransformHost
+    public class GraphicContainer extends GroupBase implements ITransformHost
     {
         public function GraphicContainer()
         {
@@ -37,9 +37,9 @@ package org.apache.flex.svg
     }
 
 	COMPILE::JS
-	public class GraphicContainer extends ContainerBase implements ITransformHost
+	public class GraphicContainer extends GroupBase implements ITransformHost
 	{
-		private var graphicGroup:ContainerBase;
+		private var graphicGroup:GroupBase;
 
 		public function GraphicContainer()
 		{
@@ -182,9 +182,9 @@ package org.apache.flex.svg
 	}
 }
 
-import org.apache.flex.core.ContainerBase;
+import org.apache.flex.core.GroupBase;
 
-class GraphicGroup extends ContainerBase
+class GraphicGroup extends GroupBase
 {
 	/**
 	 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
