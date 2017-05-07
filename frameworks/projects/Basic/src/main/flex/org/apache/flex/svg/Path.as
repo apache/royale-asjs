@@ -14,6 +14,7 @@
 
 package org.apache.flex.svg
 {
+    import org.apache.flex.graphics.IDrawable;
     import org.apache.flex.graphics.IPath;
     import org.apache.flex.graphics.PathBuilder;
 
@@ -30,7 +31,7 @@ package org.apache.flex.svg
     }
 
 
-    public class Path extends GraphicShape implements IPath
+    public class Path extends GraphicShape implements IPath, IDrawable
     {
 
         private var _data:String;
@@ -45,7 +46,7 @@ package org.apache.flex.svg
             _data = value;
             _pathCommands = null;
         }
-        
+
         private var _pathCommands:PathBuilder;
 
         public function get pathCommands():PathBuilder
@@ -59,7 +60,7 @@ package org.apache.flex.svg
             _data = _pathCommands.getPathString();
         }
 
-        
+
         COMPILE::JS
         private var _path:WrappedHTMLElement;
 
@@ -120,14 +121,20 @@ package org.apache.flex.svg
                 _path.setAttribute('style', style);
                 _path.setAttribute('d', data);
 
-                resize(x, y, _path['getBBox']());
+                //resize(x, y, _path['getBBox']());
+                resize(x, y, getBBox(_path));
 
             }
         }
 
-        override protected function draw():void
+        override protected function drawImpl():void
         {
             drawStringPath(0, 0, data);
         }
+
+		public function draw():void
+		{
+			drawImpl();
+		}
     }
 }

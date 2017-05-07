@@ -15,18 +15,20 @@
 package org.apache.flex.svg
 {
 	import org.apache.flex.graphics.ICircle;
+    import org.apache.flex.graphics.IDrawable;
 
     COMPILE::SWF
     {
+        import flash.display.Graphics;
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
-    public class Circle extends GraphicShape implements ICircle
+    public class Circle extends GraphicShape implements ICircle, IDrawable
     {
 		/**
 		 *  constructor.
@@ -54,7 +56,7 @@ package org.apache.flex.svg
         {
             _radius = value;
         }
-        
+
         COMPILE::JS
         private var _circle:WrappedHTMLElement;
 
@@ -78,10 +80,10 @@ package org.apache.flex.svg
                 graphics.clear();
                 applyStroke();
                 beginFill(new Rectangle(cx,cy,radius*2, radius*2),new Point(cx-radius,cy-radius));
-                graphics.drawCircle(cx,cy,radius);
+                graphics.drawCircle(cx+radius,cy+radius,radius);
                 endFill();
             }
-            COMPILE::JS                
+            COMPILE::JS
             {
                 var style:String = getStyleStr();
 
@@ -101,18 +103,24 @@ package org.apache.flex.svg
                     _circle.setAttribute('cx', radius);
                     _circle.setAttribute('cy', radius);
                 }
-                
+
                 _circle.setAttribute('r', radius);
-                
-                resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+
+                //resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+                resize(x-radius, y-radius, getBBox(_circle));
 
             }
         }
-        
-        override protected function draw():void
+
+        override protected function drawImpl():void
         {
             drawCircle(0, 0, radius);
         }
-        
+
+		public function draw():void
+		{
+			drawImpl();
+		}
+
     }
 }

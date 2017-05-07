@@ -144,12 +144,13 @@ package org.apache.flex.svg
                 _textElem.setAttribute('y', yt);
 				var textNode:Text = document.createTextNode(value) as Text;
 				_textElem.appendChild(textNode as Node);
-                
-                resize(x, y, (_textElem as SVGLocatable).getBBox());
+
+                //resize(x, y, (_textElem as SVGLocatable).getBBox());
+                resize(x, y, getBBox(_textElem));
 
             }
 		}
-        
+
         override protected function drawImpl():void
         {
             drawText(text,x,y);

@@ -103,14 +103,15 @@ package org.apache.flex.svg
                     _circle.setAttribute('cx', radius);
                     _circle.setAttribute('cy', radius);
                 }
-                
+
                 _circle.setAttribute('r', radius);
-                
-                resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+
+                //resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+                resize(x-radius, y-radius, getBBox(_circle));
 
             }
         }
-        
+
         override protected function drawImpl():void
         {
             drawCircle(0, 0, radius);

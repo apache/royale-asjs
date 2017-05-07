@@ -98,6 +98,20 @@ package org.apache.flex.svg
 
 			return element;
 		}
+		
+		/**
+		 * @private
+		 * @flexjsignorecoercion SVGRect
+		 */
+		COMPILE::JS
+		protected function getBBox(svgElement:WrappedHTMLElement):Object
+		{
+			try {
+				return svgElement['getBBox']();
+			} catch (err) {
+				return {x: 0, y:0, width:this.width, height:this.height};
+			}
+		}
 
 
         COMPILE::SWF
@@ -188,7 +202,7 @@ package org.apache.flex.svg
          * @param bbox The bounding box of the svg element.
          */
         COMPILE::JS
-        public function resize(x:Number, y:Number, bbox:SVGRect):void
+        public function resize(x:Number, y:Number, bbox:Object):void
         {
             var useWidth:Number = Math.max(this.width, bbox.width);
             var useHeight:Number = Math.max(this.height, bbox.height);

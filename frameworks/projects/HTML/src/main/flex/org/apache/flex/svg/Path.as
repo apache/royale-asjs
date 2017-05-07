@@ -121,7 +121,8 @@ package org.apache.flex.svg
                 _path.setAttribute('style', style);
                 _path.setAttribute('d', data);
 
-                resize(x, y, _path['getBBox']());
+                //resize(x, y, _path['getBBox']());
+                resize(x, y, getBBox(_path));
 
             }
         }

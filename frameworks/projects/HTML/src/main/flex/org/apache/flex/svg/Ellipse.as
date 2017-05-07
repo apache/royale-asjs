@@ -155,12 +155,13 @@ package org.apache.flex.svg
                 }
                 _ellipse.setAttribute('rx', rx);
                 _ellipse.setAttribute('ry', ry);
-                
-                resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
+
+                //resize(x, y, (_ellipse as SVGEllipseElement).getBBox());
+                resize(x, y, getBBox(_ellipse));
 
             }
         }
-        
+
         override protected function drawImpl():void
         {
             drawEllipse(0, 0);
