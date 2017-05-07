@@ -69,6 +69,7 @@ package org.apache.flex.text.engine
 		function getAtomTextRotation(atomIndex:int):String;
 		function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean;
 		function getBaselinePosition(baseline:String):Number;
+		function getBounds(ref:Object):Rectangle;
 		
 
 	}

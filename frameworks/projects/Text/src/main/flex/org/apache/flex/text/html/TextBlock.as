@@ -60,7 +60,7 @@ package org.apache.flex.text.html
 		{
 			_baselineFontDescription = value;
 		}
-		private var _baselineFontSize:Number = 0;
+		private var _baselineFontSize:Number = 12;
 		public function get baselineFontSize():Number
 		{
 			return _baselineFontSize;
@@ -70,7 +70,7 @@ package org.apache.flex.text.html
 			_baselineFontSize = value;
 		}
 		
-		private var _baselineZero:String;
+		private var _baselineZero:String = "roman";
 		public function get baselineZero():String
 		{
 			return _baselineZero;
@@ -180,16 +180,42 @@ package org.apache.flex.text.html
 			_userData = value;
 		}
 		
+		private var lines:Array = [];
+		
 		public function createTextLine(previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{
+			if (previousLine == null)
+				lines.length = 0;
 			// Not a very good implementation at this point...
 			var textElem:TextElement = content as TextElement;
 			var format:ElementFormat = content.elementFormat;
-			var tl:TextLine = new TextLine();
-			var span:Span = new Span();
-			span.text = textElem.text;
-			tl.addElement(span);
-
+			var tl:TextLine = new TextLine(this, previousLine ? previousLine.textBlockBeginIndex + previousLine.rawTextLength : 0);
+			COMPILE::SWF
+			{
+				var s:String = content.text;
+				if (previousLine)
+				    s = s.substring(previousLine.textBlockBeginIndex + previousLine.rawTextLength);
+				if (s.length == 0)
+				  return null;
+				tl.textField.text = s;
+				tl.textField.width = width;
+				if (tl.textField.numLines > 1)
+				{
+					s = tl.textField.getLineText(0);
+					tl.textField.text = s;
+					tl.textField.multiline = false;
+				}
+				lines.push(tl);
+			}
+			COMPILE::JS
+			{
+				var span:Span = new Span();
+				span.text = textElem.text;
+				tl.addElement(span);
+			}
+			if (previousLine == null)
+				_firstLine = tl;
+			_lastLine = tl;
 			return tl;
 		}
 		public function dump():String{
@@ -197,26 +223,32 @@ package org.apache.flex.text.html
 		}
 		public function findNextAtomBoundary(afterCharIndex:int):int
 		{
+			trace("findNextAtomBoundary not implemented");
 			return 0;
 		}
 		public function findNextWordBoundary(afterCharIndex:int):int
 		{
+			trace("findNextWordBoundary not implemented");
 			return 0;
 		}
 		public function findPreviousAtomBoundary(beforeCharIndex:int):int
 		{
+			trace("findPreviousAtomBoundary not implemented");
 			return 0;
 		}
 		public function findPreviousWordBoundary(beforeCharIndex:int):int
 		{
+			trace("findPreviousWordBoundary not implemented");
 			return 0;
 		}
 		public function getTextLineAtCharIndex(charIndex:int):ITextLine
 		{
+			trace("getTextLineAtCharIndex not implemented");
 			return null;
 		}
 		public function recreateTextLine(textLine:ITextLine, previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{
+			trace("recreateTextLine not implemented");
 			return null;
 		}
 		public function releaseLineCreationData():void
@@ -225,7 +257,7 @@ package org.apache.flex.text.html
 		}
 		public function releaseLines(firstLine:ITextLine, lastLine:ITextLine):void
 		{
-			//TODO
+			lines.length = 0;
 		}
 
 	}

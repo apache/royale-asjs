@@ -18,6 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.text.html
 {
+	COMPILE::SWF
+	{
+		import flash.display.DisplayObject;
+		import flash.text.TextField;
+		import flash.text.TextFormat;
+		import flash.text.TextFieldAutoSize;
+	}
+	
+	import org.apache.flex.text.engine.ElementFormat;
 	import org.apache.flex.text.engine.ITextLine;
 	import org.apache.flex.text.engine.ITextBlock;
 	import org.apache.flex.core.IUIBase;
@@ -27,17 +36,54 @@ package org.apache.flex.text.html
 	
 	public class TextLine extends Div implements ITextLine
 	{
-		public function TextLine()
+		COMPILE::SWF
+		public var textField:TextField;
+		
+		public function TextLine(textBlock:ITextBlock, beginIndex:int)
 		{
+			COMPILE::SWF
+			{
+				textField = new TextField();
+				$displayObjectContainer.addChild(textField);
+				textField.autoSize = TextFieldAutoSize.LEFT;
+				
+				// use these to help calculate line breaks
+				textField.multiline = true;
+				textField.wordWrap = true;
+				
+				var textFormat:TextFormat = new TextFormat();
+				var ef:ElementFormat = textBlock.content.elementFormat;
+				textFormat.font = ef.fontDescription.fontName;
+				textFormat.size = ef.fontSize;
+				textFormat.color = ef.color;
+				textField.defaultTextFormat = textFormat;
+				
+			}
+			_textBlock = textBlock;
+			_beginIndex = beginIndex;
 		}
 		public function get ascent():Number
 		{
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.getLineMetrics(0).ascent;
+			}
+			COMPILE::JS
+			{
+				return 0;
+			}
 		}
 		
 		public function get atomCount():int
 		{
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.length;
+			}
+			COMPILE::JS
+			{
+				return 0;
+			}
 		}
 		
 		public function get blendMode():String
@@ -52,6 +98,10 @@ package org.apache.flex.text.html
 		
 		public function get descent():Number
 		{
+			COMPILE::SWF
+			{
+				return textField.getLineMetrics(0).descent;
+			}
 			return 0;
 		}
 		
@@ -93,7 +143,14 @@ package org.apache.flex.text.html
 		
 		public function get rawTextLength():int
 		{
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.length;
+			}
+			COMPILE::JS
+			{
+				return 0;
+			}
 		}
 		
 		public function get specifiedWidth():Number
@@ -101,44 +158,61 @@ package org.apache.flex.text.html
 			return 0;
 		}
 		
+		private var _textBlock:ITextBlock;
+		
 		public function get textBlock():ITextBlock
 		{
-			return null;
+			return _textBlock;
 		}
 		
+		private var _beginIndex:int;
 		public function get textBlockBeginIndex():int
 		{
-			return 0;
+			return _beginIndex;
 		}
 		
 		public function get textHeight():Number
 		{
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.textHeight;
+			}
+			COMPILE::JS
+			{
+				return 0;
+			}
 		}
 		
 		public function get textWidth():Number
 		{
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.textWidth;
+			}
+			COMPILE::JS
+			{
+				return 0;
+			}
 		}
 		
 		public function get totalAscent():Number
 		{
-			return 0;
+			return ascent;
 		}
 		
 		public function get totalDescent():Number
 		{
-			return 0;
+			return descent;
 		}
 		
 		public function get totalHeight():Number
 		{
-			return 0;
+			return textHeight;
 		}
 		
 		public function get unjustifiedTextWidth():Number
 		{
-			return 0;
+			return textWidth;
 		}
 		
 		private var _userData:*;
@@ -151,7 +225,7 @@ package org.apache.flex.text.html
 			_userData = value;
 		}
 		
-		private var _validity:String;
+		private var _validity:String = "valid";
 		public function get validity():String
 		{
 			return _validity;
@@ -194,9 +268,34 @@ package org.apache.flex.text.html
 			return 0;
 		}
 
+		public function getBounds(ref:Object):Rectangle
+		{
+			COMPILE::SWF
+			{
+				return Rectangle.fromObject($displayObject.getBounds(ref as DisplayObject));
+			}
+			COMPILE::JS
+			{
+				return null;
+			}
+		}
+		
 		public function getAtomBounds(atomIndex:int):Rectangle
 		{
-			return null;
+			COMPILE::SWF
+			{
+				var r:Object = textField.getCharBoundaries(atomIndex);
+				if (r == null)
+				{
+					// not sure why we get null sometimes, but fake an answer
+					return new Rectangle(0, 1.2 - Number(textField.defaultTextFormat.size), 3, 1.2);
+				}
+				return Rectangle.fromObject(r);
+			}
+			COMPILE::JS
+			{
+				return null;
+			}
 		}
 
 		public function getAtomCenter(atomIndex:int):Number
@@ -214,35 +313,46 @@ package org.apache.flex.text.html
 		public function getAtomIndexAtCharIndex(charIndex:int):int
 		{
 			//TODO track indexes...
-			return 0;
+			return charIndex;
 		}
 
 		public function getAtomIndexAtPoint(stageX:Number, stageY:Number):int
 		{
-			//TODO atom locations. This one will be fun...
-			return 0;
+			COMPILE::SWF
+			{
+				return textField.getCharIndexAtPoint(stageX, stageY);
+			}
+			COMPILE::JS
+			{
+				//TODO atom locations. This one will be fun...
+				return 0;
+			}
 		}
 
 		public function getAtomTextBlockBeginIndex(atomIndex:int):int
 		{
+			trace("getAtomTextBlockBeginIndex not implemented");
 			//TODO track indexes...
 			return 0;
 		}
 
 		public function getAtomTextBlockEndIndex(atomIndex:int):int
 		{
+			trace("getAtomTextBlockEndIndex not implemented");
 			//TODO track indexes...
 			return 0;
 		}
 
 		public function getAtomTextRotation(atomIndex:int):String
 		{
+			trace("getAtomTextRotation not implemented");
 			//TODO returns TextRotation values.
 			return "rotate0";
 		}
 
 		public function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean
 		{
+			trace("getAtomWordBoundaryOnLeft not implemented");
 			//TODO we need to track word boundaries
 			return false;
 		}
