@@ -1414,7 +1414,7 @@ package org.apache.flex.textLayout.edit
 				if (lastLineIndexInColumn == -1)
 					lastLineIndexInColumn = testIndex;
 
-				var bounds:Rectangle = BoundsUtil.getBounds(rtTextLine, controller.container);// rtTextLine.getBounds(DisplayObject(controller.container));
+				var bounds:Rectangle = rtTextLine.getBounds(controller.container);// rtTextLine.getBounds(DisplayObject(controller.container));
 				// trace(testIndex.toString(),":",bounds.toString());
 
 				var linePerpCoor:Number = isTTB ? bounds.left : bounds.bottom;
