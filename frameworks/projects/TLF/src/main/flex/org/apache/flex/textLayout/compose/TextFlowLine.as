@@ -2046,7 +2046,7 @@ package org.apache.flex.textLayout.compose
 
 			// this is much simpler and actually more accurate - localToGlobal/globalToLocal does some rounding
 			rect.x += textLine.x;
-			rect.y += textLine.y;
+			rect.y += textLine.ascent; // += textLine.y; // baseline is 0 in flash.text.engine.TextLine;
 
 			if (constrainShape)
 			{
@@ -2161,21 +2161,21 @@ package org.apache.flex.textLayout.compose
 			if(_localZeroPoint == null)
 				_localZeroPoint = new Point(0, 0);
 			
-			return localZeroPoint;
+			return _localZeroPoint;
 		}
 		static private var _localOnePoint:Point;
 		static private function get localOnePoint():Point{
 			if(_localOnePoint == null)
 				_localOnePoint = new Point(1, 0);
 			
-			return localOnePoint;
+			return _localOnePoint;
 		}
 		static private var _rlLocalOnePoint:Point;
 		static private function get rlLocalOnePoint():Point{
 			if(_rlLocalOnePoint == null)
 				_rlLocalOnePoint = new Point(0, 1);
 			
-			return rlLocalOnePoint;
+			return _rlLocalOnePoint;
 		}
 
 		// TODO generalize this so we're not relying on UIBase
