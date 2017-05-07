@@ -2846,6 +2846,8 @@ package org.apache.flex.textLayout.container
 //			selObj.graphics.beginFill(selFormat.pointColor);
 			// pixel snap - works for unscaled text - scaled text will have to accept fuzzy cursors
 			selObj.drawRect(int(x),int(y),w,h);
+			selObj.width = w;
+			selObj.height = h;
 //			selObj.graphics.drawRect(int(x),int(y),w,h);
 //			selObj.graphics.endFill();
 			
