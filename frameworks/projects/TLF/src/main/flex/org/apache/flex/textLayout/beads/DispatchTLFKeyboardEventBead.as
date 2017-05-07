@@ -26,6 +26,7 @@ package org.apache.flex.textLayout.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.KeyboardEvent;
 	import org.apache.flex.events.utils.KeyboardEventConverter;
+	import org.apache.flex.text.events.TextEvent;
 	import org.apache.flex.textLayout.events.FocusEvent;
 
 	COMPILE::JS
@@ -109,6 +110,7 @@ package org.apache.flex.textLayout.beads
 		{
 			var host:UIBase = _strand as UIBase;
 			host.$displayObject.addEventListener(flash.events.KeyboardEvent.KEY_DOWN, keyEventHandler);
+			host.$displayObject.addEventListener(flash.events.TextEvent.TEXT_INPUT, textEventHandler);
 			host.$displayObject.addEventListener(flash.events.KeyboardEvent.KEY_UP, keyEventHandler);
 			host.$displayObject.addEventListener(flash.events.Event.ACTIVATE, eventHandler);
 			host.$displayObject.addEventListener(flash.events.Event.DEACTIVATE, eventHandler);
@@ -117,7 +119,25 @@ package org.apache.flex.textLayout.beads
 			return true;
 		}
 		
-		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		protected function textEventHandler(event:flash.events.TextEvent):void
+		{
+			// this will otherwise bubble an event of flash.events.Event
+			event.stopImmediatePropagation();
+			var newEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(event.type);
+			newEvent.text = event.text;
+			(_strand as IEventDispatcher).dispatchEvent(newEvent);
+			if(newEvent.defaultPrevented)
+			{
+				event.preventDefault();
+			}
+			
+			
+		}
+				
 		/**
 		 * @private
 		 */
@@ -162,6 +182,7 @@ package org.apache.flex.textLayout.beads
 		{
 			if (event is org.apache.flex.events.Event) return;
 			
+			trace(event.type, event.target, event.relatedObject);
 			// this will otherwise dispatch an event of flash.events.FocusEvent
 			event.stopImmediatePropagation();
 			var newEvent:org.apache.flex.textLayout.events.FocusEvent = new org.apache.flex.textLayout.events.FocusEvent(event.type);

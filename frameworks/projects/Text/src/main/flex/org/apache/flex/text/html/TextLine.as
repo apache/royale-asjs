@@ -44,6 +44,7 @@ package org.apache.flex.text.html
 			COMPILE::SWF
 			{
 				textField = new TextField();
+				textField.mouseEnabled = false;
 				$displayObjectContainer.addChild(textField);
 				textField.autoSize = TextFieldAutoSize.LEFT;
 				
