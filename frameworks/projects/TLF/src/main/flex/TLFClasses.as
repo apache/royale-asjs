@@ -24,6 +24,7 @@ package
 		
 		// import org.apache.flex.textLayout.accessibility.TextAccImpl; TextAccImpl;
 		
+		import org.apache.flex.textLayout.beads.DispatchTLFKeyboardEventBead; DispatchTLFKeyboardEventBead;
 		import org.apache.flex.textLayout.container.TextContainerManager; TextContainerManager;
 		import org.apache.flex.textLayout.TextLayoutVersion; TextLayoutVersion;
 
