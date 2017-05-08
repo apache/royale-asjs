@@ -150,7 +150,7 @@ package
 			xml.setNodeKind("attribute");
 			xml.setName(att.name);
 			xml.setValue(att.value);
-			parent.addChild(xml);
+			parent.addChildInternal(xml);
 			return xml;
 		}
 		static private function iterateElement(node:Element,xml:XML):void
@@ -170,7 +170,7 @@ package
 			for(i=0;i<len;i++)
 			{
 				var child:XML = fromNode(childNodes[i]);
-				xml.addChild(child);
+				xml.addChildInternal(child);
 			}
 		}
 		/**
@@ -389,6 +389,11 @@ package
 			if(!child)
 				return;
 			
+			addChildInternal(child);
+			normalize();
+		}
+		private function addChildInternal(child:XML):void
+		{
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 			{
@@ -400,7 +405,6 @@ package
 			}
 			else
 				_children.push(child);
-			normalize();
 		}
 
 
@@ -732,10 +736,10 @@ package
 			}
 			//parent should be null by default
 			for(i=0;i<_attributes.length;i++)
-				xml.addChild(_attributes[i].copy());
+				xml.addChildInternal(_attributes[i].copy());
 
 			for(i=0;i<_children.length;i++)
-				xml.addChild(_children[i].copy());
+				xml.addChildInternal(_children[i].copy());
 			
 			return xml;
 		}
