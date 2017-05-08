@@ -25,6 +25,14 @@ package org.apache.flex.textLayout.factory {
 		function get textFactory():ITextFactory;
 		function getRect():IRect;
 		function getCompoundGraphic():ICompoundGraphic;
-		function getContainer():IParentIUIBase;		
+		function getContainer():IParentIUIBase;
+		
+		// in JS, in order to measure text, TextLines need to be put
+		// in the DOM early, so you need to pick one DOM widget to use as
+		// at least a temporary parent.
+		// in SWF, this isn't really needed since FTE is given all
+		// of the font information it needs
+		function get currentContainer():IParentIUIBase;
+		function set currentContainer(value:IParentIUIBase):void
 	}
 }

@@ -30,6 +30,8 @@ package org.apache.flex.text.html
 	import org.apache.flex.text.html.TextLine;
 	import org.apache.flex.html.Span;
 	
+	import org.apache.flex.core.IParent;
+	
 	public class TextBlock implements ITextBlock
 	{
 		public function TextBlock(factory:ITextFactory)
@@ -182,6 +184,9 @@ package org.apache.flex.text.html
 		
 		private var lines:Array = [];
 		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IParent
+		 */
 		public function createTextLine(previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{
 			if (previousLine == null)
@@ -209,8 +214,10 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
+				textFactory.currentContainer.addElement(tl); // add to DOM early so textWidth is valid
 				var span:Span = new Span();
 				span.text = textElem.text;
+				//span.element.style.display = "block";
 				tl.addElement(span);
 			}
 			if (previousLine == null)

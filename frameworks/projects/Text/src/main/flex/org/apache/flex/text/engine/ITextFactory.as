@@ -19,11 +19,21 @@
 package org.apache.flex.text.engine
 {
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IParentIUIBase;
 
 	public interface ITextFactory
 	{
         function getTextBlock():ITextBlock;
         function getTextContainer():IUIBase;
         function getFontLoader():IFontLoader;
+		
+		// in JS, in order to measure text, TextLines need to be put
+		// in the DOM early, so you need to pick one DOM widget to use as
+		// at least a temporary parent.
+		// in SWF, this isn't really needed since FTE is given all
+		// of the font information it needs
+		function get currentContainer():IParentIUIBase;
+		function set currentContainer(value:IParentIUIBase):void
+
     }
 }

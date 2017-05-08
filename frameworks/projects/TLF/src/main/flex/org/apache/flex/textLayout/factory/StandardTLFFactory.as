@@ -45,7 +45,18 @@ package org.apache.flex.textLayout.factory {
 		public function get textFactory() : ITextFactory {
 			if(!factory)
 				factory = new HTMLTextFactory();
+			factory.currentContainer = currentContainer;
 			return factory;
+		}
+		
+		private var _currentContainer:IParentIUIBase;
+		public function get currentContainer():IParentIUIBase
+		{
+			return _currentContainer;
+		}
+		public function set currentContainer(value:IParentIUIBase):void
+		{
+			_currentContainer = value;
 		}
 	}
 }

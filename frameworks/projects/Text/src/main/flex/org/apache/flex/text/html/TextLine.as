@@ -71,10 +71,14 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return 0;
+				// needs improvement.  For now assume 2 pixel descent.
+				return _textBlock.content.elementFormat.fontSize - 2;
 			}
 		}
 		
+		/**
+		 * @flexjsignorecoercion HTMLElement
+		 */
 		public function get atomCount():int
 		{
 			COMPILE::SWF
@@ -83,7 +87,7 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return 0;
+				return (element.firstChild as HTMLElement).firstChild["length"];
 			}
 		}
 		
@@ -103,7 +107,11 @@ package org.apache.flex.text.html
 			{
 				return textField.getLineMetrics(0).descent;
 			}
-			return 0;
+			COMPILE::JS
+			{
+				// needs improvement.  For now assume 2 pixel descent.
+				return 2;
+			}
 		}
 		
 		private var _doubleClickEnabled:Boolean;
@@ -150,7 +158,7 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return 0;
+				return atomCount;
 			}
 		}
 		
@@ -172,6 +180,9 @@ package org.apache.flex.text.html
 			return _beginIndex;
 		}
 		
+		/**
+		 * @flexjsignorecoercion HTMLElement
+		 */
 		public function get textHeight():Number
 		{
 			COMPILE::SWF
@@ -180,10 +191,13 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return 0;
+				return (element.firstChild as HTMLElement).getClientRects()[0].height;
 			}
 		}
 		
+		/**
+		 * @flexjsignorecoercion HTMLElement
+		 */
 		public function get textWidth():Number
 		{
 			COMPILE::SWF
@@ -192,7 +206,15 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return 0;
+				if (element.firstChild.textContent == "\u2029")
+				{ 
+				  // if para terminator, use nbsp instead
+				  (element.firstChild as HTMLElement).innerHTML = "\u00A0";
+				  var w:Number = (element.firstChild as HTMLElement).getClientRects()[0].width;
+				  (element.firstChild as HTMLElement).innerHTML = "\u2029";
+				  return w;
+				}
+				return (element.firstChild as HTMLElement).getClientRects()[0].width;
 			}
 		}
 		
@@ -277,7 +299,7 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return null;
+				return new Rectangle(element.offsetLeft, element.offsetTop, element.offsetWidth, element.offsetHeight);
 			}
 		}
 		
@@ -295,7 +317,8 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				return null;
+				// fake an answer
+				return new Rectangle(0, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
 			}
 		}
 
@@ -325,6 +348,7 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
+				trace("getAtomIndexAtPoint not implemented");
 				//TODO atom locations. This one will be fun...
 				return 0;
 			}

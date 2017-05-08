@@ -1632,7 +1632,8 @@ package org.apache.flex.textLayout.container
 		private function convertToTextFlow():void
 		{
 			CONFIG::debug { assert(_sourceState != SOURCE_TEXTFLOW,"bad call to convertToTextFlow"); }
-									
+	
+			TLFFactory.defaultTLFFactory.currentContainer = container;								
 			_textFlow = new TextFlow(TLFFactory.defaultTLFFactory, _config);
 			_textFlow.hostFormat = _hostFormat;
 			if(_swfContext)
