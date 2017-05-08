@@ -158,6 +158,10 @@ public class Timer extends EventDispatcher
     
     private function timerHandler():void
     {
+		// sometimes an interval gets called after you clear it
+		if (timerInterval == -1)
+		    return;
+			
         _currentCount++;
         if (repeatCount > 0 && currentCount >= repeatCount) {
             stop();
