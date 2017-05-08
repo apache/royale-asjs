@@ -1855,7 +1855,9 @@ package org.apache.flex.textLayout.compose
 			}
 			else
 			{
-				var testILG:IInlineGraphicElement = startElem as IInlineGraphicElement;
+				var testILG:IInlineGraphicElement = null;
+				if (startElem is IInlineGraphicElement) // need this since skipAsCoercions is on
+					startElem as IInlineGraphicElement;
 				if (!testILG || testILG.effectiveFloat == Float.NONE || begIdx == endIdx)
 				{
 					blockRect = makeBlock(textLine, begIdx, begAtomIndex, endAtomIndex, startMetrics, blockProgression, direction, heightAndAdj);
