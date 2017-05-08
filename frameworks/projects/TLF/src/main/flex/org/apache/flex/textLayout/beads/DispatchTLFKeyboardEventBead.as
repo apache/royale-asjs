@@ -89,6 +89,8 @@ package org.apache.flex.textLayout.beads
 			{
 				(_strand as Object).element.addEventListener('keydown', keyEventHandler);
 				(_strand as Object).element.addEventListener('keyup', keyEventHandler);
+				(_strand as Object).element.addEventListener('focus', focusEventHandler);
+				(_strand as Object).element.addEventListener('blur', focusEventHandler);
 			}
 		}
 		
@@ -201,6 +203,21 @@ package org.apache.flex.textLayout.beads
 		{
 			event.stopImmediatePropagation();
 			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
+			(_strand as IEventDispatcher).dispatchEvent(newEvent);
+			if(newEvent.defaultPrevented)
+			{
+				event.preventDefault();
+			}
+		}
+
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		protected function focusEventHandler(event:FocusEvent):void
+		{
+			event.stopImmediatePropagation();
+			var newEvent:org.apache.flex.textLayout.events.FocusEvent = new org.apache.flex.textLayout.events.FocusEvent(event.type == "focus" ? "focusIn" : "focusOut");
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
