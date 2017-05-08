@@ -632,6 +632,12 @@ package
 				}
 				return;
 			}
+			if(child is Number)
+			{
+				i = child;
+				removeChildAt(i);
+				return;
+			}
 
 			if(child is XMLList)
 			{

@@ -307,7 +307,7 @@ package
 
 		public function XML(xml:String = null)
 		{
-			_origStr = xml;
+			// _origStr = xml;
 			_children = [];
 			if(xml)
 			{
