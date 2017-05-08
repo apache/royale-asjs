@@ -242,7 +242,7 @@ package org.apache.flex.textLayout.container
 	public class TextContainerManager extends EventDispatcher implements ISWFContext, IInteractionEventHandler, ISandboxSupport, ITextContainerManager
 	{		
 		// all events that are listened for need to be in this list.
-		static private const eventList:Array = [ 
+		private const eventList:Array = [ 
 			FlowOperationEvent.FLOW_OPERATION_BEGIN,
 			FlowOperationEvent.FLOW_OPERATION_END,
 			FlowOperationEvent.FLOW_OPERATION_COMPLETE,
@@ -327,7 +327,7 @@ package org.apache.flex.textLayout.container
 		}
 		
 		/** Shared definition of the scrollPolicy property. @private */
-		static public const editingModePropertyDefinition:Property = PropertyFactory.enumString("editingMode", EditingMode.READ_WRITE, false, null, 
+		public const editingModePropertyDefinition:Property = PropertyFactory.enumString("editingMode", EditingMode.READ_WRITE, false, null, 
 			EditingMode.READ_WRITE, EditingMode.READ_ONLY, EditingMode.READ_SELECT);	
 		
 		private var _container:IParentIUIBase;
@@ -2187,7 +2187,7 @@ package org.apache.flex.textLayout.container
 		*/				
 		public function mouseWheelHandler(event:MouseEvent):void
 		{
-			if (event.isDefaultPrevented())
+			if (event.defaultPrevented)
 				return;
 
 			if (_composeState == COMPOSE_FACTORY)
@@ -2566,7 +2566,7 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 	{ _event.updateAfterEvent(); }
 	
 	public override function isDefaultPrevented():Boolean
-	{ return _event.isDefaultPrevented(); }
+	{ return _event.defaultPrevented; }
 	
 	public override function preventDefault():void
 	{ _event.preventDefault(); }
