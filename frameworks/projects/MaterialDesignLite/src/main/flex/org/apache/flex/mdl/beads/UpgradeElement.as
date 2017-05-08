@@ -95,11 +95,14 @@ package org.apache.flex.mdl.beads
         {
             _strand = value;
             IEventDispatcher(value).addEventListener("initComplete", initCompleteHandler);
+            IEventDispatcher(value).addEventListener("beadsAdded", initCompleteHandler);
         }
 
         private function initCompleteHandler(event:Event):void
         {
             IEventDispatcher(_strand).removeEventListener("initComplete", initCompleteHandler);
+            IEventDispatcher(_strand).removeEventListener("beadsAdded", initCompleteHandler);
+            
             COMPILE::JS
             {
                 upgradeElement();
