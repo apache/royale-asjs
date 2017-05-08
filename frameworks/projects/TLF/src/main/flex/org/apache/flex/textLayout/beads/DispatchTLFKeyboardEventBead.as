@@ -88,6 +88,7 @@ package org.apache.flex.textLayout.beads
 			COMPILE::JS
 			{
 				(_strand as Object).element.addEventListener('keydown', keyEventHandler);
+				(_strand as Object).element.addEventListener('keypress', keyEventHandler);
 				(_strand as Object).element.addEventListener('keyup', keyEventHandler);
 				(_strand as Object).element.addEventListener('focus', focusEventHandler);
 				(_strand as Object).element.addEventListener('blur', focusEventHandler);
@@ -208,6 +209,18 @@ package org.apache.flex.textLayout.beads
 			{
 				event.preventDefault();
 			}
+			if (event.type == "keypress")
+			{
+				var textEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(TextEvent.TEXT_INPUT);
+				if (event.key != null)
+					textEvent.text = String.fromCharCode(event.key);
+				else if (event['which'] != null)
+					textEvent.text = String.fromCharCode(event['which']);				  
+				else
+					textEvent.text = String.fromCharCode(event['keyCode']);
+				(_strand as IEventDispatcher).dispatchEvent(textEvent);
+			}
+
 		}
 
 		/**
