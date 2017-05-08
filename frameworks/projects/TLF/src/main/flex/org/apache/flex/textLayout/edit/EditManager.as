@@ -237,7 +237,7 @@ package org.apache.flex.textLayout.edit
 		/** @private */
 		override public function editHandler(event:Event):void
 		{
-			if (event.isDefaultPrevented())
+			if (event.defaultPrevented)
 				return;
 
 			super.editHandler(event);
@@ -274,7 +274,7 @@ package org.apache.flex.textLayout.edit
 			var listItem:IListItemElement;
 			var operationState:SelectionState;
 			
-			if (!hasSelection() || event.isDefaultPrevented())
+			if (!hasSelection() || event.defaultPrevented)
 				return;
 			
 			if (redrawListener)		// pending redraw; handle this before anything else so TextLines on screen will be up to date
@@ -490,7 +490,7 @@ package org.apache.flex.textLayout.edit
 		/** @private */
 		public override function keyUpHandler(event:KeyboardEvent):void
 		{
-			if (!hasSelection() || event.isDefaultPrevented())
+			if (!hasSelection() || event.defaultPrevented)
 				return;
 				
 			super.keyUpHandler(event);
@@ -737,7 +737,7 @@ package org.apache.flex.textLayout.edit
 			{
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_BEGIN,false,true,op,captureLevel-1,null);
 				textFlow.dispatchEvent(opEvent);
-				if (opEvent.isDefaultPrevented())
+				if (opEvent.defaultPrevented)
 					return null;
 				// user may replace the operation - TODO: WHAT IF SWITCH TO UNDO/REDO????
 				op = opEvent.operation;
@@ -786,7 +786,7 @@ package org.apache.flex.textLayout.edit
 			{
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_END,false,true,op,captureLevel-1,opError);
 				textFlow.dispatchEvent(opEvent);
-				opError = opEvent.isDefaultPrevented() ? null : opEvent.error;
+				opError = opEvent.defaultPrevented ? null : opEvent.error;
 			}
 
 			if (opError)
@@ -949,7 +949,7 @@ package org.apache.flex.textLayout.edit
 				var undoPsuedoOp:UndoOperation = new UndoOperation(operation);
 				var opEvent:FlowOperationEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_BEGIN,false,true,undoPsuedoOp,0,null);
 				textFlow.dispatchEvent(opEvent);
-				if (opEvent.isDefaultPrevented())
+				if (opEvent.defaultPrevented)
 				{
 					//operation cancelled by user. Push the operation back onto the undo stack
 					undoManager.pushUndo(operation);
@@ -991,7 +991,7 @@ package org.apache.flex.textLayout.edit
 			{
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_END,false,true,undoPsuedoOp,0,opError);
 				textFlow.dispatchEvent(opEvent);
-				opError = opEvent.isDefaultPrevented() ? null : opEvent.error;
+				opError = opEvent.defaultPrevented ? null : opEvent.error;
 			}
 
 			if (opError)
@@ -1043,7 +1043,7 @@ package org.apache.flex.textLayout.edit
 				var redoPsuedoOp:RedoOperation = new RedoOperation(op);
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_BEGIN,false,true,redoPsuedoOp,0,null);
 				textFlow.dispatchEvent(opEvent);
-				if (opEvent.isDefaultPrevented() && _undoManager)
+				if (opEvent.defaultPrevented && _undoManager)
 				{
 					//user cancelled the event. Push the operation back onto the redo stack
 					_undoManager.pushRedo(op);
@@ -1085,7 +1085,7 @@ package org.apache.flex.textLayout.edit
 			{
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_END,false,true,redoPsuedoOp,0,opError);
 				textFlow.dispatchEvent(opEvent);
-				opError = opEvent.isDefaultPrevented() ? null : opEvent.error;
+				opError = opEvent.defaultPrevented ? null : opEvent.error;
 			}
 			if (opError)
 				throw (opError);
