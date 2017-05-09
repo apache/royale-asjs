@@ -213,7 +213,7 @@ package org.apache.flex.textLayout.beads
 			{
 				var textEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(TextEvent.TEXT_INPUT);
 				if (event.key != null)
-					textEvent.text = String.fromCharCode(event.key);
+					textEvent.text = event.key;
 				else if (event['which'] != null)
 					textEvent.text = String.fromCharCode(event['which']);				  
 				else
