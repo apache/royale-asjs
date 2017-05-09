@@ -50,6 +50,8 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
         
         <html-wrapper 
@@ -102,6 +104,8 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
         
         <copy todir="${basedir}/bin-debug">
@@ -142,6 +146,8 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
         
         <html-wrapper 
@@ -180,8 +186,11 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -224,8 +233,11 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -269,8 +281,11 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
