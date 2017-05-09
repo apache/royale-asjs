@@ -310,15 +310,37 @@ package org.apache.flex.text.html
 				var r:Object = textField.getCharBoundaries(atomIndex);
 				if (r == null)
 				{
-					// not sure why we get null sometimes, but fake an answer
-					return new Rectangle(0, 1.2 - Number(textField.defaultTextFormat.size), 3, 1.2);
+					// getCharBoundaries doesn't seem to work if char is paragraph terminator
+					if (textField.text.charAt(atomIndex) == "\u2029")
+					{
+						if (textField.text.length == 1)
+							return new Rectangle(0, 1.2 - Number(textField.defaultTextFormat.size), 3, 1.2);
+						else
+						{
+							r = textField.getCharBoundaries(atomIndex - 1);
+							return new Rectangle(r.right, 1.2 - Number(textField.defaultTextFormat.size), 3, 1.2)
+						}
+					}
 				}
 				return Rectangle.fromObject(r);
 			}
 			COMPILE::JS
 			{
-				// fake an answer
-				return new Rectangle(0, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
+				var w:Number;
+				if (atomIndex == element.firstChild.textContent.length - 1)
+				{
+					w = (element.firstChild as HTMLElement).getClientRects()[0].width;
+					return new Rectangle(w, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
+				}
+				else
+				{
+					var s:String = element.firstChild.textContent;
+				    (element.firstChild as HTMLElement).innerHTML = s.substring(0, atomIndex);
+				    w = (element.firstChild as HTMLElement).getClientRects()[0].width;
+				    (element.firstChild as HTMLElement).innerHTML = s;
+					// fake an answer
+					return new Rectangle(w, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
+				}
 			}
 		}
 

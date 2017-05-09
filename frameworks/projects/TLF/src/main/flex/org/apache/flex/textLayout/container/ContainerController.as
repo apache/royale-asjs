@@ -2825,6 +2825,8 @@ package org.apache.flex.textLayout.container
 		public function drawPointSelection(selFormat:SelectionFormat, x:Number,y:Number,w:Number,h:Number):void
 		{
 //TODO create shape in abstract way
+//AJH: probably should be graphicContainer with selection rectangles drawn at offset positions instead
+//of positioning a rectangle.
 			var selObj:IRect = textFlow.tlfFactory.getRect();
 			
 			// Oh, this is ugly. If we are in right aligned text, and there is no padding, and the scrollRect is set, 
@@ -2845,11 +2847,13 @@ package org.apache.flex.textLayout.container
 			selObj.fill = new SolidColor(selFormat.pointColor);
 //			selObj.graphics.beginFill(selFormat.pointColor);
 			// pixel snap - works for unscaled text - scaled text will have to accept fuzzy cursors
-			selObj.drawRect(int(x),int(y),w,h);
+			selObj.drawRect(0,0,w,h);
 			selObj.width = w;
 			selObj.height = h;
 //			selObj.graphics.drawRect(int(x),int(y),w,h);
 //			selObj.graphics.endFill();
+			selObj.x = x;
+			selObj.y = y;
 			
 			// make it blink.  But we never blink unless the text is r/w
 			if (selFormat.pointBlinkRate != 0 && interactionManager.editingMode == EditingMode.READ_WRITE)
