@@ -305,7 +305,7 @@ package org.apache.flex.textLayout.elements
 		 * 
 		 */
 		 
-		public function TextFlow(tlfFactory:ITLFFactory,config:IConfiguration = null)
+		public function TextFlow(tlfFactory:ITLFFactory = null,config:IConfiguration = null)
 		{
 			_tlfFactory = tlfFactory;
 			super();
@@ -344,6 +344,7 @@ package org.apache.flex.textLayout.elements
 		public override function shallowCopy(startPos:int = 0, endPos:int = -1):IFlowElement
 		{		
 			var retFlow:TextFlow = super.shallowCopy(startPos, endPos) as TextFlow;
+			retFlow._tlfFactory = _tlfFactory;
 			retFlow._configuration = _configuration;
 			retFlow._generation = _nextGeneration++;
 			if (formatResolver)
