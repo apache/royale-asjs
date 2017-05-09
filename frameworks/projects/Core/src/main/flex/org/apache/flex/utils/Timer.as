@@ -152,6 +152,10 @@ public class Timer extends EventDispatcher
     
     public function start():void
     {
+		// bail if already running.  Is less code than an
+		// isRunning flag?
+		if (timerInterval != -1) return; 
+		
         timerInterval =
             setInterval(timerHandler, delay);
     }
