@@ -108,19 +108,19 @@ limitations under the License.
 	
     <js:beads>
         <js:ViewDataBinding />
-		<js:VerticalFlexLayout />
+		<js:VerticalLayout />
     </js:beads>
 		
     <js:Label text="Enter Stock Symbol or choose from list:" />
 	
-	<js:Group className="inner">
+	<js:Group className="inner" width="400">
 		<js:beads>
-			<js:HorizontalFlexLayout />
+			<js:HorizontalLayout />
 		</js:beads>
 		
-		<js:Group className="leftSide">
+		<js:Group className="leftSide" width="50%">
 			<js:beads>
-				<js:VerticalFlexLayout />
+				<js:VerticalLayout />
 			</js:beads>
 			<js:TextInput id="symbolTI" text="{MyModel(applicationModel).stockSymbol}" className="symbolInput" width="50%" />
 			<js:TextButton text="Get Quote" className="quoteButton" width="50%"
@@ -129,9 +129,9 @@ limitations under the License.
 			<js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
 		</js:Group>
 		
-		<js:Group className="rightSide">
+		<js:Group className="rightSide" width="50%">
 			<js:beads>
-				<js:VerticalFlexLayout />
+				<js:VerticalLayout />
 			</js:beads>
 			<js:DropDownList id="list" width="50%"
 							 change="_symbol = list.selectedItem as String; dispatchEvent(new CustomEvent('listChanged'))"
