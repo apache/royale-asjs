@@ -219,6 +219,7 @@ package org.apache.flex.text.html
 				span.text = textElem.text;
 				//span.element.style.display = "block";
 				tl.addElement(span);
+				lines.push(tl);
 			}
 			if (previousLine == null)
 				_firstLine = tl;
@@ -230,8 +231,7 @@ package org.apache.flex.text.html
 		}
 		public function findNextAtomBoundary(afterCharIndex:int):int
 		{
-			trace("findNextAtomBoundary not implemented");
-			return 0;
+			return afterCharIndex + 1;
 		}
 		public function findNextWordBoundary(afterCharIndex:int):int
 		{
@@ -240,8 +240,7 @@ package org.apache.flex.text.html
 		}
 		public function findPreviousAtomBoundary(beforeCharIndex:int):int
 		{
-			trace("findPreviousAtomBoundary not implemented");
-			return 0;
+			return beforeCharIndex - 1;
 		}
 		public function findPreviousWordBoundary(beforeCharIndex:int):int
 		{
@@ -250,7 +249,21 @@ package org.apache.flex.text.html
 		}
 		public function getTextLineAtCharIndex(charIndex:int):ITextLine
 		{
-			trace("getTextLineAtCharIndex not implemented");
+			var lineIndex:int = 0;
+			for each (var line:TextLine in lines)
+			{
+				COMPILE::SWF
+				{
+				lineIndex += line.textField.text.length;
+				}
+				COMPILE::JS
+				{
+				lineIndex += line.element.firstChild.textContent.length;
+				}
+				if (lineIndex > charIndex)
+				  	return line;
+				
+			}
 			return null;
 		}
 		public function recreateTextLine(textLine:ITextLine, previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
