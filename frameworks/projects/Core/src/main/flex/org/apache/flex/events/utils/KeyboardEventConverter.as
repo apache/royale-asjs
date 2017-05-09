@@ -71,7 +71,13 @@ package org.apache.flex.events.utils
 		public static function convert(oldEvent:KeyboardEvent):org.apache.flex.events.KeyboardEvent
 		{
 			var type:String = oldEvent.type == "keydown" ? "key_down" : "key_up"; 
-			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, oldEvent.key, oldEvent.code);
+			var key:String = oldEvent.key;
+			if (key == null)
+				key = KeyConverter.convertCharCode(oldEvent['charCode']);
+			var code:String = oldEvent.code;
+			if (code == null)
+				code = KeyConverter.convertKeyCode(oldEvent['keyCode']);
+			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code);
 			newEvent.altKey = oldEvent.altKey;
 			newEvent.ctrlKey = oldEvent.ctrlKey;
 			newEvent.metaKey = oldEvent.metaKey;
