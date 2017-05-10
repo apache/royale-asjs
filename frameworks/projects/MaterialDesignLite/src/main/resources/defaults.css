@@ -152,6 +152,7 @@ DropDownList
     IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");
     IBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.DropDownListController");
     border: 1.2px solid #F8F8F8;
+    cursor: pointer;
 }
 
 @media -flex-flash
