@@ -69,6 +69,7 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -82,6 +83,7 @@
         <artifactId>Basic</artifactId>
         <version>0.8.0-SNAPSHOT</version>
         <type>swc</type>
+        <classifier>swf</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.flex.flexjs.framework</groupId>
