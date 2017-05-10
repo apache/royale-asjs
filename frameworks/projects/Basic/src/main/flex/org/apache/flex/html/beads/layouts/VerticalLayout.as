@@ -160,6 +160,7 @@ package org.apache.flex.html.beads.layouts
 				var i:int;
 				var n:int;
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				contentView.element.style["vertical-align"] = "top";
 				
 				children = contentView.internalChildren();
 				n = children.length;

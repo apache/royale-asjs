@@ -203,6 +203,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 *  @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean
 		{
@@ -233,7 +234,7 @@ package org.apache.flex.html.beads.layouts
 				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.left;
+				var ypos:Number = borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
@@ -283,6 +284,7 @@ package org.apache.flex.html.beads.layouts
 				var i:int;
 				var n:int;
 				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				contentView.element.style["vertical-align"] = "top";
 				
 				children = contentView.internalChildren();
 				n = children.length;
