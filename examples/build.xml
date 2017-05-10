@@ -80,6 +80,7 @@
         <ant dir="${basedir}/flexjs/DataBindingExample"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_as"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat"/>
+        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout"/>
         <ant dir="${basedir}/flexjs/DataGridExample"/>
         <ant dir="${basedir}/flexjs/DateControlsExample"/>
         <ant dir="${basedir}/flexjs/DesktopMap"/>
@@ -122,6 +123,7 @@
         <ant dir="${basedir}/flexjs/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_as" target="clean"/>
         <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="clean"/>
+        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout" target="clean"/>
         <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
