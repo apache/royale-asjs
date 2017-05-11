@@ -21,19 +21,20 @@
 <project name="build_example" basedir=".">
 
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
     
     <target name="compile" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <!-- this is a dummy var placeholder in case some example needs to define a theme
             then they would set theme_arg=-theme=<path to theme> -->
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
+        <property name="theme_arg" value="-define+=CONFIG::theme,false" />
         <mxmlc fork="true"
                file="${basedir}/src/${example}.mxml"
                output="${basedir}/bin-debug/${example}.swf">
@@ -50,8 +51,7 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-define=COMPILE::SWF,true" />
-            <arg value="-define=COMPILE::JS,false" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
         <html-wrapper 
@@ -104,8 +104,7 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-define=COMPILE::SWF,true" />
-            <arg value="-define=COMPILE::JS,false" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
         <copy todir="${basedir}/bin-debug">
@@ -146,8 +145,7 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-define=COMPILE::SWF,true" />
-            <arg value="-define=COMPILE::JS,false" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
         <html-wrapper 
@@ -266,7 +264,7 @@
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
