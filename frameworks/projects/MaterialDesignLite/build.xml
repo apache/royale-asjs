@@ -33,9 +33,12 @@
     </target>
     
     <target name="compile-js">
-        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" />
+        <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" >
+            <property name="FALCON_HOME" value="${FALCON_HOME}"/>
+            <property name="FALCONJX_HOME" value="${FALCONJX_HOME}"/>
+        </ant>
     </target>
-    
+        
     <target name="copy-swc">
         <copy file="${basedir}/target/${target.name}" tofile="${FLEXJS_HOME}/frameworks/libs/${target.name}" />
     </target>
