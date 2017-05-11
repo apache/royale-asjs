@@ -35,13 +35,14 @@ limitations under the License.
         }
         
         .RendererText {
-        	flex-grow: 1;
+			left: 10px;
         }
         
         .RemoveButton {
         	width: 16px;
         	height: 16px;
         	border: solid 1px red;
+			right: 10px;
         }
         
         .StatusText {
