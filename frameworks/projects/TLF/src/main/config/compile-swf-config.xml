@@ -27,16 +27,38 @@
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/HTML.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
+            <path-element>../../../../../libs/Text.swc</path-element>
         </external-library-path>
-        
+
+        <allow-subclass-overrides>true</allow-subclass-overrides>
+
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>CONFIG::debug</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>CONFIG::release</name>
+            <value>true</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -74,7 +96,7 @@
     </include-file>
 
     <include-classes>
-        <class>TextClasses</class>
+        <class>TLFClasses</class>
     </include-classes>
     
     <include-namespaces>

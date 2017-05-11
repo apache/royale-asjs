@@ -45,7 +45,7 @@ package org.apache.flex.text.html
 			{
 				textField = new TextField();
 				textField.mouseEnabled = false;
-				$displayObjectContainer.addChild(textField);
+				addChild(textField);
 				textField.autoSize = TextFieldAutoSize.LEFT;
 				
 				// use these to help calculate line breaks
@@ -91,11 +91,13 @@ package org.apache.flex.text.html
 			}
 		}
 		
+		COMPILE::JS
 		public function get blendMode():String
 		{
 			return null;
 		}
 		
+		COMPILE::JS
 		public function get cacheAsBitmap():Boolean
 		{
 			return false;
@@ -114,11 +116,14 @@ package org.apache.flex.text.html
 			}
 		}
 		
+		COMPILE::JS
 		private var _doubleClickEnabled:Boolean;
+		COMPILE::JS
 		public function get doubleClickEnabled():Boolean
 		{
 			return _doubleClickEnabled;
 		}
+		COMPILE::JS
 		public function set doubleClickEnabled(value:Boolean):void
 		{
 			_doubleClickEnabled = value;
@@ -135,6 +140,7 @@ package org.apache.flex.text.html
 			return false;
 		}
 		
+		COMPILE::JS
 		public function get metaData():Object
 		{
 			return null;
@@ -291,16 +297,19 @@ package org.apache.flex.text.html
 			return 0;
 		}
 
+		COMPILE::SWF
+		{
+        [SWFOverride(returns="flash.geom.Rectangle",params="flash.display.DisplayObject",altparams="Object")]
+		override public function getBounds(ref:Object):Rectangle
+		{
+			return Rectangle.fromObject(super.getBounds(ref as DisplayObject));
+		}
+		}
+		
+		COMPILE::JS
 		public function getBounds(ref:Object):Rectangle
 		{
-			COMPILE::SWF
-			{
-				return Rectangle.fromObject($displayObject.getBounds(ref as DisplayObject));
-			}
-			COMPILE::JS
-			{
-				return new Rectangle(element.offsetLeft, element.offsetTop, element.offsetWidth, element.offsetHeight);
-			}
+			return new Rectangle(element.offsetLeft, element.offsetTop, element.offsetWidth, element.offsetHeight);
 		}
 		
 		public function getAtomBounds(atomIndex:int):Rectangle

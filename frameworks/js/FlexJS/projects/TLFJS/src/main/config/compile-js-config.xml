@@ -39,6 +39,14 @@
             <name>COMPILE::JS</name>
             <value>true</value>
         </define>
+        <define>
+            <name>CONFIG::debug</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>CONFIG::release</name>
+            <value>true</value>
+        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -59,6 +67,7 @@
                  will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
             <path-element>../../../../../libs/HTMLJS.swc</path-element>
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
