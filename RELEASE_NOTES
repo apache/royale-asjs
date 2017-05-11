@@ -5,7 +5,7 @@ Apache FlexJS is a next-generation Flex SDK that provides the capability
 to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
 in a browser without Flash.
 
-This is the fifth release of Apache FlexJS.  This release supports Maven.
+This is the sixth release of Apache FlexJS.  This release supports Maven.
 It is an ‘beta’ type of release.   Expect to find lots of bugs and missing 
 features.
 
