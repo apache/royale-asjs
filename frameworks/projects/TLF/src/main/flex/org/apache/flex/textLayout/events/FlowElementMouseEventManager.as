@@ -622,13 +622,13 @@ package org.apache.flex.textLayout.events
 			if (locallyListening)
 			{
 				_currentElement.getEventMirror().dispatchEvent(event);
-				if (event.isDefaultPrevented())
+				if (event.defaultPrevented)
 					return true;
 			}
 			if (textFlowListening)
 			{
 				textFlow.dispatchEvent(event);
-				if (event.isDefaultPrevented())
+				if (event.defaultPrevented)
 					return true;
 			}
 			return false;

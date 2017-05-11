@@ -242,7 +242,7 @@ package org.apache.flex.textLayout.container
 	public class TextContainerManager extends EventDispatcher implements ISWFContext, IInteractionEventHandler, ISandboxSupport, ITextContainerManager
 	{		
 		// all events that are listened for need to be in this list.
-		static private const eventList:Array = [ 
+		private const eventList:Array = [ 
 			FlowOperationEvent.FLOW_OPERATION_BEGIN,
 			FlowOperationEvent.FLOW_OPERATION_END,
 			FlowOperationEvent.FLOW_OPERATION_COMPLETE,
@@ -327,7 +327,7 @@ package org.apache.flex.textLayout.container
 		}
 		
 		/** Shared definition of the scrollPolicy property. @private */
-		static public const editingModePropertyDefinition:Property = PropertyFactory.enumString("editingMode", EditingMode.READ_WRITE, false, null, 
+		public const editingModePropertyDefinition:Property = PropertyFactory.enumString("editingMode", EditingMode.READ_WRITE, false, null, 
 			EditingMode.READ_WRITE, EditingMode.READ_ONLY, EditingMode.READ_SELECT);	
 		
 		private var _container:IParentIUIBase;
@@ -1632,7 +1632,8 @@ package org.apache.flex.textLayout.container
 		private function convertToTextFlow():void
 		{
 			CONFIG::debug { assert(_sourceState != SOURCE_TEXTFLOW,"bad call to convertToTextFlow"); }
-									
+	
+			TLFFactory.defaultTLFFactory.currentContainer = container;								
 			_textFlow = new TextFlow(TLFFactory.defaultTLFFactory, _config);
 			_textFlow.hostFormat = _hostFormat;
 			if(_swfContext)
@@ -2187,7 +2188,7 @@ package org.apache.flex.textLayout.container
 		*/				
 		public function mouseWheelHandler(event:MouseEvent):void
 		{
-			if (event.isDefaultPrevented())
+			if (event.defaultPrevented)
 				return;
 
 			if (_composeState == COMPOSE_FACTORY)
@@ -2537,15 +2538,19 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 	// public override function get currentTarget():Object
 	// { return _event.currentTarget; }
 	
+	COMPILE::SWF
 	public override function get eventPhase():uint
 	{ return _event.eventPhase; }
 	
+	COMPILE::SWF
 	public override function get isRelatedObjectInaccessible():Boolean
 	{ return _event.isRelatedObjectInaccessible; }
 	
+	COMPILE::SWF
 	public override function get stageX():Number
 	{ return _event.stageX; }
 	
+	COMPILE::SWF
 	public override function get stageY():Number
 	{ return _event.stageY; }
 	
@@ -2557,11 +2562,12 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 		return rslt;
 	}
 	
+	COMPILE::SWF
 	public override function updateAfterEvent():void
 	{ _event.updateAfterEvent(); }
 	
 	public override function isDefaultPrevented():Boolean
-	{ return _event.isDefaultPrevented(); }
+	{ return _event.defaultPrevented; }
 	
 	public override function preventDefault():void
 	{ _event.preventDefault(); }

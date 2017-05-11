@@ -185,6 +185,19 @@ package org.apache.flex.events
             return false;
         }
 
+        /**
+         * defaultPrevented is true if <code>preventDefault()</code> was called.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function get defaultPrevented():Boolean
+        {
+        	return isDefaultPrevented();
+        }
+
 	}
 
 	COMPILE::JS

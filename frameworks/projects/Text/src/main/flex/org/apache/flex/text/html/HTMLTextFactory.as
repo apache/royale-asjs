@@ -21,6 +21,7 @@ package org.apache.flex.text.html
     import org.apache.flex.text.engine.ITextFactory;
     import org.apache.flex.text.engine.ITextBlock;
     import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IParentIUIBase;
     import org.apache.flex.html.Div;
     import org.apache.flex.text.engine.IFontLoader;
 
@@ -40,7 +41,18 @@ package org.apache.flex.text.html
         {
             // no fontLoader for this factory at this point. It uses standard broswer fonts.
             return _fontLoader;
-        }        
+        }
+		
+		private var _currentContainer:IParentIUIBase;
+		public function get currentContainer():IParentIUIBase
+		{
+			return _currentContainer;
+		}
+		public function set currentContainer(value:IParentIUIBase):void
+		{
+			_currentContainer = value;
+		}
+        
     }
 
 }

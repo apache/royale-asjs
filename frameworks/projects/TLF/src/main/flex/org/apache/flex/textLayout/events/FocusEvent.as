@@ -18,8 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.events {
 
-	public class FocusEvent {
+import org.apache.flex.events.Event;
 
+	public class FocusEvent extends Event
+	{
+
+		public function FocusEvent(type:String)
+		{
+			super(type);
+		}
+		
 		public static const FOCUS_IN:String = "focusIn";
 		public static const FOCUS_OUT:String = "focusOut";
 		public static const KEY_FOCUS_CHANGE:String = "keyFocusChange";

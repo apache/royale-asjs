@@ -46,7 +46,7 @@ package org.apache.flex.svg
             _data = value;
             _pathCommands = null;
         }
-        
+
         private var _pathCommands:PathBuilder;
 
         public function get pathCommands():PathBuilder
@@ -60,7 +60,7 @@ package org.apache.flex.svg
             _data = _pathCommands.getPathString();
         }
 
-        
+
         COMPILE::JS
         private var _path:WrappedHTMLElement;
 
@@ -121,7 +121,8 @@ package org.apache.flex.svg
                 _path.setAttribute('style', style);
                 _path.setAttribute('d', data);
 
-                resize(x, y, _path['getBBox']());
+                //resize(x, y, _path['getBBox']());
+                resize(x, y, getBBox(_path));
 
             }
         }

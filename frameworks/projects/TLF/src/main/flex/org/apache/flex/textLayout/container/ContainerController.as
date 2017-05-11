@@ -2103,7 +2103,7 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseOverHandler(event:MouseEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.mouseOverHandler(event);
 		}
 		
@@ -2126,7 +2126,7 @@ package org.apache.flex.textLayout.container
 		 */				
 		public function mouseOutHandler(event:MouseEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.mouseOutHandler(event);
 		}
 		
@@ -2142,7 +2142,7 @@ package org.apache.flex.textLayout.container
 		 */
 		public function mouseWheelHandler(event:MouseEvent):void
 		{
-			if (event.isDefaultPrevented())
+			if (event.defaultPrevented)
 				return;
 			
 			// Do the scroll and call preventDefault only if the there is enough text to scroll. Otherwise
@@ -2177,7 +2177,7 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseDownHandler(event:MouseEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 			{
 				interactionManager.mouseDownHandler(event);
 				// grab the focus - alternative is to listen to keyevents on the Application
@@ -2222,7 +2222,7 @@ package org.apache.flex.textLayout.container
 		 */
 		public function mouseUpHandler(event:MouseEvent):void
 		{
-			if (interactionManager && event && !event.isDefaultPrevented())
+			if (interactionManager && event && !event.defaultPrevented)
 			{
 				interactionManager.mouseUpHandler(event);
 			}
@@ -2340,7 +2340,7 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseMoveHandler(event:MouseEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 			{
 //TODO fix this
 				// only autoscroll if we haven't hit something on the stage related to this particular TextFlow
@@ -2369,7 +2369,7 @@ package org.apache.flex.textLayout.container
 		 */
 		public function mouseDoubleClickHandler(event:MouseEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 			{
 				interactionManager.mouseDoubleClickHandler(event);
 				// grab the focus - alternative is to listen to keyevents on the Application
@@ -2571,7 +2571,7 @@ package org.apache.flex.textLayout.container
 		 */
 		public function keyDownHandler(event:KeyboardEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.keyDownHandler(event);
 		}
 		
@@ -2589,7 +2589,7 @@ package org.apache.flex.textLayout.container
 		
 		public function keyUpHandler(event:KeyboardEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.keyUpHandler(event);
 		}
 		
@@ -2622,7 +2622,7 @@ package org.apache.flex.textLayout.container
 		
 		public function textInputHandler(event:TextEvent):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.textInputHandler(event);
 		}
 		
@@ -2710,7 +2710,7 @@ package org.apache.flex.textLayout.container
 		
 		public function editHandler(event:Event):void
 		{
-			if (interactionManager && !event.isDefaultPrevented())
+			if (interactionManager && !event.defaultPrevented)
 				interactionManager.editHandler(event);
 //TODO deal with context menus			
 			// re-enable context menu so following keyboard shortcuts will work
@@ -2825,6 +2825,8 @@ package org.apache.flex.textLayout.container
 		public function drawPointSelection(selFormat:SelectionFormat, x:Number,y:Number,w:Number,h:Number):void
 		{
 //TODO create shape in abstract way
+//AJH: probably should be graphicContainer with selection rectangles drawn at offset positions instead
+//of positioning a rectangle.
 			var selObj:IRect = textFlow.tlfFactory.getRect();
 			
 			// Oh, this is ugly. If we are in right aligned text, and there is no padding, and the scrollRect is set, 
@@ -2845,9 +2847,13 @@ package org.apache.flex.textLayout.container
 			selObj.fill = new SolidColor(selFormat.pointColor);
 //			selObj.graphics.beginFill(selFormat.pointColor);
 			// pixel snap - works for unscaled text - scaled text will have to accept fuzzy cursors
-			selObj.drawRect(int(x),int(y),w,h);
+			selObj.drawRect(0,0,w,h);
+			selObj.width = w;
+			selObj.height = h;
 //			selObj.graphics.drawRect(int(x),int(y),w,h);
 //			selObj.graphics.endFill();
+			selObj.x = x;
+			selObj.y = y;
 			
 			// make it blink.  But we never blink unless the text is r/w
 			if (selFormat.pointBlinkRate != 0 && interactionManager.editingMode == EditingMode.READ_WRITE)

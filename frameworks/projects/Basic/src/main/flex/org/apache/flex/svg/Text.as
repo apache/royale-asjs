@@ -24,14 +24,14 @@ package org.apache.flex.svg
 
     COMPILE::SWF
     {
-        import flash.text.TextFieldType;        
-        import org.apache.flex.core.CSSTextField;            
+        import flash.text.TextFieldType;
+        import org.apache.flex.core.CSSTextField;
     }
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
     }
-	
+
 	/**
 	 *  Draws a string of characters at a specific location using the fill
 	 *  value of color and alpha.
@@ -56,14 +56,14 @@ package org.apache.flex.svg
 		public function Text()
 		{
 			super();
-			
+
             COMPILE::SWF
             {
                 _textField = new CSSTextField();
                 addChild(_textField);
             }
 		}
-		
+
 		private var _text:String;
 		public function get text():String
 		{
@@ -76,13 +76,13 @@ package org.apache.flex.svg
 
         COMPILE::SWF
 		private var _textField:CSSTextField;
-		
+
 		COMPILE::JS
 		private var _textElem:WrappedHTMLElement;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.ITextModel#textField
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -93,7 +93,7 @@ package org.apache.flex.svg
 		{
 			return _textField;
 		}
-		
+
 		/**
 		 *  Draws text at the given point.
 		 *  @param value The string to draw.
@@ -118,15 +118,15 @@ package org.apache.flex.svg
                 textField.mouseEnabled = false;
                 textField.autoSize = "left";
                 textField.text = value;
-                
+
                 var color:SolidColor = fill as SolidColor;
                 if (color) {
                     textField.textColor = color.color;
                     textField.alpha = color.alpha;
                 }
-                
+
                 textField.x = xt;
-                textField.y = yt;                    
+                textField.y = yt;
             }
             COMPILE::JS
             {
@@ -144,12 +144,13 @@ package org.apache.flex.svg
                 _textElem.setAttribute('y', yt);
 				var textNode:Text = document.createTextNode(value) as Text;
 				_textElem.appendChild(textNode as Node);
-                
-                resize(x, y, (_textElem as SVGLocatable).getBBox());
+
+                //resize(x, y, (_textElem as SVGLocatable).getBBox());
+                resize(x, y, getBBox(_textElem));
 
             }
 		}
-        
+
         override protected function drawImpl():void
         {
             drawText(text,x,y);

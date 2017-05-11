@@ -72,6 +72,8 @@
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
             <arg value="-define=CONFIG::debug,${dbg}" />
             <arg value="-define=CONFIG::release,${rel}" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
         </java>
     </target>
     
@@ -88,6 +90,8 @@
             <arg value="-compiler.strict-xml=true" />
             <define name="CONFIG::debug" value="${dbg}"/>
             <define name="CONFIG::release" value="${rel}"/>
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <load-config filename="${FLEX_HOME}/frameworks/js-config.xml" />
             <load-config filename="src/main/config/compile-js-config.xml" />
         </compc>

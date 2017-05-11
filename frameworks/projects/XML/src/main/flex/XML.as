@@ -150,23 +150,27 @@ package
 			xml.setNodeKind("attribute");
 			xml.setName(att.name);
 			xml.setValue(att.value);
-			parent.addChild(xml);
+			parent.addChildInternal(xml);
 			return xml;
 		}
 		static private function iterateElement(node:Element,xml:XML):void
 		{
 			var i:int;
 			// add attributes
-			for(i=0;i<node.attributes.length;i++)
+			var attrs:* = node.attributes;
+			var len:int = node.attributes.length;
+			for(i=0;i<len;i++)
 			{
-				insertAttribute(node.attributes[i],xml);
+				insertAttribute(attrs[i],xml);
 			}
 			// loop through childNodes which will be one of:
 			// text, cdata, processing instrution or comment and add them as children of the element
-			for(i=0;i<node.childNodes.length;i++)
+			var childNodes:NodeList = node.childNodes;
+			len = childNodes.length;
+			for(i=0;i<len;i++)
 			{
-				var child:XML = fromNode(node.childNodes[i]);
-				xml.addChild(child);
+				var child:XML = fromNode(childNodes[i]);
+				xml.addChildInternal(child);
 			}
 		}
 		/**
@@ -307,7 +311,7 @@ package
 
 		public function XML(xml:String = null)
 		{
-			_origStr = xml;
+			// _origStr = xml;
 			_children = [];
 			if(xml)
 			{
@@ -385,6 +389,11 @@ package
 			if(!child)
 				return;
 			
+			addChildInternal(child);
+			normalize();
+		}
+		private function addChildInternal(child:XML):void
+		{
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 			{
@@ -396,7 +405,6 @@ package
 			}
 			else
 				_children.push(child);
-			normalize();
 		}
 
 
@@ -728,10 +736,10 @@ package
 			}
 			//parent should be null by default
 			for(i=0;i<_attributes.length;i++)
-				xml.addChild(_attributes[i].copy());
+				xml.addChildInternal(_attributes[i].copy());
 
 			for(i=0;i<_children.length;i++)
-				xml.addChild(_children[i].copy());
+				xml.addChildInternal(_children[i].copy());
 			
 			return xml;
 		}

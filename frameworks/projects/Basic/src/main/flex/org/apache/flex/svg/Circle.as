@@ -21,7 +21,7 @@ package org.apache.flex.svg
     {
         import flash.display.Graphics;
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
     COMPILE::JS
     {
@@ -56,7 +56,7 @@ package org.apache.flex.svg
         {
             _radius = value;
         }
-        
+
         COMPILE::JS
         private var _circle:WrappedHTMLElement;
 
@@ -83,7 +83,7 @@ package org.apache.flex.svg
                 graphics.drawCircle(cx+radius,cy+radius,radius);
                 endFill();
             }
-            COMPILE::JS                
+            COMPILE::JS
             {
                 var style:String = getStyleStr();
 
@@ -103,14 +103,15 @@ package org.apache.flex.svg
                     _circle.setAttribute('cx', radius);
                     _circle.setAttribute('cy', radius);
                 }
-                
+
                 _circle.setAttribute('r', radius);
-                
-                resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+
+                //resize(x-radius, y-radius, (_circle as SVGCircleElement).getBBox());
+                resize(x-radius, y-radius, getBBox(_circle));
 
             }
         }
-        
+
         override protected function drawImpl():void
         {
             drawCircle(0, 0, radius);
@@ -120,6 +121,6 @@ package org.apache.flex.svg
 		{
 			drawImpl();
 		}
-        
+
     }
 }

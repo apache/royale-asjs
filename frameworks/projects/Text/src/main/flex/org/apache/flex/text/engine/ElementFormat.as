@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.text.engine
 {
+	import org.apache.flex.geom.Rectangle;
+	
 	public class ElementFormat
 	{
 		public function ElementFormat()
@@ -80,7 +82,10 @@ package org.apache.flex.text.engine
  	 	
 		public function getFontMetrics():FontMetrics
 		{
-			return null;
+			var fm:FontMetrics = new FontMetrics();
+			// just a guess for now
+			fm.emBox = new Rectangle(0, 1.2 - fontSize, fontSize, 1.2);
+			return fm;
 		}
 	}
 }

@@ -196,7 +196,7 @@ package org.apache.flex.textLayout.conversion
 			return _activeFormat_;
 		}
 		/** @private */
-		static private var _activeParaFormat_:TextLayoutFormat = new TextLayoutFormat(); // to be applied to paras only
+		static private var _activeParaFormat_:TextLayoutFormat; // to be applied to paras only
 		static private function get _activeParaFormat():TextLayoutFormat
 		{
 			if(_activeParaFormat_ == null)

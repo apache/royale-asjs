@@ -1414,7 +1414,7 @@ package org.apache.flex.textLayout.edit
 				if (lastLineIndexInColumn == -1)
 					lastLineIndexInColumn = testIndex;
 
-				var bounds:Rectangle = BoundsUtil.getBounds(rtTextLine, controller.container);// rtTextLine.getBounds(DisplayObject(controller.container));
+				var bounds:Rectangle = rtTextLine.getBounds(controller.container);// rtTextLine.getBounds(DisplayObject(controller.container));
 				// trace(testIndex.toString(),":",bounds.toString());
 
 				var linePerpCoor:Number = isTTB ? bounds.left : bounds.bottom;
@@ -2215,7 +2215,7 @@ package org.apache.flex.textLayout.edit
 				{
 					var leftEdge:int = 5;
 					var topEdge:int = 5;
-					var globalPoint:Point = new Point(event.screenX, event.screenX);
+					var globalPoint:Point = new Point(event.clientX, event.clientY);
 					var cellContainer:CellContainer = event.currentTarget as CellContainer;
 					var point:Point;
 
@@ -2359,7 +2359,7 @@ package org.apache.flex.textLayout.edit
 		{
 			var opEvent:FlowOperationEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_BEGIN, false, true, op, 0, null);
 			textFlow.dispatchEvent(opEvent);
-			if (!opEvent.isDefaultPrevented())
+			if (!opEvent.defaultPrevented)
 			{
 				op = opEvent.operation;
 
@@ -2378,7 +2378,7 @@ package org.apache.flex.textLayout.edit
 				// operation completed - send event whether it succeeded or not.
 				opEvent = new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_END, false, true, op, 0, opError);
 				textFlow.dispatchEvent(opEvent);
-				opError = opEvent.isDefaultPrevented() ? null : opEvent.error;
+				opError = opEvent.defaultPrevented ? null : opEvent.error;
 				if (opError)
 					throw (opError);
 				textFlow.dispatchEvent(new FlowOperationEvent(FlowOperationEvent.FLOW_OPERATION_COMPLETE, false, false, op, 0, null));
@@ -2631,7 +2631,7 @@ package org.apache.flex.textLayout.edit
 		 */
 		public function keyDownHandler(event:KeyboardEvent):void
 		{
-			if (!hasSelection() || event.isDefaultPrevented())
+			if (!hasSelection() || event.defaultPrevented)
 				return;
 
 			// if (event.charCode == 0)

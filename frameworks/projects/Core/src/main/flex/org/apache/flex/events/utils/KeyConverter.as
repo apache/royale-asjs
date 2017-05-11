@@ -78,7 +78,6 @@ package org.apache.flex.events.utils
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-         COMPILE::SWF
          public static function convertKeyCode(code:uint):String
          {
              // A to Z

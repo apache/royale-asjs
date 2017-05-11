@@ -1886,6 +1886,8 @@
         <mxmlc fork="true" debug="true"
             file="${file}">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="-define=COMPILE::SWF,true" />
+            <arg value="-define=COMPILE::JS,false" />
         </mxmlc>
     </target>
     
@@ -1899,8 +1901,12 @@
             <arg value="-debug" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="${file}" />
         </java>
     </target>
@@ -1914,8 +1920,12 @@
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
+            <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="${file}" />
         </java>
     </target>

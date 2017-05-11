@@ -141,10 +141,12 @@ package org.apache.flex.svg
 					_rect.setAttribute('x', 0);
 					_rect.setAttribute('y', 0);
                 }
-				_rect.setAttribute('width', width);
-				_rect.setAttribute('height', height);
+				if(width)
+					_rect.setAttribute('width', width);
+				if(height)
+					_rect.setAttribute('height', height);
                 
-                resize(x, y, _rect['getBBox']());
+				resize(x, y, getBBox(_rect));
             }
 		}
 		

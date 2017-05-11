@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.dummy {
 	public class ContextMenu {
-		public var builtInItems:ContextMenuBuiltInItems;
-		public var clipboardItems:ContextMenuClipboardItems;
+		public var builtInItems:ContextMenuBuiltInItems = new ContextMenuBuiltInItems();
+		public var clipboardItems:ContextMenuClipboardItems = new ContextMenuClipboardItems();
 		public var clipboardMenu:Boolean;
-		public var customItems:Array;
+		public var customItems:Array = [];
 		public var isSupported:Boolean;
 		public var items:Array;
 	}
