@@ -21,13 +21,17 @@
 
 
 <flex-config>
-  <!-- Specifies the minimum player version that will run the compiled SWF. -->
-  <target-player>${flash.version}</target-player>
+    <!-- Specifies the minimum player version that will run the compiled SWF. -->
+   <target-player>${flash.version}</target-player>
 
-  <!-- Specifies the version of the compiled SWF -->
-  <swf-version>${swf.version}</swf-version>
+    <!-- Specifies the version of the compiled SWF -->
+   <swf-version>${swf.version}</swf-version>
 
    <compiler>
+      <!-- build both SWF and JS. -->
+      <targets>
+          <target>JS</target>
+      </targets>
 
       <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
       <!-- not set -->
@@ -71,10 +75,11 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-        <path-element>libs/Core-{flexVersion}.swc</path-element>
-        <path-element>../js/libs/flexjs-typedefs-gcl-{flexVersion}-typedefs.swc</path-element>
+         <path-element>libs/Language-{flexVersion}.swc</path-element>
+         <path-element>../js/libs/flexjs-typedefs-gcl-{flexVersion}-typedefs.swc</path-element>
       </library-path>
 
+      <allow-subclass-overrides>true</allow-subclass-overrides>
       <mxml>
           <children-as-data>true</children-as-data>
           <imports>
@@ -89,6 +94,7 @@
       <binding-value-change-event-type>valueChange</binding-value-change-event-type>
       <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
       <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
+      <binding-event-handler-interface>org.apache.flex.events.IEventDispatcher</binding-event-handler-interface>
       <states-class>org.apache.flex.states.State</states-class>
       <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
       <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
