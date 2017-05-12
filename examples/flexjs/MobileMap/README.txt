@@ -18,9 +18,13 @@ Whichever way you want to go: using an IDE like Flash Builder or using the comma
 
 The ANT script will build the application and then create the Cordova template in the app/MobileMap directory.
 
+Now install the Android platform:
+
+% cd app/MobileApp
+% cordova platform add android
+
 Now install the plugin:
 
-% cd app/MobileMap
 % cordova plugin add cordova-plugin-geolocation
 
 Once this is complete, you can connect your Android device to your computer and run it:
