@@ -53,6 +53,16 @@
     <include file="${basedir}/../../build_example.xml" />
 
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    	<copy todir="${basedir}/bin-debug" >
+            <fileset dir="${basedir}">
+                <include name="*-app.xml" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin-release" >
+            <fileset dir="${basedir}">
+                <include name="*-app.xml" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
