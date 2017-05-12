@@ -25,7 +25,8 @@ limitations under the License.
     <fx:Script>
 		<![CDATA[
             import org.apache.flex.mdl.materialIcons.MaterialIconType;
-			import vos.MaterialVO;
+
+            import vos.MaterialVO;
             
             [Bindable("dataChange")]
             public function get material():MaterialVO

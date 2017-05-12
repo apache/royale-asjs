@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import vos.TabVO;
     import org.apache.flex.collections.ArrayList;
+
+    import vos.TabVO;
 
     public class TabsModel
     {
