@@ -135,23 +135,25 @@ package org.apache.flex.html.beads
 
             if (!_titleBar) {
                 _titleBar = new TitleBar();
-				_titleBar.id = "panelTitleBar";
-
-				COMPILE::SWF {
-					_titleBar.percentWidth = 100;
-
-					if (_titleBar.style == null) {
-						_titleBar.style = new SimpleCSSStyles();
-					}
-					_titleBar.style.flexGrow = 0;
-					_titleBar.style.order = 1;
-				}
-
-				COMPILE::JS {
-					_titleBar.element.style["flex-grow"] = "0";
-					_titleBar.element.style["order"] = "1";
-				}
 			}
+			
+			_titleBar.id = "panelTitleBar";
+
+			COMPILE::SWF {
+				_titleBar.percentWidth = 100;
+
+				if (_titleBar.style == null) {
+					_titleBar.style = new SimpleCSSStyles();
+				}
+				_titleBar.style.flexGrow = 0;
+				_titleBar.style.order = 1;
+			}
+
+			COMPILE::JS {
+				_titleBar.element.style["flex-grow"] = "0";
+				_titleBar.element.style["order"] = "1";
+			}
+
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will
 			// be picked up automatically by the TitleBar.
