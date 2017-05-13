@@ -156,7 +156,7 @@ limitations under the License.
                 <js:style>
                     <js:SimpleCSSStyles paddingTop="0" right="0" /> <!--  gap="0"  -->
                 </js:style>
-                <js:Label text="{product.featureString}" width="60" height="48" />
+                <js:MultilineLabel text="{product.featureString}" width="60" height="48" />
                 <js:Label text="{cf.format(product.price)}" style="fontWeight:bold"/>
 				<js:Spacer height="4"/>
                 <js:Label text="{product.highlight1}" style="color:#EE8D0C" includeIn="x3cols, x2cols"/>
