@@ -60,7 +60,7 @@ package org.apache.flex.core
 		/**
 		 *  @private
 		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @flexjsignorecoercion UIHTMLElementWrapper
+		 *  @flexjsignorecoercion org.apache.flex.core.UIHTMLElementWrapper
 		 */
 		private function handleStyleChange(event:ValueChangeEvent):void
 		{
