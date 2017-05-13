@@ -69,6 +69,7 @@ package org.apache.flex.html
         {
 			var e:WrappedHTMLElement = super.createElement();
 			positioner.style.position = 'absolute';
+			typeNames = "ToolTIp";
 			return e;
 		}		
 	}

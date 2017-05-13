@@ -159,6 +159,7 @@ package org.apache.flex.html
 
             element.style.verticalAlign = 'middle';
             element.flexjs_wrapper = this;
+			typeNames = "Spinner";
 
             return element;
         }

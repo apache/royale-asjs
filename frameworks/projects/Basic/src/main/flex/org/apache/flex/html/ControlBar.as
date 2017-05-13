@@ -87,6 +87,7 @@ package org.apache.flex.html
 			
 			positioner = element;
 			element.flexjs_wrapper = this;
+			typeNames = "ControlBar";
 
             return element;
         }
