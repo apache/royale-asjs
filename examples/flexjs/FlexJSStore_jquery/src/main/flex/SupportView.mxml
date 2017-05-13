@@ -32,7 +32,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 <js:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic" 
                  xmlns="*" alpha="1.0"
-    width="990" height="550">
+    >
 	
 	<fx:Script>
 	    <![CDATA[
@@ -56,7 +56,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 			
 				<js:Label y="10" text="Check Location" className="sectionHeader" x="20"/>
 				
-				<js:Container height="150" y="64" style="margin:auto">
+				<js:Container height="200" width="100%" y="64" style="margin:auto">
                     <js:beads>
                         <js:VerticalColumnLayout numColumns="2" />
                     </js:beads>

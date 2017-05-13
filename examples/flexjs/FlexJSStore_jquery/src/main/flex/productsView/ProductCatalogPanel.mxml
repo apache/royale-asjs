@@ -505,7 +505,7 @@ limitations under the License.
     
     <js:beads>
         <js:ContainerDataBinding />
-        <js:VerticalLayout />
+        <js:BasicLayout />
         <js:DragMouseController id="dragger" />
         <js:ParentDocumentBead id="pdb" />
         <js:PanelView>
@@ -521,7 +521,7 @@ limitations under the License.
             </js:titleBar>
         </js:PanelView>
     </js:beads>
-    <js:Container width="100%" height="100%">
+    <js:Container width="100%" height="100%" style="backgroundColor: #ffffff">
         <js:Container id="thumbContentGroup" width="100%" height="100%">
             <js:beads>
 				<js:ScrollingViewport id="scv" />
