@@ -63,10 +63,7 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.BinaryImageLoader; BinaryImageLoader;
 	import org.apache.flex.html.beads.models.BinaryImageModel; BinaryImageModel;
 	import org.apache.flex.html.beads.ListView; ListView;
-	COMPILE::SWF
-	{
-	    import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
-	}
+	import org.apache.flex.html.beads.NumericStepperView; NumericStepperView;
     import org.apache.flex.html.beads.PanelView; PanelView;
 	import org.apache.flex.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
     import org.apache.flex.html.beads.SliderView; SliderView;

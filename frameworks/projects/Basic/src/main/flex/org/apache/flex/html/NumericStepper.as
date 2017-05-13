@@ -165,55 +165,10 @@ package org.apache.flex.html
             positioner = element;
             //positioner.style.position = 'relative';
 
-            input = new TextInput();
-            input.className = "NumericStepperInput";
-            input.typeNames = "NumericStepperInput";
-            addElement(input);
-            input.positioner.style.display = 'inline-block';
-            input.positioner.style.width = '100px';
-
-            spinner = new Spinner();
-			spinner.addBead(model as IBead);
-            addElement(spinner);
-
-            /* TODO: ajh move to view and css */
-            spinner.positioner.style.display = 'inline-block';
-            goog.events.listen(spinner, 'valueChange',
-                spinnerChange);
-
             element.flexjs_wrapper = this;
             className = 'NumericStepper';
 
-            input.text = String(spinner.value);
-
-			IEventDispatcher(model).addEventListener("valueChange",modelChangeHandler);
-			IEventDispatcher(model).addEventListener("minimumChange",modelChangeHandler);
-			IEventDispatcher(model).addEventListener("maximumChange",modelChangeHandler);
-			IEventDispatcher(model).addEventListener("stepSizeChange",modelChangeHandler);
-			IEventDispatcher(model).addEventListener("snapIntervalChange",modelChangeHandler);
-
             return element;
-        }
-
-        /**
-         * @param event The input event.
-         */
-        COMPILE::JS
-        private function spinnerChange(event:Event):void
-        {
-            var newValue:Number = spinner.value;
-            value = newValue;
-            input.text = String(spinner.value);
-            dispatchEvent(new Event('valueChange'));
-        };
-
-        /**
-         * @private
-         */
-        COMPILE::JS
-        private function modelChangeHandler(event:Event):void
-        {
-            input.text = String(model.value);
         }
 
 	}

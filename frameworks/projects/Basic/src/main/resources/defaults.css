@@ -409,6 +409,13 @@ Tree
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
+	
+	padding: 0px;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
 }
 
 Panel
@@ -436,6 +443,11 @@ Panel .TitleBar
 	border-bottom: solid 1px #333333;
 }
 
+.PanelContent
+{
+	background-color: #FFFFFF;
+}
+
 SimpleList
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
@@ -460,8 +472,14 @@ Spinner
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
+	width: 16px;
 }
 
+.SpinnerButton
+{
+	padding: 1px;
+	font-size: 6px;
+}
 
 StringItemRenderer
 {
@@ -752,13 +770,6 @@ global
 	
 	NumericStepper
 	{
-		IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
-		
-		padding: 0px;
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
-		background-color: #FFFFFF;
 		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 	}
