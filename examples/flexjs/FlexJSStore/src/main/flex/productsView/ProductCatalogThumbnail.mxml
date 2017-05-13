@@ -35,6 +35,7 @@ limitations under the License.
     <js:beads>
         <js:ContainerDataBinding />
         <js:LayoutChangeNotifier watchedProperty="{borderStyles.borderColor}" initialValue="#FFFFFF" />
+        <js:LayoutChangeNotifier watchedProperty="{buttons.visible}" initialValue="false" />
         <js:StyleChangeNotifier />
     </js:beads>
     <js:style>
