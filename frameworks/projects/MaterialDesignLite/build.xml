@@ -36,6 +36,7 @@
         <ant dir="${FLEXJS_HOME}/frameworks/js/FlexJS/projects/${ant.project.name}JS/" inheritAll="false" >
             <property name="FALCON_HOME" value="${FALCON_HOME}"/>
             <property name="FALCONJX_HOME" value="${FALCONJX_HOME}"/>
+            <property name="FLEX_HOME" value="${FLEX_HOME}"/>
         </ant>
     </target>
         
