@@ -14,6 +14,7 @@ New Features
 - More complete Reflection implementation with access to static members, kept metadata and method parameters
 - Added cross-platform registerClassAlias/getAliasByClass/getClassByAlias implementations (reflection package)
 - Added support for interpreting XML literals as JSX by adding [JSX] metadata to a function.
+- The -source-map compiler argument now also generates source maps for scripts in MXML files.
 
 Bug Fixes
 ---------
