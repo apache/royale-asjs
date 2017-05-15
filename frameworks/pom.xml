@@ -33,7 +33,7 @@
   <name>Apache Flex - FlexJS: Framework</name>
 
   <modules>
-    <!--module>fontsrc</module-->
+    <module>fontsrc</module>
     <module>projects</module>
   </modules>
 
