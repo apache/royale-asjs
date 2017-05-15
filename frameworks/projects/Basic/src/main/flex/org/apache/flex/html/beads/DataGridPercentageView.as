@@ -120,7 +120,7 @@ package org.apache.flex.html.beads
 
 			_listArea = new Container();
 			_listArea.percentWidth = 100;
-			_listArea.className = "DataGridListArea";
+			_listArea.className = "opt_org-apache-flex-html-DataGrid_ListArea";
 			
 			COMPILE::SWF {
 				_header.style = new SimpleCSSStyles();

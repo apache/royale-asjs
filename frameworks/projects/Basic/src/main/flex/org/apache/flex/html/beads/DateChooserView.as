@@ -130,7 +130,7 @@ package org.apache.flex.html.beads
 			monthButtonsContainer = new Group();
 			monthButtonsContainer.height = controlHeight;
 			monthButtonsContainer.id = "dateChooserMonthButtons";
-			monthButtonsContainer.className = "DateChooserMonthButtons";
+			monthButtonsContainer.className = "opt_org-apache-flex-html-DateChooser_MonthButtons";
 			monthButtonsContainer.style = new SimpleCSSStyles();
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {
