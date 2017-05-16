@@ -45,7 +45,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.PanelLayoutProxy;
 
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStyles;
+		import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	}
 
 	/**
@@ -143,7 +143,7 @@ package org.apache.flex.html.beads
 				_titleBar.percentWidth = 100;
 
 				if (_titleBar.style == null) {
-					_titleBar.style = new SimpleCSSStyles();
+					_titleBar.style = new SimpleCSSStylesWithFlex();
 				}
 				_titleBar.style.flexGrow = 0;
 				_titleBar.style.order = 1;
@@ -168,7 +168,7 @@ package org.apache.flex.html.beads
 					_contentArea.percentWidth = 100;
 
 					if (_contentArea.style == null) {
-						_contentArea.style = new SimpleCSSStyles();
+						_contentArea.style = new SimpleCSSStylesWithFlex();
 					}
 					_contentArea.style.flexGrow = 1;
 					_contentArea.style.order = 2;

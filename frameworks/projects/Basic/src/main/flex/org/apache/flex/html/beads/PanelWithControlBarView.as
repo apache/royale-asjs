@@ -39,7 +39,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.utils.CSSContainerUtils;
 	
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStyles;
+		import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	}
 	
 	/**
@@ -104,7 +104,7 @@ package org.apache.flex.html.beads
 				_controlBar.percentWidth = 100;
 				
 				if (_controlBar.style == null) {
-					_controlBar.style = new SimpleCSSStyles();
+					_controlBar.style = new SimpleCSSStylesWithFlex();
 				}
 				_controlBar.style.flexGrow = 0;
 				_controlBar.style.order = 3;

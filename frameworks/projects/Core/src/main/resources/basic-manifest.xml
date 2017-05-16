@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
+    <component id="AllCSSValuesImpl" class="org.apache.flex.core.AllCSSValuesImpl"/>
     <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
@@ -31,7 +32,9 @@
     <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
+    <component id="BindableCSSStylesWithFlex" class="org.apache.flex.core.BindableCSSStylesWithFlex"/>
     <component id="SimpleCSSStyles" class="org.apache.flex.core.SimpleCSSStyles"/>
+    <component id="SimpleCSSStylesWithFlex" class="org.apache.flex.core.SimpleCSSStylesWithFlex"/>
     <component id="AllCSSStyles" class="org.apache.flex.core.AllCSSStyles"/>
     <component id="ParentDocumentBead" class="org.apache.flex.core.ParentDocumentBead"/>
     <component id="MixinManager" class="org.apache.flex.utils.MixinManager" />

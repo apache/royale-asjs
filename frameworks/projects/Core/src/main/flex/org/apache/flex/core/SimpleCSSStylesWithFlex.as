@@ -30,7 +30,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class SimpleCSSStyles 
+	public class SimpleCSSStylesWithFlex 
 	{
         /**
          *  Constructor.
@@ -40,7 +40,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function SimpleCSSStyles()
+		public function SimpleCSSStylesWithFlex()
 		{
 			super();
 		}
@@ -71,7 +71,10 @@ package org.apache.flex.core
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
-            "borderWidth": 1
+            "borderWidth": 1,
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"order": 1
         };
 		
         public var top:*;
@@ -100,5 +103,8 @@ package org.apache.flex.core
         public var borderStyle:*;
         public var borderRadius:*;
         public var borderWidth:*;
+		public var flexGrow:*;
+		public var flexShrink:*;
+		public var order:*;
 	}
 }

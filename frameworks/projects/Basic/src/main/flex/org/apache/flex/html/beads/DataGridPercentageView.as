@@ -38,7 +38,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.Viewport;
 	
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStyles;
+		import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	}
 
 	/**
@@ -123,10 +123,10 @@ package org.apache.flex.html.beads
 			_listArea.className = "opt_org-apache-flex-html-DataGrid_ListArea";
 			
 			COMPILE::SWF {
-				_header.style = new SimpleCSSStyles();
+				_header.style = new SimpleCSSStylesWithFlex();
 				_header.style.flexGrow = 0;
 				
-				_listArea.style = new SimpleCSSStyles();
+				_listArea.style = new SimpleCSSStylesWithFlex();
 				_listArea.style.flexGrow = 1;
 			}
 			COMPILE::JS {
@@ -169,7 +169,7 @@ package org.apache.flex.html.beads
 					list.percentWidth = Number(colWidth);
 				} else {
 					COMPILE::SWF {
-						list.style = new SimpleCSSStyles();
+						list.style = new SimpleCSSStylesWithFlex();
 						list.style.flexGrow = 1;
 					}
 						COMPILE::JS {

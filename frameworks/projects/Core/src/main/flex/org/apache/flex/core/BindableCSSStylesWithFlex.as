@@ -22,15 +22,17 @@ package org.apache.flex.core
 	import org.apache.flex.events.EventDispatcher;
 
     /**
-     *  The SimpleCSSStyles class contains CSS style
-     *  properties supported by SimpleCSSValuesImpl.
+     *  The BindableCSSStyles class contains CSS style
+     *  properties supported by SimpleCSSValuesImpl but
+     *  dispatch change events when modified
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class SimpleCSSStyles 
+    [Bindable]
+	public class BindableCSSStylesWithFlex extends EventDispatcher
 	{
         /**
          *  Constructor.
@@ -40,7 +42,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function SimpleCSSStyles()
+		public function BindableCSSStylesWithFlex()
 		{
 			super();
 		}
@@ -68,12 +70,16 @@ package org.apache.flex.core
             "fontStyle": 1,
             "backgroundColor": 1,
             "backgroundImage": 1,
+			"border": 1,
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
-            "borderWidth": 1
+            "borderWidth": 1,
+			"flexGrow": 1,
+			"flexShrink": 1,
+			"order": 1
         };
-		
+
         public var top:*;
         public var bottom:*;
         public var left:*;
@@ -94,11 +100,17 @@ package org.apache.flex.core
         public var color:*;
         public var fontWeight:*;
         public var fontStyle:*;
+        public var backgroundAlpha:*;
         public var backgroundColor:*;
         public var backgroundImage:*;
+		public var border:*;
         public var borderColor:*;
         public var borderStyle:*;
         public var borderRadius:*;
         public var borderWidth:*;
+		public var flexGrow:*;
+		public var flexShrink:*;
+		public var order:*;
+
 	}
 }

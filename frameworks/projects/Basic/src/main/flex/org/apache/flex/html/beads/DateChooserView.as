@@ -23,7 +23,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -131,7 +131,7 @@ package org.apache.flex.html.beads
 			monthButtonsContainer.height = controlHeight;
 			monthButtonsContainer.id = "dateChooserMonthButtons";
 			monthButtonsContainer.className = "opt_org-apache-flex-html-DateChooser_MonthButtons";
-			monthButtonsContainer.style = new SimpleCSSStyles();
+			monthButtonsContainer.style = new SimpleCSSStylesWithFlex();
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {
 				monthButtonsContainer.element.style["flex-grow"] = "0";
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads
 			_prevMonthButton.width = commonButtonWidth;
 			_prevMonthButton.text = "<";
 			if (_prevMonthButton.style == null) {
-				_prevMonthButton.style = new SimpleCSSStyles();
+				_prevMonthButton.style = new SimpleCSSStylesWithFlex();
 			}
 			_prevMonthButton.style.flexGrow = 0;
 			COMPILE::JS {
@@ -152,7 +152,7 @@ package org.apache.flex.html.beads
 			monthLabel = new DateHeaderButton();
 			monthLabel.text = "Month Here";
 			if (monthLabel.style == null) {
-				monthLabel.style = new SimpleCSSStyles();
+				monthLabel.style = new SimpleCSSStylesWithFlex();
 			}
 			monthLabel.style.flexGrow = 1;
 			COMPILE::JS {
@@ -164,7 +164,7 @@ package org.apache.flex.html.beads
 			_nextMonthButton.width = commonButtonWidth;
 			_nextMonthButton.text = ">";
 			if (_nextMonthButton.style == null) {
-				_nextMonthButton.style = new SimpleCSSStyles();
+				_nextMonthButton.style = new SimpleCSSStylesWithFlex();
 			}
 			COMPILE::JS {
 				_nextMonthButton.element.style["flex-grow"] = "0";
@@ -180,7 +180,7 @@ package org.apache.flex.html.beads
 			dayNamesContainer.id = "dateChooserDayNames";
 			dayNamesContainer.className = "DateChooserHeader";
 			dayNamesContainer.height = controlHeight;
-			dayNamesContainer.style = new SimpleCSSStyles();
+			dayNamesContainer.style = new SimpleCSSStylesWithFlex();
 			dayNamesContainer.style.flexGrow = 0;
 			COMPILE::JS {
 				dayNamesContainer.element.style["flex-grow"] = "0";
@@ -196,7 +196,7 @@ package org.apache.flex.html.beads
 			daysContainer = new DateChooserList();
 			daysContainer.className = "DateChooserList";
 			daysContainer.id = "dateChooserList";
-			daysContainer.style = new SimpleCSSStyles();
+			daysContainer.style = new SimpleCSSStylesWithFlex();
 			daysContainer.style.flexGrow = 1;
 			COMPILE::JS {
 				daysContainer.element.style["flex-grow"] = "1";

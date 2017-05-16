@@ -22,7 +22,7 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
@@ -130,7 +130,7 @@ package org.apache.flex.mobile.beads
 			}
 			COMPILE::SWF {
 				if (UIBase(_currentView).style == null) {
-					UIBase(_currentView).style = new SimpleCSSStyles();
+					UIBase(_currentView).style = new SimpleCSSStylesWithFlex();
 				}
 				UIBase(_currentView).style.flexGrow = 1;
 				UIBase(_currentView).percentWidth = 100;

@@ -512,7 +512,7 @@ limitations under the License.
             <js:titleBar>
                 <js:TitleBar height="20" >
                     <js:style>
-                        <js:SimpleCSSStyles backgroundColor="0xA65904" />
+                        <js:SimpleCSSStylesWithFlex backgroundColor="0xA65904" />
                     </js:style>
                     <js:beads>
                         <productsView:ProductCatalogPanelTitleBarView />

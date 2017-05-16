@@ -33,21 +33,15 @@ package org.apache.flex.core
     import org.apache.flex.utils.StringUtil;
     
     /**
-     *  The SimpleCSSValuesImpl class implements a minimal set of
-     *  CSS lookup rules that is sufficient for most applications
-	 *  and is easily implemented for SWFs.
-     *  It does not support attribute selectors or descendant selectors
-     *  or id selectors.  It will filter on a custom -flex-flash
-     *  media query but not other media queries.  It can be
-     *  replaced with other implementations that handle more complex
-     *  selector lookups.
+     *  The AllCSSValuesImpl class will eventually implement a full set of
+     *  CSS lookup rules.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl, ICSSImpl
+	public class AllCSSValuesImpl extends EventDispatcher implements IValuesImpl, ICSSImpl
 	{
         /**
          *  Constructor.
@@ -57,7 +51,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-		public function SimpleCSSValuesImpl()
+		public function AllCSSValuesImpl()
 		{
 			super();
 		}
@@ -693,6 +687,14 @@ package org.apache.flex.core
             'color': 1
         }
 
+        /**
+         * The styles that can use raw numbers
+         */
+        COMPILE::JS
+        public static var numericStyles:Object = {
+            'fontWeight': 1
+        }
+        
         
         /**
          * The properties that enumerate that we skip
@@ -712,9 +714,10 @@ package org.apache.flex.core
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void
         {
-            var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
-            var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
-            var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
+            var styleList:Object = AllCSSValuesImpl.perInstanceStyles;
+            var colorStyles:Object = AllCSSValuesImpl.colorStyles;
+            var skipStyles:Object = AllCSSValuesImpl.skipStyles;
+            var numericStyles:Object = AllCSSValuesImpl.numericStyles;
             var listObj:Object = styles;
             if (styles.styleList)
                 listObj = styles.styleList;
@@ -729,6 +732,8 @@ package org.apache.flex.core
                 if (typeof(value) == 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
+                    else if (numericStyles[p])
+                        value = value.toString();
                     else
                         value = value.toString() + 'px';
                 }

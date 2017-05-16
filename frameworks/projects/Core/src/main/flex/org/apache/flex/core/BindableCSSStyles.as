@@ -68,7 +68,6 @@ package org.apache.flex.core
             "color": 1,
             "fontWeight": 1,
             "fontStyle": 1,
-            "backgroundAlpha": 1,
             "backgroundColor": 1,
             "backgroundImage": 1,
 			"border": 1,
