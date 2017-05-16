@@ -133,6 +133,11 @@ package org.apache.flex.core
 					}
 				}
 			}
+			COMPILE::JS {
+				if (sawInitComplete) {
+					performLayout();
+				}
+			}
 		}
 		
 		/**
