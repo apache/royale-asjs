@@ -24,6 +24,13 @@ limitations under the License.
                    xmlns:controllers="controllers.*"
                    
                    >
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		global {
+    		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");
+		}
+	</fx:Style>
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
