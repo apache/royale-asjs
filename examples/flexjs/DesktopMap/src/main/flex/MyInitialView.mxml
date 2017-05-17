@@ -135,7 +135,7 @@ limitations under the License.
 		<local:NoLayout />
 	</js:beads>
 	
-	<js:Panel title="Map" width="50%" height="600" className="MapPanel">
+	<js:Panel title="Map" width="500" height="600" className="MapPanel">
 		<js:beads>
 			<js:VerticalFlexLayout />
 		</js:beads>
