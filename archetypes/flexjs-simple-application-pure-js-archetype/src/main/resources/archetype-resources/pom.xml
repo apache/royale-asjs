@@ -29,7 +29,6 @@
 
   <properties>
     <compiler.debug>true</compiler.debug>
-    <compiler.output-dir>target/javascript/bin/js-debug</compiler.output-dir>
   </properties>
 
   <build>
@@ -84,7 +83,6 @@
       <id>release</id>
       <properties>
         <compiler.debug>false</compiler.debug>
-        <compiler.output-dir>target/javascript/bin/js-release</compiler.output-dir>
       </properties>
     </profile>
   </profiles>
