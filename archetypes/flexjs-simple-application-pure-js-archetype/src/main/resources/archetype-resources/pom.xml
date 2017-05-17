@@ -64,15 +64,6 @@
       <type>swc</type>
     </dependency>
 
-    <!-- Needed for Flash compilation -->
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
     <!-- Needed for JavaScript compilation -->
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
