@@ -37,6 +37,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
+          <targets>JSFlex</targets>
         </configuration>
         <dependencies>
           <dependency>

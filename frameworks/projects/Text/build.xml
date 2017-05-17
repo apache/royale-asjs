@@ -80,7 +80,7 @@
         <compc fork="true"
             output="${basedir}/target/${target.name}">
             <jvmarg line="${compc.jvm.args}"/>
-            <load-config filename="${basedir}/src/main/config/compile-as-config.xml" />
+            <load-config filename="${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-define=COMPILE::SWF,true" />

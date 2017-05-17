@@ -35,7 +35,6 @@ limitations under the License.
     <fx:Script><![CDATA[
         import org.apache.flex.events.Event;
         import org.apache.flex.events.MouseEvent;
-        import org.apache.flex.events.MouseEvent;
 
         private function onShowToastClick(event:MouseEvent):void
         {

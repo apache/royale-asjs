@@ -43,7 +43,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <debug>\${compiler.debug}</debug>
-          <targets>JS</targets>
+          <targets>JSFlex</targets>
         </configuration>
         <dependencies>
           <dependency>
