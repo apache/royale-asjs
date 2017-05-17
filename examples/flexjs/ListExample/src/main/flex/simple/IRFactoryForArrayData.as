@@ -155,7 +155,7 @@ package simple
 			for (var i:int = 0; i < n; i++)
 			{
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				dataGroup.addElement(ir);
+				dataGroup.addItemRenderer(ir);
 				ir.index = i;
 				ir.labelField = list.labelField;
 				if (presentationModel) {
