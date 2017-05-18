@@ -20,7 +20,14 @@
 
     <compiler>
         <accessible>false</accessible>
-        
+
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSFlex</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
         <external-library-path append="true">
             <path-element>../../../../../../../../js/libs/google_maps.swc</path-element>
         </external-library-path>
