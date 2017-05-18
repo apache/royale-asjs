@@ -46,12 +46,19 @@ limitations under the License.
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/GoogleMaps.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/DragDrop.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/CreateJS.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/Express.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/FontAwesome.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/jQuery.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/Language.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/MaterialDesignLite.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/XML.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/Basic.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="2" path="${FLEX_FALCON}/js/libs/js.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${FLEX_FALCON}/js/libs/GCL.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CoreJS/target/CoreJS.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/HTMLJS/target/HTMLJS.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/BasicJS/target/BasicJS.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/GraphicsJS/target/GraphicsJS.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
