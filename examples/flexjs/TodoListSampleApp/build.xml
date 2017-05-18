@@ -37,5 +37,17 @@
         <delete dir="${basedir}/bin-release" failonerror="false" />
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
+    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Simple ToDo List."/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
 </project>
 

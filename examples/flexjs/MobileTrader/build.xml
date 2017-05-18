@@ -25,6 +25,7 @@
     
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
     <include file="${basedir}/../../build_example.xml" />
@@ -47,7 +48,7 @@
     </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
-    <target name="main" depends="clean,build_example.compile,copyassets" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,copyassets,build_example.compile.cordova" description="Clean build of ${example}">
     </target>
     
     <target name="copyassets">
@@ -72,4 +73,11 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
     
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="View example"/>
+        <antcall target="build_example.run.air" />
+        <antcall target="build_example.run.cordova" />
+    </target>
+
 </project>
