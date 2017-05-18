@@ -32,6 +32,22 @@
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    	<mkdir dir="${basedir}/bin/js-debug/fonts" />
+        <copy todir="${basedir}/bin/js-debug/fonts" >
+            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+                <include name="flat-ui-icons-regular.svg" />
+                <include name="flat-ui-icons-regular.ttf" />
+                <include name="flat-ui-icons-regular.woff" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/fonts" />
+        <copy todir="${basedir}/bin/js-release/fonts" >
+            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+                <include name="flat-ui-icons-regular.svg" />
+                <include name="flat-ui-icons-regular.ttf" />
+                <include name="flat-ui-icons-regular.woff" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
