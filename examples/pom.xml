@@ -42,6 +42,7 @@
     <module>express</module>
     <module>flexjs</module>
     <module>native</module>
+    <module>node</module>
 
     <module>examples-tests</module>
     <module>examples-integrationtests</module>
