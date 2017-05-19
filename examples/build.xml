@@ -152,7 +152,7 @@
     </target>
 
     <target name="examine" description="Cleans all SWCs and their resource bundles">
-        <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
+        <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
         <ant dir="${basedir}/flexjs/ASDoc" target="examine"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="examine"/>
         <ant dir="${basedir}/flexjs/CreateJSExample" target="examine"/>
