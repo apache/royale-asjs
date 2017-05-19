@@ -191,7 +191,7 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	<js:Group className="TopContainer" width="50%" height="600">
+	<js:Group className="TopContainer" width="455" height="600">
 		<js:beads>
 			<js:VerticalFlexLayout />
 		</js:beads>

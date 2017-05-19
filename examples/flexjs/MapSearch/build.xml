@@ -64,6 +64,7 @@
     </target>
     
     <target name="run">
+        <property name="which" value="debug" />
         <antcall target="build_example.run.air.desktop" />
     </target>
     
