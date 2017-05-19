@@ -109,8 +109,8 @@ package org.apache.flex.html.beads.layouts
 				var maxHeight:Number = 0;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
-				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
+				var hostWidth:Number = host.width;
+				var hostHeight:Number = host.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -141,24 +141,22 @@ package org.apache.flex.html.beads.layouts
 
 					var childYpos:Number = ypos + margins.top; // default y position
 
-					if (!hostHeightSizedToContent) {
-						var childHeight:Number = child.height;
-						if (ilc != null && !isNaN(ilc.percentHeight)) {
-							childHeight = hostHeight * ilc.percentHeight/100.0;
-							ilc.setHeight(childHeight);
-						}
-						var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
-						if (valign == "middle")
-						{
-							childYpos = hostHeight/2 - (childHeight + margins.top + margins.bottom)/2;
-						}
+					var childHeight:Number = child.height;
+					if (ilc != null && !isNaN(ilc.percentHeight)) {
+						childHeight = hostHeight * ilc.percentHeight/100.0;
+						ilc.setHeight(childHeight);
 					}
-
+					var valign:Object = ValuesManager.valuesImpl.getValue(child, "vertical-align");
+					if (valign == "middle")
+					{
+						childYpos = hostHeight/2 - (childHeight + margins.top + margins.bottom)/2;
+					}
+	
 					if (ilc) {
 						ilc.setX(xpos);
 						ilc.setY(childYpos);
 
-						if (!hostWidthSizedToContent && !isNaN(ilc.percentWidth)) {
+						if (!isNaN(ilc.percentWidth)) {
 							var newWidth:Number = hostWidth * ilc.percentWidth / 100;
 							ilc.setWidth(newWidth);
 						}

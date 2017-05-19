@@ -132,8 +132,8 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
 			var hostSizedToContent:Boolean = host.isHeightSizedToContent();
-			var hostWidth:Number = contentView.width;
-			var hostHeight:Number = hostSizedToContent ? 0 : contentView.height;
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 
 			var ilc:ILayoutChild;
 			var data:Object;
@@ -162,15 +162,13 @@ package org.apache.flex.html.beads.layouts
 
 				var childYpos:Number = ypos + margins.top; // default y position
 
-				if (!hostSizedToContent) {
-					var childHeight:Number = child.height;
-					if (ilc != null && !isNaN(ilc.percentHeight)) {
-						childHeight = hostHeight * ilc.percentHeight/100.0;
-						ilc.setHeight(childHeight);
-					}
-					// the following code middle-aligns the child
-					childYpos = hostHeight/2 - childHeight/2;
+				var childHeight:Number = child.height;
+				if (ilc != null && !isNaN(ilc.percentHeight)) {
+					childHeight = hostHeight * ilc.percentHeight/100.0;
+					ilc.setHeight(childHeight);
 				}
+				// the following code middle-aligns the child
+				childYpos = hostHeight/2 - childHeight/2;
 
 				if (ilc) {
 					if (!isNaN(ilc.percentWidth)) {

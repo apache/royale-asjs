@@ -186,8 +186,8 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
 			var hostSizedToContent:Boolean = host.isWidthSizedToContent();
-			var hostWidth:Number = hostSizedToContent ? 0 : contentView.width;
-			var hostHeight:Number = contentView.height;
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 
 			var ilc:ILayoutChild;
 			var data:Object;
@@ -225,15 +225,13 @@ package org.apache.flex.html.beads.layouts
 
 				childXpos = xpos + margins.left; // default x position
 
-				if (!hostSizedToContent) {
-					childWidth = child.width;
-					if (ilc != null && !isNaN(ilc.percentWidth)) {
-						childWidth = hostWidth * ilc.percentWidth/100.0;
-						ilc.setWidth(childWidth);
-					}
-					// the following code middle-aligns the child
-					childXpos = hostWidth/2 - childWidth/2 + xpos;
+				childWidth = child.width;
+				if (ilc != null && !isNaN(ilc.percentWidth)) {
+					childWidth = hostWidth * ilc.percentWidth/100.0;
+					ilc.setWidth(childWidth);
 				}
+				// the following code middle-aligns the child
+				childXpos = hostWidth/2 - childWidth/2 + xpos;
 
 				if (ilc) {
 					ilc.setX(childXpos);
@@ -266,15 +264,13 @@ package org.apache.flex.html.beads.layouts
 
 				childXpos = xpos + margins.left; // default x position
 
-				if (!hostSizedToContent) {
-					childWidth = child.width;
-					if (ilc != null && !isNaN(ilc.percentWidth)) {
-						childWidth = hostWidth * ilc.percentWidth/100.0;
-						ilc.setWidth(childWidth);
-					}
-					// the following code middle-aligns the child
-					childXpos = hostWidth/2 - childWidth/2 + xpos;
+				childWidth = child.width;
+				if (ilc != null && !isNaN(ilc.percentWidth)) {
+					childWidth = hostWidth * ilc.percentWidth/100.0;
+					ilc.setWidth(childWidth);
 				}
+				// the following code middle-aligns the child
+				childXpos = hostWidth/2 - childWidth/2 + xpos;
 
 				if (ilc) {
 					if (!isNaN(ilc.percentHeight)) {
@@ -300,12 +296,10 @@ package org.apache.flex.html.beads.layouts
 			if (actualChild != null) {
 				margins = childMargins(actualChild, hostWidth, hostHeight);
 				ilc = actualChild as ILayoutChild;
-				if (!hostSizedToContent) {
-					childWidth = actualChild.width;
-					if (ilc != null && !isNaN(ilc.percentWidth)) {
-						childWidth = hostWidth * ilc.percentWidth/100.0;
-						ilc.setWidth(childWidth);
-					}
+				childWidth = actualChild.width;
+				if (ilc != null && !isNaN(ilc.percentWidth)) {
+					childWidth = hostWidth * ilc.percentWidth/100.0;
+					ilc.setWidth(childWidth);
 				}
 				childXpos = xpos + margins.left;
 				if (!hostSizedToContent) {
