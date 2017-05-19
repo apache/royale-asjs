@@ -34,6 +34,8 @@
     <property name="file_suffix" value="as" />
 
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+        <copy file="${basedir}/src/main/resources/index.html" tofile="${basedir}/bin/js-debug/index.html" />
+        <copy file="${basedir}/src/main/resources/index.html" tofile="${basedir}/bin/js-release/index.html" />
     </target>
     
     <target name="clean">
