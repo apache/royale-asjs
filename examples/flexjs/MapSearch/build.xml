@@ -64,14 +64,16 @@
     </target>
     
     <target name="run">
-        <antcall target="build_example.run.air" />
+        <antcall target="build_example.run.air.desktop" />
     </target>
     
     <target name="examine" depends="build_example.get.browser">
         <property name="which" value="debug" />
         <echo message="View map."/>
-        <antcall target="build_example.run.air" />
-        <antcall target="build_example.run.cordova" />
+        <antcall target="build_example.run.air.desktop" />
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
     </target>
 
 </project>

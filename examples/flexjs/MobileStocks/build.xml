@@ -35,22 +35,6 @@
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
     <property name="config_arg" value="air"/>
     
-    <condition property="adl" value="adl.exe">
-        <os family="windows"/>
-    </condition>
-    
-    <condition property="adl" value="adl">
-        <os family="mac"/>
-    </condition>
-    
-    <condition property="runtime" value="win">
-        <os family="windows"/>
-    </condition>
-    
-    <condition property="runtime" value="mac">
-        <os family="mac"/>
-    </condition>
-
     <include file="${basedir}/../../build_example.xml" />
 
     <target name="main" depends="clean,build_example.compile,build_example.compile.cordova" description="Clean build of ${example}">
@@ -80,7 +64,7 @@
     <target name="examine" depends="build_example.get.browser">
         <property name="which" value="debug" />
         <echo message="Click on Products tab.  Hover over person to see buttons with tooltips.  DragDrop a person to compare box.  Click on Support tab."/>
-        <antcall target="build_example.run.air" />
+        <antcall target="build_example.run.air.desktop" />
         <antcall target="build_example.run.cordova" />
     </target>
 

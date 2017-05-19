@@ -80,7 +80,9 @@
         <property name="which" value="debug" />
         <echo message="View map."/>
         <antcall target="build_example.run.air.desktop" />
-        <antcall target="build_example.run.cordova" />
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
     </target>
 
 </project>

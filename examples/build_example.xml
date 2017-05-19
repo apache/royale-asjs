@@ -92,6 +92,22 @@
         </and>
     </condition>
 
+    <condition property="adl" value="adl.exe">
+        <os family="windows"/>
+    </condition>
+
+    <condition property="adl" value="adl">
+        <os family="mac"/>
+    </condition>
+
+    <condition property="runtime" value="win">
+        <os family="windows"/>
+    </condition>
+
+    <condition property="runtime" value="mac">
+        <os family="mac"/>
+    </condition>
+
     <target name="get.browser" >
         <condition property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
             <and>

@@ -28,6 +28,11 @@
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
 
+    <condition property="config.path" value="&quot;${basedir}/src/main/config/asdoc-config.xml&quot;">
+        <os family="windows" />
+    </condition>
+    <property name="config.path" value="${basedir}/src/main/config/asdoc-config.xml"/>
+
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="build_example.compile" description="Clean build of ${example}">
@@ -54,7 +59,7 @@
             <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
             <arg value="-external-library-path+=${FLEXJS_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${FLEXJS_HOME}/frameworks" />
-            <arg value="-load-config=&quot;${basedir}/src/main/config/asdoc-config.xml&quot;" />
+            <arg value="-load-config=${config.path}" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache FlexJS API Reference" />
