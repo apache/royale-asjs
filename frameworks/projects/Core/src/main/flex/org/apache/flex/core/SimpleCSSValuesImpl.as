@@ -219,15 +219,12 @@ package org.apache.flex.core
                     */
                     var mq:String = null;
                     var o:Object;
-                    if (i < n - 2)
+                    // peek ahead to see if there is a media query
+                    if (i < n - 2 && arr[i + 1] === CSSClass.CSSMediaQuery)
                     {
-                        // peek ahead to see if there is a media query
-                        if (arr[i + 1] === CSSClass.CSSMediaQuery)
-                        {
-                            mq = arr[i + 2];
-                            i += 2;
-                            declarationName = mq + "_" + declarationName;
-                        }
+                        mq = arr[i + 2];
+                        i += 2;
+                        declarationName = mq + "_" + declarationName;
                     }
                     var finalName:String;
                     var valuesFunction:Function;
@@ -665,7 +662,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static var inheritingStyles:Object = {
+        public static const inheritingStyles:Object = {
             "color" : 1,
             "fontFamily" : 1,
             "fontSize" : 1,
@@ -677,7 +674,7 @@ package org.apache.flex.core
          * The styles that apply to each UI widget
          */
         COMPILE::JS
-        public static var perInstanceStyles:Object = {
+        public static const perInstanceStyles:Object = {
             'backgroundColor': 1,
             'backgroundImage': 1,
             'color': 1,
@@ -692,7 +689,7 @@ package org.apache.flex.core
          * The styles that use color format #RRGGBB
          */
         COMPILE::JS
-        public static var colorStyles:Object = {
+        public static const colorStyles:Object = {
             'backgroundColor': 1,
             'borderColor': 1,
             'color': 1
@@ -702,7 +699,7 @@ package org.apache.flex.core
          * The styles that can use raw numbers
          */
         COMPILE::JS
-        public static var numericStyles:Object = {
+        public static const numericStyles:Object = {
             'fontWeight': 1
         };
         
@@ -711,7 +708,7 @@ package org.apache.flex.core
          * The properties that enumerate that we skip
          */
         COMPILE::JS
-        public static var skipStyles:Object = {
+        public static const skipStyles:Object = {
             'constructor': 1
         };
         
@@ -748,8 +745,7 @@ package org.apache.flex.core
                     else
                         value = value.toString() + 'px';
                 }
-                else if (p === 'backgroundImage') {
-                    if (p.indexOf('url') !== 0)
+                else if (p === 'backgroundImage' && p.indexOf('url') !== 0) {
                         value = 'url(' + value + ')';
                 }
                 (thisObject.element as HTMLElement).style[p] = value;
