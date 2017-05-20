@@ -158,9 +158,9 @@ package org.apache.flex.core
         COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
-			if (factoryFunctions == null)
+			if (factoryFunctions === null)
 				return;
-			if (arr == null)
+			if (arr === null)
 				return;
 			
             var declarationName:String = "";
@@ -169,16 +169,16 @@ package org.apache.flex.core
             for (var i:int = 0; i < n; i++)
             {
                 var className:int = arr[i];
-                if (className == CSSClass.CSSSelector)
+                if (className === CSSClass.CSSSelector)
                 {
                     var selectorName:String = arr[++i];
                     segmentName = selectorName + segmentName;
-                    if (declarationName != "")
+                    if (declarationName !== "")
                         declarationName += " ";
                     declarationName += segmentName;
                     segmentName = "";
                 }
-                else if (className == CSSClass.CSSCondition)
+                else if (className === CSSClass.CSSCondition)
                 {
 					if (!conditionCombiners)
 					{
@@ -191,23 +191,23 @@ package org.apache.flex.core
 					var conditionName:String = arr[++i];
 					segmentName = segmentName + conditionCombiners[conditionType] + conditionName;
                 }
-                else if (className == CSSClass.CSSStyleDeclaration)
+                else if (className === CSSClass.CSSStyleDeclaration)
                 {
                     var factoryName:int = arr[++i]; // defaultFactory or factory
-                    var defaultFactory:Boolean = factoryName == CSSFactory.DefaultFactory;
+                    var defaultFactory:Boolean = factoryName === CSSFactory.DefaultFactory;
                     /*
                     if (defaultFactory)
                     {
                         mergedStyle = styleManager.getMergedStyleDeclaration(declarationName);
-                        style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
+                        style = new CSSStyleDeclaration(selector, styleManager, mergedStyle === null);
                     }
                     else
                     {
                         style = styleManager.getStyleDeclaration(declarationName);
                         if (!style)
                         {
-                            style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
-                            if (factoryName == CSSFactory.Override)
+                            style = new CSSStyleDeclaration(selector, styleManager, mergedStyle === null);
+                            if (factoryName === CSSFactory.Override)
                                 newSelectors.push(style);
                         }
                     }
@@ -217,7 +217,7 @@ package org.apache.flex.core
                     if (i < n - 2)
                     {
                         // peek ahead to see if there is a media query
-                        if (arr[i + 1] == CSSClass.CSSMediaQuery)
+                        if (arr[i + 1] === CSSClass.CSSMediaQuery)
                         {
                             mq = arr[i + 2];
                             i += 2;
@@ -241,7 +241,7 @@ package org.apache.flex.core
                     {
                         finalName = fixNames(declarationName, mq);
                         o = values[finalName];
-                        if (o == null)
+                        if (o === null)
                             values[finalName] = valuesObject;
                         else
                         {
@@ -257,10 +257,10 @@ package org.apache.flex.core
 
         private function isValidStaticMediaQuery(mq:String):Boolean
         {
-            if (mq == null)
+            if (mq === null)
                 return true;
             
-            if (mq == "-flex-flash")
+            if (mq === "-flex-flash")
                 return true;
             
             // TODO: (aharui) other media query
@@ -270,10 +270,10 @@ package org.apache.flex.core
         
         private function fixNames(s:String, mq:String):String
         {
-            if (mq != null)
+            if (mq !== null)
                 s = s.substr(mq.length + 1); // 1 more for the hyphen
             
-			if (s == "")
+			if (s === "")
 				return "*";
 			
             var arr:Array = s.split(" ");
@@ -281,7 +281,7 @@ package org.apache.flex.core
             for (var i:int = 0; i < n; i++)
             {
                 var segmentName:String = arr[i];
-				if (segmentName.charAt(0) == "#" || segmentName.charAt(0) == ".")
+				if (segmentName.charAt(0) === "#" || segmentName.charAt(0) === ".")
 					continue;
 				
                 var c:int = segmentName.lastIndexOf(".");
@@ -316,7 +316,7 @@ package org.apache.flex.core
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
             var c:int = valueName.indexOf("-");
-            while (c != -1)
+            while (c !== -1)
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
@@ -332,7 +332,7 @@ package org.apache.flex.core
 			if (thisObject is IStyleableObject)
 			{
                 var styleable:IStyleableObject = IStyleableObject(thisObject);
-                if (styleable.style != null)
+                if (styleable.style !== null)
                 {
                     try {
                         value = styleable.style[valueName];
@@ -340,18 +340,18 @@ package org.apache.flex.core
                     catch (e:Error) {
                         value = undefined;
                     }
-                    if (value == "inherit")
+                    if (value === "inherit")
                         return getInheritingValue(thisObject, valueName, state, attrs);
                     if (value !== undefined)
                         return value;
                 }
-                if (styleable.id != null)
+                if (styleable.id !== null)
                 {
                     o = values["#" + styleable.id];
                     if (o)
                     {
                         value = o[valueName];
-                        if (value == "inherit")
+                        if (value === "inherit")
                             return getInheritingValue(thisObject, valueName, state, attrs);
                         if (value !== undefined)
                             return value;
@@ -370,7 +370,7 @@ package org.apache.flex.core
                             if (o)
                             {
                                 value = o[valueName];
-                                if (value == "inherit")
+                                if (value === "inherit")
                                     return getInheritingValue(thisObject, valueName, state, attrs);
                                 if (value !== undefined)
                                     return value;
@@ -381,7 +381,7 @@ package org.apache.flex.core
                         if (o)
                         {
                             value = o[valueName];
-                            if (value == "inherit")
+                            if (value === "inherit")
                                 return getInheritingValue(thisObject, valueName, state, attrs);
                             if (value !== undefined)
                                 return value;
@@ -399,7 +399,7 @@ package org.apache.flex.core
                 className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
             }
             var thisInstance:Object = thisObject;
-			while (className != "Object")
+			while (className !== "Object")
 			{
 				if (state)
 				{
@@ -408,7 +408,7 @@ package org.apache.flex.core
 					if (o)
 					{
 						value = o[valueName];
-                        if (value == "inherit")
+                        if (value === "inherit")
                             return getInheritingValue(thisObject, valueName, state, attrs);
 						if (value !== undefined)
 							return value;
@@ -419,7 +419,7 @@ package org.apache.flex.core
 	            if (o)
 	            {
 	                value = o[valueName];
-                    if (value == "inherit")
+                    if (value === "inherit")
                         return getInheritingValue(thisObject, valueName, state, attrs);
 	                if (value !== undefined)
 	                    return value;
@@ -440,7 +440,7 @@ package org.apache.flex.core
                 }
 			}
             
-            if (inheritingStyles[valueName] != null && 
+            if (inheritingStyles[valueName] !== null &&
                 thisObject is IChild)
             {
                 var parentObject:Object = IChild(thisObject).parent;
@@ -472,7 +472,7 @@ package org.apache.flex.core
                 if (parentObject)
                 {
                     value = getValue(parentObject, valueName, state, attrs);
-                    if (value == "inherit" || value === undefined)
+                    if (value === "inherit" || value === undefined)
                         return getInheritingValue(parentObject, valueName, state, attrs);
                     if (value !== undefined)
                         return value;
@@ -500,7 +500,7 @@ package org.apache.flex.core
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
             var c:int = valueName.indexOf("-");
-            while (c != -1)
+            while (c !== -1)
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
@@ -508,7 +508,7 @@ package org.apache.flex.core
                 c = valueName.indexOf("-");
             }
 			var oldValue:Object = values[valueName];
-			if (oldValue != value)
+			if (oldValue !== value)
 			{
 				values[valueName] = value;
 				dispatchEvent(new ValueChangeEvent(ValueChangeEvent.VALUE_CHANGE, false, false, oldValue, value));
@@ -593,26 +593,26 @@ package org.apache.flex.core
             {
                 var pieces:Array = StringUtil.splitAndTrim(part, ":");
                 var value:String = pieces[1];
-                if (value == "null")
+                if (value === "null")
                     obj[pieces[0]] = null;
-                else if (value == "true")
+                else if (value === "true")
                     obj[pieces[0]] = true;
-                else if (value == "false")
+                else if (value === "false")
                     obj[pieces[0]] = false;
                 else
                 {
                     var n:Number = Number(value);
                     if (isNaN(n))
                     {
-                        if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
+                        if (value.charAt(0) === "#" || value.indexOf("rgb") === 0)
                         {                            
                             obj[pieces[0]] = CSSUtils.toColor(value);
                         }
                         else
                         {
-                            if (value.charAt(0) == "'")
+                            if (value.charAt(0) === "'")
                                 value = value.substr(1, value.length - 2);
-                            else if (value.charAt(0) == '"')
+                            else if (value.charAt(0) === '"')
                                 value = value.substr(1, value.length - 2);
                             obj[pieces[0]] = value;
                         }
@@ -639,7 +639,7 @@ package org.apache.flex.core
             {
                 var v:* = values[valueName];
                 var c:int = valueName.indexOf("-");
-                while (c != -1)
+                while (c !== -1)
                 {
                     valueName = valueName.substr(0, c) +
                         valueName.charAt(c + 1).toUpperCase() +
@@ -734,7 +734,7 @@ package org.apache.flex.core
                 var value:* = styles[p];
                 if (value === undefined)
                     continue;
-                if (typeof(value) == 'number') {
+                if (typeof(value) === 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
                     else if (numericStyles[p])
@@ -742,7 +742,7 @@ package org.apache.flex.core
                     else
                         value = value.toString() + 'px';
                 }
-                else if (p == 'backgroundImage') {
+                else if (p === 'backgroundImage') {
                     if (p.indexOf('url') !== 0)
                         value = 'url(' + value + ')';
                 }
