@@ -169,7 +169,7 @@ package org.apache.flex.core
             var declarationName:String = "";
             var segmentName:String = "";
             var n:int = arr.length;
-            for (var i:int = 0; i < n; i++)
+            while (i < n)
             {
                 var className:int = arr[i];
                 if (className === CSSClass.CSSSelector)
@@ -254,6 +254,7 @@ package org.apache.flex.core
                     }
                     declarationName = "";
                 }
+                i++;
             }
             
         }
