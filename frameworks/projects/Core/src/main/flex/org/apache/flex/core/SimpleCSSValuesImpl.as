@@ -100,7 +100,7 @@ package org.apache.flex.core
             {
                 var ffName:String = "factoryFunctions" + i.toString();
                 var ff:Object = c[ffName];
-                if (ff == null)
+                if (ff === null)
                     break;
                 generateCSSStyleDeclarations(c[ffName], c["data" + i.toString()]);
                 if (hasEventListener("init"))
@@ -117,7 +117,7 @@ package org.apache.flex.core
 
             mainClass = main;
 
-            if (newValues == null)
+            if (newValues === null)
                 newValues = {};
             
             if (cssData) {
