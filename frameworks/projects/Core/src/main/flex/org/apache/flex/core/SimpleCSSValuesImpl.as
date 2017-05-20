@@ -665,7 +665,7 @@ package org.apache.flex.core
             "fontSize" : 1,
             "fontStyle" : 1,
             "textAlign" : 1
-        }
+        };
 
         /**
          * The styles that apply to each UI widget
@@ -679,7 +679,7 @@ package org.apache.flex.core
             'fontWeight': 1,
             'fontSize': 1,
             'fontStyle': 1
-        }
+        };
         
         
         /**
@@ -690,7 +690,7 @@ package org.apache.flex.core
             'backgroundColor': 1,
             'borderColor': 1,
             'color': 1
-        }
+        };
 
         /**
          * The styles that can use raw numbers
@@ -698,7 +698,7 @@ package org.apache.flex.core
         COMPILE::JS
         public static var numericStyles:Object = {
             'fontWeight': 1
-        }
+        };
         
         
         /**
@@ -707,7 +707,7 @@ package org.apache.flex.core
         COMPILE::JS
         public static var skipStyles:Object = {
             'constructor': 1
-        }
+        };
         
         
 
