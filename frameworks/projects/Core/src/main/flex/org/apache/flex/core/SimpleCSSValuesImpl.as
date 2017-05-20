@@ -478,10 +478,10 @@ package org.apache.flex.core
                 if (parentObject)
                 {
                     value = getValue(parentObject, valueName, state, attrs);
-                    if (value === INHERIT || value === undefined)
+                    if (value === INHERIT || value === undefined) {
                         return getInheritingValue(parentObject, valueName, state, attrs);
-                    if (value !== undefined)
-                        return value;
+                    }
+                    return value;
                 }
                 return undefined;
             }
