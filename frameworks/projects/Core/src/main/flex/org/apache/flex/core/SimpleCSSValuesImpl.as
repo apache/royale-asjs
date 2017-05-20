@@ -169,6 +169,8 @@ package org.apache.flex.core
             var declarationName:String = "";
             var segmentName:String = "";
             var n:int = arr.length;
+            var i:int = 0;
+            
             while (i < n)
             {
                 var className:int = arr[i];
@@ -663,7 +665,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static var inheritingStyles:Object = { 
+        public static var inheritingStyles:Object = {
             "color" : 1,
             "fontFamily" : 1,
             "fontSize" : 1,
