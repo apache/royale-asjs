@@ -81,7 +81,7 @@ package org.apache.flex.core
 			if (!values)
 			{
 				values = {};
-	            this.mainClass = main;
+	            mainClass = main;
 	            var mainClassName:String = getQualifiedClassName(mainClass);
 				styleClassName = "_" + mainClassName + "_Styles";
 				c = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
@@ -110,12 +110,12 @@ package org.apache.flex.core
         public function init(main:Object):void
         {
             var cssData:Array = main.cssData;
-            var values:Object = this.values;
+            var newValues:Object = values;
 
-            this.mainClass = main;
+            mainClass = main;
 
-            if (values == null)
-                values = {};
+            if (newValues == null)
+                newValues = {};
             
             if (cssData) {
                 var n:int = cssData.length;
@@ -134,19 +134,19 @@ package org.apache.flex.core
                     for (var j:int = 0; j < numSel; j++)
                     {
                         var selName:String = cssData[i++];
-                        if (values[selName])
+                        if (newValues[selName])
                         {
-                            props = values[selName];
+                            props = newValues[selName];
                             propFn.prototype = props;
                         }
-                        values[selName] = new propFn();
+                        newValues[selName] = new propFn();
                     }
                     // skip the propFn
                     props = cssData[i++];
                 }
             }
             
-            this.values = values;            
+            values = newValues;
         }
         
         /**
@@ -635,12 +635,12 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function addRule(ruleName:String, values:Object):void
+        public function addRule(ruleName:String, ruleValues:Object):void
         {
             var asValues:Object = {};
-            for (var valueName:String in values)
+            for (var valueName:String in ruleValues)
             {
-                var v:* = values[valueName];
+                var v:* = ruleValues[valueName];
                 var c:int = valueName.indexOf("-");
                 while (c !== -1)
                 {
@@ -651,7 +651,7 @@ package org.apache.flex.core
                 }
                 asValues[valueName] = v;
             }
-            this.values[ruleName] = asValues;
+            values[ruleName] = asValues;
         }
         
         /**
