@@ -48,6 +48,9 @@ package org.apache.flex.core
      */
 	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl, ICSSImpl
 	{
+
+        private static const INHERIT:String = "inherit";
+
         /**
          *  Constructor.
          *  
@@ -343,7 +346,7 @@ package org.apache.flex.core
                     catch (e:Error) {
                         value = undefined;
                     }
-                    if (value === "inherit")
+                    if (value === INHERIT)
                         return getInheritingValue(thisObject, valueName, state, attrs);
                     if (value !== undefined)
                         return value;
@@ -354,7 +357,7 @@ package org.apache.flex.core
                     if (o)
                     {
                         value = o[valueName];
-                        if (value === "inherit")
+                        if (value === INHERIT)
                             return getInheritingValue(thisObject, valueName, state, attrs);
                         if (value !== undefined)
                             return value;
@@ -373,7 +376,7 @@ package org.apache.flex.core
                             if (o)
                             {
                                 value = o[valueName];
-                                if (value === "inherit")
+                                if (value === INHERIT)
                                     return getInheritingValue(thisObject, valueName, state, attrs);
                                 if (value !== undefined)
                                     return value;
@@ -384,7 +387,7 @@ package org.apache.flex.core
                         if (o)
                         {
                             value = o[valueName];
-                            if (value === "inherit")
+                            if (value === INHERIT)
                                 return getInheritingValue(thisObject, valueName, state, attrs);
                             if (value !== undefined)
                                 return value;
@@ -411,7 +414,7 @@ package org.apache.flex.core
 					if (o)
 					{
 						value = o[valueName];
-                        if (value === "inherit")
+                        if (value === INHERIT)
                             return getInheritingValue(thisObject, valueName, state, attrs);
 						if (value !== undefined)
 							return value;
@@ -422,7 +425,7 @@ package org.apache.flex.core
 	            if (o)
 	            {
 	                value = o[valueName];
-                    if (value === "inherit")
+                    if (value === INHERIT)
                         return getInheritingValue(thisObject, valueName, state, attrs);
 	                if (value !== undefined)
 	                    return value;
@@ -475,14 +478,14 @@ package org.apache.flex.core
                 if (parentObject)
                 {
                     value = getValue(parentObject, valueName, state, attrs);
-                    if (value === "inherit" || value === undefined)
+                    if (value === INHERIT || value === undefined)
                         return getInheritingValue(parentObject, valueName, state, attrs);
                     if (value !== undefined)
                         return value;
                 }
                 return undefined;
             }
-            return "inherit";
+            return INHERIT;
         }
         
         /**
