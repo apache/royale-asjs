@@ -74,14 +74,14 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.0
          */
         COMPILE::SWF
-        public function init(mainClass:Object):void
+        public function init(main:Object):void
         {
 			var styleClassName:String;
 			var c:Class;
 			if (!values)
 			{
 				values = {};
-	            this.mainClass = mainClass;
+	            this.mainClass = main;
 	            var mainClassName:String = getQualifiedClassName(mainClass);
 				styleClassName = "_" + mainClassName + "_Styles";
 				c = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
@@ -107,10 +107,13 @@ package org.apache.flex.core
         }
         
         COMPILE::JS
-        public function init(mainClass:Object):void
+        public function init(main:Object):void
         {
-            var cssData:Array = mainClass.cssData;
+            var cssData:Array = main.cssData;
             var values:Object = this.values;
+
+            this.mainClass = main;
+
             if (values == null)
                 values = {};
             
