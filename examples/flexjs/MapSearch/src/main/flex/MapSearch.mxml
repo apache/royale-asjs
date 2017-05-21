@@ -34,7 +34,7 @@
 		<js:SimpleCSSValuesImpl />
 	</js:valuesImpl>
 	<js:initialView>
-		<local:MyInitialView />
+		<local:MyInitialView width="500" height="640" />
 	</js:initialView>
 	<js:model>
 		<models:MyModel />
