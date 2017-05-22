@@ -18,7 +18,10 @@ New Features
 
 Bug Fixes
 ---------
+-FLEX-35288 [FlexJS, MDL] slider step size can't be less than 1
+-FLEX-35273 [FlexJS] No error in code with multiple views
 -FLEX-35271 [FlexJS] HTTPServer POST calls give client side errors
+-FLEX-35269 [FlexJS] MDL - Dynamic Child Problem
 -FLEX-35266 [FlexJS] MDL Layout Problems
 -FLEX-35257 [FlexJS] uncaught reference error on known function
 -FLEX-35250 [FlexJS] HContainer visible false not respected (JS only)
@@ -30,12 +33,14 @@ Bug Fixes
 -FLEX-35240 [FlexJS] Style Overrides ImageButton source Att
 -FLEX-35239 Runtime error when setting a property to a constant value
 -FLEX-35237 DataGridLayout is broken when used inside <js:beads/>
+-FLEX-35217 build.xml fails in downloading online dependency randomly
 -FLEX-35213 Assigned multi line CDATA section to InnerHtml bead causes exception
 -FLEX-35212 [FlexJS] DataGrid requires a way to select it's row(s) automatically
 -FLEX-35210 FlexJSStore and FlexJSStore_JQuery fail with javascript error on starting as of 09 DEC
 -FLEX-35208 DateField is not closable without selecting one date in javascript mode
 -FLEX-35207 DateChooser doesn't highlight current select date
 -FLEX-35205 style properties are ignored in swf mode
+-FLEX-35203 XML() class is broken javascript mode in 0.8 dev
 -FLEX-35204 DateChooser and DateField doesn't work in swf mode
 -FLEX-35202 Label doesn't fire mouse events
 -FLEX-35201 TileLayout is not working in javascript mode
@@ -53,6 +58,7 @@ Bug Fixes
 -FLEX-35103 [FlexJS] SimpleAlert.show() in flash - can't click OK
 -FLEX-35068 SWCs not created for XML
 -FLEX-35061 var keyword "internal" scoping
+-FLEX-35054 js:Panel lost background colour in js:State change in HTML output
 -FLEX-35051 NullPointerException in FlexJS compiler
 -FLEX-35041 Date property not working in FlexJS
 -FLEX-34996 [FlexJS] Issue with VerticalColumnLayout Inside Panel
@@ -61,6 +67,10 @@ Bug Fixes
 -FLEX-34845 Simple ButtonBar does not layout children correctly
 -FLEX-34842 NPE PanelWithControlBarView/layoutChromeElements()
 -FLEX-34841 TextInput change event not fired correctly in JS
+-FLEX-34414 FlexJS file missing Apache header
+-FLEX-34237 List example show double scrollbar
+-FLEX-34922 Using FlexJs 0.0.2 with Flash Builder 4.6 , Unable to compile existing flex project om.adobe.flexbuilder.multisdk.compiler.internal.FlexLibraryBuilder
+-FLEX-34114 Can't install using ANT
 
 Apache FlexJS 0.7.0
 =================
