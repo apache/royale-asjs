@@ -88,6 +88,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		[Bindable("change")]
         public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
@@ -140,6 +141,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		[Bindable("change")]
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
