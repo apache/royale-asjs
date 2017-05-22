@@ -241,8 +241,8 @@ package org.apache.flex.html.beads
             viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
 
 			viewport.layoutViewportBeforeContentLayout(
-				host.isWidthSizedToContent() ? NaN : hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
-				host.isHeightSizedToContent() ? NaN : hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
+				hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
+				hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
 		}
 
 		/**
