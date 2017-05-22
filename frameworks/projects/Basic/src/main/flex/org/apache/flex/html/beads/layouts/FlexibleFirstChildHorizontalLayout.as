@@ -209,7 +209,8 @@ package org.apache.flex.html.beads.layouts
 			// set the display on the contentView
 			contentView.element.style["display"] = "flex";
 			contentView.element.style["flex-flow"] = "row";
-			contentView.element.style["align-items"] = "center";
+			if (!contentView.element.style["align-items"])
+				contentView.element.style["align-items"] = "center";
 
 			var n:int = contentView.numElements;
 			if (n == 0) return false;
@@ -218,6 +219,8 @@ package org.apache.flex.html.beads.layouts
 				var child:UIBase = contentView.getElementAt(i) as UIBase;
 				child.element.style["flex-grow"] = (i == 0) ? "1" : "0";
 				child.element.style["flex-shrink"] = "0";
+				if (!isNaN(child.percentWidth))
+				    child.element.style["flex-basis"] = child.percentWidth.toString() + "%";
 			}
 
 			return true;

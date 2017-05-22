@@ -254,6 +254,8 @@ package org.apache.flex.html.beads.layouts
 
 					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
 					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
+					if (!isNaN(child.percentHeight))
+						child.element.style["flex-basis"] = child.percentHeight.toString() + "%";
 					child.dispatchEvent(new Event("layoutNeeded"));
 				}
 
