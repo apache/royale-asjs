@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.flex.core.Application"/>
+    <component id="AirApplication" class="org.apache.flex.core.AirApplication"/>
     <component id="View" class="org.apache.flex.core.View"/>
     <component id="Button" class="org.apache.flex.html.Button"/>
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"/>
