@@ -73,7 +73,8 @@
     </target>
     
     <target name="run">
-        <antcall target="build_example.run.air" />
+        <property name="which" value="debug" />
+        <antcall target="build_example.run.air.desktop" />
     </target>
     
     <target name="examine" depends="build_example.get.browser">
