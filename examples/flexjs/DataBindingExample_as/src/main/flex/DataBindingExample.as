@@ -23,35 +23,18 @@ import org.apache.flex.core.Application;
 import org.apache.flex.core.ItemRendererClassFactory;
 import org.apache.flex.core.SimpleCSSValuesImpl;
 import org.apache.flex.events.Event;
-import org.apache.flex.html.beads.CSSButtonView;
-import org.apache.flex.html.beads.CSSTextButtonView;
-import org.apache.flex.html.beads.CSSTextToggleButtonView;
-import org.apache.flex.html.beads.CheckBoxView;
 import org.apache.flex.html.beads.ContainerView;
 import org.apache.flex.html.beads.GroupView;
 import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData;
-import org.apache.flex.html.beads.DropDownListView;
 import org.apache.flex.html.beads.ListView;
-import org.apache.flex.html.beads.RadioButtonView;
-import org.apache.flex.html.beads.SingleLineBorderBead;
-import org.apache.flex.html.beads.SolidBackgroundBead;
-import org.apache.flex.html.beads.TextAreaView;
-import org.apache.flex.html.beads.TextButtonMeasurementBead;
-import org.apache.flex.html.beads.TextFieldLabelMeasurementBead;
-import org.apache.flex.html.beads.TextFieldView;
-import org.apache.flex.html.beads.TextInputWithBorderView;
 import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData;
-import org.apache.flex.html.beads.controllers.DropDownListController;
 import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
-import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
 import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController;
 import org.apache.flex.html.beads.layouts.BasicLayout;
 import org.apache.flex.html.beads.layouts.VerticalLayout;
 import org.apache.flex.html.beads.models.ArraySelectionModel;
-import org.apache.flex.html.beads.models.SingleLineBorderModel;
 import org.apache.flex.html.beads.models.TextModel;
 import org.apache.flex.html.beads.models.ToggleButtonModel;
-import org.apache.flex.html.beads.models.ValueToggleButtonModel;
 import org.apache.flex.html.beads.models.ViewportModel;
 import org.apache.flex.html.supportClasses.ContainerContentArea;
 import org.apache.flex.html.supportClasses.DropDownListList;
@@ -63,6 +46,28 @@ import org.apache.flex.net.HTTPService;
 import org.apache.flex.collections.parsers.JSONInputParser;
 import org.apache.flex.collections.LazyCollection;
 import org.apache.flex.utils.ViewSourceContextMenuOption;
+
+COMPILE::SWF
+{
+import org.apache.flex.html.beads.CSSButtonView;
+import org.apache.flex.html.beads.CSSTextButtonView;
+import org.apache.flex.html.beads.CSSTextToggleButtonView;
+import org.apache.flex.html.beads.CheckBoxView;
+import org.apache.flex.html.beads.DropDownListView;
+import org.apache.flex.html.beads.RadioButtonView;
+import org.apache.flex.html.beads.TextInputWithBorderView;
+import org.apache.flex.html.beads.models.SingleLineBorderModel;
+import org.apache.flex.html.beads.models.ValueToggleButtonModel;
+import org.apache.flex.html.beads.controllers.DropDownListController;
+import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
+import org.apache.flex.html.beads.SingleLineBorderBead;
+import org.apache.flex.html.beads.SolidBackgroundBead;
+import org.apache.flex.html.beads.TextAreaView;
+import org.apache.flex.html.beads.TextButtonMeasurementBead;
+import org.apache.flex.html.beads.TextFieldLabelMeasurementBead;
+import org.apache.flex.html.beads.TextFieldView;
+
+}
 
 import models.MyModel;
 import controllers.MyController;
@@ -197,6 +202,15 @@ public class DataBindingExample extends Application
 			    borderColor: 0,
 			    borderWidth: 1,
 			    backgroundColor: 0xFFFFFF
+            };
+
+            viv["org.apache.flex.html.supportClasses::Border"] =
+            {
+				borderStyle: "inherit",
+    			borderRadius: "inherit",
+			    borderColor: "inherit",
+			    borderWidth: "inherit",
+			    border: "inherit"
             };
 
             viv["org.apache.flex.html::Label"] =
