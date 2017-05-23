@@ -30,6 +30,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSContainerUtils;
 	import org.apache.flex.utils.CSSUtils;
@@ -64,7 +65,23 @@ package org.apache.flex.html.beads.layouts
 		{
 			super();
 		}
+		
+        /**
+         *  @flexjsignorecoercion org.apache.flex.events.IEventDispatcher;
+         */
+		COMPILE::JS
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			(host.parent as IEventDispatcher).addEventListener("sizeChanged", parentSizeChangedHandler);
+		}
 
+		COMPILE::JS
+		private function parentSizeChangedHandler(event:Event):void
+		{
+			performLayout();	
+		}
+		
         private var _flexibleChild:String;
 
         protected var actualChild:ILayoutChild;
@@ -115,7 +132,7 @@ package org.apache.flex.html.beads.layouts
 					child.element.style["display"] = "inline-block";
 			}
 
-			var w:Number = host.width;
+			var w:Number = host.width - 1;
 			for(i=0; i < n; i++) {
 				child = contentView.getElementAt(i) as UIBase;
 				if (child != actualChild)
