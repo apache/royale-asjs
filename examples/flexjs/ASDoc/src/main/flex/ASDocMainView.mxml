@@ -59,36 +59,36 @@ limitations under the License.
 	</fx:Style>
     <js:beads>
         <js:ViewDataBinding />
-        <js:OneFlexibleChildVerticalLayout flexibleChild="topContainer" />                
+        <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />                
     </js:beads>
     <js:Group width="100%" id="titleGroup">
         <js:beads>
-            <js:FlexibleFirstChildHorizontalLayout/>
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
         </js:beads>
-        <js:Label text="FlexJS ActionScript Library Reference" height="30" style="fontSize:20"/>
+        <js:Label text="FlexJS ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>
-    <js:Group width="100%" className="topContainer" id="topContainer" style="align-items: start">
+    <js:Group width="100%" className="topContainer" id="topContainer">
         <js:beads>
-            <js:OneFlexibleChildHorizontalLayoutLockChildHeight flexibleChild="rightSide" />
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="rightSide" />
             <js:LayoutChangeNotifier watchedProperty="{ASDocModel(applicationModel).packageList}" initialValue="null" />
         </js:beads>
-        <js:Group width="300" className="leftSide" id="leftSide">
+        <js:Group width="300" height="100%" className="leftSide" id="leftSide">
             <js:beads>
-                <js:VerticalFlexLayout />
+                <js:VerticalLayout />
             </js:beads>
-            <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" width="100%" height="50%" style="flex-grow: '1';flex-shrink: '1'"/>
-            <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  width="100%" height="50%" style="flex-grow: '1';flex-shrink: '1'"/>
+            <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" width="100%" height="50%"/>
+            <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  width="100%" height="50%"/>
         </js:Group>
-        <js:Container className="rightSide" id="rightSide" style="align-items: start">
+        <js:Container className="rightSide" id="rightSide" height="100%">
             <js:beads>
-                <js:OneFlexibleChildVerticalLayoutLockChildWidth flexibleChild="detailsPane" />
+                <js:VerticalLayout />
                 <js:ScrollingViewport />
             </js:beads>
-            <js:Group id="detailsPane">
+            <js:Group id="detailsPane" width="100%">
 	            <js:beads>
-	                <js:VerticalFlexLayout />
+	                <js:VerticalLayout />
 	            </js:beads>
 	            <js:Label id="packageName"  text="{ASDocModel(applicationModel).currentPackage}" width="100%"/>
 	            <js:Label id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
