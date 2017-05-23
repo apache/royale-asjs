@@ -125,7 +125,7 @@ package org.apache.flex.html.beads.layouts
 				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.left;
+				var ypos:Number = borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)

@@ -174,7 +174,7 @@ package org.apache.flex.html.beads.layouts
 			hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 			var xpos:Number = borderMetrics.left + paddingMetrics.left;
-			var ypos:Number = borderMetrics.top + paddingMetrics.left;
+			var ypos:Number = borderMetrics.top + paddingMetrics.top;
 			var child:IUIBase;
 			var childWidth:Number;
 			var i:int;
