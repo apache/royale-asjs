@@ -303,7 +303,11 @@ package org.apache.flex.core
 			// and send an event to re-layout parent of host
 			if (host.width != oldWidth ||
 			    host.height != oldHeight)
+			{
+				isLayoutRunning = true;
 				host.dispatchEvent(new Event("sizeChanged"));
+				isLayoutRunning = false;
+			}
 
 		}
 
