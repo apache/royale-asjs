@@ -104,40 +104,44 @@ public class DataBindingExample extends Application
     private function setupStyles(vi:SimpleCSSValuesImpl):void
     {
         var viv:Object = vi.values = {};
-        viv["global"] =
+        vi.addRule("global",
         {
             fontFamily: "Arial",
             fontSize: 12
-        };
+        });
 
-        var o:Object;
-
-        o = viv[makeDefinitionName("org.apache.flex.html::Container")] =
+		var s:String = makeDefinitionName("org.apache.flex.html::Container");
+        vi.addRule(s,
         {
 
             iBeadView: ContainerView,
     		iBeadLayout: BasicLayout
-        };
+        });
 
+	   var o:Object;
        COMPILE::SWF {
+		    o = vi.values[s];
         	o.iContentView = ContainerContentArea;
          	o.iViewport = Viewport;
          	o.iViewportModel = ViewportModel;
          };
 
-        o = viv[makeDefinitionName("org.apache.flex.core::View")] =
+        s = makeDefinitionName("org.apache.flex.core::View");
+		vi.addRule(s,
         {
 
             iBeadView: GroupView,
     		iBeadLayout: BasicLayout
-        };
+        });
 
         COMPILE::SWF {
+		    o = vi.values[s];
             o.iBackgroundBead = SolidBackgroundBead;
             o.iBorderBead = SingleLineBorderBead;
         }
 
-        viv[makeDefinitionName("org.apache.flex.html::List")] =
+        s = makeDefinitionName("org.apache.flex.html::List");
+		vi.addRule(s,
         {
             iBeadModel: ArraySelectionModel,
             iBeadView:  ListView,
@@ -149,31 +153,41 @@ public class DataBindingExample extends Application
 			iViewportModel: ViewportModel,
             iItemRendererClassFactory: ItemRendererClassFactory,
             iItemRenderer: StringItemRenderer
-        };
+        });
 
-        o = viv[makeDefinitionName("org.apache.flex.html::Button")] =
+        s = makeDefinitionName("org.apache.flex.html::Button");
+		vi.addRule(s,
         {
             backgroundColor: 0xd8d8d8,
-            border: [1, "solid", 0x000000],
+			borderWidth: 1,
+			borderStyle: "solid",
+			borderColor: 0x000000,
             padding: 4
-        };
+        });
         COMPILE::SWF {
+		    o = vi.values[s];
             o.iBeadView = CSSButtonView;
         }
 
-        viv[makeDefinitionName("org.apache.flex.html::Button:hover")] =
+        s = makeDefinitionName("org.apache.flex.html::Button:hover");
+		vi.addRule(s,
         {
             backgroundColor: 0x9fa0a1,
-            border: [1, "solid", 0x000000],
+			borderWidth: 1,
+			borderStyle: "solid",
+			borderColor: 0x000000,
             padding: 4
-        };
+        });
 
-        viv[makeDefinitionName("org.apache.flex.html::Button:active")] =
+        s = makeDefinitionName("org.apache.flex.html::Button:active");
+		vi.addRule(s,
         {
             backgroundColor: 0x929496,
-            border: [1, "solid", 0x000000],
+			borderWidth: 1,
+			borderStyle: "solid",
+			borderColor: 0x000000,
             padding: 4
-        };
+        });
 
         COMPILE::SWF {
             viv["org.apache.flex.html::CheckBox"] =
