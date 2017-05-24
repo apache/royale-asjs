@@ -601,9 +601,9 @@ DataContainer {
 DropDownList
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
-	IBeadView: ClassReference("org.apache.flex.html.beads.DropDownListView");
+	IBeadView: ClassReference("org.apache.flex.flat.beads.DropDownListView");
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.DropDownListController");
-	IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
+	IPopUp: ClassReference("org.apache.flex.flat.supportClasses.DropDownListList");
 }
 
 DropDownListList
@@ -611,7 +611,7 @@ DropDownListList
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+	IItemRenderer: ClassReference("org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer");
 	iBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 	iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 	iBorderModel: ClassReference('org.apache.flex.html.beads.models.SingleLineBorderModel');
