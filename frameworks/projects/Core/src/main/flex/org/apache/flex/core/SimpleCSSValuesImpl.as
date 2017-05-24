@@ -632,6 +632,10 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *
+		 *  @flexjsignorecoercion HTMLStyleElement
+		 *  @flexjsignorecoercion CSSStyleSheet
+		 *  @flexjsignorecoercion uint
          */
         public function addRule(ruleName:String, values:Object):void
         {
@@ -650,7 +654,40 @@ package org.apache.flex.core
                 asValues[valueName] = v;
             }
             this.values[ruleName] = asValues;
+			COMPILE::JS
+			{
+				if (!ss)
+				{
+					var styleElement:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+					document.head.appendChild(styleElement);
+					ss = styleElement.sheet as CSSStyleSheet;
+				}
+				var cssString:String = ruleName + " {"
+				for (var p:String in values)
+				{
+					var value:Object = values[p];
+				    if (typeof(value) === 'function') continue;
+					cssString += p + ": ";
+					if (typeof(value) == 'number') {
+                    	if (colorStyles[p])
+                        	value = CSSUtils.attributeFromColor(value as uint);
+                    	else
+                        	value = value.toString() + 'px';
+                	}
+                	else if (p == 'backgroundImage') {
+                    	if (p.indexOf('url') !== 0)
+                        	value = 'url(' + value + ')';
+                	}
+					cssString += value + ";";
+					
+				}
+				cssString += "}";
+				ss.insertRule(cssString, ss.cssRules.length);
+			}
         }
+		
+		COMPILE::JS
+		private var ss:CSSStyleSheet;
         
         /**
          *  A map of inheriting styles 
