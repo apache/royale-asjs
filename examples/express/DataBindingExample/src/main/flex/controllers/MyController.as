@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-	import org.apache.flex.events.Event;
+    import org.apache.flex.events.Event;
 
 	import org.apache.flex.core.Application;
 	import org.apache.flex.core.IDocument;
