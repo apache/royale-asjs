@@ -107,6 +107,8 @@
     <condition property="runtime" value="mac">
         <os family="mac"/>
     </condition>
+    
+    <property name="swf.version" value="14" />
 
     <target name="get.browser" >
         <condition property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
@@ -171,11 +173,13 @@
         <mxmlc fork="true"
                debug="true"
                configname="${config_arg}"
+               swf-version="${swf.version}"
                closure-lib="${GOOG_HOME}"
                file="${basedir}/src/main/flex/${example}.${file_suffix}"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
         </mxmlc>
 
         <antcall target="build_example.wrapper" />
@@ -195,11 +199,13 @@
         <mxmlc fork="true"
             debug="false"
             configname="${config_arg}"
+            swf-version="${swf.version}"
             closure-lib="${GOOG_HOME}"
             file="${basedir}/src/main/flex/${example}.${file_suffix}"
             output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
         </mxmlc>
     </target>
     
