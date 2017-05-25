@@ -143,8 +143,8 @@ package org.apache.flex.events
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
-			this.bubbles = true;
-			this.cancelable = true;
+			this.bubbles = bubbles;
+			this.cancelable = cancelable;
         }
 
 		public var bubbles:Boolean;
