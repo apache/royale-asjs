@@ -117,7 +117,7 @@ package org.apache.flex.core
 
             mainClass = main;
 
-            if (newValues === null)
+            if (newValues == null)
                 newValues = {};
             
             if (cssData) {
