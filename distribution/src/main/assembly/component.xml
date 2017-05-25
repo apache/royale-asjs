@@ -102,14 +102,15 @@ under the License.
     </dependencySet>
 
     <!-- Copy the fonts -->
-    <dependencySet>
+    <!-- Disabled as currently font swf compilation is deactivated -->
+       <!-- <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
       <includes>
         <include>org.apache.flex.flexjs.framework:Fonts:swf</include>
       </includes>
       <outputFileNameMapping>flat-ui-icons-regular.swf</outputFileNameMapping>
-    </dependencySet>
+    </dependencySet>  -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
