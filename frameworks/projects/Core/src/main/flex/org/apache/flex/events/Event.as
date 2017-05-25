@@ -113,9 +113,10 @@ package org.apache.flex.events
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
-            if (potentialTarget === target) return true;
-            if (target is IFlexJSElement)
-                if (IFlexJSElement(target).flexjs_wrapper === potentialTarget) return true;
+            if (potentialTarget === target)
+				return true;
+            if (target is IFlexJSElement && IFlexJSElement(target).flexjs_wrapper === potentialTarget)
+				return true;
             return false;
         }
 
@@ -184,9 +185,10 @@ package org.apache.flex.events
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
-            if (potentialTarget === target) return true;
-            if (target is IFlexJSElement)
-                if ((target as Object).flexjs_wrapper === potentialTarget) return true;
+            if (potentialTarget === target)
+				return true;
+            if (target is IFlexJSElement && (target as Object).flexjs_wrapper === potentialTarget)
+				return true;
             return false;
         }
 
