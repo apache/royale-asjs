@@ -323,16 +323,19 @@ ImageButton
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:hover
 {
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:active
 {
 	border-style: none;
+	padding: 0px;
 }
 
 VContainer
