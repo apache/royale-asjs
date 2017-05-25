@@ -179,8 +179,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.currentTarget;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
@@ -355,8 +360,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.relatedTarget;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
@@ -453,8 +463,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.target;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
