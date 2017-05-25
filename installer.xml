@@ -456,7 +456,7 @@
         <echo>${INFO_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
         
         <antcall target="air-setup-win" />
-        <antcall target="air-setup-mac" />
+        <antcall target="air-setup-mac-if-mac" />
         
     </target>
 
@@ -570,6 +570,10 @@
             <arg value="unmount"/>
             <arg value="/Volumes/AIR SDK"/>
         </exec>
+    </target>
+    
+    <target name="air-setup-mac-if-mac" unless="isWindows">
+        <antcall target="air-setup-mac" />
     </target>
     
     <target name="air-setup-mac" depends="unzipOrMountDMG,unzipAIRSDK,mountAIRSDK,copyFromMount,unmountAIRSDK" unless="isWindows">
