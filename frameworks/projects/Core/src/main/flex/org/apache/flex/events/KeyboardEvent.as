@@ -116,5 +116,17 @@ package org.apache.flex.events
 			_specialKey = value;
 		}
 
+        /**
+         * Create a copy/clone of the KeyboardEvent object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        override public function cloneEvent():IFlexJSEvent
+        {
+            return new KeyboardEvent(type, key, code, shiftKey, altKey, ctrlKey, metaKey, bubbles, cancelable);
+        }
     }
 }

@@ -74,6 +74,18 @@ package org.apache.flex.events
          *  @productversion FlexJS 0.0
          */
 		public static const PROGRESS:String = "progress";
-        
+
+		/**
+		 * Create a copy/clone of the ProgressEvent object.
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.0
+		 */
+		override public function cloneEvent():IFlexJSEvent
+		{
+			return new ProgressEvent(type, bubbles, cancelable, current, total);
+		}
 	}
 }

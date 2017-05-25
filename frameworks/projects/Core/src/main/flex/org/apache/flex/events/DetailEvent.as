@@ -56,5 +56,17 @@ package org.apache.flex.events
          */
 		public var detail:String;
 
+		/**
+		 * Create a copy/clone of the DetailEvent object.
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion FlexJS 0.0
+		 */
+		override public function cloneEvent():IFlexJSEvent
+		{
+			return new DetailEvent(type, bubbles, cancelable, detail);
+		}
 	}
 }
