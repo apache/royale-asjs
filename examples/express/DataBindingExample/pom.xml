@@ -61,6 +61,7 @@
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>
       <version>0.8.0-SNAPSHOT</version>
+      <classifier>swf</classifier>
       <type>swc</type>
     </dependency>
     <dependency>
