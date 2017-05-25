@@ -292,5 +292,27 @@ package org.apache.flex.core
             _transitions = value;   
         }
 
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+		{
+			super.addElement(c, dispatchEvent);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+		{
+			super.addElementAt(c, index, dispatchEvent);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
+		}
+
     }
 }
