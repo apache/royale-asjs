@@ -246,7 +246,7 @@ package org.apache.flex.core
                     {
                         finalName = fixNames(declarationName, mq);
                         o = values[finalName];
-                        if (o === null)
+                        if (o == null)
                             values[finalName] = valuesObject;
                         else
                         {
@@ -446,7 +446,7 @@ package org.apache.flex.core
                 }
 			}
             
-            if (inheritingStyles[valueName] !== null &&
+            if (inheritingStyles[valueName] != null &&
                 thisObject is IChild)
             {
                 var parentObject:Object = IChild(thisObject).parent;
