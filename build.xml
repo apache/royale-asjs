@@ -763,6 +763,25 @@
         <copy todir="${basedir}/temp" file="${basedir}/nightly.properties" />
     </target>
 
+    <target name="copy-maven-distribution" description="copying maven distribution folder for binary-package">
+        <echo message="Copying Maven distribution folder" />
+        <copy todir="${basedir}/temp/distribution">
+           <fileset dir="${basedir}/distribution">
+                <exclude name="**/target/**"/>
+           </fileset>
+        </copy>
+    </target>
+
+    <target name="copy-maven-archetypes" description="copying maven archetypes folder for binary-package">
+        <echo message="Copying Maven archetypes folder" />
+        <copy todir="${basedir}/temp/archetypes">
+            <fileset dir="${basedir}/archetypes">
+                <exclude name="**/target/**"/>
+                <exclude name="**/*.iml"/>
+            </fileset>
+        </copy>
+    </target>
+
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
 
@@ -837,6 +856,8 @@
             </fileset>
         </copy>
 
+		<antcall target="copy-maven-distribution"/>
+        <antcall target="copy-maven-archetypes"/>
         <!-- swfobject templates except for downloaded files
         <copy todir="${basedir}/temp/templates/swfobject">
             <fileset dir="${basedir}/templates/swfobject">
