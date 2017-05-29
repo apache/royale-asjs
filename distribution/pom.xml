@@ -645,12 +645,12 @@
           <type>zip</type>
         </dependency>
 
-        <dependency>
+      <!--  <dependency>
           <groupId>com.adobe</groupId>
           <artifactId>fontkit</artifactId>
           <version>1.0</version>
         </dependency>
-
+          -->
         <dependency>
           <groupId>com.adobe.air</groupId>
           <artifactId>templates</artifactId>
