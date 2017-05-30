@@ -126,12 +126,15 @@ package org.apache.flex.textLayout.beads
 		 * @private
 		 */
 		COMPILE::SWF
-		protected function textEventHandler(event:flash.events.TextEvent):void
+		protected function textEventHandler(event:flash.events.Event):void
 		{
+			if (event is org.apache.flex.events.Event) return;
+
 			// this will otherwise bubble an event of flash.events.Event
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(event.type);
-			newEvent.text = event.text;
+			var textEvent:flash.events.TextEvent = event as flash.events.TextEvent;
+			var newEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(textEvent.type);
+			newEvent.text = textEvent.text;
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -145,11 +148,14 @@ package org.apache.flex.textLayout.beads
 		 * @private
 		 */
 		COMPILE::SWF
-		protected function keyEventHandler(event:flash.events.KeyboardEvent):void
+		protected function keyEventHandler(event:flash.events.Event):void
 		{
+			if (event is org.apache.flex.events.Event) return;
+			
 			// this will otherwise bubble an event of flash.events.Event
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
+			var keyEvent:flash.events.KeyboardEvent = event as flash.events.KeyboardEvent;
+			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(keyEvent);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -181,13 +187,13 @@ package org.apache.flex.textLayout.beads
 		 * @private
 		 */
 		COMPILE::SWF
-		protected function focusEventHandler(event:flash.events.FocusEvent):void
+		protected function focusEventHandler(event:flash.events.Event):void
 		{
 			if (event is org.apache.flex.events.Event) return;
 			
-			trace(event.type, event.target, event.relatedObject);
 			// this will otherwise dispatch an event of flash.events.FocusEvent
 			event.stopImmediatePropagation();
+			var focusEvent:flash.events.FocusEvent = event as flash.events.FocusEvent;
 			var newEvent:org.apache.flex.textLayout.events.FocusEvent = new org.apache.flex.textLayout.events.FocusEvent(event.type);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
