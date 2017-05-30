@@ -177,17 +177,13 @@ public class TLFEditor extends UIBase
          */
         public function onSetFocus(event:Event):void
         {            
-			trace("set focus");
+			trace("TLFEditor set focus");
 			
             // We are about to set focus on this component.  If it is due to
             // a programmatic focus change we have to programatically do what the
             // mouseOverHandler and the mouseDownHandler do so that the user can 
             // type in this component without using the mouse first.  We need to
             // put a textFlow with a composer in place.
-            if (/*editingMode != EditingMode.READ_ONLY &&*/
-                _textContainerManager.composeState != 
-                TextContainerManager.COMPOSE_COMPOSER)   
-            {
 				trace("begin interaction");
                 var selectionManager:ISelectionManager = _textContainerManager.beginInteraction();
 				selectionManager.focusedSelectionFormat = new SelectionFormat(
@@ -206,7 +202,6 @@ public class TLFEditor extends UIBase
                 selectionManager.refreshSelection();
 				trace("end interaction");
                 _textContainerManager.endInteraction();
-            }
         }
 		
         /**
