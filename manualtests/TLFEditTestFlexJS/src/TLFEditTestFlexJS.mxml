@@ -30,12 +30,11 @@
         <js:SimpleCSSValuesImpl/>
     </js:valuesImpl>
     
-    <js:beads>
-        <js:VerticalLayout/>
-    </js:beads>
-
 	<js:initialView>
 	  <js:View>
+	    <js:beads>
+	        <js:VerticalLayout/>
+	    </js:beads>
     	<js:Container style="borderStyle:solid" width="300" height="200" >
     	  <local:TLFEditor id="tlfEditor" width="100%" height="100%" />
     	</js:Container>
