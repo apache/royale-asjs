@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.cordova
+package org.apache.flex.cordova
 {
 	import org.apache.flex.events.Event;
 	import org.apache.flex.core.Application;
