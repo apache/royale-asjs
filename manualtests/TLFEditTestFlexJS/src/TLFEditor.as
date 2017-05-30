@@ -57,15 +57,6 @@ public class TLFEditor extends UIBase
 	
 	public function TLFEditor()
 	{
-		addEventListener(FocusEvent.FOCUS_IN, onSetFocus);
-		addEventListener(FocusEvent.FOCUS_OUT, onLoseFocus);
-		COMPILE::SWF
-		{
-		addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
-		Sprite($displayObject).tabEnabled = true;
-		Sprite($displayObject).mouseChildren = false;
-		}
-		
 		// Create the TLF TextContainerManager, using this component
 		// as the DisplayObjectContainer for its TextLines.
 		// This TextContainerManager instance persists for the lifetime
@@ -79,14 +70,72 @@ public class TLFEditor extends UIBase
 		_textContainerManager.addEventListener(
 			DamageEvent.DAMAGE, textContainerManager_damageHandler);
 		
+		typeNames = "TLFEditor";
+	}
+
+	private var textSet:Boolean;
+	
+	public function get text():String
+	{
+		return _textContainerManager.getText();
+	}
+	public function set text(value:String):void
+	{
+		textSet = true;
+		return _textContainerManager.setText(value);
+	}
+	
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+	
 		COMPILE::SWF
 		{
-			// todo, see if this can be done in same place as for JS
-        var selectionManager:ISelectionManager = _textContainerManager.beginInteraction();
-		selectionManager.focusedSelectionFormat = new SelectionFormat(
-            0x000000, 1.0, "normal" /*BlendMode.NORMAL*/, 
-            0x000000, 1.0, "invert" /*BlendMode.INVERT*/);
+			addBead(new SingleLineBorderBead());
+			addBead(new SolidBackgroundBead());
 		}
+		COMPILE::JS
+		{
+			if (element['tabIndex'] == -1)
+				element['tabIndex'] = 0;
+		}
+		addBead(new DispatchTLFKeyboardEventBead());
+		
+		addEventListener(FocusEvent.FOCUS_IN, onSetFocus);
+		addEventListener(FocusEvent.FOCUS_OUT, onLoseFocus);
+		COMPILE::SWF
+		{
+			addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
+			Sprite($displayObject).tabEnabled = true;
+			Sprite($displayObject).mouseChildren = false;
+		}
+		
+		if (!textSet)
+			text = ""; // runs a bunch of code in _textContainerManager
+			
+		/*
+		trace("begin interaction");
+		var selectionManager:ISelectionManager = _textContainerManager.beginInteraction();
+		selectionManager.focusedSelectionFormat = new SelectionFormat(
+            0x000000, 1.0, "normal", //BlendMode.NORMAL
+            0x000000, 1.0, "invert"  //BlendMode.INVERT
+            );
+            
+		if (multiline)
+		{
+			if (!selectionManager.hasSelection())
+				 selectionManager.selectRange(0, 0);
+		} 
+		else
+		{
+			selectionManager.selectAll();
+		}
+
+		selectionManager.refreshSelection();
+		trace("end interaction");
+		_textContainerManager.endInteraction();
+		
+		*/
 		/*
 		_textContainerManager.addEventListener(
 			Event.SCROLL, textContainerManager_scrollHandler);
@@ -111,46 +160,6 @@ public class TLFEditor extends UIBase
 			StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, 
 			textContainerManager_inlineGraphicStatusChangeHandler);
 		*/
-	}
-
-	override public function addedToParent():void
-	{
-		super.addedToParent();
-	
-		COMPILE::SWF
-		{
-			addBead(new SingleLineBorderBead());
-			addBead(new SolidBackgroundBead());
-		}
-		COMPILE::JS
-		{
-			if (element['tabIndex'] == -1)
-				element['tabIndex'] = 0;
-		}
-		addBead(new DispatchTLFKeyboardEventBead());
-		
-		COMPILE::JS
-		{
-		trace("begin interaction");
-		var selectionManager:ISelectionManager = _textContainerManager.beginInteraction();
-		selectionManager.focusedSelectionFormat = new SelectionFormat(
-            0x000000, 1.0, "normal" /*BlendMode.NORMAL*/, 
-            0x000000, 1.0, "invert" /*BlendMode.INVERT*/);
-		if (multiline)
-		{
-			if (!selectionManager.hasSelection())
-				 selectionManager.selectRange(0, 0);
-		} 
-		else
-		{
-			selectionManager.selectAll();
-		}
-
-		selectionManager.refreshSelection();
-		trace("end interaction");
-		_textContainerManager.endInteraction();
-		}
-
 	}
 	
         //----------------------------------
@@ -181,6 +190,9 @@ public class TLFEditor extends UIBase
             {
 				trace("begin interaction");
                 var selectionManager:ISelectionManager = _textContainerManager.beginInteraction();
+				selectionManager.focusedSelectionFormat = new SelectionFormat(
+		            0x000000, 1.0, "normal" /*BlendMode.NORMAL*/, 
+		            0x000000, 1.0, "invert" /*BlendMode.INVERT*/);
 				if (multiline)
                 {
                     if (!selectionManager.hasSelection())
