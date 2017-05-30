@@ -23,6 +23,7 @@
 
     <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl"/>
     <component id="CSSFontFaceBead" class="org.apache.flex.core.CSSFontFaceBead" />
+    <component id="EventLoggingBead" class="org.apache.flex.core.EventLoggingBead" />
     <component id="BrowserScroller" class="org.apache.flex.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.flex.core.BrowserResizeListener"/>
     <component id="SimpleValuesImpl" class="org.apache.flex.core.SimpleValuesImpl"/>
