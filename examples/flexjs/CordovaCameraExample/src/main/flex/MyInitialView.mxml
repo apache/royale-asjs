@@ -23,9 +23,9 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 			
-			import org.apache.cordova.camera.Camera;
+			import org.apache.flex.cordova.Camera;
 			
-			private var cam:org.apache.cordova.camera.Camera = new org.apache.cordova.camera.Camera();
+			private var cam:Camera;
 			
 			public function set ready(value:Boolean):void
 			{
@@ -34,14 +34,16 @@ limitations under the License.
 			
 			public function snapPicture() : void
 			{
-				trace("snapping");
-				cam.getPicture(success,failure,{quality:100, destinationType:org.apache.cordova.camera.Camera.DestinationType.FILE_URI});
+				if (cam == null) {
+					cam = new Camera();
+				}
+				cam.capturePhoto(snapSuccess,failure);
 			}
 			
-			private function success(data:Object):void
+			private function snapSuccess(imageData:Object):void
 			{
-				output.text = "Success: "+String(data);
-				image.src = String(data);
+				output.text = "Snapped photo file: " + String(imageData);
+				image.src = String(imageData);
 			}
 			
 			private function failure(message:Object):void
@@ -49,23 +51,12 @@ limitations under the License.
 				output.text = "Failed: "+String(message);
 			}
 			
-			private function onFromPhotoLibrary() : void
-			{
-				cam.getPicture(success,failure,{ quality: 50,
-					destinationType: org.apache.cordova.camera.Camera.DestinationType.FILE_URI,
-					sourceType: org.apache.cordova.camera.Camera.PictureSourceType.PHOTOLIBRARY });
-			}
-			
 		]]>
     </fx:Script>
-	
-	<fx:Style>
-	
-	</fx:Style>
+    
 	
 	<js:Label id="status" x="20" y="140" width="400" text="loading..."/>
 	
-	<js:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
 	<js:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
 	
 	<js:Label id="output" x="20" y="110" width="400"/>
