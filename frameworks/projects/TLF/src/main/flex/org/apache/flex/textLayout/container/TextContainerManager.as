@@ -594,8 +594,8 @@ package org.apache.flex.textLayout.container
 				//TODO do we need to fix this?
 //				if (_container is InteractiveObject)
 //					_container.mouseChildren = false;
-				addActivationEventListeners();
 			}
+			addActivationEventListeners();
 			_text = text ? text : ""; 
 			_damaged = true;
 			_textDamaged = false;
