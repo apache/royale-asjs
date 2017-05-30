@@ -25,6 +25,10 @@ package org.apache.flex.text.html
 		import flash.text.TextFormat;
 		import flash.text.TextFieldAutoSize;
 	}
+	COMPILE::JS
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
 	
 	import org.apache.flex.text.engine.ElementFormat;
 	import org.apache.flex.text.engine.ITextLine;
@@ -63,6 +67,18 @@ package org.apache.flex.text.html
 			_textBlock = textBlock;
 			_beginIndex = beginIndex;
 		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+		{
+			var e:WrappedHTMLElement = super.createElement();
+			e.style.position = "absolute";
+			return e;
+		}
+			
 		public function get ascent():Number
 		{
 			COMPILE::SWF
