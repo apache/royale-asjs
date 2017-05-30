@@ -42,6 +42,7 @@
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
+            <arg value="-swf-version=${swf.version}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
