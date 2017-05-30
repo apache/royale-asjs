@@ -69,6 +69,8 @@ package org.apache.flex.text.engine
 		function getAtomTextRotation(atomIndex:int):String;
 		function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean;
 		function getBaselinePosition(baseline:String):Number;
+		
+		[SWFOverride(returns="flash.geom.Rectangle",params="flash.display.DisplayObject",altparams="Object")]
 		function getBounds(ref:Object):Rectangle;
 		
 
