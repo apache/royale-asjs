@@ -19,6 +19,10 @@
 package org.apache.flex.geom
 {
 
+COMPILE::SWF
+{
+import flash.geom.Point;		
+}
 
 /**
  *  The Point class is a utility class for holding x and y values, not that you
@@ -29,6 +33,59 @@ package org.apache.flex.geom
  *  @playerversion AIR 2.6
  *  @productversion FlexJS 0.0
  */
+COMPILE::SWF
+public class Point extends flash.geom.Point
+{
+	public function Point(x:Number = 0, y:Number = 0)
+	{
+		super(x, y);
+	}
+	
+	public static function interpolate(pt1:org.apache.flex.geom.Point, pt2:org.apache.flex.geom.Point, f:Number):org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(pt2.x + f * (pt1.x - pt2.x),pt2.y + f * (pt1.y - pt2.y));
+	}
+	
+	public static function distance(pt1:org.apache.flex.geom.Point, pt2:org.apache.flex.geom.Point):Number
+	{
+		return pt1.subtract(pt2).length;
+	}
+	
+	public static function polar(len:Number, angle:Number):org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(len * Math.cos(angle),len * Math.sin(angle));
+	}
+	
+	[SWFOverride(returns="flash.geom.Point")]
+	override public function clone():org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(x,y);
+	}
+	
+	[SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+	override public function subtract(v:org.apache.flex.geom.Point):org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(x - v.x, y - v.y);
+	}
+	
+	[SWFOverride(returns="flash.geom.Point",params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+	override public function add(v:org.apache.flex.geom.Point):org.apache.flex.geom.Point
+	{
+		return new org.apache.flex.geom.Point(x + v.x, y + v.y);
+	}
+	
+}
+
+/**
+ *  The Point class is a utility class for holding x and y values, not that you
+ *  can't use it to hold a width and height value.  
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion FlexJS 0.0
+ */
+COMPILE::JS
 public class Point
 {
     public function Point(x:Number = 0, y:Number = 0)

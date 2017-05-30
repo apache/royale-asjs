@@ -18,7 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.geom
 {
-
+	COMPILE::SWF
+	{
+		import flash.geom.Rectangle;	
+	}
+	
 	/**
 	 *  The Rectangle class is a utility class for holding four coordinates of
 	 *  a rectangle
@@ -28,6 +32,123 @@ package org.apache.flex.geom
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
+	COMPILE::SWF
+	public class Rectangle extends flash.geom.Rectangle
+	{
+		public function Rectangle(x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0)
+		{
+			super(x, y, width, height);
+		}
+		
+		[SWFOverride(returns="flash.geom.Rectangle")]
+		override public function clone():org.apache.flex.geom.Rectangle
+		{
+			return new org.apache.flex.geom.Rectangle(x,y,width,height);
+		}
+
+		[SWFOverride(returns="flash.geom.Point")]
+		override public function get topLeft():Point
+		{
+			return new Point(x, y);
+		}
+		
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+		override public function set topLeft(value:Point):void
+		{
+			super.topLeft = value;
+		}
+		
+		[SWFOverride(returns="flash.geom.Point")]
+		override public function get bottomRight():Point
+		{
+			return new Point(right, bottom);
+		}
+		
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+		override public function set bottomRight(value:Point):void
+		{
+			super.bottomRight = value;
+		}
+		
+		[SWFOverride(returns="flash.geom.Point")]
+		override public function get size():Point
+		{
+			return new Point(width, height);
+		}
+		
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+		override public function set size(value:org.apache.flex.geom.Point):void
+		{
+			super.size = value;
+		}
+		
+		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.flex.geom.Rectangle")]
+		override public function intersection(toIntersect:org.apache.flex.geom.Rectangle):org.apache.flex.geom.Rectangle
+		{
+			var result:org.apache.flex.geom.Rectangle = new org.apache.flex.geom.Rectangle();
+			if (isEmpty() || toIntersect.isEmpty())
+			{
+				result.setEmpty();
+				return result;
+			}
+			result.x = Math.max(x, toIntersect.x);
+			result.y = Math.max(y, toIntersect.y);
+			result.width = Math.min(x + width, toIntersect.x + toIntersect.width) - result.x;
+			result.height = Math.min(y + height, toIntersect.y + toIntersect.height) - result.y;
+			if (result.width <= 0 || result.height <= 0)
+			{
+				result.setEmpty();
+			}
+			return result;
+		}
+		
+		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.flex.geom.Rectangle")]
+		override public function union(toUnion:org.apache.flex.geom.Rectangle):org.apache.flex.geom.Rectangle
+		{
+			var r:org.apache.flex.geom.Rectangle = null;
+			if (isEmpty())
+			{
+				return toUnion.clone();
+			}
+			if (toUnion.isEmpty())
+			{
+				return clone();
+			}
+			r = new org.apache.flex.geom.Rectangle();
+			r.x = Math.min(x, toUnion.x);
+			r.y = Math.min(y, toUnion.y);
+			r.width = Math.max(x + width, toUnion.x + toUnion.width) - r.x;
+			r.height = Math.max(y + height, toUnion.y + toUnion.height) - r.y;
+			return r;
+		}
+		
+		public static function fromJSONString(str:String):org.apache.flex.geom.Rectangle
+		{
+			var obj:Object = JSON.parse(str);
+			return org.apache.flex.geom.Rectangle.fromObject(obj);
+		}
+		
+		public static function fromObject(obj:Object):org.apache.flex.geom.Rectangle
+		{
+			var x:Number = obj.x === undefined ? obj.left : obj.x;
+			var y:Number = obj.y === undefined ? obj.top : obj.y;
+			var width:Number = obj.width === undefined ? obj.right - x : obj.width;
+			var height:Number = obj.height === undefined ? obj.bottom - y : obj.height;
+			return new org.apache.flex.geom.Rectangle(x,y,width,height);
+		}
+
+	}
+	
+	/**
+	 *  The Rectangle class is a utility class for holding four coordinates of
+	 *  a rectangle
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	COMPILE::JS
 	public class Rectangle
 	{
 	    public function Rectangle(x:Number = 0, y:Number = 0, width:Number = 0, height:Number = 0)
