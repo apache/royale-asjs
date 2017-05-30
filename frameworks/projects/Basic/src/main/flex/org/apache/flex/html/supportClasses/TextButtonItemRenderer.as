@@ -21,7 +21,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.SimpleCSSStyles;
+	import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.html.TextButton;
@@ -48,7 +48,7 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 			
-			style = new SimpleCSSStyles();
+			style = new SimpleCSSStylesWithFlex();
 			
 			addEventListener('click',handleClickEvent);
 		}

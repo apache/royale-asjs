@@ -341,7 +341,6 @@ limitations under the License.
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px;
-		background-color: #FFCC00;
 		padding: 8px;
 	}
 }
@@ -380,18 +379,18 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	<js:VContainer x="50" y="50" width="400" height="400" className="foo">
+	<js:VGroup x="50" y="50" width="400" className="foo">
 		
 		<js:TextInput text="Input here" width="200" />
 		<js:Spacer height="20" />
 		
-		<js:HContainer>
+		<js:HGroup>
 			<js:TextButton text="Default Button" width="120" height="40"/>
 			<js:Spacer width="10" />
 			<js:DropDownList id="dropDown" width="100" />
 			<js:Spacer width="10" />
 			<js:NumericStepper id="nstep" />
-		</js:HContainer>
+		</js:HGroup>
 		<js:Spacer height="20" />
 		
 		<js:CheckBox text="Check Me, please!" />
@@ -408,20 +407,20 @@ limitations under the License.
 		<js:DateChooser />
 		
 		<js:Spacer height="20" />
-		<js:HContainer width="400">
+		<js:HGroup width="400">
 			<js:List id="list" width="100" height="100" change="listChanged()" />
 			<js:Spacer width="10" />
 			<js:Label id="listOutput" width="90" height="100" className="centeredLabel" />
-		</js:HContainer>
+		</js:HGroup>
 		
 		<js:Spacer height="20" />
-		<js:DataGrid id="dataGrid" width="300" height="300">
+		<js:DataGrid id="dataGrid" width="200" height="300">
 			<js:columns>
-				<js:DataGridColumn dataField="month" label="Month" />
-				<js:DataGridColumn dataField="days" label="# Days" />
+				<js:DataGridColumn dataField="month" label="Month"/>
+				<js:DataGridColumn dataField="days" label="# Days"/>
 			</js:columns>
 		</js:DataGrid>
 		
-	</js:VContainer>
+	</js:VGroup>
 	
 </js:View>

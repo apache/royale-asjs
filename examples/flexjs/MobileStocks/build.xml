@@ -29,30 +29,25 @@
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     <property name="AIR_HOME" value="${env.AIR_HOME}"/>
     <property name="config_arg" value="air"/>
     
-    <condition property="adl" value="adl.exe">
-        <os family="windows"/>
-    </condition>
-    
-    <condition property="adl" value="adl">
-        <os family="mac"/>
-    </condition>
-    
-    <condition property="runtime" value="win">
-        <os family="windows"/>
-    </condition>
-    
-    <condition property="runtime" value="mac">
-        <os family="mac"/>
-    </condition>
-
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.compile.cordova" description="Clean build of ${example}">
+        <copy todir="${basedir}/bin-debug" >
+            <fileset dir="${basedir}">
+                <include name="*-app.xml" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin-release" >
+            <fileset dir="${basedir}">
+                <include name="*-app.xml" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
@@ -63,12 +58,15 @@
     </target>
     
     <target name="run">
-        <exec executable="${AIR_HOME}/bin/${adl}" dir="${basedir}/bin-debug" failonerror="true">
-            <arg value="-runtime" />
-            <arg value="${AIR_HOME}/runtimes/air/${runtime}" />
-            <arg value="-profile" />
-            <arg value="extendedDesktop" />
-            <arg value="${basedir}/bin-debug/${example}-app.xml" />
-        </exec>
+        <property name="which" value="debug" />
+        <antcall target="build_example.run.air.desktop" />
     </target>
+    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Click on Products tab.  Hover over person to see buttons with tooltips.  DragDrop a person to compare box.  Click on Support tab."/>
+        <antcall target="build_example.run.air.desktop" />
+        <antcall target="build_example.run.cordova" />
+    </target>
+
 </project>

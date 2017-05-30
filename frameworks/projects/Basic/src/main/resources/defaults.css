@@ -122,7 +122,7 @@ ComboBoxList
 	background-color: #FFFFFF;
 }
 
-.ComboBoxButton {
+.opt_org-apache-flex-html-ComboBox_Button {
 	padding: 0px;
 	margin: 0px;
 }
@@ -201,7 +201,7 @@ DataGridColumnList {
 	background-color: #FFFFFF;
 }
 
-.DataGridListArea {
+.opt_org-apache-flex-html-DataGrid_ListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
@@ -238,7 +238,7 @@ DateChooserHeader {
 	background-color: #FFFFFF;
 }
 
-.DateChooserMonthButtons {				
+.opt_org-apache-flex-html-DateChooser_MonthButtons {				
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");	
 	height: 20px;
 }
@@ -323,16 +323,19 @@ ImageButton
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:hover
 {
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:active
 {
 	border-style: none;
+	padding: 0px;
 }
 
 VContainer
@@ -376,17 +379,19 @@ Accordion
 Table
 {
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.SimpleTableLayout");
+	
+	/* mimic SWF version which does not support border-collapse */
+	border-collapse: collapse;
 }
 
 TableHeader
 {
-	font-weight: bold;
-	border: 1px solid #999999;
+	/* use browser default style */
 }
 
 TableCell
 {
-	border: 1px solid #999999;
+	/* use browser default style */
 }
 
 Tree
@@ -407,6 +412,13 @@ Tree
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
+	
+	padding: 0px;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
 }
 
 Panel
@@ -434,6 +446,11 @@ Panel .TitleBar
 	border-bottom: solid 1px #333333;
 }
 
+.PanelContent
+{
+	background-color: #FFFFFF;
+}
+
 SimpleList
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
@@ -458,8 +475,14 @@ Spinner
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
+	width: 16px;
 }
 
+.SpinnerButton
+{
+	padding: 1px;
+	font-size: 6px;
+}
 
 StringItemRenderer
 {
@@ -575,8 +598,6 @@ WebBrowser
 /* Global Style Declaration */
 global
 {
-	IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
-	IEffectTimer: ClassReference("org.apache.flex.utils.EffectTimer");
 	effectTimerInterval: 10;
 }
 
@@ -750,13 +771,6 @@ global
 	
 	NumericStepper
 	{
-		IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
-		
-		padding: 0px;
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
-		background-color: #FFFFFF;
 		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 	}

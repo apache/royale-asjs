@@ -116,8 +116,8 @@ package org.apache.flex.html.beads.layouts
 				var childData:Array = [];
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = hostWidthSizedToContent ? host.width : contentView.width;
-				var hostHeight:Number = hostHeightSizedToContent ? host.height : contentView.height;
+				var hostWidth:Number = host.width;
+				var hostHeight:Number = host.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -254,6 +254,8 @@ package org.apache.flex.html.beads.layouts
 
 					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
 					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
+					if (!isNaN(child.percentHeight))
+						child.element.style["flex-basis"] = child.percentHeight.toString() + "%";
 					child.dispatchEvent(new Event("layoutNeeded"));
 				}
 

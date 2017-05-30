@@ -102,19 +102,20 @@ COMPILE::JS {
 				UIBase(_strand).addChild(_decrement);
 				UIBase(_strand).addChild(_increment);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
-
-				IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-				IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			}
+			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			COMPILE::JS {
 				var host:UIBase = value as UIBase;
 
 				_increment = new SpinnerButton();
 				_increment.text = '\u25B2';
+				_increment.positioner.style.display = 'block';
 				host.addElement(_increment);
 
 				_decrement = new SpinnerButton();
 				_decrement.text = '\u25BC';
+				_decrement.positioner.style.display = 'block';
 				host.addElement(_decrement);
 
 // add this in CSS!
@@ -164,17 +165,22 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
 		private function sizeChangeHandler( event:Event ) : void
 		{
             var w:Number = UIBase(_strand).width;
             var h:Number =  UIBase(_strand).height / 2;
 			_increment.width = w;
 			_increment.height = h;
+			COMPILE::SWF
+			{
 			_increment.y      = 0;
+			}
 			_decrement.width = w;
 			_decrement.height = h;
+			COMPILE::SWF
+			{
 			_decrement.y      = h;
+			}
 		}
 	}
 }

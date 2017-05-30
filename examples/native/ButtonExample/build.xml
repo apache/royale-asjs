@@ -34,6 +34,8 @@
     <property name="file_suffix" value="as" />
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+        <copy file="${basedir}/src/main/resources/index.html" tofile="${basedir}/bin/js-debug/index.html" />
+        <copy file="${basedir}/src/main/resources/index.html" tofile="${basedir}/bin/js-release/index.html" />
     </target>
     
     <target name="clean">
@@ -43,6 +45,13 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-    
-    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Basic Buttons in JS"/>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+
 </project>

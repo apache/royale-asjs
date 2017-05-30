@@ -40,6 +40,16 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Choose from dropdown, get quote, click on checkbox to see if TextArea appears and disappears, click on radio buttons to see if other labels change via data binding"/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
     
     
 </project>

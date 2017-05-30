@@ -28,7 +28,6 @@ limitations under the License.
 		
 		.Table {
 			backgroundColor: orange;
-			padding: 4px;
 		}
 		
 		.TableHeader {
@@ -48,6 +47,7 @@ limitations under the License.
 		
 		.DataTable {
 			iBeadModel: ClassReference("dataTable.model.DataTableModel");
+			border-collapse: collapse;
 		}
 		
 	</fx:Style>

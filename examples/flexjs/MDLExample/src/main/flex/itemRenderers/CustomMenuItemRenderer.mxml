@@ -25,13 +25,16 @@ limitations under the License.
         <binding:ItemRendererDataBinding />
         <mdl:Disabled disabled="{menuItem.disabled}"/>
     </mdl:beads>
-    <fx:Script><![CDATA[
-        import vos.MenuItemVO;
 
-        [Bindable("dataChange")]
-        public function get menuItem():MenuItemVO
-        {
-            return data as MenuItemVO;
-        }
-        ]]></fx:Script>
+    <fx:Script>
+        <![CDATA[
+            import vos.MenuItemVO;
+
+            [Bindable("dataChange")]
+            public function get menuItem():MenuItemVO
+            {
+                return data as MenuItemVO;
+            }
+        ]]>
+    </fx:Script>
 </mdl:MenuItemRenderer>

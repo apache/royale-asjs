@@ -29,7 +29,6 @@
 
   <properties>
     <compiler.debug>true</compiler.debug>
-    <compiler.output-dir>target/javascript/bin/js-debug</compiler.output-dir>
   </properties>
 
   <build>
@@ -42,21 +41,8 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
+          <targets>SWF,JSFlex</targets>
         </configuration>
-        <executions>
-          <!-- Add a second execution with output set to JavaScript (Flash is the default) -->
-          <execution>
-            <id>compile-javascript</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile-app</goal>
-            </goals>
-            <configuration>
-              <debug>\${compiler.debug}</debug>
-              <targets>JS</targets>
-            </configuration>
-          </execution>
-        </executions>
         <dependencies>
           <dependency>
             <groupId>org.apache.flex.flexjs.compiler</groupId>
@@ -105,7 +91,6 @@
       <id>release</id>
       <properties>
         <compiler.debug>false</compiler.debug>
-        <compiler.output-dir>target/javascript/bin/js-release</compiler.output-dir>
       </properties>
     </profile>
   </profiles>

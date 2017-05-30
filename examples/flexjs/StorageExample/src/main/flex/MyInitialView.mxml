@@ -202,44 +202,44 @@ limitations under the License.
 		<js:ViewDataBinding />
 	</js:beads>
 	
-	<js:VContainer width="100%" height="100%">
+	<js:VGroup>
 		<js:Label text="Storage Example" width="100%" />
 		<js:Spacer height="20" />
 		
-		<js:HContainer>
+		<js:HGroup>
 			<js:Label text="Write File Name:" className="labelStyle" />
 			<js:TextInput id="writeFileNameField" text="testfile.txt" />
-		</js:HContainer>
-		<js:HContainer>
+		</js:HGroup>
+		<js:HGroup>
 			<js:Label text="Content:" className="labelStyle" />
 			<js:TextInput id="contentField" />
-		</js:HContainer>
-		<js:HContainer>
+		</js:HGroup>
+		<js:HGroup>
 			<js:TextButton text="SAVE" click="onSave()" />
 			<js:Spacer width="10" />
 			<js:TextButton text="SAVE STREAM" click="onSaveStream()" />
-		</js:HContainer>
+		</js:HGroup>
 		<js:Spacer height="20" />
 		
 		<js:Label id="status" />
 		<js:Spacer height="20" />
 		
-		<js:HContainer>
+		<js:HGroup>
 			<js:Label text="Read File Name:" className="labelStyle" />
 			<js:TextInput id="readFileNameField" text="testfile.txt" />
-		</js:HContainer>
-		<js:HContainer>
+		</js:HGroup>
+		<js:HGroup>
 			<js:TextButton text="READ" click="onRead()" />
 			<js:Spacer width="10" />
 			<js:TextButton text="READ STREAM" click="onReadStream()" />
-		</js:HContainer>
-		<js:HContainer>
+		</js:HGroup>
+		<js:HGroup>
 			<js:Label text="Content:" className="labelStyle" />
-		</js:HContainer>
-		<js:HContainer>
+		</js:HGroup>
+		<js:HGroup>
 			<js:Label id="readContent" className="contentStyle" />
-		</js:HContainer>
-	</js:VContainer>
+		</js:HGroup>
+	</js:VGroup>
 		
 
 </js:View>

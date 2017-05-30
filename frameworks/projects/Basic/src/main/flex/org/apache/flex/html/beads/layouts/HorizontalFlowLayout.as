@@ -22,6 +22,7 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.ILayoutParent;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.ILayoutView;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IStrand;
@@ -29,6 +30,12 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	
+	COMPILE::SWF {
+		import org.apache.flex.geom.Rectangle;
+		import org.apache.flex.utils.CSSContainerUtils;
+		import org.apache.flex.utils.CSSUtils;
+	}
 
 	/**
 	 *  The HorizontalFlowLayout class bead sizes and positions the elements it manages into rows
@@ -169,22 +176,28 @@ package org.apache.flex.html.beads.layouts
 
 				var n:Number = area.numElements;
 				if (n == 0) return false;
+				
+				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
 
 				// if a computedColumnWidth hasn't been preset, calculate it
 				// based on the default column count, giving equal-width columns.
 				if (isNaN(computedColumnWidth)) {
-					_computedColumnWidth = area.width / defaultColumnCount;
+					_computedColumnWidth = (area.width - 
+						paddingMetrics.left - paddingMetrics.right - 
+						borderMetrics.left - borderMetrics.right) / defaultColumnCount;
+					_computedColumnWidth -= _columnGap;
 				}
 
 				var maxWidth:Number = area.width;
 				var maxHeight:Number = 0;
-				var xpos:Number = columnGap/2;
-				var ypos:Number = rowGap/2;
+				var xpos:Number = columnGap/2 + paddingMetrics.left + borderMetrics.left;
+				var ypos:Number = rowGap/2 + paddingMetrics.top + borderMetrics.top;
 				var useWidth:Number = 0;
 
 				for(var i:int=0; i < n; i++)
 				{
-					var child:UIBase = area.getElementAt(i) as UIBase;
+					var child:ILayoutChild = area.getElementAt(i) as ILayoutChild;
 					if (child == null || !child.visible) continue;
 
 					if (!isNaN(child.explicitWidth)) useWidth = child.explicitWidth;
@@ -239,26 +252,30 @@ package org.apache.flex.html.beads.layouts
 				// based on the default column count, giving equal-width columns.
 				if (isNaN(computedColumnWidth)) {
 					_computedColumnWidth = host.width / defaultColumnCount;
+					_computedColumnWidth -= _columnGap;
 				}
 
 				for (i = 0; i < n; i++)
 				{
 					child = children[i].flexjs_wrapper;
 					if (!child.visible) continue;
-
-					if (!isNaN(child.explicitWidth)) useWidth = child.explicitWidth;
-					else if (!isNaN(child.percentWidth)) useWidth = host.width * (child.percentWidth/100.0);
-					else useWidth = _computedColumnWidth;
-
+					children[i].style["position"] = null;
+					
 					if (useChildWidth) {
-						children[i].style["position"] = null;
-					} else {
+						if (!isNaN(child.explicitWidth)) useWidth = child.explicitWidth;
+						else if (!isNaN(child.percentWidth)) useWidth = host.width * (child.percentWidth/100.0);
+						else useWidth = _computedColumnWidth;
 						child.width = useWidth;
+					} else {
+						child.width = _computedColumnWidth;
 					}
-					children[i].style["margin-top"] = String(_rowGap/2)+"px";
-					children[i].style["margin-bottom"] = String(_rowGap/2)+"px";
-					children[i].style["margin-left"] = String(_columnGap/2)+"px";
-					children[i].style["margin-right"] = String(_columnGap/2)+"px";
+					
+					if (_rowGap > 0) {
+						children[i].style["margin-top"] = String(_rowGap/2)+"px";
+						children[i].style["margin-bottom"] = String(_rowGap/2)+"px";
+						children[i].style["margin-left"] = String(_columnGap/2)+"px";
+						children[i].style["margin-right"] = String(_columnGap/2)+"px";
+					}
 				}
 
 				return true;

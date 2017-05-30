@@ -68,6 +68,7 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -81,6 +82,7 @@
       <artifactId>Binding</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -94,6 +96,7 @@
       <artifactId>Graphics</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -107,6 +110,7 @@
       <artifactId>Collections</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -120,6 +124,7 @@
       <artifactId>Basic</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>

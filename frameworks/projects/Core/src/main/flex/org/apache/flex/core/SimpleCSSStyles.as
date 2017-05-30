@@ -66,16 +66,12 @@ package org.apache.flex.core
             "color": 1,
             "fontWeight": 1,
             "fontStyle": 1,
-            "backgroundAlpha": 1,
             "backgroundColor": 1,
             "backgroundImage": 1,
             "borderColor": 1,
             "borderStyle": 1,
             "borderRadius": 1,
-            "borderWidth": 1,
-			"flexGrow": 1,
-			"flexShrink": 1,
-			"order": 1
+            "borderWidth": 1
         };
 		
         public var top:*;
@@ -98,15 +94,11 @@ package org.apache.flex.core
         public var color:*;
         public var fontWeight:*;
         public var fontStyle:*;
-        public var backgroundAlpha:*;
         public var backgroundColor:*;
         public var backgroundImage:*;
         public var borderColor:*;
         public var borderStyle:*;
         public var borderRadius:*;
         public var borderWidth:*;
-		public var flexGrow:*;
-		public var flexShrink:*;
-		public var order:*;
 	}
 }

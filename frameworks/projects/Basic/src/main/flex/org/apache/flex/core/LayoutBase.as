@@ -133,6 +133,11 @@ package org.apache.flex.core
 					}
 				}
 			}
+			COMPILE::JS {
+				if (sawInitComplete) {
+					performLayout();
+				}
+			}
 		}
 		
 		/**
@@ -278,6 +283,9 @@ package org.apache.flex.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
+
+			var oldWidth:Number = host.width;
+			var oldHeight:Number = host.height;
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
@@ -290,6 +298,17 @@ package org.apache.flex.core
 			isLayoutRunning = false;
 			
 			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+			
+			// check sizes to see if layout changed the size or not
+			// and send an event to re-layout parent of host
+			if (host.width != oldWidth ||
+			    host.height != oldHeight)
+			{
+				isLayoutRunning = true;
+				host.dispatchEvent(new Event("sizeChanged"));
+				isLayoutRunning = false;
+			}
+
 		}
 
         /**

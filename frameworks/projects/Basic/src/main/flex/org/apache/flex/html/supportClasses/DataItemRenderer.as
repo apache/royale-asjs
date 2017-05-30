@@ -111,23 +111,9 @@ package org.apache.flex.html.supportClasses
 			_dataField = value;
 		}
 
-		COMPILE::SWF
-		private var background:Sprite;
-
 		COMPILE::JS
 		private var controller:ItemRendererMouseController;
 
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			background = new Sprite();
-			addChild(background);
-		}
 
 		/**
 		 * @private
@@ -138,10 +124,10 @@ package org.apache.flex.html.supportClasses
 			{
 				super.updateRenderer();
 
-				background.graphics.clear();
-				background.graphics.beginFill(useColor, (down||selected||hovered)?1:0);
-				background.graphics.drawRect(0, 0, width, height);
-				background.graphics.endFill();
+				graphics.clear();
+				graphics.beginFill(useColor, (down||selected||hovered)?1:0);
+				graphics.drawRect(0, 0, width, height);
+				graphics.endFill();
 			}
 			COMPILE::JS
 			{

@@ -29,6 +29,7 @@
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
     
@@ -54,7 +55,7 @@
 
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.compile.cordova" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
@@ -65,18 +66,18 @@
     </target>
     
     <target name="run">
-        <exec executable="${AIR_HOME}/bin/${adl}" dir="${basedir}/bin-debug" failonerror="true">
-            <arg value="-runtime" />
-            <arg value="${AIR_HOME}/runtimes/air/${runtime}" />
-            <arg value="-screensize" />
-            <arg value="640x960:640x960" />
-            <arg value="-profile" />
-            <arg value="mobileDevice" />
-            <arg value="-XscreenDPI" />
-            <arg value="240" />
-            <arg value="-XversionPlatform" />
-            <arg value="AND" />
-            <arg value="${basedir}/bin-debug/${example}-app.xml" />
-        </exec>
+        <antcall target="build_example.run.air" >
+            <param name="profile" value="mobileDevice" />
+        </antcall>
     </target>
+    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Take a picture."/>
+        <antcall target="build_example.run.air" >
+            <param name="profile" value="mobileDevice" />
+        </antcall>
+        <antcall target="build_example.run.cordova" />
+    </target>
+
 </project>

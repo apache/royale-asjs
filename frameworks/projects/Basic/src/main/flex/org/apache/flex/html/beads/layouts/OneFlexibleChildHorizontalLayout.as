@@ -65,7 +65,7 @@ package org.apache.flex.html.beads.layouts
 
         private var _flexibleChild:String;
 
-        private var actualChild:ILayoutChild;
+        protected var actualChild:ILayoutChild;
 
         /**
          *  @private
@@ -153,7 +153,8 @@ package org.apache.flex.html.beads.layouts
 			// set the display on the contentView
 			contentView.element.style["display"] = "flex";
 			contentView.element.style["flex-flow"] = "row";
-			contentView.element.style["align-items"] = "center";
+			if (!contentView.element.style["align-items"])
+				contentView.element.style["align-items"] = "center";
 
 			var n:int = contentView.numElements;
 			if (n == 0) return false;
@@ -162,6 +163,8 @@ package org.apache.flex.html.beads.layouts
 				var child:UIBase = contentView.getElementAt(i) as UIBase;
 				child.element.style["flex-grow"] = (child == actualChild) ? "1" : "0";
 				child.element.style["flex-shrink"] = "0";
+				if (!isNaN(child.percentWidth))
+				    child.element.style["flex-basis"] = child.percentWidth.toString() + "%";
 			}
 
 			return true;
@@ -171,7 +174,7 @@ package org.apache.flex.html.beads.layouts
 		override public function layout():Boolean
 		{
 			var contentView:ILayoutView = layoutView;
-			var actualChild:IUIBase = document.hasOwnProperty(flexibleChild) ? document[flexibleChild] : null;
+			actualChild = document.hasOwnProperty(flexibleChild) ? document[flexibleChild] : null;
 
 			var n:Number = contentView.numElements;
 			if (n == 0) return false;
@@ -185,8 +188,8 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
 			var hostSizedToContent:Boolean = host.isHeightSizedToContent();
-			var hostWidth:Number = contentView.width;
-			var hostHeight:Number = hostSizedToContent ? 0 : contentView.height;
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 
 			var ilc:ILayoutChild;
 			var data:Object;
@@ -202,7 +205,7 @@ package org.apache.flex.html.beads.layouts
 			hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 			var xpos:Number = borderMetrics.left + paddingMetrics.left;
-			var ypos:Number = borderMetrics.top + paddingMetrics.left;
+			var ypos:Number = borderMetrics.top + paddingMetrics.top;
 			var child:IUIBase;
 			var childHeight:Number;
 			var i:int;
@@ -224,15 +227,20 @@ package org.apache.flex.html.beads.layouts
 
 				childYpos = ypos + margins.top; // default y position
 
-				if (!hostSizedToContent) {
-					childHeight = child.height;
-					if (ilc != null && !isNaN(ilc.percentHeight)) {
+				childHeight = child.height;
+				if (ilc != null)
+				{
+					if (!isNaN(ilc.percentHeight)) {
 						childHeight = host.height * ilc.percentHeight/100.0;
-						ilc.setHeight(childHeight);
 					}
-					// the following code middle-aligns the child
-					childYpos = hostHeight/2 - childHeight/2 + ypos;
+					else if (isNaN(ilc.explicitHeight)) {
+						childHeight = host.height;
+					}
+					ilc.setHeight(childHeight);
 				}
+                var align:String = ValuesManager.valuesImpl.getValue(host, "alignItems");
+				if (align == "center")
+					childYpos = hostHeight/2 - childHeight/2 + ypos;
 
 				if (ilc) {
 					ilc.setX(xpos);
@@ -265,15 +273,20 @@ package org.apache.flex.html.beads.layouts
 
 				childYpos = ypos + margins.top; // default y position
 
-				if (!hostSizedToContent) {
-					childHeight = child.height;
-					if (ilc != null && !isNaN(ilc.percentHeight)) {
-						childHeight = hostHeight * ilc.percentHeight/100.0;
-						ilc.setHeight(childHeight);
+				childHeight = child.height;
+				if (ilc != null)
+				{
+					if (!isNaN(ilc.percentHeight)) {
+						childHeight = host.height * ilc.percentHeight/100.0;
 					}
-					// the following code middle-aligns the child
-					childYpos = hostHeight/2 - childHeight/2 + ypos;
+					else if (isNaN(ilc.explicitHeight)) {
+						childHeight = host.height;
+					}
+					ilc.setHeight(childHeight);
 				}
+                align = ValuesManager.valuesImpl.getValue(host, "alignItems");
+				if (align == "center")
+					childYpos = hostHeight/2 - childHeight/2 + ypos;
 
 				if (ilc) {
 					if (!isNaN(ilc.percentWidth)) {
@@ -299,17 +312,21 @@ package org.apache.flex.html.beads.layouts
 			if (actualChild != null) {
 				margins = childMargins(actualChild, hostWidth, hostHeight);
 				ilc = actualChild as ILayoutChild;
-				if (!hostSizedToContent) {
-					childHeight = actualChild.height;
-					if (ilc != null && !isNaN(ilc.percentHeight)) {
-						childHeight = hostHeight * ilc.percentHeight/100.0;
-						ilc.setHeight(childHeight);
+				childHeight = actualChild.height;
+				if (ilc != null)
+				{
+					if (!isNaN(ilc.percentHeight)) {
+						childHeight = host.height * ilc.percentHeight/100.0;
 					}
+					else if (isNaN(ilc.explicitHeight)) {
+						childHeight = host.height;
+					}
+					ilc.setHeight(childHeight);
 				}
 				childYpos = ypos + margins.top;
-				if (!hostSizedToContent) {
+                align = ValuesManager.valuesImpl.getValue(host, "alignItems");
+				if (align == "center")
 					childYpos = hostHeight/2 - childHeight/2 + ypos;
-				}
 				actualChild.x = adjustLeft + margins.left;
 				actualChild.y = childYpos;
 				if (ilc) {

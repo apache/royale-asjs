@@ -79,19 +79,29 @@ package org.apache.flex.html.beads
             
 			// add an input field
 			input = new TextInput();
+            input.className = "NumericStepperInput";
+            input.typeNames = "NumericStepperInput";
 			IParent(value).addElement(input);
-			
+			COMPILE::JS
+			{
+	            input.positioner.style.display = 'inline-block';
+    	        input.positioner.style.width = '100px';
+			}
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( UIBase(value).model as IBead );
 			IParent(value).addElement(spinner);
 			spinner.height = input.height;
+			COMPILE::JS
+			{
+	            spinner.positioner.style.display = 'inline-block';
+			}
 			
 			// listen for changes to the text input field which will reset the
 			// value. ideally, we should either set the input to accept only
 			// numeric values or, barring that, reject non-numeric entries. we
 			// cannot do that right now however.
-			input.model.addEventListener("textChange",inputChangeHandler);
+			input.addEventListener("change",inputChangeHandler);
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
@@ -123,8 +133,11 @@ package org.apache.flex.html.beads
 			input.x = 2;
 			input.y = (UIBase(_strand).height - input.height)/2;
 			input.width = UIBase(_strand).width-spinner.width-2;
+			COMPILE::SWF
+			{
 			spinner.x = input.width+2;
 			spinner.y = 0;
+			}
 		}
 		
 		/**

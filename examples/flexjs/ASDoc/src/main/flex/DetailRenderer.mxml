@@ -34,7 +34,7 @@ limitations under the License.
     <fx:Style>
     </fx:Style>
     <js:beads>
-        <js:VerticalLayout />
+        <js:VerticalFlexLayout />
         <js:ItemRendererDataBinding />
     </js:beads>
     <js:Label width="100%" height="30" style="fontWeight:bold" text="{obj.qname}" >

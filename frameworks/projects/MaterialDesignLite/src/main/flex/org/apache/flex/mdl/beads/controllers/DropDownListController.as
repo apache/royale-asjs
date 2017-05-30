@@ -79,6 +79,8 @@ package org.apache.flex.mdl.beads.controllers
             _dropDownListView = value.getBeadByType(DropDownListView) as DropDownListView;
 
             _dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
+
+			setLabelDipslayValue(_model.selectedItem);
 		}
 
         private function onDisplayItemClick(event:MouseEvent):void
@@ -88,11 +90,19 @@ package org.apache.flex.mdl.beads.controllers
 			_model.selectedIndex = eventTarget.index;
 			_model.selectedItem = eventTarget.data;
 
-            _dropDownListView.labelDisplay.text = !_model.labelField ?
-					eventTarget.data : 
-					eventTarget.data[_model.labelField];
+            setLabelDipslayValue(eventTarget.data);
 
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
+
+		private function setLabelDipslayValue(data:Object):void
+		{
+			if (_model.selectedIndex > -1 && data)
+			{
+                _dropDownListView.labelDisplay.text = !_model.labelField ?
+                        data as String : 
+						data[_model.labelField];
+			}
+		}
     }
 }

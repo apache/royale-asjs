@@ -23,14 +23,18 @@ limitations under the License.
     <mdl:beads>
         <s:ItemRendererDataBinding />
     </mdl:beads>
-    <fx:Script><![CDATA[
-        import vos.TabVO;
 
-        [Bindable("dataChange")]
-        public function get tab():TabVO
-        {
-            return data as TabVO;
-        }
-        ]]></fx:Script>
+    <fx:Script>
+        <![CDATA[
+            import vos.TabVO;
+
+            [Bindable("dataChange")]
+            public function get tab():TabVO
+            {
+                return data as TabVO;
+            }
+        ]]>
+    </fx:Script>
+
     <s:Label text="{tab.label}"/>
 </mdl:TabBarPanelItemRenderer>

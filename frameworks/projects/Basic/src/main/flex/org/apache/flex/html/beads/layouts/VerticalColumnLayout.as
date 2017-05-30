@@ -35,6 +35,10 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.utils.CSSUtils;
     import org.apache.flex.utils.CSSContainerUtils;
+	
+	COMPILE::JS {
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
 
 	/**
 	 * ColumnLayout is a class that organizes the positioning of children
@@ -83,10 +87,17 @@ package org.apache.flex.html.beads.layouts
 
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
 		override public function layout():Boolean
 		{
 			var contentView:ILayoutView = layoutView;
+			COMPILE::JS {
+				if (contentView.element.style.position != "absolute" && contentView.element.style.position != "relative") {
+					contentView.element.style.position = "relative";
+				}
+				contentView.element.style["vertical-align"] = "top";
+			}
 			
             var padding:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
 			var sw:Number = host.width;
@@ -157,6 +168,9 @@ package org.apache.flex.html.beads.layouts
                     rows.shift();
 					col = 0;
 					curx = padding.left;
+				}
+				COMPILE::JS {
+					e.element.style.position = "absolute";
 				}
 			}
 			return true;

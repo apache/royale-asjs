@@ -27,10 +27,27 @@
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property name="opt1_arg" value="-js-output-optimization=skipAsCoercions" />
     
     <include file="${basedir}/../../build_example.xml" />
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    	<mkdir dir="${basedir}/bin/js-debug/fonts" />
+        <copy todir="${basedir}/bin/js-debug/fonts" >
+            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+                <include name="flat-ui-icons-regular.svg" />
+                <include name="flat-ui-icons-regular.ttf" />
+                <include name="flat-ui-icons-regular.woff" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/fonts" />
+        <copy todir="${basedir}/bin/js-release/fonts" >
+            <fileset dir="${FLEXJS_HOME}/frameworks/fonts">
+                <include name="flat-ui-icons-regular.svg" />
+                <include name="flat-ui-icons-regular.ttf" />
+                <include name="flat-ui-icons-regular.woff" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
@@ -40,6 +57,16 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-    
-    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Choose from dropdown, get quote, click on checkbox to see if TextArea appears and disappears, click on radio buttons to see if other labels change via data binding"/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+
 </project>

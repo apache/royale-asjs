@@ -29,7 +29,6 @@
 
   <properties>
     <compiler.debug>true</compiler.debug>
-    <compiler.output-dir>target/javascript/bin/js-debug</compiler.output-dir>
   </properties>
 
   <build>
@@ -43,7 +42,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <debug>\${compiler.debug}</debug>
-          <targets>JS</targets>
+          <targets>JSFlex</targets>
         </configuration>
         <dependencies>
           <dependency>
@@ -62,15 +61,6 @@
       <artifactId>Core</artifactId>
       <version>0.8.0-SNAPSHOT</version>
       <type>swc</type>
-    </dependency>
-
-    <!-- Needed for Flash compilation -->
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
     </dependency>
 
     <!-- Needed for JavaScript compilation -->
@@ -93,7 +83,6 @@
       <id>release</id>
       <properties>
         <compiler.debug>false</compiler.debug>
-        <compiler.output-dir>target/javascript/bin/js-release</compiler.output-dir>
       </properties>
     </profile>
   </profiles>

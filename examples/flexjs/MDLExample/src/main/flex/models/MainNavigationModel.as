@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import vos.NavigationLinkVO;
     import org.apache.flex.collections.ArrayList;
+
+    import vos.NavigationLinkVO;
 
     public class MainNavigationModel
     {

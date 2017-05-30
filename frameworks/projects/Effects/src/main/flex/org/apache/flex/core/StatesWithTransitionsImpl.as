@@ -292,12 +292,12 @@ package org.apache.flex.core
                         if (!isItemInState(item, oldState))
                         {
                             var parent:IParent = ai.document as IParent;
-                            if (ai.destination)
+                            if (ai.destination != null)
                                 parent = parent[ai.destination] as IParent;
                             if (ai.relativeTo != null)
                             {
                                 var child:IChild = ai.document[ai.relativeTo] as IChild;
-                                if (ai.destination)
+                                if (ai.destination == null)
                                     parent = child.parent as IParent;
                                 var index:int = parent.getElementIndex(child);
                                 if (ai.position == "after")

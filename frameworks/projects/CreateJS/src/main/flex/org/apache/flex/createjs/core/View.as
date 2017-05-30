@@ -73,6 +73,10 @@ package org.apache.flex.createjs.core
 		// nothing different for the SWF version
 	}
 	
+	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	
+	[DefaultProperty("mxmlContent")]
+	
 	COMPILE::JS
 	public class View extends UIBase implements IPopUpHost, IApplicationView, IContainer
 	{
