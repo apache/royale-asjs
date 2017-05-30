@@ -22,6 +22,7 @@
 <project name="TLFEditTestFlexJS" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="TLFEditTestFlexJS" />
+    <property name="swf.version" value="20" />
     
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
