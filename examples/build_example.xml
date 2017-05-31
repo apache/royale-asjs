@@ -169,7 +169,7 @@
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="config_arg" value="flex" />
         <property name="file_suffix" value="mxml" />
-        <property name="optional_arg" value="-define=CONFIG::dummy,true" />
+        <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
         <mxmlc fork="true"
                debug="true"
                configname="${config_arg}"
