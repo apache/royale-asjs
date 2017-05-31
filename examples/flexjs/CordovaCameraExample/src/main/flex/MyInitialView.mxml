@@ -31,7 +31,7 @@ limitations under the License.
 			{
 				status.text = "ready";
 			}
-			
+
 			public function snapPicture() : void
 			{
 				if (cam == null) {
@@ -46,9 +46,20 @@ limitations under the License.
 				image.src = String(imageData);
 			}
 			
+			private function libSuccess(imageData:Object):void
+			{
+				output.text = "Chose photo file: " + String(imageData);
+				image.src = String(imageData);
+			}
+			
 			private function failure(message:Object):void
 			{
 				output.text = "Failed: "+String(message);
+			}
+			
+			private function onFromPhotoLibrary() : void
+			{
+				cam.getPhotoFromLibrary(libSuccess,failure);
 			}
 			
 		]]>
@@ -57,6 +68,7 @@ limitations under the License.
 	
 	<js:Label id="status" x="20" y="140" width="400" text="loading..."/>
 	
+	<js:TextButton text="From Photo Library" x="20" y="20" click="onFromPhotoLibrary()" />
 	<js:TextButton text="Snap Picture" x="20" y="55" click="snapPicture()" />
 	
 	<js:Label id="output" x="20" y="110" width="400"/>
