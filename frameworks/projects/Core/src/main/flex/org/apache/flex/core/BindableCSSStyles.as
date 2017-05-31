@@ -97,7 +97,6 @@ package org.apache.flex.core
         public var color:*;
         public var fontWeight:*;
         public var fontStyle:*;
-        public var backgroundAlpha:*;
         public var backgroundColor:*;
         public var backgroundImage:*;
 		public var border:*;
