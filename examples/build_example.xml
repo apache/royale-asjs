@@ -334,6 +334,21 @@
         </copy>
     </target>
     
+    <target name="copy-js-resources" depends="check-resources" if="has-resources">
+        <mkdir dir="${basedir}/bin/js-debug/assets" />
+        <copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+    </target>
+    
     <target name="run.air">
         <property name="profile" value="mobileDevice" />
         <property name="screensize" value="640x960:640x960" />
