@@ -99,8 +99,8 @@ package org.apache.flex.core
             while (true)
             {
                 var ffName:String = "factoryFunctions" + i.toString();
-                var ff:Object = c[ffName];
-                if (ff === null)
+                var ff:* = c[ffName];
+                if (ff === undefined)
                     break;
                 generateCSSStyleDeclarations(c[ffName], c["data" + i.toString()]);
                 if (hasEventListener("init"))
@@ -164,9 +164,7 @@ package org.apache.flex.core
         COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
-			if (factoryFunctions === null)
-				return;
-			if (arr === null)
+			if (factoryFunctions === null || arr === null)
 				return;
 			
             var declarationName:String = "";
@@ -331,30 +329,25 @@ package org.apache.flex.core
             }
 
             var value:*;
-			var o:Object;
+			var o:*;
 			var className:String;
 			var selectorName:String;
 			
 			if (thisObject is IStyleableObject)
 			{
                 var styleable:IStyleableObject = IStyleableObject(thisObject);
-                if (styleable.style !== null)
+                if (styleable.style !== undefined)
                 {
-                    try {
-                        value = styleable.style[valueName];
-                    }
-                    catch (e:Error) {
-                        value = undefined;
-                    }
+                    value = styleable.style[valueName];
                     if (value === INHERIT)
                         return getInheritingValue(thisObject, valueName, state, attrs);
                     if (value !== undefined)
                         return value;
                 }
-                if (styleable.id !== null)
+                if (styleable.id !== undefined)
                 {
                     o = values["#" + styleable.id];
-                    if (o)
+                    if (o !== undefined)
                     {
                         value = o[valueName];
                         if (value === INHERIT)
@@ -364,16 +357,16 @@ package org.apache.flex.core
                     }                    
                 }
 				var classNames:String = styleable.className;
-                if (classNames)
+                if (classNames !== undefined)
                 {
                     var classNameList:Array = classNames.split(" ");
                     for each (className in classNameList)
                     {
-                        if (state)
+                        if (state !== null)
                         {
                             selectorName = className + ":" + state;
                             o = values["." + selectorName];
-                            if (o)
+                            if (o !== undefined)
                             {
                                 value = o[valueName];
                                 if (value === INHERIT)
@@ -384,7 +377,7 @@ package org.apache.flex.core
                         }
                         
                         o = values["." + className];
-                        if (o)
+                        if (o !== undefined)
                         {
                             value = o[valueName];
                             if (value === INHERIT)
@@ -407,11 +400,11 @@ package org.apache.flex.core
             var thisInstance:Object = thisObject;
 			while (className !== "Object")
 			{
-				if (state)
+				if (state !== null)
 				{
 					selectorName = className + ":" + state;
 					o = values[selectorName];
-					if (o)
+					if (o !== undefined)
 					{
 						value = o[valueName];
                         if (value === INHERIT)
@@ -422,7 +415,7 @@ package org.apache.flex.core
 				}
 				
 	            o = values[className];
-	            if (o)
+	            if (o !== undefined)
 	            {
 	                value = o[valueName];
                     if (value === INHERIT)
@@ -446,7 +439,7 @@ package org.apache.flex.core
                 }
 			}
             
-            if (inheritingStyles[valueName] != null &&
+            if (inheritingStyles[valueName] !== undefined &&
                 thisObject is IChild)
             {
                 var parentObject:Object = IChild(thisObject).parent;
@@ -455,14 +448,14 @@ package org.apache.flex.core
             }
             
             o = values["global"];
-            if (o)
+            if (o !== undefined)
             {
     			value = o[valueName];
     			if (value !== undefined)
     				return value;
             }
 			o = values["*"];			
-			if(o)
+			if (o !== undefined)
 			{
 				return o[valueName];
 			}
