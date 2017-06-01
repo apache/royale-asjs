@@ -292,7 +292,7 @@ package org.apache.flex.utils
 			
 			for (var i:int = 0; i < n; i++)
 			{
-				code = restrict.charCodeAt(i)
+				code = restrict.charCodeAt(i);
 				
 				var acceptCode:Boolean = false;
 				if (!inBackSlash)
