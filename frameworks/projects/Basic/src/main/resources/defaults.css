@@ -365,7 +365,7 @@ Accordion
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.AccordionView");			
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.AccordionItemRenderer");

@@ -121,6 +121,8 @@ package org.apache.flex.html.beads.layouts
 		COMPILE::JS
 		override public function layout():Boolean
 		{
+			if (flexibleChild == null) return false;
+			
 			var contentView:ILayoutView = layoutView;
 
 			actualChild = document[flexibleChild];
@@ -148,6 +150,8 @@ package org.apache.flex.html.beads.layouts
 		COMPILE::SWF
 		override public function layout():Boolean
 		{
+			if (flexibleChild == null) return false;
+			
 			var contentView:ILayoutView = layoutView;
 			actualChild = document.hasOwnProperty(flexibleChild) ? document[flexibleChild] : null;
 

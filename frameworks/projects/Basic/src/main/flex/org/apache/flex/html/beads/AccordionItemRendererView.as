@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads
 {		
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.supportClasses.ICollapsible;
     
 	/**
@@ -53,12 +54,13 @@ package org.apache.flex.html.beads
 			var collapsibleStrand:ICollapsible = _strand as ICollapsible;
 			if (!collapsibleStrand.collapsed)
 			{
-				super.performLayout(event);
+				IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+//				super.performLayout(event);
 			} else // skip layout for viewport children
 			{
 				COMPILE::SWF {
 				// no longer needed layoutViewBeforeContentLayout();
-				afterLayout();
+				//afterLayout();
 				}
 			}
 		}
