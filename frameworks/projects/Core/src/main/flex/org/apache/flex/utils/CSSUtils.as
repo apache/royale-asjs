@@ -334,6 +334,6 @@ package org.apache.flex.utils
             navy:	 0xFF000080,
             fuchsia: 0xFFFF00FF,
             purple:	 0xFF800080
-        }
+        };
 	}
 }
