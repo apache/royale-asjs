@@ -119,7 +119,7 @@ package org.apache.flex.utils
             var c2:int;
             
             var stringValue:String = value as String;
-			if (stringValue == "transparent")
+			if (stringValue === "transparent")
 			{
 				return uint.MAX_VALUE;
 			}
@@ -316,7 +316,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          */
-        public static var colorMap:Object = {
+        public static const colorMap:Object = {
             transparent:   0,
             white:   0xFFFFFFFF,
             silver:	 0xFFC0C0C0,
