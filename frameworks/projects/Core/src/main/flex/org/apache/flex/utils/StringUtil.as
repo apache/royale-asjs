@@ -84,8 +84,9 @@ package org.apache.flex.utils
 		 */
 		public static function substitute(str:String, ... rest):String
 		{
-			if (str === null) return '';
-			
+			if (str === null)
+				return '';
+
 			// Replace all of the parameters in the msg string.
 			var len:uint = rest.length;
 			var args:Array;
