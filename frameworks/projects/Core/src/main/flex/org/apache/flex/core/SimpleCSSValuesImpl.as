@@ -593,13 +593,23 @@ package org.apache.flex.core
             for each (var part:String in parts)
             {
                 var pieces:Array = StringUtil.splitAndTrim(part, ":");
+                var valueName:String = pieces[0];
+                var c:int = valueName.indexOf("-");
+	            while (c != -1)
+	            {
+	                valueName = valueName.substr(0, c) +
+	                    valueName.charAt(c + 1).toUpperCase() +
+	                    valueName.substr(c + 2);
+	                c = valueName.indexOf("-");
+	            }
+                
                 var value:String = pieces[1];
                 if (value == "null")
-                    obj[pieces[0]] = null;
+                    obj[valueName] = null;
                 else if (value == "true")
-                    obj[pieces[0]] = true;
+                    obj[valueName] = true;
                 else if (value == "false")
-                    obj[pieces[0]] = false;
+                    obj[valueName] = false;
                 else
                 {
                     var n:Number = Number(value);
@@ -607,7 +617,7 @@ package org.apache.flex.core
                     {
                         if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
                         {                            
-                            obj[pieces[0]] = CSSUtils.toColor(value);
+                            obj[valueName] = CSSUtils.toColor(value);
                         }
                         else
                         {
@@ -615,11 +625,11 @@ package org.apache.flex.core
                                 value = value.substr(1, value.length - 2);
                             else if (value.charAt(0) == '"')
                                 value = value.substr(1, value.length - 2);
-                            obj[pieces[0]] = value;
+                            obj[valueName] = value;
                         }
                     }
                     else
-                        obj[pieces[0]] = n;
+                        obj[valueName] = n;
                 }
             }
             return obj;
