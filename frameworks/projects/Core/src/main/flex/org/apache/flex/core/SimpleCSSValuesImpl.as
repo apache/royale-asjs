@@ -593,6 +593,7 @@ package org.apache.flex.core
             for each (var part:String in parts)
             {
                 var pieces:Array = StringUtil.splitAndTrim(part, ":");
+                if (pieces.length < 2) continue;
                 var valueName:String = pieces[0];
                 var c:int = valueName.indexOf("-");
 	            while (c != -1)
