@@ -870,11 +870,8 @@ package org.apache.flex.core
                 var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
                 if (c)
                 {
-                    if (c)
-                    {
-                        _view = (new c()) as IBeadView;
-                        addBead(_view);
-                    }
+                    _view = (new c()) as IBeadView;
+                    addBead(_view);
                 }
             }
             return _view;
