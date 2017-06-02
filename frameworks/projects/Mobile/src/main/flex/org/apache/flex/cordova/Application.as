@@ -19,7 +19,7 @@
 package org.apache.flex.cordova
 {
 	import org.apache.flex.events.Event;
-	import org.apache.flex.core.Application;
+	import org.apache.flex.core.AirApplication;
 	import org.apache.flex.core.IFlexInfo;
 
 	/**
@@ -30,7 +30,7 @@ package org.apache.flex.cordova
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class Application extends org.apache.flex.core.Application implements IFlexInfo
+	public class Application extends org.apache.flex.core.AirApplication implements IFlexInfo
 	{
 		/**
 		 * FalconJX will inject html into the index.html file.  Surround with
