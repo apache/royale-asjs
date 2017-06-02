@@ -111,7 +111,7 @@ package org.apache.flex.collections
 		 */
 		public function isOpen(node:Object):Boolean
 		{
-			return openNodes.indexOf(node) != -1;
+			return openNodes.indexOf(node) !== -1;
 		}
 		
 		/**
@@ -146,7 +146,7 @@ package org.apache.flex.collections
 		public function closeNode(node:Object):void
 		{
 			var i:int = openNodes.indexOf(node);
-			if (i != -1) {
+			if (i !== -1) {
 				
 				if (hdata.hasChildren(node)) {
 					var children:Array = hdata.getChildren(node) as Array;
@@ -186,13 +186,16 @@ package org.apache.flex.collections
 		 */
 		private function godeep(seeking:Object, node:Object, depth:int):int
 		{
-			if (seeking == node) return depth;
+			if (seeking === node)
+				return depth;
 			
 			if (hdata.hasChildren(node)) {
 				var children:Array = hdata.getChildren(node) as Array;
-				for (var i:int=0; i < children.length; i++) {
-					var newDepth:int = godeep(seeking, children[i], depth+1)
-					if (newDepth > 0) return newDepth;
+				var length:int = children.length;
+				for (var i:int=0; i < length; i++) {
+					var newDepth:int = godeep(seeking, children[i], depth+1);
+					if (newDepth > 0)
+						return newDepth;
 				}
 			}
 			
