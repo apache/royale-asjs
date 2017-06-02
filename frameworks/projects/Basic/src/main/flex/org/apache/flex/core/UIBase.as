@@ -202,7 +202,7 @@ package org.apache.flex.core
          */
         public function set explicitWidth(value:Number):void
 		{
-			if (_explicitWidth == value)
+			if (_explicitWidth === value)
 				return;
 			
 			// width can be pixel or percent not both
@@ -235,7 +235,7 @@ package org.apache.flex.core
          */
 		public function set explicitHeight(value:Number):void
 		{
-			if (_explicitHeight == value)
+			if (_explicitHeight === value)
 				return;
 			
 			// height can be pixel or percent not both
@@ -272,7 +272,7 @@ package org.apache.flex.core
 		public function set percentWidth(value:Number):void
 		{
 			COMPILE::SWF {
-				if (_percentWidth == value)
+				if (_percentWidth === value)
 					return;
 				
 				if (!isNaN(value))
@@ -315,7 +315,7 @@ package org.apache.flex.core
 		public function set percentHeight(value:Number):void
 		{
 			COMPILE::SWF {
-				if (_percentHeight == value)
+				if (_percentHeight === value)
 					return;
 				
 				if (!isNaN(value))
@@ -369,7 +369,7 @@ package org.apache.flex.core
         {
             var pixels:Number;
             var strpixels:String = positioner.style.width as String;
-            if (strpixels !== null && strpixels.indexOf('%') != -1)
+            if (strpixels !== null && strpixels.indexOf('%') !== -1)
                 pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
@@ -389,7 +389,7 @@ package org.apache.flex.core
         COMPILE::SWF
 		override public function set width(value:Number):void
 		{
-			if (explicitWidth != value)
+			if (explicitWidth !== value)
 			{
 				explicitWidth = value;
 			}
@@ -403,7 +403,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set width(value:Number):void
         {
-            if (explicitWidth != value)
+            if (explicitWidth !== value)
             {
                 explicitWidth = value;
             }
@@ -461,7 +461,7 @@ package org.apache.flex.core
         {
             var pixels:Number;
             var strpixels:String = positioner.style.height as String;
-            if (strpixels !== null && strpixels.indexOf('%') != -1)
+            if (strpixels !== null && strpixels.indexOf('%') !== -1)
                 pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
@@ -481,7 +481,7 @@ package org.apache.flex.core
         COMPILE::SWF
 		override public function set height(value:Number):void
 		{
-			if (explicitHeight != value)
+			if (explicitHeight !== value)
 			{
 				explicitHeight = value;
 			}
@@ -495,7 +495,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set height(value:Number):void
         {
-            if (explicitHeight != value)
+            if (explicitHeight !== value)
             {
                 explicitHeight = value;
             }
@@ -528,7 +528,7 @@ package org.apache.flex.core
          */
         public function setHeight(value:Number, noEvent:Boolean = false):void
         {
-            if (_height != value)
+            if (_height !== value)
             {
                 _height = value;
                 COMPILE::JS
@@ -550,7 +550,7 @@ package org.apache.flex.core
          */
         public function setWidth(value:Number, noEvent:Boolean = false):void
         {
-            if (_width != value)
+            if (_width !== value)
             {
                 _width = value;
                 COMPILE::JS
@@ -572,7 +572,7 @@ package org.apache.flex.core
          */
         public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
-            if (_width != newWidth)
+            if (_width !== newWidth)
             {
                 _width = newWidth;
                 COMPILE::JS
@@ -582,7 +582,7 @@ package org.apache.flex.core
                 if (!noEvent) 
                     dispatchEvent(new Event("widthChanged"));
             }
-            if (_height != newHeight)
+            if (_height !== newHeight)
             {
                 _height = newHeight;
                 COMPILE::JS
@@ -799,7 +799,7 @@ package org.apache.flex.core
                 } 
                 else 
                 {
-                    if (displayStyleForLayout != null) 
+                    if (displayStyleForLayout !== null)
                         positioner.style.display = displayStyleForLayout;
                     dispatchEvent(new Event('show'));
                 }
@@ -831,7 +831,7 @@ package org.apache.flex.core
         COMPILE::SWF
         public function get model():Object
 		{
-            if (_model == null)
+            if (_model === null)
             {
                 // addbead will set _model
                 addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
@@ -845,7 +845,7 @@ package org.apache.flex.core
         COMPILE::SWF
 		public function set model(value:Object):void
 		{
-			if (_model != value)
+			if (_model !== value)
 			{
 				addBead(value as IBead);
 				dispatchEvent(new Event("modelChanged"));
@@ -865,10 +865,10 @@ package org.apache.flex.core
          */
         public function get view():IBeadView
         {
-            if (_view == null)
+            if (_view === null)
             {
                 var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c)
+                if (c !== undefined)
                 {
                     _view = (new c()) as IBeadView;
                     addBead(_view);
@@ -882,7 +882,7 @@ package org.apache.flex.core
          */
         public function set view(value:IBeadView):void
         {
-            if (_view != value)
+            if (_view !== value)
             {
                 addBead(value as IBead);
                 dispatchEvent(new Event("viewChanged"));
@@ -909,7 +909,7 @@ package org.apache.flex.core
          */
 		public function set id(value:String):void
 		{
-			if (_id != value)
+			if (_id !== value)
 			{
 				_id = value;
 				dispatchEvent(new Event("idChanged"));
@@ -945,7 +945,7 @@ package org.apache.flex.core
          */
         public function set style(value:Object):void
         {
-            if (_style != value)
+            if (_style !== value)
             {
                 if (value is String)
                 {
@@ -993,7 +993,7 @@ package org.apache.flex.core
          */
         public function set className(value:String):void
         {
-            if (_className != value)
+            if (_className !== value)
             {
                 COMPILE::JS
                 {
@@ -1095,7 +1095,7 @@ package org.apache.flex.core
 			for (var i:int = 0; i < n; i++)
 			{
 				var bead:IBead = _beads[i];
-				if (bead == value)
+				if (bead === value)
 				{
 					_beads.splice(i, 1);
 					return bead;
@@ -1190,7 +1190,7 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var children:Array = internalChildren();
-                if (children.length == 0)
+                if (children.length === 0)
                 {
                     return null;
                 }
@@ -1221,7 +1221,7 @@ package org.apache.flex.core
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] == c.element)
+                    if (children[i] === c.element)
                         return i;
                 }
                 return -1;                
@@ -1302,11 +1302,11 @@ package org.apache.flex.core
 					if (value is String)
                     {
                         var s:String = String(value);
-                        if (s.indexOf("%") != -1)
+                        if (s.indexOf("%") !== -1)
         					_percentWidth = Number(s.substring(0, s.length - 1));
                         else
                         {
-                            if (s.indexOf("px") != -1)
+                            if (s.indexOf("px") !== -1)
                                 s = s.substring(0, s.length - 2);
                             _width = _explicitWidth = Number(s);                            
                         }
@@ -1324,11 +1324,11 @@ package org.apache.flex.core
                     if (value is String)
                     {
     					s = String(value);
-                        if (s.indexOf("%") != -1)
+                        if (s.indexOf("%") !== -1)
     						_percentHeight = Number(s.substring(0, s.length - 1));
                         else
                         {
-                            if (s.indexOf("px") != -1)
+                            if (s.indexOf("px") !== -1)
                                 s = s.substring(0, s.length - 2);
                             _height = _explicitHeight = Number(s);
                         }
@@ -1341,30 +1341,30 @@ package org.apache.flex.core
             for each (var bead:IBead in beads)
                 addBead(bead);
                 
-            if (getBeadByType(IBeadModel) == null) 
+            if (getBeadByType(IBeadModel) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
-                if (c)
+                if (c !== undefined)
                 {
                     var model:IBeadModel = new c as IBeadModel;
                     if (model)
                         addBead(model);
                 }
             }
-            if (_view == null && getBeadByType(IBeadView) == null) 
+            if (_view === null && getBeadByType(IBeadView) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c)
+                if (c !== undefined)
                 {
                     var view:IBeadView = new c as IBeadView;
                     if (view)
                         addBead(view);                        
                 }
             }
-            if (getBeadByType(IBeadController) == null) 
+            if (getBeadByType(IBeadController) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
-                if (c)
+                if (c !== undefined)
                 {
                     var controller:IBeadController = new c as IBeadController;
                     if (controller)
@@ -1385,7 +1385,7 @@ package org.apache.flex.core
 		public function get measurementBead() : IMeasurementBead
 		{
 			var measurementBead:IMeasurementBead = getBeadByType(IMeasurementBead) as IMeasurementBead;
-			if( measurementBead == null ) {
+			if( measurementBead === null ) {
 				addBead(measurementBead = new (ValuesManager.valuesImpl.getValue(this, "iMeasurementBead")) as IMeasurementBead);
 			}
 			
@@ -1409,7 +1409,7 @@ package org.apache.flex.core
         {
             COMPILE::SWF
             {
-                if (!_stageProxy)
+                if (_stageProxy === null)
                 {
                     _stageProxy = new StageProxy(stage);
                     _stageProxy.addEventListener("removedFromStage", stageProxy_removedFromStageHandler);
@@ -1466,9 +1466,9 @@ package org.apache.flex.core
         COMPILE::JS
         protected function createElement():WrappedHTMLElement
         {
-            if (element == null)
+            if (element === null)
                 element = document.createElement('div') as WrappedHTMLElement;
-            if (positioner == null)
+            if (positioner === null)
                 positioner = element;
             positioner.style.display = 'block';
             //positioner.style.position = 'relative';
