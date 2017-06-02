@@ -1509,7 +1509,7 @@ package org.apache.flex.core
             var newStyle:Object = {};
             newStyle[value.propertyName] = value.newValue;
             ValuesManager.valuesImpl.applyStyles(this, newStyle);
-        };
+        }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
