@@ -865,10 +865,12 @@ package org.apache.flex.core
          */
         public function get view():IBeadView
         {
-            if (_view === null)
+            // JS undefined AS null
+            if (_view == null)
             {
                 var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c !== null)
+                // JS undefined AS null
+                if (c != null)
                 {
                     _view = (new c()) as IBeadView;
                     addBead(_view);
@@ -1344,17 +1346,20 @@ package org.apache.flex.core
             if (getBeadByType(IBeadModel) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
-                if (c !== null)
+                // JS undefined AS null
+                if (c != null)
                 {
                     var model:IBeadModel = new c as IBeadModel;
                     if (model)
                         addBead(model);
                 }
             }
-            if (_view === null && getBeadByType(IBeadView) === null)
+            // view JS undefined AS null
+            if (_view == null && getBeadByType(IBeadView) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c !== null)
+                // JS undefined AS null
+                if (c != null)
                 {
                     var view:IBeadView = new c as IBeadView;
                     if (view)
@@ -1364,7 +1369,8 @@ package org.apache.flex.core
             if (getBeadByType(IBeadController) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
-                if (c !== null)
+                // JS undefined AS null
+                if (c != null)
                 {
                     var controller:IBeadController = new c as IBeadController;
                     if (controller)
