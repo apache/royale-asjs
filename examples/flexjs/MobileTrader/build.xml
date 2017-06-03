@@ -48,28 +48,14 @@
     </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
-    <target name="main" depends="clean,build_example.compile,copyassets,build_example.compile.cordova" description="Clean build of ${example}">
-    </target>
-    
-    <target name="copyassets">
-    	<mkdir dir="${basedir}/bin/js-debug/assets" />
-    	<copy todir="${basedir}/bin/js-debug/assets" >
-            <fileset dir="${basedir}/src/main/resources/assets">
-                <include name="**" />
-            </fileset>
-        </copy>
-        <mkdir dir="${basedir}/bin/js-release/assets" />
-        <copy todir="${basedir}/bin/js-release/assets" >
-            <fileset dir="${basedir}/src/main/resources/assets">
-                <include name="**" />
-            </fileset>
-        </copy>
+    <target name="main" depends="clean,build_example.compile,build_example.copy-js-resources,build_example.compile.cordova" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/app" failonerror="false" />
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
     

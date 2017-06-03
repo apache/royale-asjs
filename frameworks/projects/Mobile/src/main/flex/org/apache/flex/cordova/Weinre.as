@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.cordova
+package org.apache.flex.cordova
 {
     COMPILE::SWF
     {

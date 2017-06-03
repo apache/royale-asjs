@@ -169,7 +169,7 @@
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="config_arg" value="flex" />
         <property name="file_suffix" value="mxml" />
-        <property name="optional_arg" value="-define=CONFIG::dummy,true" />
+        <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
         <mxmlc fork="true"
                debug="true"
                configname="${config_arg}"
@@ -334,6 +334,21 @@
         </copy>
     </target>
     
+    <target name="copy-js-resources" depends="check-resources" if="has-resources">
+        <mkdir dir="${basedir}/bin/js-debug/assets" />
+        <copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+    </target>
+    
     <target name="run.air">
         <property name="profile" value="mobileDevice" />
         <property name="screensize" value="640x960:640x960" />
@@ -370,12 +385,19 @@
 
     <target name="compile.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" />
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="main" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
     </target>
 
     <target name="run.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" />
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
     </target>
 
 </project>

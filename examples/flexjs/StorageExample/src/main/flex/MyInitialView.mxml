@@ -34,6 +34,11 @@ limitations under the License.
 				trace("Starting up");
 			}
 			
+			public function set ready(value:Boolean):void
+			{
+				status.text = "Now Ready";
+			}
+			
 			// READING - PLAIN
 			
 			private function onRead():void
@@ -115,6 +120,7 @@ limitations under the License.
 				var useContent:String = today.toString() + " " + contentField.text;
 				
 				storage.addEventListener("WRITE", handleSave);
+				storage.addEventListener("ERROR", handleSaveError);
 				storage.writeTextToDataFile(useFile, useContent);
 			}
 			
@@ -221,7 +227,7 @@ limitations under the License.
 		</js:HGroup>
 		<js:Spacer height="20" />
 		
-		<js:Label id="status" />
+		<js:Label id="status" text="** APP STATUS HERE **" />
 		<js:Spacer height="20" />
 		
 		<js:HGroup>

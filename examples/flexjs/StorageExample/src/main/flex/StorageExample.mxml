@@ -18,10 +18,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 -->
-<js:AirApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+<cordova:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				   xmlns:local="*"
+				   xmlns:cordova="library://ns.apache.org/flexjs/cordova"
 				   xmlns:js="library://ns.apache.org/flexjs/basic" 
-				   >
+				   applicationComplete="MyInitialView(initialView).ready = true">
 	
 	<!-- This application demonstrates how to use the Google MAP API
 	     on both the AIR and JavaScript/browser platform. After cross-
@@ -29,14 +30,14 @@
 	     file and include your Google developer API token.
 	-->
 	
-	<js:valuesImpl>
+	<cordova:valuesImpl>
 		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
-	<js:initialView>
+	</cordova:valuesImpl>
+	<cordova:initialView>
 		<local:MyInitialView />
-	</js:initialView>
-	<js:beads>
+	</cordova:initialView>
+	<cordova:beads>
 		<js:MixinManager />
-	</js:beads>
+	</cordova:beads>
 	
-</js:AirApplication>
+</cordova:Application>

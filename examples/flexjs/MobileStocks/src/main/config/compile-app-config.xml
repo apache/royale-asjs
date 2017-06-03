@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!--
 
   Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,13 +16,11 @@
   limitations under the License.
 
 -->
-
-
-<componentPackage>
-
-    <component id="Application" class="org.apache.flex.cordova.Application"/>
-    <component id="Camera" class="org.apache.flex.cordova.Camera"/>
-    <component id="Weinre" class="org.apache.flex.cordova.Weinre"/>
-    <component id="Geolocation" class="org.apache.flex.cordova.geolocation.Geolocation" />
-
-</componentPackage>
+<flex-config>
+    <remove-circulars>true</remove-circulars>
+    <compiler>
+        <js-external-library-path append="true">
+            <path-element>../../../../../../js/libs/cordova.swc</path-element>
+        </js-external-library-path>
+    </compiler>
+</flex-config>

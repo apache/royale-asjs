@@ -96,7 +96,7 @@ package org.apache.flex.storage.providers
 		public function readTextFromDataFile( fileName:String ) : void
 		{
 			COMPILE::JS {
-				var fullPath:String = String(cordova["file"]["externalDataDirectory"]) + fileName;
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
 				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
 					fileEntry.file(function (file):void {
@@ -140,7 +140,7 @@ package org.apache.flex.storage.providers
 		public function openInputDataStream( fileName:String ) : void
 		{
 			COMPILE::JS {
-				var fullPath:String = String(cordova["file"]["externalDataDirectory"]) + fileName;
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
 				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
 					fileEntry.file(function (file):void {
@@ -180,7 +180,7 @@ package org.apache.flex.storage.providers
 		public function writeTextToDataFile( fileName:String, text:String ) : void
 		{
 			COMPILE::JS {
-				var fullPath:String = String(cordova["file"]["externalDataDirectory"]) + fileName;
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 		
 				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
 						fileEntry.createWriter(function (fileWriter):void {
@@ -231,7 +231,7 @@ package org.apache.flex.storage.providers
 		public function openOutputDataStream( fileName:String ) : void
 		{
 			COMPILE::JS {
-				var fullPath:String = String(cordova["file"]["externalDataDirectory"]) + fileName;
+				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
 				window.resolveLocalFileSystemURL(fullPath, function (directoryEntry):void {
 					directoryEntry.getFile(fileName, { 'create': true }, function (fileEntry):void {

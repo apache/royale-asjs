@@ -27,7 +27,7 @@ limitations under the License.
     </js:valuesImpl>
     <fx:Script>
         <![CDATA[
-        	import org.apache.cordova.geolocation.Geolocation;
+        	import org.apache.flex.cordova.geolocation.Geolocation;
         	import google.maps.LatLng;
         	
             private function onDeviceReady():void {
