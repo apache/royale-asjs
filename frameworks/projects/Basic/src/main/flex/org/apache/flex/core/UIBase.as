@@ -868,7 +868,7 @@ package org.apache.flex.core
             if (_view === null)
             {
                 var c:Class = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c !== undefined)
+                if (c !== null)
                 {
                     _view = (new c()) as IBeadView;
                     addBead(_view);
@@ -1344,7 +1344,7 @@ package org.apache.flex.core
             if (getBeadByType(IBeadModel) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadModel") as Class;
-                if (c !== undefined)
+                if (c !== null)
                 {
                     var model:IBeadModel = new c as IBeadModel;
                     if (model)
@@ -1354,7 +1354,7 @@ package org.apache.flex.core
             if (_view === null && getBeadByType(IBeadView) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadView") as Class;
-                if (c !== undefined)
+                if (c !== null)
                 {
                     var view:IBeadView = new c as IBeadView;
                     if (view)
@@ -1364,7 +1364,7 @@ package org.apache.flex.core
             if (getBeadByType(IBeadController) === null)
             {
                 c = ValuesManager.valuesImpl.getValue(this, "iBeadController") as Class;
-                if (c !== undefined)
+                if (c !== null)
                 {
                     var controller:IBeadController = new c as IBeadController;
                     if (controller)
