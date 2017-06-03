@@ -336,7 +336,8 @@ package org.apache.flex.core
 			if (thisObject is IStyleableObject)
 			{
                 var styleable:IStyleableObject = IStyleableObject(thisObject);
-                if (styleable.style !== undefined)
+                // undefined in JS null in AS
+                if (styleable.style != null)
                 {
                     value = styleable.style[valueName];
                     if (value === INHERIT)
@@ -344,7 +345,8 @@ package org.apache.flex.core
                     if (value !== undefined)
                         return value;
                 }
-                if (styleable.id !== undefined)
+                // undefined in JS null in AS
+                if (styleable.id != null)
                 {
                     o = values["#" + styleable.id];
                     if (o !== undefined)
@@ -357,7 +359,8 @@ package org.apache.flex.core
                     }                    
                 }
 				var classNames:String = styleable.className;
-                if (classNames !== undefined)
+                // undefined in JS null in AS
+                if (classNames != null)
                 {
                     var classNameList:Array = classNames.split(" ");
                     for each (className in classNameList)
