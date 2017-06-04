@@ -22,6 +22,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITitleBarModel;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Panel;
 	import org.apache.flex.html.TitleBar;
 	import org.apache.flex.html.beads.PanelView;
@@ -114,7 +115,8 @@ package org.apache.flex.html.supportClasses
 				var dataTitleModel:ITitleBarModel = dataAsStrand.getBeadByType(ITitleBarModel) as ITitleBarModel;
 				if (dataTitleModel)
 				{
-					titleBar.model = dataTitleModel;
+//					titleBar.model = dataTitleModel;
+					titleBar.title = dataTitleModel.title; // temp fix. The line above should be swapoped with this one once databinding works.
 				}
 			}
 		}
