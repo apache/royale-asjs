@@ -141,7 +141,7 @@ package org.apache.flex.svg
 			var pathNode:Element = createChildNode(clipPath, "path") as Element;
 			pathNode.setAttribute("d", path.getPathString());
 			// set style 
-			(host.element as Object).style.clipPath = "url(#" + clipPath.id + ")";
+			host.element.style["clipPath"] = "url(#" + clipPath.id + ")";
 		}
 		
 		COMPILE::JS
