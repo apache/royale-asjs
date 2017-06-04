@@ -47,8 +47,8 @@ package org.apache.flex.text.engine
 		public var trackingLeft:Number = 0;
 		public var trackingRight:Number = 0;
 		public var typographicCase:String = "default";
-		public var xScale:Number;
-		public var yScale:Number;
+		public var xScale:Number = 1;
+		public var yScale:Number = 1;
 
  	
 		public function clone():ElementFormat
