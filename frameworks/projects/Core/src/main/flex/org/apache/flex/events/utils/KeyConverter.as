@@ -171,8 +171,8 @@ package org.apache.flex.events.utils
                     return "NumpadMultiply";
                 case 107:
                     return "NumpadAdd";
-                case 13:
-                    return "NumpadEnter";
+                // case 13:
+                //     return "NumpadEnter";
                 case 109:
                     return "NumpadSubtract";
                 case 110:
