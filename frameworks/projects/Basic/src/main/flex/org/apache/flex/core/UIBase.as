@@ -1474,7 +1474,8 @@ package org.apache.flex.core
         {
             if (element === null)
                 element = document.createElement('div') as WrappedHTMLElement;
-            if (positioner === null)
+            // initially undefined could be set to null
+            if (positioner == null)
                 positioner = element;
             positioner.style.display = 'block';
             //positioner.style.position = 'relative';
