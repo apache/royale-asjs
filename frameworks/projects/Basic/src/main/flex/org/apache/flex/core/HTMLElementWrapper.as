@@ -208,7 +208,7 @@ package org.apache.flex.core
 				if (bead === value)
 				{
 					_beads.splice(i, 1);
-
+                    bead.strand = null;
 					return bead;
 				}
 			}
