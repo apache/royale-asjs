@@ -68,17 +68,27 @@ package org.apache.flex.html.accessories
 		 */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			
 			COMPILE::SWF
 			{
+				_strand = value;
 				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
 			}
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
-				var e:HTMLInputElement = host.element as HTMLInputElement;
-				e.type = 'password';
+				var host:UIBase;
+				var e:HTMLInputElement;
+
+				if (value !== null) {;
+					host = value as UIBase;
+					e = host.element as HTMLInputElement;
+					e.type = 'password';
+                }
+				else {
+					host = _strand as UIBase;
+					e = host.element as HTMLInputElement;
+                    e.type = 'text';
+                }
+				_strand = value;
 			}
 		}
 		
