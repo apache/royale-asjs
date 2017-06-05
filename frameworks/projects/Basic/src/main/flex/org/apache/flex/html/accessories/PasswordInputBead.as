@@ -78,7 +78,7 @@ package org.apache.flex.html.accessories
 				var host:UIBase;
 				var e:HTMLInputElement;
 
-				if (value !== null) {;
+				if (value !== null) {
 					host = value as UIBase;
 					e = host.element as HTMLInputElement;
 					e.type = 'password';
