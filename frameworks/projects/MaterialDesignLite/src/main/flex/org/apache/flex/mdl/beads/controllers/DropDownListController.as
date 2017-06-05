@@ -80,7 +80,7 @@ package org.apache.flex.mdl.beads.controllers
 
             dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
 
-			setLabelDisplayValue(model.selectedItem);
+			setLabelDisplayValue();
 		}
 
         private function onDisplayItemClick(event:MouseEvent):void
@@ -90,19 +90,20 @@ package org.apache.flex.mdl.beads.controllers
 			model.selectedIndex = eventTarget.index;
 			model.selectedItem = eventTarget.data;
 
-            setLabelDisplayValue(eventTarget.data);
+            setLabelDisplayValue();
 
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
 
-		protected function setLabelDisplayValue(data:Object):void
-		{
-			if (model.selectedIndex > -1 && data)
-			{
+        private function setLabelDisplayValue():void
+        {
+            if (model.selectedIndex > -1 && model.dataProvider != null)
+            {
+                var selectedItem:Object = model.dataProvider[model.selectedIndex];
                 dropDownListView.labelDisplay.text = !model.labelField ?
-                        data as String : 
-						data[model.labelField];
-			}
-		}
+                        selectedItem as String :
+						selectedItem[model.labelField];
+            }
+        }
     }
 }
