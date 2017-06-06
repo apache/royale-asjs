@@ -25,6 +25,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ISpinnerView;
     COMPILE::JS
@@ -108,8 +109,10 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function decrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
 		{
+			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
+			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 
 		/**
@@ -117,8 +120,10 @@ package org.apache.flex.html.beads.controllers
 		 */
 		private function incrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
 		{
+			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
+			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 	}
 }

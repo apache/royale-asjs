@@ -19,6 +19,7 @@
 package org.apache.flex.html.beads.models
 {
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.html.beads.models.RangeModel;
 
 	/**
@@ -56,8 +57,12 @@ package org.apache.flex.html.beads.models
 		}
 		override public function set value(newValue:Number):void
 		{
-			_value = newValue;
-			dispatchEvent(new Event("valueChange"));
+			if (_value != newValue)
+			{
+				var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, _value, newValue);
+				_value = newValue;
+				dispatchEvent(vce);
+			}
 		}
 
 		private var _labelFunction:Function;

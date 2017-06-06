@@ -21,6 +21,8 @@ package org.apache.flex.html.beads.models
 	
 	import org.apache.flex.core.IValueToggleButtonModel;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent;
+	
 
 	/**
 	 *  The ValueToggleButtonModel class bead extends the 
@@ -67,8 +69,9 @@ package org.apache.flex.html.beads.models
 		{
 			if( newValue != _value )
 			{
+				var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, _value, newValue);
 				_value = newValue;
-				dispatchEvent(new Event("valueChange"));
+				dispatchEvent(vce);
 			}
 		}
 		

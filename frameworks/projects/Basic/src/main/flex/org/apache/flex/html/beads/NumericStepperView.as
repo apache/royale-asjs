@@ -29,6 +29,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.html.Label;
 	import org.apache.flex.html.Spinner;
@@ -143,11 +144,11 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function spinnerValueChanged(event:Event) : void
+		private function spinnerValueChanged(event:ValueChangeEvent) : void
 		{
 			input.text = String(spinner.value);
 			
-			var newEvent:Event = new Event(event.type,event.bubbles);
+			var newEvent:ValueChangeEvent = new ValueChangeEvent(event.type, false, false, event.oldValue, event.newValue);
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 		
