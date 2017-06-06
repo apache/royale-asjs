@@ -415,10 +415,7 @@ NumericStepper
 	IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
 	
 	padding: 0px;
-	border-style: solid;
-	border-color: #000000;
-	border-width: 1px;
-	background-color: #FFFFFF;
+	border-style: none;
 }
 
 Panel
