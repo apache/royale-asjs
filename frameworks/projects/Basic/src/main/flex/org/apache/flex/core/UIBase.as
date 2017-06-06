@@ -371,6 +371,8 @@ package org.apache.flex.core
             var strpixels:String = positioner.style.width as String;
             if (strpixels !== null && strpixels.indexOf('%') != -1)
                 pixels = NaN;
+            else if (strpixels.length == 0)
+            	pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
             if (isNaN(pixels)) {
@@ -463,6 +465,8 @@ package org.apache.flex.core
             var strpixels:String = positioner.style.height as String;
             if (strpixels !== null && strpixels.indexOf('%') != -1)
                 pixels = NaN;
+            else if (strpixels.length == 0)
+            	pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
             if (isNaN(pixels)) {
