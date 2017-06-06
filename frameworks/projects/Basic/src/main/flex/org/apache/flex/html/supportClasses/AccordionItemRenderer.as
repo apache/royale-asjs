@@ -22,6 +22,7 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.ITitleBarModel;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Panel;
 	import org.apache.flex.html.TitleBar;
 	import org.apache.flex.html.beads.PanelView;
@@ -117,6 +118,7 @@ package org.apache.flex.html.supportClasses
 					titleBar.model = dataTitleModel;
 				}
 			}
+			dispatchEvent(new Event("dataChange"));
 		}
 		
 		public function get listData():Object
