@@ -120,8 +120,8 @@ package org.apache.flex.html.beads
 			input.text = String(spinner.value);
 			
             var host:ILayoutChild = ILayoutChild(value);
-            if ((host.isWidthSizedToContent() || isNaN(host.explicitWidth)) &&
-                (host.isHeightSizedToContent() || isNaN(host.explicitHeight)))
+            if ((!host.isWidthSizedToContent() && !isNaN(host.explicitWidth)) ||
+                (!host.isHeightSizedToContent() && !isNaN(host.explicitHeight)))
                 sizeChangeHandler(null);
 		}
 		
@@ -130,12 +130,12 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler(event:Event) : void
 		{
-			input.x = 2;
-			input.y = (UIBase(_strand).height - input.height)/2;
+			input.x = 0;
+			input.y = 0;
 			input.width = UIBase(_strand).width-spinner.width-2;
 			COMPILE::SWF
 			{
-			spinner.x = input.width+2;
+			spinner.x = input.width;
 			spinner.y = 0;
 			}
 		}
