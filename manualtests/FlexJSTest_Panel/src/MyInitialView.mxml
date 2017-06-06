@@ -133,7 +133,7 @@ limitations under the License.
 	</fx:Style>
 	
 	
-	<js:Panel title="Example" x="300" width="300" y="50" className="panel1" showCloseButton="true">
+	<js:Panel title="Example" x="300" width="300" y="50" height="250" className="panel1" showCloseButton="true">
 		<js:beads>
 			<js:VerticalLayout />
 		</js:beads>
