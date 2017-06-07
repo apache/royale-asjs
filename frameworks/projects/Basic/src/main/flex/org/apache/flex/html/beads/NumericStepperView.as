@@ -82,6 +82,8 @@ package org.apache.flex.html.beads
 			input = new TextInput();
             input.className = "NumericStepperInput";
             input.typeNames = "NumericStepperInput";
+			input.width = 100;
+			input.height = 22;
 			IParent(value).addElement(input);
 			COMPILE::JS
 			{
@@ -93,6 +95,7 @@ package org.apache.flex.html.beads
 			spinner.addBead( UIBase(value).model as IBead );
 			IParent(value).addElement(spinner);
 			spinner.height = input.height;
+			spinner.width = input.height/2;
 			COMPILE::JS
 			{
 	            spinner.positioner.style.display = 'inline-block';
@@ -120,10 +123,22 @@ package org.apache.flex.html.beads
 			
 			input.text = String(spinner.value);
 			
-            var host:ILayoutChild = ILayoutChild(value);
-            if ((!host.isWidthSizedToContent() && !isNaN(host.explicitWidth)) ||
-                (!host.isHeightSizedToContent() && !isNaN(host.explicitHeight)))
-                sizeChangeHandler(null);
+			COMPILE::SWF
+			{
+				var host:ILayoutChild = ILayoutChild(value);
+				
+				// Complete the setup if the height is sized to content or has been explicitly set
+				// and the width is sized to content or has been explicitly set
+				if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+					(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+					sizeChangeHandler(null);
+			}
+			COMPILE::JS
+			{
+				// always run size change since there are no size change events
+				sizeChangeHandler(null);
+			}
+					
 		}
 		
 		/**
@@ -131,13 +146,20 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler(event:Event) : void
 		{
+			COMPILE::JS
+			{
+				spinner.height = input.height;
+				spinner.width = input.height/2;
+			}
+			
 			input.x = 0;
 			input.y = 0;
 			input.width = UIBase(_strand).width-spinner.width-2;
+			
 			COMPILE::SWF
 			{
-			spinner.x = input.width;
-			spinner.y = 0;
+				spinner.x = input.width;
+				spinner.y = 0;
 			}
 		}
 		

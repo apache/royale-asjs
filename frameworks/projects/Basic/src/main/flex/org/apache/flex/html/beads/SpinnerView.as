@@ -27,6 +27,7 @@ COMPILE::SWF {
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -121,6 +122,22 @@ COMPILE::JS {
 // add this in CSS!
 				controller = new SpinnerMouseController();
 				host.addBead(controller);
+			}
+				
+			COMPILE::SWF
+			{
+				var host:ILayoutChild = ILayoutChild(value);
+				
+				// Complete the setup if the height is sized to content or has been explicitly set
+				// and the width is sized to content or has been explicitly set
+				if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+					(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+					sizeChangeHandler(null);
+			}
+			COMPILE::JS
+			{
+				// always run size change since there are no size change events
+				sizeChangeHandler(null);
 			}
 		}
 
