@@ -353,7 +353,7 @@ List
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
-	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
