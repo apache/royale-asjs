@@ -148,7 +148,7 @@ package org.apache.flex.html.beads
 		{
 			input.text = String(spinner.value);
 			
-			var newEvent:ValueChangeEvent = new ValueChangeEvent(event.type, false, false, event.oldValue, event.newValue);
+			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 		

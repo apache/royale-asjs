@@ -59,7 +59,7 @@ package org.apache.flex.html.beads.models
 		{
 			if (_value != newValue)
 			{
-				var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, _value, newValue);
+				var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", _value, newValue);
 				_value = newValue;
 				dispatchEvent(vce);
 			}

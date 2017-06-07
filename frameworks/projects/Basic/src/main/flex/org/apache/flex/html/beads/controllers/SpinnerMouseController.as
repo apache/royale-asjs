@@ -111,7 +111,7 @@ package org.apache.flex.html.beads.controllers
 		{
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
 			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 
@@ -122,7 +122,7 @@ package org.apache.flex.html.beads.controllers
 		{
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
 			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 	}

@@ -141,7 +141,7 @@ package org.apache.flex.html.beads.controllers
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
 			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 		
@@ -165,7 +165,7 @@ package org.apache.flex.html.beads.controllers
 			var p:Number = newX/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 		
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, rangeModel.value, n);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
 			IEventDispatcher(_strand).dispatchEvent(vce);
@@ -185,7 +185,7 @@ package org.apache.flex.html.beads.controllers
 			var p:Number = xloc/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 			
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, rangeModel.value, n);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
 			IEventDispatcher(_strand).dispatchEvent(vce);
@@ -202,7 +202,7 @@ package org.apache.flex.html.beads.controllers
             var n:Number = p * (host.maximum - host.minimum) +
                 host.minimum;
             
-			var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, host.value, n);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", host.value, n);
             host.value = n;
             
             origin = parseInt(thumb.element.style.left, 10);
@@ -247,7 +247,7 @@ package org.apache.flex.html.beads.controllers
                 handleThumbMove, false, this);
             
             calcValFromMousePosition(event, false);
-            var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, oldValue, rangeModel.value);
+            var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
             
             host.dispatchEvent(vce);
         }
@@ -262,7 +262,7 @@ package org.apache.flex.html.beads.controllers
             var lastValue:Number = rangeModel.value;
             calcValFromMousePosition(event, false);
             
-            var vce:ValueChangeEvent = new ValueChangeEvent("valueChange", false, false, lastValue, rangeModel.value);
+            var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", lastValue, rangeModel.value);
             
             host.dispatchEvent(vce);
         }

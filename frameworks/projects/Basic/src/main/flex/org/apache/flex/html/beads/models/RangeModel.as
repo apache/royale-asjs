@@ -48,7 +48,7 @@ package org.apache.flex.html.beads.models
 		{
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -197,7 +197,7 @@ package org.apache.flex.html.beads.models
 				newValue = Math.min(maximum, newValue);
 				var oldValue:Number = _value;
 				_value = snap(newValue);
-				dispatchEvent(new ValueChangeEvent("valueChange", false, false, oldValue, _value));
+				dispatchEvent(ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, _value));
 			}
 		}
 		
