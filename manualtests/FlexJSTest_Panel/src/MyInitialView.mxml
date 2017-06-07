@@ -132,7 +132,9 @@ limitations under the License.
         }
 	</fx:Style>
 	
-	
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
 	<js:Panel title="Example" x="300" width="300" y="50" height="250" className="panel1" showCloseButton="true">
 		<js:beads>
 			<js:VerticalLayout />
@@ -149,6 +151,7 @@ limitations under the License.
 							  stepSize="10"/>
 		<js:Spacer height="10" />
 		<js:Label id="slideMe" text="slider value" />
+		<js:Label id="slideMe2" text="{slider.value}" />
 		<js:Slider id="slider" width="200"
 					  valueChange="sliderChanged(slider)"
 					  minimum="0"
