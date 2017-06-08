@@ -152,7 +152,8 @@ package org.apache.flex.html.beads
 			
 			input.x = 0;
 			input.y = 0;
-			input.width = UIBase(_strand).width-spinner.width-2;
+			if (!UIBase(_strand).isWidthSizedToContent())
+				input.width = UIBase(_strand).width-spinner.width-2;
 			
 			COMPILE::SWF
 			{
