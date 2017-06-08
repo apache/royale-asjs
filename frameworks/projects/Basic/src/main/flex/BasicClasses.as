@@ -31,6 +31,7 @@ internal class BasicClasses
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
 	import org.apache.flex.html.accessories.PasswordInputBead; PasswordInputBead;
+	import org.apache.flex.html.accessories.PasswordInputRemovableBead; PasswordInputRemovableBead;
 	import org.apache.flex.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.flex.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
     import org.apache.flex.html.beads.AlertView; AlertView;
