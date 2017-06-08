@@ -18,31 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-	COMPILE::SWF
-	{
-		import org.apache.flex.core.CSSTextField;			
-	}
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-	COMPILE::SWF
-	{
-		import org.apache.flex.html.beads.ITextFieldView;
-	}
 	
 	/**
 	 *  The PasswordInput class is a specialty bead that can be used with
 	 *  any TextInput control. The bead secures the text input area by masking
 	 *  the input as it is typed.
+     *  PasswordInputRemovableBead adds the ability to remove the functionality at runtime.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class PasswordInputBead implements IBead
+	public class PasswordInputRemovableBead extends PasswordInputBead
 	{
 		/**
 		 *  constructor.
@@ -52,11 +44,9 @@ package org.apache.flex.html.accessories
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function PasswordInputBead()
+		public function PasswordInputRemovableBead()
 		{
 		}
-		
-		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -65,38 +55,21 @@ package org.apache.flex.html.accessories
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+         *  @flexjsignorecoercion org.apache.flex.core.UIBase
+         *  @flexjsignorecoercion HTMLInputElement
 		 */
-		public function set strand(value:IStrand):void
+        COMPILE::JS
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			
-			COMPILE::SWF
-			{
-				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
-			}
-			COMPILE::JS
-			{
-				var host:UIBase = value as UIBase;
+            if(value)
+                super.strand = value;
+            else
+            {
+                var host:UIBase = _strand as UIBase;
 				var e:HTMLInputElement = host.element as HTMLInputElement;
-				e.type = 'password';
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		private function viewChangeHandler(event:Event):void
-		{			
-			// get the ITextFieldView bead, which is required for this bead to work
-			var textView:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
-			if (textView) {
-				var textField:CSSTextField = textView.textField;
-				textField.displayAsPassword = true;
-			}
-			else {
-				throw new Error("PasswordInputBead requires strand to have a TextInputView bead");
-			}
-		}
+                e.type = 'text';
+                _strand = value;
+            }
+		}		
 	}
 }
