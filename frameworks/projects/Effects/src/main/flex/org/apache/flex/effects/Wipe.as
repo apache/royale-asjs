@@ -140,15 +140,20 @@ public class Wipe extends Tween implements IDocument
 
 	public function onTweenUpdate(value:Number):void
 	{
-        trace(actualTarget, value);
 		wiper.visibleRect = new Rectangle(0, 0, actualTarget.width, value);
 	}
 	
 	public function onTweenEnd(value:Number):void
 	{
         // WipeUp makes something disappear
-        if (direction == "up")
+        if (direction == "up") {
             actualTarget.visible = false;
+			COMPILE::JS {
+				//reset height in js
+                actualTarget.positioner.style.height = this.startValue+"px";
+			}
+		}
+
         wiper.target = null;
 	}
 }
