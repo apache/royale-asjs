@@ -265,12 +265,5 @@ package org.apache.flex.html.beads
 			performLayout(event);
 		}
 		
-		COMPILE::SWF
-		override protected function calculateContentSize():Size
-		{
-			var size:Size = super.calculateContentSize();
-			size.height += titleBar.height;
-			return size;
-		}
 	}
 }
