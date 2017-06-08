@@ -339,7 +339,19 @@ package org.apache.flex.core
                 // undefined in JS null in AS
                 if (styleable.style != null)
                 {
-                    value = styleable.style[valueName];
+                    COMPILE::SWF
+                    {
+                        // guard to check for field avoiding need for try/catch
+                        if (valueName in styleable.style) {
+                            value = styleable.style[valueName];
+                        }
+                    }
+                    COMPILE::JS
+                    {
+                        //sets to undefined if not present
+                        value = styleable.style[valueName];
+                    }
+
                     if (value === INHERIT)
                         return getInheritingValue(thisObject, valueName, state, attrs);
                     if (value !== undefined)
