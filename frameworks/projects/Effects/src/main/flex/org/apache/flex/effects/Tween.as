@@ -28,7 +28,7 @@ import org.apache.flex.events.EventDispatcher;
 
 /**
  *  Tween is the underlying animation class for the effects in FlexJS.
- * 
+ *
  *  The Tween class defines a tween, a property animation performed
  *  on a target object over a period of time.
  *  That animation can be a change in position, such as performed by
@@ -37,10 +37,10 @@ import org.apache.flex.events.EventDispatcher;
  *  Dissolve effects; or other types of animations.
  *
  *  <p>A Tween instance accepts the <code>startValue</code>,
- *  <code>endValue</code>, and <code>duration</code> properties, 
- *  and an optional easing function to define the animation.</p> 
+ *  <code>endValue</code>, and <code>duration</code> properties,
+ *  and an optional easing function to define the animation.</p>
  *
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -48,105 +48,105 @@ import org.apache.flex.events.EventDispatcher;
  */
 public class Tween extends Effect
 {
-	//--------------------------------------------------------------------------
-	//
-	//  Class constants
-	//
-	//--------------------------------------------------------------------------
-	
-	/**
-	 *  The <code>Tween.TWEEN_END</code> constant defines the value of the 
-	 *  event object's <code>type</code> property for a <code>tweenEnd</code> event. 
-	 *
-	 *  <p>The properties of the event object have the following values:</p>
-	 *  <table class="innertable">
-	 *     <tr><th>Property</th><th>Value</th></tr>
-	 *     <tr><td><code>bubbles</code></td><td>false</td></tr>
-	 *     <tr><td><code>cancelable</code></td><td>false</td></tr>
-	 *     <tr><td><code>currentTarget</code></td><td>The Object that defines the 
-	 *       event listener that handles the event. For example, if you use 
-	 *       <code>myButton.addEventListener()</code> to register an event listener, 
-	 *       myButton is the value of the <code>currentTarget</code>. </td></tr>
-	 *     <tr><td><code>target</code></td><td>The Object that dispatched the event; 
-	 *       it is not always the Object listening for the event. 
-	 *       Use the <code>currentTarget</code> property to always access the 
-	 *       Object listening for the event.</td></tr>
-	 *     <tr><td><code>value</code></td><td>The value passed to the 
-	 *       <code>onTweenEnd()</code> method.</td></tr>
-	 *  </table>
-	 *
-	 *  @see org.apache.flex.effects.Effect
-	 *  @see org.apache.flex.effects.TweenEffect 
-	 *  @see org.apache.flex.events.EffectEvent
-	 *  @eventType tweenEnd 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-	public static const TWEEN_END:String = "tweenEnd";
-	
-	/**
-	 *  The <code>Tween.TWEEN_START</code> constant defines the value of the 
-	 *  event object's <code>type</code> property for a <code>tweenStart</code> event. 
-	 *
-	 *  <p>The properties of the event object have the following values:</p>
-	 *  <table class="innertable">
-	 *     <tr><th>Property</th><th>Value</th></tr>
-	 *     <tr><td><code>bubbles</code></td><td>false</td></tr>
-	 *     <tr><td><code>cancelable</code></td><td>false</td></tr>
-	 *     <tr><td><code>currentTarget</code></td><td>The Object that defines the 
-	 *       event listener that handles the event. For example, if you use 
-	 *       <code>myButton.addEventListener()</code> to register an event listener, 
-	 *       myButton is the value of the <code>currentTarget</code>. </td></tr>
-	 *     <tr><td><code>target</code></td><td>The Object that dispatched the event; 
-	 *       it is not always the Object listening for the event. 
-	 *       Use the <code>currentTarget</code> property to always access the 
-	 *       Object listening for the event.</td></tr>
-	 *     <tr><td><code>value</code></td><td>The value passed to the 
-	 *       <code>onTweenUpdate()</code> method.</td></tr>
-	 *  </table>
-	 *
-	 *  @eventType tweenStart
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-	public static const TWEEN_START:String = "tweenStart";
-	
-	/**
-	 *  The <code>Tween.TWEEN_UPDATE</code> constant defines the value of the 
-	 *  event object's <code>type</code> property for a <code>tweenUpdate</code> event. 
-	 *
-	 *  <p>The properties of the event object have the following values:</p>
-	 *  <table class="innertable">
-	 *     <tr><th>Property</th><th>Value</th></tr>
-	 *     <tr><td><code>bubbles</code></td><td>false</td></tr>
-	 *     <tr><td><code>cancelable</code></td><td>false</td></tr>
-	 *     <tr><td><code>currentTarget</code></td><td>The Object that defines the 
-	 *       event listener that handles the event. For example, if you use 
-	 *       <code>myButton.addEventListener()</code> to register an event listener, 
-	 *       myButton is the value of the <code>currentTarget</code>. </td></tr>
-	 *     <tr><td><code>target</code></td><td>The Object that dispatched the event; 
-	 *       it is not always the Object listening for the event. 
-	 *       Use the <code>currentTarget</code> property to always access the 
-	 *       Object listening for the event.</td></tr>
-	 *     <tr><td><code>value</code></td><td>The value passed to the 
-	 *       <code>onTweenUpdate()</code> method.</td></tr>
-	 *  </table>
-	 *
-	 *  @eventType tweenUpdate
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-	public static const TWEEN_UPDATE:String = "tweenUpdate";
-	
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  The <code>Tween.TWEEN_END</code> constant defines the value of the
+     *  event object's <code>type</code> property for a <code>tweenEnd</code> event.
+     *
+     *  <p>The properties of the event object have the following values:</p>
+     *  <table class="innertable">
+     *     <tr><th>Property</th><th>Value</th></tr>
+     *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+     *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+     *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+     *       event listener that handles the event. For example, if you use
+     *       <code>myButton.addEventListener()</code> to register an event listener,
+     *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+     *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+     *       it is not always the Object listening for the event.
+     *       Use the <code>currentTarget</code> property to always access the
+     *       Object listening for the event.</td></tr>
+     *     <tr><td><code>value</code></td><td>The value passed to the
+     *       <code>onTweenEnd()</code> method.</td></tr>
+     *  </table>
+     *
+     *  @see org.apache.flex.effects.Effect
+     *  @see org.apache.flex.effects.TweenEffect
+     *  @see org.apache.flex.events.EffectEvent
+     *  @eventType tweenEnd
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const TWEEN_END:String = "tweenEnd";
+
+    /**
+     *  The <code>Tween.TWEEN_START</code> constant defines the value of the
+     *  event object's <code>type</code> property for a <code>tweenStart</code> event.
+     *
+     *  <p>The properties of the event object have the following values:</p>
+     *  <table class="innertable">
+     *     <tr><th>Property</th><th>Value</th></tr>
+     *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+     *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+     *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+     *       event listener that handles the event. For example, if you use
+     *       <code>myButton.addEventListener()</code> to register an event listener,
+     *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+     *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+     *       it is not always the Object listening for the event.
+     *       Use the <code>currentTarget</code> property to always access the
+     *       Object listening for the event.</td></tr>
+     *     <tr><td><code>value</code></td><td>The value passed to the
+     *       <code>onTweenUpdate()</code> method.</td></tr>
+     *  </table>
+     *
+     *  @eventType tweenStart
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const TWEEN_START:String = "tweenStart";
+
+    /**
+     *  The <code>Tween.TWEEN_UPDATE</code> constant defines the value of the
+     *  event object's <code>type</code> property for a <code>tweenUpdate</code> event.
+     *
+     *  <p>The properties of the event object have the following values:</p>
+     *  <table class="innertable">
+     *     <tr><th>Property</th><th>Value</th></tr>
+     *     <tr><td><code>bubbles</code></td><td>false</td></tr>
+     *     <tr><td><code>cancelable</code></td><td>false</td></tr>
+     *     <tr><td><code>currentTarget</code></td><td>The Object that defines the
+     *       event listener that handles the event. For example, if you use
+     *       <code>myButton.addEventListener()</code> to register an event listener,
+     *       myButton is the value of the <code>currentTarget</code>. </td></tr>
+     *     <tr><td><code>target</code></td><td>The Object that dispatched the event;
+     *       it is not always the Object listening for the event.
+     *       Use the <code>currentTarget</code> property to always access the
+     *       Object listening for the event.</td></tr>
+     *     <tr><td><code>value</code></td><td>The value passed to the
+     *       <code>onTweenUpdate()</code> method.</td></tr>
+     *  </table>
+     *
+     *  @eventType tweenUpdate
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const TWEEN_UPDATE:String = "tweenUpdate";
+
 
     //--------------------------------------------------------------------------
     //
@@ -157,12 +157,14 @@ public class Tween extends Effect
     /**
      *  The list of tweens that are currently playing.
      */
-    public static var activeTweens:Object = {};
-    
-	private static var timer:IEffectTimer;
-	
-	private static var currentID:int = 1;
-        
+    public static var activeTweens:Object = { };
+
+    private static var activeCount:uint = 0;
+
+    private static var timer:IEffectTimer;
+
+    private static var currentID:uint = 1;
+
     //--------------------------------------------------------------------------
     //
     //  Class properties
@@ -177,7 +179,7 @@ public class Tween extends Effect
      *  Used by effects to get the current effect time tick.
      */
     public static var currentTime:Number = NaN;
-    
+
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -189,17 +191,18 @@ public class Tween extends Effect
      */
     private static function addTween(tween:Tween):void
     {
-        tween.id = currentID++;
-        
-        activeTweens[tween.id] = tween;
-        
+        tween.uid = currentID++;
+
+        activeTweens[tween.uid] = tween;
+        activeCount++;
+
         if (!timer)
         {
             timer = ValuesManager.valuesImpl.newInstance(tween, "iEffectTimer") as IEffectTimer;
             timer.addEventListener("update", updateHandler);
-		}
+        }
         currentTime = timer.start();
-		
+
         tween.startTime = tween.previousUpdateTime = currentTime;
     }
 
@@ -209,26 +212,29 @@ public class Tween extends Effect
      */
     private static function removeTween(tween:Tween):void
     {
-		delete activeTweens[tween.id];
-		if (activeTweens.length == 0)
-			timer.stop();
+        delete activeTweens[tween.uid];
+        activeCount--;
+        if (activeCount === 0) {
+            timer.stop();
+        }
     }
 
     /**
+     *  @flexjsignorecoercion org.apache.flex.effects.Tween
      *  @private
      */
     private static function updateHandler(event:ValueEvent):void
     {
         var oldTime:Number = currentTime;
-		
-		// the IEFfectTimer can control the current time
-		// if it wants.  This can be useful for automated
-		// testing.
+
+        // the IEFfectTimer can control the current time
+        // if it wants.  This can be useful for automated
+        // testing.
         currentTime = event.value as Number;
 
-        for (var id:String in activeTweens)
+        for (var uid:String in activeTweens)
         {
-            var tween:Tween = Tween(activeTweens[id]);
+            var tween:Tween = Tween(activeTweens[uid]);
             tween.update();
         }
     }
@@ -248,7 +254,7 @@ public class Tween extends Effect
      *  @productversion Flex 3
      */
     public function Tween()
-    {        
+    {
     }
 
     //--------------------------------------------------------------------------
@@ -260,18 +266,18 @@ public class Tween extends Effect
     /**
      *  @private
      */
-    private var id:int = -1;
-    
+    private var uid:uint = 0;
+
     /**
      *  @private
      */
     private var _doSeek:Boolean = false;
-    
+
     /**
      *  @private
      */
     private var _isPlaying:Boolean = true;
-    
+
     /**
      *  @private
      */
@@ -281,52 +287,52 @@ public class Tween extends Effect
      *  @private
      */
     private var startTime:Number;
-    
+
     /**
      *  @private
      */
     private var previousUpdateTime:Number;
-    
+
     /**
      *  @private
      */
     private var userEquation:Function;
-        
+
     /**
      *  Final value of the animation.
      */
     public var endValue:Number;
-    
+
     /**
      *  Initial value of the animation.
      */
     public var startValue:Number;
-    
+
     /**
      *  @private
      */
     private var started:Boolean = false;
-    
+
     //--------------------------------------------------------------------------
     //
     //  Properties
     //
     //--------------------------------------------------------------------------
-    
+
     //----------------------------------
     //  listener
     //----------------------------------
 
     /**
-     *  Object that is notified at each interval of the animation. 
-     *  
+     *  Object that is notified at each interval of the animation.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
     public var listener:Object;
-    
+
     //----------------------------------
     //  playheadTime
     //----------------------------------
@@ -336,18 +342,18 @@ public class Tween extends Effect
      *  Storage for the playheadTime property.
      */
     private var _playheadTime:Number = 0;
-    
+
     /**
      *  @private
      *  The current millisecond position in the tween.
-     *  This value is between 0 and duration. 
+     *  This value is between 0 and duration.
      *  Use the seek() method to change the position of the tween.
      */
     private function get playheadTime():Number
     {
         return _playheadTime;
     }
-    
+
     //----------------------------------
     //  playReversed
     //----------------------------------
@@ -357,14 +363,14 @@ public class Tween extends Effect
      *  Storage for the playReversed property.
      */
     private var _invertValues:Boolean = false;
-    
+
     /**
      *  @private
      *  Starts playing reversed from start of tween.
      *  Setting this property to <code>true</code>
      *  inverts the values returned by the tween.
      *  Using reverse inverts the values and only plays
-     *  for as much time that has already elapsed. 
+     *  for as much time that has already elapsed.
      */
     private function get playReversed():Boolean
     {
@@ -372,13 +378,13 @@ public class Tween extends Effect
     }
 
     /**
-     *  @private 
+     *  @private
      */
     private function set playReversed(value:Boolean):void
     {
         _invertValues = value;
     }
-    
+
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -414,22 +420,22 @@ public class Tween extends Effect
      *  <p>Flex includes a set of easing functions
      *  in the mx.effects.easing package.</p>
      *
-     *  @param easingFunction Function that implements the easing equation. 
-     *  
+     *  @param easingFunction Function that implements the easing equation.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
     public function set easingFunction(value:Function):void
-    {   
+    {
         userEquation = value;
-    }   
-    
+    }
+
     /**
-     *  Interrupt the tween, jump immediately to the end of the tween, 
+     *  Interrupt the tween, jump immediately to the end of the tween,
      *  and invoke the <code>onTweenEnd()</code> callback function.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -441,19 +447,20 @@ public class Tween extends Effect
         var value:Object = getCurrentValue(duration);
 
         event.value = value;
-        
+
         dispatchEvent(event);
-        
+
         listener.onTweenEnd(value);
 
         dispatchEvent(new Event(Effect.EFFECT_END));
-        
-        // If tween has been added, id >= 0
+        //reset
+        started = false;
+        // If tween has been added, id > 0
         // but if duration = 0, this might not be the case.
-        if (id >= 0) {
+        if (uid > 0) {
             Tween.removeTween(this);
-			id = -1;
-		}
+            uid = 0;
+        }
     }
 
     /**
@@ -463,7 +470,7 @@ public class Tween extends Effect
     protected function update():Boolean
     {
         var tweenEnded:Boolean = false;
-        
+
         // If user specified a minimum frames per second, we can't guarantee
         // that we'll be called often enough to satisfy that request.
         // However, we can avoid skipping over part of the animation.
@@ -471,21 +478,21 @@ public class Tween extends Effect
         // so that the animation starts up 'maxDelay' milliseconds
         // after its last update.
         /*
-        if (intervalTime - previousUpdateTime > maxDelay)
-        {
-            startTime += intervalTime - previousUpdateTime - maxDelay;
-        }
-        */
+         if (intervalTime - previousUpdateTime > maxDelay)
+         {
+         startTime += intervalTime - previousUpdateTime - maxDelay;
+         }
+         */
         previousUpdateTime = currentTime;
-        
+
         if (_isPlaying || _doSeek)
         {
-            
+
             var elapsedTime:Number = currentTime - startTime;
             _playheadTime = elapsedTime;
-            
+
             var currentValue:Object =
-                getCurrentValue(elapsedTime);
+                    getCurrentValue(elapsedTime);
 
             if (elapsedTime >= duration && !_doSeek)
             {
@@ -500,16 +507,16 @@ public class Tween extends Effect
                     dispatchEvent(startEvent);
                     started = true;
                 }
-            
+
                 var event:ValueEvent =
-                    new ValueEvent(Tween.TWEEN_UPDATE);
+                        new ValueEvent(Tween.TWEEN_UPDATE);
                 event.value = currentValue;
-                
+
                 dispatchEvent(event);
-                
+
                 listener.onTweenUpdate(currentValue);
             }
-            
+
             _doSeek = false;
         }
         return tweenEnded;
@@ -524,15 +531,15 @@ public class Tween extends Effect
         {
             return endValue;
         }
-    
+
         if (_invertValues)
             currentTime = duration - currentTime;
-    
+
         return userEquation(currentTime, startValue,
-                                endValue - startValue,
-                                duration);
+                endValue - startValue,
+                duration);
     }
-    
+
     /**
      *  @private
      */
@@ -541,40 +548,40 @@ public class Tween extends Effect
     {
         return c / 2 * (Math.sin(Math.PI * (t / d - 0.5)) + 1) + b;
     }
-    
+
     /**
-     *  Advances the tween effect to the specified position. 
+     *  Advances the tween effect to the specified position.
      *
      *  @param playheadTime The position, in milliseconds, between 0
      *  and the value of the <code>duration</code> property.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */ 
+     */
     public function seek(playheadTime:Number):void
     {
         // Set value between 0 and duration
         //playheadTime = Math.min(Math.max(playheadTime, 0), duration);
-        
+
         var clockTime:Number = currentTime;
-        
+
         // Reset the previous update time
         previousUpdateTime = clockTime;
-        
+
         // Reset the start time
         startTime = clockTime - playheadTime;
-        
+
         _doSeek = true;
-        
+
         update();
     }
-    
+
     /**
      *  Plays the effect in reverse,
      *  starting from the current position of the effect.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -593,10 +600,10 @@ public class Tween extends Effect
             _doReverse = !_doReverse;
         }
     }
-    
+
     /**
      *  Pauses the effect until you call the <code>resume()</code> method.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -607,26 +614,28 @@ public class Tween extends Effect
         _isPlaying = false;
     }
 
-	/**
-	 *  Stops the tween, ending it without dispatching an event or calling
-	 *  the Tween's endFunction or <code>onTweenEnd()</code>. 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-    override public function play():void
-	{
-		if (userEquation == null)
-			userEquation = defaultEasingFunction;
-		Tween.addTween(this);
-	}
-	
     /**
      *  Stops the tween, ending it without dispatching an event or calling
-     *  the Tween's endFunction or <code>onTweenEnd()</code>. 
-     *  
+     *  the Tween's endFunction or <code>onTweenEnd()</code>.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function play():void
+    {
+        if (uid == 0) {
+            if (userEquation == null)
+                userEquation = defaultEasingFunction;
+            Tween.addTween(this);
+        }
+    }
+
+    /**
+     *  Stops the tween, ending it without dispatching an event or calling
+     *  the Tween's endFunction or <code>onTweenEnd()</code>.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -634,16 +643,17 @@ public class Tween extends Effect
      */
     override public function stop():void
     {
-        if (id >= 0) {
+        if (uid !== 0) {
             Tween.removeTween(this);
-			id = -1;
-		}
+            started = false;
+            uid = 0;
+        }
     }
-    
+
     /**
-     *  Resumes the effect after it has been paused 
-     *  by a call to the <code>pause()</code> method. 
-     *  
+     *  Resumes the effect after it has been paused
+     *  by a call to the <code>pause()</code> method.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -652,14 +662,14 @@ public class Tween extends Effect
     override public function resume():void
     {
         _isPlaying = true;
-        
+
         startTime = currentTime - _playheadTime;
         if (_doReverse)
         {
             reverse();
             _doReverse = false;
         }
-    }   
+    }
 }
 
 }

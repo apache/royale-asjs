@@ -40,7 +40,7 @@ import org.apache.flex.events.ValueEvent;
 /**
  *  Dispatched as requested via the delay and
  *  repeat count parameters in the constructor.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -50,8 +50,8 @@ import org.apache.flex.events.ValueEvent;
 
 /**
  *  The Timer class dispatches events based on a delay
- *  and repeat count.  
- *  
+ *  and repeat count.
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -61,12 +61,12 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
 {
     /**
      *  Constructor.
-     * 
-     *  @param delay The number of milliseconds 
+     *
+     *  @param delay The number of milliseconds
      *  to wait before dispatching the event.
      *  @param repeatCount The number of times to dispatch
      *  the event.  If 0, keep dispatching forever.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -74,58 +74,61 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
      */
     public function EffectTimer()
     {
-		interval = ValuesManager.valuesImpl.getValue(this, "effectTimerInterval");
+        interval = ValuesManager.valuesImpl.getValue(this, "effectTimerInterval");
         COMPILE::SWF
         {
-    		timer = new flash.utils.Timer(interval);
-    		timer.addEventListener("timer", timerHandler);
+            timer = new flash.utils.Timer(interval);
+            timer.addEventListener("timer", timerHandler);
         }
     }
 
-    private var interval:int;
-    
+    private var interval:int=-1;
+
     COMPILE::SWF
-	private var timer:flash.utils.Timer;
-    
+    private var timer:flash.utils.Timer;
+
     COMPILE::JS
-    private var timerInterval:Number;
-	
-	public function start():int
-	{
+    private var timerInterval:Number = -1;
+
+    public function start():int
+    {
         COMPILE::SWF
         {
-    		timer.start();
-    		return getTimer();
+            timer.start();
+            return getTimer();
         }
         COMPILE::JS
         {
-            timerInterval =
-                setInterval(timerHandler, interval);
+            if (timerInterval == -1)  {
+                timerInterval = setInterval(timerHandler, interval);
+            }
             var d:Date = new Date();
             return d.getTime();
         }
-	}
-	
-	public function stop():void
-	{
+    }
+
+    public function stop():void
+    {
         COMPILE::SWF
         {
-    		timer.stop();
+            timer.stop();
         }
         COMPILE::JS
         {
-            clearInterval(timerInterval);
-            timerInterval = -1;
+            if (timerInterval != -1) {
+                clearInterval(timerInterval);
+                timerInterval = -1;
+            }
         }
-	}
-	
+    }
+
     COMPILE::SWF
-	private function timerHandler(event:flash.events.TimerEvent):void
-	{
-		event.updateAfterEvent();
-		dispatchEvent(new ValueEvent("update", false, false, getTimer()));
-	}
-    
+    private function timerHandler(event:flash.events.TimerEvent):void
+    {
+        event.updateAfterEvent();
+        dispatchEvent(new ValueEvent("update", false, false, getTimer()));
+    }
+
     COMPILE::JS
     private function timerHandler():void
     {
