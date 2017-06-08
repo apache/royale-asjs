@@ -82,8 +82,6 @@ package org.apache.flex.html.beads
 			input = new TextInput();
             input.className = "NumericStepperInput";
             input.typeNames = "NumericStepperInput";
-			input.width = 100;
-			input.height = 22;
 			IParent(value).addElement(input);
 			COMPILE::JS
 			{
