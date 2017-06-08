@@ -425,7 +425,7 @@ Panel
 	IPanelLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 	
 	background-color: #FFFFFF;
-	border: solid 1px #333333
+	border: 1px solid #333333
 }
 
 PanelWithControlBar
@@ -435,12 +435,12 @@ PanelWithControlBar
 	IPanelLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 	
 	background-color: #FFFFFF;
-	border: solid 1px #333333;
+	border: 1px solid #333333;
 }
 
 Panel .TitleBar
 {
-	border-bottom: solid 1px #333333;
+	border-bottom: 1px solid #333333;
 }
 
 .PanelContent
@@ -662,7 +662,7 @@ global
 		IMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
 		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");  
-		border: solid 1px #333333;
+		border: 1px solid #333333;
 	}
 	
 	ComboBoxList {
@@ -903,7 +903,7 @@ global
 	{
 		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-		border: solid 1px #333333;
+		border: 1px solid #333333;
 	}
 	
 	ToggleTextButton
