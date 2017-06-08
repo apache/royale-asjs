@@ -483,6 +483,13 @@ Spinner
 	font-size: 6px;
 }
 
+.SpinnerButton:hover
+{
+	padding: 0;
+	margin: 0;
+	font-size: 6px;
+}
+
 StringItemRenderer
 {
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
