@@ -783,6 +783,7 @@ package org.apache.flex.core
 				displayStyleForLayout = value;
 		}
         
+        [Bindable("visibleChanged")]
         COMPILE::JS
         public function get visible():Boolean
         {
