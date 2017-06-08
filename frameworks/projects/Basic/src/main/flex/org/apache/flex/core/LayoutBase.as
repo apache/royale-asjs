@@ -76,19 +76,39 @@ package org.apache.flex.core
          *  @productversion FlexJS 0.8
 		 * 
 		 * @flexjsignorecoercion org.apache.flex.core.ILayoutChild
+		 * @flexjsignorecoercion org.apache.flex.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
-            host = value as ILayoutChild;
-			
-			IEventDispatcher(host).addEventListener("widthChanged", handleSizeChange);
-			IEventDispatcher(host).addEventListener("heightChanged", handleSizeChange);
-			IEventDispatcher(host).addEventListener("sizeChanged", handleSizeChange);
-			
-			IEventDispatcher(host).addEventListener("childrenAdded", handleChildrenAdded);
-			IEventDispatcher(host).addEventListener("initComplete", handleInitComplete);
-			
-			IEventDispatcher(host).addEventListener("layoutNeeded", handleLayoutNeeded);
+			var newHost:ILayoutChild = value as ILayoutChild;
+			var oldHost:ILayoutChild = host;
+			if (newHost != oldHost) {
+				var sizeChange:Function = handleSizeChange;
+                var childrenAdded:Function =handleChildrenAdded;
+				var initComplete:Function = handleInitComplete;
+				var layoutNeeded:Function = handleLayoutNeeded;
+                if (oldHost) {
+                    IEventDispatcher(oldHost).removeEventListener("widthChanged", sizeChange);
+                    IEventDispatcher(oldHost).removeEventListener("heightChanged", sizeChange);
+                    IEventDispatcher(oldHost).removeEventListener("sizeChanged", sizeChange);
+
+                    IEventDispatcher(oldHost).removeEventListener("childrenAdded", childrenAdded);
+                    IEventDispatcher(oldHost).removeEventListener("initComplete", initComplete);
+
+                    IEventDispatcher(oldHost).removeEventListener("layoutNeeded", layoutNeeded);
+                }
+				host = newHost;
+				if (newHost) {
+                    IEventDispatcher(newHost).addEventListener("widthChanged", sizeChange);
+                    IEventDispatcher(newHost).addEventListener("heightChanged", sizeChange);
+                    IEventDispatcher(newHost).addEventListener("sizeChanged", sizeChange);
+
+                    IEventDispatcher(newHost).addEventListener("childrenAdded", childrenAdded);
+                    IEventDispatcher(newHost).addEventListener("initComplete", initComplete);
+
+                    IEventDispatcher(newHost).addEventListener("layoutNeeded", layoutNeeded);
+				}
+			}
 		}
 		
 		/**
