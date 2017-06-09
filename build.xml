@@ -460,7 +460,6 @@
         <!--
         <ant dir="${basedir}/ide/flashbuilder" target="clean" />
          -->
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="examples-clean">
@@ -479,6 +478,8 @@
     </target>
 
     <target name="checkintests-clean" depends="clean-dependencychecker">
+        <delete file="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf" failonerror="false"/>
+        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="player-clean">
@@ -1178,7 +1179,7 @@
     -->
 
     <!--<target name="checkintests"  description="Run these tests before every checkin" />-->
-    <target name="checkintests" depends="basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
+    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
     <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
     
     <!--
@@ -1196,6 +1197,7 @@
     <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
     
     <target name="basictests-run-js" >
+        <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
@@ -1205,6 +1207,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
+		    <arg value="${profile_arg}" />
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
