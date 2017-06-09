@@ -578,7 +578,9 @@
         
     <target name="stage-source-no-scripts" depends="check-flex-home" >
         <antcall target="clean-temp"/>
-        
+        <sleep seconds="3" />
+        <mkdir dir="${basedir}/temp"/>
+       
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}">
                 <include name="build.xml"/>
