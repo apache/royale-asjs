@@ -178,7 +178,7 @@
 	<property name="release.installer" value="${config.version.latest}" />
 	<!-- clip build number from version -->
 	<echo file="${basedir}/installerv.properties">latest.installer=${release.installer}</echo>
-	<replaceregexp byline="true">
+	<replaceregexp byline="true" encoding="UTF-8">
 		<regexp pattern="\.[0-9]*$"/>
 		<substitution expression=""/>
 		<fileset dir="${basedir}">
@@ -317,7 +317,7 @@
 			<arg value="update" />
 			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
 		</exec>
-        <replaceregexp byline="true">
+        <replaceregexp byline="true" encoding="UTF-8">
             <regexp pattern="rc id=&quot;FlexJSRC&quot; version=&quot;.*&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/.*/binaries/&quot; file=&quot;apache-flex-flexjs-.*-bin&quot; dev=&quot;true&quot;"/>
             <substitution expression="rc id=&quot;FlexJSRC&quot; version=&quot;${release.version} RC${rc}&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; dev=&quot;true&quot;"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -325,7 +325,7 @@
             </fileset>
         </replaceregexp>
 		<!-- un-comment if needed -->
-        <replaceregexp byline="true">
+        <replaceregexp byline="true" encoding="UTF-8">
             <regexp pattern="&lt;!--&lt;rc id=&quot;FlexJSRC&quot;(.*)&gt;--&gt;"/>
             <substitution expression="&lt;rc id=&quot;FlexJSRC&quot;\1&gt;"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -362,21 +362,21 @@
         </exec>
         <xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
 		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="ApacheFlexJS(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
             <substitution expression="ApacheFlexJS\1latestVersion=&quot;${release.version}&quot;\2"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="path=&quot;flex/flexjs/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
             <substitution expression="path=&quot;http://archive.apache.org/dist/flex/flexjs${latest.release}/binaries&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="&lt;rc id=&quot;FlexJSRC&quot;(.*)"/>
             <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;flex/flexjs/${release.version}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;FlexJSRC&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -392,28 +392,28 @@
 		<tstamp>
 			<format pattern="dd MMMM yyyy" property="release.date.full" />
 		</tstamp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="${latest.release}"/>
             <substitution expression="${release.version}"/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="this release, available as of .*\.  (.*)"/>
             <substitution expression="this release, available as of ${release.date.full}.  \1"/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="binaries were published on .*\."/>
             <substitution expression="binaries were published on ${release.date.full}."/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="${latest.release}(.*)\)"/>
             <substitution expression="${release.version} (${release.date.month})"/>
             <fileset dir="${site}/trunk/templates">
