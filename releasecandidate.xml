@@ -119,7 +119,7 @@
 		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
     <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"
 		type="file"
-		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+		property="browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe" />
     <available file="/Applications/Firefox.app/Contents/MacOS/firefox"
 		type="file"
 		property="browser" value="/Applications/Firefox.app/Contents/MacOS/firefox" />
