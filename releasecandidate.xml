@@ -153,7 +153,7 @@
 		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
     <available file="${env.ProgramFiles(x86)}/Git/bin/git.exe"
 		type="file"
-		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
+		property="git" value="${env.ProgramFiles(x86)}/Git/bin/git.exe" />
     <available file="/usr/local/git/bin/git"
 		type="file"
 		property="git" value="/usr/local/git/bin/git" />
