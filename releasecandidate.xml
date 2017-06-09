@@ -223,13 +223,13 @@
 	
 	<target name="stage.rc" >
 		<ant antfile="build.xml" target="release" />
-		<ant antfile="build.xml" target="asdoc-package" />
+		<!--<ant antfile="build.xml" target="asdoc-package" />-->
 		<ant antfile="build.xml" target="create-md5" />
 		<ant antfile="build.xml" target="sign" />
-		<ant antfile="build.xml" target="doc-create-md5" />
-		<ant antfile="build.xml" target="doc-sign" />
+		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
+		<!--<ant antfile="build.xml" target="doc-sign" />-->
 		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" />
-		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />
+		<!--<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" >
 			<fileset dir="${basedir}/out" >
 				<include name="apache-flex-flexjs-${release.version}-src*" />
@@ -240,11 +240,11 @@
 				<include name="apache-flex-flexjs-${release.version}-bin*" />
 			</fileset>
 		</copy>
-		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
+		<!--<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
 			<fileset dir="${basedir}/out" >
 				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
 			</fileset>
-		</copy>
+		</copy>-->
 		<copy file="${basedir}/README" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/READme" />
 		<copy file="${basedir}/ApproveFlexJS.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml" />
 		<copy file="${basedir}/apache-flex-flexjs-installer-config.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries/apache-flex-flexjs-installer-config.xml" />
