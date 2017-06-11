@@ -442,7 +442,7 @@ package org.apache.flex.textLayout.compose
 			var hi:int = _controllerList.length-1;
 			while (lo <= hi)
 			{
-				var mid:int = (lo+hi)/2;
+				var mid:int = Math.floor((lo+hi)/2);
 				var cont:IContainerController = _controllerList[mid];
 				if (cont.absoluteStart <= absolutePosition)
 				{
