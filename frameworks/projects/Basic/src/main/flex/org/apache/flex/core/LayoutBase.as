@@ -151,6 +151,42 @@ package org.apache.flex.core
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
+			var viewBead:ILayoutHost;
+			
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "widthChanged" && 
+				!(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "heightChanged" && 
+				!(host.isHeightSizedToContent() || !isNaN(host.explicitHeight)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "sizeChanged" && 
+				!(host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+				!(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
 			performLayout();
 		}
 		

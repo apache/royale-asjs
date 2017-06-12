@@ -23,6 +23,7 @@ package org.apache.flex.html.beads.models
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.ValueChangeEvent;
 			
 	/**
 	 *  The RangeModel class bead defines a set of for a numeric range of values
@@ -47,7 +48,7 @@ package org.apache.flex.html.beads.models
 		{
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -194,8 +195,9 @@ package org.apache.flex.html.beads.models
 				// what is coming in.
 				newValue = Math.max(minimum, newValue);
 				newValue = Math.min(maximum, newValue);
+				var oldValue:Number = _value;
 				_value = snap(newValue);
-				dispatchEvent(new Event("valueChange"));
+				dispatchEvent(ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, _value));
 			}
 		}
 		

@@ -158,6 +158,9 @@ package org.apache.flex.html.beads
 			// any changes to values in the Panel's model that correspond values in the TitleBar will
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
+			if (titleBar.parent == null) {
+				(_strand as Panel).$addElement(titleBar);
+			}
 
 			if (!_contentArea) {
 				_contentArea = new Container();
@@ -209,6 +212,10 @@ package org.apache.flex.html.beads
 				_contentArea.addBead(viewportBead);
 			}
 
+			if (contentArea.parent == null) {
+				(_strand as Panel).$addElement(contentArea as IChild);
+			}
+
 			// Now give the Panel its own layout
 			layoutBead = new VerticalFlexLayout();
 			value.addBead(layoutBead);
@@ -237,13 +244,6 @@ package org.apache.flex.html.beads
 
 		override protected function completeSetup():void
 		{
-			if (titleBar.parent == null) {
-				(_strand as Panel).$addElement(titleBar);
-			}
-			if (contentArea.parent == null) {
-				(_strand as Panel).$addElement(contentArea as IChild);
-			}
-
 			super.completeSetup();
 			
 			performLayout(null);
@@ -264,5 +264,6 @@ package org.apache.flex.html.beads
 			_contentArea.dispatchEvent(new Event("layoutNeeded"));
 			performLayout(event);
 		}
+		
 	}
 }
