@@ -95,7 +95,7 @@
 
     <dependency>
       <groupId>org.apache.flex.flexjs.typedefs</groupId>
-      <artifactId>flexjs-typedefs-goolemaps</artifactId>
+      <artifactId>flexjs-typedefs-googlemaps</artifactId>
       <version>${flexjs.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
