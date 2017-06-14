@@ -26,6 +26,7 @@
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>18</version>
+    <relativePath></relativePath>
   </parent>
 
   <groupId>org.apache.flex.flexjs.framework</groupId>
@@ -137,6 +138,12 @@
               <version>${flexjs.compiler.version}</version>
             </dependency>
           </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.0.0</version>
         </plugin>
 
         <plugin>

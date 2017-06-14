@@ -89,7 +89,7 @@
         <configuration>
           <ignorePackaging>true</ignorePackaging>
           <port>8081</port>
-          <warSourceDirectory>${build.directory}/${artifactId}-${version}</warSourceDirectory>
+          <warSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}</warSourceDirectory>
         </configuration>
       </plugin>
     </plugins>
