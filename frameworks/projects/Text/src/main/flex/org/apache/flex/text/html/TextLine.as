@@ -28,6 +28,8 @@ package org.apache.flex.text.html
 	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.geom.Point;
+		import org.apache.flex.utils.PointUtils;
 	}
 	
 	import org.apache.flex.text.engine.ElementFormat;
@@ -328,6 +330,10 @@ package org.apache.flex.text.html
 			return new Rectangle(element.offsetLeft, element.offsetTop, element.offsetWidth, element.offsetHeight);
 		}
 		
+		/**
+		 *  @flexjsignorecoercion HTMLCanvasElement
+		 *  @flexjsignorecoercion CanvasRenderingContext2D
+		 */
 		public function getAtomBounds(atomIndex:int):Rectangle
 		{
 			COMPILE::SWF
@@ -360,11 +366,16 @@ package org.apache.flex.text.html
 				else
 				{
 					var s:String = element.firstChild.textContent;
-				    (element.firstChild as HTMLElement).innerHTML = s.substring(0, atomIndex);
-				    w = (element.firstChild as HTMLElement).getClientRects()[0].width;
-				    (element.firstChild as HTMLElement).innerHTML = s;
-					// fake an answer
-					return new Rectangle(w, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
+    				var canvas:HTMLCanvasElement = document.createElement("canvas") as HTMLCanvasElement;
+    				canvas.style.height = "100%";
+    				canvas.style.width = "100%";
+    				element.appendChild(canvas);
+                    var ctx:CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+					var w1:Number = (atomIndex == 0) ? 0 : ctx.measureText(s.substring(0, atomIndex - 1)).width;
+					w = ctx.measureText(s.substring(0, atomIndex)).width;
+					element.removeChild(canvas);
+					return new Rectangle(w1, 1.2 - _textBlock.content.elementFormat.fontSize, w - w1, 1.2);
 				}
 			}
 		}
@@ -395,24 +406,44 @@ package org.apache.flex.text.html
 			}
 			COMPILE::JS
 			{
-				trace("getAtomIndexAtPoint not implemented");
-				//TODO atom locations. This one will be fun...
+				var pt:Point = new Point(stageX, stageY);
+				pt = PointUtils.globalToLocal(pt, this);
+				var s:String = element.firstChild.textContent;
+				if (s === "") return 0;
+				// pick a starting point for which atom it might be.
+				// assume fixed width fonts
+				var start:int = Math.floor(s.length * pt.x / width);
+				var done:Boolean = false;
+				while (!done)
+				{
+					var r:Rectangle = getAtomBounds(start);
+					if (r.left > pt.x)
+					{
+						start--;
+						if (start == 0)
+							return 0;
+					} 
+					else if (r.right < pt.x)
+					{
+						start++;
+						if (start >= s.length - 1)
+							return s.length - 1;
+					}
+					else
+						return start;
+				}
 				return 0;
 			}
 		}
 
 		public function getAtomTextBlockBeginIndex(atomIndex:int):int
 		{
-			trace("getAtomTextBlockBeginIndex not implemented");
-			//TODO track indexes...
-			return 0;
+			return _beginIndex + atomIndex;
 		}
 
 		public function getAtomTextBlockEndIndex(atomIndex:int):int
 		{
-			trace("getAtomTextBlockEndIndex not implemented");
-			//TODO track indexes...
-			return 0;
+            return _beginIndex + atomIndex + 1;
 		}
 
 		public function getAtomTextRotation(atomIndex:int):String
@@ -424,9 +455,17 @@ package org.apache.flex.text.html
 
 		public function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean
 		{
-			trace("getAtomWordBoundaryOnLeft not implemented");
-			//TODO we need to track word boundaries
-			return false;
+            var s:String;
+            COMPILE::SWF
+            {
+                s = textField.text;
+            }
+            COMPILE::JS
+            {
+                s = element.firstChild.textContent;
+            }
+            s = s.substring(0, atomIndex);
+            return s.indexOf(" ") != -1;
 		}
 
 		public function getBaselinePosition(baseline:String):Number
