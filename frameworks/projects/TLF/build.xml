@@ -85,13 +85,14 @@
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
+            <arg value="-js-output-optimization=skipAsCoercions"/>
             <arg value="-compiler.targets=SWF,JSFlex" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${FLEX_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/FlexJS/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
-    </target>
+    </target> 
     
     <target name="check-compiler" depends="check-falcon-home,check-falconjx-home">
         <path id="lib.path">
