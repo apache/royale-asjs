@@ -21,7 +21,7 @@
 		  border: 1px solid #808080;
 		  backgroundColor: #00FFFF;
 		  border-radius: 2px;
-		  padding: 4px;
+		  padding: 0px;
 		  margin: 0px;
 		}
     </fx:Style>
