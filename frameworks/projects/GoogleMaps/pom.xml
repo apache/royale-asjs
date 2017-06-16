@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.flex.flexjs.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>GoogleMaps</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>swc</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Libs: GoogleMaps</name>
@@ -67,28 +67,28 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.flex.flexjs.framework</groupId>
         <artifactId>Basic</artifactId>
-        <version>0.8.0-SNAPSHOT</version>
+        <version>0.8.0</version>
         <type>swc</type>
         <classifier>swf</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.flex.flexjs.framework</groupId>
         <artifactId>Basic</artifactId>
-        <version>0.8.0-SNAPSHOT</version>
+        <version>0.8.0</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>

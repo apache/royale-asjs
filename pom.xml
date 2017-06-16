@@ -30,7 +30,7 @@
 
   <groupId>org.apache.flex.flexjs.framework</groupId>
   <artifactId>flexjs-framework-parent</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Parent</name>
@@ -55,8 +55,8 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
-    <flexjs.compiler.version>0.8.0-SNAPSHOT</flexjs.compiler.version>
-    <flexjs.typedefs.version>0.8.0-SNAPSHOT</flexjs.typedefs.version>
+    <flexjs.compiler.version>0.8.0</flexjs.compiler.version>
+    <flexjs.typedefs.version>0.8.0</flexjs.typedefs.version>
     <flexjs.build-tools.version>1.0.0</flexjs.build-tools.version>
 
     <flex.debug>true</flex.debug>
