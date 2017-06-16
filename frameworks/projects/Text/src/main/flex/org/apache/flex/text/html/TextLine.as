@@ -366,15 +366,17 @@ package org.apache.flex.text.html
 				else
 				{
 					var s:String = element.firstChild.textContent;
-    				var canvas:HTMLCanvasElement = document.createElement("canvas") as HTMLCanvasElement;
-    				canvas.style.height = "100%";
-    				canvas.style.width = "100%";
-    				element.appendChild(canvas);
-                    var ctx:CanvasRenderingContext2D = canvas.getContext("2d") as CanvasRenderingContext2D;
-
-					var w1:Number = (atomIndex == 0) ? 0 : ctx.measureText(s.substring(0, atomIndex - 1)).width;
-					w = ctx.measureText(s.substring(0, atomIndex)).width;
-					element.removeChild(canvas);
+    				var span:HTMLSpanElement = document.createElement("span") as HTMLSpanElement;
+    				element.appendChild(span);
+                    var w1:Number = 0;
+                    if (atomIndex > 0)
+                    {
+                        span.innerHTML = s.substring(0, atomIndex);
+    					w1 = span.getClientRects()[0].width;
+                    }
+                    span.innerHTML = s.substring(0, atomIndex + 1);
+                    w = span.getClientRects()[0].width;
+					element.removeChild(span);
 					return new Rectangle(w1, 1.2 - _textBlock.content.elementFormat.fontSize, w - w1, 1.2);
 				}
 			}
