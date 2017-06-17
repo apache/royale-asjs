@@ -247,7 +247,6 @@ package org.apache.flex.events
 			this.ctrlKey = ctrlKey;
 			this.altKey = altKey;
 			this.shiftKey = shiftKey;
-			this.buttonDown = buttonDown;
 			this.delta = delta;
 			this.commandKey = commandKey;
 			this.controlKey = controlKey;
@@ -280,7 +279,10 @@ package org.apache.flex.events
 		public var ctrlKey:Boolean;
 		public var altKey:Boolean;
 		public var shiftKey:Boolean;
-		public var buttonDown:Boolean;
+        // MDL says buttonDown is unreliable in JS for mouseMove so hide
+        // the API so folks get compile errors and keep their own flags
+        // for mouseDown/mouseUp
+		private var buttonDown:Boolean;
 		public var delta:int;
 		public var commandKey:Boolean;
 		public var controlKey:Boolean;
