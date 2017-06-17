@@ -1976,6 +1976,9 @@ package org.apache.flex.textLayout.edit
 		// ///////////////////////////////////
 		// Mouse and keyboard methods
 		// ///////////////////////////////////
+        
+        private var buttonDown:Boolean;
+        
 		/** 
 		 *  @copy IInteractionEventHandler#mouseDownHandler()
 		 * 
@@ -1986,6 +1989,8 @@ package org.apache.flex.textLayout.edit
 		 */
 		public function mouseDownHandler(event:MouseEvent):void
 		{
+            buttonDown = true;
+            
 			if (subManager)
 				subManager.selectRange(-1, -1);
 
@@ -2047,7 +2052,7 @@ package org.apache.flex.textLayout.edit
 				setMouseCursor(MouseCursor.IBEAM);
 			}
 
-			if (event.buttonDown)
+			if (buttonDown)
 			{
 				var cell:ITableCellElement = _textFlow.parentElement as ITableCellElement;
 
@@ -2109,6 +2114,8 @@ package org.apache.flex.textLayout.edit
 		 */
 		public function mouseUpHandler(event:MouseEvent):void
 		{
+            buttonDown = false;
+            
 			if (!_mouseOverSelectionArea)
 			{
 				setMouseCursor(MouseCursor.AUTO);

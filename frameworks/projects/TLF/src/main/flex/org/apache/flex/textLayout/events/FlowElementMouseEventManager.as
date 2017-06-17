@@ -28,10 +28,10 @@ package org.apache.flex.textLayout.events
 	import org.apache.flex.textLayout.container.IContainerController;
 	import org.apache.flex.textLayout.container.ScrollPolicy;
 	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
 	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.flex.textLayout.elements.IFlowGroupElement;
 	import org.apache.flex.textLayout.elements.ILinkElement;
+	import org.apache.flex.textLayout.elements.ITextFlow;
 	import org.apache.flex.textLayout.elements.TextRange;
 	import org.apache.flex.textLayout.formats.BlockProgression;
 	import org.apache.flex.textLayout.utils.GeometryUtil;
@@ -524,6 +524,8 @@ package org.apache.flex.textLayout.events
 				link.mouseOutHandler(this, _lastMouseEvent);
 		}
 		
+        private var buttonDown:Boolean;
+        
 		/** @private
 		 * Process mouse events.
 		 * 
@@ -536,6 +538,11 @@ package org.apache.flex.textLayout.events
 			if (!_hitTests)
 				return;
 			
+            if (evt.type == MouseEvent.MOUSE_DOWN)
+                buttonDown = true;
+            else if (evt.type == MouseEvent.MOUSE_UP)
+                buttonDown = false;
+            
 			// note that mouseOver and mouseOut are used for hit-testing only
 			// need the last mouse event's button state to pass in to LinkElement
 			// in case the state of the Ctrl key changes (see hitTestKeyEventHandler())
@@ -549,7 +556,7 @@ package org.apache.flex.textLayout.events
 				if (_currentElement)
 					// generate a mouseOut event
 					localDispatchEvent(FlowElementMouseEvent.ROLL_OUT, evt);
-				else if (evt.buttonDown)
+				else if (buttonDown)
 					// do not interact if the button is down to not disturb e.g. 
 					// a mark operation in the container
 					_blockInteraction = true;

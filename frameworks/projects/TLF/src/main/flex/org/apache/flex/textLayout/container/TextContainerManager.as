@@ -2525,8 +2525,14 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 			containerPoint = new Point();
 
 		/* event.commandKey,event.controlKey,event.clickCount are also supported in AIR.  IMHO they are a nonissue for the initial click */
-		super(event.type,event.bubbles,event.cancelable,containerPoint.x,containerPoint.y,event.relatedObject,event.ctrlKey,event.altKey,event.shiftKey,event.buttonDown,event.delta);
-		
+        COMPILE::SWF
+        {
+    		super(event.type,event.bubbles,event.cancelable,containerPoint.x,containerPoint.y,event.relatedObject,event.ctrlKey,event.altKey,event.shiftKey,event.buttonDown,event.delta);
+        }
+        COMPILE::JS
+        {
+            super(event.type,event.bubbles,event.cancelable,containerPoint.x,containerPoint.y,event.relatedObject,event.ctrlKey,event.altKey,event.shiftKey,false,event.delta);        
+        }
 		_event = event;
 	}
 

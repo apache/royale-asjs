@@ -18,14 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.container 
 {
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.elements.ITableRowElement;
-	import org.apache.flex.textLayout.utils.CreateTLFUtil;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IParentIUIBase;
 	import org.apache.flex.core.IUIBase;
@@ -47,6 +39,7 @@ package org.apache.flex.textLayout.container
 	import org.apache.flex.textLayout.compose.FlowDamageType;
 	import org.apache.flex.textLayout.compose.IFlowComposer;
 	import org.apache.flex.textLayout.compose.ITextFlowLine;
+	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
 	import org.apache.flex.textLayout.compose.TextLineRecycler;
 	import org.apache.flex.textLayout.debug.Debugging;
 	import org.apache.flex.textLayout.debug.assert;
@@ -56,11 +49,17 @@ package org.apache.flex.textLayout.container
 	import org.apache.flex.textLayout.edit.IInteractionEventHandler;
 	import org.apache.flex.textLayout.edit.ISelectionManager;
 	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
 	import org.apache.flex.textLayout.elements.CellCoordinates;
+	import org.apache.flex.textLayout.elements.GlobalSettings;
+	import org.apache.flex.textLayout.elements.IBackgroundManager;
 	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
+	import org.apache.flex.textLayout.elements.IFlowLeafElement;
+	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
+	import org.apache.flex.textLayout.elements.IParagraphElement;
+	import org.apache.flex.textLayout.elements.ITableCellElement;
+	import org.apache.flex.textLayout.elements.ITableRowElement;
 	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.flex.textLayout.elements.TableBlockContainer;
 	import org.apache.flex.textLayout.events.ActivateEvent;
 	import org.apache.flex.textLayout.events.ContextMenuEvent;
 	import org.apache.flex.textLayout.events.EditEvent;
@@ -78,7 +77,7 @@ package org.apache.flex.textLayout.container
 	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 	import org.apache.flex.textLayout.formats.TextLayoutFormatBase;
-
+	import org.apache.flex.textLayout.utils.CreateTLFUtil;
 	import org.apache.flex.textLayout.utils.Twips;
 	import org.apache.flex.utils.DisplayUtils;
 	import org.apache.flex.utils.ObjectMap;
@@ -121,6 +120,7 @@ package org.apache.flex.textLayout.container
 		
 		private var _container:IParentIUIBase;
 		private var _mouseEventManager:FlowElementMouseEventManager;
+        private var buttonDown:Boolean;
 		
 		// note must be protected - subclass sets or gets this variable but can't be public
 		/** computed container attributes.  @private */
@@ -2175,6 +2175,7 @@ package org.apache.flex.textLayout.container
 		/** @private Does required mouseDown handling.  Calls mouseDownHandler.  @see #mouseDownHandler */
 		public function requiredMouseDownHandler(event:MouseEvent):void
 		{
+            buttonDown = true;
 			if (!_selectListenersAttached)
 			{
 				var containerRoot:IEventDispatcher = getContainerRoot();
@@ -2215,6 +2216,7 @@ package org.apache.flex.textLayout.container
 		/** @private */
 		public function rootMouseUpHandler(event:MouseEvent):void
 		{
+            buttonDown = false;
 			clearSelectHandlers();
 			getInteractionHandler().mouseUpHandler(event);
 		}
@@ -2327,7 +2329,7 @@ package org.apache.flex.textLayout.container
 			{
 //TODO fix this
 				// only autoscroll if we haven't hit something on the stage related to this particular TextFlow
-				if (event.buttonDown && !hitOnMyFlowExceptLastContainer(event))
+				if (buttonDown && !hitOnMyFlowExceptLastContainer(event))
 					// autoScrollIfNecessary(event.stageX, event.stageY);
 				interactionManager.mouseMoveHandler(event);
 			}
