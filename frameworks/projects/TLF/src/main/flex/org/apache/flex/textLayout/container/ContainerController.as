@@ -215,7 +215,7 @@ package org.apache.flex.textLayout.container
 		
 		private var _shapeChildren:Array;
 				
-		private var _containerRoot:IParentIUIBase;
+		private var _containerRoot:IEventDispatcher;
 		
 		/* Controller have a non-zero default width and height so that if you construct a text example with a container and don't
 		* specify width and height you will still see some text so that you can then have a clue what to do to correct its appearance.
@@ -279,29 +279,16 @@ package org.apache.flex.textLayout.container
 			return _rootElement ? _rootElement.computedFormat.blockProgression : BlockProgression.TB;
 		}
 
-//TODO we probably need platform specific methods to attach events to the root		
 		/** @private  Determine containerRoot in case the stage is not accessible. Normally the root is the stage. */
-//		public function getContainerRoot():DisplayObject
-//		{
-//			// safe to test for stage existence
-//			if (_containerRoot == null && _container && _container.stage)
-//			{
-//				// if the stage is accessible lets use it.
-//				// trace("BEFORE COMPUTING CONTAINERROOT");
-//				try
-//				{
-//					var x:int = _container.stage.numChildren;
-//					_containerRoot = _container.stage;
-//				}
-//				catch(e:Error)
-//				{
-//					// TODO: some way to find the highest level accessible root???
-//					_containerRoot = _container.root;
-//				}
-//				// trace("AFTER COMPUTING CONTAINERROOT");
-//			}
-//			return _containerRoot;
-//		}
+		public function getContainerRoot():IEventDispatcher
+		{
+			// safe to test for stage existence
+			if (_containerRoot == null && _container) // && _container.stage)
+			{
+                _containerRoot = _container.topMostEventDispatcher;				
+			}
+			return _containerRoot;
+		}
 		
 		/** 
 		 * Returns the flow composer object that composes and highlights text into the container that this 
@@ -1810,11 +1797,10 @@ package org.apache.flex.textLayout.container
                 _scrollTimer.stop();
                 _scrollTimer.removeEventListener(Timer.TIMER, scrollTimerHandler);
 
-//TODO fix this for FlexJS
-//                if(!containerRoot)
-//                {
-//                    containerRoot = getContainerRoot();
-//                }
+                if(!containerRoot)
+                {
+                    containerRoot = getContainerRoot();
+                }
 
                 if(containerRoot)
                 {
@@ -1958,15 +1944,14 @@ package org.apache.flex.textLayout.container
 			// we need a timer so that the mouse doesn't have to continue moving when the mouse is outside the content area
 			if (scrollDirection != 0 && !_scrollTimer) 
 			{
-//TODO deal with platform specific events
-//				_scrollTimer = new Timer(textFlow.configuration.scrollDragDelay);	// 35 ms is the default auto-repeat interval for ScrollBars.
-//				_scrollTimer.addEventListener(Timer.TIMER, scrollTimerHandler, false, 0, true);
+				_scrollTimer = new Timer(textFlow.configuration.scrollDragDelay);	// 35 ms is the default auto-repeat interval for ScrollBars.
+				_scrollTimer.addEventListener(Timer.TIMER, scrollTimerHandler); // , false, 0, true);
 
-//				if (getContainerRoot())
-//				{
-//					getContainerRoot().addEventListener(MouseEvent.MOUSE_UP, scrollTimerHandler, false, 0, true);
+				if (getContainerRoot())
+				{
+					getContainerRoot().addEventListener(MouseEvent.MOUSE_UP, scrollTimerHandler); // , false, 0, true);
 //					beginMouseCapture(); // TELL CLIENTS WE WANT mouseUpSomewhere events
-//				}
+				}
 				_scrollTimer.start();
 			}
 			
@@ -2192,18 +2177,17 @@ package org.apache.flex.textLayout.container
 		{
 			if (!_selectListenersAttached)
 			{
-//TODO fix root events
-//				var containerRoot:DisplayObject = getContainerRoot();
-//				if (containerRoot)
-//				{
-//					containerRoot.addEventListener(MouseEvent.MOUSE_MOVE, rootMouseMoveHandler, false, 0, true); 
-//					containerRoot.addEventListener(MouseEvent.MOUSE_UP,   rootMouseUpHandler, false, 0, true);
-//					
+				var containerRoot:IEventDispatcher = getContainerRoot();
+				if (containerRoot)
+				{
+					containerRoot.addEventListener(MouseEvent.MOUSE_MOVE, rootMouseMoveHandler); // , false, 0, true); 
+					containerRoot.addEventListener(MouseEvent.MOUSE_UP,   rootMouseUpHandler); //, false, 0, true);
+					
 //					beginMouseCapture(); // TELL CLIENTS THAT WE WANT moueUpSomewhere EVENTS
-//					
-//					
-//					_selectListenersAttached = true;
-//				}
+					
+					
+					_selectListenersAttached = true;
+				}
 			}
 			getInteractionHandler().mouseDownHandler(event); 
 		}
@@ -2240,12 +2224,11 @@ package org.apache.flex.textLayout.container
 		{	
 			if (_selectListenersAttached)
 			{
-//TODO fix root events
-//				CONFIG::debug { assert(getContainerRoot() != null,"No container root"); }
-//				getContainerRoot().removeEventListener(MouseEvent.MOUSE_MOVE, rootMouseMoveHandler); 					
-//				getContainerRoot().removeEventListener(MouseEvent.MOUSE_UP,   rootMouseUpHandler);
+				CONFIG::debug { assert(getContainerRoot() != null,"No container root"); }
+				getContainerRoot().removeEventListener(MouseEvent.MOUSE_MOVE, rootMouseMoveHandler); 					
+				getContainerRoot().removeEventListener(MouseEvent.MOUSE_UP,   rootMouseUpHandler);
 //				endMouseCapture(); // TELL CLIENTS WE NO LONGER WANT mouseUpSomewhere EVENTS
-//				_selectListenersAttached = false;
+				_selectListenersAttached = false;
 			}
 		}
 		
