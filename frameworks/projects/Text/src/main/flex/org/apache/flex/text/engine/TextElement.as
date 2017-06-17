@@ -61,9 +61,14 @@ package org.apache.flex.text.engine
 		}
 		public function replaceText(beginIndex:int, endIndex:int, newText:String):void
 		{
-			var b:String = _text.substring(0,beginIndex);
-			var e:String = _text.substring(endIndex);
-			_text = b + newText + e;
+            if (_text == null)
+                _text = newText;
+            else
+            {
+    			var b:String = _text.substring(0,beginIndex);
+    			var e:String = _text.substring(endIndex);
+    			_text = b + newText + e;
+            }
 			resetGlyphs();
 			resetText();
 		}
