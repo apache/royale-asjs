@@ -67,10 +67,22 @@ package org.apache.flex.text.engine
 		}
 		public function replaceElements(beginIndex:int, endIndex:int, newElements:Vector.<ContentElement>):Vector.<ContentElement>
 		{
-			//TODO will this work correctly in Flash? -- using Array.concat with a Vector and Vector splice with an array.
-			var args:Array = [beginIndex, endIndex-beginIndex].concat(newElements);
-			_elements.splice.apply(_elements, args);
+            COMPILE::SWF
+            {
+                var args:Array = [beginIndex, endIndex-beginIndex];
+                // Vectors don't seen to support concat with an array/vector parameter
+                if (newElements)
+                {
+                    for each (var el:ContentElement in newElements)
+                        args = args.concat(el);
+                }
+            }
+            COMPILE::JS
+            {
+    			var args:Array = [beginIndex, endIndex-beginIndex].concat(newElements);
 			// _elements.splice(beginIndex,endIndex-beginIndex);
+            }
+            _elements.splice.apply(_elements, args);                    
 			return _elements;
 		}
 		public function setElements(value:Vector.<ContentElement>):void
