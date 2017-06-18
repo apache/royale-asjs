@@ -357,7 +357,10 @@ package org.apache.flex.textLayout.elements
 			}
 		}
 		
-		/** @private */
+		/**
+		*  @private
+		*  @flexjsemitcoercion org.apache.flex.text.engine.GroupElement
+		*/
 		public override function createContentAsGroup(pos:int=0):GroupElement
 		{
 			var tb:ITextBlock = getTextBlockAtPosition(pos);
