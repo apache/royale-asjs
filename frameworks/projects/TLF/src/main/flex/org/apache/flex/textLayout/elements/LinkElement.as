@@ -496,15 +496,12 @@ package org.apache.flex.textLayout.elements
 			}
 		}
 
-        private var buttonDown:Boolean;
-        
 		/** @private
 		 * The ElementMouseEventManager calls this method directly. Note that the mouse
 		 * coordinates are unrelated to any coordinate in the container or this element.
 		 */
 		public function mouseDownHandler(mgr:FlowElementMouseEventManager, evt:MouseEvent):void
 		{
-            buttonDown = true;
 			mgr.setHandCursor(true);
 			setToState(LinkState.ACTIVE);
 			evt.stopImmediatePropagation();
@@ -517,7 +514,7 @@ package org.apache.flex.textLayout.elements
 		public function mouseMoveHandler(mgr:FlowElementMouseEventManager, evt:MouseEvent):void
 		{
 			mgr.setHandCursor(true);
-			setToState(buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
+			setToState(evt.buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
 		}
 
 		/** @private
@@ -537,7 +534,7 @@ package org.apache.flex.textLayout.elements
 		public function mouseOverHandler(mgr:FlowElementMouseEventManager, evt:MouseEvent):void
 		{
 			mgr.setHandCursor(true);
-			setToState(buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
+			setToState(evt.buttonDown ? LinkState.ACTIVE : LinkState.HOVER);
 		}
 
 		/** @private
@@ -546,7 +543,6 @@ package org.apache.flex.textLayout.elements
 		 */
 		public function mouseUpHandler(mgr:FlowElementMouseEventManager, evt:MouseEvent):void
 		{
-            buttonDown = false;
 			mgr.setHandCursor(true);
 			setToState(LinkState.HOVER);
 			evt.stopImmediatePropagation();

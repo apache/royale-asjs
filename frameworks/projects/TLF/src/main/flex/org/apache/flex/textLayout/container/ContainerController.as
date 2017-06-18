@@ -2088,6 +2088,8 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseOverHandler(event:MouseEvent):void
 		{
+			if(!event.buttonDown)
+			event.buttonDown = buttonDown;
 			if (interactionManager && !event.defaultPrevented)
 				interactionManager.mouseOverHandler(event);
 		}
@@ -2095,6 +2097,8 @@ package org.apache.flex.textLayout.container
 		/** @private Does required mouseOver handling.  Calls mouseOverHandler.  @see #mouseOverHandler */
 		public function requiredMouseOverHandler(event:MouseEvent):void
 		{
+			if(!event.buttonDown)
+			event.buttonDown = buttonDown;
 			attachAllListeners();
 			getInteractionHandler().mouseOverHandler(event);
 		}
@@ -2111,6 +2115,8 @@ package org.apache.flex.textLayout.container
 		 */				
 		public function mouseOutHandler(event:MouseEvent):void
 		{
+			if(!event.buttonDown)
+			event.buttonDown = buttonDown;
 			if (interactionManager && !event.defaultPrevented)
 				interactionManager.mouseOutHandler(event);
 		}
@@ -2162,6 +2168,7 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseDownHandler(event:MouseEvent):void
 		{
+			buttonDown = true;
 			if (interactionManager && !event.defaultPrevented)
 			{
 				interactionManager.mouseDownHandler(event);
@@ -2207,6 +2214,7 @@ package org.apache.flex.textLayout.container
 		 */
 		public function mouseUpHandler(event:MouseEvent):void
 		{
+			buttonDown = false;
 			if (interactionManager && event && !event.defaultPrevented)
 			{
 				interactionManager.mouseUpHandler(event);
@@ -2325,11 +2333,13 @@ package org.apache.flex.textLayout.container
 		
 		public function mouseMoveHandler(event:MouseEvent):void
 		{
+			if(!event.buttonDown)
+				event.buttonDown = buttonDown;
 			if (interactionManager && !event.defaultPrevented)
 			{
 //TODO fix this
 				// only autoscroll if we haven't hit something on the stage related to this particular TextFlow
-				if (buttonDown && !hitOnMyFlowExceptLastContainer(event))
+				if (event.buttonDown && !hitOnMyFlowExceptLastContainer(event))
 					// autoScrollIfNecessary(event.stageX, event.stageY);
 				interactionManager.mouseMoveHandler(event);
 			}
@@ -2338,6 +2348,8 @@ package org.apache.flex.textLayout.container
 		/** @private */
 		public function rootMouseMoveHandler(event:MouseEvent):void
 		{   
+			if(!event.buttonDown)
+				event.buttonDown = buttonDown;
 			getInteractionHandler().mouseMoveHandler(event); 
 		}
 		

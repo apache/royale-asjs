@@ -56,6 +56,7 @@ package org.apache.flex.textLayout.compose
 		function get paragraph():IParagraphElement;
 		function get absoluteStart():int;
 		function setAbsoluteStart(val:int):void;
+		function get textBlockStart():int;
 		function get textLength():int;
 		function setTextLength(val:int):void;
 		function get spaceBefore():Number;

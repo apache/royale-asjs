@@ -24,6 +24,7 @@ package org.apache.flex.text.html
 		import flash.text.TextField;
 		import flash.text.TextFormat;
 		import flash.text.TextFieldAutoSize;
+		import flash.geom.Point;
 	}
 	COMPILE::JS
 	{
@@ -400,16 +401,17 @@ package org.apache.flex.text.html
 			return charIndex;
 		}
 
-		public function getAtomIndexAtPoint(stageX:Number, stageY:Number):int
+		public function getAtomIndexAtPoint(localX:Number, localY:Number):int
 		{
 			COMPILE::SWF
 			{
-				return textField.getCharIndexAtPoint(stageX, stageY);
+				var pt:Point = textField.parent.localToGlobal(new Point(localX,localY));
+				return textField.getCharIndexAtPoint(pt.x, pt.y);
 			}
 			COMPILE::JS
 			{
-				var pt:Point = new Point(stageX, stageY);
-				pt = PointUtils.globalToLocal(pt, this);
+				var pt:Point = new Point(localX, localY);
+				// pt = PointUtils.globalToLocal(pt, this);
 				var s:String = element.firstChild.textContent;
 				if (s === "") return 0;
 				// pick a starting point for which atom it might be.

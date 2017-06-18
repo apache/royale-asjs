@@ -1524,7 +1524,7 @@ package org.apache.flex.textLayout.edit
 					}
 					else
 					{
-						var lastLinePosInPar:int = textFlowLine.absoluteStart + textFlowLine.textLength - 1;
+						var lastLinePosInPar:int = textFlowLine.textBlockStart + textFlowLine.textLength - 1;
 						var lastChar:String = textLine.textBlock.content.rawText.charAt(lastLinePosInPar);
 						if (lastChar == " ")
 						{
@@ -1693,7 +1693,7 @@ package org.apache.flex.textLayout.edit
 			//
 			// As a result, we need to be performing the less common case check prior to adjusting the
 			// coordinates.
-			pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
+			// pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
 			var elemIdx:int = textLine.getAtomIndexAtPoint(pt.x, pt.y);
 			// trace("global point: " + pt);
 			// trace("elemIdx: " + elemIdx);
@@ -1710,7 +1710,7 @@ package org.apache.flex.textLayout.edit
 					pt.y = 0;
 
 				// get the global again and get try for the element again
-				pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
+				// pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
 				elemIdx = textLine.getAtomIndexAtPoint(pt.x, pt.y);
 				// trace("global point (second): " + pt);
 				// trace("elemIdx (second): " + elemIdx);
@@ -1722,7 +1722,7 @@ package org.apache.flex.textLayout.edit
 				// we need to use global coordinates here.  reset pt and get conversion...
 				pt.x = localX;
 				pt.y = localY;
-				pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
+				// pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
 				if (textLine.parent)
 					pt = PointUtils.globalToLocal(pt, textLine.parent);// textLine.parent.globalToLocal(pt);
 
@@ -1976,9 +1976,6 @@ package org.apache.flex.textLayout.edit
 		// ///////////////////////////////////
 		// Mouse and keyboard methods
 		// ///////////////////////////////////
-        
-        private var buttonDown:Boolean;
-        
 		/** 
 		 *  @copy IInteractionEventHandler#mouseDownHandler()
 		 * 
@@ -1989,8 +1986,6 @@ package org.apache.flex.textLayout.edit
 		 */
 		public function mouseDownHandler(event:MouseEvent):void
 		{
-            buttonDown = true;
-            
 			if (subManager)
 				subManager.selectRange(-1, -1);
 
@@ -2052,7 +2047,7 @@ package org.apache.flex.textLayout.edit
 				setMouseCursor(MouseCursor.IBEAM);
 			}
 
-			if (buttonDown)
+			if (event.buttonDown)
 			{
 				var cell:ITableCellElement = _textFlow.parentElement as ITableCellElement;
 
@@ -2114,8 +2109,6 @@ package org.apache.flex.textLayout.edit
 		 */
 		public function mouseUpHandler(event:MouseEvent):void
 		{
-            buttonDown = false;
-            
 			if (!_mouseOverSelectionArea)
 			{
 				setMouseCursor(MouseCursor.AUTO);

@@ -524,6 +524,27 @@ package org.apache.flex.textLayout.compose
 		{
 			return _absoluteStart;
 		}
+		public function get textBlockStart():int
+		{
+			var start:int = absoluteStart;
+			var paraStart:int = paragraph.getAbsoluteStart();
+			start -= paraStart;
+			var tbs:Vector.<ITextBlock> = paragraph.getTextBlocks();
+			if(tbs.length > 1)
+			{
+				var textBlock:ITextBlock = paragraph.getTextBlockAtPosition(start);
+				for(var i:int = 0; i < tbs.length; i++)
+				{
+					if(textBlock == tbs[i])
+						break;
+					start -= tbs[i].content.rawText.length;
+				}
+			}
+
+			return start;
+
+
+		}
 
 		/** @private */
 		public function setAbsoluteStart(val:int):void
@@ -1616,6 +1637,10 @@ package org.apache.flex.textLayout.compose
 			for each (drawRect in selCache.selectionBlocks)
 			{
 				drawRect = drawRect.clone();
+				// if(blockProgression == BlockProgression.TB)
+				// 	drawRect.y += nextLine.y - nextLine.ascent;
+				// else
+				// 	drawRect.x += nextLine.x - nextLine.ascent;//TODO does this make sense?
 				convertLineRectToContainer(drawRect, true);
 				createSelectionRect(selObj, color, drawRect.x, drawRect.y, drawRect.width, drawRect.height);
 			}
@@ -1947,6 +1972,8 @@ package org.apache.flex.textLayout.compose
 				// NB - Never use baseline adjustments for TCY.  They don't make sense here.(I think) - gak 06.03.08
 				if (blockProgression == BlockProgression.RL)
 					globalStart.y = begCharRect.y + (startMetrics.width / 2); // TODO-9/5/8:Behavior for leading down TBD
+				else// Harbs 6-13-17 Not sure how this used to work without this.
+					globalStart.y = begCharRect.y;
 
 				if (justRule != JustificationRule.EAST_ASIAN)
 				{
