@@ -57,6 +57,8 @@
     <module>Reflection</module>
     <module>Storage</module>
     <module>XML</module>
+    <module>Text</module>
+    <module>TLF</module>
   </modules>
 
   <build>
