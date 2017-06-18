@@ -20,6 +20,7 @@ New Features
 
 Bug Fixes
 ---------
+-FLEX-35322 Layout of NumericStepper is broken
 -FLEX-35288 [FlexJS, MDL] slider step size can't be less than 1
 -FLEX-35273 [FlexJS] No error in code with multiple views
 -FLEX-35271 [FlexJS] HTTPServer POST calls give client side errors

@@ -119,6 +119,7 @@ package org.apache.flex.html.supportClasses
 					titleBar.title = dataTitleModel.title; // temp fix. The line above should be swapoped with this one once databinding works.
 				}
 			}
+			dispatchEvent(new Event("dataChange"));
 		}
 		
 		public function get listData():Object

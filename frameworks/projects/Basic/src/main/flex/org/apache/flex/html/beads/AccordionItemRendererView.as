@@ -18,12 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {		
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.html.supportClasses.ICollapsible;
+	import org.apache.flex.html.supportClasses.AccordionItemRenderer
     
 	/**
-	 * This class creates and manages the contents of an AccordionItemItemRenderer
+	 * This class creates and manages the contents of an AccordionItemRenderer
      *  
 	 *  @viewbead
      *  @langversion 3.0
@@ -47,6 +49,27 @@ package org.apache.flex.html.beads
 		public function AccordionItemRendererView()
 		{
 			super();
+		}
+		
+		override protected function completeSetup():void
+		{
+			// don't do anything here.  No need to complete setup
+			// until after data is set.
+			(_strand as IEventDispatcher).addEventListener("dataChange", dataChangeHandler);
+		}
+		
+		private function dataChangeHandler(event:Event):void
+		{
+			if (titleBar.parent == null) {
+				(_strand as AccordionItemRenderer).$addElement(titleBar);
+			}
+			if (contentArea.parent == null) {
+				(_strand as AccordionItemRenderer).$addElement(contentArea as IChild);
+			}
+
+			super.completeSetup();
+			
+			performLayout(null);
 		}
 		
 		override protected function performLayout(event:Event):void
