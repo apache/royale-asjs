@@ -56,7 +56,7 @@ package org.apache.flex.html.accessories
 		{
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand

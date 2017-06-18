@@ -118,5 +118,18 @@ package org.apache.flex.events
             event.source = source;
             return event;
         }
+
+        /**
+         * Create a copy/clone of the ValueChangeEvent object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        override public function cloneEvent():IFlexJSEvent
+        {
+            return new ValueChangeEvent(type, bubbles, cancelable, oldValue, newValue);
+        }
 	}
 }

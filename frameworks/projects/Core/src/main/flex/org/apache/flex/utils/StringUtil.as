@@ -84,12 +84,13 @@ package org.apache.flex.utils
 		 */
 		public static function substitute(str:String, ... rest):String
 		{
-			if (str == null) return '';
-			
+			if (str === null)
+				return '';
+
 			// Replace all of the parameters in the msg string.
 			var len:uint = rest.length;
 			var args:Array;
-			if (len == 1 && rest[0] is Array)
+			if (len === 1 && rest[0] is Array)
 			{
 				args = rest[0] as Array;
 				len = args.length;
@@ -125,7 +126,7 @@ package org.apache.flex.utils
 		 */
 		public static function repeat(str:String, n:int):String
 		{
-			if (n == 0)
+			if (n === 0)
 				return "";
 			var a:Array = [];
 			for (var i:int = 0; i < n; i++)
@@ -158,11 +159,11 @@ package org.apache.flex.utils
 		public static function restrict(str:String, restrict:String):String
 		{
 			// A null 'restrict' string means all characters are allowed.
-			if (restrict == null)
+			if (restrict === null)
 				return str;
 			
 			// An empty 'restrict' string means no characters are allowed.
-			if (restrict == "")
+			if (restrict === "")
 				return "";
 			
 			// Otherwise, we need to test each character in 'str'
@@ -285,22 +286,22 @@ package org.apache.flex.utils
 			if (n > 0)
 			{
 				code = restrict.charCodeAt(0);
-				if (code == 94) // caret
+				if (code === 94) // caret
 					allowIt = true;
 			}
 			
 			for (var i:int = 0; i < n; i++)
 			{
-				code = restrict.charCodeAt(i)
+				code = restrict.charCodeAt(i);
 				
 				var acceptCode:Boolean = false;
 				if (!inBackSlash)
 				{
-					if (code == 45) // hyphen
+					if (code === 45) // hyphen
 						inRange = true;
-					else if (code == 94) // caret
+					else if (code === 94) // caret
 						setFlag = !setFlag;
-					else if (code == 92) // backslash
+					else if (code === 92) // backslash
 						inBackSlash = true;
 					else
 						acceptCode = true;
@@ -322,7 +323,7 @@ package org.apache.flex.utils
 					}
 					else
 					{
-						if (charCode == code)
+						if (charCode === code)
 							allowIt = setFlag;
 						lastCode = code;
 					}

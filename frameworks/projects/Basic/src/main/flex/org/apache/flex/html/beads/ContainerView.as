@@ -382,7 +382,7 @@ package org.apache.flex.html.beads
 				// add the viewport's contentView to this host ONLY if
 				// the contentView is not the host itself, which is likely
 				// most situations.
-				if (chost != viewport.contentView) {
+				if (chost != null && chost != viewport.contentView) {
 					chost.addElement(viewport.contentView);
 				}
 			}

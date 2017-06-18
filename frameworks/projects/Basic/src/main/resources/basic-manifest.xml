@@ -107,6 +107,7 @@
     <component id="DisableBead" class="org.apache.flex.html.beads.DisableBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.flex.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.flex.html.accessories.PasswordInputBead" />
+    <component id="PasswordInputRemovableBead" class="org.apache.flex.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.flex.html.accessories.TextPromptBead" />
     <component id="HRule" class="org.apache.flex.html.HRule" />
     <component id="VRule" class="org.apache.flex.html.VRule" />

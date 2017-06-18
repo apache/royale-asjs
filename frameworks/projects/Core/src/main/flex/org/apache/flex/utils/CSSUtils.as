@@ -70,11 +70,11 @@ package org.apache.flex.utils
         public static function toNumber(str:String, reference:Number = 0):Number
         {
             var c:int = str.indexOf("px");
-            if (c != -1)
+            if (c !== -1)
                 return Number(str.substr(0, c));
             
             c = str.indexOf("%");
-            if (c != -1)
+            if (c !== -1)
                 return Number(str.substr(0, c)) * reference / 100;
             
             return Number(str);
@@ -119,21 +119,21 @@ package org.apache.flex.utils
             var c2:int;
             
             var stringValue:String = value as String;
-			if (stringValue == "transparent")
+			if (stringValue === "transparent")
 			{
 				return uint.MAX_VALUE;
 			}
-            if (stringValue.charAt(0) == '#')
+            if (stringValue.charAt(0) === '#')
             {
-                if (stringValue.length == 4)
+                if (stringValue.length === 4)
                     return uint("0x" + stringValue.charAt(1) + stringValue.charAt(1) +
                         stringValue.charAt(2) + stringValue.charAt(2) +
                         stringValue.charAt(3) + stringValue.charAt(3));
-                if (stringValue.length == 7)
+                if (stringValue.length === 7)
                     return uint("0xFF" + stringValue.substr(1));
                 return uint("0x" + stringValue.substr(1));
             }
-            else if ((c = stringValue.indexOf("rgb(")) != -1)
+            else if ((c = stringValue.indexOf("rgb(")) !== -1)
             {
                 c2 = stringValue.indexOf(")");
                 stringValue = stringValue.substring(c + 4, c2);
@@ -143,7 +143,7 @@ package org.apache.flex.utils
                         (uint(parts3[1]) << 8) +
                         uint(parts3[2]));
             }
-            else if ((c = stringValue.indexOf("rgba(")) != -1)
+            else if ((c = stringValue.indexOf("rgba(")) !== -1)
             {
                 c2 = stringValue.indexOf(")");
                 stringValue = stringValue.substring(c + 5, c2);
@@ -295,7 +295,7 @@ package org.apache.flex.utils
             switch (side)
             {
                 case 2:
-                    side = n == 2 ? 0 : 2;
+                    side = n === 2 ? 0 : 2;
                     break;
                 case 3:
                     side = n < 3 ? 1 : 3;
@@ -316,7 +316,7 @@ package org.apache.flex.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
          */
-        public static var colorMap:Object = {
+        public static const colorMap:Object = {
             transparent:   0,
             white:   0xFFFFFFFF,
             silver:	 0xFFC0C0C0,
@@ -334,6 +334,6 @@ package org.apache.flex.utils
             navy:	 0xFF000080,
             fuchsia: 0xFFFF00FF,
             purple:	 0xFF800080
-        }
+        };
 	}
 }

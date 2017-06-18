@@ -144,7 +144,7 @@ package org.apache.flex.events
         /**
          * @private
          */
-        public override function clone():flash.events.Event
+		override public function clone():flash.events.Event
         {
             return cloneEvent() as flash.events.Event;
         }

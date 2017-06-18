@@ -97,7 +97,7 @@ public class PlatformWiper
         }
         COMPILE::JS
         {
-            if (value == null) 
+            if (_target && value != _target)
             {
                 if (_overflow == null)
                     delete _target.positioner.style["overflow"];
