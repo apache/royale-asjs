@@ -499,5 +499,15 @@ package org.apache.flex.events
 		{
 			return wrappedEvent.type;
 		}
+
+		public function get buttonDown():Boolean
+		{
+			return wrappedEvent.event_.buttons == 1;
+		}
+
+		public function get buttons():int
+		{
+			return wrappedEvent.event_.buttons;
+		}
 	}
 }
