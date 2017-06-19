@@ -56,7 +56,7 @@ package org.apache.flex.textLayout.compose.utils
 				/** @private */
 		public static function getSpanBoundsOnLine(element:IFlowLeafElement,textLine:ITextLine, blockProgression:String):Array
 		{
-			var line:ITextFlowLine = ITextFlowLine(textLine.userData);
+			var line:ITextFlowLine = textLine.userData as ITextFlowLine;
 			var paraStart:int = line.paragraph.getAbsoluteStart();
 			var lineEnd:int = (line.absoluteStart + line.textLength) - paraStart;
 			var spanStart:int = element.getAbsoluteStart() - paraStart;		// get start pos relative to the paragraph (which might not be the parent)
