@@ -36,6 +36,7 @@ package org.apache.flex.text.engine
 		{
 			_text = value;
 			resetGlyphs();
+			resetText();
 		}
 
 		override public function get rawText():String
@@ -46,6 +47,7 @@ package org.apache.flex.text.engine
 		{
 			super.elementFormat = value;
 			resetGlyphs();
+			resetText();
 		}
 		private function resetGlyphs():void
 		{
