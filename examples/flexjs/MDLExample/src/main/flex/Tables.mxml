@@ -29,11 +29,19 @@ limitations under the License.
 
     <mdl:Grid width="450" className="center-items">
 
-        <mdl:Table shadow="2" selectable="true" className="customTableRowItemRenderer">
+       <mdl:Table shadow="2" selectable="true" className="customTableRowItemRenderer">
             <mdl:columns>
-                <mdl:TableColumn headerText="Material" nonNumeric="true"/>
-                <mdl:TableColumn headerText="Quantity"/>
-                <mdl:TableColumn headerText="Unit price"/>
+                <mdl:TableColumn headerText="Material"/>
+                <mdl:TableColumn headerText="Quantity">
+                    <mdl:beads>
+                        <mdl:TableNumericColumnEnable />
+                    </mdl:beads>
+                </mdl:TableColumn>
+                <mdl:TableColumn headerText="Unit price">
+                    <mdl:beads>
+                        <mdl:TableNumericColumnEnable />
+                    </mdl:beads>
+                </mdl:TableColumn>
             </mdl:columns>
             <mdl:beads>
                 <js:ConstantBinding
@@ -50,9 +58,17 @@ limitations under the License.
 
             <mdl:Table className="customTableRowItemRenderer" width="100%">
                 <mdl:columns>
-                    <mdl:TableColumn headerText="Material" nonNumeric="true"/>
-                    <mdl:TableColumn headerText="Quantity"/>
-                    <mdl:TableColumn headerText="Unit price"/>
+                    <mdl:TableColumn headerText="Material"/>
+                    <mdl:TableColumn headerText="Quantity">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
+                    <mdl:TableColumn headerText="Unit price">
+                        <mdl:beads>
+                            <mdl:TableNumericColumnEnable />
+                        </mdl:beads>
+                    </mdl:TableColumn>
                 </mdl:columns>
                 <mdl:beads>
                     <js:ConstantBinding
@@ -70,11 +86,24 @@ limitations under the License.
 
         <mdl:Table shadow="8" className="tableRowItemRendererWithIcons">
             <mdl:columns>
-                <mdl:TableColumn headerText="Material" nonNumeric="true"/>
-                <mdl:TableColumn headerText="Quantity"/>
-                <mdl:TableColumn headerText="Unit price"/>
-                <mdl:TableColumn headerText="Mood"/>
+                <mdl:TableColumn headerText="Material"/>
+                <mdl:TableColumn headerText="Quantity">
+                    <mdl:beads>
+                        <mdl:TableNumericColumnEnable />
+                    </mdl:beads>
+                </mdl:TableColumn>
+                <mdl:TableColumn headerText="Unit price">
+                    <mdl:beads>
+                        <mdl:TableNumericColumnEnable />
+                    </mdl:beads>
+                </mdl:TableColumn>
+                <mdl:TableColumn headerText="Mood">
+                    <mdl:beads>
+                        <mdl:TableNumericColumnEnable />
+                    </mdl:beads>
+                </mdl:TableColumn>
             </mdl:columns>
+
             <mdl:beads>
                 <js:ConstantBinding
                     sourceID="model"
