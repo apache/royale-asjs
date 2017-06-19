@@ -91,39 +91,14 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			element = document.createElement('th') as WrappedHTMLElement;
+            element.classList.add("mdl-data-table__cell--non-numeric");
 
             positioner = element;
             element.flexjs_wrapper = this;
 
             return element;
         }
-
-        private var _nonNumeric:Boolean;
-        /**
-         *  Activate "mdl-data-table__cell--non-numeric" class selector, for use in table td item.
-         *  Applies text formatting to data cell
-		 *  Optional; goes on both table header and table data cells
-		 *
-		 *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-        public function get nonNumeric():Boolean
-        {
-            return _nonNumeric;
-        }
-        public function set nonNumeric(value:Boolean):void
-        {
-            _nonNumeric = value;
-
-            COMPILE::JS
-            {
-                element.classList.toggle("mdl-data-table__cell--non-numeric", _nonNumeric);
-                typeNames = element.className;
-            }
-        }
-
+		
         protected var _ascending:Boolean;
         /**
 		 *  A boolean flag to activate "mdl-data-table__header--sorted-ascending" effect selector.
