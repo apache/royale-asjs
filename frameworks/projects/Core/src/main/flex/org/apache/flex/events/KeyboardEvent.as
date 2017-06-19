@@ -20,9 +20,15 @@ package org.apache.flex.events
 {
     public class KeyboardEvent extends Event
     {
-        
-        public static const KEY_DOWN:String = "key_down";
-        public static const KEY_UP:String = "key_up";
+        COMPILE::SWF
+        public static const KEY_DOWN:String = "keyDown";
+        COMPILE::SWF
+        public static const KEY_UP:String = "keyUp";
+
+        COMPILE::JS
+        public static const KEY_DOWN:String = "keydown";
+        COMPILE::JS
+        public static const KEY_UP:String = "keyup";
 
         public function KeyboardEvent(
             type:String,

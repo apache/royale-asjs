@@ -308,7 +308,7 @@ package org.apache.flex.textLayout.edit
 								event.preventDefault();
 							}
 							break;
-						case "KeyZ":	// small y
+						case "KeyY":	// small y
 							ignoreNextTextEvent = true;
 							redo();
 							event.preventDefault();

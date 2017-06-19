@@ -70,7 +70,7 @@ package org.apache.flex.events.utils
 		COMPILE::JS
 		public static function convert(oldEvent:KeyboardEvent):org.apache.flex.events.KeyboardEvent
 		{
-			var type:String = oldEvent.type == "keydown" ? "key_down" : "key_up"; 
+			var type:String = oldEvent.type;
 			var key:String = oldEvent.key;
 			if (key == null)
 				key = KeyConverter.convertCharCode(oldEvent['charCode']);
