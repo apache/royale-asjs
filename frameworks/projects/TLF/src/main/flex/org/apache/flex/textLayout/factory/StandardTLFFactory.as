@@ -28,11 +28,11 @@ package org.apache.flex.textLayout.factory {
 	import org.apache.flex.text.html.HTMLTextFactory;
 
 	public class StandardTLFFactory implements ITLFFactory {
-		public function getRect() : IRect {
+		public function getRect(blendMode:String="") : IRect {
 			return new Rect();
 		}
 
-		public function getCompoundGraphic() : ICompoundGraphic {
+		public function getCompoundGraphic(blendMode:String="") : ICompoundGraphic {
 			return new CompoundGraphic();
 		}
 		
@@ -40,7 +40,6 @@ package org.apache.flex.textLayout.factory {
 		{
 			return new GraphicContainer();
 		}
-//TODO add a basic factory when it's ready		
 		private static var factory:ITextFactory;
 		public function get textFactory() : ITextFactory {
 			if(!factory)

@@ -23,8 +23,8 @@ package org.apache.flex.textLayout.factory {
 	import org.apache.flex.text.engine.ITextFactory;
 	public interface ITLFFactory {
 		function get textFactory():ITextFactory;
-		function getRect():IRect;
-		function getCompoundGraphic():ICompoundGraphic;
+		function getRect(blendMode:String=""):IRect;
+		function getCompoundGraphic(blendMode:String=""):ICompoundGraphic;
 		function getContainer():IParentIUIBase;
 		
 		// in JS, in order to measure text, TextLines need to be put

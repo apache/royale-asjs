@@ -2824,7 +2824,7 @@ package org.apache.flex.textLayout.container
 //TODO create shape in abstract way
 //AJH: probably should be graphicContainer with selection rectangles drawn at offset positions instead
 //of positioning a rectangle.
-			var selObj:IRect = textFlow.tlfFactory.getRect();
+			var selObj:IRect = textFlow.tlfFactory.getRect(selFormat.pointBlendMode);
 			
 			// Oh, this is ugly. If we are in right aligned text, and there is no padding, and the scrollRect is set, 
 			// then in an empty line (or if the point is at the right edge of the line), the blinking cursor is not
@@ -2936,7 +2936,7 @@ package org.apache.flex.textLayout.container
 				if (endLine >= flowComposer.numLines)
 					endLine = flowComposer.numLines-1;
 				
-				var selObj:ICompoundGraphic = textFlow.tlfFactory.getCompoundGraphic();
+				var selObj:ICompoundGraphic = textFlow.tlfFactory.getCompoundGraphic(selFormat.rangeBlendMode);
 				prevLine = begLine ? flowComposer.getLineAt(begLine-1) : null;
 				var line:ITextFlowLine = flowComposer.getLineAt(begLine); 
 				
