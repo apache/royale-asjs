@@ -501,7 +501,7 @@ package org.apache.flex.textLayout.events
 		private function hitTestKeyEventHandler(evt:KeyboardEvent):void
 		{
 			if (!_blockInteraction)
-				checkCtrlKeyState(evt.ctrlKey);
+				checkCtrlKeyState(evt.specialKey);
 		}
 		
 		/**

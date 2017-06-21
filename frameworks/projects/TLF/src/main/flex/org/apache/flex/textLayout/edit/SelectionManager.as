@@ -2415,14 +2415,14 @@ package org.apache.flex.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
@@ -2433,7 +2433,7 @@ package org.apache.flex.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.endOfParagraph(selState, event.shiftKey);
-				else if (event.ctrlKey)
+				else if (event.specialKey)
 					NavigationUtil.endOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.nextLine(selState, event.shiftKey);
@@ -2449,7 +2449,7 @@ package org.apache.flex.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.startOfParagraph(selState, event.shiftKey);
-				else if (event.ctrlKey)
+				else if (event.specialKey)
 					NavigationUtil.startOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.previousLine(selState, event.shiftKey);
@@ -2458,14 +2458,14 @@ package org.apache.flex.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
@@ -2482,14 +2482,14 @@ package org.apache.flex.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
@@ -2500,7 +2500,7 @@ package org.apache.flex.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.startOfParagraph(selState, event.shiftKey);
-				else if (event.ctrlKey)
+				else if (event.specialKey)
 					NavigationUtil.startOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.previousLine(selState, event.shiftKey);
@@ -2517,7 +2517,7 @@ package org.apache.flex.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.endOfParagraph(selState, event.shiftKey);
-				else if (event.ctrlKey)
+				else if (event.specialKey)
 					NavigationUtil.endOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.nextLine(selState, event.shiftKey);
@@ -2526,14 +2526,14 @@ package org.apache.flex.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.ctrlKey || event.altKey)
+					if (event.specialKey || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
@@ -2546,7 +2546,7 @@ package org.apache.flex.textLayout.edit
 		private function handleHomeKey(event:KeyboardEvent):SelectionState
 		{
 			var selState:SelectionState = getSelectionState();
-			if (event.ctrlKey && !event.altKey)
+			if (event.specialKey && !event.altKey)
 				NavigationUtil.startOfDocument(selState, event.shiftKey);
 			else
 				NavigationUtil.startOfLine(selState, event.shiftKey);
@@ -2556,7 +2556,7 @@ package org.apache.flex.textLayout.edit
 		private function handleEndKey(event:KeyboardEvent):SelectionState
 		{
 			var selState:SelectionState = getSelectionState();
-			if (event.ctrlKey && !event.altKey)
+			if (event.specialKey && !event.altKey)
 				NavigationUtil.endOfDocument(selState, event.shiftKey);
 			else
 				NavigationUtil.endOfLine(selState, event.shiftKey);

@@ -282,7 +282,7 @@ package org.apache.flex.textLayout.edit
 			
 			super.keyDownHandler(event);
 			
-			if (event.ctrlKey)
+			if (event.specialKey)
 			{
 				// The player subsequently sends a text input event (which should be ignored) as listed below:
 				// CTRL/CMD+z: Only on Mac when using a pre-Argo player version
