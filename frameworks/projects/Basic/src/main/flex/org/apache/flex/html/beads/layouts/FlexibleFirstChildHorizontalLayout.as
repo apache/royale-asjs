@@ -132,8 +132,8 @@ package org.apache.flex.html.beads.layouts
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
 			var hostSizedToContent:Boolean = host.isHeightSizedToContent();
-			var hostWidth:Number = contentView.width;
-			var hostHeight:Number = hostSizedToContent ? 0 : contentView.height;
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 
 			var ilc:ILayoutChild;
 			var data:Object;
@@ -148,7 +148,7 @@ package org.apache.flex.html.beads.layouts
 			hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 			var xpos:Number = hostWidth + borderMetrics.left + paddingMetrics.left;
-			var ypos:Number = borderMetrics.top + paddingMetrics.left;
+			var ypos:Number = borderMetrics.top + paddingMetrics.top;
 			var adjustedWidth:Number = 0;
 
 			for(var i:int=(n-1); i >= 0; i--)
@@ -162,15 +162,13 @@ package org.apache.flex.html.beads.layouts
 
 				var childYpos:Number = ypos + margins.top; // default y position
 
-				if (!hostSizedToContent) {
-					var childHeight:Number = child.height;
-					if (ilc != null && !isNaN(ilc.percentHeight)) {
-						childHeight = hostHeight * ilc.percentHeight/100.0;
-						ilc.setHeight(childHeight);
-					}
-					// the following code middle-aligns the child
-					childYpos = hostHeight/2 - childHeight/2;
+				var childHeight:Number = child.height;
+				if (ilc != null && !isNaN(ilc.percentHeight)) {
+					childHeight = hostHeight * ilc.percentHeight/100.0;
+					ilc.setHeight(childHeight);
 				}
+				// the following code middle-aligns the child
+				childYpos = hostHeight/2 - childHeight/2;
 
 				if (ilc) {
 					if (!isNaN(ilc.percentWidth)) {
@@ -211,7 +209,8 @@ package org.apache.flex.html.beads.layouts
 			// set the display on the contentView
 			contentView.element.style["display"] = "flex";
 			contentView.element.style["flex-flow"] = "row";
-			contentView.element.style["align-items"] = "center";
+			if (!contentView.element.style["align-items"])
+				contentView.element.style["align-items"] = "center";
 
 			var n:int = contentView.numElements;
 			if (n == 0) return false;
@@ -220,6 +219,8 @@ package org.apache.flex.html.beads.layouts
 				var child:UIBase = contentView.getElementAt(i) as UIBase;
 				child.element.style["flex-grow"] = (i == 0) ? "1" : "0";
 				child.element.style["flex-shrink"] = "0";
+				if (!isNaN(child.percentWidth))
+				    child.element.style["flex-basis"] = child.percentWidth.toString() + "%";
 			}
 
 			return true;

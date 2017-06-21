@@ -116,8 +116,8 @@ package org.apache.flex.html.beads.layouts
 				var childData:Array = [];
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = hostWidthSizedToContent ? host.width : contentView.width;
-				var hostHeight:Number = hostHeightSizedToContent ? host.height : contentView.height;
+				var hostWidth:Number = host.width;
+				var hostHeight:Number = host.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -128,8 +128,16 @@ package org.apache.flex.html.beads.layouts
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				var extra:Number = paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				if (hostWidthSizedToContent)
+					hostWidth += extra;
+				else
+					hostWidth -= extra;
+				extra = paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				if (hostHeightSizedToContent)
+					hostHeight += extra;
+				else
+					hostHeight -= extra;
 				
 				var remainingHeight:Number = hostHeight;
 
@@ -194,7 +202,7 @@ package org.apache.flex.html.beads.layouts
 					useWidth = (data.width < 0 ? hostWidth : data.width);
 
 					var setHeight:Boolean = true;
-					if (data.height != 0) {
+					if (data.height != 0 && !hostHeightSizedToContent) {
 						if (data.grow > 0 && growCount > 0) {
 							useHeight = remainingHeight / growCount;
 							setHeight = false;
@@ -254,6 +262,8 @@ package org.apache.flex.html.beads.layouts
 
 					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
 					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
+					if (!isNaN(child.percentHeight))
+						child.element.style["flex-basis"] = child.percentHeight.toString() + "%";
 					child.dispatchEvent(new Event("layoutNeeded"));
 				}
 

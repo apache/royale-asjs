@@ -21,26 +21,62 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStyleableObject;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.ILayoutHost;
+	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.flex.html.supportClasses.ICollapsible;
 	import org.apache.flex.utils.StrandUtils;
 	
+	/**
+	 * The AccordionView sets up the components for the Accordion component.
+	 *  
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.8
+	 */
 	public class AccordionView extends ListView
 	{
-		private var _layout:IOneFlexibleChildLayout;
+		/**
+		 * Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function AccordionView()
 		{
 			super();
 		}
 		
+		private var _layout:IOneFlexibleChildLayout;
+		private function get elements():Array
+		{
+			var host:UIBase = _strand as UIBase;
+			var e:Array = [];
+			for (var i:int = 0; i < host.numElements; i++) {
+				e.push(host.getElementAt(i));
+			}
+			return e;
+		}
+		
+		/**
+		 * @private
+		 */
 		override protected function selectionChangeHandler(event:Event):void
 		{
 			super.selectionChangeHandler(event);
-			var renderer:IStyleableObject = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IStyleableObject;
-			layout.flexibleChild = renderer.id;
+			var model:ISelectionModel = StrandUtils.loadBead(ISelectionModel, "iBeadModel", host) as ISelectionModel;
+			layout.flexibleChild = String(model.selectedIndex);
 		}
 		
+		/**
+		 * @private
+		 */
 		public function get layout():IOneFlexibleChildLayout
 		{
 			if (!_layout)
@@ -55,28 +91,16 @@ package org.apache.flex.html.beads
 				if (_layout)
 				{
 					_strand.addBead(_layout);
+					IDocument(_layout).setDocument(elements);
 				}
 			}
 			return _layout;
 		}
 		
-		override protected function performLayout(event:Event):void
-		{
-			if (layout)
-			{
-				if (!layout.flexibleChild)
-				{
-					var model:ISelectionModel = StrandUtils.loadBead(ISelectionModel, "iBeadModel", host) as ISelectionModel;
-					if (model.selectedIndex > -1)
-					{
-						layout.flexibleChild = (dataGroup.getItemRendererForIndex(model.selectedIndex) as IStyleableObject).id;
-					}
-				}
-				super.performLayout(event);
-			}
-		}
-		
 		COMPILE::SWF
+		/**
+		 * @private
+		 */
 		override protected function itemsCreatedHandler(event:Event):void
 		{
 			var n:int = dataGroup.numElements;

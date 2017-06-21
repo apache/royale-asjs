@@ -35,6 +35,7 @@
 
 global {
     IStatesImpl:            ClassReference("org.apache.flex.core.StatesWithTransitionsImpl");
+	IEffectTimer: 			ClassReference("org.apache.flex.utils.EffectTimer");
 }
 
 /*

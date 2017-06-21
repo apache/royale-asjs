@@ -39,7 +39,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class View extends ViewBase
+	public class View extends ViewBase implements IMXMLDocument
 	{		
 		public function View()
 		{

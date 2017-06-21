@@ -71,6 +71,10 @@ limitations under the License.
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 		
+		global {
+    		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");
+		}
+
 		.inner {
 			width: 400px;
 		}

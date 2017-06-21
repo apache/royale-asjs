@@ -96,7 +96,7 @@ limitations under the License.
         removeProduct="productListEventHandler(event)"
         showQuantity="true" />
     
-    <js:Container style="right:0" id="totalContainer">
+    <js:Container style="right:0" id="totalContainer" width="100%" height="60">
         <js:beads>
             <js:VerticalColumnLayout numColumns="2" />
         </js:beads>

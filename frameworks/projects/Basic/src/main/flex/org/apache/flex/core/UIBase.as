@@ -371,6 +371,8 @@ package org.apache.flex.core
             var strpixels:String = positioner.style.width as String;
             if (strpixels !== null && strpixels.indexOf('%') !== -1)
                 pixels = NaN;
+            else if (strpixels === "")
+            	pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
             if (isNaN(pixels)) {
@@ -463,6 +465,8 @@ package org.apache.flex.core
             var strpixels:String = positioner.style.height as String;
             if (strpixels !== null && strpixels.indexOf('%') !== -1)
                 pixels = NaN;
+            else if (strpixels === "")
+            	pixels = NaN;
             else
                 pixels = parseFloat(strpixels);
             if (isNaN(pixels)) {
@@ -779,6 +783,7 @@ package org.apache.flex.core
 				displayStyleForLayout = value;
 		}
         
+        [Bindable("visibleChanged")]
         COMPILE::JS
         public function get visible():Boolean
         {
@@ -959,6 +964,11 @@ package org.apache.flex.core
                     _style.top = _y;
                 if (!isNaN(_x))
                     _style.left = _x;
+				COMPILE::JS
+				{
+					if (parent)
+						ValuesManager.valuesImpl.applyStyles(this, _style);
+				}
                 dispatchEvent(new Event("stylesChanged"));
             }
         }
@@ -1292,6 +1302,8 @@ package org.apache.flex.core
 			
             COMPILE::JS
             {
+				if (!_className && typeNames)
+					setClassName(typeNames);
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
             }

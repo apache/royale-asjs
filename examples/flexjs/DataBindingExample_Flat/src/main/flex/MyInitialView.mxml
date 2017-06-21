@@ -72,6 +72,10 @@ limitations under the License.
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/flexjs/basic";
 		
+		global {
+    		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");
+		}
+		
 		.output {
 			font-size: 20px;
 		}
@@ -103,7 +107,7 @@ limitations under the License.
     <js:beads>
         <js:ViewDataBinding />
     </js:beads>
-    <js:Container x="0" y="0" className="topContainer" >
+    <js:Container x="0" y="0" className="topContainer" width="400" >
         <js:beads>
             <js:VerticalLayout />
         </js:beads>
@@ -112,7 +116,7 @@ limitations under the License.
             <js:beads>
                 <js:HorizontalLayout />
             </js:beads>
-            <js:Container className="leftSide">
+            <js:Container className="leftSide" width="200">
                 <js:beads>
                     <js:VerticalLayout />
                 </js:beads>
@@ -122,7 +126,7 @@ limitations under the License.
                 <js:Label id="field" text="{fieldText}"/>
                 <js:Label className="output" height="24" text="{MyModel(applicationModel).responseText}" />
             </js:Container>
-            <js:Container className="rightSide">
+            <js:Container className="rightSide" width="200">
                 <js:beads>
                     <js:VerticalLayout />
                 </js:beads>

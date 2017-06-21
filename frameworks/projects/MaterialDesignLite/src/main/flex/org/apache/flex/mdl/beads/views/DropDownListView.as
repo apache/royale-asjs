@@ -69,7 +69,7 @@ package org.apache.flex.mdl.beads.views
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            
+
             var dropDownList:DropDownList = (value as DropDownList);
 
             _dropDown = new Menu();
@@ -77,9 +77,10 @@ package org.apache.flex.mdl.beads.views
 
             COMPILE::JS
             {
+                _dropDown.element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
                 setIdForDisplayList();
             }
-            
+
             _labelDisplay = new Div();
 
             if (!dropDownList.icon)
@@ -97,16 +98,16 @@ package org.apache.flex.mdl.beads.views
             dropDownList.addElement(_dropDown);
         }
 
-        override protected function handleInitComplete(event:org.apache.flex.events.Event):void
+        override protected function handleInitComplete(event:Event):void
         {
             super.handleInitComplete(event);
 
             COMPILE::JS
             {
                 host.element.classList.add("DropDownList");
+
+                setWidthForDropDownListComponents();
             }
-            _dropDown.width = isNaN(host.width) ? 100 : host.width - 1;
-            _labelDisplay.width = isNaN(host.width) ? 100 : host.width - 25;
         }
 
         COMPILE::JS
@@ -114,10 +115,35 @@ package org.apache.flex.mdl.beads.views
         {
             if (!host.element.id)
             {
-               host.element.id = "dropDownList" + Math.random();
+                host.element.id = "dropDownList" + Math.random();
             }
 
             _dropDown.dataMdlFor = host.element.id;
+        }
+
+        COMPILE::JS
+        private function setWidthForDropDownListComponents():void
+        {
+            if (!isNaN(host.width))
+            {
+                _dropDown.width = host.width - 1;
+                _labelDisplay.width = host.width - 25;
+            }
+            else
+            {
+                _labelDisplay.width = 30;
+            }
+        }
+
+        COMPILE::JS
+        private function onElementMdlComponentUpgraded(event:Event):void
+        {
+            if (!event.currentTarget) return;
+            if (_dropDown)
+            {
+                _dropDown.element.removeEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
+                _dropDown.element.style.minWidth = "40px";
+            }
         }
     }
 }

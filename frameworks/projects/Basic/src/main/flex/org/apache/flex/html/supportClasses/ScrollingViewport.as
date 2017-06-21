@@ -188,11 +188,13 @@ package org.apache.flex.html.supportClasses
          */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
+			var host:UIBase = UIBase(_strand);
+			
 			var hadV:Boolean = _verticalScroller != null && _verticalScroller.visible;
 			var hadH:Boolean = _horizontalScroller != null && _horizontalScroller.visible;
 			
-			var hostWidth:Number = UIBase(_strand).width;
-			var hostHeight:Number = UIBase(_strand).height;
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 			
 			var borderMetrics:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
 			
@@ -202,6 +204,14 @@ package org.apache.flex.html.supportClasses
 			var needV:Boolean = contentSize.height > viewportHeight;
 			var needH:Boolean = contentSize.width > viewportWidth;
 			
+			// if sized to content, the container should stretch to fit, making the original
+			// viewport dimensions obsolete and scrollbars unnecessary.
+			// This might not work for the flexible child.
+			if (host.isWidthSizedToContent())
+				needH = false;
+			if (host.isHeightSizedToContent())
+				needV = false;
+
 			if (needV)
 			{
 				if (_verticalScroller == null) {

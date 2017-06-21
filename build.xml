@@ -460,7 +460,6 @@
         <!--
         <ant dir="${basedir}/ide/flashbuilder" target="clean" />
          -->
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="examples-clean">
@@ -479,6 +478,8 @@
     </target>
 
     <target name="checkintests-clean" depends="clean-dependencychecker">
+        <delete file="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf" failonerror="false"/>
+        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="player-clean">
@@ -578,7 +579,9 @@
         
     <target name="stage-source-no-scripts" depends="check-flex-home" >
         <antcall target="clean-temp"/>
-        
+        <sleep seconds="3" />
+        <mkdir dir="${basedir}/temp"/>
+       
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}">
                 <include name="build.xml"/>
@@ -661,7 +664,9 @@
                 <exclude name="**/swfobject.js"/>
             </fileset>
         </copy>
-        
+
+        <antcall target="copy-maven-archetypes"/>
+        <antcall target="copy-maven-distribution"/>
         <!-- 
              Source files have Windows line endings.  Most UNIX editors can handle
              either type of line endings but the converse is often not true.             
@@ -763,6 +768,25 @@
         <copy todir="${basedir}/temp" file="${basedir}/nightly.properties" />
     </target>
 
+    <target name="copy-maven-distribution" description="copying maven distribution folder for binary-package">
+        <echo message="Copying Maven distribution folder" />
+        <copy todir="${basedir}/temp/distribution">
+           <fileset dir="${basedir}/distribution">
+                <exclude name="**/target/**"/>
+           </fileset>
+        </copy>
+    </target>
+
+    <target name="copy-maven-archetypes" description="copying maven archetypes folder for binary-package">
+        <echo message="Copying Maven archetypes folder" />
+        <copy todir="${basedir}/temp/archetypes">
+            <fileset dir="${basedir}/archetypes">
+                <exclude name="**/target/**"/>
+                <exclude name="**/*.iml"/>
+            </fileset>
+        </copy>
+    </target>
+
     <target name="binary-package"
         description="Package binary files in zip and tar-gzip file.">
 
@@ -837,6 +861,8 @@
             </fileset>
         </copy>
 
+		<antcall target="copy-maven-distribution"/>
+        <antcall target="copy-maven-archetypes"/>
         <!-- swfobject templates except for downloaded files
         <copy todir="${basedir}/temp/templates/swfobject">
             <fileset dir="${basedir}/templates/swfobject">
@@ -1153,7 +1179,7 @@
     -->
 
     <!--<target name="checkintests"  description="Run these tests before every checkin" />-->
-    <target name="checkintests" depends="basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
+    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
     <!--<target name="checkintests" depends="dependencychecker-framework,basictests-mustella,checkintests-mobile" description="Run these tests before every checkin"/-->
     
     <!--
@@ -1171,6 +1197,7 @@
     <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
     
     <target name="basictests-run-js" >
+        <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
@@ -1180,6 +1207,7 @@
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
 		    <!--<arg value="showSteps=true" />-->
+		    <arg value="${profile_arg}" />
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
@@ -1403,11 +1431,11 @@
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <swf-library-path dir="${FLEX_SDK_HOME}" append="true">
+            <library-path dir="${FLEX_SDK_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
                 <include name="frameworks/libs/framework.swc"/>
                 <include name="frameworks/locale/en_US/framework_rb.swc"/>
-            </swf-library-path>
+            </library-path>
             <js-external-library-path dir="${basedir}">
                 <include name="js/libs/js.swc"/>
             </js-external-library-path>
@@ -1880,12 +1908,13 @@
         <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
     </target>
 
-    <target name="compile" depends="check-flex-home,check-falcon-home,load-task" description="compile for SWF">
+    <target name="compile" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
             file="${file}">
             <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
     </target>
     

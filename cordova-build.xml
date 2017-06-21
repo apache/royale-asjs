@@ -40,7 +40,7 @@
 	     
 	-->
 	
-	<target name="main" depends="find.cordova.mac,create, copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
+	<target name="main" depends="find.cordova.mac,create,copyfiles" description="Creates the Cordova app if needed, compiles the FlexJS app, copies the results to Cordova app">
 	</target>
 	
 	<!-- Set up properties and conditions -->
@@ -147,7 +147,7 @@
     	<available file="${android.platform}" type="dir" property="platform.loaded" />
     </target>
     
-    <target name="load-platform.android" depends="check-platform.android" unless="platform.loaded">
+    <target name="load-platform.android" depends="find.cordova.mac,check-platform.android" unless="platform.loaded">
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
             <env key="PATH" path="${app.path}:${cordova.path}"/>
 			<arg value="platform" />
@@ -165,7 +165,7 @@
     	<available file="${ios.platform}" type="dir" property="platform.loaded" />
     </target>
     
-    <target name="load-platform.ios" depends="check-platform.ios" unless="platform.loaded">
+    <target name="load-platform.ios" depends="find.cordova.mac,check-platform.ios" unless="platform.loaded">
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
             <env key="PATH" path="${app.path}:${cordova.path}"/>
 			<arg value="platform" />

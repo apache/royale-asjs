@@ -319,5 +319,20 @@ under the License.
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-xml.xml</destName>
     </file>
+    <file>
+      <source>../frameworks/projects/Express/src/main/resources/express-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>express-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>fa-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mdl-manifest.xml</destName>
+    </file>
   </files>
 </component>

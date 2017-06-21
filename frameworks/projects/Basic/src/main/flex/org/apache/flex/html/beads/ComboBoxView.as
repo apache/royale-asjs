@@ -118,7 +118,7 @@ package org.apache.flex.html.beads
 			input.className = "ComboBoxTextInput";			
 			
 			button = new TextButton();
-			button.className = "ComboBoxButton";
+			button.className = "opt_org-apache-flex-html-ComboBox_Button";
 			button.text = '\u25BC';
 			
 			if (isNaN(host.width)) input.width = 100;

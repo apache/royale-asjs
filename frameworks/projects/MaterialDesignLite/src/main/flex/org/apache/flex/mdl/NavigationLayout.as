@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+	import org.apache.flex.core.IApplicationView;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Group;
 
     COMPILE::JS
@@ -35,7 +37,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class NavigationLayout extends Group
+	public class NavigationLayout extends Group implements IApplicationView
 	{
 		/**
 		 *  constructor.
@@ -52,6 +54,34 @@ package org.apache.flex.mdl
 			className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
 
+		private var _applicationModel:Object;
+
+		[Bindable("modelChanged")]
+
+        /**
+         *  A reference to the Application's model.  Usually,
+         *  a view is displaying the main model for an
+         *  application.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public function get applicationModel():Object
+		{
+			return _applicationModel;
+		}
+
+        /**
+         *  @private
+         */
+        public function set applicationModel(value:Object):void
+        {
+            _applicationModel = value;
+            dispatchEvent(new Event("modelChanged"));
+        }
+		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */

@@ -122,7 +122,7 @@ limitations under the License.
 	</fx:Metadata>
 	
 	<js:beads>
-		<js:VerticalLayout />
+		<js:VerticalFlexLayout />
 	</js:beads>
 	
 	<!-- 
@@ -146,8 +146,7 @@ limitations under the License.
 		<js:TextButton id="removeButton" text="Remove" width="80" click="removeSymbol()" className="InputChild" />
 	</js:Container>
 	
-	<js:Container height="45%" width="100%">
-		<js:DataGrid id="assetGrid" height="100%" width="100%" rowHeight="25" change="gridSelected()" className="LaunchGrid">
+		<js:DataGrid id="assetGrid" style="flex-grow:'45'" width="100%" rowHeight="25" change="gridSelected()" className="LaunchGrid">
 			<js:beads>
 				<js:DataGridPercentageView />
 				<js:SimpleBinding
@@ -165,11 +164,10 @@ limitations under the License.
 				<js:DataGridColumn columnWidth="24" label="Total $" dataField="shares" itemRenderer="renderers.SharesTotalRenderer" />
 			</js:columns>
 		</js:DataGrid>
-	</js:Container>
 	
-	<js:Spacer height="3%" />
+	<js:Spacer style="flex-grow:'3'" />
 		
-	<js:BarChart id="barChart" width="100%" height="40%" className="AllCharts">
+	<js:BarChart id="barChart" width="100%" style="flex-grow:'45'" className="AllCharts">
 		<js:model>
 			<js:ChartArrayListSelectionModel />
 		</js:model>

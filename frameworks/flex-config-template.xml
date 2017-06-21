@@ -69,9 +69,9 @@
 
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
-      <swf-external-library-path>
+      <external-library-path>
           <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}/playerglobal.swc</path-element>
-      </swf-external-library-path>
+      </external-library-path>
 
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
@@ -92,10 +92,10 @@
       -->
 
       <!-- List of SWC files or directories that contain SWC files. -->
-      <swf-library-path>
+      <library-path>
          <path-element>libs</path-element>
          <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
-      </swf-library-path>
+      </library-path>
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <js-library-path>

@@ -32,16 +32,16 @@
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
-        <mkdir dir="${basedir}/bin/js-debug/assets" />
-        <copy todir="${basedir}/bin/js-debug/assets" >
-            <fileset dir="${basedir}/src/main/resources/assets">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+        <mkdir dir="${basedir}/bin/js-debug/images" />
+        <copy todir="${basedir}/bin/js-debug/images" >
+            <fileset dir="${basedir}/src/main/resources/images">
                 <include name="**" />
             </fileset>
         </copy>
-        <mkdir dir="${basedir}/bin/js-release/assets" />
-        <copy todir="${basedir}/bin/js-release/assets" >
-            <fileset dir="${basedir}/src/main/resources/assets">
+        <mkdir dir="${basedir}/bin/js-release/images" />
+        <copy todir="${basedir}/bin/js-release/images" >
+            <fileset dir="${basedir}/src/main/resources/images">
                 <include name="**" />
             </fileset>
         </copy>
@@ -58,6 +58,13 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-    
-    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="View example."/>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+
 </project>

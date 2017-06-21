@@ -30,14 +30,33 @@ limitations under the License.
 			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalLayout");
 			IDataProviderItemRendererMapper: ClassReference("simple.IRFactoryForArrayData");
 			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");		
+			IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");			
 			
 			overflow: auto;
 			border: 1px solid #CCCCCC;
 		}
+		
+		js|StringItemRenderer {
+			height: 30px;
+		}
 	</fx:Style>
+
+	<js:Label x="20" y="20" text="A FlexJS List" />
 	
-	<gen:GenericList x="20" y="20" width="400" height="300" className="GenericList">
+	<js:List x="20" y="40" width="400" height="300">
+		<js:beads>
+			<js:ConstantBinding
+				sourceID="applicationModel"
+				sourcePropertyName="productNames"
+				destinationPropertyName="dataProvider" />
+		</js:beads>
+	</js:List>
+
+	
+	<js:Label x="500" y="20" text="A local list using DataContainer" />
+		
+	<gen:GenericList x="500" y="40" width="400" height="300" className="GenericList">
 		<gen:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"

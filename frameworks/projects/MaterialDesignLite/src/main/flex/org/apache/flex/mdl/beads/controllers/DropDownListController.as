@@ -58,10 +58,10 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
          */
-		private var _model:ISelectionModel;
-        private var _dropDownListView:DropDownListView;
+		protected var model:ISelectionModel;
+        protected var dropDownListView:DropDownListView;
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -75,34 +75,35 @@ package org.apache.flex.mdl.beads.controllers
 		{
 			_strand = value;
 
-            _model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            _dropDownListView = value.getBeadByType(DropDownListView) as DropDownListView;
+            model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            dropDownListView = value.getBeadByType(DropDownListView) as DropDownListView;
 
-            _dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
+            dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
 
-			setLabelDipslayValue(_model.selectedItem);
+			setLabelDisplayValue();
 		}
 
         private function onDisplayItemClick(event:MouseEvent):void
         {
 			var eventTarget:Object = event.target;
 			
-			_model.selectedIndex = eventTarget.index;
-			_model.selectedItem = eventTarget.data;
+			model.selectedIndex = eventTarget.index;
+			model.selectedItem = eventTarget.data;
 
-            setLabelDipslayValue(eventTarget.data);
+            setLabelDisplayValue();
 
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
 
-		private function setLabelDipslayValue(data:Object):void
-		{
-			if (_model.selectedIndex > -1 && data)
-			{
-                _dropDownListView.labelDisplay.text = !_model.labelField ?
-                        data as String : 
-						data[_model.labelField];
-			}
-		}
+        private function setLabelDisplayValue():void
+        {
+            if (model.selectedIndex > -1 && model.dataProvider != null)
+            {
+                var selectedItem:Object = model.dataProvider[model.selectedIndex];
+                dropDownListView.labelDisplay.text = !model.labelField ?
+                        selectedItem as String :
+						selectedItem[model.labelField];
+            }
+        }
     }
 }

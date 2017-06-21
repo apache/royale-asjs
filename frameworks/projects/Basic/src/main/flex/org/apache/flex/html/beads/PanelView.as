@@ -45,7 +45,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.PanelLayoutProxy;
 
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStyles;
+		import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	}
 
 	/**
@@ -135,27 +135,32 @@ package org.apache.flex.html.beads
 
             if (!_titleBar) {
                 _titleBar = new TitleBar();
-				_titleBar.id = "panelTitleBar";
-
-				COMPILE::SWF {
-					_titleBar.percentWidth = 100;
-
-					if (_titleBar.style == null) {
-						_titleBar.style = new SimpleCSSStyles();
-					}
-					_titleBar.style.flexGrow = 0;
-					_titleBar.style.order = 1;
-				}
-
-				COMPILE::JS {
-					_titleBar.element.style["flex-grow"] = "0";
-					_titleBar.element.style["order"] = "1";
-				}
 			}
+			
+			_titleBar.id = "panelTitleBar";
+
+			COMPILE::SWF {
+				_titleBar.percentWidth = 100;
+
+				if (_titleBar.style == null) {
+					_titleBar.style = new SimpleCSSStylesWithFlex();
+				}
+				_titleBar.style.flexGrow = 0;
+				_titleBar.style.order = 1;
+			}
+
+			COMPILE::JS {
+				_titleBar.element.style["flex-grow"] = "0";
+				_titleBar.element.style["order"] = "1";
+			}
+
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will
 			// be picked up automatically by the TitleBar.
 			titleBar.model = host.model;
+			if (titleBar.parent == null) {
+				(_strand as Panel).$addElement(titleBar);
+			}
 
 			if (!_contentArea) {
 				_contentArea = new Container();
@@ -166,7 +171,7 @@ package org.apache.flex.html.beads
 					_contentArea.percentWidth = 100;
 
 					if (_contentArea.style == null) {
-						_contentArea.style = new SimpleCSSStyles();
+						_contentArea.style = new SimpleCSSStylesWithFlex();
 					}
 					_contentArea.style.flexGrow = 1;
 					_contentArea.style.order = 2;
@@ -207,6 +212,10 @@ package org.apache.flex.html.beads
 				_contentArea.addBead(viewportBead);
 			}
 
+			if (contentArea.parent == null) {
+				(_strand as Panel).$addElement(contentArea as IChild);
+			}
+
 			// Now give the Panel its own layout
 			layoutBead = new VerticalFlexLayout();
 			value.addBead(layoutBead);
@@ -235,13 +244,6 @@ package org.apache.flex.html.beads
 
 		override protected function completeSetup():void
 		{
-			if (titleBar.parent == null) {
-				(_strand as Panel).$addElement(titleBar);
-			}
-			if (contentArea.parent == null) {
-				(_strand as Panel).$addElement(contentArea as IChild);
-			}
-
 			super.completeSetup();
 			
 			performLayout(null);
@@ -262,5 +264,6 @@ package org.apache.flex.html.beads
 			_contentArea.dispatchEvent(new Event("layoutNeeded"));
 			performLayout(event);
 		}
+		
 	}
 }

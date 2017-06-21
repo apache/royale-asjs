@@ -108,7 +108,7 @@ package org.apache.flex.html.beads
 			_textInput.height = 18;
 			
 			_button = new TextButton();
-			_button.text = "M";
+			_button.text = "⬇︎";
 			UIBase(_strand).addElement(_button);
 			
 			COMPILE::SWF {
@@ -123,6 +123,7 @@ package org.apache.flex.html.beads
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);
+			_textInput.height = _button.height;
 		}
 		
 		private function handleFormatChanged(event:Event):void

@@ -153,6 +153,11 @@ package org.apache.flex.core
 					}
 				}
 			}
+			COMPILE::JS {
+				if (sawInitComplete) {
+					performLayout();
+				}
+			}
 		}
 		
 		/**
@@ -166,6 +171,42 @@ package org.apache.flex.core
 		 */
 		protected function childResizeHandler(event:Event):void
 		{
+			var viewBead:ILayoutHost;
+			
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "widthChanged" && 
+				!(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "heightChanged" && 
+				!(host.isHeightSizedToContent() || !isNaN(host.explicitHeight)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
+			// don't layout in response to child size changes if sized by parent
+			// or explicitly sized
+			if (event.type == "sizeChanged" && 
+				!(host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+				!(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+			{
+				// but do call this to update scrolling viewports
+				viewBead = (host as ILayoutParent).getLayoutHost();
+				viewBead.beforeLayout();
+				viewBead.afterLayout();
+				return;
+			}
 			performLayout();
 		}
 		
@@ -298,6 +339,9 @@ package org.apache.flex.core
 			if (isLayoutRunning) return;
 			
 			isLayoutRunning = true;
+
+			var oldWidth:Number = host.width;
+			var oldHeight:Number = host.height;
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
@@ -310,6 +354,17 @@ package org.apache.flex.core
 			isLayoutRunning = false;
 			
 			IEventDispatcher(host).dispatchEvent(new Event("layoutComplete"));
+			
+			// check sizes to see if layout changed the size or not
+			// and send an event to re-layout parent of host
+			if (host.width != oldWidth ||
+			    host.height != oldHeight)
+			{
+				isLayoutRunning = true;
+				host.dispatchEvent(new Event("sizeChanged"));
+				isLayoutRunning = false;
+			}
+
 		}
 
         /**

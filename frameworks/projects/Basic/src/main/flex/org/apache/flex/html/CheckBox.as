@@ -185,6 +185,7 @@ package org.apache.flex.html
             _label.childNodes.item(1).nodeValue = value;
         }
 
+        [Bindable("change")]
         public function get selected():Boolean
         {
             return (_icon.element as HTMLInputElement).checked;
