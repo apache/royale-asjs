@@ -52,7 +52,7 @@ package org.apache.flex.events.utils
 			var key:String = KeyConverter.convertCharCode(oldEvent.charCode);
 			var type:String = oldEvent.type == flash.events.KeyboardEvent.KEY_DOWN ? org.apache.flex.events.KeyboardEvent.KEY_DOWN : 
 				org.apache.flex.events.KeyboardEvent.KEY_UP;
-			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code);
+			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
 			newEvent.altKey = oldEvent.altKey;
 //			newEvent.ctrlKey = oldEvent.controlKey; // TODO
 			newEvent.specialKey = oldEvent.ctrlKey;
@@ -77,7 +77,7 @@ package org.apache.flex.events.utils
 			var code:String = oldEvent.code;
 			if (code == null)
 				code = KeyConverter.convertKeyCode(oldEvent['keyCode']);
-			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code);
+			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
 			newEvent.altKey = oldEvent.altKey;
 			newEvent.ctrlKey = oldEvent.ctrlKey;
 			newEvent.metaKey = oldEvent.metaKey;
