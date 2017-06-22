@@ -207,12 +207,7 @@ package org.apache.flex.collections
 		 */
 		public function getItemIndex(item:Object):int
 		{
-			for (var index:int=0; index < _source.length; index++) {
-				if (item == _source[index]) {
-					return index;
-				}
-			}
-			return -1;
+			return _source.indexOf(item);
 		}
 
 		/**
