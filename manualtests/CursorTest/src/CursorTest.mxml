@@ -36,6 +36,21 @@
                 
         ]]>
     </fx:Script>
+    <fx:Style>
+        @namespace models "models.*";
+        @namespace controllers "controllers.*";
+        @namespace js "library://ns.apache.org/flexjs/basic";
+
+        @media -flex-flash
+        {
+
+        global
+        {
+            copy: ClassReference("org.apache.flex.css2.Copy");
+        }
+        }
+
+    </fx:Style>
     <js:beads>
         <js:ApplicationDataBinding />
     </js:beads>
