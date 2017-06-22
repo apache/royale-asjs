@@ -18,14 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
-    import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.Div;
-    import org.apache.flex.html.beads.GroupView;
+    import org.apache.flex.html.beads.DataContainerView;
     import org.apache.flex.mdl.DropDownList;
-    import org.apache.flex.mdl.Menu;
-    import org.apache.flex.mdl.materialIcons.MaterialIcon;
-    import org.apache.flex.mdl.materialIcons.MaterialIconType;
     import org.apache.flex.events.Event;
 
     /**
@@ -39,28 +34,20 @@ package org.apache.flex.mdl.beads.views
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class DropDownListView extends GroupView
+    public class DropDownListView extends DataContainerView
     {
         public function DropDownListView()
         {
             super();
         }
 
-        protected var _dropDown:Menu;
-        protected var _labelDisplay:Div;
-
-        public function get dropDown():Menu
-        {
-            return _dropDown;
-        }
-
-        public function get labelDisplay():Div
-        {
-            return _labelDisplay;
-        }
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *
+         *  @flexjsignorecoercion HTMLLabelElement
+         *  @flexjsignorecoercion HTMLSelectElement
+         *  @flexjsignorecoercion HTMLOptionElement
+         *     
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -70,32 +57,26 @@ package org.apache.flex.mdl.beads.views
         {
             super.strand = value;
 
-            var dropDownList:DropDownList = (value as DropDownList);
-
-            _dropDown = new Menu();
-            _dropDown.bottom = true;
-
             COMPILE::JS
             {
-                _dropDown.element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
-                setIdForDisplayList();
+                var dropDownList:DropDownList = (value as DropDownList);
+
+                dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
+                dropDownList.labelDisplay.classList.add("mdl-textfield__label");
+
+                dropDownList.dropDown = document.createElement('select') as HTMLSelectElement;
+                dropDownList.dropDown.classList.add("mdl-textfield__input");
+
+                var emptyOption:HTMLOptionElement = document.createElement('option') as HTMLOptionElement;
+                emptyOption.style.display = "none";
+
+                dropDownList.dropDown.appendChild(emptyOption);
+                
+                setNameForDropDownList();
+
+                dropDownList.element.appendChild(dropDownList.labelDisplay);
+                dropDownList.element.appendChild(dropDownList.dropDown);
             }
-
-            _labelDisplay = new Div();
-
-            if (!dropDownList.icon)
-            {
-                var dropDownIcon:MaterialIcon = new MaterialIcon();
-                dropDownIcon.text = MaterialIconType.ARROW_DROP_DOWN;
-                dropDownList.icon = dropDownIcon;
-            }
-
-            var model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            _dropDown.model = model;
-
-            dropDownList.addElement(_labelDisplay);
-            dropDownList.addElement(dropDownList.icon);
-            dropDownList.addElement(_dropDown);
         }
 
         override protected function handleInitComplete(event:Event):void
@@ -105,45 +86,17 @@ package org.apache.flex.mdl.beads.views
             COMPILE::JS
             {
                 host.element.classList.add("DropDownList");
-
-                setWidthForDropDownListComponents();
             }
         }
 
         COMPILE::JS
-        private function setIdForDisplayList():void
+        private function setNameForDropDownList():void
         {
-            if (!host.element.id)
-            {
-                host.element.id = "dropDownList" + Math.random();
-            }
+            var dropDownList:DropDownList = (_strand as DropDownList);
 
-            _dropDown.dataMdlFor = host.element.id;
-        }
-
-        COMPILE::JS
-        private function setWidthForDropDownListComponents():void
-        {
-            if (!isNaN(host.width))
-            {
-                _dropDown.width = host.width - 1;
-                _labelDisplay.width = host.width - 25;
-            }
-            else
-            {
-                _labelDisplay.width = 30;
-            }
-        }
-
-        COMPILE::JS
-        private function onElementMdlComponentUpgraded(event:Event):void
-        {
-            if (!event.currentTarget) return;
-            if (_dropDown)
-            {
-                _dropDown.element.removeEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
-                _dropDown.element.style.minWidth = "40px";
-            }
+            var name:String = "dropDownList" + Math.random();
+            dropDownList.labelDisplay.htmlFor = name;
+            dropDownList.dropDown.name = name;
         }
     }
 }

@@ -29,8 +29,7 @@ limitations under the License.
         <models:MenuModel id="menuModel"/>
     </mdl:model>
     <mdl:Grid width="100">
-      <mdl:DropDownList id="dropDownList" labelField="label" width="150"
-                        selectedIndex="0" change="onDplChange(event)">
+      <mdl:DropDownList id="dropDownList" labelField="label" width="150" change="onDplChange(event)">
           <mdl:beads>
               <js:ConstantBinding
                       sourceID="menuModel"

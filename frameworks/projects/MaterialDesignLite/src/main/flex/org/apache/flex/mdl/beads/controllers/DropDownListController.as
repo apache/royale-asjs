@@ -22,15 +22,14 @@ package org.apache.flex.mdl.beads.controllers
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.events.IEventDispatcher;
+    import org.apache.flex.mdl.DropDownList;
     import org.apache.flex.mdl.beads.views.DropDownListView;
     import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
 
 	/**
 	 *  The DropDownListController class bead handles mouse events on the
-     *  drop down list (org.apache.flex.mdl.Menu) component parts and
-     *  dispatches change event on behalf of the DropDownList
-	 *  
+     *  drop down list component parts and dispatches change event on behalf of the DropDownList
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -75,35 +74,25 @@ package org.apache.flex.mdl.beads.controllers
 		{
 			_strand = value;
 
+            var dropDownList:DropDownList = (value as DropDownList);
+
             model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            dropDownListView = value.getBeadByType(DropDownListView) as DropDownListView;
 
-            dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
-
-			setLabelDisplayValue();
+			COMPILE::JS
+            {
+                dropDownList.dropDown.addEventListener("onchange", onDisplayItemClick, false);
+            }
 		}
 
-        private function onDisplayItemClick(event:MouseEvent):void
+		COMPILE::JS
+        private function onDisplayItemClick(event:Event):void
         {
 			var eventTarget:Object = event.target;
 			
-			model.selectedIndex = eventTarget.index;
-			model.selectedItem = eventTarget.data;
-
-            setLabelDisplayValue();
+			model.selectedIndex = eventTarget.selectedIndex;
+			model.selectedItem = model.dataProvider[model.selectedIndex];
 
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
-        }
-
-        private function setLabelDisplayValue():void
-        {
-            if (model.selectedIndex > -1 && model.dataProvider != null)
-            {
-                var selectedItem:Object = model.dataProvider[model.selectedIndex];
-                dropDownListView.labelDisplay.text = !model.labelField ?
-                        selectedItem as String :
-						selectedItem[model.labelField];
-            }
         }
     }
 }
