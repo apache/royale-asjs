@@ -100,6 +100,8 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
+        <antcall target="Text"/>
+        <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
 		<antcall target="FontAwesome"/>
 		<antcall target="Express"/>
@@ -153,6 +155,8 @@
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
+        <ant dir="${basedir}/projects/Text" target="clean"/>
+        <ant dir="${basedir}/projects/TLF" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
         <!-- delete the FlashBuilder executable directories -->
@@ -270,6 +274,12 @@
     </target>
     <target name="XML" description="Clean build of XML.swc">
         <ant dir="${basedir}/projects/XML"/>
+    </target>
+    <target name="Text" description="Clean build of Text.swc">
+        <ant dir="${basedir}/projects/Text"/>
+    </target>
+    <target name="TLF" description="Clean build of TLF.swc">
+        <ant dir="${basedir}/projects/TLF"/>
     </target>
 
 	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
