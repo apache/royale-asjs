@@ -69,12 +69,15 @@ package org.apache.flex.utils
          */
         public static function toNumber(str:String, reference:Number = 0):Number
         {
+            //str must be non-null
+            if(str === "")
+                return NaN;
             var c:int = str.indexOf("px");
-            if (c !== -1)
+            if (c > -1)
                 return Number(str.substr(0, c));
             
             c = str.indexOf("%");
-            if (c !== -1)
+            if (c > -1)
                 return Number(str.substr(0, c)) * reference / 100;
             
             return Number(str);
