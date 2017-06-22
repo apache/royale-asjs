@@ -44,7 +44,8 @@
 		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
-        
+        <fxg-base-class>flash.display.Sprite</fxg-base-class>
+
         <define>
             <name>COMPILE::SWF</name>
             <value>true</value>
