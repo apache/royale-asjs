@@ -190,7 +190,8 @@ package org.apache.flex.collections
 			
 			if (hdata.hasChildren(node)) {
 				var children:Array = hdata.getChildren(node) as Array;
-				for (var i:int=0; i < children.length; i++) {
+				var len:int = children.length;
+				for (var i:int=0; i < len; i++) {
 					var newDepth:int = godeep(seeking, children[i], depth+1)
 					if (newDepth > 0) return newDepth;
 				}
