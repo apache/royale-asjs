@@ -19,14 +19,18 @@
 package org.apache.flex.css2
 {
     import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.ValuesManager;
     import org.apache.flex.events.MouseEvent;
     
     COMPILE::SWF
     {
         import flash.display.DisplayObject;
+        import flash.display.BitmapData;
+        import flash.display.Sprite;
         import flash.geom.Point;
         import flash.ui.Mouse;
         import flash.ui.MouseCursor;
+        import flash.ui.MouseCursorData;
     }
     COMPILE::JS
     {
@@ -66,6 +70,12 @@ package org.apache.flex.css2
         public static const TEXT:String = "ibeam";
         COMPILE::JS
         public static const TEXT:String = "text";
+        
+        COMPILE::SWF
+        private static const builtinCursors:Array = [MouseCursor.AUTO, 
+                                                MouseCursor.ARROW,
+                                                MouseCursor.BUTTON,
+                                                MouseCursor.IBEAM];
         
         /**
          *  Constructor.
@@ -117,6 +127,24 @@ package org.apache.flex.css2
                     obj.addBead(cursorData);
                     obj.addEventListener(MouseEvent.MOUSE_OVER, overHandler);
                     obj.addEventListener(MouseEvent.MOUSE_OUT, outHandler);
+                }
+                if (builtinCursors.indexOf(cursor) == -1)
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(obj, cursor) as Class;
+                    if (c)
+                    {
+                        var foo:Object = new c();
+                        var inst:Sprite = new c() as Sprite;
+                        if (inst)
+                        {
+                            var bd:BitmapData = new BitmapData(32, 32, true, 0);
+                            bd.draw(inst);
+                            var mcd:MouseCursorData = new MouseCursorData();
+                            mcd.data = Vector.<BitmapData>([bd]);
+                            Mouse.registerCursor(cursor, mcd);
+                            builtinCursors.push(cursor);
+                        }
+                    }
                 }
                 cursorData.cursor = cursor;
                 
