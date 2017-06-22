@@ -27,6 +27,7 @@ package
  */
 internal class BasicClasses
 {
+    import org.apache.flex.css2.Cursors; Cursors;
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
