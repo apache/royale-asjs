@@ -93,10 +93,8 @@ package org.apache.flex.collections
 		public function ArrayList(initialSource:Array=null)
 		{
 			super();
-			if (initialSource !== null)
-				_source = initialSource;
-			else
-				_source = [];
+			if (initialSource) _source = initialSource;
+			else _source = [];
 		}
 
         private var _id:String;
@@ -119,7 +117,7 @@ package org.apache.flex.collections
          */
 		public function set id(value:String):void
 		{
-			if (_id !== value)
+			if (_id != value)
 			{
 				_id = value;
 				dispatchEvent(new Event("idChanged"));
@@ -159,8 +157,8 @@ package org.apache.flex.collections
 
 		public function set source(value:Array):void
 		{
-			if (_source !== value) {
-				if (value === null)
+			if (_source != value) {
+				if (value == null)
 				{
 					_source = [];
                 }
@@ -209,10 +207,8 @@ package org.apache.flex.collections
 		 */
 		public function getItemIndex(item:Object):int
 		{
-			var length:int = _source.length;
-			
-			for (var index:int=0; index < length; index++) {
-				if (item === _source[index]) {
+			for (var index:int=0; index < _source.length; index++) {
+				if (item == _source[index]) {
 					return index;
 				}
 			}
@@ -248,11 +244,11 @@ package org.apache.flex.collections
 			{
 				source.splice(index, 0, item);
 			}
-			else if (index === spliceUpperBound)
+			else if (index == spliceUpperBound)
 			{
 				source.push(item);
 			}
-			else if (index === 0)
+			else if (index == 0)
 			{
 				source.unshift(item);
 			}
@@ -332,11 +328,11 @@ package org.apache.flex.collections
 			{
 				removed = source.splice(index, 1)[0];
 			}
-			else if (index === spliceUpperBound)
+			else if (index == spliceUpperBound)
 			{
 				removed = source.pop();
 			}
-			else if (index === 0)
+			else if (index == 0)
 			{
 				removed = source.shift();
 			}
