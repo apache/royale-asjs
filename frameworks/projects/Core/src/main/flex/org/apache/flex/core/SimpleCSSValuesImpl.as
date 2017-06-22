@@ -165,7 +165,7 @@ package org.apache.flex.core
         COMPILE::SWF
         public function generateCSSStyleDeclarations(factoryFunctions:Object, arr:Array):void
         {
-			if (factoryFunctions === null || arr === null)
+			if (factoryFunctions == null || arr == null)
 				return;
 			
             var declarationName:String = "";
@@ -180,7 +180,7 @@ package org.apache.flex.core
                 {
                     var selectorName:String = arr[++i];
                     segmentName = selectorName + segmentName;
-                    if (declarationName !== "")
+                    if (declarationName != "")
                         declarationName += " ";
                     declarationName += segmentName;
                     segmentName = "";
@@ -206,14 +206,14 @@ package org.apache.flex.core
                     if (defaultFactory)
                     {
                         mergedStyle = styleManager.getMergedStyleDeclaration(declarationName);
-                        style = new CSSStyleDeclaration(selector, styleManager, mergedStyle === null);
+                        style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
                     }
                     else
                     {
                         style = styleManager.getStyleDeclaration(declarationName);
                         if (!style)
                         {
-                            style = new CSSStyleDeclaration(selector, styleManager, mergedStyle === null);
+                            style = new CSSStyleDeclaration(selector, styleManager, mergedStyle == null);
                             if (factoryName === CSSFactory.Override)
                                 newSelectors.push(style);
                         }
@@ -262,10 +262,10 @@ package org.apache.flex.core
 
         private function isValidStaticMediaQuery(mq:String):Boolean
         {
-            if (mq === null)
+            if (mq == null)
                 return true;
             
-            if (mq === "-flex-flash")
+            if (mq == "-flex-flash")
                 return true;
             
             // TODO: (aharui) other media query
@@ -275,10 +275,10 @@ package org.apache.flex.core
         
         private function fixNames(s:String, mq:String):String
         {
-            if (mq !== null)
+            if (mq != null)
                 s = s.substr(mq.length + 1); // 1 more for the hyphen
             
-			if (s === "")
+			if (s == "")
 				return "*";
 			
             var arr:Array = s.split(" ");
@@ -286,7 +286,7 @@ package org.apache.flex.core
             for (var i:int = 0; i < n; i++)
             {
                 var segmentName:String = arr[i];
-				if (segmentName.charAt(0) === "#" || segmentName.charAt(0) === ".")
+				if (segmentName.charAt(0) == "#" || segmentName.charAt(0) == ".")
 					continue;
 				
                 var c:int = segmentName.lastIndexOf(".");
@@ -321,7 +321,7 @@ package org.apache.flex.core
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
             var c:int = valueName.indexOf("-");
-            while (c !== -1)
+            while (c > -1)
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
@@ -378,7 +378,7 @@ package org.apache.flex.core
                     var classNameList:Array = classNames.split(" ");
                     for each (className in classNameList)
                     {
-                        if (state !== null)
+                        if (state != null)
                         {
                             selectorName = className + ":" + state;
                             o = values["." + selectorName];
@@ -414,9 +414,9 @@ package org.apache.flex.core
                 className = thisObject.FLEXJS_CLASS_INFO.names[0].qName;
             }
             var thisInstance:Object = thisObject;
-			while (className !== "Object")
+			while (className != "Object")
 			{
-				if (state !== null)
+				if (state != null)
 				{
 					selectorName = className + ":" + state;
 					o = values[selectorName];
@@ -515,7 +515,7 @@ package org.apache.flex.core
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
             var c:int = valueName.indexOf("-");
-            while (c !== -1)
+            while (c > -1)
             {
                 valueName = valueName.substr(0, c) +
                     valueName.charAt(c + 1).toUpperCase() +
@@ -566,7 +566,7 @@ package org.apache.flex.core
             COMPILE::JS
             {
                 var i:Function = null;
-                if (typeof(o) === "function")
+                if (typeof(o) == "function")
                     i = o as Function;
             }
             if (i)
@@ -619,26 +619,26 @@ package org.apache.flex.core
 	            }
                 
                 var value:String = pieces[1];
-                if (value === "null")
+                if (value == "null")
                     obj[valueName] = null;
-                else if (value === "true")
+                else if (value == "true")
                     obj[valueName] = true;
-                else if (value === "false")
+                else if (value == "false")
                     obj[valueName] = false;
                 else
                 {
                     var n:Number = Number(value);
                     if (isNaN(n))
                     {
-                        if (value.charAt(0) === "#" || value.indexOf("rgb") === 0)
+                        if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
                         {                            
                             obj[valueName] = CSSUtils.toColor(value);
                         }
                         else
                         {
-                            if (value.charAt(0) === "'")
+                            if (value.charAt(0) == "'")
                                 value = value.substr(1, value.length - 2);
-                            else if (value.charAt(0) === '"')
+                            else if (value.charAt(0) == '"')
                                 value = value.substr(1, value.length - 2);
                             obj[valueName] = value;
                         }
@@ -669,7 +669,7 @@ package org.apache.flex.core
             {
                 var v:* = ruleValues[valueName];
                 var c:int = valueName.indexOf("-");
-                while (c !== -1)
+                while (c > -1)
                 {
                     valueName = valueName.substr(0, c) +
                         valueName.charAt(c + 1).toUpperCase() +
@@ -691,7 +691,7 @@ package org.apache.flex.core
 				for (var p:String in values)
 				{
 					var value:Object = values[p];
-				    if (typeof(value) === 'function') continue;
+				    if (typeof(value) == 'function') continue;
 					cssString += p + ": ";
 					if (typeof(value) == 'number') {
                     	if (colorStyles[p])
@@ -700,7 +700,7 @@ package org.apache.flex.core
                         	value = value.toString() + 'px';
                 	}
                 	else if (p == 'backgroundImage') {
-                    	if (p.indexOf('url') !== 0)
+                    	if (p.indexOf('url') != 0)
                         	value = 'url(' + value + ')';
                 	}
 					cssString += value + ";";
@@ -788,13 +788,13 @@ package org.apache.flex.core
                 var value:* = styles[p];
                 if (value === undefined)
                     continue;
-                if (typeof(value) === 'number') {
+                if (typeof(value) == 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
                     else
                         value = value.toString() + 'px';
                 }
-                else if (p === 'backgroundImage' && p.indexOf('url') !== 0) {
+                else if (p == 'backgroundImage' && p.indexOf('url') != 0) {
                         value = 'url(' + value + ')';
                 }
                 (thisObject.element as HTMLElement).style[p] = value;
