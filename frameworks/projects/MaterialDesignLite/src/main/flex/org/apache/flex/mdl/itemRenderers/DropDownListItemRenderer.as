@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.itemRenderers
 {
+    import org.apache.flex.html.Option;
     import org.apache.flex.html.supportClasses.MXMLItemRenderer;
 
     COMPILE::JS
@@ -49,46 +50,8 @@ package org.apache.flex.mdl.itemRenderers
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
-        
-        private var _text:String = "";
 
-        /**
-         *  The text of the menu item
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
-		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-
-        COMPILE::JS
-        private var textNode:Text;
-
-        COMPILE::JS
-        private var item:HTMLOptionElement;
+        private var item:Option;
 
         /**
          *  Sets the data value and uses the String version of the data for display.
@@ -104,49 +67,37 @@ package org.apache.flex.mdl.itemRenderers
         {
             super.data = value;
 
-            var text:String;
             if (labelField)
             {
-                text = String(value[labelField]);
+                item.text = String(value[labelField]);
             }
             else
             {
-                text = String(value);
+                item.text = String(value);
             }
 
             COMPILE::JS
             {
                 if (dataField)
                 {
-                    item.value = String(value[dataField]);
+                    item.element["value"] = String(value[dataField]);
                 }
                 else
                 {
-                    item.value = String(value);
-                }
-
-                if(textNode != null)
-                {
-                    textNode.nodeValue = text;
+                    item.element["value"] = String(value);
                 }
             }
         }
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @flexjsignorecoercion HTMLOptionElement
-         *
-		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            item = document.createElement('option') as HTMLOptionElement;
-            
-            textNode = document.createTextNode('') as Text;
-            item.appendChild(textNode);
+            item = new Option();
 
-            element = item as WrappedHTMLElement;
+            element = item.element as WrappedHTMLElement;
 
             positioner = element;
             element.flexjs_wrapper = this;

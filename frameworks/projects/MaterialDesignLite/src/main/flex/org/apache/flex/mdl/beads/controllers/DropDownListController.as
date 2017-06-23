@@ -23,7 +23,6 @@ package org.apache.flex.mdl.beads.controllers
     import org.apache.flex.core.IStrand;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.mdl.DropDownList;
-    import org.apache.flex.mdl.beads.views.DropDownListView;
     import org.apache.flex.events.Event;
 
 	/**
@@ -58,8 +57,6 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @productversion FlexJS 0.8
          */
 		protected var model:ISelectionModel;
-        protected var dropDownListView:DropDownListView;
-
 		protected var _strand:IStrand;
 
 		/**
@@ -80,7 +77,7 @@ package org.apache.flex.mdl.beads.controllers
 
 			COMPILE::JS
             {
-                dropDownList.dropDown.addEventListener("onchange", onDisplayItemClick, false);
+                dropDownList.dropDown.element.addEventListener("onchange", onDisplayItemClick, false);
             }
 		}
 

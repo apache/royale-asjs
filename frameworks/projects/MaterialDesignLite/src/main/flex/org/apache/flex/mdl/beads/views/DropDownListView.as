@@ -19,6 +19,8 @@
 package org.apache.flex.mdl.beads.views
 {
     import org.apache.flex.core.IStrand;
+    import org.apache.flex.html.Option;
+    import org.apache.flex.html.Select;
     import org.apache.flex.html.beads.DataContainerView;
     import org.apache.flex.mdl.DropDownList;
     import org.apache.flex.events.Event;
@@ -45,8 +47,6 @@ package org.apache.flex.mdl.beads.views
          *  @copy org.apache.flex.core.IBead#strand
          *
          *  @flexjsignorecoercion HTMLLabelElement
-         *  @flexjsignorecoercion HTMLSelectElement
-         *  @flexjsignorecoercion HTMLOptionElement
          *     
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -64,18 +64,18 @@ package org.apache.flex.mdl.beads.views
                 dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
                 dropDownList.labelDisplay.classList.add("mdl-textfield__label");
 
-                dropDownList.dropDown = document.createElement('select') as HTMLSelectElement;
-                dropDownList.dropDown.classList.add("mdl-textfield__input");
+                dropDownList.dropDown = new Select();
+                dropDownList.dropDown.element.classList.add("mdl-textfield__input");
 
-                var emptyOption:HTMLOptionElement = document.createElement('option') as HTMLOptionElement;
-                emptyOption.style.display = "none";
+                var emptyOption:Option = new Option();
+                emptyOption.element.style.display = "none";
 
-                dropDownList.dropDown.appendChild(emptyOption);
+                dropDownList.dropDown.addElement(emptyOption);
                 
                 setNameForDropDownList();
 
                 dropDownList.element.appendChild(dropDownList.labelDisplay);
-                dropDownList.element.appendChild(dropDownList.dropDown);
+                dropDownList.addElement(dropDownList.dropDown);
             }
         }
 
@@ -96,7 +96,7 @@ package org.apache.flex.mdl.beads.views
 
             var name:String = "dropDownList" + Math.random();
             dropDownList.labelDisplay.htmlFor = name;
-            dropDownList.dropDown.name = name;
+            dropDownList.dropDown.element.name = name;
         }
     }
 }

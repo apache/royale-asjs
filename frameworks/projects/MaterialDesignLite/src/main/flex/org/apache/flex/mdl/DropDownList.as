@@ -20,8 +20,11 @@ package org.apache.flex.mdl
 {
     import org.apache.flex.core.IItemRenderer;
     import org.apache.flex.core.ISelectionModel;
+    import org.apache.flex.core.UIBase;
     import org.apache.flex.events.ItemAddedEvent;
     import org.apache.flex.html.DataContainer;
+    import org.apache.flex.html.Option;
+    import org.apache.flex.html.Select;
 
     COMPILE::JS
     {
@@ -60,28 +63,21 @@ package org.apache.flex.mdl
             super();
         }
 
-        COMPILE::JS
-        protected var _labelDisplay:HTMLLabelElement;
-        COMPILE::JS
-        protected var _dropDown:HTMLSelectElement;
+        protected var _dropDown:Select;
 
+        public function get dropDown():Select
+        {
+            return _dropDown;
+        }
+
+        public function set dropDown(value:Select):void
+        {
+            _dropDown = value;
+        }
+        
         COMPILE::JS
         {
-            /**
-             * @flexjsignorecoercion HTMLSelectElement
-             */
-            public function get dropDown():HTMLSelectElement
-            {
-                return _dropDown;
-            }
-
-            /**
-             * @flexjsignorecoercion HTMLSelectElement
-             */
-            public function set dropDown(value:HTMLSelectElement):void
-            {
-                _dropDown = value;
-            }
+            protected var _labelDisplay:HTMLLabelElement;
 
             /**
              * @flexjsignorecoercion HTMLLabelElement
@@ -140,12 +136,12 @@ package org.apache.flex.mdl
         {
             COMPILE::JS
             {
-                var options:HTMLOptionsCollection = dropDown.options;
-                var optionsCount:int = options.length;
-
+                var optionsCount:int = dropDown.numElements;
+                
                 for (var i:int = 1; i < optionsCount; i++)
                 {
-                   dropDown.remove(i);
+                   var item:UIBase = dropDown.getElementAt(i) as UIBase;
+                   dropDown.removeElement(item);
                 }
             }
         }
@@ -154,7 +150,7 @@ package org.apache.flex.mdl
         {
             COMPILE::JS
             {
-                dropDown.appendChild(renderer.element);
+                dropDown.addElement(renderer);
             }
             
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
