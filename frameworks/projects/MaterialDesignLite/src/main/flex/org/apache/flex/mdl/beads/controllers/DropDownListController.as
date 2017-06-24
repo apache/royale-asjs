@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
+    import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.mdl.DropDownList;
     import org.apache.flex.events.Event;
 
@@ -77,19 +76,17 @@ package org.apache.flex.mdl.beads.controllers
 
 			COMPILE::JS
             {
-                dropDownList.dropDown.element.addEventListener("onchange", onDisplayItemClick, false);
+                dropDownList.dropDown.element.addEventListener(Event.CHANGE, onSelectChanged, false);
             }
 		}
 
 		COMPILE::JS
-        private function onDisplayItemClick(event:Event):void
+        private function onSelectChanged(event:Event):void
         {
 			var eventTarget:Object = event.target;
 			
 			model.selectedIndex = eventTarget.selectedIndex;
 			model.selectedItem = model.dataProvider[model.selectedIndex];
-
-			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         }
     }
 }
