@@ -47,7 +47,7 @@ package org.apache.flex.mdl.beads.views
          *  @copy org.apache.flex.core.IBead#strand
          *
          *  @flexjsignorecoercion HTMLLabelElement
-         *     
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -62,6 +62,7 @@ package org.apache.flex.mdl.beads.views
                 var dropDownList:DropDownList = (value as DropDownList);
 
                 dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
+                dropDownList.labelDisplay.innerText = dropDownList.prompt;
                 dropDownList.labelDisplay.classList.add("mdl-textfield__label");
 
                 dropDownList.dropDown = new Select();

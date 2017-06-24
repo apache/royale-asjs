@@ -23,7 +23,6 @@ package org.apache.flex.mdl
     import org.apache.flex.core.UIBase;
     import org.apache.flex.events.ItemAddedEvent;
     import org.apache.flex.html.DataContainer;
-    import org.apache.flex.html.Option;
     import org.apache.flex.html.Select;
 
     COMPILE::JS
@@ -56,11 +55,31 @@ package org.apache.flex.mdl
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public function DropDownList()
         {
             super();
+        }
+
+        private var _prompt:String;
+
+        /**
+         *  The prompt for the DropDownList control.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.9
+         */
+        public function get prompt():String
+        {
+            return _prompt;
+        }
+
+        public function set prompt(value:String):void
+        {
+            _prompt = value;
         }
 
         protected var _dropDown:Select;
