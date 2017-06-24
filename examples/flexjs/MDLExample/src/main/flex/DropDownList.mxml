@@ -31,8 +31,7 @@ limitations under the License.
     <mdl:Grid>
         <mdl:GridCell columnDesktop="12">
           <mdl:DropDownList id="dropDownList" labelField="label" width="150"
-                            selectedIndex="0"
-                            change="onDplChange(event)">
+                            prompt="Text" change="onDplChange(event)">
               <mdl:beads>
                   <js:ConstantBinding
                           sourceID="menuModel"
