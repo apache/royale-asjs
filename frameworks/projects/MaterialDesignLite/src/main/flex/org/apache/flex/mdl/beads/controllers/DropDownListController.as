@@ -83,10 +83,14 @@ package org.apache.flex.mdl.beads.controllers
 		COMPILE::JS
         private function onSelectChanged(event:Event):void
         {
-			var eventTarget:Object = event.target;
-			
-			model.selectedIndex = eventTarget.selectedIndex;
-			model.selectedItem = model.dataProvider[model.selectedIndex];
+            var eventTarget:Object = event.target;
+			var selectedIndex:int = eventTarget.selectedIndex - 1;
+
+			if (model.selectedIndex != selectedIndex)
+            {
+                model.selectedIndex = selectedIndex;
+                model.selectedItem = model.dataProvider[selectedIndex];
+            }
         }
     }
 }

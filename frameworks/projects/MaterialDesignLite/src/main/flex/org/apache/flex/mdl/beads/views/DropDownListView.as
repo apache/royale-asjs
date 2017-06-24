@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.views
 {
+    import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.html.Option;
     import org.apache.flex.html.Select;
@@ -27,8 +28,7 @@ package org.apache.flex.mdl.beads.views
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.flex.mdl.DropDownList
-     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Label
-     *  control and material icon ARROW_DROP_DOWN to trigger the pop-up.
+     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select and Label
      *
      *  @viewbead
      *  @langversion 3.0
@@ -79,9 +79,39 @@ package org.apache.flex.mdl.beads.views
             }
         }
 
+        override protected function dataProviderChangeHandler(event:Event):void
+        {
+            super.dataProviderChangeHandler(event);
+
+            COMPILE::JS
+            {
+                setProgrammaticallyChangedSelection();
+            }
+        }
+
+        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
+        {
+            super.itemsCreatedHandler(event);
+
+            COMPILE::JS
+            {
+                setProgrammaticallyChangedSelection();
+            }
+        }
+
+        private function selectionChangeHandler(event:Event):void
+        {
+            COMPILE::JS
+            {
+                setProgrammaticallyChangedSelection();
+            }
+        }
+
         override protected function handleInitComplete(event:Event):void
         {
             super.handleInitComplete(event);
+            
+            dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 
             COMPILE::JS
             {
@@ -97,6 +127,19 @@ package org.apache.flex.mdl.beads.views
             var name:String = "dropDownList" + Math.random();
             dropDownList.labelDisplay.htmlFor = name;
             dropDownList.dropDown.element.name = name;
+        }
+
+        COMPILE::JS
+        private function setProgrammaticallyChangedSelection():void
+        {
+            var dropDownList:DropDownList = (_strand as DropDownList);
+            var selectedIndex:int = dropDownList.dropDown.element["selectedIndex"] - 1;
+            var model:ISelectionModel = dataModel as ISelectionModel;
+
+            if (model.selectedIndex > -1 && model.dataProvider && model.selectedIndex != selectedIndex)
+            {
+                dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex + 1;
+            }
         }
     }
 }
