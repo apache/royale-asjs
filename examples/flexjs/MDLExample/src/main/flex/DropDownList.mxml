@@ -28,18 +28,26 @@ limitations under the License.
     <mdl:model>
         <models:MenuModel id="menuModel"/>
     </mdl:model>
-    <mdl:Grid width="100">
-      <mdl:DropDownList id="dropDownList" labelField="label" width="150" change="onDplChange(event)">
-          <mdl:beads>
-              <js:ConstantBinding
-                      sourceID="menuModel"
-                      sourcePropertyName="menuItems"
-                      destinationPropertyName="dataProvider" />
-          </mdl:beads>
-      </mdl:DropDownList>
-        <js:Label text="Selected index: {dropDownList.selectedIndex}"/>
-        <js:Label id="selectedItemChange"
-                  text="Selected item on 'change' event: "/>
+    <mdl:Grid>
+        <mdl:GridCell columnDesktop="12">
+          <mdl:DropDownList id="dropDownList" labelField="label" width="150"
+                            selectedIndex="0"
+                            change="onDplChange(event)">
+              <mdl:beads>
+                  <js:ConstantBinding
+                          sourceID="menuModel"
+                          sourcePropertyName="menuItems"
+                          destinationPropertyName="dataProvider" />
+              </mdl:beads>
+          </mdl:DropDownList>
+        </mdl:GridCell>
+        <mdl:GridCell columnDesktop="12">
+            <js:Label text="Selected index: {dropDownList.selectedIndex}"/>
+        </mdl:GridCell>
+        <mdl:GridCell columnDesktop="12">
+            <js:Label id="selectedItemChange"
+                      text="Selected item on 'change' event: "/>
+        </mdl:GridCell>
     </mdl:Grid>
     <fx:Script><![CDATA[        
         public function onDplChange(event:Event):void
