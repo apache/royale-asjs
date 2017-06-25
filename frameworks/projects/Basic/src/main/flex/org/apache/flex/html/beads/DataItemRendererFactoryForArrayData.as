@@ -25,6 +25,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IDataProviderModel;
+    import org.apache.flex.core.IDataFieldProviderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.SimpleCSSStyles;
@@ -40,8 +41,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.ILayoutHost;
 	import org.apache.flex.core.IParentIUIBase;
-	
-	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
+    import org.apache.flex.html.supportClasses.DataItemRenderer;
+
+    [Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 	
     /**
      *  The DataItemRendererFactoryForArrayData class reads an
@@ -71,8 +73,10 @@ package org.apache.flex.html.beads
 		}
 
 		protected var dataProviderModel:IDataProviderModel;
-
+		protected var dataFieldProviderModel:IDataFieldProviderModel;
+		
 		protected var labelField:String;
+        protected var dataField:String;
 
 		private var _strand:IStrand;
 		
@@ -98,7 +102,13 @@ package org.apache.flex.html.beads
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
-			
+
+            dataFieldProviderModel = _strand.getBeadByType(IDataFieldProviderModel) as IDataFieldProviderModel;
+			if (dataFieldProviderModel)
+            {
+                dataField = dataFieldProviderModel.dataField;
+            }
+
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
 			// already have been loaded by DataContainerBase.addedToParent function.
 			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
@@ -160,9 +170,16 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+                var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+
 				dataGroup.addItemRenderer(ir);
 				ir.index = i;
 				ir.labelField = labelField;
+                if (dataItemRenderer)
+                {
+                    dataItemRenderer.dataField = dataField;
+                }
+
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
 					style.marginBottom = presentationModel.separatorThickness;

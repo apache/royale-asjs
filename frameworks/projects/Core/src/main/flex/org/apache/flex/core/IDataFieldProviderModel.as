@@ -21,39 +21,17 @@ package org.apache.flex.core
 	import org.apache.flex.events.IEventDispatcher;
 
     /**
-     *  The IDataProviderModel interface describes the minimum set of properties
-     *  available to control that let the user choose within a
+     *  The IDataFieldProviderModel interface describes the minimum set of properties
+     *  available to control that let the user choose "dataField" from within a
      *  set of items in a dataProvider.
-	 *
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.9
      */
-	public interface IDataProviderModel extends IEventDispatcher, IBeadModel
+	public interface IDataFieldProviderModel extends IEventDispatcher, IBeadModel
 	{
-        /**
-         *  The set of choices displayed in the ComboBox's
-         *  dropdown.  The dataProvider can be a simple 
-         *  array or vector if the set of choices is not
-         *  going to be modified (except by wholesale
-         *  replacement of the dataProvider).  To use
-         *  different kinds of data sets, you may need to
-         *  provide an alternate "mapping" bead that
-         *  iterates the dataProvider, generates item
-         *  renderers and assigns a data item to the
-         *  item renderers.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-        function get dataProvider():Object;
-        function set dataProvider(value:Object):void;
-        
-        // TODO: this is probably not needed in a selection model
-        //       and should be in a scheme mapper model.
         /**
          *  The property on the data item that the item renderer
          *  should renderer.
@@ -61,9 +39,9 @@ package org.apache.flex.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.9
          */
-		function get labelField():String;
-		function set labelField(value:String):void;
+		function get dataField():String;
+		function set dataField(value:String):void;
 	}
 }
