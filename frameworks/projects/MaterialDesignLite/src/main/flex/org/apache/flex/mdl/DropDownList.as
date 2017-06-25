@@ -62,7 +62,7 @@ package org.apache.flex.mdl
             super();
         }
 
-        private var _prompt:String;
+        private var _prompt:String = "";
 
         /**
          *  The prompt for the DropDownList control.
