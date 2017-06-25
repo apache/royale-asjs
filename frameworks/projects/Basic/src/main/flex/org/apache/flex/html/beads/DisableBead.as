@@ -106,6 +106,8 @@ package org.apache.flex.html.beads
 
 		private function updateHost():void
 		{
+			if(!_strand)//bail out
+				return;
 			COMPILE::SWF {
 				var interactiveObject:InteractiveObject = _strand as InteractiveObject;
 				interactiveObject.mouseEnabled = !disabled;
