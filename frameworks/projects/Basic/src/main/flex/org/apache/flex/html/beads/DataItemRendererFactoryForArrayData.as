@@ -25,7 +25,6 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IListPresentationModel;
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IDataProviderModel;
-    import org.apache.flex.core.IDataFieldProviderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.SimpleCSSStyles;
@@ -73,7 +72,7 @@ package org.apache.flex.html.beads
 		}
 
 		protected var dataProviderModel:IDataProviderModel;
-		protected var dataFieldProviderModel:IDataFieldProviderModel;
+		protected var dataFieldProvider:DataFieldProviderBead;
 		
 		protected var labelField:String;
         protected var dataField:String;
@@ -103,10 +102,10 @@ package org.apache.flex.html.beads
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
 
-            dataFieldProviderModel = _strand.getBeadByType(IDataFieldProviderModel) as IDataFieldProviderModel;
-			if (dataFieldProviderModel)
+            dataFieldProvider = _strand.getBeadByType(DataFieldProviderBead) as DataFieldProviderBead;
+			if (dataFieldProvider)
             {
-                dataField = dataFieldProviderModel.dataField;
+                dataField = dataFieldProvider.dataField;
             }
 
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.IDataFieldProviderModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
-			
+    import org.apache.flex.core.IBead;
+
     /**
-     *  The DataFieldProviderModel class is a model that holds dataField used mostly
+     *  The DataFieldProviderBead class is a model that holds dataField used mostly
 	 *  in item renderers for retrieve some value from dataProvider items.
      *  
      *  @langversion 3.0
@@ -32,7 +32,7 @@ package org.apache.flex.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.9
      */
-	public class DataFieldProviderModel extends EventDispatcher implements IDataFieldProviderModel
+	public class DataFieldProviderBead implements IBead
 	{
         /**
          *  Constructor.
@@ -42,7 +42,7 @@ package org.apache.flex.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.9
          */
-		public function DataFieldProviderModel()
+		public function DataFieldProviderBead()
 		{
 		}
 
@@ -64,7 +64,6 @@ package org.apache.flex.html.beads.models
 		private var _dataField:String = null;
 		
         /**
-         *  @copy org.apache.flex.core.IDataFieldProviderModel#dataField
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -84,7 +83,6 @@ package org.apache.flex.html.beads.models
 			if (value != _dataField)
 			{
                 _dataField = value;
-				dispatchEvent(new Event("labelFieldChanged"));
 			}
 		}
 	}

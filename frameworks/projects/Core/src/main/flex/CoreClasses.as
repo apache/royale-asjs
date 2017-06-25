@@ -96,7 +96,6 @@ internal class CoreClasses
 	}
     import org.apache.flex.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.flex.core.ISelectionModel; ISelectionModel;
-	import org.apache.flex.core.IDataFieldProviderModel; IDataFieldProviderModel;
     import org.apache.flex.core.IStrand; IStrand;
 	import org.apache.flex.core.IStrandPrivate; IStrandPrivate;
     import org.apache.flex.core.IStrandWithModel; IStrandWithModel;
