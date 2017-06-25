@@ -124,7 +124,7 @@ package org.apache.flex.core
             if(strpixels == null)
                 pixels = NaN;
             else
-                pixels = CSSUtils.toNumber(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = element.offsetWidth;
                 if (pixels === 0 && element.scrollWidth !== 0) {
@@ -162,7 +162,7 @@ package org.apache.flex.core
             if(strpixels == null)
                 pixels = NaN;
             else
-                pixels = CSSUtils.toNumber(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = element.offsetHeight;
                 if (pixels === 0 && element.scrollHeight !== 0) {
