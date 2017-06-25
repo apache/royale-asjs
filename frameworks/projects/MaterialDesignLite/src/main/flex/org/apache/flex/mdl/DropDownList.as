@@ -24,6 +24,7 @@ package org.apache.flex.mdl
     import org.apache.flex.events.ItemAddedEvent;
     import org.apache.flex.html.DataContainer;
     import org.apache.flex.html.Select;
+    import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {
@@ -60,6 +61,10 @@ package org.apache.flex.mdl
         public function DropDownList()
         {
             super();
+
+            className = "";
+
+            addBead(new UpgradeElement());
         }
 
         private var _prompt:String = "";
