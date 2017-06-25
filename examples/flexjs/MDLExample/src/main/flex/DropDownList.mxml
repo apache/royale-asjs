@@ -38,7 +38,7 @@ limitations under the License.
                           sourceID="menuModel"
                           sourcePropertyName="menuItems"
                           destinationPropertyName="dataProvider" />
-                  <models2:DataFieldProviderModel dataField="value"/>
+                  <js:DataFieldProviderBead dataField="value"/>
               </mdl:beads>
           </mdl:DropDownList>
         </mdl:GridCell>
