@@ -20,7 +20,8 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                 xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*">
+                 xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
+                 xmlns:models2="org.apache.flex.html.beads.models.*">
 
     <mdl:beads>
         <js:ContainerDataBinding />
@@ -37,6 +38,7 @@ limitations under the License.
                           sourceID="menuModel"
                           sourcePropertyName="menuItems"
                           destinationPropertyName="dataProvider" />
+                  <models2:DataFieldProviderModel dataField="value"/>
               </mdl:beads>
           </mdl:DropDownList>
         </mdl:GridCell>
