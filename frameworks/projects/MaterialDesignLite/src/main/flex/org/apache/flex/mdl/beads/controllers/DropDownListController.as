@@ -19,12 +19,13 @@
 package org.apache.flex.mdl.beads.controllers
 {
     import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.DropDownList;
     import org.apache.flex.events.Event;
+    import org.apache.flex.mdl.beads.models.DropDownListModel;
+    import org.apache.flex.mdl.beads.models.IDropDownListModel;
 
-	/**
+    /**
 	 *  The DropDownListController class bead handles mouse events on the
      *  drop down list component parts and dispatches change event on behalf of the DropDownList
 	 *
@@ -55,7 +56,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
          */
-		protected var model:ISelectionModel;
+		protected var model:DropDownListModel;
 		protected var _strand:IStrand;
 
 		/**
@@ -72,7 +73,7 @@ package org.apache.flex.mdl.beads.controllers
 
             var dropDownList:DropDownList = (value as DropDownList);
 
-            model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            model = _strand.getBeadByType(IDropDownListModel) as DropDownListModel;
 
 			COMPILE::JS
             {
@@ -90,6 +91,7 @@ package org.apache.flex.mdl.beads.controllers
             {
                 model.selectedIndex = selectedIndex;
                 model.selectedItem = model.dataProvider[selectedIndex];
+				model.selectedValue = eventTarget.value;
             }
         }
     }

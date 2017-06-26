@@ -154,7 +154,7 @@ FooterLinkList
 DropDownList
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.DropDownListView");
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+    IBeadModel: ClassReference("org.apache.flex.mdl.beads.models.DropDownListModel");
     IBeadLayout: ClassReference(null);
     IBeadController: ClassReference("org.apache.flex.mdl.beads.controllers.DropDownListController");
     IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");

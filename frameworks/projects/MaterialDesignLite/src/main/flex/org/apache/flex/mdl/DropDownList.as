@@ -25,6 +25,7 @@ package org.apache.flex.mdl
     import org.apache.flex.html.DataContainer;
     import org.apache.flex.html.Select;
     import org.apache.flex.mdl.beads.UpgradeElement;
+    import org.apache.flex.mdl.beads.models.IDropDownListModel;
 
     COMPILE::JS
     {
@@ -119,7 +120,25 @@ package org.apache.flex.mdl
                 _labelDisplay = value;
             }
         }
-        
+
+        [Bindable("change")]
+        /**
+         *  @copy org.apache.flex.core.IDropDownListModel#selectedValue
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.9
+         */
+        public function get selectedValue():String
+        {
+            return IDropDownListModel(model).selectedValue;
+        }
+        public function set selectedValue(value:String):void
+        {
+            IDropDownListModel(model).selectedValue = value;
+        }
+
         [Bindable("change")]
         /**
          *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
