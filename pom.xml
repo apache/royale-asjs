@@ -30,7 +30,7 @@
 
   <groupId>org.apache.flex.flexjs.framework</groupId>
   <artifactId>flexjs-framework-parent</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Parent</name>

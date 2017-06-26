@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.flex.flexjs.framework</groupId>
     <artifactId>flexjs-framework-parent</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>distribution</artifactId>
@@ -81,139 +81,139 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Charts</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>CreateJS</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Express</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Flat</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>FontAwesome</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML5</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Storage</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>XML</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
     </dependency>
 
@@ -221,161 +221,161 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Charts</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>CreateJS</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Express</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Flat</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
  	  <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>FontAwesome</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML5</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Storage</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>XML</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -448,7 +448,7 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Fonts</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
 
@@ -463,37 +463,37 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>compc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>mxmlc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>falcon-asc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>falcon-compc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>falcon-mxmlc</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>falcon-optimizer</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
       <artifactId>falcon-swfdump</artifactId>
-      <version>0.8.0</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

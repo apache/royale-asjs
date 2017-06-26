@@ -24,13 +24,13 @@
   <parent>
     <groupId>org.apache.flex.flexjs.framework</groupId>
     <artifactId>flexjs-framework-parent</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0-SNAPSHOT</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.flex.flexjs.framework.distribution</groupId>
   <artifactId>falcon-compc</artifactId>
-  <version>0.8.0</version>
+  <version>0.9.0-SNAPSHOT</version>
 
   <build>
     <plugins>
