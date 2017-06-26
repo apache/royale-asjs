@@ -34,9 +34,9 @@
   <description>Maven archetype for creating FlexJS Maven project for building a simple FlexJS application with only Flash output.</description>
 
   <!--
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-application-archetype -DarchetypeVersion=0.8.0-SNAPSHOT
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-js-application-archetype -DarchetypeVersion=0.8.0-SNAPSHOT
-  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-swf-application-archetype -DarchetypeVersion=0.8.0-SNAPSHOT
+  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-js-application-archetype -DarchetypeVersion=0.8.0
+  mvn archetype:generate -DarchetypeGroupId=org.apache.flex.flexjs.framework -DarchetypeArtifactId=flexjs-simple-pure-swf-application-archetype -DarchetypeVersion=0.8.0
   -->
 
 </project>

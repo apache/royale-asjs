@@ -40,6 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
+		  <targets>SWF,JSFlex</targets>
         </configuration>
       </plugin>
     </plugins>

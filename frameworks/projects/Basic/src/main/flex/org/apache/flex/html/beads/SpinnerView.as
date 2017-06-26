@@ -27,6 +27,7 @@ COMPILE::SWF {
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IRangeModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.ILayoutChild;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
@@ -102,24 +103,41 @@ COMPILE::JS {
 				UIBase(_strand).addChild(_decrement);
 				UIBase(_strand).addChild(_increment);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
-
-				IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-				IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			}
+			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			COMPILE::JS {
 				var host:UIBase = value as UIBase;
 
 				_increment = new SpinnerButton();
 				_increment.text = '\u25B2';
+				_increment.positioner.style.display = 'block';
 				host.addElement(_increment);
 
 				_decrement = new SpinnerButton();
 				_decrement.text = '\u25BC';
+				_decrement.positioner.style.display = 'block';
 				host.addElement(_decrement);
 
 // add this in CSS!
 				controller = new SpinnerMouseController();
 				host.addBead(controller);
+			}
+				
+			COMPILE::SWF
+			{
+				var host:ILayoutChild = ILayoutChild(value);
+				
+				// Complete the setup if the height is sized to content or has been explicitly set
+				// and the width is sized to content or has been explicitly set
+				if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+					(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+					sizeChangeHandler(null);
+			}
+			COMPILE::JS
+			{
+				// always run size change since there are no size change events
+				sizeChangeHandler(null);
 			}
 		}
 
@@ -164,17 +182,22 @@ COMPILE::JS {
 		/**
 		 * @private
 		 */
-		COMPILE::SWF
 		private function sizeChangeHandler( event:Event ) : void
 		{
             var w:Number = UIBase(_strand).width;
             var h:Number =  UIBase(_strand).height / 2;
 			_increment.width = w;
 			_increment.height = h;
+			COMPILE::SWF
+			{
 			_increment.y      = 0;
+			}
 			_decrement.width = w;
 			_decrement.height = h;
+			COMPILE::SWF
+			{
 			_decrement.y      = h;
+			}
 		}
 	}
 }

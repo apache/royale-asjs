@@ -23,6 +23,10 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+    COMPILE::JS
+    {
+        import org.apache.flex.core.WrappedHTMLElement;
+    }
 	
 	/*
 	 *  Label probably should extend TextField directly,
@@ -54,7 +58,19 @@ package org.apache.flex.html
 		public function ToolTip()
 		{
 			super();
+			className = "ToolTip";
 		}
 		
+		/**
+         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			var e:WrappedHTMLElement = super.createElement();
+			positioner.style.position = 'absolute';
+			typeNames = "ToolTIp";
+			return e;
+		}		
 	}
 }

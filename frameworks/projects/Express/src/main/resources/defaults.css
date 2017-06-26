@@ -33,6 +33,11 @@
 	box-sizing: border-box;
 }
 
+global {
+    IStatesImpl:            ClassReference("org.apache.flex.core.StatesWithTransitionsImpl");
+	IEffectTimer: 			ClassReference("org.apache.flex.utils.EffectTimer");
+}
+
 Application
 {
 	padding: 0px;

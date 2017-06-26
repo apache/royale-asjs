@@ -20,7 +20,7 @@ package org.apache.flex.express
 {
 	import org.apache.flex.binding.ApplicationDataBinding;
 	import org.apache.flex.core.Application;
-	import org.apache.flex.core.SimpleCSSValuesImpl;
+	import org.apache.flex.core.AllCSSValuesImpl;
 	
 	/**
 	 * This class extends the standard Application and sets up the
@@ -32,7 +32,7 @@ package org.apache.flex.express
 		{
 			super();
 			
-			this.valuesImpl = new SimpleCSSValuesImpl();
+			this.valuesImpl = new AllCSSValuesImpl();
 			addBead(new ApplicationDataBinding());
 		}
 	}

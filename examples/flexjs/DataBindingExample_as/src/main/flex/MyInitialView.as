@@ -30,6 +30,7 @@ import org.apache.flex.core.ValuesManager;
 import org.apache.flex.core.View;
 import org.apache.flex.events.CustomEvent;
 import org.apache.flex.events.Event;
+import org.apache.flex.events.MouseEvent;
 import org.apache.flex.html.CheckBox;
 import org.apache.flex.html.Container;
 import org.apache.flex.html.DropDownList;
@@ -262,7 +263,7 @@ public class MyInitialView extends View
     public var showAllData:CheckBox;
     public var ta:TextArea;
 
-    private function tb_clickHandler(event:Event):void
+    private function tb_clickHandler(event:MouseEvent):void
     {
         _symbol = symbolTI.text;
         dispatchEvent(new CustomEvent('buttonClicked'));

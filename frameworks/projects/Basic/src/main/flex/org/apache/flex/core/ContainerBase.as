@@ -109,6 +109,8 @@ package org.apache.flex.core
 			var layoutHost:ILayoutHost = view as ILayoutHost;
 			var contentView:IParent = layoutHost.contentView as IParent;
 			contentView.addElement(c, dispatchEvent);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
 		}
 		
 		/**
@@ -120,6 +122,8 @@ package org.apache.flex.core
 			var layoutHost:ILayoutHost = view as ILayoutHost;
 			var contentView:IParent = layoutHost.contentView as IParent;
 			contentView.addElementAt(c, index, dispatchEvent);
+            if (dispatchEvent)
+                this.dispatchEvent(new Event("childrenAdded"));
 		}
 		
 		/**

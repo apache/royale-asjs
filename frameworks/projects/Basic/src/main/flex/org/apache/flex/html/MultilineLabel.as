@@ -59,6 +59,7 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('div') as WrappedHTMLElement;
+			element.style.whiteSpace = 'normal'; // was nowrap on safari?
             positioner = element;
             element.flexjs_wrapper = this;
             return element;

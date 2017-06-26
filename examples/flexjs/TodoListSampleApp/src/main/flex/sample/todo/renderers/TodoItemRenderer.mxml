@@ -42,14 +42,15 @@ limitations under the License.
 	</fx:Script>
 	
 	<js:beads>
-		<js:HorizontalFlexLayout />
+		<js:BasicLayout />
 		<js:ItemRendererDataBinding />
 	</js:beads>
 
 	<js:CheckBox text="{data.title}" 
 	             selected="{data.selected}" 
 	             className="RendererText"
-	             change="checkBoxChange()" />
+	             change="checkBoxChange()"
+				 />
 	
 	<js:Button className="RemoveButton"
 	           click="removeClick()" />

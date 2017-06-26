@@ -24,6 +24,7 @@
     <component id="Button" class="org.apache.flex.html.Button"  lookupOnly="true" />
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
+    <component id="DataContainer" class="org.apache.flex.html.DataContainer"  lookupOnly="true"/>
     <component id="DropDownList" class="org.apache.flex.flat.DropDownList" />
     <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />

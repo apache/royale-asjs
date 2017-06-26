@@ -119,7 +119,7 @@
 		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
     <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"
 		type="file"
-		property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe" />
+		property="browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe" />
     <available file="/Applications/Firefox.app/Contents/MacOS/firefox"
 		type="file"
 		property="browser" value="/Applications/Firefox.app/Contents/MacOS/firefox" />
@@ -153,7 +153,7 @@
 		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
     <available file="${env.ProgramFiles(x86)}/Git/bin/git.exe"
 		type="file"
-		property="git" value="${env.ProgramFiles}/Git/bin/git.exe" />
+		property="git" value="${env.ProgramFiles(x86)}/Git/bin/git.exe" />
     <available file="/usr/local/git/bin/git"
 		type="file"
 		property="git" value="/usr/local/git/bin/git" />
@@ -178,7 +178,7 @@
 	<property name="release.installer" value="${config.version.latest}" />
 	<!-- clip build number from version -->
 	<echo file="${basedir}/installerv.properties">latest.installer=${release.installer}</echo>
-	<replaceregexp byline="true">
+	<replaceregexp byline="true" encoding="UTF-8">
 		<regexp pattern="\.[0-9]*$"/>
 		<substitution expression=""/>
 		<fileset dir="${basedir}">
@@ -223,13 +223,13 @@
 	
 	<target name="stage.rc" >
 		<ant antfile="build.xml" target="release" />
-		<ant antfile="build.xml" target="asdoc-package" />
+		<!--<ant antfile="build.xml" target="asdoc-package" />-->
 		<ant antfile="build.xml" target="create-md5" />
 		<ant antfile="build.xml" target="sign" />
-		<ant antfile="build.xml" target="doc-create-md5" />
-		<ant antfile="build.xml" target="doc-sign" />
+		<!--<ant antfile="build.xml" target="doc-create-md5" />-->
+		<!--<ant antfile="build.xml" target="doc-sign" />-->
 		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries" />
-		<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />
+		<!--<mkdir dir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" />-->
 		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" >
 			<fileset dir="${basedir}/out" >
 				<include name="apache-flex-flexjs-${release.version}-src*" />
@@ -240,11 +240,11 @@
 				<include name="apache-flex-flexjs-${release.version}-bin*" />
 			</fileset>
 		</copy>
-		<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
+		<!--<copy todir="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/doc" >
 			<fileset dir="${basedir}/out" >
 				<include name="apache-flex-flexjs-${release.version}-asdoc*" />
 			</fileset>
-		</copy>
+		</copy>-->
 		<copy file="${basedir}/README" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/READme" />
 		<copy file="${basedir}/ApproveFlexJS.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml" />
 		<copy file="${basedir}/apache-flex-flexjs-installer-config.xml" tofile="${dist.dev}/flex/flexjs/${release.version}/rc${rc}/binaries/apache-flex-flexjs-installer-config.xml" />
@@ -317,7 +317,7 @@
 			<arg value="update" />
 			<arg value="trunk/content/installer/sdk-installer-config-4.0.xml" />
 		</exec>
-        <replaceregexp byline="true">
+        <replaceregexp byline="true" encoding="UTF-8">
             <regexp pattern="rc id=&quot;FlexJSRC&quot; version=&quot;.*&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/.*/binaries/&quot; file=&quot;apache-flex-flexjs-.*-bin&quot; dev=&quot;true&quot;"/>
             <substitution expression="rc id=&quot;FlexJSRC&quot; version=&quot;${release.version} RC${rc}&quot; path=&quot;https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; dev=&quot;true&quot;"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -325,7 +325,7 @@
             </fileset>
         </replaceregexp>
 		<!-- un-comment if needed -->
-        <replaceregexp byline="true">
+        <replaceregexp byline="true" encoding="UTF-8">
             <regexp pattern="&lt;!--&lt;rc id=&quot;FlexJSRC&quot;(.*)&gt;--&gt;"/>
             <substitution expression="&lt;rc id=&quot;FlexJSRC&quot;\1&gt;"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -362,21 +362,21 @@
         </exec>
         <xmlproperty file="${site}/trunk/content/installer/sdk-installer-config-4.0.xml" semanticAttributes="true" collapseAttributes="true"/>
 		<property name="latest.release" value="${config.products.ApacheFlexJS.latestVersion}" />
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="ApacheFlexJS(.*)latestVersion=&quot;${latest.release}&quot;(.*)"/>
             <substitution expression="ApacheFlexJS\1latestVersion=&quot;${release.version}&quot;\2"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="path=&quot;flex/flexjs/${latest.release}/binaries/&quot;(.*)default=&quot;true&quot;"/>
             <substitution expression="path=&quot;http://archive.apache.org/dist/flex/flexjs${latest.release}/binaries&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
                 <include name="sdk-installer-config-4.0.xml"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="&lt;rc id=&quot;FlexJSRC&quot;(.*)"/>
             <substitution expression="&lt;VersionX id=&quot;${release.version}&quot; version=&quot;${release.version}&quot; path=&quot;flex/flexjs/${release.version}/binaries/&quot; file=&quot;apache-flex-flexjs-${release.version}-bin&quot; /&gt;&#x0a;    &lt;rc id=&quot;FlexJSRC&quot;\1"/>
             <fileset dir="${site}/trunk/content/installer">
@@ -392,28 +392,28 @@
 		<tstamp>
 			<format pattern="dd MMMM yyyy" property="release.date.full" />
 		</tstamp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="${latest.release}"/>
             <substitution expression="${release.version}"/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="this release, available as of .*\.  (.*)"/>
             <substitution expression="this release, available as of ${release.date.full}.  \1"/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="binaries were published on .*\."/>
             <substitution expression="binaries were published on ${release.date.full}."/>
             <fileset dir="${site}/trunk/content">
                 <include name="download-flexjs.cmsPage"/>
             </fileset>
         </replaceregexp>
-        <replaceregexp byline="true" flags="g">
+        <replaceregexp byline="true" flags="g" encoding="UTF-8">
             <regexp pattern="${latest.release}(.*)\)"/>
             <substitution expression="${release.version} (${release.date.month})"/>
             <fileset dir="${site}/trunk/templates">
@@ -498,7 +498,7 @@ http://www.apache.org/dyn/closer.cgi?path=/flex/installer/${latest.installer}/bi
 \n\
 Please vote to approve this release:\n\
 +1 Approve the release\n\
--1 Veto the release (please provide specific comments to why)\n\
+-1 Disapprove the release (please provide specific comments to why)\n\
 \n\
 This vote will be open for 72 hours or until a result can be called.\n\
 \n\
@@ -524,7 +524,8 @@ package and signature files, unzipping, etc, you can instead:\n\
 1) create an empty folder,\n\
 2) download into that folder this file:\n\
 https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml\n\
-3) run the script: ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
+3) run the script:\n\
+   ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
 \n\
 You are not required to use this script, and more testing of the packages\n\
 and build results are always encouraged.\n\
@@ -567,7 +568,7 @@ ${my.name}
 			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
             <arg value="${dist.release}/flex/flexjs/${release.version}" />
 		</exec>
-		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.release}/.." failonerror="true" >
 			<arg value="commit" />
 			<arg value="--username" />
 			<arg value="${apache.username}" />

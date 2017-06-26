@@ -268,6 +268,15 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = _strand as UIBase;
 			var contentSize:Size = calculateContentSize();
+			var border:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
+			contentSize.width += border.left + border.right;
+			contentSize.height += border.top + border.bottom;
+			var padding:org.apache.flex.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
+			// add padding.left since it wasn't considered in contentSize,
+			// and add border.right so the border can be drawn in that column of pixels
+			contentSize.width += padding.left + border.right; 
+			contentSize.height += padding.top + border.top;
+			
 
 			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
 				host.setWidthAndHeight(contentSize.width, contentSize.height, true);

@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <actionScriptProperties analytics="false" mainApplicationPath="CreateJS.as" projectUUID="7d9af24d-d32d-4e14-b0ee-f799e604c2bc" version="11">
-  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::SWF,false&#10;-define=COMPILE::JS,true&#10;-load-config=../config/compile-js-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/config" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::SWF,false&#10;-define=COMPILE::JS,true&#10;-load-config=../../../../../../../js-config.xml&#10;-load-config+=../config/compile-js-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/config" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="${FLEX_ASJS}/frameworks/projects/CreateJS/src/main/flex"/>
     </compilerSourcePath>
@@ -26,6 +26,7 @@ limitations under the License.
       <libraryPathEntry kind="4" path="">
         <excludedEntries>
           <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/player/20.0/playerglobal.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/Basic.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/HTML5.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/JQuery.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/Flat.swc" useDefaultLinkType="false"/>
@@ -52,7 +53,9 @@ limitations under the License.
       <libraryPathEntry kind="3" linkType="1" path="${FLEX_FALCON}/js/libs/GCL.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="2" path="${FLEX_FALCON}/js/libs/createjs.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/CoreJS/target/CoreJS.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/HTMLJS/target/HTMLJS.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/BasicJS/target/BasicJS.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/GraphicsJS/target/GraphicsJS.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/EffectsJS/target/EffectsJS.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

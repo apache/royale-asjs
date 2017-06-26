@@ -24,6 +24,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 
 import java.io.IOException;
 import java.nio.CharBuffer;
@@ -214,6 +216,13 @@ public class MarmotinniRunner extends DefaultHandler {
         WebDriver driver;
 		if (browser != null && browser.equalsIgnoreCase("chrome"))
 			driver = new ChromeDriver();
+		else if (argsMap.containsKey("profile"))
+		{
+			ProfilesIni profile = new ProfilesIni();
+ 			FirefoxProfile ffprofile = profile.getProfile(argsMap.get("profile"));
+			System.out.println("FireFox Profile: " + argsMap.get("profile"));			
+			driver = new FirefoxDriver(ffprofile);
+		}
 		else
 			driver = new FirefoxDriver();
 		

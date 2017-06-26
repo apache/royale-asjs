@@ -122,7 +122,7 @@ ComboBoxList
 	background-color: #FFFFFF;
 }
 
-.ComboBoxButton {
+.opt_org-apache-flex-html-ComboBox_Button {
 	padding: 0px;
 	margin: 0px;
 }
@@ -201,7 +201,7 @@ DataGridColumnList {
 	background-color: #FFFFFF;
 }
 
-.DataGridListArea {
+.opt_org-apache-flex-html-DataGrid_ListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
 	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
@@ -238,7 +238,7 @@ DateChooserHeader {
 	background-color: #FFFFFF;
 }
 
-.DateChooserMonthButtons {				
+.opt_org-apache-flex-html-DateChooser_MonthButtons {				
 	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");	
 	height: 20px;
 }
@@ -323,16 +323,19 @@ ImageButton
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:hover
 {
 	border-style: none;
+	padding: 0px;
 }
 
 ImageButton:active
 {
 	border-style: none;
+	padding: 0px;
 }
 
 VContainer
@@ -350,7 +353,7 @@ List
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
-	IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+	IViewport: ClassReference("org.apache.flex.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.flex.html.beads.models.ViewportModel");
 	border-style: solid;
 	border-color: #222222;
@@ -362,7 +365,7 @@ Accordion
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.AccordionView");			
 	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout");
+	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.AccordionItemRenderer");
@@ -409,6 +412,10 @@ Tree
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
+	IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
+	
+	padding: 0px;
+	border-style: none;
 }
 
 Panel
@@ -418,7 +425,7 @@ Panel
 	IPanelLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 	
 	background-color: #FFFFFF;
-	border: solid 1px #333333
+	border: 1px solid #333333
 }
 
 PanelWithControlBar
@@ -428,12 +435,17 @@ PanelWithControlBar
 	IPanelLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
 	
 	background-color: #FFFFFF;
-	border: solid 1px #333333;
+	border: 1px solid #333333;
 }
 
 Panel .TitleBar
 {
-	border-bottom: solid 1px #333333;
+	border-bottom: 1px solid #333333;
+}
+
+.PanelContent
+{
+	background-color: #FFFFFF;
 }
 
 SimpleList
@@ -460,8 +472,23 @@ Spinner
 {
 	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModel");
 	IBeadView:  ClassReference("org.apache.flex.html.beads.SpinnerView");
+	width: 16px;
+	height: 32px;
 }
 
+.SpinnerButton
+{
+	padding: 0;
+	margin: 0;
+	font-size: 6px;
+}
+
+.SpinnerButton:hover
+{
+	padding: 0;
+	margin: 0;
+	font-size: 6px;
+}
 
 StringItemRenderer
 {
@@ -577,8 +604,6 @@ WebBrowser
 /* Global Style Declaration */
 global
 {
-	IStatesImpl: ClassReference("org.apache.flex.core.SimpleStatesImpl");
-	IEffectTimer: ClassReference("org.apache.flex.utils.EffectTimer");
 	effectTimerInterval: 10;
 }
 
@@ -644,7 +669,7 @@ global
 		IMeasurementBead: ClassReference("org.apache.flex.html.beads.ControlBarMeasurementBead");
 		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");  
-		border: solid 1px #333333;
+		border: 1px solid #333333;
 	}
 	
 	ComboBoxList {
@@ -752,13 +777,6 @@ global
 	
 	NumericStepper
 	{
-		IBeadView: ClassReference("org.apache.flex.html.beads.NumericStepperView");
-		
-		padding: 0px;
-		border-style: solid;
-		border-color: #000000;
-		border-width: 1px;
-		background-color: #FFFFFF;
 		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
 		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
 	}
@@ -892,7 +910,7 @@ global
 	{
 		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
 		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-		border: solid 1px #333333;
+		border: 1px solid #333333;
 	}
 	
 	ToggleTextButton

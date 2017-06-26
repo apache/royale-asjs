@@ -29,6 +29,7 @@ package org.apache.flex.html.beads
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.events.ValueChangeEvent
 	import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.html.Label;
 	import org.apache.flex.html.Spinner;
@@ -79,19 +80,30 @@ package org.apache.flex.html.beads
             
 			// add an input field
 			input = new TextInput();
+            input.className = "NumericStepperInput";
+            input.typeNames = "NumericStepperInput";
 			IParent(value).addElement(input);
-			
+			COMPILE::JS
+			{
+	            input.positioner.style.display = 'inline-block';
+    	        input.positioner.style.width = '100px';
+			}
 			// add a spinner
 			spinner = new Spinner();
 			spinner.addBead( UIBase(value).model as IBead );
 			IParent(value).addElement(spinner);
 			spinner.height = input.height;
+			spinner.width = input.height/2;
+			COMPILE::JS
+			{
+	            spinner.positioner.style.display = 'inline-block';
+			}
 			
 			// listen for changes to the text input field which will reset the
 			// value. ideally, we should either set the input to accept only
 			// numeric values or, barring that, reject non-numeric entries. we
 			// cannot do that right now however.
-			input.model.addEventListener("textChange",inputChangeHandler);
+			input.addEventListener("change",inputChangeHandler);
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
@@ -109,10 +121,22 @@ package org.apache.flex.html.beads
 			
 			input.text = String(spinner.value);
 			
-            var host:ILayoutChild = ILayoutChild(value);
-            if ((host.isWidthSizedToContent() || isNaN(host.explicitWidth)) &&
-                (host.isHeightSizedToContent() || isNaN(host.explicitHeight)))
-                sizeChangeHandler(null);
+			COMPILE::SWF
+			{
+				var host:ILayoutChild = ILayoutChild(value);
+				
+				// Complete the setup if the height is sized to content or has been explicitly set
+				// and the width is sized to content or has been explicitly set
+				if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
+					(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+					sizeChangeHandler(null);
+			}
+			COMPILE::JS
+			{
+				// always run size change since there are no size change events
+				sizeChangeHandler(null);
+			}
+					
 		}
 		
 		/**
@@ -120,21 +144,32 @@ package org.apache.flex.html.beads
 		 */
 		private function sizeChangeHandler(event:Event) : void
 		{
-			input.x = 2;
-			input.y = (UIBase(_strand).height - input.height)/2;
-			input.width = UIBase(_strand).width-spinner.width-2;
-			spinner.x = input.width+2;
-			spinner.y = 0;
+			COMPILE::JS
+			{
+				spinner.height = input.height;
+				spinner.width = input.height/2;
+			}
+			
+			input.x = 0;
+			input.y = 0;
+			if (!UIBase(_strand).isWidthSizedToContent())
+				input.width = UIBase(_strand).width-spinner.width-2;
+			
+			COMPILE::SWF
+			{
+				spinner.x = input.width;
+				spinner.y = 0;
+			}
 		}
 		
 		/**
 		 * @private
 		 */
-		private function spinnerValueChanged(event:Event) : void
+		private function spinnerValueChanged(event:ValueChangeEvent) : void
 		{
 			input.text = String(spinner.value);
 			
-			var newEvent:Event = new Event(event.type,event.bubbles);
+			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 		

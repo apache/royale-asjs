@@ -22,8 +22,7 @@ limitations under the License.
                    xmlns:js="library://ns.apache.org/flexjs/express" 
                    xmlns:models="models.*" 
                    xmlns:controllers="controllers.*"
-                   initialize="MyModel(model).stockSymbol='ADBE'"
-                   >
+                   initialize="onAppInitialize(event)">
     <js:initialView>
         <local:MyInitialView />
     </js:initialView>
@@ -47,4 +46,12 @@ limitations under the License.
         <js:CSSFontFaceBead />
         <js:ViewSourceContextMenuOption />
     </js:beads>
+    <fx:Script><![CDATA[
+        import models.MyModel;
+
+        private function onAppInitialize(event:Event):void
+        {
+            MyModel(model).stockSymbol='ADBE';
+        }
+        ]]></fx:Script>
 </js:Application>

@@ -26,6 +26,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.html.beads.ISliderView;
 	import org.apache.flex.html.beads.SliderTrackView;
@@ -68,7 +69,9 @@ package org.apache.flex.html.beads.controllers
 		private var rangeModel:IRangeModel;
 		
 		private var _strand:IStrand;
-		
+
+		private var oldValue:Number;
+				
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *  
@@ -126,6 +129,7 @@ package org.apache.flex.html.beads.controllers
 			
 			origin = new Point(event.screenX, event.screenY);
 			thumb = new Point(sliderView.thumb.x,sliderView.thumb.y);
+			oldValue = rangeModel.value;
 		}
 		
 		/**
@@ -137,7 +141,8 @@ package org.apache.flex.html.beads.controllers
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
+			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 		
         COMPILE::SWF
@@ -160,9 +165,10 @@ package org.apache.flex.html.beads.controllers
 			var p:Number = newX/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 		
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
+			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
 		
 		/**
@@ -179,9 +185,10 @@ package org.apache.flex.html.beads.controllers
 			var p:Number = xloc/sliderView.track.width;
 			var n:Number = p*(rangeModel.maximum - rangeModel.minimum) + rangeModel.minimum;
 			
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("valueChange"));
+			IEventDispatcher(_strand).dispatchEvent(vce);
 		}
         
         /**
@@ -195,6 +202,7 @@ package org.apache.flex.html.beads.controllers
             var n:Number = p * (host.maximum - host.minimum) +
                 host.minimum;
             
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", host.value, n);
             host.value = n;
             
             origin = parseInt(thumb.element.style.left, 10);
@@ -202,7 +210,7 @@ package org.apache.flex.html.beads.controllers
             
             calcValFromMousePosition(event, true);
             
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+            host.dispatchEvent(vce);
         }
         
         
@@ -219,6 +227,7 @@ package org.apache.flex.html.beads.controllers
             
             origin = event.clientX;
             position = parseInt(thumb.element.style.left, 10);
+            oldValue = rangeModel.value;
         }
         
         COMPILE::JS
@@ -238,8 +247,9 @@ package org.apache.flex.html.beads.controllers
                 handleThumbMove, false, this);
             
             calcValFromMousePosition(event, false);
+            var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
             
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+            host.dispatchEvent(vce);
         }
         
         
@@ -249,9 +259,12 @@ package org.apache.flex.html.beads.controllers
         private function handleThumbMove(event:BrowserEvent):void
         {
             var host:Slider = _strand as Slider;
+            var lastValue:Number = rangeModel.value;
             calcValFromMousePosition(event, false);
             
-            host.dispatchEvent(new org.apache.flex.events.Event('valueChange'));
+            var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", lastValue, rangeModel.value);
+            
+            host.dispatchEvent(vce);
         }
         
         

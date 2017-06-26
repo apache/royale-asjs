@@ -74,6 +74,7 @@
     </target>
     
     <target name="compile" description="Compile Examples" >
+        <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/flexjs/ASDoc"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
         <ant dir="${basedir}/flexjs/CreateJSExample"/>
@@ -105,7 +106,7 @@
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
     </target>
-	   
+    
     <!--
 		Cleanup
 	-->
@@ -117,6 +118,7 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/flexjs/ASDoc" target="clean"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/flexjs/CreateJSExample" target="clean"/>
@@ -148,5 +150,39 @@
         <ant dir="${basedir}/native/ButtonExample" target="clean"/>
         <ant dir="${basedir}/native/USStatesMap" target="clean"/>
     </target>
-    
+
+    <target name="examine" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/ASDoc" target="examine"/>
+        <ant dir="${basedir}/flexjs/CordovaCameraExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/CreateJSExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_as" target="examine"/>
+        <ant dir="${basedir}/flexjs/DataBindingExample_Flat" target="examine"/>
+        <ant dir="${basedir}/flexjs/DataBindingExampleWithFlexLayout" target="examine"/>
+        <ant dir="${basedir}/flexjs/DataGridExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/DateControlsExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/DesktopMap" target="examine"/>
+        <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="examine"/>
+        <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="examine"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore" target="examine"/>
+        <ant dir="${basedir}/flexjs/FlexJSStore_jquery" target="examine"/>
+        <ant dir="${basedir}/flexjs/HelloWorld" target="examine"/>
+        <ant dir="${basedir}/flexjs/ListExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/MapSearch" target="examine"/>
+        <ant dir="${basedir}/flexjs/MDLExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/MobileTrader" target="examine"/>
+        <ant dir="${basedir}/flexjs/MobileStocks" target="examine"/>
+        <ant dir="${basedir}/flexjs/MobileMap" target="examine"/>
+        <ant dir="${basedir}/flexjs/ChartExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/StorageExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/StyleExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/TableExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/TodoListSampleApp" target="examine"/>
+        <ant dir="${basedir}/flexjs/TeamPage" target="examine"/>
+        <ant dir="${basedir}/flexjs/TreeExample" target="examine"/>
+        <ant dir="${basedir}/native/ButtonExample" target="examine"/>
+        <ant dir="${basedir}/native/USStatesMap" target="examine"/>
+    </target>
+
 </project>

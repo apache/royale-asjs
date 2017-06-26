@@ -89,8 +89,8 @@ package org.apache.flex.html.beads.layouts
 				var maxHeight:Number = 0;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = hostWidthSizedToContent ? 0 : contentView.width;
-				var hostHeight:Number = hostHeightSizedToContent ? 0 : contentView.height;
+				var hostWidth:Number = host.width;
+				var hostHeight:Number = host.height;
 
 				var ilc:ILayoutChild;
 				var data:Object;
@@ -105,7 +105,7 @@ package org.apache.flex.html.beads.layouts
 				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.left;
+				var ypos:Number = borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
@@ -121,25 +121,24 @@ package org.apache.flex.html.beads.layouts
 
 					var childXpos:Number = xpos + margins.left; // default x position
 
-					if (!hostWidthSizedToContent) {
-						var childWidth:Number = child.width;
-						if (ilc != null && !isNaN(ilc.percentWidth)) {
-							childWidth = hostWidth * ilc.percentWidth/100.0;
-							ilc.setWidth(childWidth);
-						}
-						else if (ilc.isWidthSizedToContent() && !margins.auto)
-						{
-							childWidth = hostWidth;
-							ilc.setWidth(childWidth);
-						}
-						if (margins.auto)
-							childXpos = (hostWidth - childWidth) / 2;
+					var childWidth:Number = child.width;
+					if (ilc != null && !isNaN(ilc.percentWidth)) {
+						childWidth = hostWidth * ilc.percentWidth/100.0;
+						ilc.setWidth(childWidth);
 					}
+					else if (ilc.isWidthSizedToContent() && !margins.auto)
+					{
+						childWidth = hostWidth;
+						ilc.setWidth(childWidth);
+					}
+					if (margins.auto)
+						childXpos = (hostWidth - childWidth) / 2;
+						
 					if (ilc) {
 						ilc.setX(childXpos);
 						ilc.setY(ypos);
 
-						if (!hostHeightSizedToContent && !isNaN(ilc.percentHeight)) {
+						if (!isNaN(ilc.percentHeight)) {
 							var newHeight:Number = hostHeight * ilc.percentHeight / 100;
 							ilc.setHeight(newHeight);
 						}

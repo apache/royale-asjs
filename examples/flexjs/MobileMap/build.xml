@@ -27,13 +27,22 @@
     <property name="playerglobal.version" value="11.4" />
     
     <property environment="env"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
+    <property name="AIR_HOME" value="${env.AIR_HOME}"/>
     <property name="config_arg" value="air" />
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.compile.cordova" description="Clean build of ${example}">
+        <antcall target="cordova-plugins" />
+    </target>
+    
+    <target name="cordova-plugins" if="has.cordova" >
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-plugin" >
+            <property name="plugin" value="cordova-plugin-geolocation"/>
+        </ant>
     </target>
     
     <target name="cordova" description="Executes the Cordova build script to create Cordova app">
@@ -41,7 +50,7 @@
     </target>
     
     <target name="run" description="Executes the Cordova build script to run the app on a device.">
-    	<ant antfile="../../../cordova-build.xml" target="run" />
+    	<ant antfile="../../../cordova-build.xml" target="run.android" />
     </target>
     
     <target name="all" depends="main, cordova" description="Builds the app then runs the Cordova script">
@@ -55,4 +64,11 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
     
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="View map."/>
+        <antcall target="build_example.run.air.desktop" />
+        <antcall target="build_example.run.cordova" />
+    </target>
+
 </project>

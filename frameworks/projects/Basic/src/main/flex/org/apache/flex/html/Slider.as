@@ -76,6 +76,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
+		[Bindable("valueChange")]
 		public function get value():Number
 		{
 			return IRangeModel(model).value;

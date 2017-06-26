@@ -1,42 +1,43 @@
 <?xml version="1.0"?>
 <!--
-
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-
--->
+ 
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ -->
 
 <project name="build_example" basedir=".">
-
+    
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+        <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
     
     <target name="compile" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <!-- this is a dummy var placeholder in case some example needs to define a theme
-            then they would set theme_arg=-theme=<path to theme> -->
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
+         then they would set theme_arg=-theme=<path to theme> -->
+        <property name="theme_arg" value="-define+=CONFIG::theme,false" />
         <mxmlc fork="true"
-               file="${basedir}/src/${example}.mxml"
-               output="${basedir}/bin-debug/${example}.swf">
+            file="${basedir}/src/${example}.mxml"
+            output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
@@ -50,18 +51,19 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
-        <html-wrapper 
-            height="100%" 
-            width="100%"
-            bgcolor="#ffffff"
-            name="${example}"
-            versionmajor="11"
-            versionminor="1"
-            versionrevision="0" 
-            output="${basedir}/bin-debug"/> 
- 
+        <html-wrapper
+        height="100%"
+        width="100%"
+        bgcolor="#ffffff"
+        name="${example}"
+        versionmajor="11"
+        versionminor="1"
+        versionrevision="0"
+        output="${basedir}/bin-debug"/>
+        
         <copy todir="${basedir}/bin-debug">
             <fileset dir="${basedir}/src">
                 <include name="**/*.png" />
@@ -102,6 +104,7 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
         <copy todir="${basedir}/bin-debug">
@@ -119,14 +122,14 @@
     <target name="compileas" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-
+        
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-               file="${basedir}/src/${example}.as"
-               output="${basedir}/bin-debug/${example}.swf">
+            file="${basedir}/src/${example}.as"
+            output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
@@ -142,20 +145,21 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
-        <html-wrapper 
-            height="300" 
-            width="400"
-            bgcolor="#ffffff"
-            name="${example}"
-            versionmajor="11"
-            versionminor="1"
-            versionrevision="0" 
-            output="${basedir}/bin-debug"/> 
- 
+        <html-wrapper
+        height="300"
+        width="400"
+        bgcolor="#ffffff"
+        name="${example}"
+        versionmajor="11"
+        versionminor="1"
+        versionrevision="0"
+        output="${basedir}/bin-debug"/>
+        
     </target>
-
+    
     <target name="compilejs" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
@@ -163,7 +167,7 @@
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-
+        
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -180,25 +184,28 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="${basedir}/src/${example}.mxml" />
         </java>
         <fail>
-			<condition>
-				<not>
-					<or>
-						<equals arg1="${errorCode}" arg2="0" />
-						<equals arg1="${errorCode}" arg2="2" />
-					</or>
-				</not>
-			</condition>
-		</fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${errorCode}" arg2="0" />
+                        <equals arg1="${errorCode}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
-
+    
     <target name="compilejsair" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
@@ -224,8 +231,11 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
@@ -242,7 +252,7 @@
             </condition>
         </fail>
     </target>
-
+    
     <target name="compileasjs" description="Cross-compiles ${example}" unless="no.js">
         <echo message="Compiling ${example}.js"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
@@ -250,11 +260,11 @@
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-
+        
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
+            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
             <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
@@ -269,25 +279,28 @@
             <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
             <arg value="${extlib_arg}" />
             <arg value="-remove-circulars" />
+            <arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
             <arg value="-js-output-type=FLEXJS" />
             <arg value="-closure-lib=${GOOG_HOME}" />
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
             <arg value="${basedir}/src/${example}.as" />
         </java>
         <fail>
-			<condition>
-				<not>
-					<or>
-						<equals arg1="${errorCode}" arg2="0" />
-						<equals arg1="${errorCode}" arg2="2" />
-					</or>
-				</not>
-			</condition>
-		</fail>        
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${errorCode}" arg2="0" />
+                        <equals arg1="${errorCode}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
-
+    
     <macrodef name="html-wrapper">
         <attribute name="width"/>
         <attribute name="height"/>
@@ -297,80 +310,80 @@
         <attribute name="versionminor"/>
         <attribute name="versionrevision"/>
         <attribute name="output"/>
-            <sequential>
-                <copy toFile="@{output}/@{name}.html" 
-                    file="${FLEXJS_HOME}/templates/swfobject/index.template.html" />
-                <copy toDir="@{output}/history">
-                    <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
-                        <include name="**"/>
-                    </fileset>
-                </copy>
-                <copy toDir="@{output}">
-                    <fileset dir="${FLEXJS_HOME}/templates/swfobject">
-                        <include name="*"/>
-                        <exclude name="index.template.html"/>
-                    </fileset>
-                </copy>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${title}"
-                        value="@{name}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${bgcolor}"
-                        value="@{bgcolor}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${useBrowserHistory}"
-                        value="--"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${version_major}"
-                        value="@{versionmajor}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${version_minor}"
-                        value="@{versionminor}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${version_revision}"
-                        value="@{versionrevision}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${expressInstallSwf}"
-                        value="expressInstall.swf"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${expressInstallSwf}"
-                        value="expressInstall.swf"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${width}"
-                        value="@{width}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${height}"
-                        value="@{height}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${application}"
-                        value="@{name}"/>
-                </replace>
-                <replace file="@{output}/@{name}.html">
-                    <replacefilter
-                        token="$${swf}"
-                        value="@{name}"/>
-                </replace>
+        <sequential>
+            <copy toFile="@{output}/@{name}.html"
+            file="${FLEXJS_HOME}/templates/swfobject/index.template.html" />
+            <copy toDir="@{output}/history">
+                <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
+                    <include name="**"/>
+                </fileset>
+            </copy>
+            <copy toDir="@{output}">
+                <fileset dir="${FLEXJS_HOME}/templates/swfobject">
+                    <include name="*"/>
+                    <exclude name="index.template.html"/>
+                </fileset>
+            </copy>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${title}"
+                value="@{name}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${bgcolor}"
+                value="@{bgcolor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${useBrowserHistory}"
+                value="--"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${version_major}"
+                value="@{versionmajor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${version_minor}"
+                value="@{versionminor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${version_revision}"
+                value="@{versionrevision}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${expressInstallSwf}"
+                value="expressInstall.swf"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${expressInstallSwf}"
+                value="expressInstall.swf"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${width}"
+                value="@{width}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${height}"
+                value="@{height}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${application}"
+                value="@{name}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                token="$${swf}"
+                value="@{name}"/>
+            </replace>
         </sequential>
     </macrodef>
     
