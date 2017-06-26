@@ -49,14 +49,6 @@
   </build>
 
   <dependencies>
-    <!-- Already added in parent -->
-    <!--dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.8.0</version>
-      <type>swc</type>
-    </dependency-->
-    
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>

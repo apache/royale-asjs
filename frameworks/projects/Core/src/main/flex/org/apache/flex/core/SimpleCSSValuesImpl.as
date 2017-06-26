@@ -620,11 +620,11 @@ package org.apache.flex.core
                 
                 var value:String = pieces[1];
                 if (value === "null")
-                    obj[valueName] = null;
+                    obj[pieces[0]] = null;
                 else if (value === "true")
-                    obj[valueName] = true;
+                    obj[pieces[0]] = true;
                 else if (value === "false")
-                    obj[valueName] = false;
+                    obj[pieces[0]] = false;
                 else
                 {
                     var n:Number = Number(value);
@@ -678,7 +678,7 @@ package org.apache.flex.core
                 }
                 asValues[valueName] = v;
             }
-            values[ruleName] = asValues;
+            this.values[ruleName] = asValues;
 			COMPILE::JS
 			{
 				if (!ss)
@@ -688,9 +688,9 @@ package org.apache.flex.core
 					ss = styleElement.sheet as CSSStyleSheet;
 				}
 				var cssString:String = ruleName + " {"
-				for (var p:String in values)
+				for (var p:String in ruleValues)
 				{
-					var value:Object = values[p];
+					var value:Object = ruleValues[p];
 				    if (typeof(value) === 'function') continue;
 					cssString += p + ": ";
 					if (typeof(value) == 'number') {

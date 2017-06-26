@@ -498,7 +498,7 @@ http://www.apache.org/dyn/closer.cgi?path=/flex/installer/${latest.installer}/bi
 \n\
 Please vote to approve this release:\n\
 +1 Approve the release\n\
--1 Veto the release (please provide specific comments to why)\n\
+-1 Disapprove the release (please provide specific comments to why)\n\
 \n\
 This vote will be open for 72 hours or until a result can be called.\n\
 \n\
@@ -524,7 +524,8 @@ package and signature files, unzipping, etc, you can instead:\n\
 1) create an empty folder,\n\
 2) download into that folder this file:\n\
 https://dist.apache.org/repos/dist/dev/flex/flexjs/${release.version}/rc${rc}/ApproveFlexJS.xml\n\
-3) run the script: ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
+3) run the script:\n\
+   ant -e -f ApproveFlexJS.xml -Drelease.version=${release.version} -Drc=${rc}\n\
 \n\
 You are not required to use this script, and more testing of the packages\n\
 and build results are always encouraged.\n\
@@ -567,7 +568,7 @@ ${my.name}
 			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
             <arg value="${dist.release}/flex/flexjs/${release.version}" />
 		</exec>
-		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.release}/.." failonerror="true" >
 			<arg value="commit" />
 			<arg value="--username" />
 			<arg value="${apache.username}" />
