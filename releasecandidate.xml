@@ -568,7 +568,7 @@ ${my.name}
 			<arg value="${dist.dev}/flex/flexjs/${release.version}/rc${rc}" />
             <arg value="${dist.release}/flex/flexjs/${release.version}" />
 		</exec>
-		<exec executable="${svn}" dir="${dist.release}/flex/flexjs" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.release}/.." failonerror="true" >
 			<arg value="commit" />
 			<arg value="--username" />
 			<arg value="${apache.username}" />
