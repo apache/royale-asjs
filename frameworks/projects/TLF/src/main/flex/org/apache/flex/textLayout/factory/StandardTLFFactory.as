@@ -57,5 +57,14 @@ package org.apache.flex.textLayout.factory {
 		{
 			_currentContainer = value;
 		}
+		public function getBlendMode(obj:Object):String
+		{
+			return "normal";
+		}
+
+		public function setBlendMode(obj:Object,value:String):void
+		{
+			
+		}
 	}
 }

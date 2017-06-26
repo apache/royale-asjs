@@ -319,6 +319,26 @@ package org.apache.flex.textLayout.edit
 							deletePreviousWord();
 							event.preventDefault();
 							break;
+						
+					}
+					//copy/paste
+					// in Flash there is special events for this.
+					COMPILE::JS
+					{
+						switch(event.code)
+						{
+							//Paste and cut need to be handled inside the "paste" and "cut" events
+							case "KeyV"://paste fallthrough
+								// editHandler(new Event(EditEvent.PASTE));
+								// event.preventDefault();
+								// break;
+							case "KeyX"://cut
+								Clipboard.generalClipboard.registerCallback(editHandler);
+								// editHandler(new Event(EditEvent.CUT));
+								// event.preventDefault();
+								break;
+						}
+
 					}
 					if (event.code == EditingKeys.DELETE)
 					{

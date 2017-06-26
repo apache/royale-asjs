@@ -43,7 +43,6 @@ package org.apache.flex.textLayout.edit
 	import org.apache.flex.textLayout.debug.assert;
 	import org.apache.flex.textLayout.dummy.BitmapData;
 	import org.apache.flex.textLayout.dummy.BoundsUtil;
-	import org.apache.flex.textLayout.dummy.Clipboard;
 	import org.apache.flex.textLayout.dummy.ContextMenu;
 	import org.apache.flex.textLayout.dummy.IBitmapDrawable;
 	import org.apache.flex.textLayout.dummy.Mouse;
@@ -74,6 +73,7 @@ package org.apache.flex.textLayout.edit
 	import org.apache.flex.textLayout.operations.FlowOperation;
 	import org.apache.flex.textLayout.utils.NavigationUtil;
 	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.textLayout.edit.Clipboard;
 
 	/** 
 	 * The SelectionManager class manages text selection in a text flow.
@@ -2581,7 +2581,10 @@ package org.apache.flex.textLayout.edit
 		{
 			var selState:SelectionState = null;
 			flushPendingOperations();
+			if(event.defaultPrevented)
+				return;
 
+			
 			switch (event.code)
 			{
 				case NavigationKeys.LEFT:
@@ -2633,6 +2636,29 @@ package org.apache.flex.textLayout.edit
 		{
 			if (!hasSelection() || event.defaultPrevented)
 				return;
+
+			//copy/paste
+			// in Flash there is special events for this.
+			COMPILE::JS
+			{
+				if(event.specialKey && !event.altKey && !event.defaultPrevented)
+				{
+					switch(event.code)
+					{
+						// Copy is handled internally by the Clipboard class
+						case "KeyC"://copy
+							Clipboard.generalClipboard.registerCallback(editHandler);
+						// 	editHandler(new Event(EditEvent.COPY));
+						// 	event.preventDefault();
+							break;
+						case "KeyA"://select all
+							editHandler(new Event(SelectionEvent.SELECT_ALL));
+							event.preventDefault();
+							break;
+					}
+				}
+
+			}
 
 			// if (event.charCode == 0)
 			// {

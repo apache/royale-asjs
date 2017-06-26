@@ -34,5 +34,7 @@ package org.apache.flex.textLayout.factory {
 		// of the font information it needs
 		function get currentContainer():IParentIUIBase;
 		function set currentContainer(value:IParentIUIBase):void
+		function getBlendMode(obj:Object):String;
+		function setBlendMode(obj:Object,value:String):void;
 	}
 }
