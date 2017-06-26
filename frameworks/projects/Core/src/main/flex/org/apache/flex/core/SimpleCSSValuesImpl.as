@@ -709,7 +709,6 @@ package org.apache.flex.core
 				cssString += "}";
 				ss.insertRule(cssString, ss.cssRules.length);
 			}
->>>>>>> release0.8.0
         }
 		
 		COMPILE::JS
