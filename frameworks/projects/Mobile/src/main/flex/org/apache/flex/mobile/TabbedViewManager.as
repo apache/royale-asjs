@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile
 {	
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
 	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.TabBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.flex.mobile.beads.TabbedViewManagerView;
+	
+	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
 	
 	/**
 	 * The TabbedViewManager displays a set of views, only one of which is active at
@@ -79,6 +83,14 @@ package org.apache.flex.mobile
 		public function set selectedIndex(value:Number):void
 		{
 			ViewManagerModel(model).selectedIndex = value;
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
 		}
 
 	}

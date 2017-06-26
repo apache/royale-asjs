@@ -19,6 +19,8 @@
 -->
 <flex-sdk-description>
   <name>Apache Flex ${project.version} FP${flash.version} AIR${air.version} en_US</name>
-  <version>${project.version}</version>
+  <!--version>${project.version}</version-->
+  <!-- This is a hack to trick the FlashBuilder in accepting this version -->
+  <version>4.8.${project.version}</version>
   <build>${timestamp}</build>
 </flex-sdk-description>

@@ -22,6 +22,9 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib</outputDirectory>
+      <!-- FlashBuilder doesn't like us appending the version to the jar name -->
+      <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>com.adobe:fontkit</include>
       </includes>

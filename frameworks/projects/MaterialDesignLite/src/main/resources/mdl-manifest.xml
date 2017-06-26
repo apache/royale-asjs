@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+    <component id="Application" class="org.apache.flex.mdl.Application"/>
+    <component id="Button" class="org.apache.flex.mdl.Button"/>
+    <component id="IconToggle" class="org.apache.flex.mdl.IconToggle"/>
+    <component id="TextField" class="org.apache.flex.mdl.TextField"/>
+    <component id="TextArea" class="org.apache.flex.mdl.TextArea"/>
+    <component id="CheckBox" class="org.apache.flex.mdl.CheckBox"/>
+    <component id="RadioButton" class="org.apache.flex.mdl.RadioButton"/>
+    <component id="Switch" class="org.apache.flex.mdl.Switch"/>
+    <component id="TextPrompt" class="org.apache.flex.mdl.beads.TextPrompt"/>
+    <component id="ExpandableSearch" class="org.apache.flex.mdl.beads.ExpandableSearch"/>
+    <component id="Restrict" class="org.apache.flex.mdl.beads.Restrict"/>
+    <component id="Disabled" class="org.apache.flex.mdl.beads.Disabled"/>
+    <component id="Slider" class="org.apache.flex.mdl.Slider"/>
+    <component id="SliderView" class="org.apache.flex.mdl.beads.views.SliderView"/>
+    <component id="SliderMouseController" class="org.apache.flex.mdl.beads.controllers.SliderMouseController"/>
+    <component id="Badge" class="org.apache.flex.mdl.beads.Badge"/>
+    <component id="Menu" class="org.apache.flex.mdl.Menu"/>
+    <component id="MenuItemRenderer" class="org.apache.flex.mdl.itemRenderers.MenuItemRenderer"/>
+    <component id="Card" class="org.apache.flex.mdl.Card"/>
+    <component id="CardTitle" class="org.apache.flex.mdl.CardTitle"/>
+    <component id="CardTitleText" class="org.apache.flex.mdl.CardTitleText"/>
+    <component id="CardSupportingText" class="org.apache.flex.mdl.CardSupportingText"/>
+    <component id="CardMedia" class="org.apache.flex.mdl.CardMedia"/>
+    <component id="CardActions" class="org.apache.flex.mdl.CardActions"/>
+    <component id="CardMenu" class="org.apache.flex.mdl.CardMenu"/>
+    <component id="Spacer" class="org.apache.flex.mdl.Spacer"/>
+    <component id="List" class="org.apache.flex.mdl.List"/>
+    <component id="ListView" class="org.apache.flex.mdl.beads.views.ListView"/>
+    <component id="ListItemRenderer" class="org.apache.flex.mdl.itemRenderers.ListItemRenderer"/>
+    <component id="ListItemPrimaryContent" class="org.apache.flex.mdl.beads.ListItemPrimaryContent"/>
+    <component id="ListItemSecondaryContent" class="org.apache.flex.mdl.beads.ListItemSecondaryContent"/>
+    <component id="ListItemSecondaryAction" class="org.apache.flex.mdl.beads.ListItemSecondaryAction"/>
+    <component id="ListItemSubTitle" class="org.apache.flex.mdl.beads.ListItemSubTitle"/>
+    <component id="ListItemSecondaryInfo" class="org.apache.flex.mdl.beads.ListItemSecondaryInfo"/>
+    <component id="ListItemTextBody" class="org.apache.flex.mdl.beads.ListItemTextBody"/>
+    <component id="Table" class="org.apache.flex.mdl.Table"/>
+    <component id="THead" class="org.apache.flex.mdl.THead"/>
+    <component id="TableColumn" class="org.apache.flex.mdl.TableColumn"/>
+    <component id="TableRowItemRenderer" class="org.apache.flex.mdl.itemRenderers.TableRowItemRenderer"/>
+    <component id="TableCell" class="org.apache.flex.mdl.TableCell"/>
+    <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
+    <component id="Dialog" class="org.apache.flex.mdl.Dialog"/>
+    <component id="DialogTitle" class="org.apache.flex.mdl.DialogTitle"/>
+    <component id="DialogContent" class="org.apache.flex.mdl.DialogContent"/>
+    <component id="DialogActions" class="org.apache.flex.mdl.DialogActions"/>
+    <component id="NavigationLayout" class="org.apache.flex.mdl.NavigationLayout"/>
+    <component id="LayoutTitle" class="org.apache.flex.mdl.LayoutTitle"/>
+    <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
+    <component id="NavigationLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer"/>
+    <component id="NavigationLink" class="org.apache.flex.mdl.NavigationLink"/>
+    <component id="Header" class="org.apache.flex.mdl.Header"/>
+    <component id="HeaderRow" class="org.apache.flex.mdl.HeaderRow"/>
+    <component id="Navigation" class="org.apache.flex.mdl.Navigation"/>
+    <component id="Drawer" class="org.apache.flex.mdl.Drawer"/>
+    <component id="NavigationLayoutContent" class="org.apache.flex.mdl.NavigationLayoutContent"/>
+    <component id="Grid" class="org.apache.flex.mdl.Grid"/>
+    <component id="GridCell" class="org.apache.flex.mdl.GridCell"/>
+    <component id="GridCellBehaviour" class="org.apache.flex.mdl.beads.GridCellBehaviour"/>
+    <component id="Chip" class="org.apache.flex.mdl.Chip"/>
+    <component id="ButtonChip" class="org.apache.flex.mdl.ButtonChip"/>
+    <component id="DeletableChip" class="org.apache.flex.mdl.beads.DeletableChip"/>
+    <component id="DeletableLinkChip" class="org.apache.flex.mdl.beads.DeletableLinkChip"/>
+    <component id="ContactChip" class="org.apache.flex.mdl.beads.ContactChip"/>
+    <component id="ContactImageChip" class="org.apache.flex.mdl.beads.ContactImageChip"/>
+    <component id="Tooltip" class="org.apache.flex.mdl.beads.Tooltip"/>
+    <component id="MdlColor" class="org.apache.flex.mdl.beads.MdlColor"/>
+    <component id="MdlTextColor" class="org.apache.flex.mdl.beads.MdlTextColor"/>
+    <component id="Spinner" class="org.apache.flex.mdl.Spinner"/>
+    <component id="ProgressBar" class="org.apache.flex.mdl.ProgressBar"/>
+    <component id="Toast" class="org.apache.flex.mdl.Toast"/>
+    <component id="Snackbar" class="org.apache.flex.mdl.Snackbar"/>
+    <component id="TabBarView" class="org.apache.flex.mdl.beads.views.TabBarView"/>
+    <component id="TabBar" class="org.apache.flex.mdl.TabBar"/>
+    <component id="TabBarButtonTabsItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarButtonTabsItemRenderer"/>
+    <component id="TabBarButtonLayoutItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarButtonLayoutItemRenderer"/>
+    <component id="TabBarButton" class="org.apache.flex.mdl.TabBarButton"/>
+    <component id="TabBarPanelItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarPanelItemRenderer"/>
+    <component id="TabBarLayoutItemRenderer" class="org.apache.flex.mdl.itemRenderers.TabBarLayoutItemRenderer"/>
+    <component id="TabBarPanel" class="org.apache.flex.mdl.TabBarPanel"/>
+    <component id="TabsView" class="org.apache.flex.mdl.beads.views.TabsView"/>
+    <component id="Tabs" class="org.apache.flex.mdl.Tabs"/>
+    <component id="MaterialIcon" class="org.apache.flex.mdl.materialIcons.MaterialIcon"/>
+    <component id="Footer" class="org.apache.flex.mdl.Footer"/>
+    <component id="FooterMiddleSection" class="org.apache.flex.mdl.FooterMiddleSection"/>
+    <component id="FooterDropDownSection" class="org.apache.flex.mdl.FooterDropDownSection"/>
+    <component id="FooterLeftSection" class="org.apache.flex.mdl.FooterLeftSection"/>
+    <component id="FooterRightSection" class="org.apache.flex.mdl.FooterRightSection"/>
+    <component id="FooterTopSection" class="org.apache.flex.mdl.FooterTopSection"/>
+    <component id="FooterBottomSection" class="org.apache.flex.mdl.FooterBottomSection"/>
+    <component id="FooterLogo" class="org.apache.flex.mdl.FooterLogo"/>
+    <component id="FooterLinkList" class="org.apache.flex.mdl.FooterLinkList"/>
+    <component id="FooterLinkItemRenderer" class="org.apache.flex.mdl.itemRenderers.FooterLinkItemRenderer"/>
+    <component id="FooterSocialButton" class="org.apache.flex.mdl.FooterSocialButton"/>
+    <component id="FooterHeading" class="org.apache.flex.mdl.FooterHeading"/>
+    <component id="UpgradeElement" class="org.apache.flex.mdl.beads.UpgradeElement"/>
+    <component id="UpgradeChildren" class="org.apache.flex.mdl.beads.UpgradeChildren"/>
+    <component id="DropDownList" class="org.apache.flex.mdl.DropDownList"/>
+    <component id="DropDownListView" class="org.apache.flex.mdl.beads.views.DropDownListView"/>
+</componentPackage>

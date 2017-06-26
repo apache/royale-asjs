@@ -2,26 +2,27 @@ Running the CordovaCameraExample on an Android Device
 
 From Flash Builder or the command line, run the FlexJS cross compiler, FalconJX, to build the HTML/JavaScript version of your app.
 % cd ~/dev/flex-asjs/examples/CordovaCameraExample
-% ant
+% ant all
 
-Go to your mobile development directory:
-%cd ~/mobile
+The ANT script will build the application and then create the Cordova template in the app/CordovaCameraExample directory.
 
-Copy into this directory, the cordova-build.xml ANT script:
-% cp ~/dev/flex-asjs/cordova-build.xml .
+Now install the Android platform:
 
-Create the Cordova project for your FlexJS application:
-% ant -f cordova-build.xml -DPROJECT_NAME=CordovaCameraExample -DTARGET_DIR=. -DPROJECT_DIR=/Users/home/dev/flex-asjs/examples/flexjs/CordovaCameraExample
+% cd app/CordovaCameraExample
+% cordova platform add android
 
-Load the Cordova camera plugin:
-cd CordovaCameraExample
+Now install the plugin:
+
 % cordova plugin add cordova-plugin-camera
 
-Modify the www/index.html file to include the cordova.js source (place this line with the other <script> elements):
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+Once this is complete, you can connect your Android device to your computer and run it:
 
-Run your app on your connected device:
+EITHER (if still in the Cordova app/CordovaCameraExample directory):
 % cordova run
+
+OR (return to top-level example directory):
+% cd flex-asjs/examples/flexjs/CordovaCameraExample
+% ant run
 
 Or run on the simulator
 % cordova emulate android

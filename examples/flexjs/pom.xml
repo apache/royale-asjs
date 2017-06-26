@@ -25,16 +25,17 @@
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>examples-flexjs</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Flex - FlexJS: Examples: FlexJS</name>
 
   <modules>
+    <module>ASDoc</module>
     <module>ChartExample</module>
     <module>CordovaCameraExample</module>
     <module>CreateJSExample</module>
@@ -42,56 +43,151 @@
     <module>DataBindingExample_as</module><!-- Flash error -->
     <module>DataBindingExample_Flat</module>
     <module>DataGridExample</module>
+    <module>DateControlsExample</module>
     <module>DesktopMap</module>
     <module>FlexJSStore</module>
     <module>FlexJSStore_jquery</module>
+    <module>FlexTeamPage_MDL</module>
     <module>FlexWebsiteStatsViewer</module>
     <module>HelloWorld</module>
+    <module>ListExample</module>
     <module>MapSearch</module>
+    <!--module>MDLBlogExample</module>-->
+    <module>MDLDynamicTabsExample</module>
+    <module>MDLExample</module>
     <module>MobileMap</module>
+    <module>MobileStocks</module>
     <module>MobileTrader</module>
     <module>StorageExample</module>
     <module>StyleExample</module>
+    <module>TeamPage</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
   </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <executions>
+          <execution>
+            <id>tests-default</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <!-- Run the tests from the 'examples-tests' artifact -->
+              <dependenciesToScan>
+                <dependency>org.apache.flex.flexjs.examples:examples-tests</dependency>
+              </dependenciesToScan>
+              <systemPropertyVariables>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>${project.packaging}</type>
+                <buildDirectory>${project.build.directory}</buildDirectory>
+              </systemPropertyVariables>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Collections</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Binding</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.flex.flexjs.framework</groupId>
+        <artifactId>Graphics</artifactId>
+        <version>0.8.0</version>
+        <type>swc</type>
+        <classifier>js</classifier>
+    </dependency>
+
+    <!-- Import the shared unit-tests we want to run on all examples -->
+    <dependency>
+      <groupId>org.apache.flex.flexjs.examples</groupId>
+      <artifactId>examples-tests</artifactId>
+      <version>0.8.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

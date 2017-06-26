@@ -23,6 +23,9 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib</outputDirectory>
+      <!-- FlashBuilder doesn't like us appending the version to the jar name -->
+      <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>com.adobe.air.compiler:adt:jar</include>
       </includes>
@@ -34,8 +37,16 @@ under the License.
         <include>com.adobe.air.compiler:adt:zip:android</include>
         <include>com.adobe.air.compiler:adt:zip:desktop</include>
         <include>com.adobe.air.compiler:adt:zip:ios</include>
+        <include>com.adobe.air.compiler:adt:zip:win</include>
       </includes>
       <unpack>true</unpack>
+    </dependencySet>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputFileNameMapping>frameworks</outputFileNameMapping>
+      <includes>
+        <include></include>
+      </includes>
     </dependencySet>
     <!-- Put the air swcs into the frameworks/libs/air directory -->
     <dependencySet>

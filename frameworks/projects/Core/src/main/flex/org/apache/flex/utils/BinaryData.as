@@ -47,15 +47,18 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-    public function BinaryData(bytes:ByteArray = null)
+    public function BinaryData(bytes:Object = null)
     {
-        ba = bytes ? bytes : new ByteArray();
+        ba = bytes ? bytes as ByteArray : new ByteArray();
     }
 
+    /**
+    * @flexjsignorecoercion ArrayBuffer
+    */
     COMPILE::JS
-    public function BinaryData(bytes:ArrayBuffer = null)
+    public function BinaryData(bytes:Object = null)
     {
-        ba = bytes ? bytes : new ArrayBuffer(0);
+        ba = bytes ? bytes as ArrayBuffer : new ArrayBuffer(0);
         _len = ba.byteLength;
     }
 
@@ -1059,17 +1062,19 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     private function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
         var newContentLength:uint = newBytes.length;
         var dest:Uint8Array;
-        if (offset + newContentLength > _len) {
+		var mergeUpperBound:uint = offset + newContentLength
+        if (mergeUpperBound > _len) {
             dest = new Uint8Array(offset + newContentLength);
             dest.set(new Uint8Array(ba, 0, offset));
             dest.set(newBytes, offset);
             ba = dest.buffer;
             _typedArray = dest;
+			_len = mergeUpperBound;
         } else {
             dest = new Uint8Array(ba, offset, newContentLength);
             dest.set(newBytes);
         }
-        return offset + newContentLength;
+        return mergeUpperBound;
     }
 
     COMPILE::JS

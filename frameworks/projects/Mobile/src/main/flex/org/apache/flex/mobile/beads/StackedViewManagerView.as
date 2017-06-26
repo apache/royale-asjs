@@ -22,10 +22,13 @@ package org.apache.flex.mobile.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IViewportModel;
 	import org.apache.flex.core.UIBase;
+	import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.beads.ContainerView;
 	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.flex.mobile.IViewManager;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
@@ -54,74 +57,120 @@ package org.apache.flex.mobile.beads
 			super();
 		}
 		
-		private var _toolBar:ToolBar;
-
+		private var _strand:IStrand;
+		
+		/*
+		 * Children
+		 */
+		
+		public function get toolBar():ToolBar
+		{
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			return model.toolBar;
+		}
+		public function set toolBar(value:ToolBar):void
+		{
+			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			model.toolBar = value;
+		}
+		
+		/*
+		 * ViewBead
+		 */
+		
+		override public function get strand():IStrand
+		{
+			return _strand;
+		}
 		override public function set strand(value:IStrand):void
 		{
+			_strand = value;
+			super.strand = value;
+			
 			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
 			
 			if (model.toolBarItems)
 			{
-				_toolBar = new ToolBar();
-				_toolBar.controls = model.toolBarItems;
-				_toolBar.addBead(new HorizontalLayout());
-				UIBase(value).addElement(_toolBar,false);
+				var tbar:ToolBar = new ToolBar();
+				tbar.controls = model.toolBarItems;
+				tbar.addBead(new HorizontalLayout());
+				toolBar = tbar;
 			}
-			
-			super.strand = value;
-		}
-		override public function get strand():IStrand
-		{
-			return super.strand;
 		}
 		
-		/**
-		 * @private
-		 */
-		override protected function layoutChromeElements():void
+		override protected function handleInitComplete(event:Event):void
+		{			
+			super.handleInitComplete(event);
+			
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			IEventDispatcher(model).addEventListener("viewPushed", handlePushEvent);
+			IEventDispatcher(model).addEventListener("viewPopped", handlePopEvent);
+			
+			if (toolBar) {
+				UIBase(_strand).addElement(toolBar);
+			}
+			
+			showViewByIndex(0);
+		}
+		
+		private var _topView:IViewManagerView;
+		
+		private function handlePushEvent(event:Event):void
 		{
-			var host:UIBase = strand as UIBase;
-			var contentAreaY:Number = 0;
-			var contentAreaHeight:Number = host.height;
-			var toolbarHeight:Number = _toolBar == null ? 0 : _toolBar.height;
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var n:int = model.views.length;
+			if (n > 0) {
+				showViewByIndex(n-1);
+			}
+		}
+		
+		private function handlePopEvent(event:Event):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var n:int = model.views.length;
+			if (n > 0) {
+				showViewByIndex(n-1);
+			}
+		}
+		
+		public function showView(view:IViewManagerView):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			for(var i:int=0; i < model.views.length; i++) {
+				if (view == model.views[i]) {
+					showViewByIndex(i);
+					break;
+				}
+			}
+		}
+		
+		protected function showViewByIndex(index:int):void
+		{
+			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
 			
-			var model:ViewManagerModel = strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			if (_topView != null) {
+				UIBase(_strand).removeElement(_topView);
+			}
+			_topView = model.views[index] as IViewManagerView;
+			_topView.viewManager = _strand as IViewManager;
 			
-			if (navigationBar)
-			{
-				navigationBar.x = 0;
-				navigationBar.y = 0;
-				navigationBar.width = host.width;
-				
-				contentAreaHeight -= navigationBar.height;
-				contentAreaY = navigationBar.height;
-				
-				model.navigationBar = navigationBar;
+			UIBase(_strand).addElementAt(_topView,(navigationBar == null ? 0 : 1));
+			
+			COMPILE::JS {
+				if (_topView) {
+					UIBase(_topView).element.style["flex-grow"] = "1";
+				}
+			}
+			COMPILE::SWF {
+				if (UIBase(_topView).style == null) {
+					UIBase(_topView).style = new SimpleCSSStylesWithFlex();
+				}
+				UIBase(_topView).style.flexGrow = 1;
+				UIBase(_topView).percentWidth = 100;
 			}
 			
-			if (_toolBar)
-			{
-				_toolBar.x = 0;
-				_toolBar.y = host.height - toolbarHeight;
-				_toolBar.width = host.width;
-				
-				contentAreaHeight -= toolbarHeight;
-				
-				model.toolBar = _toolBar;
-			}
-			
-			if (contentAreaY < 0) contentAreaY = 0;
-			if (contentAreaHeight < 0) contentAreaHeight = 0;
-			
-			model.contentX = 0;
-			model.contentY = contentAreaY;
-			model.contentWidth = host.width;
-			model.contentHeight = contentAreaHeight;
-			
-			sizeViewsToFitContentArea();
-			
-			// notify the views that the content size has changed
-			IEventDispatcher(strand).dispatchEvent( new Event("contentSizeChanged") );
+			// Now that a view has changed, refresh the layout for this component.
+			UIBase(_strand).dispatchEvent(new Event("layoutNeeded"));
 		}
 	}
 }

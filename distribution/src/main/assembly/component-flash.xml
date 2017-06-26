@@ -22,7 +22,7 @@ under the License.
     <!-- Put the playerglobal swc into the frameworks/libs/player directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/libs/player/${flashVersion}</outputDirectory>
+      <outputDirectory>frameworks/libs/player/${flash.version}</outputDirectory>
       <includes>
         <include>com.adobe.flash.framework:playerglobal:swc</include>
       </includes>

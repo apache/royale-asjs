@@ -1,0 +1,204 @@
+/*
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace js "library://ns.apache.org/flexjs/basic";
+@namespace mdl "library://ns.apache.org/flexjs/mdl";
+
+.flexjs *, . flexjs *:before, . flexjs *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page-content
+{
+	padding: 10px;
+	margin: 10px;
+}
+
+js|Image
+{
+	vertical-align: top;
+	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+}
+
+/* Lists */
+.actorNameListItemRenderer
+{
+    width: 300px;
+    IItemRenderer: ClassReference("itemRenderers.ActorNameListItemRenderer");
+}
+
+.actorNameAndIconListItemRenderer
+{
+    width: 300px;
+    IItemRenderer: ClassReference("itemRenderers.ActorNameAndIconListItemRenderer");
+}
+
+.avatarAndActionListItemRenderer
+{
+    width: 300px;
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionListItemRenderer");
+}
+
+.avatarAndActionTwoLineListItemRenderer
+{
+    width: 300px;
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionTwoLineListItemRenderer");
+}
+
+.avatarAndActionThreeLineListItemRenderer
+{
+    width: 650px;
+    IItemRenderer: ClassReference("itemRenderers.AvatarAndActionThreeLineListItemRenderer");
+}
+
+.customMenuItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomMenuItemRenderer");
+}
+
+.customListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomListItemRenderer");
+}
+
+.customTableRowItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomTableRowItemRenderer");
+}
+
+.tableRowItemRendererWithIcons
+{
+    IItemRenderer: ClassReference("itemRenderers.TableRowItemRendererWithIcons");
+}
+
+.footerMiniLinkListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.FooterMiniLinkListItemRenderer");
+}
+
+.layoutTransparent {
+  background: url('assets/transparent.jpg') center / cover;
+  color: white;
+}
+
+.customTabBarPanelItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.CustomTabBarPanelItemRenderer");
+}
+
+.customTabBarSetup
+{
+    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonLayoutItemRenderer");
+}
+
+/* card wide */
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('assets/welcome_card.jpg') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+/* card square */
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background: url('assets/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+
+/* card event */
+.demo-card-event.mdl-card {
+  width: 256px;
+  height: 256px;
+  background: #3E4EB8;
+}
+.demo-card-event > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-card-event > .mdl-card__title {
+  align-items: flex-start;
+}
+.demo-card-event > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.demo-card-event > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+.demo-card-event > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+.demo-card-event > .mdl-card__title,
+.demo-card-event > .mdl-card__actions,
+.demo-card-event > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+
+/* sliders demo */
+.demo-card-slider.mdl-card {
+  width: 250px;
+  height: 50px;
+  background: #fff;
+  color: #000;
+  margin: 4px;
+}
+
+/* Grids Example */
+.demo-grid .mdl-cell {
+  box-sizing: border-box;
+  background-color: #BDBDBD;
+  height: 200px;
+  padding-left: 8px;
+  padding-top: 4px;
+  color: white;
+}
+.demo-grid .mdl-grid:first-of-type .mdl-cell {
+  height: 50px;
+}
+
+/* center items in grid */
+.mdl-grid.center-items {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* make center items have some padding */
+.mdl-grid.center-items > .mdl-card {
+  margin: 10px;
+}
+
+
+/* Icons */
+.material-icons.orange600 { color: #FB8C00; }

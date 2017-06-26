@@ -24,6 +24,7 @@
     <component id="Button" class="org.apache.flex.html.Button"  lookupOnly="true" />
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
+    <component id="DataContainer" class="org.apache.flex.html.DataContainer"  lookupOnly="true"/>
     <component id="DropDownList" class="org.apache.flex.flat.DropDownList" />
     <component id="Image" class="org.apache.flex.html.Image"  lookupOnly="true" />
     <component id="Label" class="org.apache.flex.html.Label"  lookupOnly="true" />
@@ -59,7 +60,6 @@
     <component id="Alert" class="org.apache.flex.html.Alert" lookupOnly="true" />
     <component id="Spinner" class="org.apache.flex.html.Spinner" lookupOnly="true" />
     <component id="Slider" class="org.apache.flex.html.Slider" lookupOnly="true" />
-    <component id="SolidBackgroundBead" class="org.apache.flex.html.beads.SolidBackgroundBead" lookupOnly="true" />
     <component id="NumericStepper" class="org.apache.flex.html.NumericStepper"  lookupOnly="true" />
     <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer" lookupOnly="true" />
     <component id="StringItemRenderer" class="org.apache.flex.html.supportClasses.StringItemRenderer" lookupOnly="true" />

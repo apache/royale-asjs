@@ -32,11 +32,11 @@ import org.apache.flex.core.IParent;
 import org.apache.flex.core.IStrand;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.IEventDispatcher;
+import org.apache.flex.core.IChild;        
 
 COMPILE::JS
 {
     import goog.bind;
-    import org.apache.flex.core.IUIBase;        
 }
 
 /**
@@ -168,6 +168,7 @@ public class MXMLDataInterpreter
     
     /**
      * @flexjsignorecoercion Function 
+     * @flexjsignorecoercion org.apache.flex.core.IChild 
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -295,13 +296,13 @@ public class MXMLDataInterpreter
         }
         COMPILE::SWF
         {
-            if (parent && comp is DisplayObject)
-                parent.addElement(comp, !(parent is IContainer));
+            if (parent && comp is IChild)
+                parent.addElement(comp as IChild, !(parent is IContainer));
         }
         COMPILE::JS
         {
-            if (parent && comp is IUIBase)
-                parent.addElement(comp, !(parent is IContainer));
+            if (parent && comp is IChild)
+                parent.addElement(comp as IChild, !(parent is IContainer));
         }
         
         if (children)
@@ -336,9 +337,9 @@ public class MXMLDataInterpreter
      */
     public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
-		if (!data) return;
-		
-        generateMXMLArray(document, parent, data);
+		if (data != null) {
+        	generateMXMLArray(document, parent, data);
+		}
         // maybe we can remove this.  All IContainers should be IMXMLDocuments?
         if (parent is IContainer)
         {

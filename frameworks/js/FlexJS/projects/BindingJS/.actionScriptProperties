@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <actionScriptProperties analytics="false" mainApplicationPath="Binding.as" projectUUID="cdd94532-d7f6-40f0-b19c-de82c6e44011" version="11">
-  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::SWF,false&#10;-define=COMPILE::JS,true&#10;-load-config=../config/compile-js-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/config" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+  <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::SWF,false&#10;-define=COMPILE::JS,true&#10;-load-config=../../../../../../../js-config.xml&#10;-load-config+=../config/compile-js-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/config" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="${FLEX_ASJS}/frameworks/projects/Binding/src/main/flex"/>
     </compilerSourcePath>

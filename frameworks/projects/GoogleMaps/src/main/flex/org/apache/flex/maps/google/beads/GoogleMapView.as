@@ -153,7 +153,7 @@ package org.apache.flex.maps.google.beads
 		{
 			mapit(37.333, -121.900, 12);
 			initialized = true;
-			dispatchEvent(new Event('ready'));
+			IEventDispatcher(_strand).dispatchEvent(new Event('ready'));
 		}
 
 		/**

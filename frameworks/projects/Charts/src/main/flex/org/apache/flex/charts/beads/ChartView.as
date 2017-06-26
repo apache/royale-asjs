@@ -18,30 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.charts.beads
 {
-	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.charts.core.IChartDataModel;
-	import org.apache.flex.charts.supportClasses.ChartDataGroup;
 	import org.apache.flex.core.IBeadLayout;
 	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.ISelectableItemRenderer;
+	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
+	import org.apache.flex.charts.core.IAxisGroup;
+	import org.apache.flex.charts.core.IChartDataGroup;
+	import org.apache.flex.charts.core.IChartDataModel;
+	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.flex.charts.core.IHorizontalAxisBead;
+	import org.apache.flex.charts.core.IVerticalAxisBead;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.geom.Size;
+	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.beads.ListView;
-	import org.apache.flex.html.beads.models.ViewportModel;
-	import org.apache.flex.html.supportClasses.Viewport;
 	import org.apache.flex.utils.CSSContainerUtils;
 	
 	/**
@@ -81,17 +74,28 @@ package org.apache.flex.charts.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
+			super.strand = value;
+			
 			_strand = value;
-						
-			var listModel:IChartDataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
-			listModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+		}
+		
+		/**
+		 * @private
+		 */
+		override protected function beadsAddedHandler(event:Event):void
+		{
+			super.beadsAddedHandler(event);
+			
+			dataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
+			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;
 			if (haxis && _horizontalAxisGroup == null) {
 				var m1:Class = ValuesManager.valuesImpl.getValue(_strand, "iHorizontalAxisGroup");
 				_horizontalAxisGroup = new m1();
 				haxis.axisGroup = _horizontalAxisGroup;
-				IParent(_strand).addElement(_horizontalAxisGroup, false);
+				UIBase(_horizontalAxisGroup).className = "HorizontalAxis";
+				IContainer(_strand).strandChildren.addElement(_horizontalAxisGroup, false);
 			}
 			
 			var vaxis:IVerticalAxisBead = _strand.getBeadByType(IVerticalAxisBead) as IVerticalAxisBead;
@@ -99,22 +103,9 @@ package org.apache.flex.charts.beads
 				var m2:Class = ValuesManager.valuesImpl.getValue(_strand, "iVerticalAxisGroup");
 				_verticalAxisGroup = new m2();
 				vaxis.axisGroup = _verticalAxisGroup;
-				IParent(_strand).addElement(_verticalAxisGroup, false);
+				UIBase(_verticalAxisGroup).className = "VerticalAxis";
+				IContainer(_strand).strandChildren.addElement(_verticalAxisGroup, false);
 			}
-			
-			super.strand = value;
-		}
-		
-		/**
-		 * @private
-		 */
-		override protected function completeSetup():void
-		{
-			if (border) {
-				IParent(_strand).removeElement(border);
-			}
-					
-			super.completeSetup();
 		}
 		
 		/**
@@ -156,15 +147,20 @@ package org.apache.flex.charts.beads
 				horizontalAxisGroup.removeAllElements();
 			}
 			
-			dataGroup.removeAllElements();
+			dataGroup.removeAllItemRenderers();
 		}
 				
 		/**
 		 * ChartView overrides performLayout so that the exact area of the ChartDataGroup can
 		 * be calculated so the chart's layout algorithm knows precisely the dimensions of 
 		 * chart for its item renderers.
-		 */
-		override protected function layoutViewBeforeContentLayout():void
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */		
+		override public function beforeLayout():void
 		{			
 			var metrics:Rectangle = CSSContainerUtils.getBorderAndPaddingMetrics(_strand);
 			
@@ -185,9 +181,15 @@ package org.apache.flex.charts.beads
 			var strandWidth:Number = UIBase(_strand).width;
 			var strandHeight:Number = UIBase(_strand).height;
 			
-            viewport.setPosition(widthAdjustment + metrics.left, metrics.top);
-			viewport.layoutViewportBeforeContentLayout(strandWidth - widthAdjustment - metrics.right - metrics.left,
-                                                        strandHeight - heightAdjustment - metrics.bottom - metrics.top);
+			var chartArea:UIBase = dataGroup as UIBase;
+			
+			chartArea.x = widthAdjustment + metrics.left;
+			chartArea.y = metrics.top;
+			chartArea.setWidthAndHeight(strandWidth - widthAdjustment - metrics.right - metrics.left,
+				strandHeight - heightAdjustment - metrics.bottom - metrics.top);
+			COMPILE::JS {
+				chartArea.element.style.position = "absolute";
+			}
             
 			if (verticalAxisGroup) {
 				UIBase(verticalAxisGroup).x = metrics.left;
@@ -207,6 +209,14 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		override public function afterLayout():void
+		{
+			// ignore for charts
+		}
+		
+		/**
+		 * @private
+		 */
 		protected var lastSelectedSeries:IChartSeries;
 		
 		/**
@@ -215,7 +225,7 @@ package org.apache.flex.charts.beads
 		override protected function selectionChangeHandler(event:Event):void
 		{
 			var model:IChartDataModel = event.currentTarget as IChartDataModel;
-			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
+			var chartDataGroup:IChartDataGroup = dataGroup as IChartDataGroup;
 			var ir:ISelectableItemRenderer = null;
 			
 			if (lastSelectedIndex != -1)
@@ -240,10 +250,11 @@ package org.apache.flex.charts.beads
 		/**
 		 * @private
 		 */
+		COMPILE::SWF
 		override protected function rollOverIndexChangeHandler(event:Event):void
 		{
 			var model:IChartDataModel = event.currentTarget as IChartDataModel;
-			var chartDataGroup:ChartDataGroup = dataGroup as ChartDataGroup;
+			var chartDataGroup:IChartDataGroup = dataGroup as IChartDataGroup;
 			var ir:ISelectableItemRenderer = null;
 
 			if (lastRollOverIndex != -1)

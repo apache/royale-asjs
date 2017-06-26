@@ -21,9 +21,9 @@
 
 <componentPackage>
 
-    <component id="Application" class="org.apache.cordova.Application"/>
-    <component id="Camera" class="org.apache.cordova.camera.Camera"/>
-    <component id="Weinre" class="org.apache.cordova.Weinre"/>
-    <component id="Geolocation" class="org.apache.cordova.geolocation.Geolocation" />
+    <component id="Application" class="org.apache.flex.cordova.Application"/>
+    <component id="Camera" class="org.apache.flex.cordova.Camera"/>
+    <component id="Weinre" class="org.apache.flex.cordova.Weinre"/>
+    <component id="Geolocation" class="org.apache.flex.cordova.geolocation.Geolocation" />
 
 </componentPackage>

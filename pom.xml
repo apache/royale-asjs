@@ -17,7 +17,9 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -26,9 +28,9 @@
     <version>18</version>
   </parent>
 
-  <groupId>org.apache.flex.flexjs</groupId>
+  <groupId>org.apache.flex.flexjs.framework</groupId>
   <artifactId>flexjs-framework-parent</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Parent</name>
@@ -53,28 +55,31 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.3.1</maven.version>
 
-    <flexjs.compiler.version>0.7.0</flexjs.compiler.version>
-    <flexjs.typedefs.version>0.7.0</flexjs.typedefs.version>
+    <flexjs.compiler.version>0.8.0</flexjs.compiler.version>
+    <flexjs.typedefs.version>0.8.0</flexjs.typedefs.version>
     <flexjs.build-tools.version>1.0.0</flexjs.build-tools.version>
 
     <flex.debug>true</flex.debug>
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
+    <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
+    <swf.version>31</swf.version>
+
+    <selenium.version>3.1.0</selenium.version>
+    <junit.version>4.12</junit.version>
 
     <!-- URL of the ASF SonarQube server -->
-    <sonar.host.url>https://analysis.apache.org/</sonar.host.url>
-    <!-- Tell sonar where the coverage reports are located -->
-    <sonar.jacoco.reportPath>${project.build.directory}/coverage-reports/jacoco-ut.exec</sonar.jacoco.reportPath>
-    <sonar.jacoco.itReportPath>${project.build.directory}/coverage-reports/jacoco-it.exec</sonar.jacoco.itReportPath>
+    <sonar.host.url>https://builds.apache.org/analysis</sonar.host.url>
+    <!-- Exclude all generated code -->
+    <sonar.exclusions>file:**/generated-sources/**</sonar.exclusions>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
     <site>
-      <id>website</id>
-      <!-- TODO: Set this to the correct url -->
-      <url>scp://www.mycompany.com/www/docs/project/</url>
+      <id>apache.website</id>
+      <url>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</url>
     </site>
   </distributionManagement>
 
@@ -102,6 +107,7 @@
 
   <modules>
     <module>frameworks</module>
+    <module>archetypes</module>
   </modules>
 
   <build>
@@ -132,6 +138,12 @@
             </dependency>
           </dependencies>
         </plugin>
+
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -151,14 +163,6 @@
         </executions>
         <configuration>
           <excludes>
-            <!--
-              As the examples and distribution are not build in every case, we
-              have to exclude them. This skips the checks if they are not included
-              but if they are included, the checks inside distribution and examples
-              kick in and do the checks.
-            -->
-            <exclude>distribution/**</exclude>
-            <exclude>examples/**</exclude>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
             <!-- This is appended to the LICENSE file for binary packages-->
@@ -167,14 +171,22 @@
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
             <exclude>vf2js/**</exclude>
-            <!-- frameworks/fb.properties contains Alex' path entries and should be removed -->
-            <exclude>fb.properties</exclude>
             <!-- Should probably also be removed -->
             <exclude>js/*jshint*</exclude>
-            <!-- If checked in, they should have apache headers -->
+            <!-- FlashBuilder settings. frameworks/fb.properties contains Alex' path entries and should be removed -->
+            <exclude>fb.properties</exclude>
+            <!-- FlashBuilder / Eclipse settings. If checked in, they should have apache headers -->
             <exclude>**/.settings/**</exclude>
-            <!-- Examples needs to be fixed -->
-            <exclude>native/**</exclude>
+            <!-- Ignore IntelliJ IDEA project files -->
+            <exclude>**/*.iml</exclude>
+            <exclude>**/.idea/**</exclude>
+            <!--
+                Exclude any eventually existing content of target directories.
+                Some times when building with a bigger maven reactor and then
+                with a smaller one, RAT will complain about stuff still in the
+                target directories. We don't want that.
+            -->
+            <exclude>**/target/**</exclude>
           </excludes>
         </configuration>
         <dependencies>
@@ -190,6 +202,91 @@
             </exclusions>
           </dependency>
         </dependencies>
+      </plugin>
+
+      <!-- Configure the Site generation -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <!-- Downgraded to 3.4 as 3.5 and 3.5.1 seem to have issues with the velocity tools -->
+        <version>3.4</version>
+        <configuration>
+          <generateReports>true</generateReports>
+          <generateSitemap>true</generateSitemap>
+          <relativizeDecorationLinks>false</relativizeDecorationLinks>
+          <locales>en</locales>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${project.reporting.outputencoding}</outputEncoding>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>1.6</version>
+          </dependency>
+          <!-- All dependencies needed by the reflow skin -->
+          <dependency>
+            <groupId>lt.velykis.maven.skins</groupId>
+            <artifactId>reflow-velocity-tools</artifactId>
+            <version>1.1.1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+          </dependency>
+          <!-- add support for scm/git site deployment -->
+          <dependency>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-scm</artifactId>
+            <version>2.10</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-api</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-manager-plexus</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+            <version>1.9.5</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!--
+        Make the maven-site-plugin stage the output in the "asf-site" branch
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-publish-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>scm-publish</id>
+            <phase>site-deploy</phase>
+            <!-- deploy site with maven-scm-publish-plugin -->
+            <goals>
+              <goal>publish-scm</goal>
+            </goals>
+            <configuration>
+              <!-- mono-module doesn't require site:stage -->
+              <content>${project.build.directory}/site</content>
+              <!-- branch where to deploy -->
+              <scmBranch>asf-site</scmBranch>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -213,6 +310,13 @@
       <id>build-distribution</id>
       <modules>
         <module>distribution</module>
+      </modules>
+    </profile>
+
+    <profile>
+      <id>run-testsuite</id>
+      <modules>
+        <module>testsuite</module>
       </modules>
     </profile>
   </profiles>

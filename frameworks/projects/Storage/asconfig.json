@@ -1,0 +1,21 @@
+{
+    "config": "flex",
+    "compilerOptions": {
+        "debug": true,
+        "js-output-type": "flexjs",
+        "define": [
+            {
+                "name": "COMPILE::SWF",
+                "value": true
+            },
+            {
+                "name": "COMPILE::JS",
+                "value": false
+            }
+        ]
+    },
+    "files":
+    [
+        "src/main/flex/StorageClasses.as"
+    ]
+}

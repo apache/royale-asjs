@@ -20,14 +20,11 @@ package org.apache.flex.mobile
 {
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Container;
+	import org.apache.flex.html.Group;
 	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
-	
-//	import org.apache.flex.html.beads.SolidBackgroundBead;
-//	import org.apache.flex.html.beads.SingleLineBorderBead;
 	
 	/**
 	 * Event dispatched when the current (selected) view changes.
@@ -47,7 +44,7 @@ package org.apache.flex.mobile
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class ViewManagerBase extends UIBase implements IViewManager
+	public class ViewManagerBase extends Group implements IViewManager
 	{
 		/**
 		 * Constructor.
@@ -56,14 +53,8 @@ package org.apache.flex.mobile
 		{
 			super();
 			
-			// views always fill their space
-			percentWidth = 100;
-			percentHeight = 100;
-			
 			model.addEventListener("selectedIndexChanged", changeView);
-			
-//			addBead(new SolidBackgroundBead());
-//			addBead(new SingleLineBorderBead());
+
 		}
 		
 		/**
@@ -83,21 +74,11 @@ package org.apache.flex.mobile
 			ViewManagerModel(model).title = value;
 		}
 		
-		COMPILE::SWF
 		override public function toString():String
 		{
 			return ViewManagerModel(model).title;
 		}
-		
-		/**
-		 * @private
-		 */
-		COMPILE::JS
-		public function toString():String
-		{
-			return ViewManagerModel(model).title;
-		}
-		
+				
 		/**
 		 * True if this view manager instance is displaying a NavigationBar.
 		 *  
@@ -162,40 +143,21 @@ package org.apache.flex.mobile
 		/**
 		 * @private
 		 */
-		override public function addedToParent():void
+		protected function changeView( event:Event ):void
 		{
-			super.addedToParent();
-			
-			var n:int = ViewManagerModel(model).views.length;
-			if (n > 0) {
-				for (var i:int = 0; i < n; i++)
-				{
-					var view:IViewManagerView = ViewManagerModel(model).views[i] as IViewManagerView;
-					view.viewManager = this;
-					if (i == 0) {
-						addElement(view, true);
-					}
-				}
-				ViewManagerModel(model).selectedIndex = 0;
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		private function changeView( event:Event ):void
-		{
-			var index:Number = ViewManagerModel(model).selectedIndex;
-			if (_currentView) {
-				removeElement(_currentView);
-			}
-			_currentView = views[index];
-			addElement(_currentView);
-
-			dispatchEvent( new Event("viewChanged") );
+			// handled in subclass
 		}
 		
 		private var _currentView:IViewManagerView;
+		public function get currentView():IViewManagerView
+		{
+			return _currentView;
+		}
+		public function set currentView(value:IViewManagerView):void
+		{
+			_currentView = value;
+			// probably need to dispatch an event or do something more complex
+		}
 		
 		/**
 		 * The currently visible view.

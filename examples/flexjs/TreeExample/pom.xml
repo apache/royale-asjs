@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>TreeExample</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>swf</packaging>
 
   <name>Apache Flex - FlexJS: Examples: FlexJS: TreeExample</name>
@@ -43,14 +43,6 @@
         <configuration>
           <mainClass>TreeExample.mxml</mainClass>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

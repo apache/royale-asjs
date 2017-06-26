@@ -80,6 +80,7 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
+        <antcall target="Basic"/>
         <antcall target="HTML"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
@@ -94,7 +95,8 @@
         <antcall target="Network"/>
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
-        <antcall target="XML"/>
+        <antcall target="XML"/>	
+		<antcall target="MaterialDesignLite"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -124,14 +126,18 @@
         <ant dir="${basedir}/projects/CreateJSJS" target="clean"/>
         <ant dir="${basedir}/projects/DragDropJS" target="clean"/>
         <ant dir="${basedir}/projects/EffectsJS" target="clean"/>
+        <ant dir="${basedir}/projects/ExpressJS" target="clean"/>
         <ant dir="${basedir}/projects/FlatJS" target="clean"/>
         <ant dir="${basedir}/projects/FormattersJS" target="clean"/>
+        <ant dir="${basedir}/projects/FontAwesomeJS" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMapsJS" target="clean"/>
         <ant dir="${basedir}/projects/GraphicsJS" target="clean"/>
+        <ant dir="${basedir}/projects/BasicJS" target="clean"/>
         <ant dir="${basedir}/projects/HTMLJS" target="clean"/>
         <ant dir="${basedir}/projects/HTML5JS" target="clean"/>
         <ant dir="${basedir}/projects/JQueryJS" target="clean"/>
         <ant dir="${basedir}/projects/LanguageJS" target="clean"/>
+		<ant dir="${basedir}/projects/MaterialDesignLiteJS" target="clean"/>
         <ant dir="${basedir}/projects/MobileJS" target="clean"/>
         <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
@@ -186,6 +192,10 @@
         <ant dir="${basedir}/projects/GraphicsJS"/>
     </target>
 
+    <target name="Basic" description="Clean build of Basic.swc">
+        <ant dir="${basedir}/projects/BasicJS"/>
+    </target>
+
     <target name="HTML" description="Clean build of HTML.swc">
         <ant dir="${basedir}/projects/HTMLJS"/>
     </target>
@@ -202,6 +212,10 @@
         <ant dir="${basedir}/projects/LanguageJS"/>
     </target>
 
+	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
+        <ant dir="${basedir}/projects/MaterialDesignLiteJS"/>
+    </target>
+	
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/MobileJS"/>
     </target>

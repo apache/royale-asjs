@@ -68,8 +68,11 @@
     </target>
 
     
-    <target name="prepare" depends="thirdparty-downloads"/>
-            
+    <target name="prepare" depends="thirdparty-downloads">
+        <mkdir dir="${basedir}/js/FlexJS/libs" />
+        <mkdir dir="${basedir}/libs" />
+    </target>
+
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
         <ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>
     </target>
@@ -81,11 +84,12 @@
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Collections"/>
+        <antcall target="Basic"/>
         <antcall target="HTML"/>
+        <antcall target="Effects"/>
         <antcall target="Flat"/>
         <antcall target="Charts"/>
         <antcall target="DragDrop"/>
-        <antcall target="Effects"/>
         <antcall target="Formatters"/>
         <antcall target="GoogleMaps"/>
         <antcall target="CreateJS"/>
@@ -96,6 +100,9 @@
         <antcall target="Reflection"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
+		<antcall target="MaterialDesignLite"/>
+		<antcall target="FontAwesome"/>
+		<antcall target="Express"/>
     </target>
     
     <target name="fonts">
@@ -128,15 +135,19 @@
         <ant dir="${basedir}/projects/Core" target="clean"/>
         <ant dir="${basedir}/projects/DragDrop" target="clean"/>
         <ant dir="${basedir}/projects/Effects" target="clean"/>
+        <ant dir="${basedir}/projects/Express" target="clean"/>
         <ant dir="${basedir}/projects/Flat" target="clean"/>
+        <ant dir="${basedir}/projects/FontAwesome" target="clean"/>
         <ant dir="${basedir}/projects/Formatters" target="clean"/>
         <ant dir="${basedir}/projects/GoogleMaps" target="clean"/>
         <ant dir="${basedir}/projects/CreateJS" target="clean"/>
         <ant dir="${basedir}/projects/Graphics" target="clean"/>
+        <ant dir="${basedir}/projects/Basic" target="clean"/>
         <ant dir="${basedir}/projects/HTML" target="clean"/>
         <ant dir="${basedir}/projects/HTML5" target="clean"/>
         <ant dir="${basedir}/projects/JQuery" target="clean"/>
         <ant dir="${basedir}/projects/Language" target="clean"/>
+		<ant dir="${basedir}/projects/MaterialDesignLite" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
@@ -162,6 +173,7 @@
             <exclude name="swfobject/expressInstall.swf" />
             <exclude name="swfobject/swfobject.js" />
             <exclude name="swfobject/history/**" />
+            <exclude name="js-index-template.html" />
         </delete>
     </target>
     
@@ -193,10 +205,18 @@
         <ant dir="${basedir}/projects/Effects"/>
     </target>
 
+    <target name="Express" description="Clean build of Express.swc">
+        <ant dir="${basedir}/projects/Express"/>
+    </target>
+
     <target name="Flat" description="Clean build of Flat.swc">
         <ant dir="${basedir}/projects/Flat"/>
     </target>
 
+    <target name="FontAwesome" description="Clean build of FontAwesome.swc">
+        <ant dir="${basedir}/projects/FontAwesome"/>
+    </target>
+    
     <target name="Formatters" description="Clean build of Formatters.swc">
         <ant dir="${basedir}/projects/Formatters"/>
     </target>
@@ -207,6 +227,10 @@
 
     <target name="Graphics" description="Clean build of Graphics.swc">
         <ant dir="${basedir}/projects/Graphics"/>
+    </target>
+
+    <target name="Basic" description="Clean build of Basic.swc">
+        <ant dir="${basedir}/projects/Basic"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">
@@ -225,6 +249,10 @@
         <ant dir="${basedir}/projects/Language"/>
     </target>
 
+	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
+        <ant dir="${basedir}/projects/MaterialDesignLite"/>
+    </target>
+	
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
     </target>

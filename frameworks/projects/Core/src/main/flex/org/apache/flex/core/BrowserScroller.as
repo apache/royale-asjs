@@ -48,7 +48,7 @@ package org.apache.flex.core
 		{
 		}
 		
-        private var app:Application;
+        private var app:IInitialViewApplication;
         
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -60,7 +60,7 @@ package org.apache.flex.core
          */
         public function set strand(value:IStrand):void
         {
-            app = value as Application;
+            app = value as IInitialViewApplication;
             app.addEventListener("viewChanged", viewChangedHandler);
         }
         

@@ -22,8 +22,7 @@
 	<!-- this set of lines form a template that must be in each unit test -->
 	<mx:Script>
 	<![CDATA[
-    import flash.display.DisplayObject;
-	public static function init(o:DisplayObject):void
+	public static function init(o:Object):void
 	{
 	}
 	]]>

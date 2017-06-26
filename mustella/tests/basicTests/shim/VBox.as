@@ -17,10 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package shim
-{
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	
+{	
 	import org.apache.flex.html.Container;
 	import org.apache.flex.html.beads.layouts.VerticalLayout;
 	

@@ -19,16 +19,16 @@
 package
 {
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class BindingClasses
-{	
-    import org.apache.flex.binding.ChainBinding; ChainBinding;
-}
-
+    /**
+     *  @private
+     *  This class is used to link additional classes into rpc.swc
+     *  beyond those that are found by dependecy analysis starting
+     *  from the classes specified in manifest.xml.
+     */
+    internal class BindingClasses
+    {
+        import org.apache.flex.binding.ChainBinding; ChainBinding;
+        import org.apache.flex.binding.DataBindingBase; DataBindingBase;
+    }
 }
 

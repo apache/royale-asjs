@@ -21,6 +21,7 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.charts.core.IChartDataGroup;
 	import org.apache.flex.charts.core.IChartItemRenderer;
 	import org.apache.flex.charts.core.IChartSeries;
+    import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IContentView;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
@@ -29,6 +30,9 @@ package org.apache.flex.charts.optimized
 	import org.apache.flex.svg.CompoundGraphic;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.geom.Point;
+	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IChild;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The SVGChartDataGroup serves as the drawing canvas for SVG itemRenderers. Rather than having
@@ -126,7 +130,7 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function removeAllElements():void
+		public function removeAllItemRenderers():void
 		{
 			super.removeAllElements();
 			_children = new Array();
@@ -141,14 +145,14 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElement(value:Object, dispatchEvent:Boolean = true):void
+		public function addItemRenderer(value:IItemRenderer):void
 		{
 			_children.push(value);
 			
 			var base:UIBase = value as UIBase;
 			base.addedToParent();
 			
-			super.addElement(value, dispatchEvent);
+			super.addElement(value, true);
 		}
 		
 		/**
@@ -160,7 +164,7 @@ package org.apache.flex.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		override public function addElementAt(value:Object, index:int, dispatchEvent:Boolean = true):void
+		public function addItemRendererAt(value:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
 			if (index >= _children.length) _children.push(value);
 			else _children.splice(index, 0, value);
@@ -169,6 +173,25 @@ package org.apache.flex.charts.optimized
 			base.addedToParent();
 			
 			super.addElementAt(value, index, dispatchEvent);
+		}
+		
+		/**
+		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public function removeItemRenderer(renderer:IItemRenderer):void
+		{
+			removeElement(renderer, true);
+			
+			//			var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
+			//			newEvent.item = renderer;
+			//			
+			//			dispatchEvent(newEvent);
 		}
 		
 		/**

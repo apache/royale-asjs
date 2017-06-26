@@ -28,4 +28,5 @@
     <component id="TabBar" class="org.apache.flex.mobile.chrome.TabBar" />
     <component id="ToggleSwitch" class="org.apache.flex.mobile.ToggleSwitch" />
     <component id="DatePicker" class="org.apache.flex.mobile.DatePicker" />
+    <component id="DeviceSizeBead" class="org.apache.flex.mobile.beads.DeviceSizeBead" />
 </componentPackage>

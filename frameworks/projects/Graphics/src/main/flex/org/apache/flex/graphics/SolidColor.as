@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -18,6 +22,7 @@ package org.apache.flex.graphics
 
     COMPILE::SWF
     {
+		import flash.display.Graphics;
         import flash.geom.Point;
         import flash.geom.Rectangle;            
     }
@@ -100,6 +105,8 @@ package org.apache.flex.graphics
 		
 		public function set color(value:uint):void
 		{
+			if(value < 0 || value > 0xffffff)
+				throw new Error("Color values must be between 0 and 0xFFFFFF");
 			var oldValue:uint = _color;
 			if (value != oldValue)
 			{
@@ -108,15 +115,15 @@ package org.apache.flex.graphics
 		}
 		
         COMPILE::SWF
-		public function begin(s:IGraphicShape,targetBounds:Rectangle,targetOrigin:Point):void
+		public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
 		{
-			s.graphics.beginFill(color,alpha);
+			g.beginFill(color,alpha);
 		}
 		
         COMPILE::SWF
-		public function end(s:IGraphicShape):void
+		public function end(g:Graphics):void
 		{
-			s.graphics.endFill();
+			g.endFill();
 		}
         
         /**

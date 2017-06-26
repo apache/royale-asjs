@@ -26,8 +26,12 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib</outputDirectory>
+      <!-- FlashBuilder doesn't like us appending the version to the jar name -->
+      <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.flex.flexjs.compiler:*:jar</include>
+        <include>org.apache.flex.flexjs.framework.distribution:*:jar</include>
       </includes>
       <excludes>
         <exclude>org.apache.flex.flexjs.compiler:compiler-jx:jar</exclude>
@@ -37,14 +41,14 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib/external</outputDirectory>
+      <includes>
+        <include>*:jar</include>
+      </includes>
       <excludes>
-        <exclude>org.apache.flex.flexjs.framework:*</exclude>
-        <exclude>org.apache.flex.flexjs.typedefs:*</exclude>
         <exclude>org.apache.flex.flexjs.compiler:*</exclude>
         <exclude>*:args4j:jar</exclude>
         <exclude>*:google-closure-library*:jar</exclude>
         <exclude>*:org.json:jar</exclude>
-        <exclude>*:*:pom</exclude>
       </excludes>
     </dependencySet>
     <!-- Put the externs swcs into the externs directory -->
@@ -71,7 +75,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/js/FlexJS/libs</outputDirectory>
       <includes>
-        <include>org.apache.flex.flexjs.framework:*:swc:typedefs</include>
+        <include>org.apache.flex.flexjs.framework:*:swc:js</include>
       </includes>
     </dependencySet>
 
@@ -98,14 +102,15 @@ under the License.
     </dependencySet>
 
     <!-- Copy the fonts -->
-    <dependencySet>
+    <!-- Disabled as currently font swf compilation is deactivated -->
+       <!-- <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
       <includes>
         <include>org.apache.flex.flexjs.framework:Fonts:swf</include>
       </includes>
       <outputFileNameMapping>flat-ui-icons-regular.swf</outputFileNameMapping>
-    </dependencySet>
+    </dependencySet>  -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
@@ -125,6 +130,7 @@ under the License.
         <include>NOTICE</include>
         <include>README*</include>
         <include>RELEASE*</include>
+        <include>ide/**</include>
       </includes>
     </fileSet>
 
@@ -153,6 +159,7 @@ under the License.
       <includes>
         <include>**</include>
       </includes>
+      <filtered>true</filtered>
     </fileSet>
 
     <!-- Copy the sdk descriptor -->
@@ -161,6 +168,7 @@ under the License.
       <outputDirectory></outputDirectory>
       <includes>
         <include>flex-sdk-description.xml</include>
+        <include>flexjs-sdk-description.xml</include>
       </includes>
       <filtered>true</filtered>
     </fileSet>
@@ -181,7 +189,7 @@ under the License.
     </fileSet>
     <!-- Copy our custom index.html template as well as the history code -->
     <fileSet>
-      <directory>src/main/resources/templates/swfobject</directory>
+      <directory>../templates/swfobject</directory>
       <outputDirectory>templates/swfobject</outputDirectory>
       <includes>
         <include>**</include>
@@ -195,6 +203,21 @@ under the License.
       <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-binding.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest-basic.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/Charts/src/main/resources/basic-manifest.xml</source>
@@ -257,19 +280,9 @@ under the License.
       <destName>svg-manifest-graphics.xml</destName>
     </file>
     <file>
-      <source>../frameworks/projects/HTML/src/main/resources/basic-as-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-as-manifest-html.xml</destName>
-    </file>
-    <file>
       <source>../frameworks/projects/HTML/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-html.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/HTML/src/main/resources/svg-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>svg-manifest-html.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</source>
@@ -305,6 +318,21 @@ under the License.
       <source>../frameworks/projects/XML/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-xml.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Express/src/main/resources/express-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>express-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>fa-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mdl-manifest.xml</destName>
     </file>
   </files>
 </component>

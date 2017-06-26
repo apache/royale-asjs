@@ -119,7 +119,7 @@ package org.apache.flex.net
             }
 		}
 		
-		private var _contentType:String = "application/x-www-form-urlencoded";
+		private var _contentType:String = HTTPConstants.FORM_URL_ENCODED;
         
         /**
          *  @copy org.apache.flex.net.BinaryUploader#contentType
@@ -246,12 +246,12 @@ package org.apache.flex.net
             {
                 if (_responseHeaders && _responseHeaders.length > 0)
                 {
-                    if (_responseHeaders[0] is URLRequestHeader)
+                    if (_responseHeaders[0] is flash.net.URLRequestHeader)
                     {
                         var n:int = _responseHeaders.length;
                         for (var i:int = 0; i < n; i++)
                         {
-                            var old:URLRequestHeader = _responseHeaders[i];
+                            var old:flash.net.URLRequestHeader = _responseHeaders[i];
                             var nu:HTTPHeader = new HTTPHeader(old.name, old.value);
                             _responseHeaders[i] = nu;
                         }
@@ -269,7 +269,7 @@ package org.apache.flex.net
                 var part2:String;
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
                 
-                if (typeof _responseHeaders === 'undefined') {
+                if (_responseHeaders === undefined) {
                     allHeaders = element.getAllResponseHeaders();
                     _responseHeaders = allHeaders.split('\n');
                     n = _responseHeaders.length;
@@ -316,6 +316,18 @@ package org.apache.flex.net
 		{
 			return _status;
 		}
+
+        /**
+         *
+         *  Status text contains more information about the HTTP request made.
+         *
+         *  @productversion FlexJS 0.8
+         */
+        COMPILE::JS
+        public function get statusText():String
+        {
+            return (element as XMLHttpRequest).statusText;
+        }
 		
 		private var _url:String;
 
@@ -493,6 +505,18 @@ package org.apache.flex.net
 			return null;
 		}
 
+        /**
+         *  Allows Javascript cross-site Access-Control requests to be made
+         *  using credentials such as cookies or authorization headers
+         *
+         *  @productversion FlexJS 0.8
+         */
+        COMPILE::JS
+        public function set withCredentials(value:Boolean):void {
+            var element:XMLHttpRequest = this.element as XMLHttpRequest;
+            element.withCredentials = value;
+        }
+
         COMPILE::SWF
         private var urlLoader:flash.net.URLLoader;
         
@@ -512,7 +536,9 @@ package org.apache.flex.net
                 for each (var bead:IBead in beads)
                     addBead(bead);
             }
-            
+
+            dispatchEvent(new Event("preSend"));
+
             COMPILE::SWF
             {
                 if (!urlLoader)
@@ -528,7 +554,7 @@ package org.apache.flex.net
                 {
                     for each (var header:HTTPHeader in headers)
                     {
-                        var urlHeader:URLRequestHeader = new URLRequestHeader(header.name, header.value);
+                        var urlHeader:flash.net.URLRequestHeader = new flash.net.URLRequestHeader(header.name, header.value);
                         request.requestHeaders.push(urlHeader);
                         if (header.name == HTTPHeader.CONTENT_TYPE)
                             sawContentType = true;
@@ -536,7 +562,7 @@ package org.apache.flex.net
                 }
                 if (method != HTTPConstants.GET && !sawContentType && contentData != null)
                 {
-                    urlHeader = new URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
+                    urlHeader = new flash.net.URLRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                     request.requestHeaders.push(urlHeader);
                 }
                 if (contentData)
@@ -601,14 +627,14 @@ package org.apache.flex.net
                 }
                 
                 if (contentData) {
-                    element.setRequestHeader('Content-length', contentData.length.toString());
-                    element.setRequestHeader('Connection', 'close');
                     element.send(contentData);
                 } else {
                     element.send();
                 }
 
             }
+
+            dispatchEvent(new Event("postSend"));
         }
         
         /**
@@ -667,10 +693,10 @@ package org.apache.flex.net
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
             if (element.readyState === 2) {
                 _status = element.status;
-                dispatchEvent('httpResponseStatus');
-                dispatchEvent('httpStatus');
+                dispatchEvent(HTTPConstants.RESPONSE_STATUS);
+                dispatchEvent(HTTPConstants.STATUS);
             } else if (element.readyState === 4) {
-                dispatchEvent('complete');
+                dispatchEvent(HTTPConstants.COMPLETE);
             }
         }
 

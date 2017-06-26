@@ -21,6 +21,13 @@
     <compiler>
         <accessible>false</accessible>
         
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSFlex</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
@@ -70,6 +77,8 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
+    
+    <keep-asdoc>true</keep-asdoc>
     
     <include-file>
     </include-file>

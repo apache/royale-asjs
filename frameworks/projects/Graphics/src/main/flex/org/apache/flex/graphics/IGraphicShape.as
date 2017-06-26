@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -16,15 +20,29 @@ package org.apache.flex.graphics
 {
 	import org.apache.flex.core.IUIBase;
 
-	COMPILE::SWF
-	{
-		import flash.display.Graphics;
-	}
-
 	public interface IGraphicShape extends IUIBase
 	{
-		COMPILE::SWF
-		function get graphics():Graphics;
-		
+		/**
+		 *  The stroke of the graphic.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+		function get stroke():IStroke;
+		function set stroke(value:IStroke):void;
+
+		/**
+		 *  The fill of the graphic.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+		function get fill():IFill;
+		function set fill(value:IFill):void;
+
 	}
 }

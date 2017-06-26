@@ -22,18 +22,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--
-        TODO: Needs to be packaged via Cordova.
-  -->
-
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>CordovaCameraExample</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>swf</packaging>
 
   <name>Apache Flex - FlexJS: Examples: FlexJS: CordovaCameraExample</name>
@@ -49,26 +45,9 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-      </plugin>
-      <!--
-            Do the Cordova packaging of the javascript application
-      -->
-      <!--plugin>
         <groupId>org.jboss.errai</groupId>
         <artifactId>cordova-maven-plugin</artifactId>
-        <version>3.2.4.Final</version>
-        <executions>
-          <execution>
-            <id>build</id>
-            <phase>package</phase>
-            <goals>
-              <goal>build-project</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin-->
+      </plugin>
     </plugins>
   </build>
 
@@ -84,8 +63,16 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Mobile</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 

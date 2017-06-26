@@ -220,114 +220,16 @@ package org.apache.flex.utils
             return isClass(classDef) ? classDef : null;
         }
         
-		/**
-		 * postdecrement handles foo--
-		 *
-		 * @param obj The object with the getter/setter.
-		 * @param prop The name of a property.
-		 * @return {number}
-		 */
-		static public function postdecrement(obj:Object, prop:String):int
-		{
-			var value:int = obj[prop];
-			obj[prop] = value - 1;
-			return value;
-		}
-
-		/**
-		 * postincrement handles foo++
-		 *
-		 * @param obj The object with the getter/setter.
-		 * @param prop The name of a property.
-		 * @return {number}
-		 */
-		static public function postincrement(obj:Object, prop:String):int
-		{
-			var value:int = obj[prop];
-			obj[prop] = value + 1;
-			return value;
-		}
-
-		/**
-		 * predecrement handles --foo
-		 *
-		 * @param obj The object with the getter/setter.
-		 * @param prop The name of a property.
-		 * @return {number}
-		 */
-		static public function predecrement(obj:Object, prop:String):int
-		{
-			var value:int = obj[prop] - 1;
-			obj[prop] = value;
-			return value;
-		}
-
-		/**
-		 * preincrement handles ++foo
-		 *
-		 * @param obj The object with the getter/setter.
-		 * @param prop The name of a property.
-		 * @return {number}
-		 */
-		static public function preincrement(obj:Object, prop:String):int
-		{
-			var value:int = obj[prop] + 1;
-			obj[prop] = value;
-			return value;
-		}
-
-		/**
-		 * superGetter calls the getter on the given class' superclass.
-		 *
-		 * @param clazz The class.
-		 * @param pthis The this pointer.
-		 * @param prop The name of the getter.
-		 * @return {Object}
-		 */
-		static public function superGetter(clazz:Object, pthis:Object, prop:String):Object
-		{
-			var superClass:Object = clazz.superClass_;
-			var superdesc:Object = Object.getOwnPropertyDescriptor(superClass, prop);
-
-			while (superdesc == null)
-			{
-				superClass = superClass.constructor;
-                superClass = superClass.superClass_;
-				superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
-			}
-			return superdesc.get.call(pthis);
-		}
-
-		/**
-		 * superSetter calls the setter on the given class' superclass.
-		 *
-		 * @param clazz The class.
-		 * @param pthis The this pointer.
-		 * @param prop The name of the getter.
-		 * @param value The value.
-		 */
-		static public function superSetter(clazz:Object, pthis:Object, prop:String, value:Object):void
-		{
-			var superClass:Object = clazz.superClass_;
-			var superdesc:Object = Object.getOwnPropertyDescriptor(superClass, prop);
-
-			while (superdesc == null)
-			{
-				superClass = superClass.constructor;
-                superClass = superClass.superClass_;
-				superdesc = Object.getOwnPropertyDescriptor(superClass, prop);
-			}
-			superdesc.set.apply(pthis, [value]);
-		}
-
 		static public function trace(...rest):void
 		{
 			var theConsole:*;
 
+			if (!goog.DEBUG) return;
+			
 			theConsole = goog.global.console;
 
 			if (theConsole === undefined)
-			{
+			{				
 				if(typeof window !== "undefined")
 				{
 					theConsole = window.console;
@@ -410,6 +312,7 @@ package org.apache.flex.utils
 				arr.sort(compareString);
 			}
 		}
+		
 		private static function compareStringCaseinsensitive(a:Object, b:Object):int{
 			for each(var n:String in sortNames){
 				var v:int = (a[n]||zeroStr).toString().toLowerCase().localeCompare((b[n]||zeroStr).toString().toLowerCase());
@@ -438,6 +341,22 @@ package org.apache.flex.utils
 				}
 			}
 			return 0;
+		}
+		
+		public static function Vector(size:int = 0, basetype:String = null):Array{
+			var arr:Array = [];
+			var defValue:Object = null;
+			if (basetype == "int" || basetype == "uint" || basetype == "Number")
+			{
+				defValue = 0;
+			}
+			else if (basetype == "String")
+			{
+				defValue = "";
+			}
+			for (var i:int = 0; i < size; i++)
+				arr.push(defValue);
+			return arr;
 		}
 	}
 }

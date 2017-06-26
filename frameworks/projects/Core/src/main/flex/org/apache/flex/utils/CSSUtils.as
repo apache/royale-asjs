@@ -40,7 +40,19 @@ package org.apache.flex.utils
 		
         public static function attributeFromColor(value:uint):String
         {
-            return "#" + StringPadder.pad(value.toString(16),"0",6);
+            var hexVal:String = value.toString(16);
+			if(value > 16777215)
+			{
+                //rgba -- return rgba notation
+                var rgba:Array = hexVal.match(/.{2}/g);
+                for(var i:int = 0; i < 4; i++)
+                {
+                    rgba[i] = parseInt(rgba[i], 16);
+                }
+                rgba[3] = parseInt(""+(rgba[3]/255)*1000, 10) / 1000;
+				return "rgba(" + rgba.join(",") + ")";
+			}
+            return "#" + StringPadder.pad(hexVal,"0",6);
         }
         /**
          *  Converts a String to number.
@@ -127,19 +139,21 @@ package org.apache.flex.utils
                 stringValue = stringValue.substring(c + 4, c2);
                 var parts3:Array = stringValue.split(",");
                 return (0xFF000000 + 
-                        uint(parts3[0]) << 16 +
-                        uint(parts3[1]) << 8 +
+                        (uint(parts3[0]) << 16) +
+                        (uint(parts3[1]) << 8) +
                         uint(parts3[2]));
             }
             else if ((c = stringValue.indexOf("rgba(")) != -1)
             {
                 c2 = stringValue.indexOf(")");
-                stringValue = stringValue.substring(c + 4, c2);
+                stringValue = stringValue.substring(c + 5, c2);
                 var parts4:Array = stringValue.split(",");
-                return (uint(parts4[3]) << 24 + 
-                    uint(parts3[0]) << 16 +
-                    uint(parts3[1]) << 8 +
-                    uint(parts3[2]));
+                parts4[3] *= 255; // range is 0 to 1
+
+                return ((uint(parts4[3]) << 24) +
+                        (uint(parts4[0]) << 16) +
+                        (uint(parts4[1]) << 8) +
+                        uint(parts4[2]));
             }
             
             if (colorMap.hasOwnProperty(stringValue))

@@ -19,9 +19,13 @@
 package org.apache.flex.core
 {
 	COMPILE::SWF {
-		import flash.text.TextField;
-		import flash.text.TextFieldAutoSize;
-		import flash.text.TextFormat;
+        import flash.display.DisplayObject;
+        import flash.text.TextField;
+        import flash.text.TextFieldAutoSize;
+        import flash.text.TextFormat;
+        
+        import org.apache.flex.events.Event;
+        import org.apache.flex.events.EventDispatcher;
 	}
 
     import org.apache.flex.core.ValuesManager;
@@ -38,7 +42,7 @@ package org.apache.flex.core
      *  @productversion FlexJS 0.0
      */
     COMPILE::SWF
-	public class CSSTextField extends TextField
+	public class CSSTextField extends TextField implements IRenderedObject
 	{
         /**
          *  Constructor.
@@ -50,7 +54,6 @@ package org.apache.flex.core
          */
 		public function CSSTextField()
 		{
-			super();
 		}
 
         /**
@@ -107,6 +110,8 @@ package org.apache.flex.core
 		override public function set text(value:String):void
 		{
 			var sp:Object = parent;
+            if (sp is IFlexJSElement)
+                sp = sp.flexjs_wrapper;
 			if (styleParent)
 				sp = styleParent;
 			sp.addEventListener("classNameChanged", updateStyles);
@@ -140,9 +145,18 @@ package org.apache.flex.core
                 var backgroundColor:Object = ValuesManager.valuesImpl.getValue(sp, "background-color", styleState);
                 if (backgroundColor != null)
                 {
-                    this.background = true;
+                    background = true;
                     this.backgroundColor = CSSUtils.toColor(backgroundColor);
                 }
+				
+				// supports border: <thickness> solid <color> 
+				var border:Object = ValuesManager.valuesImpl.getValue(sp, "border", styleState);
+				if (border != null && border is Array) {
+					this.border = true;
+					this.borderColor = CSSUtils.toColor(border[2]);
+					this.thickness = Number(border[0]);
+				}
+				// else: add code to look for individual border styles such as border-color.
             }
 			defaultTextFormat = tf;
 			super.text = value;
@@ -153,11 +167,12 @@ package org.apache.flex.core
             // force styles to be re-calculated
             this.text = text;
         }
-
-	}
-
-	COMPILE::JS
-	public class CSSTextField extends TextField
-	{
+		
+		COMPILE::SWF
+		public function get $displayObject():DisplayObject
+		{
+			return this;
+		}
+		
 	}
 }

@@ -27,7 +27,7 @@ package org.apache.flex.flat
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.ListBase;
+        import org.apache.flex.html.List;
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.core.ISelectionModel;
         import org.apache.flex.events.Event;
@@ -61,8 +61,22 @@ package org.apache.flex.flat
 		}
 	}
     
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+    
+    /**
+     *  Dispatched when the user selects an item.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+    [Event(name="change", type="org.apache.flex.events.Event")]
+    
     COMPILE::JS
-    public class DropDownList extends ListBase
+    public class DropDownList extends List
     {
         /**
          *  Constructor.
@@ -251,6 +265,8 @@ package org.apache.flex.flat
             var strWidth:String = labelWidth.toString();
             strWidth += 'px';
             this.label.style.width = strWidth;
+			
+			this.positioner.style.overflow = 'visible';
         }       
         
         override public function set className(value:String):void
@@ -273,7 +289,7 @@ package org.apache.flex.flat
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get dataProvider():Object
+        override public function get dataProvider():Object
         {
             return ISelectionModel(model).dataProvider;
         }
@@ -283,7 +299,7 @@ package org.apache.flex.flat
          *  @flexjsignorecoercion HTMLOptionElement
          *  @flexjsignorecoercion HTMLSelectElement
          */
-        public function set dataProvider(value:Object):void
+        override public function set dataProvider(value:Object):void
         {
             ISelectionModel(model).dataProvider = value;
         }
@@ -297,11 +313,11 @@ package org.apache.flex.flat
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get labelField():String
+        override public function get labelField():String
         {
             return ISelectionModel(model).labelField;
         }
-        public function set labelField(value:String):void
+        override public function set labelField(value:String):void
         {
             ISelectionModel(model).labelField = value;
         }
@@ -315,7 +331,7 @@ package org.apache.flex.flat
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get selectedIndex():int
+        override public function get selectedIndex():int
         {
             return ISelectionModel(model).selectedIndex;
         }
@@ -325,7 +341,7 @@ package org.apache.flex.flat
          *  @flexjsignorecoercion HTMLSelectElement
          *  @flexjsignorecoercion String
          */
-        public function set selectedIndex(value:int):void
+        override public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
             var lf:String = this.labelField;
@@ -345,7 +361,7 @@ package org.apache.flex.flat
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public function get selectedItem():Object
+        override public function get selectedItem():Object
         {
             return ISelectionModel(model).selectedItem;
         }
@@ -355,7 +371,7 @@ package org.apache.flex.flat
          *  @flexjsignorecoercion HTMLSelectElement
          *  @flexjsignorecoercion String
          */
-        public function set selectedItem(value:Object):void
+        override public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
             var lf:String = this.labelField;

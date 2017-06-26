@@ -59,10 +59,11 @@ package org.apache.flex.events
 	COMPILE::JS
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
+		
+		private var _target:IEventDispatcher;
         public function EventDispatcher(target:IEventDispatcher = null)
         {
-            if (target != null)
-                setTargetForTesting(target);
+			_target = target || this;
         }
         
         public function hasEventListener(type:String):Boolean
@@ -74,6 +75,21 @@ package org.apache.flex.events
 		{
 			try 
 			{
+				//we get quite a few string events here, "initialize" etc
+				//so this general approach doesn't work:
+				//event.target = _target;
+				if (event) {
+					if (typeof event == "string") {
+						event = new Event(event as String);
+						event.target = _target;
+						//console.log("created event from string ",event);
+					}
+					else if ("target" in event) {
+						event.target = _target;
+						//console.log("assigned target to event ",event);
+					}
+				} else return false;
+
 				return super.dispatchEvent(event);
 			}
 			catch (e:Error)
@@ -83,5 +99,10 @@ package org.apache.flex.events
 			}
 			return false;
 		}
+        
+        public function toString():String
+        {
+            return "EventDispatcher";
+        }
 	}
 }

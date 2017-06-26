@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.flex.flexjs.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.8.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Flex - FlexJS: Framework: Libs</name>
@@ -37,17 +37,21 @@
     <module>Charts</module>
     <module>Collections</module>
     <module>Core</module>
+    <module>Basic</module>
     <module>CreateJS</module>
     <module>DragDrop</module>
     <module>Effects</module>
+    <module>Express</module>
     <module>Flat</module>
     <module>Formatters</module>
+    <module>FontAwesome</module>
     <module>GoogleMaps</module>
     <module>Graphics</module>
     <module>HTML</module>
     <module>HTML5</module>
     <module>JQuery</module>
     <module>Language</module>
+    <module>MaterialDesignLite</module>
     <module>Mobile</module>
     <module>Network</module>
     <module>Reflection</module>

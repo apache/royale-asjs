@@ -21,9 +21,11 @@ package org.apache.flex.utils
 
 COMPILE::SWF
 {
+    import flash.display.DisplayObject;            
     import flash.system.ApplicationDomain;            
 }
 
+import org.apache.flex.core.ElementWrapper;
 import org.apache.flex.core.IBead;
 import org.apache.flex.core.IFlexInfo;
 import org.apache.flex.core.IStrand;
@@ -80,7 +82,12 @@ public class MixinManager implements IBead
                 for each (var mixin:String in mixins)
                 {
                     var mixinClass:Object = domain.getDefinition(mixin); 
-                    mixinClass.init(value);
+					if (value is DisplayObject)
+	                    mixinClass.init(value);
+					else
+					{
+	                    mixinClass.init((value as ElementWrapper).element);
+					}
                 }
             }
         }

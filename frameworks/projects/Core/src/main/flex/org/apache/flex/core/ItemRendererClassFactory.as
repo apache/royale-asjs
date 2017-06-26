@@ -80,6 +80,8 @@ package org.apache.flex.core
 					itemRendererFactory = new ClassFactory(itemRendererClass);
 					createFunction = createFromClass;
 				}
+				else if (!MXMLDescriptor)
+					createFunction = createFromClass;
 			}
         }
 

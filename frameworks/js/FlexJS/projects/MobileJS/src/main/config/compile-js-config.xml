@@ -21,6 +21,13 @@
     <compiler>
         <accessible>false</accessible>
         
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSFlex</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
         <external-library-path append="true">
             <path-element>../../../../../../../../js/libs/cordova.swc</path-element>
         </external-library-path>
@@ -60,7 +67,7 @@
                  will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
-            <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -82,8 +89,10 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/Mobile/src/main/resources/defaults.css</path>
     </include-file>
-
+    
     <include-sources>
     </include-sources>
     

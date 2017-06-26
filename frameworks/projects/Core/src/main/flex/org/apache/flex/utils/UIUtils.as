@@ -19,6 +19,7 @@
 package org.apache.flex.utils
 {
 	import org.apache.flex.core.IChild;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IUIBase;
 
@@ -97,9 +98,9 @@ package org.apache.flex.utils
 		 */
 		public static function removePopUp(popUp:IChild):void
 		{
-			var start:IUIBase = popUp.parent as IUIBase;
+			var start:IParent = popUp.parent;
 			while( start != null && !(start is IPopUpHost) && start is IChild ) {
-				start = IChild(start).parent as IUIBase;
+				start = IChild(start).parent;
 			}
 			(start as IPopUpHost).removeElement(popUp);
 		}

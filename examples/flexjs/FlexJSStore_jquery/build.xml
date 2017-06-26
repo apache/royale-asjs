@@ -30,41 +30,22 @@
     
     <include file="${basedir}/../../build_example.xml" />
     
-    <condition property="extlib_arg" value="-external-library-path=${FLEXJS_HOME}/js/libs/jquery.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FLEXJS_HOME}/js/libs/jquery.swc" type="file" />
-        </and>
-    </condition>
-    <condition property="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../js/libs/jquery.swc" >
-        <and>
-            <not>
-                <isset property="extlib_arg" />
-            </not>
-            <available file="${FALCONJX_HOME}/../js/libs/jquery.swc" type="file" />
-        </and>
-    </condition>
-    <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/jquery/out/bin/jquery-1.9.swc"/>
-    <property name="opt1_arg" value="-js-output-optimization=skipFunctionCoercions" />
-    
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
         <mkdir dir="${basedir}/bin-debug/data" />
-        <copy file="${basedir}/src/data/catalog.json" tofile="${basedir}/bin-debug/data/catalog.json" />
+        <copy file="${basedir}/src/main/resources/data/catalog.json" tofile="${basedir}/bin-debug/data/catalog.json" />
         <mkdir dir="${basedir}/bin/js-debug/data" />
-        <copy file="${basedir}/src/data/catalog.json" tofile="${basedir}/bin/js-debug/data/catalog.json" />
+        <copy file="${basedir}/src/main/resources/data/catalog.json" tofile="${basedir}/bin/js-debug/data/catalog.json" />
         <mkdir dir="${basedir}/bin/js-release/data" />
-        <copy file="${basedir}/src/data/catalog.json" tofile="${basedir}/bin/js-release/data/catalog.json" />
+        <copy file="${basedir}/src/main/resources/data/catalog.json" tofile="${basedir}/bin/js-release/data/catalog.json" />
         <mkdir dir="${basedir}/bin/js-debug/assets" />
         <copy todir="${basedir}/bin/js-debug/assets" >
-            <fileset dir="${basedir}/src/assets">
+            <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-release/assets" />
         <copy todir="${basedir}/bin/js-release/assets" >
-            <fileset dir="${basedir}/src/assets">
+            <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
             </fileset>
         </copy>
@@ -77,6 +58,16 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-    
-    
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Click on Products tab.  Hover over person to see buttons with tooltips.  DragDrop a person to compare box.  Click on Support tab."/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+
 </project>

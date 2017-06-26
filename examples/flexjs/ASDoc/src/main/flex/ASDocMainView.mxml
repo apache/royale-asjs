@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+			    width="100%" height="100%"
+			    >
+    <fx:Script>
+        <![CDATA[
+			import models.ASDocModel;
+            import org.apache.flex.events.Event;
+            import org.apache.flex.events.DetailEvent;
+			
+            public var currentPackage:String;
+            
+            private function packageChangedHandler():void
+            {
+                currentPackage = packageList.selectedItem as String;
+                dispatchEvent(new Event("packageChanged"));
+            }
+                        
+            public var currentClass:String;
+            
+            private function classChangedHandler():void
+            {
+                currentClass = classList.selectedItem as String;
+                dispatchEvent(new Event("classChanged"));
+            }
+            
+            private function showTopLevel():void
+            {
+                dispatchEvent(new DetailEvent(topLevel.selected ? "addTag" : "removeTag", false, false, "toplevel"));
+            }
+            
+            private function showViewBeads():void
+            {
+                dispatchEvent(new DetailEvent(viewBeads.selected ? "addTag" : "removeTag", false, false, "viewbead"));
+            }
+            
+		]]>
+    </fx:Script>
+	<fx:Style>
+	</fx:Style>
+    <js:beads>
+        <js:ViewDataBinding />
+        <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />                
+    </js:beads>
+    <js:Group width="100%" id="titleGroup">
+        <js:beads>
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
+        </js:beads>
+        <js:Label text="FlexJS ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
+        <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
+        <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
+    </js:Group>
+    <js:Group width="100%" className="topContainer" id="topContainer">
+        <js:beads>
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="rightSide" />
+            <js:LayoutChangeNotifier watchedProperty="{ASDocModel(applicationModel).packageList}" initialValue="null" />
+        </js:beads>
+        <js:Group width="300" height="100%" className="leftSide" id="leftSide">
+            <js:beads>
+                <js:VerticalLayout />
+            </js:beads>
+            <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" width="100%" height="50%"/>
+            <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  width="100%" height="50%"/>
+        </js:Group>
+        <js:Container className="rightSide" id="rightSide" height="100%">
+            <js:beads>
+                <js:VerticalLayout />
+                <js:ScrollingViewport />
+            </js:beads>
+            <js:Group id="detailsPane" width="100%">
+	            <js:beads>
+	                <js:VerticalLayout />
+	            </js:beads>
+	            <js:Label id="packageName"  text="{ASDocModel(applicationModel).currentPackage}" width="100%"/>
+	            <js:Label id="baseName" text="{ASDocModel(applicationModel).currentClass}" width="100%" style="fontSize:20"/>
+	            <js:Label id="inheritance" text="{ASDocModel(applicationModel).inheritance}" width="100%"/>
+	            <js:MultilineLabel id="attributes" text="{ASDocModel(applicationModel).attributes}" width="100%"/>
+	            <js:MultilineLabel id="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
+	            <js:Label text="Public Properties" />
+	            <js:List id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
+	                     itemRenderer="SummaryRenderer" width="100%"/>
+	            <js:Label text="Public Methods" />
+	            <js:List id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
+	                     itemRenderer="SummaryRenderer" width="100%"/>
+	            <js:Label text="Property Details" />
+	            <js:DataContainer id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
+	                              itemRenderer="DetailRenderer" width="100%"/>
+	            <js:Label text="Constructor Details" />
+	            <js:DataContainer id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
+	                              itemRenderer="DetailRenderer" width="100%"/>
+	            <js:Label text="Method Details" />
+	            <js:DataContainer id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
+	                              itemRenderer="DetailRenderer" width="100%"/>
+	        </js:Group>
+        </js:Container>
+    </js:Group>	
+</js:View>

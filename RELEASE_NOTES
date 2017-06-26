@@ -1,19 +1,90 @@
-Apache FlexJS 0.7.0
-=================
+Apache FlexJS 0.8.0
+===================
 
 Apache FlexJS is a next-generation Flex SDK that provides the capability
 to cross-compile MXML and AS applications to HTML/JS/CSS so they can run
 in a browser without Flash.
 
-This is the fifth release of Apache FlexJS.  This release supports Maven.
+This is the sixth release of Apache FlexJS.  This release supports Maven.
 It is an ‘beta’ type of release.   Expect to find lots of bugs and missing 
 features.
 
 New Features
+============
+- Introducing the new "Express" component set, which is designed for rapid application development. It includes more beads by default than the "Basic" component set to help you get started building FlexJS applications faster.
+- The new "Material Design Lite" component set brings Google's Material Design system to FlexJS.
+- More complete Reflection implementation with access to static members, kept metadata and method parameters
+- Added cross-platform registerClassAlias/getAliasByClass/getClassByAlias implementations (reflection package)
+- Added support for interpreting XML literals as JSX by adding [JSX] metadata to a function.
+- The -source-map compiler argument now also generates source maps for scripts in MXML files.
+
+Bug Fixes
 ---------
+-FLEX-35322 Layout of NumericStepper is broken
+-FLEX-35288 [FlexJS, MDL] slider step size can't be less than 1
+-FLEX-35273 [FlexJS] No error in code with multiple views
+-FLEX-35271 [FlexJS] HTTPServer POST calls give client side errors
+-FLEX-35269 [FlexJS] MDL - Dynamic Child Problem
+-FLEX-35266 [FlexJS] MDL Layout Problems
+-FLEX-35257 [FlexJS] uncaught reference error on known function
+-FLEX-35250 [FlexJS] HContainer visible false not respected (JS only)
+-FLEX-35249 Data binding fails in MDL Container with constants
+-FLEX-35248 [FlexJS] Clicking on ToggleTextButton Results in Error (swf only)
+-FLEX-35247 Custom events are not working in IE11
+-FLEX-35244 Binding Problem when having multiple levels of binding where one of the elements is null
+-FLEX-35243 Toggle button not removing toggleTextButton_Selected after selecting another button
+-FLEX-35240 [FlexJS] Style Overrides ImageButton source Att
+-FLEX-35239 Runtime error when setting a property to a constant value
+-FLEX-35237 DataGridLayout is broken when used inside <js:beads/>
+-FLEX-35217 build.xml fails in downloading online dependency randomly
+-FLEX-35213 Assigned multi line CDATA section to InnerHtml bead causes exception
+-FLEX-35212 [FlexJS] DataGrid requires a way to select it's row(s) automatically
+-FLEX-35210 FlexJSStore and FlexJSStore_JQuery fail with javascript error on starting as of 09 DEC
+-FLEX-35208 DateField is not closable without selecting one date in javascript mode
+-FLEX-35207 DateChooser doesn't highlight current select date
+-FLEX-35205 style properties are ignored in swf mode
+-FLEX-35203 XML() class is broken javascript mode in 0.8 dev
+-FLEX-35204 DateChooser and DateField doesn't work in swf mode
+-FLEX-35202 Label doesn't fire mouse events
+-FLEX-35201 TileLayout is not working in javascript mode
+-FLEX-35192 [FalconJX] TypeError: Cannot read property 'apply' of undefined with subclass of <js:View>
+-FLEX-35200 Array.removeAt() is broken in javascript mode in 0.8 dev
+-FLEX-35193 [FlexJS] TextArea: does not dispatch an event when the text property changes
+-FLEX-35191 DateChooser and DateField don't align days correctly in javascript mode
+-FLEX-35187 [FlexJS] 1px Left Offset Added to Containers
+-FLEX-35176 Not able to build FlexJS project when local maven repo is on different disk drive than compiling project
+-FLEX-35169 [FlexJS] ComboBox broken on JS side
+-FLEX-35144 [FlexJS] Panel Broken
+-FLEX-35137 [Bindable] doesn't work on swf side if referenced var is declared as private
+-FLEX-35134 FalconJX 0.7.0 crash
+-FLEX-35115 Method implementation error: getConditionalExpressionNodes in compiler/src/org/apache/flex/compiler/internal/tree/as/ForLoopNode.java
+-FLEX-35103 [FlexJS] SimpleAlert.show() in flash - can't click OK
+-FLEX-35068 SWCs not created for XML
+-FLEX-35061 var keyword "internal" scoping
+-FLEX-35054 js:Panel lost background colour in js:State change in HTML output
+-FLEX-35051 NullPointerException in FlexJS compiler
+-FLEX-35041 Date property not working in FlexJS
+-FLEX-34996 [FlexJS] Issue with VerticalColumnLayout Inside Panel
+-FLEX-34950 apache FlexJS - java.lang.NullPointerException
+-FLEX-34846 Simple ComboBox issues
+-FLEX-34845 Simple ButtonBar does not layout children correctly
+-FLEX-34842 NPE PanelWithControlBarView/layoutChromeElements()
+-FLEX-34841 TextInput change event not fired correctly in JS
+-FLEX-34414 FlexJS file missing Apache header
+-FLEX-34237 List example show double scrollbar
+-FLEX-34922 Using FlexJs 0.0.2 with Flash Builder 4.6 , Unable to compile existing flex project om.adobe.flexbuilder.multisdk.compiler.internal.FlexLibraryBuilder
+-FLEX-34114 Can't install using ANT
+
+Apache FlexJS 0.7.0
+=================
 - Support for XML contructors and literals as well as E4X.
 See here for limitations: https://cwiki.apache.org/confluence/display/FLEX/Using+XML+in+FlexJS
-- Support for Typed Node.js
+- Node.js projects no longer need to call require() for built-in modules. The JavaScript require() calls are generated when these modules are used.
+ define APIs for Typed Node.js
+- The node.swc for Node.js APIs has been expanded to include more APIs with types for ActionScript.
+- Added -source-map compiler argument to generate source maps, which allow web browser debuggers to step through add breakpoints to the original ActionScript code instead of the generated JavaScript.
+- SDK may be built with Maven.
+- Improved compatibility of externc tool to parse more Google Closure Compiler externs.
 
 Bug Fixes
 ---------

@@ -18,13 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mobile
 {	
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.IViewManager;
+	import org.apache.flex.mobile.IViewManagerView;
 	import org.apache.flex.mobile.chrome.NavigationBar;
 	import org.apache.flex.mobile.chrome.ToolBar;
 	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.flex.mobile.beads.StackedViewManagerView;
+	
+	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
 	
 	/**
 	 * The StackedViewManager displays a single View at a time from a
@@ -102,6 +106,15 @@ package org.apache.flex.mobile
 
 		
 		private var _topView:IViewManagerView;
+		
+		override public function set views(value:Array):void
+		{
+			super.views = value;
+			
+			if (value != null && value.length > 0) {
+				_topView = value[0] as IViewManagerView;
+			}
+		}
 
 		/**
 		 * The top-most (current) view.
@@ -114,6 +127,14 @@ package org.apache.flex.mobile
 		override public function get selectedView():IViewManagerView
 		{
 			return _topView;
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
 		}
 
 		
@@ -129,12 +150,6 @@ package org.apache.flex.mobile
 		{
 			nextView.viewManager = this;
 			ViewManagerModel(model).pushView(nextView);
-			
-			removeElement(_topView);
-			_topView = nextView;
-			addElement(_topView);
-			
-			dispatchEvent( new Event("viewChanged") );
 		}
 		
 		/**
@@ -145,16 +160,10 @@ package org.apache.flex.mobile
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function pop():void
+		public function pop():IChild
 		{
-			if (ViewManagerModel(model).views.length > 1) {
-				var lastView:Object = ViewManagerModel(model).popView();
-				removeElement(_topView);
-				addElement(lastView);
-				_topView = lastView as IViewManagerView;
-				
-				dispatchEvent( new Event("viewChanged") );
-			}
+			var stackedView:StackedViewManagerView = getBeadByType(StackedViewManagerView) as StackedViewManagerView;
+			return ViewManagerModel(model).popView();
 		}
 
 	}

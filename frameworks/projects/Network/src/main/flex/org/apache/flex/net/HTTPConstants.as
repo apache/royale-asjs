@@ -21,7 +21,9 @@ package org.apache.flex.net
     public final class HTTPConstants extends Object
     {
         /**
-         *  
+         *
+		 *  HTTP GET request.
+		 *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -30,7 +32,9 @@ package org.apache.flex.net
         public static const GET:String = "GET";
         
         /**
-         *  
+         *
+		 *  HTTP Post request.
+		 *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -39,7 +43,8 @@ package org.apache.flex.net
         public static const POST:String = "POST";
         
         /**
-         *  
+         *  HTTP Put request.
+		 *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -48,14 +53,27 @@ package org.apache.flex.net
         public static const PUT:String = "PUT";
         
         /**
-         *  
+         *
+		 *  HTTP form url encoded.
+		 *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static const DELETE:String = "DELETE";
-        
+        public static const FORM_URL_ENCODED:String = "application/x-www-form-urlencoded";
+
+		/**
+		 *
+		 *  HTTP delete request.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		public static const DELETE:String = "DELETE";
+
 		/**
 		 *  Dispatched when the connection is opened.
 		 *  

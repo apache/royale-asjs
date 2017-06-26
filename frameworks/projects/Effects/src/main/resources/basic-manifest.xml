@@ -20,13 +20,17 @@
 
 
 <componentPackage>
-
+    <component id="ParallelPlayBead" class="org.apache.flex.effects.beads.ParallelPlayBead"/>
+    <component id="SequencePlayBead" class="org.apache.flex.effects.beads.SequencePlayBead"/>
+    <component id="ParallelReverseBead" class="org.apache.flex.effects.beads.ParallelReverseBead"/>
     <component id="Fade" class="org.apache.flex.effects.Fade"/>
     <component id="Move" class="org.apache.flex.effects.Move"/>
     <component id="Resize" class="org.apache.flex.effects.Resize"/>
     <component id="Wipe" class="org.apache.flex.effects.Wipe"/>
     <component id="Sequence" class="org.apache.flex.effects.Sequence"/>
     <component id="Parallel" class="org.apache.flex.effects.Parallel"/>
+    <component id="CompoundEffect" class="org.apache.flex.effects.CompoundEffect"/>
     <component id="Transition" class="org.apache.flex.states.Transition" />
+    <component id="EasyAccordionCollapseBead" class="org.apache.flex.effects.beads.EasyAccordionCollapseBead"/>
 
 </componentPackage>

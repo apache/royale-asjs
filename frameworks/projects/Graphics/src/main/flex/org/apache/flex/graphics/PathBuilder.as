@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -29,17 +33,53 @@ package org.apache.flex.graphics
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Flex 3
+		 *  @productversion FlexJS 0.6
          */
-        public function PathBuilder()
+        public function PathBuilder(closedPath:Boolean=false)
         {
             commands = new Vector.<IPathCommand>();
+			this.closedPath = closedPath;
         }
 
+		/**
+		 *  Clears the path data
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.8
+		 */
+        public function clear():void
+        {
+            commands.length = 0;
+        }
+
+		/**
+		 *  Gets a string representation of the path which can be used in SVG.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function getPathString():String
         {
-            return commands.join(" ");
+			var pathString:String = commands.join(" ");
+            if (closedPath)
+			{
+				pathString += " Z";
+			}
+			return pathString;
         }
+
+		/**
+		 *  Draws the paths to the specified context.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         COMPILE::SWF
         public function draw(g:Graphics):void
         {
@@ -65,27 +105,94 @@ package org.apache.flex.graphics
         }
 
         private var commands:Vector.<IPathCommand>;
+
+		/**
+		 *  Specifies whether the path should auto-close.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
+        public var closedPath:Boolean;
         
+		/**
+		 *  Adds a lineTo command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function lineTo(x:Number, y:Number):void
         {
             commands.push(new LineTo(x,y));
         }
         
+		/**
+		 *  Adds a moveTo command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function moveTo(x:Number, y:Number):void
         {
             commands.push(new MoveTo(x,y));
         }
         
+		/**
+		 *  Adds a quadraticCurveTo command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function quadraticCurveTo(controlX:Number, controlY:Number, anchorX:Number, anchorY:Number):void
         {
             commands.push(new QuadraticCurve(controlX,controlY,anchorX,anchorY));
         }
         
+		/**
+		 *  Adds a cubicCurveTo command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function cubicCurveTo(controlX1:Number, controlY1:Number, controlX2:Number, controlY2:Number, anchorX:Number, anchorY:Number):void
         {
             commands.push(new CubicCurve(controlX1, controlY1, controlX2, controlY2, anchorX, anchorY));
         }
 
+		/**
+		 *  Adds a drawRect command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
+        public function drawRect(x:Number,y:Number,width:Number,height:Number):void
+        {
+            commands.push(new MoveTo(x,y));
+            commands.push(new LineTo(x+width,y));
+            commands.push(new LineTo(x+width,y+height));
+            commands.push(new LineTo(x,y+height));
+            commands.push(new LineTo(x,y));
+        }
+
+		/**
+		 *  Adds a drawRoundRectComplex command
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion FlexJS 0.6
+		 */
         public function drawRoundRectComplex(x:Number, y:Number, 
                                                     width:Number, height:Number, 
                                                     topLeftRadius:Number, topRightRadius:Number, 

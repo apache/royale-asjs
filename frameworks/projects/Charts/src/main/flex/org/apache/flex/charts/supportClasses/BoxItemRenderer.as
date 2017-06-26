@@ -235,6 +235,8 @@ package org.apache.flex.charts.supportClasses
 		
 		override public function updateRenderer():void
 		{			
+			if (filledRect == null) return;
+			
 			if (down||selected||hovered) {
 				if (hoverFill == null) {
 					if(fill is SolidColor)

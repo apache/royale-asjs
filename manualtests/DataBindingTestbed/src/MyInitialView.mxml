@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:js="library://ns.apache.org/flexjs/basic"
+				xmlns:bindables="bindables.*"
+			    initComplete="initControls()">
+    
+	<fx:Declarations>
+		<bindables:BindableMxmlTest id="mxmlTest" />
+	</fx:Declarations>
+	<fx:Script>
+        <![CDATA[
+			import models.MyModel;
+			import bindables.StaticTimer;
+			import bindables.InstanceTimer;
+			import bindables.*;
+			import unbindable.UnbindableParent;
+			
+			import org.apache.flex.events.CustomEvent;
+			import org.apache.flex.utils.Timer;
+			import org.apache.flex.events.ValueChangeEvent;
+			import org.apache.flex.html.Label;
+			private static var timer:Timer;
+			
+			private static const STATIC_PRIVATE_CONST :* = "STATIC_PRIVATE_CONST_VAL";
+			public static const STATIC_PUBLIC_CONST :String = "STATIC_PUBLIC_CONST_VAL";
+			
+			private const INSTANCE_PRIVATE_CONST :* = "INSTANCE_PRIVATE_CONST_VAL";
+			public const INSTANCE_PUBLIC_CONST :String = "INSTANCE_PUBLIC_CONST_VAL";
+			
+			[Bindable]
+			private static var timerText:String="1";
+			
+			public static function get altTimerText():String {
+				return timerText;
+			}
+						
+			private static var _inited:Boolean;
+			
+			private static function updateTimer(e:Event=null):void{
+				var val:uint = uint(timerText);
+				val++;
+				timerText = val.toString();
+	
+			}
+			
+			private static function initStaticTimer():void{
+			if (!_inited) {
+				timer = new Timer(1000);
+				timer.addEventListener(Timer.TIMER,updateTimer);
+				timer.start();
+				_inited = true;
+				trace('initStaticTimer');
+			}
+			}
+			
+			public static var staticMM:MyModel;
+			
+			[Bindable]
+			public static var staticMMBindable:MyModel;
+			
+			
+			private  var inst_timer:Timer;
+			
+			[Bindable]
+            public var instanceTimerText:String ="1";
+			
+			private  function updateInstTimer(e:Event=null):void{
+				var val:uint = uint(instanceTimerText);
+				val++;
+				instanceTimerText = val.toString();
+	
+			}
+			
+            
+		
+			private function initControls():void
+			{
+					
+					initStaticTimer();
+					trace('initControls');
+					inst_timer = new Timer(1500);
+					inst_timer.addEventListener(Timer.TIMER,updateInstTimer);
+					inst_timer.start();
+					
+					StaticTimer.initStaticTimer();
+					try{
+					  	instTimer = new InstanceTimer();
+					} catch (e:Error) {
+						addErrorReport("problem instantiating InstanceTimer ",e);
+					}
+					try{
+					  if (instTimer) {
+						  Object(instTimer).addEventListener("testinstTimer",testEventTarget);
+						  _expectedTarget=instTimer;
+						  Object(instTimer).dispatchEvent(new Event("testinstTimer"));
+						  Object(instTimer).removeEventListener("testinstTimer",testEventTarget);
+					  }
+					} catch (e:Error) {
+						 addErrorReport("problem with explicit dispatching from InstanceTimer ",e);
+					}		
+					
+					try {
+						var test:Object = new BindableSubVO1()
+					} catch (e:Error) {
+						addErrorReport("problem instantiating BindableSubVO1 ",e);
+					}
+					
+					try{
+					  if (test) {
+						  test.addEventListener("testBindableSubVO1",testEventTarget);
+						  _expectedTarget=test;
+						  test.dispatchEvent(new Event("testBindableSubVO1"));
+						  test.removeEventListener("testBindableSubVO1",testEventTarget);
+					  
+					  }
+					} catch (e:Error) {
+						addErrorReport("problem with explicit dispatching from BindableSubVO1 ",e);
+					}		
+					
+					
+					test=null;
+					try {
+						test = new BindableSubVO2();
+					} catch (e:Error) {
+						addErrorReport("problem instantiating BindableSubVO2 ",e);
+					}
+
+					try{
+						if (test) {
+							test.addEventListener("testBindableSubVO2",testEventTarget);
+							_expectedTarget=test;
+							test.dispatchEvent(new Event("testBindableSubVO2"));
+							test.removeEventListener("testBindableSubVO2",testEventTarget);
+
+						}
+					} catch (e:Error) {
+						addErrorReport("problem with explicit dispatching from BindableSubVO2 ",e);
+					}
+
+
+				test=null;
+					try {
+						test = new BindableSubVO3()
+					} catch (e:Error) {
+						addErrorReport("problem instantiating BindableSubVO3 ",e);
+					}
+					try{
+						if (test) {
+							test.addEventListener("testBindableSubVO3",testEventTarget);
+							_expectedTarget=test;
+							test.dispatchEvent(new Event("testBindableSubVO3"));
+							test.removeEventListener("testBindableSubVO3",testEventTarget);
+
+						}
+					} catch (e:Error) {
+						addErrorReport("problem with explicit dispatching from BindableSubVO3 ",e);
+					}
+					
+					test=null;
+					try {
+						test = BindableWithConstructorInit.STATIC_INIT;
+						if (test.value !="STATIC_INIT") {
+						throw new Error("problem with static init in BindableWithConstructorInit ");
+						}
+						test.value= "STATIC_INIT_CHANGED";
+					} catch (e:Error) {
+						addErrorReport("problem with static init in BindableWithConstructorInit ",e);
+					}
+					
+					test=null;
+					try {
+						test = new BindableWithConstructorInit("string",99)
+					} catch (e:Error) {
+						addErrorReport("problem instantiating BindableWithConstructorInit ",e);
+					}
+					
+					
+			}
+			
+			private var _expectedTarget:Object;
+			private function testEventTarget(event:Event):void{
+				if (event.target!=_expectedTarget) {
+					addErrorReport("unexpected event target "+event.type,new Error("unexpected event target"));
+				}
+			}
+			
+			
+			private function addErrorReport(desc:String,e:Error):void{
+				var label:Label = new Label();
+				label.text = desc +"["+e+"]";
+				errorReporter.addElement(label);
+			
+			}
+			
+			[Bindable]
+			public var instTimer:InstanceTimer ;
+            
+			
+			[Bindable]
+			public var unbindableParentInstance:UnbindableParent = new UnbindableParent();
+			
+			
+			public var subVO1:BindableSubVO1;
+			public var subVO2:BindableSubVO2;
+			public var subVO3:BindableSubVO3;
+            
+            [Bindable]
+            public var classVO:BindableClassVO = new BindableClassVO();
+            [Bindable]
+            public var getterVO:BindableGetterVO = new BindableGetterVO();
+            [Bindable]
+            public var setterVO:BindableSetterVO = new BindableSetterVO();
+            
+		]]>
+    </fx:Script>
+	<fx:Style>
+		@namespace basic "library://ns.apache.org/flexjs/basic";
+		
+		.output {
+			font-size: 20px;
+		}
+
+        .topContainer {
+            padding: 10px;
+            
+        }
+        .leftSide {
+            vertical-align: top;
+            margin-right: 10px;
+        }
+        
+        .rightSide {
+            vertical-align: top;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+        
+        .quoteButton {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+	</fx:Style>
+    <js:states>
+        <js:State name="hideAll" />        
+        <js:State name="showAll" />        
+    </js:states>
+    <js:beads>
+        <js:ViewDataBinding/>
+    </js:beads>
+    <js:Container x="0" y="0" className="topContainer" >
+        <js:beads>
+            <js:VerticalLayout />
+        </js:beads>
+		<js:Label id="testExplanation" text="These examples are mostly intended for FlexJS dev team to verify various binding functionality" />
+        <js:Label id="expressionTest" text="model expression binding [WORKS](5 sec timer) {MyModel(applicationModel).modelInstanceTime}" />
+		<js:Label text="[WORKS] 2 examples of binding expressions with static vars:"/>
+		<js:Label id="timerDemo2" width="300" text="{'test local static expression '+timerText}" />
+		<js:Label id="timerDemo" width="300" text="{'test external static expression '+StaticTimer.static_timerText}" />
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label id="timerDemoSB1" text="[WORKS] test local static simplebinding" />
+			<js:Label id="timerDemoSB2" text="{timerText}" />
+		</js:Container>		
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label id="timerDemoSB3"  text="[WORKS] test external static simplebinding " />
+			<js:Label id="timerDemoSB4"  text="{StaticTimer.static_timerText}" />
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label id="timerDemoSB5"  text="[WORKS] test internal instance simplebinding" />
+			<js:Label id="timerDemoSB6"  text="{instanceTimerText}" />
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="[WORKS] 3 examples of binding into local and external static constants"/>
+			<js:Label id="staticConstDemo1"  text="{STATIC_PRIVATE_CONST}" />
+			<js:Label id="staticConstDemo2"  text="{STATIC_PUBLIC_CONST}" />
+			<js:Label id="staticConstDemo3"  text="{StaticTimer.EXTERNAL_STATIC_CONST}" />
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="[WORKS] 2 examples of binding into local instance constants"/>
+			<js:Label id="instConstDemo1"  text="{INSTANCE_PRIVATE_CONST}" />
+			<js:Label id="instConstDemo2"  text="{INSTANCE_PUBLIC_CONST}" />
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:HorizontalLayout />
+			</js:beads>
+			<js:Label id="timerDemoSB7"  text="[WORKS] test nested instance timercount " />
+			<js:Label id="timerDemoSB8"  text="{instTimer.timerCount}" />
+		</js:Container>
+		<js:Container width="500" height="60">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="[WORKS] 2 examples of var binding and 1 const binding into an Unbindable parent (2 compiler warnings):"/>
+			<js:Label id="unbindableParentDemo1"  text="{unbindableParentInstance.unbindableField}" />
+			<js:Label id="unbindableParentDemo1b"  text="{unbindableParentInstance.unbindableField2}" />
+			<js:Label id="unbindableParentDemo2"  text="{unbindableParentInstance.UNBINDABLE_CONST_FIELD}" />
+		</js:Container>
+		<js:Container width="500">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+			<js:Label text="[WORKS] binding into local mxml instance of local bindable actionscript class:"/>
+			<js:Label id="mxmlBindableDemo1"  text="{mxmlTest.fieldofBindableMxmlTest}" />	
+		</js:Container>
+        <js:Container width="500">
+            <js:beads>
+                <js:VerticalLayout />
+            </js:beads>
+            <js:Label text="Should say fieldOfBindableClassVO below"/>
+            <js:Label id="mxmlBindableClassVO"  text="{classVO.fieldOfBindableClassVO}" />	
+            <js:Label text="Should say fieldOfBindableGetterVO below"/>
+            <js:Label id="mxmlBindableGetterVO"  text="{getterVO.fieldOfBindableGetterVO}" />	
+            <js:Label text="Should say fieldOfBindableSetterVO below"/>
+            <js:Label id="mxmlBindableSetterVO"  text="{setterVO.fieldOfBindableSetterVO}" />
+            <js:TextButton text="Append ! to strings" click="classVO.fieldOfBindableClassVO += '!';getterVO.fieldOfBindableGetterVO += '!';setterVO.fieldOfBindableSetterVO += '!'" />
+        </js:Container>
+		<js:Container width="500" id="errorReporter">
+			<js:beads>
+				<js:VerticalLayout />
+			</js:beads>
+						
+		</js:Container>
+    </js:Container>	
+</js:View>

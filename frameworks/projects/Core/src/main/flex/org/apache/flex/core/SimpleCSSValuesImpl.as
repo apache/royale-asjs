@@ -30,10 +30,12 @@ package org.apache.flex.core
 	import org.apache.flex.events.ValueChangeEvent;
 	import org.apache.flex.events.ValueEvent;
 	import org.apache.flex.utils.CSSUtils;
+    import org.apache.flex.utils.StringUtil;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
-     *  CSS lookup rules that is sufficient for most applications.
+     *  CSS lookup rules that is sufficient for most applications
+	 *  and is easily implemented for SWFs.
      *  It does not support attribute selectors or descendant selectors
      *  or id selectors.  It will filter on a custom -flex-flash
      *  media query but not other media queries.  It can be
@@ -45,7 +47,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl
+	public class SimpleCSSValuesImpl extends EventDispatcher implements IValuesImpl, ICSSImpl
 	{
         /**
          *  Constructor.
@@ -125,21 +127,20 @@ package org.apache.flex.core
                         i += numMQ;
                     }
                     var numSel:int = cssData[i++];
-                    var props:Object = {};
+                    var propFn:Function = cssData[i + numSel];
+                    var props:Object;
                     for (var j:int = 0; j < numSel; j++)
                     {
                         var selName:String = cssData[i++];
                         if (values[selName])
+                        {
                             props = values[selName];
-                        values[selName] = props;
+                            propFn.prototype = props;
+                        }
+                        values[selName] = new propFn();
                     }
-                    var numProps:int = cssData[i++];
-                    for (j = 0; j < numProps; j++)
-                    {
-                        var propName:String = cssData[i++];
-                        var propValue:Object = cssData[i++];
-                        props[propName] = propValue;
-                    }
+                    // skip the propFn
+                    props = cssData[i++];
                 }
             }
             
@@ -591,22 +592,33 @@ package org.apache.flex.core
             var parts:Array = styles.split(";");
             for each (var part:String in parts)
             {
-                var pieces:Array = part.split(":");
+                var pieces:Array = StringUtil.splitAndTrim(part, ":");
+                if (pieces.length < 2) continue;
+                var valueName:String = pieces[0];
+                var c:int = valueName.indexOf("-");
+	            while (c != -1)
+	            {
+	                valueName = valueName.substr(0, c) +
+	                    valueName.charAt(c + 1).toUpperCase() +
+	                    valueName.substr(c + 2);
+	                c = valueName.indexOf("-");
+	            }
+                
                 var value:String = pieces[1];
                 if (value == "null")
-                    obj[pieces[0]] = null;
+                    obj[valueName] = null;
                 else if (value == "true")
-                    obj[pieces[0]] = true;
+                    obj[valueName] = true;
                 else if (value == "false")
-                    obj[pieces[0]] = false;
+                    obj[valueName] = false;
                 else
                 {
                     var n:Number = Number(value);
                     if (isNaN(n))
                     {
-                        if (value.charAt(0) == "#")
+                        if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
                         {                            
-                            obj[pieces[0]] = CSSUtils.toColor(value);
+                            obj[valueName] = CSSUtils.toColor(value);
                         }
                         else
                         {
@@ -614,11 +626,11 @@ package org.apache.flex.core
                                 value = value.substr(1, value.length - 2);
                             else if (value.charAt(0) == '"')
                                 value = value.substr(1, value.length - 2);
-                            obj[pieces[0]] = value;
+                            obj[valueName] = value;
                         }
                     }
                     else
-                        obj[pieces[0]] = n;
+                        obj[valueName] = n;
                 }
             }
             return obj;
@@ -631,6 +643,10 @@ package org.apache.flex.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
+		 *
+		 *  @flexjsignorecoercion HTMLStyleElement
+		 *  @flexjsignorecoercion CSSStyleSheet
+		 *  @flexjsignorecoercion uint
          */
         public function addRule(ruleName:String, values:Object):void
         {
@@ -649,7 +665,40 @@ package org.apache.flex.core
                 asValues[valueName] = v;
             }
             this.values[ruleName] = asValues;
+			COMPILE::JS
+			{
+				if (!ss)
+				{
+					var styleElement:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+					document.head.appendChild(styleElement);
+					ss = styleElement.sheet as CSSStyleSheet;
+				}
+				var cssString:String = ruleName + " {"
+				for (var p:String in values)
+				{
+					var value:Object = values[p];
+				    if (typeof(value) === 'function') continue;
+					cssString += p + ": ";
+					if (typeof(value) == 'number') {
+                    	if (colorStyles[p])
+                        	value = CSSUtils.attributeFromColor(value as uint);
+                    	else
+                        	value = value.toString() + 'px';
+                	}
+                	else if (p == 'backgroundImage') {
+                    	if (p.indexOf('url') !== 0)
+                        	value = 'url(' + value + ')';
+                	}
+					cssString += value + ";";
+					
+				}
+				cssString += "}";
+				ss.insertRule(cssString, ss.cssRules.length);
+			}
         }
+		
+		COMPILE::JS
+		private var ss:CSSStyleSheet;
         
         /**
          *  A map of inheriting styles 
@@ -691,7 +740,7 @@ package org.apache.flex.core
             'borderColor': 1,
             'color': 1
         }
-        
+
         
         /**
          * The properties that enumerate that we skip
@@ -706,6 +755,7 @@ package org.apache.flex.core
         /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
+         * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void
@@ -726,7 +776,7 @@ package org.apache.flex.core
                     continue;
                 if (typeof(value) == 'number') {
                     if (colorStyles[p])
-                        value = '#' + value.toString(16);
+                        value = CSSUtils.attributeFromColor(value);
                     else
                         value = value.toString() + 'px';
                 }
@@ -734,7 +784,7 @@ package org.apache.flex.core
                     if (p.indexOf('url') !== 0)
                         value = 'url(' + value + ')';
                 }
-                thisObject.element.style[p] = value;
+                (thisObject.element as HTMLElement).style[p] = value;
             }
         }
 	}

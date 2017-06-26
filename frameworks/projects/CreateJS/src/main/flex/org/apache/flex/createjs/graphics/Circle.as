@@ -32,6 +32,7 @@ package org.apache.flex.createjs.graphics
         import org.apache.flex.core.WrappedHTMLElement;
     }
 
+    import org.apache.flex.events.Event;
 	import org.apache.flex.graphics.IFill;
 	import org.apache.flex.graphics.SolidColor;
 	import org.apache.flex.graphics.SolidColorStroke;

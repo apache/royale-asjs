@@ -25,8 +25,8 @@
     
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
+    <property file="${FLEXJS_HOME}/local.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <property name="opt1_arg" value="-remove-circulars" />
     
     <include file="${basedir}/../../build_example.xml" />
 
@@ -48,14 +48,24 @@
     </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.copy-js-resources,build_example.compile.cordova" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/app" failonerror="false" />
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
     
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="View example"/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <antcall target="build_example.run.cordova" />
+    </target>
+
 </project>

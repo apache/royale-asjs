@@ -37,6 +37,7 @@ package org.apache.flex.flat.beads
     import org.apache.flex.utils.CSSBorderUtils;
     import org.apache.flex.utils.CSSUtils;
     import org.apache.flex.utils.StringTrimmer;
+    import org.apache.flex.core.UIHTMLElementWrapper;
 
     /**
      *  The CSSScrollBarButtonView class is the default view for
@@ -123,10 +124,11 @@ package org.apache.flex.flat.beads
 			var paddingRight:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-right", state);
 			var paddingTop:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-top", state);
 			var paddingBottom:Object = ValuesManager.valuesImpl.getValue(_strand, "padding-bottom", state);
-			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, DisplayObject(_strand).width);
-            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, DisplayObject(_strand).width);
-            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, DisplayObject(_strand).height);
-            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, DisplayObject(_strand).height);
+            var obj:DisplayObject = (_strand as UIHTMLElementWrapper).$displayObject;
+			var pl:Number = CSSUtils.getLeftValue(paddingLeft, padding, obj.width);
+            var pr:Number = CSSUtils.getRightValue(paddingRight, padding, obj.width);
+            var pt:Number = CSSUtils.getTopValue(paddingTop, padding, obj.height);
+            var pb:Number = CSSUtils.getBottomValue(paddingBottom, padding, obj.height);
 			
             var w:Object = ValuesManager.valuesImpl.getValue(shape, "width", state);
             var h:Object = ValuesManager.valuesImpl.getValue(shape, "height", state);

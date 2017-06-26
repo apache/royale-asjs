@@ -83,6 +83,9 @@ package org.apache.flex.core
                 IStatesObject(_strand).currentState));
         }		
      
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.IStatesObject 
+         */
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
             if (!sawInitComplete)
@@ -109,6 +112,9 @@ package org.apache.flex.core
             doc.dispatchEvent(new Event("stateChangeComplete"));
         }
         
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.IParent
+         */
         private function revert(s:State):void
         {
             var arr:Array = s.overrides;
@@ -120,7 +126,10 @@ package org.apache.flex.core
                     for each (var item:IChild in ai.items)
                     {
                         var parent:IParent = item.parent as IParent;
-                        parent.removeElement(item);
+						if (parent)
+						{
+                        	parent.removeElement(item);
+						}
                     }
                     if (parent is IContainer)
                         IContainer(parent).childrenAdded();
@@ -148,6 +157,11 @@ package org.apache.flex.core
             }
         }
         
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.IChild 
+         * @flexjsignorecoercion org.apache.flex.core.IParent
+         * @flexjsignorecoercion Array
+         */
         private function apply(s:State):void
         {
             var arr:Array = s.overrides;
@@ -174,7 +188,7 @@ package org.apache.flex.core
                             parent = parent[ai.destination] as IParent;
                         if (ai.relativeTo != null)
                         {
-                            var child:Object = ai.document[ai.relativeTo];
+                            var child:IChild = ai.document[ai.relativeTo] as IChild;
                             if (ai.destination == null)
                                 parent = child.parent as IParent;
                             var index:int = parent.getElementIndex(child);
@@ -182,10 +196,14 @@ package org.apache.flex.core
                                 index++;
                             parent.addElementAt(item, index);
                         }
-                        else
-                        {
-                            parent.addElement(item);
-                        }
+						else if (ai.position == "first")
+						{
+							parent.addElementAt(item, 0);
+						}
+						else
+						{
+							parent.addElement(item);
+						}
                     }
                     if (parent is IContainer)
                         IContainer(parent).childrenAdded();

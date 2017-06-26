@@ -22,10 +22,12 @@
 <componentPackage>
 
     <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding"/>
+    <component id="ItemRendererSimpleBinding" class="org.apache.flex.binding.ItemRendererSimpleBinding"/>
     <component id="SimpleBinding" class="org.apache.flex.binding.SimpleBinding"/>
     <component id="ViewDataBinding" class="org.apache.flex.binding.ViewDataBinding"/>
     <component id="MXMLBeadViewDataBinding" class="org.apache.flex.binding.MXMLBeadViewDataBinding"/>
     <component id="ApplicationDataBinding" class="org.apache.flex.binding.ApplicationDataBinding"/>
     <component id="ContainerDataBinding" class="org.apache.flex.binding.ContainerDataBinding"/>
+    <component id="ItemRendererDataBinding" class="org.apache.flex.binding.ItemRendererDataBinding"/>
 
 </componentPackage>

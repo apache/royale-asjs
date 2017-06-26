@@ -99,6 +99,20 @@ limitations under the License.
 			background-color: #FFFFCC;
 		}
 		
+		.SliderThumb {
+			background-color: #EEEEEE;
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+		}
+		
+		.SliderTrack {
+			background-color: #999999;
+			border-style: solid;
+			border-color: #000000;
+			border-thickness: 1;
+		}
+		
         @media -flex-flash
         {
             .TitleBar {
@@ -118,8 +132,10 @@ limitations under the License.
         }
 	</fx:Style>
 	
-	
-	<js:Panel title="Example" x="300" width="300" y="50" className="panel1" showCloseButton="true">
+	<js:beads>
+		<js:ViewDataBinding />
+	</js:beads>
+	<js:Panel title="Example" x="300" width="300" y="50" height="250" className="panel1" showCloseButton="true">
 		<js:beads>
 			<js:VerticalLayout />
 		</js:beads>
@@ -127,17 +143,22 @@ limitations under the License.
 		<js:TextButton text="Show Simple Alert" click="showSimpleAlert()" />
 		<js:Label text="Displays an Alert which can have multiple buttons." />
 		<js:TextButton text="Push Me" click="onButtonClick()" />
-		<js:Label id="spinMe" />
+		<js:Spacer height="10" />
+		<js:Label id="spinMe" text="stepper value" />
 		<js:NumericStepper id="stepper" 
 							  valueChange="spinnerChanged(stepper)" 
 							  className="numStepper"
 							  stepSize="10"/>
-		<js:Label id="slideMe" />
-		<js:Slider id="slider"
+		<js:Spacer height="10" />
+		<js:Label id="slideMe" text="slider value" />
+		<js:Label id="slideMe2" text="{slider.value}" />
+		<js:Slider id="slider" width="200"
 					  valueChange="sliderChanged(slider)"
-					  minimum="20"
-					  maximum="80"
-					  stepSize="5" />
+					  minimum="0"
+					  maximum="100"
+					  stepSize="1" />
+		
+		<js:Spacer height="10" />
 	</js:Panel>
 
 	

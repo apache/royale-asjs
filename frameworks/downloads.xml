@@ -29,21 +29,59 @@
     <property name="FLEX_HOME" value="${env.FLEX_HOME}" />
 
 	<property name="download.dir" value="${FLEXJS_HOME}/in"/>
-    
+    <property name="pixelbender.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
+    <property name="pixelbender.folder" value="flex/pixelbender/1.0/binaries" />
+    <property name="pixelbender.bin.zip" value="apache-flex-sdk-pixel-bender-1.0.0-bin.zip" />
+   
     <!--
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="main" 
-        depends="swfobject-download,flat-ui-download,gcl-download"
+        depends="pixelbender-download,swfobject-download,flat-ui-download,gcl-download"
         description="Copies third-party software into place for build">
         <echo message="Use thirdparty-clean or super-clean to remove these."/> 
     </target>
     
-    <target name="clean" depends="swfobject-clean,flat-ui-clean,gcl-clean"
+    <target name="clean" depends="pixelbender-clean,swfobject-clean,flat-ui-clean,gcl-clean"
         description="Cleans thirdparty downloaded files.">
      </target>
     
+	    <!-- pixelbender files (Version 1.0) -->
+    <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
+    <target name="pixelbender-check" description="Checks if PixelBender files have been downloaded.">
+        <available file="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/ColorBurn.pbj" property="pixelbender.pbj.present"/>
+    </target>
+    
+    <target name="pixelbender-download" depends="pixelbender-check" unless="pixelbender.pbj.present"
+        description="Downloads PixelBender from flex distribution server">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="get_from_mirror" >
+            <param name="server" value="${pixelbender.url}" />
+            <param name="folder" value="${pixelbender.folder}" />
+            <param name="file" value="${pixelbender.bin.zip}" />
+            <param name="dest" value="${download.dir}/${pixelbender.bin.zip}" />
+        </antcall>
+        
+        <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses/">
+            <patternset>
+                <include name="frameworks/projects/framework/src/mx/graphics/shaderClasses/*.pbj"/>
+            </patternset>
+			<mapper>
+				<globmapper from="frameworks/projects/framework/src/mx/graphics/shaderClasses/*.pbj" to="*.pbj"/>
+			</mapper>
+        </unzip>
+    </target>
+
+    <target name="pixelbender-clean" description="Deletes pbj files.">
+	    <delete failonerror="false">
+            <fileset dir="${FLEXJS_HOME}/frameworks/projects/Graphics/src/main/flex/org/apache/flex/graphics/utils/shaderClasses">
+                <include name="*.pbj"/>
+            </fileset>
+        </delete>
+    </target>
+
     <!-- swfobject.js (Version 2.2) -->
     <!-- Because this requires a network connection it downloads SWFObject only if it doesn't already exist. -->
     <target name="swfobject-check" description="Checks if SWFObject has been downloaded.">
@@ -55,8 +93,15 @@
         
         <mkdir dir="${download.dir}"/>
         <get src="https://codeload.github.com/swfobject/swfobject/zip/2.2"
-            dest="${download.dir}/swfobject_2_2.zip" 
-            verbose="false"/>
+            dest="${download.dir}/swfobject_2_2.zip"
+            verbose="false" ignoreerrors="true"/>
+        
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="swfobject_2_2.zip" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="swfobject_2_2.zip" />
+        </antcall>
         
         <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
             <patternset>
@@ -65,6 +110,7 @@
             </patternset>
             <flattenmapper />
         </unzip>
+        <antcall target="swfobject-double-check" />
         <mkdir dir="${FLEXJS_HOME}/templates/swfobject/history"/>
         <copy toDir="${FLEXJS_HOME}/templates/swfobject/history" >
             <fileset dir="${FLEXJS_HOME}/templates/swfobject/history">
@@ -81,6 +127,24 @@
                 <exclude name="history/**"/>
             </fileset>
         </delete>
+    </target>
+        
+    <target name="have-swfobject" >
+        <condition property="still-no-swfobject">
+            <not>
+                <available file="${FLEXJS_HOME}/templates/swfobject/swfobject.js" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="swfobject-double-check" depends="have-swfobject" if="still-no-swfobject" description="some SWFObject zips have a different folder structure so if the first unzip doesn't work, try this one">
+        <unzip src="${download.dir}/swfobject_2_2.zip" dest="${FLEXJS_HOME}/templates/swfobject">
+            <patternset>
+                <include name="swfobject/expressInstall.swf"/>
+                <include name="swfobject/swfobject.js"/>
+            </patternset>
+            <flattenmapper />
+        </unzip>
     </target>
         
     <!-- flat ui fonts  -->
@@ -125,7 +189,16 @@
         <mkdir dir="${download.dir}"/>
         <get src="https://github.com/designmodo/Flat-UI/archive/2.2.2.zip"
         dest="${download.dir}/flat-ui_2_2.zip"
-        verbose="false"/>
+        verbose="false" ignoreerrors="true"/>
+        
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="flat-ui_2_2.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="flat-ui_2_2.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
         
         <mkdir dir="${FLEXJS_HOME}/frameworks/fonts"/>
         <unzip src="${download.dir}/flat-ui_2_2.zip" dest="${FLEXJS_HOME}/frameworks/fonts">
@@ -158,8 +231,17 @@
     	<mkdir dir="${download.dir}"/>
     	<get src="https://github.com/google/closure-library/archive/master.zip"
     	        dest="${download.dir}/google-closure-library-master.zip"
-    	        verbose="false"/>
+    	        verbose="false" ignoreerrors="true"/>
     	
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="google-closure-library-master.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        <antcall target="fail-if-not-found" >
+            <param name="filename" value="google-closure-library-master.zip" />
+            <param name="destDir" value="${download.dir}" />
+        </antcall>
+        
     	<mkdir dir="${FLEXJS_HOME}/js/lib/google/closure-library"/>
     	<unzip src="${download.dir}/google-closure-library-master.zip" dest="${FLEXJS_HOME}/js/lib/google/closure-library">
     		<cutdirsmapper dirs="1" />
@@ -225,4 +307,62 @@
             value="${env.GOOG_HOME}" />
     </target>
         
+    <target name="fail-if-not-found">
+        <fail message="${filename} could not be downloaded or found in cache">
+            <condition>
+                <not>
+                    <available file="${download.dir}/${filename}" />
+                </not>
+            </condition>
+        </fail>
+    </target>
+    
+    <target name="double-check-file" >
+        <condition property="still-no-file" value="true">
+            <and>
+                <not>
+                    <available file="${download.dir}/${filename}" />
+                </not>
+                <isset property="env.FLEX_DOWNLOAD_CACHE" />
+            </and>
+        </condition>
+        <echo>Need file: ${still_no_file}</echo>
+    </target>
+    <target name="get-from-cache-if-needed" depends="double-check-file" if="still-no-file">
+        <copy file="${env.FLEX_DOWNLOAD_CACHE}/${filename}" tofile="${download.dir}/${filename}" />
+    </target>
+	<target name="get_from_mirror">
+        <condition property="usingmirror" value="true">
+            <contains string="${server}" substring="mirrors.cgi" />
+        </condition>
+        <antcall target="download_using_mirror">
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+        <antcall target="download_using_get">
+            <param name="server" value="${server}" />
+            <param name="folder" value="${folder}" />
+            <param name="file" value="${file}" />
+            <param name="dest" value="${dest}" />
+        </antcall>
+    </target>
+    <target name="download_using_mirror" if="usingmirror">
+        <get src="${server}/${folder}/${file}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
+        <replace file="${basedir}/mirror.json">
+            <replacefilter token="&quot;"
+            value="" />
+            <replacefilter token=": "
+            value="=" />
+        </replace>
+        <property file="${basedir}/mirror.json" />
+        <delete file="${basedir}/mirror.json" />
+        <echo>Using mirror: ${preferred}</echo>
+        <get src="${preferred}${folder}/${file}" dest="${dest}" />
+    </target>
+    <target name="download_using_get" unless="usingmirror">
+        <get src="${server}/${folder}/${file}" dest="${dest}" />
+    </target>
+
 </project>

@@ -35,7 +35,7 @@ binjs-release
 examples/FlexJSTest_again/html-template
 examples/FlexJSTest_again/bin
 rat.report
-mustella/tests/bin
+mustella/tests/basicTests/bin
 asdoc-output
 
 #Apache Flex Projects
@@ -45,7 +45,6 @@ in/
 swfobject/
 flex2/
 thirdparty/
-META-INF/
 3.0.33/
 3.0.33
 
@@ -119,7 +118,6 @@ _ReSharper*/
 *.zip
 *.rar
 *.tar
-html-template
 
 #VF2JS generated files
 vf2js/frameworks/js/

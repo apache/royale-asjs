@@ -23,19 +23,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <!--
-        TODO: Needs to be packaged with cordova
-
         Seems to be a Flash build however requiring airglobal to build because of a dependency to air in GoogleMaps.
   -->
 
   <parent>
     <groupId>org.apache.flex.flexjs.examples</groupId>
     <artifactId>examples-flexjs</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
+    <version>0.8.0</version>
   </parent>
 
   <artifactId>MobileMap</artifactId>
-  <version>0.7.0-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>swf</packaging>
 
   <name>Apache Flex - FlexJS: Examples: FlexJS: MobileMap</name>
@@ -52,12 +50,8 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
+        <groupId>org.jboss.errai</groupId>
+        <artifactId>cordova-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -74,15 +68,40 @@
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>Mobile</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>0.7.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
+    <dependency>
+      <groupId>org.apache.flex.flexjs.framework</groupId>
+      <artifactId>GoogleMaps</artifactId>
+      <version>0.8.0</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.flex.flexjs.typedefs</groupId>
+        <artifactId>flexjs-typedefs-googlemaps</artifactId>
+        <version>${flexjs.typedefs.version}</version>
+        <type>swc</type>
+        <classifier>typedefs</classifier>
+        <scope>runtime</scope>
+    </dependency>
+
   </dependencies>
 
 </project>

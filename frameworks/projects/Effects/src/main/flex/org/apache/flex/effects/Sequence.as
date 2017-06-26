@@ -19,134 +19,38 @@
 
 package org.apache.flex.effects
 {
-
-import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.events.Event;
-
-[DefaultProperty("children")]
-
-/**
- *  The Sequence effect animates a set of effects one
- *  at a time.
- * 
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion FlexJS 0.0
- */
-public class Sequence extends Effect implements IDocument
-{
-
-    //--------------------------------------------------------------------------
-    //
-    //  Constructor
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  Constructor.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function Sequence()
-    {
-        super();
-    }
-
-    //--------------------------------------------------------------------------
-    //
-    //  Variables
-    //
-    //--------------------------------------------------------------------------
-
-	/**
-	 *  @private
-	 *  The document.
-	 */
-	private var document:Object;
-
-	/**
-	 *  @private
-	 *  The target.
-	 */
-	private var target:IUIBase;
-    
-	/**
-	 *  The children.
-	 */
-	public var children:Array;
+	import org.apache.flex.effects.beads.SequencePlayBead;
 	
 	
-    
-    //--------------------------------------------------------------------------
-    //
-    //  Properties
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     */
-    override public function set duration(value:Number):void
-    {
-        var n:int = children.length;
-        for (var i:int = 0; i < 0; i++)
-        {
-            children[i].duration = value;
-        }
-        super.duration = value;
-    }
-    
-    //--------------------------------------------------------------------------
-    //
-    //  Methods
-    //
-    //--------------------------------------------------------------------------
-
-	public function setDocument(document:Object, id:String = null):void
+	/**
+	 *  The Sequence effect animates set of effects one after the other.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class Sequence extends CompoundEffect
 	{
-		this.document = document;	
+		
+		//--------------------------------------------------------------------------
+		//
+		//  Constructor
+		//
+		//--------------------------------------------------------------------------
+		
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function Sequence()
+		{
+			super();
+			beads = [new SequencePlayBead()];
+		}
 	}
-	
-    public function addChild(child:IEffect):void
-    {
-        if (!children)
-            children = [ child ];
-        else
-            children.push(child);    
-    }
-    
-	/**
-	 *  @private
-	 */
-	override public function play():void
-	{
-        dispatchEvent(new Event(Effect.EFFECT_START));
-        current = 0;
-        playChildEffect();
-	}
-    
-    private var current:int;
-    
-    private function playChildEffect():void
-    {
-        var child:IEffect = children[current];
-        child.addEventListener(Effect.EFFECT_END, effectEndHandler);
-        child.play();   
-    }
-    
-    private function effectEndHandler(event:Event):void
-    {
-        current++;
-        if (current >= children.length)
-            dispatchEvent(new Event(Effect.EFFECT_END));
-        else
-            playChildEffect();
-    }
-}
-
 }

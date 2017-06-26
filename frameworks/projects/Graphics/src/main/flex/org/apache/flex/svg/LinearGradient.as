@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -23,6 +27,7 @@ package org.apache.flex.svg
     COMPILE::SWF
     {
         import flash.display.GradientType;
+        import flash.display.Graphics;
         import flash.display.InterpolationMethod;
         import flash.display.SpreadMethod;
         import flash.geom.Matrix;
@@ -51,20 +56,20 @@ package org.apache.flex.svg
 		}
 		
         COMPILE::SWF
-		public function begin(s:IGraphicShape,targetBounds:Rectangle, targetOrigin:Point):void
+		public function begin(g:Graphics,targetBounds:Rectangle, targetOrigin:Point):void
 		{
 			commonMatrix.identity();
 			commonMatrix.createGradientBox(targetBounds.width,targetBounds.height,toRad(this.rotation),targetOrigin.x, targetOrigin.y);
 			
-			s.graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios,
+			g.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios,
 				commonMatrix, SpreadMethod.PAD, InterpolationMethod.RGB);
 			
 		}
 		
         COMPILE::SWF
-		public function end(s:IGraphicShape):void
+		public function end(g:Graphics):void
 		{
-			s.graphics.endFill();
+			g.endFill();
 		}
         
         /**
@@ -73,12 +78,14 @@ package org.apache.flex.svg
          * @param value The IGraphicShape object on which the fill must be added.
          * @return {string}
          * @flexjsignorecoercion Node
+         * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         public function addFillAttrib(value:IGraphicShape):String 
         {
             //Create and add a linear gradient def
-            var svgNS:String = value.element.namespaceURI;
+            var valueElement:HTMLElement = value.element as HTMLElement;
+            var svgNS:String = valueElement.namespaceURI;
             var grad:HTMLElement = document.createElementNS(svgNS, 'linearGradient') as HTMLElement;
             var gradientId:String = this.newId;
             grad.setAttribute('id', gradientId);
@@ -114,8 +121,8 @@ package org.apache.flex.svg
             
             //Add defs element if not available already
             //Add newly created gradient to defs element
-            var defs:Node = value.element.querySelector('defs') ||
-                value.element.insertBefore(document.createElementNS(svgNS, 'defs'), value.element.firstChild);
+            var defs:Node = valueElement.querySelector('defs') ||
+                valueElement.insertBefore(document.createElementNS(svgNS, 'defs'), valueElement.firstChild);
             defs.appendChild(grad);
             
             //Return the fill attribute

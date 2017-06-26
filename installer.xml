@@ -57,8 +57,8 @@
     
     <property name="air.sdk.version" value="14.0"/>
     <property name="flash.sdk.version" value="14.0"/>
-    <property name="flexjs.version" value="0.6.0"/>
-    <property name="falcon.version" value="0.6.0"/>
+    <property name="flexjs.version" value="0.8.0"/>
+    <property name="falcon.version" value="0.8.0"/>
 
     <property name="swfobject.url.server" value="https://github.com" />
     <property name="swfobject.url.folder" value="swfobject/swfobject/archive" />
@@ -456,7 +456,7 @@
         <echo>${INFO_UNZIPPING} ${download.dir}/${air.sdk.url.file}</echo>
         
         <antcall target="air-setup-win" />
-        <antcall target="air-setup-mac" />
+        <antcall target="air-setup-mac-if-mac" />
         
     </target>
 
@@ -513,23 +513,70 @@
         </copy>
     </target>
     
-    <target name="air-setup-mac" unless="isWindows">
-        <!--The tbz2 contains symlinks which Ant does not preserve
-        <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />-->
+    <target name="unzipOrMountDMG" description="Check for file extension and decide if we should unzip or mount">
+        
         <mkdir dir="${download.dir}/airsdk" />
         <move file="${download.dir}/${air.sdk.url.file}" todir="${download.dir}/airsdk" />
-        <exec executable="bunzip2" dir="${download.dir}/airsdk" >
+        
+        <condition property="shouldUnzip" value="true">
+            <matches pattern="tbz2" string="${air.sdk.url.file}"/>
+        </condition>
+        <echo message="Should unzip: ${shouldUnzip}"/>
+    </target>
+    
+    <target name="unzipAIRSDK" if="shouldUnzip">
+        <echo message="Unzipping"/>
+        
+        <!--The tbz2 contains symlinks which Ant does not preserve
+         <untar compression="bzip2" src="${download.dir}/${air.sdk.url.file}" dest="${download.dir}/airsdk" />-->
+        
+        <exec executable="bunzip2" dir="${download.dir}/airsdk">
             <arg value="${air.sdk.url.file}" />
         </exec>
         <echo file="${basedir}/airtar.properties">air.tar.name=${air.sdk.url.file}</echo>
         <replace file="${basedir}/airtar.properties" token="tbz2" value="tar" />
         <property file="${basedir}/airtar.properties" />
-        <exec executable="tar" dir="${download.dir}/airsdk" >
+        <exec executable="tar" dir="${download.dir}/airsdk">
             <arg value="-xvf" />
             <arg value="${air.tar.name}" />
         </exec>
         <echo>${INFO_FINISHED_UNTARING} ${download.dir}/airsdk/${air.tar.name}</echo>
         <delete file="${basedir}/airtar.properties" />
+    </target>
+    
+    <target name="mountAIRSDK" unless="shouldUnzip">
+        <echo message="Mounting dmg"/>
+        <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="true">
+            <arg value="attach"/>
+            <arg value="-nobrowse"/>
+            <arg value="${download.dir}/airsdk/${air.sdk.url.file}"/>
+        </exec>
+    </target>
+    
+    <target name="copyFromMount" unless="shouldUnzip">
+        <echo message="Copying AIR SDK from mounted volume"/>
+        <exec executable="rsync" dir="${FLEXJS_HOME}">
+            <arg value="--archive" />
+            <arg value="--ignore-existing" />
+            <arg value="--force" />
+            <arg value="/Volumes/AIR SDK/"/>
+            <arg value="${download.dir}/airsdk" />
+        </exec>
+    </target>
+    
+    <target name="unmountAIRSDK" unless="shouldUnzip">
+        <echo message="Unmounting AIR SDK"/>
+        <exec executable="/usr/bin/hdiutil" os="Mac OS X" failonerror="false">
+            <arg value="unmount"/>
+            <arg value="/Volumes/AIR SDK"/>
+        </exec>
+    </target>
+    
+    <target name="air-setup-mac-if-mac" unless="isWindows">
+        <antcall target="air-setup-mac" />
+    </target>
+    
+    <target name="air-setup-mac" depends="unzipOrMountDMG,unzipAIRSDK,mountAIRSDK,copyFromMount,unmountAIRSDK" unless="isWindows">
         <antcall target="mac-copy-file">
             <param name="srcdir" value="." />
             <param name="filename" value="AIR SDK license.pdf"/>
@@ -967,7 +1014,12 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
+            <replacefilter
+            token="$FLEXJS_HOME"
+            value="${FLEXJS_HOME}"/>
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
             <replacefilter
             token="$FLEXJS_HOME"
             value="${FLEXJS_HOME}"/>
@@ -1000,10 +1052,15 @@ tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         	token="PATH"
         	value="UNIX_PATH" />
         </replace>
-        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run).launch">
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run IOS).launch">
         	<replacefilter
         	token="PATH"
         	value="UNIX_PATH" />
+        </replace>
+        <replace file="${FLEXJS_HOME}/ide/flashbuilder/FlexJS (Cordova Run Android).launch">
+            <replacefilter
+            token="PATH"
+            value="UNIX_PATH" />
         </replace>
     </target>
 

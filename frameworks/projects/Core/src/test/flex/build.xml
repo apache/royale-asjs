@@ -88,7 +88,7 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
     </path>
 
     <target name="compile" description="Compiles FlexUnitApplication.swf">

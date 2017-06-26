@@ -167,6 +167,10 @@ package org.apache.flex.charts.beads
 			wrapper.y = 0;
 			wrapper.width = UIBase(_axisGroup).width;
 			wrapper.height = UIBase(_axisGroup).height;
+			COMPILE::JS {
+				wrapper.element.style.position = "absolute";
+				UIBase(_axisGroup).element.style.position = "absolute";
+			}
 		}
 		
 		/**
@@ -218,6 +222,10 @@ package org.apache.flex.charts.beads
 			
 			if (isHorizontal) label = axisGroup.drawHorizontalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
 			else label = axisGroup.drawVerticalTickLabel(text, xpos, ypos, boxWidth, boxHeight, tickFill);
+			
+			COMPILE::JS {
+				label.element.style.position = "absolute";
+			}
 			
 			return label;
 		}

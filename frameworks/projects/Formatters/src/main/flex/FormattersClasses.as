@@ -30,6 +30,9 @@ internal class FormattersClasses
 	import org.apache.flex.core.FormatBase; FormatBase;
 	
 	import org.apache.flex.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
+	import org.apache.flex.html.accessories.DateFormatDDMMYYYYBead; DateFormatDDMMYYYYBead;
+	import org.apache.flex.html.accessories.DateFormatYYYYMMDDBead; DateFormatYYYYMMDDBead;
+	import org.apache.flex.html.accessories.SimpleDateFormatBead; SimpleDateFormatBead;
 	COMPILE::SWF
 	{
     	import org.apache.flex.html.beads.FormatableLabelView; FormatableLabelView;

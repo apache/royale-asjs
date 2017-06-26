@@ -21,7 +21,12 @@ package org.apache.flex.binding
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IDocument;
-	
+    import org.apache.flex.core.IBinding;
+
+    COMPILE::SWF
+    {
+        import flash.utils.getDefinitionByName;
+    }
     /**
      *  The ConstantBinding class is lightweight data-binding class that
      *  is optimized for simple assignments of one object's constant to
@@ -32,7 +37,7 @@ package org.apache.flex.binding
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class ConstantBinding implements IBead, IDocument
+	public class ConstantBinding implements IBead, IDocument, IBinding
 	{
         /**
          *  Constructor.
@@ -45,7 +50,12 @@ package org.apache.flex.binding
 		public function ConstantBinding()
 		{
 		}
-		
+
+        private var _destination:Object;
+        private var _sourceID:String;
+        private var _destinationPropertyName:String;
+        private var _sourcePropertyName:String;
+
         /**
          *  The source object who's property has the value we want.
          *
@@ -72,50 +82,77 @@ package org.apache.flex.binding
 		protected var document:Object;
 
         /**
-         *  The destination object.  It is always the same
-         *  as the strand.  ConstantBindings are attached to
-         *  the strand of the destination object.
+         *  @copy org.apache.flex.core.IBinding#destination;
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var destination:Object;
+        public function get destination():Object
+        {
+            return _destination;
+        }
+
+        public function set destination(value:Object):void
+        {
+            _destination = value;
+        }
 
         /**
-         *  If not null, the id of the mxml tag who's property
-         *  is being watched for changes.
+         *  @copy org.apache.flex.core.IBinding#sourceID
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var sourceID:String;
+        public function get sourceID():String
+        {
+            return _sourceID;
+        }
+
+        public function set sourceID(value:String):void
+        {
+            _sourceID = value;
+        }
 
         /**
-         *  If not null, the name of a property on the
-         *  mxml document that is being watched for changes.
+         *  @copy org.apache.flex.core.IBinding#destinationPropertyName
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var sourcePropertyName:String;
+        public function get destinationPropertyName():String
+        {
+            return _destinationPropertyName;
+        }
+
+        public function set destinationPropertyName(value:String):void
+        {
+            _destinationPropertyName = value;
+        }
 
         /**
-         *  The name of the property on the strand that
-         *  is set when the source property changes.
+         *  @copy org.apache.flex.core.IBinding#sourcePropertyName
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public var destinationPropertyName:String;
-		
+        public function get sourcePropertyName():String
+        {
+            return _sourcePropertyName;
+        }
+
+        public function set sourcePropertyName(value:String):void
+        {
+            _sourcePropertyName = value;
+        }
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
          *
@@ -126,17 +163,53 @@ package org.apache.flex.binding
          */
 		public function set strand(value:IStrand):void
 		{
+            var val:* = null;
+            var objectFromWindow:Object = null;
+
             if (destination == null)
                 destination = value;
             
             if (sourceID != null)
-    			source = document[sourceID];
-            else
-                source = document;
-            var val:*;
-            if (sourcePropertyName in source)
             {
-                try {
+                source = document[sourceID];
+            }
+            else
+            {
+                source = document;
+            }
+
+            if (!source)
+            {
+                try
+                {
+                    COMPILE::SWF
+                    {
+                        var classFromSourceId:Class = getDefinitionByName(sourceID) as Class;
+                        if (classFromSourceId)
+                        {
+                            val = classFromSourceId[sourcePropertyName];
+                        }
+                    }
+
+                    COMPILE::JS
+                    {
+                        objectFromWindow = getObjectClassFromWindow(sourceID);
+                        if (objectFromWindow)
+                        {
+                            val = objectFromWindow[sourcePropertyName];
+                        }
+                    }
+                    destination[destinationPropertyName] = val;
+                }
+                catch (e:Error)
+                {
+
+                }
+            }
+            else if (sourcePropertyName in source)
+            {
+                try
+                {
                     val = source[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
@@ -146,7 +219,8 @@ package org.apache.flex.binding
             }
             else if (sourcePropertyName in source.constructor)
             {
-                try {
+                try
+                {
                     val = source.constructor[sourcePropertyName];
                     destination[destinationPropertyName] = val;
                 }
@@ -164,13 +238,11 @@ package org.apache.flex.binding
                     if (cname) 
                     {
                         cname = cname.names[0].qName;
-                        var parts:Array = cname.split('.');
-                        var n:int = parts.length;
-                        var o:Object = window;
-                        for (var i:int = 0; i < n; i++) {
-                            o = o[parts[i]];
+                        objectFromWindow = getObjectClassFromWindow(cname);
+                        if (objectFromWindow)
+                        {
+                            val = objectFromWindow[sourcePropertyName];
                         }
-                        val = o[sourcePropertyName];
                         destination[destinationPropertyName] = val;
                     }                    
                 }
@@ -190,6 +262,23 @@ package org.apache.flex.binding
 		{
 			this.document = document;
 		}
-		
-	}
+
+        COMPILE::JS
+        private function getObjectClassFromWindow(className:Object):Object
+        {
+            var windowObject:Object = window;
+            var parts:Array = className.split('.');
+            var n:int = parts.length;
+            if (n == 0)
+            {
+                return null;
+            }
+
+            for (var i:int = 0; i < n; i++) {
+                windowObject = windowObject[parts[i]];
+            }
+
+            return windowObject;
+        }
+    }
 }

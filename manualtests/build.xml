@@ -104,6 +104,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/ContainerTest" target="clean"/>
+        <ant dir="${basedir}/DataBindingTestbed" target="clean"/>
         <ant dir="${basedir}/DateChooserExample" target="clean"/>
         <ant dir="${basedir}/EffectsExample" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>

@@ -20,7 +20,14 @@
 
     <compiler>
         <accessible>false</accessible>
-        
+
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSFlex</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
         <external-library-path append="true">
             <path-element>../../../../../../../../js/libs/google_maps.swc</path-element>
         </external-library-path>
@@ -58,6 +65,7 @@
              if these swcs are on the external-library-path then their requires
              will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -73,6 +81,11 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
+
+    <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../../projects/GoogleMaps/src/main/resources/defaults.css</path>
+    </include-file>
 
     <include-classes>
         <class>GoogleStubClasses</class>

@@ -19,4 +19,4 @@ rem
 
 SET scriptDir=%~dp0
 SET args=%*
-@java -jar "%scriptDir%\..\lib\adt-${airVersion}.jar" %args%
+@java -jar "%scriptDir%\..\lib\adt.jar" %args%

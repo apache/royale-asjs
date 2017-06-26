@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -14,6 +18,11 @@
 
 package org.apache.flex.graphics
 {
+	COMPILE::SWF
+	{
+		import flash.display.Graphics;
+	}
+
 	public class GradientEntry
 	{
 		
@@ -110,23 +119,19 @@ package org.apache.flex.graphics
 		/**
 		 * Begin drawing the fill on the given shape's graphic object
 		 */
-		public function begin(s:IGraphicShape):void
+		COMPILE::SWF
+		public function begin(g:Graphics):void
 		{
-            COMPILE::SWF
-            {
-                s.graphics.beginFill(color,alpha);                    
-            }
+            g.beginFill(color,alpha);                    
 		}
 		
 		/**
 		 * End the fill
 		 */
-		public function end(s:IGraphicShape):void
+		COMPILE::SWF
+		public function end(g:Graphics):void
 		{
-            COMPILE::SWF
-            {
-    			s.graphics.endFill();
-            }
+			g.endFill();
 		}
 
 	}

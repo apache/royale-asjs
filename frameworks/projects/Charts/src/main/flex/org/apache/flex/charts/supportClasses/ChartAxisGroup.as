@@ -60,11 +60,13 @@ package org.apache.flex.charts.supportClasses
 		 */
 		public function removeAllElements():void
 		{
-			COMPILE::SWF {
-				this.removeChildren(0);
+			COMPILE::SWF
+			{
+				removeChildren(0);
 			}
 			
-			COMPILE::JS {
+			COMPILE::JS
+			{
 				var svg:Object = this.element;
 				while (svg.lastChild) {
 					svg.removeChild(svg.lastChild);
@@ -90,6 +92,7 @@ package org.apache.flex.charts.supportClasses
 		public function drawHorizontalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			var label:Label = new Label();
+			label.className = "TickLabel";
 			label.text = text;
 			label.x = xpos - label.width/2;
 			label.y = ypos;
@@ -117,6 +120,7 @@ package org.apache.flex.charts.supportClasses
 		public function drawVerticalTickLabel( text:String, xpos:Number, ypos:Number, boxWidth:Number, boxHeight:Number, tickFill:IFill ):Object
 		{
 			var label:Label = new Label();
+			label.className = "TickLabel";
 			label.text = text;
 			label.x = xpos;
 			label.y = ypos - label.height/2;

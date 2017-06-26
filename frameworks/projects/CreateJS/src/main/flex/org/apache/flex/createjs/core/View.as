@@ -22,6 +22,7 @@ package org.apache.flex.createjs.core
 	import org.apache.flex.core.IContainer;
 	import org.apache.flex.core.IApplicationView;
 	import org.apache.flex.core.IPopUpHost;
+	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IMXMLDocument;
 	import org.apache.flex.core.IStatesImpl;
 	import org.apache.flex.core.ValuesManager;
@@ -72,6 +73,10 @@ package org.apache.flex.createjs.core
 		// nothing different for the SWF version
 	}
 	
+	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	
+	[DefaultProperty("mxmlContent")]
+	
 	COMPILE::JS
 	public class View extends UIBase implements IPopUpHost, IApplicationView, IContainer
 	{
@@ -101,6 +106,11 @@ package org.apache.flex.createjs.core
 		{
 			_applicationModel = value;
 			dispatchEvent(new Event("modelChanged"));
+		}
+		
+		public function get strandChildren():IParent
+		{
+			return this;
 		}
 		
 		/**

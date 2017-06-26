@@ -20,15 +20,17 @@ package org.apache.flex.events
 {
     COMPILE::SWF
     {
+        import flash.display.InteractiveObject;
+        import flash.events.Event;
         import flash.events.MouseEvent;
-		import flash.display.InteractiveObject;
     }
     COMPILE::JS
     {
         import window.MouseEvent;
+		import org.apache.flex.events.utils.EventUtils;
     }
-
-    import org.apache.flex.core.IUIBase;
+    
+    import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
 
@@ -42,7 +44,7 @@ package org.apache.flex.events
      *  @productversion FlexJS 0.0
 	 */
 	COMPILE::SWF
-	public class MouseEvent extends flash.events.MouseEvent
+	public class MouseEvent extends flash.events.MouseEvent implements IFlexJSEvent
 	{
         private static function platformConstant(s:String):String
         {
@@ -58,6 +60,7 @@ package org.apache.flex.events
 		public static const ROLL_OUT:String = platformConstant("rollOut");
         public static const CLICK:String = "click";
 		public static const DOUBLE_CLICK:String = "doubleClick";
+		public static const WHEEL : String = "mouseWheel";
 
          /**
          *  Constructor.
@@ -77,7 +80,7 @@ package org.apache.flex.events
                                    ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
                                    buttonDown:Boolean = false, delta:int = 0,
                                    commandKey:Boolean = false, controlKey:Boolean = false,
-                                   clickCount:int = 0)
+                                   clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 		{
 			super(type, bubbles, cancelable);
 
@@ -89,6 +92,7 @@ package org.apache.flex.events
             this.shiftKey = shiftKey;
             this.buttonDown = buttonDown;
             this.delta = delta;
+			this.targetBeforeBubbling = targetBeforeBubbling;
 		}
 
         // these map directly to JS MouseEvent fields.
@@ -110,6 +114,8 @@ package org.apache.flex.events
         }
 
         private var _stagePoint:Point;
+		// TODO remove this when figure out how to preserve the real target
+        public var targetBeforeBubbling:Object;
 
         public function get screenX():Number
         {
@@ -117,7 +123,8 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, target);
+				var referenceObject:Object = targetBeforeBubbling ? targetBeforeBubbling : target;
+                _stagePoint = PointUtils.localToGlobal(localPoint, referenceObject);
             }
             return _stagePoint.x;
         }
@@ -128,14 +135,60 @@ package org.apache.flex.events
             if (!_stagePoint)
             {
                 var localPoint:Point = new Point(localX, localY);
-                _stagePoint = PointUtils.localToGlobal(localPoint, target);
+				var referenceObject:Object = targetBeforeBubbling ? targetBeforeBubbling : target;
+                _stagePoint = PointUtils.localToGlobal(localPoint, referenceObject);
             }
             return _stagePoint.y;
         }
+        
+        /**
+         * @private
+         */
+        public override function clone():flash.events.Event
+        {
+            return cloneEvent() as flash.events.Event;
+        }
+        
+        /**
+         * Create a copy/clone of the Event object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function cloneEvent():IFlexJSEvent
+        {
+            var e:org.apache.flex.events.MouseEvent = new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+                localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
+                buttonDown, delta
+                /* got errors for commandKey, commandKey, controlKey, clickCount*/);
+			e.targetBeforeBubbling = targetBeforeBubbling;
+			return e;
+        }
+
+        /**
+         * Determine if the target is the same as the event's target.  The event's target
+         * can sometimes be an internal target so this tests if the outer component
+         * matches the potential target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
+        {
+            if (potentialTarget === target) return true;
+            if (target is IFlexJSElement)
+                if (IFlexJSElement(target).flexjs_wrapper === potentialTarget) return true;
+            return false;
+        }
+
 	}
 
 	COMPILE::JS
-	public class MouseEvent extends Event
+	public class MouseEvent extends Event implements IFlexJSEvent
 	{
 		private static function platformConstant(s:String):String
 		{
@@ -151,6 +204,7 @@ package org.apache.flex.events
 		public static const ROLL_OUT:String = platformConstant("rollOut");
 		public static const CLICK:String = "click";
 		public static const DOUBLE_CLICK:String = "dblclick";
+		public static const WHEEL : String = "wheel";
 
 		/**
 		 *  Constructor.
@@ -170,7 +224,7 @@ package org.apache.flex.events
 								   ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
 								   buttonDown:Boolean = false, delta:int = 0,
 								   commandKey:Boolean = false, controlKey:Boolean = false,
-								   clickCount:int = 0)
+								   clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 		{
 			super(type, bubbles, cancelable);
 
@@ -219,6 +273,12 @@ package org.apache.flex.events
 		public var controlKey:Boolean;
 		public var clickCount:int;
 
+		// TODO remove this when figure out how to preserve the real target
+		// The problem only manifests in SWF, so this alias is good enough for now
+		public function get targetBeforeBubbling():Object
+		{
+			return target;
+		}
 		// these map directly to JS MouseEvent fields.
 		public function get clientX():Number
 		{
@@ -238,7 +298,7 @@ package org.apache.flex.events
 		}
 
 		private var _stagePoint:Point;
-
+	
 		public function get screenX():Number
 		{
 			if (!target) return localX;
@@ -295,7 +355,8 @@ package org.apache.flex.events
 				// get all children
 				outs = targets.slice(index + 1);
 				m = outs.length;
-				for (j = 0; j < m; j++) {
+				for (j = 0; j < m; j++)
+				{
 					me = makeMouseEvent(
 						ROLL_OUT, e);
 					outs[j].element.dispatchEvent(me);
@@ -356,13 +417,28 @@ package org.apache.flex.events
 		 */
 		private static function makeMouseEvent(type:String, e:window.MouseEvent):window.MouseEvent
 		{
-			var out:window.MouseEvent = new window.MouseEvent(type);
-			out.initMouseEvent(type, false, false,
-				e.view, e.detail, e.screenX, e.screenY,
-				e.clientX, e.clientY, e.ctrlKey, e.altKey,
-				e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+			var out:window.MouseEvent = EventUtils.createMouseEvent(type, false, false, {
+                    view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
+					clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
+				    shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
 			return out;
 		};
+
+        /**
+         * Create a copy/clone of the Event object.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+         */
+        override public function cloneEvent():IFlexJSEvent
+        {
+            return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+                localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
+                buttonDown, delta
+            /* got errors for commandKey, commandKey, controlKey, clickCount*/);
+        }
 
 	}
 }

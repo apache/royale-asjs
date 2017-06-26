@@ -1,7 +1,11 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+/*
+ *
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -126,6 +130,11 @@ package org.apache.flex.events
 			return wrappedEvent.clientX;
 		}
 
+		public function get localX():Number
+		{
+			return clientX;
+		}
+
 		/**
 		 * Y-coordinate relative to the window.
 		 * @type {number}
@@ -140,6 +149,10 @@ package org.apache.flex.events
 			return wrappedEvent.clientY;
 		}
 
+		public function get localY():Number
+		{
+			return clientY;
+		}
 		/**
 		 * Was ctrl key depressed.
 		 * @type {boolean}
@@ -166,8 +179,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.currentTarget;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
@@ -342,8 +360,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.relatedTarget;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
@@ -440,8 +463,13 @@ package org.apache.flex.events
 		{
 			var o:Object = wrappedEvent.target;
 
-			if (o && o.flexjs_wrapper)
-				return o.flexjs_wrapper;
+			if (o)
+			{
+				if (o.flexjs_wrapper)
+					return o.flexjs_wrapper;
+				if (o.parentNode && o.parentNode.flexjs_wrapper)
+				    return o.parentNode.flexjs_wrapper;
+			}
 			return o;
 		}
 
