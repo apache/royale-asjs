@@ -67,6 +67,7 @@
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
+          <additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
