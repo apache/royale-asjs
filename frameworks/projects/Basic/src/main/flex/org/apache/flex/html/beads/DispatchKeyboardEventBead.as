@@ -39,8 +39,7 @@ package org.apache.flex.html.beads
 	}
 	
 	/**
-	 *  The DispatchKeyboardEventBead class dispatched INPUT_FINISHED on strand
-	 *  when enter is pressed, or when foucus is out.
+	 *  The DispatchKeyboardEventBead class dispatches a KeyboardEvent from a text input.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

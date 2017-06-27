@@ -206,13 +206,10 @@ package org.apache.flex.core
 		}
         
         COMPILE::JS
-        private function loadHandler(event:Object):void
+        protected function loadHandler(event:Object):void
         {
-            var host:IUIBase = IUIBase(_strand);
-			if (host.parent)
-			{
-            	IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
-			}
+            var host:IUIBase = _strand as IUIBase;
+			host.dispatchEvent(new Event("layoutNeeded"));
         }
         
         /**
