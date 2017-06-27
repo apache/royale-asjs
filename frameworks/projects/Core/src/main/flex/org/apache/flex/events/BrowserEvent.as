@@ -500,9 +500,20 @@ package org.apache.flex.events
 			return wrappedEvent.type;
 		}
 
+		private var _buttons:int = -1;
 		public function get buttonDown():Boolean
 		{
-			return wrappedEvent.event_.buttons == 1;
+			if(_buttons > -1)
+				return _buttons == 1;
+			var ev:* = wrappedEvent.event_;
+			//Safari does not yet support buttons
+			if ('buttons' in ev)
+				return ev["buttons"] == 1;
+			return ev["which"] == 1;
+		}
+		public function set buttonDown(value:Boolean):void
+		{
+			_buttons = value ? 1 : 0;
 		}
 
 		public function get buttons():int

@@ -124,6 +124,7 @@
       <states-event-override-class>org.apache.flex.states.SetEventHandler</states-event-override-class>
       <component-factory-class>org.apache.flex.core.ClassFactory</component-factory-class>
       <component-factory-interface>org.apache.flex.core.IFactory</component-factory-interface>
+      <fxg-base-class>flash.display.Sprite</fxg-base-class>
 
       <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->

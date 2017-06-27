@@ -38,7 +38,7 @@ package org.apache.flex.textLayout.conversion {
 	 * Newlines will be converted to paragraphs. Using the PlainTextImporter directly
 	 * is equivalent to calling TextConverter.importToFlow(TextConverter.PLAIN_TEXT_FORMAT).
 	 */
-	internal class PlainTextImporter extends ConverterBase implements ITextImporter
+	public class PlainTextImporter extends ConverterBase implements ITextImporter
 	{
 		protected var _config:IConfiguration = null;
 		

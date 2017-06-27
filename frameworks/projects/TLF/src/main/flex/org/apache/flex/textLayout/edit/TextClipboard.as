@@ -24,12 +24,14 @@ package org.apache.flex.textLayout.edit
 	import org.apache.flex.textLayout.conversion.ITextExporter;
 	import org.apache.flex.textLayout.conversion.ITextImporter;
 	import org.apache.flex.textLayout.conversion.TextConverter;
-	import org.apache.flex.textLayout.dummy.Clipboard;
 	import org.apache.flex.textLayout.elements.FlowGroupElement;
 	import org.apache.flex.textLayout.elements.IFlowElement;
 	import org.apache.flex.textLayout.elements.ITextFlow;
 
-		
+	COMPILE::JS
+	{
+		import org.apache.flex.textLayout.conversion.PlainTextImporter;
+	}
 
 
 	/**
@@ -74,7 +76,28 @@ package org.apache.flex.textLayout.edit
 		 */										
 		public static function getContents():TextScrap
 		{
-			var systemClipboard:Clipboard = Clipboard.generalClipboard;	
+			var systemClipboard:Clipboard = Clipboard.generalClipboard;
+			COMPILE::SWF
+			{
+				return importScrap(getFromClipboard);
+			}
+
+			COMPILE::JS
+			{
+				systemClipboard.preventDefault();
+				if(systemClipboard.hasFormat(TextConverter.TEXT_LAYOUT_FORMAT))
+					return systemClipboard.getData(TextConverter.TEXT_LAYOUT_FORMAT) as TextScrap;
+				else
+				{
+					var importer:PlainTextImporter = new PlainTextImporter();
+					var flow:ITextFlow = importer.importToFlow(systemClipboard.getData("text/plain"));
+					var textScrap:TextScrap = new TextScrap(flow);
+					textScrap.setPlainText(true);
+					return textScrap;
+				}
+			}
+
+
 			return importScrap(getFromClipboard);
 
 			function getFromClipboard(clipboardFormat:String):String
@@ -134,7 +157,17 @@ package org.apache.flex.textLayout.edit
 			var systemClipboard:Clipboard = Clipboard.generalClipboard;
 			systemClipboard.clear();
 			
-			exportScrap(textScrap, addToClipboard);
+			COMPILE::SWF
+			{
+				exportScrap(textScrap, addToClipboard);
+			}
+
+			COMPILE::JS
+			{
+				systemClipboard.setData(TextConverter.TEXT_LAYOUT_FORMAT, textScrap);
+				systemClipboard.setData("text/plain", textScrap.textFlow.getText());
+				systemClipboard.preventDefault();
+			}
 
 			function addToClipboard(clipboardFormat:String, clipboardData:String):void 
 			{ 						

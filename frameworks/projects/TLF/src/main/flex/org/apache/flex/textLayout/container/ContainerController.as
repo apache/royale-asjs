@@ -3002,10 +3002,10 @@ package org.apache.flex.textLayout.container
 			}
 			
 			var selFormat:SelectionFormat = interactionManager.currentSelectionFormat;
-//TODO deal with blend modes
-//			var curBlendMode:String = (interactionManager.activePosition == interactionManager.anchorPosition) ? selFormat.pointBlendMode : selFormat.rangeBlendMode;
-//			if (selectionSprite.blendMode != curBlendMode)
-//				selectionSprite.blendMode = curBlendMode;
+			var curBlendMode:String = (interactionManager.activePosition == interactionManager.anchorPosition) ? selFormat.pointBlendMode : selFormat.rangeBlendMode;
+			
+			if (textFlow.tlfFactory.getBlendMode(selectionSprite) != curBlendMode)
+				textFlow.tlfFactory.setBlendMode(selectionSprite,curBlendMode);
 			
 			var curAlpha:Number = (interactionManager.activePosition == interactionManager.anchorPosition) ? selFormat.pointAlpha : selFormat.rangeAlpha;
 			if (selectionSprite.alpha != curAlpha)
@@ -4411,14 +4411,14 @@ package org.apache.flex.textLayout.container
 		 */
 		protected function addSelectionContainer(selectionContainer:IParentIUIBase):void
 		{
-//TODO deal with blendModes
 //			if (selectionContainer.blendMode == BlendMode.NORMAL && selectionContainer.alpha == 1)
-//			{
+			if(textFlow.tlfFactory.getBlendMode(selectionContainer) == "normal")
+			{
 				// don't put selection behind background color or existing content in container, put it behind first text line
 				_container.addElementAt(selectionContainer, getFirstTextLineChildIndex());
-//			}
-//			else
-//				_container.addElement(selectionContainer);
+			}
+			else
+				_container.addElement(selectionContainer);
 		}
 		
 		/**

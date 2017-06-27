@@ -164,7 +164,7 @@ package
 		import org.apache.flex.textLayout.utils.HitTestArea; HitTestArea;
 		import org.apache.flex.textLayout.utils.Twips; Twips;
 		import org.apache.flex.textLayout.factory.ITLFFactory; ITLFFactory;
-		
+		import org.apache.flex.textLayout.edit.Clipboard; Clipboard;
 		// CONFIG::release public function exportAssert():void
 		// {
 		// 	assert();

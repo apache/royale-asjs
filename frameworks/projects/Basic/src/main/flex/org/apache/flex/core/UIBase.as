@@ -22,17 +22,20 @@ package org.apache.flex.core
     {
         import flash.display.DisplayObject;
         import flash.display.Sprite;
-        import flash.display.Stage;            
+        import flash.display.Stage;
+        import org.apache.flex.events.utils.MouseEventConverter;
     }
 	
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.events.ValueChangeEvent;
-	COMPILE::SWF {
-	    import org.apache.flex.events.utils.MouseEventConverter;
-	}
     import org.apache.flex.utils.StringUtil;
+
+    COMPILE::JS
+    {
+        import org.apache.flex.utils.CSSUtils;
+    }
 	
 	/**
 	 *  Set a different class for click events so that
@@ -368,13 +371,11 @@ package org.apache.flex.core
         public function get width():Number
         {
             var pixels:Number;
-            var strpixels:String = positioner.style.width as String;
-            if (strpixels !== null && strpixels.indexOf('%') != -1)
+            var strpixels:String = element.style.width as String;
+            if(strpixels == null)
                 pixels = NaN;
-            else if (strpixels === "")
-            	pixels = NaN;
             else
-                pixels = parseFloat(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = positioner.offsetWidth;
                 if (pixels == 0 && positioner.scrollWidth != 0) {
@@ -462,13 +463,11 @@ package org.apache.flex.core
         public function get height():Number
         {
             var pixels:Number;
-            var strpixels:String = positioner.style.height as String;
-            if (strpixels !== null && strpixels.indexOf('%') !== -1)
+            var strpixels:String = element.style.height as String;
+            if(strpixels == null)
                 pixels = NaN;
-            else if (strpixels === "")
-            	pixels = NaN;
             else
-                pixels = parseFloat(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = positioner.offsetHeight;
                 if (pixels == 0 && positioner.scrollHeight != 0) {
@@ -1316,7 +1315,7 @@ package org.apache.flex.core
 					if (value is String)
                     {
                         var s:String = String(value);
-                        if (s.indexOf("%") !== -1)
+                        if (s.indexOf("%") > -1)
         					_percentWidth = Number(s.substring(0, s.length - 1));
                         else
                         {

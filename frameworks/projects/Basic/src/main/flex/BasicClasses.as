@@ -232,6 +232,12 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.layouts.SimpleTableLayout; SimpleTableLayout;
 	import org.apache.flex.html.beads.layouts.TableCellLayout; TableCellLayout;
 	import org.apache.flex.html.beads.layouts.TableHeaderLayout; TableHeaderLayout;
+    
+    import org.apache.flex.css2.Cursors; Cursors;
+    COMPILE::SWF
+    {
+        import org.apache.flex.css2.Copy; Copy;
+    }
 }
 
 }

@@ -23,6 +23,11 @@ package org.apache.flex.core
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
     }
+    COMPILE::JS
+    {
+        import org.apache.flex.utils.CSSUtils;
+    }
+
         
     /**
      *  This is a platform-dependent base class
@@ -116,10 +121,10 @@ package org.apache.flex.core
         {
             var pixels:Number;
             var strpixels:String = element.style.width as String;
-            if (strpixels !== null && strpixels.indexOf('%') != -1)
+            if(strpixels == null)
                 pixels = NaN;
             else
-                pixels = parseFloat(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = element.offsetWidth;
                 if (pixels === 0 && element.scrollWidth !== 0) {
@@ -154,10 +159,10 @@ package org.apache.flex.core
         {
             var pixels:Number;
             var strpixels:String = element.style.height as String;
-            if (strpixels !== null && strpixels.indexOf('%') != -1)
+            if(strpixels == null)
                 pixels = NaN;
             else
-                pixels = parseFloat(strpixels);
+                pixels = CSSUtils.toNumber(strpixels,NaN);
             if (isNaN(pixels)) {
                 pixels = element.offsetHeight;
                 if (pixels === 0 && element.scrollHeight !== 0) {
