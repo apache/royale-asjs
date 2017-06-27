@@ -49,7 +49,6 @@
   </build>
 
   <dependencies>
-    <!-- Already added in parent -->
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Network</artifactId>
@@ -79,13 +78,13 @@
     <!--dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>0.8.0</version>
       <type>swc</type>
     </dependency-->
   </dependencies>

@@ -62,6 +62,8 @@
     <component id="TableRowItemRenderer" class="org.apache.flex.mdl.itemRenderers.TableRowItemRenderer"/>
     <component id="TableCell" class="org.apache.flex.mdl.TableCell"/>
     <component id="TableView" class="org.apache.flex.mdl.beads.views.TableView"/>
+    <component id="TableNumericCellEnable" class="org.apache.flex.mdl.beads.TableNumericEnable"/>
+    <component id="TableNumericColumnEnable" class="org.apache.flex.mdl.beads.TableNumericEnable"/>
     <component id="Dialog" class="org.apache.flex.mdl.Dialog"/>
     <component id="DialogTitle" class="org.apache.flex.mdl.DialogTitle"/>
     <component id="DialogContent" class="org.apache.flex.mdl.DialogContent"/>

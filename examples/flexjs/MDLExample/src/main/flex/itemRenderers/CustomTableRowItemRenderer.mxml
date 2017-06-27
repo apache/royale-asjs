@@ -38,9 +38,16 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </mdl:beads>
     
-    <mdl:TableCell text="{material.materialName}" nonNumeric="true"/>
-    <mdl:TableCell text="{material.quantity}"/>
-    <mdl:TableCell text="{material.unitPrice}"/>
-    
+    <mdl:TableCell text="{material.materialName}"/>
+    <mdl:TableCell text="{material.quantity}">
+        <mdl:beads>
+            <mdl:TableNumericCellEnable />
+        </mdl:beads>
+    </mdl:TableCell>
+    <mdl:TableCell text="{material.unitPrice}">
+        <mdl:beads>
+            <mdl:TableNumericCellEnable />
+        </mdl:beads>
+    </mdl:TableCell>
 </mdl:TableRowItemRenderer>
 
