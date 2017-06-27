@@ -19,6 +19,8 @@
 package org.apache.flex.events
 {
     import org.apache.flex.core.IDragInitiator;
+	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.geom.Point;
     COMPILE::JS
     {
         import org.apache.flex.core.IUIBase;
@@ -257,7 +259,30 @@ package org.apache.flex.events
          *  @productversion FlexJS 0.0
          */
         public static var dragSource:Object;
+		
+		COMPILE::SWF {
+		private var _clientX:Number;
+		override public function set clientX(value:Number):void
+		{
+			super.clientX = value;
+			_clientX = value;
+		}
+		override public function get clientX():Number
+		{
+			return _clientX;
+		}
         
+		private var _clientY:Number;
+		override public function set clientY(value:Number):void
+		{
+			super.clientY = value;
+			_clientY = value;
+		}
+		override public function get clientY():Number
+		{
+			return _clientY;
+		}
+		}
 
         /**
          *  Constructor.  Do not call 'new DragEvent', use the
@@ -312,6 +337,12 @@ package org.apache.flex.events
                 de.buttonDown = event.buttonDown;
                 de.delta = event.delta;
                 de.relatedObject = event.relatedObject;
+				
+				var localPoint:Point = new Point(event.screenX, event.screenY);
+				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
+				de.clientX = clientPoint.x;
+				de.clientY = clientPoint.y;
+				
                 return de;                    
             }
             COMPILE::JS

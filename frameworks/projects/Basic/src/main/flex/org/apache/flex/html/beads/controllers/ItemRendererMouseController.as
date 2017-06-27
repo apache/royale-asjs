@@ -174,9 +174,7 @@ COMPILE::JS {
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
-			{
-				event.stopImmediatePropagation();
-				
+			{				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
 				newEvent.multipleSelection = event.shiftKey;

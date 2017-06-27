@@ -21,11 +21,13 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.events.MouseEvent;
+	import org.apache.flex.geom.Point;
+	import org.apache.flex.utils.PointUtils;
 
     /**
      *  Indicates that the mouse has entered the component during
@@ -138,7 +140,7 @@ package org.apache.flex.html.beads.controllers
          */
         private function dragMoveHandler(event:DragEvent):void
         {
-            trace("dragMove");
+            trace("DROP-MOUSE: dragMove" + event.target.toString());
             var dragEvent:DragEvent;
             if (!inside)
             {
@@ -174,11 +176,16 @@ package org.apache.flex.html.beads.controllers
 		 */
         private function dragEndHandler(event:DragEvent):void
         {
-            trace("dragEnd");
+            trace("DROP-MOUSE: dragEnd received for event: "+event.target.toString());
             var dragEvent:DragEvent;
             
+			var screenPoint:Point = new Point(event.screenX, event.screenY);
+			var newPoint:Point = PointUtils.globalToLocal(screenPoint, _strand);
             dragEvent = DragEvent.createDragEvent("dragDrop", event as MouseEvent);
-            dispatchEvent(dragEvent);
+			dragEvent.clientX = newPoint.x;
+			dragEvent.clientY = newPoint.y;
+						
+			DragEvent.dispatchDragEvent(dragEvent, this);
             
             inside = false;
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(DragEvent.DRAG_END, dragEndHandler);

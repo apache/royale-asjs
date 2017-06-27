@@ -29,6 +29,9 @@ internal class DragDropClasses
 {	  
     import org.apache.flex.core.DropType; DropType;
     import org.apache.flex.events.DragEvent; DragEvent;   
+	
+	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
+	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
 }
 
 }
