@@ -108,19 +108,7 @@ package org.apache.flex.textLayout.edit
                 document["addEventListener"]('paste',onPaste);
                 
             }
-            // if(_clipElement)
-            // {
-            //     _clipElement["removeEventListener"]('cut',onCut);
-            //     _clipElement["removeEventListener"]('copy',onCopy);
-            //     _clipElement["removeEventListener"]('paste',onPaste);
-            // }
             _clipElement = value;
-            // if(_clipElement)
-            // {
-            //     _clipElement["addEventListener"]('cut',onCut);
-            //     _clipElement["addEventListener"]('copy',onCopy);
-            //     _clipElement["addEventListener"]('paste',onPaste);
-            // }
         }
         private var currentEvent:Object;
         private function onCopy(e:Event):void
