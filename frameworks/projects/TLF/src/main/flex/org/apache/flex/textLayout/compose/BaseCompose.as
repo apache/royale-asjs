@@ -2168,6 +2168,8 @@ package org.apache.flex.textLayout.compose
 						// Now it is implicitly deduced based on the container-level locale in the following manner: 
 						// IDEOGRAPHIC_BOTTOM for ja and zh locales (this is the same locale set for which the default LeadingModel is IDEOGRAPHIC_TOP_DOWN)
 						// ROMAN for all other locales
+						// ITextLine.getBaselinePosition() returns the relative position to the composed baseline.
+						// If both were roman, it will return 0.
 						var firstBaselineOffsetBasis:String = LocaleUtil.leadingModel(containerAttrs.locale) == LeadingModel.IDEOGRAPHIC_TOP_DOWN ?  TextBaseline.IDEOGRAPHIC_BOTTOM : TextBaseline.ROMAN;
 						lineHeight -= curTextLine.getBaselinePosition(firstBaselineOffsetBasis);		
 					}
