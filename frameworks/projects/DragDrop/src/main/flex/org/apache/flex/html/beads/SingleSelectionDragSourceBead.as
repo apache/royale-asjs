@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
+	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
@@ -68,6 +70,16 @@ package org.apache.flex.html.beads
 			return _itemRendererParent;
 		}
 		
+		private var _dragType:String = "move";
+		public function get dragType():String
+		{
+			return _dragType;
+		}
+		public function set dragType(value:String):void
+		{
+			_dragType = value;
+		}
+		
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -83,13 +95,15 @@ package org.apache.flex.html.beads
 			return _strand;
 		}
 		
+		private var indexOfDragSource:int = -1;
+		
 		private function handleDragStart(event:DragEvent):void
 		{
 			trace("SingleSelectionDragSourceBead received the DragStart");
 			
 			var downPoint:Point = new Point(event.clientX, event.clientY);//PointUtils.localToGlobal(new Point(event.clientX, event.clientY), _strand);
-			trace("Dragging from this point: "+downPoint.x+", "+downPoint.y);
-			trace("-- find the itemRenderer this object is over");
+			//trace("Dragging from this point: "+downPoint.x+", "+downPoint.y);
+			//trace("-- find the itemRenderer this object is over");
 			
 			if (itemRendererParent != null) {
 				var n:Number = itemRendererParent.numElements;
@@ -97,15 +111,14 @@ package org.apache.flex.html.beads
 					var child:UIBase = itemRendererParent.getElementAt(i) as UIBase;
 					if (child != null) {
 						var childPoint:Point = PointUtils.localToGlobal(new Point(child.x,child.y), itemRendererParent);
-						trace("-- child "+i+": "+childPoint.x+" - "+(childPoint.x+child.width)+" x "+childPoint.y+" - "+(childPoint.y+child.height));
+						//trace("-- child "+i+": "+childPoint.x+" - "+(childPoint.x+child.width)+" x "+childPoint.y+" - "+(childPoint.y+child.height));
 						var rect:Rectangle = new Rectangle(childPoint.x, childPoint.y, child.width, child.height);
 						if (rect.containsPoint(downPoint)) {							
 							var ir:IItemRenderer = child as IItemRenderer;
 							
-							trace("-- dragging this child, " + i + ", at "+childPoint.x+", "+childPoint.y);
+							//trace("-- dragging this child, " + i + ", at "+childPoint.x+", "+childPoint.y);
+							indexOfDragSource = i;
 							
-							//var dragImage:Label = new Label();
-							//dragImage.text = ir.data.toString();
 							var dragImage:UIBase = new Group();
 							dragImage.className = "DragImage";
 							dragImage.width = child.width;
@@ -114,7 +127,7 @@ package org.apache.flex.html.beads
 							label.text = ir.data.toString();
 							dragImage.addElement(label);
 							
-							DragEvent.dragSource = {index:i, data:ir.data}; // needs to be the data from the child, but we'll get to that.
+							DragEvent.dragSource = ir.data;
 							DragEvent.dragInitiator = this;
 							DragMouseController.dragImage = dragImage;
 							break;
@@ -129,13 +142,40 @@ package org.apache.flex.html.beads
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{
 			trace("Accepting drop of type "+type);
+			if (dragType == "copy") return;
+			
+			if (itemRendererParent != null) {
+				var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+				if (dataProviderModel.dataProvider is Array) {
+					var dataArray:Array = dataProviderModel.dataProvider as Array;
+					
+					// remove the item being selected
+					dataArray.splice(indexOfDragSource,1);
+					
+					// refresh the dataProvider model
+					var newArray:Array = dataArray.slice()
+					dataProviderModel.dataProvider = newArray;
+				}
+				else if (dataProviderModel.dataProvider is ArrayList) {
+					var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
+					
+					// remove the item being selected
+					dataList.removeItemAt(indexOfDragSource);
+					
+					// refresh the dataProvider model
+					var newList:ArrayList = new ArrayList(dataList.source);
+					dataProviderModel.dataProvider = newList;
+				}
+			}
 		}
 		
 		public function acceptedDrop(dropTarget:Object, type:String):void
 		{
 			trace("Accepted drop of type "+type);
 			var value:Object = DragEvent.dragSource;
-			trace(" -- index: "+value.index+" of data: "+value.data);
+			trace(" -- index: "+indexOfDragSource+" of data: "+value.toString());
+			
+			indexOfDragSource = -1;
 		}
 		
 	}
