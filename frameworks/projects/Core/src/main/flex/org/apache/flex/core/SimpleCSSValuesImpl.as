@@ -764,7 +764,13 @@ package org.apache.flex.core
             'constructor': 1
         };
         
-        
+        /**
+         * The styles that can use raw numbers
+         */
+        COMPILE::JS
+            public static const numericStyles:Object = {
+            'fontWeight': 1
+        };
 
         /**
          * @param thisObject The object to apply styles to;
@@ -777,6 +783,7 @@ package org.apache.flex.core
             var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
             var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
             var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
+            var numericStyles:Object = SimpleCSSValuesImpl.numericStyles;
             var listObj:Object = styles;
             if (styles.styleList)
                 listObj = styles.styleList;
@@ -791,6 +798,8 @@ package org.apache.flex.core
                 if (typeof(value) === 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
+                    else if (numericStyles[p])
+                        value = value.toString();
                     else
                         value = value.toString() + 'px';
                 }
