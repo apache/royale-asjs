@@ -104,80 +104,75 @@ package org.apache.flex.html.beads
 		
 		private function handleDragDrop(event:DragEvent):void
 		{
-			var myX:Number = event.clientX;
 			trace("SingleSelectionDropTargetBead received DragDrop!");
+			
+			if (DropMouseController.dropTargetObject == null) return; 
+			
+			var targetIndex:int = -1; // indicates drop beyond length of items
+			
+			var startHere:Object = DropMouseController.dropTargetObject;
+			while( !(startHere is IItemRenderer) && startHere != null) {
+				startHere = startHere.parent;
+			}
+			
+			if (startHere is IItemRenderer) {
+				var ir:IItemRenderer = startHere as IItemRenderer;
+				trace("-- dropping onto an existing object: "+ir.data.toString());
+				
+				var p:UIBase = (ir as UIBase).parent as UIBase;
+				targetIndex = p.getElementIndex(ir);
+			}
+			else  {
+				trace("-- dropping after the last item");
+			}
 			
 			var downPoint:Point = new Point(event.clientX, event.clientY); 
 			//trace("Dropping at this point: "+downPoint.x+", "+downPoint.y);
 			//trace("-- find the itemRenderer this object is over");
-			
-			var targetIndex:int = -1; // indicates drop beyond length of items
-			
-			if (itemRendererParent != null) {
-				var n:Number = itemRendererParent.numElements;
-				for (var i:int=0; i < n; i++) {
-					var child:UIBase = itemRendererParent.getElementAt(i) as UIBase;
-					if (child != null) {
-						var childPoint:Point = new Point(child.x, child.y); 
-						//trace("-- child "+i+": "+childPoint.x+" - "+(childPoint.x+child.width)+" x "+childPoint.y+" - "+(childPoint.y+child.height));
-						var rect:Rectangle = new Rectangle(childPoint.x, childPoint.y, child.width, child.height);
-						if (rect.containsPoint(downPoint)) {							
-							var ir:IItemRenderer = child as IItemRenderer;
-							targetIndex = i;
-							//trace("-- Found this item: "+i);
-							break;
-						}
-					}
-				}
+						
+			// Let the dragInitiator know that the drop was accepted so it can do
+			// whatever it needs to do to prepare the data or structures.
+			if (DragEvent.dragInitiator) {
+				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
+			}
 				
-				if (targetIndex == (n-1)) { // special case when drop on last item
-					targetIndex--;
-				}
+			var dragSource:Object = DragEvent.dragSource;
 				
-				// Let the dragInitiator know that the drop was accepted so it can do
-				// whatever it needs to do to prepare the data or structures.
-				if (DragEvent.dragInitiator) {
-					DragEvent.dragInitiator.acceptingDrop(_strand, "object");
-				}
-				
-				var dragSource:Object = DragEvent.dragSource;
-				
-				var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-				if (dataProviderModel.dataProvider is Array) {
-					var dataArray:Array = dataProviderModel.dataProvider as Array;
+			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			if (dataProviderModel.dataProvider is Array) {
+				var dataArray:Array = dataProviderModel.dataProvider as Array;
 
-					// insert the item being dropped
-					if (targetIndex == -1) {
-						// append to the end
-						dataArray.push(dragSource);
-					} else {
-						// insert before targetIndex
-						dataArray.splice(targetIndex, 0, dragSource);
-					}
-					
-					var newArray:Array = dataArray.slice()
-					dataProviderModel.dataProvider = newArray;
-				}
-				else if (dataProviderModel.dataProvider is ArrayList) {
-					var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
-					
-					// insert the item being dropped
-					if (targetIndex == -1) {
-						// sppend to the end
-						dataList.addItem(dragSource);
-					} else {
-						// insert before target index
-						dataList.addItemAt(dragSource, targetIndex);
-					}
-					
-					var newList:ArrayList = new ArrayList(dataList.source);
-					dataProviderModel.dataProvider = newList;
+				// insert the item being dropped
+				if (targetIndex == -1) {
+					// append to the end
+					dataArray.push(dragSource);
+				} else {
+					// insert before targetIndex
+					dataArray.splice(targetIndex, 0, dragSource);
 				}
 				
-				// Let the dragInitiator know the drop has been completed.
-				if (DragEvent.dragInitiator) {
-					DragEvent.dragInitiator.acceptedDrop(_strand, "object");
+				var newArray:Array = dataArray.slice()
+				dataProviderModel.dataProvider = newArray;
+			}
+			else if (dataProviderModel.dataProvider is ArrayList) {
+				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
+				
+				// insert the item being dropped
+				if (targetIndex == -1) {
+					// sppend to the end
+					dataList.addItem(dragSource);
+				} else {
+					// insert before target index
+					dataList.addItemAt(dragSource, targetIndex);
 				}
+				
+				var newList:ArrayList = new ArrayList(dataList.source);
+				dataProviderModel.dataProvider = newList;
+			}
+				
+			// Let the dragInitiator know the drop has been completed.
+			if (DragEvent.dragInitiator) {
+				DragEvent.dragInitiator.acceptedDrop(_strand, "object");
 			}
 		}
 	}

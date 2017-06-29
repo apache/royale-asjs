@@ -101,39 +101,30 @@ package org.apache.flex.html.beads
 		{
 			trace("SingleSelectionDragSourceBead received the DragStart");
 			
-			var downPoint:Point = new Point(event.clientX, event.clientY);//PointUtils.localToGlobal(new Point(event.clientX, event.clientY), _strand);
-			//trace("Dragging from this point: "+downPoint.x+", "+downPoint.y);
-			//trace("-- find the itemRenderer this object is over");
+			if (DragMouseController.dragStartObject == null) return; // not interested in empty things
 			
-			if (itemRendererParent != null) {
-				var n:Number = itemRendererParent.numElements;
-				for (var i:int=0; i < n; i++) {
-					var child:UIBase = itemRendererParent.getElementAt(i) as UIBase;
-					if (child != null) {
-						var childPoint:Point = PointUtils.localToGlobal(new Point(child.x,child.y), itemRendererParent);
-						//trace("-- child "+i+": "+childPoint.x+" - "+(childPoint.x+child.width)+" x "+childPoint.y+" - "+(childPoint.y+child.height));
-						var rect:Rectangle = new Rectangle(childPoint.x, childPoint.y, child.width, child.height);
-						if (rect.containsPoint(downPoint)) {							
-							var ir:IItemRenderer = child as IItemRenderer;
-							
-							//trace("-- dragging this child, " + i + ", at "+childPoint.x+", "+childPoint.y);
-							indexOfDragSource = i;
-							
-							var dragImage:UIBase = new Group();
-							dragImage.className = "DragImage";
-							dragImage.width = child.width;
-							dragImage.height = child.height;
-							var label:Label = new Label();
-							label.text = ir.data.toString();
-							dragImage.addElement(label);
-							
-							DragEvent.dragSource = ir.data;
-							DragEvent.dragInitiator = this;
-							DragMouseController.dragImage = dragImage;
-							break;
-						}
-					}
-				}
+			var startHere:Object = DragMouseController.dragStartObject;
+			while( !(startHere is IItemRenderer) && startHere != null) {
+				startHere = startHere.parent;
+			}
+			
+			if (startHere is IItemRenderer) {
+				var ir:IItemRenderer = startHere as IItemRenderer;
+				
+				var p:UIBase = (ir as UIBase).parent as UIBase;
+				indexOfDragSource = p.getElementIndex(ir);
+				
+				var dragImage:UIBase = new Group();
+				dragImage.className = "DragImage";
+				dragImage.width = (ir as UIBase).width;
+				dragImage.height = (ir as UIBase).height;
+				var label:Label = new Label();
+				label.text = ir.data.toString();
+				dragImage.addElement(label);
+				
+				DragEvent.dragSource = ir.data;
+				DragEvent.dragInitiator = this;
+				DragMouseController.dragImage = dragImage;
 			}
 		}
 		
@@ -144,28 +135,26 @@ package org.apache.flex.html.beads
 			trace("Accepting drop of type "+type);
 			if (dragType == "copy") return;
 			
-			if (itemRendererParent != null) {
-				var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-				if (dataProviderModel.dataProvider is Array) {
-					var dataArray:Array = dataProviderModel.dataProvider as Array;
-					
-					// remove the item being selected
-					dataArray.splice(indexOfDragSource,1);
-					
-					// refresh the dataProvider model
-					var newArray:Array = dataArray.slice()
-					dataProviderModel.dataProvider = newArray;
-				}
-				else if (dataProviderModel.dataProvider is ArrayList) {
-					var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
-					
-					// remove the item being selected
-					dataList.removeItemAt(indexOfDragSource);
-					
-					// refresh the dataProvider model
-					var newList:ArrayList = new ArrayList(dataList.source);
-					dataProviderModel.dataProvider = newList;
-				}
+			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			if (dataProviderModel.dataProvider is Array) {
+				var dataArray:Array = dataProviderModel.dataProvider as Array;
+				
+				// remove the item being selected
+				dataArray.splice(indexOfDragSource,1);
+				
+				// refresh the dataProvider model
+				var newArray:Array = dataArray.slice()
+				dataProviderModel.dataProvider = newArray;
+			}
+			else if (dataProviderModel.dataProvider is ArrayList) {
+				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
+				
+				// remove the item being selected
+				dataList.removeItemAt(indexOfDragSource);
+				
+				// refresh the dataProvider model
+				var newList:ArrayList = new ArrayList(dataList.source);
+				dataProviderModel.dataProvider = newList;
 			}
 		}
 		

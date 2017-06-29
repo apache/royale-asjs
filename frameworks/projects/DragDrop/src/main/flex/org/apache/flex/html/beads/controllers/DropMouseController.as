@@ -85,6 +85,17 @@ package org.apache.flex.html.beads.controllers
 	 */
 	public class DropMouseController extends EventDispatcher implements IBead
 	{
+		
+		/**
+		 * The object under the mouse when the drop was executed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public static var dropTargetObject:Object;
+		
 		/**
 		 *  constructor.
 		 *  
@@ -178,6 +189,8 @@ package org.apache.flex.html.beads.controllers
         {
             trace("DROP-MOUSE: dragEnd received for event: "+event.target.toString());
             var dragEvent:DragEvent;
+			
+			DropMouseController.dropTargetObject = event.target;
             
 			var screenPoint:Point = new Point(event.screenX, event.screenY);
 			var newPoint:Point = PointUtils.globalToLocal(screenPoint, _strand);

@@ -134,6 +134,16 @@ package org.apache.flex.html.beads.controllers
          *  @productversion FlexJS 0.0
          */
         public static var defaultThreshold:int = 4;
+		
+		/**
+		 * The object under the mouse when the dragStart is dispatched.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		public static var dragStartObject:Object;
         
 		/**
 		 *  constructor.
@@ -213,6 +223,8 @@ package org.apache.flex.html.beads.controllers
                 if (Math.abs(event.screenX - mouseDownX) > threshold ||
                     Math.abs(event.screenY - mouseDownY) > threshold)
                 {
+					DragMouseController.dragStartObject = event.target;
+					
                     trace("DRAG-MOUSE: sending dragStart");
                     dragEvent = DragEvent.createDragEvent("dragStart", event);
 					dragEvent.clientX = mouseDownX;
