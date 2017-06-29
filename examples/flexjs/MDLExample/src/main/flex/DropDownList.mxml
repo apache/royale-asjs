@@ -49,11 +49,15 @@ limitations under the License.
             <js:Label id="selectedItemChange"
                       text="Selected item on 'change' event: "/>
         </mdl:GridCell>
+        <mdl:GridCell columnDesktop="12">
+            <js:Label id="selectedValue"
+                      text="{'Selected value: ' + dropDownList.selectedValue}"/>
+        </mdl:GridCell>
     </mdl:Grid>
     <fx:Script><![CDATA[        
         public function onDplChange(event:Event):void
         {
-            selectedItemChange.text = "Selected item on 'change' event:" + dropDownList.selectedItem.label;
+            selectedItemChange.text = "Selected item on 'change' event: " + dropDownList.selectedItem.label;
         }
         ]]></fx:Script>
 </mdl:TabBarPanel>
