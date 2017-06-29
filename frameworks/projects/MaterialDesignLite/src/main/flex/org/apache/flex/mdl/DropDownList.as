@@ -36,13 +36,8 @@ package org.apache.flex.mdl
 
     /**
      *  The DropDownList class is a component that displays label field and
-     *  pop-up list (MDL Menu) with selections. Selecting an item from the pop-up list
-     *  places that item into the label field of the DropDownList. The DropDownList
-     *  uses the following bead types:
-     *
-     *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
-     *  so forth.
-     *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
+     *  Select with Options. Selecting an item from the pop-up list
+     *  places that item into the label field of the DropDownList.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
