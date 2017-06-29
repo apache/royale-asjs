@@ -1918,6 +1918,16 @@
         </mxmlc>
     </target>
     
+    <target name="compile-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
+        
+        <property name="FLEX_HOME" value="${basedir}" />
+        <mxmlc fork="true" debug="false"
+            file="${file}">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg value="-closure-lib=${GOOG_HOME}" />
+        </mxmlc>
+    </target>
+    
     <target name="compile-js" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
         <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
