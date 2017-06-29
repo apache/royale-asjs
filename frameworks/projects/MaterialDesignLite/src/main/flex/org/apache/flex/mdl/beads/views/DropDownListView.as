@@ -20,18 +20,15 @@ package org.apache.flex.mdl.beads.views
 {
     import org.apache.flex.core.ISelectionModel;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.Div;
-    import org.apache.flex.html.beads.GroupView;
+    import org.apache.flex.html.Option;
+    import org.apache.flex.html.Select;
+    import org.apache.flex.html.beads.DataContainerView;
     import org.apache.flex.mdl.DropDownList;
-    import org.apache.flex.mdl.Menu;
-    import org.apache.flex.mdl.materialIcons.MaterialIcon;
-    import org.apache.flex.mdl.materialIcons.MaterialIconType;
     import org.apache.flex.events.Event;
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.flex.mdl.DropDownList
-     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Label
-     *  control and material icon ARROW_DROP_DOWN to trigger the pop-up.
+     *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select and Label
      *
      *  @viewbead
      *  @langversion 3.0
@@ -39,27 +36,17 @@ package org.apache.flex.mdl.beads.views
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */
-    public class DropDownListView extends GroupView
+    public class DropDownListView extends DataContainerView
     {
         public function DropDownListView()
         {
             super();
         }
 
-        protected var _dropDown:Menu;
-        protected var _labelDisplay:Div;
-
-        public function get dropDown():Menu
-        {
-            return _dropDown;
-        }
-
-        public function get labelDisplay():Div
-        {
-            return _labelDisplay;
-        }
         /**
          *  @copy org.apache.flex.core.IBead#strand
+         *
+         *  @flexjsignorecoercion HTMLLabelElement
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -70,79 +57,89 @@ package org.apache.flex.mdl.beads.views
         {
             super.strand = value;
 
-            var dropDownList:DropDownList = (value as DropDownList);
+            COMPILE::JS
+            {
+                var dropDownList:DropDownList = (value as DropDownList);
 
-            _dropDown = new Menu();
-            _dropDown.bottom = true;
+                dropDownList.labelDisplay = document.createElement('label') as HTMLLabelElement;
+                dropDownList.labelDisplay.innerText = dropDownList.prompt;
+                dropDownList.labelDisplay.classList.add("mdl-textfield__label");
+
+                dropDownList.dropDown = new Select();
+                dropDownList.dropDown.element.classList.add("mdl-textfield__input");
+
+                var emptyOption:Option = new Option();
+                emptyOption.element.style.display = "none";
+
+                dropDownList.dropDown.addElement(emptyOption);
+                
+                setNameForDropDownList();
+
+                dropDownList.element.appendChild(dropDownList.labelDisplay);
+                dropDownList.addElement(dropDownList.dropDown);
+            }
+        }
+
+        override protected function dataProviderChangeHandler(event:Event):void
+        {
+            super.dataProviderChangeHandler(event);
 
             COMPILE::JS
             {
-                _dropDown.element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
-                setIdForDisplayList();
+                setProgrammaticallyChangedSelection();
             }
+        }
 
-            _labelDisplay = new Div();
+        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
+        {
+            super.itemsCreatedHandler(event);
 
-            if (!dropDownList.icon)
+            COMPILE::JS
             {
-                var dropDownIcon:MaterialIcon = new MaterialIcon();
-                dropDownIcon.text = MaterialIconType.ARROW_DROP_DOWN;
-                dropDownList.icon = dropDownIcon;
+                setProgrammaticallyChangedSelection();
             }
+        }
 
-            var model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            _dropDown.model = model;
-
-            dropDownList.addElement(_labelDisplay);
-            dropDownList.addElement(dropDownList.icon);
-            dropDownList.addElement(_dropDown);
+        private function selectionChangeHandler(event:Event):void
+        {
+            COMPILE::JS
+            {
+                setProgrammaticallyChangedSelection();
+            }
         }
 
         override protected function handleInitComplete(event:Event):void
         {
             super.handleInitComplete(event);
+            
+            dataModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 
             COMPILE::JS
             {
                 host.element.classList.add("DropDownList");
-
-                setWidthForDropDownListComponents();
             }
         }
 
         COMPILE::JS
-        private function setIdForDisplayList():void
+        private function setNameForDropDownList():void
         {
-            if (!host.element.id)
-            {
-                host.element.id = "dropDownList" + Math.random();
-            }
+            var dropDownList:DropDownList = (_strand as DropDownList);
 
-            _dropDown.dataMdlFor = host.element.id;
+            var name:String = "dropDownList" + Math.random();
+            dropDownList.labelDisplay.htmlFor = name;
+            dropDownList.dropDown.element.name = name;
         }
 
         COMPILE::JS
-        private function setWidthForDropDownListComponents():void
+        private function setProgrammaticallyChangedSelection():void
         {
-            if (!isNaN(host.width))
-            {
-                _dropDown.width = host.width - 1;
-                _labelDisplay.width = host.width - 25;
-            }
-            else
-            {
-                _labelDisplay.width = 30;
-            }
-        }
+            var dropDownList:DropDownList = (_strand as DropDownList);
+            var selectedIndex:int = dropDownList.dropDown.element["selectedIndex"] - 1;
+            var model:ISelectionModel = dataModel as ISelectionModel;
 
-        COMPILE::JS
-        private function onElementMdlComponentUpgraded(event:Event):void
-        {
-            if (!event.currentTarget) return;
-            if (_dropDown)
+            if (model.selectedIndex > -1 && model.dataProvider && model.selectedIndex != selectedIndex)
             {
-                _dropDown.element.removeEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
-                _dropDown.element.style.minWidth = "40px";
+                dropDownList.dropDown.element["selectedIndex"] = model.selectedIndex + 1;
             }
         }
     }

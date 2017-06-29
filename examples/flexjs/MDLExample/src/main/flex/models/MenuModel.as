@@ -23,10 +23,10 @@ package models
     public class MenuModel
     {
         private var _menuItems:Array = [
-            new MenuItemVO("Some Action"),
-            new MenuItemVO("Another Action", true),
-            new MenuItemVO("More Action"),
-            new MenuItemVO("Item Disabled", false, true)
+            new MenuItemVO("Some Action", "Some value"),
+            new MenuItemVO("Another Action", "Another value", true),
+            new MenuItemVO("More Action", "More value"),
+            new MenuItemVO("Item Disabled", "Disabled value", false, true)
         ];
 
         public function get menuItems():Array

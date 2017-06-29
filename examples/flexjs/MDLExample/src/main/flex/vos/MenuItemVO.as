@@ -22,12 +22,14 @@ package vos
     public class MenuItemVO
     {
         public var label:String;
+        public var value:String;
         public var disabled:Boolean;
         public var hasDivider:Boolean;
 
-        public function MenuItemVO(label:String, hasDivider:Boolean = false, disabled:Boolean = false)
+        public function MenuItemVO(label:String, value:String = "", hasDivider:Boolean = false, disabled:Boolean = false)
         {
            this.label = label;
+           this.value = value;
            this.hasDivider = hasDivider;
            this.disabled = disabled;
         }

@@ -34,7 +34,9 @@
     <component id="I" class="org.apache.flex.html.I" />
     <component id="Ul" class="org.apache.flex.html.Ul" />
     <component id="Li" class="org.apache.flex.html.Li" />
-    
+    <component id="Select" class="org.apache.flex.html.Select"/>
+    <component id="Option" class="org.apache.flex.html.Option"/>
+
     <component id="Td" class="org.apache.flex.html.Td" />
     <component id="Th" class="org.apache.flex.html.Th" />
 

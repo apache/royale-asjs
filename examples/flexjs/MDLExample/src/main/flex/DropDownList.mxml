@@ -20,7 +20,8 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                 xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*">
+                 xmlns="http://www.w3.org/1999/xhtml" xmlns:models="models.*"
+                 xmlns:models2="org.apache.flex.html.beads.models.*">
 
     <mdl:beads>
         <js:ContainerDataBinding />
@@ -28,19 +29,26 @@ limitations under the License.
     <mdl:model>
         <models:MenuModel id="menuModel"/>
     </mdl:model>
-    <mdl:Grid width="100">
-      <mdl:DropDownList id="dropDownList" labelField="label" width="150"
-                        selectedIndex="0" change="onDplChange(event)">
-          <mdl:beads>
-              <js:ConstantBinding
-                      sourceID="menuModel"
-                      sourcePropertyName="menuItems"
-                      destinationPropertyName="dataProvider" />
-          </mdl:beads>
-      </mdl:DropDownList>
-        <js:Label text="Selected index: {dropDownList.selectedIndex}"/>
-        <js:Label id="selectedItemChange"
-                  text="Selected item on 'change' event: "/>
+    <mdl:Grid>
+        <mdl:GridCell columnDesktop="12">
+          <mdl:DropDownList id="dropDownList" labelField="label" width="150"
+                            prompt="Text" change="onDplChange(event)">
+              <mdl:beads>
+                  <js:ConstantBinding
+                          sourceID="menuModel"
+                          sourcePropertyName="menuItems"
+                          destinationPropertyName="dataProvider" />
+                  <js:DataFieldProviderBead dataField="value"/>
+              </mdl:beads>
+          </mdl:DropDownList>
+        </mdl:GridCell>
+        <mdl:GridCell columnDesktop="12">
+            <js:Label text="Selected index: {dropDownList.selectedIndex}"/>
+        </mdl:GridCell>
+        <mdl:GridCell columnDesktop="12">
+            <js:Label id="selectedItemChange"
+                      text="Selected item on 'change' event: "/>
+        </mdl:GridCell>
     </mdl:Grid>
     <fx:Script><![CDATA[        
         public function onDplChange(event:Event):void

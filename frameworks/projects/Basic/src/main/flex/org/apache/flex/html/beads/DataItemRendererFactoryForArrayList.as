@@ -35,7 +35,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ItemRendererEvent;
-	//import org.apache.flex.html.List;
+    import org.apache.flex.html.supportClasses.DataItemRenderer;
+
+    //import org.apache.flex.html.List;
 	import org.apache.flex.core.IList;
 	
 	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
@@ -68,9 +70,11 @@ package org.apache.flex.html.beads
 		}
 		
 		protected var dataProviderModel:IDataProviderModel;
-		
+        protected var dataFieldProvider:DataFieldProviderBead;
+
 		protected var labelField:String;
-		
+		protected var dataField:String;
+
 		private var _strand:IStrand;
 		
         /**
@@ -92,7 +96,13 @@ package org.apache.flex.html.beads
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
-			
+
+            dataFieldProvider = _strand.getBeadByType(DataFieldProviderBead) as DataFieldProviderBead;
+            if (dataFieldProvider)
+            {
+                dataField = dataFieldProvider.dataField;
+            }
+
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
 			// already have been loaded by DataContainerBase.addedToParent function.
 			_itemRendererFactory = _strand.getBeadByType(IItemRendererClassFactory) as IItemRendererClassFactory;
@@ -133,9 +143,7 @@ package org.apache.flex.html.beads
 		 */
 		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
-			ir.index = index;
-			ir.labelField = labelField;
-			ir.data = data;
+
 		}
 		
 		/**
@@ -158,6 +166,8 @@ package org.apache.flex.html.beads
 			for (var i:int = 0; i < n; i++)
 			{				
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+
 				dataGroup.addItemRenderer(ir);
 				if (presentationModel) {
 					var style:SimpleCSSStyles = new SimpleCSSStyles();
@@ -166,8 +176,17 @@ package org.apache.flex.html.beads
 					UIBase(ir).height = presentationModel.rowHeight;
 					UIBase(ir).percentWidth = 100;
 				}
-				setData(ir, dp.getItemAt(i), i);
-				
+
+				var data:Object = dp.getItemAt(i);
+                ir.index = i;
+                ir.labelField = labelField;
+				if (dataItemRenderer)
+				{
+					dataItemRenderer.dataField = dataField;
+				}
+
+                ir.data = data;
+
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;
 				dispatchEvent(newEvent);
