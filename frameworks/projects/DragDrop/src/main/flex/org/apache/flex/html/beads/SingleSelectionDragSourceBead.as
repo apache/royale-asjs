@@ -22,6 +22,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IDataProviderModel;
+	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
@@ -43,7 +44,6 @@ package org.apache.flex.html.beads
 	 *  By adding this bead, a user can drag a row of the List to a new location within the list. This bead
 	 *  should be used in conjunction with SingleSelectionDropTargetBead.
 	 * 
-     *  @flexjsignoreimport org.apache.flex.core.IDragInitiator
 	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead.
      *
 	 *  @langversion 3.0

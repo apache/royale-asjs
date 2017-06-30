@@ -380,7 +380,8 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                ((target as IUIBase).element as IEventDispatcher).dispatchEvent(event as window.Event);
+               // ((target as IUIBase).element as IEventDispatcher).dispatchEvent(event as window.Event);
+				(target as IEventDispatcher).dispatchEvent(event as window.Event);
             }
         }
 

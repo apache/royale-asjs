@@ -71,6 +71,7 @@ internal class CoreClasses
     import org.apache.flex.core.IDataProviderItemRendererMapper; IDataProviderItemRendererMapper;
     import org.apache.flex.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.flex.core.IDocument; IDocument;
+	import org.apache.flex.core.IDragInitiator; IDragInitiator;
     import org.apache.flex.core.IFormatBead; IFormatBead;
     import org.apache.flex.core.IImage; IImage;
     import org.apache.flex.core.IImageModel; IImageModel;
