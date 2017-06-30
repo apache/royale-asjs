@@ -284,9 +284,7 @@ package org.apache.flex.textLayout.conversion
 		}
 		
 		/** @private */
-//TODO regex
-		static public const brRegEx:RegExp = /foo/;
-		// static public const brRegEx:RegExp = /\u2028/;
+		static public const brRegEx:RegExp = /\u2028/;
 		
 		/** Gets the xml element used to represent a character in the export format
 		 * @private

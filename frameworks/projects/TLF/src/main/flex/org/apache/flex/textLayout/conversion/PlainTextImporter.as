@@ -77,9 +77,7 @@ package org.apache.flex.textLayout.conversion {
 		
 		
 		// LF or CR or CR+LF. Equivalently, LF or CR, the latter optionally followed by LF
-//TODO regex
-		private static const _newLineRegex:RegExp = /foo/;// /\u000A|\u000D\u000A?/g;
-		// private static const _newLineRegex:RegExp = /\u000A|\u000D\u000A?/g;
+		private static const _newLineRegex:RegExp = /\u000A|\u000D\u000A?/g;
 		
 		/** Import text content, from an external source, and convert it into a ITextFlow.
 		 * @param source		source data to convert

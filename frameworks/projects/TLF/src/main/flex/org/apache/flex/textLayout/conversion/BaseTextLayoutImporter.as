@@ -57,10 +57,7 @@ package org.apache.flex.textLayout.conversion
 		// static private const anyPrintChar:RegExp = /[^\s]/g;
 		// Consider only tab, line feed, carriage return, and space as characters used for pretty-printing.
 		// While debatable, this is consistent with what CSS does.
-		static private const anyPrintChar:RegExp = /foo/;// = /[^\u0009\u000a\u000d\u0020]/g;
-
-		// TODO
-		// static private const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g;
+		static private const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g;
 		public function BaseTextLayoutImporter(nsValue:Namespace, config:ImportExportConfiguration)
 		{
 			_ns = nsValue;
@@ -186,12 +183,9 @@ package org.apache.flex.textLayout.conversion
 		// Remove double spaces, tabs, and newlines.
 		// If I have a sequence of different sorts of spaces (e.g., en quad, hair space), would I want them converted down to one space? Probably not.
 		// For now, u0020 is the only space character we consider for eliminating duplicates, though u00A0 (non-breaking space) is potentially eligible.
-		// static private const dblSpacePattern:RegExp = /[\u0020]{2,}/g;
+		static private const dblSpacePattern:RegExp = /[\u0020]{2,}/g;
 		// Tab, line feed, and carriage return
-		// TODO regex
-		static private const tabNewLinePattern:RegExp = /foo/g;
-
-		// static private const tabNewLinePattern:RegExp = /[\u0009\u000a\u000d]/g;
+		static private const tabNewLinePattern:RegExp = /[\u0009\u000a\u000d]/g;
 		protected static function stripWhitespace(insertString:String):String
 		{
 			// Replace the newlines and tabs inside the element with spaces.

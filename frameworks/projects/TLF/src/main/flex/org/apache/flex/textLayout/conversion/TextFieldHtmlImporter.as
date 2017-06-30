@@ -1057,9 +1057,8 @@ package org.apache.flex.textLayout.conversion
 		 * @private
 		 */
 		/** @private */
-		// TODO regex
-		public static const stripRegex:RegExp = /foo/;
-		// public static const stripRegex:RegExp = /<!--.*?-->|<\?(".*?"|'.*?'|[^>"']+)*>|<!(".*?"|'.*?'|[^>"']+)*>/sg;
+		// Multiline in Javascript can not be done using "s". Using "[^]" instead.
+		public static const stripRegex:RegExp = /<!--[^]*?-->|<\?("[^]*?"|'[^]*?'|[^>"']+)*>|<!("[^]*?"|'[^]*?'|[^>"']+)*>/g;
 		/* Regular expression for an HTML tag
 		 * < - open
 		 *
@@ -1083,16 +1082,13 @@ package org.apache.flex.textLayout.conversion
 		 * @private
 		 */
 		/** @private */
-		// TODO regex
-		public static const tagRegex:RegExp = /foo/;
-		// public static const tagRegex:RegExp = /<(\/?)(\w+)((?:\s+\w+(?:\s*=\s*(?:".*?"|'.*?'|[\w\.]+))?)*)\s*(\/?)>/sg;
+		// Multiline in Javascript can not be done using "s". Using "[^]" instead.
+		public static const tagRegex:RegExp = /<(\/?)(\w+)((?:\s+\w+(?:\s*=\s*(?:"[^]*?"|'[^]*?'|[\w\.]+))?)*)\s*(\/?)>/g;
 		/** Regular expression for an attribute. Except for grouping differences, this regex is the same as the one that appears in tagRegex
 		 * @private
 		 */
-		// TODO regex
-		public static const attrRegex:RegExp = /foo/;
-
-		// public static const attrRegex:RegExp = /\s+(\w+)(?:\s*=\s*(".*?"|'.*?'|[\w\.]+))?/sg;
+		// Multiline in Javascript can not be done using "s". Using "[^]" instead.
+		public static const attrRegex:RegExp = /\s+(\w+)(?:\s*=\s*("[^]*?"|'[^]*?'|[\w\.]+))?/g;
 		/** Wrapper for core HTML parsing code that manages XML settings during the process
 		 * @private
 		 */
@@ -1293,10 +1289,7 @@ package org.apache.flex.textLayout.conversion
 		}
 
 		/** @private */
-		// TODO regex
-		public static const anyPrintChar:RegExp = /foo/g;
-
-		// public static const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g;
+		public static const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g;
 		/** Adds text as a descendant of the specified XML element. Adds an intermediate <span> element is created if parent is not a <span>
 		 *  No action is taken for whitespace-only text
 		 * @private

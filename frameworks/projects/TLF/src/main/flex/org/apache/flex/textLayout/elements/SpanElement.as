@@ -219,17 +219,13 @@ package org.apache.flex.textLayout.elements
 		 // For now, u0020 is the only space character we consider for eliminating duplicates, though u00A0 (non-breaking space) is potentially eligible. 
 		 private static const _dblSpacePattern:RegExp = /[\u0020]{2,}/g;
 		 // Tab, line feed, and carriage return
-//TODO regex
-		 private static const _newLineTabPattern:RegExp = /foo/g;
-		//  private static const _newLineTabPattern:RegExp = /[\u0009\u000a\u000d]/g;
+		 private static const _newLineTabPattern:RegExp = /[\u0009\u000a\u000d]/g;
 		 private static const _tabPlaceholderPattern:RegExp = new RegExp("\\" + "uE000", "g");
 		 
-		 // static private const anyPrintChar:RegExp = /[^\s]/g;
+		//  static private const anyPrintChar:RegExp = /[^\s]/g;
 		 // Consider only tab, line feed, carriage return, and space as characters used for pretty-printing. 
 		 // While debatable, this is consistent with what CSS does. 
-//TODO regex
-		 static private const anyPrintChar:RegExp = /foo/g; 
-//		 static private const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g; 
+		 static private const anyPrintChar:RegExp = /[^\u0009\u000a\u000d\u0020]/g; 
 
 		 /** @private */
 		public override function applyWhiteSpaceCollapse(collapse:String):void

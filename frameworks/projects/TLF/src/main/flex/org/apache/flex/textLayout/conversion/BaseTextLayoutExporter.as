@@ -212,9 +212,7 @@ package org.apache.flex.textLayout.conversion
 			return output;
 		}
 		
-//TODO regex
-		static private const brRegEx:RegExp = /foo/;// /\u2028/;
-		// static private const brRegEx:RegExp = /\u2028/;
+		static private const brRegEx:RegExp = /\u2028/;
 		
 		/** 
 		 * Gets the regex that specifies characters in span text to be replaced with XML elements.
