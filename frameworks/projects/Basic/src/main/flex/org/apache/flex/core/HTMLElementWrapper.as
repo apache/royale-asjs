@@ -253,7 +253,7 @@ package org.apache.flex.core
                 eventType = e as String;
                 if (e === org.apache.flex.events.Event.CHANGE)
                 {
-                    e = EventUtils.createEvent(eventType);
+                    e = EventUtils.createEvent(eventType, e.bubbles);
                 }
             }
             else
@@ -261,7 +261,7 @@ package org.apache.flex.core
                 eventType = e.type;
                 if (ElementEvents.elementEvents[eventType])
                 {
-                    e = EventUtils.createEvent(eventType);
+                    e = EventUtils.createEvent(eventType, e.bubbles);
                 }
             }
             var source:Object = this.getActualDispatcher_(eventType);
