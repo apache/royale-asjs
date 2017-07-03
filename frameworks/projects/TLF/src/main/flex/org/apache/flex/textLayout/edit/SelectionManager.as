@@ -1502,8 +1502,9 @@ package org.apache.flex.textLayout.edit
 				// Can't use localToGlobal/globalToLocal because textLine may not be on the display list due to virtualization
 				// we may need to bring this back if textline's can be rotated or placed by any mechanism other than a translation
 				// but then we'll need to provisionally place a virtualized ITextLine in its parent container
-				localX -= textLine.x;
-				localY -= textLine.y;
+				// Harbs 7/3/17 -- since we're dealing with local coordinates, I think this is not longer correct.
+				// localX -= textLine.x;
+				// localY -= textLine.y;
 				/* var localPoint:Point = DisplayObject(controller.container).localToGlobal(new Point(localX,localY));
 				localPoint = textLine.globalToLocal(localPoint);
 				localX = localPoint.x;
