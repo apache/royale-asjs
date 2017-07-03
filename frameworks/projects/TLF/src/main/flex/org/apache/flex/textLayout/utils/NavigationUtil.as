@@ -336,7 +336,7 @@ package org.apache.flex.textLayout.utils
 		} 
 		
 		/** @private */
-		static public function computeEndIdx(targetFlowLine:ITextFlowLine,curTextFlowLine:ITextFlowLine,blockProgression:String,isRTLDirection:Boolean,globalPoint:Point):int
+		static public function computeEndIdx(targetFlowLine:ITextFlowLine,curTextFlowLine:ITextFlowLine,blockProgression:String,isRTLDirection:Boolean,localPoint:Point):int
 		{
 			var endIdx:int;
 			var targetTextLine:ITextLine = targetFlowLine.getTextLine(true);
@@ -347,41 +347,43 @@ package org.apache.flex.textLayout.utils
 			{
 				if(blockProgression != BlockProgression.RL)
 				{
-					globalPoint.y -= (currentTextLine.y - targetTextLine.y);
+					//we're navigating to a new line. We want to always hit the y position...
+					localPoint.y = targetTextLine.y + (targetTextLine.height/2);
 				} else {
-					globalPoint.x += (targetTextLine.x - currentTextLine.x);
+					localPoint.x += (targetTextLine.x - currentTextLine.x);
 				}
 			} else {
 				var firstAtomRect:Rectangle = targetTextLine.getAtomBounds(0);
 				var firstAtomPoint:Point = new Point();
 				firstAtomPoint.x = firstAtomRect.left;
 				firstAtomPoint.y = 0;
-				firstAtomPoint = PointUtils.localToGlobal(firstAtomPoint, targetTextLine);// targetTextLine.localToGlobal(firstAtomPoint);
+				// local coordinates...
+				// firstAtomPoint = PointUtils.localToGlobal(firstAtomPoint, targetTextLine);// targetTextLine.localToGlobal(firstAtomPoint);
 				if(blockProgression != BlockProgression.RL)
 				{
-					globalPoint.x -= curTextFlowLine.controller.container.x;
-					globalPoint.y = firstAtomPoint.y;
+					localPoint.x -= curTextFlowLine.controller.container.x;
+					localPoint.y = firstAtomPoint.y;
 				} else {
-					globalPoint.x = firstAtomPoint.x;
-					globalPoint.y -= curTextFlowLine.controller.container.y; 
+					localPoint.x = firstAtomPoint.x;
+					localPoint.y -= curTextFlowLine.controller.container.y; 
 				}					
 			} 
 			
-			var atomIndex:int = targetTextLine.getAtomIndexAtPoint(globalPoint.x,globalPoint.y);
+			var atomIndex:int = targetTextLine.getAtomIndexAtPoint(localPoint.x,localPoint.y);
 //TODO I moved this below the above line to fix a warning. The atomIndex was originally wrong, but this fix might have broken something.
 			var bidiRightToLeft:Boolean = ((currentTextLine.getAtomBidiLevel(atomIndex) % 2) != 0); 				
 			if (atomIndex == -1)
 			{
 				if(blockProgression != BlockProgression.RL) {
 					if (!bidiRightToLeft)
-						endIdx = (globalPoint.x <= targetTextLine.x) ? targetFlowLine.absoluteStart : (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1);
+						endIdx = (localPoint.x <= targetTextLine.x) ? targetFlowLine.absoluteStart : (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1);
 					else
-						endIdx = (globalPoint.x <= targetTextLine.x) ? (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1) : targetFlowLine.absoluteStart;						
+						endIdx = (localPoint.x <= targetTextLine.x) ? (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1) : targetFlowLine.absoluteStart;						
 				} else {
 					if (!bidiRightToLeft)
-						endIdx = (globalPoint.y <= targetTextLine.y) ? targetFlowLine.absoluteStart : (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1);
+						endIdx = (localPoint.y <= targetTextLine.y) ? targetFlowLine.absoluteStart : (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1);
 					else
-						endIdx = (globalPoint.y <= targetTextLine.y)  ? (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1) : targetFlowLine.absoluteStart;						
+						endIdx = (localPoint.y <= targetTextLine.y)  ? (targetFlowLine.absoluteStart + targetFlowLine.textLength - 1) : targetFlowLine.absoluteStart;						
 				}
 			} 
 			else {
@@ -391,15 +393,15 @@ package org.apache.flex.textLayout.utils
 				if(glyphRect)
 				{	
 					//if this is TTB and NOT TCY determine lean based on Y coordinates...
-					var glyphGlobalPoint:Point = new Point();
-					glyphGlobalPoint.x = glyphRect.x;
-					glyphGlobalPoint.y = glyphRect.y;
-					glyphGlobalPoint = PointUtils.localToGlobal(glyphGlobalPoint, targetTextLine);// targetTextLine.localToGlobal(glyphGlobalPoint);
+					var glyphPoint:Point = new Point();
+					glyphPoint.x = glyphRect.x;
+					glyphPoint.y = glyphRect.y;
+					// glyphGlobalPoint = PointUtils.localToGlobal(glyphGlobalPoint, targetTextLine);// targetTextLine.localToGlobal(glyphGlobalPoint);
 					
 					if((blockProgression == BlockProgression.RL) && targetTextLine.getAtomTextRotation(atomIndex) != TextRotation.ROTATE_0)
-						leanRight = (globalPoint.y > (glyphGlobalPoint.y + glyphRect.height/2));
+						leanRight = (localPoint.y > (glyphPoint.y + glyphRect.height/2));
 					else //use X..
-						leanRight = (globalPoint.x > (glyphGlobalPoint.x + glyphRect.width/2));
+						leanRight = (localPoint.x > (glyphPoint.x + glyphRect.width/2));
 				}
 				
 				var paraSelectionIdx:int;
@@ -467,24 +469,24 @@ package org.apache.flex.textLayout.utils
 				}
 				
 				//find the atom
-				var globalPoint:Point = new Point();				
+				var localPoint:Point = new Point();				
 						
 				if(blockProgression != BlockProgression.RL)
 				{
 					if (!isRTLDirection)
-						globalPoint.x = curPosRect.left;
+						localPoint.x = curPosRect.left;
 					else
-						globalPoint.x = curPosRect.right;
-					globalPoint.y = 0;
+						localPoint.x = curPosRect.right;
+					localPoint.y = 0;
 				} else {						
-					globalPoint.x = 0;
+					localPoint.x = 0;
 					if (!isRTLDirection)
-						globalPoint.y = curPosRect.top;
+						localPoint.y = curPosRect.top;
 					else
-						globalPoint.y = curPosRect.bottom;
+						localPoint.y = curPosRect.bottom;
 				}
 				
-				globalPoint = PointUtils.localToGlobal(globalPoint, currentTextLine);// currentTextLine.localToGlobal(globalPoint);
+				// globalPoint = PointUtils.localToGlobal(globalPoint, currentTextLine);// currentTextLine.localToGlobal(globalPoint);
 				
 				//at this point, we have the global point of our current position.  Now adjust x or y to the
 				//baseline of the next line.
@@ -524,7 +526,7 @@ package org.apache.flex.textLayout.utils
 						controller.verticalScrollPosition = curLogicalHorizontalScrollPos; 
 				}
 				
-				endIdx = computeEndIdx(nextFlowLine,curTextFlowLine,blockProgression,isRTLDirection,globalPoint);
+				endIdx = computeEndIdx(nextFlowLine,curTextFlowLine,blockProgression,isRTLDirection,localPoint);
 
 				if (endIdx >= textFlow.textLength)
 					endIdx = textFlow.textLength;
@@ -589,24 +591,24 @@ package org.apache.flex.textLayout.utils
 				}
 				
 				//find the atom
-				var globalPoint:Point = new Point();				
+				var localPoint:Point = new Point();				
 						
 				if(blockProgression != BlockProgression.RL)
 				{
 					if (!isRTLDirection)
-						globalPoint.x = curPosRect.left;
+						localPoint.x = curPosRect.left;
 					else
-						globalPoint.x = curPosRect.right;
-					globalPoint.y = 0;
+						localPoint.x = curPosRect.right;
+					localPoint.y = 0;
 				} else {						
-					globalPoint.x = 0;
+					localPoint.x = 0;
 					if (!isRTLDirection)
-						globalPoint.y = curPosRect.top;
+						localPoint.y = curPosRect.top;
 					else
-						globalPoint.y = curPosRect.bottom;
+						localPoint.y = curPosRect.bottom;
 				}
 				
-				globalPoint = PointUtils.localToGlobal(globalPoint, currentTextLine);// currentTextLine.localToGlobal(globalPoint);
+				// globalPoint = PointUtils.localToGlobal(globalPoint, currentTextLine);// currentTextLine.localToGlobal(globalPoint);
 				
 				//at this point, we have the global point of our current position.  Now adjust x or y to the
 				//baseline of the next line.
@@ -638,7 +640,7 @@ package org.apache.flex.textLayout.utils
 						controller.verticalScrollPosition = curLogicalHorizontalScrollPos; 
 				}
 				
-				endIdx = computeEndIdx(prevFlowLine,curTextFlowLine,blockProgression,isRTLDirection,globalPoint);
+				endIdx = computeEndIdx(prevFlowLine,curTextFlowLine,blockProgression,isRTLDirection,localPoint);
 			}
 			else 
 			{
