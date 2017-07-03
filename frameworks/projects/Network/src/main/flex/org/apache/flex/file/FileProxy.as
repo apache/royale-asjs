@@ -1,4 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,21 +15,43 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{   
+package org.apache.flex.file
+{
+	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.Strand;
 	
+	/**
+	 *  The FileProxy class is where beads regarding file operations are added.
+	 *  Information about operations can be queried in the file model, or by
+	 *  listenening to events dispatched by beads.
+	 *
+	 *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	public class FileProxy extends Strand implements IDocument
+	{
+		private var _document:Object;
+		public function FileProxy()
+		{
+			super();
+		}
+		
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class NetworkClasses
-{	
-	import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
-    import org.apache.flex.net.HTTPConstants; HTTPConstants;
+		/**
+		 * @private
+		 */
+		public function setDocument(document:Object, id:String = null):void
+		{
+			_document = document;
+			for each (var bead:IBead in beads)
+			{
+				addBead(bead);
+			}
+		}
+
+	}
 }
-
-}
-

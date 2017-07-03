@@ -20,9 +20,9 @@
 
 
 <componentPackage>
-
     <component id="HTTPService" class="org.apache.flex.net.HTTPService"/>
     <component id="BinaryUploader" class="org.apache.flex.net.BinaryUploader"/>
     <component id="CORSCredentialsBead" class="org.apache.flex.net.beads.CORSCredentialsBead"/>
-
+    <component id="FileProxy" class="org.apache.flex.file.FileProxy"/>
+    <component id="FileBrowser" class="org.apache.flex.file.beads.FileBrowser"/>
 </componentPackage>
