@@ -121,4 +121,6 @@
     <component id="UpgradeChildren" class="org.apache.flex.mdl.beads.UpgradeChildren"/>
     <component id="DropDownList" class="org.apache.flex.mdl.DropDownList"/>
     <component id="DropDownListView" class="org.apache.flex.mdl.beads.views.DropDownListView"/>
+    <component id="DropDownListItemRenderer" class="org.apache.flex.mdl.itemRenderers.DropDownListItemRenderer"/>
+
 </componentPackage>

@@ -18,19 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.ISelectionModel;
+    import org.apache.flex.core.IBeadController;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.mdl.beads.views.DropDownListView;
+    import org.apache.flex.mdl.DropDownList;
     import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
+    import org.apache.flex.mdl.beads.models.DropDownListModel;
+    import org.apache.flex.mdl.beads.models.IDropDownListModel;
 
-	/**
+    /**
 	 *  The DropDownListController class bead handles mouse events on the
-     *  drop down list (org.apache.flex.mdl.Menu) component parts and
-     *  dispatches change event on behalf of the DropDownList
-	 *  
+     *  drop down list component parts and dispatches change event on behalf of the DropDownList
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -58,9 +56,7 @@ package org.apache.flex.mdl.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
          */
-		protected var model:ISelectionModel;
-        protected var dropDownListView:DropDownListView;
-
+		protected var model:DropDownListModel;
 		protected var _strand:IStrand;
 
 		/**
@@ -75,34 +71,27 @@ package org.apache.flex.mdl.beads.controllers
 		{
 			_strand = value;
 
-            model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            dropDownListView = value.getBeadByType(DropDownListView) as DropDownListView;
+            var dropDownList:DropDownList = (value as DropDownList);
 
-            dropDownListView.dropDown.addEventListener(MouseEvent.CLICK, onDisplayItemClick);
+            model = _strand.getBeadByType(IDropDownListModel) as DropDownListModel;
 
-			setLabelDisplayValue();
+			COMPILE::JS
+            {
+                dropDownList.dropDown.element.addEventListener(Event.CHANGE, onSelectChanged, false);
+            }
 		}
 
-        private function onDisplayItemClick(event:MouseEvent):void
+		COMPILE::JS
+        private function onSelectChanged(event:Event):void
         {
-			var eventTarget:Object = event.target;
-			
-			model.selectedIndex = eventTarget.index;
-			model.selectedItem = eventTarget.data;
+            var eventTarget:Object = event.target;
+			var selectedIndex:int = eventTarget.selectedIndex - 1;
 
-            setLabelDisplayValue();
-
-			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
-        }
-
-        private function setLabelDisplayValue():void
-        {
-            if (model.selectedIndex > -1 && model.dataProvider != null)
+			if (model.selectedIndex != selectedIndex)
             {
-                var selectedItem:Object = model.dataProvider[model.selectedIndex];
-                dropDownListView.labelDisplay.text = !model.labelField ?
-                        selectedItem as String :
-						selectedItem[model.labelField];
+                model.selectedIndex = selectedIndex;
+                model.selectedItem = model.dataProvider[selectedIndex];
+				model.selectedValue = eventTarget.value;
             }
         }
     }

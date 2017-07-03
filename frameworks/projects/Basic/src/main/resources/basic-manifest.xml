@@ -96,6 +96,7 @@
     <component id="DateItemRenderer" class="org.apache.flex.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.flex.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.flex.html.supportClasses.TextButtonItemRenderer"/>
+    <component id="DataFieldProviderBead" class="org.apache.flex.html.beads.DataFieldProviderBead"/>
     <!--
      <component id="TextFieldItemRenderer" class="org.apache.flex.html.supportClasses.TextFieldItemRenderer"/>
      <component id="HScrollBar" class="org.apache.flex.html.supportClasses.HScrollBar"/>

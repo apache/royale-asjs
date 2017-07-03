@@ -52,6 +52,7 @@
       </source-path>
       -->
       <source-path>
+          <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Binding/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Charts/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Collections/src/main/flex</path-element>
@@ -59,6 +60,9 @@
           <path-element>${frameworks_dir}/projects/CreateJS/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Express/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Flat/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/FontAwesome/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
@@ -67,9 +71,14 @@
           <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Language/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Storage/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/TLF/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Text/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/XML/src/main/flex</path-element>
      </source-path>
 
      <!-- Allow the source-path to have path-elements which contain other path-elements -->

@@ -21,11 +21,10 @@ package org.apache.flex.core
 	import org.apache.flex.events.IEventDispatcher;
 
     /**
-     *  The ISelectionModel interface describes the minimum set of properties
-     *  available to control that let the user select from within a
-     *  set of items in a dataProvider.  A more sophisticated model would
-     *  support multiple selection.
-     * 
+     *  The IDataProviderModel interface describes the minimum set of properties
+     *  available to control that let the user choose within a
+     *  set of items in a dataProvider.
+	 *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
