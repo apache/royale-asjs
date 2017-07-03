@@ -35,7 +35,7 @@ package org.apache.flex.file.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.9
 	 */
 	public class FileModel extends EventDispatcher implements IBeadModel
 	{
@@ -55,7 +55,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function FileModel(data:Object)
 		{
@@ -72,14 +72,14 @@ package org.apache.flex.file.beads
 		
 		
 		/**
-		 *  The size of the file
+		 *  The size of the file bytes
 		 * 
 		 *  @copy org.apache.flex.core.IAlertModel#title
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function get size():Number
 		{
@@ -94,7 +94,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function get name():String
 		{
@@ -110,7 +110,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function get type():String
 		{
@@ -125,7 +125,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function get lastModified():uint
 		{
@@ -145,7 +145,7 @@ package org.apache.flex.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{
