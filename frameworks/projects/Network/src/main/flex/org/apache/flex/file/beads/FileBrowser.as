@@ -32,7 +32,6 @@ package org.apache.flex.file.beads
 		import org.apache.flex.events.Event;
 		import org.apache.flex.core.WrappedHTMLElement;
 		import goog.events;
-
 	}
 	
 	/**

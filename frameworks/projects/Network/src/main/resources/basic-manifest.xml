@@ -25,4 +25,6 @@
     <component id="CORSCredentialsBead" class="org.apache.flex.net.beads.CORSCredentialsBead"/>
     <component id="FileProxy" class="org.apache.flex.file.FileProxy"/>
     <component id="FileBrowser" class="org.apache.flex.file.beads.FileBrowser"/>
+    <component id="FileLoader" class="org.apache.flex.file.beads.FileLoader"/>
+    <component id="FileUploader" class="org.apache.flex.file.beads.FileUploader"/>
 </componentPackage>

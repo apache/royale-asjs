@@ -20,21 +20,25 @@ package org.apache.flex.file.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.file.FileProxy;
-	import org.apache.flex.utils.BinaryData;
+	import org.apache.flex.net.BinaryUploader;
+	import org.apache.flex.net.URLRequest;
 
 	COMPILE::SWF
 	{
-		import flash.events.Event;
+//		import flash.net.URLRequest;
 	}
+	
 	COMPILE::JS
 	{
 		import org.apache.flex.events.Event;
+		import org.apache.flex.core.WrappedHTMLElement;
 		import goog.events;
+
 	}
 	
 	/**
-	 *  The FileLoader class is a bead which adds to UploadImageProxy
-	 *  the ability to browse the file system and select a file.
+	 *  The FileUploader class is a bead which adds to FileProxy
+	 *  the ability to upload files.
 	 *  
 	 *
 	 *  @toplevel
@@ -43,45 +47,30 @@ package org.apache.flex.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileLoader implements IBead
+	public class FileUploader implements IBead
 	{
 		private var _strand:IStrand;
 
 		
 		/**
-		 *  Load the file to the model's blob.
+		 *  Open up the system file browser. A user selection will trigger a 'modelChanged' event on the strand.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.9
 		 */
-		public function load():void
+		public function upload(url:org.apache.flex.net.URLRequest):void
 		{
-			COMPILE::SWF
-			{
-				fileModel.fileReference.addEventListener(Event.COMPLETE, fileLoadHandler);
-				fileModel.fileReference.load();
-			}
-			COMPILE::JS 
-			{
-				var reader:FileReader = new FileReader();
-				goog.events.listen(reader, 'load', fileLoadHandler);
-				reader.readAsBinaryString(fileModel.file);
-			}
-		}
-		
-		COMPILE::SWF 
-		protected function fileLoadHandler(event:flash.events.Event):void
-		{
-			fileModel.fileReference.removeEventListener(Event.COMPLETE, fileLoadHandler);
-			fileModel.blob = new BinaryData(fileModel.fileReference.data);
-		}
-		
-		COMPILE::JS 
-		protected function fileLoadHandler(event:Event):void
-		{
-			fileModel.blob = new BinaryData(event.target.result);
+//			COMPILE::SWF
+//			{
+//				var flashURL:flash.net.URLRequest = new URLRequest(url.url);
+//				(host.model as FileModel).fileReference.upload(flashURL);
+//			}
+			var binaryUploader:BinaryUploader = new BinaryUploader();
+			binaryUploader.binaryData = (host.model as FileModel).blob;
+			binaryUploader.url = url.url;
+			binaryUploader.send();
 		}
 		
 		/**
@@ -97,9 +86,12 @@ package org.apache.flex.file.beads
 			_strand = value;
 		}
 		
-		private function get fileModel():FileModel
+		/**
+		 * @private
+		 */
+		private function get host():FileProxy
 		{
-			return (_strand as FileProxy).model as FileModel;
+			return _strand as FileProxy;
 		}
 		
 	}

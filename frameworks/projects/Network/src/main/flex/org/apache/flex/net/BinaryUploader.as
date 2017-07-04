@@ -91,7 +91,6 @@ package org.apache.flex.net
     /**
      *  The BinaryUploader class is a class designed to upload binary data
      *  over HTTP.  
-     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -104,8 +103,18 @@ package org.apache.flex.net
 			super();
             COMPILE::JS
             {
-                element = new XMLHttpRequest() as WrappedHTMLElement;
+				createElement();
             }
+		}
+		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		private function createElement():void
+		{
+			element = new XMLHttpRequest() as WrappedHTMLElement;
+			trace(element);
 		}
 		
 		private var _contentType:String = "application/octet-stream";

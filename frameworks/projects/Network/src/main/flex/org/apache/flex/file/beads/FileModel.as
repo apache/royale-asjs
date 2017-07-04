@@ -19,7 +19,9 @@ package org.apache.flex.file.beads
 {
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.utils.BinaryData;
 
 	COMPILE::SWF
 	{
@@ -40,6 +42,7 @@ package org.apache.flex.file.beads
 	public class FileModel extends EventDispatcher implements IBeadModel
 	{
 		private var _strand:IStrand;
+		private var _blob:BinaryData;
 		COMPILE::SWF
 		{
 			private var _data:FileReference;
@@ -150,6 +153,35 @@ package org.apache.flex.file.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		public function get fileReference():FileReference
+		{
+			return _data as FileReference;
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		public function get file():File
+		{
+			return _data as File;
+		}
+		
+		public function get blob():BinaryData
+		{
+			return _blob;
+		}
+		
+		public function set blob(value:BinaryData):void
+		{
+			_blob = value;
+			dispatchEvent(new Event("blobChanged"));
 		}
 		
 	}
