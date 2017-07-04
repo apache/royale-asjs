@@ -98,23 +98,16 @@ package org.apache.flex.net
      */
 	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 */
 		public function BinaryUploader()
 		{
 			super();
             COMPILE::JS
             {
-				createElement();
+				element = new XMLHttpRequest() as WrappedHTMLElement;
             }
-		}
-		
-		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 */
-		COMPILE::JS
-		private function createElement():void
-		{
-			element = new XMLHttpRequest() as WrappedHTMLElement;
-			trace(element);
 		}
 		
 		private var _contentType:String = "application/octet-stream";
