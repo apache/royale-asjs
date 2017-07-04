@@ -143,6 +143,7 @@ internal class CoreClasses
     import org.apache.flex.geom.Rectangle; Rectangle;
     import org.apache.flex.utils.AnimationUtil; AnimationUtil;
     import org.apache.flex.utils.BinaryData; BinaryData;
+	import org.apache.flex.utils.BrowserInfo; BrowserInfo;
 	COMPILE::SWF
 	{
 	    import org.apache.flex.utils.CSSBorderUtils; CSSBorderUtils;
