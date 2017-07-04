@@ -263,7 +263,7 @@ package org.apache.flex.net
                 var part2:String;
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
                 
-                if (typeof _responseHeaders === 'undefined') 
+                if (!_responseHeaders) 
                 {
                     allHeaders = element.getAllResponseHeaders();
                     _responseHeaders = allHeaders.split('\n');
@@ -555,8 +555,8 @@ package org.apache.flex.net
                 
                 var binaryData:String = null;
                 if (_binaryData != null) {
-                    if (_method === HTTPConstants.GET) {
-                        if (url.indexOf('?') !== -1) {
+                    if (_method == HTTPConstants.GET) {
+                        if (url.indexOf('?') != -1) {
                             url += _binaryData.data;
                         } else {
                             url += '?' + _binaryData.data;
@@ -574,7 +574,7 @@ package org.apache.flex.net
                     var n:int = _headers.length;
                     for (var i:int = 0; i < n; i++) {
                         var header:HTTPHeader = _headers[i];
-                        if (header.name === HTTPHeader.CONTENT_TYPE) {
+                        if (header.name == HTTPHeader.CONTENT_TYPE) {
                             sawContentType = true;
                         }
                         
@@ -582,7 +582,7 @@ package org.apache.flex.net
                     }
                 }
                 
-                if (_method !== HTTPConstants.GET &&
+                if (_method != HTTPConstants.GET &&
                     !sawContentType && binaryData) {
                     element.setRequestHeader(
                         HTTPHeader.CONTENT_TYPE, _contentType);
@@ -653,11 +653,11 @@ package org.apache.flex.net
         protected function progressHandler():void
         {
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
-            if (element.readyState === 2) {
+            if (element.readyState == 2) {
                 _status = element.status;
                 dispatchEvent(HTTPConstants.RESPONSE_STATUS);
                 dispatchEvent(HTTPConstants.STATUS);
-            } else if (element.readyState === 4) {
+            } else if (element.readyState == 4) {
                 dispatchEvent(HTTPConstants.COMPLETE);
             }
         }
