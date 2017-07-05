@@ -17,28 +17,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.file.beads
 {
-	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.file.FileProxy;
-	import org.apache.flex.net.URLBinaryLoader;
-	import org.apache.flex.net.URLRequest;
+	import org.apache.flex.events.Event;
 
-	COMPILE::SWF
-	{
-//		import flash.net.URLRequest;
-	}
-	
-	COMPILE::JS
-	{
-		import org.apache.flex.events.Event;
-		import org.apache.flex.core.WrappedHTMLElement;
-		import goog.events;
-
-	}
-	
 	/**
-	 *  The FileUploader class is a bead which adds to FileProxy
-	 *  the ability to upload files.
+	 *  The FileLoaderUploader is a compound bead that allows you
+	 *  to load a file and upload it in one operation.
 	 *  
 	 *
 	 *  @toplevel
@@ -47,30 +31,13 @@ package org.apache.flex.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileUploader implements IBead
+	public class FileLoaderAndUploader extends FileUploader
 	{
-		private var _strand:IStrand;
-
-		
-		/**
-		 *  Upload a file to the specified url.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
-		 */
-		public function upload(url:String):void
+		private var _loader:FileLoader;
+		private var _url:String;
+		public function FileLoaderAndUploader()
 		{
-//			COMPILE::SWF
-//			{
-//				var flashURL:flash.net.URLRequest = new URLRequest(url.url);
-//				(host.model as FileModel).fileReference.upload(flashURL);
-//			}
-			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
-			var req:URLRequest = new URLRequest();
-			req.data = (host.model as FileModel).blob;
-			binaryUploader.load(req);
+			super();
 		}
 		
 		/**
@@ -81,17 +48,47 @@ package org.apache.flex.file.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.9
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
+			_loader = value.getBeadByType(FileLoader) as FileLoader;
+			if (!_loader)
+			{
+				_loader = new FileLoader();
+				value.addBead(_loader);
+			}
+		}
+		
+		/**
+		 *  Upload a file to the specified url. If file hasn't been loaded already it will be.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
+		
+		override public function upload(url:String):void
+		{
+			var fileModel:FileModel = host.model as FileModel;
+			if (!fileModel.blob)
+			{
+				_url = url;
+				host.model.addEventListener("blobChanged", blobChangedHandler);
+				_loader.load();
+			} else
+			{
+				super.upload(url);
+			}
 		}
 		
 		/**
 		 * @private
 		 */
-		protected function get host():FileProxy
+		private function blobChangedHandler(e:Event):void
 		{
-			return _strand as FileProxy;
+			host.model.removeEventListener('blobChanged', blobChangedHandler);
+			super.upload(_url);
 		}
 		
 	}
