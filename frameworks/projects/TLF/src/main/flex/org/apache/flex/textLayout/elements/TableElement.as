@@ -1133,19 +1133,11 @@ package org.apache.flex.textLayout.elements {
 				addColumn();
 			}
 			
-			var w:Number;
-			switch(typeof(computedFormat.tableWidth)){
-				case "number":
-					w = suggestedWidth;
-					break;
-				case "string":
-					if(computedFormat.tableWidth.indexOf("%") > 0){
-						w = suggestedWidth / (parseFloat(computedFormat.tableWidth)/100);
-						break;
-					}
-				default:
-					w = suggestedWidth;
-					break;
+			var w:Number = suggestedWidth;
+			if (typeof(computedFormat.tableWidth) == "string"){
+				if(computedFormat.tableWidth.indexOf("%") > 0){
+					w = suggestedWidth / (parseFloat(computedFormat.tableWidth)/100);
+				}
 			}
 			if(isNaN(w))
 				w = 600;
