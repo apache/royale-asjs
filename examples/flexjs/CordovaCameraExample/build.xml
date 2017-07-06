@@ -35,25 +35,14 @@
     
     <include file="${basedir}/../../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile,build_example.compile.cordova" description="Clean build of ${example}">
-        <antcall target="cordova-plugins" />
-    </target>
-    
-    <target name="cordova-plugins" if="has.cordova" >
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-plugin" >
-            <property name="plugin" value="cordova-plugin-camera"/>
-        </ant>
-    </target>
-
-    <target name="cordova" description="Executes the Cordova build script to create Cordova app">
-    	<ant antfile="../../../cordova-build.xml" />
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="run-android" description="Executes the Cordova build script to run the app on a device.">
     	<ant antfile="../../../cordova-build.xml" target="run.android" />
     </target>
     
-    <target name="all" depends="main, cordova" description="Builds the app then runs the Cordova script">
+    <target name="all" depends="main" description="Builds the app then runs the Cordova script">
     </target>
     
     <target name="run">

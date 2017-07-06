@@ -383,16 +383,6 @@
         </exec>
     </target>
 
-    <target name="compile.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
-        <property name="mobile.platform" value="android" />
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="main" >
-            <property name="projectdir" value="${basedir}" />
-        </ant>
-        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
-            <property name="projectdir" value="${basedir}" />
-        </ant>
-    </target>
-
     <target name="run.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
         <property name="mobile.platform" value="android" />
         <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" >

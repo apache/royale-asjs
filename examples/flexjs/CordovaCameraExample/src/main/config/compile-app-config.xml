@@ -17,14 +17,10 @@
 
 -->
 <flex-config>
-    <remove-circulars>true</remove-circulars>
     <compiler>
         <targets>
             <target>SWF</target>
             <target>JSFlexCordova</target>
         </targets>
-        <js-external-library-path append="true">
-            <path-element>../../../../../../js/libs/cordova.swc</path-element>
-        </js-external-library-path>
     </compiler>
 </flex-config>

@@ -48,7 +48,7 @@
     </condition>
     <property name="extlib_arg" value="-external-library-path=${FALCONJX_HOME}/../externs/js/out/bin/js.swc"/>
 
-    <target name="main" depends="clean,build_example.compile,build_example.copy-js-resources,build_example.compile.cordova" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile,build_example.copy-js-resources" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
