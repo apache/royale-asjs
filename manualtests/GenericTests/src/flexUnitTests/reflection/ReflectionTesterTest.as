@@ -151,7 +151,7 @@ package flexUnitTests.reflection
             Assert.assertEquals("unexpected instance variables length",3,variables.length);
 
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 3 : 7;
+            expected = isJS ? 4 : 7;
             var methods:Array = def.methods;
             Assert.assertEquals("unexpected instance methods length",expected,methods.length);
 
@@ -184,7 +184,7 @@ package flexUnitTests.reflection
             Assert.assertEquals("unexpected instance variables length",3,variables.length);
 
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 3 : 7;
+            expected = isJS ? 4 : 7;
             var methods:Array = def.methods;
             Assert.assertEquals("unexpected instance methods length",expected,methods.length);
 
