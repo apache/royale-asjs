@@ -22,7 +22,7 @@
 <project name="GenericTests" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="GenericTests" />
-    
+    <property name="swf.version" value="11" />
 
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
     <property name="theme_arg" value="-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta" />
