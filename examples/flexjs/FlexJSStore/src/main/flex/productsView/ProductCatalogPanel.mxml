@@ -505,7 +505,7 @@ limitations under the License.
     
     <js:beads>
         <js:ContainerDataBinding />
-        <js:BasicLayout />
+        <js:RemovableBasicLayout />
         <js:DragMouseController id="dragger" />
         <js:ParentDocumentBead id="pdb" />
         <js:PanelView>

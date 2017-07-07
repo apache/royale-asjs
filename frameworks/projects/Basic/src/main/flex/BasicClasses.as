@@ -145,6 +145,7 @@ internal class BasicClasses
     import org.apache.flex.html.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
 	import org.apache.flex.html.beads.layouts.HorizontalFlexLayout; HorizontalFlexLayout;
     import org.apache.flex.html.beads.layouts.BasicLayout; BasicLayout;
+    import org.apache.flex.html.beads.layouts.RemovableBasicLayout; RemovableBasicLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
 	import org.apache.flex.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
 	
