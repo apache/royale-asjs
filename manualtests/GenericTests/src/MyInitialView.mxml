@@ -179,15 +179,15 @@ limitations under the License.
 	<js:beads>
 		<js:ViewDataBinding/>
 	</js:beads>
-	<js:Container id="cont" height="50" className="body">
+	<js:Group id="cont" height="50" className="body">
 		<js:beads>
-			<js:VerticalLayout />
+			<js:VerticalFlexLayout />
 		</js:beads>
 		<js:Label text="{PLATFORM} Cross-compiled Unit Tests" className="title" />
-	</js:Container>
-	<js:Container id="output" height="700" y="50" className="body">
+	</js:Group>
+	<js:Group id="output" height="700" y="50" className="body">
 		<js:beads>
-			<js:VerticalLayout />
+			<js:VerticalFlexLayout />
 		</js:beads>
-	</js:Container>
+	</js:Group>
 </js:View>
