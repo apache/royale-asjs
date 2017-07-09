@@ -85,7 +85,7 @@ package org.apache.flex.html.beads.models
          */
 		public function set dataProvider(value:Object):void
 		{
-            if (value === _dataProvider) return;
+            if (value == _dataProvider) return;
             
             _dataProvider = value;
             if (_selectedIndex != -1)
@@ -140,7 +140,7 @@ package org.apache.flex.html.beads.models
          */
 		public function set selectedIndex(value:int):void
 		{
-            if (value === _selectedIndex) return;
+            if (value == _selectedIndex) return;
             
 			_selectedIndex = value;
 			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? _dataProvider[value] : null;
@@ -189,7 +189,7 @@ package org.apache.flex.html.beads.models
          */
 		public function set selectedItem(value:Object):void
 		{
-            if (value === _selectedItem) return;
+            if (value == _selectedItem) return;
             
 			_selectedItem = value;	
 			var n:int = _dataProvider.length;

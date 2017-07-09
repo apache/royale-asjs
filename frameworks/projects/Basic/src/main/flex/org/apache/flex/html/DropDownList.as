@@ -110,13 +110,14 @@ package org.apache.flex.html
                 var opt:HTMLOptionElement;
                 var dd:HTMLSelectElement = element as HTMLSelectElement;
 
-                model.dataProvider = value;
                 dp = dd.options;
                 n = dp.length;
                 for (i = 0; i < n; i++) {
                     dd.remove(0);
                 }
-
+                // The value could be undefined if data binding is used and the variable is not initialized.
+                if(!value)return;
+                
                 var lf:String = labelField;
                 n = value.length;
                 for (i = 0; i < n; i++) {
