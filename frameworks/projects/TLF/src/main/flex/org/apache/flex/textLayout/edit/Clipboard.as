@@ -26,6 +26,7 @@ package org.apache.flex.textLayout.edit
     COMPILE::JS
     {
         import org.apache.flex.textLayout.events.EditEvent;
+        import org.apache.flex.events.Event;
     }
 	/** 
 	 * The Clipboard class is used for Clipboard operations such as copy and paste
