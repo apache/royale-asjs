@@ -21,6 +21,7 @@ package org.apache.flex.file.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.file.IFileModel;
 	import org.apache.flex.utils.BinaryData;
 
 	COMPILE::SWF
@@ -39,7 +40,7 @@ package org.apache.flex.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileModel extends EventDispatcher implements IBeadModel
+	public class FileModel extends EventDispatcher implements IBeadModel, IFileModel
 	{
 		private var _strand:IStrand;
 		private var _blob:BinaryData;
@@ -75,14 +76,7 @@ package org.apache.flex.file.beads
 		
 		
 		/**
-		 *  The size of the file bytes
-		 * 
 		 *  @copy org.apache.flex.core.IAlertModel#title
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
 		 */
 		public function get size():Number
 		{
@@ -90,14 +84,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  The name of the file
-		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#title
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @copy org.apache.flex.file.IFileModel#name
 		 */
 		public function get name():String
 		{
@@ -106,14 +93,7 @@ package org.apache.flex.file.beads
 		
 		// TODO this will give different results in flash and in JS (extension and MIME respectively). Fix this.
 		/**
-		 *  The type
-		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#title
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @copy org.apache.flex.file.IFileModel#type
 		 */
 		public function get type():String
 		{
@@ -121,14 +101,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  The last modified time of the file, in millisecond since the UNIX epoch (January 1st, 1970 at Midnight).
-		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#title
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
+		 *  @copy org.apache.flex.core.IAlertModel#lastModified
 		 */
 		public function get lastModified():uint
 		{
@@ -144,11 +117,6 @@ package org.apache.flex.file.beads
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{

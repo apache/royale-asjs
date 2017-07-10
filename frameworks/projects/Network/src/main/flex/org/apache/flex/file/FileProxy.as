@@ -20,6 +20,7 @@ package org.apache.flex.file
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.Strand;
+	import org.apache.flex.file.beads.FileModel;
 	
 	/**
 	 *  The FileProxy class is where beads regarding file operations are added.
@@ -32,7 +33,7 @@ package org.apache.flex.file
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileProxy extends Strand implements IDocument
+	public class FileProxy extends Strand implements IDocument, IFileModel
 	{
 		private var _document:Object;
 		public function FileProxy()
@@ -53,5 +54,20 @@ package org.apache.flex.file
 			}
 		}
 
+		public function get lastModified():uint
+		{
+			return (model as FileModel).lastModified;
+		}
+		
+		public function get name():String
+		{
+			return (model as FileModel).name;
+		}
+		
+		public function get type():String
+		{
+			return (model as FileModel).type;
+		}
+		
 	}
 }
