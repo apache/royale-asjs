@@ -26,6 +26,7 @@ package org.apache.flex.svg
 	{
 		import org.apache.flex.core.IContainer;
 		import org.apache.flex.core.UIBase;
+		import org.apache.flex.events.Event;
 	}
 
 	[DefaultProperty("mxmlContent")]
