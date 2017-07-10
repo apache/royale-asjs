@@ -19,6 +19,8 @@ package org.apache.flex.file.beads
 {
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.file.FileProxy;
 	import org.apache.flex.net.URLBinaryLoader;
 	import org.apache.flex.net.URLRequest;
@@ -36,6 +38,15 @@ package org.apache.flex.file.beads
 
 	}
 	
+	/**
+	 *  Indicates that the upload operation is complete
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="complete", type="org.apache.flex.events.Event")]
 	/**
 	 *  The FileUploader class is a bead which adds to FileProxy
 	 *  the ability to upload files.
@@ -70,7 +81,14 @@ package org.apache.flex.file.beads
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
 			req.data = (host.model as FileModel).blob;
+			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
+		}
+		
+		protected function completeHandler(event:Event):void
+		{
+			(event.target as IEventDispatcher).removeEventListener(Event.COMPLETE, completeHandler);
+			(host as IEventDispatcher).dispatchEvent(event);
 		}
 		
 		/**

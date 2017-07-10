@@ -23,6 +23,15 @@ package org.apache.flex.file
 	import org.apache.flex.file.beads.FileModel;
 	
 	/**
+	 *  Indicates that the model has changed
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="modelChanged", type="org.apache.flex.events.Event")]
+	/**
 	 *  The FileProxy class is where beads regarding file operations are added.
 	 *  Information about operations can be queried in the file model, or by
 	 *  listenening to events dispatched by beads.

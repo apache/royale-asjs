@@ -21,7 +21,7 @@ package org.apache.flex.file.beads
 	import org.apache.flex.events.Event;
 
 	/**
-	 *  The FileLoaderUploader is a compound bead that allows you
+	 *  The FileLoaderAndUploader is a compound bead that allows you
 	 *  to load a file and upload it in one operation.
 	 *  
 	 *
