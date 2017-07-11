@@ -122,7 +122,7 @@ package org.apache.flex.html.accessories
 		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
 			var comp:IUIBase = _strand as IUIBase;
-			var pt:Point = new Point(comp.width, comp.height);
+			var pt:Point = new Point(comp.width/2, comp.height/2);
 			pt = PointUtils.localToGlobal(pt, comp);
 			return pt;
 		}
