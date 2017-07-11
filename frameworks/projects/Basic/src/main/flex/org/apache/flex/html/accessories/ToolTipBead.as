@@ -135,7 +135,8 @@ package org.apache.flex.html.accessories
         private function rollOutHandler(event:MouseEvent):void
         {
 			var comp:IUIBase = _strand as IUIBase;
-			var outside:Boolean = event.clientX > comp.width || event.clientY > comp.height;
+			var outside:Boolean = event.clientX > (comp.x + comp.width) || event.clientY > (comp.y + comp.height)
+					|| event.clientX < comp.x || event.clientY < comp.y;
             // check for outside otherwise tool tip itself with flash when you roll over it
             if (tt && outside) {
                 host.removeElement(tt);
