@@ -63,16 +63,25 @@ package org.apache.flex.file
 			}
 		}
 
+		/**
+		 *  @copy org.apache.flex.core.IAlertModel#lastModified
+		 */
 		public function get lastModified():uint
 		{
 			return (model as FileModel).lastModified;
 		}
 		
+		/**
+		 *  @copy org.apache.flex.file.IFileModel#name
+		 */
 		public function get name():String
 		{
 			return (model as FileModel).name;
 		}
 		
+		/**
+		 *  @copy org.apache.flex.file.IFileModel#type
+		 */
 		public function get type():String
 		{
 			return (model as FileModel).type;
