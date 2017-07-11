@@ -50,11 +50,11 @@ package org.apache.flex.file.beads
 		private var _strand:IStrand;
 		COMPILE::SWF 
 		{
-			private var _delegate:flash.net.FileReference;
+			protected var delegate:flash.net.FileReference;
 		}
 		COMPILE::JS 
 		{
-			private var _delegate:WrappedHTMLElement;
+			protected var delegate:WrappedHTMLElement;
 		}
 
 		/**
@@ -76,9 +76,9 @@ package org.apache.flex.file.beads
 		COMPILE::JS
 		public function createDelegate():void
 		{
-			_delegate = document.createElement('input') as WrappedHTMLElement;
-			_delegate.setAttribute('type', 'file');
-			goog.events.listen(_delegate, 'change', fileChangeHandler);
+			delegate = document.createElement('input') as WrappedHTMLElement;
+			delegate.setAttribute('type', 'file');
+			goog.events.listen(delegate, 'change', fileChangeHandler);
 		}
 		
 		/**
@@ -87,8 +87,8 @@ package org.apache.flex.file.beads
 		COMPILE::SWF
 		public function createDelegate():void
 		{
-			_delegate = new flash.net.FileReference();
-			_delegate.addEventListener(flash.events.Event.SELECT, fileSelectHandler);
+			delegate = new flash.net.FileReference();
+			delegate.addEventListener(flash.events.Event.SELECT, fileSelectHandler);
 		}
 		
 		/**
@@ -97,9 +97,9 @@ package org.apache.flex.file.beads
 		COMPILE::SWF
 		protected function fileSelectHandler(event:flash.events.Event):void
 		{
-			host.model = new FileModel(_delegate);
-			// _delegate reference passed to model, so cleanup this bead to keep encapsulation
-			_delegate.removeEventListener(flash.events.Event.SELECT, fileSelectHandler);
+			host.model = new FileModel(delegate);
+			// delegate reference passed to model, so cleanup this bead to keep encapsulation
+			delegate.removeEventListener(flash.events.Event.SELECT, fileSelectHandler);
 			createDelegate();
 		}
 		
@@ -115,11 +115,11 @@ package org.apache.flex.file.beads
 		{
 			COMPILE::SWF
 			{
-				_delegate.browse();	
+				delegate.browse();	
 			}
 			COMPILE::JS 
 			{
-				_delegate.click();
+				delegate.click();
 			}
 		}
 		
@@ -151,7 +151,7 @@ package org.apache.flex.file.beads
 		COMPILE::JS
 		private function fileChangeHandler(e:org.apache.flex.events.Event):void
 		{
-			host.model = new FileModel((_delegate as HTMLInputElement).files[0]);
+			host.model = new FileModel((delegate as HTMLInputElement).files[0]);
 		}
 		
 	}

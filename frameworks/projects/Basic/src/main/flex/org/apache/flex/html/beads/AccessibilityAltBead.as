@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -15,74 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.flex.html.beads
 {
+
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
-	import org.apache.flex.file.FileProxy;
-	import org.apache.flex.utils.BinaryData;
+	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.ValueEvent;
 
-	COMPILE::SWF
-	{
-		import flash.events.Event;
+	COMPILE::SWF {
+		import org.apache.flex.html.accessories.ToolTipBead;
 	}
-	COMPILE::JS
-	{
-		import org.apache.flex.events.Event;
-		import goog.events;
-	}
-	
-	/**
-	 *  The FileLoader class is a bead which adds to UploadImageProxy
-	 *  the ability to browse the file system and select a file.
+
+/**
+	 *  The AccessibilityAltBead class is a bead that can be used with
+	 *  any Image control. The bead places add an alt text attribute
+	 *  on a image.
 	 *  
-	 *
-	 *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileLoader implements IBead
+	public class AccessibilityAltBead implements IBead
 	{
-		private var _strand:IStrand;
-
-		
 		/**
-		 *  Load the file to the model's blob.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.9
 		 */
-		public function load():void
+		public function AccessibilityAltBead()
 		{
-			COMPILE::SWF
-			{
-				fileModel.fileReference.addEventListener(Event.COMPLETE, fileLoadHandler);
-				fileModel.fileReference.load();
-			}
-			COMPILE::JS 
-			{
-				var reader:FileReader = new FileReader();
-				goog.events.listen(reader, 'load', fileLoadHandler);
-				reader.readAsArrayBuffer(fileModel.file);
-			}
 		}
 		
-		COMPILE::SWF 
-		protected function fileLoadHandler(event:flash.events.Event):void
-		{
-			fileModel.fileReference.removeEventListener(Event.COMPLETE, fileLoadHandler);
-			fileModel.blob = new BinaryData(fileModel.fileReference.data);
-		}
-		
-		COMPILE::JS 
-		protected function fileLoadHandler(event:Event):void
-		{
-			fileModel.blob = new BinaryData(event.target.result);
-		}
+		private var _strand:IStrand;
+		private var _alt:String;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -91,15 +62,52 @@ package org.apache.flex.file.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.9
+		 *  @flexjsignorecoercion HTMLInputElement
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
-		{
+		{	
 			_strand = value;
+			updateHost();
 		}
 		
-		private function get fileModel():FileModel
+		public function get alt():String
 		{
-			return (_strand as FileProxy).model as FileModel;
+			return _alt;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set alt(value:String):void
+		{
+			if (value != _alt)
+			{
+				_alt = value;
+				updateHost();
+			}
+		}
+
+		private function updateHost():void
+		{
+			if(!_strand)
+				return;
+
+			COMPILE::SWF {
+				//TODO may want to do something else on he AS side
+				var toolTip:ToolTipBead = _strand.getBeadByType(ToolTipBead) as ToolTipBead;
+
+				if (toolTip) {
+                    toolTip.toolTip = _alt;
+                }
+			}
+			
+			COMPILE::JS {
+                (_strand as Object).element.alt = _alt;
+            }
+
+			IEventDispatcher(_strand).dispatchEvent(new ValueEvent("altChange", alt));
+				
 		}
 		
 	}

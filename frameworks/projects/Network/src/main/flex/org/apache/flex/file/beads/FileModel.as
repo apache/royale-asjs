@@ -76,7 +76,7 @@ package org.apache.flex.file.beads
 		
 		
 		/**
-		 *  @copy org.apache.flex.core.IAlertModel#title
+		 *  @copy org.apache.flex.file.IFileModel#size
 		 */
 		public function get size():Number
 		{
