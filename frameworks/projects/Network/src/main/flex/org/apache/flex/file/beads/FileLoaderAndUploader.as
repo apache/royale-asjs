@@ -17,8 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.file.beads
 {
+	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.file.FileProxy;
 
 	/**
 	 *  The FileLoaderAndUploader is a compound bead that allows you
@@ -31,10 +33,12 @@ package org.apache.flex.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.9
 	 */
-	public class FileLoaderAndUploader extends FileUploader
+	public class FileLoaderAndUploader implements IBead
 	{
 		private var _loader:FileLoader;
+		private var _uploader:FileUploader;
 		private var _url:String;
+		private var _strand:IStrand;
 		public function FileLoaderAndUploader()
 		{
 			super();
@@ -48,15 +52,16 @@ package org.apache.flex.file.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.9
 		 */
-		override public function set strand(value:IStrand):void
+		public function set strand(value:IStrand):void
 		{
-			super.strand = value;
+			_strand = value;
 			_loader = value.getBeadByType(FileLoader) as FileLoader;
 			if (!_loader)
 			{
 				_loader = new FileLoader();
 				value.addBead(_loader);
 			}
+			_uploader = value.getBeadByType(FileUploader) as FileUploader;
 		}
 		
 		/**
@@ -68,17 +73,17 @@ package org.apache.flex.file.beads
 		 *  @productversion FlexJS 0.9
 		 */
 		
-		override public function upload(url:String):void
+		public function upload(url:String):void
 		{
-			var fileModel:FileModel = host.model as FileModel;
+			var fileModel:FileModel = (_strand as FileProxy).model as FileModel;
 			if (!fileModel.blob)
 			{
 				_url = url;
-				host.model.addEventListener("blobChanged", blobChangedHandler);
+				(_strand as FileProxy).model.addEventListener("blobChanged", blobChangedHandler);
 				_loader.load();
 			} else
 			{
-				super.upload(url);
+				_uploader.upload(url);
 			}
 		}
 		
@@ -87,8 +92,8 @@ package org.apache.flex.file.beads
 		 */
 		private function blobChangedHandler(e:Event):void
 		{
-			host.model.removeEventListener('blobChanged', blobChangedHandler);
-			super.upload(_url);
+			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);
+			_uploader.upload(_url);
 		}
 		
 	}
