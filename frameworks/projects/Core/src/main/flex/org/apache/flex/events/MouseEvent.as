@@ -46,18 +46,14 @@ package org.apache.flex.events
 	COMPILE::SWF
 	public class MouseEvent extends flash.events.MouseEvent implements IFlexJSEvent
 	{
-        private static function platformConstant(s:String):String
-        {
-            return s;
-        }
-
-		public static const MOUSE_DOWN:String = platformConstant("mouseDown");
-        public static const MOUSE_MOVE:String = platformConstant("mouseMove");
-		public static const MOUSE_UP:String = platformConstant("mouseUp");
-		public static const MOUSE_OUT:String = platformConstant("mouseOut");
-		public static const MOUSE_OVER:String = platformConstant("mouseOver");
-		public static const ROLL_OVER:String = platformConstant("rollOver");
-		public static const ROLL_OUT:String = platformConstant("rollOut");
+		//SWF constants are different than the JS ones
+		public static const MOUSE_DOWN:String = "mouseDown";
+        public static const MOUSE_MOVE:String = "mouseMove";
+		public static const MOUSE_UP:String = "mouseUp";
+		public static const MOUSE_OUT:String = "mouseOut";
+		public static const MOUSE_OVER:String = "mouseOver";
+		public static const ROLL_OVER:String = "rollOver";
+		public static const ROLL_OUT:String = "rollOut";
         public static const CLICK:String = "click";
 		public static const DOUBLE_CLICK:String = "doubleClick";
 		public static const WHEEL : String = "mouseWheel";
@@ -203,18 +199,14 @@ package org.apache.flex.events
 	COMPILE::JS
 	public class MouseEvent extends Event implements IFlexJSEvent
 	{
-		private static function platformConstant(s:String):String
-		{
-			return s.toLowerCase();
-		}
-
-		public static const MOUSE_DOWN:String = platformConstant("mouseDown");
-		public static const MOUSE_MOVE:String = platformConstant("mouseMove");
-		public static const MOUSE_UP:String = platformConstant("mouseUp");
-		public static const MOUSE_OUT:String = platformConstant("mouseOut");
-		public static const MOUSE_OVER:String = platformConstant("mouseOver");
-		public static const ROLL_OVER:String = platformConstant("rollOver");
-		public static const ROLL_OUT:String = platformConstant("rollOut");
+		//JS constants are different than the SWF ones
+		public static const MOUSE_DOWN:String = "mousedown";
+		public static const MOUSE_MOVE:String = "mousemove";
+		public static const MOUSE_UP:String = "mouseup";
+		public static const MOUSE_OUT:String = "mouseout";
+		public static const MOUSE_OVER:String = "mouseover";
+		public static const ROLL_OVER:String = "mouseenter";
+		public static const ROLL_OUT:String = "mouseleave";
 		public static const CLICK:String = "click";
 		public static const DOUBLE_CLICK:String = "dblclick";
 		public static const WHEEL : String = "wheel";
@@ -333,91 +325,6 @@ package org.apache.flex.events
 			}
 			return _stagePoint.y;
 		}
-
-		/**
-		 * @private
-		 */
-		private static function installRollOverMixin():Boolean
-		{
-			window.addEventListener(MOUSE_OVER,
-				mouseOverHandler, false);
-			return true;
-		}
-
-
-		/**
-		 * @param e The event.
-		 * RollOver/RollOut is entirely implemented in mouseOver because
-		 * when a parent and child share an edge, you only get a mouseout
-		 * for the child and not the parent and you need to send rollout
-		 * to both.  A similar issue exists for rollover.
-		 */
-		private static function mouseOverHandler(e:MouseEvent):void
-		{
-			var j:int;
-			var m:int;
-			var outs:Array;
-			var me:window.MouseEvent;
-			var parent:Object;
-			var target:Object = e.target.flexjs_wrapper;
-			if (target == null)
-				return; // probably over the html tag
-			var targets:Array = MouseEvent.targets;
-			var index:int = targets.indexOf(target);
-			if (index != -1) {
-				// get all children
-				outs = targets.slice(index + 1);
-				m = outs.length;
-				for (j = 0; j < m; j++)
-				{
-					me = makeMouseEvent(
-						ROLL_OUT, e);
-					outs[j].element.dispatchEvent(me);
-				}
-				MouseEvent.targets = targets.slice(0, index + 1);
-			}
-			else {
-				var newTargets:Array = [target];
-				if (!('parent' in target))
-					parent = null;
-				else
-					parent = target.parent;
-				while (parent) {
-					index = targets.indexOf(parent);
-					if (index == -1) {
-						newTargets.unshift(parent);
-						if (!('parent' in parent))
-							break;
-						parent = parent.parent;
-					}
-					else {
-						outs = targets.slice(index + 1);
-						m = outs.length;
-						for (j = 0; j < m; j++) {
-							me = makeMouseEvent(
-								ROLL_OUT, e);
-							outs[j].element.dispatchEvent(me);
-						}
-						targets = targets.slice(0, index + 1);
-						break;
-					}
-				}
-				var n:int = newTargets.length;
-				for (var i:int = 0; i < n; i++) {
-					me = makeMouseEvent(
-						ROLL_OVER, e);
-					newTargets[i].element.dispatchEvent(me);
-				}
-				MouseEvent.targets = targets.concat(newTargets);
-			}
-		}
-
-
-		/**
-		 */
-		private static var rollOverMixin:Boolean =
-			installRollOverMixin();
-
 
 		/**
 		 */

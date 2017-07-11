@@ -103,7 +103,11 @@ package org.apache.flex.textLayout.events
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
 		 */
+		COMPILE::SWF
 		public static const ROLL_OVER:String = "rollOver";
+
+		COMPILE::JS
+		public static const ROLL_OVER:String = "mouseenter";
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>rollOut</code> event object. 
 		 * 
@@ -113,7 +117,11 @@ package org.apache.flex.textLayout.events
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
 		 */
+		COMPILE::SWF
 		public static const ROLL_OUT:String = "rollOut";	
+
+		COMPILE::JS
+		public static const ROLL_OUT:String = "mouseleave";	
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>click</code> event object. 
 		 * 

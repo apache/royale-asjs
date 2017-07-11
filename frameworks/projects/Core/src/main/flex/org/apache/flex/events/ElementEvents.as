@@ -64,8 +64,8 @@ package org.apache.flex.events
 				'mouseup': 1,
 				'mousedown': 1,
 				'mousemove': 1,
-				'rollover': 1,
-				'rollout': 1
+				'mouseenter': 1,
+				'mouseleave': 1
 			};
 	}
 }
