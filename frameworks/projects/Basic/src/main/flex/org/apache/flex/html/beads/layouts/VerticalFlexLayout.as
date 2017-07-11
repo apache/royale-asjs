@@ -28,11 +28,11 @@ package org.apache.flex.html.beads.layouts
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.flex.events.Event;
 
 	COMPILE::SWF {
 		import org.apache.flex.core.IUIBase;
 		import org.apache.flex.core.ValuesManager;
-		import org.apache.flex.events.Event;
 		import org.apache.flex.events.IEventDispatcher;
 		import org.apache.flex.geom.Rectangle;
 		import org.apache.flex.utils.CSSUtils;

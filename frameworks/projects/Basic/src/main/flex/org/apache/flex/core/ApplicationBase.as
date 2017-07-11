@@ -26,6 +26,7 @@ package org.apache.flex.core
     COMPILE::JS
     {
         import org.apache.flex.utils.CSSUtils;
+        import org.apache.flex.events.Event;
     }
 
         
