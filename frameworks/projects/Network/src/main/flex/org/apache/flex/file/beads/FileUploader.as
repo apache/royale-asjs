@@ -80,6 +80,7 @@ package org.apache.flex.file.beads
 //			}
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
+			req.method = "POST";
 			req.data = (host.model as FileModel).blob;
 			req.url = url;
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
