@@ -62,6 +62,11 @@ package org.apache.flex.file.beads
 				value.addBead(_loader);
 			}
 			_uploader = value.getBeadByType(FileUploader) as FileUploader;
+			if (!_uploader)
+			{
+				_uploader = new FileUploader();
+				value.addBead(_uploader);
+			}
 		}
 		
 		/**
