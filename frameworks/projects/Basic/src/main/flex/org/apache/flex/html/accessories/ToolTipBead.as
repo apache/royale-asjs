@@ -100,7 +100,10 @@ package org.apache.flex.html.accessories
 		 * @private
 		 */
 		protected function rollOverHandler( event:MouseEvent ):void
-		{	
+		{
+			if (!toolTip)
+				return;
+
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
             
             var comp:IUIBase = _strand as IUIBase
