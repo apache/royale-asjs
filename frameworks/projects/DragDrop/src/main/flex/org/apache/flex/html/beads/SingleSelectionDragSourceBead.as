@@ -120,6 +120,10 @@ package org.apache.flex.html.beads
 				dragImage.height = (ir as UIBase).height;
 				var label:Label = new Label();
 				label.text = ir.data.toString();
+				COMPILE::JS {
+					dragImage.element.style.position = 'absolute';
+					dragImage.element.style.cursor = 'pointer';
+				}
 				dragImage.addElement(label);
 				
 				DragEvent.dragSource = ir.data;
