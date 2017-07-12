@@ -35,8 +35,8 @@ package org.apache.flex.html.beads
 	}
 	/**
 	 *  The DisableBead class is a specialty bead that can be used with
-	 *  any TextInput control. The bead places a string into the input field
-	 *  when there is no value associated with the text property.
+	 *  any UIBase. When disabled is true, the bead prevents interaction with the component.
+	 *  The appearance of the component when disabled is controlled by a separate bead.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -114,7 +114,7 @@ package org.apache.flex.html.beads
 			}
 			
 			COMPILE::JS {
-				(_strand as Object).element.style.pointerEvents = disabled ? "none" : "auto";
+				(_strand as Object).element.style.pointerEvents = disabled ? "none" : "";
 			}
 				
 		}
