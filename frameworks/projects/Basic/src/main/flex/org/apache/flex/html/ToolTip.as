@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	COMPILE::SWF
+	{
+		import flash.display.InteractiveObject;
+	}
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -60,17 +59,28 @@ package org.apache.flex.html
 			super();
 			className = "ToolTip";
 		}
-		
+
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			(element as InteractiveObject).mouseEnabled = false;
+		}
+
 		/**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var e:WrappedHTMLElement = super.createElement();
+			var element:WrappedHTMLElement = super.createElement();
 			positioner.style.position = 'absolute';
+			positioner.style["pointer-events"] = "none";
 			typeNames = "ToolTip";
-			return e;
+			return element;
 		}		
 	}
 }

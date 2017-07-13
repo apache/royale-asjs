@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.accessories
 {
-
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IPopUpHost;
 	import org.apache.flex.core.IStrand;
@@ -54,7 +53,17 @@ package org.apache.flex.html.accessories
 		{
 		}
 
+		public static const TOP:int = 0;
+		public static const BOTTOM:int = 1;
+		public static const LEFT:int = 2;
+		public static const RIGHT:int = 3;
+		public static const MIDDLE:int = 4;
+
 		private var _toolTip:String;
+		private var tt:ToolTip;
+		private var host:IPopUpHost;
+		private var _xPos:int = RIGHT;
+		private var _yPos:int = BOTTOM;
 
 		/**
 		 *  The string to use as the toolTip.
@@ -73,9 +82,37 @@ package org.apache.flex.html.accessories
             _toolTip = value;
 		}
 
-		private var _strand:IStrand;
+		/**
+		 *  Sets the tooltip y relative position to one of
+		 *  LEFT, MIDDLE or RIGHT.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
+		public function set xPos(pos:int):void
+		{
+			_xPos = pos;
+		}
 
 		/**
+		 *  Sets the tooltip y relative position to one of
+		 *  TOP, MIDDLE or BOTTOM.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
+		public function set yPos(pos:int):void
+		{
+			_yPos = pos;
+		}
+
+		private var _strand:IStrand;
+
+		/**                         	
 		 *  @copy org.apache.flex.core.IBead#strand
 		 *
 		 *  @langversion 3.0
@@ -90,13 +127,10 @@ package org.apache.flex.html.accessories
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
 		}
 
-        private var tt:ToolTip;
-        private var host:IPopUpHost;
-
 		/**
 		 * @private
 		 */
-		protected function rollOverHandler( event:MouseEvent ):void
+		protected function rollOverHandler(event:MouseEvent):void
 		{
 			if (!toolTip || tt)
 				return;
@@ -113,8 +147,6 @@ package org.apache.flex.html.accessories
             tt.x = pt.x;
             tt.y = pt.y;
             host.addElement(tt, false); // don't trigger a layout
-
-			tt.addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 		}
 
 		/**
@@ -124,8 +156,32 @@ package org.apache.flex.html.accessories
 		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
 			var comp:IUIBase = _strand as IUIBase;
-			var pt:Point = new Point(comp.width, comp.height);
+			var xFactor:Number = 1;
+			var yFactor:Number = 1;
+			var pt:Point;
+
+			if (_xPos == LEFT) {
+				xFactor = Number.POSITIVE_INFINITY;
+			}
+			else if (_xPos == MIDDLE) {
+				xFactor = 2;
+			}
+			else if (_xPos == RIGHT) {
+				xFactor = 1;
+			}
+			if (_yPos == TOP) {
+				yFactor = Number.POSITIVE_INFINITY;
+			}
+			else if (_yPos == MIDDLE) {
+				yFactor = 2;
+			}
+			else if (_yPos == BOTTOM) {
+				yFactor = 1;
+			}
+
+			pt = new Point(comp.width/xFactor, comp.height/yFactor);
 			pt = PointUtils.localToGlobal(pt, comp);
+			
 			return pt;
 		}
 
@@ -135,10 +191,7 @@ package org.apache.flex.html.accessories
         private function rollOutHandler(event:MouseEvent):void
         {
 			var comp:IUIBase = _strand as IUIBase;
-			var outside:Boolean = event.clientX > (comp.x + comp.width) || event.clientY > (comp.y + comp.height)
-					|| event.clientX < comp.x || event.clientY < comp.y;
-            // check for outside otherwise tool tip itself with flash when you roll over it
-            if (tt && outside) {
+            if (tt) {
                 host.removeElement(tt);
 				tt = null;
 			}
