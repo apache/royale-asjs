@@ -23,6 +23,10 @@ COMPILE::SWF
 {
     import flash.utils.ByteArray;
 }
+COMPILE::JS
+{
+    import goog.DEBUG;
+}
 
 
 /**
@@ -58,6 +62,11 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     COMPILE::JS
     public function BinaryData(bytes:Object = null)
     {
+        if(goog.DEBUG)
+        {
+            if(bytes && typeof bytes.byteLength != "number")
+                throw new TypeError("BinaryData can only be initialized with ArrayBuffer");
+        }
         ba = bytes ? bytes as ArrayBuffer : new ArrayBuffer(0);
         _len = ba.byteLength;
     }

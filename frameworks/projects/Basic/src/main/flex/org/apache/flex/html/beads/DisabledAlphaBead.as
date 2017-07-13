@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	COMPILE::SWF {
-	import flash.display.InteractiveObject;
+	COMPILE::SWF
+    {
+	    import flash.display.InteractiveObject;
 	}
 	
 	import org.apache.flex.core.IBead;
@@ -29,21 +30,23 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.ValueEvent;
+	import org.apache.flex.html.beads.DisableBead;
 
-	COMPILE::JS{
+	COMPILE::JS
+    {
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
 	/**
-	 *  The DisableBead class is a specialty bead that can be used with
-	 *  any UIBase. When disabled is true, the bead prevents interaction with the component.
-	 *  The appearance of the component when disabled is controlled by a separate bead.
+	 *  The DisabledAlphaBead class is a specialty bead that can be used with
+	 *  any UIBase control which has a DisableBead attached.
+	 *  The bead takes properties for enabledAplha and disabledAlpha.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.9
 	 */
-	public class DisableBead implements IBead
+	public class DisabledAlphaBead implements IBead
 	{
 		/**
 		 *  constructor.
@@ -51,14 +54,31 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.9
 		 */
-		public function DisableBead()
+		public function DisabledAlphaBead()
 		{
 		}
 		
 		private var _strand:IStrand;
-		private var _disabled:Boolean;
+
+        /**
+         *  The alpha of the element when enabled. Defaults to 1.0;
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+         */
+		public var enabledAplha:Number = 1.0;
+
+        /**
+         *  The alpha of the element when disabled. Defaults to 0.5;
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+         */
+        public var disabledAlpha:Number = 0.5;
 		
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
@@ -66,67 +86,45 @@ package org.apache.flex.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
-		 *  @flexjsignorecoercion HTMLInputElement
-		 *  @flexjsignorecoercion org.apache.flex.core.UIBase;
+		 *  @productversion FlexJS 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			updateHost();
+            host.addEventListener("disabledChange", disabledChangeHandler);
+			updateHost(null);
 		}
 		
-		public function get disabled():Boolean
-		{
-			return _disabled;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set disabled(value:Boolean):void
-		{
-			if (value != _disabled)
-			{
-				_disabled = value;
-				updateHost();
-				throwChangeEvent();
-			}
-		}
 
-		private function disabledChangeHandler(e:Event):void
+		private function disabledChangeHandler(e:ValueEvent):void
 		{
-			updateHost();
+			updateHost(e.value);
 		}
 		
+        /**
+         * @flexjsignorecoercion org.apache.flex.core.IUIBase
+         */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;
 		}
-
-		private function updateHost():void
+		private function updateHost(value:Object):void
 		{
 			if(!_strand)//bail out
 				return;
-			COMPILE::SWF {
-				var interactiveObject:InteractiveObject = _strand as InteractiveObject;
-				interactiveObject.mouseEnabled = !disabled;
-			}
-			
-			COMPILE::JS {
-				(_strand as Object).element.style.pointerEvents = disabled ? "none" : "";
-			}
-				
+            
+            var disabled:Boolean;
+            if(value == null)
+            {
+                var disableBead:DisableBead = _strand.getBeadByType(DisableBead) as DisableBead;
+                if(!disableBead)// The DisableBead was not added yet. We'll set this when the event is dispatched.
+                    return;
+                disabled = disableBead.disabled;
+            } else {
+                disabled = value;
+            }
+            host.alpha = disabled ? disabledAlpha : enabledAplha;
 		}
-		
-		private function throwChangeEvent():void
-		{
-			if (_strand)
-			{
-				IEventDispatcher(_strand).dispatchEvent(new ValueEvent("disabledChange", disabled));
-			}
-		}
-
 		
 	}
 }

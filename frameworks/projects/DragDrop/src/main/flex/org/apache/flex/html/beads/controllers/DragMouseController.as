@@ -243,16 +243,19 @@ package org.apache.flex.html.beads.controllers
 							(dragImage as InteractiveObject).mouseEnabled = false;
 							(dragImage as DisplayObjectContainer).mouseChildren = false;
 						}
+						COMPILE::JS {
+							dragImage.element.style['pointer-events'] = 'none';
+						}
                     }
                 }
             }
             else
             {
-                trace("DRAG-MOUSE: sending dragMove " + event.target.toString());
+//                trace("DRAG-MOUSE: sending dragMove " + event.target.toString());
                 dragEvent = DragEvent.createDragEvent("dragMove", event);
-                trace("client: " + event.clientX.toString() + " " + event.clientY.toString() + " " + event.target.toString());
+//                trace("client: " + event.clientX.toString() + " " + event.clientY.toString() + " " + event.target.toString());
                 pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
-                trace("host: " + pt.x.toString() + " " + pt.y.toString());
+//                trace("host: " + pt.x.toString() + " " + pt.y.toString());
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
                 DragEvent.dispatchDragEvent(dragEvent, event.target);
@@ -261,12 +264,12 @@ package org.apache.flex.html.beads.controllers
         
         private function dragMouseUpHandler(event:MouseEvent):void
         {
-            trace("DRAG-MOUSE: dragMouseUp");
+//            trace("DRAG-MOUSE: dragMouseUp");
             var dragEvent:DragEvent;
             
             if (dragging)
             {
-                trace("DRAG-MOUSE: sending dragEnd");
+//                trace("DRAG-MOUSE: sending dragEnd");
 				
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
 				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);

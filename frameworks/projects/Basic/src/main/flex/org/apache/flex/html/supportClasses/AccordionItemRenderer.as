@@ -39,7 +39,6 @@ package org.apache.flex.html.supportClasses
 		{
 			super();
 			percentWidth = 100;
-			addBead(new ClippingViewport());
 		}
 		
 		public function get selected():Boolean

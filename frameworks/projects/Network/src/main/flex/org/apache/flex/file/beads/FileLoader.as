@@ -67,7 +67,7 @@ package org.apache.flex.file.beads
 			{
 				var reader:FileReader = new FileReader();
 				goog.events.listen(reader, 'load', fileLoadHandler);
-				reader.readAsBinaryString(fileModel.file);
+				reader.readAsArrayBuffer(fileModel.file);
 			}
 		}
 		
