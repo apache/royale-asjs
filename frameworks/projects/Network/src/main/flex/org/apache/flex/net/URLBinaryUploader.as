@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,19 +47,19 @@ package org.apache.flex.net
 		{
 			super();
 		}
-        override protected function createStream():void
-        {
-            stream = new URLUploadStream();
-        }
+		override protected function createStream():void
+		{
+			stream = new URLUploadStream();
+		}
 
 		/**
 		 * @flexjsignorecoercion org.apache.flex.net.URLUploadStream
 		 */
-        override protected function setupCallbacks():void
-        {
+		override protected function setupCallbacks():void
+		{
 			super.setupCallbacks();
 			(stream as URLUploadStream).onUploadProgress = uploadProgressFunction;
-        }
+		}
 		override protected function cleanupCallbacks():void
 		{
 			super.cleanupCallbacks();
@@ -90,13 +90,13 @@ package org.apache.flex.net
 			return this;
 		}
 
-        private function uploadProgressFunction(stream:URLStream):void
-        {
-            bytesLoaded = stream.bytesLoaded;
-            bytesTotal = stream.bytesTotal;
-            dispatchEvent(new ProgressEvent("uploadprogress",false,false,bytesLoaded,bytesTotal));
-            if(onUploadProgress)
-                onUploadProgress(this);
-        }
+		private function uploadProgressFunction(stream:URLStream):void
+		{
+			bytesLoaded = stream.bytesLoaded;
+			bytesTotal = stream.bytesTotal;
+			dispatchEvent(new ProgressEvent("uploadprogress",false,false,bytesLoaded,bytesTotal));
+			if(onUploadProgress)
+				onUploadProgress(this);
+		}
 	}
 }

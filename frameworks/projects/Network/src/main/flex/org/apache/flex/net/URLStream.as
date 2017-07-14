@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,51 +18,51 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {   
-    import org.apache.flex.events.DetailEvent;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.ProgressEvent;
-    import org.apache.flex.utils.BinaryData;
-    import org.apache.flex.utils.Endian;
+	import org.apache.flex.events.DetailEvent;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.EventDispatcher;
+	import org.apache.flex.events.ProgressEvent;
+	import org.apache.flex.utils.BinaryData;
+	import org.apache.flex.utils.Endian;
 
-    COMPILE::SWF
-    {
+	COMPILE::SWF
+	{
 		import flash.events.Event;
 		import flash.events.HTTPStatusEvent;
-        import flash.events.IOErrorEvent;
+		import flash.events.IOErrorEvent;
 		import flash.events.ProgressEvent;
 		import flash.events.SecurityErrorEvent;
 		import flash.net.URLRequest;
 		import flash.net.URLRequestHeader;
 		import flash.net.URLStream;
-        import flash.net.URLVariables;
-        import flash.utils.ByteArray;
-    }
-    
+		import flash.net.URLVariables;
+		import flash.utils.ByteArray;
+	}
+	
 	/**
 	 * The URLStream class deals with the underlying platform-specifc architecture for HTTP Requests
 	 * It makes the request and stores the response, dispatching events.
 	 */
-    public class URLStream extends EventDispatcher
-    {
-        COMPILE::JS 
-        {
-            protected var xhr:XMLHttpRequest;
-        }
-            
-        COMPILE::SWF
-        {
-            private var flashUrlStream:flash.net.URLStream
-        }
-        
+	public class URLStream extends EventDispatcher
+	{
+		COMPILE::JS 
+		{
+			protected var xhr:XMLHttpRequest;
+		}
+			
+		COMPILE::SWF
+		{
+			private var flashUrlStream:flash.net.URLStream
+		}
+		
 		/**
 		 * constructor
 		 */
-        public function URLStream()
-        {
-            super();
-        }
-        
+		public function URLStream()
+		{
+			super();
+		}
+		
 		/**
 		 *  The number of bytes loaded so far.
 		 *  
@@ -70,7 +70,7 @@ package org.apache.flex.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
-		 */        
+		 */		
 		public var bytesLoaded:uint = 0;
 		
 		/**
@@ -80,18 +80,18 @@ package org.apache.flex.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
-		 */        
+		 */		
 		public var bytesTotal:uint = 0;
 
 		/**
 		 * The BinaryData reponse received from the request. This can be a response or an error response.
 		 * The client should check the status to know how to interpret the response.
 		 */
-        public function get response():BinaryData
-        {
-            COMPILE::JS
+		public function get response():BinaryData
+		{
+			COMPILE::JS
 			{
-                    return new BinaryData(xhr.response as ArrayBuffer);
+					return new BinaryData(xhr.response as ArrayBuffer);
 			}
 			COMPILE::SWF
 			{
@@ -99,7 +99,7 @@ package org.apache.flex.net
 				flashUrlStream.readBytes(ba);
 				return new BinaryData(ba);
 			}
-        }
+		}
 
 		/**
 		 * loads the request
@@ -108,15 +108,15 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        public function load(urlRequest:org.apache.flex.net.URLRequest):void
-        {
-            COMPILE::JS {
-            	requestStatus = 0;
-                xhr = new XMLHttpRequest();
-                xhr.open(urlRequest.method, urlRequest.url);
-                xhr.responseType = "arraybuffer";
-                xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
-                xhr.addEventListener("progress", xhr_progress, false);
+		public function load(urlRequest:org.apache.flex.net.URLRequest):void
+		{
+			COMPILE::JS {
+				requestStatus = 0;
+				xhr = new XMLHttpRequest();
+				xhr.open(urlRequest.method, urlRequest.url);
+				xhr.responseType = "arraybuffer";
+				xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
+				xhr.addEventListener("progress", xhr_progress, false);
 				var contentTypeSet:Boolean = false;
 				for (var i:int = 0; i < urlRequest.requestHeaders.length; i++)
 				{
@@ -129,20 +129,20 @@ package org.apache.flex.net
 				}
 				if (!contentTypeSet)
 				{
-            		xhr.setRequestHeader("Content-type", urlRequest.contentType);
+					xhr.setRequestHeader("Content-type", urlRequest.contentType);
 				}
 				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : HTTPUtils.encodeUrlVariables(urlRequest.data);
 				send(requestData);
-            }
-            COMPILE::SWF 
-            {
-                flashUrlStream = new flash.net.URLStream();
-                var req:flash.net.URLRequest = new flash.net.URLRequest(urlRequest.url);
+			}
+			COMPILE::SWF 
+			{
+				flashUrlStream = new flash.net.URLStream();
+				var req:flash.net.URLRequest = new flash.net.URLRequest(urlRequest.url);
 				var contentSet:Boolean = false;
 				for each (var requestHeader:org.apache.flex.net.URLRequestHeader in urlRequest.requestHeaders)
 				{
 					if(requestHeader.name.toLowerCase() == HTTPHeader.CONTENT_TYPE.toLowerCase())
-					{                             	
+					{							 	
 						contentSet = true;
 						req.contentType = requestHeader.value;
 					}
@@ -158,17 +158,17 @@ package org.apache.flex.net
 					req.data = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
 						new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
 				}
-               
-                req.method = urlRequest.method;
+			   
+				req.method = urlRequest.method;
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, flash_status);
 				flashUrlStream.addEventListener(HTTPStatusEvent.HTTP_STATUS, flash_status);
-                flashUrlStream.addEventListener(flash.events.ProgressEvent.PROGRESS, flash_progress);
-                flashUrlStream.addEventListener(flash.events.Event.COMPLETE, flash_complete);
-                flashUrlStream.addEventListener(IOErrorEvent.IO_ERROR, flash_onIoError);
+				flashUrlStream.addEventListener(flash.events.ProgressEvent.PROGRESS, flash_progress);
+				flashUrlStream.addEventListener(flash.events.Event.COMPLETE, flash_complete);
+				flashUrlStream.addEventListener(IOErrorEvent.IO_ERROR, flash_onIoError);
 				flashUrlStream.addEventListener(SecurityErrorEvent.SECURITY_ERROR, flash_onSecurityError);
-                flashUrlStream.load(req);
-            }
-        }
+				flashUrlStream.load(req);
+			}
+		}
 		/**
 		 * send is a protected function in js so a subclass can attach an upload listener
 		 * without rewriting the whole load() function
@@ -187,7 +187,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::SWF
+		COMPILE::SWF
 		private function flash_status(event:HTTPStatusEvent):void
 		{
 			setStatus(event.status);
@@ -201,16 +201,16 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::SWF 
-        protected function flash_onIoError(event:IOErrorEvent):void
-        {
+		COMPILE::SWF 
+		protected function flash_onIoError(event:IOErrorEvent):void
+		{
 			dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,HTTPConstants.IO_ERROR));
 			//Is there useful text?
-            //trace("io error: " + event.text);
+			//trace("io error: " + event.text);
 			if(onError)
 				onError(this);
 			cleanupCallbacks();
-        }
+		}
 
 		/**
 		 *  Security error occurred (Flash only).
@@ -237,14 +237,14 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::SWF
-        protected function flash_complete(event:flash.events.Event):void
-        {
-            dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+		COMPILE::SWF
+		protected function flash_complete(event:flash.events.Event):void
+		{
+			dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
 			if(onComplete)
 				onComplete(this);
 			cleanupCallbacks();
-        }
+		}
 
 		/**
 		 *  Download is progressing (Flash only).
@@ -254,17 +254,17 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::SWF
-        protected function flash_progress(event:flash.events.ProgressEvent):void
-        {
-            var progEv:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
+		COMPILE::SWF
+		protected function flash_progress(event:flash.events.ProgressEvent):void
+		{
+			var progEv:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
 			
 			progEv.current = bytesLoaded = event.bytesLoaded;
 			progEv.total = bytesTotal = event.bytesTotal;
-            dispatchEvent(progEv);
+			dispatchEvent(progEv);
 			if(onProgress)
 				onProgress(this);
-        }
+		}
 
 		/**
 		 *  Download is progressing (JS only).
@@ -274,17 +274,17 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::JS
-        private function xhr_progress(error:Object):void
-        {
+		COMPILE::JS
+		private function xhr_progress(error:Object):void
+		{
 			var progEv:ProgressEvent = new ProgressEvent(ProgressEvent.PROGRESS);
 			progEv.current = bytesLoaded = error.loaded;
 			progEv.total = bytesTotal = error.total;
 			
-            dispatchEvent(progEv);
+			dispatchEvent(progEv);
 			if(onProgress)
 				onProgress(this);
-        }
+		}
 
 		/**
 		 *  HTTP status change (JS only).
@@ -294,9 +294,9 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        COMPILE::JS
-        private function xhr_onreadystatechange(error:*):void
-        {
+		COMPILE::JS
+		private function xhr_onreadystatechange(error:*):void
+		{
 			setStatus(xhr.status);
 			//we only need to deal with the status when it's done.
 			if(xhr.readyState != 4)
@@ -328,7 +328,7 @@ package org.apache.flex.net
 					onError(this);
 			}
 			cleanupCallbacks();
-        }
+		}
 
 		/**
 		 *  Set the HTTP request status.
@@ -357,22 +357,22 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-        public function close():void
-        {
-            COMPILE::SWF
-            {
-                flashUrlStream.close();
-            }
-            COMPILE::JS
-            {
-                xhr.abort();
-            }
+		public function close():void
+		{
+			COMPILE::SWF
+			{
+				flashUrlStream.close();
+			}
+			COMPILE::JS
+			{
+				xhr.abort();
+			}
 
-            //TODO send an event that it's been aborted
+			//TODO send an event that it's been aborted
 
 			cleanupCallbacks();
 
-        }
+		}
 
 		/**
 		 *  Indicates the status of the request.
@@ -381,7 +381,7 @@ package org.apache.flex.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
-		 */        
+		 */		
 		public var requestStatus:int = 0;
 
 		/**
@@ -391,7 +391,7 @@ package org.apache.flex.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
-		 */        
+		 */		
 		public var endian:String = Endian.BIG_ENDIAN;
 
 		/**
@@ -418,7 +418,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */		
-        public var onComplete:Function;
+		public var onComplete:Function;
 		
 		/**
 		 *  Callback for error event.
@@ -428,7 +428,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */		
-        public var onError:Function;
+		public var onError:Function;
 		
 		/**
 		 *  Callback for progress event.

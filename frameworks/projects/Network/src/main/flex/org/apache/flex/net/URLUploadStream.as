@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {   
-    import org.apache.flex.events.ProgressEvent;
-    
+	import org.apache.flex.events.ProgressEvent;
+	
 	/**
 	 * @see URLStream
 	 * The URLUploadStream extends the URLStream class to support upload progress events.
@@ -37,16 +37,16 @@ package org.apache.flex.net
 	 * @playerversion AIR 2.6
 	 * @productversion FlexJS 0.9.0
 	 */
-    public class URLUploadStream extends URLStream
-    {
-            
-        public function URLUploadStream()
-        {
-            super();
-        }
-        
-        COMPILE::JS
-        override protected function send(requestData:Object):void
+	public class URLUploadStream extends URLStream
+	{
+			
+		public function URLUploadStream()
+		{
+			super();
+		}
+		
+		COMPILE::JS
+		override protected function send(requestData:Object):void
 		{
 			xhr.upload.onprogress = xhr_uploadprogress;
 			xhr.send(requestData);
@@ -61,16 +61,16 @@ package org.apache.flex.net
 		 *  @productversion FlexJS 0.7.0
 		 */
 		COMPILE::JS
-        private function xhr_uploadprogress(progress:Object):void
-        {
+		private function xhr_uploadprogress(progress:Object):void
+		{
 			var progEv:ProgressEvent = new ProgressEvent("uploadprogress");
 			progEv.current = bytesLoaded = progress["loaded"];
 			progEv.total = bytesTotal = progress["total"];
 			
-            dispatchEvent(progEv);
+			dispatchEvent(progEv);
 			if(onUploadProgress)
 				onUploadProgress(this);
-        }
+		}
 
 		/**
 		 *  Cleanup all callbacks.
