@@ -27,7 +27,7 @@ package org.apache.flex.net
 
 
 	/**
-	 *  The BinaryUploader class is a relatively low-level class designed to get
+	 *  The URLBinaryLoader class is a relatively low-level class designed to get
 	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.  
 	 *  
 	 *  @langversion 3.0
@@ -59,7 +59,7 @@ package org.apache.flex.net
 		public var endian:String = Endian.BIG_ENDIAN;
 		
 
-        private var stream:URLStream;
+        protected var stream:URLStream;
         
 		/**
 		 *  The number of bytes loaded so far.
@@ -84,13 +84,17 @@ package org.apache.flex.net
         public function URLBinaryLoader()
         {
             super();
+            createStream();
+        }
+        protected function createStream():void
+        {
             stream = new URLStream();
         }
         private function progressFunction(stream:URLStream):void
         {
             bytesLoaded = stream.bytesLoaded;
             bytesTotal = stream.bytesTotal;
-            dispatchEvent(new ProgressEvent(ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal));
+            dispatchEvent(new ProgressEvent("progress",false,false,bytesLoaded,bytesTotal));
             if(onProgress)
                 onProgress(this);
         }
@@ -98,14 +102,14 @@ package org.apache.flex.net
         private function statusFunction(stream:URLStream):void
         {
             requestStatus = stream.requestStatus;
-            dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+requestStatus));
+            dispatchEvent(new DetailEvent("httpStatus",false,false,""+requestStatus));
             if(onStatus)
                 onStatus(this);
         }
         
         private function errorFunction(stream:URLStream):void
         {
-            dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+            dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
             if(onError)
                 onError(this);
             cleanupCallbacks();
@@ -114,13 +118,13 @@ package org.apache.flex.net
         private function completeFunction(stream:URLStream):void
         {
 			data = stream.response;
-            dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+            dispatchEvent(new org.apache.flex.events.Event("complete"));
             if(onComplete)
                 onComplete(this);
             cleanupCallbacks();
         }
         
-        private function setupCallbacks():void
+        protected function setupCallbacks():void
         {
             stream.onProgress = progressFunction;
 
@@ -153,36 +157,8 @@ package org.apache.flex.net
         public function close():void
         {
             stream.close();
+            cleanupCallbacks();
 			//TODO do we need a callback for canceling?
-        }
-        
-        private function completeHandler(event:Event):void
-        {
-            data = stream.response;
-            if (data)
-            {
-                dispatchEvent(event);
-				if(onComplete)
-					onComplete(this);
-
-            }
-            else
-            {
-                // TODO dipatch error event?
-                dispatchEvent(new Event(HTTPConstants.IO_ERROR));
-				if(onError)
-					onError(this);
-            }
-			cleanupCallbacks();
-        }
-        
-        private function progressHandler(event:ProgressEvent):void
-        {
-            this.bytesLoaded = event.current;
-            this.bytesTotal = event.total;
-            dispatchEvent(event);
-			if(onProgress)
-				onProgress(this);
         }
     }
 }

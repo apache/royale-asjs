@@ -38,19 +38,26 @@ package org.apache.flex.net
         import flash.net.URLVariables;
         import flash.utils.ByteArray;
     }
-        
+    
+	/**
+	 * The URLStream class deals with the underlying platform-specifc architecture for HTTP Requests
+	 * It makes the request and stores the response, dispatching events.
+	 */
     public class URLStream extends EventDispatcher
     {
         COMPILE::JS 
         {
-            private var xhr:XMLHttpRequest;
+            protected var xhr:XMLHttpRequest;
         }
             
         COMPILE::SWF
         {
             private var flashUrlStream:flash.net.URLStream
         }
-            
+        
+		/**
+		 * constructor
+		 */
         public function URLStream()
         {
             super();
@@ -76,6 +83,10 @@ package org.apache.flex.net
 		 */        
 		public var bytesTotal:uint = 0;
 
+		/**
+		 * The BinaryData reponse received from the request. This can be a response or an error response.
+		 * The client should check the status to know how to interpret the response.
+		 */
         public function get response():BinaryData
         {
             COMPILE::JS
@@ -90,6 +101,13 @@ package org.apache.flex.net
 			}
         }
 
+		/**
+		 * loads the request
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.7.0
+		 */
         public function load(urlRequest:org.apache.flex.net.URLRequest):void
         {
             COMPILE::JS {
@@ -114,8 +132,7 @@ package org.apache.flex.net
             		xhr.setRequestHeader("Content-type", urlRequest.contentType);
 				}
 				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : HTTPUtils.encodeUrlVariables(urlRequest.data);
-				xhr.send(requestData);
-//				xhr.send(HTTPUtils.encodeUrlVariables(urlRequest.data));
+				send(requestData);
             }
             COMPILE::SWF 
             {
@@ -152,6 +169,15 @@ package org.apache.flex.net
                 flashUrlStream.load(req);
             }
         }
+		/**
+		 * send is a protected function in js so a subclass can attach an upload listener
+		 * without rewriting the whole load() function
+		 */
+		COMPILE::JS
+		protected function send(requestData:Object):void
+		{
+			xhr.send(requestData);
+		}
 
 		/**
 		 *  HTTP status changed (Flash only).
@@ -221,7 +247,7 @@ package org.apache.flex.net
         }
 
 		/**
-		 *  Upload is progressing (Flash only).
+		 *  Download is progressing (Flash only).
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -241,7 +267,7 @@ package org.apache.flex.net
         }
 
 		/**
-		 *  Upload is progressing (JS only).
+		 *  Download is progressing (JS only).
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -278,26 +304,26 @@ package org.apache.flex.net
 			if(xhr.status == 0)
 			{
 				//Error. We don't know if there's a network error or a CORS error so there's no detail
-				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR));
+				dispatchEvent(new DetailEvent("communicationError"));
 				if(onError)
 					onError(this);
 			}
 			else if(xhr.status < 200)
 			{
-				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+				dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
 				if(onError)
 					onError(this);
 			}
 			else if(xhr.status < 300)
 			{
-				dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+				dispatchEvent(new org.apache.flex.events.Event("complete"));
 				if(onComplete)
 					onComplete(this);
 				
 			}
 			else
 			{
-				dispatchEvent(new DetailEvent(HTTPConstants.COMMUNICATION_ERROR,false,false,""+requestStatus));
+				dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
 				if(onError)
 					onError(this);
 			}
@@ -317,7 +343,7 @@ package org.apache.flex.net
 			if(value != requestStatus)
 			{
 				requestStatus = value;
-				dispatchEvent(new DetailEvent(HTTPConstants.STATUS,false,false,""+value));
+				dispatchEvent(new DetailEvent("httpStatus",false,false,""+value));
 				if(onStatus)
 					onStatus(this);
 			}
@@ -376,7 +402,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.7.0
 		 */
-		private function cleanupCallbacks():void
+		protected function cleanupCallbacks():void
 		{
 			onComplete = null;
 			onError = null;

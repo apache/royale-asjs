@@ -75,6 +75,16 @@ package org.apache.flex.events
          */
 		public static const PROGRESS:String = "progress";
 
+        /**
+         *  For upload progress events.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
+         */
+		public static const UPLOAD_PROGRESS:String = "uploadprogress";
+
 		/**
 		 * Create a copy/clone of the ProgressEvent object.
 		 *
