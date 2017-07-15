@@ -58,16 +58,10 @@ package org.apache.flex.html
 		{
 			super();
 			className = "ToolTip";
-		}
-
-		/**
-		 * @private
-		 */
-		COMPILE::SWF
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			(element as InteractiveObject).mouseEnabled = false;
+			COMPILE::SWF
+			{
+				mouseEnabled = false;
+			}
 		}
 
 		/**
@@ -78,7 +72,7 @@ package org.apache.flex.html
         {
 			var element:WrappedHTMLElement = super.createElement();
 			positioner.style.position = 'absolute';
-			positioner.style["pointer-events"] = "none";
+			positioner.style.pointerEvents = "none";
 			typeNames = "ToolTip";
 			return element;
 		}		
