@@ -53,11 +53,11 @@ package org.apache.flex.html.accessories
 		{
 		}
 
-		public static const TOP:int = 0;
-		public static const BOTTOM:int = 1;
-		public static const LEFT:int = 2;
-		public static const RIGHT:int = 3;
-		public static const MIDDLE:int = 4;
+		public static const TOP:int = 10000;
+		public static const BOTTOM:int = 10001;
+		public static const LEFT:int = 10002;
+		public static const RIGHT:int = 10003;
+		public static const MIDDLE:int = 10004;
 
 		private var _toolTip:String;
 		private var tt:ToolTip;
@@ -159,6 +159,7 @@ package org.apache.flex.html.accessories
 			var xFactor:Number = 1;
 			var yFactor:Number = 1;
 			var pt:Point;
+			var relative:Boolean = _xPos > TOP &&  _yPos > TOP;
 
 			if (_xPos == LEFT) {
 				xFactor = Number.POSITIVE_INFINITY;
