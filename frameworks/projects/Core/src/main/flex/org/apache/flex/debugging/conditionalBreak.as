@@ -39,8 +39,8 @@ package org.apache.flex.debugging
         }
         COMPILE::JS
         {
-            if(goog.DEBUG && condition)
-                debugger;
+            // if(goog.DEBUG && condition)
+                // debugger;
         }
     }
 }
