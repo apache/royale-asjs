@@ -91,13 +91,13 @@ limitations under the License.
 	
 	<js:TextArea id="ta" width="300" height="100" 
 				 text="{taText}" />
-	<js:TextButton width="120" text="assert() pass" click="assert1()"/>
-	<js:TextButton width="120" text="assert() fail" click="assert2()"/>
-	<js:TextButton width="120" text="assertType() pass" click="assertType1()"/>
-	<js:TextButton width="120" text="assertType() fail" click="assertType2()"/>
-	<js:TextButton width="120" text="check() pass" click="check1()"/>
-	<js:TextButton width="120" text="check() fail" click="check2()"/>
-	<js:TextButton width="120" text="notNull() pass" click="notNull1()"/>
-	<js:TextButton width="120" text="notNull() fail null" click="notNull2()"/>
-	<js:TextButton width="120" text="notNull() fail undefined" click="notNull3()"/>
+	<js:TextButton width="150" text="assert() pass" click="assert1()"/>
+	<js:TextButton width="150" text="assert() fail" click="assert2()"/>
+	<js:TextButton width="150" text="assertType() pass" click="assertType1()"/>
+	<js:TextButton width="150" text="assertType() fail" click="assertType2()"/>
+	<js:TextButton width="150" text="check() pass" click="check1()"/>
+	<js:TextButton width="150" text="check() fail" click="check2()"/>
+	<js:TextButton width="150" text="notNull() pass" click="notNull1()"/>
+	<js:TextButton width="150" text="notNull() fail null" click="notNull2()"/>
+	<js:TextButton width="150" text="notNull() fail undefined" click="notNull3()"/>
 </js:View>
