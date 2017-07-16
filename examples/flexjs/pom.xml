@@ -61,6 +61,8 @@
     <module>TeamPage</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
+    <module>TableExample</module>
+    <module>DebuggingExample</module>
   </modules>
 
   <build>
