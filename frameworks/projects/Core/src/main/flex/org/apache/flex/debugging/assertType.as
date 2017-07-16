@@ -27,16 +27,16 @@ package org.apache.flex.debugging
     /**
      * asserts an object is of the desired type.
      */
-    public function assertType(obj:Object,type:Class):void
+    public function assertType(obj:Object,type:Class,message:String):void
     {
         COMPILE::SWF
         {
-            assert((obj is type),"object is not the correct type"); 
+            assert((obj is type),message); 
         }
         COMPILE::JS
         {
             if(goog.DEBUG)
-                assert((obj is type),"object is not the correct type"); 
+                assert((obj is type),message); 
         }
     }
 }

@@ -16,31 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.debugging
-{
-    COMPILE::JS
-    {
-        import goog.DEBUG;
-    }
 
-    /**
-     * Throws an error if the object is null.
-     */
-    public function notNull(obj:Object):void
-    {
-        COMPILE::SWF
-        {
-            if(obj == null)
-                throw new Error("null not allowed");
-        }
-        COMPILE::JS
-        {
-            if(goog.DEBUG && obj == null)
-            {
-                var name:String = obj === null ? "null" : "undefined"
-                throw new Error(name +" not allowed");
+DESCRIPTION
 
-            }
-        }
-    }
-}
+The DebuggingExample shows how to use the debugging package.
+
+This Flex application may be run as a Flash SWF or cross-compiled (using Falcon JX)
+into JavaScript and HTML and run without Flash.
+
+
+COMPONENTS and BEADS
+
+- TextButton
+- Label
+- TextArea
+
+
+NOTES
+
+The Changing the content of the TextArea will reverse the passing and failing asserts.
