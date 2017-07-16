@@ -89,7 +89,7 @@ local.properties
 *.sdf
 ipch/
 obj/
-[Dd]ebug*/
+[Dd]ebug/
 [Rr]elease*/
 Ankh.NoLoad
 
