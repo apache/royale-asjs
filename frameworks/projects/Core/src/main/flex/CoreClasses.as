@@ -115,9 +115,9 @@ internal class CoreClasses
 	
 	import org.apache.flex.debugging.assert; assert;
 	import org.apache.flex.debugging.assertType; assertType;
+	import org.apache.flex.debugging.check; check;
 	// import org.apache.flex.debugging.conditionalBreak; conditionalBreak;
 	import org.apache.flex.debugging.notNull; notNull;
-	import org.apache.flex.debugging.warn; warn;
 
 	import org.apache.flex.core.StyleChangeNotifier; StyleChangeNotifier;
 	import org.apache.flex.events.CustomEvent; CustomEvent;
