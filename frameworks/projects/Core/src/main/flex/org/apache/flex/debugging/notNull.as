@@ -23,6 +23,9 @@ package org.apache.flex.debugging
         import goog.DEBUG;
     }
 
+    /**
+     * Throws an error if the object is null.
+     */
     public function notNull(obj:Object):void
     {
         COMPILE::SWF

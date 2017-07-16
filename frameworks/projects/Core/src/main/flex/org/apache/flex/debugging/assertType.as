@@ -18,29 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.debugging
 {
-    COMPILE::SWF
-    {
-        import flash.debugger.enterDebugger;
-    }
+
     COMPILE::JS
     {
         import goog.DEBUG;
     }
     
     /**
-     * If the condition is not met, the code will break into the debugger.
+     * asserts an object is of the desired type.
      */
-    public function conditionalBreak(condition:Boolean):void
+    public function assertType(obj:Object,type:Class):void
     {
         COMPILE::SWF
         {
-            if(condition)
-                enterDebugger();
+            assert((obj is type),"object is not the correct type"); 
         }
         COMPILE::JS
         {
-            if(goog.DEBUG && condition)
-                debugger;
+            if(goog.DEBUG)
+                assert((obj is type),"object is not the correct type"); 
         }
     }
 }

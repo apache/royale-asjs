@@ -23,6 +23,9 @@ package org.apache.flex.debugging
         import goog.DEBUG;
     }
 
+    /**
+     * assert throws an error if the condition is not met.
+     */
     public function assert(condition:Boolean,message:String):void
     {
         COMPILE::SWF

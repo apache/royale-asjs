@@ -23,7 +23,10 @@ package org.apache.flex.debugging
         import goog.DEBUG;
     }
 
-    public function warn(condition:Boolean,message:String):void
+    /**
+     * Traces a warning if the condition is not met.
+     */
+    public function check(condition:Boolean,message:String):void
     {
         COMPILE::SWF
         {
