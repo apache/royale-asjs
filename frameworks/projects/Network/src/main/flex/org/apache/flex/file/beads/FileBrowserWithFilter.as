@@ -37,11 +37,14 @@ package org.apache.flex.file.beads
 		public var filter:String = "";
 		
 		/**
-		 * 
 		 *  @copy org.apache.flex.file.beads.FileBrowser#browse()
 		 *  @flexjsignorecoercion HTMLInputElement
+		 *
+		 *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.9
 		 */
-
 		override public function browse():void
 		{
 			COMPILE::JS

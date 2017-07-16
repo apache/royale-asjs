@@ -101,7 +101,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IAlertModel#lastModified
+		 *  @copy org.apache.flex.file.IFileModel#lastModified
 		 */
 		public function get lastModified():uint
 		{
@@ -133,14 +133,25 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 * @private
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
 		 */
 		COMPILE::JS
 		public function get file():File
 		{
 			return _data as File;
 		}
-		
+
+        /**
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.9
+         */
 		public function get blob():BinaryData
 		{
 			return _blob;

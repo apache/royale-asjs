@@ -61,7 +61,6 @@ package org.apache.flex.file.beads
 	public class FileUploader implements IBead
 	{
 		private var _strand:IStrand;
-
 		
 		/**
 		 *  Upload a file to the specified url.

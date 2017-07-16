@@ -64,7 +64,7 @@ package org.apache.flex.file
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IAlertModel#lastModified
+		 *  @copy org.apache.flex.file.IFileModel#lastModified
 		 */
 		public function get lastModified():uint
 		{

@@ -23,74 +23,91 @@ import org.apache.flex.core.IStrand;
 import org.apache.flex.events.Event;
 import org.apache.flex.events.IEventDispatcher;
 
-COMPILE::SWF
-public class CORSCredentialsBead {
-    public function CORSCredentialsBead(withCredentials:Boolean = false) {
-        trace("Only needed for JavaScript HTTP Server calls");
-    }
-}
-
-/**
- *  Bead to allow passing on user authentication information in a XMLHttpRequest request.
- *
- *  If you don't use this bead any cross domain calls that require user authentication
- *  (via say basic authentication or cookies) will fail.
- *
- *  @productversion FlexJS 0.8
- */
-COMPILE::JS
-public class CORSCredentialsBead implements IBead {
-
-    public function CORSCredentialsBead(withCredentials:Boolean = false) {
-        this.withCredentials = withCredentials;
-    }
-
-    private var _strand:IStrand;
-
-    /**
-     *  Listen for a pre and post send event to modify if user credentials are passed.
-     *
-     *  @productversion FlexJS 0.8
-     */
-    public function set strand(value:IStrand):void {
-        _strand = value;
-
-        IEventDispatcher(_strand).addEventListener("preSend", preSendHandler);
-        IEventDispatcher(_strand).addEventListener("postSend", postSendHandler);
+    COMPILE::SWF
+    public class CORSCredentialsBead {
+        public function CORSCredentialsBead(withCredentials:Boolean = false) {
+            trace("Only needed for JavaScript HTTP Server calls");
+        }
     }
 
     /**
-     *  Modify the HTTP request to pass credentials.
+     *  Bead to allow passing on user authentication information in a XMLHttpRequest request.
      *
-     *  @productversion FlexJS 0.8
-     */
-    protected function preSendHandler(event:Event):void {
-        (event.target.element as XMLHttpRequest).withCredentials = withCredentials;
-    }
-
-    /**
-     *  Clean up event listeners.
+     *  If you don't use this bead any cross domain calls that require user authentication
+     *  (via say basic authentication or cookies) will fail.
      *
-     *  @productversion FlexJS 0.8
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.9
      */
-    protected function postSendHandler(event:Event):void {
-        IEventDispatcher(_strand).removeEventListener("preSend", preSendHandler);
-        IEventDispatcher(_strand).removeEventListener("postSend", preSendHandler);
-    }
+    COMPILE::JS
+    public class CORSCredentialsBead implements IBead {
 
-    private var _withCredentials:Boolean = false;
+        public function CORSCredentialsBead(withCredentials:Boolean = false) {
+            this.withCredentials = withCredentials;
+        }
 
-    /**
-     *  Pass the user credentials or not.
-     *
-     *  @productversion FlexJS 0.8
-     */
-    public function get withCredentials():Boolean {
-        return _withCredentials;
-    }
+        private var _strand:IStrand;
 
-    public function set withCredentials(value:Boolean):void {
-        _withCredentials = value;
+        /**
+         *  Listen for a pre and post send event to modify if user credentials are passed.
+         *
+         *  @copy org.apache.flex.core.IBead#strand
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function set strand(value:IStrand):void {
+            _strand = value;
+
+            IEventDispatcher(_strand).addEventListener("preSend", preSendHandler);
+            IEventDispatcher(_strand).addEventListener("postSend", postSendHandler);
+        }
+
+        /**
+         *  Modify the HTTP request to pass credentials.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        protected function preSendHandler(event:Event):void {
+            (event.target.element as XMLHttpRequest).withCredentials = withCredentials;
+        }
+
+        /**
+         *  Clean up event listeners.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        protected function postSendHandler(event:Event):void {
+            IEventDispatcher(_strand).removeEventListener("preSend", preSendHandler);
+            IEventDispatcher(_strand).removeEventListener("postSend", preSendHandler);
+        }
+
+        private var _withCredentials:Boolean = false;
+
+        /**
+         *  Pass the user credentials or not.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.8
+         */
+        public function get withCredentials():Boolean {
+            return _withCredentials;
+        }
+
+        public function set withCredentials(value:Boolean):void {
+            _withCredentials = value;
+        }
     }
-}
 }

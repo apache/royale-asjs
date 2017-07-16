@@ -99,7 +99,12 @@ package org.apache.flex.net
 	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
 		/**
-		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.0
 		 */
 		public function BinaryUploader()
 		{
