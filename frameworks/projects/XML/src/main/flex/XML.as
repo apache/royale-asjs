@@ -838,7 +838,14 @@ package
 			list.targetProperty = name;
 			return list;
 		}
-
+		/**
+		 * for each should work on XML too
+		 * @private
+		 */
+		public function elementNames():Array
+		{
+			return [0];
+		}
 		public function equals(xml:*):Boolean
 		{
 			/*
