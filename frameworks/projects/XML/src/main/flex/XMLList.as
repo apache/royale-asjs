@@ -21,6 +21,7 @@ package
 	COMPILE::JS
 	public class XMLList
 	{
+		import org.apache.flex.debugging.throwError;
 		public function XMLList()
 		{
 			addIndex(0);
@@ -665,8 +666,9 @@ package
 				removeChildAt(i);
 				return;
 			}
-
-			if(child is XMLList)
+			if (isSingle())
+				_xmlArray[0].removeChild(child);
+			else if(child is XMLList)
 			{
 				len = child.length();
 				for(i=0;i<len;i++)
@@ -691,6 +693,8 @@ package
 
 		public function removeChildAt(idx:int):void
 		{
+			if (isSingle())
+				_xmlArray[0].removeChildAt(idx);
 			if(idx >= 0 && idx < _xmlArray.length)
 			{
 				var child:XML = _xmlArray[idx];
@@ -701,6 +705,12 @@ package
 		}
 		private function replaceChildAt(idx:int,child:*):void
 		{
+			if (isSingle())
+			{
+				_xmlArray[0].replaceChildAt(idx,child);
+				return;
+			}
+
 			var i:int;
 			var childToReplace:XML = _xmlArray[idx];
 			if(childToReplace && _targetObject)
@@ -1064,6 +1074,18 @@ package
 		private function isSingle():Boolean
 		{
 			return _xmlArray.length == 1;
+		}
+
+		/**
+		 * This coerces single-item XMLList objects to XML for cases where the type is expected to be XML
+		 */
+		public function toXML():XML
+		{
+			if (isSingle())
+				return _xmlArray[0];
+			
+			throwError("Incompatible assignment of XMLList to XML");
+			return null;
 		}
 	}
 }
