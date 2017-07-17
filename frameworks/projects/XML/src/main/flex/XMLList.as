@@ -164,6 +164,9 @@ package
 		 */
 		public function attribute(attributeName:*):XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].attribute(attributeName);
+
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -182,6 +185,9 @@ package
 		 */
 		public function attributes():XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].attributes();
+
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -212,7 +218,9 @@ package
 				}
 				return retVal;
 			}
-
+			if(isSingle())
+				return _xmlArray[0].child(propertyName);
+			
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
@@ -238,6 +246,9 @@ package
 		 */
 		public function children():XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].children();
+
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -256,6 +267,9 @@ package
 		 */
 		public function comments():XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].comments();
+			
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -336,6 +350,9 @@ package
 		 */
 		public function descendants(name:Object = "*"):XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].descendants(name);
+
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -356,6 +373,9 @@ package
 		 */
 		public function elements(name:Object = "*"):XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].elements(name);
+			
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -379,6 +399,8 @@ package
 
 		public function equals(list:*):Boolean
 		{
+			if(isSingle())
+				return _xmlArray[0].equals(list);
 			/*
 				Overview
 				The XMLList type adds the internal [[Equals]] method to the internal properties defined by the Object type.
@@ -443,6 +465,9 @@ package
 				a. If x[i].[[Class]] == "element" and the result of calling the [[HasProperty]] method of x[i] with argument P == true, return true
 				3. Return false			
 			*/
+			if(isSingle())
+				return _xmlArray[0].hasOwnProperty(propertyName);
+
 			if(parseInt(propertyName,10).toString() == propertyName)
 			{
 				return parseInt(propertyName,10) < _xmlArray.length;
@@ -597,6 +622,8 @@ package
 		 */
 		public function processingInstructions(name:String = "*"):XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].processingInstructions(name);
 			var retVal:XMLList = new XMLList();
 			if(!name)
 				return retVal;

@@ -21,6 +21,8 @@ package
 	COMPILE::JS
 	public class XML
 	{
+		import org.apache.flex.debugging.assert;
+		import org.apache.flex.debugging.assertType;
 		/*
 		 * Dealing with namespaces:
 		 * If the name is qualified, it has a prefix. Otherwise, the prefix is null.
@@ -394,6 +396,7 @@ package
 		}
 		private function addChildInternal(child:XML):void
 		{
+			assertType(child,XML,"Type must be XML");
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 			{
@@ -496,24 +499,30 @@ package
 			*/
 			var childType:String = typeof child;
 			if(childType != "object")
-			{
-				child = child.toString();
-				var xml:XML = new XML();
-				xml.setNodeKind("text");
-				xml.setValue(child);
-				child = xml;				
-			}
-
-			if(child is XMLList)
-				child = child[0];
-
-			child.setParent(this);
+				child = xmlFromStringable(child);
 			
-			_children.push(child);
+			appendChildInternal(child);
 			normalize();
-			return child;
+			return this;
 		}
 		
+		private function appendChildInternal(child:*):void
+		{
+			if(child is XMLList)
+			{
+				var len:int = child.length();
+				for(var i:int=0; i<len; i++)
+				{
+					appendChildInternal(child[0]);
+				}
+			}
+			else
+			{
+				assertType(child,XML,"Type must be XML");
+				child.setParent(this);
+				_children.push(child);
+			}
+		}
 		
 		/**
 		 * Returns the XML value of the attribute that has the name matching the attributeName parameter.
@@ -1395,6 +1404,14 @@ package
 			return list.plus(rightHand);
 		}
 
+		private function xmlFromStringable(value:*):XML
+		{
+			var str:String = value.toString();
+			var xml:XML = new XML();
+			xml.setNodeKind("text");
+			xml.setValue(str);
+			return xml;
+		}
 		/**
 		 * Inserts the provided child object into the XML element before any existing XML properties for that element.
 		 * @param value
@@ -1403,12 +1420,33 @@ package
 		 */
 		public function prependChild(child:XML):XML
 		{
-			child.setParent(this);
-			
-			_children.unshift(child);
+			var childType:String = typeof child;
+			if(childType != "object")
+				child = xmlFromStringable(child);
 
-			return child;
+			prependChildInternal(child);
+			normalize();
+			return this;
 		}
+		
+		private function prependChildInternal(child:*):void
+		{
+			if(child is XMLList)
+			{
+				var len:int = child.length();
+				for(var i:int=0; i<len; i++)
+				{
+					prependChildInternal(child[0]);
+				}
+			}
+			else
+			{
+				assertType(child,XML,"Type must be XML");
+				child.setParent(this);
+				_children.unshift(child);
+			}
+		}
+
 		
 		/**
 		 * If a name parameter is provided, lists all the children of the XML object that contain processing instructions with that name.
@@ -1465,14 +1503,14 @@ package
 			var removed:XML;
 			if(!child)
 				return false;
-			if(!_attributes)
-				return false;
 
 			if(!(child is XML))
 				return removeChildByName(child);
 			
 			if(child.nodeKind() == "attribute")
 			{
+				if(!_attributes)
+					return false;
 				for(i=0;i<_attributes.length;i++)
 				{
 					if(child.equals(_attributes[i]))
@@ -1483,13 +1521,14 @@ package
 						return true;
 					}
 				}
+				return false;
 			}
 			var idx:int = _children.indexOf(child);
 			if(idx < 0)
 				return false;
 			removed = _children.splice(idx,1);
-			child.setParent(null);
-			return removed;
+			child._parent = null;
+			return true;
 		}
 		private function removeChildByName(name:*):Boolean
 		{
@@ -1507,7 +1546,7 @@ package
 					if(_attributes[i].name().matches(name))
 					{
 						child = _attributes[i];
-						child.setParent(null);
+						child._parent = null;
 						_attributes.splice(i,1);
 						removedItem = true;
 					}
@@ -1522,7 +1561,7 @@ package
 				if(_children[i].name().matches(name))
 				{
 					child = _children[i];
-					child.setParent(null);
+					child._parent = null;
 					_children.splice(i,1);
 					removedItem = true;
 				}
