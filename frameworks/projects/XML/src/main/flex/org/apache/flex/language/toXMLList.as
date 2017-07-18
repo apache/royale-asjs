@@ -16,24 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class XMLClasses
+package org.apache.flex.language
 {
 	COMPILE::JS
 	{
 		import XML; XML;
 		import XMLList; XMLList;
-		import QName; QName;
-		import Namespace; Namespace;
-		import org.apache.flex.language.toXML; toXML;
-		import org.apache.flex.language.toXMLList; toXMLList;
+        import org.apache.flex.debugging.notNull;
 	}
-}
+    /**
+     * @flexjsignorecoercion XML
+     * @flexjsignorecoercion XMLList
+     */
+    COMPILE::JS
+    public function toXMLList(value:*):XMLList
+    {
+        notNull(value);
+        if(value is XMLList)
+            return value as XMLList;
+        if(value is XML)
+            return new XMLList(value);
+        // Anything other than bool, string or number should cause an error.
+        switch(typeof value)
+        {
+            case "boolean":
+            case "number":
+            case "string":
+                break;
+            default:
+                throw new Error("Incompatible type!");
+        }
+        return new XMLList(value);
+    }
 }

@@ -311,50 +311,23 @@ package
 		}
 
 
-		public function XML(xml:String = null)
+		public function XML(xml:* = null)
 		{
 			// _origStr = xml;
 			_children = [];
 			if(xml)
 			{
-				var parser:DOMParser = new DOMParser();
-				// get error namespace. It's different in different browsers.
-				var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
-
-				var doc:Document = parser.parseFromString(xml, "application/xml");
-
-				//check for errors
-				if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
-        			throw new Error('XML parse error');
-    			for(var i:int=0;i<doc.childNodes.length;i++)
-    			{
-					var node:Element = doc.childNodes[i];
-					if(node.nodeType == 1)
-					{
-						_version = doc.xmlVersion;
-						_encoding = doc.xmlEncoding;
-						_name = new QName();
-						_name.prefix = node.prefix;
-						_name.uri = node.namespaceURI;
-						_name.localName = node.localName;
-						iterateElement(node,this);
-					}
-					else
-					{
-						// Do we record the nodes which are probably processing instructions?
-//						var child:XML = XML.fromNode(node);
-//						addChild(child);
-					}
-
-    			}
-				normalize();
+				var xmlStr:String = "" + xml;
+				if(xmlStr.indexOf("<") == -1)
+				{
+					_nodeKind = "text";
+					_value = xmlStr;
+				}
+				else
+				{
+					parseXMLStr(xmlStr);
+				}
 			}
-			//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
-			
-			// get rid of nodes we do not want 
-
-			//loop through the child nodes and build XML obejcts for each.
-			
 			Object.defineProperty(this,"0",
 				{
 					"get": function():* { return this; },
@@ -365,6 +338,43 @@ package
 				}
 			);
 			
+		}
+
+		private function parseXMLStr(xml:String):void
+		{
+			var parser:DOMParser = new DOMParser();
+			// get error namespace. It's different in different browsers.
+			var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
+
+			var doc:Document = parser.parseFromString(xml, "application/xml");
+
+			//check for errors
+			if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
+				throw new Error('XML parse error');
+			for(var i:int=0;i<doc.childNodes.length;i++)
+			{
+				var node:Element = doc.childNodes[i];
+				if(node.nodeType == 1)
+				{
+					_version = doc.xmlVersion;
+					_encoding = doc.xmlEncoding;
+					_name = new QName();
+					_name.prefix = node.prefix;
+					_name.uri = node.namespaceURI;
+					_name.localName = node.localName;
+					iterateElement(node,this);
+				}
+				else
+				{
+					// Do we record the nodes which are probably processing instructions?
+//						var child:XML = XML.fromNode(node);
+//						addChild(child);
+				}
+			}
+			normalize();
+		//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
+		// get rid of nodes we do not want
+		//loop through the child nodes and build XML obejcts for each.
 		}
 		
 		private var _children:Array;
@@ -396,7 +406,7 @@ package
 		}
 		private function addChildInternal(child:XML):void
 		{
-			assertType(child,XML,"Type must be XML");
+			// assertType(child,XML,"Type must be XML");
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 			{
@@ -518,7 +528,7 @@ package
 			}
 			else
 			{
-				assertType(child,XML,"Type must be XML");
+				// assertType(child,XML,"Type must be XML");
 				child.setParent(this);
 				_children.push(child);
 			}
@@ -1448,7 +1458,7 @@ package
 			}
 			else
 			{
-				assertType(child,XML,"Type must be XML");
+				// assertType(child,XML,"Type must be XML");
 				child.setParent(this);
 				_children.unshift(child);
 			}

@@ -22,9 +22,30 @@ package
 	public class XMLList
 	{
 		import org.apache.flex.debugging.throwError;
-		public function XMLList()
+		public function XMLList(expression:Object = null)
 		{
 			addIndex(0);
+			if(expression)
+				parseExpression(expression);
+		}
+		private function parseExpression(expression:Object):void
+		{
+			if(expression is XMLList)
+			{
+				targetObject = expression.targetObject;
+				targetProperty = expression.targetProperty;
+
+				var len:int = expression.length();
+				for(var i:int=0;i<len;i++){
+					this[i] = expression[i];
+				}
+			}
+			else if(expression is XML)
+			{
+				this[0] = expression;
+			}
+			else
+				this[0] = new XML(expression);
 		}
 		private var _xmlArray:Array = [];
 		/*
