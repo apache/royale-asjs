@@ -770,7 +770,7 @@ package
 			if(idx >= _children.length)
 				return;
 			var child:XML = _children[idx];
-			child.setParent(null);
+			child._parent = null;
 			_children.splice(idx,1);
 		}
 		
@@ -1392,10 +1392,10 @@ package
 				{
 					if(lastChild && lastChild.nodeKind() == "text")
 					{
-						child.setValue(child.text() + lastChild.text());
+						child.setValue(child.s() + lastChild.s());
 						deleteChildAt(i+1);
 					}
-					if(!child.text())
+					if(!child.s())
 						deleteChildAt(i);
 				}
 				lastChild = child;
@@ -1533,7 +1533,7 @@ package
 					if(child.equals(_attributes[i]))
 					{
 						removed = _attributes[i];
-						removed.setParent(null);
+						removed._parent = null;
 						_attributes.splice(i,1);
 						return true;
 					}
@@ -1754,7 +1754,7 @@ package
 			{
 				//6.
 				if(_children[idx])
-					_children[idx].setParent(null);
+					_children[idx]._parent = null;
 
 				var len:int = v.length();
 				v[0].setParent(this);
@@ -1766,9 +1766,7 @@ package
 					chld = v[listIdx];
 					insertChildAt(chld,idx+listIdx);
 					listIdx++;
-
 				}
-
 			}
 			else
 			{
