@@ -87,30 +87,28 @@ package org.apache.flex.html.beads
 		
 		private function handleDragEnter(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragEnter");
+			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.target.toString());
 			
 			_dropController.acceptDragDrop(event.target as IUIBase, DropType.COPY);
 		}
 		
 		private function handleDragExit(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragExit");
+			trace("SingleSelectionDropTargetBead received DragExit via: "+event.target.toString());
 		}
 		
 		private function handleDragOver(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragOver");
+			trace("SingleSelectionDropTargetBead received DragOver via: "+event.target.toString());
 		}
 		
 		private function handleDragDrop(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragDrop!");
-			
-			if (DropMouseController.dropTargetObject == null) return; 
-			
+			trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
+						
 			var targetIndex:int = -1; // indicates drop beyond length of items
 			
-			var startHere:Object = DropMouseController.dropTargetObject;
+			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
 				startHere = startHere.parent;
 			}

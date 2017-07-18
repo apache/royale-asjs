@@ -28,6 +28,10 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
+	
+	COMPILE::SWF {
+		import flash.display.InteractiveObject;
+	}
 
     /**
      *  Indicates that the mouse has entered the component during
@@ -84,18 +88,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @productversion FlexJS 0.0
 	 */
 	public class DropMouseController extends EventDispatcher implements IBead
-	{
-		
-		/**
-		 * The object under the mouse when the drop was executed.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.8
-		 */
-		public static var dropTargetObject:Object;
-		
+	{		
 		/**
 		 *  constructor.
 		 *  
@@ -156,15 +149,15 @@ package org.apache.flex.html.beads.controllers
             if (!inside)
             {
                 dragEvent = DragEvent.createDragEvent("dragEnter", event as MouseEvent);
-                dispatchEvent(dragEvent);
+				dispatchEvent(dragEvent);
                 inside = true;
-                IUIBase(_strand).topMostEventDispatcher.addEventListener(DragEvent.DRAG_END, dragEndHandler);
+                IUIBase(_strand).addEventListener(DragEvent.DRAG_END, dragEndHandler);
                 IUIBase(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
             }
             else
             {
                 dragEvent = DragEvent.createDragEvent("dragOver", event as MouseEvent);
-                dispatchEvent(dragEvent);
+				dispatchEvent(dragEvent);
             }
         }
         
@@ -175,10 +168,10 @@ package org.apache.flex.html.beads.controllers
             if (inside)
             {
                 dragEvent = DragEvent.createDragEvent("dragExit", event);
-                dispatchEvent(dragEvent);
+				dispatchEvent(dragEvent);
                 inside = false;
             }
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
         
@@ -187,21 +180,25 @@ package org.apache.flex.html.beads.controllers
 		 */
         private function dragEndHandler(event:DragEvent):void
         {
-            trace("DROP-MOUSE: dragEnd received for event: "+event.target.toString());
+            trace("DROP-MOUSE: dragEnd received for event via: "+event.target.toString());
             var dragEvent:DragEvent;
-			
-			DropMouseController.dropTargetObject = event.target;
-            
+			            
 			var screenPoint:Point = new Point(event.screenX, event.screenY);
 			var newPoint:Point = PointUtils.globalToLocal(screenPoint, _strand);
             dragEvent = DragEvent.createDragEvent("dragDrop", event as MouseEvent);
 			dragEvent.clientX = newPoint.x;
 			dragEvent.clientY = newPoint.y;
+			COMPILE::SWF {
+				dragEvent.relatedObject = event.target as InteractiveObject;
+			}
+			COMPILE::JS {
+				dragEvent.relatedObject = event.target;
+			}
 						
-			DragEvent.dispatchDragEvent(dragEvent, this);
+			DragEvent.dispatchDragEvent(dragEvent, this); 
             
             inside = false;
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
         }
 		

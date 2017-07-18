@@ -20,15 +20,16 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Point;
@@ -36,6 +37,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Group;
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.controllers.DragMouseController;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
 	
     
@@ -43,6 +45,10 @@ package org.apache.flex.html.beads
 	 *  The SingleSelectionDragSourceBead brings drag capability to single-selection List components.
 	 *  By adding this bead, a user can drag a row of the List to a new location within the list. This bead
 	 *  should be used in conjunction with SingleSelectionDropTargetBead.
+	 * 
+	 *  This bead adds a new event to the strand, "dragImageNeeded", which is dispatched on the strand
+	 *  just prior to the dragImage's appearance. An event listener can create its own dragImage if the
+	 *  default, taken from the data item, is not suitable.
 	 * 
 	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead.
      *
@@ -100,43 +106,30 @@ package org.apache.flex.html.beads
 		private function handleDragStart(event:DragEvent):void
 		{
 			trace("SingleSelectionDragSourceBead received the DragStart");
+						
+			DragEvent.dragInitiator = this;
 			
-			if (DragMouseController.dragStartObject == null) return; // not interested in empty things
-			
-			var startHere:Object = DragMouseController.dragStartObject;
-			while( !(startHere is IItemRenderer) && startHere != null) {
+			var startHere:Object = event.target;
+			while( !(startHere is DataItemRenderer) && startHere != null) {
 				startHere = startHere.parent;
 			}
 			
-			if (startHere is IItemRenderer) {
-				var ir:IItemRenderer = startHere as IItemRenderer;
+			if (startHere is DataItemRenderer) {
+				var ir:DataItemRenderer = startHere as DataItemRenderer;
 				
 				var p:UIBase = (ir as UIBase).parent as UIBase;
 				indexOfDragSource = p.getElementIndex(ir);
 				
-				var dragImage:UIBase = new Group();
-				dragImage.className = "DragImage";
-				dragImage.width = (ir as UIBase).width;
-				dragImage.height = (ir as UIBase).height;
-				var label:Label = new Label();
-				label.text = ir.data.toString();
-				COMPILE::JS {
-					dragImage.element.style.position = 'absolute';
-					dragImage.element.style.cursor = 'pointer';
-				}
-				dragImage.addElement(label);
-				
-				DragEvent.dragSource = ir.data;
-				DragEvent.dragInitiator = this;
-				DragMouseController.dragImage = dragImage;
+				trace("SingleSelectionDragSourceBead index of dragged object: "+indexOfDragSource);
 			}
+			 
 		}
 		
 		/* IDragInitiator */
 		
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{
-			trace("Accepting drop of type "+type);
+			trace("SingleSelectionDragSourceBead accepting drop of type "+type);
 			if (dragType == "copy") return;
 			
 			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
@@ -164,7 +157,7 @@ package org.apache.flex.html.beads
 		
 		public function acceptedDrop(dropTarget:Object, type:String):void
 		{
-			trace("Accepted drop of type "+type);
+			trace("SingleSelectionDragSourceBead accepted drop of type "+type);
 			var value:Object = DragEvent.dragSource;
 			trace(" -- index: "+indexOfDragSource+" of data: "+value.toString());
 			
