@@ -105,7 +105,7 @@ package org.apache.flex.utils
 		}
 
 		/**
-		 * int()
+		 * string()
 		 *
 		 * @param value The value to be cast.
 		 * @return {string}
