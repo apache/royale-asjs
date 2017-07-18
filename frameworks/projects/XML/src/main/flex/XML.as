@@ -1961,7 +1961,7 @@ package
 					}
 					else {
 						insertChildAfter(curChild, chld);
-						curChild = child;
+						curChild = chld;
 					}
 				}
 			}
