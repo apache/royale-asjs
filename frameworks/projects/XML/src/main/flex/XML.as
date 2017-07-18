@@ -406,7 +406,7 @@ package
 		}
 		private function addChildInternal(child:XML):void
 		{
-			// assertType(child,XML,"Type must be XML");
+			assertType(child,XML,"Type must be XML");
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 			{
@@ -528,7 +528,7 @@ package
 			}
 			else
 			{
-				// assertType(child,XML,"Type must be XML");
+				assertType(child,XML,"Type must be XML");
 				child.setParent(this);
 				_children.push(child);
 			}
@@ -1458,7 +1458,7 @@ package
 			}
 			else
 			{
-				// assertType(child,XML,"Type must be XML");
+				assertType(child,XML,"Type must be XML");
 				child.setParent(this);
 				_children.unshift(child);
 			}
@@ -1953,13 +1953,15 @@ package
 					chld = elements[i];
 					if(!curChild)
 					{
+						curChild = chld
 						if(childIdx < 0)
-							curChild = prependChild(chld);
+							prependChild(chld);
 						else
-							curChild = appendChild(chld);
+							appendChild(chld);
 					}
 					else {
-						curChild = insertChildAfter(curChild, chld);
+						insertChildAfter(curChild, chld);
+						curChild = child;
 					}
 				}
 			}
@@ -2009,10 +2011,12 @@ package
 					chld = value[i];
 					if(!curChild)
 					{
-						curChild = appendChild(chld);
+						curChild = chld;
+						appendChild(chld);
 					}
 					else {
-						curChild = insertChildAfter(curChild, chld);
+						insertChildAfter(curChild, chld);
+						curChild = chld;
 					}
 				}
 			}
