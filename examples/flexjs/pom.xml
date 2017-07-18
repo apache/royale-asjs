@@ -63,6 +63,7 @@
     <module>TreeExample</module>
     <module>TableExample</module>
     <module>DebuggingExample</module>
+    <module>DataBindingExampleWithFlexLayout</module>
   </modules>
 
   <build>
