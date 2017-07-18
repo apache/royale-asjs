@@ -714,8 +714,6 @@ package
 
 		public function removeChildAt(idx:int):void
 		{
-			if (isSingle())
-				_xmlArray[0].removeChildAt(idx);
 			if(idx >= 0 && idx < _xmlArray.length)
 			{
 				var child:XML = _xmlArray[idx];
@@ -726,12 +724,6 @@ package
 		}
 		private function replaceChildAt(idx:int,child:*):void
 		{
-			if (isSingle())
-			{
-				_xmlArray[0].replaceChildAt(idx,child);
-				return;
-			}
-
 			var i:int;
 			var childToReplace:XML = _xmlArray[idx];
 			if(childToReplace && _targetObject)
