@@ -32,6 +32,9 @@ package org.apache.flex.core
         import goog.events;
         import goog.events.EventTarget;
         import org.apache.flex.events.utils.EventUtils;
+        import org.apache.flex.events.KeyboardEvent;
+        import org.apache.flex.events.MouseEvent;
+        import goog.events.BrowserEvent;
     }
 
     COMPILE::SWF
@@ -59,10 +62,23 @@ package org.apache.flex.core
          * @param eventObject The event object to pass to the listener.
          * @return Result of listener.
          */
-		static public function fireListenerOverride(listener:Object, eventObject:BrowserEvent):Boolean
+		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
-			var e:BrowserEvent = new BrowserEvent();
-			e.wrappedEvent = eventObject;
+            var e:IBrowserEvent;
+            switch(eventObject.event_.constructor.name)
+            {
+                case "KeyboardEvent":
+                    e = new KeyboardEvent();
+                    break;
+                case "MouseEvent":
+                    e = new MouseEvent();
+                    break;
+                default:
+                    e = new org.apache.flex.events.BrowserEvent();
+                    break;
+            }
+
+			e.wrapEvent(eventObject);
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}
 

@@ -28,6 +28,7 @@ package org.apache.flex.events
     {
         import window.MouseEvent;
 		import org.apache.flex.events.utils.EventUtils;
+		import goog.events.BrowserEvent;
     }
     
     import org.apache.flex.core.IFlexJSElement;
@@ -253,6 +254,17 @@ package org.apache.flex.events
 			this.controlKey = controlKey;
 			this.clickCount = clickCount;
 		}
+
+		/**
+		 * @type {?goog.events.BrowserEvent}
+		 */
+		public var wrappedEvent:Object;
+
+        COMPILE::JS
+		public function wrapEvent(event:goog.events.BrowserEvent):void
+        {
+            wrappedEvent = event;
+        }
 
 		private var _localX:Number;
 		public function get localX():Number

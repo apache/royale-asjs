@@ -57,7 +57,7 @@ package org.apache.flex.events
 	 * @productversion FlexJS 0.0
 	 */
 	COMPILE::JS
-	public class BrowserEvent
+	public class BrowserEvent implements IBrowserEvent
 	{
 
 		//--------------------------------------
@@ -69,6 +69,10 @@ package org.apache.flex.events
 		 */
 		public var wrappedEvent:Object;
 
+		public function wrapEvent(event:goog.events.BrowserEvent):void
+		{
+			wrappedEvent = event;
+		}
 		//--------------------------------------
 		//   Function
 		//--------------------------------------
@@ -435,8 +439,8 @@ package org.apache.flex.events
          */
 		public function stopImmediatePropagation():void
 		{
-			//wrappedEvent.stopImmediatePropagation(); // not in goog.events.BrowserEvent
-			wrappedEvent.stopPropagation();
+			wrappedEvent.event_.stopImmediatePropagation(); // not in goog.events.BrowserEvent
+			// wrappedEvent.stopPropagation();
 		}
 
         /**

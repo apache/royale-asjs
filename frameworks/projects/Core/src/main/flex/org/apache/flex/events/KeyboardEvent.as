@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events
 {
+    COMPILE::JS
+    {
+        import goog.events.BrowserEvent;
+    }
     public class KeyboardEvent extends Event
     {
         COMPILE::SWF
@@ -29,6 +33,18 @@ package org.apache.flex.events
         public static const KEY_DOWN:String = "keydown";
         COMPILE::JS
         public static const KEY_UP:String = "keyup";
+
+		/**
+		 * @type {?goog.events.BrowserEvent}
+		 */
+        COMPILE::JS
+		public var wrappedEvent:Object;
+
+        COMPILE::JS
+		public function wrapEvent(event:goog.events.BrowserEvent):void
+        {
+            wrappedEvent = event;
+        }
 
         public function KeyboardEvent(
             type:String,
