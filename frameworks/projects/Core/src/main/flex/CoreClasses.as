@@ -216,6 +216,8 @@ internal class CoreClasses
     import org.apache.flex.utils.Proxy; Proxy;
     import org.apache.flex.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
 	
+	import org.apache.flex.language.string.match; match;
+	import org.apache.flex.language.string.search; search;
 	COMPILE::JS
 	{
 	    import org.apache.flex.core.IFlexJSElement; IFlexJSElement;
