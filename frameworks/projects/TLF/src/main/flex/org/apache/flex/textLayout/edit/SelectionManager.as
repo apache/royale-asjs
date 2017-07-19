@@ -2230,19 +2230,16 @@ package org.apache.flex.textLayout.edit
 						// set cursor for row, table or column
 						if (cell.colIndex == 0 && point.x < leftEdge && point.y > topEdge)
 						{
-							event.stopPropagation();
 							event.stopImmediatePropagation();
 							setMouseCursor(SelectTableRow);
 						}
 						else if (cell.rowIndex == 0 && cell.colIndex == 0 && point.x < leftEdge && point.y < topEdge)
 						{
-							event.stopPropagation();
 							event.stopImmediatePropagation();
 							setMouseCursor(SelectTable);
 						}
 						else if (cell.rowIndex == 0 && point.x > leftEdge && point.y < topEdge)
 						{
-							event.stopPropagation();
 							event.stopImmediatePropagation();
 							setMouseCursor(SelectTableColumn);
 						}
