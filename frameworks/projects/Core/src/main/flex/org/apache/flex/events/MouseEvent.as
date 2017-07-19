@@ -34,6 +34,7 @@ package org.apache.flex.events
     import org.apache.flex.core.IFlexJSElement;
     import org.apache.flex.geom.Point;
     import org.apache.flex.utils.PointUtils;
+    import org.apache.flex.events.IBrowserEvent;
 
 
 	/**
@@ -202,7 +203,7 @@ package org.apache.flex.events
 	}
 
 	COMPILE::JS
-	public class MouseEvent extends Event implements IFlexJSEvent
+	public class MouseEvent extends Event implements IFlexJSEvent, IBrowserEvent
 	{
 		private static function platformConstant(s:String):String
 		{
@@ -292,7 +293,34 @@ package org.apache.flex.events
 		public var ctrlKey:Boolean;
 		public var altKey:Boolean;
 		public var shiftKey:Boolean;
-		public var buttonDown:Boolean;
+		private var _buttons:int = -1;
+		public function get buttonDown():Boolean
+		{
+			if(_buttons > -1)
+				return _buttons == 1;
+			if(!wrappedEvent)
+				return false;
+			var ev:* = wrappedEvent.event_;
+			//Safari does not yet support buttons
+			if ('buttons' in ev)
+				_buttons = ev["buttons"];
+			else
+				_buttons = ev["which"];
+			return _buttons == 1;
+		}
+		public function set buttonDown(value:Boolean):void
+		{
+			_buttons = value ? 1 : 0;
+		}
+
+		public function get buttons():int
+		{
+			return _buttons;
+		}
+		public function set buttons(value:int):void
+		{
+			_buttons = value;
+		}
 		public var delta:int;
 		public var commandKey:Boolean;
 		public var controlKey:Boolean;
@@ -464,6 +492,29 @@ package org.apache.flex.events
                 buttonDown, delta
             /* got errors for commandKey, commandKey, controlKey, clickCount*/);
         }
+        /**
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+         */
+		override public function stopImmediatePropagation():void
+		{
+            if(wrappedEvent)
+			    wrappedEvent["event_"].stopImmediatePropagation();
+		}
+
+        /**
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+         */
+		override public function stopPropagation():void
+		{
+            if(wrappedEvent)
+			    wrappedEvent.stopPropagation();
+		}
 
 	}
 }

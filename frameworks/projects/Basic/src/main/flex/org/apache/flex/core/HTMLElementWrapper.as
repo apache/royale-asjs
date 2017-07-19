@@ -27,6 +27,7 @@ package org.apache.flex.core
     {
         import org.apache.flex.events.Event;        
         import org.apache.flex.events.BrowserEvent;
+        import org.apache.flex.events.IBrowserEvent;
         import org.apache.flex.events.ElementEvents;
         import org.apache.flex.events.EventDispatcher;
         import goog.events;
@@ -35,6 +36,8 @@ package org.apache.flex.core
         import org.apache.flex.events.KeyboardEvent;
         import org.apache.flex.events.MouseEvent;
         import goog.events.BrowserEvent;
+        import org.apache.flex.events.utils.KeyboardEventConverter;
+        import org.apache.flex.events.utils.MouseEventConverter;
     }
 
     COMPILE::SWF
@@ -65,13 +68,13 @@ package org.apache.flex.core
 		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
             var e:IBrowserEvent;
-            switch(eventObject.event_.constructor.name)
+            switch(eventObject["event_"].constructor.name)
             {
                 case "KeyboardEvent":
-                    e = new KeyboardEvent();
+                    e = KeyboardEventConverter.convert(eventObject["event_"]);
                     break;
                 case "MouseEvent":
-                    e = new MouseEvent();
+                    e = MouseEventConverter.convert(eventObject["event_"]);
                     break;
                 default:
                     e = new org.apache.flex.events.BrowserEvent();

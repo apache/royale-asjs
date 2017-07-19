@@ -22,7 +22,9 @@ package org.apache.flex.events
     {
         import goog.events.BrowserEvent;
     }
-    public class KeyboardEvent extends Event
+    import org.apache.flex.events.IBrowserEvent;
+
+    public class KeyboardEvent extends Event implements IBrowserEvent
     {
         COMPILE::SWF
         public static const KEY_DOWN:String = "keyDown";
@@ -136,6 +138,32 @@ package org.apache.flex.events
 		public function set specialKey(value:Boolean):void
 		{
 			_specialKey = value;
+		}
+
+        /**
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+         */
+        COMPILE::JS
+		override public function stopImmediatePropagation():void
+		{
+            if(wrappedEvent)
+			    wrappedEvent["event_"].stopImmediatePropagation();
+		}
+
+        /**
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+         */
+        COMPILE::JS
+		override public function stopPropagation():void
+		{
+            if(wrappedEvent)
+			    wrappedEvent.stopPropagation();
 		}
 
         /**

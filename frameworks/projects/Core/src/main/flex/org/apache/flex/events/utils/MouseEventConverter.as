@@ -17,10 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.events.utils
-{	
-    import flash.events.Event;
-    import flash.events.IEventDispatcher;
-    import flash.events.MouseEvent;
+{	COMPILE::SWF
+    {
+        import flash.events.Event;
+        import flash.events.IEventDispatcher;
+        import flash.events.MouseEvent;
+    }
     
     import org.apache.flex.events.MouseEvent;
     import org.apache.flex.events.utils.IHandlesOriginalEvent;
@@ -172,4 +174,16 @@ package org.apache.flex.events.utils
                 target.addEventListener(eventType, eventHandler, false, 9999);
         }
     }
+    COMPILE::JS
+	public class MouseEventConverter
+	{
+        public static function convert(oldEv:MouseEvent):org.apache.flex.events.MouseEvent
+        {
+            return new org.apache.flex.events.MouseEvent(oldEv.type, true, false,
+								   oldEv.clientX, oldEv.clientY,
+								   null,
+								   oldEv.ctrlKey, oldEv.altKey, oldEv.shiftKey);
+        }
+    }
+
 }
