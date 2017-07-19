@@ -85,6 +85,7 @@
         <ant dir="${basedir}/flexjs/DataGridExample"/>
         <ant dir="${basedir}/flexjs/DateControlsExample"/>
         <ant dir="${basedir}/flexjs/DesktopMap"/>
+        <ant dir="${basedir}/flexjs/DragAndDropExample"/>
         <ant dir="${basedir}/flexjs/FlexTeamPage_MDL"/>
         <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer"/>
         <ant dir="${basedir}/flexjs/FlexJSStore"/>
@@ -129,6 +130,7 @@
         <ant dir="${basedir}/flexjs/DataGridExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DateControlsExample" target="clean"/>
         <ant dir="${basedir}/flexjs/DesktopMap" target="clean"/>
+        <ant dir="${basedir}/flexjs/DragAndDropExample" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="clean"/>
         <ant dir="${basedir}/flexjs/FlexJSStore" target="clean"/>
@@ -163,6 +165,7 @@
         <ant dir="${basedir}/flexjs/DataGridExample" target="examine"/>
         <ant dir="${basedir}/flexjs/DateControlsExample" target="examine"/>
         <ant dir="${basedir}/flexjs/DesktopMap" target="examine"/>
+        <ant dir="${basedir}/flexjs/DragAndDropExample" target="examine"/>
         <ant dir="${basedir}/flexjs/FlexTeamPage_MDL" target="examine"/>
         <ant dir="${basedir}/flexjs/FlexWebsiteStatsViewer" target="examine"/>
         <ant dir="${basedir}/flexjs/FlexJSStore" target="examine"/>
