@@ -68,7 +68,7 @@ package org.apache.flex.core
 		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
             var e:IBrowserEvent;
-            switch(eventObject["event_"].constructor.name)
+            switch(eventObject["event_"]["constructor"]["name"])
             {
                 case "KeyboardEvent":
                     e = KeyboardEventConverter.convert(eventObject["event_"]);
