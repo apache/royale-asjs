@@ -150,7 +150,10 @@ package org.apache.flex.events
 		override public function stopImmediatePropagation():void
 		{
             if(wrappedEvent)
+            {
+			    wrappedEvent.stopPropagation();
 			    wrappedEvent["event_"].stopImmediatePropagation();
+            }
 		}
 
         /**

@@ -440,7 +440,7 @@ package org.apache.flex.events
 		public function stopImmediatePropagation():void
 		{
 			wrappedEvent.event_.stopImmediatePropagation(); // not in goog.events.BrowserEvent
-			// wrappedEvent.stopPropagation();
+			wrappedEvent.stopPropagation();
 		}
 
         /**
