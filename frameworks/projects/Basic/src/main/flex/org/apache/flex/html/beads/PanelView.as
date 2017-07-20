@@ -153,6 +153,8 @@ package org.apache.flex.html.beads
 				_titleBar.element.style["flex-grow"] = "0";
 				_titleBar.element.style["order"] = "1";
 			}
+			
+			_titleBar.addEventListener("close", handleClose);
 
 			// replace the TitleBar's model with the Panel's model (it implements ITitleBarModel) so that
 			// any changes to values in the Panel's model that correspond values in the TitleBar will
@@ -263,6 +265,11 @@ package org.apache.flex.html.beads
 		{
 			_contentArea.dispatchEvent(new Event("layoutNeeded"));
 			performLayout(event);
+		}
+		
+		private function handleClose(event:Event):void
+		{
+			IEventDispatcher(_strand).dispatchEvent(new Event("close"));
 		}
 		
 	}
