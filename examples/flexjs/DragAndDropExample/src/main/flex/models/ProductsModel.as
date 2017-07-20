@@ -16,26 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
-
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
+package models
 {
-	COMPILE::JS
+	import org.apache.flex.collections.ArrayList;
+	import products.Product;
+
+	public class ProductsModel
 	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
+		/**
+		 * Used for the DataGrid.
+		 */
+		private var _productList:ArrayList = new ArrayList([
+            new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
+            new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
+            new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
+            new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
+            new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
+		]);
 
+		public function get productList():ArrayList
+		{
+			return _productList;
+		}
+
+		/**
+		 * Used for the List
+		 */
+		private var _stateNames:Array = [
+			"Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", "Connecticut"
+		];
+
+		public function get stateNames():Array
+		{
+			return _stateNames;
+		}
 	}
-	import org.apache.flex.language.string.match; match;
-	import org.apache.flex.language.string.search; search;
 }
-
-}
-

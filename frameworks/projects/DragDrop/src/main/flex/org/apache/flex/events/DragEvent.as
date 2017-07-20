@@ -409,13 +409,17 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
+				// build an event target chain of ancestors so that bubbling
+				// will work for drag events on JS platform.
 				var pet:Object = target.getParentEventTarget();
 				if (!pet) {
 					var p:Object = target.parent;
-					while (p != null && !(p is IStrand)) {
+					var t:Object = target;
+					while (p != null && (p is IStrand)) {
+						t.setParentEventTarget(p);
+						t = p;
 						p = p.parent;
 					}
-					target.setParentEventTarget(p);
 				}
 				
 				(target as IEventDispatcher).dispatchEvent(event);

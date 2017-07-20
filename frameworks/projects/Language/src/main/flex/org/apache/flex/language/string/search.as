@@ -16,26 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
-
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
+package org.apache.flex.language.string
 {
-	COMPILE::JS
-	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-
-	}
-	import org.apache.flex.language.string.match; match;
-	import org.apache.flex.language.string.search; search;
+    public function search(str:String,pattern:String):int
+    {
+        trace("warning: String.search() should be called with a RegExp object rather than a String");
+        try
+        {
+            return str.search(pattern);
+        }
+        catch(err:Error)
+        {
+            return -1;
+        }
+    }
 }
-
-}
-

@@ -1,4 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="utf-8"?>
+<!---
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,26 +17,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
-
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
-{
-	COMPILE::JS
-	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-
-	}
-	import org.apache.flex.language.string.match; match;
-	import org.apache.flex.language.string.search; search;
-}
-
-}
-
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:local="*"
+				   xmlns:models="models.*"
+				   xmlns:js="library://ns.apache.org/flexjs/basic" 
+				   >
+	
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:model>
+		<models:ProductsModel />
+	</js:model>
+	<js:initialView>
+		<local:MyInitialView />
+	</js:initialView>
+</js:Application>

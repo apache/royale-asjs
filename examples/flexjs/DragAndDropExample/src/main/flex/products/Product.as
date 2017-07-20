@@ -16,26 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
-
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
+package products
 {
-	COMPILE::JS
+	public class Product
 	{
-	    import org.apache.flex.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-
+		public function Product(id:String,title:String,detail:Number,sales:Number,image:String)
+		{
+			this.id = id;
+			this.title = title;
+			this.detail = detail;
+			this.sales = sales;
+			this.image = image;
+		}
+		
+		public var id:String;
+		public var title:String;
+		public var detail:Number;
+		public var image:String;
+		public var sales:Number;
+		
+		public function toString():String
+		{
+			return title;
+		}
 	}
-	import org.apache.flex.language.string.match; match;
-	import org.apache.flex.language.string.search; search;
 }
-
-}
-
