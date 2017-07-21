@@ -68,20 +68,20 @@ package org.apache.flex.events.utils
 		 *  @productversion FlexJS 0.8
 		 */
 		COMPILE::JS
-		public static function convert(oldEvent:KeyboardEvent):org.apache.flex.events.KeyboardEvent
+		public static function convert(nativeEvent:Object):KeyboardEvent
 		{
-			var type:String = oldEvent.type;
-			var key:String = oldEvent.key;
+			var type:String = nativeEvent["type"];
+			var key:String = nativeEvent["key"];
 			if (key == null)
-				key = KeyConverter.convertCharCode(oldEvent['charCode']);
-			var code:String = oldEvent.code;
+				key = KeyConverter.convertCharCode(nativeEvent['charCode']);
+			var code:String = nativeEvent["code"];
 			if (code == null)
-				code = KeyConverter.convertKeyCode(oldEvent['keyCode']);
-			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
-			newEvent.altKey = oldEvent.altKey;
-			newEvent.ctrlKey = oldEvent.ctrlKey;
-			newEvent.metaKey = oldEvent.metaKey;
-			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? oldEvent.metaKey : oldEvent.ctrlKey;
+				code = KeyConverter.convertKeyCode(nativeEvent['keyCode']);
+			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
+			newEvent.altKey = nativeEvent["altKey"];
+			newEvent.ctrlKey = nativeEvent["ctrlKey"];
+			newEvent.metaKey = nativeEvent["metaKey"];
+			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? nativeEvent["metaKey"] : nativeEvent["ctrlKey"];
 			return newEvent;
 		}
 	}

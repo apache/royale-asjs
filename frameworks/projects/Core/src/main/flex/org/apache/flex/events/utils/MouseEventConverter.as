@@ -177,12 +177,11 @@ package org.apache.flex.events.utils
     COMPILE::JS
 	public class MouseEventConverter
 	{
-        public static function convert(oldEv:MouseEvent):org.apache.flex.events.MouseEvent
+        public static function convert(nativeEvent:Object):MouseEvent
         {
-            return new org.apache.flex.events.MouseEvent(oldEv.type, true, false,
-								   oldEv.clientX, oldEv.clientY,
-								   null,
-								   oldEv.ctrlKey, oldEv.altKey, oldEv.shiftKey);
+            return new MouseEvent(nativeEvent["type"], true, false,
+                nativeEvent["clientX"], nativeEvent["clientY"], null,
+                nativeEvent["ctrlKey"], nativeEvent["altKey"], nativeEvent["shiftKey"]);
         }
     }
 
