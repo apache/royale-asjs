@@ -40,7 +40,7 @@ package org.apache.flex.events
 		 * @type {?goog.events.BrowserEvent}
 		 */
         COMPILE::JS
-		public var wrappedEvent:Object;
+		private var wrappedEvent:Object;
 
         COMPILE::JS
 		public function wrapEvent(event:goog.events.BrowserEvent):void
@@ -66,6 +66,34 @@ package org.apache.flex.events
             _ctrlKey = ctrlKey;
             _metaKey = metaKey;
         }
+
+		/**
+         *  @copy org.apache.flex.events.BrowserEvent#target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+        COMPILE::JS
+		public function get target():Object
+		{
+			return getTargetWrapper(wrappedEvent.target);
+		}
+
+		/**
+         *  @copy org.apache.flex.events.BrowserEvent#currentTarget
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+        COMPILE::JS
+		public function get currentTarget():Object
+		{
+			return getTargetWrapper(wrappedEvent.currentTarget);
+		}
 
         private var _key:String;
         public function get key():String

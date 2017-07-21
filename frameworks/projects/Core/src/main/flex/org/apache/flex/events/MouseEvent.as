@@ -259,7 +259,8 @@ package org.apache.flex.events
 		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */
-		public var wrappedEvent:Object;
+		COMPILE::JS
+		private var wrappedEvent:Object;
 
         COMPILE::JS
 		public function wrapEvent(event:goog.events.BrowserEvent):void
@@ -325,6 +326,32 @@ package org.apache.flex.events
 		public var commandKey:Boolean;
 		public var controlKey:Boolean;
 		public var clickCount:int;
+
+		/**
+         *  @copy org.apache.flex.events.BrowserEvent#target
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+		public function get target():Object
+		{
+			return getTargetWrapper(wrappedEvent.target);
+		}
+
+		/**
+         *  @copy org.apache.flex.events.BrowserEvent#currentTarget
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+		public function get currentTarget():Object
+		{
+			return getTargetWrapper(wrappedEvent.currentTarget);
+		}
 
 		// TODO remove this when figure out how to preserve the real target
 		// The problem only manifests in SWF, so this alias is good enough for now

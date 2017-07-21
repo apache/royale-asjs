@@ -67,7 +67,7 @@ package org.apache.flex.events
 		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */
-		public var wrappedEvent:Object;
+		private var wrappedEvent:Object;
 
 		public function wrapEvent(event:goog.events.BrowserEvent):void
 		{
@@ -181,16 +181,7 @@ package org.apache.flex.events
 		 */
 		public function get currentTarget():Object
 		{
-			var o:Object = wrappedEvent.currentTarget;
-
-			if (o)
-			{
-				if (o.flexjs_wrapper)
-					return o.flexjs_wrapper;
-				if (o.parentNode && o.parentNode.flexjs_wrapper)
-				    return o.parentNode.flexjs_wrapper;
-			}
-			return o;
+			return getTargetWrapper(wrappedEvent.currentTarget);
 		}
 
 		/**
@@ -465,16 +456,7 @@ package org.apache.flex.events
 		 */
 		public function get target():Object
 		{
-			var o:Object = wrappedEvent.target;
-
-			if (o)
-			{
-				if (o.flexjs_wrapper)
-					return o.flexjs_wrapper;
-				if (o.parentNode && o.parentNode.flexjs_wrapper)
-				    return o.parentNode.flexjs_wrapper;
-			}
-			return o;
+			return getTargetWrapper(wrappedEvent.target);
 		}
 
 		/**

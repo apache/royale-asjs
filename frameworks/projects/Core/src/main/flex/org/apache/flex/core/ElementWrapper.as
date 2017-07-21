@@ -22,6 +22,7 @@ package org.apache.flex.core
     {
         import org.apache.flex.events.utils.EventUtils;
         import org.apache.flex.events.BrowserEvent;
+        import goog.events.BrowserEvent;
         import org.apache.flex.events.ElementEvents;
         import goog.events;
         import goog.events.EventTarget;
@@ -179,10 +180,10 @@ package org.apache.flex.core
          * @param eventObject The event object to pass to the listener.
          * @return Result of listener.
          */
-		static public function fireListenerOverride(listener:Object, eventObject:BrowserEvent):Boolean
+		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
-			var e:BrowserEvent = new BrowserEvent();
-			e.wrappedEvent = eventObject;
+			var e:org.apache.flex.events.BrowserEvent = new org.apache.flex.events.BrowserEvent();
+			e.wrapEvent(eventObject);
 			return ElementWrapper.googFireListener(listener, e);
 		}
 
