@@ -57,7 +57,7 @@ package products
 		{
 			super.data = value;
 			
-			image.url = data.image;
+			image.src = data.image;
 			title.text = data.title;
 			detail.text = data.detail;
 		}
