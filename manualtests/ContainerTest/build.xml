@@ -22,7 +22,8 @@
 <project name="containertest" default="main" basedir=".">
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="ContainerTest" />
-    
+    <property name="swf.version" value="11" />
+        
     <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${FLEXJS_HOME}/build.properties"/>
