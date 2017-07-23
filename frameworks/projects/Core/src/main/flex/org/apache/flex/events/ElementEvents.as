@@ -40,7 +40,8 @@ package org.apache.flex.events
             'mouseDown': 1,
             'mouseMove': 1,
             'rollOver': 1,
-            'rollOut': 1
+			'rollOut': 1,
+			'mouseWheel': 1
         };
 	}
 
@@ -65,7 +66,8 @@ package org.apache.flex.events
 				'mousedown': 1,
 				'mousemove': 1,
 				'rollover': 1,
-				'rollout': 1
+				'rollout': 1,
+				'wheel': 1
 			};
 	}
 }
