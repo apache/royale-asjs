@@ -24,6 +24,7 @@ package org.apache.flex.events
     COMPILE::JS
     {
         import org.apache.flex.core.IUIBase;
+		import org.apache.flex.core.IStrand;
         import window.Event;
         import window.MouseEvent;
         import org.apache.flex.events.utils.EventUtils;
@@ -261,27 +262,50 @@ package org.apache.flex.events
         public static var dragSource:Object;
 		
 		COMPILE::SWF {
-		private var _clientX:Number;
-		override public function set clientX(value:Number):void
-		{
-			super.clientX = value;
-			_clientX = value;
+			private var _clientX:Number;
+			
+			/**
+			 * @private
+			 */
+			override public function set clientX(value:Number):void
+			{
+				super.clientX = value;
+				_clientX = value;
+			}
+			override public function get clientX():Number
+			{
+				return _clientX;
+			}
+	        
+			private var _clientY:Number;
+			
+			/**
+			 * @private
+			 */
+			override public function set clientY(value:Number):void
+			{
+				super.clientY = value;
+				_clientY = value;
+			}
+			override public function get clientY():Number
+			{
+				return _clientY;
+			}
 		}
-		override public function get clientX():Number
-		{
-			return _clientX;
-		}
-        
-		private var _clientY:Number;
-		override public function set clientY(value:Number):void
-		{
-			super.clientY = value;
-			_clientY = value;
-		}
-		override public function get clientY():Number
-		{
-			return _clientY;
-		}
+		COMPILE::JS {
+			private var _relatedObject:Object;
+			
+			/**
+			 * @private
+			 */
+			public function get relatedObject():Object
+			{
+				return _relatedObject;
+			}
+			public function set relatedObject(value:Object):void
+			{
+				_relatedObject = value;
+			}
 		}
 
         /**
@@ -347,13 +371,18 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-                var e:window.Event = event as window.Event;
-                var out:window.MouseEvent = EventUtils.createMouseEvent(type, true, true, {
-                        view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
-                        clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
-                        shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
+				var de:DragEvent = new DragEvent(type, true, true);
 
-                return out as DragEvent;
+				de.altKey = event.altKey;
+				de.ctrlKey = event.ctrlKey;
+				de.shiftKey = event.shiftKey;
+				
+				var localPoint:Point = new Point(event.screenX, event.screenY);
+				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
+				de.clientX = clientPoint.x;
+				de.clientY = clientPoint.y;
+				
+				return de;
             }
         }
         
@@ -380,8 +409,20 @@ package org.apache.flex.events
             }
             COMPILE::JS
             {
-               // ((target as IUIBase).element as IEventDispatcher).dispatchEvent(event as window.Event);
-				(target as IEventDispatcher).dispatchEvent(event as window.Event);
+				// build an event target chain of ancestors so that bubbling
+				// will work for drag events on JS platform.
+				var pet:Object = target.getParentEventTarget();
+				if (!pet) {
+					var p:Object = target.parent;
+					var t:Object = target;
+					while (p != null && (p is IStrand)) {
+						t.setParentEventTarget(p);
+						t = p;
+						p = p.parent;
+					}
+				}
+				
+				(target as IEventDispatcher).dispatchEvent(event);
             }
         }
 
@@ -389,9 +430,6 @@ package org.apache.flex.events
          */
         private static function installDragEventMixin():Boolean 
         {
-            var o:Object = org.apache.flex.events.ElementEvents.elementEvents;
-            o['dragEnd'] = 1;
-            o['dragMove'] = 1;
             return true;
         }
         

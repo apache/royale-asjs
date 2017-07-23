@@ -64,6 +64,7 @@
     <module>TableExample</module>
     <module>DebuggingExample</module>
     <module>DataBindingExampleWithFlexLayout</module>
+    <module>DragAndDropExample</module>
   </modules>
 
   <build>

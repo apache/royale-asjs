@@ -16,24 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.language
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class DragDropClasses
-{	  
-    import org.apache.flex.core.DropType; DropType;
-    import org.apache.flex.events.DragEvent; DragEvent;   
-	
-	import org.apache.flex.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
-	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
-	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
+	COMPILE::JS
+	{
+		import XML; XML;
+		import XMLList; XMLList;
+        import org.apache.flex.debugging.notNull;
+	}
+    /**
+     * @flexjsignorecoercion XML
+     * @flexjsignorecoercion XMLList
+     */
+    COMPILE::JS
+    public function toXMLList(value:*):XMLList
+    {
+        notNull(value);
+        if(value is XMLList)
+            return value as XMLList;
+        if(value is XML)
+            return new XMLList(value);
+        // Anything other than bool, string or number should cause an error.
+        switch(typeof value)
+        {
+            case "boolean":
+            case "number":
+            case "string":
+                break;
+            default:
+                throw new Error("Incompatible type!");
+        }
+        return new XMLList(value);
+    }
 }
-
-}
-

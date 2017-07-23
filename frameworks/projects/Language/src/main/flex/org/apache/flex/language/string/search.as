@@ -16,24 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.flex.language.string
 {
-
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class DragDropClasses
-{	  
-    import org.apache.flex.core.DropType; DropType;
-    import org.apache.flex.events.DragEvent; DragEvent;   
-	
-	import org.apache.flex.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
-	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
-	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
+    public function search(str:String,pattern:String):int
+    {
+        trace("warning: String.search() should be called with a RegExp object rather than a String");
+        try
+        {
+            return str.search(pattern);
+        }
+        catch(err:Error)
+        {
+            return -1;
+        }
+    }
 }
-
-}
-

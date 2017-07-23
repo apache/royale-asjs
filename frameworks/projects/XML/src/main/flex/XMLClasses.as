@@ -32,6 +32,8 @@ internal class XMLClasses
 		import XMLList; XMLList;
 		import QName; QName;
 		import Namespace; Namespace;
+		import org.apache.flex.language.toXML; toXML;
+		import org.apache.flex.language.toXMLList; toXMLList;
 	}
 }
 }

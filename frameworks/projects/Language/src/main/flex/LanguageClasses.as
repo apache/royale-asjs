@@ -31,7 +31,10 @@ internal class LanguageClasses
 	    import org.apache.flex.utils.Language; Language;
 		import QName; QName;
 		import Namespace; Namespace;
+
 	}
+	import org.apache.flex.language.string.match; match;
+	import org.apache.flex.language.string.search; search;
 }
 
 }

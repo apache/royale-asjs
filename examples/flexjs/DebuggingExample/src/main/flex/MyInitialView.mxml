@@ -34,12 +34,12 @@ limitations under the License.
 			[Bindable]private var taText:String = "Some Text Area Text";
 			private function init():void
 			{
-				// callLater(assert1);
-				// callLater(assert2);
-				// callLater(assertType1);
-				// callLater(assertType2);
-				// callLater(check1);
-				// callLater(check2);
+				callLater(assert1);
+				callLater(assert2);
+				callLater(assertType1);
+				callLater(assertType2);
+				callLater(check1);
+				callLater(check2);
 			}
 			private function assert1():void{
 				assert(ta.text == taText,"Text doesn't match!");

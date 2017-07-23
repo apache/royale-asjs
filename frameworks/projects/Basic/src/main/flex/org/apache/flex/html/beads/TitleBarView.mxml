@@ -37,7 +37,7 @@ limitations under the License.
             
             private function clickHandler():void
             {
-                var newEvent:org.apache.flex.events.Event = new org.apache.flex.events.Event('close',true);
+                var newEvent:org.apache.flex.events.Event = new org.apache.flex.events.Event('close');
                 UIBase(_strand).dispatchEvent(newEvent)   
             }
         ]]>

@@ -311,50 +311,23 @@ package
 		}
 
 
-		public function XML(xml:String = null)
+		public function XML(xml:* = null)
 		{
 			// _origStr = xml;
 			_children = [];
 			if(xml)
 			{
-				var parser:DOMParser = new DOMParser();
-				// get error namespace. It's different in different browsers.
-				var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
-
-				var doc:Document = parser.parseFromString(xml, "application/xml");
-
-				//check for errors
-				if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
-        			throw new Error('XML parse error');
-    			for(var i:int=0;i<doc.childNodes.length;i++)
-    			{
-					var node:Element = doc.childNodes[i];
-					if(node.nodeType == 1)
-					{
-						_version = doc.xmlVersion;
-						_encoding = doc.xmlEncoding;
-						_name = new QName();
-						_name.prefix = node.prefix;
-						_name.uri = node.namespaceURI;
-						_name.localName = node.localName;
-						iterateElement(node,this);
-					}
-					else
-					{
-						// Do we record the nodes which are probably processing instructions?
-//						var child:XML = XML.fromNode(node);
-//						addChild(child);
-					}
-
-    			}
-				normalize();
+				var xmlStr:String = "" + xml;
+				if(xmlStr.indexOf("<") == -1)
+				{
+					_nodeKind = "text";
+					_value = xmlStr;
+				}
+				else
+				{
+					parseXMLStr(xmlStr);
+				}
 			}
-			//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
-			
-			// get rid of nodes we do not want 
-
-			//loop through the child nodes and build XML obejcts for each.
-			
 			Object.defineProperty(this,"0",
 				{
 					"get": function():* { return this; },
@@ -365,6 +338,43 @@ package
 				}
 			);
 			
+		}
+
+		private function parseXMLStr(xml:String):void
+		{
+			var parser:DOMParser = new DOMParser();
+			// get error namespace. It's different in different browsers.
+			var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
+
+			var doc:Document = parser.parseFromString(xml, "application/xml");
+
+			//check for errors
+			if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
+				throw new Error('XML parse error');
+			for(var i:int=0;i<doc.childNodes.length;i++)
+			{
+				var node:Element = doc.childNodes[i];
+				if(node.nodeType == 1)
+				{
+					_version = doc.xmlVersion;
+					_encoding = doc.xmlEncoding;
+					_name = new QName();
+					_name.prefix = node.prefix;
+					_name.uri = node.namespaceURI;
+					_name.localName = node.localName;
+					iterateElement(node,this);
+				}
+				else
+				{
+					// Do we record the nodes which are probably processing instructions?
+//						var child:XML = XML.fromNode(node);
+//						addChild(child);
+				}
+			}
+			normalize();
+		//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
+		// get rid of nodes we do not want
+		//loop through the child nodes and build XML obejcts for each.
 		}
 		
 		private var _children:Array;
@@ -760,7 +770,7 @@ package
 			if(idx >= _children.length)
 				return;
 			var child:XML = _children[idx];
-			child.setParent(null);
+			child._parent = null;
 			_children.splice(idx,1);
 		}
 		
@@ -1382,10 +1392,10 @@ package
 				{
 					if(lastChild && lastChild.nodeKind() == "text")
 					{
-						child.setValue(child.text() + lastChild.text());
+						child.setValue(child.s() + lastChild.s());
 						deleteChildAt(i+1);
 					}
-					if(!child.text())
+					if(!child.s())
 						deleteChildAt(i);
 				}
 				lastChild = child;
@@ -1523,7 +1533,7 @@ package
 					if(child.equals(_attributes[i]))
 					{
 						removed = _attributes[i];
-						removed.setParent(null);
+						removed._parent = null;
 						_attributes.splice(i,1);
 						return true;
 					}
@@ -1744,7 +1754,7 @@ package
 			{
 				//6.
 				if(_children[idx])
-					_children[idx].setParent(null);
+					_children[idx]._parent = null;
 
 				var len:int = v.length();
 				v[0].setParent(this);
@@ -1756,9 +1766,7 @@ package
 					chld = v[listIdx];
 					insertChildAt(chld,idx+listIdx);
 					listIdx++;
-
 				}
-
 			}
 			else
 			{
@@ -1943,13 +1951,15 @@ package
 					chld = elements[i];
 					if(!curChild)
 					{
+						curChild = chld
 						if(childIdx < 0)
-							curChild = prependChild(chld);
+							prependChild(chld);
 						else
-							curChild = appendChild(chld);
+							appendChild(chld);
 					}
 					else {
-						curChild = insertChildAfter(curChild, chld);
+						insertChildAfter(curChild, chld);
+						curChild = chld;
 					}
 				}
 			}
@@ -1999,10 +2009,12 @@ package
 					chld = value[i];
 					if(!curChild)
 					{
-						curChild = appendChild(chld);
+						curChild = chld;
+						appendChild(chld);
 					}
 					else {
-						curChild = insertChildAfter(curChild, chld);
+						insertChildAfter(curChild, chld);
+						curChild = chld;
 					}
 				}
 			}

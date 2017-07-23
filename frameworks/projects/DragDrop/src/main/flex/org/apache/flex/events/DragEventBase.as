@@ -47,5 +47,6 @@ package org.apache.flex.events
     COMPILE::JS
     public class DragEventBase extends goog.events.BrowserEvent
     {
+		public var bubbles:Boolean;
     }
 }

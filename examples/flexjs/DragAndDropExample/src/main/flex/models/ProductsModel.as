@@ -16,24 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package models
 {
+	import org.apache.flex.collections.ArrayList;
+	import products.Product;
 
-/**
- *  @private
- *  This class is used to link additional classes into rpc.swc
- *  beyond those that are found by dependecy analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class DragDropClasses
-{	  
-    import org.apache.flex.core.DropType; DropType;
-    import org.apache.flex.events.DragEvent; DragEvent;   
-	
-	import org.apache.flex.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
-	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
-	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
+	public class ProductsModel
+	{
+		/**
+		 * Used for the DataGrid.
+		 */
+		private var _productList:ArrayList = new ArrayList([
+            new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
+            new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),
+            new Product("rz300","Sprockets",80,105,"assets/smallyellowrect.jpg"),
+            new Product("dh440","Doohickies",10,340,"assets/smallredrect.jpg"),
+            new Product("ps220","Weejets",35,190,"assets/smallorangerect.jpg")
+		]);
+
+		public function get productList():ArrayList
+		{
+			return _productList;
+		}
+
+		/**
+		 * Used for the List
+		 */
+		private var _stateNames:Array = [
+			"Maine", "New Hampshire", "Vermont", "Massachusetts", "Rhode Island", "Connecticut"
+		];
+
+		public function get stateNames():Array
+		{
+			return _stateNames;
+		}
+	}
 }
-
-}
-
