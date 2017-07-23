@@ -209,8 +209,8 @@ package org.apache.flex.html.beads.layouts
 				if (n === 0) return false;
 
 				contentView.element.style["display"] = "flex";
-				contentView.element.style["flex-flow"] = "row wrap";
-
+				contentView.element.style["flexFlow"] = "row wrap";
+				contentView.element.style["alignContent"] = "flex-start";
 				var realN:int = n;
 				for (i = 0; i < n; i++)
 				{
