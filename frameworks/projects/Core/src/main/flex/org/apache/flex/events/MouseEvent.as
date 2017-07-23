@@ -312,9 +312,9 @@ package org.apache.flex.events
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
 		 */
-		public function get target():Object
+		override public function get target():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : null;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
 		}
 
 		/**
@@ -325,9 +325,9 @@ package org.apache.flex.events
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
 		 */
-		public function get currentTarget():Object
+		override public function get currentTarget():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : null;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
 		}
 
 		// TODO remove this when figure out how to preserve the real target
