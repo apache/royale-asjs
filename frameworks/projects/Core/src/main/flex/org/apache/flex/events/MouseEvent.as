@@ -337,7 +337,7 @@ package org.apache.flex.events
 		 */
 		public function get target():Object
 		{
-			return getTargetWrapper(wrappedEvent.target);
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
 		}
 
 		/**
@@ -350,7 +350,7 @@ package org.apache.flex.events
 		 */
 		public function get currentTarget():Object
 		{
-			return getTargetWrapper(wrappedEvent.currentTarget);
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
 		}
 
 		// TODO remove this when figure out how to preserve the real target
