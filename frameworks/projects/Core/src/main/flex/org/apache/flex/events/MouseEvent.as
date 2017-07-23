@@ -278,7 +278,7 @@ package org.apache.flex.events
 				return _buttons == 1;
 			if(!wrappedEvent)
 				return false;
-			var ev:* = wrappedEvent.event_;
+			var ev:* = wrappedEvent.getBrowserEvent();
 			//Safari does not yet support buttons
 			if ('buttons' in ev)
 				_buttons = ev["buttons"];
@@ -531,7 +531,7 @@ package org.apache.flex.events
             if(wrappedEvent)
             {
 			    wrappedEvent.stopPropagation();
-			    wrappedEvent["event_"].stopImmediatePropagation();
+			    wrappedEvent.getBrowserEvent().stopImmediatePropagation();
             }
 		}
 

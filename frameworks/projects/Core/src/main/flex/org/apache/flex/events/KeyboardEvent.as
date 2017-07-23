@@ -181,7 +181,7 @@ package org.apache.flex.events
             if(wrappedEvent)
             {
 			    wrappedEvent.stopPropagation();
-			    wrappedEvent["event_"].stopImmediatePropagation();
+			    wrappedEvent.getBrowserEvent().stopImmediatePropagation();
             }
 		}
 

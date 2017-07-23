@@ -421,7 +421,7 @@ package org.apache.flex.events
          */
 		public function stopImmediatePropagation():void
 		{
-			wrappedEvent.event_.stopImmediatePropagation(); // not in goog.events.BrowserEvent
+			wrappedEvent.getBrowserEvent().stopImmediatePropagation(); // not in goog.events.BrowserEvent
 			wrappedEvent.stopPropagation();
 		}
 
@@ -482,7 +482,7 @@ package org.apache.flex.events
 		{
 			if(_buttons > -1)
 				return _buttons == 1;
-			var ev:* = wrappedEvent.event_;
+			var ev:* = wrappedEvent.getBrowserEvent();
 			//Safari does not yet support buttons
 			if ('buttons' in ev)
 				return ev["buttons"] == 1;
@@ -495,7 +495,7 @@ package org.apache.flex.events
 
 		public function get buttons():int
 		{
-			return wrappedEvent.event_.buttons;
+			return wrappedEvent.getBrowserEvent().buttons;
 		}
 	}
 }
