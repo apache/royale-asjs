@@ -45,7 +45,7 @@ package org.apache.flex.events.utils
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
          */
-        public static const UNCONVERTED_EVENTS:Object = { mouseWheel: 1 };
+        public static const UNCONVERTED_EVENTS:Object = {};
         
         /**
          *  A method used to copy properties from flash.events.MouseEvent to 
@@ -61,8 +61,8 @@ package org.apache.flex.events.utils
         
         private static function flashConvert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
         {
-            if (UNCONVERTED_EVENTS[event.type])
-                return null;
+//            if (UNCONVERTED_EVENTS[event.type])
+//                return null;
             
             var newEvent:org.apache.flex.events.MouseEvent = 
                   new org.apache.flex.events.MouseEvent(event.type, event.bubbles, event.cancelable,
@@ -114,7 +114,8 @@ package org.apache.flex.events.utils
             flash.events.MouseEvent.ROLL_OUT,
             flash.events.MouseEvent.MOUSE_OVER,
             flash.events.MouseEvent.MOUSE_OUT,
-            flash.events.MouseEvent.MOUSE_MOVE
+			flash.events.MouseEvent.MOUSE_MOVE,
+			flash.events.MouseEvent.MOUSE_WHEEL
             ];
             
         /**
