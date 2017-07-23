@@ -27,8 +27,9 @@ package org.apache.flex.events
     COMPILE::JS
     {
         import window.MouseEvent;
-		import org.apache.flex.events.utils.EventUtils;
 		import goog.events.BrowserEvent;
+		import org.apache.flex.events.Event;
+		import org.apache.flex.events.utils.EventUtils;
     }
     
     import org.apache.flex.core.IFlexJSElement;
@@ -243,8 +244,8 @@ package org.apache.flex.events
 		{
 			super(type, bubbles, cancelable);
 
-			this.localX = localX;
-			this.localY = localY;
+			// this.localX = localX;
+			// this.localY = localY;
 			this.relatedObject = relatedObject;
 			this.ctrlKey = ctrlKey;
 			this.altKey = altKey;
@@ -259,36 +260,12 @@ package org.apache.flex.events
 		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */
-		COMPILE::JS
 		private var wrappedEvent:Object;
 
-        COMPILE::JS
 		public function wrapEvent(event:goog.events.BrowserEvent):void
         {
             wrappedEvent = event;
         }
-
-		private var _localX:Number;
-		public function get localX():Number
-		{
-			return _localX;
-		}
-		public function set localX(value:Number):void
-		{
-			_localX = value;
-			_stagePoint = null;
-		}
-
-		private var _localY:Number;
-		public function get localY():Number
-		{
-			return _localY;
-		}
-		public function set localY(value:Number):void
-		{
-			_localY = value;
-			_stagePoint = null;
-		}
 
 		public var relatedObject:Object;
 		public var ctrlKey:Boolean;
@@ -337,7 +314,7 @@ package org.apache.flex.events
 		 */
 		public function get target():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : null;
 		}
 
 		/**
@@ -350,7 +327,7 @@ package org.apache.flex.events
 		 */
 		public function get currentTarget():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : null;
 		}
 
 		// TODO remove this when figure out how to preserve the real target
@@ -359,46 +336,70 @@ package org.apache.flex.events
 		{
 			return target;
 		}
-		// these map directly to JS MouseEvent fields.
+		/**
+		 * X-coordinate relative to the window.
+		 * @type {number}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
 		public function get clientX():Number
 		{
-			return screenX;
+			return wrappedEvent.clientX;
 		}
-		public function set clientX(value:Number):void
+
+		public function get localX():Number
 		{
-			localX = value;
+			return clientX;
 		}
+
+		/**
+		 * Y-coordinate relative to the window.
+		 * @type {number}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
 		public function get clientY():Number
 		{
-			return screenY;
-		}
-		public function set clientY(value:Number):void
-		{
-			localY = value;
+			return wrappedEvent.clientY;
 		}
 
-		private var _stagePoint:Point;
-	
+		public function get localY():Number
+		{
+			return clientY;
+		}
+
+		/**
+		 * X-coordinate relative to the monitor.
+		 * @type {number}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
 		public function get screenX():Number
 		{
-			if (!target) return localX;
-			if (!_stagePoint)
-			{
-				var localPoint:Point = new Point(localX, localY);
-				_stagePoint = PointUtils.localToGlobal(localPoint, target);
-			}
-			return _stagePoint.x;
+			return wrappedEvent.screenX;
 		}
 
+		/**
+		 * Y-coordinate relative to the monitor.
+		 * @type {number}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
 		public function get screenY():Number
 		{
-			if (!target) return localY;
-			if (!_stagePoint)
-			{
-				var localPoint:Point = new Point(localX, localY);
-				_stagePoint = PointUtils.localToGlobal(localPoint, target);
-			}
-			return _stagePoint.y;
+			return wrappedEvent.screenY;
 		}
 
 		/**

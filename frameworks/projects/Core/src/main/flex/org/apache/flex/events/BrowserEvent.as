@@ -353,16 +353,7 @@ package org.apache.flex.events
 		 */
 		public function get relatedTarget():Object
 		{
-			var o:Object = wrappedEvent.relatedTarget;
-
-			if (o)
-			{
-				if (o.flexjs_wrapper)
-					return o.flexjs_wrapper;
-				if (o.parentNode && o.parentNode.flexjs_wrapper)
-				    return o.parentNode.flexjs_wrapper;
-			}
-			return o;
+			return getTargetWrapper(wrappedEvent.relatedTarget);
 		}
 
 		/**

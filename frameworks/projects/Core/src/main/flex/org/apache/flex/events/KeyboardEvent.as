@@ -21,6 +21,7 @@ package org.apache.flex.events
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
+		import org.apache.flex.events.Event;
     }
     import org.apache.flex.events.IBrowserEvent;
 
@@ -78,7 +79,7 @@ package org.apache.flex.events
         COMPILE::JS
 		public function get target():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : null;
 		}
 
 		/**
@@ -92,7 +93,7 @@ package org.apache.flex.events
         COMPILE::JS
 		public function get currentTarget():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : null;
 		}
 
         private var _key:String;

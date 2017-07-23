@@ -179,9 +179,7 @@ package org.apache.flex.events.utils
 	{
         public static function convert(nativeEvent:Object):MouseEvent
         {
-            return new MouseEvent(nativeEvent["type"], true, false,
-                nativeEvent["clientX"], nativeEvent["clientY"], null,
-                nativeEvent["ctrlKey"], nativeEvent["altKey"], nativeEvent["shiftKey"]);
+            return new MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
         }
     }
 

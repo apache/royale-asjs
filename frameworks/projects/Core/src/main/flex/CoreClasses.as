@@ -179,6 +179,7 @@ internal class CoreClasses
 	import org.apache.flex.utils.JXON; JXON;
 	import org.apache.flex.utils.MD5; MD5;
 	import org.apache.flex.utils.OSUtils; OSUtils;
+	import org.apache.flex.utils.PointUtils; PointUtils;
     import org.apache.flex.utils.StringPadder; StringPadder;
 	import org.apache.flex.utils.StringTrimmer; StringTrimmer;
 	import org.apache.flex.utils.StringUtil; StringUtil;
