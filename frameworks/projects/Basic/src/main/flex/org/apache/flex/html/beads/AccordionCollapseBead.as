@@ -69,11 +69,9 @@ package org.apache.flex.html.beads
 			{
 				return;
 			}
-			if (lastSelectedIndex > -1)
-			{
-				var lastElement:ICollapsible = view.dataGroup.getItemRendererForIndex(lastSelectedIndex) as ICollapsible;
+			var lastElement:ICollapsible = view.dataGroup.getItemRendererForIndex(lastSelectedIndex) as ICollapsible;
+			if(lastElement)
 				lastElement.collapse();
-			}
 			lastSelectedIndex = host.selectedIndex;
 			layout.flexibleChild = String(host.selectedIndex);			
 			IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
