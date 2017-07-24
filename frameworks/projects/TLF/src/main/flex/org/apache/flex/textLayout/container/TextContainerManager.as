@@ -2554,14 +2554,6 @@ class RemappedMouseEvent extends org.apache.flex.events.MouseEvent
 	public override function get stageY():Number
 	{ return _event.stageY; }
 	
-	public override function cloneEvent():IFlexJSEvent
-	{ 
-		var rslt:RemappedMouseEvent = new RemappedMouseEvent(_event,true); 
-		rslt.localX = localX;
-		rslt.localY = localY;
-		return rslt;
-	}
-	
 	COMPILE::SWF
 	public override function updateAfterEvent():void
 	{ _event.updateAfterEvent(); }

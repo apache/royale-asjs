@@ -304,6 +304,8 @@ package org.apache.flex.events
 		public var controlKey:Boolean;
 		public var clickCount:int;
 
+        private var _target:Object;
+
 		/**
          *  @copy org.apache.flex.events.BrowserEvent#target
          *
@@ -312,9 +314,13 @@ package org.apache.flex.events
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
 		 */
-		override public function get target():Object
+		public function get target():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : _target;
+		}
+		public function set target(value:Object):void
+		{
+			_target = value;
 		}
 
 		/**
@@ -325,9 +331,13 @@ package org.apache.flex.events
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
 		 */
-		override public function get currentTarget():Object
+		public function get currentTarget():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : _target;
+		}
+		public function set currentTarget(value:Object):void
+		{
+			_target = value;
 		}
 
 		// TODO remove this when figure out how to preserve the real target

@@ -67,7 +67,8 @@ package org.apache.flex.events
             _ctrlKey = ctrlKey;
             _metaKey = metaKey;
         }
-
+        COMPILE::JS
+        private var _target:Object;
 		/**
          *  @copy org.apache.flex.events.BrowserEvent#target
          *
@@ -77,9 +78,15 @@ package org.apache.flex.events
          * @productversion FlexJS 0.9
 		 */
         COMPILE::JS
-		override public function get target():Object
+		public function get target():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : super.target;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : _target;
+		}
+
+        COMPILE::JS
+		public function set target(value:Object):void
+		{
+			_target = value;
 		}
 
 		/**
@@ -91,9 +98,15 @@ package org.apache.flex.events
          * @productversion FlexJS 0.9
 		 */
         COMPILE::JS
-		override public function get currentTarget():Object
+		public function get currentTarget():Object
 		{
-			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : super.currentTarget;
+			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : _target;
+		}
+
+        COMPILE::JS
+		public function set currentTarget(value:Object):void
+		{
+			_target = value;
 		}
 
         private var _key:String;
