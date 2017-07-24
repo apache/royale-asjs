@@ -33,6 +33,5 @@
 	</cordova:initialView>
 	<cordova:beads>
 		<js:MixinManager />
-		<cordova:Weinre guid="aharui" />
 	</cordova:beads>
 </cordova:Application>
