@@ -99,6 +99,13 @@
         </condition>
     </target>
 	
+    <target name="find.gradle.mac" unless="isWindows">
+        <property name="gradle-version" value="3.5" />
+        <condition property="gradle.path" value="/opt/gradle/gradle-${gradle-version}/bin">
+            <available file="/opt/gradle/gradle-${gradle-version}/bin/gradle" type="file"/>
+        </condition>
+    </target>
+    
 	<condition property="app.path" value="${env.Path}">
 	    <isset property="env.Path" />
 	</condition>
@@ -113,7 +120,7 @@
 	<target name="create" unless="app.dir.exists" depends="makedir" description="Creates the Cordova application template">
     	<!-- create the project -->
 		<exec executable="${cordova.executable}" dir="${projectdir}/app">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
 			<arg value="create" />
 			<arg value="${appname}" />
 			<arg value="org.apache.flex.examples.${appname}" />
@@ -147,9 +154,9 @@
     	<available file="${android.platform}" type="dir" property="platform.loaded" />
     </target>
     
-    <target name="load-platform.android" depends="find.cordova.mac,check-platform.android" unless="platform.loaded">
+    <target name="load-platform.android" depends="find.cordova.mac,find.gradle.mac,check-platform.android" unless="platform.loaded">
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
 			<arg value="platform" />
 			<arg value="add" />
 			<arg value="${platform.android}" />
@@ -165,9 +172,9 @@
     	<available file="${ios.platform}" type="dir" property="platform.loaded" />
     </target>
     
-    <target name="load-platform.ios" depends="find.cordova.mac,check-platform.ios" unless="platform.loaded">
+    <target name="load-platform.ios" depends="find.cordova.mac,find.gradle.mac,check-platform.ios" unless="platform.loaded">
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
 			<arg value="platform" />
 			<arg value="add" />
 			<arg value="${platform.ios}" />
@@ -186,7 +193,7 @@
     <target name="load-fileplugin" depends="find.cordova.mac,check-fileplugin" if="file.plugin.needed">
     	<echo message="Loading cordova file-plugin" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
     		<arg value="plugin" />
     		<arg value="add" />
     		<arg value="cordova-plugin-file" />
@@ -197,7 +204,7 @@
     	<echo message="Loading cordova plugin ${plugin}" />
 	<echo message="target dir = ${cordova.target.dir}" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
     		<arg value="plugin" />
     		<arg value="add" />
     		<arg value="${plugin}" />
@@ -211,7 +218,7 @@
     <target name="run.android" depends="find.cordova.mac,load-platform.android,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.android}" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
     		<arg value="run" />
     		<arg value="${platform.android}" />
     	</exec>
@@ -220,7 +227,7 @@
     <target name="run.ios" depends="find.cordova.mac,load-platform.ios,load-fileplugin" description="Runs the Cordova application on the specified platform">
     	<echo message="Launching ${appname} on platform ${platform.ios}" />
     	<exec executable="${cordova.executable}" dir="${cordova.target.dir}">
-            <env key="PATH" path="${app.path}:${cordova.path}"/>
+            <env key="PATH" path="${app.path}:${cordova.path}:${gradle.path}"/>
     		<arg value="run" />
     		<arg value="${platform.ios}" />
     	</exec>
