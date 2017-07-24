@@ -159,16 +159,12 @@ package org.apache.flex.html.beads
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			if (lastSelectedIndex != -1)
-			{
-				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
-                if (ir != null) ir.selected = false;
-			}
-			if (listModel.selectedIndex != -1)
-			{
-	            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
-	            if (ir != null) ir.selected = true;
-			}
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+            if (ir)
+				ir.selected = false;
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+			if (ir)
+				ir.selected = true;
             lastSelectedIndex = listModel.selectedIndex;
 		}
 
@@ -179,16 +175,13 @@ package org.apache.flex.html.beads
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			if (lastRollOverIndex != -1)
-			{
-				var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
-                ir.hovered = false;
-			}
-			if (IRollOverModel(listModel).rollOverIndex != -1)
-			{
-	            ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
-	            ir.hovered = true;
-			}
+			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			if(ir)
+				ir.hovered = false;
+			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
+			if(ir)
+				ir.hovered = true;
+			
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
 	}
