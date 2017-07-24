@@ -55,6 +55,12 @@
         <antcall target="makeAIRvisible" />
     </target>
 
+    <target name="convert_project_cordova" depends="check_params, cutpath"  description="Replaces the files in a new Flex project folder with a basic FlexJS Cordova project">
+        <copy file="${basedir}/../../examples/flexjs/CordovaCameraExample/src/main/flex/CordovaCameraExample.mxml" tofile="${projectDir}/src/${projectName}.mxml" overwrite="true" />
+        <copy file="${basedir}/../../examples/flexjs/CordovaCameraExample/src/main/flex/MyInitialView.mxml" tofile="${projectDir}/src/MyInitialView.mxml" overwrite="true" />
+        <antcall target="makeAIRvisible" />
+    </target>
+
     <target name="cutpath" >
         <basename file="${projectDir}" property="projectName" />
         <echo>projectDir: ${projectDir}</echo>
