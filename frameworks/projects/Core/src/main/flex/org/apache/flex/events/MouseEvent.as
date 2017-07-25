@@ -244,8 +244,8 @@ package org.apache.flex.events
 		{
 			super(type, bubbles, cancelable);
 
-			// this.localX = localX;
-			// this.localY = localY;
+			this.localX = localX;
+			this.localY = localY;
 			this.relatedObject = relatedObject;
 			this.ctrlKey = ctrlKey;
 			this.altKey = altKey;
@@ -357,12 +357,18 @@ package org.apache.flex.events
 		 */
 		public function get clientX():Number
 		{
-			return wrappedEvent.clientX;
+			return wrappedEvent ? wrappedEvent.clientX : _localX;
 		}
 
 		public function get localX():Number
 		{
 			return clientX;
+		}
+		private var _localX:Number;
+
+		public function set localX(value:Number):void
+		{
+			_localX = value;
 		}
 
 		/**
@@ -376,12 +382,19 @@ package org.apache.flex.events
 		 */
 		public function get clientY():Number
 		{
-			return wrappedEvent.clientY;
+			return wrappedEvent ? wrappedEvent.clientY : _localY;
 		}
 
 		public function get localY():Number
 		{
 			return clientY;
+		}
+
+		private var _localY:Number;
+
+		public function set localY(value:Number):void
+		{
+			_localY = value;
 		}
 
 		/**
@@ -395,7 +408,9 @@ package org.apache.flex.events
 		 */
 		public function get screenX():Number
 		{
-			return wrappedEvent.screenX;
+			if(wrappedEvent) return wrappedEvent.screenX;
+			if (!target) return localX;
+			return stagePoint.x;
 		}
 
 		/**
@@ -409,7 +424,19 @@ package org.apache.flex.events
 		 */
 		public function get screenY():Number
 		{
-			return wrappedEvent.screenY;
+			if(wrappedEvent) return wrappedEvent.screenY;
+			if (!target) return localY;
+			return stagePoint.y;
+		}
+        private var _stagePoint:Point;
+		private function get stagePoint():Point
+		{
+			if (!_stagePoint)
+			{
+				var localPoint:Point = new Point(localX, localY);
+				_stagePoint = PointUtils.localToGlobal(localPoint, target);
+			}
+			return _stagePoint;
 		}
 
 		/**
