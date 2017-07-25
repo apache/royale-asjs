@@ -49,16 +49,14 @@ package org.apache.flex.html.beads
 		
 		override protected function destinationChangedHandler(event:Event):void
 		{
-			if (dataProvider == null)
+			var object:Object = document[sourceID];
+			if (dataProvider)
 			{
-				var object:Object = document[sourceID];
-				dataProvider = object[propertyName] as ArrayList;
-			}
-			else
-			{
+				if(object[propertyName] == dataProvider)
+					return;
 				dataProvider.removeEventListener(changeEventName == null ? "collectionChanged":changeEventName, handleCollectionChanged);
 			}
-
+			dataProvider = object[propertyName] as ArrayList;
 			dataProvider.addEventListener(changeEventName == null ? "collectionChanged":changeEventName, handleCollectionChanged);
 		}
 

@@ -50,16 +50,16 @@ package org.apache.flex.html.beads
 
 		private function destinationChangedHandler(event:Event):void
 		{
-			if (dataProvider == null) {
-				var object:Object = document[sourceID];
-				dataProvider = object[propertyName] as ArrayList;
-			}
-			else {
+			var object:Object = document[sourceID];
+			if (dataProvider)
+			{
+				if(object[propertyName] == dataProvider)
+					return;
 				dataProvider.removeEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 				dataProvider.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 				dataProvider.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 			}
-			
+			dataProvider = object[propertyName] as ArrayList;			
 			dataProvider.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 			dataProvider.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
             dataProvider.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);

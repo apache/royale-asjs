@@ -121,18 +121,41 @@ package org.apache.flex.core
      */
     [Event(name="mouseOut", type="org.apache.flex.events.MouseEvent")]
     
-    /**
-     *  Set a different class for mouseOver events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
-     */
-    [Event(name="mouseOver", type="org.apache.flex.events.MouseEvent")]
-    
+	/**
+	 *  Set a different class for mouseOver events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	[Event(name="mouseOver", type="org.apache.flex.events.MouseEvent")]
+	/**
+	 *  Set a different class for mouseWheel events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	[Event(name="mouseWheel", type="org.apache.flex.events.MouseEvent")]
+	
+	/**
+	 *  Set a different class for doubleClick events so that
+	 *  there aren't dependencies on the flash classes
+	 *  on the JS side.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.0
+	 */
+	[Event(name="doubleClick", type="org.apache.flex.events.MouseEvent")]
+	
     /**
      *  The UIBase class is the base class for most composite user interface
      *  components.  For the Flash Player, Buttons and Text controls may

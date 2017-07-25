@@ -533,7 +533,9 @@ package org.apache.flex.textLayout.elements
 				if (myidx != 0)
 				{
 					var sib:SpanElement = parent.getChildAt(myidx-1) as SpanElement;
-					
+					// If the previous sibling is a TableElement, we need to preserve the span.
+					if(sib.className == "TableElement")
+						return false;
 					// If the element we're checking for merge has only the terminator, and the previous element
 					// is not a Span, then we always merge with the previous span (NOT the previous sib). 
 					// We just remove this span, and add the terminator to the previous span.

@@ -106,6 +106,11 @@ Navigation
     IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.NavigationLinkItemRenderer");
 }
 
+MenuItemRenderer
+{
+	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+}
+
 Menu
 {
     IBeadView: ClassReference("org.apache.flex.mdl.beads.views.ListView");

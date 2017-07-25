@@ -100,7 +100,7 @@ package org.apache.flex.textLayout.elements
 		public function createTextBlock():void
 		{
 			var tf:ITextFlow = getTextFlow();
-			if(tf == null)// if it's not in a text flow, we cannot create text blocaks yet
+			if(!tf)// if it's not in a text flow, we cannot create text blocks yet
 				return;
 //			CONFIG::debug { assert(_textBlock == null,"createTextBlock called when there is already a textblock"); }
 			calculateComputedFormat();	// recreate the format BEFORE the _textBlock is created

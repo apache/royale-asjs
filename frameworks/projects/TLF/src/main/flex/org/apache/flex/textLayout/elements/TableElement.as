@@ -1327,6 +1327,14 @@ package org.apache.flex.textLayout.elements {
 		override public function get textLength():int{
 			return 1;
 		}
+		/* @private */
+		override public function getText(relativeStart:int = 0, relativeEnd:int = -1, paragraphSeparator:String = "\n"):String
+		{
+			//TODO The code in ParagraphElement.getText() returns no text for tables.
+			// This is to ensure the results match when the TextBlocks are not created yet.
+			return "";
+			// return "\uFDEF";
+		}
 		
 		/**
 		 * Returns the cell at the specified row and column.
