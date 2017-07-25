@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.textLayout.factory
 {
+	import org.apache.flex.textLayout.debug.assert;
+
 	public class TLFFactory
 	{
 		/**
@@ -25,10 +27,11 @@ package org.apache.flex.textLayout.factory
 		 */
 		private static var _defaultTLFFactory:ITLFFactory;
 		public static function get defaultTLFFactory():ITLFFactory{
-			if(_defaultTLFFactory == null)
-				_defaultTLFFactory = new StandardTLFFactory();
-			
+			assert(_defaultTLFFactory != null,"No default factory set!");
 			return _defaultTLFFactory;
+		}
+		public static function set defaultTLFFactory(value:ITLFFactory):void{
+			_defaultTLFFactory = value;
 		}
 	}
 }
