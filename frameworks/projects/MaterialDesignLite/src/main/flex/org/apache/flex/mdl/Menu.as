@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.html.DataContainer;
-    import org.apache.flex.mdl.beads.UpgradeElement;
+	import org.apache.flex.html.List;
+	import org.apache.flex.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {
@@ -43,7 +43,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.8
      */    
-	public class Menu extends DataContainer
+	public class Menu extends org.apache.flex.html.List
 	{
         /**
          *  Constructor.
