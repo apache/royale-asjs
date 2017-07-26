@@ -440,6 +440,38 @@ package org.apache.flex.events
 		}
 
 		/**
+		 * Whether the default action has been prevented.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+		override public function preventDefault():void
+		{
+			wrappedEvent ? wrappedEvent.preventDefault() : super.preventDefault();
+		}
+
+		private var _defaultPrevented:Boolean;
+		/**
+		 * Whether the default action has been prevented.
+		 * @type {boolean}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+		public function get defaultPrevented():Boolean
+		{
+			return wrappedEvent ? wrappedEvent.defaultPrevented : _defaultPrevented;
+		}
+		public function set defaultPrevented(value:Boolean):void
+		{
+			_defaultPrevented = value;
+		}
+
+		/**
 		 * @private
 		 */
 		private static function installRollOverMixin():Boolean

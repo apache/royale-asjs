@@ -210,7 +210,42 @@ package org.apache.flex.events
             if(wrappedEvent)
 			    wrappedEvent.stopPropagation();
 		}
+		/**
+		 * Whether the default action has been prevented.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+        COMPILE::JS
+		override public function preventDefault():void
+		{
+			wrappedEvent ? wrappedEvent.preventDefault() : super.preventDefault();
+		}
 
+		COMPILE::JS
+		private var _defaultPrevented:Boolean;
+		/**
+		 * Whether the default action has been prevented.
+		 * @type {boolean}
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.0
+		 */
+        COMPILE::JS
+		public function get defaultPrevented():Boolean
+		{
+			return wrappedEvent ? wrappedEvent.defaultPrevented : _defaultPrevented;
+		}
+        COMPILE::JS
+		public function set defaultPrevented(value:Boolean):void
+		{
+			_defaultPrevented = value;
+		}
+        
         /**
          * Create a copy/clone of the KeyboardEvent object.
          *
