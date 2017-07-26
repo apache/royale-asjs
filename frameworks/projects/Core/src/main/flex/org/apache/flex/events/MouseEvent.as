@@ -151,7 +151,44 @@ package org.apache.flex.events
         {
             return cloneEvent() as flash.events.Event;
         }
-        
+		/**
+         *  The horizontal scroll delta for wheel events
+		 *  In Flash this always returns 0.
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+		public function get deltaX():int
+		{
+			return 0;
+		}
+		/**
+		 * Horizontal wheel events are not supported in Flash
+		 */
+		public function set deltaX(value:int):void
+		{
+			
+		}
+
+		/**
+         *  The vertical scroll delta for wheel events
+		 *  In Flash this just proxies to the delta
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+		public function get deltaY():int
+		{
+			return delta
+		}
+		public function set deltaY(value:int):void
+		{
+			delta = value;
+		}        
         /**
          * Create a copy/clone of the Event object.
          *
@@ -261,10 +298,16 @@ package org.apache.flex.events
 		 * @type {?goog.events.BrowserEvent}
 		 */
 		private var wrappedEvent:Object;
+		
+		/**
+		 * @type {MouseEvent}
+		 */
+		private var nativeEvent:Object;
 
 		public function wrapEvent(event:goog.events.BrowserEvent):void
         {
             wrappedEvent = event;
+			nativeEvent = event.getBrowserEvent();
         }
 
 		public var relatedObject:Object;
@@ -278,12 +321,11 @@ package org.apache.flex.events
 				return _buttons == 1;
 			if(!wrappedEvent)
 				return false;
-			var ev:* = wrappedEvent.getBrowserEvent();
 			//Safari does not yet support buttons
-			if ('buttons' in ev)
-				_buttons = ev["buttons"];
+			if ('buttons' in nativeEvent)
+				_buttons = nativeEvent["buttons"];
 			else
-				_buttons = ev["which"];
+				_buttons = nativeEvent["which"];
 			return _buttons == 1;
 		}
 		public function set buttonDown(value:Boolean):void
@@ -299,7 +341,61 @@ package org.apache.flex.events
 		{
 			_buttons = value;
 		}
-		public var delta:int;
+
+		private var _delta:int;
+		/**
+         *  The vertical scroll delta for wheel events
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+		public function get delta():int
+		{
+			return nativeEvent ? nativeEvent.deltaY : _delta;
+		}
+		public function set delta(value:int):void
+		{
+			_delta = value;
+		}
+
+		private var _deltaX:int;
+		/**
+         *  The horizontal scroll delta for wheel events
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+		public function get deltaX():int
+		{
+			return nativeEvent ? nativeEvent.deltaX : _deltaX;
+		}
+		public function set deltaX(value:int):void
+		{
+			_deltaX = value;
+		}
+
+		private var _deltaY:int;
+		/**
+         *  The vertical scroll delta for wheel events
+         *
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion FlexJS 0.9
+		 */
+		public function get deltaY():int
+		{
+			return nativeEvent ? nativeEvent.deltaY : _deltaY;
+		}
+		public function set deltaY(value:int):void
+		{
+			_deltaY = value;
+		}
+		
 		public var commandKey:Boolean;
 		public var controlKey:Boolean;
 		public var clickCount:int;
@@ -606,7 +702,7 @@ package org.apache.flex.events
             if(wrappedEvent)
             {
 			    wrappedEvent.stopPropagation();
-			    wrappedEvent.getBrowserEvent().stopImmediatePropagation();
+			    nativeEvent.stopImmediatePropagation();
             }
 		}
 

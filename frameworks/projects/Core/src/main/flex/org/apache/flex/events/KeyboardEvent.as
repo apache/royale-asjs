@@ -43,10 +43,17 @@ package org.apache.flex.events
         COMPILE::JS
 		private var wrappedEvent:Object;
 
+		/**
+		 * @type {KeyboardEvent}
+		 */
+        COMPILE::JS
+		private var nativeEvent:Object;
+
         COMPILE::JS
 		public function wrapEvent(event:goog.events.BrowserEvent):void
         {
             wrappedEvent = event;
+            nativeEvent = event.getBrowserEvent();
         }
 
         public function KeyboardEvent(
@@ -194,7 +201,7 @@ package org.apache.flex.events
             if(wrappedEvent)
             {
 			    wrappedEvent.stopPropagation();
-			    wrappedEvent.getBrowserEvent().stopImmediatePropagation();
+			    nativeEvent.stopImmediatePropagation();
             }
 		}
 
