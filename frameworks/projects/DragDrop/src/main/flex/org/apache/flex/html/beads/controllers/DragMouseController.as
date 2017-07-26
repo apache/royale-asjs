@@ -218,6 +218,7 @@ package org.apache.flex.html.beads.controllers
 					dragEvent.clientY = mouseDownY;
 					trace("DRAG-MOUSE: sending dragStart via "+event.target.toString());
 					DragEvent.dispatchDragEvent(dragEvent, event.target);
+					dispatchEvent(dragEvent);
 					
                     if (DragEvent.dragSource != null)
                     {
@@ -234,6 +235,8 @@ package org.apache.flex.html.beads.controllers
 						}
 						COMPILE::JS {
 							dragImage.element.style['pointer-events'] = 'none';
+							dragImage.element.style['position'] = 'absolute';
+							dragImage.element.style['cursor'] = 'pointer';
 						}
                     }
                 }
@@ -246,6 +249,7 @@ package org.apache.flex.html.beads.controllers
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
                 DragEvent.dispatchDragEvent(dragEvent, event.target);
+				dispatchEvent(dragEvent);
             }
         }
         
@@ -265,6 +269,7 @@ package org.apache.flex.html.beads.controllers
 				dragEvent.clientY = newPoint.y;
 				
                 DragEvent.dispatchDragEvent(dragEvent, event.target);
+				dispatchEvent(dragEvent);
                 event.preventDefault();
             }
 			
