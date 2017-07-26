@@ -221,7 +221,13 @@ package org.apache.flex.events
         COMPILE::JS
 		override public function preventDefault():void
 		{
-			wrappedEvent ? wrappedEvent.preventDefault() : super.preventDefault();
+			if(wrappedEvent)
+				wrappedEvent.preventDefault();
+			else
+			{
+				super.preventDefault();
+				_defaultPrevented = true;
+			}
 		}
 
 		COMPILE::JS
@@ -245,7 +251,7 @@ package org.apache.flex.events
 		{
 			_defaultPrevented = value;
 		}
-        
+
         /**
          * Create a copy/clone of the KeyboardEvent object.
          *

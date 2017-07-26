@@ -449,7 +449,13 @@ package org.apache.flex.events
 		 */
 		override public function preventDefault():void
 		{
-			wrappedEvent ? wrappedEvent.preventDefault() : super.preventDefault();
+			if(wrappedEvent)
+				wrappedEvent.preventDefault();
+			else
+			{
+				super.preventDefault();
+				_defaultPrevented = true;
+			}
 		}
 
 		private var _defaultPrevented:Boolean;
