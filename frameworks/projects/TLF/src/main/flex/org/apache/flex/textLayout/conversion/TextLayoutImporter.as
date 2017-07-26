@@ -46,11 +46,11 @@ package org.apache.flex.textLayout.conversion
 	import org.apache.flex.textLayout.elements.TextFlow;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.textLayout.utils.FactoryUtil;
 	import org.apache.flex.utils.ObjectMap;
 	import org.apache.flex.textLayout.conversion.TLFormatImporter;
 	import org.apache.flex.textLayout.conversion.SingletonAttributeImporter;
 	import org.apache.flex.textLayout.conversion.CustomFormatImporter;
+	import org.apache.flex.textLayout.factory.TLFFactory;
 	
 
 
@@ -268,7 +268,7 @@ package org.apache.flex.textLayout.conversion
 				
 			// allocate the TextFlow and initialize the container attributes
 			if (!newFlow)
-				newFlow = new TextFlow(FactoryUtil.defaultTLFFactory);
+				newFlow = new TextFlow(TLFFactory.defaultTLFFactory);
 	
 			// parse formatting
 			parseStandardFlowElementAttributes(newFlow,xmlToParse);
@@ -718,7 +718,7 @@ package org.apache.flex.textLayout.conversion
 		 * Used for testing. May be removed in the future. 
 		 **/
 		static public function getTextFlowContent(text:String = null, selectable:Boolean = false, editable:Boolean = false):TextFlow {
-			var textFlowContent:TextFlow = new TextFlow(FactoryUtil.defaultTLFFactory);
+			var textFlowContent:TextFlow = new TextFlow(TLFFactory.defaultTLFFactory);
 			var paragraph:IParagraphElement = ElementHelper.getParagraph();
 			var span:SpanElement = new SpanElement();
 			

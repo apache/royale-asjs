@@ -165,6 +165,11 @@ package org.apache.flex.mdl.itemRenderers
                 typeNames = element.className;
             }
 		}
+		
+		override public function updateRenderer():void
+		{
+			// don't change background-color, let mdl library take care of that.
+		}
 
         protected var _ripple:Boolean = false;
         /**

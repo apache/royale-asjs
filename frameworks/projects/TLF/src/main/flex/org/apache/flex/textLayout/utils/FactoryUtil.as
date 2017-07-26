@@ -28,19 +28,5 @@ package org.apache.flex.textLayout.utils
 		{
 			return FactoryComposer;
 		}
-		
-		private static var _defaultTLFFactory:ITLFFactory;
-		
-		public static function get defaultTLFFactory():ITLFFactory
-		{
-			if(!_defaultTLFFactory)
-				_defaultTLFFactory = new StandardTLFFactory();
-			return _defaultTLFFactory; 
-		}
-
-		public static function set defaultTLFFactory(value:ITLFFactory):void
-		{
-			_defaultTLFFactory = value;
-		}
 	}
 }

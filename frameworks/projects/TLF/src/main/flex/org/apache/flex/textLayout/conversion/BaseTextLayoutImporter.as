@@ -41,7 +41,7 @@ package org.apache.flex.textLayout.conversion
 	import org.apache.flex.textLayout.elements.TextFlow;
 	import org.apache.flex.textLayout.property.Property;
 	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.textLayout.utils.FactoryUtil;
+	import org.apache.flex.textLayout.factory.TLFFactory;
 
 	/**
 	 * BaseTextLayoutImporter is a base class for handling the import/export of TextLayout text 
@@ -558,7 +558,7 @@ package org.apache.flex.textLayout.conversion
 				{
 					if (child.name().localName == "p")
 					{
-						textFlow = new TextFlow(FactoryUtil.defaultTLFFactory);
+						textFlow = new TextFlow(TLFFactory.defaultTLFFactory);
 						parseObject(child.name().localName, child, textFlow, exceptionElements);
 					}
 					else if (child.name().localName == "TextFlow")
@@ -579,7 +579,7 @@ package org.apache.flex.textLayout.conversion
 
 					if (!strip)
 					{
-						textFlow = new TextFlow(FactoryUtil.defaultTLFFactory);
+						textFlow = new TextFlow(TLFFactory.defaultTLFFactory);
 						parseObject(child.name().localName, child, textFlow, exceptionElements);
 						// addChild(textFlow, createImpliedSpan(txt));
 					}

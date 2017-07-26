@@ -1340,7 +1340,7 @@ package org.apache.flex.textLayout.edit
 
 		// TODO: this routine could be much more efficient - instead of iterating over all lines in the ITextFlow it should iterate over
 		// the visible lines in the container.  Todo that move this routine into ContainerController and use the shapeChildren along with the logic in fillShapeChildren
-		static private function computeSelectionIndexInContainer(textFlow:ITextFlow, controller:IContainerController, localX:Number, localY:Number):int
+		static private function computeSelectionIndexInContainer(textFlow:ITextFlow, controller:IContainerController, localPoint:Point):int
 		{
 			var result:int;
 			// var origX:Number = localX;
@@ -1356,11 +1356,11 @@ package org.apache.flex.textLayout.edit
 			var isDirectionRTL:Boolean = (textFlow.computedFormat.direction == Direction.RTL);
 
 			// Establish perpendicular the coordinate for use with TTB or LTR/RTL lines
-			var perpCoor:Number = isTTB ? localX : localY;
+			var perpCoor:Number = isTTB ? localPoint.x : localPoint.y;
 
 			// get the nearest column so we can ignore lines which aren't in the column we're looking for.
 			// if we don't do this, we won't be able to select across column boundaries.
-			var nearestColIdx:int = locateNearestColumn(controller, localX, localY, textFlow.computedFormat.blockProgression, textFlow.computedFormat.direction);
+			var nearestColIdx:int = locateNearestColumn(controller, localPoint.x, localPoint.y, textFlow.computedFormat.blockProgression, textFlow.computedFormat.direction);
 
 			var prevLineBounds:Rectangle = null;
 			var previousLineIndex:int = -1;
@@ -1503,8 +1503,9 @@ package org.apache.flex.textLayout.edit
 				// we may need to bring this back if textline's can be rotated or placed by any mechanism other than a translation
 				// but then we'll need to provisionally place a virtualized ITextLine in its parent container
 				// Harbs 7/3/17 -- since we're dealing with local coordinates, I think this is not longer correct.
-				// localX -= textLine.x;
-				// localY -= textLine.y;
+				// 7-26-17 -- Commenting it out appears to introduce a bug when selecting centered or right-aligned lines.
+				localPoint.x -= textLine.x;
+				localPoint.y -= textLine.y;
 				/* var localPoint:Point = DisplayObject(controller.container).localToGlobal(new Point(localX,localY));
 				localPoint = textLine.globalToLocal(localPoint);
 				localX = localPoint.x;
@@ -1542,30 +1543,30 @@ package org.apache.flex.textLayout.edit
 
 				if (!isTTB)
 				{
-					if (localX < 0)
-						localX = 0;
-					else if (localX > (lastAtomRect.x + lastAtomRect.width))
+					if (localPoint.x < 0)
+						localPoint.x = 0;
+					else if (localPoint.x > (lastAtomRect.x + lastAtomRect.width))
 					{
 						if (startOnNextLineIfNecessary)
 							return textFlowLine.absoluteStart + textFlowLine.textLength - 1;
 						if (lastAtomRect.x + lastAtomRect.width > 0)
-							localX = lastAtomRect.x + lastAtomRect.width;
+							localPoint.x = lastAtomRect.x + lastAtomRect.width;
 					}
 				}
 				else
 				{
-					if (localY < 0)
-						localY = 0;
-					else if (localY > (lastAtomRect.y + lastAtomRect.height))
+					if (localPoint.y < 0)
+						localPoint.y = 0;
+					else if (localPoint.y > (lastAtomRect.y + lastAtomRect.height))
 					{
 						if (startOnNextLineIfNecessary)
 							return textFlowLine.absoluteStart + textFlowLine.textLength - 1;
 						if (lastAtomRect.y + lastAtomRect.height > 0)
-							localY = lastAtomRect.y + lastAtomRect.height;
+							localPoint.y = lastAtomRect.y + lastAtomRect.height;
 					}
 				}
 
-				result = computeSelectionIndexInLine(textFlow, textLine, localX, localY);
+				result = computeSelectionIndexInLine(textFlow, textLine, localPoint);
 			}
 
 			// trace("computeSelectionIndexInContainer:(",origX,origY,")",textFlow.flowComposer.getControllerIndex(controller).toString(),lineIndex.toString(),result.toString());
@@ -1668,7 +1669,7 @@ package org.apache.flex.textLayout.edit
 			return colIdx;
 		}
 
-		static private function computeSelectionIndexInLine(textFlow:ITextFlow, textLine:ITextLine, localX:Number, localY:Number):int
+		static private function computeSelectionIndexInLine(textFlow:ITextFlow, textLine:ITextLine, localPoint:Point):int
 		{
 			if (!(textLine.userData is ITextFlowLine))
 				return -1;  // not a TextLayout generated line
@@ -1679,12 +1680,12 @@ package org.apache.flex.textLayout.edit
 			textLine = rtline.getTextLine(true);    // make sure the ITextLine is not released
 
 			var isTTB:Boolean = textFlow.computedFormat.blockProgression == BlockProgression.RL;
-			var perpCoor:Number = isTTB ? localX : localY;
+			var perpCoor:Number = isTTB ? localPoint.x : localPoint.y;
 
 			// new code for builds 385 and later
-			var pt:Point = new Point();
-			pt.x = localX;
-			pt.y = localY;
+			var pt:Point = localPoint.clone();
+			// pt.x = localX;
+			// pt.y = localY;
 
 			// in most cases, we want to "fixup" the coordiates of the x and y coordinates
 			// because we could be getting a positive results for a click in the line, but the
@@ -1701,8 +1702,8 @@ package org.apache.flex.textLayout.edit
 			if (elemIdx == -1)
 			{
 				// reset the pt
-				pt.x = localX;
-				pt.y = localY;
+				pt.x = localPoint.x;
+				pt.y = localPoint.y;
 
 				// make adjustments
 				if (pt.x < 0 || (isTTB && perpCoor > textLine.ascent))
@@ -1721,8 +1722,8 @@ package org.apache.flex.textLayout.edit
 			if (elemIdx == -1)
 			{
 				// we need to use global coordinates here.  reset pt and get conversion...
-				pt.x = localX;
-				pt.y = localY;
+				pt.x = localPoint.x;
+				pt.y = localPoint.y;
 				// pt = PointUtils.localToGlobal(pt, textLine);// textLine.localToGlobal(pt);
 				if (textLine.parent)
 					pt = PointUtils.globalToLocal(pt, textLine.parent);// textLine.parent.globalToLocal(pt);
@@ -1741,9 +1742,9 @@ package org.apache.flex.textLayout.edit
 			{
 				// if this is TTB and NOT TCY determine lean based on Y coordinates...
 				if (isTTB && textLine.getAtomTextRotation(elemIdx) != TextRotation.ROTATE_0)
-					leanRight = (localY > (glyphRect.y + glyphRect.height / 2));
+					leanRight = (localPoint.y > (glyphRect.y + glyphRect.height / 2));
 				else // use X..
-					leanRight = (localX > (glyphRect.x + glyphRect.width / 2));
+					leanRight = (localPoint.x > (glyphRect.x + glyphRect.width / 2));
 			}
 
 			var paraSelectionIdx:int;
@@ -1928,7 +1929,7 @@ package org.apache.flex.textLayout.edit
 			var useTargetedTextLine:Boolean = false;
 			if (target is ITextLine)
 			{
-				var tfl:ITextFlowLine = ITextLine(target).userData as ITextFlowLine;
+				var tfl:ITextFlowLine = (target as ITextLine).userData as ITextFlowLine;
 				if (tfl)
 				{
 					var para:IParagraphElement = tfl.paragraph;
@@ -1942,14 +1943,15 @@ package org.apache.flex.textLayout.edit
 			trace("... Global",containerPoint.x,containerPoint.y);
 			containerPoint = DisplayObject(currentTarget).globalToLocal(containerPoint);
 			trace("... container Local",containerPoint.x,containerPoint.y); */
+			
+			var localPoint:Point = new Point(localX, localY);
 
 			if (useTargetedTextLine)
-				rslt = computeSelectionIndexInLine(textFlow, ITextLine(target), localX, localY);
+				rslt = computeSelectionIndexInLine(textFlow, (target as ITextLine), localPoint);
 			else
 			{
-				var localPoint:Point = new Point(localX, localY);
 				var controller:IContainerController = findController(textFlow, target, currentTarget, localPoint);
-				rslt = controller ? computeSelectionIndexInContainer(textFlow, controller, localPoint.x, localPoint.y) : -1;
+				rslt = controller ? computeSelectionIndexInContainer(textFlow, controller, localPoint) : -1;
 			}
 
 			if (rslt >= textFlow.textLength)
