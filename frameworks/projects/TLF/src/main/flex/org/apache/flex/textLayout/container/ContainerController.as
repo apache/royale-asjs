@@ -3009,7 +3009,7 @@ package org.apache.flex.textLayout.container
 			
 			var curAlpha:Number = (interactionManager.activePosition == interactionManager.anchorPosition) ? selFormat.pointAlpha : selFormat.rangeAlpha;
 			if (selectionSprite.alpha != curAlpha)
-				selectionSprite.alpha = 1;//curAlpha; testing remove this 
+				selectionSprite.alpha = curAlpha;
 			
 			if (selectionSprite.numElements == 0)
 				addSelectionContainer(selectionSprite);
