@@ -32,6 +32,7 @@ internal class DragDropClasses
 	
 	import org.apache.flex.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
 	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
+	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead; SingleSelectionDropIndicatorBead;
 	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
 }
 

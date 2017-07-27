@@ -40,7 +40,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragEnter", type="org.apache.flex.events.DragEvent")]
     
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragOver", type="org.apache.flex.events.DragEvent")]
     
@@ -62,7 +62,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragExit", type="org.apache.flex.events.DragEvent")]
     
@@ -72,7 +72,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragDrop", type="org.apache.flex.events.DragEvent")]
     
@@ -85,7 +85,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DropMouseController extends EventDispatcher implements IBead
 	{		
@@ -95,7 +95,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DropMouseController()
 		{
@@ -109,7 +109,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -144,7 +144,7 @@ package org.apache.flex.html.beads.controllers
          */
         private function dragMoveHandler(event:DragEvent):void
         {
-            trace("DROP-MOUSE: dragMove" + event.target.toString());
+//            trace("DROP-MOUSE: dragMove" + event.target.toString());
             var dragEvent:DragEvent;
             if (!inside)
             {

@@ -44,7 +44,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragStart", type="org.apache.flex.events.DragEvent")]
     
@@ -55,7 +55,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragMove", type="org.apache.flex.events.DragEvent")]
     
@@ -65,7 +65,7 @@ package org.apache.flex.html.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.0
+     *  @productversion FlexJS 0.8
      */
     [Event(name="dragEnd", type="org.apache.flex.events.DragEvent")]
     
@@ -79,7 +79,7 @@ package org.apache.flex.html.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class DragMouseController extends EventDispatcher implements IBead
 	{
@@ -90,7 +90,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public static var dragging:Boolean = false;
         
@@ -100,7 +100,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public static var dragImage:IUIBase;
         
@@ -110,7 +110,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public static var dragImageOffsetX:Number = 0;
         
@@ -120,7 +120,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public static var dragImageOffsetY:Number = 0;
         
@@ -131,7 +131,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public static var defaultThreshold:int = 4;
         
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function DragMouseController()
 		{
@@ -155,7 +155,7 @@ package org.apache.flex.html.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
+         *  @productversion FlexJS 0.8
          */
         public var threshold:int = 4;
         
@@ -167,7 +167,7 @@ package org.apache.flex.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion FlexJS 0.0
+		 *  @productversion FlexJS 0.8
 		 */
 		public function set strand(value:IStrand):void
 		{
