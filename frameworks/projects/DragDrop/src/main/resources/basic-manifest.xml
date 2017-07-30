@@ -23,6 +23,7 @@
 
 	<component id="SingleSelectionDragImageBead" class="org.apache.flex.html.beads.SingleSelectionDragImageBead" />
 	<component id="SingleSelectionDragSourceBead" class="org.apache.flex.html.beads.SingleSelectionDragSourceBead" />
+	<component id="SingleSelectionDropIndicatorBead" class="org.apache.flex.html.beads.SingleSelectionDropIndicatorBead"/>
 	<component id="SingleSelectionDropTargetBead" class="org.apache.flex.html.beads.SingleSelectionDropTargetBead" />
     <component id="DragMouseController" class="org.apache.flex.html.beads.controllers.DragMouseController" />
     <component id="DropMouseController" class="org.apache.flex.html.beads.controllers.DropMouseController" />

@@ -34,6 +34,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
 	import org.apache.flex.html.beads.controllers.DropMouseController;
+	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.utils.UIUtils;
 	
     
 	/**
@@ -41,15 +44,23 @@ package org.apache.flex.html.beads
 	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
 	 *  of rows within the same list.
      *  
-	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead
+	 *  @see org.apache.flex.html.beads.SingleSelectionDropIndicatorBead
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class SingleSelectionDropTargetBead extends EventDispatcher implements IBead
 	{
+		/**
+		 * Constructor
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function SingleSelectionDropTargetBead()
 		{
 			super();
@@ -57,16 +68,27 @@ package org.apache.flex.html.beads
 		
 		private var _strand:IStrand;
 		private var _dropController:DropMouseController;
+		private var _dropIndicator:UIBase;
+		private var lastItemVisited:Object;
+		private var indicatorVisible:Boolean = false;
 		
-		private var _itemRendererParent:IParent;
-		public function get itemRendererParent():IParent
+		/**
+		 * @private
+		 */
+		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
 		{
-			if (_itemRendererParent == null) {
-				_itemRendererParent = _strand.getBeadByType(IItemRendererParent) as IParent;
+			if (_dropIndicator == null) {
+				var bead:SingleSelectionDropIndicatorBead = _strand.getBeadByType(SingleSelectionDropIndicatorBead) as SingleSelectionDropIndicatorBead;
+				if (bead == null) return null;
+				
+				_dropIndicator = bead.getDropIndicator(ir, width, height);
 			}
-			return _itemRendererParent;
+			return _dropIndicator;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -80,31 +102,104 @@ package org.apache.flex.html.beads
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 		
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
-		
+		/**
+		 * @private
+		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.target.toString());
+			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
 			
 			_dropController.acceptDragDrop(event.target as IUIBase, DropType.COPY);
+			
+			var startHere:Object = event.relatedObject;
+			while( !(startHere is DataItemRenderer) && startHere != null) {
+				startHere = startHere.parent;
+			}
+			
+			if (startHere is DataItemRenderer) {
+				var ir:DataItemRenderer = startHere as DataItemRenderer;				
+				lastItemVisited = ir;
+			}
+			
+			if (lastItemVisited && !indicatorVisible) {
+				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+				var orgPoint:Point = new Point((lastItemVisited as UIBase).x, (lastItemVisited as UIBase).y);
+				var pt1:Point = PointUtils.localToGlobal(orgPoint, lastItemVisited.parent);
+				var pt2:Point = PointUtils.globalToLocal(pt1, host);
+				indicatorVisible = true;
+				var di:UIBase = getDropIndicator(lastItemVisited, (_strand as UIBase).width, 4);
+				di.x = pt2.x;
+				di.y = pt2.y;
+				
+				trace("=== over item "+(lastItemVisited as DataItemRenderer).data.toString()+", at "+pt2.x+", "+pt2.y);
+				
+				if (_dropIndicator) host.addElement(di);
+			}
+			
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleDragExit(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragExit via: "+event.target.toString());
+			trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
+			
+			if (indicatorVisible) {
+				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+				if (_dropIndicator) host.removeElement(_dropIndicator);
+				indicatorVisible = false;
+			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleDragOver(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragOver via: "+event.target.toString());
+			trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
+			
+			var startHere:Object = event.relatedObject;
+			while( !(startHere is DataItemRenderer) && startHere != null) {
+				startHere = startHere.parent;
+			}
+			if ((startHere is DataItemRenderer) && _dropIndicator != null) {
+				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+				var orgPoint:Point = new Point((startHere as UIBase).x, (startHere as UIBase).y);
+				var pt1:Point = PointUtils.localToGlobal(orgPoint, startHere.parent);
+				var pt2:Point = PointUtils.globalToLocal(pt1, host);
+				_dropIndicator.x = pt2.x;
+				_dropIndicator.y = pt2.y - 1;
+				
+				lastItemVisited = startHere;
+				
+				trace("== over item "+(startHere as DataItemRenderer).data.toString()+", at "+pt2.x+", "+pt2.y);
+			} else if (lastItemVisited && _dropIndicator != null) {
+				trace("== beyond last item");
+				
+				var p:UIBase = (lastItemVisited as UIBase).parent as UIBase;
+				if (p == null) return;
+				
+				var n:int = p.numElements;
+				var lastItem:UIBase = p.getElementAt(n-1) as UIBase;
+				
+				host = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
+				orgPoint = new Point(lastItem.x, lastItem.y);
+				pt1 = PointUtils.localToGlobal(orgPoint, p);
+				pt2 = PointUtils.globalToLocal(pt1, host);
+				_dropIndicator.x = pt2.x;
+				_dropIndicator.y = pt2.y + lastItem.height + 1;
+			}
 		}
 		
+		/**
+		 * @private
+		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
+			
+			handleDragExit(event);
 						
 			var targetIndex:int = -1; // indicates drop beyond length of items
 			

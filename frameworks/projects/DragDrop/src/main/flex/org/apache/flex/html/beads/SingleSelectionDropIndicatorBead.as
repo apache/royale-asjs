@@ -37,37 +37,33 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Group;
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.controllers.DragMouseController;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.svg.Rect;
+	import org.apache.flex.graphics.SolidColor;
 	
     
 	/**
-	 *  The SingleSelectionDragImageBead produces a UIBase component that represents
-	 *  the item being dragged. It does this by taking the data associcated with the
-	 *  index of the item selected and running the toString() function on it, placing
-	 *  it inside of a Label that is inside of Group (which is given the className of
-	 *  "DragImage").
+	 *  The SingleSelectionDropIndicatorBead provides a graphic used to help the user
+	 *  place the item being dropped.
 	 * 
-	 *  The createDragImage() function can be overridden and a different component returned.
-	 * 
-	 *  @see org.apache.flex.html.beads.SingleSelectionDragSourceBead.
+	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead.
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class SingleSelectionDragImageBead extends EventDispatcher implements IBead
+	public class SingleSelectionDropIndicatorBead extends EventDispatcher implements IBead
 	{
 		/**
-		 * Constructor.
-		 *
+		 * Constructor
+	     *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function SingleSelectionDragImageBead()
+		public function SingleSelectionDropIndicatorBead()
 		{
 			super();
 		}
@@ -80,58 +76,36 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
 		}
 		
+		private var _dropIndicator:Rect;
+		
 		/**
-		 * Creates an example/temporary component to be dragged and returns it.
+		 * This function returns a UIBase component that is used to indicate where a drop action will occur or
+		 * be accepted. This function is called once by the SingleSelectionDropTargetBead (or its derivatives) 
+		 * when the drop target is entered. After that only its (x,y) coordinates will be changed.
 		 * 
-		 * @param ir DataItemRenderer The itemRenderer to be used as a template.
-		 * @return UIBase The "dragImage" to use.
-		 *
+		 * @param ir Object The object that will be dragged. You can use this to help customize the drop indicator.
+		 * @param width Number The preferred width of the drop indicator.
+		 * @param height Number The preferred height of the drop indicator.
+		 * @return UIBase A component that will show where the drop can be accepted.
+	     *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		protected function createDragImage(ir:DataItemRenderer):UIBase
+		public function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
 		{
-			var dragImage:UIBase = new Group();
-			dragImage.className = "DragImage";
-			dragImage.width = (ir as UIBase).width;
-			dragImage.height = (ir as UIBase).height;
-			var label:Label = new Label();
-			if (ir.dataField != null) {
-				label.text = ir.data[ir.dataField].toString();
-			} else {
-				label.text = ir.data.toString();
+			if (_dropIndicator == null) {
+				_dropIndicator = new Rect();
+				_dropIndicator.fill = new SolidColor(0x000000);
 			}
 			
-			COMPILE::JS {
-				dragImage.element.style.position = 'absolute';
-				dragImage.element.style.cursor = 'pointer';
-			}
-				
-			dragImage.addElement(label);
+			_dropIndicator.width = width;
+			_dropIndicator.height = height;
 			
-			return dragImage;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function handleDragStart(event:DragEvent):void
-		{
-			trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
-
-			var startHere:Object = event.target;
-			
-			if (startHere is DataItemRenderer) {
-				var ir:DataItemRenderer = startHere as DataItemRenderer;
-				DragEvent.dragSource = ir.data;
-				DragMouseController.dragImage = createDragImage(ir);
-			}
+			return _dropIndicator;
 		}
 	}
 }

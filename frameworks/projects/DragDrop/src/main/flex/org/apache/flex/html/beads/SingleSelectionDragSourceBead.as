@@ -39,6 +39,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.beads.controllers.DragMouseController;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.utils.UIUtils;
 	
     
 	/**
@@ -55,10 +56,18 @@ package org.apache.flex.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
 	public class SingleSelectionDragSourceBead extends EventDispatcher implements IBead, IDragInitiator
 	{
+		/**
+		 * Constructor
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function SingleSelectionDragSourceBead()
 		{
 			super();
@@ -67,16 +76,16 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		private var _dragController:DragMouseController;
 		
-		private var _itemRendererParent:IParent;
-		public function get itemRendererParent():IParent
-		{
-			if (_itemRendererParent == null) {
-				_itemRendererParent = _strand.getBeadByType(IItemRendererParent) as IParent;
-			}
-			return _itemRendererParent;
-		}
-		
 		private var _dragType:String = "move";
+		
+		/**
+		 * The type of drag and drop operation: move or copy.
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function get dragType():String
 		{
 			return _dragType;
@@ -86,6 +95,9 @@ package org.apache.flex.html.beads
 			_dragType = value;
 		}
 		
+		/**
+		 * @private
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -94,15 +106,15 @@ package org.apache.flex.html.beads
 			_strand.addBead(_dragController);
 			
 			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
-		}
-		
-		public function get strand():IStrand
-		{
-			return _strand;
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_END, handleDragEnd);
 		}
 		
 		private var indexOfDragSource:int = -1;
 		
+		/**
+		 * @private
+		 */
 		private function handleDragStart(event:DragEvent):void
 		{
 			trace("SingleSelectionDragSourceBead received the DragStart");
@@ -118,15 +130,34 @@ package org.apache.flex.html.beads
 				var ir:DataItemRenderer = startHere as DataItemRenderer;
 				
 				var p:UIBase = (ir as UIBase).parent as UIBase;
-				indexOfDragSource = p.getElementIndex(ir);
-				
-				trace("SingleSelectionDragSourceBead index of dragged object: "+indexOfDragSource);
+				indexOfDragSource = p.getElementIndex(ir);								
 			}
-			 
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function handleDragMove(event:DragEvent):void
+		{
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function handleDragEnd(event:DragEvent):void
+		{
 		}
 		
 		/* IDragInitiator */
 		
+		/**
+		 * Handles pre-drop actions.
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{
 			trace("SingleSelectionDragSourceBead accepting drop of type "+type);
@@ -155,6 +186,14 @@ package org.apache.flex.html.beads
 			}
 		}
 		
+		/**
+		 * Handles post-drop actions.
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
 		public function acceptedDrop(dropTarget:Object, type:String):void
 		{
 			trace("SingleSelectionDragSourceBead accepted drop of type "+type);

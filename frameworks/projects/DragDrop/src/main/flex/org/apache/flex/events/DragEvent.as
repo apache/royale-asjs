@@ -29,6 +29,10 @@ package org.apache.flex.events
         import window.MouseEvent;
         import org.apache.flex.events.utils.EventUtils;
     }
+	COMPILE::SWF
+	{
+		import flash.display.InteractiveObject;
+	}
     
 	/**
 	 *  Drag and Drop Events.
@@ -360,7 +364,7 @@ package org.apache.flex.events
                 de.shiftKey = event.shiftKey;
                 de.buttonDown = event.buttonDown;
                 de.delta = event.delta;
-                de.relatedObject = event.relatedObject;
+                de.relatedObject = event.target as InteractiveObject;
 				
 				var localPoint:Point = new Point(event.screenX, event.screenY);
 				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
@@ -376,6 +380,7 @@ package org.apache.flex.events
 				de.altKey = event.altKey;
 				de.ctrlKey = event.ctrlKey;
 				de.shiftKey = event.shiftKey;
+				de.relatedObject = event.target;
 				
 				var localPoint:Point = new Point(event.screenX, event.screenY);
 				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
