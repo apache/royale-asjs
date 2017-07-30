@@ -1062,17 +1062,23 @@ package
 				return p == "0";
 			var name:QName = toXMLName(p);
 			var i:int;
-			for(i=0;i<_attributes.length;i++)
+			if(name.isAttribute)
 			{
-				if(_attributes[i].name().matches(name))
-					return true;
+				for(i=0;i<_attributes.length;i++)
+				{
+					if(_attributes[i].name().matches(name))
+						return true;
+				}
 			}
-			for(i=0;i<_children.length;i++)
+			else
 			{
-				if(_children[i].nodeKind() != "element")
-					continue;
-				if(_children[i].name().matches(name))
-					return true;
+				for(i=0;i<_children.length;i++)
+				{
+					if(_children[i].nodeKind() != "element")
+						continue;
+					if(_children[i].name().matches(name))
+						return true;
+				}
 			}
 			return false;
 		}
@@ -2165,11 +2171,11 @@ package
 		private function toAttributeName(name:*):QName
 		{
 			var qname:QName;
-			if(!name is QName)
+			if(!(name is QName))
 			{
 				name = name.toString();
 				if(name.indexOf("@") > -1)
-					name = name.substring(name.indexOf("@"));
+					name = name.substring(name.indexOf("@") + 1);
 			}
 			qname = toXMLName(name);
 			qname.isAttribute = true;

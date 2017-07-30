@@ -97,6 +97,9 @@ limitations under the License.
         var list4:XMLList;
         var xml1:XML = <foo baz="true"/>;
         trace(xml1.toXMLString());
+        trace("should be true: " + xml1.hasOwnProperty("@baz"));
+        trace("should be false: " + xml1.hasOwnProperty("@foo"));
+        trace("should be false: " + xml1.hasOwnProperty("baz"));
         trace(xml1.toXMLString() == '<foo baz="true"/>');
         var baz:XMLList = xml1.@baz;
         trace("baz: " + xml1.@baz.toString() + " //true");
