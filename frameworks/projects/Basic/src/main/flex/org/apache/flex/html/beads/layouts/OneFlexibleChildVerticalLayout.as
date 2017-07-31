@@ -156,7 +156,8 @@ package org.apache.flex.html.beads.layouts
 			// set the display on the contentView
 			contentView.element.style["display"] = "flex";
 			contentView.element.style["flex-flow"] = "column";
-			if (!contentView.element.style["align-items"])
+			var align:String = ValuesManager.valuesImpl.getValue(host, "alignItems");
+			if (align == "center")
 				contentView.element.style["align-items"] = "center";
 
 			var n:int = contentView.numElements;
