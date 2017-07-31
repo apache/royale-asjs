@@ -79,6 +79,10 @@ package org.apache.flex.html
          */
 		public function Container()
 		{
+			COMPILE::JS
+			{
+				typeNames = 'Container';
+			}
 			super();
 		}
 		
