@@ -54,22 +54,32 @@ package org.apache.flex.html.beads
 			{
 				if(object[propertyName] == dataProvider)
 					return;
-                dataProvider.removeEventListener("itemAdded", handleDataProviderChanges);
-                dataProvider.removeEventListener("itemRemoved", handleDataProviderChanges);
-                dataProvider.removeEventListener("itemUpdated", handleDataProviderChanges);
-                dataProvider.removeEventListener("collectionChanged", handleDataProviderChanges);
+				detachEventListeners();
 			}
 			dataProvider = object[propertyName] as ArrayList;
-            dataProvider.addEventListener("itemAdded", handleDataProviderChanges);
-            dataProvider.addEventListener("itemRemoved", handleDataProviderChanges);
-            dataProvider.addEventListener("itemUpdated", handleDataProviderChanges);
-            dataProvider.addEventListener("collectionChanged", handleDataProviderChanges);
+			attachEventListeners();
 		}
 
 		private function handleDataProviderChanges(event:Event):void
 		{
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+		}
+		
+		protected function attachEventListeners():void
+		{
+			dataProvider.addEventListener("itemAdded", handleDataProviderChanges);
+			dataProvider.addEventListener("itemRemoved", handleDataProviderChanges);
+			dataProvider.addEventListener("itemUpdated", handleDataProviderChanges);
+			dataProvider.addEventListener("collectionChanged", handleDataProviderChanges);
+		}
+		
+		protected function detachEventListeners():void
+		{
+			dataProvider.removeEventListener("itemAdded", handleDataProviderChanges);
+			dataProvider.removeEventListener("itemRemoved", handleDataProviderChanges);
+			dataProvider.removeEventListener("itemUpdated", handleDataProviderChanges);
+			dataProvider.removeEventListener("collectionChanged", handleDataProviderChanges);
 		}
 	}
 }

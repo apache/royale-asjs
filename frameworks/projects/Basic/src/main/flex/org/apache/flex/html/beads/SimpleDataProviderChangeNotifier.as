@@ -64,7 +64,8 @@ package org.apache.flex.html.beads
 					selectionModel.addEventListener("dataProviderChanged", setFirstDataProvider);
 			} else
 			{
-				super.destinationChangedHandler(event);
+				detachEventListeners();
+				attachEventListeners();
 			}
 		}
 		
