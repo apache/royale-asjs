@@ -37,6 +37,8 @@ package org.apache.flex.textLayout.elements.utils
 	import org.apache.flex.textLayout.formats.TLFTypographicCase;
 	import org.apache.flex.textLayout.formats.TextLayoutFormat;
 	import org.apache.flex.textLayout.utils.LocaleUtil;
+	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.flex.textLayout.factory.TLFFactory;
 	public class GeometricElementUtils
 	{
 		/** @private */
@@ -183,6 +185,11 @@ package org.apache.flex.textLayout.elements.utils
 			var fd:FontDescription = new FontDescription();
 			fd.fontStyle = computedFormat.fontStyle;
 			fd.fontName = computedFormat.fontFamily;
+			var tf:ITextFlow = para.getTextFlow();
+			if(tf)
+				fd.fontLoader = tf.tlfFactory.textFactory.getFontLoader();
+			else
+				fd.fontLoader = TLFFactory.defaultTLFFactory.textFactory.getFontLoader();
 //			fd.renderingMode = computedFormat.renderingMode;
 //			fd.cffHinting = computedFormat.cffHinting;
 			

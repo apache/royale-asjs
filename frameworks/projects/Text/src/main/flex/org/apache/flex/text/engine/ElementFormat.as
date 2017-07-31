@@ -19,6 +19,9 @@
 package org.apache.flex.text.engine
 {
 	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.debugging.assert;
+	import org.apache.flex.text.engine.IFont;
+	import org.apache.flex.text.engine.FontMetrics;
 	
 	public class ElementFormat
 	{
@@ -82,10 +85,9 @@ package org.apache.flex.text.engine
  	 	
 		public function getFontMetrics():FontMetrics
 		{
-			var fm:FontMetrics = new FontMetrics();
-			// just a guess for now
-			fm.emBox = new Rectangle(0, 1.2 - fontSize, fontSize, 1.2);
-			return fm;
+			assert(fontDescription != null,"fontDescription not assigned!");
+			var metrics:FontMetrics = fontDescription.fontLoader.getFont(fontDescription.fontName,fontDescription.fontStyle).fontMetrics;
+			return metrics.getScaledMetrics(fontSize);
 		}
 	}
 }
