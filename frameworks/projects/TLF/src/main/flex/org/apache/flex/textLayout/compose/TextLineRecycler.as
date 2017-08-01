@@ -21,7 +21,7 @@ package org.apache.flex.textLayout.compose
 	import org.apache.flex.text.engine.ITextLine;
 	import org.apache.flex.utils.ObjectMap;
 	
-	CONFIG::debug { import org.apache.flex.textLayout.debug.assert; }
+	// CONFIG::debug { import org.apache.flex.textLayout.debug.assert; }
 
 	
 
