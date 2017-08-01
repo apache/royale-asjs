@@ -63,6 +63,16 @@
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
+          <defines>
+            <define>
+              <name>CONFIG::debug</name>
+              <value>false</value>
+            </define>
+            <define>
+              <name>CONFIG::release</name>
+              <value>true</value>
+            </define>
+          </defines>
         </configuration>
       </plugin>
     </plugins>
