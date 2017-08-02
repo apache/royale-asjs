@@ -210,7 +210,6 @@ package org.apache.flex.textLayout.compose.utils
 
 			var metrics:FontMetrics = element.getComputedFontMetrics();
 
-
 			var backgroundOnly:Boolean = !(element.computedFormat.textDecoration == TextDecoration.UNDERLINE || element.computedFormat.lineThrough);
 				
 			if (!backgroundOnly)
@@ -223,6 +222,7 @@ package org.apache.flex.textLayout.compose.utils
 						
 				var stOffset:Number = calculateStrikeThrough(element,tLine, blockProgression, metrics);
 				var ulOffset:Number = calculateUnderlineOffset(element, stOffset, blockProgression, metrics, tLine);
+				ulOffset += tLine.getAdornmentOffsetBase();
 			}
 						
 			if (blockProgression != BlockProgression.RL)

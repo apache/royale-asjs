@@ -87,5 +87,25 @@ package org.apache.flex.text.engine
 		{
 			return 1 / unitsPerEm * fontSize;
 		}
+		public function clone():FontMetrics
+		{
+			var metrics:FontMetrics = new FontMetrics();
+			if(emBox)
+				metrics.emBox = emBox.clone();
+			metrics.lineGap = lineGap;
+			metrics.strikethroughOffset = strikethroughOffset;
+			metrics.strikethroughThickness = strikethroughThickness;
+			metrics.subscriptOffset = subscriptOffset;
+			metrics.subscriptScale = subscriptScale;
+			metrics.superscriptOffset = superscriptOffset;
+			metrics.superscriptScale = superscriptScale;
+			metrics.underlineOffset = underlineOffset;
+			metrics.underlineThickness = underlineThickness;
+			metrics.ascender = ascender;
+			metrics.descender = descender;
+			metrics.xHeight = xHeight;
+			metrics.capsHeight = capsHeight;
+			return metrics;
+		}
 	}
 }

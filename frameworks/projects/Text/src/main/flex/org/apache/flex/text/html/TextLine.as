@@ -506,5 +506,10 @@ package org.apache.flex.text.html
 			_numberLine = value;
 		}
 
+		public function getAdornmentOffsetBase():Number
+		{
+			return 0;
+		}
+
 	}
 }

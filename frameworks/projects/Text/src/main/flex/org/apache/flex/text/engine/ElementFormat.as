@@ -86,7 +86,7 @@ package org.apache.flex.text.engine
 		public function getFontMetrics():FontMetrics
 		{
 			assert(fontDescription != null,"fontDescription not assigned!");
-			return fontDescription.fontLoader.getFont(fontDescription.fontName,fontDescription.fontStyle).fontMetrics;
+			return fontDescription.fontLoader.getFont(fontDescription.fontName,fontDescription.fontStyle).fontMetrics.clone();
 		}
 	}
 }
