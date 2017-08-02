@@ -16,33 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.debug
+package org.apache.flex.textLayout.debug 
 {
+
+		
+
+
 	/** @private
 	 *  Debug only function that prints a trace message if condition is false.
 	 *  @return count of errors reported this assert: 1 or 0.
 	 * */
 	CONFIG::debug
-    {
-        public function assert(condition:Boolean, warning:String):int
-        {
-            if (!condition)
-            {
-                trace("ERROR: " + warning);
-                // throw if the bit is set
-                if (Debugging.throwOnAssert)
-                    throw(new Error("TextLayoutAssert: " + warning));
-                return 1;
-            }
-            return 0;
-        }
-    }
-
+	public function assert(condition:Boolean, warning:String):int
+	{
+		if (!condition)
+		{
+			trace("ERROR: " + warning);
+			// throw if the bit is set
+			if (Debugging.throwOnAssert)
+				throw(new Error("TextLayoutAssert: " + warning));
+			return 1;
+		}
+		return 0;
+	}
 	/** @private */
-	CONFIG::release
-    {
-        public function assert(condition:Boolean, warning:String):void
-        {
-        }
-    }
+	CONFIG::release 
+	public function assert(condition:Boolean, warning:String):void 
+	{
+	} 
 } // end package
