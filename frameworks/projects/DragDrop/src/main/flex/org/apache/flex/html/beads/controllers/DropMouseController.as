@@ -28,6 +28,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.events.MouseEvent;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.css2.Cursors;
 	
 	COMPILE::SWF {
 		import flash.display.InteractiveObject;
@@ -153,6 +154,8 @@ package org.apache.flex.html.beads.controllers
                 inside = true;
                 IUIBase(_strand).addEventListener(DragEvent.DRAG_END, dragEndHandler);
                 IUIBase(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+				
+				Cursors.setCursor(_strand as IUIBase, Cursors.MOVE);
             }
             else
             {
@@ -170,6 +173,8 @@ package org.apache.flex.html.beads.controllers
                 dragEvent = DragEvent.createDragEvent("dragExit", event);
 				dispatchEvent(dragEvent);
                 inside = false;
+				
+				Cursors.setCursor(_strand as IUIBase, Cursors.AUTO);
             }
             IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
             IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
@@ -199,7 +204,9 @@ package org.apache.flex.html.beads.controllers
             
             inside = false;
             IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
-            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);			
+            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);	
+			
+			Cursors.setCursor(_strand as IUIBase, Cursors.AUTO);
         }
 		
 	}
