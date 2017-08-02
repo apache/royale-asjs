@@ -222,7 +222,9 @@ package org.apache.flex.textLayout.compose.utils
 						
 				var stOffset:Number = calculateStrikeThrough(element,tLine, blockProgression, metrics);
 				var ulOffset:Number = calculateUnderlineOffset(element, stOffset, blockProgression, metrics, tLine);
-				ulOffset += tLine.getAdornmentOffsetBase();
+				var offset:Number = tLine.getAdornmentOffsetBase();
+				ulOffset += offset;
+				stOffset += offset;
 			}
 						
 			if (blockProgression != BlockProgression.RL)
