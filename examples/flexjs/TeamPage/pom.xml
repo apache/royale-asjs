@@ -72,21 +72,6 @@
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
-
-    <!-- Needed for JavaScript compilation -->
-    <!-- Already added in parent -->
-    <!--dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>0.8.0</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.flex.flexjs.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>0.8.0</version>
-      <type>swc</type>
-    </dependency-->
   </dependencies>
 
 </project>
