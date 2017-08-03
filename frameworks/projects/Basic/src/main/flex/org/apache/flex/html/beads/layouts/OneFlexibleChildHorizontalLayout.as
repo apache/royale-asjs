@@ -153,7 +153,8 @@ package org.apache.flex.html.beads.layouts
 			actualChild = document[flexibleChild];
 
 			// set the display on the contentView
-			contentView.element.style["display"] = "flex";
+			(contentView as UIBase).setDisplayStyleForLayout("flex");
+			// contentView.element.style["display"] = "flex";
 			contentView.element.style["flex-flow"] = "row";
 			var align:String = ValuesManager.valuesImpl.getValue(host, "alignItems");
 			if (align == "center")

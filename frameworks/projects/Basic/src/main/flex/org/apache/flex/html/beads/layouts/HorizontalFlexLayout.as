@@ -95,178 +95,190 @@ package org.apache.flex.html.beads.layouts
 
 		/**
 		 * @copy org.apache.flex.core.IBeadLayout#layout
-		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
+		COMPILE::SWF
 		override public function layout():Boolean
 		{
-			COMPILE::SWF {
-				var contentView:ILayoutView = layoutView;
+			
+			var contentView:ILayoutView = layoutView;
 
-				var n:Number = contentView.numElements;
-				if (n == 0) return false;
+			var n:Number = contentView.numElements;
+			if (n == 0) return false;
 
-				var spacing:String = "none";
+			var spacing:String = "none";
 
-				var maxWidth:Number = 0;
-				var maxHeight:Number = 0;
-				var growCount:Number = 0;
-				var childData:Array = [];
-				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
-				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
-				var hostWidth:Number = host.width;
-				var hostHeight:Number = host.height;
+			var maxWidth:Number = 0;
+			var maxHeight:Number = 0;
+			var growCount:Number = 0;
+			var childData:Array = [];
+			var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+			var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
 
-				var ilc:ILayoutChild;
-				var data:Object;
-				var canAdjust:Boolean = false;
-				
-				var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
-				var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
-				
-				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
-				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
-				
-				if ((hostWidth <= 0 && !hostWidthSizedToContent) || (hostHeight <= 0 && !hostHeightSizedToContent)) return false;
-				
-				var remainingWidth:Number = hostWidth;
+			var ilc:ILayoutChild;
+			var data:Object;
+			var canAdjust:Boolean = false;
+			
+			var paddingMetrics:Rectangle = CSSContainerUtils.getPaddingMetrics(host);
+			var borderMetrics:Rectangle = CSSContainerUtils.getBorderMetrics(host);
+			
+			// adjust the host's usable size by the metrics. If hostSizedToContent, then the
+			// resulting adjusted value may be less than zero.
+			hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+			hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+			
+			if ((hostWidth <= 0 && !hostWidthSizedToContent) || (hostHeight <= 0 && !hostHeightSizedToContent)) return false;
+			
+			var remainingWidth:Number = hostWidth;
 
-				//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
+			//trace("HorizontalFlexLayout for "+UIBase(host).id+" with remainingWidth: "+remainingWidth);
 
-				// First pass determines the data about the child.
-				for(var i:int=0; i < n; i++)
-				{
-					var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-					if (child == null || !child.visible) {
-						childData.push({width:0, height:0, mt:0, ml:0, mr:0, mb:0, canAdjust:false});
-						continue;
-					}
-
-					ilc = child as ILayoutChild;
-					
-					var margins:Object = childMargins(child, hostWidth, hostHeight);
-
-					var flexGrow:Object = ValuesManager.valuesImpl.getValue(child, "flex-grow");
-					var growValue:Number = 0;
-					if (flexGrow != null) {
-						growValue = Number(flexGrow);
-						if (!isNaN(growValue) && growValue > 0) growCount++;
-						else growValue = 0;
-					}
-
-					var useHeight:Number = -1;
-					if (!hostHeightSizedToContent) {
-						if (ilc) {
-							if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
-							else if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
-							else useHeight = hostHeight;
-						}
-					}
-
-					var useWidth:Number = -1;
-					if (ilc) {
-						if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
-						else if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
-						else if (ilc.width > 0) useWidth = ilc.width;
-					}
-					if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth + margins.left + margins.right;
-					else remainingWidth -= margins.left + margins.right;
-
-					if (maxWidth < useWidth) maxWidth = useWidth;
-					if (maxHeight < useHeight) maxHeight = useHeight;
-
-					childData.push({width:useWidth, height:useHeight, 
-						            mt:margins.top, ml:margins.left, mr:margins.right, mb:margins.bottom, 
-									grow:growValue, canAdjust:canAdjust});
+			// First pass determines the data about the child.
+			for(var i:int=0; i < n; i++)
+			{
+				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
+				if (child == null || !child.visible) {
+					childData.push({width:0, height:0, mt:0, ml:0, mr:0, mb:0, canAdjust:false});
+					continue;
 				}
 
-				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.top;
+				ilc = child as ILayoutChild;
+				
+				var margins:Object = childMargins(child, hostWidth, hostHeight);
 
-				// Second pass sizes and positions the children based on the data gathered.
-				for(i=0; i < n; i++)
-				{
-					child = contentView.getElementAt(i) as IUIBase;
-					data = childData[i];
-					//if (data.width == 0 || data.height == 0) continue;
-
-					useHeight = (data.height < 0 ? maxHeight : data.height);
-
-					var setWidth:Boolean = true;
-					if (data.width != 0) {
-						if (data.grow > 0 && growCount > 0) {
-							useWidth = remainingWidth / growCount;
-							setWidth = false;
-						} else {
-							useWidth = data.width;
-						}
-					} else {
-						useWidth = child.width;
-					}
-
-					ilc = child as ILayoutChild;
-					if (ilc) {
-						ilc.setX(xpos + data.ml);
-						ilc.setY(ypos + data.mt);
-						if (data.height > 0) {
-							//ilc.height = useHeight;
-							ilc.setHeight(useHeight);
-						}
-						if (useWidth > 0) {
-							if (setWidth) ilc.setWidth(useWidth);
-							else ilc.width = useWidth;
-						}
-					} else {
-						child.x = xpos + data.ml;
-						child.y = ypos + data.mt;
-						child.height = useHeight;
-						if (data.width > 0) {
-							child.width = useWidth;
-						}
-					}
-
-					xpos += useWidth + data.mr + data.ml;
-
-					//trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
+				var flexGrow:Object = ValuesManager.valuesImpl.getValue(child, "flex-grow");
+				var growValue:Number = 0;
+				if (flexGrow != null) {
+					growValue = Number(flexGrow);
+					if (!isNaN(growValue) && growValue > 0) growCount++;
+					else growValue = 0;
 				}
 
-				//trace("HorizontalFlexLayout: complete");
+				var useHeight:Number = -1;
+				if (!hostHeightSizedToContent) {
+					if (ilc) {
+						if (!isNaN(ilc.percentHeight)) useHeight = hostHeight * (ilc.percentHeight/100.0);
+						else if (!isNaN(ilc.explicitHeight)) useHeight = ilc.explicitHeight;
+						else useHeight = hostHeight;
+					}
+				}
 
-				return true;
+				var useWidth:Number = -1;
+				if (ilc) {
+					if (!isNaN(ilc.explicitWidth)) useWidth = ilc.explicitWidth;
+					else if (!isNaN(ilc.percentWidth)) useWidth = hostWidth * (ilc.percentWidth/100.0);
+					else if (ilc.width > 0) useWidth = ilc.width;
+				}
+				if (growValue == 0 && useWidth > 0) remainingWidth -= useWidth + margins.left + margins.right;
+				else remainingWidth -= margins.left + margins.right;
+
+				if (maxWidth < useWidth) maxWidth = useWidth;
+				if (maxHeight < useHeight) maxHeight = useHeight;
+
+				childData.push({width:useWidth, height:useHeight, 
+								mt:margins.top, ml:margins.left, mr:margins.right, mb:margins.bottom, 
+								grow:growValue, canAdjust:canAdjust});
 			}
 
-			COMPILE::JS {
-				var contentView:ILayoutView = layoutView;
+			var xpos:Number = borderMetrics.left + paddingMetrics.left;
+			var ypos:Number = borderMetrics.top + paddingMetrics.top;
 
-				// set the display on the contentView
-				contentView.element.style["display"] = "flex";
-				contentView.element.style["flex-flow"] = "row";
+			// Second pass sizes and positions the children based on the data gathered.
+			for(i=0; i < n; i++)
+			{
+				child = contentView.getElementAt(i) as IUIBase;
+				data = childData[i];
+				//if (data.width == 0 || data.height == 0) continue;
 
-				var n:int = contentView.numElements;
-				if (n == 0) return false;
+				useHeight = (data.height < 0 ? maxHeight : data.height);
 
-				for(var i:int=0; i < n; i++) {
-					var child:UIBase = contentView.getElementAt(i) as UIBase;
-					if (!child)
-					{
-						continue;
-                    }
-					
-					if (grow >= 0) child.element.style["flex-grow"] = String(grow);
-					if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
-					if (!isNaN(child.percentWidth))
-						child.element.style["flex-basis"] = child.percentWidth.toString() + "%";
-					child.dispatchEvent(new Event("layoutNeeded"));
+				var setWidth:Boolean = true;
+				if (data.width != 0) {
+					if (data.grow > 0 && growCount > 0) {
+						useWidth = remainingWidth / growCount;
+						setWidth = false;
+					} else {
+						useWidth = data.width;
+					}
+				} else {
+					useWidth = child.width;
 				}
 
-				return true;
+				ilc = child as ILayoutChild;
+				if (ilc) {
+					ilc.setX(xpos + data.ml);
+					ilc.setY(ypos + data.mt);
+					if (data.height > 0) {
+						//ilc.height = useHeight;
+						ilc.setHeight(useHeight);
+					}
+					if (useWidth > 0) {
+						if (setWidth) ilc.setWidth(useWidth);
+						else ilc.width = useWidth;
+					}
+				} else {
+					child.x = xpos + data.ml;
+					child.y = ypos + data.mt;
+					child.height = useHeight;
+					if (data.width > 0) {
+						child.width = useWidth;
+					}
+				}
+
+				xpos += useWidth + data.mr + data.ml;
+
+				//trace("HorizontalFlexLayout: setting child "+i+" to "+child.width+" x "+child.height+" at "+child.x+", "+child.y);
 			}
+
+			//trace("HorizontalFlexLayout: complete");
+
+			return true;
+		}
+		/**
+		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 * @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 * @flexjsignorecoercion org.apache.flex.core.UIBase
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.8
+		 */
+		COMPILE::JS
+		override public function layout():Boolean
+		{
+
+			var contentView:ILayoutView = layoutView;
+
+			// set the display on the contentView
+			(contentView as UIBase).setDisplayStyleForLayout("flex");
+			// contentView.element.style["display"] = "flex";
+			contentView.element.style["flex-flow"] = "row";
+
+			var n:int = contentView.numElements;
+			if (n == 0) return false;
+
+			for(var i:int=0; i < n; i++) {
+				var child:UIBase = contentView.getElementAt(i) as UIBase;
+				if (!child)
+				{
+					continue;
+				}
+				
+				if (grow >= 0) child.element.style["flex-grow"] = String(grow);
+				if (shrink >= 0) child.element.style["flex-shrink"] = String(shrink);
+				if (!isNaN(child.percentWidth))
+					child.element.style["flex-basis"] = child.percentWidth.toString() + "%";
+				child.dispatchEvent(new Event("layoutNeeded"));
+			}
+
+			return true;
 		}
 	}
 }
