@@ -83,7 +83,7 @@ limitations under the License.
         
         <js:Label text="Switch throw 'click' event {counter4} times"/>
         
-        <mdl:Switch id="s2" text="Switch" click="onClickSwitch(event)"/>
+        <mdl:Switch id="s2" text="Switch" click="counter5++"/>
         
         <js:Label text="Switch throw 'click' event {counter5} times"/>
 
