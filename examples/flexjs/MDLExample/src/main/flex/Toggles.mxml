@@ -24,8 +24,8 @@ limitations under the License.
     
     <fx:Script>
         <![CDATA[
-            import org.apache.flex.events.MouseEvent;
-            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+        import org.apache.flex.events.MouseEvent;
+        import org.apache.flex.mdl.materialIcons.MaterialIconType;
 
             [Bindable]
             public var counter:int = 0;
@@ -47,6 +47,7 @@ limitations under the License.
 
             [Bindable]
             public var counter7:int = 0;
+
         ]]>
 	</fx:Script>
 
@@ -57,7 +58,7 @@ limitations under the License.
     <mdl:Grid width="250">
     
         <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-        <mdl:CheckBox id="mdlchk" text="Disabled at start" change="counter++"/>
+        <mdl:CheckBox id="mdlchk" text="Disabled at start" value="CheckBox Description" change="counter++"/>
         <js:Label text="Chebox throw 'change' event {counter} times"/>
         <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
         
@@ -82,13 +83,13 @@ limitations under the License.
         
         <js:Label text="Switch throw 'click' event {counter4} times"/>
         
-        <mdl:Switch id="s2" text="Switch" click="counter5++"/>
+        <mdl:Switch id="s2" text="Switch" click="onClickSwitch(event)"/>
         
         <js:Label text="Switch throw 'click' event {counter5} times"/>
 
-        <mdl:RadioButton groupName="g1" text="Ripple 1" ripple="true" change="counter6++"/>
-        <mdl:RadioButton groupName="g1" text="Ripple 2" ripple="true" change="counter6++"/>
-        <mdl:RadioButton groupName="g1" text="Ripple 3" ripple="true" change="counter6++"/>
+        <mdl:RadioButton groupName="g1" text="Ripple 1" value="Test 1" ripple="true" change="counter6++"/>
+        <mdl:RadioButton groupName="g1" text="Ripple 2" value="Test 2" ripple="true" change="counter6++"/>
+        <mdl:RadioButton groupName="g1" text="Ripple 3" value="Test 3" ripple="true" change="counter6++"/>
 
         <js:Label text="RadioButtons throw 'change' event {counter6} times"/>
 

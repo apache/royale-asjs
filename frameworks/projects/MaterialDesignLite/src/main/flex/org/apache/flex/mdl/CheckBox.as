@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-    import org.apache.flex.html.CheckBox; 
+    import org.apache.flex.html.CheckBox;
     import org.apache.flex.core.IToggleButtonModel;
     import org.apache.flex.mdl.beads.UpgradeChildren;
     import org.apache.flex.mdl.beads.UpgradeElement;
@@ -103,7 +103,7 @@ package org.apache.flex.mdl
             element.flexjs_wrapper = this;
             
             return element;
-        };
+        }
 
         protected var _ripple:Boolean = false;
 
@@ -164,6 +164,28 @@ package org.apache.flex.mdl
                 textNode.nodeValue = value;	
 			}
 		}
+
+        /**
+         *  The value associated with the CheckBox.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion FlexJS 0.9
+         */
+        public function get value():String
+        {
+            return IToggleButtonModel(model).html;
+        }
+        public function set value(newValue:String):void
+        {
+            IToggleButtonModel(model).html = newValue;
+
+            COMPILE::JS
+            {
+                input.value = newValue;
+            }
+        }
 
         COMPILE::JS
         protected var textNode:Text;
