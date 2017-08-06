@@ -116,7 +116,8 @@ package org.apache.flex.html.beads
             sbModel.addEventListener("stepSizeChange", changeHandler);
             sbModel.addEventListener("pageSizeChange", changeHandler);
             sbModel.addEventListener("valueChange", changeHandler);
-            
+            (value as IEventDispatcher).addEventListener("show", changeHandler);
+
             if( _strand.getBeadByType(IBeadLayout) == null ) {
                 layout = new (ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout")) as IBeadLayout;
                 _strand.addBead(layout);

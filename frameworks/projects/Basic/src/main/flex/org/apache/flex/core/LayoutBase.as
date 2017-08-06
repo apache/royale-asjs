@@ -316,6 +316,8 @@ package org.apache.flex.core
 		 */
 		public function performLayout():void
 		{
+			if(!host.visible)
+				return;
 			// avoid running this layout instance recursively.
 			if (isLayoutRunning) return;
 			

@@ -67,6 +67,7 @@ package org.apache.flex.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -105,9 +106,12 @@ package org.apache.flex.html.beads.layouts
 		{
 			return _header;
 		}
+		/**
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase
+		 */
 		public function set header(value:IUIBase):void
 		{
-			_header = UIBase(value);
+			_header = (value as UIBase);
 		}
 		
 		private var _columns:Array;
@@ -142,6 +146,7 @@ package org.apache.flex.html.beads.layouts
 		
         /**
          * @copy org.apache.flex.core.IBeadLayout#layout
+		 * @flexjsignorecoercion org.apache.flex.core.UIBase
          */
 		public function layout():Boolean
 		{						
@@ -202,9 +207,12 @@ package org.apache.flex.html.beads.layouts
 		
 		/**
 		 * @private
+		 * @flexjsignorecoercion org.apache.flex.core.UIBase
 		 */
 		private function handleSizeChanges(event:Event):void
 		{
+			if(!(_strand as UIBase).visible)
+				return;
 			var view:DataGridView = UIBase(_strand).view as DataGridView;
 			if (view == null) return;
 			
