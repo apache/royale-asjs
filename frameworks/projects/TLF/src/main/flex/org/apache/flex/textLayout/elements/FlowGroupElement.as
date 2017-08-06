@@ -968,19 +968,7 @@ package org.apache.flex.textLayout.elements
 
 				if (curFlowElement.parentRelativeStart != relativePosition)
 				{
-					if (curFlowElement.className == "FlowGroupElement")
-					{
-						FlowGroupElement(curFlowElement).splitAtPosition(relativePosition - curFlowElement.parentRelativeStart);
-					}
-					else
-					{
-						// I would imagine that it has to be a span.  That's the only non-FlowGroupElement
-						// type that can take up more than a textLength of 1.
-						CONFIG::debug
-						{
-							assert(curFlowElement.className == "SpanElement", "SpanElements are the only leaf elements that can currently have > 1 textLength");	}
-						ISpanElement(curFlowElement).splitAtPosition(relativePosition - curFlowElement.parentRelativeStart);
-					}
+					curFlowElement.splitAtPosition(relativePosition - curFlowElement.parentRelativeStart);
 					// increase by one. It's the new element that we want to move over.
 					curElementIdx++;
 				}
