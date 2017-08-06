@@ -159,12 +159,6 @@ package org.apache.flex.text.html
 			return false;
 		}
 		
-		COMPILE::JS
-		public function get metaData():Object
-		{
-			return null;
-		}
-		
 		public function get nextLine():ITextLine
 		{
 			return null;

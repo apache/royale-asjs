@@ -34,7 +34,6 @@ package org.apache.flex.text.engine
 		function get doubleClickEnabled():Boolean;
 		function get hasGraphicElement():Boolean;
 		function get hasTabs():Boolean;
-		function get metaData():Object;
 		function get nextLine():ITextLine;
 		function get previousLine():ITextLine;
 		function get rawTextLength():int;
