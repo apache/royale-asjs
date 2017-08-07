@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
+	import org.apache.flex.events.Event;
 	import org.apache.flex.html.List;
 	import org.apache.flex.mdl.beads.UpgradeElement;
 
@@ -58,9 +59,14 @@ package org.apache.flex.mdl
 			super();
 
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
-            addBead(new UpgradeElement());
+			addEventListener("beadsAdded", addUpgradeBead);
         }
-
+		
+		protected function addUpgradeBead(event:Event):void
+		{
+			addBead(new UpgradeElement());	
+		}
+		
         /**
          *  Default position for Menu in MDL is bottom/left (or no class selector specified)
          *
