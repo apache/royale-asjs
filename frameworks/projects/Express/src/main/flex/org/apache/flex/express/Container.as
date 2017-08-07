@@ -19,15 +19,15 @@
 package org.apache.flex.express
 {
 	import org.apache.flex.binding.ContainerDataBinding;
-	import org.apache.flex.core.BindableCSSStyles;
-	import org.apache.flex.core.StyleChangeNotifier;
 	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.layouts.LayoutOnShow;
 	import org.apache.flex.html.supportClasses.ScrollingViewport;
 	
+	import org.apache.flex.core.BindableCSSStyles;
+	import org.apache.flex.core.StyleChangeNotifier;
+	
 	COMPILE::SWF {
-		import org.apache.flex.html.beads.SingleLineBorderWithChangeListenerBead;
 		import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead;
+		import org.apache.flex.html.beads.SingleLineBorderWithChangeListenerBead;
 	}
 	
 	/**
@@ -48,7 +48,6 @@ package org.apache.flex.express
 			addBead(new ContainerDataBinding());
 			addBead(new ScrollingViewport());
 			addBead(new StyleChangeNotifier());
-			addBead(new LayoutOnShow());
 			
 			COMPILE::SWF {
 				addBead(new SolidBackgroundWithChangeListenerBead());
