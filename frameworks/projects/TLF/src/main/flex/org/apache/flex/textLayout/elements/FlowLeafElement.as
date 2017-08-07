@@ -329,7 +329,19 @@ package org.apache.flex.textLayout.elements
 			var tf:ITextFlow = getTextFlow();
 			if (tf && tf.flowComposer && tf.flowComposer.swfContext)
 				return tf.flowComposer.swfContext.callInContext(ef.getFontMetrics, ef, null, true);
-			return ef.getFontMetrics();
+			COMPILE::SWF
+			{
+				return ef.getFontMetrics();
+			}
+			COMPILE::JS
+			{
+				var metrics:FontMetrics = ef.getFontMetrics();
+				metrics.underlineOffset *= ef.fontSize;
+				metrics.underlineThickness *= ef.fontSize;
+				metrics.strikethroughOffset *= ef.fontSize;
+				metrics.strikethroughThickness *= ef.fontSize;
+				return metrics;
+			}
 		}
 
 		/** @private */

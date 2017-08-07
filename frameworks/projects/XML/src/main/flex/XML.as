@@ -339,18 +339,34 @@ package
 			);
 			
 		}
-
+		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
 			var parser:DOMParser = new DOMParser();
-			// get error namespace. It's different in different browsers.
-			var errorNS:String = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
-
-			var doc:Document = parser.parseFromString(xml, "application/xml");
+			if(errorNS == null)
+			{
+				// get error namespace. It's different in different browsers.
+				try{
+					errorNS = parser.parseFromString('<', 'application/xml').getElementsByTagName("parsererror")[0].namespaceURI;
+				}
+				catch(err:Error){
+					// Some browsers (i.e. IE) just throw an error
+					errorNS = "na";
+				}
+			}
+			try
+			{
+				var doc:Document = parser.parseFromString(xml, "application/xml");
+			}
+			catch(err:Error)
+			{
+				throw err;
+			}
 
 			//check for errors
-			if(doc.getElementsByTagNameNS(errorNS, 'parsererror').length > 0)
-				throw new Error('XML parse error');
+			var errorNodes:NodeList = doc.getElementsByTagNameNS(errorNS, 'parsererror');
+			if(errorNodes.length > 0)
+				throw new Error(errorNodes[0].innerHTML);
 			for(var i:int=0;i<doc.childNodes.length;i++)
 			{
 				var node:Element = doc.childNodes[i];

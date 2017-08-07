@@ -120,6 +120,8 @@ package org.apache.flex.html.beads
 			trace("SingleSelectionDragSourceBead received the DragStart");
 						
 			DragEvent.dragInitiator = this;
+			DragMouseController.dragImageOffsetX = -5;
+			DragMouseController.dragImageOffsetY = -5;
 			
 			var startHere:Object = event.target;
 			while( !(startHere is DataItemRenderer) && startHere != null) {

@@ -159,12 +159,6 @@ package org.apache.flex.text.html
 			return false;
 		}
 		
-		COMPILE::JS
-		public function get metaData():Object
-		{
-			return null;
-		}
-		
 		public function get nextLine():ITextLine
 		{
 			return null;
@@ -504,6 +498,11 @@ package org.apache.flex.text.html
 		public function set numberLine(value:ITextLine):void
 		{
 			_numberLine = value;
+		}
+
+		public function getAdornmentOffsetBase():Number
+		{
+			return 0;
 		}
 
 	}

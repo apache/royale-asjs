@@ -34,7 +34,6 @@ package org.apache.flex.text.engine
 		function get doubleClickEnabled():Boolean;
 		function get hasGraphicElement():Boolean;
 		function get hasTabs():Boolean;
-		function get metaData():Object;
 		function get nextLine():ITextLine;
 		function get previousLine():ITextLine;
 		function get rawTextLength():int;
@@ -69,7 +68,8 @@ package org.apache.flex.text.engine
 		function getAtomTextRotation(atomIndex:int):String;
 		function getAtomWordBoundaryOnLeft(atomIndex:int):Boolean;
 		function getBaselinePosition(baseline:String):Number;
-		
+		function getAdornmentOffsetBase():Number;
+
 		[SWFOverride(returns="flash.geom.Rectangle",params="flash.display.DisplayObject",altparams="Object")]
 		function getBounds(ref:Object):Rectangle;
 		

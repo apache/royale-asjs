@@ -194,7 +194,6 @@ package org.apache.flex.css2
                 if (!iui && s.parent)
                     iui = s.parent.parent as IUIBase;
                 if (iui)
-                if (iui)
                 {
                     var cursor:String = getCursor(iui);
                     if (cursor)

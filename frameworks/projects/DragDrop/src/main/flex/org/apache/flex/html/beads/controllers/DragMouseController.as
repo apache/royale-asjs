@@ -236,7 +236,6 @@ package org.apache.flex.html.beads.controllers
 						COMPILE::JS {
 							dragImage.element.style['pointer-events'] = 'none';
 							dragImage.element.style['position'] = 'absolute';
-							dragImage.element.style['cursor'] = 'pointer';
 						}
                     }
                 }
