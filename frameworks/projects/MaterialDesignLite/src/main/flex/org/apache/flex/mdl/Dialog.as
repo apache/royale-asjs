@@ -49,8 +49,8 @@ package org.apache.flex.mdl
 		 *  constructor.
          *
          *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
+         *  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.css">
+         *  <script src="//cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
          *  </inject_html>
 		 *
 		 *  @langversion 3.0
