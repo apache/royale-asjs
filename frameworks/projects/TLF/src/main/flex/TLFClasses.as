@@ -111,6 +111,7 @@ package
 		import org.apache.flex.textLayout.events.TextLayoutEvent; TextLayoutEvent;
 		
 		import org.apache.flex.textLayout.factory.TextLineFactoryBase; TextLineFactoryBase;
+        import org.apache.flex.textLayout.factory.StandardTLFFactory; StandardTLFFactory;
 		import org.apache.flex.textLayout.factory.StringTextLineFactory; StringTextLineFactory;
 		import org.apache.flex.textLayout.factory.TextFlowTextLineFactory; TextFlowTextLineFactory;
 		import org.apache.flex.textLayout.factory.TruncationOptions; TruncationOptions;		
