@@ -71,6 +71,7 @@ package org.apache.flex.html.beads
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
 		private var indicatorVisible:Boolean = false;
+		protected var indicatorParent:UIBase;
 		
 		/**
 		 * @private
@@ -82,6 +83,14 @@ package org.apache.flex.html.beads
 				if (bead == null) return null;
 				
 				_dropIndicator = bead.getDropIndicator(ir, width, height);
+			}
+			if (indicatorParent == null) {
+				COMPILE::SWF {
+					indicatorParent = _strand.getBeadByType(IItemRendererParent) as UIBase;
+				}
+				COMPILE::JS {
+					indicatorParent = _strand as UIBase;
+				}
 			}
 			return _dropIndicator;
 		}
@@ -122,18 +131,19 @@ package org.apache.flex.html.beads
 			}
 			
 			if (lastItemVisited && !indicatorVisible) {
-				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-				var orgPoint:Point = new Point((lastItemVisited as UIBase).x, (lastItemVisited as UIBase).y);
-				var pt1:Point = PointUtils.localToGlobal(orgPoint, lastItemVisited.parent);
-				var pt2:Point = PointUtils.globalToLocal(pt1, host);
-				indicatorVisible = true;
 				var di:UIBase = getDropIndicator(lastItemVisited, (_strand as UIBase).width, 4);
+				var pt2:Point = new Point((lastItemVisited as UIBase).x, (lastItemVisited as UIBase).y);
+				indicatorVisible = true;
 				di.x = pt2.x;
 				di.y = pt2.y;
 				
 				trace("=== over item "+(lastItemVisited as DataItemRenderer).data.toString()+", at "+pt2.x+", "+pt2.y);
 				
-				if (_dropIndicator) host.addElement(di);
+				if (indicatorParent != null) {
+					indicatorParent.addElement(di);
+//				} else {
+//					if (_dropIndicator) host.addElement(di);
+				}
 			}
 			
 		}
@@ -147,7 +157,10 @@ package org.apache.flex.html.beads
 			
 			if (indicatorVisible) {
 				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-				if (_dropIndicator) host.removeElement(_dropIndicator);
+				if (indicatorParent != null) {
+					indicatorParent.removeElement(_dropIndicator);
+				}
+//				else if (_dropIndicator) host.removeElement(_dropIndicator);
 				indicatorVisible = false;
 			}
 		}
@@ -164,29 +177,17 @@ package org.apache.flex.html.beads
 				startHere = startHere.parent;
 			}
 			if ((startHere is DataItemRenderer) && _dropIndicator != null) {
-				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-				var orgPoint:Point = new Point((startHere as UIBase).x, (startHere as UIBase).y);
-				var pt1:Point = PointUtils.localToGlobal(orgPoint, startHere.parent);
-				var pt2:Point = PointUtils.globalToLocal(pt1, host);
+				var pt2:Point = new Point((startHere as UIBase).x, (startHere as UIBase).y);
 				_dropIndicator.x = pt2.x;
 				_dropIndicator.y = pt2.y - 1;
 				
 				lastItemVisited = startHere;
 				
-				trace("== over item "+(startHere as DataItemRenderer).data.toString()+", at "+pt2.x+", "+pt2.y);
-			} else if (lastItemVisited && _dropIndicator != null) {
-				trace("== beyond last item");
-				
-				var p:UIBase = (lastItemVisited as UIBase).parent as UIBase;
-				if (p == null) return;
-				
-				var n:int = p.numElements;
-				var lastItem:UIBase = p.getElementAt(n-1) as UIBase;
-				
-				host = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-				orgPoint = new Point(lastItem.x, lastItem.y);
-				pt1 = PointUtils.localToGlobal(orgPoint, p);
-				pt2 = PointUtils.globalToLocal(pt1, host);
+			} 
+			else if (lastItemVisited && _dropIndicator != null) {
+				var lastItem:UIBase = lastItemVisited as UIBase;
+
+				pt2 = new Point(lastItem.x, lastItem.y);
 				_dropIndicator.x = pt2.x;
 				_dropIndicator.y = pt2.y + lastItem.height + 1;
 			}

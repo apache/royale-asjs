@@ -26,12 +26,50 @@ package org.apache.flex.express
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.flex.html.beads.SingleSelectionDragSourceBead;
+	import org.apache.flex.html.beads.SingleSelectionDragImageBead;
+	import org.apache.flex.html.beads.SingleSelectionDropTargetBead;
+	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead;
 	
 	public class List extends org.apache.flex.html.List
 	{
 		public function List()
 		{
 			super();
+		}
+		
+		private var _dragEnabled:Boolean = false;
+		public function get dragEnabled():Boolean
+		{
+			return _dragEnabled;
+		}
+		public function set dragEnabled(value:Boolean):void
+		{
+			_dragEnabled = value;
+		}
+		
+		private var _dropEnabled:Boolean = false;
+		public function get dropEnabled():Boolean
+		{
+			return _dropEnabled;
+		}
+		public function set dropEnabled(value:Boolean):void
+		{
+			_dropEnabled = value;
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			if (dragEnabled) {
+				addBead(new SingleSelectionDragSourceBead());
+				addBead(new SingleSelectionDragImageBead());
+			}
+			if (dropEnabled) {
+				addBead(new SingleSelectionDropTargetBead());
+				addBead(new SingleSelectionDropIndicatorBead());
+			}
 		}
 		
 		override public function set dataProvider(value:Object):void

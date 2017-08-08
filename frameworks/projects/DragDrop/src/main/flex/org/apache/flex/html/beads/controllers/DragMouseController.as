@@ -37,6 +37,7 @@ package org.apache.flex.html.beads.controllers
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.utils.PointUtils;
 	import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.css2.Cursors;
 	
     /**
      *  Indicates that a drag/drop operation is starting.
@@ -216,7 +217,7 @@ package org.apache.flex.html.beads.controllers
                     dragEvent = DragEvent.createDragEvent("dragStart", event);
 					dragEvent.clientX = mouseDownX;
 					dragEvent.clientY = mouseDownY;
-					trace("DRAG-MOUSE: sending dragStart via "+event.target.toString());
+					trace("DRAG-MOUSE: sending dragStart via "+event.target.toString()+" == "+dragImageOffsetX);
 					DragEvent.dispatchDragEvent(dragEvent, event.target);
 					dispatchEvent(dragEvent);
 					
@@ -242,7 +243,7 @@ package org.apache.flex.html.beads.controllers
             }
             else
             {
-                trace("DRAG-MOUSE: sending dragMove via " + event.target.toString());
+                trace("DRAG-MOUSE: sending dragMove via " + event.target.toString()+" == "+dragImageOffsetX);
                 dragEvent = DragEvent.createDragEvent("dragMove", event);
                 pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
                 dragImage.x = pt.x + dragImageOffsetX;

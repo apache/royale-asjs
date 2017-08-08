@@ -238,6 +238,8 @@ internal class BasicClasses
     COMPILE::SWF
     {
         import org.apache.flex.css2.Copy; Copy;
+		import org.apache.flex.css2.DragMove; DragMove;
+		import org.apache.flex.css2.DragReject; DragReject;
     }
 }
 
