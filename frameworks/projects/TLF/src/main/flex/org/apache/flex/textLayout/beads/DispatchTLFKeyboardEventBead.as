@@ -25,7 +25,8 @@ package org.apache.flex.textLayout.beads
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.utils.KeyboardEventConverter;
+	import org.apache.flex.events.utils.EditingKeys;
+    import org.apache.flex.events.utils.KeyboardEventConverter;
 	import org.apache.flex.text.events.TextEvent;
 	import org.apache.flex.textLayout.events.FocusEvent;
 
@@ -202,12 +203,16 @@ package org.apache.flex.textLayout.beads
 			}
 		}
 		
+        private var inKeyEventHandler:Boolean;
+        
 		/**
 		 * @private
 		 */
 		COMPILE::JS
 		protected function keyEventHandler(event:KeyboardEvent):void
 		{
+            if (inKeyEventHandler) return;
+            inKeyEventHandler = true;
 			event.stopImmediatePropagation();
 			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
@@ -217,6 +222,10 @@ package org.apache.flex.textLayout.beads
 			}
 			if (event.type == "keypress")
 			{
+                // don't send along a TextInput event for "Backspace".  It should get handled
+                // in keyDownHandler
+                if (event.key == EditingKeys.BACKSPACE)
+                    return;
 				var textEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(TextEvent.TEXT_INPUT);
 				if (event.key != null)
 					textEvent.text = event.key;
@@ -226,7 +235,7 @@ package org.apache.flex.textLayout.beads
 					textEvent.text = String.fromCharCode(event['keyCode']);
 				(_strand as IEventDispatcher).dispatchEvent(textEvent);
 			}
-
+            inKeyEventHandler = false;
 		}
 
 		/**
