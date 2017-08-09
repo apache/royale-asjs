@@ -129,7 +129,7 @@
 
     <component id="DataGrid" class="org.apache.flex.html.DataGrid"/>
     <component id="DataProviderChangeNotifier" class="org.apache.flex.html.beads.DataProviderChangeNotifier"/>
-    <component id="SimpleDataProviderChangeNotifier" class="org.apache.flex.html.beads.SimpleDataProviderChangeNotifier"/>
+    <component id="EasyDataProviderChangeNotifier" class="org.apache.flex.html.beads.EasyDataProviderChangeNotifier"/>
     <component id="DataProviderCollectionChangeNotifier" class="org.apache.flex.html.beads.DataProviderCollectionChangeNotifier"/>
     <component id="DataProviderItemsChangeNotifier" class="org.apache.flex.html.beads.DataProviderItemsChangeNotifier"/>
     <component id="DataGridButtonBar" class="org.apache.flex.html.DataGridButtonBar"/>
