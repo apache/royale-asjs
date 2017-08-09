@@ -58,6 +58,8 @@ package models
 			{
 				if (_requestedField == "Ask")
 					s = _responseData["Bid"];
+                if (s == null)
+                    s = _responseData["LastTradePriceOnly"];
 			}
 			return s;
 		}
