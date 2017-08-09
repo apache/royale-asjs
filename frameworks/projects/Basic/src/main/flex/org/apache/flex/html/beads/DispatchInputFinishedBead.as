@@ -23,10 +23,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
 	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.flex.events.utils.WhitespaceKeys;
 	
 	COMPILE::JS
 		{
 			import org.apache.flex.core.IRenderedObject;
+			import org.org.apache.flex.events.KeyboardEvent;
 			import goog.events;
 		}
 		
@@ -35,6 +37,7 @@ package org.apache.flex.html.beads
 			import flash.events.FocusEvent;
 			import flash.events.KeyboardEvent;
 			import org.apache.flex.html.beads.ITextFieldView;
+			import org.apache.flex.events.utils.WhitespaceKeys;
 		}
 		
 		/**
@@ -118,9 +121,9 @@ package org.apache.flex.html.beads
 			 * @private
 			 */
 			COMPILE::JS
-			private function keydownHandler( event:Object ) : void
+			private function keydownHandler( event:KeyboardEvent ) : void
 			{
-				if (event.keyCode == 13) //enter
+				if (event.key == WhitespaceKeys.ENTER) //enter
 				{
 					(_strand as IEventDispatcher).dispatchEvent(new Event(INPUT_FINISHED));
 				}
