@@ -50,14 +50,11 @@ package org.apache.flex.html
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var ul:HTMLUListElement = document.createElement('ul') as HTMLUListElement;
-            
-            element = ul as WrappedHTMLElement;
+			element = document.createElement('ul') as WrappedHTMLElement;
             
             positioner = element;
 			element.flexjs_wrapper = this;
