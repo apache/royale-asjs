@@ -81,16 +81,26 @@ package org.apache.flex.core
         public function init(main:Object):void
         {
 			var styleClassName:String;
+            var mainClassName:String;
+            
 			var c:Class;
 			if (!values)
 			{
 				values = {};
 	            mainClass = main;
-	            var mainClassName:String = getQualifiedClassName(mainClass);
+                mainClassName = getQualifiedClassName(mainClass);
 				styleClassName = "_" + mainClassName + "_Styles";
 				c = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
                 generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
 			}
+            else if (main is IFlexInfo)
+            {
+                mainClass = main;
+                mainClassName = getQualifiedClassName(mainClass);
+                styleClassName = "_" + mainClassName + "_Styles";
+                c = ApplicationDomain.currentDomain.getDefinition(styleClassName) as Class;
+                generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);                
+            }
 			c = main.constructor as Class;
             generateCSSStyleDeclarations(c["factoryFunctions"], c["data"]);
             if (hasEventListener("init"))
