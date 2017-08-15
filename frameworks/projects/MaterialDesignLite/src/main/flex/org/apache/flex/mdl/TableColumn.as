@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.html.Group;
+    import org.apache.flex.html.TableHeader;
 
     COMPILE::JS
     {
@@ -36,7 +36,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TableColumn extends Group
+	public class TableColumn extends TableHeader
 	{
 		/**
 		 *  constructor.
@@ -49,6 +49,8 @@ package org.apache.flex.mdl
 		public function TableColumn()
 		{
 			super();
+
+			className = "";
 		}
 
         private var _headerText:String = "";
@@ -90,13 +92,9 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			element = document.createElement('th') as WrappedHTMLElement;
-            element.classList.add("mdl-data-table__cell--non-numeric");
+			typeNames = "mdl-data-table__cell--non-numeric";
 
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+            return super.createElement();;
         }
 		
         protected var _ascending:Boolean;

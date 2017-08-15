@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.html.TableCell;
+	import org.apache.flex.html.Group;
 
     COMPILE::JS
     {
@@ -26,14 +26,14 @@ package org.apache.flex.mdl
     }
 
 	/**
-	 *  The TableCell class is a Cell for MDL Table used normaly in a TableRowItemRenderer
+	 *  The TBody class is a Container component capable of presenting content of MDL Table
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TableCell extends org.apache.flex.html.TableCell
+	public class TBody extends Group
 	{
 		/**
 		 *  constructor.
@@ -43,45 +43,12 @@ package org.apache.flex.mdl
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function TableCell()
+		public function TBody()
 		{
 			super();
 
-			className = "";
+			//className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
 		}
-
-		private var _text:String = "";
-
-        /**
-         *  The text of the td
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.8
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-		public function set text(value:String):void
-		{
-            _text = value;
-
-			COMPILE::JS
-			{
-                if(textNode == null)
-                {
-                    textNode = document.createTextNode('') as Text;
-                    element.appendChild(textNode);
-                }
-
-                textNode.nodeValue = value;
-			}
-		}
-
-		COMPILE::JS
-        protected var textNode:Text;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -89,11 +56,12 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            typeNames = "mdl-data-table__cell--non-numeric";
+            element = document.createElement('tbody') as WrappedHTMLElement;
 
-           // element.classList.add("mdl-data-table__cell--non-numeric");
+			positioner = element;
+            element.flexjs_wrapper = this;
 
-            return super.createElement();;
+            return element;
         }
 	}
 }

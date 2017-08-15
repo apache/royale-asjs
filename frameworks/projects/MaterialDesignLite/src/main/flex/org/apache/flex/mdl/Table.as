@@ -19,8 +19,7 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
-    
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -82,7 +81,7 @@ package org.apache.flex.mdl
 				COMPILE::JS
             	{
 					for each (var column:TableColumn in _columns){
-						head.addElement(column);
+						thead.addElement(column);
 					}
 				}
 			}
@@ -99,34 +98,25 @@ package org.apache.flex.mdl
          */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			COMPILE::SWF
-            {
-				// this part is not done for Table
-                /*if(_elements == null)
-                    _elements = [];
-                _elements[_elements.length] = c;
-                $displayObjectContainer.addChild(c.$displayObject);
-                if (c is IUIBase)
-                {
-                    IUIBase(c).addedToParent();
-                }*/
-            }
-
             COMPILE::JS
             {
-				if(c is THead) {
-					positioner.appendChild(c.positioner);
-					(c as IUIBase).addedToParent();
-				} else
-				{
-					element.appendChild(c.positioner);
-					(c as IUIBase).addedToParent();
-				}
+				addTHeadToParent();
+				addTBodyToParent();
+
+				if (_isTheadAddedToParent && _isTbodyAddedToParent)
+                {
+                    tbody.addElement(c);
+                }
             }
 		}
 		
 		COMPILE::JS
-		private var head:THead;
+		private var thead:THead;
+		private var _isTheadAddedToParent:Boolean = false;
+
+		COMPILE::JS
+		private var tbody:TBody;
+        private var _isTbodyAddedToParent:Boolean = false;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -136,15 +126,13 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-data-table mdl-js-data-table";
 
-            positioner = document.createElement('table') as WrappedHTMLElement;
-			
-			head = new THead();
-			addElement(head);
+			element = document.createElement('table') as WrappedHTMLElement;
 
-			element = document.createElement('tbody') as WrappedHTMLElement;
-			
-			positioner.appendChild(element);
-			element.flexjs_wrapper = this;
+            thead = new THead();
+			tbody = new TBody();
+
+			positioner = element;
+            element.flexjs_wrapper = this;
 
             return element;
         }
@@ -210,5 +198,29 @@ package org.apache.flex.mdl
 				typeNames = positioner.className;
 			}
         }
+
+		COMPILE::JS
+        private function addTHeadToParent():void
+        {
+            if (_isTheadAddedToParent) return;
+
+            if (thead)
+            {
+                super.addElement(thead);
+				_isTheadAddedToParent = true;
+            }
+        }
+
+        COMPILE::JS
+		private function addTBodyToParent():void
+		{
+			if (_isTbodyAddedToParent) return;
+
+			if (tbody)
+            {
+                super.addElement(tbody);
+				_isTbodyAddedToParent = true;
+            }
+		}
 	}
 }
