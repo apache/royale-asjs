@@ -174,4 +174,7 @@
     <component id="TableCell" class="org.apache.flex.html.TableCell"/>
     <component id="TableHeader" class="org.apache.flex.html.TableHeader"/>
 
+    <component id="UIModule" class="org.apache.flex.html.UIModule"/>
+    <component id="UIModuleLoader" class="org.apache.flex.html.UIModuleLoader"/>
+
 </componentPackage>
