@@ -28,7 +28,7 @@ package org.apache.flex.html.beads
 	COMPILE::JS
 		{
 			import org.apache.flex.core.IRenderedObject;
-			import org.org.apache.flex.events.KeyboardEvent;
+			import org.apache.flex.events.KeyboardEvent;
 			import goog.events;
 		}
 		
