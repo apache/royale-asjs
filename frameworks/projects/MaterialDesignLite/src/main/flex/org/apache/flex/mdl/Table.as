@@ -19,6 +19,7 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.IChild;
+    import org.apache.flex.core.IItemRenderer;
 
     COMPILE::JS
     {
@@ -87,7 +88,8 @@ package org.apache.flex.mdl
 			}
         }
 
-		/**
+
+        /**
          *  @copy org.apache.flex.core.IParent#addElement()
          * 
          *  @langversion 3.0
@@ -109,8 +111,50 @@ package org.apache.flex.mdl
                 }
             }
 		}
-		
-		COMPILE::JS
+
+        override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+			COMPILE::JS
+            {
+                if (_isTbodyAddedToParent)
+                {
+                    tbody.removeElement(c);
+                }
+            }
+        }
+
+        override public function removeAllItemRenderers():void
+        {
+			if (!_isTbodyAddedToParent) return;
+
+			COMPILE::JS
+            {
+                while (tbody.numElements)
+                {
+                    var child:IChild = tbody.getElementAt(0);
+                    removeElement(child);
+                }
+            }
+        }
+
+        override public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+			if (!_isTbodyAddedToParent) return null;
+
+            COMPILE::JS
+            {
+                if (index < 0 || index >= tbody.numElements)
+				{
+					return null;
+                }
+
+                return tbody.getElementAt(index) as IItemRenderer;
+            }
+
+			return null;
+        }
+
+        COMPILE::JS
 		private var thead:THead;
 		private var _isTheadAddedToParent:Boolean = false;
 
@@ -136,13 +180,7 @@ package org.apache.flex.mdl
 
             return element;
         }
-		
-		COMPILE::JS
-		override protected function setClassName(value:String):void
-		{
-			positioner.className = value;
-		}
-        
+
 		protected var _shadow:Number = 0;
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
@@ -161,14 +199,14 @@ package org.apache.flex.mdl
         {
 			COMPILE::JS
 			{
-				positioner.classList.remove("mdl-shadow--" + _shadow + "dp");
+				element.classList.remove("mdl-shadow--" + _shadow + "dp");
 				
 				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
 				{
 					_shadow = value;
 
-					positioner.classList.add("mdl-shadow--" + _shadow + "dp");
-					typeNames = positioner.className;
+                    element.classList.add("mdl-shadow--" + _shadow + "dp");
+					typeNames = element.className;
 				}
 			}
         }
@@ -194,8 +232,8 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
             {
-				positioner.classList.toggle("mdl-data-table--selectable", _selectable);
-				typeNames = positioner.className;
+                element.classList.toggle("mdl-data-table--selectable", _selectable);
+				typeNames = element.className;
 			}
         }
 
