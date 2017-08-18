@@ -143,7 +143,14 @@ package org.apache.flex.mdl
          */
 		override public function get text():String
 		{
-			return IToggleButtonModel(model).text;
+            COMPILE::SWF
+            {
+    			return IToggleButtonModel(model).text;
+            }
+            COMPILE::JS
+            {
+                return textNode ? textNode.nodeValue : "";
+            }
 		}
 
         /**
@@ -151,11 +158,14 @@ package org.apache.flex.mdl
          */
         override public function set text(value:String):void
 		{
-            IToggleButtonModel(model).text = value;
+            COMPILE::SWF
+            {
+                IToggleButtonModel(model).text = value;
+            }
 
             COMPILE::JS
 			{
-                if(textNode == null)
+                if(!textNode)
                 {
                     textNode = document.createTextNode('') as Text;
                     checkbox.appendChild(textNode);
@@ -175,11 +185,22 @@ package org.apache.flex.mdl
          */
         public function get value():String
         {
-            return IToggleButtonModel(model).html;
+            COMPILE::SWF
+            {
+                return IToggleButtonModel(model).html;
+            }
+
+            COMPILE::JS
+            {
+                return input.value;
+            }
         }
         public function set value(newValue:String):void
         {
-            IToggleButtonModel(model).html = newValue;
+            COMPILE::SWF
+            {
+                IToggleButtonModel(model).html = newValue;
+            }
 
             COMPILE::JS
             {
@@ -202,7 +223,14 @@ package org.apache.flex.mdl
          */
 		override public function get selected():Boolean
 		{
-			return IToggleButtonModel(model).selected;
+            COMPILE::SWF
+            {
+    			return IToggleButtonModel(model).selected;
+            }
+            COMPILE::JS
+            {
+                return input.checked;
+            }
 		}
 
         /**
@@ -210,11 +238,18 @@ package org.apache.flex.mdl
          */
         override public function set selected(value:Boolean):void
         {
-            IToggleButtonModel(model).selected = value;
+            COMPILE::SWF
+            {
+                IToggleButtonModel(model).selected = value;
+            }
 
             COMPILE::JS
 			{
                 input.checked = value;
+                if(value)
+                    element['MaterialCheckbox'].check();
+                else
+                    element['MaterialCheckbox'].uncheck();
             }
         }
     }
