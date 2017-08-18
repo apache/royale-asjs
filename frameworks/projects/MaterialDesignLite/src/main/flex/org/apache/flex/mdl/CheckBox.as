@@ -245,6 +245,8 @@ package org.apache.flex.mdl
 
             COMPILE::JS
 			{
+                if(input.checked == value)
+                    return;
                 var instance:Object = element['MaterialCheckbox'];
                 if(instance)
                 {
@@ -255,6 +257,7 @@ package org.apache.flex.mdl
                 }
                 else
                     input.checked = value;
+                dispatchEvent(new Event(Event.CHANGE));
             }
         }
     }

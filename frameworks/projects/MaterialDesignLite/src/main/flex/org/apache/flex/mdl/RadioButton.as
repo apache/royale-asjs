@@ -417,8 +417,19 @@ package org.apache.flex.mdl
         }
         public function set selected(value:Boolean):void
         {
-            icon.checked = value;
-            dispatchEvent(new Event(Event.CHANGE))
+            if(icon.checked == value)
+                return;
+            var instance:Object = element['MaterialRadio'];
+            if(instance)
+            {
+                if(value)
+                    instance["check"]();
+                else
+                    instance["uncheck"]();
+            }
+            else
+                icon.checked = value;
+            dispatchEvent(new Event(Event.CHANGE));
         }
         
         public function get value():Object
