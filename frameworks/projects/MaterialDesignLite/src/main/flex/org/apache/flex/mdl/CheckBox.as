@@ -245,10 +245,16 @@ package org.apache.flex.mdl
 
             COMPILE::JS
 			{
-                if(value)
-                    element['MaterialCheckbox'].check();
+                var instance:Object = element['MaterialCheckbox'];
+                if(instance)
+                {
+                    if(value)
+                        instance["check"]();
+                    else
+                        instance["uncheck"]();
+                }
                 else
-                    element['MaterialCheckbox'].uncheck();
+                    input.checked = value;
             }
         }
     }
