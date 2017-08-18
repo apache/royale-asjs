@@ -245,7 +245,6 @@ package org.apache.flex.mdl
 
             COMPILE::JS
 			{
-                input.checked = value;
                 if(value)
                     element['MaterialCheckbox'].check();
                 else
