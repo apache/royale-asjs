@@ -24,6 +24,7 @@ package org.apache.flex.html
         import flash.utils.getQualifiedClassName;        
     }
     import org.apache.flex.core.IFlexInfo;
+    import org.apache.flex.core.IModule;
     import org.apache.flex.core.IValuesImpl;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -73,7 +74,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion FlexJS 0.0
      */
-	public class UIModule extends Group implements IFlexInfo
+	public class UIModule extends Group implements IFlexInfo, IModule
 	{
         /**
          *  Constructor.
