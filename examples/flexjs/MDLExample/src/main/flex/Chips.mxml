@@ -31,12 +31,15 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </mdl:beads>
     
-    <mdl:Grid width="120">
-        
+    <mdl:Grid>
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="120"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
             <mdl:Chip text="Basic Chip" />
-        
+
             <mdl:ButtonChip text="Button Chip" />
-            
+
             <mdl:Chip text="Deletable Chip">
                 <mdl:beads>
                     <mdl:DeletableChip />
@@ -45,7 +48,7 @@ limitations under the License.
                     <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:Chip>
-        
+
             <mdl:ButtonChip text="Deletable Button Chip">
                 <mdl:beads>
                     <mdl:DeletableChip />
@@ -54,7 +57,7 @@ limitations under the License.
                     <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:ButtonChip>
-        
+
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:MdlColor color="teal" />
@@ -62,7 +65,7 @@ limitations under the License.
                     <mdl:ContactChip contactText="A" />
                 </mdl:beads>
             </mdl:Chip>
-        
+
             <mdl:Chip text="Contact Chip">
                 <mdl:beads>
                     <mdl:MdlColor color="teal" />
@@ -84,6 +87,6 @@ limitations under the License.
                     <mdl:MaterialIcon text="{MaterialIconType.CANCEL}"/>
                 </mdl:materialIcon>
             </mdl:Chip>
-        
+        </mdl:GridCell>
     </mdl:Grid>
 </mdl:TabBarPanel>

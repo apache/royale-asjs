@@ -18,14 +18,18 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:mdl="library://ns.apache.org/flexjs/mdl">
+                 xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                 xmlns:js="library://ns.apache.org/flexjs/basic">
     <mdl:Grid>
-        <mdl:GridCell column="1" width="200">
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="500"/>
+        </mdl:style>
+        <mdl:GridCell column="6">
             <mdl:Button id="showToast" click="onShowToastClick(event)"
                         text="Show Toast!" width="180" accent="true" colored="true" raised="true"/>
             <mdl:Toast id="toast" message="Toast message" timeout="3000"/>
         </mdl:GridCell>
-        <mdl:GridCell column="2" width="200">
+        <mdl:GridCell column="6">
             <mdl:Button id="showSnackbar" click="onShowSnackbarClick(event)"
                         text="Show Snackbar!" width="180" accent="true" colored="true" raised="true"/>
             <mdl:Snackbar id="snackbar" message="Snackbar message" actionText="Undo" timeout="3000"
@@ -33,9 +37,6 @@ limitations under the License.
         </mdl:GridCell>
     </mdl:Grid>
     <fx:Script><![CDATA[
-        import org.apache.flex.events.Event;
-        import org.apache.flex.events.MouseEvent;
-
         private function onShowToastClick(event:MouseEvent):void
         {
             toast.show();

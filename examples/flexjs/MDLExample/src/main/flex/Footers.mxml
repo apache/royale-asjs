@@ -28,7 +28,8 @@ limitations under the License.
     </mdl:model>
     
     <mdl:Grid>
-        <mdl:Footer mini="true" width="500">
+        <mdl:GridCell column="6">
+            <mdl:Footer mini="true">
 
             <mdl:FooterLeftSection>
                 <mdl:FooterLogo text="Mini-Footer"/>
@@ -48,8 +49,9 @@ limitations under the License.
                 <mdl:FooterSocialButton>3</mdl:FooterSocialButton>
             </mdl:FooterRightSection>
         </mdl:Footer>
-
-        <mdl:Footer width="600">
+        </mdl:GridCell>
+        <mdl:GridCell column="6">
+            <mdl:Footer>
             
             <mdl:FooterTopSection>
                  
@@ -116,7 +118,7 @@ limitations under the License.
             </mdl:FooterBottomSection>
 
         </mdl:Footer>
-
+        </mdl:GridCell>
     </mdl:Grid>
 
 </mdl:TabBarPanel>
