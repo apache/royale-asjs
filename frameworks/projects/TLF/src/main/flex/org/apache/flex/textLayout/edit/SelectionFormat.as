@@ -38,6 +38,8 @@ package org.apache.flex.textLayout.edit {
 		private var _pointAlpha:Number;
 		private var _pointBlendMode:String;
 		private var _pointBlinkRate:Number;
+		private var _pointBlinkAlpha:Number;
+		private var _pointBlinkColor:uint;
 		
 		/** 
 		 * Creates a SelectionFormat object with the specified properties.
@@ -70,7 +72,7 @@ package org.apache.flex.textLayout.edit {
 		 * @playerversion AIR 1.5
  	 	 * @langversion 3.0
 		 */
-		public function SelectionFormat(rangeColor:uint=0xffffff, rangeAlpha:Number=1.0, rangeBlendMode:String="difference", pointColor:uint=0xffffff, pointAlpha:Number=1.0, pointBlendMode:String="difference", pointBlinkRate:Number = 500)
+		public function SelectionFormat(rangeColor:uint=0xffffff, rangeAlpha:Number=1.0, rangeBlendMode:String="difference", pointColor:uint=0xffffff, pointAlpha:Number=1.0, pointBlendMode:String="difference", pointBlinkRate:Number = 500,pointBlinkAlpha:Number=0,pointBlinkColor:uint=0)
 		{ 
 			_rangeColor = rangeColor;
 			_rangeAlpha = rangeAlpha;
@@ -80,6 +82,8 @@ package org.apache.flex.textLayout.edit {
 			_pointAlpha = pointAlpha;
 			_pointBlendMode = pointBlendMode;
 			_pointBlinkRate = pointBlinkRate;
+			_pointBlinkAlpha = pointBlinkAlpha;
+			_pointBlinkColor = pointBlinkColor;
 		}
 		
 		/**
@@ -163,7 +167,31 @@ package org.apache.flex.textLayout.edit {
 		public function get pointBlinkRate():Number
 		{
 			return _pointBlinkRate;
-		}		
+		}
+
+		/**
+		 * The alpha of the cursor blinks while blinking.
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+ 	 	 * @langversion 3.0
+		 */						
+		public function get pointBlinkAlpha():Number
+		{
+			return _pointBlinkAlpha;
+		}
+
+		/**
+		 * The color of the cursor while blinking.
+		 * 
+		 * @playerversion Flash 10
+		 * @playerversion AIR 1.5
+ 	 	 * @langversion 3.0
+		 */						
+		public function get pointBlinkColor():uint
+		{
+			return _pointBlinkColor;
+		}
 
 		/**
 		 * The blend mode for drawing the cursor.
