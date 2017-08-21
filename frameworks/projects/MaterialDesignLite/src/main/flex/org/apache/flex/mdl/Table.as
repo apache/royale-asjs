@@ -102,9 +102,6 @@ package org.apache.flex.mdl
 		{
             COMPILE::JS
             {
-				addTHeadToParent();
-				addTBodyToParent();
-
 				if (_isTheadAddedToParent && _isTbodyAddedToParent)
                 {
                     tbody.addElement(c);
@@ -172,11 +169,11 @@ package org.apache.flex.mdl
 
 			element = document.createElement('table') as WrappedHTMLElement;
 
-            thead = new THead();
-			tbody = new TBody();
-
 			positioner = element;
             element.flexjs_wrapper = this;
+
+            addTHeadToParent();
+            addTBodyToParent();
 
             return element;
         }
@@ -242,11 +239,10 @@ package org.apache.flex.mdl
         {
             if (_isTheadAddedToParent) return;
 
-            if (thead)
-            {
-                super.addElement(thead);
-				_isTheadAddedToParent = true;
-            }
+			thead = new THead();
+			super.addElement(thead);
+
+			_isTheadAddedToParent = true;
         }
 
         COMPILE::JS
@@ -254,11 +250,9 @@ package org.apache.flex.mdl
 		{
 			if (_isTbodyAddedToParent) return;
 
-			if (tbody)
-            {
-                super.addElement(tbody);
-				_isTbodyAddedToParent = true;
-            }
+            tbody = new TBody();
+            super.addElement(tbody);
+			_isTbodyAddedToParent = true;
 		}
 	}
 }
