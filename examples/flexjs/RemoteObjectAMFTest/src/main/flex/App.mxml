@@ -52,18 +52,19 @@ limitations under the License.
     </js:beads>
 
     <js:initialView>
-        <mdl:Grid>
-        
-            <mdl:TextField id="name_txt">
-                <mdl:beads>
-                    <mdl:TextPrompt prompt="Text to be sent via AMF RemoteObject..."/>
-                    <mdl:Tooltip text="This sample requires an AMF Backend"/>
-                </mdl:beads>
-            </mdl:TextField>
-
-            <mdl:Button text="Send Name to AMF" raised="true"  accent="true"
-                        click="sendName()"/>
-        </mdl:Grid>
+        <js:View>
+            <mdl:Grid>
+                <mdl:TextField id="name_txt">
+                    <mdl:beads>
+                        <mdl:TextPrompt prompt="Text to be sent via AMF RemoteObject..."/>
+                        <mdl:Tooltip text="This sample requires an AMF Backend"/>
+                    </mdl:beads>
+                </mdl:TextField>
+                
+                <mdl:Button text="Send Name to AMF" raised="true"  accent="true"
+                            click="sendName()"/>
+            </mdl:Grid>
+        </js:View>
     </js:initialView>
 
     <js:valuesImpl>
