@@ -76,13 +76,14 @@
       <artifactId>Reflection</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.flex.flexjs.framework</groupId>
       <artifactId>Reflection</artifactId>
       <version>0.9.0-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>typedefs</classifier>
+      <classifier>js</classifier>
     </dependency>
     
   </dependencies>

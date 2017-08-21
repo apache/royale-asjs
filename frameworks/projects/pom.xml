@@ -53,8 +53,8 @@
     <module>Language</module>
     <module>MaterialDesignLite</module>
     <module>Mobile</module>
-    <module>Network</module>
     <module>Reflection</module>
+    <module>Network</module>
     <module>Storage</module>
     <module>XML</module>
     <module>Text</module>
