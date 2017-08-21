@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.flex.flexjs.manualtests</groupId>
+		<artifactId>manualtests</artifactId>
+		<version>0.9.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>UnitTests</artifactId>
+	<version>0.9.0-SNAPSHOT</version>
+	<packaging>swf</packaging>
+	<name>Apache Flex - FlexJS: ManualTests: UnitTests</name>
+	
+	<properties> 
+		<title>${project.artifactId}</title>
+		<bgcolor>#ffffff</bgcolor> 
+		<useBrowserHistory>--</useBrowserHistory>
+		<version_major>11</version_major>
+		<version_minor>1</version_minor>
+		<version_revision>0</version_revision>
+		<expressInstallSwf>expressInstall.swf</expressInstallSwf>
+		<application>${project.artifactId}</application>
+		<swf>${project.artifactId}</swf>
+		<width>100%</width>
+		<height>100%</height>
+	</properties>
+
+	<build>
+		<defaultGoal>compile</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.flex.flexjs.compiler</groupId>
+				<artifactId>flexjs-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<targets>SWF</targets>
+					<mainClass>${project.artifactId}.mxml</mainClass>
+					<debug>true</debug>
+					<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
+					<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
+					<flashOutputFileName>${project.artifactId}.swf</flashOutputFileName>
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile-js</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>compile-app</goal>
+						</goals>
+						<configuration>
+							<targets>JSFlex</targets>
+							<mainClass>${project.artifactId}.mxml</mainClass>
+							<debug>false</debug>
+							<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
+							<outputDirectory>${basedir}/target</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>	
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-template-swf</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
+							<includeEmptyDirs>true</includeEmptyDirs>
+							<resources>
+								<resource>
+									<directory>${FLEXJS_HOME}/templates/swfobject</directory>
+									<filtering>true</filtering>									
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.coderplus.maven.plugins</groupId>
+				<artifactId>copy-rename-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<executions>
+					<execution>
+						<id>rename-file</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>rename</goal>
+						</goals>
+						<configuration>
+							<sourceFile>${basedir}/target/bin-debug/index.template.html</sourceFile>
+							<destinationFile>${basedir}/target/bin-debug/${project.artifactId}.html</destinationFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!--<plugin>
+         <groupId>com.google.code.maven-replacer-plugin</groupId>
+         <artifactId>replacer</artifactId>
+         <version>1.5.2</version>
+         <executions>
+           <execution>
+             <id>configure-swf-template</id>
+             <phase>compile</phase>
+             <goals>
+               <goal>replace</goal>
+             </goals>
+             <configuration>
+               <file>${basedir}/bin-debug/index.template.html</file>
+			   <regex>false</regex>
+               <replacements>
+               
+               </replacements>
+             </configuration>
+           </execution>
+		    </executions>
+			</plugin>-->
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.adobe.flash.framework</groupId>
+			<artifactId>playerglobal</artifactId>
+			<version>${flash.version}</version>
+			<type>swc</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flex.flexjs.framework</groupId>
+			<artifactId>Reflection</artifactId>
+			<version>0.9.0-SNAPSHOT</version>
+			<type>swc</type>
+			<classifier>swf</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flex.flexjs.framework</groupId>
+			<artifactId>Reflection</artifactId>
+			<version>0.9.0-SNAPSHOT</version>
+			<type>swc</type>
+			<classifier>js</classifier>
+		</dependency>
+	</dependencies>
+
+</project>
