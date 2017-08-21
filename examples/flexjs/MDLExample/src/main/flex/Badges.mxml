@@ -32,30 +32,35 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </mdl:beads>
 
-    <mdl:Grid width="50" style="margin:20px">
-        <js:Div style="color: rgba(0, 0, 0, 0.24);" className="material-icons" text="{MaterialIconType.ACCOUNT_BOX}">
-            <js:beads>
-                <mdl:Badge dataBadge="2" overlap="true"/>
-            </js:beads>
-        </js:Div>
+    <mdl:Grid>
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="500"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
+            <js:Div style="color: rgba(0, 0, 0, 0.24);" className="material-icons" text="{MaterialIconType.ACCOUNT_BOX}">
+                <js:beads>
+                    <mdl:Badge dataBadge="2" overlap="true"/>
+                </js:beads>
+            </js:Div>
 
-        <js:Span text="Inbox" style="color: rgba(0, 0, 0, 0.24);" className="mdl-badge">
-            <js:beads>
-                <mdl:Badge dataBadge="4"/>
-            </js:beads>
-        </js:Span>
+            <js:Span text="Inbox" style="color: rgba(0, 0, 0, 0.24);" className="mdl-badge">
+                <js:beads>
+                    <mdl:Badge dataBadge="4"/>
+                </js:beads>
+            </js:Span>
 
-        <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
-            <js:beads>
-                <mdl:Badge dataBadge="1"/>
-            </js:beads>
-        </js:A>
+            <js:A id="badge1" text="Badge Normal" href="http://flex.apache.org">
+                <js:beads>
+                    <mdl:Badge dataBadge="1"/>
+                </js:beads>
+            </js:A>
 
-        <js:A text="Badge No Background" href="http://flex.apache.org">
-            <js:beads>
-                <mdl:Badge dataBadge="5" noBackground="true"/>
-            </js:beads>
-        </js:A>
+            <js:A text="Badge No Background" href="http://flex.apache.org">
+                <js:beads>
+                    <mdl:Badge dataBadge="5" noBackground="true"/>
+                </js:beads>
+            </js:A>
+        </mdl:GridCell>
     </mdl:Grid>
 
 </mdl:TabBarPanel>             

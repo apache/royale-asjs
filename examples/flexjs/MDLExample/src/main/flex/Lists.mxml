@@ -28,116 +28,65 @@ limitations under the License.
 	</mdl:model>
 
     <mdl:Grid>
-        <mdl:List>
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="things"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-        <mdl:List labelField="actorName" className="actorNameListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="actors"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-        <mdl:List labelField="actorName" className="actorNameAndIconListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="actors"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-        <mdl:List labelField="actorName" className="avatarAndActionListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="actors"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-        <mdl:List labelField="actorName" className="avatarAndActionTwoLineListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="actors"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-        <mdl:List labelField="actorName" className="avatarAndActionThreeLineListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="actors"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-
-
+        <mdl:GridCell>
+            <mdl:List>
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="things"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
+        <mdl:GridCell>
+            <mdl:List labelField="actorName" className="actorNameListItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="actors"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
+        <mdl:GridCell>
+            <mdl:List labelField="actorName" className="actorNameAndIconListItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="actors"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
+        <mdl:GridCell>
+            <mdl:List labelField="actorName" className="avatarAndActionListItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="actors"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
+        <mdl:GridCell>
+            <mdl:List labelField="actorName" className="avatarAndActionTwoLineListItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="actors"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
+        <mdl:GridCell column="12">
+            <mdl:List labelField="actorName" className="avatarAndActionThreeLineListItemRenderer">
+                <mdl:beads>
+                    <js:ConstantBinding
+                        sourceID="model"
+                        sourcePropertyName="actors"
+                        destinationPropertyName="dataProvider" />
+                </mdl:beads>
+            </mdl:List>
+        </mdl:GridCell>
     </mdl:Grid>
-
-    <!--
-    <mdl:List labelField="label" className="customListItemRenderer">
-            <mdl:beads>
-                <js:ConstantBinding
-                    sourceID="model"
-                    sourcePropertyName="productNames"
-                    destinationPropertyName="dataProvider" />
-            </mdl:beads>
-        </mdl:List>
-    
-    
-    xmlns:ui="org.apache.flex.core.*"
-                 xmlns:models="org.apache.flex.html.beads.models.*"
-                 xmlns:beads="org.apache.flex.html.beads.*"
-                 xmlns:controllers="org.apache.flex.html.beads.controllers.*"
-                 xmlns:layout="org.apache.flex.html.beads.layouts.*"
-                 xmlns:support="org.apache.flex.html.supportClasses.*"
-                 <ui:ListBase>
-        <ui:beads>
-            <models:ArraySelectionModel labelField="label">
-                <js:dataProvider>
-                    <fx:Array>
-                        <fx:Object label="Install SIM Card"/>
-                        <fx:Object label="Install SIM Card 1"/>
-                        <fx:Object label="Install SIM Card 2"/>
-                    </fx:Array>
-                </js:dataProvider>
-            </models:ArraySelectionModel>
-            
-            <models:ViewportModel/>
-            
-            <support:DataGroup/>
-            
-            <support:ScrollingViewport/>
-            
-            <beads:ListView/>
-            
-            <controllers:ListSingleSelectionMouseController/>
-            <layout:VerticalLayout/>
-            <ui:ItemRendererClassFactory>
-                <ui:itemRendererFactory>
-                    <fx:Component>
-                        <support:StringItemRenderer>
-                            <support:beads>
-                                <controllers:ItemRendererMouseController />
-                            </support:beads>
-                        </support:StringItemRenderer>
-                    </fx:Component>
-                </ui:itemRendererFactory>
-            </ui:ItemRendererClassFactory>
-            <beads:TextItemRendererFactoryForArrayData/>
-        </ui:beads>
-    </ui:ListBase>-->
-
-    
 </mdl:TabBarPanel>

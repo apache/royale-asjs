@@ -32,33 +32,39 @@ limitations under the License.
     </mdl:beads>
 
     <mdl:Grid>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="18"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="24"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="36"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="48"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" dark="true"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}">
-            <mdl:beads>
-                <mdl:MdlTextColor textColor="teal" />
-            </mdl:beads>
-        </mdl:MaterialIcon>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
-        <mdl:MaterialIcon text="{MaterialIconType.BOOK}"/>
-        <mdl:MaterialIcon text="{MaterialIconType.FACE}"/>
-        
+        <mdl:GridCell column="12">
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="18"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="24"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="36"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" size="48"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" dark="true"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}">
+                <mdl:beads>
+                    <mdl:MdlTextColor textColor="teal" />
+                </mdl:beads>
+            </mdl:MaterialIcon>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
+            <mdl:MaterialIcon text="{MaterialIconType.BOOK}"/>
+            <mdl:MaterialIcon text="{MaterialIconType.FACE}"/>
+        </mdl:GridCell>
     </mdl:Grid>
 
-    <mdl:Grid style="backgroundColor:'#000';">
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" light="true"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ACCESSIBILITY}" size="48" light="true"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true" light="true"/>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}">
-            <mdl:beads>
-                <mdl:MdlTextColor textColor="teal" />
-            </mdl:beads>
-        </mdl:MaterialIcon>
-        <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
-        <mdl:MaterialIcon text="{MaterialIconType.BOOK}" light="true"/>
+    <mdl:Grid>
+        <mdl:style>
+            <js:SimpleCSSStyles backgroundColor="#000"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" light="true"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ACCESSIBILITY}" size="48" light="true"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" inactive="true" light="true"/>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}">
+                <mdl:beads>
+                    <mdl:MdlTextColor textColor="teal" />
+                </mdl:beads>
+            </mdl:MaterialIcon>
+            <mdl:MaterialIcon text="{MaterialIconType.ADD}" className="orange600"/>
+            <mdl:MaterialIcon text="{MaterialIconType.BOOK}" light="true"/>
+        </mdl:GridCell>
     </mdl:Grid>
 </mdl:TabBarPanel>

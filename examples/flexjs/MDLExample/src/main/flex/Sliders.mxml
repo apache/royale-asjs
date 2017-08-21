@@ -18,14 +18,12 @@ limitations under the License.
 
 -->
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
+                 xmlns:js="library://ns.apache.org/flexjs/basic"
                  initComplete="initTextBoxes(event)">
 
     <fx:Script>
         <![CDATA[
-            import org.apache.flex.events.Event;
-
             private function initTextBoxes(event:Event):void
             {
                 slider1_txt.text = "Slider 1 Value: " + slider1.value;
@@ -46,7 +44,10 @@ limitations under the License.
     </fx:Script>
 
     <mdl:Grid>
-        
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="300"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
             <mdl:Card className="demo-card-slider" shadow="2">
                 <mdl:CardTitle>
                     <mdl:CardTitleText id="slider1_txt"/>
@@ -77,7 +78,7 @@ limitations under the License.
                     </mdl:Slider>
                 </mdl:CardSupportingText>
             </mdl:Card>
-        
+        </mdl:GridCell>
     </mdl:Grid>
     
 </mdl:TabBarPanel>

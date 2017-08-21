@@ -28,7 +28,7 @@ limitations under the License.
     </mdl:model>
 
     <mdl:Grid>
-        <mdl:GridCell column="1" percentWidth="100">
+        <mdl:GridCell column="12">
             <mdl:Tabs width="400" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabBarPanelItemRenderer">
                 <mdl:beads>
                     <js:ConstantBinding
@@ -38,7 +38,7 @@ limitations under the License.
                 </mdl:beads>
             </mdl:Tabs>
         </mdl:GridCell>
-       <mdl:GridCell column="1" percentWidth="100">
+       <mdl:GridCell column="12">
             <mdl:NavigationLayout width="600">
                 <mdl:Header>
                     <mdl:TabBar selectedIndex="0" tabIdField="tabId" labelField="label" className="customTabBarSetup">
