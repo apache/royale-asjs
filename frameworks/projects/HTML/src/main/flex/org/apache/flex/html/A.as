@@ -111,10 +111,8 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
-            a.setAttribute('href', href);
-            
-			element = a as WrappedHTMLElement;
+            element = document.createElement('a') as WrappedHTMLElement;
+            element.setAttribute('href', href);
             
             positioner = element;
 			element.flexjs_wrapper = this;

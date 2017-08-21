@@ -86,7 +86,15 @@ package org.apache.flex.text.engine
 		public function getFontMetrics():FontMetrics
 		{
 			assert(fontDescription != null,"fontDescription not assigned!");
-			return fontDescription.fontLoader.getFont(fontDescription.fontName,fontDescription.fontStyle).fontMetrics.clone();
+            if (fontDescription.fontLoader)
+    			return fontDescription.fontLoader.getFont(fontDescription.fontName,fontDescription.fontStyle).fontMetrics.clone();
+            else
+            {
+                var fm:FontMetrics = new FontMetrics();
+                // just a guess for now
+                fm.emBox = new Rectangle(0, 1.2 - fontSize, fontSize, 1.2);
+                return fm;                
+            }
 		}
 	}
 }

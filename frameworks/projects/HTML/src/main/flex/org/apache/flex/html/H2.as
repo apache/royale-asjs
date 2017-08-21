@@ -94,12 +94,10 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var h2:HTMLElement = document.createElement('h2') as HTMLElement;
+            element = document.createElement('h2') as WrappedHTMLElement;
             
             textNode = document.createTextNode('') as Text;
-            h2.appendChild(textNode); 
-
-			element = h2 as WrappedHTMLElement;
+            element.appendChild(textNode); 
             
             positioner = element;
 			element.flexjs_wrapper = this;

@@ -26,7 +26,7 @@ package org.apache.flex.mdl.supportClasses
     }
 
 	/**
-	 *  The CardInner class is a base class por all Card inner containers.
+	 *  The CardInner class is a base class for all Card inner containers.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

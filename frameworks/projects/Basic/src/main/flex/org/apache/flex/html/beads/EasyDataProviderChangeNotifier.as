@@ -22,11 +22,13 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectionModel;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.events.Event;
+	import org.apache.flex.core.UIBase;
+	import org.apache.flex.events.IEventDispatcher;
 
     /**
-	 *  The SimpleDataProviderChangeNotifier is similar to DataProviderChangeNotifier
+	 *  The EasyDataProviderChangeNotifier is similar to DataProviderChangeNotifier
 	 *  but allows the user to populate the data provider after it's been added.
-	 *  Also, no attributes are required. Just add <SimpleDataProviderChangeNotifier/>.
+	 *  Also, no attributes are required. Just add <EasyDataProviderChangeNotifier/>.
 	 *  The dataProvider is assumed to be an ArrayList.
 	 *  
 	 *  @langversion 3.0
@@ -34,7 +36,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class SimpleDataProviderChangeNotifier extends DataProviderChangeNotifier
+	public class EasyDataProviderChangeNotifier extends DataProviderChangeNotifier
 	{
 		/**
 		 *  constructor.
@@ -44,14 +46,18 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function SimpleDataProviderChangeNotifier()
+		public function EasyDataProviderChangeNotifier()
 		{
 			super();
+			changeEventName = "dataProviderChanged";
 		}
 		
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			if(changeEventName)
+				selectionModel.addEventListener(changeEventName, destinationChangedHandler);
+			
 			destinationChangedHandler(null);
 		}
 		
@@ -60,11 +66,15 @@ package org.apache.flex.html.beads
 			if (!dataProvider)
 			{
 				setDataProvider();
-				if (!dataProvider)
+				if (!dataProvider && !changeEventName)
 					selectionModel.addEventListener("dataProviderChanged", setFirstDataProvider);
+				
 			} else
 			{
+				if(dataProvider == selectionModel.dataProvider)
+					return;
 				detachEventListeners();
+				setDataProvider();
 				attachEventListeners();
 			}
 		}
@@ -73,17 +83,25 @@ package org.apache.flex.html.beads
 		{
 			setDataProvider();
 			selectionModel.removeEventListener("dataProviderChanged", setFirstDataProvider);
-			destinationChangedHandler(null);
 		}
 		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.collections.ArrayList
+		 */
 		private function setDataProvider():void
 		{
 			dataProvider = selectionModel.dataProvider as ArrayList;
+			if(dataProvider)
+				attachEventListeners();
 		}
 		
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.UIBase
+		 * @flexjsignorecoercion org.apache.flex.core.ISelectionModel
+		 */
 		private function get selectionModel():ISelectionModel
 		{
-			return _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			return (_strand as UIBase).model as ISelectionModel;
 		}
 		
 	}

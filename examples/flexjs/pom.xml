@@ -53,6 +53,7 @@
     <!--module>MDLBlogExample</module>-->
     <module>MDLDynamicTabsExample</module>
     <module>MDLExample</module>
+    <module>ModuleExample</module>
     <module>MobileMap</module>
     <module>MobileStocks</module>
     <module>MobileTrader</module>

@@ -57,8 +57,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var select:HTMLSelectElement = document.createElement('select') as HTMLSelectElement;
-			element = select as WrappedHTMLElement;
+			element = document.createElement('select') as WrappedHTMLElement;
             
             positioner = element;
 			element.flexjs_wrapper = this;

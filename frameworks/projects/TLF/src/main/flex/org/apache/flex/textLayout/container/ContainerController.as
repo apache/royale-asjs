@@ -83,6 +83,7 @@ package org.apache.flex.textLayout.container
 	import org.apache.flex.utils.ObjectMap;
 	import org.apache.flex.utils.PointUtils;
 	import org.apache.flex.utils.Timer;
+	import org.apache.flex.graphics.IDrawable;
 
 
 
@@ -2751,7 +2752,7 @@ package org.apache.flex.textLayout.container
 		// TODO Want to evaluate whether there's a cleaner way to do this
 		
 		private var blinkTimer:Timer;
-		private var blinkObject:IUIBase;
+		private var blinkObject:IRect;
 		
 		/**
 		 * Starts a DisplayObject cursor blinking by changing its alpha value
@@ -2760,7 +2761,8 @@ package org.apache.flex.textLayout.container
 		 * @param obj The DisplayObject to use as the cursor.
 		 * 
 		 */
-		private function startBlinkingCursor(obj:IUIBase, blinkInterval:int):void
+		private  var blinkState:Boolean;
+		private function startBlinkingCursor(obj:IRect, blinkInterval:int):void
 		{
 			if (!blinkTimer)
 				blinkTimer = new Timer(blinkInterval,0);
@@ -2779,12 +2781,42 @@ package org.apache.flex.textLayout.container
 		{
 			if (blinkTimer)
 				blinkTimer.stop();
+			if(blinkObject)
+			{
+				var selFormat:SelectionFormat = interactionManager.currentSelectionFormat;
+				var fill:SolidColor = blinkObject.fill as SolidColor;
+				fill.alpha = selFormat.pointAlpha;
+				fill.color = selFormat.pointColor;
+				(blinkObject as IDrawable).draw();
+				blinkObject.alpha = 1;
+				blinkState = false;
+			}
 			blinkObject = null;
 		}	
 		
 		private function blinkTimerHandler(event:Event):void
 		{
-			blinkObject.alpha = (blinkObject.alpha == 1.0) ? 0.0 : 1.0;
+			var selFormat:SelectionFormat = interactionManager.currentSelectionFormat;
+			if(selFormat)
+			{
+				var fill:SolidColor = blinkObject.fill as SolidColor;
+				if(blinkState)
+				{
+					fill.alpha = selFormat.pointBlinkAlpha;
+					fill.color = selFormat.pointBlinkColor;
+				}
+				else
+				{
+					fill.alpha = selFormat.pointAlpha;
+					fill.color = selFormat.pointColor;
+				}
+				(blinkObject as IDrawable).draw();
+				blinkState = !blinkState;
+			}
+			else
+				blinkObject.alpha = (blinkObject.alpha == 1.0) ? 0.0 : 1.0;
+			
+				
 		}
 		
 		/** 

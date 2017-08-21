@@ -21,11 +21,8 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns="http://www.w3.org/1999/xhtml">
-
     <js:Div className="demo-grid">
-
         <mdl:Grid>
-            
             <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
             <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
             <mdl:GridCell column="1"><mdl:beads><js:InnerHTML text="1"/></mdl:beads></mdl:GridCell>
@@ -50,8 +47,6 @@ limitations under the License.
             <mdl:GridCell column="6" columnTablet="8"><mdl:beads><js:InnerHTML text="6 (8 Tablet)"/></mdl:beads></mdl:GridCell>
             <mdl:GridCell column="4" columnTablet="6"><mdl:beads><js:InnerHTML text="4 (6 Tablet)"/></mdl:beads></mdl:GridCell>
             <mdl:GridCell column="2" columnPhone="4"><mdl:beads><js:InnerHTML text="2 (4 Phone)"/></mdl:beads></mdl:GridCell>
-
         </mdl:Grid>
-        
     </js:Div>
 </mdl:TabBarPanel>

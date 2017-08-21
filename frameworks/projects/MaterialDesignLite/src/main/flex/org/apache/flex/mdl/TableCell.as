@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.mdl
 {
-	import org.apache.flex.html.Group;
+	import org.apache.flex.html.TableCell;
 
     COMPILE::JS
     {
@@ -33,7 +33,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class TableCell extends Group
+	public class TableCell extends org.apache.flex.html.TableCell
 	{
 		/**
 		 *  constructor.
@@ -46,6 +46,8 @@ package org.apache.flex.mdl
 		public function TableCell()
 		{
 			super();
+
+			className = "";
 		}
 
 		private var _text:String = "";
@@ -87,13 +89,11 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			element = document.createElement('td') as WrappedHTMLElement;
-            element.classList.add("mdl-data-table__cell--non-numeric");
+            typeNames = "mdl-data-table__cell--non-numeric";
 
-            positioner = element;
-            element.flexjs_wrapper = this;
+           // element.classList.add("mdl-data-table__cell--non-numeric");
 
-            return element;
+            return super.createElement();;
         }
 	}
 }

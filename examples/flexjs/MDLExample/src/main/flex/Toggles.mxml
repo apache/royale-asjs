@@ -24,7 +24,6 @@ limitations under the License.
     
     <fx:Script>
         <![CDATA[
-        import org.apache.flex.events.MouseEvent;
         import org.apache.flex.mdl.materialIcons.MaterialIconType;
 
             [Bindable]
@@ -55,50 +54,53 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </mdl:beads>
 
-    <mdl:Grid width="250">
-    
-        <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
-        <mdl:CheckBox id="mdlchk" text="Disabled at start" value="CheckBox Description" change="counter++"/>
-        <js:Label text="Chebox throw 'change' event {counter} times"/>
-        <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
-        
-        <mdl:IconToggle dataMdlFor="mdlBoldIcon" click="counter2++">
-            <mdl:materialIcon>
-                <mdl:MaterialIcon text="{MaterialIconType.FORMAT_BOLD}"/>
-            </mdl:materialIcon>
-        </mdl:IconToggle>
+    <mdl:Grid>
+        <mdl:style>
+            <js:AllCSSStyles maxWidth="250"/>
+        </mdl:style>
+        <mdl:GridCell column="12">
+            <!-- Toggles :: https://getmdl.io/components/index.html#toggles-section -->
+            <mdl:CheckBox id="mdlchk" text="Disabled at start" value="CheckBox Description" change="counter++"/>
+            <js:Label text="Chebox throw 'change' event {counter} times"/>
+            <mdl:CheckBox id="mdlchk1" text="Selected and with Ripple" selected="true" ripple="true"/>
 
-         <js:Label text="IconToggle throw 'click' event {counter2} times"/>
-        
-        <mdl:IconToggle dataMdlFor="mdlItalicIcon" change="counter3++">
-            <mdl:materialIcon>
-                <mdl:MaterialIcon text="{MaterialIconType.FORMAT_ITALIC}"/>
-            </mdl:materialIcon>
-        </mdl:IconToggle>
+            <mdl:IconToggle dataMdlFor="mdlBoldIcon" click="counter2++">
+                <mdl:materialIcon>
+                    <mdl:MaterialIcon text="{MaterialIconType.FORMAT_BOLD}"/>
+                </mdl:materialIcon>
+            </mdl:IconToggle>
 
-        <js:Label text="IconToggle throw 'change' event {counter3} times"/>
+             <js:Label text="IconToggle throw 'click' event {counter2} times"/>
 
-        <mdl:Button raised="true" text="Change Switch Text Label" colored="true" click="s1.text = 'hello'"/>
-        <mdl:Switch id="s1" text="Switch" ripple="true" selected="true" change="counter4++" textChange="trace('hello?')"/>
-        
-        <js:Label text="Switch throw 'click' event {counter4} times"/>
-        
-        <mdl:Switch id="s2" text="Switch" click="counter5++"/>
-        
-        <js:Label text="Switch throw 'click' event {counter5} times"/>
+            <mdl:IconToggle dataMdlFor="mdlItalicIcon" change="counter3++">
+                <mdl:materialIcon>
+                    <mdl:MaterialIcon text="{MaterialIconType.FORMAT_ITALIC}"/>
+                </mdl:materialIcon>
+            </mdl:IconToggle>
 
-        <mdl:RadioButton groupName="g1" text="Ripple 1" value="Test 1" ripple="true" change="counter6++"/>
-        <mdl:RadioButton groupName="g1" text="Ripple 2" value="Test 2" ripple="true" change="counter6++"/>
-        <mdl:RadioButton groupName="g1" text="Ripple 3" value="Test 3" ripple="true" change="counter6++"/>
+            <js:Label text="IconToggle throw 'change' event {counter3} times"/>
 
-        <js:Label text="RadioButtons throw 'change' event {counter6} times"/>
+            <mdl:Button raised="true" text="Change Switch Text Label" colored="true" click="s1.text = 'hello'"/>
+            <mdl:Switch id="s1" text="Switch" ripple="true" selected="true" change="counter4++" textChange="trace('hello?')"/>
 
-        <mdl:RadioButton groupName="g2" text="Black" click="counter7++"/>
-        <mdl:RadioButton groupName="g2" text="White" click="counter7++"/>
-        <mdl:RadioButton groupName="g2" text="Red" click="counter7++"/>
+            <js:Label text="Switch throw 'click' event {counter4} times"/>
 
-        <js:Label text="RadioButtons throw 'click' event {counter7} times"/>
+            <mdl:Switch id="s2" text="Switch" click="counter5++"/>
 
+            <js:Label text="Switch throw 'click' event {counter5} times"/>
+
+            <mdl:RadioButton groupName="g1" text="Ripple 1" value="Test 1" ripple="true" change="counter6++"/>
+            <mdl:RadioButton groupName="g1" text="Ripple 2" value="Test 2" ripple="true" change="counter6++"/>
+            <mdl:RadioButton groupName="g1" text="Ripple 3" value="Test 3" ripple="true" change="counter6++"/>
+
+            <js:Label text="RadioButtons throw 'change' event {counter6} times"/>
+
+            <mdl:RadioButton groupName="g2" text="Black" click="counter7++"/>
+            <mdl:RadioButton groupName="g2" text="White" click="counter7++"/>
+            <mdl:RadioButton groupName="g2" text="Red" click="counter7++"/>
+
+            <js:Label text="RadioButtons throw 'click' event {counter7} times"/>
+        </mdl:GridCell>
     </mdl:Grid>
 
 </mdl:TabBarPanel>

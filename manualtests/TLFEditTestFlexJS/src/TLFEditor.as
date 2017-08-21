@@ -30,6 +30,8 @@ import flash.utils.setTimeout;
 
 import org.apache.flex.textLayout.beads.DispatchTLFKeyboardEventBead;
 import org.apache.flex.textLayout.container.TextContainerManager;
+import org.apache.flex.textLayout.factory.TLFFactory;
+import org.apache.flex.textLayout.factory.StandardTLFFactory;
 import org.apache.flex.textLayout.edit.EditingMode;
 import org.apache.flex.textLayout.edit.ISelectionManager;
 import org.apache.flex.textLayout.edit.SelectionFormat;
@@ -57,6 +59,8 @@ public class TLFEditor extends UIBase
 	
 	public function TLFEditor()
 	{
+        TLFFactory.defaultTLFFactory = new StandardTLFFactory();
+        
 		// Create the TLF TextContainerManager, using this component
 		// as the DisplayObjectContainer for its TextLines.
 		// This TextContainerManager instance persists for the lifetime

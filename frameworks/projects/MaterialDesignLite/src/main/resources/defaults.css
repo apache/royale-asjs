@@ -54,11 +54,6 @@ TextArea
     IBeadController: ClassReference("org.apache.flex.html.beads.controllers.EditableTextKeyboardController");*/
 }
 
-CheckBox
-{
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
-}
-
 IconToggle
 {
     IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
@@ -170,6 +165,11 @@ DropDownList
 
 @media -flex-flash
 {
+    CheckBox
+    {
+        IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");			
+    }
+    
     Slider
     {
         iThumbView: ClassReference("org.apache.flex.mdl.beads.views.SliderThumbView");

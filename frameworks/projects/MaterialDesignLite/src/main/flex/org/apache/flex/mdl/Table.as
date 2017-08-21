@@ -19,8 +19,8 @@
 package org.apache.flex.mdl
 {
 	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
-    
+    import org.apache.flex.core.IItemRenderer;
+
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -82,13 +82,14 @@ package org.apache.flex.mdl
 				COMPILE::JS
             	{
 					for each (var column:TableColumn in _columns){
-						head.addElement(column);
+						thead.addElement(column);
 					}
 				}
 			}
         }
 
-		/**
+
+        /**
          *  @copy org.apache.flex.core.IParent#addElement()
          * 
          *  @langversion 3.0
@@ -99,34 +100,67 @@ package org.apache.flex.mdl
          */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			COMPILE::SWF
+            COMPILE::JS
             {
-				// this part is not done for Table
-                /*if(_elements == null)
-                    _elements = [];
-                _elements[_elements.length] = c;
-                $displayObjectContainer.addChild(c.$displayObject);
-                if (c is IUIBase)
+				addTHeadToParent();
+				addTBodyToParent();
+
+				if (_isTheadAddedToParent && _isTbodyAddedToParent)
                 {
-                    IUIBase(c).addedToParent();
-                }*/
+                    tbody.addElement(c);
+                }
             }
+		}
+
+        override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+			COMPILE::JS
+            {
+                if (_isTbodyAddedToParent)
+                {
+                    tbody.removeElement(c);
+                }
+            }
+        }
+
+        override public function removeAllItemRenderers():void
+        {
+			if (!_isTbodyAddedToParent) return;
+
+			COMPILE::JS
+            {
+                while (tbody.numElements)
+                {
+                    var child:IChild = tbody.getElementAt(0);
+                    removeElement(child);
+                }
+            }
+        }
+
+        override public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+			if (!_isTbodyAddedToParent) return null;
 
             COMPILE::JS
             {
-				if(c is THead) {
-					positioner.appendChild(c.positioner);
-					(c as IUIBase).addedToParent();
-				} else
+                if (index < 0 || index >= tbody.numElements)
 				{
-					element.appendChild(c.positioner);
-					(c as IUIBase).addedToParent();
-				}
+					return null;
+                }
+
+                return tbody.getElementAt(index) as IItemRenderer;
             }
-		}
-		
+
+			return null;
+        }
+
+        COMPILE::JS
+		private var thead:THead;
+		private var _isTheadAddedToParent:Boolean = false;
+
 		COMPILE::JS
-		private var head:THead;
+		private var tbody:TBody;
+        private var _isTbodyAddedToParent:Boolean = false;
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -136,25 +170,17 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-data-table mdl-js-data-table";
 
-            positioner = document.createElement('table') as WrappedHTMLElement;
-			
-			head = new THead();
-			addElement(head);
+			element = document.createElement('table') as WrappedHTMLElement;
 
-			element = document.createElement('tbody') as WrappedHTMLElement;
-			
-			positioner.appendChild(element);
-			element.flexjs_wrapper = this;
+            thead = new THead();
+			tbody = new TBody();
+
+			positioner = element;
+            element.flexjs_wrapper = this;
 
             return element;
         }
-		
-		COMPILE::JS
-		override protected function setClassName(value:String):void
-		{
-			positioner.className = value;
-		}
-        
+
 		protected var _shadow:Number = 0;
         /**
 		 *  A boolean flag to activate "mdl-shadow--Xdp" effect selector.
@@ -173,14 +199,14 @@ package org.apache.flex.mdl
         {
 			COMPILE::JS
 			{
-				positioner.classList.remove("mdl-shadow--" + _shadow + "dp");
+				element.classList.remove("mdl-shadow--" + _shadow + "dp");
 				
 				if(value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
 				{
 					_shadow = value;
 
-					positioner.classList.add("mdl-shadow--" + _shadow + "dp");
-					typeNames = positioner.className;
+                    element.classList.add("mdl-shadow--" + _shadow + "dp");
+					typeNames = element.className;
 				}
 			}
         }
@@ -206,9 +232,33 @@ package org.apache.flex.mdl
 
 			COMPILE::JS
             {
-				positioner.classList.toggle("mdl-data-table--selectable", _selectable);
-				typeNames = positioner.className;
+                element.classList.toggle("mdl-data-table--selectable", _selectable);
+				typeNames = element.className;
 			}
         }
+
+		COMPILE::JS
+        private function addTHeadToParent():void
+        {
+            if (_isTheadAddedToParent) return;
+
+            if (thead)
+            {
+                super.addElement(thead);
+				_isTheadAddedToParent = true;
+            }
+        }
+
+        COMPILE::JS
+		private function addTBodyToParent():void
+		{
+			if (_isTbodyAddedToParent) return;
+
+			if (tbody)
+            {
+                super.addElement(tbody);
+				_isTbodyAddedToParent = true;
+            }
+		}
 	}
 }

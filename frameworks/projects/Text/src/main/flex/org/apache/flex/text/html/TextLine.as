@@ -356,7 +356,7 @@ package org.apache.flex.text.html
 				if (atomIndex == element.firstChild.textContent.length - 1)
 				{
 					w = (element.firstChild as HTMLElement).getClientRects()[0].width;
-					return new Rectangle(w, 1.2 - _textBlock.content.elementFormat.fontSize, 3, 1.2);
+					return new Rectangle(w, 1.2, 3, 1.2 + _textBlock.content.elementFormat.fontSize);
 				}
 				else
 				{
@@ -372,7 +372,7 @@ package org.apache.flex.text.html
                     span.innerHTML = s.substring(0, atomIndex + 1);
                     w = span.getClientRects()[0].width;
 					element.removeChild(span);
-					return new Rectangle(w1, 1.2 - _textBlock.content.elementFormat.fontSize, w - w1, 1.2);
+					return new Rectangle(w1, 1.2, w - w1, 1.2 + _textBlock.content.elementFormat.fontSize);
 				}
 			}
 		}

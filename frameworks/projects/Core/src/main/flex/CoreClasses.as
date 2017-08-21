@@ -82,6 +82,7 @@ internal class CoreClasses
 	import org.apache.flex.core.ILayoutParent; ILayoutParent;
     import org.apache.flex.core.IListPresentationModel; IListPresentationModel;
 	import org.apache.flex.core.IMeasurementBead; IMeasurementBead;
+    import org.apache.flex.core.IModule; IModule;
     import org.apache.flex.core.IPanelModel; IPanelModel;
     import org.apache.flex.core.IParent; IParent;
     import org.apache.flex.core.IParentIUIBase; IParentIUIBase;
