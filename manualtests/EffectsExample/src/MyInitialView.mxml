@@ -28,6 +28,10 @@ limitations under the License.
 			font-size: 14pt;
 			font-weight: bold;
 		}
+		
+		global {
+			IEffectTimer: 			ClassReference("org.apache.flex.utils.EffectTimer");
+		}
 
 	</fx:Style>
 	
@@ -78,10 +82,10 @@ limitations under the License.
 			<js:TextButton text="fade in" click="fadein()" />
 		</js:Container>
 		
-		<js:Container width="500">
-			<js:Image id="image1" source="twong.jpg" x="100" y="20" />
+		<js:Container width="500" height="500">
+			<js:Image id="image1" src="twong.jpg" x="100" y="20" />
 			<js:Label id="caption1" text="Dick" x="100" y="200" />
-			<js:Image id="image2" source="jproctor.jpg" x="400" y="20" />
+			<js:Image id="image2" src="jproctor.jpg" x="400" y="20" />
 			<js:Label id="caption2" text="Jane" x="400" y="200" />
 		</js:Container>		
 	</js:Container>
