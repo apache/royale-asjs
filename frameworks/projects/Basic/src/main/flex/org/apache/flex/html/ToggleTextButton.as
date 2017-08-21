@@ -85,10 +85,6 @@ package org.apache.flex.html
             {
                 addEventListener(MouseEvent.CLICK, internalMouseHandler);
             }
-            COMPILE::JS
-            {
-                this.typeNames = 'toggleTextButton';
-            }
 		}
 
         private var _selected:Boolean = false;
@@ -130,9 +126,7 @@ package org.apache.flex.html
                 if (_selected != value)
                 {
                     _selected = value;
-                    
                     internalSelected();
-                    
                     dispatchEvent(new Event("change"));
                 }
             }
@@ -177,26 +171,15 @@ package org.apache.flex.html
             COMPILE::JS
             {
                 var isToggleTextButtonSelected:Boolean = element.classList.contains("toggleTextButton_Selected");
-                if (!isToggleTextButtonSelected && _selected == true)
-                {
-                    element.classList.add("toggleTextButton_Selected");
-                }
-                else if (isToggleTextButtonSelected && _selected == false)
-                {
+                //sync the class with the state
+                if(isToggleTextButtonSelected != _selected)
                     element.classList.toggle("toggleTextButton_Selected");
-                }
                 
                 var isToggleTextButton:Boolean = element.classList.contains("toggleTextButton");
-                if (!isToggleTextButton && _selected == false)
-                {
-                    element.classList.add("toggleTextButton");
-                }
-                else if (isToggleTextButton && _selected == true)
-                {
+                // Need to toggle if we have the class and it's selected or we don't and it's not selected.
+                if(isToggleTextButton == _selected)
                     element.classList.toggle("toggleTextButton");
-                }
                 
-                typeNames = element.className;
             }
         }
 
