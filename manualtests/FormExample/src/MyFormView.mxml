@@ -47,7 +47,7 @@ limitations under the License.
 		
 		<js:Label text="Loan Form" className="title" />
 		
-		<js:Container width="500">
+		<js:Container width="500" height="600" >
 			<js:beads>
 				<js:VerticalColumnLayout numColumns="2" />
 			</js:beads>
