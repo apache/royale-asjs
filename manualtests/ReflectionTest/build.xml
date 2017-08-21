@@ -23,50 +23,22 @@
     <property name="FLEXJS_HOME" location="../.."/>
     <property name="example" value="ReflectionTest" />
     
+    <property file="${FLEXJS_HOME}/env.properties"/>
     <property environment="env"/>
-    <property file="${FLEXJS_HOME}/build.properties"/>
+	<property file="${FLEXJS_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-    <!-- use this to add keep metadata option -->
-    <property name="theme_arg" value="-keep-as3-metadata+=Event" />
-    <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar"
-    type="file"
-    property="FALCON_HOME"
-    value="${env.FALCON_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk/lib/falcon-mxmlc.jar"
-    type="file"
-    property="FALCON_HOME"
-    value="${FLEXJS_HOME}/../flex-falcon/compiler/generated/dist/sdk"/>
-    
-    <available file="${env.FALCONJX_HOME}/lib/jsc.jar"
-    type="file"
-    property="FALCONJX_HOME"
-    value="${env.FALCONJX_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/../flex-falcon/compiler.jx/lib/jsc.jar"
-    type="file"
-    property="FALCONJX_HOME"
-    value="${FLEXJS_HOME}/../flex-falcon/compiler.jx"/>
-    
-    <available file="${env.GOOG_HOME}/closure/goog/base.js"
-    type="file"
-    property="GOOG_HOME"
-    value="${env.GOOG_HOME}"/>
-    
-    <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js"
-    type="file"
-    property="GOOG_HOME"
-    value="${FLEXJS_HOME}/js/lib/google/closure-library"/>
+	
     
     <include file="${basedir}/../build_example.xml" />
 
-    <target name="main" depends="clean,build_example.compile,build_example.compilejs" description="Clean build of FlexJSUI.swc">
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
     
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
 </project>

@@ -83,8 +83,9 @@
 		var JS_DEBUG = "JS-Debug";
 		var SWAP_TO_RELEASE = "Swap To "+JS_RELEASE;
 		var SWAP_TO_DEBUG = "Swap To "+JS_DEBUG;
-		var debug = "../bin/js-debug/index.html";
-		var release = "../bin/js-release/index.html";
+		var base = "../target/javascript/bin";
+		var debug = base + "/js-debug/index.html";
+		var release = base + "/js-release/index.html";
 		var jsIframe = document.getElementById("jsIframe");
 		var status = document.getElementById("jsStatus");
 		if (button && jsIframe) {
@@ -118,10 +119,10 @@
 			<button id="swapJsButton" onclick="swapJSBuild()" type="button" class="quoteButton TextButton" style="position: relative; display: inline-block;">Swap To JS-Release</button>
 		</div>
 		<div class="boxLeft">
-			<iframe id="jsIframe" src="../bin/js-debug/index.html" frameborder="1" scrolling="no" height="100%" width="100%" align="left" ></iframe>
+			<iframe id="jsIframe" src="../target/javascript/bin/js-debug/index.html" frameborder="1" scrolling="no" height="100%" width="100%" align="left" ></iframe>
 		</div>
 		<div class="boxRight">
-			<iframe id="swfIframe"  src="../bin-debug/GenericTests.html" frameborder="1" scrolling="no" height="100%" width="100%" align="left" ></iframe>
+			<iframe id="swfIframe"  src="../target/bin-debug/UnitTests.html" frameborder="1" scrolling="no" height="100%" width="100%" align="left" ></iframe>
 		</div>
 	</div>
 </body>
