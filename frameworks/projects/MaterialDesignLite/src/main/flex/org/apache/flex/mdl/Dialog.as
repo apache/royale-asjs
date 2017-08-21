@@ -122,7 +122,7 @@ package org.apache.flex.mdl
 		}
 
 		/**
-		 *  show modal dialog
+		 *  Displays the dialog element and makes it the top-most modal dialog.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -140,9 +140,10 @@ package org.apache.flex.mdl
 		}
 
 		/**
-		 *  show dialog.
+		 *  Displays the dialog element.
+		 *
 		 *  Note: It seems MDL does not support non modal dialogs, since there's no examples
-		 *  and dialogs are always added to "document.body" We could study change this.
+		 *  and dialogs are always added to "document.body".
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -160,7 +161,7 @@ package org.apache.flex.mdl
 		}
 
 		/**
-		 * close dialog
+		 *  Closes the dialog element.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
