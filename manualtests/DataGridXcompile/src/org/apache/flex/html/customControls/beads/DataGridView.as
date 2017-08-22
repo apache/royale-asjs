@@ -26,6 +26,7 @@ package org.apache.flex.html.customControls.beads
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.core.IDataGridPresentationModel;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.core.ValuesManager;
 	import org.apache.flex.events.Event;
@@ -144,6 +145,13 @@ package org.apache.flex.html.customControls.beads
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
+		}
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 */
+		public function get host():IUIBase
+		{
+			return _strand as IUIBase;
 		}
 	}
 }

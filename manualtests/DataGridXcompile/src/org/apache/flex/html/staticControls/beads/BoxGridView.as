@@ -16,10 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.flex.html.staticControls.beads
 {
 	import org.apache.flex.core.IBeadView;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.Label;
 	
@@ -43,6 +44,13 @@ package org.apache.flex.html.beads
 			label.width = 100;
 			label.height = 25;
 			UIBase(_strand).addElement(label);
+		}
+		/**
+		 * @flexjsignorecoercion org.apache.flex.core.IUIBase
+		 */
+		public function get host():IUIBase
+		{
+			return _strand as IUIBase;
 		}
 	}
 }
