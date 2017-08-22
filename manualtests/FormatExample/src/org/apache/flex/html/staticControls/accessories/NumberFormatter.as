@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.accessories
+package org.apache.flex.html.staticControls.accessories
 {
 	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IFormatBead;
