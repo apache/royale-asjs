@@ -31,6 +31,11 @@ package
         import org.apache.flex.net.URLBinaryUploader; URLBinaryUploader;
         import org.apache.flex.net.events.ResultEvent; ResultEvent;
         import org.apache.flex.net.events.FaultEvent; FaultEvent;
+        
+        import org.apache.flex.net.remoting.messages.AsyncMessage; AsyncMessage;
+        import org.apache.flex.net.remoting.messages.CommandMessage; CommandMessage;
+        import org.apache.flex.net.remoting.messages.RemotingMessage; RemotingMessage;
+        import org.apache.flex.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
     }
 }
 
