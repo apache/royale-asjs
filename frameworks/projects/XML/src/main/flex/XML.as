@@ -1943,6 +1943,15 @@ package
 			var i:int;
 			var len:int;
 			var chld:XML;
+
+			// I'm not wure that this a strict interpretation of the spec but I think this does the "right thing".
+			var childType:String = typeof elements;
+			if(childType != "object")
+			{
+				var stringable:XML = xmlFromStringable(elements);
+				elements = new XML("<" + elementName + "/>");
+				elements.appendChild(stringable);
+			}
 			
 			if(elements is XML)
 			{
