@@ -96,8 +96,8 @@
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
-        <antcall target="Network"/>
         <antcall target="Reflection"/>
+        <antcall target="Network"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
         <antcall target="Text"/>
@@ -151,8 +151,8 @@
         <ant dir="${basedir}/projects/Language" target="clean"/>
 		<ant dir="${basedir}/projects/MaterialDesignLite" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
-        <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
+        <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/projects/Text" target="clean"/>
