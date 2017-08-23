@@ -161,8 +161,12 @@ package org.apache.flex.net
     					param[i] = typedObj;
     				}
     			}
+                dispatchEvent(new ResultEvent(ResultEvent.RESULT,param));
             }
-			dispatchEvent(new ResultEvent(ResultEvent.RESULT,param.body));
+            COMPILE::SWF
+            {
+    			dispatchEvent(new ResultEvent(ResultEvent.RESULT,param.body));
+            }
 		}
 		
 		public function faultHandler(param:Object):void
