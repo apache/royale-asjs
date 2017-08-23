@@ -61,6 +61,7 @@
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
         </library-path>
         
         <namespaces>
