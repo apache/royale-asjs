@@ -26,7 +26,7 @@ package org.apache.flex.mdl.beads.views
     import org.apache.flex.core.IStrand;
     import org.apache.flex.mdl.TabBar;
     import org.apache.flex.mdl.TabBarPanel;
-    import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData;
+    import org.apache.flex.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData;
     import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
 
     /**
@@ -166,8 +166,8 @@ package org.apache.flex.mdl.beads.views
 
         public function isTabsDynamic():Boolean
         {
-            var arrayListMapper:TabsItemRendererFactoryForArrayListData =
-                    _strand.getBeadByType(IDataProviderItemRendererMapper) as TabsItemRendererFactoryForArrayListData;
+            var arrayListMapper:TabsDynamicItemsRendererFactoryForArrayListData =
+                    _strand.getBeadByType(IDataProviderItemRendererMapper) as TabsDynamicItemsRendererFactoryForArrayListData;
             return arrayListMapper != null;
         }
     }
