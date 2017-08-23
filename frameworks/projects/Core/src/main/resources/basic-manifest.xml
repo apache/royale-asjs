@@ -31,6 +31,7 @@
     <component id="SimpleStatesImpl" class="org.apache.flex.core.SimpleStatesImpl"/>
     <component id="MXMLDragInitiator" class="org.apache.flex.core.MXMLDragInitiator" />
     <component id="CallLaterBead" class="org.apache.flex.core.CallLaterBead" />
+    <component id="ClassAliasBead" class="org.apache.flex.core.ClassAliasBead" />
 
     <component id="BindableCSSStyles" class="org.apache.flex.core.BindableCSSStyles"/>
     <component id="BindableCSSStylesWithFlex" class="org.apache.flex.core.BindableCSSStylesWithFlex"/>
