@@ -35,6 +35,7 @@ limitations under the License.
 			private function onResult(evt:ResultEvent):void
 			{
 				trace("Result=" + evt.data);
+				received.text = "Received: " + evt.data;
 			}
 			
 			private function onFault(evt:FaultEvent):void
@@ -45,7 +46,8 @@ limitations under the License.
 	</fx:Script>
 
     <js:beads>
-        <js:RemoteObject id="service"
+        <js:ClassAliasBead />
+        <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
                          destination = "exampleService"
                          source = "exampleService"/>
@@ -53,17 +55,13 @@ limitations under the License.
 
     <js:initialView>
         <js:View>
-            <mdl:Grid>
-                <mdl:TextField id="name_txt">
-                    <mdl:beads>
-                        <mdl:TextPrompt prompt="Text to be sent via AMF RemoteObject..."/>
-                        <mdl:Tooltip text="This sample requires an AMF Backend"/>
-                    </mdl:beads>
-                </mdl:TextField>
-                
-                <mdl:Button text="Send Name to AMF" raised="true"  accent="true"
-                            click="sendName()"/>
-            </mdl:Grid>
+            <js:beads>
+                <js:VerticalLayout />
+            </js:beads>
+            <js:Label text="Text to be sent via AMF RemoteObject..." />
+            <js:TextInput id="name_txt" />
+            <js:TextButton text="Send Name to AMF" click="sendName()"/>
+			<js:Label id="received" width="300"/>
         </js:View>
     </js:initialView>
 
