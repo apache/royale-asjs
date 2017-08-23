@@ -158,6 +158,7 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
+    import org.apache.flex.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;
