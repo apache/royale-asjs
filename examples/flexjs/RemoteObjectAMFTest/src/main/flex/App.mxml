@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<mdl:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns:local="*">
@@ -71,4 +71,4 @@ limitations under the License.
 
     <fx:Style source="../../main/resources/mdl-styles.css"/>
 
-</mdl:Application>
+</js:Application>

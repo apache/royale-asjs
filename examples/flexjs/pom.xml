@@ -58,6 +58,7 @@
     <module>MobileMap</module>
     <module>MobileStocks</module>
     <module>MobileTrader</module>
+    <module>RemoteObjectAMFTest</module>
     <module>StorageExample</module>
     <module>StyleExample</module>
     <module>TeamPage</module>
