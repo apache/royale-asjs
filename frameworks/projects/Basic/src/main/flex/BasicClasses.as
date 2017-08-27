@@ -27,6 +27,10 @@ package
  */
 internal class BasicClasses
 {
+	COMPILE::JS
+	{
+		import org.apache.flex.html.addElementToWrapper; addElementToWrapper;
+	}
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
