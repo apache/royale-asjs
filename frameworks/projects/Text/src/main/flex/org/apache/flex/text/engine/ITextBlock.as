@@ -19,6 +19,7 @@
 package org.apache.flex.text.engine
 {
 	import org.apache.flex.text.engine.ITextFactory;
+	import org.apache.flex.text.engine.ContentElement;
 
 	public interface ITextBlock
 	{
@@ -63,6 +64,8 @@ package org.apache.flex.text.engine
 		function recreateTextLine(textLine:ITextLine, previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine;
 		function releaseLineCreationData():void;
 		function releaseLines(firstLine:ITextLine, lastLine:ITextLine):void;
+
+		function getRelativeStart(element:ContentElement):int;
 
 	}
 }

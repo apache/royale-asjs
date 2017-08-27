@@ -20,6 +20,7 @@ package org.apache.flex.text.engine
 {
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.text.engine.TextElement;
+	import org.apache.flex.text.engine.GroupElement;
 	
 	public class GroupElement extends ContentElement
 	{
@@ -27,7 +28,10 @@ package org.apache.flex.text.engine
 		{
 			super(elementFormat, eventMirror, textRotation);
 			if(elements)
+			{
 				_elements = elements;
+				setElementsGroup(this);
+			}	
 			else
 				_elements = new Vector.<ContentElement>();
 		}
@@ -67,6 +71,7 @@ package org.apache.flex.text.engine
 		}
 		public function replaceElements(beginIndex:int, endIndex:int, newElements:Vector.<ContentElement>):Vector.<ContentElement>
 		{
+			setElementsGroup(null);
             COMPILE::SWF
             {
                 var args:Array = [beginIndex, endIndex-beginIndex];
@@ -79,15 +84,25 @@ package org.apache.flex.text.engine
             }
             COMPILE::JS
             {
-    			var args:Array = [beginIndex, endIndex-beginIndex].concat(newElements);
+    			var args:Array = [beginIndex, endIndex-beginIndex];
+				// don't concat null
+				if(newElements)
+					args = args.concat(newElements);
 			// _elements.splice(beginIndex,endIndex-beginIndex);
             }
-            _elements.splice.apply(_elements, args);                    
+            _elements.splice.apply(_elements, args);
+			setElementsGroup(this);
 			return _elements;
 		}
 		public function setElements(value:Vector.<ContentElement>):void
 		{
 			_elements = value;
+			setElementsGroup(this);
+		}
+		private function setElementsGroup(group:GroupElement):void
+		{
+			for(var i:int=0; i<_elements.length; i++)
+				_elements[i].groupElement = group;
 		}
 		public function splitTextElement(elementIndex:int, splitIndex:int):TextElement
 		{
@@ -101,7 +116,9 @@ package org.apache.flex.text.engine
 			var nextText:String = textElem.rawText.substr(splitIndex);
 			var newElem:TextElement = new TextElement(nextText,textElem.elementFormat,textElem.eventMirror,textElem.textRotation);
 			textElem.text = firstText;
+			newElem.groupElement = this;
 			_elements.splice(elementIndex+1,0,newElem);
+			
 			return newElem;
 		}
 		public function ungroupElements(groupIndex:int):void
