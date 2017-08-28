@@ -2131,6 +2131,16 @@ package
 		{
 			_value = value;
 		}
+
+		/**
+		 * @private
+		 * 
+		 * Allows XMLList to get the targetObject of its targetObject and not error when it gets the XML
+		 */
+		public function get targetObject():*
+		{
+			return null;
+		}
 		
 		/**
 		 * Returns an XMLList object of all XML properties of the XML object that represent XML text nodes.
