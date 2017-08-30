@@ -44,10 +44,18 @@ package org.apache.flex.text.engine
 		/**
 		 * The parent
 		 */
-		public function get groupElement() : GroupElement
+		private var _groupElement:GroupElement;
+		public function get groupElement():GroupElement
 		{
+			if(_groupElement)
+				return _groupElement.getElementIndex(this) < 0 ? null : _groupElement;
 			return null;
 		}
+		public function set groupElement(value:GroupElement):void
+		{
+			_groupElement = value;
+		}
+		
 		public function get rawText() : String
 		{
 			return null;
@@ -56,13 +64,22 @@ package org.apache.flex.text.engine
 		{
 			return null;
 		}
-		public function get textBlock() : ITextBlock
+
+		private var _textBlock:ITextBlock;
+		public function get textBlock():ITextBlock
 		{
-			return null;
+			if(groupElement)
+				return groupElement.textBlock;
+			return _textBlock;
 		}
+		public function set textBlock(value:ITextBlock):void
+		{
+			_textBlock = value;
+		}
+		
 		public function get textBlockBeginIndex() : int
 		{
-			return null;
+			return textBlock ? textBlock.getRelativeStart(this) : 0;
 		}
 
 		public var textRotation : String

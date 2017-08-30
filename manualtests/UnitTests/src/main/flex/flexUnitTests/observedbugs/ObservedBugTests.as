@@ -34,9 +34,7 @@ package flexUnitTests.observedbugs
             } catch (e:Error) {
                 js = true;
             }
-            //if this next reference to 'check' is not included, then the above try/catch code
-            // appears to be optimized away in js-release mode
-            //todo: this is inconsistent with swf, need to create simple test case for jx compiler/gcc
+            //this was originally necessary to avoid a gcc-related bug in js for release mode only
             if (check == null) {
                 js = true;
             }
@@ -73,8 +71,10 @@ package flexUnitTests.observedbugs
 
         }
 		
-		
-		[TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
+		//This Observed bug is no longer present 0.9.0
+		//it may be related to a Google Closure Compiler update since it was originally observed
+		//leaving the tests in here for now...
+		//[TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
         [Test]
         public function testTryCatchJSReleaseModeFails_b():void
         {
@@ -84,18 +84,8 @@ package flexUnitTests.observedbugs
             } catch (e:Error) {
                 js = true;
             }
-			
-			//if this next reference to 'check' variable is not included, then the above try/catch code
-            // appears to be optimized away in js-release mode
-            //todo: this is inconsistent with swf
-            /* if (check == null) {
-                js = true;
-            }*/
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == true) : (js == false)));
 
-
+            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js === true) : (js === false)));
         }
-		
-
     }
 }

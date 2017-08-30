@@ -28,7 +28,7 @@ package
 	internal class MDLClasses
 	{
 		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayListData; TabsItemRendererFactoryForArrayListData;
+		import org.apache.flex.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData; TabsDynamicItemsRendererFactoryForArrayListData;
 		import org.apache.flex.mdl.beads.models.TabArrayModel; TabArrayModel;
 		import org.apache.flex.mdl.beads.models.TabArrayListModel; TabArrayListModel;
 		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;

@@ -27,6 +27,10 @@ package
  */
 internal class BasicClasses
 {
+	COMPILE::JS
+	{
+		import org.apache.flex.html.addElementToWrapper; addElementToWrapper;
+	}
     import org.apache.flex.html.ToolTip; ToolTip;
 	import org.apache.flex.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.flex.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
@@ -158,6 +162,7 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.layouts.TileLayout; TileLayout;
     import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
+    import org.apache.flex.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.flex.html.supportClasses.DataGroup; DataGroup;

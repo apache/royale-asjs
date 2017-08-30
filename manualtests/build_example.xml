@@ -20,82 +20,243 @@
 
 <project name="build_example" basedir=".">
     
+    <condition property="FALCON_HOME" value="${env.FALCON_HOME}">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCON_HOME" value="${FLEXJS_HOME}">
+        <and>
+            <not>
+                <isset property="FALCON_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/lib/falcon-mxmlc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${env.FALCONJX_HOME}">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${env.FALCONJX_HOME}/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/js">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="FALCONJX_HOME" value="${FLEXJS_HOME}/../flex-falcon/compiler-jx">
+        <and>
+            <not>
+                <isset property="FALCONJX_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${env.GOOG_HOME}/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
+    <condition property="GOOG_HOME" value="${FLEXJS_HOME}/js/lib/google/closure-library">
+        <and>
+            <not>
+                <isset property="GOOG_HOME" />
+            </not>
+            <available file="${FLEXJS_HOME}/js/lib/google/closure-library/closure/goog/base.js" type="file" />
+        </and>
+    </condition>
+
+    <condition property="adl" value="adl.exe">
+        <os family="windows"/>
+    </condition>
+
+    <condition property="adl" value="adl">
+        <os family="mac"/>
+    </condition>
+
+    <condition property="runtime" value="win">
+        <os family="windows"/>
+    </condition>
+
+    <condition property="runtime" value="mac">
+        <os family="mac"/>
+    </condition>
+    
+    <property name="swf.version" value="14" />
+	
+	<target name="get.browser" >
+        <condition property="browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
+            <and>
+                <os family="windows"/>
+                <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"
+                type="file" />
+            </and>
+        </condition>
+        <condition property="browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe">
+            <and>
+                <os family="windows"/>
+                <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"
+                type="file" />
+            </and>
+        </condition>
+        <condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
+            <and>
+                <os family="windows"/>
+                <available file="C:/Program Files/Internet Explorer/iexplore.exe"
+                    type="file" />
+            </and>
+        </condition>
+        <condition property="browser" value="/Applications/Firefox.app/Contents/MacOS/Firefox">
+            <and>
+                <os family="mac"/>
+                <available file="/Applications/Firefox.app/Contents/MacOS/Firefox"
+                type="file" />
+            </and>
+        </condition>
+        <condition property="browser" value="/Applications/Safari.app/Contents/MacOS/Safari">
+            <and>
+                <os family="mac"/>
+                <available file="/Applications/Safari.app/Contents/MacOS/Safari"
+                type="file" />
+            </and>
+        </condition>
+        <fail message="No browser found.  See build_example.xml or set -Dbrowser=&lt;path to browser&gt;"
+            unless="browser"/>
+    </target>
+    
     <path id="lib.path">
       <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
     </path>
+	
     
     <target name="compile" description="Compiles ${example}">
-        <echo message="Compiling ${example}.swf"/>
+		<echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        
-        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="destDir" value="${basedir}/bin-debug" else="${basedir}/target/bin-debug">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="jsDir" value="${basedir}" else="${basedir}/target/javascript">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<available file="${srcDir}/../config/compile-app-config.xml"
+            type="file"
+            property="optional_arg" value="-load-config+=&quot;${srcDir}/../config/compile-app-config.xml&quot;" />
+
+		<condition property="targets" value="SWF,JSFlex" else="SWF">
+			<not>
+				<isset property="no.js"/>
+			</not>
+		</condition>
+		 <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <property name="config_arg" value="flex" />
+        <property name="file_suffix" value="mxml" />
+        <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
         <!-- this is a dummy var placeholder in case some example needs to define a theme
             then they would set theme_arg=-theme=<path to theme> -->
         <property name="theme_arg" value="-define+=CONFIG::theme,false" />
-        <mxmlc fork="true"
-            file="${basedir}/src/${example}.mxml"
-            output="${basedir}/bin-debug/${example}.swf">
+		<mxmlc fork="true"
+               debug="true"
+               configname="${config_arg}"
+               swf-version="${swf.version}"
+               closure-lib="${GOOG_HOME}"
+               file="${srcDir}/${example}.${file_suffix}"
+			   output="${destDir}/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${basedir}/frameworks" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-swf-version=${swf.version}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
+            <arg line="${optional_arg}" />
+			<arg value="${theme_arg}" />
+			<arg value="-targets=${targets}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
+			<arg value="-js-output=${jsDir}" />
         </mxmlc>
-        
-        <html-wrapper
-        height="100%"
-        width="100%"
-        bgcolor="#ffffff"
-        name="${example}"
-        versionmajor="11"
-        versionminor="1"
-        versionrevision="0"
-        output="${basedir}/bin-debug"/>
-        
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src">
+
+        <antcall target="build_example.wrapper">
+			<param name="output" value="${destDir}"/>
+		</antcall>
+		
+        <copy todir="${destDir}">
+            <fileset dir="${srcDir}">
                 <include name="**/*.png" />
                 <include name="**/*.jpg" />
             </fileset>
         </copy>
-        <copy todir="${basedir}/bin-debug/fonts">
+        <copy todir="${destDir}/fonts">
             <fileset dir="${FLEX_HOME}/frameworks/fonts">
                 <include name="**/*.swf" />
             </fileset>
         </copy>
+		
+		<antcall target="build_example.compile-js-release"/>
+		<antcall target="build_example.copy-app-xml" />
     </target>
     
     <target name="compileair" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="destDir" value="${basedir}/bin-debug" else="${basedir}/target/bin-debug">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
         
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-            file="${basedir}/src/${example}.mxml"
-            output="${basedir}/bin-debug/${example}.swf">
+            file="${srcDir}/${example}.mxml"
+            output="${destDir}/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="+configname=air" />
             <arg value="-debug" />
             <arg value="${theme_arg}" />
             <arg value="-target-player=${playerglobal.version}" />
-            <arg value="-swf-version=${swf.version}" />
+            <arg value="-swf-version=${swfVersion}" />
             <arg value="-compiler.mxml.children-as-data" />
             <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
             <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
@@ -108,13 +269,13 @@
             <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}/src">
+        <copy todir="${destDir}">
+            <fileset dir="${srcDir}">
                 <include name="*.png" />
             </fileset>
         </copy>
-        <copy todir="${basedir}/bin-debug">
-            <fileset dir="${basedir}">
+        <copy todir="${destDir}">
+            <fileset dir="${srcDir}">
                 <include name="*-app.xml" />
             </fileset>
         </copy>
@@ -123,14 +284,23 @@
     <target name="compileas" description="Compiles ${example}">
         <echo message="Compiling ${example}.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        
+        <condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="destDir" value="${basedir}/bin-debug" else="${basedir}/target/bin-debug">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
         <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
         <property name="theme_arg" value="-define=CONFIG::theme,false" />
         <mxmlc fork="true"
-            file="${basedir}/src/${example}.as"
-            output="${basedir}/bin-debug/${example}.swf">
+            file="${srcDir}/${example}.as"
+            output="${destDir}/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg value="+flexlib=${basedir}/frameworks" />
             <arg value="-debug" />
@@ -149,157 +319,74 @@
             <arg value="-closure-lib=${GOOG_HOME}" />
         </mxmlc>
         
+		<antcall target="build_example.wrapper">
+			<param name="output" value="${destDir}"/>
+		</antcall>   
+    </target>
+ 
+	
+	 <target name="compile-js-release"  unless="no.js">
+		<echo message="Compiling ${example}.js"/>
+        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <property name="js.release.target" value="JSFlex" />
+		<property name="extlib_arg" value="-define=CONFIG::extlib,false" />
+		<condition property="srcDir" value="${basedir}/src" else="${basedir}/src/main/flex">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="destDir" value="${basedir}" else="${basedir}/target">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+		<condition property="jsDir" value="${basedir}" else="${basedir}/target/javascript">
+			<not>
+				<isset property="maven_compat"/>
+			</not>
+		</condition>
+        <mxmlc fork="true"
+            debug="false"
+             configname="${config_arg}"
+               swf-version="${swf.version}"
+               closure-lib="${GOOG_HOME}"
+               file="${srcDir}/${example}.${file_suffix}">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <arg line="${optional_arg}" />
+			<arg value="${theme_arg}" />
+			<arg value="${extlib_arg}" />
+			<arg value="-define=COMPILE::SWF,false" />
+            <arg value="-define=COMPILE::JS,true" />
+			<arg value="-targets=${js.release.target}" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+			<arg value="-js-output=${jsDir}" />
+		</mxmlc>
+    </target>
+	
+	<target name="check-air">
+        <condition property="is.air" value="true">
+            <equals arg1="${config_arg}" arg2="air" />
+        </condition>
+    </target>
+	
+	<target name="wrapper" depends="check-air" unless="is.air">
+		<property name="output" value="${basedir}/bin-debug"/>
         <html-wrapper
-        height="300"
-        width="400"
+        height="100%"
+        width="100%"
         bgcolor="#ffffff"
         name="${example}"
         versionmajor="11"
         versionminor="1"
         versionrevision="0"
-        output="${basedir}/bin-debug"/>
-        
+        output="${output}"/>
     </target>
-    
-    <target name="compilejs" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug=false" />
-            <arg value="${theme_arg}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
-            <arg value="${extlib_arg}" />
-            <arg value="-remove-circulars" />
-            <arg value="-define=COMPILE::SWF,false" />
-            <arg value="-define=COMPILE::JS,true" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/src/${example}.mxml" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
-    </target>
-    
-    <target name="compilejsair" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="+configname=air" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
-            <arg value="${extlib_arg}" />
-            <arg value="-remove-circulars" />
-            <arg value="-define=COMPILE::SWF,false" />
-            <arg value="-define=COMPILE::JS,true" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/src/${example}.mxml" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
-    </target>
-    
-    <target name="compileasjs" description="Cross-compiles ${example}" unless="no.js">
-        <echo message="Compiling ${example}.js"/>
-        <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
-        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
-        <property name="theme_arg" value="-define=CONFIG::theme,false" />
-        <property name="extlib_arg" value="-define=CONFIG::extlib,false" />
-        
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
-            <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
-            <arg value="${theme_arg}" />
-            <arg value="-define=CONFIG::as_only,false" />
-            <arg value="-define=CONFIG::js_only,true" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="-compiler.binding-event-handler-interface=org.apache.flex.events.IEventDispatcher" />
-            <arg value="-compiler.binding-event-handler-class=org.apache.flex.events.EventDispatcher" />
-            <arg value="-compiler.binding-event-handler-event=org.apache.flex.events.Event" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-external-library-path=${FLEXJS_HOME}/js/libs/js.swc" />
-            <arg value="${extlib_arg}" />
-            <arg value="-remove-circulars" />
-            <arg value="-define=COMPILE::SWF,false" />
-            <arg value="-define=COMPILE::JS,true" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/src/${example}.as" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
+	
+	<target name="copy-app-xml" depends="check-air" if="is.air">
+        <copy toDir="${basedir}/bin-debug" file="${basedir}/${example}-app.xml" />
+        <copy toDir="${basedir}/bin-release" file="${basedir}/${example}-app.xml" />
     </target>
     
     <macrodef name="html-wrapper">
@@ -387,5 +474,86 @@
             </replace>
         </sequential>
     </macrodef>
+	
+    <target name="check-resources" >
+        <available file="${basedir}/src/main/resources"
+        type="dir"
+        property="has-resources"/>
+    </target>
     
+    <target name="copy-resources" depends="check-resources" if="has-resources">
+        <copy todir="${basedir}/bin-debug">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="**/*.png" />
+                <include name="**/*.jpg" />
+                <include name="**/*.json" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="copy-js-resources" depends="check-resources" if="has-resources">
+        <mkdir dir="${basedir}/bin/js-debug/assets" />
+        <copy todir="${basedir}/bin/js-debug/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/assets" />
+        <copy todir="${basedir}/bin/js-release/assets" >
+            <fileset dir="${basedir}/src/main/resources/assets">
+                <include name="**" />
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="run.air">
+        <property name="profile" value="mobileDevice" />
+        <property name="screensize" value="640x960:640x960" />
+        <property name="dpi" value="240" />
+        <property name="platform" value="AND" />
+        <exec executable="${AIR_HOME}/bin/${adl}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="-runtime" />
+            <arg value="${AIR_HOME}/runtimes/air/${runtime}" />
+            <arg value="-profile" />
+            <arg value="${profile}" />
+            <arg value="-screensize" />
+            <arg value="${screensize}" />
+            <arg value="-XscreenDPI" />
+            <arg value="${dpi}" />
+            <arg value="-XversionPlatform" />
+            <arg value="${platform}" />
+            <arg value="${basedir}/bin-${which}/${example}-app.xml" />
+        </exec>
+    </target>
+
+    <target name="run.air.desktop">
+        <property name="profile" value="extendedDesktop" />
+        <property name="screensize" value="640x960:640x960" />
+        <property name="dpi" value="240" />
+        <property name="platform" value="AND" />
+        <exec executable="${AIR_HOME}/bin/${adl}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="-runtime" />
+            <arg value="${AIR_HOME}/runtimes/air/${runtime}" />
+            <arg value="-profile" />
+            <arg value="${profile}" />
+            <arg value="${basedir}/bin-${which}/${example}-app.xml" />
+        </exec>
+    </target>
+
+    <target name="compile.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
+        <property name="mobile.platform" value="android" />
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="main" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="load-platform.${mobile.platform}" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
+    </target>
+
+    <target name="run.cordova" description="Executes the Cordova build script to run the app on a device." if="has.cordova">
+        <property name="mobile.platform" value="android" />
+        <ant antfile="${FLEXJS_HOME}/cordova-build.xml" target="run.${mobile.platform}" >
+            <property name="projectdir" value="${basedir}" />
+        </ant>
+    </target>
 </project>

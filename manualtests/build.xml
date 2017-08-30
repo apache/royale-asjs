@@ -74,7 +74,9 @@
     </target>
     
     <target name="compile" description="Compile Examples" >
+		<ant dir="${basedir}/BubbleTest"/>
         <ant dir="${basedir}/ContainerTest"/>
+		<ant dir="${basedir}/CursorTest"/>
 		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/EffectsExample"/>
         <ant dir="${basedir}/FlexJSTest_basic"/>
@@ -87,8 +89,11 @@
         <ant dir="${basedir}/ImageTest"/>
         <ant dir="${basedir}/LanguageTests"/>
         <ant dir="${basedir}/ListsTest"/>
+		<ant dir="${basedir}/ProxyTest"/>
+		<ant dir="${basedir}/ReflectionTest"/>
         <ant dir="${basedir}/RollEventsTest"/>
-        <ant dir="${basedir}/ReflectionTest"/>
+        <ant dir="${basedir}/TLFEditTestFlexJS"/>
+		<ant dir="${basedir}/UnitTests" />
         <ant dir="${basedir}/XMLTest"/>
     </target>
 	   
@@ -103,9 +108,10 @@
     </target>
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/BubbleTest" target="clean"/>
         <ant dir="${basedir}/ContainerTest" target="clean"/>
-        <ant dir="${basedir}/DataBindingTestbed" target="clean"/>
-        <ant dir="${basedir}/DateChooserExample" target="clean"/>
+		<ant dir="${basedir}/CursorTest" target="clean"/>
+		<ant dir="${basedir}/DateChooserExample" target="clean"/>
         <ant dir="${basedir}/EffectsExample" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_basic" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_createjs" target="clean"/>
@@ -114,12 +120,14 @@
         <ant dir="${basedir}/FlexJSTest_Panel" target="clean"/>
         <ant dir="${basedir}/FlexJSTest_SVG" target="clean"/>
         <ant dir="${basedir}/FormExample" target="clean"/>
-        <ant dir="${basedir}/FormatExample" target="clean"/>
         <ant dir="${basedir}/ImageTest" target="clean"/>
         <ant dir="${basedir}/LanguageTests" target="clean"/>
         <ant dir="${basedir}/ListsTest" target="clean"/>
+		<ant dir="${basedir}/ProxyTest" target="clean"/>
+		<ant dir="${basedir}/ReflectionTest" target="clean"/>
         <ant dir="${basedir}/RollEventsTest" target="clean"/>
-        <ant dir="${basedir}/ReflectionTest" target="clean"/>
+        <ant dir="${basedir}/TLFEditTestFlexJS" target="clean"/>
+		<ant dir="${basedir}/UnitTests" target="clean"/>
         <ant dir="${basedir}/XMLTest" target="clean"/>
     </target>
     

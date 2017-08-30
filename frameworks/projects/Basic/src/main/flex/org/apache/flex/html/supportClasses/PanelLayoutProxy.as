@@ -66,6 +66,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
+		 *  @flexjsignorecoercion org.apache.flex.html.Panel
 		 *  The width of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -78,6 +79,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
+		 *  @flexjsignorecoercion org.apache.flex.html.Panel
 		 * The height of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -90,6 +92,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
+		 *  @flexjsignorecoercion org.apache.flex.html.Panel
 		 *  The number of elements in the parent.
 		 *
 		 *  @langversion 3.0
@@ -103,6 +106,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
+		 *  @flexjsignorecoercion org.apache.flex.html.Panel
 		 *  Get a component from the parent.
 		 *
 		 *  @param c The index of the subcomponent.
@@ -117,16 +121,39 @@ package org.apache.flex.html.supportClasses
 			return (host as Panel).$getElementAt(index);
 		}
 
+		/**
+		 * @flexjsignorecoercion org.apache.flex.html.Panel
+		 */
 		COMPILE::JS
 		public function get somethingelse():WrappedHTMLElement
 		{
 			return (host as Panel).element;
 		}
 
+		/**
+		 * @flexjsignorecoercion org.apache.flex.html.Panel
+		 */
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{
 			return (host as Panel).element;
 		}
+
+		/**
+		 *  @flexjsignorecoercion org.apache.flex.html.Panel
+		 *  The display style is used for both visible
+		 *  and layout so is managed as a special case.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.0
+		 */
+		COMPILE::JS
+		public function setDisplayStyleForLayout(value:String):void
+		{
+			(host as Panel).setDisplayStyleForLayout(value);
+		}
+
 	}
 }

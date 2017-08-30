@@ -230,6 +230,7 @@ package
 		public function child(propertyName:Object):XMLList
 		{
 			var retVal:XMLList = new XMLList();
+			retVal.targetProperty = propertyName.toString();
 			var propNum:Number = parseInt(propertyName,10);
 			if(propNum.toString() == propertyName)
 			{
@@ -240,9 +241,12 @@ package
 				}
 				return retVal;
 			}
+			if(isEmpty())
+			{
+				retVal.targetObject = this;
+			}
 			if(isSingle())
 				return _xmlArray[0].child(propertyName);
-			
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
@@ -783,12 +787,25 @@ package
 		{
 			return _targetProperty;
 		}
-		
-		public function setAttribute(attr:*,value:String):void
+		private function xmlFromProperty():XML
 		{
+			var xmlStr:String = "<";
+			if(_targetProperty.prefix)
+				xmlStr += _targetProperty.prefix + "::";
+
+			xmlStr += _targetProperty.localName + "/>";
+			return new XML(xmlStr);
+		}
+		public function setAttribute(attr:*,value:String):String
+		{
+			if(isEmpty() && targetObject)//walk up the tree and create nodes.
+				_xmlArray[0] = targetObject.setChild(_targetProperty,xmlFromProperty());
+
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 				_xmlArray[i].setAttribute(attr,value);
+			
+			return value;
 
 		}
 		public function hasAncestor(obj:*):Boolean
@@ -840,11 +857,15 @@ package
 			if(isSingle())
 				return _xmlArray[0].replace(propertyName,value);
 		}
-		public function setChild(elementName:*, elements:Object):void
+		public function setChild(elementName:*, elements:Object):Object
 		{
+			if(isEmpty() && targetObject)//walk up the tree and create nodes.
+				_xmlArray[0] = targetObject.setChild(_targetProperty,xmlFromProperty());
+
 			if(isSingle())
 				_xmlArray[0].setChild(elementName,elements);
-
+			
+			return elements;
 		}
 
 		public function setParent(parent:XML):void

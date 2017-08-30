@@ -103,6 +103,11 @@ limitations under the License.
         trace(xml1.toXMLString() == '<foo baz="true"/>');
         var baz:XMLList = xml1.@baz;
         trace("baz: " + xml1.@baz.toString() + " //true");
+				var xml3:XML = <root/>;
+				xml3.bar.baz = "baz";
+				xml3.foo.@boo = "boo";
+				trace("baz? " + xml3.bar.baz);
+				trace("boo? " + xml3.foo.@boo);
         var child:XML = <pop><child name="Sam"/></pop>;
         xml1.appendChild(child);
         child = <pop><child name="George"/></pop>;

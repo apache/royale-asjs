@@ -246,6 +246,7 @@ package org.apache.flex.html.beads.layouts
 		/**
 		 *
 		 *  @flexjsignorecoercion org.apache.flex.core.ILayoutHost
+		 *  @flexjsignorecoercion org.apache.flex.core.UIBase
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

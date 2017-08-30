@@ -141,6 +141,7 @@
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayData" />
     <component id="DataItemRendererFactoryForArrayList" class="org.apache.flex.html.beads.DataItemRendererFactoryForArrayList" />
+    <component id="DynamicItemsRendererFactoryForArrayListData" class="org.apache.flex.html.beads.DynamicItemsRendererFactoryForArrayListData" />
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.flex.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.flex.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.flex.html.beads.TextItemRendererFactoryForStringVectorData" />

@@ -26,7 +26,7 @@ limitations under the License.
 
 	<fx:Style>
 		.title {
-			font-size: 14pt;
+			font-size: 16px;
 			font-weight: bold;
 		}
 		.body {
@@ -180,9 +180,6 @@ limitations under the License.
 		<js:ViewDataBinding/>
 	</js:beads>
 	<js:Group id="cont" height="50" className="body">
-		<js:beads>
-			<js:VerticalFlexLayout />
-		</js:beads>
 		<js:Label text="{PLATFORM} Cross-compiled Unit Tests" className="title" />
 	</js:Group>
 	<js:Group id="output" height="700" y="50" className="body">

@@ -35,10 +35,10 @@ limitations under the License.
 			<js:VerticalLayout />
 		</js:beads>
 		
-		<js:Image width="48" height="48" source="smallbluerect.jpg" />
-		<js:Image width="183" height="178" source="largegreenrect.png" />
-		<js:Image width="48" height="48" source="smallorangerect.gif" />
-		<js:Image width="48" height="48" source="smallgreenrect.jpg" />
+		<js:Image width="48" height="48" src="smallbluerect.jpg" />
+		<js:Image width="183" height="178" src="largegreenrect.png" />
+		<js:Image width="48" height="48" src="smallorangerect.gif" />
+		<js:Image width="48" height="48" src="smallgreenrect.jpg" />
 		
 	</js:Container>
 	

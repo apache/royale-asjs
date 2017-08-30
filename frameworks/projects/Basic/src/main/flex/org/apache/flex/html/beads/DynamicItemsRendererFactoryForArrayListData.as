@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.flex.html.beads
 {
     import org.apache.flex.collections.IArrayList;
     import org.apache.flex.core.IBead;
@@ -33,35 +33,34 @@ package org.apache.flex.mdl.beads
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.events.IEventDispatcher;
     import org.apache.flex.html.beads.IListView;
-    import org.apache.flex.mdl.beads.models.ITabModel;
-    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
     import org.apache.flex.events.Event;
+    import org.apache.flex.core.ISelectableItemRenderer;
+    import org.apache.flex.core.ISelectionModel;
 
     [Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 
     /**
-     *  The TabsItemRendererFactoryForArrayListData class reads an
+     *  The DynamicItemsRendererFactoryForArrayListData class reads an
      *  array of data and creates an item renderer for every
-     *  ITabItemRenderer in the array.
+     *  ISelectableItemRenderer in the array.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion FlexJS 0.8
+     *  @productversion FlexJS 0.9
      */
-    public class TabsItemRendererFactoryForArrayListData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+    public class DynamicItemsRendererFactoryForArrayListData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
     {
-        public function TabsItemRendererFactoryForArrayListData(target:Object = null)
+        public function DynamicItemsRendererFactoryForArrayListData(target:Object = null)
         {
             super(target);
         }
 
-        protected var dataProviderModel:ITabModel;
+        protected var dataProviderModel:ISelectionModel;
 
         protected var labelField:String;
-        protected var tabsIdField:String;
 
-        private var _strand:IStrand;
+        protected var _strand:IStrand;
 
         /**
          *  @copy org.apache.flex.core.IBead#strand
@@ -74,7 +73,7 @@ package org.apache.flex.mdl.beads
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+            IEventDispatcher(value).addEventListener("initComplete", initComplete);
         }
 
         /**
@@ -85,17 +84,16 @@ package org.apache.flex.mdl.beads
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.8
          */
-        private function finishSetup(event:Event):void
+        protected function initComplete(event:Event):void
         {
-            IEventDispatcher(_strand).removeEventListener("initComplete",finishSetup);
+            IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
-            dataProviderModel = _strand.getBeadByType(ITabModel) as ITabModel;
+            dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             dataGroup = listView.dataGroup;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
             dataProviderModel.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 
-            tabsIdField = dataProviderModel.tabIdField;
             labelField = dataProviderModel.labelField;
 
             dataProviderChangeHandler(null);
@@ -157,50 +155,46 @@ package org.apache.flex.mdl.beads
             var n:int = dp.length;
             for (var i:int = 0; i < n; i++)
             {
-                var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-                dataGroup.addItemRenderer(ir);
-                ir.index = i;
-                ir.labelField = labelField;
-                ir.tabIdField = tabsIdField;
-
-                if (presentationModel) {
-                    var style:SimpleCSSStyles = new SimpleCSSStyles();
-                    style.marginBottom = presentationModel.separatorThickness;
-                    UIBase(ir).style = style;
-                    UIBase(ir).height = presentationModel.rowHeight;
-                    UIBase(ir).percentWidth = 100;
-                }
-                ir.data = dp.getItemAt(i);
+                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+                var item:Object = dp.getItemAt(i);
+                fillRenderer(i, item, ir, presentationModel);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }
 
-        private function itemAddedHandler(event:CollectionEvent):void
+        protected function itemAddedHandler(event:CollectionEvent):void
         {
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 
-            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
-            dataGroup.addItemRenderer(ir);
-            
-            ir.index = dp.length - 1;
-            ir.labelField = labelField;
-            ir.tabIdField = tabsIdField;
+            fillRenderer(dp.length - 1, event.item, ir, presentationModel);
+
+            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+        }
+
+        protected function fillRenderer(index:int,
+                                      item:Object,
+                                      itemRenderer:ISelectableItemRenderer,
+                                      presentationModel:IListPresentationModel):void
+        {
+            dataGroup.addItemRenderer(itemRenderer);
+
+            itemRenderer.index = index;
+            itemRenderer.labelField = labelField;
 
             if (presentationModel) {
                 var style:SimpleCSSStyles = new SimpleCSSStyles();
                 style.marginBottom = presentationModel.separatorThickness;
-                UIBase(ir).style = style;
-                UIBase(ir).height = presentationModel.rowHeight;
-                UIBase(ir).percentWidth = 100;
+                UIBase(itemRenderer).style = style;
+                UIBase(itemRenderer).height = presentationModel.rowHeight;
+                UIBase(itemRenderer).percentWidth = 100;
             }
-            ir.data = event.item;
-
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            itemRenderer.data = item;
         }
     }
 }

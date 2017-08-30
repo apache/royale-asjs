@@ -1808,7 +1808,7 @@ package
 			return false;
 		}
 
-		public function setAttribute(attr:*,value:String):void
+		public function setAttribute(attr:*,value:String):String
 		{
 			var i:int;
 			if(!_attributes)
@@ -1823,7 +1823,7 @@ package
 						if(_attributes[i].name().equals(attr.name()))
 						{
 							_attributes[i].setValue(value);
-							return;
+							return value;
 						}
 						//addChild(_att)
 					}
@@ -1831,7 +1831,7 @@ package
 						attr.setValue(value);
 					addChild(attr);
 				}
-				return;
+				return value;
 
 			}
 			if(attr.indexOf("xmlns") == 0)
@@ -1857,13 +1857,13 @@ package
 					if(_attributes[i].name().equals(attrXML.name()))
 					{
 						_attributes[i].setValue(value);
-						return;
+						return value;
 					}
 					//addChild(_att)
 				}
 				addChild(attrXML);
 			}
-
+			return value;
 		}
 		/**
 		 * Replaces the child properties of the XML object with the specified name with the specified XML or XMLList.
@@ -1873,7 +1873,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function setChild(elementName:*, elements:Object):void
+		public function setChild(elementName:*, elements:Object):Object
 		{
 			
 			/*
@@ -1943,6 +1943,16 @@ package
 			var i:int;
 			var len:int;
 			var chld:XML;
+			var retVal:Object = elements;
+
+			// I'm not wure that this a strict interpretation of the spec but I think this does the "right thing".
+			var childType:String = typeof elements;
+			if(childType != "object")
+			{
+				var stringable:XML = xmlFromStringable(elements);
+				elements = new XML("<" + elementName + "/>");
+				elements.appendChild(stringable);
+			}
 			
 			if(elements is XML)
 			{
@@ -1987,6 +1997,7 @@ package
 			}
 			//what to do if it's not XML or XMLList? Throw an error? Ignore?
 			
+			return retVal;
 		}
 
 		/**
@@ -2119,6 +2130,16 @@ package
 		public function setValue(value:String):void
 		{
 			_value = value;
+		}
+
+		/**
+		 * @private
+		 * 
+		 * Allows XMLList to get the targetObject of its targetObject and not error when it gets the XML
+		 */
+		public function get targetObject():*
+		{
+			return null;
 		}
 		
 		/**

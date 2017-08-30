@@ -279,6 +279,10 @@ package org.apache.flex.text.html
 		{
 			lines.length = 0;
 		}
+		public function getRelativeStart(element:ContentElement):int
+		{
+			return 0;
+		}
 
 	}
 }

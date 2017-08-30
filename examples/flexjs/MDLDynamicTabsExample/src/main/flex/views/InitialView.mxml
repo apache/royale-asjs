@@ -39,14 +39,18 @@ limitations under the License.
 	<mdl:model>
 		<models:TabsModel id="tabsModel"/>
 	</mdl:model>
-	<mdl:Tabs id="myTabs" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabs"
-			  dataProvider="{tabsModel.tabs}" width="500">
-		<mdl:beads>
-			<js:DataProviderCollectionChangeNotifier sourceID="tabsModel" propertyName="tabs"
-													 destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
-			<js:DataProviderItemsChangeNotifier sourceID="tabsModel" propertyName="tabs"
-												destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
-		</mdl:beads>
-	</mdl:Tabs>
-	<mdl:Button text="Add new Tab" click="onAddNewTabClick(event)"/>
+	<mdl:GridCell column="6">
+		<mdl:Tabs id="myTabs" selectedIndex="1" tabIdField="tabId" labelField="label" className="customTabs"
+				  dataProvider="{tabsModel.tabs}" width="500">
+			<mdl:beads>
+				<js:DataProviderCollectionChangeNotifier sourceID="tabsModel" propertyName="tabs"
+														 destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
+				<js:DataProviderItemsChangeNotifier sourceID="tabsModel" propertyName="tabs"
+													destinationPropertyName="dataProvider" changeEventName="dataProviderChanged"  />
+			</mdl:beads>
+		</mdl:Tabs>
+	</mdl:GridCell>
+	<mdl:GridCell>
+		<mdl:Button text="Add new Tab" click="onAddNewTabClick(event)"/>
+	</mdl:GridCell>
 </mdl:Grid>
