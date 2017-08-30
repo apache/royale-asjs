@@ -18,23 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.html.Container;
+	import org.apache.flex.core.UIBase;
 	
+    
 	/**
-	 *  The IDataGridView interface marks as a component as being the bead that
-	 *  can create the visual pieces for a org.apache.flex.html.DataGrid. 
-	 *  
+	 *  The IDrawingLayerBead interface is implemented by beads that providing a
+	 *  a drawing surface within a component.
+     *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion FlexJS 0.0
+	 *  @productversion FlexJS 0.8
 	 */
-	public interface IDataGridView extends IBeadView
+	public interface IDrawingLayerBead
 	{
-		function get columnLists():Array;
-		function get listArea():Container;
-		function get header():IUIBase;
+		/**
+		 * Returns the component to use as the actual drawing surface.
+	     *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+	 	 *  @productversion FlexJS 0.8
+		 */
+		function get layer():UIBase;
 	}
 }

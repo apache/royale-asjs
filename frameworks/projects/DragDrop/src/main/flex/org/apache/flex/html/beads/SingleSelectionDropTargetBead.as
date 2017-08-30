@@ -23,7 +23,6 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
@@ -66,34 +65,13 @@ package org.apache.flex.html.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
 		private var _dropController:DropMouseController;
+		private var _dropIndicatorBead:SingleSelectionDropIndicatorBead;
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
 		private var indicatorVisible:Boolean = false;
-		protected var indicatorParent:UIBase;
 		
-		/**
-		 * @private
-		 */
-		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
-		{
-			if (_dropIndicator == null) {
-				var bead:SingleSelectionDropIndicatorBead = _strand.getBeadByType(SingleSelectionDropIndicatorBead) as SingleSelectionDropIndicatorBead;
-				if (bead == null) return null;
-				
-				_dropIndicator = bead.getDropIndicator(ir, width, height);
-			}
-			if (indicatorParent == null) {
-				COMPILE::SWF {
-					indicatorParent = _strand.getBeadByType(IItemRendererParent) as UIBase;
-				}
-				COMPILE::JS {
-					indicatorParent = _strand as UIBase;
-				}
-			}
-			return _dropIndicator;
-		}
+		private var _strand:IStrand;
 		
 		/**
 		 * @private
@@ -111,12 +89,41 @@ package org.apache.flex.html.beads
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 		
+		protected var _indicatorParent:UIBase;
+		
+		protected function get indicatorParent():UIBase
+		{
+			if (_indicatorParent == null) {
+				var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
+				if (layerBead != null) {
+					_indicatorParent = layerBead.layer;
+				}
+			}
+			return _indicatorParent;
+		}
+		
+		/**
+		 * @private
+		 */
+		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
+		{
+			if (_dropIndicatorBead == null) {
+				_dropIndicatorBead = _strand.getBeadByType(SingleSelectionDropIndicatorBead) as SingleSelectionDropIndicatorBead;
+				if (_dropIndicatorBead == null) return null;
+			}
+			_dropIndicator = _dropIndicatorBead.getDropIndicator(ir, width, height);
+			return _dropIndicator;
+		}
+		
 		/**
 		 * @private
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
+			var pt0:Point;
+			var pt1:Point;
+			var pt2:Point;
 			
 			_dropController.acceptDragDrop(event.target as IUIBase, DropType.COPY);
 			
@@ -130,19 +137,23 @@ package org.apache.flex.html.beads
 				lastItemVisited = ir;
 			}
 			
-			if (lastItemVisited && !indicatorVisible) {
-				var di:UIBase = getDropIndicator(lastItemVisited, (_strand as UIBase).width, 4);
-				var pt2:Point = new Point((lastItemVisited as UIBase).x, (lastItemVisited as UIBase).y);
+			if (lastItemVisited && !indicatorVisible && indicatorParent) {
+				var di:UIBase = getDropIndicator(lastItemVisited, indicatorParent.width, 4);
 				indicatorVisible = true;
-				di.x = pt2.x;
-				di.y = pt2.y;
-				
-				trace("=== over item "+(lastItemVisited as DataItemRenderer).data.toString()+", at "+pt2.x+", "+pt2.y);
-				
+				COMPILE::SWF {
+					pt0 = new Point(0, (lastItemVisited as UIBase).y);
+					pt1 = PointUtils.localToGlobal(pt0, lastItemVisited.parent ? lastItemVisited.parent : _strand);
+					pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
+					di.x = 0;
+					di.y = pt2.y;
+				}
+				COMPILE::JS {
+					di.x = 0;
+					di.y = (lastItemVisited as UIBase).y;
+				}
+								
 				if (indicatorParent != null) {
 					indicatorParent.addElement(di);
-//				} else {
-//					if (_dropIndicator) host.addElement(di);
 				}
 			}
 			
@@ -156,11 +167,9 @@ package org.apache.flex.html.beads
 			trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
 			
 			if (indicatorVisible) {
-				var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
 				if (indicatorParent != null) {
 					indicatorParent.removeElement(_dropIndicator);
 				}
-//				else if (_dropIndicator) host.removeElement(_dropIndicator);
 				indicatorVisible = false;
 			}
 		}
@@ -171,25 +180,44 @@ package org.apache.flex.html.beads
 		private function handleDragOver(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
+			var pt0:Point;
+			var pt1:Point;
+			var pt2:Point;
 			
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is DataItemRenderer) && startHere != null) {
 				startHere = startHere.parent;
 			}
-			if ((startHere is DataItemRenderer) && _dropIndicator != null) {
-				var pt2:Point = new Point((startHere as UIBase).x, (startHere as UIBase).y);
-				_dropIndicator.x = pt2.x;
-				_dropIndicator.y = pt2.y - 1;
+			
+			if ((startHere is DataItemRenderer) && _dropIndicator != null && indicatorParent) {
+				COMPILE::SWF {
+					pt0 = new Point(0, (startHere as UIBase).y);
+					pt1 = PointUtils.localToGlobal(pt0, startHere.parent);
+					pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
+					_dropIndicator.x = 0;
+					_dropIndicator.y = pt2.y - 1;
+				}
+				COMPILE::JS {
+					_dropIndicator.x = 0;
+					_dropIndicator.y = (startHere as UIBase).y;
+				}
 				
 				lastItemVisited = startHere;
 				
 			} 
-			else if (lastItemVisited && _dropIndicator != null) {
+			else if (lastItemVisited && _dropIndicator != null && indicatorParent) {
 				var lastItem:UIBase = lastItemVisited as UIBase;
-
-				pt2 = new Point(lastItem.x, lastItem.y);
-				_dropIndicator.x = pt2.x;
-				_dropIndicator.y = pt2.y + lastItem.height + 1;
+				COMPILE::SWF {
+					pt0 = new Point(0, lastItem.y);
+					pt1 = PointUtils.localToGlobal(pt0, lastItem.parent);
+					pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
+					_dropIndicator.x = 0;
+					_dropIndicator.y = pt2.y + lastItem.height + 1;
+				}
+				COMPILE::JS {
+					_dropIndicator.x = 0;
+					_dropIndicator.y = lastItem.y;
+				}
 			}
 		}
 		

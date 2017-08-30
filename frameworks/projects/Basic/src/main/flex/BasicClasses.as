@@ -169,6 +169,7 @@ internal class BasicClasses
 	import org.apache.flex.html.DataGridButtonBar; DataGridButtonBar;
 	import org.apache.flex.html.beads.DataGridColumnView; DataGridColumnView;
 	import org.apache.flex.html.beads.DataGridView; DataGridView;
+	import org.apache.flex.html.beads.IDataGridView; IDataGridView;
 	import org.apache.flex.html.beads.DataGridPercentageView; DataGridPercentageView;
 	import org.apache.flex.html.beads.DateChooserView; DateChooserView;
 	import org.apache.flex.html.beads.DateFieldView; DateFieldView;

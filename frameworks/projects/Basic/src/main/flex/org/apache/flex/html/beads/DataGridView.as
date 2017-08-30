@@ -31,6 +31,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.DataGrid;
 	import org.apache.flex.html.DataGridButtonBar;
 	import org.apache.flex.html.Container;
+	import org.apache.flex.html.beads.IDataGridView;
 	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
 	import org.apache.flex.html.beads.models.ButtonBarModel;
 	import org.apache.flex.html.supportClasses.DataGridColumn;
@@ -52,7 +53,7 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public class DataGridView extends GroupView implements IBeadView
+		public class DataGridView extends GroupView implements IBeadView, IDataGridView
 		{
 			/**
 			 *  constructor.

@@ -75,7 +75,7 @@ package org.apache.flex.utils
                 do {
                     x -= element.offsetLeft;
                     y -= element.offsetTop;
-                    if (local.hasOwnProperty('parent')) {
+					if (local['parent'] !== undefined) {
                         local = local.parent;
                         element = local.element as HTMLElement;
                     } else {

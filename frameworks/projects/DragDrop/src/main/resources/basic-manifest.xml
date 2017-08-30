@@ -27,7 +27,10 @@
 	<component id="SingleSelectionDropTargetBead" class="org.apache.flex.html.beads.SingleSelectionDropTargetBead" />
     <component id="DragMouseController" class="org.apache.flex.html.beads.controllers.DragMouseController" />
     <component id="DropMouseController" class="org.apache.flex.html.beads.controllers.DropMouseController" />
-    
-	<component id="SingleSelectionDataGridDropTargetBead" class="org.apache.flex.html.beads.SingleSelectionDataGridDropTargetBead" />
-
+    	
+	<component id="DataGridDrawingLayerBead" class="org.apache.flex.html.beads.DataGridDrawingLayerBead" />
+	<component id="DataGridWithDrawingLayerLayout" class="org.apache.flex.html.beads.DataGridWithDrawingLayerLayout" />
+	<component id="DragDropListView" class="org.apache.flex.html.beads.DragDropListView" />
+	<component id="ListDrawingLayerBead" class="org.apache.flex.html.beads.ListDrawingLayerBead" />
+	
 </componentPackage>
