@@ -16,17 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.flex.reflection.beads
 {
     COMPILE::SWF
     {
         import flash.net.registerClassAlias;
-        import flash.utils.getDefinitionByName;
-        
-        import org.apache.flex.events.Event;
-        import org.apache.flex.events.IEventDispatcher;
-        import org.apache.flex.events.ValueEvent;            
+        import flash.utils.getDefinitionByName;        
     }
+    COMPILE::JS
+    {
+        import org.apache.flex.reflection.registerClassAlias;
+        import org.apache.flex.reflection.getDefinitionByName;        
+    }
+    
+    import org.apache.flex.core.IBead;
+    import org.apache.flex.core.IFlexInfo;
+    import org.apache.flex.core.IStrand;
     
     /**
      *  The ClassAliasBead class is the registers class
@@ -69,19 +74,17 @@ package org.apache.flex.core
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            COMPILE::SWF
+            var app:IFlexInfo = value as IFlexInfo;
+            var info:Object = app.info();
+            var map:Object = info.remoteClassAliases;
+            if (map)
             {
-                var app:IFlexInfo = value as IFlexInfo;
-                var info:Object = app.info();
-                var map:Object = info.remoteClassAliases;
-                if (map)
+                for (var cn:String in map)
                 {
-                    for (var cn:String in map)
-                    {
-                        var alias:String = map[cn];
-                        var c:Class = getDefinitionByName(cn) as Class;
+                    var alias:String = map[cn];
+                    var c:Class = getDefinitionByName(cn) as Class;
+                    if (c) // if no class, may have only been used in JS as a type and never actually instnatiated
                         registerClassAlias(alias, c);
-                    }
                 }
             }
         }

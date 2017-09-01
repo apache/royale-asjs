@@ -63,6 +63,10 @@
         <library-path/>
 
         <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../resources/basic-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -78,8 +82,9 @@
     </include-sources>
     
     <include-namespaces>
+       <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
-        
+     
     <target-player>${playerglobal.version}</target-player>
 	
 

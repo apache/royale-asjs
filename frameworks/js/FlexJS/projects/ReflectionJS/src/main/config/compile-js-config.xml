@@ -64,6 +64,10 @@
         </library-path>
         
         <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../../../../../../../projects/Reflection/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
@@ -84,7 +88,8 @@
     </include-classes>
     
     <include-namespaces>
+        <uri>library://ns.apache.org/flexjs/basic</uri>
     </include-namespaces>
-        
+    
 
 </flex-config>
