@@ -80,7 +80,7 @@
         <echo message="FALCON_HOME: ${FALCON_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         
-        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
+        <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" failonerror="true">
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
