@@ -18,18 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net.remoting
 {
-    COMPILE::SWF
-    {
-        import flash.events.AsyncErrorEvent;
-        import flash.events.IOErrorEvent;
-        import flash.events.NetStatusEvent;
-        import flash.events.SecurityErrorEvent;
-        import flash.net.Responder;
-    }
-        
-        
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.net.RemoteObject;
+    import org.apache.flex.net.Responder;
+    import org.apache.flex.net.remoting.messages.AcknowledgeMessage;
     import org.apache.flex.net.remoting.messages.CommandMessage;
     import org.apache.flex.net.remoting.messages.RemotingMessage;
     import org.apache.flex.net.events.FaultEvent;
@@ -53,58 +45,25 @@ package org.apache.flex.net.remoting
 		
 		public function send():void
 		{
-            COMPILE::SWF
-            {
-                _ro.nc.addEventListener(NetStatusEvent.NET_STATUS, statusHandler);
-                _ro.nc.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-                _ro.nc.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-                _ro.nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-                var connectMessage:CommandMessage = new CommandMessage();
-                connectMessage.destination = _ro.destination;
-                connectMessage.operation = CommandMessage.TRIGGER_CONNECT_OPERATION;
-                _ro.nc.call(null, new Responder(destinationResultHandler, destinationFaultHandler), connectMessage);
-            }
-			COMPILE::JS
-			{				
-				var amfClient:Object = new ((window as Object).amf).Client(_destination, _endPoint);
-				var amfReq:Object = amfClient.invoke(_source, operation, params[0]);
-				amfReq.then(resultHandler , faultHandler);
-			}
+            var connectMessage:CommandMessage = new CommandMessage();
+            connectMessage.destination = _ro.destination;
+            connectMessage.operation = CommandMessage.TRIGGER_CONNECT_OPERATION;
+            _ro.nc.call(null, new Responder(destinationResultHandler, destinationFaultHandler), connectMessage);
 		}
 		
-        COMPILE::SWF
-        private function statusHandler(event:NetStatusEvent):void
-        {
-            trace("statusHandler", event);
-        }
-        
-        COMPILE::SWF
-        private function securityErrorHandler(event:SecurityErrorEvent):void
-        {
-            trace("securityErrorHandler", event);
-        }
-        
-        COMPILE::SWF
-        private function ioErrorHandler(event:IOErrorEvent):void
-        {
-            trace("ioErrorHandler", event);
-        }
-        
-        COMPILE::SWF
-        private function asyncErrorHandler(event:AsyncErrorEvent):void
-        {
-            trace("asyncErrorHandler", event);
-        }
-        
         private function destinationResultHandler(param:Object):void
         {
-            var message:RemotingMessage = new RemotingMessage();
-            message.operation = _name;
-            message.body = _args;
-            message.source = _ro.source;
-            message.destination = _ro.destination;
-            _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
-
+            if (param is AcknowledgeMessage) // this force links AcknowledgeMessage so it deserializes correctly in JS
+            {
+                var message:RemotingMessage = new RemotingMessage();
+                message.operation = _name;
+                message.body = _args;
+                message.source = _ro.source;
+                message.destination = _ro.destination;
+                _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
+            }
+            else
+                trace("destination result handler", param);            
         }
             
         private function destinationFaultHandler(param:Object):void

@@ -18,17 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.net
 {
-    COMPILE::SWF
-    {
-        import flash.events.AsyncErrorEvent;
-        import flash.events.IOErrorEvent;
-        import flash.events.NetStatusEvent;
-        import flash.events.SecurityErrorEvent;
-        import flash.net.NetConnection;
-        import flash.net.Responder;
-        import flash.net.ObjectEncoding;
-    }
-        
     
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
@@ -36,6 +25,7 @@ package org.apache.flex.net
     import org.apache.flex.net.events.FaultEvent;
     import org.apache.flex.net.events.ResultEvent;
     import org.apache.flex.net.remoting.Operation;
+    import org.apache.flex.net.remoting.amf.AMFNetConnection;
     import org.apache.flex.reflection.getClassByAlias;
     import org.apache.flex.reflection.registerClassAlias;
 
@@ -46,6 +36,12 @@ package org.apache.flex.net
 		private var _endPoint:String;
 		private var _destination:String;
 		private var _source:String;
+        
+        /**
+         *  @private
+         *  The connection to the server 
+         */
+        public var nc:AMFNetConnection = new AMFNetConnection();
 		
 		/** 
 		 * 
@@ -55,12 +51,6 @@ package org.apache.flex.net
 		 */ 
 		public function RemoteObject()
 		{
-            COMPILE::SWF
-            {
-                nc = new NetConnection();
-                nc.objectEncoding = ObjectEncoding.AMF3;
-                nc.client = this;
-            }
 		}
 		
         private var _strand:IStrand;
@@ -69,9 +59,6 @@ package org.apache.flex.net
         {
             _strand = value;	
         }
-        
-        COMPILE::SWF
-        public var nc:NetConnection;
         
 		public function set endPoint(value:String):void
 		{
@@ -102,147 +89,20 @@ package org.apache.flex.net
 		
 		public function send(operation:String, params:Array):void
 		{
-            COMPILE::SWF
-            {
-                nc.addEventListener(NetStatusEvent.NET_STATUS, statusHandler);
-                nc.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-                nc.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-                nc.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-                nc.connect(endPoint);
-                
-                var op:Operation = new Operation(operation, this, params);
-                op.send();
-            }
-			COMPILE::JS
-			{				
-				var amfClient:Object = new ((window as Object).amf).Client(_destination, _endPoint);
-				var amfReq:Object = amfClient.invoke(_source, operation, params[0]);
-				amfReq.then(resultHandler , faultHandler);
-			}
+            nc.connect(endPoint);
+            
+            var op:Operation = new Operation(operation, this, params);
+            op.send();
 		}
 		
-        COMPILE::SWF
-        private function statusHandler(event:NetStatusEvent):void
-        {
-            trace("statusHandler", event.info.code);
-        }
-        
-        COMPILE::SWF
-        private function securityErrorHandler(event:SecurityErrorEvent):void
-        {
-            trace("securityErrorHandler", event);
-        }
-        
-        COMPILE::SWF
-        private function ioErrorHandler(event:IOErrorEvent):void
-        {
-            trace("ioErrorHandler", event);
-        }
-        
-        COMPILE::SWF
-        private function asyncErrorHandler(event:AsyncErrorEvent):void
-        {
-            trace("asyncErrorHandler", event);
-        }
-        
 		public function resultHandler(param:Object):void
 		{
-            COMPILE::JS
-            {
-    			if(param is Object && param.hasOwnProperty("_explicitType"))
-    			{
-    				param = typeUntypedObject(param);
-    			}
-    			else if (param is Array && param.length > 0)
-    			{
-    				for(var i:uint ; i < param.length ; i++)
-    				{
-    					var typedObj:Object = typeUntypedObject(param[i]);
-    					param[i] = typedObj;
-    				}
-    			}
-                dispatchEvent(new ResultEvent(ResultEvent.RESULT,param));
-            }
-            COMPILE::SWF
-            {
-    			dispatchEvent(new ResultEvent(ResultEvent.RESULT,param.body));
-            }
+    		dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
 		}
 		
 		public function faultHandler(param:Object):void
 		{
-			dispatchEvent(new FaultEvent(FaultEvent.FAULT,param));
-		}
-		
-        COMPILE::JS
-		private function typeUntypedObject(unTypeObject:Object):Object
-		{
-			registerClassAlias(unTypeObject['_explicitType'],getClassByAlias(unTypeObject['_explicitType']));
-			
-			var classToInstantiate:Class = getClassByAlias(unTypeObject['_explicitType']); 
-			
-			var typedInstance:Object = new classToInstantiate(); 
-			
-			for (var field:String in unTypeObject) 
-			{ 
-				if (field == "_explicitType") continue; //Do nothing incase of "_explicitType"
-				
-				typedInstance[field] = unTypeObject[field]; 
-			}
-
-			return  typedInstance;
-		}
-                
-        /**
-         *  @private
-         *  Special handler for legacy AMF packet level header "AppendToGatewayUrl".
-         *  When we receive this header we assume the server detected that a session was
-         *  created but it believed the client could not accept its session cookie, so we
-         *  need to decorate the channel endpoint with the session id.
-         *
-         *  We do not modify the underlying endpoint property, however, as this session
-         *  is transient and should not apply if the channel is disconnected and re-connected
-         *  at some point in the future.
-         */
-        COMPILE::SWF
-        public function AppendToGatewayUrl(value:String):void
-        {
-            if (value != null && value != "")
-            {
-                nc.removeEventListener(NetStatusEvent.NET_STATUS, statusHandler);
-                trace("disconnecting because AppendToGatewayUrl called");
-                nc.close();
-                trace("disconnecting returned from close()");
-                var url:String = endPoint;
-                // WSRP support - append any extra stuff on the wsrp-url, not the actual url.
-                
-                // Do we have a wsrp-url?
-                var i:int = url.indexOf("wsrp-url=");
-                if (i != -1)
-                {
-                    // Extract the wsrp-url in to a string which will get the
-                    // extra info appended to it
-                    var temp:String = url.substr(i + 9, url.length);
-                    var j:int = temp.indexOf("&");
-                    if (j != -1)
-                    {
-                        temp = temp.substr(0, j);
-                    }
-                    
-                    // Replace the wsrp-url with a version that has the extra stuff
-                    url = url.replace(temp, temp + value);
-                }
-                else
-                {
-                    // If we didn't find a wsrp-url, just append the info
-                    url += value;
-                }
-                nc.addEventListener(NetStatusEvent.NET_STATUS, statusHandler);
-                trace("reconnecting with " + url);
-                nc.connect(url);
-                trace("reconnecting returned from connect()");
-            }
-        }
-
+			dispatchEvent(new FaultEvent(FaultEvent.FAULT, param));
+		}		
 	}
 }
