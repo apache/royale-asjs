@@ -143,6 +143,16 @@ package org.apache.flex.html
         
 	}
 
+    /**
+     *  Dispatched when the user checks or un-checks the CSSCheckBox.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion FlexJS 0.0
+     */
+	[Event(name="change", type="org.apache.flex.events.Event")]
+
     COMPILE::JS
     public class CSSCheckBox extends UIBase
     {
