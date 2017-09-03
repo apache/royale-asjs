@@ -78,7 +78,7 @@ package org.apache.flex.utils
 
         private var _formFactor:String;
         /**
-         * The form factor of the device. Pne of: "Mobile", "Tablet", "TV", "iPhone", "iPad", "iPod" or "Desktop".
+         * The form factor of the device. One of: "Mobile", "Tablet", "TV", "iPhone", "iPad", "iPod" or "Desktop".
          */
         public function get formFactor():String{
             return _formFactor;
@@ -86,6 +86,10 @@ package org.apache.flex.utils
         public function get os():String
         {
             return OSUtils.getOS();
+        }
+        public function isMobile():Boolean
+        {
+            return formFactor != "Desktop" && formFactor != "TV";
         }
         private static var _current:BrowserInfo;
         public static function current():BrowserInfo
