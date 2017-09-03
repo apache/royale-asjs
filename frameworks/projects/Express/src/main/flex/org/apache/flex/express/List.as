@@ -26,10 +26,10 @@ package org.apache.flex.express
 	import org.apache.flex.html.beads.DataItemRendererFactoryForArrayList;
 	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
 	import org.apache.flex.html.beads.models.ArraySelectionModel;
-//	import org.apache.flex.html.beads.SingleSelectionDragSourceBead;
-//	import org.apache.flex.html.beads.SingleSelectionDragImageBead;
-//	import org.apache.flex.html.beads.SingleSelectionDropTargetBead;
-//	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead;
+	import org.apache.flex.html.beads.SingleSelectionDragSourceBead;
+	import org.apache.flex.html.beads.SingleSelectionDragImageBead;
+	import org.apache.flex.html.beads.SingleSelectionDropTargetBead;
+	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead;
 	
 	public class List extends org.apache.flex.html.List
 	{
@@ -62,14 +62,14 @@ package org.apache.flex.express
 		{
 			super.addedToParent();
 			
-//			if (dragEnabled) {
-//				addBead(new SingleSelectionDragSourceBead());
-//				addBead(new SingleSelectionDragImageBead());
-//			}
-//			if (dropEnabled) {
-//				addBead(new SingleSelectionDropTargetBead());
-//				addBead(new SingleSelectionDropIndicatorBead());
-//			}
+			if (dragEnabled) {
+				addBead(new SingleSelectionDragSourceBead());
+				addBead(new SingleSelectionDragImageBead());
+			}
+			if (dropEnabled) {
+				addBead(new SingleSelectionDropTargetBead());
+				addBead(new SingleSelectionDropIndicatorBead());
+			}
 		}
 		
 		override public function set dataProvider(value:Object):void
