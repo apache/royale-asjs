@@ -120,7 +120,7 @@
      <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView" />
      -->
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport" />
-    <component id="ClippingViewport" class="org.apache.flex.html.supportClasses.Viewport" />
+    <component id="ClippingViewport" class="org.apache.flex.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="Viewport" class="org.apache.flex.html.supportClasses.Viewport" />
     <component id="OverflowViewport" class="org.apache.flex.html.supportClasses.OverflowViewport" />
 
