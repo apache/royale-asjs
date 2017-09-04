@@ -19,6 +19,7 @@
 
 package org.apache.flex.amfsamples.services;
 
+import org.apache.flex.amfsamples.valueobjects.ServerCustomType;
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,17 @@ public class ExampleService {
         System.out.println(String.format("Got message from: %s", name));
         return String.format("Hello %s", name);
     }
-
+    
+    public Object[] getObjectArray1()
+    {
+        System.out.println("getObjectArray1 called");
+        Object[] customTypes = new Object[10];
+        for (int i = 0; i < customTypes.length; i++)
+        {
+            ServerCustomType sct = new ServerCustomType();
+            sct.setId(i);
+            customTypes[i] = sct;
+        }
+        return customTypes;
+    }
 }
