@@ -58,6 +58,7 @@ package org.apache.flex.html
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('select') as WrappedHTMLElement;
+            element.flexjs_wrapper = this;
             (element as HTMLSelectElement).size = 5;
             goog.events.listen(element, 'change',
                 changeHandler);
