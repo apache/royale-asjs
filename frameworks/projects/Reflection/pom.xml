@@ -41,6 +41,12 @@
         <version>${flexjs.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
+          <namespaces>
+            <namespace>
+              <uri>library://ns.apache.org/flexjs/basic</uri>
+              <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
           <includeSources>true</includeSources>
           <skipExtern>true</skipExtern>
         </configuration>
