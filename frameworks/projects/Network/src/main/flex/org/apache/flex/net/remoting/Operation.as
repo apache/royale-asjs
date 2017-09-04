@@ -53,7 +53,7 @@ package org.apache.flex.net.remoting
 		
         private function destinationResultHandler(param:Object):void
         {
-            if (param is AcknowledgeMessage) // this force links AcknowledgeMessage so it deserializes correctly in JS
+            COMPILE::SWF
             {
                 var message:RemotingMessage = new RemotingMessage();
                 message.operation = _name;
@@ -62,8 +62,20 @@ package org.apache.flex.net.remoting
                 message.destination = _ro.destination;
                 _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
             }
-            else
-                trace("destination result handler", param);            
+            COMPILE::JS
+            {
+                if (param is AcknowledgeMessage) // this force links AcknowledgeMessage so it deserializes correctly in JS
+                {
+                    var message:RemotingMessage = new RemotingMessage();
+                    message.operation = _name;
+                    message.body = _args;
+                    message.source = _ro.source;
+                    message.destination = _ro.destination;
+                    _ro.nc.call(null, new Responder(_ro.resultHandler, _ro.faultHandler), message);
+                }
+                else
+                    trace("destination result handler", param);
+            }
         }
             
         private function destinationFaultHandler(param:Object):void
