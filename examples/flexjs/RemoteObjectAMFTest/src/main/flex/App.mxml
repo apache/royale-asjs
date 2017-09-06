@@ -27,6 +27,7 @@ limitations under the License.
 			import org.apache.flex.net.events.FaultEvent;
 			import org.apache.flex.net.events.ResultEvent;
             import valueObjects.ClientValueObject;
+            import valueObjects.Product;
 			
 			protected function sendName():void
 			{
@@ -38,7 +39,11 @@ limitations under the License.
 				trace("Result=" + evt.data);
 				if (evt.data is String)
 					received.text = "Received: " + evt.data;
-				else
+				else if (evt.data is Product)
+                {
+                    var product:Product = evt.data as Product;
+                    received.text = "Received: product name is '" + product.name + "' and product description is '" + product.description + "'" ;
+                } else
               	{
                     var arr:Array = evt.data as Array;
                     list.dataProvider = arr;
@@ -53,6 +58,11 @@ limitations under the License.
 			protected function getVOs():void
 			{
                 service.send("getObjectArray1", []);
+			}
+
+            protected function getSomeProduct():void
+			{
+                service.send("getSomeProduct", []);
 			}
 
             protected function reportChange():void
@@ -83,6 +93,7 @@ limitations under the License.
 			<js:Label id="received" width="300"/>
             <js:TextButton text="Get Array of ValueObjects" click="getVOs()"/>
             <js:List id="list" labelField="id" width="100" height="100" change="reportChange()"/>
+            <js:TextButton text="Get Some Product" click="getSomeProduct()"/>
         </js:View>
     </js:initialView>
 

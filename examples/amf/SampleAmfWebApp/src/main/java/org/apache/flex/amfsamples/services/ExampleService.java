@@ -20,6 +20,7 @@
 package org.apache.flex.amfsamples.services;
 
 import org.apache.flex.amfsamples.valueobjects.ServerCustomType;
+import org.apache.flex.amfsamples.valueobjects.Product;
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,16 @@ public class ExampleService {
             customTypes[i] = sct;
         }
         return customTypes;
+    }
+
+    public Product getSomeProduct()
+    {
+        System.out.println("getSomeProduct called");
+
+        Product product = new Product();
+        product.setName("Some product");
+        product.setDescription("This product is only a test typed value object to test AMF strong types");
+
+        return product;
     }
 }
