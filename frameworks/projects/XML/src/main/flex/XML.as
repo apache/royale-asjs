@@ -2121,10 +2121,9 @@ package
 			if(parent == _parent)
 				return;
 			var oldParent:XML = _parent;
-			_parent = parent;
-			//assign first to prevent the possiblity of a recursive loop
 			if(oldParent)
 				oldParent.removeChild(this);
+			_parent = parent;
 		}
 
 		public function setValue(value:String):void

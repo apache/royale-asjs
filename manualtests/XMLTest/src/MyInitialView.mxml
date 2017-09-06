@@ -122,6 +122,16 @@ limitations under the License.
         trace(pop.toString());
         trace(xml1.toString());
         
+        var parent:XML = <parent/>;
+        var childXML:XML = <child/>;
+        parent.appendChild(childXML);
+        trace(childXML.toXMLString() + " is child of" + parent.toXMLString() + "? " + (childXML.parent() == parent));
+        var newParent:XML = <newparent/>;
+        newParent.appendChild(childXML);
+        trace("moving to <newparent/>");
+        trace(childXML.toXMLString() + " is child of" + parent.toXMLString() + "? " + (childXML.parent() == parent));
+        trace(childXML.toXMLString() + " is child of" + newParent.toXMLString() + "? " + (childXML.parent() == newParent));
+
         
         var xmlString:String = xml.toXMLString();
         var script:XML = xml..script[0].children()[0];
