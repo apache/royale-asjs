@@ -115,7 +115,7 @@ package org.apache.flex.mdl
 
 					if (!("showModal" in dialog))
 					{
-						dialogPolyfill.registerDialog(dialog);
+						dialogPolyfill["registerDialog"](dialog);
 					}
 				}
 			}
