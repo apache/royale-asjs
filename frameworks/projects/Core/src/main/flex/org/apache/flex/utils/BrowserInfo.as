@@ -124,16 +124,18 @@ var m = str.match(/\brv[ :]+[\d\.]+/g)
         {
             var ua:String = window["navigator"]["userAgent"];
             //Figure out formFactor
-            if(ua.indexOf("Mobile") != -1)
-                _formFactor = "Mobile";
-            else if(ua.indexOf("Tablet") != -1)
-                _formFactor = "Tablet";
-            else if(ua.indexOf("iPad") != -1)
+            if(ua.indexOf("iPad") != -1)
                 _formFactor = "iPad";
             else if(ua.indexOf("iPhone") != -1)
                 _formFactor = "iPhone";
             else if(ua.indexOf("iPod") != -1)
                 _formFactor = "iPod";
+            else if(ua.indexOf("Tablet") != -1)
+                _formFactor = "Tablet";
+            else if(ua.indexOf("Mobile") != -1)
+                _formFactor = "Mobile";
+            else if(ua.indexOf("Android") != -1)
+                _formFactor = "Tablet";
             else if(ua.indexOf("TV;") != -1)
                 _formFactor = "TV";
             else
@@ -209,7 +211,25 @@ var m = str.match(/\brv[ :]+[\d\.]+/g)
                     _engine = "WebKit";
                 else 
                     _engine = "Blink";
-            }            
+            }
+            else if(ua.indexOf("CriOS") != -1)// CriOS is Chrome on mobile devices
+            {
+                _browser = "Chrome";
+                verMatch = ua.match(/CriOS\/[\d\.]+/i);
+                if(verMatch)
+                    _version = _engineVersion = verMatch[0].split("/")[1];
+                
+                 _engine = "WebKit";
+            }
+            else if(ua.indexOf("FxiOS") != -1)// FxiOS is Firefox on mobile devices
+            {
+                _browser = "Firefox";
+                verMatch = ua.match(/FxiOS\/[\d\.]+/i);
+                if(verMatch)
+                    _version = _engineVersion = verMatch[0].split("/")[1];
+                
+                 _engine = "WebKit";
+            }
         }
     }   
 }
