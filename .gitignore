@@ -73,6 +73,14 @@ local.properties
 [Tt]humbs.db
 *.DS_Store
 
+#Files we fake for Flash Builder SDKs
+frameworks/airmobile-config.xml
+frameworks/mxml-manifest.xml
+frameworks/spark-manifest.xml
+frameworks/themes/Halo/Halo.swc
+frameworks/themes/Spark/spark.css
+ide/flashbuilder/flashbuilder-config.xml
+
 #Visual Studio files
 *.[Oo]bj
 *.user

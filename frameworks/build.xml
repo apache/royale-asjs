@@ -67,10 +67,39 @@
         <ant antfile="${FLEXJS_HOME}/build.xml" target="check-compile-env" dir="${FLEXJS_HOME}"/>
     </target>
 
-    
+    <target name="check-playerglobal" description="Check for the required environment variables">
+        <condition property="playerglobal.notneeded">
+            <available file="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
+        </condition>
+        <condition property="playerglobal.notneeded">
+            <isset property="env.PLAYERGLOBAL_HOME" />
+        </condition>
+    </target>
+
+    <target name="check-airglobal" description="Check for the required environment variables">
+        <condition property="airglobal.notneeded">
+            <available file="${basedir}/libs/air/airglobal.swc" />
+        </condition>
+        <condition property="airglobal.notneeded">
+            <isset property="env.AIR_HOME" />
+        </condition>
+    </target>
+
+    <target name="fake-playerglobal" description="copy js.swc as playerglobal.swc if needed" depends="check-playerglobal" unless="playerglobal.notneeded">
+        <mkdir dir="${basedir}/libs/player/${playerglobal.version}"/>
+        <copy dir="${basedir}/js/libs/js.swc" tofile="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
+    </target>
+
+    <target name="fake-airglobal" description="copy js.swc as airglobal.swc if needed" depends="check-airglobal" unless="airglobal.notneeded">
+        <mkdir dir="${basedir}/libs/air"/>
+        <copy dir="${basedir}/js/libs/js.swc" tofile="${basedir}/libs/air/airglobal.swc" />
+    </target>
+
     <target name="prepare" depends="thirdparty-downloads">
         <mkdir dir="${basedir}/js/FlexJS/libs" />
         <mkdir dir="${basedir}/libs" />
+        <antcall target="fake-playerglobal" />
+        <antcall target="fake-airglobal" />
     </target>
 
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">

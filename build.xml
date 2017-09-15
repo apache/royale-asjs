@@ -183,7 +183,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs,copy-compiler"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
@@ -299,7 +299,7 @@
     </target>
 
     <target name="check-falconjx-home" unless="FALCONJX_HOME"
-        description="Check FALCON_HOME is a directory.">
+        description="Check FALCONJX_HOME is a directory.">
         
         <echo message="FALCONJX_HOME is ${env.FALCONJX_HOME}"/>
 
@@ -323,7 +323,7 @@
     </target>
 
     <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
-        description="Check FALCON_HOME is a directory.">
+        description="Check FLEXJS_TYPEDEFS_HOME is a directory.">
         
         <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
         
@@ -391,6 +391,9 @@
         <ant dir="${basedir}/frameworks" target="jquery-config" />
         <ant dir="${basedir}/frameworks" target="createjs-config" />
         <ant dir="${basedir}/frameworks" target="node-config" />
+        <!-- hack to keep compiler happy -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
+        <touch file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css" />
     </target>
 	
     <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
@@ -401,6 +404,24 @@
             </fileset>
         </copy>
         <antcall target="rename_jquery" />
+    </target>
+    
+    <target name="copy-compiler" depends="check-falcon-home, check-falconjx-home" description="Copy compiler jars to where they are supposed to go">
+        <mkdir dir="${basedir}/lib" />
+        <copy todir="${basedir}/lib">
+            <fileset dir="${FALCON_HOME}/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/js/lib" />
+        <copy todir="${basedir}/js/lib">
+            <fileset dir="${FALCONJX_HOME}/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <!-- needed to make Flash Builder accept folder as a Flex SDK -->
+        <copy file="${FALCON_HOME}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${FALCON_HOME}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -432,6 +453,22 @@
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/lib" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/js/lib" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/libs/player" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/libs/air" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/locale" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/mx" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/rsls" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/themes/Halo" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/themes/Spark" failonerror="false" includeEmptyDirs="true"/>
+        <delete file="${FLEXJS_HOME}/frameworks/airmobile-config.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/macfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/winfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/localfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
@@ -535,7 +572,88 @@
         <!--<ant dir="${basedir}/ide/flashbuilder" />-->
     </target>
     
-    <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found"/>
+    <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found">
+        <!-- fake a bunch of files to make the folder appear like a valid Flex SDK to Flash Builder -->
+        <echo file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;flashbuilder-config&gt;
+    &lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
+    &lt;/flashbuilder-config&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;componentPackage&gt;
+    &lt;/componentPackage&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;componentPackage&gt;
+    &lt;/componentPackage&gt;
+</echo>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/locale" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/mx" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
+        <copy file="${FLEXJS_HOME}/frameworks/libs/Binding.swc"
+        tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
+        <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
+        tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
+        <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
+    </target>
 
     <!--
         Build the ASDoc html pages.
@@ -1421,7 +1539,7 @@
     <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${FALCONJX_HOME}/lib/falcon-flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/falcon-flexTasks.jar"/>
     </target>
 
     <target name="basictests" depends="check-flex-home,load-task" description="run basic tests using mustella">
@@ -1931,7 +2049,7 @@
     
     <target name="compile-js" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
@@ -1951,7 +2069,7 @@
     
     <target name="compile-js-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
