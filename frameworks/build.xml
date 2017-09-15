@@ -87,12 +87,12 @@
 
     <target name="fake-playerglobal" description="copy js.swc as playerglobal.swc if needed" depends="check-playerglobal" unless="playerglobal.notneeded">
         <mkdir dir="${basedir}/libs/player/${playerglobal.version}"/>
-        <copy dir="${basedir}/js/libs/js.swc" tofile="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
+        <copy file="${FLEX_HOME}/js/libs/js.swc" tofile="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
     </target>
 
     <target name="fake-airglobal" description="copy js.swc as airglobal.swc if needed" depends="check-airglobal" unless="airglobal.notneeded">
         <mkdir dir="${basedir}/libs/air"/>
-        <copy dir="${basedir}/js/libs/js.swc" tofile="${basedir}/libs/air/airglobal.swc" />
+        <copy file="${FLEX_HOME}/js/libs/js.swc" tofile="${basedir}/libs/air/airglobal.swc" />
     </target>
 
     <target name="prepare" depends="thirdparty-downloads">
