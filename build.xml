@@ -194,7 +194,7 @@
             <echo>Ant: ${ant.version} Ant Java Version: ${ant.java.version}</echo>
     </target>
 
-    <target name="check-playerglobal-home" unless="playerglobal.swc.exists"
+    <target name="check-playerglobal-home" if="env.PLAYERGLOBAL_HOME"
         description="Check PLAYERGLOBAL_HOME for both a directory and a swc file">
 
         <echo message="PLAYERGLOBAL_HOME is ${env.PLAYERGLOBAL_HOME}"/>
@@ -220,7 +220,7 @@
         <echo message="playerglobal.swc is ${playerglobal.swc}"/>
     </target>
     
-    <target name="check-air-home" unless="AIR_HOME.set"
+    <target name="check-air-home" if="env.AIR_HOME"
         description="Check that AIR_HOME is a directory">
         
         <echo message="AIR_HOME is ${env.AIR_HOME}"/>
@@ -274,52 +274,52 @@
             unless="mxmlc.jar.exists"/>
     </target>
 
-    <target name="check-falcon-home" unless="FALCON_HOME"
-        description="Check FALCON_HOME is a directory.">
+    <target name="check-falcon-home" unless="FALCON_REPO"
+        description="Check FALCON_REPO is a directory.">
         
-        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+        <echo message="FALCON_REPO is ${env.FALCON_REPO}"/>
 
-        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" 
+        <available file="${env.FALCON_REPO}/lib/falcon-mxmlc.jar" 
             type="file" 
-            property="FALCON_HOME"
-            value="${env.FALCON_HOME}"/>
+            property="FALCON_REPO"
+            value="${env.FALCON_REPO}"/>
 
         <available file="${basedir}/lib/falcon-mxmlc.jar"
             type="file"
-            property="FALCON_HOME"
+            property="FALCON_REPO"
             value="${basedir}"/>
 
         <available file="${basedir}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
             type="file"
-            property="FALCON_HOME"
+            property="FALCON_REPO"
             value="${basedir}/../flex-falcon/compiler"/>
 
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
-            unless="FALCON_HOME"/>
+        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
+            unless="FALCON_REPO"/>
     </target>
 
-    <target name="check-falconjx-home" unless="FALCONJX_HOME"
-        description="Check FALCONJX_HOME is a directory.">
+    <target name="check-falconjx-home" unless="FALCONJX_REPO"
+        description="Check FALCONJX_REPO is a directory.">
         
-        <echo message="FALCONJX_HOME is ${env.FALCONJX_HOME}"/>
+        <echo message="FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
 
-        <available file="${env.FALCONJX_HOME}/lib/jsc.jar" 
+        <available file="${env.FALCONJX_REPO}/lib/jsc.jar" 
             type="file" 
-            property="FALCONJX_HOME"
-            value="${env.FALCONJX_HOME}"/>
+            property="FALCONJX_REPO"
+            value="${env.FALCONJX_REPO}"/>
 
         <available file="${basedir}/../flex-falcon/compiler-jx/lib/jsc.jar"
             type="file"
-            property="FALCONJX_HOME"
+            property="FALCONJX_REPO"
             value="${basedir}/../flex-falcon/compiler-jx"/>
 
         <available file="${basedir}/js/lib/jsc.jar"
             type="file"
-            property="FALCONJX_HOME"
+            property="FALCONJX_REPO"
             value="${basedir}/js"/>
 
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
-            unless="FALCONJX_HOME"/>
+        <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
+            unless="FALCONJX_REPO"/>
     </target>
 
     <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
@@ -409,19 +409,25 @@
     <target name="copy-compiler" depends="check-falcon-home, check-falconjx-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
         <copy todir="${basedir}/lib">
-            <fileset dir="${FALCON_HOME}/lib">
+            <fileset dir="${FALCON_REPO}/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin" />
+        <copy todir="${basedir}/bin">
+            <fileset dir="${FALCON_REPO}/src/assembly/scripts">
                 <include name="**"/>
             </fileset>
         </copy>
         <mkdir dir="${basedir}/js/lib" />
         <copy todir="${basedir}/js/lib">
-            <fileset dir="${FALCONJX_HOME}/lib">
+            <fileset dir="${FALCONJX_REPO}/lib">
                 <include name="**"/>
             </fileset>
         </copy>
         <!-- needed to make Flash Builder accept folder as a Flex SDK -->
-        <copy file="${FALCON_HOME}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
-        <copy file="${FALCON_HOME}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
+        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -646,7 +652,7 @@
         <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
         <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
-        <copy file="${FLEXJS_HOME}/frameworks/libs/Binding.swc"
+        <copy file="${FLEXJS_HOME}/js/libs/js.swc"
         tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
         <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
         tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
@@ -1387,13 +1393,13 @@
     <target name="basictests-compile-js">
         <!-- now built by dual mode
         <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-        <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+        <property name="FALCONJX_REPO" value="${env.FALCONJX_REPO}"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
+        <echo message="FALCONJX_REPO: ${FALCONJX_REPO}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
+        <java jar="${FALCONJX_REPO}/lib/mxmlc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
@@ -1792,8 +1798,8 @@
     <target name="block-main" description="set flags so main targets don't do anything" if="airsdk.found">
         <!-- these keep the main target from doing other checks -->
         <property name="mxmlc.jar.exists" value="set" />
-        <property name="FALCON_HOME" value="set" />
-        <property name="FALCONJX_HOME" value="set" />
+        <property name="FALCON_REPO" value="set" />
+        <property name="FALCONJX_REPO" value="set" />
     </target>
     
     <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
