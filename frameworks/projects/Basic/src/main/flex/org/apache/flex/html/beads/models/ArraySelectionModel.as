@@ -85,12 +85,14 @@ package org.apache.flex.html.beads.models
          */
 		public function set dataProvider(value:Object):void
 		{
-            if (value == _dataProvider) return;
-            
-            _dataProvider = value;
-            if (_selectedIndex != -1)
-                _selectedItem = (_dataProvider == null || _selectedIndex >= _dataProvider.length) ? null : 
-                    _dataProvider[_selectedIndex];
+			if (value == _dataProvider) return;
+			
+			_dataProvider = value;
+			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
+				_selectedIndex = -1;
+			if (_selectedIndex != -1)
+				_selectedItem = _dataProvider[_selectedIndex];
+			
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
 

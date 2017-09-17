@@ -87,9 +87,11 @@ package org.apache.flex.html.beads.models
             if (value == _dataProvider) return;
 
             _dataProvider = value as IArrayList;
+			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
+				_selectedIndex = -1;
             if (_selectedIndex != -1)
-                _selectedItem = (_dataProvider == null || _selectedIndex >= _dataProvider.length) ? null :
-                    _dataProvider.getItemAt(_selectedIndex);
+                _selectedItem = _dataProvider.getItemAt(_selectedIndex);
+			
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
 
