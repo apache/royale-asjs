@@ -90,8 +90,8 @@ package org.apache.flex.html.beads.models
 			_dataProvider = value;
 			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
 				_selectedIndex = -1;
-			if (_selectedIndex != -1)
-				_selectedItem = _dataProvider[_selectedIndex];
+			
+			_selectedItem = _selectedIndex == -1 ? null : _dataProvider[_selectedIndex];
 			
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
