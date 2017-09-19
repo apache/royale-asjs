@@ -60,12 +60,14 @@ package
 		/**
 		 * Method to free up references to shared QName objects.
 		 * Probably only worth doing if most or all XML instances can be garbage-collected.
+		 * @langversion 3.0
+		 * @productversion FlexJS 0.9
 		 */
 		static public function clearQNameCache():void
 		{
 			_nameMap = {};
 		}
-		
+
 		static private var defaultNamespace:Namespace;
 
 		static public function setDefaultNamespace(ns:*):void
