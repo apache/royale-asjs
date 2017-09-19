@@ -19,21 +19,26 @@
 package org.apache.flex.html.beads
 {
 	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.DropType;
 	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IDataProviderModel;
+	import org.apache.flex.core.IDocument;
+	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IItemRenderer;
+	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
 	import org.apache.flex.events.DragEvent;
+	import org.apache.flex.events.Event;
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.html.Group;
+	import org.apache.flex.html.Label;
+	import org.apache.flex.html.beads.controllers.DragMouseController;
 	import org.apache.flex.html.beads.controllers.DropMouseController;
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
@@ -41,18 +46,17 @@ package org.apache.flex.html.beads
 
 
 	/**
-	 *  The SingleSelectionDropTargetBead enables items to be dropped onto single-selection List
-	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
-	 *  of rows within the same list.
-     *
-	 *  @see org.apache.flex.html.beads.SingleSelectionDropIndicatorBead
+	 *  The ButtonBarReorderBead bead can be added to a ButtonBar to re-order the buttons
+	 *  using drag-and-drop. This bead will add additional beads as necessary.
+	 *
+	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead.
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.8
 	 */
-	public class SingleSelectionDropTargetBead extends EventDispatcher implements IBead
+	public class ButtonBarReorderBead extends EventDispatcher implements IBead
 	{
 		/**
 		 * Constructor
@@ -62,18 +66,19 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		public function SingleSelectionDropTargetBead()
+		public function ButtonBarReorderBead()
 		{
 			super();
 		}
 
+		private var _strand:IStrand;
+		private var _dragController:DragMouseController;
 		private var _dropController:DropMouseController;
 		private var _dropIndicatorBead:SingleSelectionDropIndicatorBead;
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
 		private var indicatorVisible:Boolean = false;
-
-		private var _strand:IStrand;
+		private var dropDirection:String;
 
 		/**
 		 * @private
@@ -81,6 +86,15 @@ package org.apache.flex.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+
+			dropDirection = "horizontal";
+
+			_dragController = new DragMouseController();
+			_strand.addBead(_dragController);
+
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_END, handleDragEnd);
 
 			_dropController = new DropMouseController();
 			_strand.addBead(_dropController);
@@ -91,41 +105,52 @@ package org.apache.flex.html.beads
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 
-		private var _dropDirection: String = "horizontal";
+		/**
+		 * @private
+		 * The index of the item being moved
+		 */
+		private var sourceIndex:int = -1;
 
-		public function get dropDirection():String
-		{
-			return _dropDirection;
-		}
-		public function set dropDirection(value:String):void
-		{
-			_dropDirection = value;
-		}
+		/**
+		 * @private
+		 * The index of where the item is being moved before or if -1,
+		 * the item is being put at the end.
+		 */
+		private var targetIndex:int = -1;
 
-		protected var _indicatorParent:UIBase;
-
-		protected function get indicatorParent():UIBase
+		/**
+		 * @private
+		 */
+		private function handleDragStart(event:DragEvent):void
 		{
-			if (_indicatorParent == null) {
-				var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
-				if (layerBead != null) {
-					_indicatorParent = layerBead.layer;
-				}
+			trace("ButtonBarReorderBead received the DragStart");
+
+			DragMouseController.dragImageOffsetX = 0;
+			DragMouseController.dragImageOffsetY = -30;
+
+			var startHere:Object = event.target;
+			while (!(startHere is IItemRenderer) && startHere != null) {
+				startHere = startHere.itemRendererParent;
 			}
-			return _indicatorParent;
+			if (startHere is IItemRenderer) {
+				var p:UIBase = startHere.itemRendererParent as UIBase;
+				sourceIndex = p.getElementIndex(startHere as IChild);
+				DragEvent.dragSource = (startHere as IItemRenderer).data;
+			}
 		}
 
 		/**
 		 * @private
 		 */
-		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
+		protected function handleDragMove(event:DragEvent):void
 		{
-			if (_dropIndicatorBead == null) {
-				_dropIndicatorBead = _strand.getBeadByType(SingleSelectionDropIndicatorBead) as SingleSelectionDropIndicatorBead;
-				if (_dropIndicatorBead == null) return null;
-			}
-			_dropIndicator = _dropIndicatorBead.getDropIndicator(ir, width, height);
-			return _dropIndicator;
+		}
+
+		/**
+		 * @private
+		 */
+		protected function handleDragEnd(event:DragEvent):void
+		{
 		}
 
 		/**
@@ -133,12 +158,10 @@ package org.apache.flex.html.beads
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
+			trace("ButtonBarReorderBead received DragEnter via: "+event.relatedObject.toString());
 			var pt0:Point;
 			var pt1:Point;
 			var pt2:Point;
-
-			_dropController.acceptDragDrop(event.target as IUIBase, DropType.COPY);
 
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
@@ -166,24 +189,9 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleDragExit(event:DragEvent):void
-		{
-			trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
-
-			if (indicatorVisible) {
-				if (indicatorParent != null) {
-					indicatorParent.removeElement(_dropIndicator);
-				}
-				indicatorVisible = false;
-			}
-		}
-
-		/**
-		 * @private
-		 */
 		private function handleDragOver(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
+			trace("ButtonBarReorderBead received DragOver via: "+event.relatedObject.toString());
 			var pt0:Point;
 			var pt1:Point;
 			var pt2:Point;
@@ -207,13 +215,29 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
+		private function handleDragExit(event:DragEvent):void
+		{
+			trace("ButtonBarReorderBead received DragExit via: "+event.relatedObject.toString());
+
+			if (indicatorVisible) {
+				if (indicatorParent != null) {
+					indicatorParent.removeElement(_dropIndicator);
+				}
+				indicatorVisible = false;
+			}
+		}
+
+		/**
+		 * @private
+		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
-			trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
+			trace("ButtonBarReorderBead received DragDrop via: "+event.relatedObject.toString());
 
 			handleDragExit(event);
 
-			var targetIndex:int = -1; // indicates drop beyond length of items
+			targetIndex = -1; // assume after the end unless proven otherwise.
+
 			var itemRendererParent:UIBase;
 
 			var startHere:Object = event.relatedObject;
@@ -233,22 +257,17 @@ package org.apache.flex.html.beads
 				trace("-- dropping after the last item");
 			}
 
-			var downPoint:Point = new Point(event.clientX, event.clientY);
-			//trace("Dropping at this point: "+downPoint.x+", "+downPoint.y);
-			//trace("-- find the itemRenderer this object is over");
-
-			// Let the dragInitiator know that the drop was accepted so it can do
-			// whatever it needs to do to prepare the data or structures.
-			if (DragEvent.dragInitiator) {
-				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
-			}
-
-			var dragSource:Object = DragEvent.dragSource;
-			var sourceIndex:int = 0;
-
 			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+
+			var dragSource:Object;
+
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
+
+				dragSource = dataArray[sourceIndex];
+
+ 				// remove the item from its original position
+ 				dataArray.splice(sourceIndex,1)
 
 				// insert the item being dropped
 				if (targetIndex == -1) {
@@ -265,6 +284,11 @@ package org.apache.flex.html.beads
 			else if (dataProviderModel.dataProvider is ArrayList) {
 				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
 
+				dragSource = dataList.getItemAt(sourceIndex);
+
+ 				// remove the item from its original position
+ 				dataList.removeItemAt(sourceIndex);
+
 				// insert the item being dropped
 				if (targetIndex == -1) {
 					// sppend to the end
@@ -277,13 +301,32 @@ package org.apache.flex.html.beads
 				var newList:ArrayList = new ArrayList(dataList.source);
 				dataProviderModel.dataProvider = newList;
 			}
+		}
 
-			// Let the dragInitiator know the drop has been completed.
-			if (DragEvent.dragInitiator) {
-				DragEvent.dragInitiator.acceptedDrop(_strand, "object");
+		protected var _indicatorParent:UIBase;
+
+		protected function get indicatorParent():UIBase
+		{
+			if (_indicatorParent == null) {
+				var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
+				if (layerBead != null) {
+					_indicatorParent = layerBead.layer;
+				}
 			}
+			return _indicatorParent;
+		}
 
-			IEventDispatcher(_strand).dispatchEvent(new Event("dragDropAccepted"));
+		/**
+		 * @private
+		 */
+		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
+		{
+			if (_dropIndicatorBead == null) {
+				_dropIndicatorBead = _strand.getBeadByType(SingleSelectionDropIndicatorBead) as SingleSelectionDropIndicatorBead;
+				if (_dropIndicatorBead == null) return null;
+			}
+			_dropIndicator = _dropIndicatorBead.getDropIndicator(ir, width, height);
+			return _dropIndicator;
 		}
 
 		COMPILE::SWF
@@ -320,5 +363,6 @@ package org.apache.flex.html.beads
 				_dropIndicator.y = 0;
 			}
 		}
+
 	}
 }

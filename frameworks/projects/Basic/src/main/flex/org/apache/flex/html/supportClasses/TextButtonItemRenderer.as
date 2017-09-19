@@ -27,12 +27,12 @@ package org.apache.flex.html.supportClasses
 	import org.apache.flex.html.TextButton;
 	import org.apache.flex.html.beads.ITextItemRenderer;
 	import org.apache.flex.events.ItemClickedEvent;
-	
+
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;            
+		import org.apache.flex.core.WrappedHTMLElement;
 	}
-	
+
 	/**
 	 * The TextButtonItemRenderer class extends TextButton and turns it into an itemRenderer
 	 * suitable for use in most DataContainer/List/DataGrid applications.
@@ -47,14 +47,14 @@ package org.apache.flex.html.supportClasses
 		public function TextButtonItemRenderer()
 		{
 			super();
-			
+
 			style = new SimpleCSSStylesWithFlex();
-			
+
 			addEventListener('click',handleClickEvent);
 		}
-		
+
 		private var _data:Object;
-		
+
 		/**
 		 *  The data to be displayed as the text value. Use this in conjunction with
 		 *  the labelField property to select an item from the dataProvider record to use
@@ -72,22 +72,32 @@ package org.apache.flex.html.supportClasses
 		public function set data(value:Object):void
 		{
 			_data = value;
-			
+
+			updateButtonLabelFromData();
+		}
+
+		private function updateButtonLabelFromData():void
+		{
 			var valueAsString:String;
-			
-			if (value is String) {
-				valueAsString = value as String;
+
+			if (data == null) return;
+
+			if (data is String) {
+				valueAsString = data as String;
 			}
-			else if (value.hasOwnProperty("label")) {
-				valueAsString = String(value["label"]);
+			else if (labelField != null) {
+				valueAsString = String(data[labelField]);
 			}
-			else if (value.hasOwnProperty("title")) {
-				valueAsString = String(value["title"]);
+			else if (data.hasOwnProperty("label")) {
+				valueAsString = String(data["label"]);
 			}
-			
+			else if (data.hasOwnProperty("title")) {
+				valueAsString = String(data["title"]);
+			}
+
 			if (valueAsString) text = valueAsString;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -99,13 +109,13 @@ package org.apache.flex.html.supportClasses
 			newEvent.data = data;
 			dispatchEvent(newEvent);
 		}
-		
+
 		/*
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
-		
+
 		private var _itemRendererParent:Object;
-		
+
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
@@ -122,9 +132,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_itemRendererParent = value;
 		}
-		
-		private var _labelField:String = "label";
-		
+
+		private var _labelField:String = null;
+
 		/**
 		 * The name of the field within the data to use as a label. Some itemRenderers use this field to
 		 * identify the value they should show while other itemRenderers ignore this if they are showing
@@ -142,10 +152,11 @@ package org.apache.flex.html.supportClasses
 		public function set labelField(value:String):void
 		{
 			_labelField = value;
+			updateButtonLabelFromData();
 		}
-		
+
 		private var _listData:Object;
-		
+
 		[Bindable("__NoChangeEvent__")]
 		/**
 		 *  Additional data about the list structure the itemRenderer may
@@ -164,9 +175,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_listData = value;
 		}
-		
+
 		private var _index:int;
-		
+
 		/**
 		 *  The position with the dataProvider being shown by the itemRenderer instance.
 		 *
@@ -183,9 +194,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_index = value;
 		}
-		
+
 		private var _hovered:Boolean;
-		
+
 		/**
 		 *  Whether or not the itemRenderer is in a hovered state.
 		 *
@@ -202,9 +213,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_hovered = value;
 		}
-		
+
 		private var _selected:Boolean;
-		
+
 		/**
 		 *  Whether or not the itemRenderer is in a selected state.
 		 *
@@ -221,9 +232,9 @@ package org.apache.flex.html.supportClasses
 		{
 			_selected = value;
 		}
-		
+
 		private var _down:Boolean;
-		
+
 		/**
 		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
 		 *

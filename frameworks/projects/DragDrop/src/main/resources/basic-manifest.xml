@@ -33,4 +33,8 @@
 	<component id="DragDropListView" class="org.apache.flex.html.beads.DragDropListView" />
 	<component id="ListDrawingLayerBead" class="org.apache.flex.html.beads.ListDrawingLayerBead" />
 	
+	<component id="DataGridButtonBarViewForMovableColumns" class="org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns" />
+	<component id="DataGridColumnReorderView" class="org.apache.flex.html.beads.DataGridColumnReorderView" />
+	<component id="ButtonBarReorderBead" class="org.apache.flex.html.beads.ButtonBarReorderBead" />
+	
 </componentPackage>
