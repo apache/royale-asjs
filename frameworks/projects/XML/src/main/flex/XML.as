@@ -23,7 +23,6 @@ package
 	{
 		import org.apache.flex.debugging.assert;
 		import org.apache.flex.debugging.assertType;
-		import org.apache.flex.utils.ObjectMap;
 		/*
 		 * Dealing with namespaces:
 		 * If the name is qualified, it has a prefix. Otherwise, the prefix is null.
@@ -34,7 +33,7 @@ package
 		/**
 		 * Memory optimization.
 		 * Creating a new QName for each XML instance significantly adds memory usage.
-		 * The XML Qname can be a significant percentage of an XML object size.
+		 * The XML QName can be a significant percentage of an XML object size.
 		 * By retaining a lookup of QNames and reusing QName objects, we can save quite a bit of memory.
 		 */
 		static private var _nameMap:Object = {};
