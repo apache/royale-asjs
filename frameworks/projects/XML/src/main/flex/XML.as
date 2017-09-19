@@ -56,6 +56,16 @@ package
 			}
 			return qname;
 		}
+
+		/**
+		 * Method to free up references to shared QName objects.
+		 * Probably only worth doing if most or all XML instances can be garbage-collected.
+		 */
+		static public function clearQNameCache():void
+		{
+			_nameMap = {};
+		}
+		
 		static private var defaultNamespace:Namespace;
 
 		static public function setDefaultNamespace(ns:*):void
