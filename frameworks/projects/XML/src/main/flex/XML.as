@@ -421,7 +421,7 @@ package
 		}
 		
 		private var _children:Array;
-		private var _attributes:Array = [];
+		private var _attributes:Array;
 		private var _processingInstructions:Array;
 		private var _parent:XML;
 		private var _value:String;
@@ -462,13 +462,7 @@ package
 			assertType(child,XML,"Type must be XML");
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
-			{
-				if(!_attributes)
-					_attributes = [];
-
-				_attributes.push(child);
-
-			}
+				getAttributes().push(child);
 			else				
 				getChildren().push(child);
 			
@@ -480,6 +474,14 @@ package
 				_children = [];
 
 			return _children;
+		}
+
+		private function getAttributes():Array
+		{
+			if(!_attributes)
+				_attributes = [];
+
+			return _attributes;
 		}
 
 		/**
@@ -1903,8 +1905,8 @@ package
 		public function setAttribute(attr:*,value:String):String
 		{
 			var i:int;
-			if(!_attributes)
-				_attributes = [];
+			//make sure _attributes is not null
+			getAttributes();
 
 			if(attr is XML)
 			{
