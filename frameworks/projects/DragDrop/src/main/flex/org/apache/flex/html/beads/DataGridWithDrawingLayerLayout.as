@@ -17,22 +17,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
-{	
+{
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.html.beads.IDataGridView;
 	import org.apache.flex.html.beads.layouts.VerticalFlexLayout;
-	
+
 	COMPILE::SWF {
 		import org.apache.flex.html.supportClasses.ScrollingViewport;
 		import org.apache.flex.html.supportClasses.ScrollBar;
 	}
-	
+
 	/**
 	 * DataGridWithDrawingLayerLayout is a class that extends VerticalFlexLayout
 	 * and positions the drawing layer created by a DataGridDrawingLayerBead.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -42,7 +42,7 @@ package org.apache.flex.html.beads
 	{
 		/**
 		 *  constructor
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -52,12 +52,12 @@ package org.apache.flex.html.beads
 		{
 			super();
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.flex.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -68,7 +68,7 @@ package org.apache.flex.html.beads
 			super.strand = value;
 			_strand = value;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -77,25 +77,25 @@ package org.apache.flex.html.beads
 			// If there is a drawing layer, remove it so the super.layout function
 			// will not include it.
 			var layerBead:IDrawingLayerBead = _strand.getBeadByType(IDrawingLayerBead) as IDrawingLayerBead;
-			if (layerBead) {
+			if (layerBead != null && layerBead.layer != null) {
 				UIBase(_strand).removeElement(layerBead.layer);
 			}
-			
+
 			// Run the actual layout
 			var result:Boolean = super.layout();
-			
+
 			// Put the drawing layer back, sizing it to fit over the listArea.
-			if (layerBead) {
+			if (layerBead != null && layerBead.layer != null) {
 				UIBase(_strand).addElement(layerBead.layer);
-				
+
 				var layerX:Number = 0;
 				var layerY:Number = 0;
 				var useWidth:Number = UIBase(_strand).width;
 				var useHeight:Number = UIBase(_strand).height;
-				
+
 				var view:IDataGridView = UIBase(_strand).view as IDataGridView;
 				var listArea:UIBase = view.listArea;
-				
+
 				COMPILE::SWF {
 					var scrollViewport:ScrollingViewport = listArea.getBeadByType(ScrollingViewport) as ScrollingViewport;
 					if (scrollViewport) {
@@ -105,11 +105,11 @@ package org.apache.flex.html.beads
 						if (hbar != null && hbar.visible) useHeight -= hbar.height;
 					}
 				}
-				
-				layerBead.layer.x = layerX; 
+
+				layerBead.layer.x = layerX;
 				layerBead.layer.y = layerY;
 				layerBead.layer.setWidthAndHeight(useWidth, useHeight, true);
-				
+
 			}
 			return result;
 		}

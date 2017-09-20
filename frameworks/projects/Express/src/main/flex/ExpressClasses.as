@@ -30,6 +30,7 @@ internal class ExpressClasses
 
     import org.apache.flex.express.Application; Application;
     import org.apache.flex.express.Container; Container;
+    import org.apache.flex.express.DataGrid; DataGrid;
     import org.apache.flex.express.HContainer; HContainer;
     import org.apache.flex.express.HView; HView;
 	import org.apache.flex.express.ImageAndTextButton; ImageAndTextButton;

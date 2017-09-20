@@ -44,6 +44,10 @@ Application
 	margin: 0px;
 }
 
+DataGridButtonBar {
+	IBeadView: ClassReference("org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns");
+}
+
 Container
 {	
 	IBeadView: ClassReference("org.apache.flex.html.beads.ContainerView");
