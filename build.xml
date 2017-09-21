@@ -256,32 +256,6 @@
             value="${env.GOOG_HOME}" />
     </target>
     
-    <target name="check-flex-home" unless="mxmlc.jar.exists"
-        description="Check FLEX_HOME for both a directory and an exe file">
-
-        <echo message="FLEX_HOME is ${env.FLEX_HOME}"/>
-
-        <available file="${env.FLEX_HOME}" 
-            type="dir" 
-            property="FLEX_SDK_HOME"
-            value="${env.FLEX_HOME}" />
-
-        <available file="${basedir}/../flex-sdk"
-            type="dir"
-            property="FLEX_SDK_HOME"
-            value="${basedir}/../flex-sdk" />
-
-        <fail message="The environment variable FLEX_HOME is not set to a directory"
-            unless="FLEX_SDK_HOME"/>
-
-        <condition property="mxmlc.jar.exists">
-            <available file="${FLEX_SDK_HOME}/lib/mxmlc.jar" type="file"/>
-        </condition>
-        	
-        <fail message="The directory ${FLEX_SDK_HOME} does not contain mxmlc.jar" 
-            unless="mxmlc.jar.exists"/>
-    </target>
-
     <target name="check-falcon-home" unless="FALCON_REPO"
         description="Check FALCON_REPO is a directory.">
         
@@ -1020,6 +994,7 @@
         <subant target="main" >
             <fileset dir="${basedir}/marmotinni/java" includes="downloads.xml"/>
         </subant>
+        <ant dir="${basedir}/mustella"/>
     </target>
     
     <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
@@ -1029,7 +1004,7 @@
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
-		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/java/bin" fork="true" failonerror="yes">
+		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
 		    <!--<arg value="browser=chrome" />-->
 		    <arg value="url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
@@ -1094,49 +1069,40 @@
 
     </target>
     
-    <target name="basictests-compile-js" unless="env.AIR_HOME">
+    <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
         <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-        <property name="FALCONJX_REPO" value="${env.FALCONJX_REPO}"/>
+        <property name="FALCONJX_HOME" value="${FLEXJS_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCONJX_REPO: ${FALCONJX_REPO}"/>
+        <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" />
-        <java jar="${FALCONJX_REPO}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
+        <mxmlc fork="true" debug="true"
+            closure-lib="${env.GOOG_HOME}"
+            file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-targets=JSFlex" />
-            <arg value="-debug" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-library-path+=${FLEX_SDK_HOME}/mustella/mustella.swc" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
+            <targets>JSFlex</targets>
+            <library-path dir="${FLEXJS_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/js/FlexJS/libs"/>
+            </js-library-path>
+            <js-library-path dir="${FLEXJS_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </js-library-path>
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
+        </mxmlc>
     </target>
     
     <target name="basictests-compile-java" >
-        <delete dir="${basedir}/mustella/java/bin"/>
-        <mkdir dir="${basedir}/mustella/java/bin"/>
-        <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
+        <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
+        <delete dir="${basedir}/mustella/target/classes"/>
+        <mkdir dir="${basedir}/mustella/target/classes"/>
+        <javac srcdir="${basedir}/mustella/src/main/java" destdir="${basedir}/mustella/target/classes" debug="off" optimize="on">
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
@@ -1201,6 +1167,7 @@
     <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME"/>
 
     <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME">
+        <ant dir="${basedir}/mustella" />
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
             <property name="use_mustella_framework_dir" value="false"/>
@@ -1244,23 +1211,21 @@
         <property name="runtime.setup" value="done"/>
     </target>
 
-    <target name="load-task" depends="runtime-setup" if="env.AIR_HOME">
+    <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/falcon-flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/falcon-flexTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="check-flex-home,load-task" description="run basic tests using mustella"  if="env.AIR_HOME">
+    <target name="basictests" depends="load-task" description="run basic tests using mustella"  if="env.AIR_HOME">
 
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <library-path dir="${FLEX_SDK_HOME}" append="true">
+            <library-path dir="${FLEX_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
-                <include name="frameworks/libs/framework.swc"/>
-                <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
                 <include name="js/libs/js.swc"/>
@@ -1268,10 +1233,8 @@
             <js-library-path dir="${basedir}" >
                 <include name="frameworks/js/FlexJS/libs"/>
             </js-library-path>
-            <js-library-path dir="${FLEX_SDK_HOME}" append="true">
+            <js-library-path dir="${FLEX_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
-                <include name="frameworks/libs/framework.swc"/>
-                <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </js-library-path>
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
         </mxmlc>
@@ -1310,7 +1273,7 @@
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
-                <pathelement location="${FLEX_SDK_HOME}"/>
+                <pathelement location="${FLEXJS_HOME}/mustella/target"/>
             </classpath>
         </java>
     </target>
@@ -1734,7 +1697,7 @@
         <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
     </target>
 
-    <target name="compile" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1745,7 +1708,7 @@
         </mxmlc>
     </target>
     
-    <target name="compile-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile-release" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="false"
@@ -1755,7 +1718,7 @@
         </mxmlc>
     </target>
     
-    <target name="compile-js" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+    <target name="compile-js" depends="check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
@@ -1775,7 +1738,7 @@
         </java>
     </target>
     
-    <target name="compile-js-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+    <target name="compile-js-release" depends="check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
         <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
