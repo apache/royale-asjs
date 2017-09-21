@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" initialize="initLC()" width="800" >
+
+	<mx:Script>
+	<![CDATA[
+		import mx.controls.Label;
+		import mx.core.UIComponent;
+
+		private var results:UIComponent;
+		private var contButton:Button;
+
+
+		private var isConnected:Boolean = false;
+
+		private var connection:LocalConnection;
+		private var commandconnection:LocalConnection;
+
+		private var digits:Array = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+
+		private function initLC():void
+		{
+			for (var i:int = 0; i < 16; i++)
+			{
+				for (var j:int = 0; j < 16; j++)
+				{
+					byteTable[digits[i] + digits[j]] = i * 16 + j;
+				}
+			}
+			percentWidth = 100;
+			percentHeight = 100;
+
+			connection = new LocalConnection();
+			connection.allowDomain("*");
+			connection.client = this;
+
+			commandconnection = new LocalConnection();
+			commandconnection.allowDomain("*");
+			commandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+			connect();
+		}
+
+		private function connect():void
+		{
+			try
+			{
+				connection.connect("_ImageDiffer");
+			}
+			catch (e:Error)
+			{
+				trace("connection failed");
+			}
+		}
+
+		private function statusHandler(event:Event):void
+		{
+			isConnected=true;
+		}
+
+		private var sbd:BitmapData;
+		private var sba:ByteArray;
+		[Bindable] private var scriptName:String = "";
+		[Bindable] private var testName:String = "";
+		// public function startScreenData(w:int, h:int, length:int):void
+		public function startScreenData(w:int, h:int, length:int, name:String, script:String):void
+		{
+			testName=name;
+			scriptName=script;
+			pbhb.visible = true;
+			pb.maximum = length;
+			pb.setProgress(0, length);
+			sba = new ByteArray();
+			sbd = new BitmapData(w, h);
+		}
+		public function addScreenData(s:String):void
+		{
+			toByteArray(sba, s);
+			pb.setProgress(sba.position, pb.maximum);
+		}
+
+		private var bbd:BitmapData;
+		private var bba:ByteArray;
+		public function startBaseData(w:int, h:int, length:int):void
+		{
+			pb.visible = true;
+			pb.maximum = length;
+			pb.setProgress(0, length);
+			bba = new ByteArray();
+			bbd = new BitmapData(w, h);
+		}
+		public function addBaseData(s:String):void
+		{
+			toByteArray(bba, s);
+			pb.setProgress(bba.position, pb.maximum);
+		}
+
+		public function compareBitmaps():void
+		{
+
+			init();
+			pbhb.visible = false;
+			var bm1:Bitmap = new Bitmap();
+			var bm2:Bitmap = new Bitmap();
+			sba.position = 0;
+			bba.position = 0;
+			sbd.setPixels(sbd.rect, sba);
+			bbd.setPixels(bbd.rect, bba);
+			bm1.bitmapData = sbd;
+			bm2.bitmapData = bbd;
+			image1.load(bm1);
+			image2.load(bm2);
+			image1.scaleX = 1;
+			image1.scaleY = 1;
+			image2.scaleX = 1;
+			image2.scaleY = 1;
+			canvas1.width = sbd.width;
+			canvas1.height = sbd.height;
+			canvas2.width = bbd.width;
+			canvas2.height = bbd.height;
+
+			doCompare(true);
+		}
+
+		private var byteTable:Object = new Object();
+
+		private function toByteArray(ba:ByteArray, s:String):void
+		{
+			var arr:Array = s.split(",");
+
+			var n:int = arr.length;
+			for (var i:int = 0; i < n; i++)
+			{
+				var b:String = arr[i];
+				var byte:int = byteTable[b];
+				ba.writeByte(byte);
+			}
+		}
+
+		public function doCompare(cont:Boolean = false):void
+		{
+			
+			var bm1:BitmapData = new BitmapData(image1.content.width, image1.content.height);
+			bm1.draw(image1.content, new Matrix());
+
+			var bm2:BitmapData = new BitmapData(image2.content.width, image2.content.height);
+			bm2.draw(image2.content, new Matrix());
+
+			if (results) {
+				canvas3.removeChild(results);
+			}
+
+			if (contButton) 
+			{ 
+				removeChild(contButton);
+
+			}
+
+			var cmp:Object = bm1.compare(bm2);
+			var label:Label;
+
+			if (cmp == 0)
+			{
+				results = label = new Label();
+				label.text = "Same";
+				label.validateNow();
+				canvas3.addChild(results);
+				canvas3.width = results.width;
+				canvas3.height = results.height;
+				if (cont)
+				{
+					contButton = new Button();
+					contButton.label = "Continue";
+					addChild(contButton);
+					contButton.addEventListener("click", continueHandler);
+				}
+			}
+			else if (cmp == -3)
+			{
+				results = label = new Label();
+				label.text = "Widths are Different: " + image1.content.width + " vs " + image2.content.width;
+				label.validateNow();
+				canvas3.addChild(results);
+				canvas3.width = results.width;
+				canvas3.height = results.height;
+				if (cont)
+				{
+					contButton = new Button();
+					contButton.label = "Continue";
+					addChild(contButton);
+					contButton.addEventListener("click", continueHandler);
+				}
+			}
+			else if (cmp == -4)
+			{
+				results = label = new Label();
+				label.text = "Heights are Different: " + image1.content.height + " vs " + image2.content.height;
+				label.validateNow();
+				canvas3.addChild(results);
+				canvas3.width = results.width;
+				canvas3.height = results.height;
+				if (cont)
+				{
+					contButton = new Button();
+					contButton.label = "Continue";
+					addChild(contButton);
+					contButton.addEventListener("click", continueHandler);
+				}
+			}
+			else
+			{
+				results = new UIComponent();
+				var bm:Bitmap = new Bitmap();
+				results.addChild(bm);
+				bm.bitmapData = BitmapData(cmp);
+				results.width = image1.content.width;
+				results.height = image1.content.height;
+				canvas3.addChild(results);
+				canvas3.width = results.width;
+				canvas3.height = results.height;
+				results.graphics.clear();
+				results.graphics.beginFill(bg.selectedColor);
+				results.graphics.drawRect(0, 0, results.width, results.height);
+				results.graphics.endFill();
+				if (cont)
+				{
+					contButton = new Button();
+					contButton.label = "Continue";
+					addChild(contButton);
+					contButton.addEventListener("click", continueHandler);
+				}
+			}
+
+		}
+
+		private function continueHandler(event:Event):void
+		{
+			if (results)
+			{
+				results.graphics.clear();
+				canvas1.width = 0;
+				canvas1.height = 0;
+				canvas2.width = 0;
+				canvas2.height = 0;
+				canvas3.width = 0;
+				canvas3.height = 0;
+			}
+
+			commandconnection.send("_ImageDifferCommands", "keepGoing");
+		}
+		
+		private function bgChanged():void
+		{
+			if (results)
+			{
+				results.graphics.clear();
+				results.graphics.beginFill(bg.selectedColor);
+				results.graphics.drawRect(0, 0, results.width, results.height);
+				results.graphics.endFill();
+			}
+		}
+
+		private function getPixel(target:UIComponent, x:int, y:int, lbl:Label, bg:UIComponent):void
+		{
+			var pt:Point = new Point(x, y);
+			var screenBits:BitmapData = new BitmapData(target.width, target.height);
+			screenBits.draw(target, new Matrix(1, 0, 0, 1, 0, 0));
+
+			var clr:uint = screenBits.getPixel(pt.x, pt.y);
+			var s:String = clr.toString(16);
+			while (s.length < 6)
+			{
+				s = "0" + s;
+			}
+			lbl.text = s.toUpperCase();
+			bg.graphics.beginFill(clr);
+			bg.graphics.drawRect(0, 0, bg.width, bg.height);
+			bg.graphics.endFill();
+		}
+
+		private function pixelTracking():void
+		{
+			if (cb.selected)
+				systemManager.addEventListener("mouseMove", pixelTracker);
+			else
+				systemManager.removeEventListener("mouseMove", pixelTracker);
+		}
+
+		private function pixelTracker(event:MouseEvent):void
+		{
+			if (image1.contains(event.target as DisplayObject))
+			{
+				updatePixels(image1, event.localX, event.localY, "1");
+			}
+			else if (image2.contains(event.target as DisplayObject))
+			{
+				updatePixels(image2, event.localX, event.localY, "2");
+			}
+			else if (results && results.contains(event.target as DisplayObject))
+			{
+				updatePixels(results, event.localX, event.localY, "3");
+			}
+		}
+
+		private function updatePixels(target:UIComponent, x:Number, y:Number, ui:String):void
+		{
+			var nsx:NumericStepper = this["img" + ui + "x"];
+			var nsy:NumericStepper = this["img" + ui + "y"];
+			nsx.value = x;
+			nsy.value = y;
+			var lbl:Label = this["pixel" + ui];
+			var bg:UIComponent = this["bg" + ui];
+			getPixel(target, x, y, lbl, bg);
+		}
+
+		private function sizeCanvas1():void
+		{
+			image1.scaleX = 1;
+			image1.scaleY = 1;
+			canvas1.width = image1.content.width;
+			canvas1.height = image1.content.height;
+		}
+
+		private function sizeCanvas2():void
+		{
+			image2.scaleX = 1;
+			image2.scaleY = 1;
+			canvas2.width = image2.content.width;
+			canvas2.height = image2.content.height;
+		}
+
+		private function zoomit():void
+		{
+			image1.scaleY = image1.scaleX = zoom.value;
+			image1.validateNow();
+			image2.scaleY = image2.scaleX = zoom.value;
+			image2.validateNow();
+			results.scaleY = results.scaleX = zoom.value;
+			results.validateNow();
+			if (canvas1.width < 100)
+			{
+				canvas1.width = Math.min(image1.width, 100);
+				canvas1.height= Math.min(image1.height, 100);
+				canvas2.width = Math.min(image2.width, 100);
+				canvas2.height= Math.min(image2.height, 100);
+				canvas3.width = Math.min(results.width, 100);
+				canvas3.height= Math.min(results.height, 100);
+			}
+		}
+	]]>
+	</mx:Script>
+
+	<mx:HBox id="pbhb" visible="false">
+		<mx:Label text="receiving data..." />
+		<mx:ProgressBar id="pb" mode="manual" width="400" />		
+	</mx:HBox>
+	<mx:HBox id="testCaseLabel" visible="true">
+		<mx:Label text="{scriptName} {testName}" />
+	</mx:HBox>
+	<mx:HBox>
+		<mx:VBox>
+			<mx:HBox>
+				<mx:Label text="image 1" />
+				<mx:TextInput id="image1Name" />
+				<mx:Button label="load" click="image1.source=image1Name.text" />
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="100" />
+		<mx:VBox>
+			<mx:HBox>
+				<mx:Label text="image 2" />
+				<mx:TextInput id="image2Name" />
+				<mx:Button label="load" click="image2.source=image2Name.text" />
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+	<mx:Button label="compare" click="compareBitmaps()" />
+	<mx:HBox>
+		<mx:VBox>
+			<mx:Canvas id="canvas1" minHeight="0" minWidth="0" >
+				<mx:Image id="image1" complete="sizeCanvas1()" />
+			</mx:Canvas>
+			<mx:HBox>
+				<mx:Label text="x" />
+				<mx:NumericStepper id="img1x" width="60" maximum="4000" />
+				<mx:Label text="y" />
+				<mx:NumericStepper id="img1y" width="60" maximum="4000" />
+				<mx:Button label="get pixel" click="getPixel(image1, img1x.value, img1y.value, pixel1, bg1)" />
+				<mx:Label id="pixel1" />
+				<mx:UIComponent id="bg1" width="16" height="16" />
+			</mx:HBox>
+		</mx:VBox>
+		<mx:Spacer width="50" />
+		<mx:VBox>
+			<mx:Canvas id="canvas2" minHeight="0" minWidth="0" > 
+				<mx:Image id="image2" complete="sizeCanvas2()" />
+			</mx:Canvas>
+			<mx:HBox>
+				<mx:Label text="x" />
+				<mx:NumericStepper id="img2x" width="60" maximum="4000" />
+				<mx:Label text="y" />
+				<mx:NumericStepper id="img2y" width="60" maximum="4000" />
+				<mx:Button label="get pixel" click="getPixel(image2, img2x.value, img2y.value, pixel2, bg2)" />
+				<mx:Label id="pixel2" />
+				<mx:UIComponent id="bg2" width="16" height="16" />
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:CheckBox id="cb" label="Pixel Reading" click="pixelTracking()" />
+		<mx:Label text="Zoom" />
+		<mx:NumericStepper id="zoom" minimum="1" change="zoomit()" />
+		<mx:Label text="background" />
+		<mx:ColorPicker id="bg" change="bgChanged();" />
+	</mx:HBox>
+	<mx:Canvas id="canvas3" minHeight="0" minWidth="0" />
+	<mx:HBox>
+		<mx:Label text="x" />
+		<mx:NumericStepper id="img3x" width="60" maximum="4000" />
+		<mx:Label text="y" />
+		<mx:NumericStepper id="img3y" width="60" maximum="4000" />
+		<mx:Button label="get pixel" click="getPixel(results, img3x.value, img3y.value, pixel3, bg3)" />
+		<mx:Label id="pixel3" />
+		<mx:UIComponent id="bg3" width="16" height="16" />
+	</mx:HBox>
+
+</mx:Application>

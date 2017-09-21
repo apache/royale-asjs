@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}					
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>	
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	import mx.core.FlexGlobals;
+	import mx.controls.ComboBox;
+	import mx.controls.DateField;
+	import mx.styles.IStyleManager2;
+	import mx.managers.SystemManager;
+		
+
+	public function scriptFunction(a:String, b:int):String
+	{
+		return a + ":" + b.toString();
+		
+		App
+	}
+
+	public var styleDecl:Object;
+	public var styleObj:Object;
+
+	public var validationObject:Object = {};
+
+	]]>
+	</mx:Script>
+
+	<testCases>
+		<TestCase testID="myScriptTest1">
+			<body>
+				<!-- inline code doesn't need fully qualified class names, but you must import -->
+				<RunCode code="styleDecl = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration('Button');" />
+				<RunCode code="styleDecl.defaultFactory.prototype = {}; styleObj = new styleDecl.defaultFactory();" />
+				<!-- to target a variable in the script block, use script: -->
+				<AssertPropertyValue target="script:styleObj" propertyName="cornerRadius" value="4" />
+				<!-- to target a class, use fully qualified name -->
+				<AssertPropertyValue target="mx.managers::CursorManager" propertyName="NO_CURSOR" value="0" />
+				<AssertPropertyValue target="mx.managers::SystemManager.mx_internal:topLevelSystemManagers.0" propertyName="height" value="375" />
+			</body>
+		</TestCase>
+		<TestCase testID="myValidatorTest1">
+			<setup>
+				<ResetComponent target="ccv" className="mx.validators::CreditCardValidator" />
+				<SetProperty target="ccv" propertyName="required" value="true" />
+			</setup>
+			<body>
+			    <!-- to test methods that return complex objects, assign value to the return and match against the
+				     return value.  You can just enter "foo", let it run and fail and see what it prints out and
+					 copy that in.  Once you get past this step you test the complex object using AssertPropertyValue.
+					 Note also that if the method can throw an error, assign the error in the catch block -->
+				<AssertMethodValue method="try { value=application.ccv.validate({}); } catch (e:Error) { value = e.message } " >
+					<!-- arrays start with [ but the MXML parser effectively strips those so if you need to match against
+						 an array, you have to use this pattern instead -->
+					<value>
+						<mx:String>[Event type="invalid" bubbles=false cancelable=false eventPhase=2]</mx:String>
+					</value>
+				</AssertMethodValue>
+				<!-- until the next method call, script:value contains the complex return value, so you can use
+				     AssertPropertyValue to test it -->
+				<AssertPropertyValue target="script:value.results" propertyName="length" value="3" />
+				<AssertPropertyValue target="script:value.results.0" propertyName="errorCode" value="requiredField" />
+			</body>
+		</TestCase>
+		<TestCase testID="myValidatorTest1a">
+			<setup>
+				<ResetComponent target="ccv" className="mx.validators::CreditCardValidator" />
+				<SetProperty target="ccv" propertyName="required" value="true" />
+			</setup>
+			<body>
+			    <!-- you can create object literals like this with {} -->
+				<AssertMethodValue method="try { value=application.ccv.validate({ cardType: 'Visa', cardNumber: '4321123443211234'}); } catch (e:Error) { value = e.message } " >
+					<value>
+						<mx:String>[Event type="valid" bubbles=false cancelable=false eventPhase=2]</mx:String>
+					</value>
+				</AssertMethodValue>
+			</body>
+		</TestCase>
+		<TestCase testID="myValidatorTest1b">
+			<setup>
+				<ResetComponent target="ccv" className="mx.validators::CreditCardValidator" />
+				<SetProperty target="ccv" propertyName="required" value="true" />
+			    <!-- or you can create objects using ResetComponent and SetProperty -->
+				<ResetComponent target="script:validationObject" className="Object" />
+				<SetProperty target="script:validationObject" propertyName="cardType" value="Visa" />
+				<SetProperty target="script:validationObject" propertyName="cardNumber" value="4321123443211234" />
+			</setup>
+			<body>
+				<AssertMethodValue method="try { value=application.ccv.validate(validationObject); } catch (e:Error) { value = e.message } " >
+					<value>
+						<mx:String>[Event type="valid" bubbles=false cancelable=false eventPhase=2]</mx:String>
+					</value>
+				</AssertMethodValue>
+			</body>
+		</TestCase>
+		<TestCase testID="myValidatorTest2">
+			<setup>
+				<ResetComponent target="ccv" className="mx.validators::CreditCardValidator" />
+				<SetProperty target="ccv" propertyName="required" value="true" />
+			</setup>
+			<body>
+				<SetProperty target="ccv" propertyName="allowedFormatChars" value="1" />
+				<AssertError value="foo" />
+			</body>
+		</TestCase>
+		<TestCase testID="myValidatorTest3">
+			<setup>
+				<ResetComponent target="ccv" className="mx.validators::CreditCardValidator" />
+				<SetProperty target="ccv" propertyName="required" value="true" />
+			</setup>
+			<body>
+				<SetProperty target="ccv" propertyName="allowedFormatChars" value="-!\\/" />
+				<AssertError value="null" />
+			</body>
+		</TestCase>
+		<TestCase testID="myMethodTest1">
+			<body>
+				<AssertMethodValue method="value=DateField.dateToString(new Date(2005, 2, 4), 'YY/MM/DD')" value="05/03/04" />
+			</body>
+		</TestCase>
+		<TestCase testID="myMethodTest2">
+			<body>
+				<AssertMethodValue method="value=application.cb.itemToLabel({ label: 'Alex', data: 1})" value="Alex" />
+			</body>
+		</TestCase>
+		<TestCase testID="myMethodTest3">
+			<body>
+				<AssertMethodValue method="value=scriptFunction('Flex', 1)" value="Flex:1" />
+			</body>
+		</TestCase>
+		<TestCase testID="myButtonTest1">
+			<body>
+				<DispatchMouseClickEvent target="btn" localX="10" localY="10" />
+				<AssertEvent target="btn" eventName="click" eventClass="flash.events::MouseEvent" />
+			</body>
+		</TestCase>
+		<TestCase testID="myDFTest1">
+			<body>
+				<SetProperty target="df" propertyName="selectedDate" valueExpression="value=new Date(2005, 2, 5)" waitEvent="valueCommit" waitTarget="df" />
+				<AssertPropertyValue target="df" propertyName="selectedDate" valueExpression="value=new Date(2005, 2, 5)" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTest1">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<Pause timeout="1000" />
+			</setup>
+			<body>
+				<SetProperty target="cb" propertyName="selectedIndex" value="1" waitEvent="valueCommit" waitTarget="cb" />
+				<AssertPropertyValue target="cb.getChildAt(0)" propertyName="width" value="51" />
+				<AssertPropertyValue target="cb" propertyName="selectedItem" value="3" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTestError">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+			</setup>
+			<body>
+				<AssertMethodValue method="value = 0; try { application.cb.dataProvider[8] = 51 } catch (e:Error) { value = e.message }"
+					value="Index '8' specified is out of bounds." />
+			</body>
+		</TestCase>
+		<TestCase testID="myTest2">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[2,3,4]" />
+				<AssertPropertyValue waitEvent="updateComplete" waitTarget="cb" target="cb" propertyName="selectedItem" value="2" />
+			</setup>
+			<body>
+				<SetProperty target="cb" propertyName="selectedIndex" value="2" />
+				<AssertPropertyValue target="cb" propertyName="selectedItem" value="4" />
+			</body>
+			<cleanup>
+				<!-- this is bs just making the call -->
+				<SetProperty target="cb" propertyName="selectedIndex" value="1" />
+			</cleanup>
+		</TestCase>
+		<TestCase testID="myTest3">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[8,9,10]" />
+				<AssertPropertyValue waitEvent="updateComplete" waitTarget="cb" target="cb" propertyName="selectedItem" value="8" />
+			</setup>
+			<body>
+				<SetProperty target="cb" propertyName="selectedIndex" value="1" waitEvent="updateComplete" />
+				<AssertNoEvent target="cb" eventName="change" />
+				<AssertPropertyValue target="cb" propertyName="selectedItem" value="9" />
+				<AssertPropertyValue target="cb.getTextInput()" propertyName="text" value="9" />
+				<AssertPropertyValue target="cb.getTextInput().getTextField()" propertyName="text" value="9" />
+				<AssertPropertyValue target="cb.getTextInput().getTextField()" propertyName="antiAliasType" value="advanced" />
+				<AssertPropertyValue target="cb.getTextInput().getTextField().getTextFormat()" propertyName="color" value="0x0B333C" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTest4">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseDown" localX="10" localY="10" waitEvent="open" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseUp" localX="10" localY="10"/>
+			</setup>
+			<body>
+				<DispatchMouseEvent target="cb.dropdown" type="mouseOver" localX="10" localY="50" />
+				<DispatchMouseEvent target="cb.dropdown" type="mouseDown" localX="10" localY="50" />
+				<DispatchMouseEvent target="cb.dropdown" type="mouseUp" localX="10" localY="50" waitEvent="change" waitTarget="cb" />
+				<AssertPropertyValue target="cb" propertyName="selectedIndex" value="2" />
+				<CompareBitmap target="cb" url="myTest4.png" timeout="5000" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTest4WithWait">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseDown" localX="10" localY="10"/>
+				<WaitForEffectsToEnd />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseUp" localX="10" localY="10"/>
+			</setup>
+			<body>
+				<DispatchMouseEvent target="cb.dropdown" type="mouseOver" localX="10" localY="50" />
+				<DispatchMouseEvent target="cb.dropdown" type="mouseDown" localX="10" localY="50" />
+				<DispatchMouseEvent target="cb.dropdown" type="mouseUp" localX="10" localY="50" waitEvent="change" waitTarget="cb" />
+				<AssertPropertyValue target="cb" propertyName="selectedIndex" value="2" />
+				<AssertPropertyValue target="cb.dropdown.mx_internal:rendererArray.2.0.getLabel()" propertyName="text" value="3" />
+				<CompareBitmap target="cb" url="myTest4.png" timeout="5000" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTest5">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseDown" localX="10" localY="10" waitEvent="open" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseUp" localX="10" localY="10" />
+			</setup>
+			<body>
+				<DispatchKeyEvent key="ESCAPE" waitEvent="close" waitTarget="cb" />
+				<DispatchKeyEvent char="2" waitEvent="change" waitTarget="cb" />
+				<AssertPropertyValue target="cb" propertyName="selectedIndex" value="1" />
+			</body>
+		</TestCase>
+		<TestCase testID="myTestImage">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseDown" localX="10" localY="10" waitEvent="open" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseUp" localX="10" localY="10" />
+			</setup>
+			<body>
+				<DispatchKeyEvent key="ESCAPE" waitEvent="close" waitTarget="cb" />
+				<DispatchKeyEvent char="2" waitEvent="change" waitTarget="cb" />
+				<AssertEvent target="cb" eventName="change" eventClass="flash.events::Event" />
+				<AssertEventPropertyValue propertyName="type" value="change" />
+				<CompareBitmap target="cb" url="myBitmap.png" timeout="8000" />
+			</body>
+		</TestCase>
+		<TestCase testID="myStyleTest1">
+			<setup>
+				<ResetComponent target="cb" className="mx.controls::ComboBox" />
+				<SetProperty target="cb" propertyName="dataProvider" value="[1,2,3,4]" waitEvent="updateComplete" waitTarget="cb" />
+				<SetStyle target="cb" styleName="rollOverColor" value="0xFF0000" waitEvent="updateComplete" waitTarget="cb" />
+			</setup>
+			<body>
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseDown" localX="10" localY="10" waitEvent="open" waitTarget="cb" />
+				<DispatchMouseEvent target="cb.mx_internal:downArrowButton" type="mouseUp" localX="10" localY="10" />
+				<DispatchMouseEvent target="cb.dropdown" type="mouseOver" localX="10" localY="50" />
+				<AssertStyleValue target="cb" styleName="rollOverColor" value="0xFF0000" />
+				<AssertStyleValue target="cb.dropdown" styleName="rollOverColor" value="0xFF0000" />
+				<AssertPixelValue target="cb.dropdown" x="50" y="50" value="0xFF0000" />
+				<AssertPixelValue target="cb.dropdown" x="50" y="30" value="0xFF0000" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

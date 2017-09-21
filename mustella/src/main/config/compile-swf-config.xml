@@ -1,0 +1,145 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<flex-config>
+
+    <compiler>
+        <accessible>false</accessible>
+        
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSFlex</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
+        <external-library-path>
+            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
+        </external-library-path>
+        
+        <allow-subclass-overrides>true</allow-subclass-overrides>
+        
+		<mxml>
+			<children-as-data>true</children-as-data>
+		</mxml>
+		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+        
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>true</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>false</value>
+        </define>
+
+        <keep-as3-metadata>
+          <name>Bindable</name>
+          <name>Managed</name>
+          <name>ChangeEvent</name>
+          <name>NonCommittingChangeEvent</name>
+          <name>Transient</name>
+          <name>SWFOverride</name>
+        </keep-as3-metadata>
+	  
+        <locale/>
+        
+        <library-path/>
+
+        <namespaces>
+            <!--
+            <namespace>
+                <uri>library://ns.apache.org/flexjs/basic</uri>
+                <manifest>../resources/basic-manifest.xml</manifest>
+            </namespace>
+             -->
+        </namespaces>
+        
+        <source-path>
+            <path-element>../flex</path-element>
+        </source-path>
+        
+        <warn-no-constructor>false</warn-no-constructor>
+        
+        <!-- Use of the instanceof operator. -->
+        <warn-instance-of-changes>false</warn-instance-of-changes>
+    </compiler>
+    
+    <include-classes>
+        <class>ApolloFilePath</class>
+        <class>Assert</class>
+        <class>AssertError</class>
+        <class>AssertEvent</class>
+        <class>AssertEventPropertyValue</class>
+        <class>AssertMethodValue</class>
+        <class>AssertNoEvent</class>
+        <class>AssertPixelValue</class>
+        <class>AssertPropertyValue</class>
+        <class>AssertStyleValue</class>
+        <class>AssertTitle</class>
+        <class>AssertType</class>
+        <class>AssertURL</class>
+        <class>CheckEmbeddedFonts</class>
+        <class>ChangeState</class>
+        <class>CompareBitmap</class>
+        <class>CreateBitmapReferences</class>
+        <class>DispatchEvent</class>
+        <class>DispatchKeyEvent</class>
+        <class>DispatchMouseClickEvent</class>
+        <class>DispatchMouseEvent</class>
+        <class>ExcludeFileLocation</class>
+        <class>ExcludeFileLocationApollo</class>
+        <class>ExitWhenDone</class>
+        <class>IncludeListTextFile</class>
+        <class>IncludeFileLocation</class>
+        <class>Localhost8080</class>
+        <class>MustellaPNGEncoder</class>
+        <class>Pause</class>
+        <class>ResetComponent</class>
+        <class>RunCode</class>
+        <class>RunCodeEvent</class>
+        <class>SaveBitmapFailures</class>
+        <class>ScriptRunner</class>
+        <class>SendFormattedResultsToLog</class>
+        <class>SendResultsToRunner</class>
+        <class>SetProperty</class>
+        <class>SetStyle</class>
+        <class>SetShowRTE</class>
+        <class>SetURL</class>
+        <class>SocketAddress</class>
+        <class>TestCase</class>
+        <class>TestOutput</class>
+        <class>TestResult</class>
+        <class>TestStep</class>
+        <class>TypeInfo</class>
+        <class>UnitTester</class>
+        <class>VerboseMode</class>
+        <class>WaitForCondition</class>
+        <class>WaitForEffectsToEnd</class>
+        <class>WaitForEvent</class>
+        <class>WaitForLayoutManager</class>
+        <class>WaitForSandboxApp</class>
+        <class>WaitForWindow</class>
+    </include-classes>
+    
+    <target-player>20.0</target-player>
+	
+
+</flex-config>
