@@ -99,6 +99,7 @@
         <ant dir="${basedir}/flexjs/MobileTrader"/>
         <ant dir="${basedir}/flexjs/ModuleExample"/>
         <ant dir="${basedir}/flexjs/ChartExample"/>
+        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest"/>
         <ant dir="${basedir}/flexjs/StorageExample"/>
         <ant dir="${basedir}/flexjs/StyleExample"/>
         <ant dir="${basedir}/flexjs/TableExample"/>
@@ -145,6 +146,7 @@
         <ant dir="${basedir}/flexjs/MobileMap" target="clean"/>
         <ant dir="${basedir}/flexjs/ModuleExample" target="clean"/>
         <ant dir="${basedir}/flexjs/ChartExample" target="clean"/>
+        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest" target="clean"/>
         <ant dir="${basedir}/flexjs/StorageExample" target="clean"/>
         <ant dir="${basedir}/flexjs/StyleExample" target="clean"/>
         <ant dir="${basedir}/flexjs/TableExample" target="clean"/>
@@ -181,6 +183,7 @@
         <ant dir="${basedir}/flexjs/MobileMap" target="examine"/>
         <ant dir="${basedir}/flexjs/ModuleExample" target="examine"/>
         <ant dir="${basedir}/flexjs/ChartExample" target="examine"/>
+        <ant dir="${basedir}/flexjs/RemoteObjectAMFTest" target="clean"/>
         <ant dir="${basedir}/flexjs/StorageExample" target="examine"/>
         <ant dir="${basedir}/flexjs/StyleExample" target="examine"/>
         <ant dir="${basedir}/flexjs/TableExample" target="examine"/>
