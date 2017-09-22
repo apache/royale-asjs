@@ -21,7 +21,6 @@ package
 COMPILE::SWF
 {
 	import flash.events.*;
-	import mx.utils.*;
 }
 COMPILE::JS
 {
@@ -200,6 +199,7 @@ COMPILE::JS
 		* Populate values from a filename.
 		**/
 		public function parseFilename(filename:String):Boolean{
+            /* TODO (aharui) later
             COMPILE::SWF
             {
 			var tokens:Array = null;
@@ -326,8 +326,8 @@ COMPILE::JS
             }
             COMPILE::JS
             {
+            */
                 return false;
-            }
 		}
 
 		/**

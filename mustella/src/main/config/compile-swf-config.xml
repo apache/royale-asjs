@@ -61,7 +61,9 @@
 	  
         <locale/>
         
-        <library-path/>
+        <library-path>
+            <path-element>../../../../frameworks/libs/Core.swc</path-element>
+        </library-path>
 
         <namespaces>
             <!--
@@ -83,60 +85,78 @@
     </compiler>
     
     <include-classes>
-        <class>ApolloFilePath</class>
+        <!--
+         <class>ApolloFilePath</class>
+         -->
         <class>Assert</class>
-        <class>AssertError</class>
-        <class>AssertEvent</class>
-        <class>AssertEventPropertyValue</class>
-        <class>AssertMethodValue</class>
-        <class>AssertNoEvent</class>
-        <class>AssertPixelValue</class>
+        <!--
+         <class>AssertError</class>
+         <class>AssertEvent</class>
+         <class>AssertEventPropertyValue</class>
+         <class>AssertMethodValue</class>
+         <class>AssertNoEvent</class>
+         <class>AssertPixelValue</class>
+         -->
         <class>AssertPropertyValue</class>
-        <class>AssertStyleValue</class>
-        <class>AssertTitle</class>
-        <class>AssertType</class>
-        <class>AssertURL</class>
-        <class>CheckEmbeddedFonts</class>
-        <class>ChangeState</class>
-        <class>CompareBitmap</class>
-        <class>CreateBitmapReferences</class>
+        <!--
+         <class>AssertStyleValue</class>
+         <class>AssertTitle</class>
+         <class>AssertType</class>
+         <class>AssertURL</class>
+         <class>CheckEmbeddedFonts</class>
+         <class>ChangeState</class>
+         <class>CompareBitmap</class>
+         <class>CreateBitmapReferences</class>
+         -->
         <class>DispatchEvent</class>
         <class>DispatchKeyEvent</class>
         <class>DispatchMouseClickEvent</class>
         <class>DispatchMouseEvent</class>
-        <class>ExcludeFileLocation</class>
-        <class>ExcludeFileLocationApollo</class>
+        <!--
+         <class>ExcludeFileLocation</class>
+         <class>ExcludeFileLocationApollo</class>
+         -->
         <class>ExitWhenDone</class>
-        <class>IncludeListTextFile</class>
-        <class>IncludeFileLocation</class>
-        <class>Localhost8080</class>
-        <class>MustellaPNGEncoder</class>
-        <class>Pause</class>
-        <class>ResetComponent</class>
+        <!--
+         <class>IncludeListTextFile</class>
+         <class>IncludeFileLocation</class>
+         <class>Localhost8080</class>
+         <class>MustellaPNGEncoder</class>
+         <class>Pause</class>
+         <class>ResetComponent</class>
+         -->
         <class>RunCode</class>
-        <class>RunCodeEvent</class>
-        <class>SaveBitmapFailures</class>
-        <class>ScriptRunner</class>
+        <!--
+         <class>RunCodeEvent</class>
+         <class>SaveBitmapFailures</class>
+         <class>ScriptRunner</class>
+         -->
         <class>SendFormattedResultsToLog</class>
         <class>SendResultsToRunner</class>
         <class>SetProperty</class>
-        <class>SetStyle</class>
-        <class>SetShowRTE</class>
-        <class>SetURL</class>
-        <class>SocketAddress</class>
+        <!--
+         <class>SetStyle</class>
+         <class>SetShowRTE</class>
+         <class>SetURL</class>
+         <class>SocketAddress</class>
+         -->
         <class>TestCase</class>
         <class>TestOutput</class>
         <class>TestResult</class>
         <class>TestStep</class>
-        <class>TypeInfo</class>
+        <!--
+         <class>TypeInfo</class>
+         -->
         <class>UnitTester</class>
-        <class>VerboseMode</class>
-        <class>WaitForCondition</class>
-        <class>WaitForEffectsToEnd</class>
-        <class>WaitForEvent</class>
-        <class>WaitForLayoutManager</class>
-        <class>WaitForSandboxApp</class>
-        <class>WaitForWindow</class>
+        <!--
+         <class>VerboseMode</class>
+         <class>WaitForCondition</class>
+         <class>WaitForEffectsToEnd</class>
+         <class>WaitForEvent</class>
+         <class>WaitForLayoutManager</class>
+         <class>WaitForSandboxApp</class>
+         <class>WaitForWindow</class>
+         -->
     </include-classes>
     
     <target-player>20.0</target-player>

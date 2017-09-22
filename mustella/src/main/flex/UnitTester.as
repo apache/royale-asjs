@@ -305,7 +305,7 @@ public class UnitTester extends EventDispatcher
 				sandboxHelper = new UnitTester();
 				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.STRING_TO_OBJECT, sandboxStringToObjectHandler);
 				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_BITMAP, sandboxGetBitmapHandler);
-				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_EFFECTS, sandboxGetEffectsHandler);
+				//root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_EFFECTS, sandboxGetEffectsHandler);
 				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_OBJECTS_UNDER_POINT, sandboxObjectsUnderPointHandler);
 				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.RESET_COMPONENT, sandboxResetComponentHandler);
 				root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.MOUSEXY, sandboxMouseXYHandler);
@@ -320,7 +320,7 @@ public class UnitTester extends EventDispatcher
 		}
 		else if(root.parent != root.stage && root.loaderInfo.applicationDomain != root.parent.parent.loaderInfo.applicationDomain)
 		{
-			root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_EFFECTS, sandboxGetEffectsHandler);
+			//root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.GET_EFFECTS, sandboxGetEffectsHandler);
 			root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.MOUSEXY, sandboxMouseXYHandler);
 			root.addEventListener("applicationComplete", applicationCompleteHandler);
 			root.loaderInfo.sharedEvents.addEventListener(MustellaSandboxEvent.APP_READY, sandboxAppReadyHandler);
@@ -371,6 +371,7 @@ public class UnitTester extends EventDispatcher
 			_root.addEventListener("activate", activateBlockingHandler, true);
 		}
 		
+        /* TODO (aharui) not needed?
 		if (appdom.hasDefinition("spark.components.supportClasses.RichEditableTextContainerManager"))
 		{
 			g = Class(appdom.getDefinition("spark.components.supportClasses.RichEditableTextContainerManager"));
@@ -379,7 +380,8 @@ public class UnitTester extends EventDispatcher
 				var q:QName = new QName(mx_internal, "hideCursor");
 				g[q] = true;
 			}
-		}	
+		}
+        */
 	}
 
     COMPILE::JS
@@ -615,6 +617,7 @@ public class UnitTester extends EventDispatcher
     COMPILE::SWF
 	public static function setMouseXY(stagePt:Point):void
 	{
+        /* TODO (aharui) later
 		for (var p:* in swfLoaders)
 		{
 			var swfLoader:Object = p;
@@ -645,6 +648,7 @@ public class UnitTester extends EventDispatcher
 				}
 			}
 		}
+        */
 	}
     
     COMPILE::JS
@@ -704,10 +708,10 @@ public class UnitTester extends EventDispatcher
 		return arr;
 	}
 
-    COMPILE::SWF
-	private static var effectsInEffect:QName = new QName(mx_internal, "effectsInEffect");
-    COMPILE::SWF
-	private static var activeTweens:QName = new QName(mx_internal, "activeTweens");
+    // TODO (aharui) not needed?
+	// private static var effectsInEffect:QName = new QName(mx_internal, "effectsInEffect");
+    // TODO (aharui) not needed?
+	// private static var activeTweens:QName = new QName(mx_internal, "activeTweens");
 
 	/**
 	 *	ask other sandboxes if they are running effects
@@ -958,6 +962,7 @@ public class UnitTester extends EventDispatcher
 
 		var eventObj:Object = event;
 		var stagePt:Point = Point(eventObj.obj);
+        /* TODO (aharui) later
 		if (stagePt)
 		{
 			var pt:Point = _root.globalToLocal(stagePt);
@@ -969,6 +974,7 @@ public class UnitTester extends EventDispatcher
 			_root[mouseX] = undefined;
 			_root[mouseY] = undefined;
 		}
+        */
 	}
 
 	/**
@@ -977,6 +983,7 @@ public class UnitTester extends EventDispatcher
     COMPILE::SWF
 	private static function sandboxResetComponentHandler(event:Event):void
 	{
+        /* TODO (aharui) later
 		// if we sent it, ignore it
 		if (event is MustellaSandboxEvent)
 			return;
@@ -987,6 +994,7 @@ public class UnitTester extends EventDispatcher
 		sandboxHelper.startTests();
 
 		rc.execute(_root, sandboxHelper, new TestCase(), new TestResult());
+        */
 	}
 
 	/**
@@ -1029,7 +1037,7 @@ public class UnitTester extends EventDispatcher
 	/**
 	 *  get bitmap as bytearray
 	 */
-    COMPILE::SWF
+    /* TODO (aharui) not needed
 	private static function sandboxGetEffectsHandler(event:Event):void
 	{
 		// if we sent it, ignore it
@@ -1057,6 +1065,7 @@ public class UnitTester extends EventDispatcher
 		if (effects)
 			event["obj"] = true;
 	}
+    */
 
 	/**
 	 *  Handle request from main Mustella UnitTester
@@ -1099,6 +1108,7 @@ public class UnitTester extends EventDispatcher
 		if (!obj.visible)
 			return;
 
+        /*
 		try
 		{
 			if (!obj[$visible])
@@ -1107,7 +1117,8 @@ public class UnitTester extends EventDispatcher
 		catch (e:Error)
 		{
 		}
-
+        */
+        
 		if (obj.hitTestPoint(pt.x, pt.y, true))
 		{
 			arr.push(obj);
@@ -1241,9 +1252,11 @@ public class UnitTester extends EventDispatcher
     COMPILE::SWF
 	public static function pre_startEventHandler(event:Event):void 
 	{
+        /* TODO (aharui) later
         if ("topLevelSystemManager" in _root)
     		_root["topLevelSystemManager"].addEventListener("callLaterError", callLaterErrorDefaultHandler, false, -1);
-
+        */
+        
 		if (event.type == "applicationComplete")
 		{
 			sawStartEvent=true;
@@ -1349,6 +1362,7 @@ public class UnitTester extends EventDispatcher
 			_root = originalRoot;
 
 		TestOutput.logResult("ScriptComplete: completely done");
+        /*
         try {
     		_root[mouseX] = undefined;
 	    	_root[mouseY] = undefined;
@@ -1357,6 +1371,7 @@ public class UnitTester extends EventDispatcher
         {
             // not all use cases support this
         }
+        */
 		_root.removeEventListener("focusIn", focusBlockingHandler, true);
 		_root.removeEventListener("focusOut", focusBlockingHandler, true);
 		_root.removeEventListener("deactivate", activateBlockingHandler, true);
@@ -1424,21 +1439,21 @@ public class UnitTester extends EventDispatcher
     COMPILE::SWF
 	public static var exit:Function = function ():void  { fscommand ("quit"); };
 
-    COMPILE::SWF
-	private static var layoutManager:QName = new QName(mx_internal, "layoutManager");
-    COMPILE::SWF
-	private static var getTextField:QName = new QName(mx_internal, "getTextField");
-    COMPILE::SWF
-	private static var getTextInput:QName = new QName(mx_internal, "getTextInput");
-    COMPILE::SWF
-	private static var getLabel:QName = new QName(mx_internal, "getLabel");
+    // TODO (aharui) not needed?
+	// private static var layoutManager:QName = new QName(mx_internal, "layoutManager");
+    // TODO (aharui) not needed?
+    // private static var getTextField:QName = new QName(mx_internal, "getTextField");
+    // TODO (aharui) not needed?
+    // private static var getTextInput:QName = new QName(mx_internal, "getTextInput");
+    // TODO (aharui) not needed?
+    // private static var getLabel:QName = new QName(mx_internal, "getLabel");
 
-    COMPILE::SWF
-	private static var mouseX:QName = new QName(mx_internal, "_mouseX");
-    COMPILE::SWF
-	private static var mouseY:QName = new QName(mx_internal, "_mouseY");
-    COMPILE::SWF
-	private static var $visible:QName = new QName(mx_internal, "$visible");
+    // TODO (aharui) not needed?
+    // private static var mouseX:QName = new QName(mx_internal, "_mouseX");
+    // TODO (aharui) not needed?
+    // private static var mouseY:QName = new QName(mx_internal, "_mouseY");
+    // TODO (aharui) not needed?
+    // private static var $visible:QName = new QName(mx_internal, "$visible");
 
 	/**
 	 *  The list of tests to run by start event
@@ -1816,6 +1831,7 @@ public class UnitTester extends EventDispatcher
 						s = s.substring(0, s.indexOf(")"));
 						obj = obj.getElementAt(parseInt(s));
 					}
+                    /*
 					else if (s is String && s == "getTextField()")
 					{
 						obj = obj[getTextField]();
@@ -1828,6 +1844,7 @@ public class UnitTester extends EventDispatcher
 					{
 						obj = obj[getLabel]();
 					}
+                    */
 					else if (s is String && s == "getTextFormat()")
 					{
 						obj = obj.getTextFormat();
@@ -1857,6 +1874,7 @@ public class UnitTester extends EventDispatcher
 				}
 				catch (se:SecurityError)
 				{
+                    /*
 					try
 					{
 						test = obj[q];
@@ -1865,6 +1883,7 @@ public class UnitTester extends EventDispatcher
 					{
 						return null;
 					}
+                    */
 					var event:MustellaSandboxEvent = new MustellaSandboxEvent(MustellaSandboxEvent.STRING_TO_OBJECT);
 					event.string = list.join(".");
 					if (!swfLoaders[obj])
@@ -1880,6 +1899,7 @@ public class UnitTester extends EventDispatcher
 				{
 					return null;
 				}
+                /*
 				// hunt for other swfloaders with other application domains
 				// we shouldn't get here if the object is in another security domain
 				// unless the object is sandboxed but the loading app is coming from file::
@@ -1902,6 +1922,7 @@ public class UnitTester extends EventDispatcher
 				catch (e:Error)
 				{
 				}
+                */
 			}
 			return obj;
 		}
@@ -1992,8 +2013,8 @@ public class UnitTester extends EventDispatcher
 		// if (RTESocket)
 		//	RTESocket.addEventListener(ProgressEvent.SOCKET_DATA, RTEHandler);
 
-        if ("topLevelSystemManager" in _root)
-    		_root["topLevelSystemManager"].addEventListener("callLaterError", callLaterErrorHandler);
+        //if ("topLevelSystemManager" in _root)
+    	//	_root["topLevelSystemManager"].addEventListener("callLaterError", callLaterErrorHandler);
 
 		if (testCases)
 			numTests = testCases.length;
@@ -2127,8 +2148,8 @@ public class UnitTester extends EventDispatcher
 		// if (RTESocket)
 		// 	RTESocket.removeEventListener(ProgressEvent.SOCKET_DATA, RTEHandler);
 
-        if ("topLevelSystemManager" in _root)
-    		_root["topLevelSystemManager"].removeEventListener("callLaterError", callLaterErrorHandler);
+        //if ("topLevelSystemManager" in _root)
+    	//	_root["topLevelSystemManager"].removeEventListener("callLaterError", callLaterErrorHandler);
 		TestOutput.logResult("testComplete");
 		dispatchEvent(new Event("testComplete"));
 	}
@@ -2201,6 +2222,7 @@ public class UnitTester extends EventDispatcher
 		}
 
 	}
+    */
 
 	protected function addMXMLChildren(comps:Array):void
 	{
@@ -2242,8 +2264,10 @@ public class UnitTester extends EventDispatcher
 			}
 			comp[name] = value;
 		}
+        /* TODO (aharui) later?
 		if (comp is IMXMLObject)
 			comp.initialized(document, id);
+        */
 		return comp;
 	}
 	
@@ -2330,10 +2354,12 @@ public class UnitTester extends EventDispatcher
 			if (id)
 			{
 				document[id] = comp;
-				mx.binding.BindingManager.executeBindings(document, id, comp); 
+                // TODO (aharui) later
+				// mx.binding.BindingManager.executeBindings(document, id, comp); 
 			}
-			if (comp is IMXMLObject)
-				comp.initialized(document, id);
+            // TODO (aharui) later
+			// if (comp is IMXMLObject)
+				// comp.initialized(document, id);
 			comps.push(comp);
 		}
 		return comps;
@@ -2407,6 +2433,7 @@ public class UnitTester extends EventDispatcher
 		}
 	}
 
+    /*
 	mx_internal function setupBindings(bindingData:Array):void
 	{
 		var fieldWatcher:Object;

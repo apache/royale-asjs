@@ -510,7 +510,7 @@ public class DispatchKeyEvent extends TestStep
                     thisRoot = context.stringToObject(window).root;
                 }
                 else
-                    thisRoot = root;
+                    thisRoot = root as DisplayObject;
                 try
                 {
                     thisRoot.stage.dispatchEvent(new FocusEvent(FocusEvent.KEY_FOCUS_CHANGE, true, true, InteractiveObject(actualTarget), shiftKey, Keyboard.TAB));

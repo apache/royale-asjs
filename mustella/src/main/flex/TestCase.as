@@ -199,7 +199,7 @@ public class TestCase extends EventDispatcher
 		_testResult.context = context;
 		this.timer = timer;
 		this.timer.addEventListener("timer", timerHandler);
-		this.root = root;
+		this.root = root as DisplayObject;
 		this.context = context;
 
 		if (UnitTester.hasRTE) 
@@ -217,8 +217,10 @@ public class TestCase extends EventDispatcher
 			{
 				for (i = 0; i < setup.length; i++)
 				{
+                    /* TODO (aharui) later
 					if (setup[i] is ResetComponent)
 						needWaitEvent = true;
+                    */
 					if (needWaitEvent)
 					{
 						if (setup[i].waitEvent)
@@ -235,14 +237,16 @@ public class TestCase extends EventDispatcher
 			needWaitEvent = false;
 			for (i = 0; i < body.length; i++)
 			{
-				if (body[i] is SetProperty || body[i] is SetStyle)
+				if (body[i] is SetProperty/* || body[i] is SetStyle*/)
 					needWaitEvent = true;
 				if (!(body[i] is Assert))
 					allAsserts = false;
+                /* TODO (aharui) later
 				if (allAsserts && body[i] is AssertEvent)
 				{
 					TestOutput.logResult("WARNING: Test " + getQualifiedClassName(context) + "." + testID + " no non-Assert steps in body before AssertEvent\n");
 				}
+                */
 				if (needWaitEvent)
 				{
 					if (body[i].waitEvent)
@@ -410,6 +414,7 @@ public class TestCase extends EventDispatcher
 					if (nextStep is Assert)
 					{
 						Assert(nextStep).preview(root, context, this, testResult);
+                        /* TODO (aharui) later
 						// do a check to be sure folks are using AssertEventPropertyValue correctly
 						if (nextStep is AssertEventPropertyValue)
 						{
@@ -422,6 +427,7 @@ public class TestCase extends EventDispatcher
 							if (step is SetProperty)
 								SetProperty(step).expectError = true;
 						}
+                        */
 					}
 					else
 						break;

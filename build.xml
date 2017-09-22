@@ -43,6 +43,11 @@
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
     
+    <condition property="kit.prefix" value="apache-flex-jsonly-${release.version}">
+        <not>
+            <isset property="env.AIR_HOME" />
+        </not>
+    </condition>
     <property name="kit.prefix" value="apache-flex-flexjs-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
@@ -1237,7 +1242,7 @@
     </target>
 
     <target name="basictests" depends="load-task" description="run basic tests using mustella"  if="env.AIR_HOME">
-
+        <property name="FALCONJX_HOME" value="${basedir}/js" />
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
                closure-lib="${env.GOOG_HOME}"
@@ -1292,7 +1297,7 @@
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
-                <pathelement location="${FLEXJS_HOME}/mustella/target"/>
+                <pathelement location="${FLEXJS_HOME}/mustella/target/classes"/>
             </classpath>
         </java>
     </target>

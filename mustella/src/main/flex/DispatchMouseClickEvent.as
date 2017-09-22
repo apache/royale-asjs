@@ -108,6 +108,7 @@ public class DispatchMouseClickEvent extends TestStep
 		{
 			stagePt = actualTarget.localToGlobal(new Point(0, 0));
 		}
+        /* TODO (aharui) later
         try {
             root[mouseX] = stagePt.x;
             root[mouseY] = stagePt.y;
@@ -118,7 +119,8 @@ public class DispatchMouseClickEvent extends TestStep
                 root["topLevelSystemManager"][mouseY] = stagePt.y;
             }            
         } catch (e:Error) {} // some scenarios don't support this
-
+        */
+        
 		if (actualTarget is DisplayObjectContainer)
 		{
 			var targets:Array = actualTarget.stage.getObjectsUnderPoint(stagePt);
