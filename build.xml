@@ -709,11 +709,17 @@
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}">
                 <include name="**"/>
+                <exclude name="local.properties"/>
+                <exclude name="nightly.properties"/>
+                <exclude name="releasecandidate.xml"/>
+                <exclude name="ApproveFlexJS.xml"/>
                 <exclude name=".DS_Store"/>
                 <exclude name="**/.DS_Store"/>
-                <exclude name=".git"/>
-                <exclude name=".mvn"/>
+                <exclude name=".git/**"/>
+                <exclude name=".mvn/**"/>
                 <exclude name="in/**"/>
+                <exclude name="out/**"/>
+                <exclude name="**/out/**"/>
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>
