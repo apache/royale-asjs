@@ -64,7 +64,7 @@ public class DispatchMouseClickEvent extends TestStep {
 			x = stageX;
 			y = stageY;
 		}
-		
+		TestOutput.logResult("DispatchMouseClickEvent: x = " + x + ", y = " + y);
 		// find top-most element
 		StringBuilder script = new StringBuilder();
 		script.append("var all = document.all;");
@@ -78,6 +78,10 @@ public class DispatchMouseClickEvent extends TestStep {
 		if (TestStep.showScripts)
 			System.out.println(script);
 		WebElement mouseTarget = (WebElement)((JavascriptExecutor)webDriver).executeScript(script.toString());
+        if (mouseTarget == null)
+            TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = null");
+        else
+            TestOutput.logResult("DispatchMouseClickEvent: mouseTarget = " + mouseTarget.getTagName() + " " + mouseTarget.getText());
         try
         {
 			mouseTarget.click();

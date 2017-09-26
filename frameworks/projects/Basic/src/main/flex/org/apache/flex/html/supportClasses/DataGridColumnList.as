@@ -58,5 +58,7 @@ package org.apache.flex.html.supportClasses
 			super();
 			typeNames = "DataGridColumnList";
 		}
+		
+		public var columnInfo: DataGridColumn;
 	}
 }

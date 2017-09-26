@@ -21,9 +21,11 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/flexjs/basic"
 				xmlns:gen="simple.*"
 				className="MainView">
+		
 	<fx:Style>
 		@namespace gen "simple.*";
 		@namespace js "library://ns.apache.org/flexjs/basic";
+		
 		
 		.MainView {
 			backgroundColor: #FFFFFF;
@@ -44,6 +46,26 @@ limitations under the License.
 		    backgroundColor: #DDDDDD;
 		    opacity: 0.80;
 		}
+		
+		.DragDropList
+		{
+			IBeadView: ClassReference("org.apache.flex.html.beads.DragDropListView");
+			IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+			border: solid 1px black;
+		}
+		
+		/*
+		 * These style selectors allow the DataGrid's ButtonBar header to be re-organized
+		 * and change the order of the columns.
+		 */
+		 
+		js|DataGridButtonBar {
+			IBeadView: ClassReference("org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns");
+		}
+		
+		js|DataGrid {
+			IBeadView: ClassReference("org.apache.flex.html.beads.DataGridColumnReorderView");
+		}
 	</fx:Style>
 	
 	<js:Label className="TitleLabel" text="Drag and Drop Example" x="20" y="20" />
@@ -58,7 +80,6 @@ limitations under the License.
 	-->
 	<js:DataGrid id="dataGrid" x="20" y="50" width="400" height="300" rowHeight="40">
 		<js:beads>
-			<js:DataGridPercentageView />
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="productList"
@@ -67,9 +88,9 @@ limitations under the License.
 			<js:SingleSelectionDragImageBead />
 		</js:beads>
 		<js:columns>
-			<js:DataGridColumn label="Image" dataField="image" columnWidth="15" itemRenderer="products.ProductItemRenderer" />
-			<js:DataGridColumn label="Title" dataField="title" columnWidth="60" />
-			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
+			<js:DataGridColumn label="Image" dataField="image" columnWidth="50" itemRenderer="products.ProductItemRenderer" />
+			<js:DataGridColumn label="Title" dataField="title" columnWidth="250" />
+			<js:DataGridColumn label="Sales" dataField="sales" columnWidth="100" />
 		</js:columns>
 	</js:DataGrid>
 	
@@ -79,14 +100,19 @@ limitations under the License.
 	Use SingleSelectionDropTargetBead with DataGrid or List to indicate that the
 	component can be the recipient of a drag operation. The dropped item will be incorporated
 	into the data model of the list or grid.
+	
+	Use SingleSelectionDropIndicatorBead with the component that is a drop target to 
+	draw an indication of where the drop will be accepted. You can create your own drop
+	indicator by subclassing this bead.
 	-->
-	<js:List x="500" y="50" width="400" height="300" rowHeight="40">
+	<js:List x="500" y="50" width="400" height="300" rowHeight="40"  className="DragDropList">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="stateNames"
 				destinationPropertyName="dataProvider" />
 			<js:SingleSelectionDropTargetBead />
+			<js:SingleSelectionDropIndicatorBead />
 		</js:beads>
 	</js:List>
 	

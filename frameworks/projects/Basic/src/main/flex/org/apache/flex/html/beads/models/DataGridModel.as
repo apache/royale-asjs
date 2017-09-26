@@ -18,13 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads.models
 {
+	import org.apache.flex.core.IBeadModel;
 	import org.apache.flex.core.IDataGridModel;
 	import org.apache.flex.events.Event;
-	
+
 	/**
-	 *  The DataGridModel class bead extends org.apache.flex.html.beads.models.ArrayListSelectionModel 
+	 *  The DataGridModel class bead extends org.apache.flex.html.beads.models.ArrayListSelectionModel
 	 *  to facilitate using an ArrayList as the dataProvider for the DataGrid.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -34,7 +35,7 @@ package org.apache.flex.html.beads.models
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -44,13 +45,13 @@ package org.apache.flex.html.beads.models
 		{
 			super();
 		}
-		
+
 		private var _columns:Array;
-		
+
 		/**
-		 *  The array of org.apache.flex.html.supportClasses.DataGridColumns used to 
+		 *  The array of org.apache.flex.html.supportClasses.DataGridColumns used to
 		 *  define each column of the org.apache.flex.html.DataGrid.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -66,6 +67,35 @@ package org.apache.flex.html.beads.models
 				_columns = value;
 				dispatchEvent( new Event("columnsChanged"));
 			}
+		}
+
+		private var _headerModel:IBeadModel;
+
+		/**
+		 * The model to use for the DataGrid's header.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
+		public function get headerModel():IBeadModel
+		{
+			return _headerModel;
+		}
+		public function set headerModel(value:IBeadModel):void
+		{
+			if (_headerModel != value) {
+				_headerModel = value;
+				dispatchEvent(new Event("headerModelChanged"));
+
+				_headerModel.addEventListener("dataProviderChanged", handleHeaderModelChange);
+			}
+		}
+
+		private function handleHeaderModelChange(event:Event):void
+		{
+			dispatchEvent(new Event("headerModelChanged"));
 		}
 	}
 }

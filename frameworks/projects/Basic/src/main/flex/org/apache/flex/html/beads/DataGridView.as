@@ -37,11 +37,11 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.DataGridColumn;
 	import org.apache.flex.html.supportClasses.DataGridColumnList;
 	import org.apache.flex.html.supportClasses.Viewport;
-	
+
 	COMPILE::SWF {
 		import org.apache.flex.core.SimpleCSSStylesWithFlex;
 	}
-		
+
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.flex.html.DataGrid.
 		 *  This class constructs the items that make the DataGrid: Lists for each column and a
@@ -67,13 +67,13 @@ package org.apache.flex.html.beads
 			{
 				super();
 			}
-			
+
 			private var _strand:IStrand;
 			private var _header:DataGridButtonBar;
 			private var _listArea:Container;
-			
+
 			private var _lists:Array;
-			
+
 			/**
 			 * An array of List objects the comprise the columns of the DataGrid.
 			 */
@@ -81,7 +81,7 @@ package org.apache.flex.html.beads
 			{
 				return _lists;
 			}
-			
+
 			/**
 			 * The area used to hold the columns
 			 *
@@ -90,7 +90,7 @@ package org.apache.flex.html.beads
 			{
 				return _listArea;
 			}
-			
+
 			/**
 			 * Returns the component used as the header for the DataGrid.
 			 */
@@ -98,7 +98,7 @@ package org.apache.flex.html.beads
 			{
 				return _header;
 			}
-			
+
 			/**
 			 *  @copy org.apache.flex.core.IBead#strand
 			 *
@@ -111,21 +111,43 @@ package org.apache.flex.html.beads
 			{
 				super.strand = value;
 				_strand = value;
-				
-				var host:DataGrid = value as DataGrid;
-				
+
+				IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+			}
+
+			public function refreshContent():void
+			{
+				finishSetup(null);
+			}
+
+			/**
+			 * @private
+			 */
+			protected function finishSetup(event:Event):void
+			{
+				var host:DataGrid = _strand as DataGrid;
+
+				// see if there is a presentation model already in place. if not, add one.
+				var presentationModel:IDataGridPresentationModel = host.presentationModel;
+				var sharedModel:IDataGridModel = host.model as IDataGridModel;
+				IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
+				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
+
 				_header = new DataGridButtonBar();
 				_header.height = 30;
 				_header.percentWidth = 100;
-				
+				_header.dataProvider = sharedModel.columns;
+				_header.labelField = "label";
+				sharedModel.headerModel = _header.model as IBeadModel;
+
 				_listArea = new Container();
 				_listArea.percentWidth = 100;
 				_listArea.className = "opt_org-apache-flex-html-DataGrid_ListArea";
-				
+
 				COMPILE::SWF {
 					_header.style = new SimpleCSSStylesWithFlex();
 					_header.style.flexGrow = 0;
-					
+
 					_listArea.style = new SimpleCSSStylesWithFlex();
 					_listArea.style.flexGrow = 1;
 				}
@@ -134,41 +156,23 @@ package org.apache.flex.html.beads
 					_header.element.style["min-height"] = "30px";
 					_listArea.element.style["flex-grow"] = "1";
 				}
-				
-				IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
-			}
-			
-			/**
-			 * @private
-			 */
-			private function finishSetup(event:Event):void
-			{
-				var host:DataGrid = _strand as DataGrid;
-				
-				if (_lists == null || _lists.length == 0) {
-					createLists();
-				}
-				
-				// see if there is a presentation model already in place. if not, add one.
-				var presentationModel:IDataGridPresentationModel = host.presentationModel;
-				var sharedModel:IDataGridModel = host.model as IDataGridModel;
-				IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
-				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
-				
-				var columnLabels:Array = new Array();
+
+				createLists();
+
+				//var columnLabels:Array = new Array();
 				var buttonWidths:Array = new Array();
-				
+
 				var marginBorderOffset:int = 0;
 				COMPILE::SWF {
 					marginBorderOffset = 1;
 				}
-					
+
 				for(var i:int=0; i < sharedModel.columns.length; i++) {
 					var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					columnLabels.push(dgc.label);
+					//columnLabels.push(dgc.label);
 					var colWidth:Number = dgc.columnWidth - marginBorderOffset;
 					buttonWidths.push(colWidth);
-					
+
 					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 					if (!isNaN(colWidth)) {
 						list.width = Number(colWidth - marginBorderOffset);
@@ -182,49 +186,48 @@ package org.apache.flex.html.beads
 							}
 					}
 				}
-					
+
 				var bblayout:ButtonBarLayout = new ButtonBarLayout();
 				_header.buttonWidths = buttonWidths
 				_header.widthType = ButtonBarModel.PIXEL_WIDTHS;
-				_header.dataProvider = columnLabels;
 				_header.addBead(bblayout);
 				_header.addBead(new Viewport());
 				host.addElement(_header);
-				
+
 				host.addElement(_listArea);
-				
+
 				handleDataProviderChanged(event);
-				
+
 				host.addEventListener("widthChanged", handleSizeChanges);
 				host.addEventListener("heightChanged", handleSizeChanges);
 			}
-			
+
 			/**
 			 * @private
 			 */
 			private function handleSizeChanges(event:Event):void
-			{	
+			{
 				_header.dispatchEvent(new Event("layoutChanged"));
 				_listArea.dispatchEvent(new Event("layoutChanged"));
 			}
-			
+
 			/**
 			 * @private
 			 */
 			private function handleDataProviderChanged(event:Event):void
 			{
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-				
+
 				for (var i:int=0; i < _lists.length; i++)
 				{
 					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 					var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
 					listModel.dataProvider = sharedModel.dataProvider;
 				}
-				
+
 				host.dispatchEvent(new Event("layoutNeeded"));
 			}
-			
+
 			/**
 			 * @private
 			 */
@@ -232,14 +235,14 @@ package org.apache.flex.html.beads
 			{
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 				var newIndex:int = sharedModel.selectedIndex;
-				
+
 				for (var i:int=0; i < _lists.length; i++)
 				{
 					var list:DataGridColumnList = _lists[i] as DataGridColumnList;
 					list.selectedIndex = newIndex;
 				}
 			}
-			
+
 			/**
 			 * @private
 			 */
@@ -248,40 +251,40 @@ package org.apache.flex.html.beads
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 				var list:DataGridColumnList = event.target as DataGridColumnList;
 				sharedModel.selectedIndex = list.selectedIndex;
-				
+
 				for(var i:int=0; i < _lists.length; i++) {
 					if (list != _lists[i]) {
 						var otherList:DataGridColumnList = _lists[i] as DataGridColumnList;
 						otherList.selectedIndex = list.selectedIndex;
 					}
 				}
-				
+
 				host.dispatchEvent(new Event('change'));
 			}
-			
+
 			/**
 			 * @private
 			 */
 			private function createLists():void
 			{
 				var host:DataGrid = _strand as DataGrid;
-				
+
 				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var presentationModel:IDataGridPresentationModel = host.presentationModel;
-				
+
 				_lists = new Array();
-				
+
 				for (var i:int=0; i < sharedModel.columns.length; i++) {
 					var dataGridColumn:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
-					
+
 					var list:DataGridColumnList = new DataGridColumnList();
 					list.id = "dataGridColumn"+String(i);
-					list.addBead(sharedModel);
+					list.dataProvider = sharedModel.dataProvider;
 					list.itemRenderer = dataGridColumn.itemRenderer;
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel);
-					
+
 					if (i == 0) {
 						list.className = "first";
 					} else if (i == sharedModel.columns.length-1) {
@@ -289,11 +292,11 @@ package org.apache.flex.html.beads
 					} else {
 						list.className = "middle";
 					}
-					
+
 					_listArea.addElement(list);
 					_lists.push(list);
 				}
-				
+
 				host.dispatchEvent(new Event("layoutNeeded"));
 			}
 		}

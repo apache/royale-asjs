@@ -30,17 +30,17 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.EventDispatcher;
 	import org.apache.flex.events.ItemRendererEvent;
     import org.apache.flex.events.IEventDispatcher;
-	
+
 	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
 
     /**
-     *  The TextItemRendererFactoryForArrayData class is the 
-     *  IDataProviderItemRendererMapper for creating 
+     *  The TextItemRendererFactoryForArrayData class is the
+     *  IDataProviderItemRendererMapper for creating
      *  ITextItemRenderers and assigning them data from an array.
      *  Other IDataProviderItemRendererMapper implementations
      *  assign specific array or vector types to item
      *  renderers expecting those types.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -50,7 +50,7 @@ package org.apache.flex.html.beads
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -60,14 +60,14 @@ package org.apache.flex.html.beads
 		{
 			super(target);
 		}
-		
+
 		private var selectionModel:ISelectionModel;
-		
+
 		private var _strand:IStrand;
-		
+
         /**
          *  @copy org.apache.flex.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -78,13 +78,13 @@ package org.apache.flex.html.beads
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
 		}
-		
+
 		private function finishSetup(event:Event):void
 		{
 			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-            
-			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will
 			// already have been loaded by DataContainerBase.addedToParent function.
             if (!itemRendererFactory)
             {
@@ -95,15 +95,15 @@ package org.apache.flex.html.beads
     	            _strand.addBead(_itemRendererFactory);
 				}
             }
-            
+
 			dataProviderChangeHandler(null);
 		}
-		
+
         private var _itemRendererFactory:IItemRendererClassFactory;
-        
+
         /**
          *  An IItemRendererClassFactory that should generate ITextItemRenderers
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads
         {
             return _itemRendererFactory
         }
-        
+
         /**
          *  @private
          */
@@ -121,44 +121,44 @@ package org.apache.flex.html.beads
         {
             _itemRendererFactory = value;
         }
-        
+
         /**
          *  The IItemRendererParent that should parent the ITextItemRenderers
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion FlexJS 0.0
-         */		
+         */
 		private function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
-			
+
 			var list:IList = _strand as IList;
 			var dataGroup:IItemRendererParent = list.dataGroup;
-			
+
 			dataGroup.removeAllItemRenderers();
-			
-			var n:int = dp.length; 
+
+			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
                 tf.index = i;
                 dataGroup.addItemRenderer(tf);
-                if (selectionModel.labelField)
-                    tf.text = dp[i][selectionModel.labelField];
-                else
-    				tf.text = dp[i];
-				
+                if (selectionModel.labelField) {
+                	tf.labelField = selectionModel.labelField;
+                }
+                tf.data = dp[i];
+
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = tf;
 				dispatchEvent(newEvent);
 			}
-			
+
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
 		}
-		
+
 	}
 }

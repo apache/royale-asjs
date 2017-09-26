@@ -26,7 +26,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
+	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
+	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.Event;
@@ -34,22 +36,22 @@ package org.apache.flex.html.beads
 	import org.apache.flex.events.IEventDispatcher;
 	import org.apache.flex.geom.Point;
 	import org.apache.flex.geom.Rectangle;
+	import org.apache.flex.html.Button;
 	import org.apache.flex.html.Group;
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.controllers.DragMouseController;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
-	
-    
+
+
 	/**
 	 *  The SingleSelectionDragImageBead produces a UIBase component that represents
 	 *  the item being dragged. It does this by taking the data associcated with the
 	 *  index of the item selected and running the toString() function on it, placing
 	 *  it inside of a Label that is inside of Group (which is given the className of
 	 *  "DragImage").
-	 * 
+	 *
 	 *  The createDragImage() function can be overridden and a different component returned.
-	 * 
+	 *
 	 *  @see org.apache.flex.html.beads.SingleSelectionDragSourceBead.
      *
 	 *  @langversion 3.0
@@ -71,23 +73,23 @@ package org.apache.flex.html.beads
 		{
 			super();
 		}
-		
+
 		private var _strand:IStrand;
-		
+
 		/**
 		 * @private
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+
 			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
 		}
-		
+
 		/**
 		 * Creates an example/temporary component to be dragged and returns it.
-		 * 
-		 * @param ir DataItemRenderer The itemRenderer to be used as a template.
+		 *
+		 * @param ir IItemRenderer The itemRenderer to be used as a template.
 		 * @return UIBase The "dragImage" to use.
 		 *
 		 *  @langversion 3.0
@@ -95,29 +97,33 @@ package org.apache.flex.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.8
 		 */
-		protected function createDragImage(ir:DataItemRenderer):UIBase
+		protected function createDragImage(ir:IItemRenderer):UIBase
 		{
 			var dragImage:UIBase = new Group();
 			dragImage.className = "DragImage";
-			dragImage.width = (ir as UIBase).width;
-			dragImage.height = (ir as UIBase).height;
+			dragImage.width = (ir as IUIBase).width;
+			dragImage.height = (ir as IUIBase).height;
+
 			var label:Label = new Label();
-			if (ir.dataField != null) {
-				label.text = ir.data[ir.dataField].toString();
-			} else {
-				label.text = ir.data.toString();
+			if (ir is ISelectableItemRenderer) {
+				var selIR:ISelectableItemRenderer = ir as ISelectableItemRenderer;
+				if (selIR.labelField != null && selIR.data != null) {
+					label.text = selIR.data[selIR.labelField].toString();
+				} else {
+					label.text = selIR.data.toString();
+				}
 			}
-			
+
 			COMPILE::JS {
 				dragImage.element.style.position = 'absolute';
 				dragImage.element.style.cursor = 'pointer';
 			}
-				
+
 			dragImage.addElement(label);
-			
+
 			return dragImage;
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -126,10 +132,10 @@ package org.apache.flex.html.beads
 			trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
 
 			var startHere:Object = event.target;
-			
-			if (startHere is DataItemRenderer) {
-				var ir:DataItemRenderer = startHere as DataItemRenderer;
-				DragEvent.dragSource = ir.data;
+
+			if (startHere is IItemRenderer) {
+				var ir:IItemRenderer = startHere as IItemRenderer;
+				//DragEvent.dragSource = ir.data;
 				DragMouseController.dragImage = createDragImage(ir);
 			}
 		}

@@ -45,9 +45,9 @@ package org.apache.flex.html.beads
 	public class DragDropListView extends ListView
 	{
 		private var _strand:IStrand;
-		
+
 		private var _layer:UIBase;
-		
+
 		/**
 		 * @private
 		 */
@@ -55,32 +55,33 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-			
+
 			var layerBead:ListDrawingLayerBead = new ListDrawingLayerBead();
 			_strand.addBead(layerBead);
 			_layer = layerBead.layer;
-			
-			var chost:IContainer = host as IContainer;
-			chost.strandChildren.addElement(_layer);
-			
+
+			//var chost:IContainer = host as IContainer;
+			//chost.strandChildren.addElement(_layer);
+			UIBase(_strand).addElement(_layer);
+
 			UIBase(_strand).element.style['overflow'] = 'auto';
-			
+
 		}
-		
+
 		/**
 		 * @private
 		 */
 		override public function afterLayout():void
 		{
 			super.afterLayout();
-			
+
 			_layer.x = 0;
 			_layer.y = 0;
 			_layer.width = UIBase(_strand).width;
 			_layer.height = UIBase(_strand).height;
 		}
 	}
-	
+
 	COMPILE::SWF
 	public class DragDropListView extends ListView
 	{
@@ -98,7 +99,7 @@ package org.apache.flex.html.beads
 		}
 
 		private var _strand:IStrand;
-		
+
 		private var _layer:UIBase;
 
 		/**
@@ -108,23 +109,23 @@ package org.apache.flex.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-			
+
 			var layerBead:ListDrawingLayerBead = new ListDrawingLayerBead();
 			_strand.addBead(layerBead);
 			_layer = layerBead.layer;
-			
+
 			var chost:IContainer = host as IContainer;
 			chost.strandChildren.addElement(_layer);
-			
+
 		}
-		
+
 		/**
 		 * @private
 		 */
 		override public function afterLayout():void
 		{
 			super.afterLayout();
-			
+
 			_layer.x = 0;
 			_layer.y = 0;
 			_layer.width = UIBase(_strand).width;

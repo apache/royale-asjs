@@ -25,6 +25,7 @@
     <component id="Application" class="org.apache.flex.express.Application"/>
     <component id="Container" class="org.apache.flex.express.Container"/>
     <component id="HContainer" class="org.apache.flex.express.HContainer"/>
+    <component id="DataGrid" class="org.apache.flex.express.DataGrid" />
     <component id="HView" class="org.apache.flex.express.HView"/>
     <component id="ImageAndTextButton" class="org.apache.flex.express.ImageAndTextButton"/>
     <component id="ImageButton" class="org.apache.flex.express.ImageButton" />
@@ -38,6 +39,9 @@
     <component id="VView" class="org.apache.flex.express.VView"/>
     
     <!--  Basic Components -->
+    
+    <component id="SimpleCSSValuesImpl" class="org.apache.flex.core.SimpleCSSValuesImpl" lookupOnly="true"/>
+    <component id="ConstantBinding" class="org.apache.flex.binding.ConstantBinding" lookupOnly="true" />
     <component id="Button" class="org.apache.flex.html.Button"  lookupOnly="true" />
     <component id="ButtonBar" class="org.apache.flex.html.ButtonBar"  lookupOnly="true" />
     <component id="CloseButton" class="org.apache.flex.html.CloseButton"  lookupOnly="true" />
@@ -86,7 +90,7 @@
     <component id="ImageAndTextButtonView" class="org.apache.flex.html.beads.ImageAndTextButtonView"  lookupOnly="true" />
     <component id="ScrollingViewport" class="org.apache.flex.html.supportClasses.ScrollingViewport"  lookupOnly="true" />
 
-    <component id="DataGrid" class="org.apache.flex.html.DataGrid" lookupOnly="true" />
+    <component id="DataGridButtonBar" class="org.apache.flex.html.DataGridButtonBar" lookupOnly="true" />
     <component id="DataGridColumn" class="org.apache.flex.html.supportClasses.DataGridColumn" lookupOnly="true" />
 
     <component id="DateChooser" class="org.apache.flex.html.DateChooser" lookupOnly="true" />

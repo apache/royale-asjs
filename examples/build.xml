@@ -75,6 +75,7 @@
     
     <target name="compile" description="Compile Examples" >
         <ant dir="${basedir}/express/DataBindingExample"/>
+        <ant dir="${basedir}/express/DataGridExample"/>
         <ant dir="${basedir}/flexjs/ASDoc"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample"/>
         <ant dir="${basedir}/flexjs/CreateJSExample"/>
@@ -121,6 +122,7 @@
     
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
+        <ant dir="${basedir}/express/DataGridExample" target="clean"/>
         <ant dir="${basedir}/flexjs/ASDoc" target="clean"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="clean"/>
         <ant dir="${basedir}/flexjs/CreateJSExample" target="clean"/>
@@ -157,6 +159,7 @@
 
     <target name="examine" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
+        <ant dir="${basedir}/express/DataGridExample" target="examine"/>
         <ant dir="${basedir}/flexjs/ASDoc" target="examine"/>
         <ant dir="${basedir}/flexjs/CordovaCameraExample" target="examine"/>
         <ant dir="${basedir}/flexjs/CreateJSExample" target="examine"/>
