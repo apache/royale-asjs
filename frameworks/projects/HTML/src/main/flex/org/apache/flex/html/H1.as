@@ -22,7 +22,8 @@ package org.apache.flex.html
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -94,15 +95,10 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('h1') as WrappedHTMLElement;
+			addElementToWrapper(this,'h1');
             
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode); 
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            //className = typeNames = 'H1';
 
             return element;
         }

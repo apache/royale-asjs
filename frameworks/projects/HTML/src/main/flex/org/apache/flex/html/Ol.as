@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	import org.apache.flex.core.UIBase;
-
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
@@ -27,7 +25,7 @@ package org.apache.flex.html
     }
 
 	/**
-	 *  The H3 class represents an HTML <h3> element
+	 *  The Ul class represents an HTML <ul> element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +34,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class H3 extends UIBase
+	public class Ol extends Group
 	{
 		/**
 		 *  constructor.
@@ -46,61 +44,18 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function H3()
+		public function Ol()
 		{
 			super();
 		}
 		
-        private var _text:String = "";
-
-        /**
-         *  The text of the heading
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion FlexJS 0.0
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
-            {
-                return _text;
-            }
-            COMPILE::JS
-            {
-                return textNode.nodeValue;
-            }
-		}
-
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-                _text = value;
-            }
-            COMPILE::JS
-            {
-                textNode.nodeValue = value;
-            }
-		}
-		
-        COMPILE::JS
-        protected var textNode:Text;
-		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h3');
-            
-            textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
-            return element;
+			return addElementToWrapper(this,'ul');
         }
     }
 }

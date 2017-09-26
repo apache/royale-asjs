@@ -22,7 +22,8 @@ package org.apache.flex.html
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -94,15 +95,10 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var option:HTMLOptionElement = document.createElement('option') as HTMLOptionElement;
+			addElementToWrapper(this,'option');
             
             textNode = document.createTextNode('') as Text;
-            option.appendChild(textNode);
-
-			element = option as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
+            element.appendChild(textNode);
 
             return element;
         }

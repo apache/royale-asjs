@@ -27,7 +27,7 @@ package org.apache.flex.html
     }
 
 	/**
-	 *  The H3 class represents an HTML <h3> element
+	 *  The Input class represents an HTML <input> element
      *  
 	 *  
      *  @toplevel
@@ -36,7 +36,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion FlexJS 0.0
 	 */
-	public class H3 extends UIBase
+	public class Input extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -46,7 +46,7 @@ package org.apache.flex.html
 		 *  @playerversion AIR 2.6
 		 *  @productversion FlexJS 0.0
 		 */
-		public function H3()
+		public function Input()
 		{
 			super();
 		}
@@ -54,7 +54,7 @@ package org.apache.flex.html
         private var _text:String = "";
 
         /**
-         *  The text of the heading
+         *  The text of the element
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -85,8 +85,23 @@ package org.apache.flex.html
             }
 		}
 		
+        private var _type:String;
+        public function get type():String
+        {
+            return _type;
+        }
+        public function set type(value:String):void
+        {
+            _type = value;
+            COMPILE::JS
+            {
+                if(element)
+                    element.setAttribute('type', value);
+            }
+        }
+        
         COMPILE::JS
-        protected var textNode:Text;
+        private var textNode:Text;
 		
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -95,11 +110,13 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'h3');
+			addElementToWrapper(this,'input');
+            if(_type)
+                element.setAttribute('type', _type);
             
             textNode = document.createTextNode('') as Text;
-            element.appendChild(textNode); 
-
+            element.appendChild(textNode);
+            
             return element;
         }
     }

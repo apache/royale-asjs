@@ -20,7 +20,8 @@ package org.apache.flex.html
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -111,12 +112,8 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('a') as WrappedHTMLElement;
+			addElementToWrapper(this,'a');
             element.setAttribute('href', href);
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
             return element;
         }
     }
