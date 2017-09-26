@@ -26,6 +26,7 @@ package org.apache.flex.flat
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
     
     /**
@@ -103,23 +104,20 @@ package org.apache.flex.flat
             
             textNode = document.createTextNode('radio button') as Text;
             
-            labelFor = document.createElement('label') as HTMLLabelElement;
+            //element
+            labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
             labelFor.appendChild(input);
             labelFor.appendChild(radio);
             labelFor.appendChild(textNode);
             labelFor.style.position = 'relative';
             
-            element = labelFor as WrappedHTMLElement;
             element.className = 'RadioButton';
             typeNames = 'RadioButton';
             
-            positioner = element;
             positioner.style.position = 'relative';
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
-            
             return element;
         }
         

@@ -27,6 +27,7 @@ package org.apache.flex.flat
     COMPILE::JS
     {
         import goog.events;
+        import org.apache.flex.html.addElementToWrapper;
         import org.apache.flex.html.List;
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.core.ISelectionModel;
@@ -105,40 +106,32 @@ package org.apache.flex.flat
          */
         override protected function createElement():WrappedHTMLElement
         {
-            var button:HTMLButtonElement;
-            var outer:HTMLDivElement;
-            var caret:HTMLSpanElement;
+            addElementToWrapper(this,'div');
             
-            this.element = document.createElement('div') as WrappedHTMLElement;
-            outer = this.element as HTMLDivElement;
-            
-            this.button = button = document.createElement('button') as HTMLButtonElement;
+            button = document.createElement('button') as HTMLButtonElement;
             button.className = 'dropdown-toggle-open-btn';
             if (this.className)
                 button.className += ' ' + this.className;
             goog.events.listen(button, 'click', buttonClicked);
-            outer.appendChild(button);
+            element.appendChild(button);
             
-            this.label = document.createElement('span') as HTMLSpanElement;
-            this.label.className = 'dropdown-label';
+            label = document.createElement('span') as HTMLSpanElement;
+            label.className = 'dropdown-label';
             button.appendChild(this.label);
-            this.caret = caret = document.createElement('span') as HTMLSpanElement;
+            caret = document.createElement('span') as HTMLSpanElement;
             button.appendChild(caret);
             caret.className = 'dropdown-caret';
             
-            this.positioner = this.element;
-            this.positioner.style.position = 'relative';
+            positioner.style.position = 'relative';
             
             // add a click handler so that a click outside of the combo box can
             // dismiss the pop-up should it be visible.
             goog.events.listen(document, 'click', dismissPopup);
             
             (button as WrappedHTMLElement).flexjs_wrapper = this;
-            this.element.flexjs_wrapper = this;
-            (this.label as WrappedHTMLElement).flexjs_wrapper = this;
+            (label as WrappedHTMLElement).flexjs_wrapper = this;
             (caret as WrappedHTMLElement).flexjs_wrapper = this;
-            
-            return this.element;
+            return element;
         }
         
         
@@ -231,7 +224,7 @@ package org.apache.flex.flat
                 else
                     ir.innerHTML = dp[i];
                 ir.id = i.toString();
-                if (i == this.selectedIndex)
+                if (i == selectedIndex)
                     ir.className = 'dropdown-menu-item-renderer-selected';
                 else
                     ir.className = 'dropdown-menu-item-renderer';
@@ -239,7 +232,7 @@ package org.apache.flex.flat
                 select.appendChild(opt);
             }
             
-            this.element.appendChild(select);
+            element.appendChild(select);
         };
         
         
@@ -258,15 +251,15 @@ package org.apache.flex.flat
             var bl:Number = CSSUtils.toNumber(s);
             s = cv.borderRightWidth;
             var br:Number = CSSUtils.toNumber(s);
-            var caretWidth:Number = this.caret.offsetWidth;
+            var caretWidth:Number = caret.offsetWidth;
             // 10 seems to factor spacing between span and extra FF padding?
             var fluff:Number = pl + pr + bl + br + caretWidth + 1 + 10;
-            var labelWidth:Number = this.width - fluff;
+            var labelWidth:Number = width - fluff;
             var strWidth:String = labelWidth.toString();
             strWidth += 'px';
-            this.label.style.width = strWidth;
+            label.style.width = strWidth;
 			
-			this.positioner.style.overflow = 'visible';
+			positioner.style.overflow = 'visible';
         }       
         
         override public function set className(value:String):void
