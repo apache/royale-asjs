@@ -28,10 +28,12 @@
     <component id="H4" class="org.apache.flex.html.H4" />
     <component id="H5" class="org.apache.flex.html.H5" />
     <component id="H6" class="org.apache.flex.html.H6" />
+    <component id="Ol" class="org.apache.flex.html.Ol" />
     <component id="P" class="org.apache.flex.html.P" />
     <component id="Span" class="org.apache.flex.html.Span" />
     <component id="Div" class="org.apache.flex.html.Div" />
     <component id="I" class="org.apache.flex.html.I" />
+    <component id="Input" class="org.apache.flex.html.Input" />
     <component id="Ul" class="org.apache.flex.html.Ul" />
     <component id="Li" class="org.apache.flex.html.Li" />
     <component id="Select" class="org.apache.flex.html.Select"/>

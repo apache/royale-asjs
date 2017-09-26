@@ -1479,16 +1479,13 @@ package org.apache.flex.core
             dispatchEvent(event);
         }
         
-        COMPILE::JS
-        private var _positioner:WrappedHTMLElement;
-        
         /**
          * The HTMLElement used to position the component.
          */
         COMPILE::JS
         public function get positioner():WrappedHTMLElement
         {
-            return _positioner;
+            return element;
         }
         
         /**
@@ -1497,7 +1494,7 @@ package org.apache.flex.core
         COMPILE::JS
         public function set positioner(value:WrappedHTMLElement):void
         {
-            _positioner = value;
+            element = value;
         }
         
         /**
