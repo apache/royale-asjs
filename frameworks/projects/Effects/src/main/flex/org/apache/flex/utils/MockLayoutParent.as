@@ -43,6 +43,7 @@ package org.apache.flex.utils
 	{
 		private var _layoutHost:ILayoutHost;
 		private var _source:ILayoutParent;
+		private var _parent:IParent;
 		public function MockLayoutParent(source:ILayoutParent)
 		{
 			_layoutHost = new MockLayoutHost(source.getLayoutHost());
@@ -61,8 +62,11 @@ package org.apache.flex.utils
 
 		public function get parent():IParent
 		{
-			// TODO Auto Generated method stub
-			return null;
+			if (!_parent)
+			{
+				_parent = new MockParent();
+			}
+			return _parent;
 		}
 
 
