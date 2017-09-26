@@ -119,20 +119,14 @@ package org.apache.flex.createjs.core
 		 */
 		override protected function createElement():WrappedHTMLElement
 		{
-			if (element == null) {
+			if (!element) {
 				var container:createjs.Container = new createjs.Container();
 				container.name = 'viewbase';
 				container.x = 0;
 				container.y = 0;
 				element = container as WrappedHTMLElement;
 			}
-			if (positioner == null) {
-				positioner = element;
-			}
-			
-			element.flexjs_wrapper = this;
-			
-			return positioner;
+			return element;
 		}
 		
 		public function childrenAdded():void

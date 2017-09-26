@@ -400,9 +400,6 @@ package org.apache.flex.createjs.core
         protected function createElement():WrappedHTMLElement
         {
             element = new createjs.Container() as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-            
-            positioner = this.element;
             return element;
         }
 		

@@ -65,10 +65,6 @@ package org.apache.flex.createjs.graphics
 			var base:createjs.Shape = new createjs.Shape(null);
             
             element = base as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-			
-			positioner = element;
-			
             return element;
         }
         

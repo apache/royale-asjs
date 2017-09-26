@@ -159,8 +159,7 @@ package org.apache.flex.createjs
             button.addChild(buttonBackground);
             button.addChild(buttonLabel);
             
-            positioner = element = button as WrappedHTMLElement;
-            element.flexjs_wrapper = this;
+            element = button as WrappedHTMLElement;
             return element;
         }
 		

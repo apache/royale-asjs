@@ -202,7 +202,6 @@ package org.apache.flex.createjs
             // and it provides convenient access to the stage.
             
             element = document.createElement('canvas') as WrappedHTMLElement;
-            element.flexjs_wrapper = this;
             canvas = element as HTMLCanvasElement;
             canvas.id = 'flexjsCanvas';
             canvas.width = 700;

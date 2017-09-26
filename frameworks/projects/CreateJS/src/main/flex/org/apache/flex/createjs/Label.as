@@ -143,10 +143,6 @@ package org.apache.flex.createjs
             text.textBaseline = 'alphabetic';
             
             element = text as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-			
-			positioner = element;
-			
             return element;
         }
 		
