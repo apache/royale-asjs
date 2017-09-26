@@ -78,7 +78,9 @@
           <path-element>${frameworks_dir}/projects/Storage/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/TLF/src/main/flex</path-element>
           <path-element>${frameworks_dir}/projects/Text/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/XML/src/main/flex</path-element>
+          <!-- leave out XML.  In the SWF compile it confuses the compiler because
+               airglobal.swc also has an XML definition
+          <path-element>${frameworks_dir}/projects/XML/src/main/flex</path-element> -->
      </source-path>
 
      <!-- Allow the source-path to have path-elements which contain other path-elements -->
@@ -110,7 +112,26 @@
 
     <mxml>
         <children-as-data>true</children-as-data>
+        <imports>
+            <implicit-import>org.apache.flex.events.*</implicit-import>
+            <implicit-import>org.apache.flex.geom.*</implicit-import>
+            <implicit-import>org.apache.flex.core.ClassFactory</implicit-import>
+            <implicit-import>org.apache.flex.core.IFactory</implicit-import>
+        </imports>
     </mxml>
+    <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
+    <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+    <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+    <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
+    <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
+    <binding-event-handler-interface>org.apache.flex.events.IEventDispatcher</binding-event-handler-interface>
+    <states-class>org.apache.flex.states.State</states-class>
+    <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
+    <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
+    <states-event-override-class>org.apache.flex.states.SetEventHandler</states-event-override-class>
+    <component-factory-class>org.apache.flex.core.ClassFactory</component-factory-class>
+    <component-factory-interface>org.apache.flex.core.IFactory</component-factory-interface>
+    <fxg-base-class>flash.display.Sprite</fxg-base-class>
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
