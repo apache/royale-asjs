@@ -46,11 +46,15 @@ package org.apache.flex.html.supportClasses
 			className = 'RadioButtonIcon';
 		}
 
-		COMPILE::JS {
+		COMPILE::JS 
 		public var element:WrappedHTMLElement;
-		public var positioner:WrappedHTMLElement;
+		
+		COMPILE::JS
+		public function get positioner():WrappedHTMLElement
+		{
+			return element;
 		}
-
+		
 		private var _className:String;
 
 		/**
@@ -95,15 +99,12 @@ package org.apache.flex.html.supportClasses
 		COMPILE::JS
  		protected function createElement():WrappedHTMLElement
 		{
+			//This class does not subclass anything, so these properties must be set explicitly
 			var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
 			input.type = 'radio';
 
 			element = input as WrappedHTMLElement;
-
-			positioner = element;
-			//positioner.style.position = 'relative';
-
-			(element as WrappedHTMLElement).flexjs_wrapper = this;
+			element.flexjs_wrapper = this;
 
 			return element;
 		}

@@ -98,10 +98,6 @@ package org.apache.flex.mdl.itemRenderers
             item = new Option();
 
             element = item.element as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
             return element;
         }
 	}

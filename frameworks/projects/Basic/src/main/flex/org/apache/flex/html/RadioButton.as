@@ -251,12 +251,7 @@ package org.apache.flex.html
             labelFor.appendChild(textNode);
 
             element = labelFor as WrappedHTMLElement;
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-
-            (element as WrappedHTMLElement).flexjs_wrapper = this;
-            (textNode as WrappedHTMLElement).flexjs_wrapper = this;
+           (textNode as WrappedHTMLElement).flexjs_wrapper = this;
 			(icon.element as WrappedHTMLElement).flexjs_wrapper = this;
 
             className = 'RadioButton';

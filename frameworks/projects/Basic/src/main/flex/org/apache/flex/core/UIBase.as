@@ -34,6 +34,7 @@ package org.apache.flex.core
 
     COMPILE::JS
     {
+        import org.apache.flex.html.addElementToWrapper;
         import org.apache.flex.utils.CSSUtils;
     }
 	
@@ -1506,17 +1507,10 @@ package org.apache.flex.core
         COMPILE::JS
         protected function createElement():WrappedHTMLElement
         {
-            if (element == null)
-                element = document.createElement('div') as WrappedHTMLElement;
-            // initially undefined could be set to null
-            if (positioner == null)
-                positioner = element;
+			addElementToWrapper(this,'div');
             positioner.style.display = 'block';
             //positioner.style.position = 'relative';
-            
-            element.flexjs_wrapper = this;
-            
-            return positioner;
+            return element;
         }
         
         

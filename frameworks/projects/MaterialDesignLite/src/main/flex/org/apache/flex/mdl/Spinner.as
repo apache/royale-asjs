@@ -24,6 +24,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
     /**
      *  The Material Design Lite (MDL) spinner component is an enhanced replacement for
@@ -109,13 +110,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-spinner mdl-js-spinner";
-
-            element = document.createElement("div") as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+			return addElementToWrapper(this,'div');
         }
     }
 }

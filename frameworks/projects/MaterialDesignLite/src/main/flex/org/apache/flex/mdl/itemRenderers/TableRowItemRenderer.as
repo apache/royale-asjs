@@ -20,7 +20,8 @@ package org.apache.flex.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
@@ -100,6 +101,20 @@ package org.apache.flex.mdl.itemRenderers
 				}	
 			}
 		}
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+		}
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -111,22 +126,19 @@ package org.apache.flex.mdl.itemRenderers
             if(MXMLDescriptor == null)
 			{
                 positioner = document.createElement('tr') as WrappedHTMLElement;
-                element = document.createElement('td') as WrappedHTMLElement;
+				
+				addElementToWrapper(this,'td');
                 element.classList.add("mdl-data-table__cell--non-numeric");
 
                 positioner.appendChild(element);
 
 				textNode = document.createTextNode('') as Text;
 				element.appendChild(textNode);
-                element.flexjs_wrapper = this;
+                positioner.flexjs_wrapper = this;
                 return positioner;
 			} else {
-                element = document.createElement('tr') as WrappedHTMLElement;
-                
+				addElementToWrapper(this,'tr');
                 positioner = element;
-
-                element.flexjs_wrapper = this;
-
                 return element;
             }
         }

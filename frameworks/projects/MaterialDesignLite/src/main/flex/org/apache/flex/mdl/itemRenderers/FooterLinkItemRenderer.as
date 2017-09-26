@@ -20,7 +20,8 @@ package org.apache.flex.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
@@ -135,7 +136,7 @@ package org.apache.flex.mdl.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('li') as WrappedHTMLElement;
+			addElementToWrapper(this,'li');
             
 			var a:HTMLElement = document.createElement('a') as HTMLElement;
             a.setAttribute('href', href);
@@ -147,10 +148,6 @@ package org.apache.flex.mdl.itemRenderers
 				textNode = document.createTextNode('') as Text;
 				a.appendChild(textNode);
 			}
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
             return element;
         }
 	}

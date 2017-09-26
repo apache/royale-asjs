@@ -58,15 +58,11 @@ package org.apache.flex.svg
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.flex.core.WrappedHTMLElement;
 
-			positioner = element;
-
 			// absolute positioned children need a non-null
 			// position value in the parent.  It might
 			// get set to 'absolute' if the container is
 			// also absolutely positioned
 			//positioner.style.position = 'relative';
-			element.flexjs_wrapper = this;
-
 			graphicGroup = new GraphicGroup();
 			super.addElement(graphicGroup);
 			return element;
@@ -199,14 +195,11 @@ class GraphicGroup extends GroupBase
 	{
 		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.flex.core.WrappedHTMLElement;
 
-		positioner = element;
-
 		// absolute positioned children need a non-null
 		// position value in the parent.  It might
 		// get set to 'absolute' if the container is
 		// also absolutely positioned
 		//positioner.style.position = 'relative';
-		element.flexjs_wrapper = this;
 
 		/*addEventListener('childrenAdded',
 		runLayoutHandler);

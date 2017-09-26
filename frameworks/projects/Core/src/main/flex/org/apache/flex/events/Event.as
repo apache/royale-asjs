@@ -110,12 +110,13 @@ package org.apache.flex.events
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
          * @productversion FlexJS 0.0
+		 * @flexjsignorecoercion org.apache.flex.core.IFlexJSElement
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
-            if (potentialTarget === target)
+            if (potentialTarget == target)
 				return true;
-            if (target is IFlexJSElement && IFlexJSElement(target).flexjs_wrapper === potentialTarget)
+            if (target is IFlexJSElement && (target as IFlexJSElement).flexjs_wrapper == potentialTarget)
 				return true;
             return false;
         }

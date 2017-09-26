@@ -23,6 +23,7 @@ package org.apache.flex.mdl.itemRenderers
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -48,13 +49,7 @@ package org.apache.flex.mdl.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-tabs__panel";
-
-            element = document.createElement('div') as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+			return addElementToWrapper(this,'div');
         }
     }
 }

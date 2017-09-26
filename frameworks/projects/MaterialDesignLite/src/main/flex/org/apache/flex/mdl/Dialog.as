@@ -25,6 +25,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -80,12 +81,7 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-dialog";
 
-            dialog = document.createElement('dialog') as HTMLDialogElement;
-			element = dialog as WrappedHTMLElement;
-
-			positioner = element;
-            element.flexjs_wrapper = this;
-
+            dialog = addElementToWrapper(this,'dialog') as HTMLDialogElement;
             return element;
         }
 

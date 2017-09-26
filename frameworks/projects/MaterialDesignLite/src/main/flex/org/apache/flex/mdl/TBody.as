@@ -23,6 +23,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -56,12 +57,7 @@ package org.apache.flex.mdl
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('tbody') as WrappedHTMLElement;
-
-			positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+			return addElementToWrapper(this,'tbody');
         }
 	}
 }

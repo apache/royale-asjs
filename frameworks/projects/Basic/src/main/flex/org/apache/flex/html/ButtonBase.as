@@ -80,18 +80,13 @@ package org.apache.flex.html
          */
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('button') as WrappedHTMLElement;
+			addElementToWrapper(this,'button');
             element.setAttribute('type', 'button');
-            
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
             /* AJH comment out until we figure out why it is needed
             if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
                 var impl:Object = org.apache.flex.core.ValuesManager.valuesImpl.
                     getValue(this, 'iStatesImpl');
             }*/
-            
             return element;
         }        
 

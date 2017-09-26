@@ -161,13 +161,8 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
-            positioner = element;
-            //positioner.style.position = 'relative';
-
-            element.flexjs_wrapper = this;
+			addElementToWrapper(this,'div');
             typeNames = 'NumericStepper';
-
             return element;
         }
 

@@ -25,6 +25,7 @@ package org.apache.flex.html.supportClasses
 	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
 		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
 	}
 	import org.apache.flex.core.ValuesManager;
@@ -147,13 +148,8 @@ package org.apache.flex.html.supportClasses
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElement('div') as WrappedHTMLElement;
-			positioner = element;
-			//positioner.style.position = 'relative';
-
-			element.flexjs_wrapper = this;
+			addElementToWrapper(this,'div');
 			className = 'DataItemRenderer';
-
 			controller = new ItemRendererMouseController();
 			controller.strand = this;
 

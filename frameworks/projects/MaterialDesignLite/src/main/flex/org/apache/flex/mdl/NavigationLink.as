@@ -23,6 +23,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
     
 	/**
@@ -61,18 +62,12 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-navigation__link";
 
-			var a:HTMLElement = document.createElement('a') as HTMLElement;
+			var a:WrappedHTMLElement = addElementToWrapper(this,'a');
             a.setAttribute('href', href);
             
             textNode = document.createTextNode('') as Text;
-            a.appendChild(textNode); 
-
-			element = a as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            return element;
+            a.appendChild(textNode);
+            return a;
         }
 	}
 }

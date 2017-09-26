@@ -162,18 +162,12 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
+			addElementToWrapper(this,'div');
 
 			// just to give it some default values
             element.style.width = '100px';
             element.style.height = '30px';
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-
             className = 'Slider';
-
             return element;
         }
 

@@ -152,16 +152,10 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('textarea') as WrappedHTMLElement;
-            positioner = element;
-            //positioner.style.position = 'relative';
-
+			addElementToWrapper(this,'textarea');
             goog.events.listen(element, 'input', textChangeHandler);
-
-            element.flexjs_wrapper = this;
             element.className = 'TextArea';
             typeNames = 'TextArea';
-
             return element;
         }
 

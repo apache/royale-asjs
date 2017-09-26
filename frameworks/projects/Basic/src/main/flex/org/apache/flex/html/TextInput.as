@@ -168,7 +168,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('input') as WrappedHTMLElement;
+			addElementToWrapper(this,'input');
             element.setAttribute('type', 'text');
             element.className = 'TextInput';
             typeNames = 'TextInput';
@@ -176,11 +176,6 @@ package org.apache.flex.html
             //attach input handler to dispatch flexjs change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(element, 'input', textChangeHandler);
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-
             return element;
         }
 

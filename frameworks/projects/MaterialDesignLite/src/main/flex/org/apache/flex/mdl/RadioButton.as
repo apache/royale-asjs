@@ -34,6 +34,7 @@ package org.apache.flex.mdl
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -331,15 +332,10 @@ package org.apache.flex.mdl
 
             //radio.addEventListener('mouseover', mouseOverHandler, false);
             //radio.addEventListener('mouseout', mouseOutHandler, false);
-
-            label = document.createElement("label") as HTMLLabelElement;
+            label = addElementToWrapper(this,'label') as HTMLLabelElement;
             label.appendChild(icon);
             label.appendChild(radio);
 
-            element = label as WrappedHTMLElement;
-
-            positioner = element;
-            (element as WrappedHTMLElement).flexjs_wrapper = this;
             (textNode as WrappedHTMLElement).flexjs_wrapper = this;
             (icon as WrappedHTMLElement).flexjs_wrapper = this;
             (radio as WrappedHTMLElement).flexjs_wrapper = this;

@@ -28,6 +28,11 @@ package org.apache.flex.core
 	import org.apache.flex.states.State;
 	import org.apache.flex.utils.MXMLDataInterpreter;
 
+    COMPILE::JS
+    {
+        import org.apache.flex.html.addElementToWrapper;
+    }
+
     /**
      *  Indicates that the state change has completed.  All properties
      *  that need to change have been changed, and all transitinos
@@ -93,12 +98,7 @@ package org.apache.flex.core
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElement('div') as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-			
-			positioner = element;
-			
-			return element;
+			return addElementToWrapper(this,'div');
 		}
 		
 		override public function addedToParent():void

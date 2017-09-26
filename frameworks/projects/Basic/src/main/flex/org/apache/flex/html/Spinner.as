@@ -154,13 +154,9 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
-            positioner = element;
-
+			addElementToWrapper(this,'div');
             element.style.verticalAlign = 'middle';
-            element.flexjs_wrapper = this;
 			typeNames = "Spinner";
-
             return element;
         }
 	}

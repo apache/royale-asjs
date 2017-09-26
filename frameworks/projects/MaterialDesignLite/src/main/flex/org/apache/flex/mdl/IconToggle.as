@@ -34,6 +34,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -229,9 +230,8 @@ package org.apache.flex.mdl
         {
             typeNames = "mdl-icon-toggle mdl-js-icon-toggle";
 
-            label = document.createElement("label") as HTMLLabelElement;
+            label = addElementToWrapper(this,'label') as HTMLLabelElement;
 
-            element = label as WrappedHTMLElement;
             element.setAttribute('for', _dataMdlFor);
 
             if (_dataMdlFor)
@@ -249,13 +249,8 @@ package org.apache.flex.mdl
                 throw new Error("dataMdlFor need to be specify in order to display IconToggle");
             }
             
-            positioner = element;
-
             (input as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
-
             element.addEventListener(MouseEvent.CLICK, clickHandler, false);
-
             return element;
         }
                 

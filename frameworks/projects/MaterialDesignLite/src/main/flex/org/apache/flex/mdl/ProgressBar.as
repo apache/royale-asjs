@@ -24,6 +24,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {        
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
     /**
      *  The ProgressBar indicate loading and progress states.
@@ -124,13 +125,8 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-progress mdl-js-progress";
-
-            element = document.createElement("div") as WrappedHTMLElement;
+			addElementToWrapper(this,'div');
             element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
             return element;
         }
 

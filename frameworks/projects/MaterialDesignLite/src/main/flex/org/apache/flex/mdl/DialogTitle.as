@@ -22,7 +22,8 @@ package org.apache.flex.mdl
 
 	COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;   
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 	
 	/**
@@ -61,14 +62,9 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-dialog__title";
 			
-			element = document.createElement('h4') as WrappedHTMLElement;
-            
+			addElementToWrapper(this,'h4');
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode);
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
             return element;
 		}
 	}

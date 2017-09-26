@@ -23,6 +23,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -58,15 +59,8 @@ package org.apache.flex.mdl
 
             textNode = document.createTextNode('') as Text;
             chipTextSpan.appendChild(textNode);
-
-            chip = document.createElement("button") as HTMLButtonElement;
+            chip = addElementToWrapper(this,'button') as HTMLButtonElement;
             chip.appendChild(chipTextSpan);
-
-            element = chip as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
             return element;
         }
     }

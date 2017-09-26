@@ -27,6 +27,7 @@ package org.apache.flex.mdl
     {
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.events.Event;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -85,9 +86,9 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-checkbox mdl-js-checkbox";
+			
 
-            label = document.createElement('label') as HTMLLabelElement;
-            element = label as WrappedHTMLElement;
+            label = addElementToWrapper(this,'label') as HTMLLabelElement;
             
             input = document.createElement('input') as HTMLInputElement;
             input.type = 'checkbox';    
@@ -98,11 +99,8 @@ package org.apache.flex.mdl
             checkbox.className = 'mdl-checkbox__label';
             label.appendChild(checkbox);
             
-            positioner = element;
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (checkbox as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
-            
             return element;
         }
 

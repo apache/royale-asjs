@@ -22,7 +22,8 @@ package org.apache.flex.mdl.itemRenderers
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.html.addElementToWrapper;    
     }
 	
     /**
@@ -128,15 +129,10 @@ package org.apache.flex.mdl.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-menu__item";
-
-            element = document.createElement('li') as WrappedHTMLElement;
+			addElementToWrapper(this,'li');
             
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode); 
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
             return element;
         }
 

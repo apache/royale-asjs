@@ -212,16 +212,10 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('select') as WrappedHTMLElement;
+			addElementToWrapper(this,'select');
             (element as HTMLSelectElement).size = 1;
             goog.events.listen(element, 'change',
                 changeHandler);
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-
-            element.flexjs_wrapper = this;
-
             return element;
         }
 

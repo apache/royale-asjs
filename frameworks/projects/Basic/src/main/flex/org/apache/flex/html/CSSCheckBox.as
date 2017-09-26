@@ -169,7 +169,7 @@ package org.apache.flex.html
          */
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('label') as WrappedHTMLElement;
+			addElementToWrapper(this,'label');
 			_label = element;
 			_icon = new CheckBoxIcon();
             element.appendChild(_icon.element);
@@ -180,10 +180,7 @@ package org.apache.flex.html
             element.appendChild(_styleDiv);
             _textNode = document.createTextNode('') as WrappedHTMLElement;
             element.appendChild(_textNode);
-
-            positioner = element;
             //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
 			_icon.element.flexjs_wrapper = this;
             _styleDiv.flexjs_wrapper = this;
 

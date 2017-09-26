@@ -20,7 +20,8 @@ package org.apache.flex.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
@@ -139,8 +140,7 @@ package org.apache.flex.mdl.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-navigation__link";
-
-            var a:HTMLElement = document.createElement('a') as HTMLElement;
+            var a:WrappedHTMLElement = addElementToWrapper(this,'a');
             a.setAttribute('href', href);
 
 			if(MXMLDescriptor == null)
@@ -148,12 +148,6 @@ package org.apache.flex.mdl.itemRenderers
 				textNode = document.createTextNode('') as Text;
 				a.appendChild(textNode);
 			}
-			
-			element = a as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
             return element;
         }
 	}

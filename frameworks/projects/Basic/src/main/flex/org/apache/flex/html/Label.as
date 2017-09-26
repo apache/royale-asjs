@@ -163,9 +163,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('span') as WrappedHTMLElement;
-            positioner = element;
-            element.flexjs_wrapper = this;
+			addElementToWrapper(this,'span');
             element.style.whiteSpace = "nowrap";
 
             className = "Label";

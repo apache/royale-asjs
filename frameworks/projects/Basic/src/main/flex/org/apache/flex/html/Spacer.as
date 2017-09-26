@@ -47,18 +47,5 @@ package org.apache.flex.html
 			super();
         }
         
-        /**
-         * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            this.element = document.createElement('div') as WrappedHTMLElement;
-            this.positioner = this.element;
-            this.element.flexjs_wrapper = this;
-            
-            return element;
-        }        
-
 	}
 }

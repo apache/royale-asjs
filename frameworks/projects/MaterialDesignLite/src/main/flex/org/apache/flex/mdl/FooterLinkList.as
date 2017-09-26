@@ -23,7 +23,8 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -61,13 +62,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-mega-footer__link-list";
-            
-            element = document.createElement('ul') as WrappedHTMLElement;
-            
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return positioner;
+			return addElementToWrapper(this,'ul');
         }
 
 		/**

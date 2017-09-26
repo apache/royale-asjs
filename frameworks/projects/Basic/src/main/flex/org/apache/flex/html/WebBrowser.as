@@ -107,19 +107,14 @@ package org.apache.flex.html
 
 		/**
 		 * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @flexjsignorecoercion org.apache.flex.core.HTMLIFrameElement
 		 */
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElement('iframe') as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
-
-			var iframe:HTMLIFrameElement = element as HTMLIFrameElement;
+			var iframe:HTMLIFrameElement = addElementToWrapper(this,'iframe') as HTMLIFrameElement;
 			iframe.frameBorder = "0";
 			iframe.src = "JavaScript:''";
 			iframe.sandbox = "allow-top-navigation allow-forms allow-scripts";
-
-			positioner = element;
-
 			return element;
 		}
 		

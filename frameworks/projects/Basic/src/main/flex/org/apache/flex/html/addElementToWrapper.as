@@ -31,8 +31,7 @@ package org.apache.flex.html
     public function addElementToWrapper(wrapper:UIBase,type:String):WrappedHTMLElement
     {
         var elem:WrappedHTMLElement = document.createElement(type) as WrappedHTMLElement;
-			wrapper.positioner = wrapper.element = elem;
-			elem.flexjs_wrapper = wrapper;
+			wrapper.element = elem;
             return elem;
     }
 }

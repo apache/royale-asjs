@@ -23,6 +23,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	/**
@@ -58,13 +59,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-mega-footer";
-
-            element = document.createElement('footer') as WrappedHTMLElement;
-
-			positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+			return addElementToWrapper(this,'footer');
         }
 
 		protected var _mini:Boolean = false;

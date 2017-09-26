@@ -55,14 +55,9 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('img') as WrappedHTMLElement;
+			addElementToWrapper(this,'img');
             element.className = 'Image';
             typeNames = 'Image';
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-
             return element;
         }
 

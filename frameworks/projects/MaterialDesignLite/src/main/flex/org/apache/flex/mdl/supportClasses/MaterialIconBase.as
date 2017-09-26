@@ -23,7 +23,8 @@ package org.apache.flex.mdl.supportClasses
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -67,18 +68,11 @@ package org.apache.flex.mdl.supportClasses
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "material-icons";
-
-			var i:HTMLElement = document.createElement('i') as HTMLElement;
+			var i:WrappedHTMLElement = addElementToWrapper(this,'i');
             
             textNode = document.createTextNode(iconText) as Text;
             i.appendChild(textNode); 
-
-			element = i as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
-            return element;
+            return i;
         }
 
         /**

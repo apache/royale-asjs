@@ -70,7 +70,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var element:WrappedHTMLElement = super.createElement();
+			super.createElement();
 			positioner.style.position = 'absolute';
 			positioner.style.pointerEvents = "none";
 			typeNames = "ToolTip";

@@ -54,16 +54,13 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
-            element.style.borderLeftStyle = 'solid';
-            element.style.borderLeftWidth = '1px';
-            element.style.borderTop = 'none';
-            element.style.borderBottom = 'none';
-            element.style.borderRight = 'none';
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-            return element;
+			var elem:WrappedHTMLElement = addElementToWrapper(this,'div');
+            elem.style.borderLeftStyle = 'solid';
+            elem.style.borderLeftWidth = '1px';
+            elem.style.borderTop = 'none';
+            elem.style.borderBottom = 'none';
+            elem.style.borderRight = 'none';
+            return elem;
         }
 	}
 }

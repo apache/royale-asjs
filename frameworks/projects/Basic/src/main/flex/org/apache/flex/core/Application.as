@@ -131,7 +131,6 @@ package org.apache.flex.core
             }
 			COMPILE::JS {
 				element = document.getElementsByTagName('body')[0];
-				element.flexjs_wrapper = this;
 				element.className = 'Application';			
 			}
         }

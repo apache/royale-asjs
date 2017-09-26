@@ -25,6 +25,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -131,8 +132,8 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "mdl-js-snackbar mdl-snackbar";
-
-            element = document.createElement("div") as WrappedHTMLElement;
+			
+            addElementToWrapper(this,'div');
             element.addEventListener("mdl-componentupgraded", onElementMdlComponentUpgraded, false);
 
             snackbarText = document.createElement("div") as HTMLDivElement;
@@ -142,9 +143,6 @@ package org.apache.flex.mdl
             snackbarAction = document.createElement("button") as HTMLButtonElement;
             snackbarAction.classList.add("mdl-snackbar__action");
             element.appendChild(snackbarAction);
-
-            positioner = element;
-            element.flexjs_wrapper = this;
 
             return element;
         }

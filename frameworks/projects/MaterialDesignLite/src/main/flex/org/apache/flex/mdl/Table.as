@@ -24,6 +24,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
     
 	/**
@@ -166,11 +167,7 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
 			typeNames = "mdl-data-table mdl-js-data-table";
-
-			element = document.createElement('table') as WrappedHTMLElement;
-
-			positioner = element;
-            element.flexjs_wrapper = this;
+			addElementToWrapper(this,'table');
 
             addTHeadToParent();
             addTBodyToParent();

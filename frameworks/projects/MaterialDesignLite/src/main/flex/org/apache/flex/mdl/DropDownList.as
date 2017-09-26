@@ -29,7 +29,8 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     [Event(name="change", type="org.apache.flex.events.Event")]
@@ -204,13 +205,8 @@ package org.apache.flex.mdl
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = 'mdl-textfield mdl-js-textfield';
-            
-            element = document.createElement('div') as WrappedHTMLElement;
+			addElementToWrapper(this,'div');
             element.classList.add("mdl-textfield--floating-label");
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
             return element;
         }
     }

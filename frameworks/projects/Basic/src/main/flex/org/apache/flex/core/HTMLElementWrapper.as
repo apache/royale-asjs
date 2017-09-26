@@ -123,6 +123,7 @@ package org.apache.flex.core
         public function set element(value:WrappedHTMLElement):void
         {
             _element = value;
+            _element.flexjs_wrapper = this;
         }
         
         /**

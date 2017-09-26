@@ -24,7 +24,8 @@ package org.apache.flex.mdl
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;        
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 
 	//--------------------------------------
@@ -155,6 +156,20 @@ package org.apache.flex.mdl
         {
             IRangeModel(model).stepSize = value;
         }
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+		}
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
@@ -166,18 +181,14 @@ package org.apache.flex.mdl
         {
 			var div:HTMLElement = document.createElement('div') as HTMLElement;
 
-			var input:HTMLInputElement = document.createElement('input') as HTMLInputElement;
+			var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
 			input.type = "range";
 			input.className = "mdl-slider mdl-js-slider";
 			
 			div.appendChild(input);
-
-			element = input as WrappedHTMLElement;
             
             positioner = div as WrappedHTMLElement;
-			(input as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
-
+            _positioner.flexjs_wrapper = this;
             return element;
         }
         

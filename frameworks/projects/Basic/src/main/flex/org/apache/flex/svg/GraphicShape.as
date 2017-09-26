@@ -95,11 +95,7 @@ package org.apache.flex.svg
 		override protected function createElement():WrappedHTMLElement
 		{
 			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
-			element.flexjs_wrapper = this;
 			//element.offsetParent = null;
-			positioner = element;
-			//positioner.style.position = 'relative';
-
 			return element;
 		}
 		

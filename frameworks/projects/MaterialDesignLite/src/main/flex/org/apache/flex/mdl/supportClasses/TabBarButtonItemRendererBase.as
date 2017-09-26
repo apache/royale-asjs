@@ -23,6 +23,7 @@ package org.apache.flex.mdl.supportClasses
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -127,13 +128,7 @@ package org.apache.flex.mdl.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var a:HTMLAnchorElement = document.createElement('a') as HTMLAnchorElement;
-            element = a as WrappedHTMLElement;
-
-            positioner = element;
-            element.flexjs_wrapper = this;
-
-            return element;
+			return addElementToWrapper(this,'a');
         }
     }
 }

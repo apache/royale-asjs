@@ -54,11 +54,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('hr') as WrappedHTMLElement;
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-            return element;
+			return addElementToWrapper(this,'hr');
         }
 	}
 }

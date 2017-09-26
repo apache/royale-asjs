@@ -22,7 +22,8 @@ package org.apache.flex.mdl
 
 	COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;   
+        import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.addElementToWrapper;
     }
 	
 	/**
@@ -63,14 +64,9 @@ package org.apache.flex.mdl
         {
 			typeNames = "mdl-mega-footer__heading";
 
-			element = document.createElement('h1') as WrappedHTMLElement;
-            
+			addElementToWrapper(this,'h1');
             textNode = document.createTextNode('') as Text;
             element.appendChild(textNode);
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
             return element;
 		}
 	}

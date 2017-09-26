@@ -103,13 +103,8 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('button') as WrappedHTMLElement;
+			addElementToWrapper(this,'button');
             element.setAttribute('type', 'button');
-
-            positioner = element;
-            //positioner.style.position = 'relative';
-            element.flexjs_wrapper = this;
-
             return element;
         }
 

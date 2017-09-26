@@ -59,6 +59,7 @@ package org.apache.flex.core
         public function set element(value:IFlexJSElement):void
         {
             _element = value;
+            _element.flexjs_wrapper = this;
         }
         
         protected var _beads:Vector.<IBead>;

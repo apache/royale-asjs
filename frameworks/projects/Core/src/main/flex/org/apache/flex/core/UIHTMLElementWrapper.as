@@ -77,16 +77,13 @@ COMPILE::SWF
 		{
         }
 
-        COMPILE::JS
-        private var _positioner:WrappedHTMLElement;
-        
         /**
          * The HTMLElement used to position the component.
          */
         COMPILE::JS
         public function get positioner():WrappedHTMLElement
         {
-            return _positioner;
+            return _element;
         }
         
         /**
@@ -95,7 +92,7 @@ COMPILE::SWF
         COMPILE::JS
         public function set positioner(value:WrappedHTMLElement):void
         {
-            _positioner = value;
+            element = value;
         }
         
         /**

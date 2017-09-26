@@ -31,6 +31,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -204,8 +205,7 @@ package org.apache.flex.mdl
         {
             typeNames = "mdl-switch mdl-js-switch";
 
-            label = document.createElement("label") as HTMLLabelElement;
-            element = label as WrappedHTMLElement;
+            label = addElementToWrapper(this,'label') as HTMLLabelElement;
 
             input = document.createElement("input") as HTMLInputElement;
             input.type = "checkbox";
@@ -218,14 +218,10 @@ package org.apache.flex.mdl
 
             label.appendChild(span);
 
-            positioner = element;
-
             (input as WrappedHTMLElement).flexjs_wrapper = this;
             (span as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
 
             element.addEventListener(MouseEvent.CLICK, clickHandler, false);
-
             return element;
         }
 

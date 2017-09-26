@@ -80,12 +80,6 @@ package org.apache.flex.html.supportClasses
 			input.type = 'checkbox';
 
 			element = input as WrappedHTMLElement;
-
-			positioner = element;
-			//positioner.style.position = 'relative';
-
-			(element as WrappedHTMLElement).flexjs_wrapper = this;
-
 			return element;
 		}
 	}

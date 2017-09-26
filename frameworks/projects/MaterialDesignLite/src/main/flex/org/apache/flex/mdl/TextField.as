@@ -23,7 +23,8 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
     
     /**
@@ -60,7 +61,22 @@ package org.apache.flex.mdl
 			super();
             className = ""; //set to empty string avoid 'undefined' output when no class selector is assigned by user;
         }
-        
+
+        COMPILE::JS
+        private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+        override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+        override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+		}
+
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
          * @flexjsignorecoercion HTMLDivElement
@@ -78,7 +94,7 @@ package org.apache.flex.mdl
 
             addBead(new UpgradeElement(div));
 
-            input = document.createElement('input') as HTMLInputElement;
+            input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
             input.className = "mdl-textfield__input";
             
@@ -95,12 +111,9 @@ package org.apache.flex.mdl
             div.appendChild(input);
             div.appendChild(label);
 
-            element = input as WrappedHTMLElement;
-
             positioner = div as WrappedHTMLElement;
-            (input as WrappedHTMLElement).flexjs_wrapper = this;
             (label as WrappedHTMLElement).flexjs_wrapper = this;
-            element.flexjs_wrapper = this;
+            _positioner.flexjs_wrapper = this;
             
             return element;
         }

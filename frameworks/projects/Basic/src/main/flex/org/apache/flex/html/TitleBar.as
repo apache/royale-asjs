@@ -133,12 +133,7 @@ package org.apache.flex.html
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('div') as WrappedHTMLElement;
-            
-            positioner = element;
-            element.flexjs_wrapper = this;
-            
-            return element;
+			return addElementToWrapper(this,'div');
         }        
 	}
 }

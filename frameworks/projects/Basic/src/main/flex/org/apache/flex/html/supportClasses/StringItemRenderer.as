@@ -163,16 +163,10 @@ package org.apache.flex.html.supportClasses
         override protected function createElement():WrappedHTMLElement
         {
             element = document.createElement('span') as WrappedHTMLElement;
-            positioner = element;
-            //positioner.style.position = 'relative';
-
-            element.flexjs_wrapper = this;
             className = 'StringItemRenderer';
-
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
             backgroundView = element;
-
             return element;
         }
 
