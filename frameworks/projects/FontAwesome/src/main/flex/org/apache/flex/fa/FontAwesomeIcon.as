@@ -22,7 +22,8 @@ package org.apache.flex.fa
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.addElementToWrapper;
     }
 
     /**
@@ -69,24 +70,18 @@ package org.apache.flex.fa
 
         /**
          * @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 * @flexjsignorecoercion HTMLElement
+		 * @flexjsignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
             typeNames = "fa";
 
-			var i:HTMLElement = document.createElement('i') as HTMLElement;
+			var i:WrappedHTMLElement = addElementToWrapper(this,'i');
             
             textNode = document.createTextNode(iconType) as Text;
 			textNode.textContent = '';
-            i.appendChild(textNode); 
-
-			element = i as WrappedHTMLElement;
-            
-            positioner = element;
-			element.flexjs_wrapper = this;
-            
+            i.appendChild(textNode);
             return element;
         }
 
