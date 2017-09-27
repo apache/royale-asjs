@@ -45,6 +45,8 @@ internal class DragDropClasses
 	import org.apache.flex.html.beads.DataGridColumnReorderView; DataGridColumnReorderView;
 	import org.apache.flex.html.beads.ButtonBarReorderBead; ButtonBarReorderBead;
 
+	import org.apache.flex.html.beads.DataGridDragDropBead; DataGridDragDropBead;
+
 }
 
 }

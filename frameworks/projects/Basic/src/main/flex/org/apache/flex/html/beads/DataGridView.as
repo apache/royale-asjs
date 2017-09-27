@@ -200,6 +200,8 @@ package org.apache.flex.html.beads
 
 				host.addEventListener("widthChanged", handleSizeChanges);
 				host.addEventListener("heightChanged", handleSizeChanges);
+
+				host.dispatchEvent(new Event("dataGridViewCreated"));
 			}
 
 			/**

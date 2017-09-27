@@ -24,14 +24,14 @@ package org.apache.flex.utils
         import flash.geom.Point;
 	    import flash.display.Stage;
     }
-    
+
     import org.apache.flex.core.IUIBase;
     import org.apache.flex.geom.Point;
 
 	/**
 	 *  The PointUtils class is a collection of static functions that convert
      *  Points between coordinate spaces.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -46,13 +46,13 @@ package org.apache.flex.utils
 		{
 			throw new Error("PointUtils should not be instantiated.");
 		}
-		
+
 		/**
 		 *  Converts a point from global coordinates to local coordinates
-		 * 
+		 *
 		 *  @param point The point being converted.
 		 *  @param local The component used as reference for the conversion.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -71,13 +71,13 @@ package org.apache.flex.utils
                 var x:Number = pt.x;
                 var y:Number = pt.y;
                 var element:HTMLElement = local.element as HTMLElement;
-                
+
                 do {
                     x -= element.offsetLeft;
                     y -= element.offsetTop;
 					if (local['parent'] !== undefined) {
                         local = local.parent;
-                        element = local.element as HTMLElement;
+                        element = local ? local.element as HTMLElement : null;
                     } else {
                         element = null;
                     }
@@ -87,13 +87,13 @@ package org.apache.flex.utils
 
             }
 		}
-		
+
         /**
          *  Converts a point from local coordinates to global coordinates
-         * 
+         *
          *  @param point The point being converted.
          *  @param local The component used as reference for the conversion.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -116,12 +116,12 @@ package org.apache.flex.utils
                 var x:Number = pt.x;
                 var y:Number = pt.y;
                 var element:HTMLElement = local.element as HTMLElement;
-                
+
 				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
 					var rect:Object = element.getBoundingClientRect();
 					x = rect.left + x;
 					y = rect.top + y;
-				} else { // for older browsers, but offsetParent is soon to be deprecated from from chrome 
+				} else { // for older browsers, but offsetParent is soon to be deprecated from from chrome
 	                do {
 	                    x += element.offsetLeft;
 	                    y += element.offsetTop;

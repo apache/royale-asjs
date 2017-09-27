@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	
+
 	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IChild;
@@ -45,7 +45,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.utils.PointUtils;
 	import org.apache.flex.utils.getParentOrSelfByType;
 
-	COMPILE::JS 
+	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
@@ -140,7 +140,7 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * 
+		 *
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
