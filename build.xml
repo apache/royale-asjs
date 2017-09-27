@@ -706,7 +706,7 @@
         <sleep seconds="3" />
         <mkdir dir="${basedir}/temp"/>
        
-        <copy todir="${basedir}/temp" includeEmptyDirs="false">
+        <copy todir="${basedir}/temp" includeEmptyDirs="true">
             <fileset dir="${basedir}">
                 <include name="**"/>
                 <exclude name="local.properties"/>
@@ -726,20 +726,16 @@
                 <exclude name="src/**"/>
                 <exclude name="testsuite/**"/>
                 <exclude name="fxg2svg/**"/>
+                <exclude name="temp/**"/>
                 <exclude name="vf2js/**"/>
                 <exclude name="**/FlexJSTest_again/**" />
                 <exclude name="**/VanillaSDK_POC/**" />
-                <exclude name="**/*.swc"/>
-                <exclude name="**/*.swf"/>
                 <exclude name="**/.plxarc"/>
                 <exclude name="**/.settings/**"/>
-                <exclude name="**/*.actionScriptProperties"/>
-                <exclude name="**/*.flexLibProperties"/>
                 <exclude name="frameworks/fb.properties"/>
                 <exclude name="frameworks/fonts/**"/>
                 <exclude name="frameworks/test*/**"/>
                 <exclude name="frameworks/js/VanillaSDK/**"/>
-                <exclude name="**/target/**"/>
                 <exclude name="**/*.iml"/>
             </fileset>
         </copy>
@@ -801,16 +797,26 @@
             <include name="**.sh"/>
             <exclude name="bin/**"/>
         </fixcrlf>
-    </target>
-
-    <target name="binary-package"
-        description="Package binary files in zip and tar-gzip file.">
-
-        <antcall target="stage-source"/>
-                
+        
         <!-- delete any left-over empty directories -->
         <delete includeemptydirs="true">
-            <fileset dir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/temp/frameworks/projects">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/frameworks/js/FlexJS/projects">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/examples">
                 <and>
                     <size value="0"/>
                     <type type="dir"/>
@@ -818,6 +824,13 @@
             </fileset>
         </delete>
 
+    </target>
+
+    <target name="binary-package"
+        description="Package binary files in zip and tar-gzip file.">
+
+        <antcall target="stage-source"/>
+                
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${basedir}/temp/LICENSE">
             <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
