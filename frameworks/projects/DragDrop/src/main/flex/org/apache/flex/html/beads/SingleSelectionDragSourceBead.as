@@ -42,7 +42,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
 	import org.apache.flex.utils.UIUtils;
-	import org.apache.flex.utils.getByType;
+	import org.apache.flex.utils.getParentOrSelfByType;
 
 
 	/**
@@ -126,7 +126,7 @@ package org.apache.flex.html.beads
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			var itemRenderer:IItemRenderer = getByType(event.target as IChild, IItemRenderer) as IItemRenderer;
+			var itemRenderer:IItemRenderer = getParentOrSelfByType(event.target as IChild, IItemRenderer) as IItemRenderer;
 
 			if (itemRenderer) {
 				var p:UIBase = itemRenderer.itemRendererParent as UIBase;

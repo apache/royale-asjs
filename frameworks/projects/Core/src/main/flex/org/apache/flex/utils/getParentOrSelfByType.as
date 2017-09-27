@@ -20,7 +20,15 @@ package org.apache.flex.utils
 {
 	import org.apache.flex.core.IChild;
 
-    public function getByType(startChild:IChild, classOrInterface:Class):Object
+
+	/**
+	 *  Traverses the display list up until it finds an object of the given type.  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+    public function getParentOrSelfByType(startChild:IChild, classOrInterface:Class):Object
     {
 		while (startChild)
 		{
