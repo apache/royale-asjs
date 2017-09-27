@@ -202,8 +202,13 @@ internal class BasicClasses
 	import org.apache.flex.html.beads.models.WebBrowserModel; WebBrowserModel;
 	
 	import org.apache.flex.core.ListBase; ListBase;
+	import org.apache.flex.core.Lookalike; Lookalike;
 	import org.apache.flex.core.FilledRectangle; FilledRectangle;
     import org.apache.flex.core.UIBase; UIBase;
+	COMPILE::JS
+	{
+		import org.apache.flex.core.UIElement; UIElement;
+	}
     import org.apache.flex.core.SimpleApplication; SimpleApplication;
 	import org.apache.flex.svg.GraphicContainer; GraphicContainer;
 	import org.apache.flex.svg.DOMWrapper; DOMWrapper;
