@@ -175,6 +175,7 @@ internal class CoreClasses
 	}
 	import org.apache.flex.utils.BrowserUtils; BrowserUtils;
 	import org.apache.flex.utils.callLater; callLater;
+	import org.apache.flex.utils.getByType; getByType;
     import org.apache.flex.utils.CompressionUtils; CompressionUtils;
 	import org.apache.flex.utils.Endian; Endian;
 	import org.apache.flex.utils.JXON; JXON;
