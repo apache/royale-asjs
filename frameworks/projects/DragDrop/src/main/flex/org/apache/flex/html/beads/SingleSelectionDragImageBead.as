@@ -18,8 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
+	
 	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.IDragInitiator;
@@ -41,6 +43,12 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.controllers.DragMouseController;
 	import org.apache.flex.utils.PointUtils;
+	import org.apache.flex.utils.getByType;
+
+	COMPILE::JS 
+	{
+		import org.apache.flex.core.WrappedHTMLElement;
+	}
 
 
 	/**
@@ -92,6 +100,7 @@ package org.apache.flex.html.beads
 		 * @param ir IItemRenderer The itemRenderer to be used as a template.
 		 * @return UIBase The "dragImage" to use.
 		 *
+		 *  @flexjsignorecoercion org.apache.flex.core.WrappedHTMLElement
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -103,40 +112,43 @@ package org.apache.flex.html.beads
 			dragImage.className = "DragImage";
 			dragImage.width = (ir as IUIBase).width;
 			dragImage.height = (ir as IUIBase).height;
-
-			var label:Label = new Label();
-			if (ir is ISelectableItemRenderer) {
-				var selIR:ISelectableItemRenderer = ir as ISelectableItemRenderer;
-				if (selIR.labelField != null && selIR.data != null) {
-					label.text = selIR.data[selIR.labelField].toString();
-				} else {
-					label.text = selIR.data.toString();
+			COMPILE::SWF
+				{
+					var label:Label = new Label();
+					if (ir is ISelectableItemRenderer) {
+						var selIR:ISelectableItemRenderer = ir as ISelectableItemRenderer;
+						if (selIR.labelField != null && selIR.data != null) {
+							label.text = selIR.data[selIR.labelField].toString();
+						} else {
+							label.text = selIR.data.toString();
+						}
+					}
+					dragImage.addElement(label);
 				}
-			}
 
 			COMPILE::JS {
+				var clone:UIBase = new UIBase();
+				clone.element = clone.positioner = ir.element.cloneNode(true) as WrappedHTMLElement;
+				clone.element.flexjs_wrapper = clone;
+				dragImage.addElement(clone);
 				dragImage.element.style.position = 'absolute';
 				dragImage.element.style.cursor = 'pointer';
 			}
-
-			dragImage.addElement(label);
 
 			return dragImage;
 		}
 
 		/**
 		 * @private
+		 * 
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
 			trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
 
-			var startHere:Object = event.target;
-
-			if (startHere is IItemRenderer) {
-				var ir:IItemRenderer = startHere as IItemRenderer;
-				//DragEvent.dragSource = ir.data;
-				DragMouseController.dragImage = createDragImage(ir);
+			var renderer:IItemRenderer = getByType(event.target as IChild, IItemRenderer) as IItemRenderer;
+			if (renderer) {
+				DragMouseController.dragImage = createDragImage(renderer);
 			}
 		}
 	}

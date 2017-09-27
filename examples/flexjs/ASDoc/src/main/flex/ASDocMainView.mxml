@@ -59,19 +59,19 @@ limitations under the License.
 	</fx:Style>
     <js:beads>
         <js:ViewDataBinding />
-        <js:OneFlexibleChildVerticalLayout flexibleChild="topContainer" />                
+        <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />                
     </js:beads>
     <js:Group width="100%" id="titleGroup">
         <js:beads>
-            <js:OneFlexibleChildHorizontalLayout flexibleChild="title" />
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="title" />
         </js:beads>
-        <js:Label text="FlexJS ActionScript Library Reference" id="title" height="30" style="fontSize:20" width="0%"/>
+        <js:Label text="FlexJS ActionScript Library Reference" id="title" height="30" style="fontSize:20"/>
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>
-    <js:Group width="100%" className="topContainer" id="topContainer" height="0%">
+    <js:Group width="100%" className="topContainer" id="topContainer">
         <js:beads>
-            <js:OneFlexibleChildHorizontalLayout flexibleChild="rightSide" />
+            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="rightSide" />
             <js:LayoutChangeNotifier watchedProperty="{ASDocModel(applicationModel).packageList}" initialValue="null" />
         </js:beads>
         <js:Group width="300" height="100%" className="leftSide" id="leftSide">
@@ -81,7 +81,7 @@ limitations under the License.
             <js:List id="packageList" dataProvider="{ASDocModel(applicationModel).packageList}" change="packageChangedHandler()" width="100%" height="50%"/>
             <js:List id="classList" dataProvider="{ASDocModel(applicationModel).classList}" change="classChangedHandler()"  width="100%" height="50%"/>
         </js:Group>
-        <js:Container className="rightSide" id="rightSide" height="100%" width="0%">
+        <js:Container className="rightSide" id="rightSide" height="100%">
             <js:beads>
                 <js:VerticalLayout />
                 <js:ScrollingViewport />

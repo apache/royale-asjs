@@ -20,13 +20,13 @@ package org.apache.flex.html.beads
 {
 	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
+	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IDataProviderModel;
 	import org.apache.flex.core.IDocument;
 	import org.apache.flex.core.IDragInitiator;
 	import org.apache.flex.core.IItemRenderer;
 	import org.apache.flex.core.IItemRendererParent;
 	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IChild;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
 	import org.apache.flex.core.UIBase;
@@ -42,6 +42,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.supportClasses.DataItemRenderer;
 	import org.apache.flex.utils.PointUtils;
 	import org.apache.flex.utils.UIUtils;
+	import org.apache.flex.utils.getByType;
 
 
 	/**
@@ -125,15 +126,12 @@ package org.apache.flex.html.beads
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			var startHere:Object = event.target;
-			while (!(startHere is IItemRenderer) && startHere != null) {
-				startHere = startHere.itemRendererParent;
-			}
+			var itemRenderer:IItemRenderer = getByType(event.target as IChild, IItemRenderer) as IItemRenderer;
 
-			if (startHere is IItemRenderer) {
-				var p:UIBase = startHere.itemRendererParent as UIBase;
-				indexOfDragSource = p.getElementIndex(startHere as IChild);
-				DragEvent.dragSource = (startHere as IItemRenderer).data;
+			if (itemRenderer) {
+				var p:UIBase = itemRenderer.itemRendererParent as UIBase;
+				indexOfDragSource = p.getElementIndex(itemRenderer as IChild);
+				DragEvent.dragSource = (itemRenderer as IItemRenderer).data;
 			}
 		}
 
