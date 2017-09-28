@@ -271,17 +271,12 @@
             property="FALCON_REPO"
             value="${env.FALCON_REPO}"/>
 
-        <available file="${basedir}/lib/falcon-mxmlc.jar"
+        <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar"
             type="file"
             property="FALCON_REPO"
-            value="${basedir}"/>
+            value="${basedir}/../royale-compiler/compiler"/>
 
-        <available file="${basedir}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
-            type="file"
-            property="FALCON_REPO"
-            value="${basedir}/../flex-falcon/compiler"/>
-
-        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
             unless="FALCON_REPO"/>
     </target>
 
@@ -295,17 +290,12 @@
             property="FALCONJX_REPO"
             value="${env.FALCONJX_REPO}"/>
 
-        <available file="${basedir}/../flex-falcon/compiler-jx/lib/jsc.jar"
+        <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar"
             type="file"
             property="FALCONJX_REPO"
-            value="${basedir}/../flex-falcon/compiler-jx"/>
+            value="${basedir}/../royale-compiler/compiler-jx"/>
 
-        <available file="${basedir}/js/lib/jsc.jar"
-            type="file"
-            property="FALCONJX_REPO"
-            value="${basedir}/js"/>
-
-        <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
+        <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder if it has been converted into an FB-compatible SDK"
             unless="FALCONJX_REPO"/>
     </target>
 
@@ -319,10 +309,10 @@
         property="FLEXJS_TYPEDEFS_HOME"
         value="${env.FLEXJS_TYPEDEFS_HOME}"/>
         
-        <available file="${basedir}/../flex-typedefs/js/target/js.swc"
+        <available file="${basedir}/../royale-typedefs/js/target/js.swc"
         type="file"
         property="FLEXJS_TYPEDEFS_HOME"
-        value="${basedir}/../flex-typedefs"/>
+        value="${basedir}/../royale-typedefs"/>
         
         <available file="${basedir}/js/target/js.swc"
         type="file"
@@ -335,7 +325,7 @@
         property="FLEXJS_TYPEDEFS_HOME"
         value="${basedir}/../falconjx/js/libs"/>
         
-        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the flex-typedefs repo"
+        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the royale-typedefs repo"
         unless="FLEXJS_TYPEDEFS_HOME"/>
     </target>
 
@@ -1549,9 +1539,9 @@
         <echo>Using folder ${base.folder.name}</echo>
         <mkdir dir="${base.folder.name}" />
         <antcall target="warn-before-clone" />
-        <antcall target="clone-flex-asjs" />
-        <antcall target="clone-flex-falcon" />
-        <antcall target="clone-flex-typedefs" />
+        <antcall target="clone-royale-asjs" />
+        <antcall target="clone-royale-compiler" />
+        <antcall target="clone-royale-typedefs" />
         <antcall target="clone-flex-flexunit" />
         <antcall target="clone-flex-sdk" />
         <antcall target="clone-flex-tlf" />
@@ -1559,65 +1549,65 @@
         <antcall target="build-all" />
     </target>
 
-    <target name="warn-before-clone" depends="check-flex-asjs" unless="flex-asjs-exists">
+    <target name="warn-before-clone" depends="check-royale-asjs" unless="royale-asjs-exists">
         <input
         message="This script will clone 6 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
         />
     </target>
     
-    <target name="check-flex-asjs">
-        <available file="${base.folder.name}/flex-asjs"
+    <target name="check-royale-asjs">
+        <available file="${base.folder.name}/royale-asjs"
         type="dir"
-        property="flex-asjs-exists"/>
+        property="royale-asjs-exists"/>
     </target>
     
-    <target name="clone-flex-asjs" depends="check-flex-asjs" unless="flex-asjs-exists">
-        <echo>cloning flex-asjs repo into ${base.folder.name}/flex-asjs</echo>
+    <target name="clone-royale-asjs" depends="check-royale-asjs" unless="royale-asjs-exists">
+        <echo>cloning royale-asjs repo into ${base.folder.name}/royale-asjs</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-asjs.git" />
-            <arg value="flex-asjs" />
+            <arg value="https://github.com/apache/royale-asjs.git" />
+            <arg value="royale-asjs" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-asjs">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-asjs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
-        <echo>change directory to ${base.folder.name}/flex-asjs and run ant for future builds.</echo>
+        <echo>change directory to ${base.folder.name}/royale-asjs and run ant for future builds.</echo>
     </target>
 
-    <target name="check-flex-falcon">
-        <available file="${base.folder.name}/flex-falcon"
+    <target name="check-royale-compiler">
+        <available file="${base.folder.name}/royale-compiler"
         type="dir"
-        property="flex-falcon-exists"/>
+        property="royale-compiler-exists"/>
     </target>
 
-    <target name="clone-flex-falcon" depends="check-flex-falcon" unless="flex-falcon-exists">
-        <echo>cloning flex-falcon repo into ${base.folder.name}/flex-falcon</echo>
+    <target name="clone-royale-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
+        <echo>cloning royale-compiler repo into ${base.folder.name}/royale-compiler</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-falcon.git" />
-            <arg value="flex-falcon" />
+            <arg value="https://github.com/apache/royale-compiler.git" />
+            <arg value="royale-compiler" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-falcon">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-compiler">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="check-flex-typedefs">
-        <available file="${base.folder.name}/flex-typedefs"
+    <target name="check-royale-typedefs">
+        <available file="${base.folder.name}/royale-typedefs"
         type="dir"
-        property="flex-typedefs-exists"/>
+        property="royale-typedefs-exists"/>
     </target>
 
-    <target name="clone-flex-typedefs" depends="check-flex-typedefs" unless="flex-typedefs-exists">
-        <echo>cloning flex-typedefs repo into ${base.folder.name}/flex-typedefs</echo>
+    <target name="clone-royale-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
+        <echo>cloning royale-typedefs repo into ${base.folder.name}/royale-typedefs</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-typedefs.git" />
-            <arg value="flex-typedefs" />
+            <arg value="https://github.com/apache/royale-typedefs.git" />
+            <arg value="royale-typedefs" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-typedefs">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
@@ -1716,8 +1706,8 @@
             />
         <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/flex-falcon" target="all" />
-        <ant dir="${base.folder.name}/flex-typedefs" />
+        <ant dir="${base.folder.name}/royale-compiler" target="all" />
+        <ant dir="${base.folder.name}/royale-typedefs" />
         <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     
@@ -1739,7 +1729,7 @@
     </target>
     
     <target name="last-message-if-airsdk" if="airsdk.found" >
-        <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
+        <echo>Please change directory to ${base.folder.name}/royale-asjs and run ant to complete build</echo>
     </target>
 
     <target name="compile" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
