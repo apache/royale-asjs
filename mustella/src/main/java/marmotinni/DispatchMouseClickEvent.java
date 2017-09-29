@@ -81,6 +81,7 @@ public class DispatchMouseClickEvent extends TestStep {
         try
         {
 			mouseTarget.click();
+            Thread.sleep(2000);
         }
         catch (Exception e1)
         {
