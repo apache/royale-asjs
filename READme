@@ -1,7 +1,7 @@
-Apache FlexJS
+Apache Royale
 =============
 
-    Apache FlexJS is a next-generation Flex SDK that has the goal of allowing 
+    Apache Royale is a next-generation Flex SDK that has the goal of allowing 
     applications developed in MXML and ActionScript to not only run in the 
     Flash/AIR runtimes, but also to run natively in the browser without Flash, 
     on mobile devices as a PhoneGap/Cordova application, and in embedded JS 
@@ -26,16 +26,16 @@ Getting the latest sources via git
     You can always checkout the latest source via git using the following
     command:
 
-	 git clone https://git-wip-us.apache.org/repos/asf/flex-asjs.git flex-asjs
-	 cd flex-asjs
+	 git clone https://github.com/apache/royale-asjs.git royale-asjs
+	 cd royale-asjs
 	 git checkout develop
 
 Building Apache FlexJS via Ant
 ==============================
 
-    Apache FlexJS also requires code from several other Apache Flex git
+    Apache Royale also requires code from several other Apache Royale git
     repositories.  To get the latest sources via git, first follow the
-    instructions in ‘Install Prerequisites’, then from the flex-asjs
+    instructions in ‘Install Prerequisites’, then from the royale-asjs
     directory, run:
     
          ant all
@@ -44,7 +44,7 @@ Building Apache FlexJS via Ant
     then run the builds in those repositories in the correct order.
 
 
-    Apache FlexJS is a large project. It requires some build tools 
+    Apache Royale is a large project. It requires some build tools 
     which must be installed prior to building the SDK.  
     Some of these have different licenses.  See the Software Dependencies section 
     for more information on the external software dependencies.
@@ -70,21 +70,11 @@ Install Prerequisites
     Ant 1.7.1 or greater (*1)                   ANT_HOME                     Yes
         (for Java 1.7 see note at (*2))
 
-    Apache Flex 'Falcon' Compiler (*3)          FALCON_HOME                  Yes
+    Adobe Flash Player playerglobal swcs (*3)   PLAYERGLOBAL_HOME            SWF
 
-    Apache Flex 'FalconJX' Compiler (*4)        FALCONJX_HOME                Yes
+    Adobe AIR Integration Kit (*4)              AIR_HOME                     SWF
 
-    Google Closure Library (*5)                 GOOG_HOME                    No
-
-    Adobe Flash Player playerglobal swcs (*6)   PLAYERGLOBAL_HOME            SWF
-
-    Adobe AIR Integration Kit (*7)              AIR_HOME                     SWF
-
-    Adobe Flash Player Content Debugger (*8)    FLASHPLAYER_DEBUGGER         SWF
-
-    Apache Flex SDK or repository               FLEX_HOME                    SWF
-
-    Apache Flex FlexUnit (*9)                   FLEXUNIT_HOME                SWF
+    Adobe Flash Player Content Debugger (*5)    FLASHPLAYER_DEBUGGER         SWF
 
     ==================================================================================
 
@@ -106,31 +96,7 @@ Install Prerequisites
         version as 1.6 so the JVM args for the data model (-d32/-d64) will not
         be set correctly and you will get compile errors.
 
-    *3) If you are going to run "ant all", you can skip this step.
-        If you have cloned the flex-falcon repository as a sibling of the
-        flex-asjs repository, you don’t need to set this variable, 
-        otherwise, set it as: 
-             FALCON_HOME=<flex-falcon repo-path>/compiler
-			 
-	See flex-falcon/README for instructions on how to build Falcon separately.
-
-    *4) If you are going to run "ant all", you can skip this step.
-        If you have cloned the flex-falcon repository as a sibling of the 
-        flex-asjs repository, you don’t need to set this variable, 
-        otherwise, set it as
-             FALCONJX_HOME=<flex-falcon repo-path>/compiler-jx
-        
-	See flex-falcon/README_JX for instructions on how to build FalconJX separately.
-			 
-    *5) The Google Closure Library will be downloaded automatically as part of
-        the build.  To use a different version of Google Closure Library,
-        download a release or clone from GitHub from:
-           https://github.com/google/closure-library
-
-        Set GOOG_HOME to the absolute path of the folder that contains the 
-        third_party and closure sub-folders.
-
-    *6) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
+    *3) The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
             http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc
 
         Use the URL above to download playerglobal11_1.swc. Create a directory,
@@ -155,7 +121,7 @@ Install Prerequisites
 
             frameworks/libs/player/<version.major>.<version.minor>/playerglobal.swc
 
-    *7) The Adobe AIR integration kit for Windows can be downloaded from:
+    *4) The Adobe AIR integration kit for Windows can be downloaded from:
 
            http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip
 
@@ -173,7 +139,7 @@ Install Prerequisites
         This version of Apache FlexJS was certified for use with Adobe AIR 16
         and is compatible with version 3.1 and up.
 
-    *8) The Adobe Flash Player content debuggers can be found here:
+    *5) The Adobe Flash Player content debuggers can be found here:
 
            http://www.adobe.com/support/flashplayer/downloads.html
 
@@ -192,12 +158,6 @@ Install Prerequisites
 
         On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
 
-    *9) If you are going to run "ant all" you can skip this step.
-        If you have cloned the flex-flexunit repository as a sibling of the flex-asjs
-        repository, you don’t need to set this variable.  Otherwise, Set 
-        FLEXUNIT_HOME to the root of a FlexUnit release or repo.  
-
-	See flex-flexunit/README for instructions on how to build FlexUnit separately.
 
 Software Dependencies
 ---------------------
@@ -210,8 +170,10 @@ Building the Source in the Source Distribution
     When you have all the prerequisites in place and the environment variables
     set (see Install Prerequisites above), use
 
-        cd <flex-asjs.dir>
-        ant all         (to clone upstream repos, build them and then FlexJS) or
+        cd <royale-asjs.dir>
+        ant all         (to clone upstream repos, build them and then Royale)
+
+    On subsequent builds, you can just run
         ant main        (or just ant since the default target is main)
 
     To clean the build, of everything other than the downloaded third-party
