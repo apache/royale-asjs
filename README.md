@@ -56,7 +56,7 @@ FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For mo
 
 FlexJS requires Ant 1.7.1 or greater to be installed on your computer.
 
-If you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7 you will get compile errors.
+Note: if you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7 you will get compile errors.
 
 For more information on installing Ant, see:
 
@@ -80,7 +80,7 @@ For more information on installing Ant, see:
   export PATH="$PATH:$ANT_HOME/bin"
   ```
 
-### playerglobal.swc
+### *playerglobal.swc*
 
 The Adobe Flash Player *playerglobal.swc* (version 11.1) can be downloaded from:
 
@@ -96,7 +96,7 @@ Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the abov
 
   Set **PLAYERGLOBAL_HOME** environment variable to the absolute path of the player directory, not including the version subdirectory (i.e. '*[root directory]/player*').
 
-Other, more recent versions of Adobe Flash Player playerglobal.swc can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with FlexJS, but not all have been fully tested.
+Other, more recent versions of Adobe Flash Player *playerglobal.swc* can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with FlexJS, but not all have been fully tested.
 
 
 ### Flash Player Content Debugger
@@ -109,11 +109,11 @@ This version of FlexJS was certified for use with Flash Player 11.1, and is comp
 
 - **Environment variable**
 
-  On Windows, set **FLASHPLAYER_DEBUGGER** to the absolute path including the filename of the Flash Player Content Debugger executable (e.g. 'FlashPlayerDebugger.exe'). Note: the filename of Flash Player Content Debugger can differ slightly between versions. Adjust your path accordingly.
+  On Windows, set **FLASHPLAYER_DEBUGGER** to the absolute path including the filename of the Flash Player Content Debugger executable (e.g. '*FlashPlayerDebugger.exe*'). Note: the filename of Flash Player Content Debugger can differ slightly between versions. Adjust your path accordingly.
 
-  On the Mac, set **FLASHPLAYER_DEBUGGER** to the absolute path of 'Flash Player.app/Contents/MacOS/Flash Player Debugger'
+  On the Mac, set **FLASHPLAYER_DEBUGGER** to the absolute path of '*Flash Player.app/Contents/MacOS/Flash Player Debugger*'
 
-  On Linux, set **FLASHPLAYER_DEBUGGER** to the absolute path of 'flashplayerdebugger'.
+  On Linux, set **FLASHPLAYER_DEBUGGER** to the absolute path of '*flashplayerdebugger*'.
 
 ### Adobe AIR Integration Kit (optional, for SWF output only)
 
@@ -133,14 +133,13 @@ After you download the AIR SDK, unzip it and place it in a directory of your cho
 
 ## Building the source
 
-FlexJS is a large project. It requires some build tools which must be installed prior to building the SDK. Some of these have different licenses. See the *Software Dependencies* section for more information on the external dependencies below.
+FlexJS is a large project. It requires some build tools which must be installed prior to building the SDK. Some of these have different licenses. See the **Software Dependencies** section for more information on the external dependencies below.
 
 Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested.
 
-FlexJS requires code from several other Apache Royale git repositories. To get these repositories, run:
+FlexJS requires code from several other Apache Royale git repositories. To get these repositories, change to the repository root ('*royale-asjs*') and run:
 
 ```bash
-cd <royale-asjs.dir>
 ant all
 ```
 
