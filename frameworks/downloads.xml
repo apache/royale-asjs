@@ -292,8 +292,10 @@
                 <exclude name="closure/goog/asserts/asserts.js"/>
                 <exclude name="closure/goog/base.js"/>
                 <exclude name="closure/goog/deps.js"/>
+                <exclude name="closure/goog/debug/debug.js"/>
                 <exclude name="closure/goog/debug/entrypointregistry.js"/>
                 <exclude name="closure/goog/debug/error.js"/>
+                <exclude name="closure/goog/debug/errorcontext.js"/>
                 <exclude name="closure/goog/disposable/disposable.js"/>
                 <exclude name="closure/goog/disposable/idisposable.js"/>
                 <exclude name="closure/goog/dom/nodetype.js"/>
