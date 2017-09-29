@@ -1542,10 +1542,6 @@
         <antcall target="clone-royale-asjs" />
         <antcall target="clone-royale-compiler" />
         <antcall target="clone-royale-typedefs" />
-        <antcall target="clone-flex-flexunit" />
-        <antcall target="clone-flex-sdk" />
-        <antcall target="clone-flex-tlf" />
-        <antcall target="clone-flex-blazeds" />
         <antcall target="build-all" />
     </target>
 
@@ -1613,102 +1609,14 @@
         </exec>
     </target>
 
-    <target name="check-flex-sdk">
-        <available file="${base.folder.name}/flex-sdk"
-        type="dir"
-        property="flex-sdk-exists"/>
-    </target>
-
-    <target name="clone-flex-sdk" depends="check-flex-sdk" unless="flex-sdk-exists">
-        <echo>cloning flex-sdk repo into ${base.folder.name}/flex-sdk</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-sdk.git" />
-            <arg value="flex-sdk" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-sdk">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-flexunit">
-        <available file="${base.folder.name}/flex-flexunit"
-        type="dir"
-        property="flex-flexunit-exists"/>
-    </target>
-
-    <target name="clone-flex-flexunit" depends="check-flex-flexunit" unless="flex-flexunit-exists">
-        <echo>cloning flex-flexunit repo into ${base.folder.name}/flex-flexunit</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-flexunit.git" />
-            <arg value="flex-flexunit" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-flexunit">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-blazeds">
-        <available file="${base.folder.name}/flex-blazeds"
-        type="dir"
-        property="flex-blazeds-exists"/>
-    </target>
-
-    <target name="clone-flex-blazeds" depends="check-flex-blazeds" unless="flex-blazeds-exists">
-        <echo>cloning flex-blazeds repo into ${base.folder.name}/flex-blazeds</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-blazeds.git" />
-            <arg value="flex-blazeds" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-blazeds">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-tlf">
-        <available file="${base.folder.name}/flex-tlf"
-        type="dir"
-        property="flex-tlf-exists"/>
-    </target>
-
-    <target name="clone-flex-tlf" depends="check-flex-tlf" unless="flex-tlf-exists">
-        <echo>cloning flex-tlf repo into ${base.folder.name}/flex-tlf</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-tlf.git" />
-            <arg value="flex-tlf" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-tlf">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-    
     <target name="build-all" depends="check-playerglobal-home,check-air-home">
-        <!-- get the questions out of the way -->
-        <ant dir="${base.folder.name}/flex-sdk/frameworks" antfile="downloads.xml">
-            <target name="font-jars-check" />
-            <target name="ask-font" />
-        </ant>
         <property name="font.donot.ask" value="set" />
-        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4Test" antfile="downloads.xml"
-            target="saxon9he-jar" />
-        <mkdir dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks/lib" />
-        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks" antfile="downloads.xml"
-            target="junit-jar" />
         <input
             message="This script will now download and compile lots of files.  This can take several minutes.   No interaction should be required.  Press the enter key to continue."
             />
-        <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
         <ant dir="${base.folder.name}/royale-compiler" target="all" />
         <ant dir="${base.folder.name}/royale-typedefs" />
-        <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
     </target>
     
     <target name="all" depends="set.base.folder, download-all, main" />
