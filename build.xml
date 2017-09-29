@@ -1131,7 +1131,7 @@
         </mxmlc>
     </target>
     
-    <target name="basictests-compile-java" >
+    <target name="basictests-compile-java" depends="marmotinni-setup">
         <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
         <delete dir="${basedir}/mustella/target/classes"/>
         <mkdir dir="${basedir}/mustella/target/classes"/>
