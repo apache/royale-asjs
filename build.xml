@@ -1250,7 +1250,7 @@
         <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/falcon-flexTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="load-task" description="run basic tests using mustella"  if="env.AIR_HOME">
+    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
         <property name="FALCONJX_HOME" value="${basedir}/js" />
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
