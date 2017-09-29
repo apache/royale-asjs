@@ -28,7 +28,7 @@ You may also use a precompiled binary convenience package to develop FlexJS appl
 
 Before building FlexJS you must install the following software and set the corresponding environment variables using absolute file paths. Relative file paths will result in build errors. The set of prerequisites is different depending on whether you want to compile your projects to SWF or not.
 
-### Java
+#### Java
 
 FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
@@ -36,11 +36,11 @@ FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For mo
 
 - **Environment variable**
 
-  Set the JAVA_HOME environment variable to the Java SDK installation path.
+  Set the **JAVA_HOME** environment variable to the Java SDK installation path.
 
 - **PATH**
 
-  Add the bin directory of JAVA_HOME to the PATH.
+  Add the bin directory of **JAVA_HOME** to the PATH.
 
   On Windows, set PATH to
   ```batch
@@ -52,19 +52,21 @@ FlexJS requires Java SDK 1.6 or greater to be installed on your computer. For mo
   export PATH="$PATH:$JAVA_HOME/bin"
   ```
 
-### Ant
+#### Ant
 
-FlexJS requires Ant 1.7.1 or greater to be installed on your computer. For more information on installing Ant, see:
+FlexJS requires Ant 1.7.1 or greater to be installed on your computer. If you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7, ant reports the java version as 1.6 so the JVM args for the data model (-d32/-d64) will not be set correctly and you will get compile errors.
+
+For more information on installing Ant, see:
 
 <http://ant.apache.org/>
 
 - **Environment variable**
 
-  Set the ANT_HOME environment variable to the Ant installation path.
+  Set the **ANT_HOME** environment variable to the Ant installation path.
 
 - **PATH**
 
-  Add the bin directory of ANT_HOME to the PATH.
+  Add the bin directory of **ANT_HOME** to the PATH.
 
   On Windows, set PATH to
   ```batch
@@ -76,150 +78,105 @@ FlexJS requires Ant 1.7.1 or greater to be installed on your computer. For more 
   export PATH="$PATH:$ANT_HOME/bin"
   ```
 
+#### playerglobal.swc
+
+The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
+
+<http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>
+
+First, create the following directory structure:
+
+*[root directory]/player/11.1/*
+
+Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the above directory.
+
+- **Environment variable**
+
+  Set **PLAYERGLOBAL_HOME** environment variable to the absolute path of the player directory, not including the version subdirectory (i.e. '*[root directory]/player*').
+
+Other, more recent versions of Adobe Flash Player playerglobal.swc can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These can be used with Apache FlexJS, but not all versions have been fully tested.
 
 
+#### Flash Player Content Debugger
 
+The Adobe Flash Player content debugger can be found here:
 
+<http://www.adobe.com/support/flashplayer/downloads.html>
 
+This version of Apache FlexJS was certified for use with Adobe Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with versions 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Adobe Flash Player versions. It has not been fully tested on Linux.
 
+- **Environment variable**
 
+  On Windows, set **FLASHPLAYER_DEBUGGER** to the absolute path including the filename of the FlashPlayerDebugger.exe. Note the filename of flash player debugger may be different, e.g. 'C:\MyPath\FlashPlayerDebugger.exe'.
 
-============================================================================
-SOFTWARE                                    ENVIRONMENT VARIABLE    REQUIRED
-============================================================================
+  On the Mac, set **FLASHPLAYER_DEBUGGER** to the absolute path of 'Flash Player.app/Contents/MacOS/Flash Player Debugger'
 
-Java SDK 1.6 or greater (*1)                JAVA_HOME               Yes
-    (for Java 1.7 see note at (*2))
+  On Linux, set **FLASHPLAYER_DEBUGGER** to the absolute path of 'flashplayerdebugger'.
 
-Ant 1.7.1 or greater (*1)                   ANT_HOME                Yes
-    (for Java 1.7 see note at (*2))
+#### Adobe AIR Integration Kit
 
-Adobe Flash Player playerglobal swcs (*3)   PLAYERGLOBAL_HOME       Yes
+This version of Apache FlexJS was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
 
-Adobe Flash Player Content Debugger (*5)    FLASHPLAYER_DEBUGGER    Yes
+Windows: <http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip>
 
-Adobe AIR Integration Kit (*4)              AIR_HOME                SWF
+Mac: <http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2>
 
-============================================================================
+Linux: <http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2>
 
-1. The bin directories for ANT_HOME and JAVA_HOME should be added to your PATH.
+After you download the AIR SDK, unzip it and place it in a directory of your choice.
 
-   On Windows, set PATH to
+- **Environment variable**
 
-   ```batch
-   PATH=%PATH%;%ANT_HOME%\bin;%JAVA_HOME%\bin
-   ```
+  Set **AIR_HOME** to the absolute path of the AIR SDK directory.
 
-   On the Mac (bash), set PATH to
+## Building the source
 
-   ```bash
-   export PATH="$PATH:$ANT_HOME/bin:$JAVA_HOME/bin"
-   ```
+FlexJS is a large project. It requires some build tools which must be installed prior to building the SDK. Some of these have different licenses. See the *Software Dependencies* section for more information on the external dependencies below.
 
-   On Linux make sure you path include ANT_HOME and JAVA_HOME.
+Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested so you may run into issues.
 
-2. If you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7, ant reports the java version as 1.6 so the JVM args for the data model (-d32/-d64) will not be set correctly and you will get compile errors.
-
-3. The Adobe Flash Player playerglobal.swc for 11.1 can be downloaded from:
-
-   <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>
-
-   Use the URL above to download playerglobal11_1.swc. Create a directory, create a folder path in that directory for player/11.1 and copy playerglobal11_1.swc to player/11.1/playerglobal.swc.
-
-   Set PLAYERGLOBAL_HOME to the absolute path of the player directory (not including the version subdirectory). The target-player option controls which PLAYERGLOBAL_HOME subdirectory is used.
-
-   Other more recent versions of Adobe Flash Player playerglobal.swc can be downloaded from:
-
-   http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]_[version.minor].swc
-
-   (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>)
-
-   These can be used with Apache FlexJS but not all have not been fully tested.
-
-   Copy the target playerglobal.swc to the directory:
-
-   frameworks/libs/player/[version.major].[version.minor]/playerglobal.swc
-
-4. The Adobe AIR integration kit for Windows can be downloaded from:
-
-   <http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip>
-
-   The Adobe AIR integration kit for Mac can be downloaded from:
-
-   <http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2>
-
-   The Adobe AIR integration kit for Linux can be downloaded from:
-
-   <http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2>
-
-   Download the AIR SDK for your platform and unzip it. Set AIR_HOME to the absolute path of the AIR SDK directory.
-
-   This version of Apache FlexJS was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up.
-
-5. The Adobe Flash Player content debuggers can be found here:
-
-   <http://www.adobe.com/support/flashplayer/downloads.html>
-
-   This version of Apache FlexJS was certified for use with Adobe Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with versions 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Adobe Flash Player versions. It has not been fully tested on Linux.
-
-   On Windows, set FLASHPLAYER_DEBUGGER to the absolute path including the filename of the FlashPlayerDebugger.exe. Note the filename of flash player debugger may be different, e.g. C:\MyPath\FlashPlayerDebugger.exe.
-
-   On the Mac, set FLASHPLAYER_DEBUGGER to the absolute path of 'Flash Player Debugger.app/Contents/MacOS/Flash Player Debugger'
-
-   On Linux, set FLASHPLAYER_DEBUGGER to the absolute path of flashplayerdebugger.
-
-FlexJS requires code from several other Apache Royale git repositories. To get the latest sources via git, first follow the instructions in ‘Prerequisites’, then from the royale-asjs directory, run:
+FlexJS requires code from several other Apache Royale git repositories. To get these sources, run:
 
 ```bash
+cd <royale-asjs.dir>
 ant all
 ```
 
 This will clone all of the upstream repositories, checkout the develop branches then run the builds in those repositories in the correct order.
 
-FlexJS is a large project. It requires some build tools which must be installed prior to building the SDK. Some of these have different licenses. See the Software Dependencies section for more information on the external software dependencies.
+Some more helpful commands:
 
-Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested so you may run into issues.
+- To rebuild, run:
 
-## Building the Source in the Source Distribution
+  ```bash
+  ant
+  ```
 
-When you have all the prerequisites in place and the environment variables set (see Install Prerequisites above), use
+- To clean the build, of everything other than the downloaded third-party dependencies, run:
 
-```bash
-cd <royale-asjs.dir>
-ant all (to clone upstream repos, build them and then Royale)
-```
+  ```bash
+  ant clean
+  ```
 
-On subsequent builds, you can just run
+- To generate a source distribution package and a binary distribution package, run:
 
-```bash
-ant main (or just ant since the default target is main)
-```
+  ```bash
+  ant -Dbuild.number=<YYYYMMDD> -Dbuild.noprompt= release
+  ```
 
-To clean the build, of everything other than the downloaded third-party dependencies use
+  The packages can be found in the "out" subdirectory.
 
-```bash
-ant clean
-```
+- To get a brief listing of all the targets, run:
 
-To generate a source distribution package and a binary distribution package use
-
-```bash
-ant -Dbuild.number=<YYYYMMDD> -Dbuild.noprompt= release
-```
-
-The packages can be found in the "out" subdirectory.
-
-To get a brief listing of all the targets type
-
-```bash
-ant -projecthelp
-```
+  ```bash
+  ant -projecthelp
+  ```
 
 ## Using the Binary Distribution
 
 If you are not interested in SWF output, the binary distribution can just be unzipped into a folder.
 
-If you want SWF output, use NPM. Type:
+If you want SWF output, use NPM. Run:
 
 ```bash
 sudo npm install flexjs -g
@@ -227,6 +184,6 @@ sudo npm install flexjs -g
 
 # Software Dependencies
 
-The FlexJS framework depends on the Google Closure Library.
+FlexJS depends on the Google Closure Library.
 
 # Thanks for using [Apache Royale](http://royale.apache.org). Enjoy!
