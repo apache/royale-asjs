@@ -224,6 +224,18 @@ internal class CoreClasses
 	{
 	    import org.apache.flex.core.IFlexJSElement; IFlexJSElement;
 	}
+
+	//Validation
+	import org.apache.flex.utils.validation.CreditCardValidator; CreditCardValidator;
+	import org.apache.flex.utils.validation.CurrencyValidator; CurrencyValidator;
+	import org.apache.flex.utils.validation.DateValidator; DateValidator;
+	import org.apache.flex.utils.validation.EmailValidator; EmailValidator;
+	import org.apache.flex.utils.validation.NumberValidator; NumberValidator;
+	import org.apache.flex.utils.validation.PhoneNumberValidator; PhoneNumberValidator;
+	import org.apache.flex.utils.validation.RegExpValidator; RegExpValidator;
+	import org.apache.flex.utils.validation.SocialSecurityValidator; SocialSecurityValidator;
+	import org.apache.flex.utils.validation.StringValidator; StringValidator;
+	import org.apache.flex.utils.validation.ZipCodeValidator; ZipCodeValidator;
 }
 
 }
