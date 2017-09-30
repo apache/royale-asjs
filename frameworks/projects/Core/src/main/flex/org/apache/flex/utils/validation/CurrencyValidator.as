@@ -811,9 +811,12 @@ package org.apache.flex.utils.validation
             thousandsSeparatorOverride = value;
 
             _thousandsSeparator = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "thousandsSeparator");
+                                value : ",";
+            // TODO get from resource bundle
+            // _thousandsSeparator = value != null ?
+            //                     value :
+            //                     resourceManager.getString(
+            //                         "validators", "thousandsSeparator");
         }
 
         //--------------------------------------------------------------------------
@@ -907,10 +910,13 @@ package org.apache.flex.utils.validation
         {
             decimalPointCountErrorOverride = value;
 
-            _decimalPointCountError = value != null ?
-                                    value :
-                                    resourceManager.getString(
-                                        "validators", "decimalPointCountError");
+            _decimalPointCountError = value != null ? 
+                                    value : "The decimal separator can only occur once.";
+			// TODO get from resource bundle
+            // _decimalPointCountError = value != null ?
+            //                         value :
+            //                         resourceManager.getString(
+            //                             "validators", "decimalPointCountError");
         }
 
         //----------------------------------
@@ -953,9 +959,13 @@ package org.apache.flex.utils.validation
             exceedsMaxErrorOverride = value;
 
             _exceedsMaxError = value != null ?
-                            value :
-                            resourceManager.getString(
-                                "validators", "exceedsMaxErrorCV");
+                            value : "The amount entered is too large.";
+
+			// TODO get from resource bundle
+            // _exceedsMaxError = value != null ?
+            //                 value :
+            //                 resourceManager.getString(
+            //                     "validators", "exceedsMaxErrorCV");
         }
 
         //----------------------------------
@@ -998,9 +1008,13 @@ package org.apache.flex.utils.validation
             invalidCharErrorOverride = value;
 
             _invalidCharError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "invalidCharError");
+                                value : "The input contains invalid characters.";
+
+			// TODO get from resource bundle
+            // _invalidCharError = value != null ?
+            //                     value :
+            //                     resourceManager.getString(
+            //                         "validators", "invalidCharError");
         }
 
         //----------------------------------
@@ -1043,9 +1057,13 @@ package org.apache.flex.utils.validation
             invalidFormatCharsErrorOverride = value;
 
             _invalidFormatCharsError = value != null ?
-                                    value :
-                                    resourceManager.getString(
-                                        "validators", "invalidFormatCharsError");
+                                    value : "One of the formatting parameters is invalid.";
+
+			// TODO get from resource bundle
+            // _invalidFormatCharsError = value != null ?
+            //                         value :
+            //                         resourceManager.getString(
+            //                             "validators", "invalidFormatCharsError");
         }
 
         //----------------------------------

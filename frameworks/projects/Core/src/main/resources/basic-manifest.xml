@@ -48,6 +48,17 @@
     <component id="TransformScaleModel" class="org.apache.flex.core.TransformScaleModel" />
     
     <component id="StyleChangeNotifier" class="org.apache.flex.core.StyleChangeNotifier"/>
+
+    <component id="CreditCardValidator" class="org.apache.flex.utils.validation.CreditCardValidator"/>
+    <component id="CurrencyValidator" class="org.apache.flex.utils.validation.CurrencyValidator"/>
+    <component id="DateValidator" class="org.apache.flex.utils.validation.DateValidator"/>
+    <component id="EmailValidator" class="org.apache.flex.utils.validation.EmailValidator"/>
+    <component id="NumberValidator" class="org.apache.flex.utils.validation.NumberValidator"/>
+    <component id="PhoneNumberValidator" class="org.apache.flex.utils.validation.PhoneNumberValidator"/>
+    <component id="RegExpValidator" class="org.apache.flex.utils.validation.RegExpValidator"/>
+    <component id="SocialSecurityValidator" class="org.apache.flex.utils.validation.SocialSecurityValidator"/>
+    <component id="StringValidator" class="org.apache.flex.utils.validation.StringValidator"/>
+    <component id="ZipCodeValidator" class="org.apache.flex.utils.validation.ZipCodeValidator"/>
     
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>
