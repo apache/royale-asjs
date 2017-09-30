@@ -454,9 +454,12 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharErrorEV");
+								value : "Your e-mail address contains invalid characters.";
+			// TODO get from resource bundle
+			// _invalidCharError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidCharErrorEV");
 		}
 		
 		//----------------------------------
@@ -500,9 +503,12 @@ package org.apache.flex.utils.validation
 			invalidDomainErrorOverride = value;
 
 			_invalidDomainError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidDomainErrorEV");
+								value : "The domain in your e-mail address is incorrectly formatted.";
+			// TODO get from resource bundle
+			// _invalidDomainError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidDomainErrorEV");
 		}
 
 		//----------------------------------
@@ -545,9 +551,12 @@ package org.apache.flex.utils.validation
 			invalidIPDomainErrorOverride = value;
 
 			_invalidIPDomainError = value != null ?
-									value :
-									resourceManager.getString(
-										"validators", "invalidIPDomainError");
+									value : "The IP domain in your e-mail address is incorrectly formatted.";
+			// TODO get from resource bundle
+			// _invalidIPDomainError = value != null ?
+			// 						value :
+			// 						resourceManager.getString(
+			// 							"validators", "invalidIPDomainError");
 		}
 
 		//----------------------------------
@@ -590,9 +599,12 @@ package org.apache.flex.utils.validation
 			invalidPeriodsInDomainErrorOverride = value;
 
 			_invalidPeriodsInDomainError = value != null ?
-										value :
-										resourceManager.getString(
-											"validators", "invalidPeriodsInDomainError");
+										value : "The domain in your e-mail address has continous periods.";
+			// TODO get from resource bundle
+			// _invalidPeriodsInDomainError = value != null ?
+			// 							value :
+			// 							resourceManager.getString(
+			// 								"validators", "invalidPeriodsInDomainError");
 		}
 
 		//----------------------------------
@@ -635,9 +647,12 @@ package org.apache.flex.utils.validation
 			missingAtSignErrorOverride = value;
 
 			_missingAtSignError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "missingAtSignError");
+								value : "An at sign (@) is missing in your e-mail address.";
+			// TODO get from resource bundle
+			// _missingAtSignError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "missingAtSignError");
 		}
 
 		//----------------------------------
@@ -680,9 +695,12 @@ package org.apache.flex.utils.validation
 			missingPeriodInDomainErrorOverride = value;
 
 			_missingPeriodInDomainError = value != null ?
-										value :
-										resourceManager.getString(
-											"validators", "missingPeriodInDomainError");
+										value : "The domain in your e-mail address is missing a period.";
+			// TODO get from resource bundle
+			// _missingPeriodInDomainError = value != null ?
+			// 							value :
+			// 							resourceManager.getString(
+			// 								"validators", "missingPeriodInDomainError");
 		}
 
 		//----------------------------------
@@ -725,9 +743,12 @@ package org.apache.flex.utils.validation
 			missingUsernameErrorOverride = value;
 
 			_missingUsernameError = value != null ?
-									value :
-									resourceManager.getString(
-										"validators", "missingUsernameError");
+									value : "The username in your e-mail address is missing.";
+			// TODO get from resource bundle
+			// _missingUsernameError = value != null ?
+			// 						value :
+			// 						resourceManager.getString(
+			// 							"validators", "missingUsernameError");
 		}
 
 		//----------------------------------
@@ -770,6 +791,9 @@ package org.apache.flex.utils.validation
 		{
 			tooManyAtSignsErrorOverride = value;
 
+			_tooManyAtSignsError = value != null ?
+								value : "Your e-mail address contains too many @ characters.";
+			// TODO get from resource bundle
 			_tooManyAtSignsError = value != null ?
 								value :
 								resourceManager.getString(
