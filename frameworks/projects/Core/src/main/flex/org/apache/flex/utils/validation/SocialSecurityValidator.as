@@ -288,10 +288,10 @@ package org.apache.flex.utils.validation
 			_invalidCharError = value != null ?
 								value : "You entered invalid characters in your Social Security number.";
 			// TODO get from resource bundle
-			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharErrorSSV");
+			// _invalidCharError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidCharErrorSSV");
 		}
 
 		//----------------------------------
