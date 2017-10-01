@@ -22,7 +22,7 @@ package org.apache.flex.utils.validation
     
     import org.apache.flex.utils.StringUtil;
     // [ResourceBundle("validators")]
-
+    //TODO Make PAYG
     /**
      *  The StringValidator class validates that the length of a String 
      *  is within a specified range. 
@@ -179,7 +179,7 @@ package org.apache.flex.utils.validation
             maxLengthOverride = value;
 
             _maxLength = value != null ?
-                        Number(value) : Number.MAX_VALUE;
+                        Number(value) : NaN;
 			// TODO get from resource bundle
             // _maxLength = value != null ?
             //             Number(value) :
@@ -228,7 +228,7 @@ package org.apache.flex.utils.validation
             minLengthOverride = value;
 
             _minLength = value != null ?
-                        Number(value) : Number.MIN_VALUE;
+                        Number(value) : NaN;
 
 			// TODO get from resource bundle
             // _minLength = value != null ?
@@ -284,9 +284,7 @@ package org.apache.flex.utils.validation
             tooLongErrorOverride = value;
 
             _tooLongError = value != null ?
-                            value :
-                            resourceManager.getString(
-                                "validators", "tooLongError");
+                            value : "This string is longer than the maximum allowed length. This must be less than {0} characters long.";
         }
 
         //----------------------------------
@@ -330,9 +328,7 @@ package org.apache.flex.utils.validation
             tooShortErrorOverride = value;
 
             _tooShortError = value != null ?
-                            value :
-                            resourceManager.getString(
-                                "validators", "tooShortError");
+                            value : "This string is shorter than the minimum allowed length. This must be at least {0} characters long.";
         }
         
         //--------------------------------------------------------------------------
