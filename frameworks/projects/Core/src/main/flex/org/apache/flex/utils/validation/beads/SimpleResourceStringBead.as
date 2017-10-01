@@ -20,8 +20,8 @@ package org.apache.flex.utils.validation.beads
 {
     import org.apache.flex.core.IBead;
     import org.apache.flex.core.IStrand;
-    import org.apache.flex.utils.validation.CreditCardValidator;
     import org.apache.flex.events.Event;
+    import org.apache.flex.core.Strand;
 
     public class SimpleResourceStringBead implements IBead
     {
@@ -30,15 +30,14 @@ package org.apache.flex.utils.validation.beads
             
         }
 
-        private var _strand:org.apache.flex.utils.validation.CreditCardValidator;
+        private var _strand:Strand;
         /**
          * @flexjsignorecoercion HTMLElement
          */
         public function set strand(value:IStrand):void
         {
-            _strand = value as CreditCardValidator;
+            _strand = value as Strand;
             _strand.addEventListener("beadsAdded",applyResources);
-
         }
         private function applyResources(ev:Event):void
         {
