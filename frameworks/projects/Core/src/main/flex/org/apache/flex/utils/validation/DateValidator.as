@@ -635,10 +635,13 @@ package org.apache.flex.utils.validation
 			allowedFormatCharsOverride = value;
 
 			_allowedFormatChars = value != null ?
-								value :
-								resourceManager.getString(
-									"validators",
-									"dateValidatorAllowedFormatChars");
+								value : "/\-. ";
+			// TODO get from resource bundle
+			// _allowedFormatChars = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators",
+			// 						"dateValidatorAllowedFormatChars");
 		}
 
 		//----------------------------------
@@ -795,9 +798,12 @@ package org.apache.flex.utils.validation
 			inputFormatOverride = value;
 
 			_inputFormat = value != null ?
-						value :
-						resourceManager.getString(
-							"SharedResources", "dateFormat");
+						value : "MM/DD/YYYY";
+			// TODO get from resource bundle
+			// _inputFormat = value != null ?
+			// 			value :
+			// 			resourceManager.getString(
+			// 				"SharedResources", "dateFormat");
 		}
 
 		//----------------------------------
@@ -1124,9 +1130,12 @@ package org.apache.flex.utils.validation
 			formatErrorOverride = value;
 
 			_formatError = value != null ?
-						value :
-						resourceManager.getString(
-							"validators", "formatError");
+						value : "Configuration error: Incorrect formatting string.";
+			// TODO get from resource bundle
+			// _formatError = value != null ?
+			// 			value :
+			// 			resourceManager.getString(
+			// 				"validators", "formatError");
 		}
 		
 		//----------------------------------
@@ -1169,9 +1178,12 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharErrorDV");
+								value : "Invalid characters in your date.";
+			// TODO get from resource bundle
+			// _invalidCharError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidCharErrorDV");
 		}
 		
 		//----------------------------------
@@ -1214,9 +1226,14 @@ package org.apache.flex.utils.validation
 			wrongDayErrorOverride = value;
 
 			_wrongDayError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "wrongDayError");
+							value : "Enter a valid day for the month.";
+							// resourceManager.getString(
+							// 	"validators", "wrongDayError");
+			// TODO get from resource bundle
+			// _wrongDayError = value != null ?
+			// 				value :
+			// 				resourceManager.getString(
+			// 					"validators", "wrongDayError");
 		}
 		
 		//----------------------------------
@@ -1260,9 +1277,12 @@ package org.apache.flex.utils.validation
 			wrongLengthErrorOverride = value;
 
 			_wrongLengthError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "wrongLengthErrorDV");
+								value : "Type the date in the format <i>inputFormat</i>.";
+			// TODO get from resource bundle
+			// _wrongLengthError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "wrongLengthErrorDV");
 		}
 
 		//----------------------------------
@@ -1305,9 +1325,12 @@ package org.apache.flex.utils.validation
 			wrongMonthErrorOverride = value;
 
 			_wrongMonthError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "wrongMonthError");
+							value : "Enter a month between 1 and 12.";
+			// TODO get from resource bundle
+			// _wrongMonthError = value != null ?
+			// 				value :
+			// 				resourceManager.getString(
+			// 					"validators", "wrongMonthError");
 		}
 		
 		//----------------------------------
@@ -1350,9 +1373,12 @@ package org.apache.flex.utils.validation
 			wrongYearErrorOverride = value;
 
 			_wrongYearError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "wrongYearError");
+							value : "Enter a year between 0 and 9999.";
+			// TODO get from resource bundle
+			// _wrongYearError = value != null ?
+			// 				value :
+			// 				resourceManager.getString(
+			// 					"validators", "wrongYearError");
 		}
 		
 		//--------------------------------------------------------------------------
