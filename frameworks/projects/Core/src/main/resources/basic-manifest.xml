@@ -59,6 +59,6 @@
     <component id="SocialSecurityValidator" class="org.apache.flex.utils.validation.SocialSecurityValidator"/>
     <component id="StringValidator" class="org.apache.flex.utils.validation.StringValidator"/>
     <component id="ZipCodeValidator" class="org.apache.flex.utils.validation.ZipCodeValidator"/>
-    
+    <component id="SimpleResourceStringBead" class="org.apache.flex.utils.validation.beads.SimpleResourceStringBead">
     <component id="State" class="org.apache.flex.states.State"/>
 </componentPackage>

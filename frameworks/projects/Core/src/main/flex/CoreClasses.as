@@ -220,6 +220,7 @@ internal class CoreClasses
     import org.apache.flex.utils.Proxy; Proxy;
     import org.apache.flex.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
 	
+	import org.apache.flex.utils.validation.resources.creditcard.en_us; org.apache.flex.utils.validation.resources.creditcard.en_us;
 	COMPILE::JS
 	{
 	    import org.apache.flex.core.IFlexJSElement; IFlexJSElement;

@@ -419,21 +419,6 @@ package org.apache.flex.utils.validation
 			// 					"validators", "allowNegative");
 		}
 
-		//----------------------------------
-		//  decimalSeparator
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the decimalSeparator property.
-		 */
-		private var _decimalSeparator:String;
-		
-		/**
-		 *  @private
-		 */
-		private var decimalSeparatorOverride:String;
-
 		[Inspectable(category="General", defaultValue="null")]
 
 		/**
@@ -449,21 +434,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */	
-		public function get decimalSeparator():String
-		{
-			return _decimalSeparator;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set decimalSeparator(value:String):void
-		{
-			decimalSeparatorOverride = value;
-
-			_decimalSeparator = value != null ?
-								value : ".";
-		}
+		public var decimalSeparator:String;
 
 		//----------------------------------
 		//  domain
@@ -473,13 +444,8 @@ package org.apache.flex.utils.validation
 		 *  @private
 		 *  Storage for the domain property.
 		 */
-		private var _domain:String;
+		private var _domain:String = "real";
 		
-		/**
-		 *  @private
-		 */
-		private var domainOverride:String;
-
 		[Inspectable(category="General", enumeration="int,real", defaultValue="null")]
 
 		/**
@@ -507,10 +473,8 @@ package org.apache.flex.utils.validation
 		 */
 		public function set domain(value:String):void
 		{
-			domainOverride = value;
-
-			_domain = value != null ?
-					value : "real";
+			if(isRealValue(value))
+				_domain = value;
 		}
 		
 		//----------------------------------
@@ -521,13 +485,8 @@ package org.apache.flex.utils.validation
 		 *  @private
 		 *  Storage for the maxValue property.
 		 */
-		private var _maxValue:Object;
+		private var _maxValue:Object = NaN;
 		
-		/**
-		 *  @private
-		 */
-		private var maxValueOverride:Object;
-
 		[Inspectable(category="General", defaultValue="null")]
 
 		/**
@@ -550,15 +509,8 @@ package org.apache.flex.utils.validation
 		 */
 		public function set maxValue(value:Object):void
 		{
-			maxValueOverride = value;
-
-			_maxValue = value != null ?
-						Number(value) : NaN;
-			// TODO get from resource bundle
-			// _maxValue = value != null ?
-			// 			Number(value) :
-			// 			resourceManager.getNumber(
-			// 				"validators", "maxValue");
+			if(isRealValue(value))
+				_maxValue = Number(value);
 		}
 
 		//----------------------------------
@@ -569,12 +521,7 @@ package org.apache.flex.utils.validation
 		 *  @private
 		 *  Storage for the minValue property.
 		 */
-		private var _minValue:Object;
-		
-		/**
-		 *  @private
-		 */
-		private var minValueOverride:Object;
+		private var _minValue:Object = NaN;
 
 		[Inspectable(category="General", defaultValue="null")]
 
@@ -598,15 +545,8 @@ package org.apache.flex.utils.validation
 		 */
 		public function set minValue(value:Object):void
 		{
-			minValueOverride = value;
-
-			_minValue = value != null ?
-						Number(value) : NaN;
-			// TODO get from resource bundle
-			// _minValue = value != null ?
-			// 			Number(value) :
-			// 			resourceManager.getNumber(
-			// 				"validators", "minValue");
+			if(isRealValue(value))
+				_minValue = Number(value);
 		}
 		
 		//----------------------------------
@@ -617,13 +557,8 @@ package org.apache.flex.utils.validation
 		 *  @private
 		 *  Storage for the precision property.
 		 */
-		private var _precision:Object;
+		private var _precision:Object = -1;
 		
-		/**
-		 *  @private
-		 */
-		private var precisionOverride:Object;
-
 		[Inspectable(category="General", defaultValue="null")]
 
 		/**
@@ -650,33 +585,10 @@ package org.apache.flex.utils.validation
 		 */
 		public function set precision(value:Object):void
 		{
-			precisionOverride = value;
-
-			_precision = value != null ?
-						int(value) : -1;
-
-			// TODO get from resource bundle
-			// _precision = value != null ?
-			// 			int(value) :
-			// 			resourceManager.getInt(
-			// 				"validators", "numberValidatorPrecision");
+			if(isRealValue(value))
+				_precision = int(value);
 		}
 		
-		//----------------------------------
-		//  thousandsSeparator
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the thousandsSeparator property.
-		 */
-		private var _thousandsSeparator:String;
-		
-		/**
-		 *  @private
-		 */
-		private var thousandsSeparatorOverride:String;
-
 		[Inspectable(category="General", defaultValue="null")]
 
 		/**
@@ -692,21 +604,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get thousandsSeparator():String
-		{
-			return _thousandsSeparator;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set thousandsSeparator(value:String):void
-		{
-			thousandsSeparatorOverride = value;
-
-			_thousandsSeparator = value != null ?
-								value : ",";
-		}
+		public var thousandsSeparator:String;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -722,13 +620,7 @@ package org.apache.flex.utils.validation
 		 *  @private
 		 *  Storage for the decimalPointCountError property.
 		 */
-		private var _decimalPointCountError:String;
 		
-		/**
-		 *  @private
-		 */
-		private var decimalPointCountErrorOverride:String;
-
 		[Inspectable(category="Errors", defaultValue="null")]
 
 		/**
@@ -741,37 +633,13 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get decimalPointCountError():String
-		{
-			return _decimalPointCountError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set decimalPointCountError(value:String):void
-		{
-			decimalPointCountErrorOverride = value;
-
-			_decimalPointCountError = value != null ?
-									value : "The decimal separator can occur only once.";
-		}
+		public var decimalPointCountError:String;
 		
 		//----------------------------------
 		//  exceedsMaxError
 		//----------------------------------
 
-		/**
-		 *  @private
-		 *  Storage for the exceedsMaxError property.
-		 */
-		private var _exceedsMaxError:String;
 		
-		/**
-		 *  @private
-		 */
-		private var exceedsMaxErrorOverride:String;
-
 		[Inspectable(category="Errors", defaultValue="null")]
 
 		/**
@@ -784,36 +652,11 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get exceedsMaxError():String
-		{
-			return _exceedsMaxError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set exceedsMaxError(value:String):void
-		{
-			exceedsMaxErrorOverride = value;
-
-			_exceedsMaxError = value != null ?
-							value : "The number entered is too large.";
-		}
+		public var exceedsMaxError:String;
 		
 		//----------------------------------
 		//  integerError
 		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the integerError property.
-		 */
-		private var _integerError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var integerErrorOverride:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -828,36 +671,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get integerError():String
-		{
-			return _integerError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set integerError(value:String):void
-		{
-			integerErrorOverride = value;
-
-			_integerError = value != null ?
-							value : "The number must be an integer.";
-		}
-
-		//----------------------------------
-		//  invalidCharError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the invalidCharError property.
-		 */
-		private var _invalidCharError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var invalidCharErrorOverride:String;
+		public var integerError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -871,36 +685,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */	
-		public function get invalidCharError():String
-		{
-			return _invalidCharError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set invalidCharError(value:String):void
-		{
-			invalidCharErrorOverride = value;
-
-			_invalidCharError = value != null ?
-								value : "The input contains invalid characters.";
-		}
-
-		//----------------------------------
-		//  invalidFormatCharsError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the invalidFormatCharsError property.
-		 */
-		private var _invalidFormatCharsError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var invalidFormatCharsErrorOverride:String;
+		public var invalidCharError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -916,36 +701,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get invalidFormatCharsError():String
-		{
-			return _invalidFormatCharsError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set invalidFormatCharsError(value:String):void
-		{
-			invalidFormatCharsErrorOverride = value;
-
-			_invalidFormatCharsError = value != null ?
-									value : "One of the formatting parameters is invalid.";
-		}
-
-		//----------------------------------
-		//  lowerThanMinError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the lowerThanMinError property.
-		 */
-		private var _lowerThanMinError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var lowerThanMinErrorOverride:String;
+		public var invalidFormatCharsError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -959,36 +715,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get lowerThanMinError():String
-		{
-			return _lowerThanMinError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set lowerThanMinError(value:String):void
-		{
-			lowerThanMinErrorOverride = value;
-
-			_lowerThanMinError = value != null ?
-								value : "The amount entered is too small.";
-		}
-
-		//----------------------------------
-		//  negativeError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the negativeError property.
-		 */
-		private var _negativeError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var negativeErrorOverride:String;
+		public var lowerThanMinError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -1003,36 +730,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get negativeError():String
-		{
-			return _negativeError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set negativeError(value:String):void
-		{
-			negativeErrorOverride = value;
-
-			_negativeError = value != null ?
-							value : "The amount may not be negative.";
-		}
-
-		//----------------------------------
-		//  precisionError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the precisionError property.
-		 */
-		private var _precisionError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var precisionErrorOverride:String;
+		public var negativeError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -1047,36 +745,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get precisionError():String
-		{
-			return _precisionError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set precisionError(value:String):void
-		{
-			precisionErrorOverride = value;
-
-			_precisionError = value != null ?
-							value : "The amount entered has too many digits beyond the decimal point.";
-		}
-
-		//----------------------------------
-		//  separationError
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the separationError property.
-		 */
-		private var _separationError:String;
-		
-		/**
-		 *  @private
-		 */
-		private var separationErrorOverride:String;
+		public var precisionError:String;
 
 		[Inspectable(category="Errors", defaultValue="null")]
 
@@ -1090,21 +759,7 @@ package org.apache.flex.utils.validation
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function get separationError():String
-		{
-			return _separationError;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set separationError(value:String):void
-		{
-			separationErrorOverride = value;
-
-			_separationError = value != null ?
-							value : "The thousands separator must be followed by three digits.";
-		}
+		public var separationError:String;
 
 		//--------------------------------------------------------------------------
 		//
