@@ -42,32 +42,6 @@ package org.apache.flex.utils.validation
      */
     public interface IValidator
     {
-        //----------------------------------------------------------------------
-        //
-        //  Properties
-        //
-        //----------------------------------------------------------------------
-
-        //----------------------------------
-        //  enabled
-        //----------------------------------
-
-        /**
-         *  Property to enable/disable validation process.
-         *  <p>Setting this value to <code>false</code> will stop the validator
-         *  from performing validation. 
-         *  When a validator is disabled, it dispatches no events, 
-         *  and the <code>validate()</code> method returns null.</p>
-         *
-         *  @default true
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.1
-         *  @playerversion AIR 2.0
-         *  @productversion Flex 4.5
-         */
-        function get enabled():Boolean;
-        function set enabled(value:Boolean):void;
         
         //----------------------------------------------------------------------
         //

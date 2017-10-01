@@ -794,10 +794,10 @@ package org.apache.flex.utils.validation
 			_tooManyAtSignsError = value != null ?
 								value : "Your e-mail address contains too many @ characters.";
 			// TODO get from resource bundle
-			_tooManyAtSignsError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "tooManyAtSignsError");
+			// _tooManyAtSignsError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "tooManyAtSignsError");
 		}
 
 		//--------------------------------------------------------------------------
@@ -806,23 +806,6 @@ package org.apache.flex.utils.validation
 		//
 		//--------------------------------------------------------------------------
 		
-		/**
-		 *  @private    
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			invalidCharError = invalidCharErrorOverride;
-			invalidDomainError = invalidDomainErrorOverride;
-			invalidIPDomainError = invalidIPDomainErrorOverride;
-			invalidPeriodsInDomainError = invalidPeriodsInDomainErrorOverride;
-			missingAtSignError = missingAtSignErrorOverride;
-			missingPeriodInDomainError = missingPeriodInDomainErrorOverride;
-			missingUsernameError = missingUsernameErrorOverride;
-			tooManyAtSignsError = tooManyAtSignsErrorOverride;
-		}
-
 		/**
 		 *  Override of the base class <code>doValidation()</code> method
 		 *  to validate an e-mail address.

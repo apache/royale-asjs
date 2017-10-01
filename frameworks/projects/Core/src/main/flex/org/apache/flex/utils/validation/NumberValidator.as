@@ -1113,32 +1113,6 @@ package org.apache.flex.utils.validation
 		//--------------------------------------------------------------------------
 
 		/**
-		 *  @private    
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			allowNegative = allowNegativeOverride;		
-			decimalSeparator = decimalSeparatorOverride;
-			domain = domainOverride;	
-			maxValue = maxValueOverride;
-			minValue = minValueOverride;
-			precision = precisionOverride;
-			thousandsSeparator = thousandsSeparatorOverride;
-
-			decimalPointCountError = decimalPointCountErrorOverride;
-			exceedsMaxError = exceedsMaxErrorOverride;
-			integerError = integerErrorOverride;
-			invalidCharError = invalidCharErrorOverride;
-			invalidFormatCharsError = invalidFormatCharsErrorOverride;
-			lowerThanMinError = lowerThanMinErrorOverride;
-			negativeError = negativeErrorOverride;
-			precisionError = precisionErrorOverride;
-			separationError = separationErrorOverride;
-		}
-
-		/**
 		 *  Override of the base class <code>doValidation()</code> method 
 		 *  to validate a number.
 		 *

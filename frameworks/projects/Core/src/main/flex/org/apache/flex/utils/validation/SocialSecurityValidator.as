@@ -219,9 +219,7 @@ package org.apache.flex.utils.validation
 				{
 					if (DECIMAL_DIGITS.indexOf(value.charAt(i)) != -1)
 					{
-						var message:String = resourceManager.getString(
-							"validators", "invalidFormatChars");
-						throw new Error(message);
+						throw new Error(invalidFormatChars);
 					}
 				}
 			}
@@ -237,6 +235,8 @@ package org.apache.flex.utils.validation
 			// 						"validators",
 			// 						"socialSecurityValidatorAllowedFormatChars");
 		}
+
+		public var invalidFormatChars:String;
 
 		//--------------------------------------------------------------------------
 		//
@@ -395,20 +395,6 @@ package org.apache.flex.utils.validation
 		//  Overridden methods
 		//
 		//--------------------------------------------------------------------------
-
-		/**
-		 *  @private
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			allowedFormatChars = allowedFormatChars;
-
-			invalidCharError = invalidCharErrorOverride;
-			wrongFormatError = wrongFormatErrorOverride;
-			zeroStartError = zeroStartErrorOverride;
-		}
 
 		/**
 		 *  Override of the base class <code>doValidation()</code> method

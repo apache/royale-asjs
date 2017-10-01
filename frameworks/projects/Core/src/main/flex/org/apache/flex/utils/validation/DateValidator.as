@@ -19,6 +19,7 @@
 
 package org.apache.flex.utils.validation
 {
+	
 
 	// [ResourceBundle("SharedResources")]
 	// [ResourceBundle("validators")]
@@ -508,71 +509,7 @@ package org.apache.flex.utils.validation
 			subFields = [ "day", "month", "year" ];
 		}
 		
-		//--------------------------------------------------------------------------
-		//
-		//  Overridden properties
-		//
-		//--------------------------------------------------------------------------
 
-		//----------------------------------
-		//  actualListeners
-		//----------------------------------
-
-		/** 
-		 *  @private
-		 *  Returns either the listener or the source
-		 *  for the day, month and year subfields.
-		 */
-		override protected function get actualListeners():Array
-		{
-			var results:Array = [];
-		
-			var dayResult:Object;
-			if (_dayListener)
-				dayResult = _dayListener;
-			else if (_daySource)
-				dayResult = _daySource;
-				
-			if (dayResult)
-			{
-				results.push(dayResult);
-				if (dayResult is IValidatorListener)
-					IValidatorListener(dayResult).validationSubField = "day";
-			}
-			
-			var monthResult:Object;
-			if (_monthListener)
-				monthResult = _monthListener;
-			else if (_monthSource)
-				monthResult = _monthSource;
-				
-			if (monthResult)
-			{
-				results.push(monthResult);
-				if (monthResult is IValidatorListener)
-					IValidatorListener(monthResult).validationSubField = "month";
-			}
-			
-			var yearResult:Object;
-			if (_yearListener)
-				yearResult = _yearListener;
-			else if (_yearSource)
-				yearResult = _yearSource;
-				
-			if (yearResult)
-			{
-				results.push(yearResult);
-				if (yearResult is IValidatorListener)
-					IValidatorListener(yearResult).validationSubField = "year";
-			}
-			
-			if (results.length > 0 && listener)
-				results.push(listener);
-			else
-				results = results.concat(super.actualListeners);
-			
-			return results;
-		}	
 
 		//--------------------------------------------------------------------------
 		//
@@ -625,9 +562,7 @@ package org.apache.flex.utils.validation
 				{
 					if (DECIMAL_DIGITS.indexOf(value.charAt(i)) != -1)
 					{
-						var message:String = resourceManager.getString(
-							"validators", "invalidFormatChars");
-						throw new Error(message);
+						throw new Error(invalidFormatChars);
 					}
 				}
 			}
@@ -643,49 +578,8 @@ package org.apache.flex.utils.validation
 			// 						"validators",
 			// 						"dateValidatorAllowedFormatChars");
 		}
+		public var invalidFormatChars:String;
 
-		//----------------------------------
-		//  dayListener
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the dayListener property.
-		 */
-		private var _dayListener:IValidatorListener;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  The component that listens for the validation result
-		 *  for the day subfield.
-		 *  If none is specified, use the value specified
-		 *  for the <code>daySource</code> property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get dayListener():IValidatorListener
-		{
-			return _dayListener;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set dayListener(value:IValidatorListener):void
-		{
-			if (_dayListener == value)
-				return;
-				
-			removeListenerHandler();	
-				
-			_dayListener = value;
-			
-			addListenerHandler();
-		}
 		
 		//----------------------------------
 		//  dayProperty
@@ -704,57 +598,6 @@ package org.apache.flex.utils.validation
 		 *  @productversion Flex 3
 		 */
 		public var dayProperty:String;
-		
-		//----------------------------------
-		//  daySource
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the daySource property.
-		 */
-		private var _daySource:Object;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  Object that contains the value of the day field.
-		 *  If you specify a value for this property, you must also
-		 *  specify a value for the <code>dayProperty</code> property. 
-		 *  Do not use this property if you set the <code>source</code> 
-		 *  and <code>property</code> properties. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get daySource():Object
-		{
-			return _daySource;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set daySource(value:Object):void
-		{
-			if (_daySource == value)
-				return;
-			
-			if (value is String)
-			{
-				var message:String = resourceManager.getString(
-					"validators", "DSAttribute", [ value ]);
-				throw new Error(message);
-			}
-				
-			removeListenerHandler();	
-				
-			_daySource = value;
-			
-			addListenerHandler();
-		}
 		
 		//----------------------------------
 		//  inputFormat
@@ -818,37 +661,6 @@ package org.apache.flex.utils.validation
 		
 		[Inspectable(category="General")]
 
-		/** 
-		 *  The component that listens for the validation result
-		 *  for the month subfield. 
-		 *  If none is specified, use the value specified
-		 *  for the <code>monthSource</code> property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get monthListener():IValidatorListener
-		{
-			return _monthListener;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set monthListener(value:IValidatorListener):void
-		{
-			if (_monthListener == value)
-				return;
-				
-			removeListenerHandler();	
-				
-			_monthListener = value;
-			
-			addListenerHandler();
-		}
-		
 		//----------------------------------
 		//  monthProperty
 		//----------------------------------	
@@ -866,57 +678,6 @@ package org.apache.flex.utils.validation
 		 *  @productversion Flex 3
 		 */
 		public var monthProperty:String;
-			
-		//----------------------------------
-		//  monthSource
-		//----------------------------------	
-		
-		/**
-		 *  @private
-		 *  Storage for the monthSource property.
-		 */
-		private var _monthSource:Object;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  Object that contains the value of the month field.
-		 *  If you specify a value for this property, you must also specify
-		 *  a value for the <code>monthProperty</code> property. 
-		 *  Do not use this property if you set the <code>source</code> 
-		 *  and <code>property</code> properties. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get monthSource():Object
-		{
-			return _monthSource;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set monthSource(value:Object):void
-		{
-			if (_monthSource == value)
-				return;
-			
-			if (value is String)
-			{
-				var message:String = resourceManager.getString(
-					"validators", "MSAttribute", [ value ]);
-				throw new Error(message);
-			}
-				
-			removeListenerHandler();	
-				
-			_monthSource = value;
-			
-			addListenerHandler();
-		}
 			
 		//----------------------------------
 		//  validateAsString
@@ -971,118 +732,6 @@ package org.apache.flex.utils.validation
 			// 						"validators", "validateAsString");
 		}
 
-		//----------------------------------
-		//  yearListener
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the yearListener property.
-		 */
-		private var _yearListener:IValidatorListener; 
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  The component that listens for the validation result
-		 *  for the year subfield. 
-		 *  If none is specified, use the value specified
-		 *  for the <code>yearSource</code> property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get yearListener():IValidatorListener
-		{
-			return _yearListener;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set yearListener(value:IValidatorListener):void
-		{
-			if (_yearListener == value)
-				return;
-				
-			removeListenerHandler();	
-				
-			_yearListener = value;
-			
-			addListenerHandler();
-		}
-		
-		//----------------------------------
-		//  yearProperty
-		//----------------------------------
-
-		[Inspectable(category="General")]
-
-		/**
-		 *  Name of the year property to validate. 
-		 *  This property is optional, but if you specify the
-		 *  <code>yearSource</code> property, you should also set this property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public var yearProperty:String;
-		
-		//----------------------------------
-		//  yearSource
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the yearSource property.
-		 */
-		private var _yearSource:Object;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  Object that contains the value of the year field.
-		 *  If you specify a value for this property, you must also specify
-		 *  a value for the <code>yearProperty</code> property. 
-		 *  Do not use this property if you set the <code>source</code> 
-		 *  and <code>property</code> properties. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get yearSource():Object
-		{
-			return _yearSource;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set yearSource(value:Object):void
-		{
-			if (_yearSource == value)
-				return;
-			
-			if (value is String)
-			{
-				var message:String = resourceManager.getString(
-					"validators", "YSAttribute", [ value ]);
-				throw new Error(message);
-			}
-				
-			removeListenerHandler();	
-				
-			_yearSource = value;
-			
-			addListenerHandler();
-		}
-			
 		//--------------------------------------------------------------------------
 		//
 		//  Properties: Errors
@@ -1388,25 +1037,6 @@ package org.apache.flex.utils.validation
 		//--------------------------------------------------------------------------
 
 		/**
-		 *  @private    
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			allowedFormatChars = allowedFormatCharsOverride;
-			inputFormat = inputFormatOverride;
-			validateAsString = validateAsStringOverride;
-					
-			invalidCharError = invalidCharErrorOverride;
-			wrongLengthError = wrongLengthErrorOverride;
-			wrongMonthError = wrongMonthErrorOverride;
-			wrongDayError = wrongDayErrorOverride;
-			wrongYearError = wrongYearErrorOverride;
-			formatError = formatErrorOverride;
-		}
-
-		/**
 		 *  Override of the base class <code>doValidation()</code> method
 		 *  to validate a date.
 		 *
@@ -1437,36 +1067,7 @@ package org.apache.flex.utils.validation
 				return DateValidator.validateDate(this, value, null);
 		}
 		
-		/**
-		 *  @private
-		 *  Grabs the data for the validator from three different sources.
-		 */
-		override protected function getValueFromSource():Object
-		{
-			var useValue:Boolean = false;
-		
-			var value:Object = {};
-			
-			if (daySource && dayProperty)
-			{
-				value.day = daySource[dayProperty];
-				useValue = true;
-			}
-			
-			if (monthSource && monthProperty)
-			{
-				value.month = monthSource[monthProperty];
-				useValue = true;
-			}
-			
-			if (yearSource && yearProperty)
-			{
-				value.year = yearSource[yearProperty];
-				useValue = true;
-			}
-			
-			return useValue ? value : super.getValueFromSource();
-		}
+
 	}
 
 }

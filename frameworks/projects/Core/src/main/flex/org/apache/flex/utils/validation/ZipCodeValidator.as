@@ -449,9 +449,7 @@ package org.apache.flex.utils.validation
                     if (DECIMAL_DIGITS.indexOf(c) != -1 ||
                         ROMAN_LETTERS.indexOf(c) != -1)
                     {
-                        var message:String = resourceManager.getString(
-                            "validators", "invalidFormatCharsZCV");
-                        throw new Error(message);
+                        throw new Error(invalidFormatCharsZCV);
                     }
                 }
             }
@@ -461,6 +459,7 @@ package org.apache.flex.utils.validation
             _allowedFormatChars = value != null ?
                                 value : " -";
         }
+        public var invalidFormatCharsZCV:String;
 
         //----------------------------------
         //  domain
@@ -739,22 +738,6 @@ package org.apache.flex.utils.validation
         //
         //--------------------------------------------------------------------------
     
-        /**
-         *  @private    
-         */
-        override protected function resourcesChanged():void
-        {
-            super.resourcesChanged();
-
-            allowedFormatChars = allowedFormatCharsOverride;
-            domain = domainOverride;
-
-            invalidDomainError = invalidDomainErrorOverride;
-            invalidCharError = invalidCharErrorOverride;
-            wrongCAFormatError = wrongCAFormatErrorOverride;
-            wrongLengthError = wrongLengthErrorOverride;
-            wrongUSFormatError = wrongUSFormatErrorOverride;    
-        }
 
         /**
          *  Override of the base class <code>doValidation()</code> method

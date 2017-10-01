@@ -337,19 +337,6 @@ package org.apache.flex.utils.validation
         //
         //--------------------------------------------------------------------------
 
-        /**
-         *  @private    
-         */
-        override protected function resourcesChanged():void
-        {
-            super.resourcesChanged();
-
-            maxLength = maxLengthOverride;
-            minLength = minLengthOverride;
-
-            tooLongError = tooLongErrorOverride;
-            tooShortError = tooShortErrorOverride;
-        }
 
         /**
          *  Override of the base class <code>doValidation()</code> method

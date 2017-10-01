@@ -210,9 +210,7 @@ package org.apache.flex.utils.validation
 				{
 					if (DECIMAL_DIGITS.indexOf(value.charAt(i)) != -1)
 					{
-						var message:String = resourceManager.getString(
-							"validators", "invalidFormatChars");
-						throw new Error(message);
+						throw new Error(invalidFormatChars);
 					}
 				}
 			}
@@ -222,6 +220,8 @@ package org.apache.flex.utils.validation
 			_allowedFormatChars = value != null ?
 								value : "()- .+";
 		}
+
+		public var invalidFormatChars:String;
 
 		//----------------------------------
 		//  minDigits
@@ -370,18 +370,6 @@ package org.apache.flex.utils.validation
 		//
 		//--------------------------------------------------------------------------
 
-		/**
-		 *  @private    
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			allowedFormatChars = allowedFormatCharsOverride;
-			minDigits = minDigitsOverride;
-			invalidCharError = invalidCharErrorOverride;
-			wrongLengthError = wrongLengthErrorOverride;
-		}
 
 		/**
 		 *  Override of the base class <code>doValidation()</code> method

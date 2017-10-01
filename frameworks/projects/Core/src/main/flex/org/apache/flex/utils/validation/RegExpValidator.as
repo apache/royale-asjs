@@ -300,17 +300,6 @@ package org.apache.flex.utils.validation
         //--------------------------------------------------------------------------
 
         /**
-         *  @private    
-         */
-        override protected function resourcesChanged():void
-        {
-            super.resourcesChanged();
-
-            noExpressionError = noExpressionErrorOverride;  
-            noMatchError = noMatchErrorOverride;
-        }
-
-        /**
          *  Override of the base class <code>doValidation()</code> method
          *  to validate a regular expression.
          *

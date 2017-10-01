@@ -570,10 +570,10 @@ package org.apache.flex.utils.validation
             _currencySymbol = value != null ?
                             value : "$";
 			// TODO get from resource bundle
-            _currencySymbol = value != null ?
-                            value :
-                            resourceManager.getString(
-                                "SharedResources", "currencySymbol");
+            // _currencySymbol = value != null ?
+            //                 value :
+            //                 resourceManager.getString(
+            //                     "SharedResources", "currencySymbol");
         }
 
         //----------------------------------
@@ -1280,32 +1280,7 @@ package org.apache.flex.utils.validation
         //
         //--------------------------------------------------------------------------
 
-        /**
-         *  @private    
-         */
-        override protected function resourcesChanged():void
-        {
-            super.resourcesChanged();
 
-            alignSymbol = alignSymbolOverride;
-            allowNegative = allowNegativeOverride;      
-            currencySymbol = currencySymbolOverride;
-            decimalSeparator = decimalSeparatorOverride;
-            maxValue = maxValueOverride;
-            minValue = minValueOverride;
-            precision = precisionOverride;
-            thousandsSeparator = thousandsSeparatorOverride;
-            
-            currencySymbolError = currencySymbolErrorOverride;
-            decimalPointCountError = decimalPointCountErrorOverride;
-            exceedsMaxError = exceedsMaxErrorOverride;
-            invalidCharError = invalidCharErrorOverride;
-            invalidFormatCharsError = invalidFormatCharsErrorOverride;
-            lowerThanMinError = lowerThanMinErrorOverride;
-            negativeError = negativeErrorOverride;
-            precisionError = precisionErrorOverride;
-            separationError = separationErrorOverride;
-        }
 
         /**
          *  Override of the base class <code>doValidation()</code> method

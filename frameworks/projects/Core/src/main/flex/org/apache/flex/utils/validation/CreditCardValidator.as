@@ -435,40 +435,6 @@ package org.apache.flex.utils.validation
 		//  actualListeners
 		//----------------------------------
 
-		/** 
-		 *  @private
-		 *  Returns either the listener or the source
-		 *  for the cardType and cardNumber subfields.
-		 */
-		override protected function get actualListeners():Array
-		{
-			var results:Array = [];
-			
-			var typeResult:Object;
-			if (_cardTypeListener)
-				typeResult = _cardTypeListener;
-			else if (_cardTypeSource)
-				typeResult = _cardTypeSource;
-				
-			results.push(typeResult);
-			if (typeResult is IValidatorListener)
-				IValidatorListener(typeResult).validationSubField = "cardType";
-				
-			var numResult:Object;
-			if (_cardNumberListener)
-				numResult = _cardNumberListener;
-			else if (_cardNumberSource)
-				numResult = _cardNumberSource;
-				
-			results.push(numResult);
-			if (numResult is IValidatorListener)
-				IValidatorListener(numResult).validationSubField = "cardNumber";
-					
-			if (results.length > 0 && listener)
-				results.push(listener);
-
-			return results;
-		}
 
 		//--------------------------------------------------------------------------
 		//
@@ -521,9 +487,7 @@ package org.apache.flex.utils.validation
 				{
 					if (DECIMAL_DIGITS.indexOf(value.charAt(i)) != -1)
 					{
-						var message:String = resourceManager.getString(
-							"validators", "invalidFormatChars");
-						throw new Error(message);
+						throw new Error(invalidFormatChars);
 					}
 				}
 			}
@@ -539,256 +503,8 @@ package org.apache.flex.utils.validation
 			// 						"validators",
 			// 						"creditCardValidatorAllowedFormatChars");
 		}
+		public var invalidFormatChars:String;
 		
-		//----------------------------------
-		//  cardNumberListener
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the cardNumberListener property.
-		 */
-		private var _cardNumberListener:IValidatorListener;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  The component that listens for the validation result
-		 *  for the card number subfield. 
-		 *  If none is specified, use the value specified
-		 *  to the <code>cardNumberSource</code> property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get cardNumberListener():IValidatorListener
-		{
-			return _cardNumberListener;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set cardNumberListener(value:IValidatorListener):void
-		{
-			if (_cardNumberListener == value)
-				return;
-				
-			removeListenerHandler();
-			
-			_cardNumberListener = value;
-			
-			addListenerHandler();
-		}
-			
-		//----------------------------------
-		//  cardNumberProperty
-		//----------------------------------
-
-		[Inspectable(category="General")]
-
-		/**
-		 *  Name of the card number property to validate. 
-		 *  This attribute is optional, but if you specify
-		 *  the <code>cardNumberSource</code> property, 
-		 *  you should also set this property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public var cardNumberProperty:String;
-		
-		//----------------------------------
-		//  cardNumberSource
-		//----------------------------------	
-
-		/**
-		 *  @private
-		 *  Storage for the cardNumberSource property.
-		 */
-		private var _cardNumberSource:Object;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  Object that contains the value of the card number field.
-		 *  If you specify a value for this property, you must also specify
-		 *  a value for the <code>cardNumberProperty</code> property. 
-		 *  Do not use this property if you set the <code>source</code> 
-		 *  and <code>property</code> properties. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get cardNumberSource():Object
-		{
-			return _cardNumberSource;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set cardNumberSource(value:Object):void
-		{
-			if (_cardNumberSource == value)
-				return;
-			
-			if (value is String)
-			{
-				var message:String = resourceManager.getString(
-					"validators", "CNSAttribute", [ value ]);
-				throw new Error(message);
-			}
-				
-			removeListenerHandler();	
-			
-			_cardNumberSource = value;
-			
-			addListenerHandler();
-		}
-		
-		//----------------------------------
-		//  cardTypeListener
-		//----------------------------------
-		
-		/**
-		 *  @private
-		 *  Storage for the cardTypeListener property.
-		 */
-		private var _cardTypeListener:IValidatorListener;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  The component that listens for the validation result
-		 *  for the card type subfield. 
-		 *  If none is specified, then use the value
-		 *  specified to the <code>cardTypeSource</code> property.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get cardTypeListener():IValidatorListener
-		{
-			return _cardTypeListener;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set cardTypeListener(value:IValidatorListener):void
-		{
-			if (_cardTypeListener == value)
-				return;
-				
-			removeListenerHandler();
-			
-			_cardTypeListener = value;
-			
-			addListenerHandler();
-		}
-			
-		//----------------------------------
-		//  cardTypeProperty
-		//----------------------------------
-
-		[Inspectable(category="General")]
-
-		/**
-		 *  Name of the card type property to validate. 
-		 *  This attribute is optional, but if you specify the
-		 *  <code>cardTypeSource</code> property,
-		 *  you should also set this property.
-		 *
-		 *  <p>In MXML, valid values are:</p>
-		 *  <ul>
-		 *    <li><code>"American Express"</code></li>
-		 *    <li><code>"Diners Club"</code></li>
-		 *    <li><code>"Discover"</code></li>
-		 *    <li><code>"MasterCard"</code></li>
-		 *    <li><code>"Visa"</code></li>
-		 *  </ul>
-		 *
-		 *  <p>In ActionScript, you can use the following constants to set this property:</p>
-		 *  <p><code>CreditCardValidatorCardType.AMERICAN_EXPRESS</code>, 
-		 *  <code>CreditCardValidatorCardType.DINERS_CLUB</code>,
-		 *  <code>CreditCardValidatorCardType.DISCOVER</code>, 
-		 *  <code>CreditCardValidatorCardType.MASTER_CARD</code>, and 
-		 *  <code>CreditCardValidatorCardType.VISA</code>.</p>
-		 *
-		 *  @see mx.validators.CreditCardValidatorCardType
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public var cardTypeProperty:String;
-		
-		//----------------------------------
-		//  cardTypeSource
-		//----------------------------------
-
-		/**
-		 *  @private
-		 *  Storage for the cardTypeSource property.
-		 */
-		private var _cardTypeSource:Object;
-		
-		[Inspectable(category="General")]
-
-		/** 
-		 *  Object that contains the value of the card type field.
-		 *  If you specify a value for this property, you must also specify
-		 *  a value for the <code>cardTypeProperty</code> property. 
-		 *  Do not use this property if you set the <code>source</code> 
-		 *  and <code>property</code> properties. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public function get cardTypeSource():Object
-		{
-			return _cardTypeSource;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set cardTypeSource(value:Object):void
-		{
-			if (_cardTypeSource == value)
-				return;
-				
-			if (value is String)
-			{
-				var message:String = resourceManager.getString(
-					"validators", "CTSAttribute", [ value ]);
-				throw new Error(message);
-			}
-				
-			removeListenerHandler();	
-			
-			_cardTypeSource = value;
-			
-			addListenerHandler();
-		}
-		
-		//--------------------------------------------------------------------------
-		//
-		//  Properties: Errors
-		//
-		//--------------------------------------------------------------------------
 
 		//----------------------------------
 		//  invalidCharError
@@ -1085,28 +801,6 @@ package org.apache.flex.utils.validation
 			// 					"validators", "wrongTypeError");
 		}
 
-		//--------------------------------------------------------------------------
-		//
-		//  Overridden methods
-		//
-		//--------------------------------------------------------------------------
-
-		/**
-		 *  @private    
-		 */
-		override protected function resourcesChanged():void
-		{
-			super.resourcesChanged();
-
-			allowedFormatChars = allowedFormatCharsOverride;
-			
-			invalidCharError = invalidCharErrorOverride;
-			invalidNumberError = invalidNumberErrorOverride;
-			noNumError = noNumErrorOverride;
-			noTypeError = noTypeErrorOverride;
-			wrongLengthError = wrongLengthErrorOverride;
-			wrongTypeError = wrongTypeErrorOverride;
-		}
 
 		/**
 		 *  Override of the base class <code>doValidation()</code> method
@@ -1137,34 +831,6 @@ package org.apache.flex.utils.validation
 				return results;
 			else
 				return CreditCardValidator.validateCreditCard(this, value, null);
-		}
-		
-		/**
-		 *  @private
-		 *  Grabs the data for the validator from two different sources
-		 */
-		override protected function getValueFromSource():Object
-		{
-			var useValue:Boolean = false;
-		
-			var value:Object = {};
-			
-			if (cardTypeSource && cardTypeProperty)
-			{
-				value.cardType = cardTypeSource[cardTypeProperty];
-				useValue = true;
-			}
-			
-			if (cardNumberSource && cardNumberProperty)
-			{
-				value.cardNumber = cardNumberSource[cardNumberProperty];
-				useValue = true;
-			}
-		
-			if (useValue)
-				return value;
-			else
-				return super.getValueFromSource();
 		}
 	}
 

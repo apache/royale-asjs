@@ -158,7 +158,7 @@ package org.apache.flex.utils.validation
             var n:int = validators.length;
             for (var i:int = 0; i < n; i++)
             {
-                var v:IValidator = validators[i] as IValidator;
+                var v:Validator = validators[i] as Validator;
                 if (v && v.enabled)
                 {
                     var resultEvent:ValidationResultEvent = v.validate();
@@ -169,53 +169,6 @@ package org.apache.flex.utils.validation
             }   
             
             return result;
-        }
-        
-        /**
-         *  @private
-         */
-        private static function findObjectFromString(doc:Object,
-                                                    value:String):Object
-        {
-            var obj:Object = doc;
-            var parts:Array = value.split(".");
-
-            var n:int = parts.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                try
-                {
-                    obj = obj[parts[i]];
-                    
-                    // There's no guarantee that the objects have
-                    // already been created when this function fires;
-                    // for example, in the deferred instantiation case,
-                    // this function fires before the object for validation
-                    // has been created.
-                    if (obj == null)
-                    {
-                        //return true;
-                    }
-                }
-                catch(error:Error)
-                {
-                    if ((error is TypeError) &&
-                        (error.message.indexOf("null has no properties") != -1))
-                    {
-                        var resourceManager:IResourceManager =
-                            ResourceManager.getInstance();
-                        var message:String = resourceManager.getString(
-                            "validators", "fieldNotFound", [ value ]);
-                        throw new Error(message);
-                    }
-                    else
-                    {                    
-                        throw error;
-                    }
-                }
-            }
-            
-            return obj;
         }
         
         /**
@@ -257,327 +210,7 @@ package org.apache.flex.utils.validation
         public function Validator()
         {
             super();
-
-            // Register as a weak listener for "change" events from ResourceManager.
-            // If Validators registered as a strong listener,
-            // they wouldn't get garbage collected.
-            // resourceManager.addEventListener(
-            //     Event.CHANGE, resourceManager_changeHandler, false, 0, true);
-
-            resourcesChanged();
         }
-
-        //--------------------------------------------------------------------------
-        //
-        //  Variables
-        //
-        //--------------------------------------------------------------------------
-
-
-        //--------------------------------------------------------------------------
-        //
-        //  Properties
-        //
-        //--------------------------------------------------------------------------
-
-        //----------------------------------
-        //  actualTrigger
-        //----------------------------------
-
-        /**
-         *  Contains the trigger object, if any,
-         *  or the source object. Used to determine the listener object
-         *  for the <code>triggerEvent</code>. 
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function get actualTrigger():IEventDispatcher
-        {
-            if (_trigger)
-                return _trigger;
-            
-            else if (_source)
-                return _source as IEventDispatcher;
-                
-            return null;            
-        }
-        
-        //----------------------------------
-        //  actualListeners
-        //----------------------------------
-
-        /**
-         *  Contains an Array of listener objects, if any,  
-         *  or the source object. Used to determine which object
-         *  to notify about the validation result.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function get actualListeners():Array
-        {
-            var result:Array = [];
-        
-            if (_listener)
-                result.push(_listener);
-            
-            else if (_source)
-                result.push(_source);
-                
-            return result;
-        }
-        
-        //----------------------------------
-        //  enabled
-        //----------------------------------
-        
-        /**
-         *  @private
-         *  Storage for the enabled property.
-         */
-        private var _enabled:Boolean = true;
-        
-        [Inspectable(category="General", defaultValue="true")]
-
-        /** 
-         *  Setting this value to <code>false</code> will stop the validator
-         *  from performing validation. 
-         *  When a validator is disabled, it dispatch no events, 
-         *  and the <code>validate()</code> method returns null.
-         *
-         *  @default true
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public function get enabled():Boolean
-        {
-            return _enabled;
-        }
-
-        /**
-         *  @private
-         */
-        public function set enabled(value:Boolean):void
-        {
-            _enabled = value;
-        }
-        
-        //----------------------------------
-        //  listener
-        //----------------------------------
-
-        /**
-         *  @private
-         *  Storage for the listener property.
-         */
-        private var _listener:Object;
-        
-        [Inspectable(category="General")]
-
-        /**
-         *  Specifies the validation listener.
-         *
-         *  <p>If you do not specify a listener,
-         *  Flex uses the value of the <code>source</code> property. 
-         *  After Flex determines the source component,
-         *  it changes the border color of the component,
-         *  displays an error message for a failure,
-         *  or hides any existing error message for a successful validation.</p>
-         *
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        
-        /* This behavior has been removed.
-        *  <p>If Flex does not find an appropriate listener, 
-        *  validation errors propagate to the Application object, causing Flex 
-        *  to display an Alert box containing the validation error message.</p>
-        *
-        *  <p>Specifying <code>this</code> causes the validation error
-        *  to propagate to the Application object, 
-        *  and displays an Alert box containing the validation error message.</p>
-        *  
-        *  @langversion 3.0
-        *  @playerversion Flash 9
-        *  @playerversion AIR 1.1
-        *  @productversion Flex 3
-        */
-        public function get listener():Object
-        {
-            return _listener;
-        }
-
-        /**
-         *  @private
-         */
-        public function set listener(value:Object):void
-        {
-            removeListenerHandler();    
-            _listener = value;
-            addListenerHandler();   
-        }
-        
-        //----------------------------------
-        //  property
-        //----------------------------------    
-        
-        /**
-         *  @private
-         *  Storage for the property property.
-         */
-        private var _property:String;
-        
-        [Inspectable(category="General")]
-
-        /**
-         *  A String specifying the name of the property
-         *  of the <code>source</code> object that contains 
-         *  the value to validate.
-         *  The property is optional, but if you specify <code>source</code>,
-         *  you should set a value for this property as well.
-         *  
-         *  @default null
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public function get property():String
-        {
-            return _property;
-        }
-
-        /**
-         *  @private
-         */
-        public function set property(value:String):void
-        {
-            _property = value;
-        }
-        
-        //----------------------------------
-        //  required
-        //----------------------------------
-
-        [Inspectable(category="General", defaultValue="true")]
-        
-        /**
-         *  If <code>true</code>, specifies that a missing or empty 
-         *  value causes a validation error. 
-         *  
-         *  @default true
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public var required:Boolean = true;
-        
-        //----------------------------------
-        //  resourceManager
-        //----------------------------------
-        
-        /**
-         *  @private
-         *  Storage for the resourceManager property.
-         */
-        private var _resourceManager:IResourceManager = ResourceManager.getInstance();
-        
-        /**
-         *  @private
-         *  This metadata suppresses a trace() in PropertyWatcher:
-         *  "warning: unable to bind to property 'resourceManager' ..."
-         */
-        [Bindable("unused")]
-        
-        /**
-         *  @copy mx.core.UIComponent#resourceManager
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function get resourceManager():IResourceManager
-        {
-            return _resourceManager;
-        }
-
-        //----------------------------------
-        //  source
-        //----------------------------------
-        
-        /**
-         *  @private
-         *  Storage for the source property.
-         */
-        private var _source:Object;
-        
-        [Inspectable(category="General")]
-
-        /**
-         *  Specifies the object containing the property to validate. 
-         *  Set this to an instance of a component or a data model. 
-         *  You use data binding syntax in MXML to specify the value.
-         *  This property supports dot-delimited Strings
-         *  for specifying nested properties. 
-         *
-         *  If you specify a value to the <code>source</code> property,
-         *  then you should specify a value to the <code>property</code>
-         *  property as well. 
-         *  The <code>source</code> property is optional.
-         *  
-         *  @default null
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public function get source():Object
-        {
-            return _source;
-        }
-        
-        /**
-         *  @private
-         */
-        public function set source(value:Object):void
-        {
-            if (_source == value)
-                return;
-            
-            if (value is String)
-            {
-                var message:String = resourceManager.getString(
-                    "validators", "SAttribute", [ value ]);
-                throw new Error(message);
-            }
-            
-            // Remove the listener from the old source.
-            removeTriggerHandler();
-            removeListenerHandler();
-            
-            _source = value;
-                    
-            // Listen for the trigger event on the new source.
-            addTriggerHandler();    
-            addListenerHandler();   
-        }
-
         //----------------------------------
         //  subFields
         //----------------------------------
@@ -602,90 +235,8 @@ package org.apache.flex.utils.validation
          */
         protected var subFields:Array = [];
 
-        //----------------------------------
-        //  trigger
-        //----------------------------------
-        
-        /**
-         *  @private
-         *  Storage for the trigger property.
-         */
-        private var _trigger:IEventDispatcher;
-        
-        [Inspectable(category="General")]
 
-        /**
-         *  Specifies the component generating the event that triggers the validator. 
-         *  If omitted, by default Flex uses the value of the <code>source</code> property.
-         *  When the <code>trigger</code> dispatches a <code>triggerEvent</code>,
-         *  validation executes. 
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public function get trigger():IEventDispatcher
-        {
-            return _trigger;
-        }
         
-        /**
-         *  @private
-         */
-        public function set trigger(value:IEventDispatcher):void
-        {
-            removeTriggerHandler();
-            _trigger = value;
-            addTriggerHandler();    
-        }
-        
-        //----------------------------------
-        //  triggerEvent
-        //----------------------------------
-        
-        /**
-         *  @private
-         *  Storage for the triggerEvent property.
-         */
-        //TODO What is this for (changed the old value to a literal to make error go away)?
-        private var _triggerEvent:String = "valueCommit";
-        
-        [Inspectable(category="General")]
-
-        /**
-         *  Specifies the event that triggers the validation. 
-         *  If omitted, Flex uses the <code>valueCommit</code> event. 
-         *  Flex dispatches the <code>valueCommit</code> event
-         *  when a user completes data entry into a control.
-         *  Usually this is when the user removes focus from the component, 
-         *  or when a property value is changed programmatically.
-         *  If you want a validator to ignore all events,
-         *  set <code>triggerEvent</code> to the empty string ("").
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        public function get triggerEvent():String
-        {
-            return _triggerEvent;
-        }
-        
-        /**
-         *  @private
-         */
-        public function set triggerEvent(value:String):void
-        {
-            if (_triggerEvent == value)
-                return;
-                
-            removeTriggerHandler();
-            _triggerEvent = value;
-            addTriggerHandler();
-        }
-
         //--------------------------------------------------------------------------
         //
         //  Properties: Errors
@@ -731,130 +282,11 @@ package org.apache.flex.utils.validation
         public function set requiredFieldError(value:String):void
         {
             requiredFieldErrorOverride = value;
-
-            _requiredFieldError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "requiredFieldError");
+            isRealValue(value)
+            if(isRealValue(value))
+                _requiredFieldError = value;
         }
         
-        //--------------------------------------------------------------------------
-        //
-        //  Methods
-        //
-        //--------------------------------------------------------------------------
-
-        /**
-         *  This method is called when a Validator is constructed,
-         *  and again whenever the ResourceManager dispatches
-         *  a <code>"change"</code> Event to indicate
-         *  that the localized resources have changed in some way.
-         * 
-         *  <p>This event will be dispatched when you set the ResourceManager's
-         *  <code>localeChain</code> property, when a resource module
-         *  has finished loading, and when you call the ResourceManager's
-         *  <code>update()</code> method.</p>
-         *
-         *  <p>Subclasses should override this method and, after calling
-         *  <code>super.resourcesChanged()</code>, do whatever is appropriate
-         *  in response to having new resource values.</p>
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function resourcesChanged():void
-        {
-            requiredFieldError = requiredFieldErrorOverride;
-        }
-
-        /**
-         *  @private
-         */
-        private function addTriggerHandler():void
-        {
-            if (actualTrigger)
-                actualTrigger.addEventListener(_triggerEvent, triggerHandler);
-        }
-        
-        /**
-         *  @private
-         */
-        private function removeTriggerHandler():void
-        {
-            if (actualTrigger)  
-                actualTrigger.removeEventListener(_triggerEvent, triggerHandler);
-        }
-        
-        /**
-         *  Sets up all of the listeners for the 
-         *  <code>valid</code> and <code>invalid</code>
-         *  events dispatched from the validator. Subclasses of the Validator class 
-         *  should first call the <code>removeListenerHandler()</code> method, 
-         *  and then the <code>addListenerHandler()</code> method if 
-         *  the value of one of their listeners or sources changes. 
-         *  The CreditCardValidator and DateValidator classes use this function internally. 
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function addListenerHandler():void
-        {
-            var actualListener:Object;
-            var listeners:Array = actualListeners;
-        
-            var n:int = listeners.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                actualListener = listeners[i];
-                if (actualListener is IValidatorListener)
-                {
-                    addEventListener(ValidationResultEvent.VALID,
-                                    IValidatorListener(actualListener).validationResultHandler); 
-
-                    addEventListener(ValidationResultEvent.INVALID,
-                                    IValidatorListener(actualListener).validationResultHandler); 
-                }
-            }
-        }
-        
-        /**
-         *  Disconnects all of the listeners for the 
-         *  <code>valid</code> and <code>invalid</code>
-         *  events dispatched from the validator. Subclasses should first call the
-         *  <code>removeListenerHandler()</code> method and then the 
-         *  <code>addListenerHandler</code> method if 
-         *  the value of one of their listeners or sources changes. 
-         *  The CreditCardValidator and DateValidator classes use this function internally. 
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function removeListenerHandler():void
-        {
-            var actualListener:Object;
-            var listeners:Array = actualListeners;
-        
-            var n:int = listeners.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                actualListener = listeners[i];
-                if (actualListener is IValidatorListener)
-                {
-                    removeEventListener(ValidationResultEvent.VALID,
-                                        IValidatorListener(actualListener).validationResultHandler); 
-                                        
-                    removeEventListener(ValidationResultEvent.INVALID,
-                                        IValidatorListener(actualListener).validationResultHandler); 
-                }
-            }
-        }
-
         /**
          *  Returns <code>true</code> if <code>value</code> is not null. 
          * 
@@ -909,10 +341,7 @@ package org.apache.flex.utils.validation
                             value:Object = null,
                             suppressEvents:Boolean = false):ValidationResultEvent
         {   
-            if (value == null)
-                value = getValueFromSource();   
-            
-            if (isRealValue(value) || required)
+            if (isRealValue(value))
             {
                 // Validate if the target is required or our value is non-null.
                 return processValidation(value, suppressEvents);
@@ -923,7 +352,7 @@ package org.apache.flex.utils.validation
                 // validation was successful.
                 var resultEvent:ValidationResultEvent = 
                     new ValidationResultEvent(ValidationResultEvent.VALID);
-                if (!suppressEvents && _enabled)
+                if (!suppressEvents && enabled)
                 {
                     dispatchEvent(resultEvent);
                 }
@@ -931,45 +360,6 @@ package org.apache.flex.utils.validation
             } 
         }
         
-        /**
-         *  Returns the Object to validate. Subclasses, such as the 
-         *  CreditCardValidator and DateValidator classes, 
-         *  override this method because they need
-         *  to access the values from multiple subfields. 
-         *
-         *  @return The Object to validate.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 9
-         *  @playerversion AIR 1.1
-         *  @productversion Flex 3
-         */
-        protected function getValueFromSource():Object
-        {
-            var message:String;
-
-            if (_source && _property)
-            {
-                return _source[_property];
-            }
-
-            else if (!_source && _property)
-            {
-                message = resourceManager.getString(
-                    "validators", "SAttributeMissing");
-                throw new Error(message);
-            }
-
-            else if (_source && !_property)
-            {
-                message = resourceManager.getString(
-                    "validators", "PAttributeMissing");
-                throw new Error(message);
-            }
-            
-            return null;
-        }
-
         /** 
          *  @private 
          *  Main internally used function to handle validation process.
@@ -980,7 +370,7 @@ package org.apache.flex.utils.validation
         {   
             var resultEvent:ValidationResultEvent;
             
-            if (_enabled)
+            if (enabled)
             {
                 var errorResults:Array = doValidation(value);
 
@@ -1059,6 +449,38 @@ package org.apache.flex.utils.validation
             return null;
         }
 
+        [Inspectable(category="General", defaultValue="true")]
+        
+        /**
+         *  If <code>true</code>, specifies that a missing or empty 
+         *  value causes a validation error. 
+         *  
+         *  @default true
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public var required:Boolean = true;
+
+        [Inspectable(category="General", defaultValue="true")]
+        
+        /** 
+         *  Setting this value to <code>false</code> will stop the validator
+         *  from performing validation. 
+         *  When a validator is disabled, it dispatch no events, 
+         *  and the <code>validate()</code> method returns null.
+         *
+         *  @default true
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public var enabled:Boolean = true;
+
         /**
          *  Returns a ValidationResultEvent from the Array of error results. 
          *  Internally, this function takes the results from the 
@@ -1124,28 +546,6 @@ package org.apache.flex.utils.validation
             }
             
             return resultEvent;
-        }
-        
-        //--------------------------------------------------------------------------
-        //
-        //  Event handlers
-        //
-        //--------------------------------------------------------------------------
-        
-        /**
-         *  @private
-         */
-        private function triggerHandler(event:Event):void
-        {
-            validate();
-        }
-
-        /**
-         *  @private
-         */
-        private function resourceManager_changeHandler(event:Event):void
-        {
-            resourcesChanged();
         }
 
         private var document:Object;
