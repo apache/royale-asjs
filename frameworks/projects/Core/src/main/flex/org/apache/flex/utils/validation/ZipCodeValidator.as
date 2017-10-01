@@ -19,7 +19,7 @@
 
 package org.apache.flex.utils.validation
 {
-
+    //TODO Make PAYG
 
     // [ResourceBundle("validators")]
 
@@ -459,10 +459,7 @@ package org.apache.flex.utils.validation
             allowedFormatCharsOverride = value;
 
             _allowedFormatChars = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators",
-                                    "zipCodeValidatorAllowedFormatChars");
+                                value : " -";
         }
 
         //----------------------------------
@@ -512,9 +509,7 @@ package org.apache.flex.utils.validation
             domainOverride = value;
 
             _domain = value != null ?
-                    value :
-                    resourceManager.getString(
-                        "validators", "zipCodeValidatorDomain");
+                    value : ZipCodeValidatorDomainType.US_ONLY;
         }
 
         //--------------------------------------------------------------------------
@@ -563,9 +558,7 @@ package org.apache.flex.utils.validation
             invalidCharErrorOverride = value;
 
             _invalidCharError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "invalidCharErrorZCV");
+                                value : "The ZIP code contains invalid characters.";
         }
 
         //----------------------------------
@@ -608,9 +601,7 @@ package org.apache.flex.utils.validation
             invalidDomainErrorOverride = value;
 
             _invalidDomainError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "invalidDomainErrorZCV");
+                                value : "The domain parameter is invalid. It must be either 'US Only' or 'US or Canada'.";
         }
         
         //----------------------------------
@@ -653,9 +644,7 @@ package org.apache.flex.utils.validation
             wrongCAFormatErrorOverride = value;
 
             _wrongCAFormatError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "wrongCAFormatError");
+                                value : "The Canadian postal code must be formatted 'A1B 2C3'.";
         }
         
         //----------------------------------
@@ -698,9 +687,7 @@ package org.apache.flex.utils.validation
             wrongLengthErrorOverride = value;
 
             _wrongLengthError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "wrongLengthErrorZCV");
+                                value : "The ZIP code must be 5 digits or 5+4 digits.";
         }
         
         //----------------------------------
@@ -743,9 +730,7 @@ package org.apache.flex.utils.validation
             wrongUSFormatErrorOverride = value;
 
             _wrongUSFormatError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "wrongUSFormatError");
+                                value : "The ZIP+4 code must be formatted '12345-6789'.";
         }
 
         //--------------------------------------------------------------------------
