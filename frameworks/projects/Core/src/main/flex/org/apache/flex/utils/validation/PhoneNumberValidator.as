@@ -20,7 +20,7 @@
 package org.apache.flex.utils.validation
 {
 	import org.apache.flex.utils.StringUtil;
-
+	//TODO make PAYG
 
 	// [ResourceBundle("validators")]
 
@@ -220,10 +220,7 @@ package org.apache.flex.utils.validation
 			allowedFormatCharsOverride = value;
 
 			_allowedFormatChars = value != null ?
-								value :
-								resourceManager.getString(
-									"validators",
-									"phoneNumberValidatorAllowedFormatChars");
+								value : "()- .+";
 		}
 
 		//----------------------------------
@@ -321,9 +318,7 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharErrorPNV");
+								value : "Your telephone number contains invalid characters.";
 		}
 
 		//----------------------------------
@@ -366,9 +361,7 @@ package org.apache.flex.utils.validation
 			wrongLengthErrorOverride = value;
 
 			_wrongLengthError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "wrongLengthErrorPNV");
+								value : "Your telephone number must contain at least 10 digits.";
 		}
 		
 		//--------------------------------------------------------------------------
