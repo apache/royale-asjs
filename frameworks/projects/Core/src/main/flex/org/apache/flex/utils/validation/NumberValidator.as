@@ -19,7 +19,7 @@
 
 package org.apache.flex.utils.validation
 {
-
+	//TODO make PAYG
 
 	// [ResourceBundle("validators")]
 
@@ -462,9 +462,7 @@ package org.apache.flex.utils.validation
 			decimalSeparatorOverride = value;
 
 			_decimalSeparator = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "decimalSeparator");
+								value : ".";
 		}
 
 		//----------------------------------
@@ -512,9 +510,7 @@ package org.apache.flex.utils.validation
 			domainOverride = value;
 
 			_domain = value != null ?
-					value :
-					resourceManager.getString(
-						"validators", "numberValidatorDomain");
+					value : "real";
 		}
 		
 		//----------------------------------
@@ -557,7 +553,7 @@ package org.apache.flex.utils.validation
 			maxValueOverride = value;
 
 			_maxValue = value != null ?
-						Number(value) : Number.MAX_VALUE;
+						Number(value) : NaN;
 			// TODO get from resource bundle
 			// _maxValue = value != null ?
 			// 			Number(value) :
@@ -605,7 +601,7 @@ package org.apache.flex.utils.validation
 			minValueOverride = value;
 
 			_minValue = value != null ?
-						Number(value) : Number.MIN_VALUE;
+						Number(value) : NaN;
 			// TODO get from resource bundle
 			// _minValue = value != null ?
 			// 			Number(value) :
@@ -657,7 +653,7 @@ package org.apache.flex.utils.validation
 			precisionOverride = value;
 
 			_precision = value != null ?
-						int(value) : 10;
+						int(value) : -1;
 
 			// TODO get from resource bundle
 			// _precision = value != null ?
@@ -709,9 +705,7 @@ package org.apache.flex.utils.validation
 			thousandsSeparatorOverride = value;
 
 			_thousandsSeparator = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "thousandsSeparator");
+								value : ",";
 		}
 		
 		//--------------------------------------------------------------------------
@@ -760,9 +754,7 @@ package org.apache.flex.utils.validation
 			decimalPointCountErrorOverride = value;
 
 			_decimalPointCountError = value != null ?
-									value :
-									resourceManager.getString(
-										"validators", "decimalPointCountError");
+									value : "The decimal separator can occur only once.";
 		}
 		
 		//----------------------------------
@@ -805,9 +797,7 @@ package org.apache.flex.utils.validation
 			exceedsMaxErrorOverride = value;
 
 			_exceedsMaxError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "exceedsMaxErrorNV");
+							value : "The number entered is too large.";
 		}
 		
 		//----------------------------------
@@ -851,9 +841,7 @@ package org.apache.flex.utils.validation
 			integerErrorOverride = value;
 
 			_integerError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "integerError");
+							value : "The number must be an integer.";
 		}
 
 		//----------------------------------
@@ -896,9 +884,7 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharError");
+								value : "The input contains invalid characters.";
 		}
 
 		//----------------------------------
@@ -943,9 +929,7 @@ package org.apache.flex.utils.validation
 			invalidFormatCharsErrorOverride = value;
 
 			_invalidFormatCharsError = value != null ?
-									value :
-									resourceManager.getString(
-										"validators", "invalidFormatCharsError");
+									value : "One of the formatting parameters is invalid.";
 		}
 
 		//----------------------------------
@@ -988,9 +972,7 @@ package org.apache.flex.utils.validation
 			lowerThanMinErrorOverride = value;
 
 			_lowerThanMinError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "lowerThanMinError");
+								value : "The amount entered is too small.";
 		}
 
 		//----------------------------------
@@ -1034,9 +1016,7 @@ package org.apache.flex.utils.validation
 			negativeErrorOverride = value;
 
 			_negativeError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "negativeError");
+							value : "The amount may not be negative.";
 		}
 
 		//----------------------------------
@@ -1080,9 +1060,7 @@ package org.apache.flex.utils.validation
 			precisionErrorOverride = value;
 
 			_precisionError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "precisionError");
+							value : "The amount entered has too many digits beyond the decimal point.";
 		}
 
 		//----------------------------------
@@ -1125,9 +1103,7 @@ package org.apache.flex.utils.validation
 			separationErrorOverride = value;
 
 			_separationError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "separationError");
+							value : "The thousands separator must be followed by three digits.";
 		}
 
 		//--------------------------------------------------------------------------
