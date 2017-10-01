@@ -777,6 +777,7 @@
             <exclude name="**/*.png"/>
             <exclude name="**/*.sh"/>
             <exclude name="**/*.swf"/>
+            <exclude name="**/*.swc"/>
         </fixcrlf>
                
         <!-- 
