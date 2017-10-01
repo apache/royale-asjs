@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html.beads
 {
-	
+
 	import org.apache.flex.collections.ArrayList;
 	import org.apache.flex.core.IBead;
 	import org.apache.flex.core.IChild;
@@ -43,9 +43,9 @@ package org.apache.flex.html.beads
 	import org.apache.flex.html.Label;
 	import org.apache.flex.html.beads.controllers.DragMouseController;
 	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.getByType;
+	import org.apache.flex.utils.getParentOrSelfByType;
 
-	COMPILE::JS 
+	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
 	}
@@ -140,13 +140,13 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * 
+		 *
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
 			trace("SingleSelectionDragImageBead received the DragStart via: "+event.target.toString());
 
-			var renderer:IItemRenderer = getByType(event.target as IChild, IItemRenderer) as IItemRenderer;
+			var renderer:IItemRenderer = getParentOrSelfByType(event.target as IChild, IItemRenderer) as IItemRenderer;
 			if (renderer) {
 				DragMouseController.dragImage = createDragImage(renderer);
 			}

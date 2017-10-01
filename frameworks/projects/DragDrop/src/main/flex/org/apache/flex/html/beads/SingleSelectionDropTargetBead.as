@@ -41,6 +41,65 @@ package org.apache.flex.html.beads
 
 
 	/**
+	 * The enter event is dispatched when a DragEnter has been detected in the drop target
+	 * strand. This event can be used to determine if the strand can and will accept the data
+	 * being dragged onto it. If the data cannot be used by the drop target strand this event
+	 * should be cancelled.
+     *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="enter", type="org.apache.flex.events.Event")]
+
+	/**
+	 * The exit event is sent when the drag goes outside of the drop target space.
+     *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="exit", type="org.apache.flex.events.Event")]
+
+	/**
+	 * The over event is dispatched while the drag is happening over the drop target space. This
+	 * event may be cancelled if that particular area of the drop target cannot accept the
+	 * drag source data.
+     *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="over", type="org.apache.flex.events.Event")]
+
+	/**
+	 * The drop event is dispatched just prior to incorporating the drag source data into the drop
+	 * target's dataProvider. This event may be cancelled to prevent that from happening.
+	 * Note that a "exit" event always precedes this event to allow any drag-drop graphics
+	 * to be cleared.
+     *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="drop", type="org.apache.flex.events.Event")]
+
+	/**
+	 * The complete event is dispatched when the drop operation has completed from the drop
+	 * target's perspective.
+     *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion FlexJS 0.9
+	 */
+	[Event(name="complete", type="org.apache.flex.events.Event")]
+
+	/**
 	 *  The SingleSelectionDropTargetBead enables items to be dropped onto single-selection List
 	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
 	 *  of rows within the same list.
@@ -93,6 +152,14 @@ package org.apache.flex.html.beads
 
 		private var _dropDirection: String = "horizontal";
 
+		/**
+		 * The direction the drop indicator should display. "horizontal" (default) or "vertical".
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion FlexJS 0.9
+		 */
 		public function get dropDirection():String
 		{
 			return _dropDirection;
@@ -104,6 +171,9 @@ package org.apache.flex.html.beads
 
 		protected var _indicatorParent:UIBase;
 
+		/**
+		 * @private
+		 */
 		protected function get indicatorParent():UIBase
 		{
 			if (_indicatorParent == null) {
@@ -134,6 +204,10 @@ package org.apache.flex.html.beads
 		private function handleDragEnter(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
+			var newEvent:Event = new Event("enter", false, true);
+			dispatchEvent(newEvent);
+			if (newEvent.defaultPrevented) return;
+
 			var pt0:Point;
 			var pt1:Point;
 			var pt2:Point;
@@ -169,6 +243,7 @@ package org.apache.flex.html.beads
 		private function handleDragExit(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
+			dispatchEvent(new Event("exit", false, true));
 
 			if (indicatorVisible) {
 				if (indicatorParent != null) {
@@ -184,6 +259,12 @@ package org.apache.flex.html.beads
 		private function handleDragOver(event:DragEvent):void
 		{
 			trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
+			var newEvent:Event = new Event("over", false, true);
+			dispatchEvent(newEvent);
+			if (event.defaultPrevented) {
+				return;
+			}
+
 			var pt0:Point;
 			var pt1:Point;
 			var pt2:Point;
@@ -212,6 +293,12 @@ package org.apache.flex.html.beads
 			trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
 
 			handleDragExit(event);
+
+			var newEvent:Event = new Event("drop", false, true);
+			dispatchEvent(newEvent);
+			if (newEvent.defaultPrevented) {
+				return;
+			}
 
 			var targetIndex:int = -1; // indicates drop beyond length of items
 			var itemRendererParent:UIBase;
@@ -283,7 +370,10 @@ package org.apache.flex.html.beads
 				DragEvent.dragInitiator.acceptedDrop(_strand, "object");
 			}
 
+			// is this event necessary? isn't "complete" enough?
 			IEventDispatcher(_strand).dispatchEvent(new Event("dragDropAccepted"));
+
+			dispatchEvent(new Event("complete"));
 		}
 
 		COMPILE::SWF

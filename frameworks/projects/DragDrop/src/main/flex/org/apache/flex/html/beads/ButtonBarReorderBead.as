@@ -82,15 +82,20 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
+		 * @flexjsignoretypecoercion org.apache.flex.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 
-			dropDirection = "horizontal";
+			dropDirection = "vertical";
 
 			_dragController = new DragMouseController();
 			_strand.addBead(_dragController);
+
+			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_START, handleDragStart);
+			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_END, handleDragEnd);
 
 			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
 			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);

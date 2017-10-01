@@ -37,4 +37,6 @@
 	<component id="DataGridColumnReorderView" class="org.apache.flex.html.beads.DataGridColumnReorderView" />
 	<component id="ButtonBarReorderBead" class="org.apache.flex.html.beads.ButtonBarReorderBead" />
 	
+	<component id="DataGridDragDropBead" class="org.apache.flex.html.beads.DataGridDragDropBead" />
+	
 </componentPackage>
