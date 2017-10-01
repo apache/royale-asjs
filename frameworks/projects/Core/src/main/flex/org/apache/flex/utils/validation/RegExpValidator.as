@@ -19,7 +19,7 @@
 
 package org.apache.flex.utils.validation
 {
-
+    //TODO Make PAYG
 
     // [ResourceBundle("validators")]
 
@@ -228,7 +228,7 @@ package org.apache.flex.utils.validation
 
         /** 
          *  Error message when there is no regular expression specifed. 
-         *  The default value is "The expression is missing."
+         *  @default "The expression is missing."
          *  
          *  @langversion 3.0
          *  @playerversion Flash 9
@@ -248,9 +248,7 @@ package org.apache.flex.utils.validation
             noExpressionErrorOverride = value;
 
             _noExpressionError = value != null ?
-                                value :
-                                resourceManager.getString(
-                                    "validators", "noExpressionError");
+                                value : "The expression is missing.";
         }
 
         //----------------------------------
@@ -272,7 +270,7 @@ package org.apache.flex.utils.validation
 
         /** 
          *  Error message when there are no matches to the regular expression. 
-         *  The default value is "The field is invalid."
+         *  @default "The field is invalid."
          *  
          *  @langversion 3.0
          *  @playerversion Flash 9
@@ -292,9 +290,7 @@ package org.apache.flex.utils.validation
             noMatchErrorOverride = value;
 
             _noMatchError = value != null ?
-                            value :
-                            resourceManager.getString(
-                                "validators", "noMatchError");
+                            value : "The field is invalid.";
         }
         
         //--------------------------------------------------------------------------
