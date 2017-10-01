@@ -23,6 +23,7 @@ package org.apache.flex.utils.validation
     import org.apache.flex.events.Event;
     import org.apache.flex.events.EventDispatcher;
     import org.apache.flex.core.IDocument;
+    import org.apache.flex.core.Strand;
     import org.apache.flex.events.IEventDispatcher;
 
     //--------------------------------------
@@ -95,7 +96,7 @@ package org.apache.flex.utils.validation
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public class Validator extends EventDispatcher implements IDocument,IValidator
+    public class Validator extends Strand implements IDocument,IValidator
     {
 
         //--------------------------------------------------------------------------
