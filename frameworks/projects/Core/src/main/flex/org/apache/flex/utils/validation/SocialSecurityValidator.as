@@ -229,10 +229,13 @@ package org.apache.flex.utils.validation
 			allowedFormatCharsOverride = value;
 
 			_allowedFormatChars = value != null ?
-								value :
-								resourceManager.getString(
-									"validators",
-									"socialSecurityValidatorAllowedFormatChars");
+								value : "()- .+";
+			// TODO get from resource bundle
+			// _allowedFormatChars = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators",
+			// 						"socialSecurityValidatorAllowedFormatChars");
 		}
 
 		//--------------------------------------------------------------------------
@@ -283,6 +286,9 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
+								value : "You entered invalid characters in your Social Security number.";
+			// TODO get from resource bundle
+			_invalidCharError = value != null ?
 								value :
 								resourceManager.getString(
 									"validators", "invalidCharErrorSSV");
@@ -328,9 +334,12 @@ package org.apache.flex.utils.validation
 			wrongFormatErrorOverride = value;
 
 			_wrongFormatError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "wrongFormatError");
+								value : "The Social Security number must be 9 digits or in the form NNN-NN-NNNN.";
+			// TODO get from resource bundle
+			// _wrongFormatError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "wrongFormatError");
 		}
 
 		//----------------------------------
@@ -373,9 +382,12 @@ package org.apache.flex.utils.validation
 			zeroStartErrorOverride = value;
 
 			_zeroStartError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "zeroStartError");
+							value :  "Invalid Social Security number; the number cannot start with 000.";
+			// TODO get from resource bundle
+			// _zeroStartError = value != null ?
+			// 				value :
+			// 				resourceManager.getString(
+			// 					"validators", "zeroStartError");
 		}
 
 		//--------------------------------------------------------------------------
