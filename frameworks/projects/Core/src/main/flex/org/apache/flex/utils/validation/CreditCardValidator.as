@@ -531,10 +531,13 @@ package org.apache.flex.utils.validation
 			allowedFormatCharsOverride = value;
 
 			_allowedFormatChars = value != null ?
-								value :
-								resourceManager.getString(
-									"validators",
-									"creditCardValidatorAllowedFormatChars");
+								value : " -";
+			// TODO get from resource bundle
+			// _allowedFormatChars = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators",
+			// 						"creditCardValidatorAllowedFormatChars");
 		}
 		
 		//----------------------------------
@@ -827,9 +830,12 @@ package org.apache.flex.utils.validation
 			invalidCharErrorOverride = value;
 
 			_invalidCharError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidCharErrorCCV");
+								value : "Invalid characters in your credit card number. (Enter numbers only.)";
+			// TODO get from resource bundle
+			// _invalidCharError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidCharErrorCCV");
 		}
 
 		//----------------------------------
@@ -872,9 +878,12 @@ package org.apache.flex.utils.validation
 			invalidNumberErrorOverride = value;
 
 			_invalidNumberError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "invalidNumberError");
+								value : "The credit card number is invalid.";
+			// TODO get from resource bundle
+			// _invalidNumberError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "invalidNumberError");
 		}
 
 		//----------------------------------
@@ -917,9 +926,12 @@ package org.apache.flex.utils.validation
 			noNumErrorOverride = value;
 
 			_noNumError = value != null ?
-						value :
-						resourceManager.getString(
-							"validators", "noNumError");
+						value : "No credit card number is specified.";
+			// TODO get from resource bundle
+			// _noNumError = value != null ?
+			// 			value :
+			// 			resourceManager.getString(
+			// 				"validators", "noNumError");
 		}
 		
 		//----------------------------------
@@ -962,9 +974,12 @@ package org.apache.flex.utils.validation
 			noTypeErrorOverride = value;
 
 			_noTypeError = value != null ?
-						value :
-						resourceManager.getString(
-							"validators", "noTypeError");
+						value : "No credit card type is specified or the type is not valid.";
+			// TODO get from resource bundle
+			// _noTypeError = value != null ?
+			// 			value :
+			// 			resourceManager.getString(
+			// 				"validators", "noTypeError");
 		}
 
 		//----------------------------------
@@ -1008,9 +1023,12 @@ package org.apache.flex.utils.validation
 			wrongLengthErrorOverride = value;
 
 			_wrongLengthError = value != null ?
-								value :
-								resourceManager.getString(
-									"validators", "wrongLengthErrorCCV");
+								value :  "Your credit card number contains the wrong number of digits." ;
+			// TODO get from resource bundle
+			// _wrongLengthError = value != null ?
+			// 					value :
+			// 					resourceManager.getString(
+			// 						"validators", "wrongLengthErrorCCV");
 		}
 		
 		//----------------------------------
@@ -1059,9 +1077,12 @@ package org.apache.flex.utils.validation
 			wrongTypeErrorOverride = value;
 
 			_wrongTypeError = value != null ?
-							value :
-							resourceManager.getString(
-								"validators", "wrongTypeError");
+							value : "Incorrect card type is specified.";
+			// TODO get from resource bundle
+			// _wrongTypeError = value != null ?
+			// 				value :
+			// 				resourceManager.getString(
+			// 					"validators", "wrongTypeError");
 		}
 
 		//--------------------------------------------------------------------------
