@@ -30,7 +30,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.addElementToWrapper;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
 
     [Event(name="change", type="org.apache.flex.events.Event")]

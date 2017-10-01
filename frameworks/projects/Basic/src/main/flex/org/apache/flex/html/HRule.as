@@ -22,6 +22,7 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
 
     /**

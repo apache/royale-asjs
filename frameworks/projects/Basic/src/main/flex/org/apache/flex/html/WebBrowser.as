@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-	COMPILE::SWF {
+	COMPILE::SWF
+	{
 		import flash.events.Event;
 		import flash.html.HTMLLoader;
 		import flash.net.URLRequest;
-
 		import org.apache.flex.events.utils.IHandlesOriginalEvent;
 	}
 	COMPILE::JS
 	{
 		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.flex.html.util.addElementToWrapper;
 	}
 
 	import org.apache.flex.core.UIBase

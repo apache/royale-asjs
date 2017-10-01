@@ -26,7 +26,7 @@ package org.apache.flex.flat
     {
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.addElementToWrapper;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
     
     /**

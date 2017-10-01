@@ -30,7 +30,7 @@ package org.apache.flex.core
 
     COMPILE::JS
     {
-        import org.apache.flex.html.addElementToWrapper;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
 
     /**

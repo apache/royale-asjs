@@ -23,9 +23,10 @@ package org.apache.flex.html
     COMPILE::JS
     {
         import goog.events;
+        import org.apache.flex.core.IBead;
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.events.IEventDispatcher;
-        import org.apache.flex.core.IBead;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
 
 	[Event(name="valueChange", type="org.apache.flex.events.Event")]

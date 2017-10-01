@@ -24,7 +24,7 @@ package org.apache.flex.mdl
     COMPILE::JS
     {    
         import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.addElementToWrapper;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
     /**
      *  The Material Design Lite (MDL) spinner component is an enhanced replacement for

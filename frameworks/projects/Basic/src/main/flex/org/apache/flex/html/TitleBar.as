@@ -25,10 +25,9 @@ package org.apache.flex.html
 	import org.apache.flex.core.ValuesManager;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Label;
 	
 	/**
 	 *  The TitleBar class is a Container component that displays a title and an

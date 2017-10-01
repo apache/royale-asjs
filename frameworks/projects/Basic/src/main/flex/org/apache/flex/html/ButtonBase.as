@@ -20,6 +20,8 @@ package org.apache.flex.html
 {
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+    import org.apache.flex.core.ValuesManager;
+    import org.apache.flex.events.IEventDispatcher;
     COMPILE::SWF
     {
     	import org.apache.flex.core.UIButtonBase;
@@ -28,9 +30,8 @@ package org.apache.flex.html
     {
         import org.apache.flex.core.UIBase;
 		import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.IEventDispatcher;
     
 	
     //--------------------------------------

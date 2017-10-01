@@ -18,16 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.flex.html
 {
-    COMPILE::SWF
-    {
-        import flash.events.MouseEvent;
-    }
-
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IToggleButtonModel;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.events.Event;
+	import org.apache.flex.events.MouseEvent;
     COMPILE::SWF
     {
+        import flash.events.MouseEvent;
         import org.apache.flex.core.UIButtonBase;
     }
     COMPILE::JS
@@ -35,9 +33,8 @@ package org.apache.flex.html
         import org.apache.flex.core.UIBase;
         import org.apache.flex.core.WrappedHTMLElement;
 		import org.apache.flex.html.supportClasses.CheckBoxIcon;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
 
     //--------------------------------------
     //  Events

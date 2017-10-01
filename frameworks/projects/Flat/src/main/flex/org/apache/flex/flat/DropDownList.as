@@ -27,7 +27,7 @@ package org.apache.flex.flat
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.html.addElementToWrapper;
+        import org.apache.flex.html.util.addElementToWrapper;
         import org.apache.flex.html.List;
         import org.apache.flex.core.WrappedHTMLElement;
         import org.apache.flex.core.ISelectionModel;

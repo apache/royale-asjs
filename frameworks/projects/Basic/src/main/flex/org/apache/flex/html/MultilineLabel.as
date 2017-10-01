@@ -25,7 +25,8 @@ package org.apache.flex.html
 	import org.apache.flex.events.IEventDispatcher;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.flex.html.util.addElementToWrapper;
     }
 
     /**
