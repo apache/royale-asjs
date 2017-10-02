@@ -71,7 +71,7 @@
     <condition property="download.dir" value="${env.HOME}/Downloads">
         <os family="mac" />
     </condition>
-    <condition property="download.dir" value="${env.HOME}/Downloads">
+    <condition property="download.dir" value="${env.HOMEDRIVE}/${env.HOMEPATH}/Downloads">
         <os family="windows" />
     </condition>
     <property name="temp.dir" value="${basedir}/in" />
