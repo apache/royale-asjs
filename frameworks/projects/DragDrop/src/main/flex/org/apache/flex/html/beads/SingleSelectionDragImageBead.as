@@ -31,6 +31,7 @@ package org.apache.flex.html.beads
 	import org.apache.flex.core.ISelectableItemRenderer;
 	import org.apache.flex.core.IStrand;
 	import org.apache.flex.core.IUIBase;
+	import org.apache.flex.core.Lookalike;
 	import org.apache.flex.core.UIBase;
 	import org.apache.flex.events.DragEvent;
 	import org.apache.flex.events.Event;
@@ -108,33 +109,15 @@ package org.apache.flex.html.beads
 		 */
 		protected function createDragImage(ir:IItemRenderer):UIBase
 		{
-			var dragImage:UIBase = new Group();
+			var dragImage:UIBase = new Lookalike(ir);
 			dragImage.className = "DragImage";
 			dragImage.width = (ir as IUIBase).width;
 			dragImage.height = (ir as IUIBase).height;
-			COMPILE::SWF
-				{
-					var label:Label = new Label();
-					if (ir is ISelectableItemRenderer) {
-						var selIR:ISelectableItemRenderer = ir as ISelectableItemRenderer;
-						if (selIR.labelField != null && selIR.data != null) {
-							label.text = selIR.data[selIR.labelField].toString();
-						} else {
-							label.text = selIR.data.toString();
-						}
-					}
-					dragImage.addElement(label);
-				}
-
-			COMPILE::JS {
-				var clone:UIBase = new UIBase();
-				clone.element = clone.positioner = ir.element.cloneNode(true) as WrappedHTMLElement;
-				clone.element.flexjs_wrapper = clone;
-				dragImage.addElement(clone);
+			COMPILE::JS 
+			{
 				dragImage.element.style.position = 'absolute';
 				dragImage.element.style.cursor = 'pointer';
 			}
-
 			return dragImage;
 		}
 
