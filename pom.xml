@@ -173,6 +173,8 @@
             <exclude>**/*.json</exclude>
             <!-- This is appended to the LICENSE file for binary packages-->
             <exclude>LICENSE.bin</exclude>
+            <!-- READMEs don't have headers -->
+            <exclude>README.md</exclude>
 
             <!-- Stuff that needs to be removed -->
             <exclude>fxg2svg/**</exclude>
