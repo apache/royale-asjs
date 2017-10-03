@@ -144,6 +144,8 @@
         <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
         <ant dir="${basedir}/projects/StorageJS" target="clean"/>
+        <ant dir="${basedir}/projects/TextJS" target="clean"/>
+        <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
 
         <delete dir="${basedir}/libs"/>

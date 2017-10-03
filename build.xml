@@ -43,6 +43,11 @@
     <property name="strict" value="true"/>
     <property name="javac.src" value="1.5"/>
     
+    <condition property="kit.prefix" value="apache-flex-jsonly-${release.version}">
+        <not>
+            <isset property="env.AIR_HOME" />
+        </not>
+    </condition>
     <property name="kit.prefix" value="apache-flex-flexjs-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
     <property name="binary.kit" value="${kit.prefix}-bin"/>
@@ -61,7 +66,18 @@
             </not>
         </and>
     </condition>
-      
+    <!-- turn off SWF portion of checkintest if no AIR_HOME -->
+    <condition property="runtime.setup">
+        <not>
+            <isset property="env.AIR_HOME" />
+        </not>
+    </condition>
+    <condition property="mxmlc.jar.exists">
+        <not>
+            <isset property="env.AIR_HOME" />
+        </not>
+    </condition>
+    
     <!--
         Optional jars but should be in place for a real release build.
         
@@ -126,12 +142,13 @@
         <echo>copying last flashlog.txt from ${FLASHLOG}</echo>
         <copy file="${FLASHLOG}" tofile="${basedir}/lastflashlog.txt" />
     </target>
-    <!-- 
-        Can set build.additional-packages to build additional-packages as part of a release.
-        This does not build the docs.  Use doc-packages or asdoc-packages.
-    -->    
-    <target name="release" 
-        depends="check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release,rat-check"
+    
+    <target name="block-flat-fonts">
+        <property name="flat.donot.ask" value="true" />
+    </target>
+    
+    <target name="release"
+        depends="block-flat-fonts,check-compile-env,check-runtime-env,check-falcon-home,check-falconjx-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache FlexJS."/>
         
     <target name="release-jenkins" 
@@ -143,11 +160,11 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release" 
-        depends="setup-binary-release,main,sample-themes,checkintests,doc,other.locales,check-goog-home,binary-package,additional-packages" 
+        depends="setup-binary-release,main,sample-themes,checkintests,check-goog-home,binary-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
-        depends="setup-binary-release,main-jenkins,sample-themes,doc,other.locales,binary-package,additional-packages"
+        depends="setup-binary-release,main-jenkins,sample-themes,binary-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="source-release-noclean" 
@@ -155,17 +172,13 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release-noclean" 
-        depends="main,sample-themes,checkintests,doc,other.locales,binary-package,additional-packages" 
+        depends="main,sample-themes,checkintests,binary-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="doc-packages" 
         depends="asdoc-package,javadocs"
         description="Build and package the asdocs for the framework clases and the javadocs."/>
                 
-    <target name="additional-packages"
-        depends="ja-locale-samples" 
-        description="Package locale-samples and antTasks."/>
-
     <target name="help">
         <echo message="run ant -projecthelp to see the available targets"/>
     </target>
@@ -183,7 +196,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs,copy-compiler"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-falcon-home,check-falconjx-home" unless="airsdk.found"
@@ -194,7 +207,7 @@
             <echo>Ant: ${ant.version} Ant Java Version: ${ant.java.version}</echo>
     </target>
 
-    <target name="check-playerglobal-home" unless="playerglobal.swc.exists"
+    <target name="check-playerglobal-home" if="env.PLAYERGLOBAL_HOME"
         description="Check PLAYERGLOBAL_HOME for both a directory and a swc file">
 
         <echo message="PLAYERGLOBAL_HOME is ${env.PLAYERGLOBAL_HOME}"/>
@@ -220,7 +233,7 @@
         <echo message="playerglobal.swc is ${playerglobal.swc}"/>
     </target>
     
-    <target name="check-air-home" unless="AIR_HOME.set"
+    <target name="check-air-home" if="env.AIR_HOME"
         description="Check that AIR_HOME is a directory">
         
         <echo message="AIR_HOME is ${env.AIR_HOME}"/>
@@ -248,82 +261,46 @@
             value="${env.GOOG_HOME}" />
     </target>
     
-    <target name="check-flex-home" unless="mxmlc.jar.exists"
-        description="Check FLEX_HOME for both a directory and an exe file">
+    <target name="check-falcon-home" unless="FALCON_REPO"
+        description="Check FALCON_REPO is a directory.">
+        
+        <echo message="FALCON_REPO is ${env.FALCON_REPO}"/>
 
-        <echo message="FLEX_HOME is ${env.FLEX_HOME}"/>
+        <available file="${env.FALCON_REPO}/lib/falcon-mxmlc.jar" 
+            type="file" 
+            property="FALCON_REPO"
+            value="${env.FALCON_REPO}"/>
 
-        <available file="${env.FLEX_HOME}" 
-            type="dir" 
-            property="FLEX_SDK_HOME"
-            value="${env.FLEX_HOME}" />
+        <available file="${basedir}/../royale-compiler/compiler/lib/falcon-mxmlc.jar"
+            type="file"
+            property="FALCON_REPO"
+            value="${basedir}/../royale-compiler/compiler"/>
 
-        <available file="${basedir}/../flex-sdk"
-            type="dir"
-            property="FLEX_SDK_HOME"
-            value="${basedir}/../flex-sdk" />
-
-        <fail message="The environment variable FLEX_HOME is not set to a directory"
-            unless="FLEX_SDK_HOME"/>
-
-        <condition property="mxmlc.jar.exists">
-            <available file="${FLEX_SDK_HOME}/lib/mxmlc.jar" type="file"/>
-        </condition>
-        	
-        <fail message="The directory ${FLEX_SDK_HOME} does not contain mxmlc.jar" 
-            unless="mxmlc.jar.exists"/>
+        <fail message="FALCON_REPO must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or this folder if it has been converted into an FB-compatible SDK"
+            unless="FALCON_REPO"/>
     </target>
 
-    <target name="check-falcon-home" unless="FALCON_HOME"
-        description="Check FALCON_HOME is a directory.">
+    <target name="check-falconjx-home" unless="FALCONJX_REPO"
+        description="Check FALCONJX_REPO is a directory.">
         
-        <echo message="FALCON_HOME is ${env.FALCON_HOME}"/>
+        <echo message="FALCONJX_REPO is ${env.FALCONJX_REPO}"/>
 
-        <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" 
+        <available file="${env.FALCONJX_REPO}/lib/jsc.jar" 
             type="file" 
-            property="FALCON_HOME"
-            value="${env.FALCON_HOME}"/>
+            property="FALCONJX_REPO"
+            value="${env.FALCONJX_REPO}"/>
 
-        <available file="${basedir}/lib/falcon-mxmlc.jar"
+        <available file="${basedir}/../royale-compiler/compiler-jx/lib/jsc.jar"
             type="file"
-            property="FALCON_HOME"
-            value="${basedir}"/>
+            property="FALCONJX_REPO"
+            value="${basedir}/../royale-compiler/compiler-jx"/>
 
-        <available file="${basedir}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
-            type="file"
-            property="FALCON_HOME"
-            value="${basedir}/../flex-falcon/compiler"/>
-
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or this folder if it has been converted into an FB-compatible SDK"
-            unless="FALCON_HOME"/>
-    </target>
-
-    <target name="check-falconjx-home" unless="FALCONJX_HOME"
-        description="Check FALCON_HOME is a directory.">
-        
-        <echo message="FALCONJX_HOME is ${env.FALCONJX_HOME}"/>
-
-        <available file="${env.FALCONJX_HOME}/lib/jsc.jar" 
-            type="file" 
-            property="FALCONJX_HOME"
-            value="${env.FALCONJX_HOME}"/>
-
-        <available file="${basedir}/../flex-falcon/compiler-jx/lib/jsc.jar"
-            type="file"
-            property="FALCONJX_HOME"
-            value="${basedir}/../flex-falcon/compiler-jx"/>
-
-        <available file="${basedir}/js/lib/jsc.jar"
-            type="file"
-            property="FALCONJX_HOME"
-            value="${basedir}/js"/>
-
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder if it has been converted into an FB-compatible SDK"
-            unless="FALCONJX_HOME"/>
+        <fail message="FALCONJX_REPO must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder if it has been converted into an FB-compatible SDK"
+            unless="FALCONJX_REPO"/>
     </target>
 
     <target name="check-typedefs-home" unless="FLEXJS_TYPEDEFS_HOME"
-        description="Check FALCON_HOME is a directory.">
+        description="Check FLEXJS_TYPEDEFS_HOME is a directory.">
         
         <echo message="FLEXJS_TYPEDEFS_HOME is ${env.FLEXJS_TYPEDEFS_HOME}"/>
         
@@ -332,10 +309,10 @@
         property="FLEXJS_TYPEDEFS_HOME"
         value="${env.FLEXJS_TYPEDEFS_HOME}"/>
         
-        <available file="${basedir}/../flex-typedefs/js/target/js.swc"
+        <available file="${basedir}/../royale-typedefs/js/target/js.swc"
         type="file"
         property="FLEXJS_TYPEDEFS_HOME"
-        value="${basedir}/../flex-typedefs"/>
+        value="${basedir}/../royale-typedefs"/>
         
         <available file="${basedir}/js/target/js.swc"
         type="file"
@@ -348,7 +325,7 @@
         property="FLEXJS_TYPEDEFS_HOME"
         value="${basedir}/../falconjx/js/libs"/>
         
-        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the flex-typedefs repo"
+        <fail message="FLEXJS_TYPEDEFS_HOME must be set to a folder containing js/target/js.swc such as the royale-typedefs repo"
         unless="FLEXJS_TYPEDEFS_HOME"/>
     </target>
 
@@ -391,6 +368,27 @@
         <ant dir="${basedir}/frameworks" target="jquery-config" />
         <ant dir="${basedir}/frameworks" target="createjs-config" />
         <ant dir="${basedir}/frameworks" target="node-config" />
+        <!-- hack to keep compiler happy -->
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Spark" />
+        <echo file="${FLEXJS_HOME}/frameworks/themes/Spark/spark.css">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ /* generated by build script */
+</echo>
     </target>
 	
     <target name="copy-externs" depends="check-typedefs-home" description="Copy extern swcs into this folder">
@@ -401,6 +399,30 @@
             </fileset>
         </copy>
         <antcall target="rename_jquery" />
+    </target>
+    
+    <target name="copy-compiler" depends="check-falcon-home, check-falconjx-home" description="Copy compiler jars to where they are supposed to go">
+        <mkdir dir="${basedir}/lib" />
+        <copy todir="${basedir}/lib">
+            <fileset dir="${FALCON_REPO}/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin" />
+        <copy todir="${basedir}/bin">
+            <fileset dir="${FALCON_REPO}/src/assembly/scripts">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/js/lib" />
+        <copy todir="${basedir}/js/lib">
+            <fileset dir="${FALCONJX_REPO}/lib">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <!-- needed to make Flash Builder accept folder as a Flex SDK -->
+        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/mxmlc.jar" />
+        <copy file="${FALCON_REPO}/lib/falcon-mxmlc.jar" tofile="${basedir}/lib/adt.jar" />
     </target>
     
     <target name="check_jquery" >
@@ -432,6 +454,26 @@
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/bin" failonerror="false">
+            <include name="**"/>
+            <exclude name=".gitignore"/>
+        </delete>
+        <delete dir="${basedir}/lib" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/js/lib" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/libs/player" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/libs/air" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/locale" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/mx" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/rsls" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/themes/Halo" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${FLEXJS_HOME}/frameworks/themes/Spark" failonerror="false" includeEmptyDirs="true"/>
+        <delete file="${FLEXJS_HOME}/frameworks/airmobile-config.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/macfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/winfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/localfonts.ser" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
+        <delete file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
@@ -445,7 +487,7 @@
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/flex-sdk-description.xml" failonerror="false"/>
-        <delete file="${basedir}/rat*.report" failonerror="false"/>
+        <delete file="${basedir}/rat.report" failonerror="false"/>
         
         <delete dir="${basedir}/examples" failonerror="false">
             <include name="**/*.swc"/>
@@ -505,10 +547,6 @@
         </ant>
     </target>
 
-    <target name="other.locales" description="Build resource SWCs for additional locales">
-        <!--<ant dir="${basedir}/frameworks" target="other.locales"/>-->
-    </target>
-    
     <target name="sample-themes" description="Build the sample themes">
         <!--<ant dir="${basedir}/samples/themes/zen" target="main" /> -->
     </target>
@@ -535,7 +573,88 @@
         <!--<ant dir="${basedir}/ide/flashbuilder" />-->
     </target>
     
-    <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found"/>
+    <target name="post-build" depends="ide" description="Handle post-build activities" unless="airsdk.found">
+        <!-- fake a bunch of files to make the folder appear like a valid Flex SDK to Flash Builder -->
+        <echo file="${FLEXJS_HOME}/ide/flashbuilder/flashbuilder-config.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;flashbuilder-config&gt;
+    &lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
+    &lt;/flashbuilder-config&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;componentPackage&gt;
+    &lt;/componentPackage&gt;
+</echo>
+        <echo file="${FLEXJS_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
+    &lt;!--
+    
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+    
+    --&gt;
+    &lt;componentPackage&gt;
+    &lt;/componentPackage&gt;
+</echo>
+        <mkdir dir="${FLEXJS_HOME}/frameworks/locale" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/mx" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/projects" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/rsls" />
+        <mkdir dir="${FLEXJS_HOME}/frameworks/themes/Halo" />
+        <copy file="${FLEXJS_HOME}/js/libs/js.swc"
+        tofile="${FLEXJS_HOME}/frameworks/themes/Halo/Halo.swc" />
+        <copy file="${FLEXJS_HOME}/frameworks/air-config.xml"
+        tofile="${FLEXJS_HOME}/frameworks/airmobile-config.xml" />
+        <touch file="${FLEXJS_HOME}/frameworks/macfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/winfonts.ser" />
+        <touch file="${FLEXJS_HOME}/frameworks/localfonts.ser" />
+    </target>
 
     <!--
         Build the ASDoc html pages.
@@ -571,68 +690,65 @@
         <tar-gzip name="${source.kit}" />
     </target>
 
-    <target name="stage-source" depends="stage-source-no-scripts"
+    <target name="stage-source"
         description="Package source files required to build in zip file" >
-        <!-- scripts -->
-        <antcall target="stage-scripts"/>
-    </target>
-        
-    <target name="stage-source-no-scripts" depends="check-flex-home" >
         <antcall target="clean-temp"/>
         <sleep seconds="3" />
         <mkdir dir="${basedir}/temp"/>
        
-        <copy todir="${basedir}/temp" includeEmptyDirs="false">
+        <copy todir="${basedir}/temp" includeEmptyDirs="true">
             <fileset dir="${basedir}">
-                <include name="build.xml"/>
-                <include name="build.properties"/>
-                <include name="cordova-build.xml"/>
-				<include name="env-template.properties"/>
-                <include name="flex-sdk-description.xml"/>
-                <include name="installer.xml"/>
-                <include name="installer.properties/**"/>
-                <include name="READme"/>
-                <include name="RELEASE_NOTES"/>
-                <include name="LICENSE"/>
-                <include name="LICENSE.bin"/>
-                <include name="LICENSE.base"/>
-                <include name="NOTICE"/>
-                <include name="pom.xml"/>
-                <include name="settings-template.xml"/>
-            </fileset>
-        </copy>
-         
-        <!-- frameworks -->
-        <antcall target="stage-framework-as"/>
-        
-        <!-- asdoc -->
-        <copy todir="${basedir}/temp/asdoc" includeEmptyDirs="false">
-            <fileset dir="${basedir}/asdoc">
-            	<exclude name="test/**" />
-            </fileset>
-        </copy>
-
-        <!-- bundle the templates from the current Flex SDK -->
-        <copy todir="${basedir}/temp">
-            <fileset dir="${FLEX_SDK_HOME}" >
-                <include name="templates/swfobject/**"/>
-                <exclude name="templates/swfobject/index.template.html"/>
-                <exclude name="**/expressInstall.swf"/>
-                <exclude name="**/swfobject.js"/>
-            </fileset>
-        </copy>
-
-        <copy todir="${basedir}/temp/ide">
-            <fileset dir="${basedir}/ide" >
-            	<include name="**"/>
+                <include name="**"/>
+                <exclude name="local.properties"/>
+                <exclude name="nightly.properties"/>
+                <exclude name="releasecandidate.xml"/>
+                <exclude name="ApproveFlexJS.xml"/>
+                <exclude name=".DS_Store"/>
+                <exclude name="**/.DS_Store"/>
+                <exclude name=".git/**"/>
+                <exclude name=".mvn/**"/>
+                <exclude name="in/**"/>
+                <exclude name="out/**"/>
+                <exclude name="**/out/**"/>
+                <exclude name="manualtests/**"/>
+                <exclude name="marmotinni/**"/>
+                <exclude name="mustella/**"/>
+                <exclude name="src/**"/>
+                <exclude name="testsuite/**"/>
+                <exclude name="fxg2svg/**"/>
+                <exclude name="temp/**"/>
+                <exclude name="vf2js/**"/>
+                <exclude name="**/FlexJSTest_again/**" />
+                <exclude name="**/VanillaSDK_POC/**" />
+                <exclude name="**/.plxarc"/>
+                <exclude name="**/.settings/**"/>
+                <exclude name="frameworks/fb.properties"/>
+                <exclude name="frameworks/fonts/**"/>
+                <exclude name="frameworks/test*/**"/>
+                <exclude name="frameworks/js/VanillaSDK/**"/>
+                <exclude name="**/*.iml"/>
             </fileset>
         </copy>
         
-        <copy todir="${basedir}/temp/js/bin">
-            <fileset dir="${basedir}/js/bin" >
-            	<include name="**"/>
-            </fileset>
-        </copy>
+        <tstamp>
+            <format property="build.number.date" pattern="yyyyMMdd" />
+        </tstamp>
+        <property name="build.version" value="${release.version}.${build.number.date}" />
+        
+        <!-- now that config xml files are in temp, fix them up for release. -->
+        <echo message="Updating config file air-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/flex-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file js-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/js-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/jquery-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file createjs-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/createjs-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file node-config.xml with version ${build.version}"/>
+        <fix-config-file file="${basedir}/temp/frameworks/node-config-template.xml" version="${build.version}" />
+        
         
         <fixcrlf srcdir="${basedir}/temp/js/bin" eol="crlf" fixlast="false">
             <include name="**/*.bat"/>
@@ -645,29 +761,7 @@
         
         <chmod dir="${basedir}/temp/js/bin" excludes="**/*.bat" perm="+x" />
         
-        <!-- samples -->
-        <copy todir="${basedir}/temp/examples">
-            <fileset dir="${basedir}/examples" >
-                <exclude name="**/FlexJSTest_again/**" />
-                <exclude name="**/VanillaSDK_POC/**" />
-                <exclude name="**/*.swc"/>
-                <exclude name="**/*.swf"/>
-                <exclude name="**/.plxarc"/>
-            </fileset>
-        </copy>
-        
-        <!-- templates -->
-        <copy todir="${basedir}/temp/templates">
-            <fileset dir="${basedir}/templates" >
-                <include name="swfobject/**"/>
-                <exclude name="**/*.swf"/>
-                <exclude name="**/swfobject.js"/>
-            </fileset>
-        </copy>
-
-        <antcall target="copy-maven-archetypes"/>
-        <antcall target="copy-maven-distribution"/>
-        <!-- 
+        <!--
              Source files have Windows line endings.  Most UNIX editors can handle
              either type of line endings but the converse is often not true.             
         -->
@@ -683,6 +777,7 @@
             <exclude name="**/*.png"/>
             <exclude name="**/*.sh"/>
             <exclude name="**/*.swf"/>
+            <exclude name="**/*.swc"/>
         </fixcrlf>
                
         <!-- 
@@ -693,108 +788,26 @@
             <include name="**.sh"/>
             <exclude name="bin/**"/>
         </fixcrlf>
-    </target>
-
-    <!-- frameworks -->
-    <!-- javascript and test directories follow -->
-    <target name="stage-framework-as">
-        <copy todir="${basedir}/temp/frameworks" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks">
-                <include name="**"/>
-                <exclude name="**/libs/**"/>
-                <exclude name="**/out/**"/>
-                <exclude name="**/*.swc"/>
-                <exclude name="**/*.pbj"/>
-                <exclude name="**/*.swf"/>
-                <exclude name="**/*.mxp"/>
-                <exclude name="fb.properties"/>
-                <exclude name="fonts/**"/>
-                <exclude name="test*/**"/>
-                <exclude name="js/VanillaSDK/**"/>
-                <exclude name="projects/air/**"/>
-                <exclude name="projects/spark/manifest.xml"/>
-                <exclude name="projects/*/bundles.properties"/>
-                <exclude name="**/.settings/**"/>
-                <exclude name="**/*.actionScriptProperties"/>
-                <exclude name="**/*.flexLibProperties"/>
-                <exclude name="**/.plxarc"/>
-                <exclude name="projects/**/*.DS_Store"/>
-            </fileset>
-        </copy>
-        <copy todir="${basedir}/temp/frameworks" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks">
-                <include name="air-config-template.xml"/>
-                <include name="flex-config-template.xml"/>
-                <include name="js-config-template.xml"/>
-                <include name="jquery-config-template.xml"/>
-                <include name="createjs-config-template.xml"/>
-                <include name="node-config-template.xml"/>
-            </fileset>
-        </copy>
-
-        <tstamp>
-        	<format property="build.number.date" pattern="yyyyMMdd" />
-        </tstamp>
-        <property name="build.version" value="${release.version}.${build.number.date}" />
-
-        <!-- now that config xml files are in temp, fix them up for release. -->
-        <echo message="Updating config file air-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/air-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file flex-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/flex-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file js-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/js-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/jquery-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file createjs-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/createjs-config-template.xml" version="${build.version}" />
-        <echo message="Updating config file node-config.xml with version ${build.version}"/>
-        <fix-config-file file="${basedir}/temp/frameworks/node-config-template.xml" version="${build.version}" />
         
-        <!-- Update all Version.as files in the kit frameworks directory with build.number -->
-        <!--<antcall target="version-update"/>-->
-    </target>
-
-    <target name="stage-scripts" description="package ide conversion scripts">
-        <!-- deploy scripts -->
-        <copy todir="${basedir}/temp/scripts">
-            <fileset dir="${basedir}/scripts" >
-                <include name="**/*"/>
-            </fileset>
-        </copy>
-    </target>
-    
-    <target name="stage-nightly" if="nightly" description="add nightly.properties if nightly build">
-        <copy todir="${basedir}/temp" file="${basedir}/nightly.properties" />
-    </target>
-
-    <target name="copy-maven-distribution" description="copying maven distribution folder for binary-package">
-        <echo message="Copying Maven distribution folder" />
-        <copy todir="${basedir}/temp/distribution">
-           <fileset dir="${basedir}/distribution">
-                <exclude name="**/target/**"/>
-           </fileset>
-        </copy>
-    </target>
-
-    <target name="copy-maven-archetypes" description="copying maven archetypes folder for binary-package">
-        <echo message="Copying Maven archetypes folder" />
-        <copy todir="${basedir}/temp/archetypes">
-            <fileset dir="${basedir}/archetypes">
-                <exclude name="**/target/**"/>
-                <exclude name="**/*.iml"/>
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="binary-package"
-        description="Package binary files in zip and tar-gzip file.">
-
-        <antcall target="stage-source"/>
-                
         <!-- delete any left-over empty directories -->
         <delete includeemptydirs="true">
-            <fileset dir="${basedir}/temp/frameworks">
+            <fileset dir="${basedir}/temp/frameworks/projects">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/frameworks/js/FlexJS/projects">
+                <and>
+                    <size value="0"/>
+                    <type type="dir"/>
+                </and>
+            </fileset>
+        </delete>
+        <delete includeemptydirs="true">
+            <fileset dir="${basedir}/temp/examples">
                 <and>
                     <size value="0"/>
                     <type type="dir"/>
@@ -802,78 +815,18 @@
             </fileset>
         </delete>
 
-        <antcall target="stage-nightly" />
-        
-        <!-- these files are in addition to the remaining source files -->
-        
+    </target>
+
+    <target name="binary-package"
+        description="Package binary files in zip and tar-gzip file.">
+
+        <antcall target="stage-source"/>
+                
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${basedir}/temp/LICENSE">
             <filelist dir="${basedir}" files="LICENSE,LICENSE.bin"/>
         </concat>
         
-        <!-- frameworks/libs -->
-        <copy todir="${basedir}/temp/frameworks">
-            <fileset dir="${basedir}/frameworks">
-                <include name="**/*.swc"/>
-            </fileset>
-        </copy>
-
-        <!-- copy all js again to pick up cross-compiled files -->
-        <copy todir="${basedir}/temp/frameworks">
-            <fileset dir="${basedir}/frameworks">
-                <include name="**/**.js"/>
-                <exclude name="js/VanillaSDK/**" />
-            </fileset>
-        </copy>
-
-        <!-- falcon
-        <antcall target="stage-falcon"/>
-         -->
-         
-        <!-- falconjx
-        <antcall target="stage-falconjx"/>
-         -->
-         
-        <!-- ide
-        <copy todir="${basedir}/temp/ide">
-            <fileset dir="${basedir}/ide" >
-                <include name="flashbuilder/config"/>
-            </fileset>
-        </copy>
-         -->
-         
-         <!-- fonts
-          <copy todir="${basedir}/temp/frameworks/fonts">
-              <fileset dir="${basedir}/frameworks/fonts" >
-                  <include name="**/*.swf"/>
-              </fileset>
-          </copy>
-          -->
-         
-        <!-- examples -->
-        <copy todir="${basedir}/temp/examples">
-            <fileset dir="${basedir}/examples" >
-                <exclude name="**/FlexJSTest_again/**" />
-                <exclude name="**/VanillaSDK_POC/**" />
-                <include name="**/build.xml"/>
-                <include name="**/*.swc"/>
-                <include name="**/*.swf"/>
-            </fileset>
-        </copy>
-
-		<antcall target="copy-maven-distribution"/>
-        <antcall target="copy-maven-archetypes"/>
-        <!-- swfobject templates except for downloaded files
-        <copy todir="${basedir}/temp/templates/swfobject">
-            <fileset dir="${basedir}/templates/swfobject">
-                <exclude name="**/expressInstall.swf"/>
-                <exclude name="**/swfobject.js"/>
-            </fileset>
-        </copy>
-         -->
-    	
-    	<!-- Google Closure Library -->
-    	<!-- If GOOG_HOME is set, copy GCL from there, else copy from the downloaded folder -->
     	<antcall target="copy-gcl-from-goog-home"/>
     	<antcall target="copy-gcl-from-downloaded"/>
         
@@ -1039,110 +992,7 @@
         <echo message="Version files not updated."/>
         <echo message="AntelopeTasks_*.jar not found in anttask.classpath"/>
     </target>   
-
-    <target name="stage-locales"
-        description="Stage all the locale swc's built">
-        
-        <copy todir="${basedir}/temp/frameworks/locale" includeEmptyDirs="false">
-            <fileset dir="${basedir}/frameworks/locale">
-                <include name="**/*.swc"/>
-            </fileset>
-        </copy>
-
-        <!-- frameworks/projects -->
-        <!--
-            Remove these files from the binary kit.
-            
-            copylocale looks for bundles and then uses default locale so if there is
-            not a locale sub-directory don't include the bundles directory.
-        -->
-        <delete dir="${basedir}/temp/frameworks/projects" includeEmptyDirs="false">
-            <include name="airspark/bundles/**"/>
-            <include name="automation_air/bundles/**"/>
-            <include name="automation_dmv/bundles/**"/>
-            <include name="automation_flashflexkit/bundles/**"/>
-            <include name="automation_spark/bundles/**"/>
-            <include name="*/bundles/**/empty.properties"/>
-            <include name="*/bundles/**/docs/**"/>
-            <include name="*/bundles/*/*.xml"/>
-            <include name="*/bundles/*/packages.dita"/>
-            <exclude name="*/bundles/${locale}"/>
-        </delete>
-        
-
-        <!-- lib -->
-        <!-- these are built when the compiler is built with localized.jars set -->
-        <copy todir="${basedir}/temp/lib">
-            <fileset dir="${basedir}/lib">
-                <include name="mxmlc_da.jar"/>
-                <include name="mxmlc_de.jar"/>
-                <include name="mxmlc_es.jar"/>
-                <include name="mxmlc_fi.jar"/>
-                <include name="mxmlc_fr.jar"/>
-                <include name="mxmlc_it.jar"/>
-                <include name="mxmlc_ja.jar"/>
-                <include name="mxmlc_ko.jar"/>
-                <include name="mxmlc_nb.jar"/>
-                <include name="mxmlc_nl.jar"/>
-                <include name="mxmlc_pt.jar"/>
-                <include name="mxmlc_ru.jar"/>
-                <include name="mxmlc_sv.jar"/>
-                <include name="mxmlc_zh_CN.jar"/>
-                <include name="mxmlc_zh_TW.jar"/>
-            </fileset>
-        </copy>
-        
-        <!-- FixMe: Apache is missing all these language jars. -->
-        <copy todir="${basedir}/temp/lib">
-            <fileset dir="${basedir}/lib">
-                <include name="batik_da.jar"/>
-                <include name="batik_de.jar"/>
-                <include name="batik_es.jar"/>
-                <include name="batik_fi.jar"/>
-                <include name="batik_fr.jar"/>
-                <include name="batik_it.jar"/>
-                <include name="batik_ko.jar"/>
-                <include name="batik_ja.jar"/>
-                <include name="batik_nb.jar"/>
-                <include name="batik_nl.jar"/>
-                <include name="batik_pt.jar"/>
-                <include name="batik_ru.jar"/>
-                <include name="batik_sv.jar"/>
-                <include name="batik_zh_CN.jar"/>
-                <include name="batik_zh_TW.jar"/>
-                <include name="xercesImpl_da.jar"/>
-                <include name="xercesImpl_de.jar"/>
-                <include name="xercesImpl_es.jar"/>
-                <include name="xercesImpl_fi.jar"/>
-                <include name="xercesImpl_fr.jar"/>
-                <include name="xercesImpl_it.jar"/>
-                <include name="xercesImpl_ko.jar"/>
-                <include name="xercesImpl_ja.jar"/>
-                <include name="xercesImpl_nb.jar"/>
-                <include name="xercesImpl_nl.jar"/>
-                <include name="xercesImpl_pt.jar"/>
-                <include name="xercesImpl_ru.jar"/>
-                <include name="xercesImpl_sv.jar"/>
-                <include name="xercesImpl_zh_CN.jar"/>
-                <include name="xercesImpl_zh_TW.jar"/>
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="ja-locale-samples" if="build.additional-packages">
-        <antcall target="clean-temp"/>
-        <!--
-        <copy todir="${basedir}/temp/samples_ja">
-            <fileset dir="${basedir}/samples/ja_JP">
-                <include name="README_ja.txt"/>
-                <include name="explorer/**"/>
-            </fileset>
-        </copy>
-        <mkdir dir="${basedir}/out"/>
-        <zip file="${basedir}/out/${kit.prefix}-locales.zip" basedir="${basedir}/temp" includes="**"/>
-        -->
-    </target>
-     
+    
     <target name="asdoc-package" description="Package the asdocs">      
         <antcall target="clean-temp"/>
         <antcall target="asdoc"/>
@@ -1156,22 +1006,8 @@
         <antcall target="clean-temp"/>
     </target>
 
-    
-    <target name="air-installers" description="Copy AIR runtime installers from sdk/in to sdk/out">
-        <mkdir dir="${basedir}/out"/>
-        <copy todir="${basedir}/out">
-            <fileset file="${basedir}/in/air/mac/Adobe AIR.dmg"/>
-            <fileset file="${basedir}/in/air/win/Adobe AIR Installer.exe"/>
-        </copy>
-    </target>
-
     <target name="clean-temp" unless="noclean.temp">
         <delete dir="${basedir}/temp" failonerror="false" includeEmptyDirs="true"/>
-    </target>
-
-    <!-- Builds fat swcs. -->
-    <target name="doc">
-        <!--<ant dir="${basedir}/frameworks" target="doc" />-->
     </target>
 
     <!--
@@ -1192,6 +1028,7 @@
         <subant target="main" >
             <fileset dir="${basedir}/marmotinni/java" includes="downloads.xml"/>
         </subant>
+        <ant dir="${basedir}/mustella"/>
     </target>
     
     <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
@@ -1201,7 +1038,7 @@
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
-		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/java/bin" fork="true" failonerror="yes">
+		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
 		    <!--<arg value="browser=chrome" />-->
 		    <arg value="url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
@@ -1266,51 +1103,40 @@
 
     </target>
     
-    <target name="basictests-compile-js">
-        <!-- now built by dual mode
+    <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
         <property name="FLEX_HOME" value="${FLEXJS_HOME}"/>
-        <property name="FALCONJX_HOME" value="${env.FALCONJX_HOME}"/>
+        <property name="FALCONJX_HOME" value="${FLEXJS_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
         <echo message="FALCONJX_HOME: ${FALCONJX_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar" resultProperty="errorCode"
-            fork="true">
+        <mxmlc fork="true" debug="true"
+            closure-lib="${env.GOOG_HOME}"
+            file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
-            <arg value="+flexlib=${FLEXJS_HOME}/frameworks" />
-            <arg value="-debug" />
-            <arg value="-compiler.mxml.children-as-data" />
-            <arg value="-compiler.binding-value-change-event=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-kind=org.apache.flex.events.ValueChangeEvent" />
-            <arg value="-compiler.binding-value-change-event-type=valueChange" />
-            <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-library-path+=${FLEX_SDK_HOME}/mustella/mustella.swc" />
-            <arg value="-js-output-type=FLEXJS" />
-            <arg value="-closure-lib=${GOOG_HOME}" />
+            <targets>JSFlex</targets>
+            <library-path dir="${FLEXJS_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/js/FlexJS/libs"/>
+            </js-library-path>
+            <js-library-path dir="${FLEXJS_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </js-library-path>
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
-            <arg value="-sdk-js-lib=${FLEXJS_HOME}/frameworks/js/FlexJS/libs" />
-            <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml" />
-        </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${errorCode}" arg2="0" />
-                        <equals arg1="${errorCode}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
-         -->
+        </mxmlc>
     </target>
     
-    <target name="basictests-compile-java" >
-        <delete dir="${basedir}/mustella/java/bin"/>
-        <mkdir dir="${basedir}/mustella/java/bin"/>
-        <javac srcdir="${basedir}/mustella/java/src/marmotinni" destdir="${basedir}/mustella/java/bin" debug="off" optimize="on">
+    <target name="basictests-compile-java" depends="marmotinni-setup">
+        <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
+        <delete dir="${basedir}/mustella/target/classes"/>
+        <mkdir dir="${basedir}/mustella/target/classes"/>
+        <javac srcdir="${basedir}/mustella/src/main/java" destdir="${basedir}/mustella/target/classes" debug="off" optimize="on">
             <classpath>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
@@ -1372,9 +1198,10 @@
         Tests: Mustella checkintests
     -->
 
-    <target name="basictests-mustella" depends="mustella-setup,basictests"/>
+    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME"/>
 
-    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file">
+    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME">
+        <ant dir="${basedir}/mustella" />
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
             <property name="use_mustella_framework_dir" value="false"/>
@@ -1387,7 +1214,7 @@
     <!-- To run the checkintests as well as any mustella tests need AIR for the adl and
          a flash player content debugger.
     -->
-    <target name="check-runtime-env" depends="check-air-home"
+    <target name="check-runtime-env" depends="check-air-home" if="env.AIR_HOME"
         description="Check for the required runtime environment variables for the checkintests">
         
         <available file="${env.FLASHPLAYER_DEBUGGER}" property="FLASHPLAYER_DEBUGGER.set"/>
@@ -1421,20 +1248,18 @@
     <target name="load-task" depends="runtime-setup">
         <!-- load the <mxmlc> task; we can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail -->
-        <taskdef resource="flexTasks.tasks" classpath="${FALCONJX_HOME}/lib/falcon-flexTasks.jar"/>
+        <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/falcon-flexTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="check-flex-home,load-task" description="run basic tests using mustella">
-
+    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
+        <property name="FALCONJX_HOME" value="${basedir}/js" />
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <library-path dir="${FLEX_SDK_HOME}" append="true">
+            <library-path dir="${FLEX_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
-                <include name="frameworks/libs/framework.swc"/>
-                <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
                 <include name="js/libs/js.swc"/>
@@ -1442,10 +1267,8 @@
             <js-library-path dir="${basedir}" >
                 <include name="frameworks/js/FlexJS/libs"/>
             </js-library-path>
-            <js-library-path dir="${FLEX_SDK_HOME}" append="true">
+            <js-library-path dir="${FLEX_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
-                <include name="frameworks/libs/framework.swc"/>
-                <include name="frameworks/locale/en_US/framework_rb.swc"/>
             </js-library-path>
             <arg value="-sdk-js-lib=${FLEXJS_HOME}/mustella/js" />
         </mxmlc>
@@ -1484,7 +1307,7 @@
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
-                <pathelement location="${FLEX_SDK_HOME}"/>
+                <pathelement location="${FLEXJS_HOME}/mustella/target/classes"/>
             </classpath>
         </java>
     </target>
@@ -1551,6 +1374,8 @@
                 <exclude name="frameworks/js/jshint.properties"/>
                 <exclude name="frameworks/js/.jshintrc"/>
                 <exclude name="**/META-INF/DEPENDENCIES" />
+                <!--          ide files     -->
+                <exclude name="**/.vscode/**"/>
             </fileset>
         </rat:report>
     </target>
@@ -1674,8 +1499,8 @@
     <target name="block-main" description="set flags so main targets don't do anything" if="airsdk.found">
         <!-- these keep the main target from doing other checks -->
         <property name="mxmlc.jar.exists" value="set" />
-        <property name="FALCON_HOME" value="set" />
-        <property name="FALCONJX_HOME" value="set" />
+        <property name="FALCON_REPO" value="set" />
+        <property name="FALCONJX_REPO" value="set" />
     </target>
     
     <target name="ask-about-downloading-repos" depends="ask-or-fail, download-all" if="airsdk.found" />
@@ -1715,176 +1540,84 @@
         <echo>Using folder ${base.folder.name}</echo>
         <mkdir dir="${base.folder.name}" />
         <antcall target="warn-before-clone" />
-        <antcall target="clone-flex-asjs" />
-        <antcall target="clone-flex-falcon" />
-        <antcall target="clone-flex-typedefs" />
-        <antcall target="clone-flex-flexunit" />
-        <antcall target="clone-flex-sdk" />
-        <antcall target="clone-flex-tlf" />
-        <antcall target="clone-flex-blazeds" />
+        <antcall target="clone-royale-asjs" />
+        <antcall target="clone-royale-compiler" />
+        <antcall target="clone-royale-typedefs" />
         <antcall target="build-all" />
     </target>
 
-    <target name="warn-before-clone" depends="check-flex-asjs" unless="flex-asjs-exists">
+    <target name="warn-before-clone" depends="check-royale-asjs" unless="royale-asjs-exists">
         <input
         message="This script will clone 6 repos.  This will take several minutes.  Then it will ask you a few questions then take several more minutes to download more files and compile them.  Press the enter key to continue."
         />
     </target>
     
-    <target name="check-flex-asjs">
-        <available file="${base.folder.name}/flex-asjs"
+    <target name="check-royale-asjs">
+        <available file="${base.folder.name}/royale-asjs"
         type="dir"
-        property="flex-asjs-exists"/>
+        property="royale-asjs-exists"/>
     </target>
     
-    <target name="clone-flex-asjs" depends="check-flex-asjs" unless="flex-asjs-exists">
-        <echo>cloning flex-asjs repo into ${base.folder.name}/flex-asjs</echo>
+    <target name="clone-royale-asjs" depends="check-royale-asjs" unless="royale-asjs-exists">
+        <echo>cloning royale-asjs repo into ${base.folder.name}/royale-asjs</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-asjs.git" />
-            <arg value="flex-asjs" />
+            <arg value="https://github.com/apache/royale-asjs.git" />
+            <arg value="royale-asjs" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-asjs">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-asjs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
-        <echo>change directory to ${base.folder.name}/flex-asjs and run ant for future builds.</echo>
+        <echo>change directory to ${base.folder.name}/royale-asjs and run ant for future builds.</echo>
     </target>
 
-    <target name="check-flex-falcon">
-        <available file="${base.folder.name}/flex-falcon"
+    <target name="check-royale-compiler">
+        <available file="${base.folder.name}/royale-compiler"
         type="dir"
-        property="flex-falcon-exists"/>
+        property="royale-compiler-exists"/>
     </target>
 
-    <target name="clone-flex-falcon" depends="check-flex-falcon" unless="flex-falcon-exists">
-        <echo>cloning flex-falcon repo into ${base.folder.name}/flex-falcon</echo>
+    <target name="clone-royale-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
+        <echo>cloning royale-compiler repo into ${base.folder.name}/royale-compiler</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-falcon.git" />
-            <arg value="flex-falcon" />
+            <arg value="https://github.com/apache/royale-compiler.git" />
+            <arg value="royale-compiler" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-falcon">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-compiler">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="check-flex-typedefs">
-        <available file="${base.folder.name}/flex-typedefs"
+    <target name="check-royale-typedefs">
+        <available file="${base.folder.name}/royale-typedefs"
         type="dir"
-        property="flex-typedefs-exists"/>
+        property="royale-typedefs-exists"/>
     </target>
 
-    <target name="clone-flex-typedefs" depends="check-flex-typedefs" unless="flex-typedefs-exists">
-        <echo>cloning flex-typedefs repo into ${base.folder.name}/flex-typedefs</echo>
+    <target name="clone-royale-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
+        <echo>cloning royale-typedefs repo into ${base.folder.name}/royale-typedefs</echo>
         <exec executable="git" failonerror="true" dir="${base.folder.name}">
             <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-typedefs.git" />
-            <arg value="flex-typedefs" />
+            <arg value="https://github.com/apache/royale-typedefs.git" />
+            <arg value="royale-typedefs" />
         </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-typedefs">
+        <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="check-flex-sdk">
-        <available file="${base.folder.name}/flex-sdk"
-        type="dir"
-        property="flex-sdk-exists"/>
-    </target>
-
-    <target name="clone-flex-sdk" depends="check-flex-sdk" unless="flex-sdk-exists">
-        <echo>cloning flex-sdk repo into ${base.folder.name}/flex-sdk</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-sdk.git" />
-            <arg value="flex-sdk" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-sdk">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-flexunit">
-        <available file="${base.folder.name}/flex-flexunit"
-        type="dir"
-        property="flex-flexunit-exists"/>
-    </target>
-
-    <target name="clone-flex-flexunit" depends="check-flex-flexunit" unless="flex-flexunit-exists">
-        <echo>cloning flex-flexunit repo into ${base.folder.name}/flex-flexunit</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-flexunit.git" />
-            <arg value="flex-flexunit" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-flexunit">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-blazeds">
-        <available file="${base.folder.name}/flex-blazeds"
-        type="dir"
-        property="flex-blazeds-exists"/>
-    </target>
-
-    <target name="clone-flex-blazeds" depends="check-flex-blazeds" unless="flex-blazeds-exists">
-        <echo>cloning flex-blazeds repo into ${base.folder.name}/flex-blazeds</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-blazeds.git" />
-            <arg value="flex-blazeds" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-blazeds">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-
-    <target name="check-flex-tlf">
-        <available file="${base.folder.name}/flex-tlf"
-        type="dir"
-        property="flex-tlf-exists"/>
-    </target>
-
-    <target name="clone-flex-tlf" depends="check-flex-tlf" unless="flex-tlf-exists">
-        <echo>cloning flex-tlf repo into ${base.folder.name}/flex-tlf</echo>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}">
-            <arg value="clone" />
-            <arg value="https://git-wip-us.apache.org/repos/asf/flex-tlf.git" />
-            <arg value="flex-tlf" />
-        </exec>
-        <exec executable="git" failonerror="true" dir="${base.folder.name}/flex-tlf">
-            <arg value="checkout" />
-            <arg value="develop" />
-        </exec>
-    </target>
-    
     <target name="build-all" depends="check-playerglobal-home,check-air-home">
-        <!-- get the questions out of the way -->
-        <ant dir="${base.folder.name}/flex-sdk/frameworks" antfile="downloads.xml">
-            <target name="font-jars-check" />
-            <target name="ask-font" />
-        </ant>
         <property name="font.donot.ask" value="set" />
-        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4Test" antfile="downloads.xml"
-            target="saxon9he-jar" />
-        <mkdir dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks/lib" />
-        <ant dir="${base.folder.name}/flex-flexunit/FlexUnit4AntTasks" antfile="downloads.xml"
-            target="junit-jar" />
         <input
             message="This script will now download and compile lots of files.  This can take several minutes.   No interaction should be required.  Press the enter key to continue."
             />
-        <ant dir="${base.folder.name}/flex-sdk" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/flex-falcon" target="all" />
-        <ant dir="${base.folder.name}/flex-typedefs" />
-        <ant dir="${base.folder.name}/flex-flexunit" inheritAll="false" />
+        <ant dir="${base.folder.name}/royale-compiler" target="all" />
+        <ant dir="${base.folder.name}/royale-typedefs" />
     </target>
     
     <target name="all" depends="set.base.folder, download-all, main" />
@@ -1905,10 +1638,10 @@
     </target>
     
     <target name="last-message-if-airsdk" if="airsdk.found" >
-        <echo>Please change directory to ${base.folder.name}/flex-asjs and run ant to complete build</echo>
+        <echo>Please change directory to ${base.folder.name}/royale-asjs and run ant to complete build</echo>
     </target>
 
-    <target name="compile" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1919,7 +1652,7 @@
         </mxmlc>
     </target>
     
-    <target name="compile-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
+    <target name="compile-release" depends="check-falcon-home,check-falconjx-home,check-goog-home,load-task" description="compile for SWF">
         
         <property name="FLEX_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="false"
@@ -1929,9 +1662,9 @@
         </mxmlc>
     </target>
     
-    <target name="compile-js" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+    <target name="compile-js" depends="check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>
@@ -1949,9 +1682,9 @@
         </java>
     </target>
     
-    <target name="compile-js-release" depends="check-flex-home,check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
+    <target name="compile-js-release" depends="check-falcon-home,check-falconjx-home,check-goog-home" description="compile for JS">
         <property name="FLEX_HOME" value="${basedir}" />
-        <java jar="${FALCONJX_HOME}/lib/mxmlc.jar"
+        <java jar="${basedir}/js/lib/mxmlc.jar"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Dflexlib=${FLEXJS_HOME}/frameworks}"/>

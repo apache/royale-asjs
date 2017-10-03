@@ -38,15 +38,10 @@
 
     <property name="report.dir" value="${basedir}/out" />
     
-    <available file="${FLEXJS_HOME}/../flex-flexunit"
+    <available file="${FLEXJS_HOME}/in/flexunit"
         type="dir"
         property="FLEXUNIT_HOME"
-        value="${FLEXJS_HOME}/../flex-flexunit" />
-    
-    <available file="${FLEXJS_HOME}/../flexunit"
-        type="dir"
-        property="FLEXUNIT_HOME"
-        value="${FLEXJS_HOME}/../flexunit" />
+        value="${FLEXJS_HOME}/in/flexunit" />
 	
     <available file="${env.FLEXUNIT_HOME}"
         type="dir"

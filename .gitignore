@@ -59,6 +59,12 @@ FXGException_*.properties
 FXGLog_*.properties
 FABridge.js
 frameworks/projects/spark/manifest.xml
+frameworks/air-config.xml
+frameworks/createjs-config.xml
+frameworks/flex-config.xml
+frameworks/jquery-config.xml
+frameworks/js-config.xml
+frameworks/node-config.xml
 env.properties
 local.properties
 /flex-sdk-description.xml
@@ -66,6 +72,14 @@ local.properties
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
+
+#Files we fake for Flash Builder SDKs
+frameworks/airmobile-config.xml
+frameworks/mxml-manifest.xml
+frameworks/spark-manifest.xml
+frameworks/themes/Halo/Halo.swc
+frameworks/themes/Spark/spark.css
+ide/flashbuilder/flashbuilder-config.xml
 
 #Visual Studio files
 *.[Oo]bj

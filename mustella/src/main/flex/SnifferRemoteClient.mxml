@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application 
+            xmlns:fx="http://ns.adobe.com/mxml/2009"
+            xmlns:s="library://ns.adobe.com/flex/spark"
+            xmlns:mx="library://ns.adobe.com/flex/mx"
+            width="100%" height="800"
+            initialize="initApp()">
+
+    <fx:Script>
+    <![CDATA[
+
+        import mx.core.UIComponent;
+        import mx.collections.*;
+        import mx.core.mx_internal;
+        use namespace mx_internal;
+
+
+        [Bindable] private var theList:ArrayCollection = new ArrayCollection();
+        [Bindable] private var theListView:ListCollectionView = new ListCollectionView (theList);
+        private var iterator:int = 0;
+        private var connection:LocalConnection;
+        private var commandconnection:LocalConnection;
+        private var pixelconnection:LocalConnection;
+        private var pixelcommandconnection:LocalConnection;
+        private var mouseconnection:LocalConnection;
+        private var mousecommandconnection:LocalConnection;
+        private var objectconnection:LocalConnection;
+        private var objectcommandconnection:LocalConnection;
+        private var playbackconnection:LocalConnection;
+        private var playbackcommandconnection:LocalConnection;
+
+        private function initApp():void
+        {
+
+            theListView.filterFunction = filterData;
+
+            connection = new LocalConnection();
+            connection.allowDomain("*");
+            connection.client = this;
+
+            commandconnection = new LocalConnection();
+            commandconnection.allowDomain("*");
+            commandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            pixelconnection = new LocalConnection();
+            pixelconnection.allowDomain("*");
+            pixelconnection.client = this;
+
+            pixelcommandconnection = new LocalConnection();
+            pixelcommandconnection.allowDomain("*");
+            pixelcommandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            mouseconnection = new LocalConnection();
+            mouseconnection.allowDomain("*");
+            mouseconnection.client = this;
+
+            mousecommandconnection = new LocalConnection();
+            mousecommandconnection.allowDomain("*");
+            mousecommandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            objectconnection = new LocalConnection();
+            objectconnection.allowDomain("*");
+            objectconnection.client = this;
+
+            objectcommandconnection = new LocalConnection();
+            objectcommandconnection.allowDomain("*");
+            objectcommandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            playbackconnection = new LocalConnection();
+            playbackconnection.allowDomain("*");
+            playbackconnection.client = this;
+
+            playbackcommandconnection = new LocalConnection();
+            playbackcommandconnection.allowDomain("*");
+            playbackcommandconnection.addEventListener(StatusEvent.STATUS, statusHandler);
+
+            connect();
+            
+            toggleSniffersEnabled();
+        }
+
+        private function connect():void
+        {
+            try
+            {
+                connection.connect("_EventSniffer");
+            }
+            catch (e:Error)
+            {
+                appendLog("connection failed");
+            }
+
+            try
+            {
+                pixelconnection.connect("_PixelSniffer");
+            }
+            catch (e:Error)
+            {
+                appendLog("pixel connection failed");
+            }
+
+            try
+            {
+                mouseconnection.connect("_MouseSniffer");
+            }
+            catch (e:Error)
+            {
+                appendLog("mouse connection failed");
+            }
+
+            try
+            {
+                objectconnection.connect("_ObjectSniffer");
+            }
+            catch (e:Error)
+            {
+                appendLog("object connection failed");
+            }
+
+            try
+            {
+                playbackconnection.connect("_PlaybackSniffer");
+            }
+            catch (e:Error)
+            {
+                appendLog("playback connection failed");
+            }
+        }
+
+        private function statusHandler(event:Event):void
+        {
+        }
+
+        [Bindable]
+        public var enableLogging:Boolean = true;
+
+        public function enableSniffer():void
+        {
+            enableLogging = true;
+        }
+
+        public function disableSniffer():void
+        {
+            enableLogging = false;
+        }
+
+        /**
+        * Called by the sniffer.
+        **/
+        public function appendLog(info:Object):void
+        {
+            if (!enableLogging)
+                return;
+
+            /**
+                if (eventName==null) 
+                {
+                    eventName=" ";
+                }
+                if (event==null) 
+                {
+                    event=" ";
+                }
+            **/
+
+            iterator++;
+
+/**
+            trace ("RECEIVED item " + iterator + ":");
+            trace ("    dataSource: " + info.dataSource); // Event, Object, Mouse...
+            trace ("    target: " + info.target);
+            trace ("    eventName: " + info.eventName);
+            trace ("    event: " + info.event);
+**/
+                        
+            theList.addItem ({sequence:iterator, dataSource:info.dataSource, target:info.target, event:info.event, eventName:info.eventName});
+            /// call refresh
+            theListView.refresh();
+        }
+
+        public function filterData (o:Object):Boolean { 
+
+            // Do the easy event check before the more expensive ones.
+            if (o.dataSource == "Event"){
+                if (!eventsList.selected)
+                    return false;
+
+                if (rbIncludeEvents.selected && (eventMap[o.eventName] != 1 && !match(o.eventName, eventWildCards)))
+                    return false;
+    
+                if (rbExcludeEvents.selected && (eventMap[o.eventName] == 1 || match(o.eventName, eventWildCards)))
+                    return false;
+            }
+
+            if (!mouseList.selected && (o.dataSource == "Mouse" || o.dataSource == "Pixel" ))
+                return false;
+
+            if (!mustellaOutputList.selected && o.dataSource == "Mustella_Output")
+                return false;
+
+            if (!objectList.selected && o.dataSource == "Object")
+                return false;
+
+            if (rbIncludeTargets.selected && (targetMap[o.target] != 1 && !match(o.target, targetWildCards)))
+                return false;
+
+            if (rbExcludeTargets.selected && (targetMap[o.target] == 1 || match(o.target, targetWildCards)))
+                return false;
+
+            return true;
+        }
+
+        /**
+        * Enable or disable sniffers based on the checkboxes.
+        * This is called locally when the checkboxes are changed,
+        * and remotely by other sniffers when the SWF under test
+        * starts up.
+        **/
+        public function toggleSniffersEnabled():void{
+
+            if(eventsList.selected == true){
+                commandconnection.send("_EventSnifferCommands", "enableSniffer");
+            }else{
+                commandconnection.send("_EventSnifferCommands", "disableSniffer");
+            }
+
+            if(mouseList.selected == true){
+                mousecommandconnection.send("_MouseSnifferCommands", "enableSniffer");
+                pixelcommandconnection.send("_PixelSnifferCommands", "enableSniffer");
+            }else{
+                mousecommandconnection.send("_MouseSnifferCommands", "disableSniffer");
+                pixelcommandconnection.send("_PixelSnifferCommands", "disableSniffer");
+            }
+        }
+
+        private function scrollLog():void
+        {
+            if (log.maxVerticalScrollPosition != log.verticalScrollPosition)
+                log.verticalScrollPosition = log.maxVerticalScrollPosition;
+        }
+
+        private var _targetList:String;
+        private var targetListChanged:Boolean = false;
+
+        public function get targetList():String
+        {
+            var s:String = targets.text;
+            s = s.replace("\r", ",");
+            return s;
+        }
+
+        public function set targetList(s:String):void
+        {
+            _targetList = s;
+            targetListChanged = true;
+            invalidateProperties();
+        }
+
+        private var _eventList:String;
+        private var eventListChanged:Boolean = false;
+
+        public function get eventList():String
+        {
+            var s:String = events.text;
+            s = s.replace("\r", ",");
+            return s;
+        }
+
+        public function set eventList(s:String):void
+        {
+            _eventList = s;
+            eventListChanged = true;
+            invalidateProperties();
+        }
+
+        private var filterChanged:Boolean = false;
+
+        /**
+        * If the target or event include/exclude lists
+        * changed, process the new settings.
+        **/
+        override protected function commitProperties():void
+        {
+            var s:String;
+            var n:int;
+            var i:int;
+
+            if (eventListChanged)
+            {
+                eventListChanged = false;
+                s = _eventList.replace(",", "\r");
+                events.text = s;
+                filterChanged = true;
+            }
+
+            if (targetListChanged)
+            {
+                targetListChanged = false;
+                s = _targetList.replace(",", "\r");
+                targets.text = s;
+                filterChanged = true;
+            }
+
+            if (filterChanged)
+            {
+                filterChanged = false;
+
+                s = events.text;
+                var names:Array = s.split("\r");
+                n = names.length;
+                eventMap = {};
+                eventWildCards = [];
+                for (i = 0; i < n; i++)
+                {
+                    s = names[i];
+                    if (s.indexOf('*') >= 0)
+                        eventWildCards.push(s);
+                    else
+                        eventMap[names[i]] = 1;
+                }
+
+                s = targets.text;
+                names = s.split("\r");
+                n = names.length;
+                targetMap = {};
+                targetWildCards = [];
+                for (i = 0; i < n; i++)
+                {
+                    s = names[i];
+                    if (s.indexOf('*') >= 0)
+                        targetWildCards.push(new RegExp(s.replace("*", ".*")));
+                    else
+                        targetMap[names[i]] = 1;
+                }
+
+            }
+
+            super.commitProperties();
+            theListView.refresh();
+        }
+
+        private var eventMap:Object = {};
+        private var targetMap:Object = {};
+
+        private var eventWildCards:Array = [];
+        private var targetWildCards:Array = [];
+
+        private function changeFilter():void
+        {
+            filterChanged = true;
+            invalidateProperties();
+        }
+
+        private function match(target:String, wildCards:Array):Boolean
+        {
+            var n:int = wildCards.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                if (RegExp(wildCards[i]).test(target))
+                    return true;
+            }
+            return false;
+        }
+
+        private function getAProperty():void
+        {
+            objectcommandconnection.send("_ObjectSnifferCommands", "dumpObject", target.text);
+        }
+
+        private function listAllProperties():void
+        {
+            objectcommandconnection.send("_ObjectSnifferCommands", "listProperties", target.text);
+        }
+
+        [Bindable]
+        public var paused:Boolean = true;
+
+        public function getPausedState():void
+        {
+            if (paused)            
+                pausePlayback();
+        }                
+
+        public function pausePlayback():void
+        {
+            paused = true;
+            playbackcommandconnection.send("_PlaybackCommands", "pause")
+        }
+
+        public function playback():void
+        {
+            paused = false;
+            playbackcommandconnection.send("_PlaybackCommands", "playback")
+        }
+
+        public function stepit():void
+        {
+            playbackcommandconnection.send("_PlaybackCommands", "step")
+        }
+
+        /**
+        * Someone has changed the Events, Mouse Stuff,
+        * Test Output, or Objects checkbox(es).
+        **/
+        private function handleSnifferListChange(e:Event):void{
+            theListView.refresh();
+            toggleSniffersEnabled();            
+        }
+    ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout />
+    </s:layout>
+
+	<mx:Spacer width="1024" />
+
+    <!-- Each row of data looks like this: {sequence, dataSource, target, event, eventName} -->
+    <mx:DataGrid id="log" dataProvider="{theListView}" rowCount="20" width="100%" updateComplete="scrollLog()" > 
+           <mx:columns>
+                   <mx:DataGridColumn dataField="sequence" dataTipField="sequence" headerText="#" width="80" editable="false"/>
+                   <mx:DataGridColumn dataField="target" dataTipField="target" headerText="Target" width="1000" editable="false" itemRenderer="mx.controls.Label"/>
+                   <mx:DataGridColumn dataField="eventName" dataTipField="eventName" headerText="Event Name" width="1000" editable="false" itemRenderer="SnifferCellRenderer">
+            </mx:DataGridColumn>
+           </mx:columns>
+    </mx:DataGrid>
+
+    <mx:HBox width="100%" defaultButton="{events}" borderStyle="solid" paddingTop="1" paddingBottom="1" paddingLeft="1" paddingRight="1">
+        <mx:Label text="Filter by Type: "/>
+        <mx:CheckBox id="eventsList" selected="true" label="Events" change="handleSnifferListChange(event)" />
+        <mx:CheckBox id="mustellaOutputList" selected="true" label="Test Output"  change="handleSnifferListChange(event)" />
+        <mx:CheckBox id="objectList" selected="true" label="Objects"  change="handleSnifferListChange(event)" />
+        <mx:CheckBox id="mouseList" selected="false" label="Mouse Stuff" change="handleSnifferListChange(event)" />
+    </mx:HBox>
+
+    <mx:Box width="100%" borderStyle="solid" paddingTop="1" paddingBottom="1"
+                            paddingLeft="1" paddingRight="1" enabled="{eventsList.selected}" >
+        <mx:Label text="Filter by Target/Event: " />
+        <mx:HBox width="100%" >
+            <mx:HBox width="50%" borderStyle="solid" paddingTop="1" paddingBottom="1" paddingLeft="1" paddingRight="1">
+                <mx:Box width="20%">
+                <mx:RadioButton id="rbIncludeTargets" groupName="targetRB" label="include targets"/>
+                <mx:RadioButton id="rbExcludeTargets" groupName="targetRB" label="exclude targets" selected="true" />
+                </mx:Box>
+                <mx:Box width="80%">
+                <mx:TextArea id="targets" width="100%" height="100" focusOut="changeFilter()"/>
+                </mx:Box>
+            </mx:HBox>
+            <mx:HBox width="50%" borderStyle="solid" paddingTop="1" paddingBottom="1" paddingLeft="1" paddingRight="1">
+                <mx:Box width="20%">
+                <mx:RadioButton id="rbIncludeEvents" groupName="eventRB" label="include events"/>
+                <mx:RadioButton id="rbExcludeEvents" groupName="eventRB" label="exclude events" selected="true"/>
+                </mx:Box>
+                <mx:Box width="80%">
+                <mx:TextArea id="events" width="100%" height="100" focusOut="changeFilter()"/>
+                </mx:Box>
+            </mx:HBox>
+        </mx:HBox>
+    
+        <mx:Button label="Apply Filters"  click="changeFilter()" />    
+    </mx:Box>
+
+    <mx:HBox width="100%" defaultButton="{getProperty}" enabled="{objectList.selected}" >
+        <mx:TextInput width="100%" id="target"/>
+        <mx:Button id="getProperty" label="Get Property" click="getAProperty()" />
+        <mx:Button id="listProperties" label="List Properties" click="listAllProperties()" />
+    </mx:HBox>
+
+    <s:Group width="100%">
+        <s:Rect id="headerBackground" left="0" right="0" top="0" height="24">
+            <s:fill>
+                <s:SolidColor color="0xCCCCCC" />
+            </s:fill>
+        </s:Rect>
+
+        <s:HGroup width="100%">
+            <s:HGroup width="100%" paddingLeft="5">
+                <s:Label text="Playback Control:" paddingTop="5"/>
+                <s:Button id="pause" label="Pause" enabled="{!paused}" click="pausePlayback()" skinClass="skins.pauseButtonSkin" />
+                <s:Button id="play" label="Play" enabled="{paused}" click="playback()" skinClass="skins.playButtonSkin" />
+                <s:Button id="step" label="Step" enabled="{paused}" click="stepit()" skinClass="skins.stepButtonSkin" />
+            </s:HGroup>
+
+            <s:HGroup width="100%" >
+                <s:Label text="Logging:" paddingTop="5" />
+                <s:Button label="start" enabled="{!enableLogging}" click="enableSniffer()" />
+                <s:Button label="stop" enabled="{enableLogging}" click="disableSniffer()" />
+                <s:Button label="mark" click="appendLog({dataSource:'Marker', target:'------------ ' + getTimer() + ' -------------', event:'', eventName:''})" />
+                <s:Button label="clear" click="theList.removeAll(); iterator=0;" />
+                <s:Label id="pixel" text="Current Pixel Color" visible="false" />
+            </s:HGroup>
+    
+        </s:HGroup>
+    </s:Group>
+
+</s:Application>

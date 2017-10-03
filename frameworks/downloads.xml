@@ -32,13 +32,16 @@
     <property name="pixelbender.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
     <property name="pixelbender.folder" value="flex/pixelbender/1.0/binaries" />
     <property name="pixelbender.bin.zip" value="apache-flex-sdk-pixel-bender-1.0.0-bin.zip" />
+    <property name="flexunit.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
+    <property name="flexunit.folder" value="flex/flexunit/4.2.0/binaries" />
+    <property name="flexunit.bin.zip" value="apache-flex-flexunit-4.2.0-4.12.0-bin.zip" />
    
     <!--
        To clean these you must call thirdparty-clean or super-clean to clean everything.  
        clean does not remove these since they don't change often and the downloads take time.
     -->
     <target name="main" 
-        depends="pixelbender-download,swfobject-download,flat-ui-download,gcl-download"
+        depends="pixelbender-download,flexunit-download,swfobject-download,flat-ui-download,gcl-download"
         description="Copies third-party software into place for build">
         <echo message="Use thirdparty-clean or super-clean to remove these."/> 
     </target>
@@ -80,6 +83,29 @@
                 <include name="*.pbj"/>
             </fileset>
         </delete>
+    </target>
+
+    <!-- Because this requires a network connection it downloads only if it doesn't already exist. -->
+    <target name="flexunit-check" description="Checks if FlexUnit files have been downloaded.">
+        <available file="${FLEXJS_HOME}/in/flexunit" property="flexunit.present"/>
+    </target>
+
+    <target name="flexunit-download" depends="flexunit-check" unless="flexunit.present"
+        description="Downloads FlexUnit from flex distribution server">
+        
+        <mkdir dir="${download.dir}"/>
+        <antcall target="get_from_mirror" >
+            <param name="server" value="${flexunit.url}" />
+            <param name="folder" value="${flexunit.folder}" />
+            <param name="file" value="${flexunit.bin.zip}" />
+            <param name="dest" value="${download.dir}/${flexunit.bin.zip}" />
+        </antcall>
+        
+        <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${FLEXJS_HOME}/in/flexunit" />
+    </target>
+
+    <target name="flexunit-clean" description="Deletes flexunit files.">
+        <delete dir="${FLEXJS_HOME}/in/flexunit" failonerror="false" />
     </target>
 
     <!-- swfobject.js (Version 2.2) -->
