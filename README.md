@@ -133,7 +133,7 @@ After you download the AIR SDK, unzip it and place it in a directory of your cho
 
 ## Building the source
 
-FlexJS is a large project. It requires some build tools which must be installed prior to building the SDK. Some of these have different licenses. See the **Software Dependencies** section for more information on the external dependencies below.
+FlexJS is a large project. It requires some build tools, such as Google Closure Tools, which must be installed prior to building the SDK. Some of these may have different licenses. You will be prompted during the build to acknowledge these licenses.
 
 Linux support is currently experimental and while it is possible to compile the SDK it has not been fully tested.
 
@@ -183,8 +183,8 @@ If you want SWF output, use NPM. Run:
 sudo npm install flexjs -g
 ```
 
-# Software Dependencies
+# Using FlexJS
 
-FlexJS depends on the Google Closure Library.
+In order to get started using FlexJS, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
 
 ### Thanks for using [Apache Royale](http://royale.apache.org). Enjoy!
