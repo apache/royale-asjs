@@ -491,10 +491,10 @@ the results of the build are not the same as an IDE-compatible SDK.  The\n\
 compiled source package can be used in combination with the FalconJX\n\
 source package to compile some of the sample applications.\n\
 \n\
-The most convenient way to use the binary package is to install it via Ant\n\
-or the Installer.  To use an Installer you must use InstallApacheFlex\n\
-version 3.1 or later.  You can get InstallApacheFlex here:\n\
-http://www.apache.org/dyn/closer.cgi?path=/flex/installer/${latest.installer}/binaries/\n\
+To use the binary package, unzip it into a folder.  The -js package is\n\
+ready-to-use in an IDE or command-line.  If you need SWF output, use the\n\
+-flexjs package and use Apache Ant to run the InstallAdobeSDKs script via:\n\
+  ant -f InstallAdobeSDKs.xml\n\
 \n\
 Please vote to approve this release:\n\
 +1 Approve the release\n\
