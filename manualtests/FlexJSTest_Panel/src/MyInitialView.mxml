@@ -22,8 +22,8 @@ limitations under the License.
 			    initComplete="initControls()">
     <fx:Script>
         <![CDATA[
-			import org.apache.flex.html.Alert;
-			import org.apache.flex.html.SimpleAlert;
+			import org.apache.royale.html.Alert;
+			import org.apache.royale.html.SimpleAlert;
 			
 			private function initControls():void
 			{
@@ -113,20 +113,20 @@ limitations under the License.
 			border-thickness: 1;
 		}
 		
-        @media -flex-flash
+        @media -royale-swf
         {
             .TitleBar {
-                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
             }
             
             .panel1 {
-                iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+                iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
             }
             
             .numStepper {
-                iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-                iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+                iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+                iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
             }
             
         }

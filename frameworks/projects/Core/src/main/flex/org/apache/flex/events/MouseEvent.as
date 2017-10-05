@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
     COMPILE::SWF
     {
@@ -28,14 +28,14 @@ package org.apache.flex.events
     {
         import window.MouseEvent;
 		import goog.events.BrowserEvent;
-		import org.apache.flex.events.Event;
-		import org.apache.flex.events.utils.EventUtils;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.events.utils.EventUtils;
     }
     
-    import org.apache.flex.core.IRoyaleElement;
-    import org.apache.flex.geom.Point;
-    import org.apache.flex.utils.PointUtils;
-    import org.apache.flex.events.IBrowserEvent;
+    import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.utils.PointUtils;
+    import org.apache.royale.events.IBrowserEvent;
 
 
 	/**
@@ -199,7 +199,7 @@ package org.apache.flex.events
          */
         public function cloneEvent():IRoyaleEvent
         {
-            var e:org.apache.flex.events.MouseEvent = new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+            var e:org.apache.royale.events.MouseEvent = new org.apache.royale.events.MouseEvent(type, bubbles, cancelable,
                 localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
                 buttonDown, delta
                 /* got errors for commandKey, commandKey, controlKey, clickCount*/);
@@ -216,7 +216,7 @@ package org.apache.flex.events
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
-		 * @royaleignorecoercion org.apache.flex.core.IRoyaleElement
+		 * @royaleignorecoercion org.apache.royale.core.IRoyaleElement
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
@@ -404,7 +404,7 @@ package org.apache.flex.events
         private var _target:Object;
 
 		/**
-         *  @copy org.apache.flex.events.BrowserEvent#target
+         *  @copy org.apache.royale.events.BrowserEvent#target
          *
          * @langversion 3.0
          * @playerversion Flash 10.2
@@ -421,7 +421,7 @@ package org.apache.flex.events
 		}
 
 		/**
-         *  @copy org.apache.flex.events.BrowserEvent#currentTarget
+         *  @copy org.apache.royale.events.BrowserEvent#currentTarget
          *
          * @langversion 3.0
          * @playerversion Flash 10.2
@@ -687,7 +687,7 @@ package org.apache.flex.events
          */
         override public function cloneEvent():IRoyaleEvent
         {
-            return new org.apache.flex.events.MouseEvent(type, bubbles, cancelable,
+            return new org.apache.royale.events.MouseEvent(type, bubbles, cancelable,
                 localX, localY, relatedObject, ctrlKey, altKey, shiftKey,
                 buttonDown, delta
             /* got errors for commandKey, commandKey, controlKey, clickCount*/);

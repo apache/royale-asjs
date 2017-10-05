@@ -17,7 +17,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
 
 	/**

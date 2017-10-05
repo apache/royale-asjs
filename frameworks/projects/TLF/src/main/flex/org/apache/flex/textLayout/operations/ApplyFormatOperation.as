@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.edit.ElementRange;
-	import org.apache.flex.textLayout.edit.ParaEdit;
-	import org.apache.flex.textLayout.edit.PointFormat;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.edit.ElementRange;
+	import org.apache.royale.textLayout.edit.ParaEdit;
+	import org.apache.royale.textLayout.edit.PointFormat;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	/**
 	 * The ApplyFormatOperation class encapsulates a style change.
@@ -36,8 +36,8 @@ package org.apache.flex.textLayout.operations
 	 * And it applies the container format to any containers at least partially within the range 
 	 * (or a single container if the range is a single point).</p>
 	 *
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
     /**
      * Defines values for setting the <code>suffix</code> property of a ListMarkerFormat. 

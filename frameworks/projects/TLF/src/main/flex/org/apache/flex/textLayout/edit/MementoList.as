@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit 
+package org.apache.royale.textLayout.edit 
 {
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 	// [ExcludeClass]
 	/** 

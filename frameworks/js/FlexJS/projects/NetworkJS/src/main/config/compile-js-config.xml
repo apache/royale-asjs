@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
 
     <compiler>
         <accessible>false</accessible>
@@ -31,8 +31,8 @@
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
-		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <define>
@@ -72,7 +72,7 @@
         </namespaces>
         
         <source-path>
-            <path-element>../../../../../../../projects/Network/src/main/flex</path-element>
+            <path-element>../../../../../../../projects/Network/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -93,4 +93,4 @@
     </include-namespaces>
         
 
-</flex-config>
+</royale-config>

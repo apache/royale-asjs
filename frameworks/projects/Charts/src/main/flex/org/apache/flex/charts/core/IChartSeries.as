@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.core.IFactory;
+	import org.apache.royale.core.IFactory;
 
 	/**
 	 *  The IChartSeries interface is the basic interface for any type of

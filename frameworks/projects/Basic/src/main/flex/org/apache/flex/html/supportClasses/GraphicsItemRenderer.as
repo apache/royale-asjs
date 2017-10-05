@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	/**
 	 *  The GraphicsItemRenderer provides a base class for itemRenderers that use graphics rather than
@@ -264,7 +264,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

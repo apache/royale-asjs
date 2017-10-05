@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.events.FlowElementMouseEventManager;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.textLayout.events.FlowElementMouseEventManager;
+	import org.apache.royale.events.MouseEvent;
 	public interface ILinkElement extends ISubParagraphGroupElementBase
 	{
 		function chgLinkState(linkState:String):void;

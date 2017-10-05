@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {	
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.svg.Path;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.svg.LinearGradient;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.svg.Path;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.svg.LinearGradient;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The WedgeItemRenderer draws a single slide of a PieSeries. 
@@ -121,7 +121,7 @@ package org.apache.flex.charts.supportClasses
 		}
 		
 		/**
-		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
+		 *  @copy org.apache.royale.supportClasses.UIItemRendererBase#data
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

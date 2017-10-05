@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.flex.mdl.Button;
+    import org.apache.royale.mdl.Button;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
     /**

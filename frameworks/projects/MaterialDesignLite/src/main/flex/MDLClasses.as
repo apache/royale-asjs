@@ -27,23 +27,23 @@ package
 	*/
 	internal class MDLClasses
 	{
-		import org.apache.flex.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
-		import org.apache.flex.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData; TabsDynamicItemsRendererFactoryForArrayListData;
-		import org.apache.flex.mdl.beads.models.TabArrayModel; TabArrayModel;
-		import org.apache.flex.mdl.beads.models.TabArrayListModel; TabArrayListModel;
-		import org.apache.flex.mdl.beads.models.ToastModel; ToastModel;
-		import org.apache.flex.mdl.beads.models.SnackbarModel; SnackbarModel;
-		import org.apache.flex.mdl.beads.models.SliderRangeModel; SliderRangeModel;
-		import org.apache.flex.mdl.beads.models.DropDownListModel; DropDownListModel;
-		import org.apache.flex.mdl.materialIcons.MaterialIconType; MaterialIconType;
-		import org.apache.flex.mdl.beads.UpgradeElement; UpgradeElement;
-		import org.apache.flex.mdl.beads.UpgradeChildren; UpgradeChildren;
-		import org.apache.flex.mdl.beads.controllers.DropDownListController; DropDownListController;
+		import org.apache.royale.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
+		import org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData; TabsDynamicItemsRendererFactoryForArrayListData;
+		import org.apache.royale.mdl.beads.models.TabArrayModel; TabArrayModel;
+		import org.apache.royale.mdl.beads.models.TabArrayListModel; TabArrayListModel;
+		import org.apache.royale.mdl.beads.models.ToastModel; ToastModel;
+		import org.apache.royale.mdl.beads.models.SnackbarModel; SnackbarModel;
+		import org.apache.royale.mdl.beads.models.SliderRangeModel; SliderRangeModel;
+		import org.apache.royale.mdl.beads.models.DropDownListModel; DropDownListModel;
+		import org.apache.royale.mdl.materialIcons.MaterialIconType; MaterialIconType;
+		import org.apache.royale.mdl.beads.UpgradeElement; UpgradeElement;
+		import org.apache.royale.mdl.beads.UpgradeChildren; UpgradeChildren;
+		import org.apache.royale.mdl.beads.controllers.DropDownListController; DropDownListController;
 
 		COMPILE::SWF
 		{
-			import org.apache.flex.mdl.beads.views.SliderThumbView; org.apache.flex.mdl.beads.views.SliderThumbView;
-			import org.apache.flex.mdl.beads.views.SliderTrackView; org.apache.flex.mdl.beads.views.SliderTrackView;
+			import org.apache.royale.mdl.beads.views.SliderThumbView; org.apache.royale.mdl.beads.views.SliderThumbView;
+			import org.apache.royale.mdl.beads.views.SliderTrackView; org.apache.royale.mdl.beads.views.SliderTrackView;
 		}
 	}
 

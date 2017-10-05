@@ -17,12 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
-import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.geom.Rectangle;
+import org.apache.royale.core.IDocument;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.geom.Rectangle;
 
 /**
  *  The Fade effect animates a UI component's alpha or opacity.

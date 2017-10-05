@@ -17,14 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.Strand;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.Strand;
+	import org.apache.royale.events.Event;
 	
 	[DefaultProperty("children")]
 	

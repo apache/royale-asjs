@@ -38,8 +38,8 @@
 js|Image
 {
 	vertical-align: top;
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
 }
 
 

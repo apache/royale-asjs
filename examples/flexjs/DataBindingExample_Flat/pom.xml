@@ -26,7 +26,7 @@
             Missing Resources
 
             When scrolling in the detail view I get the following error:
-              TypeError: Error #1034: Type Coercion failed: cannot convert flash.events::MouseEvent@6878a7ed8b1 to org.apache.flex.events.MouseEvent.
+              TypeError: Error #1034: Type Coercion failed: cannot convert flash.events::MouseEvent@6878a7ed8b1 to org.apache.royale.events.MouseEvent.
 
   -->
 

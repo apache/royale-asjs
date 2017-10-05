@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -24,16 +24,16 @@ package org.apache.flex.html.beads
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.events.Event;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.events.Event;
 	
     /**
      *  The CheckBoxView class is the default view for
-     *  the org.apache.flex.html.CheckBox class.
+     *  the org.apache.royale.html.CheckBox class.
      *  It displays a simple checkbox with an 'x' if checked,
      *  and a label on the right.  There are no styles or
      *  properties to configure the look of the 'x' or the
@@ -98,7 +98,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -135,7 +135,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.Label#text
+         *  @copy org.apache.royale.html.Label#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -163,7 +163,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.Label#html
+         *  @copy org.apache.royale.html.Label#html
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -203,7 +203,7 @@ package org.apache.flex.html.beads
 		private var _selected:Boolean;
 		
         /**
-         *  @copy org.apache.flex.core.IToggleButtonModel#selected
+         *  @copy org.apache.royale.core.IToggleButtonModel#selected
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.accessories
+package org.apache.royale.html.accessories
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.ToolTip;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.UIUtils;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.ToolTip;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 *  The ToolTipBead class is a specialty bead that can be used with
@@ -113,7 +113,7 @@ package org.apache.flex.html.accessories
 		private var _strand:IStrand;
 
 		/**                         	
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

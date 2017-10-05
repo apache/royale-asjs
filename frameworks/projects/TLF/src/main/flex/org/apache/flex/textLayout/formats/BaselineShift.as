@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines constants for specifying subscript or superscript in the <code>baselineShift</code> property
@@ -29,7 +29,7 @@ package org.apache.flex.textLayout.formats
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 *
-	 *  @see org.apache.flex.textLayout.formats.TextLayoutFormat#baselineShift TextLayoutFormat.baselineShift
+	 *  @see org.apache.royale.textLayout.formats.TextLayoutFormat#baselineShift TextLayoutFormat.baselineShift
 	 */
 	public final class BaselineShift
 	{

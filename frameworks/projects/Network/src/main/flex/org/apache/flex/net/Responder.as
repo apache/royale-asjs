@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
     COMPILE::SWF
     {
         import flash.net.Responder;
     }
         
-	[Event(name="result", type="org.apache.flex.net.events.ResultEvent")]
-	[Event(name="fault", type="org.apache.flex.net.events.FaultEvent")]
+	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
+	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
 	public class Responder
 	{		
 		/** 

@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	
 	public interface ITextFlowLine extends IVerticalJustificationLine
 	{

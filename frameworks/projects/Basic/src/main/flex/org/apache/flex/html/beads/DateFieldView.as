@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IFormatBead;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.utils.UIUtils;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.DateChooser;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.TextInput;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.DateChooser;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.TextInput;
 	
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -91,7 +91,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

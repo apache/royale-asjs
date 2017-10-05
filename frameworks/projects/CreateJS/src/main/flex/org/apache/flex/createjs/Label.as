@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs
+package org.apache.royale.createjs
 {
     COMPILE::SWF
     {
-        import org.apache.flex.html.Label;            
+        import org.apache.royale.html.Label;            
     }
 
     COMPILE::JS
@@ -28,13 +28,13 @@ package org.apache.flex.createjs
         import createjs.Text;
         import createjs.Stage;
         
-        import org.apache.flex.createjs.core.CreateJSBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.CreateJSBase;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.SolidColor;
 	
 	/**
 	 * The Label class provides a static text string which may be colored.
@@ -46,7 +46,7 @@ package org.apache.flex.createjs
 	 */
     
     COMPILE::SWF
-	public class Label extends org.apache.flex.html.Label
+	public class Label extends org.apache.royale.html.Label
 	{		
 		/**
 		 * @private
@@ -135,7 +135,7 @@ package org.apache.flex.createjs
         
         /**
 		 * @private
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {

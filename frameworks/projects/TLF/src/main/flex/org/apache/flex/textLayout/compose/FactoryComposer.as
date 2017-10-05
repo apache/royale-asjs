@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.factory.FactoryBackgroundManager;
-	import org.apache.flex.textLayout.compose.utils.FactoryHelper;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.factory.FactoryBackgroundManager;
+	import org.apache.royale.textLayout.compose.utils.FactoryHelper;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
 
 	// [ExcludeClass]
 	/** @private

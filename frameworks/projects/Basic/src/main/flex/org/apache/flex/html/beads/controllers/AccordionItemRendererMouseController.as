@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.supportClasses.AccordionItemRenderer;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.supportClasses.AccordionItemRenderer;
 	
 	public class AccordionItemRendererMouseController implements IBeadController
 	{

@@ -15,7 +15,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.royale.file.beads
 {
 	COMPILE::SWF 
 	{
@@ -37,7 +37,7 @@ package org.apache.flex.file.beads
 		public var filter:String = "";
 		
 		/**
-		 *  @copy org.apache.flex.file.beads.FileBrowser#browse()
+		 *  @copy org.apache.royale.file.beads.FileBrowser#browse()
 		 *  @royaleignorecoercion HTMLInputElement
 		 *
 		 *  @langversion 3.0

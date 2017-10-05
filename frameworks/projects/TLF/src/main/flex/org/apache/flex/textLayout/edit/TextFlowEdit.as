@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.conversion.ConversionConstants;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.FlowElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.ITCYElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.conversion.ConversionConstants;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.FlowElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.ITCYElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 	
 
 
@@ -91,8 +91,8 @@ package org.apache.flex.textLayout.edit
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISpanElement
 		 */
 		private static function deleteRangeInternal(element:IFlowGroupElement, relativeStart:int, numToDelete:int):void
 		{
@@ -598,7 +598,7 @@ package org.apache.flex.textLayout.edit
 		 * if <code>splitSubBlockContents</code> equals false, result is:
 		 * 
 		 * <spg><span>ABC</span></spg><spg><span>DEF</span></spg>
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISpanElement
 		 */
 		public static function splitElement(elem:IFlowElement, splitPos:int, splitSubBlockContents:Boolean):void
 		{
@@ -995,7 +995,7 @@ package org.apache.flex.textLayout.edit
 		 * @param startPos The index value of the first position of the range in the ITextFlow to test.
 		 * @param endPos The index value following the end position of the range in the ITextFlow to test.
 		 * @param blockClass Class the class of the fbe we intend to insert.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public static function canInsertSPBlock(theFlow:ITextFlow, startPos:int, endPos:int, blockClass:String):Boolean
 		{
@@ -1048,7 +1048,7 @@ package org.apache.flex.textLayout.edit
 		 * as themselves, recursion is only needed for spg's of a class other than that of spgClass.
 		 * 
 		 * example: subPB = <b>bar<a>other</a><b> extending an <a> element to include all of "other"
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */ 
 		public static function flushSPBlock(subPB:ISubParagraphGroupElementBase, spgClass:String):void
 		{

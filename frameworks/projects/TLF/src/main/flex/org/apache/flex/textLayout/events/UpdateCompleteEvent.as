@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
 	
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	/** 
 	 * A TextFlow instance dispatches this event after any of its containers completes 
@@ -36,7 +36,7 @@ package org.apache.flex.textLayout.events
 	 * instead of creating a new example. I've updated the description of the
 	 * DamageEvent_example file to include prominent mention of the UpdateCompleteEvent.
 	 *
-	 * @see org.apache.flex.textLayout.elements.TextFlow 
+	 * @see org.apache.royale.textLayout.elements.TextFlow 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.CollectionEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.CollectionEvent;
 
     //--------------------------------------
     //  Events
@@ -38,7 +38,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="collectionChanged", type="org.apache.flex.events.CollectionEvent")]
+	[Event(name="collectionChanged", type="org.apache.royale.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has added an item.
@@ -48,7 +48,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="itemAdded", type="org.apache.flex.events.CollectionEvent")]
+	[Event(name="itemAdded", type="org.apache.royale.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has removed an item.
@@ -58,7 +58,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="itemRemoved", type="org.apache.flex.events.CollectionEvent")]
+	[Event(name="itemRemoved", type="org.apache.royale.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has updated an item.
@@ -68,7 +68,7 @@ package org.apache.flex.collections
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="itemUpdated", type="org.apache.flex.events.CollectionEvent")]
+	[Event(name="itemUpdated", type="org.apache.royale.events.CollectionEvent")]
 
     /**
      *  The ArrayList class provides an event-driven wrapper for the
@@ -100,7 +100,7 @@ package org.apache.flex.collections
         private var _id:String;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -127,7 +127,7 @@ package org.apache.flex.collections
         private var _strand:IStrand;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#strand
+         *  @copy org.apache.royale.core.UIBase#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

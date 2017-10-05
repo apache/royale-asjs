@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.List;
+	import org.apache.royale.html.List;
 	
     /**
 	 *  Label probably should extend TextField directly,
@@ -27,7 +27,7 @@ package org.apache.flex.html5
 	 *  Labels to be declared and have their actual
 	 *  view be swapped out.
 	 */
-	public class List extends org.apache.flex.html.List
+	public class List extends org.apache.royale.html.List
 	{
 	}
 }

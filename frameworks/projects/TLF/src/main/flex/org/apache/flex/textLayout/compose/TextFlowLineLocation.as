@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {	
 	/** 
 	 * The TextFlowLineLocation class is an enumeration class that defines constants for specifying the location

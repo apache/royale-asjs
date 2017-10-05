@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.beads.UpgradeElement;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {    
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
     /**
      *  The Material Design Lite (MDL) spinner component is an enhanced replacement for
@@ -102,7 +102,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *
          * @return
          */

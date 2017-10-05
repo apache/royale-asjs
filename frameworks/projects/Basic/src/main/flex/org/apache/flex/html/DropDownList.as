@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-    import org.apache.flex.core.ISelectionModel;
+    import org.apache.royale.core.ISelectionModel;
 
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.models.ArraySelectionModel;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.beads.models.ArraySelectionModel;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -41,7 +41,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The DropDownList class implements the basic equivalent of
@@ -135,7 +135,7 @@ package org.apache.flex.html
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -163,7 +163,7 @@ package org.apache.flex.html
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -207,7 +207,7 @@ package org.apache.flex.html
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS

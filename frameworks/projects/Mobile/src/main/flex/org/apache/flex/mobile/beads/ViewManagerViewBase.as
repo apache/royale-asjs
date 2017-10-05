@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.beads
+package org.apache.royale.mobile.beads
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
-	import org.apache.flex.html.beads.GroupView;
-	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.chrome.NavigationBar;
-	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.mobile.IViewManagerView;
+	import org.apache.royale.mobile.chrome.NavigationBar;
+	import org.apache.royale.mobile.models.ViewManagerModel;
 	
 	/**
 	 * The ViewManagerViewBase creates the visual elements of the StackedViewManager. This

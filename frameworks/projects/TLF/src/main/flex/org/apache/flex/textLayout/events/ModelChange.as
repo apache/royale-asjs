@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
 	
 	/** ModelChange values.  These are various types of model change. @private */

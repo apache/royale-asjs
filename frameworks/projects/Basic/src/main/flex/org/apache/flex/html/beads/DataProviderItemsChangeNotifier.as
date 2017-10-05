@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.events.CollectionEvent;
-    import org.apache.flex.html.supportClasses.DataProviderNotifierBase;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.events.CollectionEvent;
+    import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
 
     /**
 	 *  The DataProviderItemsChangeNotifier notifies listeners when to selection model's

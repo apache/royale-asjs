@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net.events
+package org.apache.royale.net.events
 {
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 	
 	public class ResultEvent extends Event
 	{

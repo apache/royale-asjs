@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.mdl.beads.models.ISnackbarModel;
+    import org.apache.royale.mdl.beads.models.ISnackbarModel;
 
     
-    [Event(name="action", type="org.apache.flex.events.Event")]
+    [Event(name="action", type="org.apache.royale.events.Event")]
 
     /**
      *  Snackbar are transient popup notifications without actions.

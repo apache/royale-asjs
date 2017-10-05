@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.IDrawingLayerBead;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.IDrawingLayerBead;
 	
 	COMPILE::SWF {
 		import flash.display.DisplayObjectContainer;

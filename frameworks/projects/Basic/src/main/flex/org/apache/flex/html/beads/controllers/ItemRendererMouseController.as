@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IStrand;
 COMPILE::SWF {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
 }
 COMPILE::JS {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.WrappedHTMLElement;
-	import org.apache.flex.events.BrowserEvent;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.events.BrowserEvent;
 	import goog.events.Event;
 	import goog.events.EventType;
     import goog.events;
 }
-	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
 
 	/**
 	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
@@ -64,7 +64,7 @@ COMPILE::JS {
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

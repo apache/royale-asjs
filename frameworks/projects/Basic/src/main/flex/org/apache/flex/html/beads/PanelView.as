@@ -16,41 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.geom.Size;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.Panel;
-	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.CSSContainerUtils;
-	import org.apache.flex.utils.CSSUtils;
-	import org.apache.flex.html.beads.layouts.VerticalFlexLayout;
-	import org.apache.flex.html.supportClasses.PanelLayoutProxy;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.Panel;
+	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
+	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
 
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStylesWithFlex;
+		import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
 
 	/**
-	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel
-	 *  component. A Panel has a org.apache.flex.html.TitleBar, and content.  A
+	 *  The Panel class creates the visual elements of the org.apache.royale.html.Panel
+	 *  component. A Panel has a org.apache.royale.html.TitleBar, and content.  A
      *  different View, PanelWithControlBarView, can display a ControlBar.
 	 *
 	 *  @viewbead
@@ -77,8 +77,8 @@ package org.apache.flex.html.beads
 		private var _titleBar:TitleBar;
 
 		/**
-		 *  The org.apache.flex.html.TitleBar component of the
-		 *  org.apache.flex.html.Panel.
+		 *  The org.apache.royale.html.TitleBar component of the
+		 *  org.apache.royale.html.Panel.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -120,7 +120,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

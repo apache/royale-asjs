@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
 
 	public class ConversionConstants

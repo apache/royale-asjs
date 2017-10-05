@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ValueChangeEvent;
 			
 	/**
 	 *  The RangeModel class bead defines a set of for a numeric range of values
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.models
 		protected var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -68,7 +68,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The maximum value for the range (defaults to 100).
 		 * 
-		 *  @copy org.apache.flex.core.IRangeModel#maximum
+		 *  @copy org.apache.royale.core.IRangeModel#maximum
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -94,7 +94,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The minimum value for the range (defaults to 0).
 		 * 
-		 *  @copy org.apache.flex.core.IRangeModel#minimum
+		 *  @copy org.apache.royale.core.IRangeModel#minimum
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -120,7 +120,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The modulus value for the range. 
 		 * 
-		 *  @copy org.apache.flex.core.IRangeModel#snapInterval
+		 *  @copy org.apache.royale.core.IRangeModel#snapInterval
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -146,7 +146,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The amount to adjust the value either up or down toward the edge of the range.
 		 * 
-		 *  @copy org.apache.flex.core.IRangeModel#stepSize
+		 *  @copy org.apache.royale.core.IRangeModel#stepSize
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -174,7 +174,7 @@ package org.apache.flex.html.beads.models
 		 *  to set the value outside of the minimum-maximum range changes the value to still be
 		 *  within the range. Note that the value is adjusted by the stepSize.
 		 * 
-		 *  @copy org.apache.flex.core.IRangeModel#value
+		 *  @copy org.apache.royale.core.IRangeModel#value
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

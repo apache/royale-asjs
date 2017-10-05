@@ -1,5 +1,5 @@
 {
-    "config": "flex",
+    "config": "royale",
     "compilerOptions": {
         "debug": true,
         "js-output-type": "royale",
@@ -16,6 +16,6 @@
     },
     "files":
     [
-        "src/main/flex/StorageClasses.as"
+        "src/main/royale/StorageClasses.as"
     ]
 }

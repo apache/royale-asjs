@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {	
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IContentView;
-    import org.apache.flex.core.IItemRenderer;
-    import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContentView;
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
 
     /**
      *  The DataGroup class is the IItemRendererParent used internally
-     *  by org.apache.flex.html.List class.
+     *  by org.apache.royale.html.List class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -61,7 +61,7 @@ package org.apache.flex.html.supportClasses
 		*/
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -80,7 +80,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -99,7 +99,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#removeAllItemRenderers()
+		 * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -116,7 +116,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -132,7 +132,7 @@ package org.apache.flex.html.supportClasses
 		/**
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
 		 *
-		 *  @copy org.apache.flex.core.IItemRendererParent#updateAllItemRenderers()
+		 *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

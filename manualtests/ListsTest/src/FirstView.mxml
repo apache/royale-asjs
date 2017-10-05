@@ -38,13 +38,13 @@ limitations under the License.
 		 * the itemRenderer in a style definition along with other settings.
 		 */
 		.productList {
-			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+			IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 			IItemRenderer: ClassReference("products.ProductItemRenderer");
 		}
 		
 		sample|ProductItemRenderer {
 			height: 40;
-			IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+			IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 		}
 		
 	</fx:Style>

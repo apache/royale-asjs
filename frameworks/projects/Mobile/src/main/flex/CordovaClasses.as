@@ -27,10 +27,10 @@ package
  */
 internal class CordovaClasses
 {
-	import org.apache.flex.cordova.Camera; Camera;
-	import org.apache.flex.cordova.Application; Application;
-	import org.apache.flex.cordova.Weinre; Weinre;
-	import org.apache.flex.cordova.geolocation.Geolocation; Geolocation;
+	import org.apache.royale.cordova.Camera; Camera;
+	import org.apache.royale.cordova.Application; Application;
+	import org.apache.royale.cordova.Weinre; Weinre;
+	import org.apache.royale.cordova.geolocation.Geolocation; Geolocation;
 }
 
 }

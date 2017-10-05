@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.promises.enums
+package org.apache.royale.promises.enums
 {
 
     public class PromiseState

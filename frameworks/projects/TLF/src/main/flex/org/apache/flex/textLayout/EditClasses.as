@@ -16,53 +16,53 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout
+package org.apache.royale.textLayout
 {
 	internal class EditClasses
 	{
-		import org.apache.flex.textLayout.container.TextContainerManager; TextContainerManager;
+		import org.apache.royale.textLayout.container.TextContainerManager; TextContainerManager;
 		
-		import org.apache.flex.textLayout.events.FlowOperationEvent; FlowOperationEvent;
-		import org.apache.flex.textLayout.events.SelectionEvent; SelectionEvent;
+		import org.apache.royale.textLayout.events.FlowOperationEvent; FlowOperationEvent;
+		import org.apache.royale.textLayout.events.SelectionEvent; SelectionEvent;
  
-		import org.apache.flex.textLayout.edit.EditManager; EditManager;
-		import org.apache.flex.textLayout.edit.ElementRange; ElementRange;
-		import org.apache.flex.textLayout.edit.IEditManager; IEditManager;
-		import org.apache.flex.textLayout.edit.Mark; Mark;
-		import org.apache.flex.textLayout.edit.SelectionManager; SelectionManager;
-		import org.apache.flex.textLayout.edit.ModelEdit; ModelEdit;
-		import org.apache.flex.textLayout.edit.IMemento; IMemento;
-		import org.apache.flex.textLayout.edit.ElementMark; ElementMark;
+		import org.apache.royale.textLayout.edit.EditManager; EditManager;
+		import org.apache.royale.textLayout.edit.ElementRange; ElementRange;
+		import org.apache.royale.textLayout.edit.IEditManager; IEditManager;
+		import org.apache.royale.textLayout.edit.Mark; Mark;
+		import org.apache.royale.textLayout.edit.SelectionManager; SelectionManager;
+		import org.apache.royale.textLayout.edit.ModelEdit; ModelEdit;
+		import org.apache.royale.textLayout.edit.IMemento; IMemento;
+		import org.apache.royale.textLayout.edit.ElementMark; ElementMark;
 
-		import org.apache.flex.textLayout.edit.TextScrap; TextScrap;
+		import org.apache.royale.textLayout.edit.TextScrap; TextScrap;
 
-		import org.apache.flex.textLayout.operations.ApplyFormatOperation; ApplyFormatOperation;
-		import org.apache.flex.textLayout.operations.ApplyFormatToElementOperation; ApplyFormatToElementOperation;
-		import org.apache.flex.textLayout.operations.ApplyLinkOperation; ApplyLinkOperation;
-		import org.apache.flex.textLayout.operations.ApplyTCYOperation; ApplyTCYOperation;
-		import org.apache.flex.textLayout.operations.ApplyElementIDOperation; ApplyElementIDOperation;
-		import org.apache.flex.textLayout.operations.ApplyElementStyleNameOperation; ApplyElementStyleNameOperation;
-		import org.apache.flex.textLayout.operations.ApplyElementTypeNameOperation; ApplyElementTypeNameOperation;
-		import org.apache.flex.textLayout.operations.CreateDivOperation; CreateDivOperation;
-		import org.apache.flex.textLayout.operations.ClearFormatOperation; ClearFormatOperation;
-		import org.apache.flex.textLayout.operations.ClearFormatOnElementOperation; ClearFormatOnElementOperation;
-		import org.apache.flex.textLayout.operations.CreateListOperation; CreateListOperation;
-		import org.apache.flex.textLayout.operations.CreateSubParagraphGroupOperation; CreateSubParagraphGroupOperation;
-		import org.apache.flex.textLayout.operations.CompositeOperation; CompositeOperation;
-		import org.apache.flex.textLayout.operations.CopyOperation; CopyOperation;
-		import org.apache.flex.textLayout.operations.CutOperation; CutOperation;
-		import org.apache.flex.textLayout.operations.DeleteTextOperation; DeleteTextOperation;
-		import org.apache.flex.textLayout.operations.FlowOperation; FlowOperation;
-		import org.apache.flex.textLayout.operations.InsertInlineGraphicOperation; InsertInlineGraphicOperation;
-		import org.apache.flex.textLayout.operations.InsertTextOperation; InsertTextOperation;
-		import org.apache.flex.textLayout.operations.PasteOperation; PasteOperation;
-		import org.apache.flex.textLayout.operations.RedoOperation; RedoOperation;
-		import org.apache.flex.textLayout.operations.ApplyElementUserStyleOperation; ApplyElementUserStyleOperation;
-		import org.apache.flex.textLayout.operations.SplitParagraphOperation; SplitParagraphOperation;
-		import org.apache.flex.textLayout.operations.SplitElementOperation; SplitElementOperation;
-		import org.apache.flex.textLayout.operations.UndoOperation; UndoOperation;
+		import org.apache.royale.textLayout.operations.ApplyFormatOperation; ApplyFormatOperation;
+		import org.apache.royale.textLayout.operations.ApplyFormatToElementOperation; ApplyFormatToElementOperation;
+		import org.apache.royale.textLayout.operations.ApplyLinkOperation; ApplyLinkOperation;
+		import org.apache.royale.textLayout.operations.ApplyTCYOperation; ApplyTCYOperation;
+		import org.apache.royale.textLayout.operations.ApplyElementIDOperation; ApplyElementIDOperation;
+		import org.apache.royale.textLayout.operations.ApplyElementStyleNameOperation; ApplyElementStyleNameOperation;
+		import org.apache.royale.textLayout.operations.ApplyElementTypeNameOperation; ApplyElementTypeNameOperation;
+		import org.apache.royale.textLayout.operations.CreateDivOperation; CreateDivOperation;
+		import org.apache.royale.textLayout.operations.ClearFormatOperation; ClearFormatOperation;
+		import org.apache.royale.textLayout.operations.ClearFormatOnElementOperation; ClearFormatOnElementOperation;
+		import org.apache.royale.textLayout.operations.CreateListOperation; CreateListOperation;
+		import org.apache.royale.textLayout.operations.CreateSubParagraphGroupOperation; CreateSubParagraphGroupOperation;
+		import org.apache.royale.textLayout.operations.CompositeOperation; CompositeOperation;
+		import org.apache.royale.textLayout.operations.CopyOperation; CopyOperation;
+		import org.apache.royale.textLayout.operations.CutOperation; CutOperation;
+		import org.apache.royale.textLayout.operations.DeleteTextOperation; DeleteTextOperation;
+		import org.apache.royale.textLayout.operations.FlowOperation; FlowOperation;
+		import org.apache.royale.textLayout.operations.InsertInlineGraphicOperation; InsertInlineGraphicOperation;
+		import org.apache.royale.textLayout.operations.InsertTextOperation; InsertTextOperation;
+		import org.apache.royale.textLayout.operations.PasteOperation; PasteOperation;
+		import org.apache.royale.textLayout.operations.RedoOperation; RedoOperation;
+		import org.apache.royale.textLayout.operations.ApplyElementUserStyleOperation; ApplyElementUserStyleOperation;
+		import org.apache.royale.textLayout.operations.SplitParagraphOperation; SplitParagraphOperation;
+		import org.apache.royale.textLayout.operations.SplitElementOperation; SplitElementOperation;
+		import org.apache.royale.textLayout.operations.UndoOperation; UndoOperation;
 
-		import org.apache.flex.textLayout.utils.NavigationUtil; NavigationUtil;
+		import org.apache.royale.textLayout.utils.NavigationUtil; NavigationUtil;
 		
 
 	}

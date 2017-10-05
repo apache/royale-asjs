@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
 	
 	/**
 	 * The sprite that contains the table cells. 

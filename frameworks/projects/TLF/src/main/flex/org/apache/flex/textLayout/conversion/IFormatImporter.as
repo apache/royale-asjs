@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion {
+package org.apache.royale.textLayout.conversion {
 	
 	// [ExcludeClass]
 	/** Interface for exporting text content from a TextFlow to either a String or XML. */

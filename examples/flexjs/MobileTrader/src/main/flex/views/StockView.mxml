@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:TitleView xmlns:fx="http://ns.adobe.com/mxml/2009"
 					   xmlns:js="library://ns.apache.org/royale/basic"
-					   xmlns:apache="org.apache.flex.html.beads.*"
+					   xmlns:apache="org.apache.royale.html.beads.*"
 					   xmlns:local="*"
 					   className="StockView">
 	
@@ -27,8 +27,8 @@ limitations under the License.
 		<![CDATA[			
 			import models.Stock;
 			
-			import org.apache.flex.events.Event;
-			import org.apache.flex.mobile.StackedViewManager;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.mobile.StackedViewManager;
 			
 			private var _stock:Stock;
 			
@@ -40,7 +40,7 @@ limitations under the License.
 			public function set stock(value:Stock):void
 			{
 				_stock = value;
-				dispatchEvent(new org.apache.flex.events.Event("stockChanged"));
+				dispatchEvent(new org.apache.royale.events.Event("stockChanged"));
 			}
 			
 			private function onBackClick() : void
@@ -63,7 +63,7 @@ limitations under the License.
 			
 			private function removeFromList():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("removeFromList"));
+				dispatchEvent(new org.apache.royale.events.Event("removeFromList"));
 			}
 		]]>
 	</fx:Script>

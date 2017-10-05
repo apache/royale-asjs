@@ -21,9 +21,9 @@ package controllers
 	
 	import models.StatsModel;
 	
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.Application;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.events.Event;
     	
 	public class StatsController implements IDocument
 	{
@@ -36,7 +36,7 @@ package controllers
 			}
 		}
 		
-        private var lastThirtyDaysUsers:String = 'https://apache-flex-dashboard.appspot.com/query?id=ahdzfmFwYWNoZS1mbGV4LWRhc2hib2FyZHIVCxIIQXBpUXVlcnkYgICAgICAgAoM&format=json'
+        private var lastThirtyDaysUsers:String = 'https://apache.royale-dashboard.appspot.com/query?id=ahdzfmFwYWNoZS1mbGV4LWRhc2hib2FyZHIVCxIIQXBpUXVlcnkYgICAgICAgAoM&format=json'
 		
 		private var app:FlexWebsiteStatsViewer;
 		

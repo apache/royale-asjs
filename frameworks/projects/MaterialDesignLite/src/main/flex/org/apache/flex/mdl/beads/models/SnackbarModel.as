@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.events.Event;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
 
     /**
-     *  The SnackbarModel class defines the data associated with an org.apache.flex.mdl.Snackbar
+     *  The SnackbarModel class defines the data associated with an org.apache.royale.mdl.Snackbar
      *  component.
      *
      *  @langversion 3.0
@@ -40,7 +40,7 @@ package org.apache.flex.mdl.beads.models
 
         private var _actionText:String = "";
         /**
-         *  @copy org.apache.flex.mdl.beads.models.ISnackbarModel#actionText
+         *  @copy org.apache.royale.mdl.beads.models.ISnackbarModel#actionText
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -58,7 +58,7 @@ package org.apache.flex.mdl.beads.models
         }
 
         /**
-         *  @copy org.apache.flex.mdl.beads.models.IToastModel#snackbarData
+         *  @copy org.apache.royale.mdl.beads.models.IToastModel#snackbarData
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -77,7 +77,7 @@ package org.apache.flex.mdl.beads.models
 
         private var _strand:IStrand;
         /**
-         *  @copy org.apache.flex.mdl.beads.models.IToastModel#strand
+         *  @copy org.apache.royale.mdl.beads.models.IToastModel#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

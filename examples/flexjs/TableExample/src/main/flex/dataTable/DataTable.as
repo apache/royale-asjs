@@ -21,8 +21,8 @@ package dataTable
 	import dataTable.mapper.DataTableMapperForArrayListData;
 	import dataTable.model.DataTableModel;
 	
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Table;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Table;
 	
 	[DefaultProperty("columns")]
 	

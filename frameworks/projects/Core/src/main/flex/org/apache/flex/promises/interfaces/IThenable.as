@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.promises.interfaces
+package org.apache.royale.promises.interfaces
 {
 
 	public interface IThenable

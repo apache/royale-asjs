@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
     import flash.display.DisplayObject;
     import flash.text.TextFieldType;
     
-    import org.apache.flex.core.CSSTextField;
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IRoyaleElement;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.events.utils.MouseEventConverter;
-    import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.html.beads.ITextItemRenderer;
-    import org.apache.flex.utils.CSSContainerUtils;
+    import org.apache.royale.core.CSSTextField;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadController;
+    import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.utils.MouseEventConverter;
+    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.html.beads.ITextItemRenderer;
+    import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
-	 *  The TextFieldItemRenderer class provides a org.apache.flex.html.TextField as an itemRenderer.
+	 *  The TextFieldItemRenderer class provides a org.apache.royale.html.TextField as an itemRenderer.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -553,7 +553,7 @@ package org.apache.flex.html.supportClasses
         }
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         *  @copy org.apache.royale.core.IUIBase#topMostEventDispatcher
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

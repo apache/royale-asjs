@@ -22,14 +22,14 @@ limitations under the License.
 			    initComplete="init()">
     <fx:Script>
         <![CDATA[
-			import org.apache.flex.debugging.assert;
-			import org.apache.flex.debugging.assertType;
-			import org.apache.flex.debugging.check;
-			// import org.apache.flex.debugging.conditionalBreak;
-			import org.apache.flex.debugging.notNull;
-			import org.apache.flex.utils.callLater;
+			import org.apache.royale.debugging.assert;
+			import org.apache.royale.debugging.assertType;
+			import org.apache.royale.debugging.check;
+			// import org.apache.royale.debugging.conditionalBreak;
+			import org.apache.royale.debugging.notNull;
+			import org.apache.royale.utils.callLater;
 
-			import org.apache.flex.html.TextButton;
+			import org.apache.royale.html.TextButton;
 
 			[Bindable]private var taText:String = "Some Text Area Text";
 			private function init():void

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils.undo
+package org.apache.royale.utils.undo
 {   
     /**
     * IUndoManager defines the interface for managing the undo and redo stacks.
@@ -164,11 +164,11 @@ package org.apache.flex.utils.undo
         * Removes the next IOperation object from the undo stack and calls the performUndo() 
         * function of that object.
         * 
-        * @see org.apache.flex.utils.undo.IUndoManager#canUndo()
-        * @see org.apache.flex.utils.undo.IUndoManager#clearUndo()
-        * @see org.apache.flex.utils.undo.IUndoManager#peekUndo()
-        * @see org.apache.flex.utils.undo.IUndoManager#pushUndo()
-        * @see org.apache.flex.utils.undo.IUndoManager#popUndo()
+        * @see org.apache.royale.utils.undo.IUndoManager#canUndo()
+        * @see org.apache.royale.utils.undo.IUndoManager#clearUndo()
+        * @see org.apache.royale.utils.undo.IUndoManager#peekUndo()
+        * @see org.apache.royale.utils.undo.IUndoManager#pushUndo()
+        * @see org.apache.royale.utils.undo.IUndoManager#popUndo()
         */
         function undo():void;
 
@@ -176,11 +176,11 @@ package org.apache.flex.utils.undo
         * Removes the next IOperation object from the redo stack and calls the performRedo() 
         * function of that object.
         * 
-        * @see org.apache.flex.utils.undo.IUndoManager#canRedo()
-        * @see org.apache.flex.utils.undo.IUndoManager#clearRedo()
-        * @see org.apache.flex.utils.undo.IUndoManager#peekRedo()
-        * @see org.apache.flex.utils.undo.IUndoManager#pushRedo()
-        * @see org.apache.flex.utils.undo.IUndoManager#popRedo()
+        * @see org.apache.royale.utils.undo.IUndoManager#canRedo()
+        * @see org.apache.royale.utils.undo.IUndoManager#clearRedo()
+        * @see org.apache.royale.utils.undo.IUndoManager#peekRedo()
+        * @see org.apache.royale.utils.undo.IUndoManager#pushRedo()
+        * @see org.apache.royale.utils.undo.IUndoManager#popRedo()
         */
         function redo():void;                       
     }

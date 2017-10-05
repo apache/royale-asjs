@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.html.TextButton;
+	import org.apache.royale.html.TextButton;
 
 	/**
 	 *  The DateChooserButton class is used for each button in the DateChooser. The

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.geom.Matrix;
+	import org.apache.royale.geom.Matrix;
 
 	public class TransformMoveYModel extends TransformModel
 	{

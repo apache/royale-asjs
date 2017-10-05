@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.geom.Rectangle;
+    import org.apache.royale.geom.Rectangle;
     
 	/**
 	 * A Viewport is the area of a Container set aside for displaying

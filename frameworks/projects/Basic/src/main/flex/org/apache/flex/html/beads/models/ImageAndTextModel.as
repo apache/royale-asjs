@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 		
     /**
      *  The ImageAndTextModel class is associates and image

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.events.IEventDispatcher;
 
-	import org.apache.flex.html.Panel;
+	import org.apache.royale.html.Panel;
 
 	COMPILE::JS {
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
     /**
@@ -66,7 +66,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 *  The width of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -79,7 +79,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 * The height of the bounding box.
 		 *
 		 *  @langversion 3.0
@@ -92,7 +92,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 *  The number of elements in the parent.
 		 *
 		 *  @langversion 3.0
@@ -106,7 +106,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 *  Get a component from the parent.
 		 *
 		 *  @param c The index of the subcomponent.
@@ -122,7 +122,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.html.Panel
+		 * @royaleignorecoercion org.apache.royale.html.Panel
 		 */
 		COMPILE::JS
 		public function get somethingelse():WrappedHTMLElement
@@ -131,7 +131,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.html.Panel
+		 * @royaleignorecoercion org.apache.royale.html.Panel
 		 */
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
@@ -140,7 +140,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.html.Panel
+		 *  @royaleignorecoercion org.apache.royale.html.Panel
 		 *  The display style is used for both visible
 		 *  and layout so is managed as a special case.
 		 *  

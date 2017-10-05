@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ListStyleType;
-	import org.apache.flex.textLayout.formats.Suffix;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ListStyleType;
+	import org.apache.royale.textLayout.formats.Suffix;
 
 	
 
@@ -35,9 +35,9 @@ package org.apache.flex.textLayout.elements
 	 * 
 	 * <p>Each ListElement creates a scope with an implicit counter 'ordered'.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat#listStyleType
-	 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat#listStylePosition
-	 * @see org.apache.flex.textLayout.formats.ListMarkerFormat
+	 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat#listStyleType
+	 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat#listStylePosition
+	 * @see org.apache.royale.textLayout.formats.ListMarkerFormat
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

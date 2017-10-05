@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.text.engine.TextJustifier;
-	import org.apache.flex.text.engine.SpaceJustifier;
+	import org.apache.royale.text.engine.TextJustifier;
+	import org.apache.royale.text.engine.SpaceJustifier;
 
 	public class SpaceJustifier extends TextJustifier
 	{

@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	COMPILE::SWF {
 		import flash.display.DisplayObject;
 		import flash.display.Sprite;
 	}
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.TextButton;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.TextButton;
 	
 	/**
-	 *  The SliderView class creates the visual elements of the org.apache.flex.html.Slider 
+	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
 	 *  component. The Slider has a track and a thumb control which are also created with view beads.
 	 *  
 	 *  @viewbead
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads
 		private var rangeModel:IRangeModel;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

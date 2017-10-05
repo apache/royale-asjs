@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.cordova
+package org.apache.royale.cordova
 {
 	COMPILE::SWF
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.cordova
 		import flash.ui.Keyboard;
 		import flash.utils.ByteArray;
 		
-		import org.apache.flex.utils.PNGEncoder;
+		import org.apache.royale.utils.PNGEncoder;
 	}
 		
 	/**

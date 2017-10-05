@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.beads.models.ButtonBarModel;
-	import org.apache.flex.html.supportClasses.UIItemRendererBase;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the button
-	 *  elements that make up a org.apache.flex.html.ButtonBar. This bead arranges the Buttons
+	 *  elements that make up a org.apache.royale.html.ButtonBar. This bead arranges the Buttons
 	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
 	 *
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads.layouts
 		}
 
 		/**
-		 * @copy org.apache.flex.core.IBeadLayout#layout
+		 * @copy org.apache.royale.core.IBeadLayout#layout
 		 */
 		override public function layout():Boolean
 		{

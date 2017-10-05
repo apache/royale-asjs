@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.textLayout.factory.NumberLineFactory;
-	import org.apache.flex.textLayout.factory.INumberLineFactory;
+	import org.apache.royale.textLayout.factory.NumberLineFactory;
+	import org.apache.royale.textLayout.factory.INumberLineFactory;
 	public class NumberFactoryUtil
 	{
 		public static function getNumberFactory():INumberLineFactory

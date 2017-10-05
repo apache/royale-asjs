@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IViewportScroller;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.IViewportScroller;
 	
 	/**
 	 *  The ScrollBar class represents either a vertical or horizontal control

@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {	
     import flash.display.DisplayObject;
     
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 *  The AlertControler class bead handles the close event on the org.apache.flex.html.Alert 
-	 *  by removing the org.apache.flex.html.Alert from the display.
+	 *  The AlertControler class bead handles the close event on the org.apache.royale.html.Alert 
+	 *  by removing the org.apache.royale.html.Alert from the display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.controllers
         private var _strand:IStrand;
         
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads.controllers
         }
         
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

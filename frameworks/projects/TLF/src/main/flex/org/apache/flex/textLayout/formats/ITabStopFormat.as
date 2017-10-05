@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 * This interface provides read access to tab stop-related properties.
@@ -67,7 +67,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TabAlignment
+		 * @see org.apache.royale.text.engine.TabAlignment
 		 */
 		function get alignment():*;
 

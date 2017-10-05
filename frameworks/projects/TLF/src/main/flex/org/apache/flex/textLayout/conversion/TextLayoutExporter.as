@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IDivElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.InlineGraphicElement;
-	import org.apache.flex.textLayout.elements.LinkElement;
-	import org.apache.flex.textLayout.elements.ListElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.TCYElement;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.elements.TableElement;
-	import org.apache.flex.textLayout.elements.TableRowElement;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ListMarkerFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.Property;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IDivElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.InlineGraphicElement;
+	import org.apache.royale.textLayout.elements.LinkElement;
+	import org.apache.royale.textLayout.elements.ListElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.TCYElement;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.elements.TableElement;
+	import org.apache.royale.textLayout.elements.TableRowElement;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ListMarkerFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.Property;
 	
 
 	

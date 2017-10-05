@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 COMPILE::SWF
 {
@@ -24,11 +24,11 @@ COMPILE::SWF
     import flash.utils.Timer;
 }
 
-import org.apache.flex.events.Event;
+import org.apache.royale.events.Event;
 
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
 }
 
 //--------------------------------------
@@ -44,7 +44,7 @@ COMPILE::JS
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
  */
-[Event(name="timer", type="org.apache.flex.events.Event")]
+[Event(name="timer", type="org.apache.royale.events.Event")]
 
 /**
  *  The Timer class dispatches events based on a delay

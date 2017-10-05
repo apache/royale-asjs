@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.text.StyleSheet;
 	
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  The TextFieldViewBase class is the base class for
@@ -62,7 +62,7 @@ package org.apache.flex.html.beads
 		private var _textField:CSSTextField;
 		
         /**
-         *  @copy org.apache.flex.core.ITextModel#textField
+         *  @copy org.apache.royale.core.ITextModel#textField
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -79,7 +79,7 @@ package org.apache.flex.html.beads
 		protected var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -136,7 +136,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.ITextModel#text
+         *  @copy org.apache.royale.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -209,7 +209,7 @@ package org.apache.flex.html.beads
         }
         
         /**
-         *  @copy org.apache.flex.core.ITextModel#html
+         *  @copy org.apache.royale.core.ITextModel#html
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

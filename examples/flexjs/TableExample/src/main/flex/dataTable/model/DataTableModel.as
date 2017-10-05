@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package dataTable.model
 {
-	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
+	import org.apache.royale.html.beads.models.ArrayListSelectionModel;
 	
 	public class DataTableModel extends ArrayListSelectionModel
 	{

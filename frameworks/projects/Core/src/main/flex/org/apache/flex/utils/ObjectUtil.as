@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
     /**
 	 *  The ObjectUtil class contains static utility methods for analyzing and manipulating Objects.

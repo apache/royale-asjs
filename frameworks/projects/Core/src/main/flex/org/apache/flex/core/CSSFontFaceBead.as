@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -29,9 +29,9 @@ package org.apache.flex.core
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
         
-        import org.apache.flex.events.Event;
-        import org.apache.flex.events.IEventDispatcher;
-        import org.apache.flex.events.ValueEvent;            
+        import org.apache.royale.events.Event;
+        import org.apache.royale.events.IEventDispatcher;
+        import org.apache.royale.events.ValueEvent;            
     }
     
     /**
@@ -61,7 +61,7 @@ package org.apache.flex.core
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -152,7 +152,7 @@ package org.apache.flex.core
         }
                 
         COMPILE::SWF
-        private function preinitHandler(event:org.apache.flex.events.Event):void
+        private function preinitHandler(event:org.apache.royale.events.Event):void
         {
             event.preventDefault();
         }

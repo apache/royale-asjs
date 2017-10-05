@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
     COMPILE::SWF
     {
@@ -27,13 +27,13 @@ package org.apache.flex.net
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.net.HTTPConstants;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.net.HTTPConstants;
 	
     //--------------------------------------
     //  Events
@@ -47,7 +47,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="complete", type="org.apache.flex.events.Event")]
+	[Event(name="complete", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched if an error occurs in the server communication.
@@ -57,7 +57,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="ioError", type="org.apache.flex.events.Event")]
+	[Event(name="ioError", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched when an httpStatus code is received from the server.
@@ -67,7 +67,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
+	[Event(name="httpStatus", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched if Adobe AIR is able to detect and return the status 
@@ -83,7 +83,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
+	[Event(name="httpResponseStatus", type="org.apache.royale.events.Event")]
     
     [DefaultProperty("beads")]
     
@@ -91,7 +91,7 @@ package org.apache.flex.net
      *  The HTTPService class is a class designed to transfer text 
      *  over HTTP.  Use BinaryUploader for transferring non-text.
      * 
-     *  @see org.apache.flex.net.BinaryUploader.
+     *  @see org.apache.royale.net.BinaryUploader.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -107,7 +107,7 @@ package org.apache.flex.net
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function HTTPService()
 		{
@@ -122,7 +122,7 @@ package org.apache.flex.net
 		private var _contentType:String = HTTPConstants.FORM_URL_ENCODED;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#contentType
+         *  @copy org.apache.royale.net.BinaryUploader#contentType
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -176,7 +176,7 @@ package org.apache.flex.net
 		private var _headers:Array;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#headers
+         *  @copy org.apache.royale.net.BinaryUploader#headers
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -205,7 +205,7 @@ package org.apache.flex.net
 		private var _method:String = HTTPConstants.GET;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#method
+         *  @copy org.apache.royale.net.BinaryUploader#method
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -232,7 +232,7 @@ package org.apache.flex.net
 		private var _responseHeaders:Array;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#responseHeaders
+         *  @copy org.apache.royale.net.BinaryUploader#responseHeaders
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -290,7 +290,7 @@ package org.apache.flex.net
 		private var _responseURL:String;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#responseURL
+         *  @copy org.apache.royale.net.BinaryUploader#responseURL
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -305,7 +305,7 @@ package org.apache.flex.net
 		private var _status:int;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#status
+         *  @copy org.apache.royale.net.BinaryUploader#status
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -332,7 +332,7 @@ package org.apache.flex.net
 		private var _url:String;
 
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#url
+         *  @copy org.apache.royale.net.BinaryUploader#url
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -359,7 +359,7 @@ package org.apache.flex.net
 		private var _timeout:Number = 0;
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#timeout
+         *  @copy org.apache.royale.net.BinaryUploader#timeout
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -386,7 +386,7 @@ package org.apache.flex.net
 		private var _id:String;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -413,7 +413,7 @@ package org.apache.flex.net
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#strand
+         *  @copy org.apache.royale.core.UIBase#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -429,11 +429,11 @@ package org.apache.flex.net
                     addBead(bead);
             }
             
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
        }
 
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -446,7 +446,7 @@ package org.apache.flex.net
 		private var _beads:Vector.<IBead>;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead()
+         *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -463,7 +463,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
+         *  @copy org.apache.royale.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -482,7 +482,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
+         *  @copy org.apache.royale.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -638,7 +638,7 @@ package org.apache.flex.net
         }
         
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#statusHandler()
+         *  @copy org.apache.royale.net.BinaryUploader#statusHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -657,7 +657,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#ioErrorHandler()
+         *  @copy org.apache.royale.net.BinaryUploader#ioErrorHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -671,7 +671,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.net.BinaryUploader#completeHandler()
+         *  @copy org.apache.royale.net.BinaryUploader#completeHandler()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

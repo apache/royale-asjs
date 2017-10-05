@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
 	/**
 	 *  The OverflowPolicy class defines a set of constants for the <code>overflowPolicy</code> property

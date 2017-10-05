@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -25,19 +25,19 @@ package org.apache.flex.core
         
     COMPILE::JS
     {
-        import org.apache.flex.events.Event;        
-        import org.apache.flex.events.BrowserEvent;
-        import org.apache.flex.events.IBrowserEvent;
-        import org.apache.flex.events.ElementEvents;
-        import org.apache.flex.events.EventDispatcher;
+        import org.apache.royale.events.Event;        
+        import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.events.IBrowserEvent;
+        import org.apache.royale.events.ElementEvents;
+        import org.apache.royale.events.EventDispatcher;
         import goog.events;
         import goog.events.EventTarget;
-        import org.apache.flex.events.utils.EventUtils;
-        import org.apache.flex.events.KeyboardEvent;
-        import org.apache.flex.events.MouseEvent;
+        import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.events.KeyboardEvent;
+        import org.apache.royale.events.MouseEvent;
         import goog.events.BrowserEvent;
-        import org.apache.flex.events.utils.KeyboardEventConverter;
-        import org.apache.flex.events.utils.MouseEventConverter;
+        import org.apache.royale.events.utils.KeyboardEventConverter;
+        import org.apache.royale.events.utils.MouseEventConverter;
     }
 
     COMPILE::SWF
@@ -78,7 +78,7 @@ package org.apache.flex.core
                     e = MouseEventConverter.convert(nativeEvent);
                     break;
                 default:
-                    e = new org.apache.flex.events.BrowserEvent();
+                    e = new org.apache.royale.events.BrowserEvent();
                     break;
             }
 
@@ -133,14 +133,14 @@ package org.apache.flex.core
         
         /**
          * @royaleignorecoercion Class 
-         * @royaleignorecoercion org.apache.flex.core.IBeadModel 
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel 
          */
         public function get model():Object
         {
             if (_model == null) 
             {
                 // addbead will set _model
-                var m:Class = org.apache.flex.core.ValuesManager.valuesImpl.
+                var m:Class = org.apache.royale.core.ValuesManager.valuesImpl.
                         getValue(this, 'iBeadModel') as Class;
                 var b:IBeadModel = new m() as IBeadModel;
                 addBead(b);
@@ -157,7 +157,7 @@ package org.apache.flex.core
                     addBead(value as IBead);
                 else
                     _model = value;
-                dispatchEvent(new org.apache.flex.events.Event("modelChanged"));
+                dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
             }
         }
 
@@ -272,7 +272,7 @@ package org.apache.flex.core
             if (typeof(e) === 'string')
             {
                 eventType = e as String;
-                if (e === org.apache.flex.events.Event.CHANGE)
+                if (e === org.apache.royale.events.Event.CHANGE)
                 {
                     e = EventUtils.createEvent(eventType, e.bubbles);
                 }

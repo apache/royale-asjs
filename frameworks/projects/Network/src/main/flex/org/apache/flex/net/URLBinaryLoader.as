@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {    
     
-    import org.apache.flex.events.DetailEvent;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.ProgressEvent;
-    import org.apache.flex.utils.BinaryData;
-    import org.apache.flex.utils.Endian;
+    import org.apache.royale.events.DetailEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.ProgressEvent;
+    import org.apache.royale.utils.BinaryData;
+    import org.apache.royale.utils.Endian;
 
 
 	/**
@@ -118,7 +118,7 @@ package org.apache.flex.net
         private function completeFunction(stream:URLStream):void
         {
 			data = stream.response;
-            dispatchEvent(new org.apache.flex.events.Event("complete"));
+            dispatchEvent(new org.apache.royale.events.Event("complete"));
             if(onComplete)
                 onComplete(this);
             cleanupCallbacks();

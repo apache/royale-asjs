@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.accessories
+package org.apache.royale.html.accessories
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IFormatBead;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
 	 * The DateFormatBead class formats the display of a DateField using a format.
 	 *  
-     *  @royaleignoreimport org.apache.flex.core.IStrandWithModel
+     *  @royaleignoreimport org.apache.royale.core.IStrandWithModel
      * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -151,9 +151,9 @@ package org.apache.flex.html.accessories
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
-         *  @royaleignorecoercion org.apache.flex.core.IStrandWithModel
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
          * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -171,7 +171,7 @@ package org.apache.flex.html.accessories
 		/**
 		 * @private
          * 
-         * @royaleignorecoercion org.apache.flex.core.IStrandWithModel
+         * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		private function handleTextChange(event:Event):void
 		{

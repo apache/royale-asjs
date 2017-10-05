@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.ImageViewBase;
+	import org.apache.royale.core.ImageViewBase;
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.royale.html.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

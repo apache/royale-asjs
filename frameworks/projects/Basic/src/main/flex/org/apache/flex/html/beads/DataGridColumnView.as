@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
 	
 	/**
-	 *  The DataGridColumnView class extends org.apache.flex.html.beads.ListView and 
-	 *  provides properties to the org.apache.flex.html.List that makes a column in 
-	 *  the org.apache.flex.html.DataGrid.  
+	 *  The DataGridColumnView class extends org.apache.royale.html.beads.ListView and 
+	 *  provides properties to the org.apache.royale.html.List that makes a column in 
+	 *  the org.apache.royale.html.DataGrid.  
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -46,7 +46,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -80,9 +80,9 @@ package org.apache.flex.html.beads
 		private var _column:DataGridColumn;
 		
 		/**
-		 *  The org.apache.flex.html.support.DataGridColumn containing information used to 
-		 *  present the org.apache.flex.html.List as a column in the 
-		 *  org.apache.flex.html.DataGrid.
+		 *  The org.apache.royale.html.support.DataGridColumn containing information used to 
+		 *  present the org.apache.royale.html.List as a column in the 
+		 *  org.apache.royale.html.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

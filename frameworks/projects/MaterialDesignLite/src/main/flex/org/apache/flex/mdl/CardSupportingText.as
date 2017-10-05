@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-	import org.apache.flex.mdl.supportClasses.CardInner;
+	import org.apache.royale.mdl.supportClasses.CardInner;
     
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
     
 	/**
@@ -51,7 +51,7 @@ package org.apache.flex.mdl
 		}
 		
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.fa
+package org.apache.royale.fa
 {
-    import org.apache.flex.core.UIBase;
+    import org.apache.royale.core.UIBase;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -69,7 +69,7 @@ package org.apache.flex.fa
         protected var _rotation:String;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion Text
          */
         COMPILE::JS

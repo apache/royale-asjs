@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.TextArea;
+	import org.apache.royale.html.TextArea;
 
-	public class TextArea extends org.apache.flex.html.TextArea
+	public class TextArea extends org.apache.royale.html.TextArea
 	{
 	}
 }

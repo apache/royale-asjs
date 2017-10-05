@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The TextButtonView class is the default view for
-     *  the org.apache.flex.html.TextButton class.
+     *  the org.apache.royale.html.TextButton class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads
 		private var shape:Shape;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -164,7 +164,7 @@ package org.apache.flex.html.beads
 		public var overTextField:CSSTextField;
 		
         /**
-         *  @copy org.apache.flex.html.core.ITextModel#text
+         *  @copy org.apache.royale.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -192,7 +192,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.core.ITextModel#text
+         *  @copy org.apache.royale.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

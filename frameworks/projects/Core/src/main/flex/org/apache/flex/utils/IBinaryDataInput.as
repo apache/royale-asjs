@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils {
+package org.apache.royale.utils {
 public interface IBinaryDataInput {
 
     function readBytes(bytes:BinaryData, offset:uint = 0, length:uint = 0):void;

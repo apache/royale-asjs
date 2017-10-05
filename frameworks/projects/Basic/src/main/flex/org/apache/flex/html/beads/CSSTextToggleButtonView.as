@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The CSSTextToggleButtonView class is the default view for
-     *  the org.apache.flex.html.TextToggleButton class.
+     *  the org.apache.royale.html.TextToggleButton class.
      *  It allows the look of the button to be expressed
      *  in CSS via the background-image style and displays
      *  a text label.  This view does not support right-to-left
@@ -69,7 +69,7 @@ package org.apache.flex.html.beads
         private var _selected:Boolean;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads
             toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
 		}
 	
-		private function selectedChangeHandler(event:org.apache.flex.events.Event):void
+		private function selectedChangeHandler(event:org.apache.royale.events.Event):void
 		{
             var className:String = IStyleableObject(_strand).className;
             if (toggleButtonModel.selected)

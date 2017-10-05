@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
 	/** This interface should be implemented by converters that import TextLayout structured data. Clients that have explicitly
 	 * created an importer using TextConverter.getImporter may control the import process by calling into these methods on the 

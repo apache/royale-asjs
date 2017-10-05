@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IAlertModel;
+	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.core.UIBase;
 
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.events.Event;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.Event;
     }
 	
 	/**
@@ -36,11 +36,11 @@ package org.apache.flex.html
 	 *  of buttons configured through the flag property of its show() static function.
 	 *  The Alert component uses the following beads:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Alert.
-	 *  org.apache.flex.core.IBeadView: the bead used to create the parts of the Alert.
-	 *  org.apache.flex.core.IBeadController: the bead used to handle input events.
-	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Alert.
-	 *  org.apache.flex.core.IBackgroundBead: if present, places a solid color background below the Alert.
+	 *  org.apache.royale.core.IBeadModel: the data model for the Alert.
+	 *  org.apache.royale.core.IBeadView: the bead used to create the parts of the Alert.
+	 *  org.apache.royale.core.IBeadController: the bead used to handle input events.
+	 *  org.apache.royale.core.IBorderBead: if present, draws a border around the Alert.
+	 *  org.apache.royale.core.IBackgroundBead: if present, places a solid color background below the Alert.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

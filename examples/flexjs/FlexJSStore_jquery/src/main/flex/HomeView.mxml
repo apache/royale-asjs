@@ -37,8 +37,8 @@ Width and height are hard-coded in the root tag to help the Design view.
            initComplete="updateMapImage()">
 	<fx:Script>
 		<![CDATA[
-            import org.apache.flex.core.ValuesManager;
-			import org.apache.flex.html.SimpleAlert;
+            import org.apache.royale.core.ValuesManager;
+			import org.apache.royale.html.SimpleAlert;
 
 			public function updateMapImage():void
 			{

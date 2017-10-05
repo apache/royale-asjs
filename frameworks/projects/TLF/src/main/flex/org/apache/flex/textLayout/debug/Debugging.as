@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.debug 
+package org.apache.royale.textLayout.debug 
 {
-	import org.apache.flex.reflection.getQualifiedClassName;
+	import org.apache.royale.reflection.getQualifiedClassName;
 	// [ExcludeClass]
 	/** @private */
 	public class Debugging 
 	{
-		import org.apache.flex.utils.ObjectMap;
-		import org.apache.flex.text.engine.ITextBlock;
-		import org.apache.flex.text.engine.ITextLine;
+		import org.apache.royale.utils.ObjectMap;
+		import org.apache.royale.text.engine.ITextBlock;
+		import org.apache.royale.text.engine.ITextLine;
 
 		
 

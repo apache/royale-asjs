@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
 	 *  The EasyDataProviderChangeNotifier is similar to DataProviderChangeNotifier
@@ -86,7 +86,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.collections.ArrayList
+		 * @royaleignorecoercion org.apache.royale.collections.ArrayList
 		 */
 		private function setDataProvider():void
 		{
@@ -96,8 +96,8 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.UIBase
-		 * @royaleignorecoercion org.apache.flex.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		private function get selectionModel():ISelectionModel
 		{

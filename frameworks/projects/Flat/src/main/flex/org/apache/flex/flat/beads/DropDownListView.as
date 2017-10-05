@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat.beads
+package org.apache.royale.flat.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -25,29 +25,29 @@ package org.apache.flex.flat.beads
 	import flash.display.Sprite;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSShape;
-	import org.apache.flex.core.CSSSprite;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.beads.IDropDownListView;
-	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.UIUtils;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSShape;
+	import org.apache.royale.core.CSSSprite;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.beads.IDropDownListView;
+	import org.apache.royale.utils.CSSUtils;
+    import org.apache.royale.utils.UIUtils;
     
     /**
      *  The DropDownListView class is the default view for
-     *  the org.apache.flex.flat.DropDownList class.
+     *  the org.apache.royale.flat.DropDownList class.
      *  It displays a simple text label with what appears to be a
      *  down arrow button on the right, but really, the entire
      *  view is the button that will display or dismiss the dropdown.
@@ -117,7 +117,7 @@ package org.apache.flex.flat.beads
 		private var shape:Shape;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat.beads
+package org.apache.royale.flat.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -25,19 +25,19 @@ package org.apache.flex.flat.beads
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-    import org.apache.flex.core.StyleableCSSTextField;
-    import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.utils.CSSUtils;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToggleButtonModel;
+    import org.apache.royale.core.StyleableCSSTextField;
+    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.CSSUtils;
 	
     /**
      *  The CSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.flat.CheckBox and RadioButton classes.
+     *  the org.apache.royale.flat.CheckBox and RadioButton classes.
      *  It supports CSS content property for the
      *  icon.
      * 
@@ -106,7 +106,7 @@ package org.apache.flex.flat.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -162,7 +162,7 @@ package org.apache.flex.flat.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.Label#text
+         *  @copy org.apache.royale.html.Label#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -194,7 +194,7 @@ package org.apache.flex.flat.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.html.Label#html
+         *  @copy org.apache.royale.html.Label#html
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -244,7 +244,7 @@ package org.apache.flex.flat.beads
 		private var _selected:Boolean;
 		
         /**
-         *  @copy org.apache.flex.core.IToggleButtonModel#selected
+         *  @copy org.apache.royale.core.IToggleButtonModel#selected
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

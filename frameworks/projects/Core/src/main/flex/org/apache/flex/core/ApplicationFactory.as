@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF {
 		import flash.display.StageAlign;

@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.conversion.ConversionConstants;
-	import org.apache.flex.textLayout.conversion.ConversionType;
-	import org.apache.flex.textLayout.conversion.FormatDescriptor;
-	import org.apache.flex.textLayout.conversion.ITextExporter;
-	import org.apache.flex.textLayout.conversion.ITextImporter;
-	import org.apache.flex.textLayout.conversion.TextConverter;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.conversion.ConversionConstants;
+	import org.apache.royale.textLayout.conversion.ConversionType;
+	import org.apache.royale.textLayout.conversion.FormatDescriptor;
+	import org.apache.royale.textLayout.conversion.ITextExporter;
+	import org.apache.royale.textLayout.conversion.ITextImporter;
+	import org.apache.royale.textLayout.conversion.TextConverter;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.textLayout.conversion.PlainTextImporter;
+		import org.apache.royale.textLayout.conversion.PlainTextImporter;
 	}
 
 
@@ -68,7 +68,7 @@ package org.apache.flex.textLayout.edit
 		 * <p>Flash Player requires that the <code>getContents()</code> method be called in a paste event handler. In AIR, 
 		 * this restriction only applies to content outside of the application security sandbox.</p>
 		 * 
-		 * @see org.apache.flex.events.Event#PASTE
+		 * @see org.apache.royale.events.Event#PASTE
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -142,8 +142,8 @@ package org.apache.flex.textLayout.edit
 		 * 
 		 * @param scrap The TextScrap to paste into the clipboard.
 		 * 
-		 * @see org.apache.flex.events.Event#COPY
-		 * @see org.apache.flex.events.Event#CUT
+		 * @see org.apache.royale.events.Event#COPY
+		 * @see org.apache.royale.events.Event#CUT
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

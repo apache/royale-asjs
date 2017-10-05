@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
 	import flash.utils.clearInterval;
 	import flash.utils.clearTimeout;
 	import flash.utils.setInterval;
 	import flash.utils.setTimeout;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The ButtonAutoRepeatController class adds autorepeat
@@ -61,7 +61,7 @@ package org.apache.flex.html.beads.controllers
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

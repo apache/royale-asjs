@@ -15,10 +15,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.royale.file.beads
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.net.URLBinaryLoader;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.net.URLBinaryLoader;
 
 	/**
 	 *  FileUploaderWithResponseData records responseData before dispatching the complete event 

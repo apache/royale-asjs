@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils.dbg
+package org.apache.royale.utils.dbg
 {
     import flash.utils.Dictionary;
     import flash.utils.getQualifiedClassName;
     
-    import org.apache.flex.core.IChild;
+    import org.apache.royale.core.IChild;
 
 	/**
 	 *  The DOMPathUtil class is a tracks instances of display objects

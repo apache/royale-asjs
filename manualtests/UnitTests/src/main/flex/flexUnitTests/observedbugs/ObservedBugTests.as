@@ -19,7 +19,7 @@
 package flexUnitTests.observedbugs
 {
     import flexunit.framework.Assert;
-    import org.apache.flex.reflection.*;
+    import org.apache.royale.reflection.*;
     
     public class ObservedBugTests
     {		

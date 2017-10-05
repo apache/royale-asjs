@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.flex.core.ISelectableItemRenderer;
+    import org.apache.royale.core.ISelectableItemRenderer;
 
     /**
      *  The ITabItemRenderer interface is the basic interface for MDL Tabs and TabBar item renderers.

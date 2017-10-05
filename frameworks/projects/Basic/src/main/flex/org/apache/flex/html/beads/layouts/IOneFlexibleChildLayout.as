@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {	
-	import org.apache.flex.core.IBeadLayout;
+	import org.apache.royale.core.IBeadLayout;
 	
 	/**
 	 * IOneFlexibleChildLayout will flex one of the children to take up

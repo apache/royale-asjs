@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.language.string
+package org.apache.royale.language.string
 {
     public function match(str:String,pattern:String):Array
     {

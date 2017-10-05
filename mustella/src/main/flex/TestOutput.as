@@ -27,7 +27,7 @@ import flash.events.IEventDispatcher;
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
 }
 /**
  *  The class that handles redirectable output

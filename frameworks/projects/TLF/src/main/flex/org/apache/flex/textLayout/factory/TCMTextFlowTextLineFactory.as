@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.TCMFactoryComposer;
-	import org.apache.flex.textLayout.container.TextContainerManager;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.TCMFactoryComposer;
+	import org.apache.royale.textLayout.container.TextContainerManager;
 
 	public class TCMTextFlowTextLineFactory extends TextFlowTextLineFactory
 	{

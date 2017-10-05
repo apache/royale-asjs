@@ -20,7 +20,7 @@
 -->
 
 
-<flex-config>
+<royale-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
    <target-player>11.1</target-player>
 
@@ -52,35 +52,35 @@
       </source-path>
       -->
       <source-path>
-          <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Binding/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Charts/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Collections/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Core/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/CreateJS/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Express/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Flat/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/FontAwesome/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Language/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Storage/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/TLF/src/main/flex</path-element>
-          <path-element>${frameworks_dir}/projects/Text/src/main/flex</path-element>
+          <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Collections/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Core/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/CreateJS/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/DragDrop/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Effects/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Express/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Flat/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/FontAwesome/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Language/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Reflection/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Storage/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/TLF/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Text/src/main/royale</path-element>
           <!-- leave out XML.  In the SWF compile it confuses the compiler because
                airglobal.swc also has an XML definition
-          <path-element>${frameworks_dir}/projects/XML/src/main/flex</path-element> -->
+          <path-element>${frameworks_dir}/projects/XML/src/main/royale</path-element> -->
      </source-path>
 
      <!-- Allow the source-path to have path-elements which contain other path-elements -->
@@ -113,24 +113,24 @@
     <mxml>
         <children-as-data>true</children-as-data>
         <imports>
-            <implicit-import>org.apache.flex.events.*</implicit-import>
-            <implicit-import>org.apache.flex.geom.*</implicit-import>
-            <implicit-import>org.apache.flex.core.ClassFactory</implicit-import>
-            <implicit-import>org.apache.flex.core.IFactory</implicit-import>
+            <implicit-import>org.apache.royale.events.*</implicit-import>
+            <implicit-import>org.apache.royale.geom.*</implicit-import>
+            <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
+            <implicit-import>org.apache.royale.core.IFactory</implicit-import>
         </imports>
     </mxml>
-    <binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-    <binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+    <binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+    <binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
     <binding-value-change-event-type>valueChange</binding-value-change-event-type>
-    <binding-event-handler-event>org.apache.flex.events.Event</binding-event-handler-event>
-    <binding-event-handler-class>org.apache.flex.events.EventDispatcher</binding-event-handler-class>
-    <binding-event-handler-interface>org.apache.flex.events.IEventDispatcher</binding-event-handler-interface>
-    <states-class>org.apache.flex.states.State</states-class>
-    <states-instance-override-class>org.apache.flex.states.AddItems</states-instance-override-class>
-    <states-property-override-class>org.apache.flex.states.SetProperty</states-property-override-class>
-    <states-event-override-class>org.apache.flex.states.SetEventHandler</states-event-override-class>
-    <component-factory-class>org.apache.flex.core.ClassFactory</component-factory-class>
-    <component-factory-interface>org.apache.flex.core.IFactory</component-factory-interface>
+    <binding-event-handler-event>org.apache.royale.events.Event</binding-event-handler-event>
+    <binding-event-handler-class>org.apache.royale.events.EventDispatcher</binding-event-handler-class>
+    <binding-event-handler-interface>org.apache.royale.events.IEventDispatcher</binding-event-handler-interface>
+    <states-class>org.apache.royale.states.State</states-class>
+    <states-instance-override-class>org.apache.royale.states.AddItems</states-instance-override-class>
+    <states-property-override-class>org.apache.royale.states.SetProperty</states-property-override-class>
+    <states-event-override-class>org.apache.royale.states.SetEventHandler</states-event-override-class>
+    <component-factory-class>org.apache.royale.core.ClassFactory</component-factory-class>
+    <component-factory-interface>org.apache.royale.core.IFactory</component-factory-interface>
     <fxg-base-class>flash.display.Sprite</fxg-base-class>
 
       <!-- List of SWC files or directories that contain SWC files. -->
@@ -455,26 +455,26 @@
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
       <title>Apache Royale Application</title>
-      <description>http://flex.apache.org/</description>
+      <description>http://royale.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>unknown</creator>
       <language>EN</language>
    </metadata>
    
    <exclude-classes>
-       <class>org.apache.flex.utils.Language</class>
-       <class>org.apache.flex.core.IRoyaleElement</class>
-       <class>org.apache.flex.core.WrappedHTMLElement</class>
-       <class>org.apache.flex.events.BrowserEvent</class>
-       <class>org.apache.flex.html.beads.CSSTextButtonView</class>
-       <class>org.apache.flex.maps.google.beads.MapView_original</class>
+       <class>org.apache.royale.utils.Language</class>
+       <class>org.apache.royale.core.IRoyaleElement</class>
+       <class>org.apache.royale.core.WrappedHTMLElement</class>
+       <class>org.apache.royale.events.BrowserEvent</class>
+       <class>org.apache.royale.html.beads.CSSTextButtonView</class>
+       <class>org.apache.royale.maps.google.beads.MapView_original</class>
     </exclude-classes>
    
    <exclude-sources>
-       <path-element>${frameworks_dir}/projects/Language/src/main/flex/org/apache/flex/utils/Language.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/core/WrappedHTMLElement.as</path-element>
-       <path-element>${frameworks_dir}/projects/Core/src/main/flex/org/apache/flex/events/BrowserEvent.as</path-element>
-       <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org/apache/flex/maps/google/beads/MapView_original.as</path-element>
+       <path-element>${frameworks_dir}/projects/Language/src/main/royale/org/apache.royale/utils/Language.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache.royale/core/WrappedHTMLElement.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache.royale/events/BrowserEvent.as</path-element>
+       <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org/apache.royale/maps/google/beads/MapView_original.as</path-element>
     </exclude-sources>
    
    <!-- source path for asdoc -->
@@ -490,24 +490,24 @@
             
             <!-- classes to include in asdoc -->
             <doc-sources>
-                <path-element>${frameworks_dir}/projects/Binding/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Charts/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Collections/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Core/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/CreateJS/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/DragDrop/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Effects/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Formatters/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/org</path-element>
-            <path-element>${frameworks_dir}/projects/Graphics/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Basic/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/HTML/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/HTML5/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/JQuery/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Mobile/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Network/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/Reflection/src/main/flex</path-element>
-            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/flex/google/maps/LatLng.as</path-element>
+                <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Collections/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Core/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/CreateJS/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/DragDrop/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Effects/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org</path-element>
+            <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Reflection/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/google/maps/LatLng.as</path-element>
             </doc-sources>
             
-</flex-config>
+</royale-config>

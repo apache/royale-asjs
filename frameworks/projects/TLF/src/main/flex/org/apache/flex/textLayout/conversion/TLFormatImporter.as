@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.debug.assert;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.debug.assert;
 	// [ExcludeClass]
 	/**
 	 * @private  

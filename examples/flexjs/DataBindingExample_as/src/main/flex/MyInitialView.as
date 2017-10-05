@@ -23,24 +23,24 @@ package
 
 import models.MyModel;
 
-import org.apache.flex.binding.ConstantBinding;
-import org.apache.flex.binding.SimpleBinding;
-import org.apache.flex.core.SimpleCSSValuesImpl;
-import org.apache.flex.core.ValuesManager;
-import org.apache.flex.core.View;
-import org.apache.flex.events.CustomEvent;
-import org.apache.flex.events.Event;
-import org.apache.flex.events.MouseEvent;
-import org.apache.flex.html.CheckBox;
-import org.apache.flex.html.Container;
-import org.apache.flex.html.DropDownList;
-import org.apache.flex.html.Label;
-import org.apache.flex.html.RadioButton;
-import org.apache.flex.html.TextArea;
-import org.apache.flex.html.TextButton;
-import org.apache.flex.html.TextInput;
-import org.apache.flex.html.beads.layouts.HorizontalLayout;
-import org.apache.flex.html.beads.layouts.VerticalLayout;
+import org.apache.royale.binding.ConstantBinding;
+import org.apache.royale.binding.SimpleBinding;
+import org.apache.royale.core.SimpleCSSValuesImpl;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.View;
+import org.apache.royale.events.CustomEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
+import org.apache.royale.html.CheckBox;
+import org.apache.royale.html.Container;
+import org.apache.royale.html.DropDownList;
+import org.apache.royale.html.Label;
+import org.apache.royale.html.RadioButton;
+import org.apache.royale.html.TextArea;
+import org.apache.royale.html.TextButton;
+import org.apache.royale.html.TextInput;
+import org.apache.royale.html.beads.layouts.HorizontalLayout;
+import org.apache.royale.html.beads.layouts.VerticalLayout;
 
 public class MyInitialView extends View
 {
@@ -105,7 +105,7 @@ public class MyInitialView extends View
     [Bindable]
     public var fieldText:String;
 
-	private function radioChanged(e:org.apache.flex.events.Event):void
+	private function radioChanged(e:org.apache.royale.events.Event):void
 	{
 		dispatchEvent(new CustomEvent("radioClicked"));
 		fieldText = RadioButton(e.target).text;

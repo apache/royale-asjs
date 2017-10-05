@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
 	/**
 	 *  The IChart interface is the basic interface for every chart component. All

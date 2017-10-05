@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.geom.Size;
+    import org.apache.royale.geom.Size;
 
 	/**
 	 * A Viewport is a window onto an area of content. A viewport is given space

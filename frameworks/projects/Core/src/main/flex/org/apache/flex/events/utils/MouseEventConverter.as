@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events.utils
+package org.apache.royale.events.utils
 {	COMPILE::SWF
     {
         import flash.events.Event;
@@ -24,8 +24,8 @@ package org.apache.flex.events.utils
         import flash.events.MouseEvent;
     }
     
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.events.utils.IHandlesOriginalEvent;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.utils.IHandlesOriginalEvent;
     
 	/**
 	 *  Mouse events conversion.
@@ -51,7 +51,7 @@ package org.apache.flex.events.utils
         
         /**
          *  A method used to copy properties from flash.events.MouseEvent to 
-         *  org.apache.flex.events.Event.  The set of properties can be
+         *  org.apache.royale.events.Event.  The set of properties can be
          *  different based on platform and runtime.
          *  
          *  @langversion 3.0
@@ -61,13 +61,13 @@ package org.apache.flex.events.utils
          */
         public static var convert:Function = flashConvert;
         
-        private static function flashConvert(event:flash.events.MouseEvent):org.apache.flex.events.MouseEvent
+        private static function flashConvert(event:flash.events.MouseEvent):org.apache.royale.events.MouseEvent
         {
 //            if (UNCONVERTED_EVENTS[event.type])
 //                return null;
             
-            var newEvent:org.apache.flex.events.MouseEvent = 
-                  new org.apache.flex.events.MouseEvent(event.type, event.bubbles, event.cancelable,
+            var newEvent:org.apache.royale.events.MouseEvent = 
+                  new org.apache.royale.events.MouseEvent(event.type, event.bubbles, event.cancelable,
                                                         event.localX, event.localY, event.relatedObject,
                                                         event.ctrlKey, event.altKey, event.shiftKey,
                                                         event.buttonDown, event.delta);
@@ -77,7 +77,7 @@ package org.apache.flex.events.utils
         
         private static function mouseEventConverter(event:flash.events.Event):void
         {
-            if (event is flash.events.MouseEvent && (!(event is org.apache.flex.events.MouseEvent)))
+            if (event is flash.events.MouseEvent && (!(event is org.apache.royale.events.MouseEvent)))
             {
 				var p:* = event.target;
 				while (p != null) {
@@ -85,7 +85,7 @@ package org.apache.flex.events.utils
 					p = p.parent;
 				}
 				
-                var newEvent:org.apache.flex.events.MouseEvent = 
+                var newEvent:org.apache.royale.events.MouseEvent = 
                     convert(flash.events.MouseEvent(event));
                 if (newEvent) 
                 {

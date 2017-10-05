@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 	/**
 	 *  The OSUtils class is an all-static class with methods for

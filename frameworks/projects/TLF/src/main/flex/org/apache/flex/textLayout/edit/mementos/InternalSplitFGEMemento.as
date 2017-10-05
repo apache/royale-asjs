@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos {
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.IMemento;
+package org.apache.royale.textLayout.edit.mementos {
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.IMemento;
 
 	public class InternalSplitFGEMemento extends BaseMemento implements IMemento
 {
@@ -65,7 +65,7 @@ package org.apache.flex.textLayout.edit.mementos {
 	}
 	
 	/**
-	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 	 */
 	static public function performInternal(textFlow:ITextFlow, target:ElementMark):*
 	{
@@ -98,7 +98,7 @@ package org.apache.flex.textLayout.edit.mementos {
 	}
 	
 	/**
-	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 	 */
 	public function undo():*
 	{ 

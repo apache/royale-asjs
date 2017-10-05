@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.ITCYElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.ITCYElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 	
 	// [ExcludeClass]
 	/**

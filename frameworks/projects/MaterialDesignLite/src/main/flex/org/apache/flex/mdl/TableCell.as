@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-	import org.apache.flex.html.TableCell;
+	import org.apache.royale.html.TableCell;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	/**
@@ -33,7 +33,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class TableCell extends org.apache.flex.html.TableCell
+	public class TableCell extends org.apache.royale.html.TableCell
 	{
 		/**
 		 *  constructor.
@@ -84,7 +84,7 @@ package org.apache.flex.mdl
         protected var textNode:Text;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

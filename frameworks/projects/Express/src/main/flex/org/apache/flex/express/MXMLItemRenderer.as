@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.binding.ItemRendererDataBinding;
-	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
+	import org.apache.royale.binding.ItemRendererDataBinding;
+	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 	
 	/**
 	 * This class extends MXMLItemRenderer and adds ItemRendererDataBinding
 	 * for convenience.
 	 */
-	public class MXMLItemRenderer extends org.apache.flex.html.supportClasses.MXMLItemRenderer
+	public class MXMLItemRenderer extends org.apache.royale.html.supportClasses.MXMLItemRenderer
 	{
 		public function MXMLItemRenderer()
 		{

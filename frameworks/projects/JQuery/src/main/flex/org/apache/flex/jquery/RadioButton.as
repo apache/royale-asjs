@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.jquery
+package org.apache.royale.jquery
 {
-	import org.apache.flex.html.RadioButton;
+	import org.apache.royale.html.RadioButton;
 	
 	COMPILE::SWF
-	public class RadioButton extends org.apache.flex.html.RadioButton
+	public class RadioButton extends org.apache.royale.html.RadioButton
 	{
 		
 	}
@@ -30,7 +30,7 @@ package org.apache.flex.jquery
 	 * @royaleignorecoercion HTMLInputElement
 	 */
 	COMPILE::JS
-	public class RadioButton extends org.apache.flex.html.RadioButton
+	public class RadioButton extends org.apache.royale.html.RadioButton
 	{
 		override public function addedToParent():void
 		{

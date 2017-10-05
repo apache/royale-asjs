@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	public interface INumberLineFactory extends IStringTextLineFactory
 	{
 		function set compositionBounds(compositionBounds:Rectangle):void;

@@ -24,7 +24,7 @@ limitations under the License.
 		  xmlns:models="models.*">
 		<fx:Script>
 		<![CDATA[
-		    import org.apache.flex.events.MouseEvent;
+		    import org.apache.royale.events.MouseEvent;
 			import vos.TabVO;
 
 			private function onAddNewTabClick(event:MouseEvent):void

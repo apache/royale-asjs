@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {	
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IPopUp;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IAlertModel;
+	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 	
-	[Event(name="close", type="org.apache.flex.events.Event")]
+	[Event(name="close", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The SimpleAlert class is a component that displays a message and an OK button. The
 	 *  SimpleAlert converts directly to window.alert() for HTML. SimpleAlert uses
 	 *  the following beads:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the message.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Alert.
-	 *  org.apache.flex.core.IBeadController: the bead responsible for handling input events.
-	 *  org.apache.flex.core.IBorderBead: a bead, if present, that draws a border around the control.
-	 *  org.apache.flex.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the message.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Alert.
+	 *  org.apache.royale.core.IBeadController: the bead responsible for handling input events.
+	 *  org.apache.royale.core.IBorderBead: a bead, if present, that draws a border around the control.
+	 *  org.apache.royale.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

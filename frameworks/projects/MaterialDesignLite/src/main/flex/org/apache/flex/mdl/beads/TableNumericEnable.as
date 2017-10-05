@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.TableCell;
-    import org.apache.flex.mdl.TableColumn;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.mdl.TableCell;
+    import org.apache.royale.mdl.TableColumn;
 
     /**
      *  TableNumericEnable bead applies numeric formatting to header (TableColumn) or data cell (TableCell)
@@ -39,7 +39,7 @@ package org.apache.flex.mdl.beads
         private var host:UIBase;
 
         /**
-         * @copy org.apache.flex.core.IBead#strand
+         * @copy org.apache.royale.core.IBead#strand
          *
          * @royaleignorecoercion HTMLElement
          *

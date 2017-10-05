@@ -136,7 +136,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheflexbuild.cloudapp.net:8080/job/flex-asjs_release_branch/lastSuccessfulBuild/artifact/out">
+        value="http://apacheflexbuild.cloudapp.net:8080/job/royale-asjs_release_branch/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
@@ -697,11 +697,11 @@
     </target>
     <target name="get.falcon.if.needed" depends="get.falcon.nightly,get.falcon.rc" unless="FALCON_HOME" />
     <target name="get.falcon.nightly" if="falcon.nightly">
-        <property name="kit.jx.prefix" value="apache-flex-falconjx-${release.version}"/>
+        <property name="kit.jx.prefix" value="apache.royale-falconjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/flex-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-falcon%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.md5"
              dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
         <condition property="FalconMD5Invalid">
@@ -717,11 +717,11 @@
         <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.falcon.rc" if="falcon.rc">
-        <property name="kit.jx.prefix" value="apache-flex-falconjx-${release.version}"/>
+        <property name="kit.jx.prefix" value="apache.royale-falconjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
+        <get src="https://dist.apache.org/repos/dist/dev/royale/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/flex/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
+        <get src="https://dist.apache.org/repos/dist/dev/royale/falcon/${release.version}/rc1/binaries/${binary.jx.kit}.zip.md5"
         dest="${basedir}/${binary.jx.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="md5" verifyproperty="falcon.md5.ok" />
         <condition property="FalconMD5Invalid">
@@ -737,10 +737,10 @@
         <ant dir="${basedir}/falconjx/compiler-jx" antfile="${basedir}/falconjx/compiler-jx/src/main/resources/downloads.xml"/>
     </target>
     <target name="get.flexunit.if.needed" unless="FLEXUNIT_HOME" >
-        <property name="binary.flexunit.kit" value="apache-flex-flexunit-4.2.0-4.12.0-bin"/>
-        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
+        <property name="binary.flexunit.kit" value="apache.royale-flexunit-4.2.0-4.12.0-bin"/>
+        <get src="https://archive.apache.org/dist/royale/royaleunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
         dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/flex/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.md5"
+        <get src="https://archive.apache.org/dist/royale/royaleunit/4.2.0/binaries/${binary.flexunit.kit}.zip.md5"
         dest="${basedir}/${binary.flexunit.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="md5" verifyproperty="flexunit.md5.ok" />
         <condition property="FlexUnitMD5Invalid">
@@ -749,17 +749,17 @@
             </not>
         </condition>
         <fail message="MD5 checksum did not match" if="FlexUnitMD5Invalid" />
-        <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/flexunit" />
-        <property name="FLEXUNIT_HOME" value="${basedir}/flexunit" />
+        <unzip src="${basedir}/${binary.flexunit.kit}.zip" dest="${basedir}/royaleunit" />
+        <property name="FLEXUNIT_HOME" value="${basedir}/royaleunit" />
     </target>
     <!--
     <target name="get.sdk.if.needed" depends="get.sdk" unless="FLEX_SDK_HOME" />
     <target name="get.sdk">
-        <property name="kit.sdk.prefix" value="apache-flex-sdk-4.15.0"/>
+        <property name="kit.sdk.prefix" value="apache.royale-sdk-4.15.0"/>
         <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
-        <get src="https://archive.apache.org/dist/flex/4.15.0/binaries/${binary.sdk.kit}.zip"
+        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip"
         dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/flex/4.15.0/binaries/${binary.sdk.kit}.zip.md5"
+        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.md5"
         dest="${basedir}/${binary.sdk.kit}.zip.md5" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="md5" verifyproperty="sdk.md5.ok" />
         <condition property="SDKMD5Invalid">

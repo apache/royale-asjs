@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines values for the <code>typographicCase</code> property of the TextLayoutFormat

@@ -17,10 +17,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.events.CustomEvent;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.events.CustomEvent;
 	
 	/**
 	 * The ItemRendererEvent is dispatched by DataItemRendererFactory classes under

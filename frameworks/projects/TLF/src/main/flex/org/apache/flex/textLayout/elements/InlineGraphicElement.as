@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.GraphicElement;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextBaseline;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.events.StatusChangeEvent;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.property.PropertyFactory;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.GraphicElement;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextBaseline;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.events.StatusChangeEvent;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyFactory;
 
-	// import org.apache.flex.utils.OSUtils;
+	// import org.apache.royale.utils.OSUtils;
 	/** The InlineGraphicElement class handles graphic objects that display inline in the text. 
 	 * 
 	 * <p>You can embed a graphic or any DisplayObject or specify a URl for the location of the graphic. 
@@ -92,8 +92,8 @@ package org.apache.flex.textLayout.elements
 	 * @see #actualHeight
 	 * @see #actualWidth
 	 * @see flash.display.DisplayObject DisplayObject
-	 * @see org.apache.flex.textLayout.compose.IFlowComposer#updateAllControllers()
-	 * @see org.apache.flex.textLayout.events.StatusChangeEvent StatusChangeEvent
+	 * @see org.apache.royale.textLayout.compose.IFlowComposer#updateAllControllers()
+	 * @see org.apache.royale.textLayout.events.StatusChangeEvent StatusChangeEvent
 	 * @see TextFlow
 	 */
 	public final class InlineGraphicElement extends FlowLeafElement implements IInlineGraphicElement
@@ -359,8 +359,8 @@ package org.apache.flex.textLayout.elements
 		 * @langversion 3.0
 		 *
 		 * @return one of LOAD_PENDING, LOADING, SIZE_PENDING, READY, ERROR
-		 * @see org.apache.flex.textLayout.elements.InlineGraphicElementStatus
-		 * @see org.apache.flex.textLayout.events.StatusChangeEvent
+		 * @see org.apache.royale.textLayout.elements.InlineGraphicElementStatus
+		 * @see org.apache.royale.textLayout.events.StatusChangeEvent
 		 */
 		public function get status():String
 		{
@@ -413,7 +413,7 @@ package org.apache.flex.textLayout.elements
 
 		/** The width of the graphic. The value can be 'auto', a number of pixels or a percent of the measured width of the image.
 		 * 
-		 * <p>Legal values are org.apache.flex.textLayout.formats."auto" and org.apache.flex.textLayout.formats.FormatValue.INHERIT.</p>
+		 * <p>Legal values are org.apache.royale.textLayout.formats."auto" and org.apache.royale.textLayout.formats.FormatValue.INHERIT.</p>
 		 * <p>Legal values as a number are from 0 to 32000.</p>
 		 * <p>Legal values as a percent are numbers from 0 to 1000000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
@@ -546,7 +546,7 @@ package org.apache.flex.textLayout.elements
 
 		/** The height of the image. May be 'auto', a number of pixels or a percent of the measured height. 
 		 *
-		 * <p>Legal values are org.apache.flex.textLayout.formats."auto" and org.apache.flex.textLayout.formats.FormatValue.INHERIT.</p>
+		 * <p>Legal values are org.apache.royale.textLayout.formats."auto" and org.apache.royale.textLayout.formats.FormatValue.INHERIT.</p>
 		 * <p>Legal values as a number are from 0 to 32000.</p>
 		 * <p>Legal values as a percent are numbers from 0 to 1000000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
@@ -609,14 +609,14 @@ package org.apache.flex.textLayout.elements
 		/** 
 		 * Controls the placement of the graphic relative to the text. It can be part of the line, or can be beside the line with the text 
 		 * wrapped around it. 
-		 * <p>Legal values are <code>org.apache.flex.textLayout.formats.Float.NONE</code>, <code>org.apache.flex.textLayout.formats.Float.LEFT</code>, 
-		 * <code>org.apache.flex.textLayout.formats.Float.RIGHT</code>, <code>org.apache.flex.textLayout.formats.Float.START</code>, and <code>org.apache.flex.textLayout.formats.Float.END</code>.</p>
+		 * <p>Legal values are <code>org.apache.royale.textLayout.formats.Float.NONE</code>, <code>org.apache.royale.textLayout.formats.Float.LEFT</code>, 
+		 * <code>org.apache.royale.textLayout.formats.Float.RIGHT</code>, <code>org.apache.royale.textLayout.formats.Float.START</code>, and <code>org.apache.royale.textLayout.formats.Float.END</code>.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined will be treated as <code>Float.NONE</code>.</p>
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
-		 * @see org.apache.flex.textLayout.formats.Float
+		 * @see org.apache.royale.textLayout.formats.Float
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 2.0
@@ -1100,18 +1100,18 @@ package org.apache.flex.textLayout.elements
 			}
 
 			var elementFormat:ElementFormat = _blockElement ? _blockElement.elementFormat : computeElementFormat();
-			var alignmentBaseline:String = (elementFormat.alignmentBaseline == org.apache.flex.text.engine.TextBaseline.USE_DOMINANT_BASELINE ? dominantBaselineString : elementFormat.alignmentBaseline);
+			var alignmentBaseline:String = (elementFormat.alignmentBaseline == org.apache.royale.text.engine.TextBaseline.USE_DOMINANT_BASELINE ? dominantBaselineString : elementFormat.alignmentBaseline);
 
 			var top:Number = 0;
 
 			// Calcluate relative to dominant baseline; remains 0 for ASCENT and IDEOGRAPHIC_TOP
-			if (dominantBaselineString == org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_CENTER)
+			if (dominantBaselineString == org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_CENTER)
 				top += effectiveHeight / 2;
-			else if (dominantBaselineString == org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_BOTTOM || dominantBaselineString == org.apache.flex.text.engine.TextBaseline.DESCENT || dominantBaselineString == org.apache.flex.text.engine.TextBaseline.ROMAN)
+			else if (dominantBaselineString == org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_BOTTOM || dominantBaselineString == org.apache.royale.text.engine.TextBaseline.DESCENT || dominantBaselineString == org.apache.royale.text.engine.TextBaseline.ROMAN)
 				top += effectiveHeight;
 
 			// re-jig to be relative to the ROMAN baseline rather than whatever baseline is used for alignment
-			top += textLine.getBaselinePosition(org.apache.flex.text.engine.TextBaseline.ROMAN) - textLine.getBaselinePosition(alignmentBaseline);
+			top += textLine.getBaselinePosition(org.apache.royale.text.engine.TextBaseline.ROMAN) - textLine.getBaselinePosition(alignmentBaseline);
 
 			// finally, account for baseline shift
 			top += elementFormat.baselineShift;

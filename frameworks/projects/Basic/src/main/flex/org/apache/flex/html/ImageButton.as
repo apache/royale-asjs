@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-    import org.apache.flex.core.SimpleCSSStyles;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.html.beads.models.ImageModel;
+    import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.html.beads.models.ImageModel;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -54,7 +54,7 @@ package org.apache.flex.html
 		}
 
 		/**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
 		COMPILE::JS
         override protected function createElement():WrappedHTMLElement

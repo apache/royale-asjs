@@ -23,41 +23,41 @@ goog.require('MyInitialView');
 goog.require('MyModel');
 goog.require('MySimpleValuesImpl');
 
-goog.require('org.apache.flex.FlexGlobal');
+goog.require('org.apache.royale.FlexGlobal');
 
-goog.require('org.apache.flex.core.Application');
+goog.require('org.apache.royale.core.Application');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.Application}
+ * @extends {org.apache.royale.core.Application}
  */
 RoyaleTest = function() {
-    org.apache.flex.core.Application.call(this);
+    org.apache.royale.core.Application.call(this);
 
-    this.controller = org.apache.flex.FlexGlobal.newObject(
+    this.controller = org.apache.royale.FlexGlobal.newObject(
         MyController, [this]
     );
 
     this.initialView =
-        /** @type {org.apache.flex.core.ViewBase} */ (
-            org.apache.flex.FlexGlobal.newObject(MyInitialView, [this])
+        /** @type {org.apache.royale.core.ViewBase} */ (
+            org.apache.royale.FlexGlobal.newObject(MyInitialView, [this])
         );
 
     this.model =
         /** @type {flash.events.EventDispatcher} */ (
-            org.apache.flex.FlexGlobal.newObject(MyModel, [])
+            org.apache.royale.FlexGlobal.newObject(MyModel, [])
         );
     this.model.set_labelText('Say hi!');
 
     this.valuesImpl =
-        /** @type {org.apache.flex.core.SimpleValuesImpl} */ (
-            org.apache.flex.FlexGlobal.newObject(MySimpleValuesImpl, [this])
+        /** @type {org.apache.royale.core.SimpleValuesImpl} */ (
+            org.apache.royale.FlexGlobal.newObject(MySimpleValuesImpl, [this])
         );
 
     // this method of logging survives the Closure Compiler
     //window['console']['log'](app);
 };
-goog.inherits(RoyaleTest, org.apache.flex.core.Application);
+goog.inherits(RoyaleTest, org.apache.royale.core.Application);
 
 // Ensures the symbol will be visible after compiler renaming.
 goog.exportSymbol('RoyaleTest', RoyaleTest);

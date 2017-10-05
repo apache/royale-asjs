@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.edit.SelectionState;
 
 
 
@@ -26,8 +26,8 @@ package org.apache.flex.textLayout.operations
 	/** 
 	 * The UndoOperation class encapsulates an undo operation.
 	 *
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

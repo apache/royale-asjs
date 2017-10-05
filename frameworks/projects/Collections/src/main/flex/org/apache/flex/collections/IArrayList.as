@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.collections.parsers.IInputParser;
-    import org.apache.flex.collections.converters.IItemConverter;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.collections.parsers.IInputParser;
+    import org.apache.royale.collections.converters.IItemConverter;
 
     //--------------------------------------
 

@@ -33,7 +33,7 @@
   <name>Apache Royale: Framework: Libs: Collections</name>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
+    <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>

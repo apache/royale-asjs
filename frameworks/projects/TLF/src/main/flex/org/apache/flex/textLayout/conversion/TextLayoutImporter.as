@@ -16,41 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion 
+package org.apache.royale.textLayout.conversion 
 {
-	import org.apache.flex.textLayout.TextLayoutVersion;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.BreakElement;
-	import org.apache.flex.textLayout.elements.DivElement;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IDivElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.InlineGraphicElement;
-	import org.apache.flex.textLayout.elements.LinkElement;
-	import org.apache.flex.textLayout.elements.ListElement;
-	import org.apache.flex.textLayout.elements.ListItemElement;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.TCYElement;
-	import org.apache.flex.textLayout.elements.TabElement;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.elements.TableElement;
-	import org.apache.flex.textLayout.elements.TableRowElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.utils.ObjectMap;
-	import org.apache.flex.textLayout.conversion.TLFormatImporter;
-	import org.apache.flex.textLayout.conversion.SingletonAttributeImporter;
-	import org.apache.flex.textLayout.conversion.CustomFormatImporter;
-	import org.apache.flex.textLayout.factory.TLFFactory;
+	import org.apache.royale.textLayout.TextLayoutVersion;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.BreakElement;
+	import org.apache.royale.textLayout.elements.DivElement;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IDivElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.InlineGraphicElement;
+	import org.apache.royale.textLayout.elements.LinkElement;
+	import org.apache.royale.textLayout.elements.ListElement;
+	import org.apache.royale.textLayout.elements.ListItemElement;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.TCYElement;
+	import org.apache.royale.textLayout.elements.TabElement;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.elements.TableElement;
+	import org.apache.royale.textLayout.elements.TableRowElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.PropertyFactory;
+	import org.apache.royale.utils.ObjectMap;
+	import org.apache.royale.textLayout.conversion.TLFormatImporter;
+	import org.apache.royale.textLayout.conversion.SingletonAttributeImporter;
+	import org.apache.royale.textLayout.conversion.CustomFormatImporter;
+	import org.apache.royale.textLayout.factory.TLFFactory;
 	
 
 

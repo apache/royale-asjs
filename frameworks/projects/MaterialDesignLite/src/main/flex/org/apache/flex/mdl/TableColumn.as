@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.html.TableHeader;
+    import org.apache.royale.html.TableHeader;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	/**
@@ -87,7 +87,7 @@ package org.apache.flex.mdl
         protected var textNode:Text;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

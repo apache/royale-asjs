@@ -27,19 +27,19 @@ package
  */
 internal class StorageClasses
 {
-    import org.apache.flex.storage.LocalStorage; LocalStorage;
-    import org.apache.flex.storage.providers.LocalStorageProvider; LocalStorageProvider;
+    import org.apache.royale.storage.LocalStorage; LocalStorage;
+    import org.apache.royale.storage.providers.LocalStorageProvider; LocalStorageProvider;
 
-	import org.apache.flex.storage.PermanentStorage; PermanentStorage;
-	import org.apache.flex.storage.events.FileEvent; FileEvent;
-	import org.apache.flex.storage.events.FileErrorEvent; FileErrorEvent;
+	import org.apache.royale.storage.PermanentStorage; PermanentStorage;
+	import org.apache.royale.storage.events.FileEvent; FileEvent;
+	import org.apache.royale.storage.events.FileErrorEvent; FileErrorEvent;
 	
-	import org.apache.flex.storage.file.DataInputStream; DataInputStream;
-	import org.apache.flex.storage.file.DataOutputStream; DataOutputStream;
+	import org.apache.royale.storage.file.DataInputStream; DataInputStream;
+	import org.apache.royale.storage.file.DataOutputStream; DataOutputStream;
 
-	import org.apache.flex.storage.providers.AirStorageProvider; AirStorageProvider;
-	import org.apache.flex.storage.providers.WebStorageProvider; WebStorageProvider;
-	import org.apache.flex.storage.providers.AndroidExternalStorageProvider; AndroidExternalStorageProvider;
+	import org.apache.royale.storage.providers.AirStorageProvider; AirStorageProvider;
+	import org.apache.royale.storage.providers.WebStorageProvider; WebStorageProvider;
+	import org.apache.royale.storage.providers.AndroidExternalStorageProvider; AndroidExternalStorageProvider;
 
 }
 

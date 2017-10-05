@@ -20,7 +20,7 @@ package
 {
     import models.Person;
     
-    import org.apache.flex.collections.converters.JSONItemConverter;
+    import org.apache.royale.collections.converters.JSONItemConverter;
 
     public class MemberDataJSONItemConverter extends JSONItemConverter
     {

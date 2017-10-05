@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.text.engine.GroupElement;
-	import org.apache.flex.text.engine.ContentElement;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.text.engine.GroupElement;
+	import org.apache.royale.text.engine.ContentElement;
 	public interface IFlowGroupElement extends IFlowElement {
 		function findLeaf(childRelativePos : int) : IFlowLeafElement;
 		function getFirstLeaf() : IFlowLeafElement;

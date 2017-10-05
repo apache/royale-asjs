@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.models
+package org.apache.royale.mobile.models
 {
-	import org.apache.flex.core.IBeadModel;
-    import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.mobile.chrome.NavigationBar;
-	import org.apache.flex.mobile.chrome.TabBar;
-	import org.apache.flex.mobile.chrome.ToolBar;
+	import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.mobile.chrome.NavigationBar;
+	import org.apache.royale.mobile.chrome.TabBar;
+	import org.apache.royale.mobile.chrome.ToolBar;
 	
 	/**
 	 * The ViewManagerModel houses properties and values common to the components

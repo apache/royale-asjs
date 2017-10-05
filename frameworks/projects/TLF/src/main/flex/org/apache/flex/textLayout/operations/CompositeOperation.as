@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.edit.SelectionState;
 
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.debug.assert;
 
 
 
@@ -41,8 +41,8 @@ package org.apache.flex.textLayout.operations
 	 *  and undoing or redoing that single operation is more efficient than
 	 *  undoing or redoing a group of insert operations.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

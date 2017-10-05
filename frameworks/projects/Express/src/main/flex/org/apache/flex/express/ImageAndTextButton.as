@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.ImageAndTextButton;
-	import org.apache.flex.html.accessories.ToolTipBead;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.ImageAndTextButton;
+	import org.apache.royale.html.accessories.ToolTipBead;
 	
 	/**
 	 * This class extends ImageAndTextButton and adds the toolTip bead
 	 * as a convenience.
 	 */
-	public class ImageAndTextButton extends org.apache.flex.html.ImageAndTextButton
+	public class ImageAndTextButton extends org.apache.royale.html.ImageAndTextButton
 	{
 		public function ImageAndTextButton()
 		{

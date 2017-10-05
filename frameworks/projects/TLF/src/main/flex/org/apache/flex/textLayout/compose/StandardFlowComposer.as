@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.container.ScrollPolicy;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.elements.BackgroundManager;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.events.CompositionCompleteEvent;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.utils.ComposeUtils;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.ScrollPolicy;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.elements.BackgroundManager;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.events.CompositionCompleteEvent;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.utils.ComposeUtils;
     
-	// import org.apache.flex.textLayout.accessibility.TextAccImpl;
+	// import org.apache.royale.textLayout.accessibility.TextAccImpl;
 
 
 
@@ -59,7 +59,7 @@ package org.apache.flex.textLayout.compose
 	* These factory classes will typically create lines with less overhead than a flow composer, but do not
 	* support editing, dynamic changes, or user interaction.</p>
 	* 
-	* @see org.apache.flex.textLayout.elements.TextFlow#flowComposer
+	* @see org.apache.royale.textLayout.elements.TextFlow#flowComposer
 	* @playerversion Flash 10
 	* @playerversion AIR 1.5
 	* @langversion 3.0
@@ -148,7 +148,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
-	 	 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITextFlow
+	 	 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITextFlow
 		 */
 		public function setRootElement(newRootElement:IContainerFormattedElement):void
 		{
@@ -542,7 +542,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
-	 	 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+	 	 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 	 	 *
 		 */
 		 

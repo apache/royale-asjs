@@ -28,9 +28,9 @@ import flash.utils.getTimer;
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
 }
 /**
  *  The abstract base class for all steps in a test case.  TestStep

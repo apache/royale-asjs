@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.text.engine.JustificationStyle;
+	import org.apache.royale.text.engine.JustificationStyle;
 	
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.JustificationRule;
-	import org.apache.flex.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.JustificationRule;
+	import org.apache.royale.textLayout.formats.LeadingModel;
 
 	
 	
@@ -152,9 +152,9 @@ package org.apache.flex.textLayout.utils
 }
 
 
-import org.apache.flex.textLayout.debug.assert;
+import org.apache.royale.textLayout.debug.assert;
 
-import org.apache.flex.textLayout.formats.TextLayoutFormat;
+import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 
 

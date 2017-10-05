@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.royale.charts.beads
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ArrayListSelectionModel;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.charts.core.IChart;
+	import org.apache.royale.charts.core.IVerticalAxisBead;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.ArrayListSelectionModel;
 	
 	/**
 	 *  The VerticalCategoryAxisForArrayListBead displays a vertical axis with

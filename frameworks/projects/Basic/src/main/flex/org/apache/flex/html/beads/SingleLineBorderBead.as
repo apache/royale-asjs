@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.Graphics;
 
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IStatesObject;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.utils.CSSBorderUtils;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IStatesObject;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.CSSBorderUtils;
 
     /**
      *  The SingleLineBorderBead class draws a single line solid border.
@@ -56,7 +56,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

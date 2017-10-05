@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-    import org.apache.flex.core.IChild;
+    import org.apache.royale.core.IChild;
     
 	/**
 	 * The IViewManagerView interface is implemented by any class that can be managed by

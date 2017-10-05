@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics.utils
+package org.apache.royale.graphics.utils
 {
 	import flash.geom.Matrix;
 	import flash.geom.Matrix3D;

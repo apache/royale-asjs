@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.utils.undo.IOperation;
-	import org.apache.flex.textLayout.edit.SelectionState;
+	import org.apache.royale.utils.undo.IOperation;
+	import org.apache.royale.textLayout.edit.SelectionState;
 
 
 
@@ -31,8 +31,8 @@ package org.apache.flex.textLayout.operations
 	// 3 - operations - each operation creates an object that knows how to do/undo/redo itself
 	// going with # 3 for now
 	//
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.edit.IEditManager;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.edit.IEditManager;
 
 	/** 
 	 * The FlowOperation class is the base class for all Text Layout Framework operations. 
@@ -47,8 +47,8 @@ package org.apache.flex.textLayout.operations
 	 * this Operation object to decide whether or not to allow the operation, to decide whether 
 	 * to perform some other operation as well, or to update related user-interface elements.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
-	 * @see org.apache.flex.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

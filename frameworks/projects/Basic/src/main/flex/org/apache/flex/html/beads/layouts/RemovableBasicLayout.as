@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts {
-import org.apache.flex.core.IStrand;
-import org.apache.flex.core.IBeadLayout;
-import org.apache.flex.core.ILayoutChild;
-import org.apache.flex.events.IEventDispatcher;
+package org.apache.royale.html.beads.layouts {
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  The RemovableBasicLayout class is a simple layout
@@ -37,15 +37,15 @@ import org.apache.flex.events.IEventDispatcher;
 public class RemovableBasicLayout extends BasicLayout implements IBeadLayout {
 
     /**
-     *  @copy org.apache.flex.core.IBead#strand
+     *  @copy org.apache.royale.core.IBead#strand
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      *
-     * @royaleignorecoercion org.apache.flex.core.ILayoutChild
-     * @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+     * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     override public function set strand(value:IStrand):void {
         var newHost:ILayoutChild = value as ILayoutChild;

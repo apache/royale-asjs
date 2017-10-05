@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos {
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.edit.IMemento;
+package org.apache.royale.textLayout.edit.mementos {
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.edit.IMemento;
 
 	// Use this for operations that undo using copy & paste
 	public class TextRangeMemento extends DeleteTextMemento implements IMemento {

@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 *  The CenterElement bead breaks the normal layout flow and forces

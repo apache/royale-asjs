@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.states.AddItems;
-    import org.apache.flex.states.SetEventHandler;
-    import org.apache.flex.states.SetProperty;
-    import org.apache.flex.states.State;
+    import org.apache.royale.states.AddItems;
+    import org.apache.royale.states.SetEventHandler;
+    import org.apache.royale.states.SetProperty;
+    import org.apache.royale.states.State;
     
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IStatesObject;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.utils.MXMLDataInterpreter;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStatesObject;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
     /**
      *  The SimpleStatesImpl class implements a minimal set of
@@ -62,7 +62,7 @@ package org.apache.flex.core
         private var sawInitComplete:Boolean;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -76,7 +76,7 @@ package org.apache.flex.core
             IEventDispatcher(_strand).addEventListener("initComplete", initialStateHandler);
         }
         
-        private function initialStateHandler(event:org.apache.flex.events.Event):void
+        private function initialStateHandler(event:org.apache.royale.events.Event):void
         {
             sawInitComplete = true;
             stateChangeHandler(new ValueChangeEvent("currentStateChange", false, false, null, 
@@ -84,7 +84,7 @@ package org.apache.flex.core
         }		
      
         /**
-         * @royaleignorecoercion org.apache.flex.core.IStatesObject 
+         * @royaleignorecoercion org.apache.royale.core.IStatesObject 
          */
         private function stateChangeHandler(event:ValueChangeEvent):void
         {
@@ -113,7 +113,7 @@ package org.apache.flex.core
         }
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.IParent
          */
         private function revert(s:State):void
         {
@@ -158,8 +158,8 @@ package org.apache.flex.core
         }
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.IChild 
-         * @royaleignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.IChild 
+         * @royaleignorecoercion org.apache.royale.core.IParent
          * @royaleignorecoercion Array
          */
         private function apply(s:State):void

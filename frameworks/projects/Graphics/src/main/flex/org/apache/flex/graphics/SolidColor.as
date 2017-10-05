@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics
+package org.apache.royale.graphics
 {
-	import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.utils.CSSUtils;
 
     COMPILE::SWF
     {

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.html.TextButton;
-    import org.apache.flex.mdl.beads.UpgradeElement;
-    import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
+    import org.apache.royale.html.TextButton;
+    import org.apache.royale.mdl.beads.UpgradeElement;
+    import org.apache.royale.mdl.supportClasses.IMaterialIconProvider;
+    import org.apache.royale.mdl.materialIcons.IMaterialIcon;
    
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
     
     /**
@@ -59,7 +59,7 @@ package org.apache.flex.mdl
         
         /**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

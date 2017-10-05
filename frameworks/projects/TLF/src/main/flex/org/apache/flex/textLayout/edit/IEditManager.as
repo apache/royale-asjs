@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.elements.IDivElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.ITCYElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.operations.FlowOperation;
-	import org.apache.flex.utils.undo.IOperation;
-	import org.apache.flex.utils.undo.IUndoManager;
+	import org.apache.royale.textLayout.elements.IDivElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.ITCYElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.operations.FlowOperation;
+	import org.apache.royale.utils.undo.IOperation;
+	import org.apache.royale.utils.undo.IUndoManager;
     
     [Exclude(name="delayedOperations",kind="property")]
     /** 
@@ -47,7 +47,7 @@ package org.apache.flex.textLayout.edit
      * @langversion 3.0
      * 
      * @see EditManager
-     * @see org.apache.flex.textLayout.elements.TextFlow
+     * @see org.apache.royale.textLayout.elements.TextFlow
      * @see flashx.undo.UndoManager
      * 
      */
@@ -138,7 +138,7 @@ package org.apache.flex.textLayout.edit
          * if <code>null</code>, the operation applies to the current selection.
          * @return The TCYElement that was created.
          * 
-         * @see org.apache.flex.textLayout.elements.TCYElement
+         * @see org.apache.royale.textLayout.elements.TCYElement
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -184,7 +184,7 @@ package org.apache.flex.textLayout.edit
          * if <code>null</code>, the operation applies to the current selection.
          * @return The LinkElement that was created.
          * 
-         * @see org.apache.flex.textLayout.elements.LinkElement
+         * @see org.apache.royale.textLayout.elements.LinkElement
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -345,7 +345,7 @@ package org.apache.flex.textLayout.edit
          * if <code>null</code>, the operation applies to the current selection.
          * 
          * 
-         * @see org.apache.flex.textLayout.elements.InlineGraphicElement
+         * @see org.apache.royale.textLayout.elements.InlineGraphicElement
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -370,7 +370,7 @@ package org.apache.flex.textLayout.edit
          * if <code>null</code>, the operation applies to the current selection.
          * 
          * 
-         *  @see org.apache.flex.textLayout.elements.InlineGraphicElement
+         *  @see org.apache.royale.textLayout.elements.InlineGraphicElement
          * 
         * @playerversion Flash 10
         * @playerversion AIR 1.5
@@ -598,8 +598,8 @@ package org.apache.flex.textLayout.edit
          * @return The TextScrap that was cut.
          * 
          * 
-         * @see org.apache.flex.textLayout.edit.IEditManager.pasteTextScrap
-         * @see org.apache.flex.textLayout.edit.TextClipboard.setContents
+         * @see org.apache.royale.textLayout.edit.IEditManager.pasteTextScrap
+         * @see org.apache.royale.textLayout.edit.TextClipboard.setContents
          *  
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -618,9 +618,9 @@ package org.apache.flex.textLayout.edit
          * if <code>null</code>, the operation applies to the current selection.
          * 
          * 
-         * @see org.apache.flex.textLayout.edit.IEditManager.cutTextScrap
-         * @see org.apache.flex.textLayout.edit.TextClipboard.getContents
-         * @see org.apache.flex.textLayout.edit.TextScrap
+         * @see org.apache.royale.textLayout.edit.IEditManager.cutTextScrap
+         * @see org.apache.royale.textLayout.edit.TextClipboard.getContents
+         * @see org.apache.royale.textLayout.edit.TextScrap
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -639,7 +639,7 @@ package org.apache.flex.textLayout.edit
          * <code>beginCompositeOperation</code>/<code>endCompositeOperation</code> block.</p>
          * 
          * 
-         * @see org.apache.flex.textLayout.edit.IEditManager.endCompositeOperation
+         * @see org.apache.royale.textLayout.edit.IEditManager.endCompositeOperation
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5
@@ -655,7 +655,7 @@ package org.apache.flex.textLayout.edit
          * to the undo stack or, if this composite operation is nested inside another composite operation, 
          * added to the parent operation.</p>
          * 
-         * @see org.apache.flex.textLayout.edit.IEditManager.beginCompositeOperation
+         * @see org.apache.royale.textLayout.edit.IEditManager.beginCompositeOperation
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5

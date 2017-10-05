@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines values for specifying that a formatting property is to inherit its parent's value or have it's value
@@ -29,7 +29,7 @@ package org.apache.flex.textLayout.formats
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 *
-	 * @see org.apache.flex.textLayout.formats.TextLayoutFormat TextLayoutFormat
+	 * @see org.apache.royale.textLayout.formats.TextLayoutFormat TextLayoutFormat
 	 */
 	 
 	public final class FormatValue

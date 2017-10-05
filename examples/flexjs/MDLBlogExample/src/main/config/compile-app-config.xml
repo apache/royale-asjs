@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <compiler>
         <targets><target>JSFlex</target></targets>
         <exclude-defaults-css-files>
@@ -24,4 +24,4 @@
         </exclude-defaults-css-files>
     </compiler>
     <html-template>../resources/mdl-js-index-template.html</html-template>
-</flex-config>
+</royale-config>

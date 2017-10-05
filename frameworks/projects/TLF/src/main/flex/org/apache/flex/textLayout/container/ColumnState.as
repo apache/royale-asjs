@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.geom.Rectangle;
+	import org.apache.royale.geom.Rectangle;
 	
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.LineBreak;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.LineBreak;
 
-	import org.apache.flex.textLayout.utils.Twips;
+	import org.apache.royale.textLayout.utils.Twips;
 		
 
 
@@ -81,9 +81,9 @@ package org.apache.flex.textLayout.container
 		 * <code>NaN</code> (not a number), the constructor measures the container's contents to determine the actual 
 		 * composition width and height that feed into ColumnState.
 		 *
-		 * Use the constants defined by the <code>org.apache.flex.textLayout.formats.BlockProgression</code> class to 
+		 * Use the constants defined by the <code>org.apache.royale.textLayout.formats.BlockProgression</code> class to 
 		 * specify the value of the <code>blockProgression</code> parameter. Use the constants defined by
-		 * <code>org.apache.flex.textLayout.formats.Direction</code> to specify the value of the <code>columnDirection</code> 
+		 * <code>org.apache.royale.textLayout.formats.Direction</code> to specify the value of the <code>columnDirection</code> 
 		 * parameter.
 		 *
 		 * @param blockProgression The direction of lines for the textflow, either BlockProgression.TB (top-to-bottom) or 
@@ -98,8 +98,8 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.formats.BlockProgression BlockProgression
-		 * @see org.apache.flex.textLayout.formats.Direction Direction
+		 * @see org.apache.royale.textLayout.formats.BlockProgression BlockProgression
+		 * @see org.apache.royale.textLayout.formats.Direction Direction
 	 	 */
 		
 		public function ColumnState(blockProgression:String, columnDirection:String, controller:IContainerController, compositionWidth:Number, compositionHeight:Number)

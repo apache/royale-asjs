@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
     /**
      *  The ICollection interface is the basic interface for an iterable collection

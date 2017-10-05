@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs
+package org.apache.royale.createjs
 {
     COMPILE::SWF
     {
-        import org.apache.flex.html.CheckBox;            
+        import org.apache.royale.html.CheckBox;            
     }
     COMPILE::JS
     {
@@ -30,17 +30,17 @@ package org.apache.flex.createjs
         import createjs.Stage;
         import createjs.Text;
 		
-		import org.apache.flex.createjs.core.CreateJSBase;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.events.Event;
+		import org.apache.royale.createjs.core.CreateJSBase;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.Event;
     }
 	
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.SolidColor;
 	
     COMPILE::SWF
-	public class CheckBox extends org.apache.flex.html.CheckBox
+	public class CheckBox extends org.apache.royale.html.CheckBox
 	{			
 		/**
 		 * @private
@@ -94,7 +94,7 @@ package org.apache.flex.createjs
 		private var checkBackground:Shape;
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
@@ -148,7 +148,7 @@ package org.apache.flex.createjs
 			IToggleButtonModel(model).selected = value;
             redrawShape();
 			
-			dispatchEvent( new org.apache.flex.events.Event("change") );
+			dispatchEvent( new org.apache.royale.events.Event("change") );
         }
 		
 		private var _fontName:String = "18px Arial"

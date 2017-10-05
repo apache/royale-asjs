@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Matrix;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Matrix;
 	
     /**
      *  The ITransformModel interface describes the minimum set of properties

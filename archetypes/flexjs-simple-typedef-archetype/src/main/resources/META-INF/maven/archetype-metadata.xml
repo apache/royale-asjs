@@ -22,7 +22,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
     <fileSet encoding="UTF-8">
-      <directory>src/main/flex</directory>
+      <directory>src/main/royale</directory>
       <includes>
         <include>**/*</include>
       </includes>

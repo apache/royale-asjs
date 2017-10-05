@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.beads.controllers
+package org.apache.royale.mobile.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.mobile.beads.ToggleSwitchView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.mobile.beads.ToggleSwitchView;
     COMPILE::JS
     {
         import goog.events;
@@ -62,9 +62,9 @@ package org.apache.flex.mobile.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
-		 *  @royaleignorecoercion org.apache.flex.html.Spinner
+		 *  @royaleignorecoercion org.apache.royale.html.Spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

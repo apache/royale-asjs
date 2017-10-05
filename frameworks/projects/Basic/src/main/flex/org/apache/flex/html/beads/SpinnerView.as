@@ -16,31 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 COMPILE::SWF {
 	import flash.display.DisplayObject;
 }
 
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.beads.controllers.ButtonAutoRepeatController;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 
 COMPILE::JS {
-	import org.apache.flex.html.beads.controllers.SpinnerMouseController;
-    import org.apache.flex.html.supportClasses.SpinnerButton;
+	import org.apache.royale.html.beads.controllers.SpinnerMouseController;
+    import org.apache.royale.html.supportClasses.SpinnerButton;
 }
 
 	/**
-	 *  The SpinnerView class creates the visual elements of the org.apache.flex.html.Spinner
+	 *  The SpinnerView class creates the visual elements of the org.apache.royale.html.Spinner
 	 *  component.
 	 *
 	 *  @langversion 3.0
@@ -76,7 +76,7 @@ COMPILE::JS {
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -142,7 +142,7 @@ COMPILE::JS {
 		}
 
 		/**
-		 *  The component for decrementing the org.apache.flex.html.Spinner value.
+		 *  The component for decrementing the org.apache.royale.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -161,7 +161,7 @@ COMPILE::JS {
 		}
 
 		/**
-		 *  The component for incrementing the org.apache.flex.html.Spinner value.
+		 *  The component for incrementing the org.apache.royale.html.Spinner value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

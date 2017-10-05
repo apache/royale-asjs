@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls
+package org.apache.royale.html.customControls
 {
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.UIBase;
 	
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	public class DataGrid extends UIBase
 	{

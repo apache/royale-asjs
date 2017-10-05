@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererClassFactory;
 
     /**
      *  The IDataProviderItemRendererMapper interface is the interface for beads

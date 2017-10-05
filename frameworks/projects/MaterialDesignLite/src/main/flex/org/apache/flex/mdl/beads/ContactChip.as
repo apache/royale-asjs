@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.Span;
-    import org.apache.flex.utils.StrandUtils;
-    import org.apache.flex.core.UIBase;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.Span;
+    import org.apache.royale.utils.StrandUtils;
+    import org.apache.royale.core.UIBase;
 
     /**
      *  The ContactChip bead class is a specialty bead that can be used to add additional

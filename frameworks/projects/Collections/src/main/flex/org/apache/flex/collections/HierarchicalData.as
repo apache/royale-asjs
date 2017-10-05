@@ -17,11 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
 
-import org.apache.flex.events.Event;
-import org.apache.flex.events.EventDispatcher;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
 
 
 /**

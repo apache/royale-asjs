@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections.parsers
+package org.apache.royale.collections.parsers
 {
     /**
      *  The IInputParser interface is the basic interface for parsing
      *  data from a server or database into an array of items.
      * 
      *  This interface is generally used in a LazyCollection.
-     *  @see org.apache.flex.net.dataConverters.LazyCollection.
+     *  @see org.apache.royale.net.dataConverters.LazyCollection.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

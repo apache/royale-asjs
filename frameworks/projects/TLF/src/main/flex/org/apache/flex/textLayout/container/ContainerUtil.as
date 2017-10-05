@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.royale.core.IParentIUIBase;
 
 	public class ContainerUtil
 	{

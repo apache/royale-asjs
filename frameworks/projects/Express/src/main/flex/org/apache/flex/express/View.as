@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.binding.ViewDataBinding;
-	import org.apache.flex.core.View;
+	import org.apache.royale.binding.ViewDataBinding;
+	import org.apache.royale.core.View;
 	
 	/**
 	 * This View extends the standard View and adds the ViewDataBinding bead
 	 * for convenience.
 	 */
-	public class View extends org.apache.flex.core.View
+	public class View extends org.apache.royale.core.View
 	{
 		public function View()
 		{

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
 	/**
 	 *  This interface is implemented by any Cartesian-style chart layout

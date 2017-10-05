@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.effects.IEffect;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.effects.IEffect;
 
 	/**
 	 *  The IEffectsGenerator interface is the basic interface for classes generating tweener

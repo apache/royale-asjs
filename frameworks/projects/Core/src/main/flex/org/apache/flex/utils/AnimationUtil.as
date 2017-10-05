@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
     COMPILE::SWF {
 		import flash.display.DisplayObject;
 		import flash.events.Event;
 		import flash.events.IEventDispatcher;
     }
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.core.IUIBase;
 
 	/**
 	 *  The AnimationUtil class wraps callbacks to be called when the platform is ready for the next draw.

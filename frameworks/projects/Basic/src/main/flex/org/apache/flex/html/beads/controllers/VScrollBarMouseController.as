@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  The VScrollBarMouseController class is the controller for
-     *  org.apache.flex.html.supportClasses.ScrollBar
+     *  org.apache.royale.html.supportClasses.ScrollBar
      *  that acts as the Vertical ScrollBar.
      *  
      *  @langversion 3.0

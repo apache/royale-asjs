@@ -22,21 +22,21 @@
 
 LocalStorage
 {
-    IStorageProvider: ClassReference("org.apache.flex.storage.providers.LocalStorageProvider");
+    IStorageProvider: ClassReference("org.apache.royale.storage.providers.LocalStorageProvider");
 }
 
 PermanentStorage
 {
-	IStorageProvider: ClassReference("org.apache.flex.storage.providers.WebStorageProvider");
+	IStorageProvider: ClassReference("org.apache.royale.storage.providers.WebStorageProvider");
 }
 
-@media -flex-flash
+@media -royale-swf
 {
 /**
  * StorageProvider for AIR platform
  */
 PermanentStorage
 {
-	IStorageProvider: ClassReference("org.apache.flex.storage.providers.AirStorageProvider");
+	IStorageProvider: ClassReference("org.apache.royale.storage.providers.AirStorageProvider");
 }	
 }

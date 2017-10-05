@@ -17,9 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 // shim the mx classes for states
-package org.apache.flex.states
+package org.apache.royale.states
 {
-    import org.apache.flex.core.IDocument;
+    import org.apache.royale.core.IDocument;
     
     [ExcludeClass]
     

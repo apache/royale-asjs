@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
 
 	
@@ -25,9 +25,9 @@ package org.apache.flex.textLayout.elements
 	/** 
      * The SubParagraphGroupElement is a grouping element for FlowLeafElements and other classes that extend SubParagraphGroupElementBase.
 	 *
-     * @see org.apache.flex.textLayout.elements.SubParagraphGroupElement
-     * @see org.apache.flex.textLayout.elements.SubParagraphGroupElementBase
-     * @see org.apache.flex.textLayout.elements.FlowLeafElement
+     * @see org.apache.royale.textLayout.elements.SubParagraphGroupElement
+     * @see org.apache.royale.textLayout.elements.SubParagraphGroupElementBase
+     * @see org.apache.royale.textLayout.elements.FlowLeafElement
      *
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

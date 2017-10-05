@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
     /**
      *  ITextField is the interface that all TextField MDL classes implement
-     *  It's used mainly in org.apache.flex.mdl.supportClasses.TextFieldBase
+     *  It's used mainly in org.apache.royale.mdl.supportClasses.TextFieldBase
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2

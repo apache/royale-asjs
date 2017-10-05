@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
 	public interface IComposeState extends IComposer
 	{

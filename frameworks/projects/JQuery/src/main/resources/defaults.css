@@ -18,33 +18,33 @@
  */
 @namespace jq "library://ns.apache.org/royale/jquery";
 
-@media -flex-flash
+@media -royale-swf
 {
 
 jq|TextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.TextModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+    IBeadView: ClassReference("org.apache.royale.html.beads.TextButtonView");
 }
 
 
 jq|ToggleTextButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-    IBeadView: ClassReference("org.apache.flex.html.beads.TextButtonView");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+    IBeadView: ClassReference("org.apache.royale.html.beads.TextButtonView");
 }
 
 
 jq|CheckBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
 }
 
 jq|RadioButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.royale.html.beads.RadioButtonView");			
 }
 
 

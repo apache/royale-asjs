@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package materialIcon
 {
-    import org.apache.flex.fa.FontAwesomeIcon;
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
+    import org.apache.royale.fa.FontAwesomeIcon;
+    import org.apache.royale.mdl.materialIcons.IMaterialIcon;
 
     public class MaterialIconWithFontAwesomeIcon extends FontAwesomeIcon implements IMaterialIcon
     {

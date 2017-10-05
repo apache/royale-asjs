@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
-	import org.apache.flex.text.engine.TabAlignment;
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.textLayout.property.PropertyUtil;
+	import org.apache.royale.text.engine.TabAlignment;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyFactory;
+	import org.apache.royale.textLayout.property.PropertyUtil;
 	/**
 	 * The TabStopFormat class represents the properties of a tab stop in a paragraph. You can set the <code>TextLayoutFormat.tabstops</code> property to an array of TabStopFormat objects.
-	 * @see org.apache.flex.textLayout.elements.TabElement 
-	 * @see org.apache.flex.textLayout.formats.TextLayoutFormat#tabStops
+	 * @see org.apache.royale.textLayout.elements.TabElement 
+	 * @see org.apache.royale.textLayout.formats.TextLayoutFormat#tabStops
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
@@ -173,7 +173,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TabAlignment
+		 * @see org.apache.royale.text.engine.TabAlignment
 		 */
 		public function get alignment():*
 		{ return _alignment; }
@@ -239,7 +239,7 @@ package org.apache.flex.textLayout.formats
 		 * All other property values will remain unmodified.
 		 * 
 		 * @param incoming instance from which values are concatenated.
-		 * @see org.apache.flex.textLayout.formats.FormatValue#INHERIT
+		 * @see org.apache.royale.textLayout.formats.FormatValue#INHERIT
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -259,7 +259,7 @@ package org.apache.flex.textLayout.formats
 		 * All other property values will remain unmodified.
 		 * 
 		 * @param incoming instance from which values are concatenated.
-		 * @see org.apache.flex.textLayout.formats.FormatValue#INHERIT
+		 * @see org.apache.royale.textLayout.formats.FormatValue#INHERIT
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

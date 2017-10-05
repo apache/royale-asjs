@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {        
         import flash.external.ExternalInterface;
         import flash.utils.getQualifiedClassName;
     }    
-    import org.apache.flex.events.Event;
+    import org.apache.royale.events.Event;
     
     /**
      *  The BrowserScroller class enables browser scrollbars
@@ -51,7 +51,7 @@ package org.apache.flex.core
         private var app:IInitialViewApplication;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

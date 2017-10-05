@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos
+package org.apache.royale.textLayout.edit.mementos
 {
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.IMemento;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.IMemento;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.ElementHelper;
 
 	public class SplitMemento extends BaseMemento implements IMemento {
 		private var _mementoList:Array;
@@ -52,8 +52,8 @@ package org.apache.flex.textLayout.edit.mementos
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IListItemElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IListItemElement
 		 */
 		static private function testValidLeadingParagraph(elem:IFlowGroupElement):Boolean {
 			// listitems have to have the very first item as a paragraph
@@ -66,7 +66,7 @@ package org.apache.flex.textLayout.edit.mementos
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		static public function performInternal(textFlow:ITextFlow, target:ElementMark, mementoList:Array):FlowGroupElement {
 			// split all the way up the chain and then do a move

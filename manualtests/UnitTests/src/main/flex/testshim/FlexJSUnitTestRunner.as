@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package testshim {
 
-import org.apache.flex.reflection.MetaDataArgDefinition;
-import org.apache.flex.reflection.MetaDataDefinition;
-import org.apache.flex.reflection.MethodDefinition;
-import org.apache.flex.reflection.TypeDefinition;
-import org.apache.flex.reflection.describeType;
+import org.apache.royale.reflection.MetaDataArgDefinition;
+import org.apache.royale.reflection.MetaDataDefinition;
+import org.apache.royale.reflection.MethodDefinition;
+import org.apache.royale.reflection.TypeDefinition;
+import org.apache.royale.reflection.describeType;
 
 import flexunit.framework.Assert;
 public class RoyaleUnitTestRunner {

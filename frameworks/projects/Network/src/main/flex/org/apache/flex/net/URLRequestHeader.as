@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
 	/**
 	 *  A URLRequestHeader object represents an HTTP request header.

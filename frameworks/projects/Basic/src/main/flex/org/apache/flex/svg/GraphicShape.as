@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
 	COMPILE::SWF
     {
@@ -24,18 +24,18 @@ package org.apache.flex.svg
 		import flash.display.Sprite;
 		import flash.geom.Point;
 		import flash.geom.Rectangle;
-		import org.apache.flex.core.WrappedSprite;
+		import org.apache.royale.core.WrappedSprite;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
-    import org.apache.flex.core.IRoyaleElement;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.graphics.IGraphicShape;
+    import org.apache.royale.core.IRoyaleElement;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.graphics.IGraphicShape;
 
 	public class GraphicShape extends UIBase implements IGraphicShape
 	{
@@ -81,7 +81,7 @@ package org.apache.flex.svg
 		/**
 		 * Constructor
 		 *
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
         public function GraphicShape()
         {
@@ -89,7 +89,7 @@ package org.apache.flex.svg
         }
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

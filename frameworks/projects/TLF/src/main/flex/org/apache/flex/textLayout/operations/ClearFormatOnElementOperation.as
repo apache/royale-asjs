@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	/**
 	 * The ClearFormatOnElementOperation class encapsulates a style change to an element.
 	 *
 	 * <p>This operation undefines one or more formats to a flow element.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.formats.TextLayoutFormat
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.formats.TextLayoutFormat
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 
 	 * @see ApplyFormatToElementOperation
 	 * 

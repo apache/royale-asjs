@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	
-    import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.Strand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.Event;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.beads.controllers.ButtonAutoRepeatController;
+    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IScrollBarModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.Strand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 
     /**
      *  The ScrollBarView class is the default view for
-     *  the org.apache.flex.html.supportClasses.ScrollBar class.
+     *  the org.apache.royale.html.supportClasses.ScrollBar class.
      *  It implements the classic desktop-like ScrollBar.
      *  A different view would implement more modern scrollbars that hide themselves
      *  until hovered over with the mouse.
@@ -94,7 +94,7 @@ package org.apache.flex.html.beads
         }
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -134,7 +134,7 @@ package org.apache.flex.html.beads
 		protected var _thumb:Button;
 		
         /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#decrement
+         *  @copy org.apache.royale.html.beads.IScrollBarView#decrement
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -147,7 +147,7 @@ package org.apache.flex.html.beads
 		}
 
         /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#increment
+         *  @copy org.apache.royale.html.beads.IScrollBarView#increment
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -160,7 +160,7 @@ package org.apache.flex.html.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#track
+         *  @copy org.apache.royale.html.beads.IScrollBarView#track
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -173,7 +173,7 @@ package org.apache.flex.html.beads
 		}
         
         /**
-         *  @copy org.apache.flex.html.beads.IScrollBarView#thumb
+         *  @copy org.apache.royale.html.beads.IScrollBarView#thumb
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -186,7 +186,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IBeadView#viewHeight
+         *  @copy org.apache.royale.core.IBeadView#viewHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -200,7 +200,7 @@ package org.apache.flex.html.beads
         }
         
         /**
-         *  @copy org.apache.flex.core.IBeadView#viewWidth
+         *  @copy org.apache.royale.core.IBeadView#viewWidth
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

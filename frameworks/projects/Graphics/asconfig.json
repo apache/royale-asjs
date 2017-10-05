@@ -1,5 +1,5 @@
 {
-  "config": "flex",
+  "config": "royale",
   "compilerOptions": {
     "debug": true,
     "js-output-type": "royale",
@@ -15,6 +15,6 @@
     ]
   },
   "files": [
-    "src/main/flex/GraphicsClasses.as"
+    "src/main/royale/GraphicsClasses.as"
   ]
 }

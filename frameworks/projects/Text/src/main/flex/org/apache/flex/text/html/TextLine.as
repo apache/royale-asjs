@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.html
+package org.apache.royale.text.html
 {
 	COMPILE::SWF
 	{
@@ -28,18 +28,18 @@ package org.apache.flex.text.html
 	}
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.geom.Point;
-		import org.apache.flex.utils.PointUtils;
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.geom.Point;
+		import org.apache.royale.utils.PointUtils;
 	}
 	
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.Div;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.Div;
 	
 	public class TextLine extends Div implements ITextLine
 	{
@@ -72,7 +72,7 @@ package org.apache.flex.text.html
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
         override protected function createElement():WrappedHTMLElement

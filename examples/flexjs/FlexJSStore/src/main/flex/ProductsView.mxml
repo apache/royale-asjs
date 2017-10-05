@@ -28,8 +28,8 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-        import org.apache.flex.events.Event;
-        import org.apache.flex.collections.LazyCollection;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.collections.LazyCollection;
         import samples.flexstore.Product;
                 
         private var _catalog:LazyCollection;
@@ -47,7 +47,7 @@ limitations under the License.
             {
                 filterPanel.filter.count = c.length;
             }
-            dispatchEvent(new org.apache.flex.events.Event("catalogChange"));
+            dispatchEvent(new org.apache.royale.events.Event("catalogChange"));
         }
         
         public function addToCompare(product:Product):void

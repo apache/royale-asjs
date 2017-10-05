@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.graphics
+package org.apache.royale.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.svg.Circle
+		import org.apache.royale.svg.Circle
 	}
 
     COMPILE::JS
@@ -28,14 +28,14 @@ package org.apache.flex.createjs.graphics
         import createjs.Shape;
 		import createjs.Stage;
 
-        import org.apache.flex.createjs.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
-    import org.apache.flex.events.Event;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
+    import org.apache.royale.events.Event;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
 
 	/**
 	 * Creates a circle.
@@ -47,7 +47,7 @@ package org.apache.flex.createjs.graphics
 	 */
 
     COMPILE::SWF
-	public class Circle extends org.apache.flex.svg.Circle
+	public class Circle extends org.apache.royale.svg.Circle
 	{
 		// nothing special for SWF version.
 	}

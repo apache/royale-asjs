@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
     
     /**
      *  Constants for the values of the <code>direction</code> property
      *  of a ScrollEvent.
      *
-     *  @see org.apache.flex.textLayout.events.ScrollEvent
+     *  @see org.apache.royale.textLayout.events.ScrollEvent
      * 
      * @playerversion Flash 10.0
      * @playerversion AIR 2.0

@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.text.engine.ITextLine;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.text.engine.ITextLine;
 
 	public interface ITextLine extends IParentIUIBase
 	{

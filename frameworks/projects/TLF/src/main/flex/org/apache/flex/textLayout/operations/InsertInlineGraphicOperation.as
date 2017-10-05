@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.edit.ElementRange;
-	import org.apache.flex.textLayout.edit.ParaEdit;
-	import org.apache.flex.textLayout.edit.PointFormat;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.edit.ElementRange;
+	import org.apache.royale.textLayout.edit.ParaEdit;
+	import org.apache.royale.textLayout.edit.PointFormat;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 
 
@@ -37,9 +37,9 @@ package org.apache.flex.textLayout.operations {
 	 * The InsertInlineGraphicOperation class encapsulates the insertion of an inline
 	 * graphic into a text flow.
 	 *
-	 * @see org.apache.flex.textLayout.elements.IInlineGraphicElement
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.elements.IInlineGraphicElement
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -83,7 +83,7 @@ package org.apache.flex.textLayout.operations {
 		}
 		
 		/**	
-		 * @copy org.apache.flex.textLayout.elements.IInlineGraphicElement#source
+		 * @copy org.apache.royale.textLayout.elements.IInlineGraphicElement#source
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -99,7 +99,7 @@ package org.apache.flex.textLayout.operations {
 		}
 
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.IInlineGraphicElement#width
+		 * @copy org.apache.royale.textLayout.elements.IInlineGraphicElement#width
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -115,9 +115,9 @@ package org.apache.flex.textLayout.operations {
 		}
 
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.IInlineGraphicElement#height
+		 * @copy org.apache.royale.textLayout.elements.IInlineGraphicElement#height
 		 * 
-		 * @see org.apache.flex.textLayout.IInlineGraphicElement#height
+		 * @see org.apache.royale.textLayout.IInlineGraphicElement#height
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -133,7 +133,7 @@ package org.apache.flex.textLayout.operations {
 		}
 		
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.IInlineGraphicElement#float
+		 * @copy org.apache.royale.textLayout.elements.IInlineGraphicElement#float
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

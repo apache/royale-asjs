@@ -24,7 +24,7 @@ import flash.events.Event;
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.Event;
+    import org.apache.royale.events.Event;
 }
 
 /**

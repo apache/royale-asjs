@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
          xmlns:js="library://ns.apache.org/royale/basic" 
-         implements="org.apache.flex.core.IDragInitiator"
+         implements="org.apache.royale.core.IDragInitiator"
     xmlns:productsView="productsView.*"
     currentState="browse"
     title="SpaceHolder"
@@ -37,15 +37,15 @@ limitations under the License.
     
     <fx:Script>
         <![CDATA[
-            import org.apache.flex.core.IUIBase;
-            import org.apache.flex.effects.Effect;
-            import org.apache.flex.effects.Fade;
-            import org.apache.flex.effects.Move;
-            import org.apache.flex.effects.Parallel;
-            import org.apache.flex.effects.Tween;
-            import org.apache.flex.events.DragEvent;
-            import org.apache.flex.events.Event;
-            import org.apache.flex.collections.LazyCollection;
+            import org.apache.royale.core.IUIBase;
+            import org.apache.royale.effects.Effect;
+            import org.apache.royale.effects.Fade;
+            import org.apache.royale.effects.Move;
+            import org.apache.royale.effects.Parallel;
+            import org.apache.royale.effects.Tween;
+            import org.apache.royale.events.DragEvent;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.collections.LazyCollection;
             
             import samples.flexstore.Product;
             import samples.flexstore.ProductFilter;
@@ -124,9 +124,9 @@ limitations under the License.
             }
         }
         
-        private function updateLayout(event:org.apache.flex.events.Event):void
+        private function updateLayout(event:org.apache.royale.events.Event):void
         {
-            thumbContentGroup.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));   
+            thumbContentGroup.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));   
         }
             
         private function thumbDragStartHandler(event:MouseEvent):void
@@ -191,7 +191,7 @@ limitations under the License.
                 }
                 p.play();
                 p.addEventListener(Effect.EFFECT_END,
-                    function(event:org.apache.flex.events.Event):void
+                    function(event:org.apache.royale.events.Event):void
                     {
                         layoutCatalog();
                     });
@@ -303,12 +303,12 @@ limitations under the License.
                 // Fade in newly selected thumbnails after the last
 				// visible thumbnail has moved to its new position.
                 move.addEventListener(Effect.EFFECT_END,
-					function(event:org.apache.flex.events.Event):void
+					function(event:org.apache.royale.events.Event):void
 					{
 						fadeInThumbnails();
 					});
             }
-            thumbContentGroup.dispatchEvent(new org.apache.flex.events.Event("layoutNeeded"));
+            thumbContentGroup.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
             //return the last move to watch
             return move;
         }
@@ -375,7 +375,7 @@ limitations under the License.
                         if (first)
 						{
                             move.addEventListener(Effect.EFFECT_END,
-								function(event:org.apache.flex.events.Event):void
+								function(event:org.apache.royale.events.Event):void
 								{
 									details.product = product;
                                     currentState = "details";
@@ -398,7 +398,7 @@ limitations under the License.
             {
                 //make sure that the selected thumb is visible in the list on the right
                 move.addEventListener(Effect.EFFECT_END,
-					function(e:org.apache.flex.events.Event):void
+					function(e:org.apache.royale.events.Event):void
 					{
 					    var curpos:int = scv.verticalScrollPosition;
 					    if (selectedThumb.y < curpos)
@@ -460,7 +460,7 @@ limitations under the License.
             if (lastEffect != null)
             {
                 lastEffect.addEventListener(Effect.EFFECT_END,
-                    function (event:org.apache.flex.events.Event):void
+                    function (event:org.apache.royale.events.Event):void
                     {
                         setCompareState();
                     });

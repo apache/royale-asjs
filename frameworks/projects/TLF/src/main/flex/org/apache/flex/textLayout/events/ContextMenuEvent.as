@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events {
-	import org.apache.flex.events.Event;
+package org.apache.royale.textLayout.events {
+	import org.apache.royale.events.Event;
 
 	public class ContextMenuEvent extends Event {
 		

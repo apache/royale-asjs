@@ -18,7 +18,7 @@
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
 
-package org.apache.flex.net.remoting.messages
+package org.apache.royale.net.remoting.messages
 {
 
 COMPILE::SWF

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections.converters
+package org.apache.royale.collections.converters
 {
-    import org.apache.flex.collections.converters.IItemConverter;
+    import org.apache.royale.collections.converters.IItemConverter;
     
     /**
      *  The JSONItemConverter class parses a JSON structure

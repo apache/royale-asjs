@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.StandardFlowComposer;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.StandardFlowComposer;
 
 	public class StandardHelper
 	{

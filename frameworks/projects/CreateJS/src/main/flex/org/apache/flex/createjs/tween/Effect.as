@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.tween
+package org.apache.royale.createjs.tween
 {	
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.Event;
 	
-	import org.apache.flex.createjs.core.CreateJSBase;
+	import org.apache.royale.createjs.core.CreateJSBase;
 	
 	COMPILE::JS {
 		import createjs.Tween;
@@ -146,7 +146,7 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 *  @royaleignorecoercion createjs.Shape
-		 *  @royaleignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */
 		public function play():void
 		{

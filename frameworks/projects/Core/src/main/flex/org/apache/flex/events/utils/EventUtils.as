@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events.utils
+package org.apache.royale.events.utils
 {
     /**
 	 *  Provides static methods for creating custom events in JS

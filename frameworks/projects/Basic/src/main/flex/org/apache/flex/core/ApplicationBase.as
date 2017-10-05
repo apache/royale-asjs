@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF {
         import flash.display.Sprite;
@@ -25,8 +25,8 @@ package org.apache.flex.core
     }
     COMPILE::JS
     {
-        import org.apache.flex.utils.CSSUtils;
-        import org.apache.flex.events.Event;
+        import org.apache.royale.utils.CSSUtils;
+        import org.apache.royale.events.Event;
     }
 
         
@@ -188,7 +188,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setHeight
+         *  @copy org.apache.royale.core.ILayoutChild#setHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -207,7 +207,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setWidth
+         *  @copy org.apache.royale.core.ILayoutChild#setWidth
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

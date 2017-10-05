@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
     
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.net.events.FaultEvent;
-    import org.apache.flex.net.events.ResultEvent;
-    import org.apache.flex.net.remoting.Operation;
-    import org.apache.flex.net.remoting.amf.AMFNetConnection;
-    import org.apache.flex.reflection.getClassByAlias;
-    import org.apache.flex.reflection.registerClassAlias;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.net.events.FaultEvent;
+    import org.apache.royale.net.events.ResultEvent;
+    import org.apache.royale.net.remoting.Operation;
+    import org.apache.royale.net.remoting.amf.AMFNetConnection;
+    import org.apache.royale.reflection.getClassByAlias;
+    import org.apache.royale.reflection.registerClassAlias;
 
-	[Event(name="result", type="org.apache.flex.net.events.ResultEvent")]
-	[Event(name="fault", type="org.apache.flex.net.events.FaultEvent")]
+	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
+	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
 	public class RemoteObject extends EventDispatcher implements IBead
 	{
 		private var _endPoint:String;

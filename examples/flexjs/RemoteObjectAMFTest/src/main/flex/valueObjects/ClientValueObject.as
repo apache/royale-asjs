@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package valueObjects
 {
-    [RemoteClass(alias="org.apache.flex.amfsamples.valueobjects.ServerCustomType")]
+    [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.ServerCustomType")]
 	public class ClientValueObject
 	{
 		public function ClientValueObject()

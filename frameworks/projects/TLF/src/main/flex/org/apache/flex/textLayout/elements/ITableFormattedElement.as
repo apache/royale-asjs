@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
+package org.apache.royale.textLayout.elements {
 	public interface ITableFormattedElement extends IContainerFormattedElement {
 		function get table():ITableElement;
 		function set table(value:ITableElement):void;

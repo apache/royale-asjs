@@ -16,32 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.ime.CompositionAttributeRange;
-	import org.apache.flex.text.ime.IIMEClient;
-	import org.apache.flex.text.ime.IME;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextRange;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.IMEStatus;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.operations.ApplyFormatToElementOperation;
-	import org.apache.flex.textLayout.operations.FlowOperation;
-	import org.apache.flex.textLayout.operations.InsertTextOperation;
-	import org.apache.flex.textLayout.utils.GeometryUtil;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.undo.IOperation;
-	import org.apache.flex.utils.undo.UndoManager;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.ime.CompositionAttributeRange;
+	import org.apache.royale.text.ime.IIMEClient;
+	import org.apache.royale.text.ime.IME;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.IMEStatus;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.operations.ApplyFormatToElementOperation;
+	import org.apache.royale.textLayout.operations.FlowOperation;
+	import org.apache.royale.textLayout.operations.InsertTextOperation;
+	import org.apache.royale.textLayout.utils.GeometryUtil;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.undo.IOperation;
+	import org.apache.royale.utils.undo.UndoManager;
 
 	internal class IMEClient implements IIMEClient
 	{

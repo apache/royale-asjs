@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property
+package org.apache.royale.textLayout.property
 {
 	// [ExcludeClass]
 	public class CounterPropHandler extends PropertyHandler

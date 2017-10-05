@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 COMPILE::SWF
 {
@@ -71,7 +71,7 @@ COMPILE::SWF
         public var minWidth:Number;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -110,7 +110,7 @@ COMPILE::SWF
         }
         
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.ILayoutChild
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 */
         private function resizeHandler(event:Event):void
         {

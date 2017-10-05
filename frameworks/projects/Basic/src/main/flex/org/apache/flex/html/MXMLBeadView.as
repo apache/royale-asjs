@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.states.State;
+	import org.apache.royale.states.State;
 
-	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.ILayoutHost;
-    import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IStatesImpl;
-	import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.html.beads.GroupView;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.IBead;
+    import org.apache.royale.core.ILayoutHost;
+    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStatesImpl;
+	import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 
     [DefaultProperty("mxmlContent")]
 
@@ -80,7 +80,7 @@ package org.apache.flex.html
             for each (var bead:IBead in beads)
                 addBead(bead);
 
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
 
             MXMLDataInterpreter.generateMXMLInstances(this, IParent(value), MXMLDescriptor);
 
@@ -99,7 +99,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.Application#MXMLDescriptor
+         *  @copy org.apache.royale.core.Application#MXMLDescriptor
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -112,7 +112,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+         *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -125,7 +125,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+         *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -138,7 +138,7 @@ package org.apache.flex.html
 
         /**
          *  The array of view states. These should
-         *  be instances of org.apache.flex.states.State.
+         *  be instances of org.apache.royale.states.State.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -245,7 +245,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.Application#beads
+         *  @copy org.apache.royale.core.Application#beads
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -257,7 +257,7 @@ package org.apache.flex.html
         private var _beads:Array;
 
         /**
-         *  @copy org.apache.flex.core.IStrand#addBead()
+         *  @copy org.apache.royale.core.IStrand#addBead()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -273,7 +273,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
+         *  @copy org.apache.royale.core.IStrand#getBeadByType()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -291,7 +291,7 @@ package org.apache.flex.html
         }
 
         /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
+         *  @copy org.apache.royale.core.IStrand#removeBead()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

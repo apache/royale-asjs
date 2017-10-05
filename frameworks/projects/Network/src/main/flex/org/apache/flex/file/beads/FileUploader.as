@@ -15,15 +15,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.royale.file.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.file.FileProxy;
-	import org.apache.flex.net.URLBinaryLoader;
-	import org.apache.flex.net.URLRequest;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.net.URLBinaryLoader;
+	import org.apache.royale.net.URLRequest;
 
 	COMPILE::SWF
 	{
@@ -32,8 +32,8 @@ package org.apache.flex.file.beads
 	
 	COMPILE::JS
 	{
-		import org.apache.flex.events.Event;
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.core.WrappedHTMLElement;
 		import goog.events;
 
 	}
@@ -46,7 +46,7 @@ package org.apache.flex.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="complete", type="org.apache.flex.events.Event")]
+	[Event(name="complete", type="org.apache.royale.events.Event")]
 	/**
 	 *  The FileUploader class is a bead which adds to FileProxy
 	 *  the ability to upload files.
@@ -93,7 +93,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

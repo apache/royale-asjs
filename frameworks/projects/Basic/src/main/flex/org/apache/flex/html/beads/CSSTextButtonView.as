@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -28,22 +28,22 @@ package org.apache.flex.html.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.SolidBorderUtil;
-    import org.apache.flex.utils.StringTrimmer;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.utils.CSSUtils;
+    import org.apache.royale.utils.SolidBorderUtil;
+    import org.apache.royale.utils.StringTrimmer;
 
     /**
      *  The CSSTextButtonView class is the default view for
-     *  the org.apache.flex.html.TextButton class.
+     *  the org.apache.royale.html.TextButton class.
      *  It allows the look of the button to be expressed
      *  in CSS via the background-image style and displays
      *  a text label.  This view does not support right-to-left
@@ -91,7 +91,7 @@ package org.apache.flex.html.beads
 		private var shape:Shape;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -266,17 +266,17 @@ package org.apache.flex.html.beads
 			}
 		}
 				
-		private function textChangeHandler(event:org.apache.flex.events.Event):void
+		private function textChangeHandler(event:org.apache.royale.events.Event):void
 		{
 			text = textModel.text;
 		}
 		
-		private function htmlChangeHandler(event:org.apache.flex.events.Event):void
+		private function htmlChangeHandler(event:org.apache.royale.events.Event):void
 		{
 			html = textModel.html;
 		}
 		
-		private function sizeChangeHandler(event:org.apache.flex.events.Event):void
+		private function sizeChangeHandler(event:org.apache.royale.events.Event):void
 		{
 			setupSkins();
 		}

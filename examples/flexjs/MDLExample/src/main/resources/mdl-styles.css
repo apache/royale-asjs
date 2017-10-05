@@ -38,8 +38,8 @@
 js|Image
 {
 	vertical-align: top;
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ImageModel");
-	IBeadView:  ClassReference("org.apache.flex.html.beads.ImageView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ImageView");
 }
 
 /* Lists */
@@ -110,7 +110,7 @@ js|Image
 
 .customTabBarSetup
 {
-    IItemRenderer: ClassReference("org.apache.flex.mdl.itemRenderers.TabBarButtonLayoutItemRenderer");
+    IItemRenderer: ClassReference("org.apache.royale.mdl.itemRenderers.TabBarButtonLayoutItemRenderer");
 }
 
 /* card wide */

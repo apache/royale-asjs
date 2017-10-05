@@ -37,12 +37,12 @@
             <available file="${env.FALCON_HOME}/lib/falcon-mxmlc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../flex-falcon/compiler">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
         </and>
     </condition>
     <condition property="FALCON_HOME" value="${ROYALE_HOME}">
@@ -69,12 +69,12 @@
             <available file="${ROYALE_HOME}/js/lib/jsc.jar" type="file" />
         </and>
     </condition>
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../flex-falcon/compiler-jx">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
     <condition property="GOOG_HOME" value="${env.GOOG_HOME}">
@@ -99,7 +99,7 @@
     
     <target name="check-js">
         <uptodate property="js-not-needed" targetfile="${ROYALE_HOME}/frameworks/js/Royale/projects/${ant.project.name}JS/target/${ant.project.name}JS.swc">
-            <srcfiles dir="${basedir}/src/main/flex" includes="**/**"/>
+            <srcfiles dir="${basedir}/src/main/royale" includes="**/**"/>
         </uptodate>
     </target>
     <target name="js-if-needed" depends="check-js" unless="js-not-needed">
@@ -109,13 +109,13 @@
     <target name="check-for-tests" >
         <condition property="skip-tests" >
             <not>
-                <available file="${basedir}/src/test/flex/build.xml" />
+                <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
     </target>
     
     <target name="test" depends="check-for-tests" unless="skip-tests">
-        <ant dir="src/test/flex" />
+        <ant dir="src/test/royale" />
     </target>
     
     <target name="clean">
@@ -133,7 +133,7 @@
     </target>
     
     <target name="clean-tests" depends="check-for-tests" unless="skip-tests">
-        <ant dir="src/test/flex" target="clean"/>
+        <ant dir="src/test/royale" target="clean"/>
     </target>
     
     <target name="compile" description="Compiles .as files into .swc">
@@ -156,7 +156,7 @@
 
     <target name="check-compiler" depends="check-falcon-home">
         <path id="lib.path">
-            <fileset dir="${FALCON_HOME}/lib" includes="falcon-flexTasks.jar"/>
+            <fileset dir="${FALCON_HOME}/lib" includes="falcon-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
@@ -174,12 +174,12 @@
         property="FALCON_HOME"
         value="${env.FALCON_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
-        value="${ROYALE_HOME}/../flex-falcon/compiler"/>
+        value="${ROYALE_HOME}/../royale-falcon/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a Royale SDK folder"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
         unless="FALCON_HOME"/>
     </target>
 

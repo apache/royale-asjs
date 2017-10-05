@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.text.engine.GroupElement;
-	import org.apache.flex.text.engine.TextElement;
+	import org.apache.royale.text.engine.GroupElement;
+	import org.apache.royale.text.engine.TextElement;
 	
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.WhiteSpaceCollapse;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.WhiteSpaceCollapse;
 
-	import org.apache.flex.textLayout.utils.CharacterUtil;
+	import org.apache.royale.textLayout.utils.CharacterUtil;
 	
 
 			

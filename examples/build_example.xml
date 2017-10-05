@@ -29,12 +29,12 @@
         </and>
     </condition>
 
-    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../flex-falcon/compiler">
+    <condition property="FALCON_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler">
         <and>
             <not>
                 <isset property="FALCON_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar" type="file" />
         </and>
     </condition>
 
@@ -65,12 +65,12 @@
         </and>
     </condition>
 
-    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../flex-falcon/compiler-jx">
+    <condition property="FALCONJX_HOME" value="${ROYALE_HOME}/../royale-falcon/compiler-jx">
         <and>
             <not>
                 <isset property="FALCONJX_HOME" />
             </not>
-            <available file="${ROYALE_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar" type="file" />
+            <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar" type="file" />
         </and>
     </condition>
 
@@ -151,7 +151,7 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
       <fileset dir="${FALCONJX_HOME}/lib" includes="jsc.jar"/>
     </path>
     
@@ -175,7 +175,7 @@
                configname="${config_arg}"
                swf-version="${swf.version}"
                closure-lib="${GOOG_HOME}"
-               file="${basedir}/src/main/flex/${example}.${file_suffix}"
+               file="${basedir}/src/main/royale/${example}.${file_suffix}"
                output="${basedir}/bin-debug/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
@@ -201,7 +201,7 @@
             configname="${config_arg}"
             swf-version="${swf.version}"
             closure-lib="${GOOG_HOME}"
-            file="${basedir}/src/main/flex/${example}.${file_suffix}"
+            file="${basedir}/src/main/royale/${example}.${file_suffix}"
             output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />

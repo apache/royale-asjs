@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.beads.DisableBead;
-	import org.apache.flex.html.accessories.ToolTipBead;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.beads.DisableBead;
+	import org.apache.royale.html.accessories.ToolTipBead;
 
 	/**
 	 * This class extends TextButton and adds the toolTip bead
 	 * as a convenience.
 	 */
-	public class TextButton extends org.apache.flex.html.TextButton
+	public class TextButton extends org.apache.royale.html.TextButton
 	{
 		public function TextButton()
 		{

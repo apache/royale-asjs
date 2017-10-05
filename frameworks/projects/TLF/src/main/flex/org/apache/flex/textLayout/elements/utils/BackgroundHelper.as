@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements.utils
+package org.apache.royale.textLayout.elements.utils
 {
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.utils.ObjectMap;
 	public class BackgroundHelper
 	{
 		public static var BACKGROUND_MANAGER_CACHE:ObjectMap = null;

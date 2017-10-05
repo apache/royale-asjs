@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.accessories
+package org.apache.royale.html.staticControls.accessories
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IFormatBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 *  The PhoneNumberFormatter class bead formats a numeric string into a 
@@ -53,7 +53,7 @@ package org.apache.flex.html.staticControls.accessories
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

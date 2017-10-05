@@ -16,33 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.core
+package org.apache.royale.createjs.core
 {
-    import org.apache.flex.core.UIHTMLElementWrapper;
-    import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IBeadController;
-    import org.apache.flex.core.IRoyaleElement;
-    import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.utils.CSSUtils;
+    import org.apache.royale.core.UIHTMLElementWrapper;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBeadController;
+    import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.CSSUtils;
 	
     COMPILE::JS
     {
         import createjs.Container;
         import createjs.DisplayObject;
         import createjs.Stage;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
 	/**
@@ -58,7 +58,7 @@ package org.apache.flex.createjs.core
 	 */
 	
 	COMPILE::SWF
-	public class UIBase extends org.apache.flex.core.UIBase
+	public class UIBase extends org.apache.royale.core.UIBase
 	{
 		// nothing different for the SWF version
 	}
@@ -211,7 +211,7 @@ package org.apache.flex.createjs.core
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.Application#beads
+		 *  @copy org.apache.royale.core.Application#beads
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -319,14 +319,14 @@ package org.apache.flex.createjs.core
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+		 *  @copy org.apache.royale.core.IUIBase#topMostEventDispatcher
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function get topMostEventDispatcher():IEventDispatcher
 		{
@@ -376,7 +376,7 @@ package org.apache.flex.createjs.core
         /**
          * @royaleignorecoercion createjs.Container
          * @royaleignorecoercion createjs.DisplayObject
-         * @royaleignorecoercion org.apache.flex.core.IChild
+         * @royaleignorecoercion org.apache.royale.core.IChild
          */
         public function getElementAt(index:int):IChild
         {
@@ -394,7 +394,7 @@ package org.apache.flex.createjs.core
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion createjs.Container
          */
         protected function createElement():WrappedHTMLElement
@@ -673,7 +673,7 @@ package org.apache.flex.createjs.core
 		/**
          * @royaleignorecoercion createjs.Container
          * @royaleignorecoercion createjs.DisplayObject
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function get parent():IParent
 		{

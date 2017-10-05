@@ -31,7 +31,7 @@ limitations under the License.
 			backgroundColor: #FFFF;
             height: 40px;
             padding: 4px;
-            IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+            IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
         }
         
         .RendererText {
@@ -52,10 +52,10 @@ limitations under the License.
     
     <fx:Script>
 		<![CDATA[
-			import org.apache.flex.events.Event;
-			import org.apache.flex.events.IEventDispatcher;
-			import org.apache.flex.events.ItemRendererEvent;
-			import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.IEventDispatcher;
+			import org.apache.royale.events.ItemRendererEvent;
+			import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
 			
 			import sample.todo.events.TodoListEvent;
 			import sample.todo.models.TodoListModel;
@@ -81,7 +81,7 @@ limitations under the License.
 				todoInput.text = "";
 			}
 			
-			private function updateStatus(event:org.apache.flex.events.Event):void {
+			private function updateStatus(event:org.apache.royale.events.Event):void {
 				var numberLeft:Number = 0;
 				
 				var model: TodoListModel = applicationModel as TodoListModel;

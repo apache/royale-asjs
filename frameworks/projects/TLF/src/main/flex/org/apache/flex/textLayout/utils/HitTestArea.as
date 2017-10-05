@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.FlowElement;
+package org.apache.royale.textLayout.utils {
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.FlowElement;
 
 	
 

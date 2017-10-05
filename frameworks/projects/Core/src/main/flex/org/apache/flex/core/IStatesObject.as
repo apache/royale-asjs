@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The IStatesObject interface is the interface for an
@@ -33,7 +33,7 @@ package org.apache.flex.core
 	{
         /**
          *  The array of view states. These should
-         *  be instances of org.apache.flex.states.State.
+         *  be instances of org.apache.royale.states.State.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.core
         /**
          *  The array of view state transitions. 
          *  These should
-         *  be instances of org.apache.flex.states.Transition.
+         *  be instances of org.apache.royale.states.Transition.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

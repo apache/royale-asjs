@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.utils.ObjectUtil;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyUtil;
+	import org.apache.royale.utils.ObjectUtil;
 	public class CreateTLFUtil
 	{
 		public static function createTLF(localStyles:ITextLayoutFormat, parentPrototype:TextLayoutFormat):TextLayoutFormat

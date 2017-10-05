@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.ValueEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ValueEvent;
 
 	COMPILE::SWF {
-		import org.apache.flex.html.accessories.ToolTipBead;
+		import org.apache.royale.html.accessories.ToolTipBead;
 	}
 
 /**
@@ -56,14 +56,14 @@ package org.apache.flex.html.beads
 		private var _alt:String;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.flex.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{	

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {	
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.IViewManager;
-	import org.apache.flex.mobile.chrome.TabBar;
-	import org.apache.flex.mobile.models.ViewManagerModel;
-	import org.apache.flex.mobile.beads.TabbedViewManagerView;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.mobile.IViewManagerView;
+	import org.apache.royale.mobile.IViewManager;
+	import org.apache.royale.mobile.chrome.TabBar;
+	import org.apache.royale.mobile.models.ViewManagerModel;
+	import org.apache.royale.mobile.beads.TabbedViewManagerView;
 	
-	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
+	[Event(name="viewChanged",type="org.apache.royale.events.Event")]
 	
 	/**
 	 * The TabbedViewManager displays a set of views, only one of which is active at

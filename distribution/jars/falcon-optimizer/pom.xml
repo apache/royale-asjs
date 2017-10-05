@@ -41,7 +41,7 @@
               <addClasspath>true</addClasspath>
               <classpathLayoutType>custom</classpathLayoutType>
               <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
-              <mainClass>org.apache.flex.compiler.clients.Optimizer</mainClass>
+              <mainClass>org.apache.royale.compiler.clients.Optimizer</mainClass>
             </manifest>
           </archive>
         </configuration>

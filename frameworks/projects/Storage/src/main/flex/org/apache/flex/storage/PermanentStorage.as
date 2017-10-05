@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.royale.storage
 {
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.ValuesManager;
 
-	import org.apache.flex.storage.providers.AirStorageProvider;
-	import org.apache.flex.storage.providers.IPermanentStorageProvider;
+	import org.apache.royale.storage.providers.AirStorageProvider;
+	import org.apache.royale.storage.providers.IPermanentStorageProvider;
 
 	/**
 	 * The PermanentStorage class provides the interface to the native

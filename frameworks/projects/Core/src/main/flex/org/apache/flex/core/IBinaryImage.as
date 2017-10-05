@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.utils.BinaryData;
+    import org.apache.royale.utils.BinaryData;
 
     /**
      *  The IBinaryImage interface describes the minimum set of properties

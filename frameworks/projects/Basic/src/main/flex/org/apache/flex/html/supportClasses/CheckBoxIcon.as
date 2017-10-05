@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
 	COMPILE::JS {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	public class CheckBoxIcon
@@ -69,7 +69,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLInputElement
 		 * @royaleignorecoercion Text
 		 */

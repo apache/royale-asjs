@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.providers
+package org.apache.royale.storage.providers
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 * This interface provides the template for creating classes the work

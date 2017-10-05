@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	public interface ITableElement extends ITableFormattedElement
 	{
 		function get numRows():int;

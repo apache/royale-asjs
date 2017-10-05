@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
 	import flash.net.URLRequest;
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IImageModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.royale.html.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

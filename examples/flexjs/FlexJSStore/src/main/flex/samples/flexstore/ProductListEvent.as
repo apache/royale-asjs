@@ -19,7 +19,7 @@
 package samples.flexstore
 {
 
-import org.apache.flex.events.Event;
+import org.apache.royale.events.Event;
 
 public class ProductListEvent extends Event
 {

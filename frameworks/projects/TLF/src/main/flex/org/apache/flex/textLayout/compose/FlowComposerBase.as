@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.utils.ContextUtil;
-	import org.apache.flex.textLayout.compose.utils.NumberlineUtil;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.ConfigSettings;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.utils.ContextUtil;
+	import org.apache.royale.textLayout.compose.utils.NumberlineUtil;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.ConfigSettings;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 
 
@@ -50,7 +50,7 @@ package org.apache.flex.textLayout.compose
 	 * to several types of flow composer. Application code would not typically instantiate or use this class
 	 * (unless extending it to create a custom flow composer).</p>
 	 * 
-	 * @see org.apache.flex.textLayout.elements.TextFlow#flowComposer
+	 * @see org.apache.royale.textLayout.elements.TextFlow#flowComposer
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
@@ -59,7 +59,7 @@ package org.apache.flex.textLayout.compose
 	public class FlowComposerBase
 	{
 				// Composition data
-		[ ArrayElementType("org.apache.flex.textLayout.compose.TextFlowLine") ]
+		[ ArrayElementType("org.apache.royale.textLayout.compose.TextFlowLine") ]
 		private var _lines:Array;	
 		
 		/** @private */
@@ -112,7 +112,7 @@ package org.apache.flex.textLayout.compose
 		/** 
 		* The TextFlow object to which this flow composer is attached. 
 		*
-		* @see org.apache.flex.textLayout.elements.TextFlow
+		* @see org.apache.royale.textLayout.elements.TextFlow
 		*
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5
@@ -607,7 +607,7 @@ package org.apache.flex.textLayout.compose
 		* Applications can provide a custom implementation to use fonts
 		* embedded in a different SWF file or to cache and reuse text lines.</p>
 		* 
-		* @see org.apache.flex.textLayout.compose.ISWFContext
+		* @see org.apache.royale.textLayout.compose.ISWFContext
 		* 
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5

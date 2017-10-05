@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	//--------------------------------------
@@ -40,7 +40,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
      *  Dispatched each time user moves the slider thumb from one position to another
@@ -50,7 +50,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	[Event(name="input", type="org.apache.flex.events.Event")]
+	[Event(name="input", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The Slider class is used for selecting a value out of a range.
@@ -61,9 +61,9 @@ package org.apache.flex.mdl
 	 *  
 	 *  In Royale the MDL Slider uses the following bead types:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input.
+	 *  org.apache.royale.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  org.apache.royale.core.IBeadController: the bead that handles input.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -172,7 +172,7 @@ package org.apache.flex.mdl
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLInputElement
 		 * @royaleignorecoercion HTMLElement
          */

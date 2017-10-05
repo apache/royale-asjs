@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
      *  Defines values for the <code>float</code> property
@@ -25,7 +25,7 @@ package org.apache.flex.textLayout.formats
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
-	 * @see org.apache.flex.textLayout.elements.InlineGrapicElement
+	 * @see org.apache.royale.textLayout.elements.InlineGrapicElement
 	 */
 	public final class Float
 	{

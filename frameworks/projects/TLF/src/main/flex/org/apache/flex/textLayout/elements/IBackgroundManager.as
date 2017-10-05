@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.graphics.IGraphicShape;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.graphics.IGraphicShape;
 
 	public interface IBackgroundManager
 	{

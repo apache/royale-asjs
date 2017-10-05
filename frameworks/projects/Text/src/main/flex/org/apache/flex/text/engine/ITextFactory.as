@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParentIUIBase;
 
 	public interface ITextFactory
 	{

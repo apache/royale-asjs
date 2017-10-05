@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.graphics.IRect;
-	import org.apache.flex.text.engine.ITextFactory;
+package org.apache.royale.textLayout.factory {
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.graphics.IRect;
+	import org.apache.royale.text.engine.ITextFactory;
 	public interface ITLFFactory {
 		function get textFactory():ITextFactory;
 		function getRect(blendMode:String=""):IRect;

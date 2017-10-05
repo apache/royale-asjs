@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.ITitleBarModel;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.ITitleBarModel;
+	import org.apache.royale.core.ValuesManager;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 	
 	/**
 	 *  The TitleBar class is a Container component that displays a title and an
 	 *  optional close button. The TitleBar uses the following bead types:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the title and showCloseButton values.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
-	 *  org.apache.flex.core.IBeadLayout: the bead that handles size and position of the component parts 
-	 *  (org.apache.flex.html.Label and org.apache.flex.html.Button).
-	 *  org.apache.flex.core.IMeasurementBead: a bead that helps determine the size of the 
-	 *  org.apache.flex.html.TitleBar for layout.
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the title and showCloseButton values.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the component.
+	 *  org.apache.royale.core.IBeadLayout: the bead that handles size and position of the component parts 
+	 *  (org.apache.royale.html.Label and org.apache.royale.html.Button).
+	 *  org.apache.royale.core.IMeasurementBead: a bead that helps determine the size of the 
+	 *  org.apache.royale.html.TitleBar for layout.
 	 * 
      *  @toplevel
 	 *  @langversion 3.0
@@ -98,7 +98,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  Whether or not to show a org.apache.flex.html.Button that indicates the component
+		 *  Whether or not to show a org.apache.royale.html.Button that indicates the component
 		 *  may be closed.
 		 *
 		 *  @langversion 3.0
@@ -127,7 +127,7 @@ package org.apache.flex.html
 		}
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

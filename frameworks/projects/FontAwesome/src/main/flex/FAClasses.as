@@ -27,9 +27,9 @@ package
 	*/
 	internal class FAClasses
 	{
-		import org.apache.flex.fa.FontAwesomeIconType; FontAwesomeIconType;
-		import org.apache.flex.fa.FontAwesomeIconSize; FontAwesomeIconSize;
-		import org.apache.flex.fa.FontAwesomeIconRotation; FontAwesomeIconRotation;
+		import org.apache.royale.fa.FontAwesomeIconType; FontAwesomeIconType;
+		import org.apache.royale.fa.FontAwesomeIconSize; FontAwesomeIconSize;
+		import org.apache.royale.fa.FontAwesomeIconRotation; FontAwesomeIconRotation;
 	}
 }
 

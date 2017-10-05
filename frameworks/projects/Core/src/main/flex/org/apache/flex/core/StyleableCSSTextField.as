@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {   
     import flash.display.DisplayObjectContainer;
     import flash.text.Font;
     
-    import org.apache.flex.core.IStyleableObject;
-    import org.apache.flex.events.Event;
+    import org.apache.royale.core.IStyleableObject;
+    import org.apache.royale.events.Event;
 		
     /**
      *  The StyleableCSSTextField class implements more CSS text styles in a TextField.

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IBeadController interface is a "marker" interface for beads that 
      *  are controllers.  A marker interface has no addtional APIs.
      *  It is used to find the controller on the strand via calls to getBeadByType.
      * 
-     *  @see org.apache.flex.core.IStrand#getBeadByType
+     *  @see org.apache.royale.core.IStrand#getBeadByType
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

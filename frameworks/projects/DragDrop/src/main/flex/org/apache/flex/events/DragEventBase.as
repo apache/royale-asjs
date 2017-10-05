@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
     COMPILE::SWF
     {
-        import org.apache.flex.events.MouseEvent;
+        import org.apache.royale.events.MouseEvent;
     }
     COMPILE::JS
     {

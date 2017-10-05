@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
     COMPILE::SWF
     {
         import flash.system.ApplicationDomain;        
         import flash.utils.getQualifiedClassName;        
     }
-    import org.apache.flex.core.IFlexInfo;
-    import org.apache.flex.core.IModule;
-    import org.apache.flex.core.IValuesImpl;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
+    import org.apache.royale.core.IFlexInfo;
+    import org.apache.royale.core.IModule;
+    import org.apache.royale.core.IValuesImpl;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
 
     /**
      *  Indicates that the state change has completed.  All properties
@@ -42,7 +42,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
+    [Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the initialization of the container is complete.
@@ -52,7 +52,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="initComplete", type="org.apache.flex.events.Event")]
+    [Event(name="initComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the children of the container is have been added.
@@ -62,7 +62,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
+    [Event(name="childrenAdded", type="org.apache.royale.events.Event")]
     
     /**
      *  The UIModule class is the base class for modules of user
@@ -116,14 +116,14 @@ package org.apache.flex.html
         }
         
         /**
-         *  The org.apache.flex.core.IValuesImpl that is
+         *  The org.apache.royale.core.IValuesImpl that is
          *  used by the loading application or module.
          *  A new instance is not created as the main
          *  one is shared but this adds the required
          *  depedencies for the JS compiler optimizer
          *  and adds the values for this module
          *
-         *  @see org.apache.flex.core.SimpleCSSValuesImpl
+         *  @see org.apache.royale.core.SimpleCSSValuesImpl
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
 
     import vos.MenuItemVO;
 

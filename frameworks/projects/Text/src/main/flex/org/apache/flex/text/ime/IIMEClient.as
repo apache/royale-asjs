@@ -16,43 +16,43 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.ime
+package org.apache.royale.text.ime
 {
 
-	import org.apache.flex.geom.Rectangle;
+	import org.apache.royale.geom.Rectangle;
 
 	//
 	// IIMEClient
 	//
 	/**
 	* Dispatched when the user begins to use an IME (input method editor).
-	* @eventType org.apache.flex.events.IMEEvent.IME_START_COMPOSITION
+	* @eventType org.apache.royale.events.IMEEvent.IME_START_COMPOSITION
 	* @playerversion Flash 10
 	* @playerversion AIR 1.5
 	* @langversion 3.0
 	*/
-//	[Event(name="imeStartComposition", type="org.apache.flex.text.events.IMEEvent.IME_START_COMPOSITION")]
+//	[Event(name="imeStartComposition", type="org.apache.royale.text.events.IMEEvent.IME_START_COMPOSITION")]
 
 	/**
 	* Dispatched when the user enters text. For IME (input method editor) clients, the receiver should 
 	* insert the string contained in the event object's <code>text</code> property at the current insertion point.
-	* @eventType org.apache.flex.events.TextEvent.TEXT_INPUT
+	* @eventType org.apache.royale.events.TextEvent.TEXT_INPUT
 	* @playerversion Flash 10
 	* @playerversion AIR 1.5
 	* @langversion 3.0
 	*/
-//	[Event(name="textInput", type="org.apache.flex.text.events.TextEvent.TEXT_INPUT")]
+//	[Event(name="textInput", type="org.apache.royale.text.events.TextEvent.TEXT_INPUT")]
 
 	/**
-	* Interface for IME (input method editor) clients.  Components based on the org.apache.flex.text.engine package must implement 
+	* Interface for IME (input method editor) clients.  Components based on the org.apache.royale.text.engine package must implement 
 	* this interface to support editing text inline using an IME. This interface is not used with TextField objects. 
 	* TextLayoutFramework (TLF) uses this interface to support inline IME, so clients using TLF do not need to implement this 
 	* interface. 
 	* <p>To support inline IME, set the <code>imeClient</code> property of an <code>ImeEvent.IME_START_COMPOSITION</code> event to
 	* an object which implements this interface.</p>
 	*
-	* @see org.apache.flex.text.ime.CompositionAttributeRange
-	* @see org.apache.flex.events.ImeEvent:imeClient
+	* @see org.apache.royale.text.ime.CompositionAttributeRange
+	* @see org.apache.royale.events.ImeEvent:imeClient
 	* 
 	* @playerversion Flash 10.1
 	* @playerversion AIR 1.5

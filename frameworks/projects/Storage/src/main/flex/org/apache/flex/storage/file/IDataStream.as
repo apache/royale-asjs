@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.file
+package org.apache.royale.storage.file
 {
 
-import org.apache.flex.events.IEventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  * The File class provides access to a specific file on the device.

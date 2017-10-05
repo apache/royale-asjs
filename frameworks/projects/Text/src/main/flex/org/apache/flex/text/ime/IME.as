@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.ime
+package org.apache.royale.text.ime
 {
     public class IME
     {

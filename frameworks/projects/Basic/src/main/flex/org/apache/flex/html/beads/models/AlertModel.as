@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IAlertModel;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 *  The AlertModel class bead implements the org.apache.flex.core.IAlertModel and holds the properties
-	 *  for an org.apache.flex.html.Alert such the buttons to use and message to display.
+	 *  The AlertModel class bead implements the org.apache.royale.core.IAlertModel and holds the properties
+	 *  for an org.apache.royale.html.Alert such the buttons to use and message to display.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -68,7 +68,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The title for the Alert.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#title
+		 *  @copy org.apache.royale.core.IAlertModel#title
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -92,7 +92,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The HTML title for the Alert.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#htmlTitle
+		 *  @copy org.apache.royale.core.IAlertModel#htmlTitle
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -116,7 +116,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The message to display.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#message
+		 *  @copy org.apache.royale.core.IAlertModel#message
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -140,7 +140,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The HTML message to display.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#htmlMessage
+		 *  @copy org.apache.royale.core.IAlertModel#htmlMessage
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -165,7 +165,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  Which buttons to display (see Alert for details).
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#flags
+		 *  @copy org.apache.royale.core.IAlertModel#flags
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -190,7 +190,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The label to use for the OK button.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#okLabel
+		 *  @copy org.apache.royale.core.IAlertModel#okLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -215,7 +215,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The label to use for the Cancel button.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#cancelLabel
+		 *  @copy org.apache.royale.core.IAlertModel#cancelLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -240,7 +240,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The label to use for the Yes button.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#yesLabel
+		 *  @copy org.apache.royale.core.IAlertModel#yesLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -265,7 +265,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The label to use for the NO button.
 		 * 
-		 *  @copy org.apache.flex.core.IAlertModel#noLabel
+		 *  @copy org.apache.royale.core.IAlertModel#noLabel
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

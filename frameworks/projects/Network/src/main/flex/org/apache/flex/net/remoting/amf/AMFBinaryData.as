@@ -18,11 +18,11 @@
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
 
-package org.apache.flex.net.remoting.amf
+package org.apache.royale.net.remoting.amf
 {
 
-    import org.apache.flex.reflection.getAliasByClass;
-    import org.apache.flex.reflection.getClassByAlias;
+    import org.apache.royale.reflection.getAliasByClass;
+    import org.apache.royale.reflection.getClassByAlias;
     
 /**
  *  A version of BinaryData specific to AMF.

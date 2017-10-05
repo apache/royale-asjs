@@ -23,6 +23,6 @@
   <id>royale-simple-application-archetype</id>
   <resources>
     <resource>.mvn/extensions.xml</resource>
-    <resource>src/main/flex/App.mxml</resource>
+    <resource>src/main/royale/App.mxml</resource>
   </resources>
 </archetype>

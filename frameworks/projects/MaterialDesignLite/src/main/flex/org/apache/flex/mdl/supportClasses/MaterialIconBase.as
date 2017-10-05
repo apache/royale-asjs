@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.mdl.materialIcons.IMaterialIcon;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -39,7 +39,7 @@ package org.apache.flex.mdl.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    public class MaterialIconBase extends UIBase implements org.apache.flex.mdl.materialIcons.IMaterialIcon
+    public class MaterialIconBase extends UIBase implements org.apache.royale.mdl.materialIcons.IMaterialIcon
     {
         /**
          *  constructor.
@@ -60,7 +60,7 @@ package org.apache.flex.mdl.supportClasses
         protected var textNode:Text;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLElement
          * @royaleignorecoercion Text
          */

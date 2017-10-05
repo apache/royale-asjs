@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package valueObjects
 {
-    [RemoteClass(alias="org.apache.flex.amfsamples.valueobjects.Product")]
+    [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Product")]
 	public class Product
 	{
 		public function Product()

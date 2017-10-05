@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
 	
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 		
     /**
      *  The StringSelectionModel class is a selection model for
@@ -50,7 +50,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -114,7 +114,7 @@ package org.apache.flex.html.beads.models
 		private var _selectedIndex:int = -1;
 		
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -138,7 +138,7 @@ package org.apache.flex.html.beads.models
 		private var _selectedString:String;
 		
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

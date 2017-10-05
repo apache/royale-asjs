@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
 
     COMPILE::JS
     {
-        import org.apache.flex.html.beads.controllers.SliderMouseController;
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.html.beads.controllers.SliderMouseController;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	[Event(name="valueChange", type="org.apache.flex.events.Event")]
+	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The Slider class is a component that displays a range of values using a
 	 *  track and a thumb control. The Slider uses the following bead types:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Slider.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input.
-	 *  org.apache.flex.core.IThumbValue: the bead responsible for the display of the thumb control.
-	 *  org.apache.flex.core.ITrackView: the bead responsible for the display of the track.
+	 *  org.apache.royale.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  org.apache.royale.core.IBeadController: the bead that handles input.
+	 *  org.apache.royale.core.IThumbValue: the bead responsible for the display of the thumb control.
+	 *  org.apache.royale.core.ITrackView: the bead responsible for the display of the track.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -158,7 +158,7 @@ package org.apache.flex.html
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

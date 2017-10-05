@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
+package org.apache.royale.textLayout.operations {
 
 
 
@@ -24,8 +24,8 @@ package org.apache.flex.textLayout.operations {
 	/** 
 	 * The RedoOperation class encapsulates a redo operation.
 	 *
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

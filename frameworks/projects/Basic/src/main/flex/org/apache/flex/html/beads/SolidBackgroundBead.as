@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
     import flash.display.Graphics;
     import flash.display.Sprite;
     
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The SolidBackgroundBead class draws a solid filled background.
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads
         private var host:IUIBase;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

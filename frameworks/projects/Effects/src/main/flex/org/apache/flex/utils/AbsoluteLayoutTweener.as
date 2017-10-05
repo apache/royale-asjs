@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutParent;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutParent;
 	
 	public class AbsoluteLayoutTweener extends LayoutTweener
 	{

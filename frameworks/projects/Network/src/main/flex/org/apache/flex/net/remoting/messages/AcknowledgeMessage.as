@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.net.remoting.messages
+package org.apache.royale.net.remoting.messages
 {
 
 COMPILE::SWF

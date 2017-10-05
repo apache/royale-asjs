@@ -24,7 +24,7 @@ limitations under the License.
         <![CDATA[
 			import models.MyModel;
 			
-			import org.apache.flex.events.CustomEvent;
+			import org.apache.royale.events.CustomEvent;
 			
 			private var _symbol:String;
 			
@@ -41,7 +41,7 @@ limitations under the License.
             [Bindable]
             public var fieldText:String = "symbol data";
             
-			private function radioChanged(e:org.apache.flex.events.Event):void
+			private function radioChanged(e:org.apache.royale.events.Event):void
 			{
 				dispatchEvent(new CustomEvent("radioClicked"));
 				fieldText = RadioButton(e.target).text;
@@ -72,7 +72,7 @@ limitations under the License.
 		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		global {
-    		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");
+    		IStatesImpl:            ClassReference("org.apache.royale.core.SimpleStatesImpl");
 		}
 
 		.inner {

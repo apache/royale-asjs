@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
-    import org.apache.flex.core.IBeadModel;
+    import org.apache.royale.core.IBeadModel;
 
     /**
      *  The IToastModel interface describes the minimum set of properties

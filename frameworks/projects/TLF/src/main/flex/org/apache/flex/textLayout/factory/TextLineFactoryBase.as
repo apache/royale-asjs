@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.textLayout.compose.ISimpleCompose;
-	import org.apache.flex.textLayout.compose.utils.FactoryHelper;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.graphics.IGraphicShape;
-	import org.apache.flex.svg.GraphicShape;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.IFactoryComposer;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.compose.SimpleCompose;
-	import org.apache.flex.textLayout.container.ContainerUtil;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.container.ScrollPolicy;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.compose.ISimpleCompose;
+	import org.apache.royale.textLayout.compose.utils.FactoryHelper;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.graphics.IGraphicShape;
+	import org.apache.royale.svg.GraphicShape;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.IFactoryComposer;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.compose.SimpleCompose;
+	import org.apache.royale.textLayout.container.ContainerUtil;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.ScrollPolicy;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	
 
@@ -58,7 +58,7 @@ package org.apache.flex.textLayout.factory
  * @playerversion AIR 1.5
  * @langversion 3.0
  *
- * @see org.apache.flex.textLayout.elements.TextFlow
+ * @see org.apache.royale.textLayout.elements.TextFlow
 */
 	public class TextLineFactoryBase implements ITextLineFactory
 	{
@@ -180,7 +180,7 @@ package org.apache.flex.textLayout.factory
 		* Applications can provide a custom implementation to use fonts
 		* embedded in a different SWF file or to cache and reuse text lines.</p>
 		* 
-		* @see org.apache.flex.textLayout.compose.ISWFContext
+		* @see org.apache.royale.textLayout.compose.ISWFContext
 		* 
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5
@@ -239,8 +239,8 @@ package org.apache.flex.textLayout.factory
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.StandardFlowComposer
-		 * @see org.apache.flex.textLayout.container.ScrollPolicy
+		 * @see org.apache.royale.textLayout.compose.StandardFlowComposer
+		 * @see org.apache.royale.textLayout.container.ScrollPolicy
 		 * @see #truncationOptions
 	 	 */
 	 	 
@@ -268,8 +268,8 @@ package org.apache.flex.textLayout.factory
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.StandardFlowComposer
-		 * @see org.apache.flex.textLayout.container.ScrollPolicy
+		 * @see org.apache.royale.textLayout.compose.StandardFlowComposer
+		 * @see org.apache.royale.textLayout.container.ScrollPolicy
 		 * @see #truncationOptions
 	 	 */
 	 	 

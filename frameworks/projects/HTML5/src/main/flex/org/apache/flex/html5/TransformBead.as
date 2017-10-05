@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.core.TransformBeadBase;
-	import org.apache.flex.geom.Matrix;
+	import org.apache.royale.core.TransformBeadBase;
+	import org.apache.royale.geom.Matrix;
 	
 	public class TransformBead extends TransformBeadBase
 	{
@@ -33,7 +33,7 @@ package org.apache.flex.html5
 			{
 				return;
 			}			
-			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
+			var element:org.apache.royale.core.WrappedHTMLElement = host.transformElement;
 			var fjsm:Matrix = transformModel.matrix;
 			var matrixArray:Array = [fjsm.a , fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty];
 			var transformStr:String = "matrix(" + matrixArray.join(",") + ")";

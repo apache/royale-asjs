@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.beads
+package org.apache.royale.mobile.beads
 {
 	//import flash.events.Event;
 
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
-	import org.apache.flex.html.beads.models.RangeModelExtended;
-	import org.apache.flex.html.RangeStepper;
-	import org.apache.flex.html.beads.RangeStepperView;
+	import org.apache.royale.html.beads.models.RangeModelExtended;
+	import org.apache.royale.html.RangeStepper;
+	import org.apache.royale.html.beads.RangeStepperView;
 
 	/**
 	 *  The DatePickerView bead creates the visual elements of the DatePicker. This
@@ -77,7 +77,7 @@ package org.apache.flex.mobile.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

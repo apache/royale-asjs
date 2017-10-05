@@ -350,13 +350,13 @@
             <regexpmapper from="playerglobal([0-9]*)_([0-9]*)\.swc" to="\1.\2/playerglobal.swc" />
         </copy>
         
-        <replaceregexp file="${ROYALE_HOME}/flex-sdk-description.xml"
+        <replaceregexp file="${ROYALE_HOME}/royale-sdk-description.xml"
             match="FP.*AIR"
             replace="FP${fpversion} AIR" />
-        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
-        <replaceregexp file="${ROYALE_HOME}/frameworks/flex-config-template.xml"
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config-template.xml"
             match="target-player.*target-player"
             replace="target-player&gt;${fpversion}&lt;/target-player" />
         <replaceregexp file="${ROYALE_HOME}/frameworks/air-config.xml"

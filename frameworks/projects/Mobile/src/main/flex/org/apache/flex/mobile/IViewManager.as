@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
 	/**
 	 * The IViewManager interface is implemented by classes that manage or control

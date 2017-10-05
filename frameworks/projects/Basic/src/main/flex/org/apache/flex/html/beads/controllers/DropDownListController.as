@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.beads.IDropDownListView;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.IDropDownListView;
 
     /**
      *  The DropDownListController class is the controller for
-     *  org.apache.flex.html.DropDownList.  Controllers
+     *  org.apache.royale.html.DropDownList.  Controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for the click event and displays the
@@ -63,7 +63,7 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -73,10 +73,10 @@ package org.apache.flex.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener(org.apache.flex.events.MouseEvent.CLICK, clickHandler);
+            IEventDispatcher(value).addEventListener(org.apache.royale.events.MouseEvent.CLICK, clickHandler);
 		}
 		
-        private function clickHandler(event:org.apache.flex.events.MouseEvent):void
+        private function clickHandler(event:org.apache.royale.events.MouseEvent):void
         {
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -91,14 +91,14 @@ package org.apache.flex.html.beads.controllers
 			DisplayObject(viewBead.popUp).x = pt.x;
 			DisplayObject(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
+            IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         }
         
-        private function dismissHandler(event:org.apache.flex.events.MouseEvent):void
+        private function dismissHandler(event:org.apache.royale.events.MouseEvent):void
         {
             if (event.target == _strand) return;
             
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.flex.events.MouseEvent.CLICK, dismissHandler);
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             viewBead.popUpVisible = false;
         }

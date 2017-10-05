@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 COMPILE::SWF
 {
 	import flash.display.DisplayObject;
 	import flash.display.Stage;
 }
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  The IInitialViewApplication interface is the interface for 

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils {
+package org.apache.royale.utils {
 
     /**
 	 * Contains reusable methods for operations pertaining

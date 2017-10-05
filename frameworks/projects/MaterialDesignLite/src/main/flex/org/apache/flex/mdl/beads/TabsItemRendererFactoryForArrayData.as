@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IDataProviderItemRendererMapper;
-    import org.apache.flex.core.IItemRendererClassFactory;
-    import org.apache.flex.core.IItemRendererParent;
-    import org.apache.flex.core.IListPresentationModel;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.SimpleCSSStyles;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.ItemRendererEvent;
-    import org.apache.flex.html.beads.IListView;
-    import org.apache.flex.mdl.beads.models.ITabModel;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.SimpleCSSStyles;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemRendererEvent;
+    import org.apache.royale.html.beads.IListView;
+    import org.apache.royale.mdl.beads.models.ITabModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 
-    [Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
+    [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
     /**
      *  The TabsItemRendererFactoryForArrayData class reads an
@@ -62,7 +62,7 @@ package org.apache.flex.mdl.beads
         private var _strand:IStrand;
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -101,7 +101,7 @@ package org.apache.flex.mdl.beads
         private var _itemRendererFactory:IItemRendererClassFactory;
 
         /**
-         *  The org.apache.flex.core.IItemRendererClassFactory used
+         *  The org.apache.royale.core.IItemRendererClassFactory used
          *  to generate instances of item renderers.
          *
          *  @langversion 3.0
@@ -131,7 +131,7 @@ package org.apache.flex.mdl.beads
         }
 
         /**
-         *  The org.apache.flex.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererParent that will
          *  parent the item renderers.
          *
          *  @langversion 3.0

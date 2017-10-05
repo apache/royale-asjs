@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine {
-	import org.apache.flex.utils.BinaryData;
+package org.apache.royale.text.engine {
+	import org.apache.royale.utils.BinaryData;
 	/**
 	 * @author harbs
 	 */

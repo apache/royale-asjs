@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-	import org.apache.flex.html.Group;
-	import org.apache.flex.mdl.Application;
-	import org.apache.flex.core.IPopUp;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.mdl.Application;
+	import org.apache.royale.core.IPopUp;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
@@ -73,7 +73,7 @@ package org.apache.flex.mdl
 		private var dialog:HTMLDialogElement;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLDialogElement
          */
         COMPILE::JS

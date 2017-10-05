@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.graphics.IStroke;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.graphics.IStroke;
 	
 	public interface IAxisBead extends IBead
 	{

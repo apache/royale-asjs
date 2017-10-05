@@ -15,16 +15,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.mdl.beads.UpgradeElement;
-    import org.apache.flex.mdl.supportClasses.TextFieldBase;
+    import org.apache.royale.mdl.beads.UpgradeElement;
+    import org.apache.royale.mdl.supportClasses.TextFieldBase;
 
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
     
     /**
@@ -78,7 +78,7 @@ package org.apache.flex.mdl
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLDivElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLLabelElement

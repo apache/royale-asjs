@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit 
+package org.apache.royale.textLayout.edit 
 {
 	// [ExcludeClass]
 	/** 

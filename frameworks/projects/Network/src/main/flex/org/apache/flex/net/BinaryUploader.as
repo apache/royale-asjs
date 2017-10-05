@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
     COMPILE::SWF
     {
@@ -28,13 +28,13 @@ package org.apache.flex.net
     }
 	COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
     
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.BinaryData;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.BinaryData;
 	
     //--------------------------------------
     //  Events
@@ -48,7 +48,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="complete", type="org.apache.flex.events.Event")]
+	[Event(name="complete", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched if an error occurs in the upload.
@@ -58,7 +58,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="ioError", type="org.apache.flex.events.Event")]
+	[Event(name="ioError", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched when an httpStatus code is received from the server.
@@ -68,7 +68,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
+	[Event(name="httpStatus", type="org.apache.royale.events.Event")]
 	
     /**
      *  Dispatched if Adobe AIR is able to detect and return the status 
@@ -84,7 +84,7 @@ package org.apache.flex.net
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="httpResponseStatus", type="org.apache.flex.events.Event")]
+	[Event(name="httpResponseStatus", type="org.apache.royale.events.Event")]
     
     [DefaultProperty("beads")]
     
@@ -99,7 +99,7 @@ package org.apache.flex.net
 	public class BinaryUploader extends HTTPServiceBase implements IStrand, IBead
 	{
 		/**
-		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -147,7 +147,7 @@ package org.apache.flex.net
         
         /**
          *  The data to be uploaded.  Note the type of this
-         *  property is org.apache.flex.utils.BinaryData.
+         *  property is org.apache.royale.utils.BinaryData.
          *  This class abstracts the way binary data is handled
          *  in the browser.
          *  
@@ -376,7 +376,7 @@ package org.apache.flex.net
 		private var _id:String;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -403,7 +403,7 @@ package org.apache.flex.net
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#strand
+         *  @copy org.apache.royale.core.UIBase#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -417,11 +417,11 @@ package org.apache.flex.net
             for each (var bead:IBead in beads)
                 addBead(bead);
             
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
         }
 
         /**
-         *  @copy org.apache.flex.core.UIBase#beads
+         *  @copy org.apache.royale.core.UIBase#beads
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -434,7 +434,7 @@ package org.apache.flex.net
 		private var _beads:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead()
+         *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -451,7 +451,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
+         *  @copy org.apache.royale.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -470,7 +470,7 @@ package org.apache.flex.net
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
+         *  @copy org.apache.royale.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

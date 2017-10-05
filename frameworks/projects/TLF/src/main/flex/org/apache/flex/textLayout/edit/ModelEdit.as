@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.mementos.AddElementMemento;
-	import org.apache.flex.textLayout.edit.mementos.DeleteTextMemento;
-	import org.apache.flex.textLayout.edit.mementos.JoinMemento;
-	import org.apache.flex.textLayout.edit.mementos.MoveElementMemento;
-	import org.apache.flex.textLayout.edit.mementos.RemoveElementsMemento;
-	import org.apache.flex.textLayout.edit.mementos.SplitMemento;
-	import org.apache.flex.textLayout.edit.mementos.TextRangeMemento;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.mementos.AddElementMemento;
+	import org.apache.royale.textLayout.edit.mementos.DeleteTextMemento;
+	import org.apache.royale.textLayout.edit.mementos.JoinMemento;
+	import org.apache.royale.textLayout.edit.mementos.MoveElementMemento;
+	import org.apache.royale.textLayout.edit.mementos.RemoveElementsMemento;
+	import org.apache.royale.textLayout.edit.mementos.SplitMemento;
+	import org.apache.royale.textLayout.edit.mementos.TextRangeMemento;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	// [ExcludeClass]
 	/** 
@@ -133,7 +133,7 @@ package org.apache.flex.textLayout.edit
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		private static function checkNormalize(textFlow:ITextFlow, commonRoot:IFlowGroupElement, mementoList:MementoList):void
 		{

@@ -15,18 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-    import org.apache.flex.core.GroupBase;
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IRoyaleElement;
-    import org.apache.flex.core.ITransformHost;
+    import org.apache.royale.core.GroupBase;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.core.ITransformHost;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.IContainer;
-		import org.apache.flex.core.UIBase;
-		import org.apache.flex.events.Event;
+		import org.apache.royale.core.IContainer;
+		import org.apache.royale.core.UIBase;
+		import org.apache.royale.events.Event;
 	}
 
 	[DefaultProperty("mxmlContent")]
@@ -52,11 +52,11 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
-		override protected function createElement():org.apache.flex.core.WrappedHTMLElement
+		override protected function createElement():org.apache.royale.core.WrappedHTMLElement
 		{
-			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.flex.core.WrappedHTMLElement;
+			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.royale.core.WrappedHTMLElement;
 
 			// absolute positioned children need a non-null
 			// position value in the parent.  It might
@@ -74,13 +74,13 @@ package org.apache.flex.svg
 			element.setAttribute('class', value);
 		}
 
-		override public function get transformElement():org.apache.flex.core.WrappedHTMLElement
+		override public function get transformElement():org.apache.royale.core.WrappedHTMLElement
 		{
 			return graphicGroup.element;
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IParent#getElementAt()
+		 *  @copy org.apache.royale.core.IParent#getElementAt()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -93,7 +93,7 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IParent#addElement()
+		 *  @copy org.apache.royale.core.IParent#addElement()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -108,7 +108,7 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IParent#addElementAt()
+		 *  @copy org.apache.royale.core.IParent#addElementAt()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -123,7 +123,7 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IParent#removeElement()
+		 *  @copy org.apache.royale.core.IParent#removeElement()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -138,7 +138,7 @@ package org.apache.flex.svg
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IParent#getElementIndex()
+		 *  @copy org.apache.royale.core.IParent#getElementIndex()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -183,17 +183,17 @@ package org.apache.flex.svg
 	}
 }
 
-import org.apache.flex.core.GroupBase;
+import org.apache.royale.core.GroupBase;
 
 class GraphicGroup extends GroupBase
 {
 	/**
-	 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
 	COMPILE::JS
-	override protected function createElement():org.apache.flex.core.WrappedHTMLElement
+	override protected function createElement():org.apache.royale.core.WrappedHTMLElement
 	{
-		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.flex.core.WrappedHTMLElement;
+		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.royale.core.WrappedHTMLElement;
 
 		// absolute positioned children need a non-null
 		// position value in the parent.  It might

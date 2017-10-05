@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	// [ExcludeClass]
 	/** @private - Marks an element by its position in the hierarchy. */
@@ -68,7 +68,7 @@ package org.apache.flex.textLayout.edit
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function findElement(textFlow:ITextFlow):IFlowElement
 		{

@@ -22,11 +22,11 @@ limitations under the License.
 			   >
     <fx:Script>
         <![CDATA[            
-			import org.apache.flex.events.CustomEvent;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.utils.Timer;
+			import org.apache.royale.events.CustomEvent;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.utils.Timer;
 			
-			private var timer:org.apache.flex.utils.Timer;
+			private var timer:org.apache.royale.utils.Timer;
 			
 			public function get symbol():String
 			{
@@ -50,12 +50,12 @@ limitations under the License.
 			
 			public function startTimer():void
 			{
-				timer = new org.apache.flex.utils.Timer(1000);
+				timer = new org.apache.royale.utils.Timer(1000);
 				timer.addEventListener('timer', timerHandler);
 				timer.start()				
 			}
 			
-			public function timerHandler(event:org.apache.flex.events.Event):void
+			public function timerHandler(event:org.apache.royale.events.Event):void
 			{
 				timerLabel.text = timer.currentCount.toString();	
 			}

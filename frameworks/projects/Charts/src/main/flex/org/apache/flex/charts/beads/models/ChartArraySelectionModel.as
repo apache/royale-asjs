@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads.models
+package org.apache.royale.charts.beads.models
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	
-	import org.apache.flex.charts.core.IChartDataModel;
-	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.royale.charts.core.IChartDataModel;
+	import org.apache.royale.charts.core.IChartSeries;
 	
 	/**
 	 *  The ArraySelectionModel class is a selection model for

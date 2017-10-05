@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.effects.beads
+package org.apache.royale.effects.beads
 {
 	
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.beads.AccordionCollapseBead;
-	import org.apache.flex.html.beads.IListView;
-	import org.apache.flex.html.supportClasses.ICollapsible;
-	import org.apache.flex.utils.AbsoluteLayoutTweener;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.AccordionCollapseBead;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.ICollapsible;
+	import org.apache.royale.utils.AbsoluteLayoutTweener;
 	
 	public class EasyAccordionCollapseBead extends AccordionCollapseBead
 	{

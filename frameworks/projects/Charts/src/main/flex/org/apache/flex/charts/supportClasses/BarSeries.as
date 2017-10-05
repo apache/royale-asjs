@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {
-    import org.apache.flex.core.IFactory;
+    import org.apache.royale.core.IFactory;
     
-	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.royale.charts.core.IChartSeries;
 	
 	/**
 	 *  The BarSeries defines what field is being plotted from

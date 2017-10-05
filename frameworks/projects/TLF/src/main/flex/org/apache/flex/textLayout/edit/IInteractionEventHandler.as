@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.text.events.TextEvent;
-	import org.apache.flex.text.events.IMEEvent;
-	import org.apache.flex.textLayout.events.ContextMenuEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.text.events.TextEvent;
+	import org.apache.royale.text.events.IMEEvent;
+	import org.apache.royale.textLayout.events.ContextMenuEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
 	
 	/**
 	 * The IInteractionEventHandler interface defines the event handler functions that

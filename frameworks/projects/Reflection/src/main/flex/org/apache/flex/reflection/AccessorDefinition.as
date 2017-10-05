@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection {
+package org.apache.royale.reflection {
     /**
      *  The description of a Class or Interface accessor (get and/or set)
      *

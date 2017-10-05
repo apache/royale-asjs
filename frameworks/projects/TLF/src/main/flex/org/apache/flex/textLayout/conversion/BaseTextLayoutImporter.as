@@ -16,32 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.TextLayoutVersion;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.BreakElement;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IConfiguration;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.IParagraphFormattedElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.TabElement;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.textLayout.factory.TLFFactory;
+	import org.apache.royale.textLayout.TextLayoutVersion;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.BreakElement;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IConfiguration;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.IParagraphFormattedElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.TabElement;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyUtil;
+	import org.apache.royale.textLayout.factory.TLFFactory;
 
 	/**
 	 * BaseTextLayoutImporter is a base class for handling the import/export of TextLayout text 

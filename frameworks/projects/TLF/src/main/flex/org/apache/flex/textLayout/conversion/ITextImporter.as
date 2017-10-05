@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.elements.ITextFlow;
-    import org.apache.flex.textLayout.elements.IConfiguration;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+    import org.apache.royale.textLayout.elements.IConfiguration;
     
     /** 
      * Interface for importing text content into a TextFlow from an external source. 
      * The TextConverter class creates importers with no constructor arguments.
      * 
-     * @see org.apache.flex.textLayout.elements.TextFlow
+     * @see org.apache.royale.textLayout.elements.TextFlow
      * 
      * @playerversion Flash 10
      * @playerversion AIR 1.5
@@ -85,7 +85,7 @@ package org.apache.flex.textLayout.conversion
          * @playerversion AIR 1.5
          * @langversion 3.0
          *  
-         * @see org.apache.flex.textLayout.conversion.ConverterBase.MERGE_TO_NEXT_ON_PASTE
+         * @see org.apache.royale.textLayout.conversion.ConverterBase.MERGE_TO_NEXT_ON_PASTE
          */
         function get useClipboardAnnotations():Boolean;
         function set useClipboardAnnotations(value:Boolean):void;
@@ -95,7 +95,7 @@ package org.apache.flex.textLayout.conversion
          * the importer needs when creating new TextFlow instances. This property
          * is initially set to <code>null</code>.
          * 
-         * @see org.apache.flex.textLayout.elements.TextFlow
+         * @see org.apache.royale.textLayout.elements.TextFlow
          * 
          * @playerversion Flash 10.2
          * @playerversion AIR 2.0

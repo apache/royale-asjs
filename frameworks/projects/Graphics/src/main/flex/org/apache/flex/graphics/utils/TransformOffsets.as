@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics.utils
+package org.apache.royale.graphics.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

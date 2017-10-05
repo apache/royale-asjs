@@ -18,16 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.collections.LazyCollection;
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.net.HTTPService;
+	import org.apache.royale.collections.LazyCollection;
+	import org.apache.royale.core.Application;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.net.HTTPService;
 
-	[Event(name="membersChanged", type="org.apache.flex.events.Event")]
+	[Event(name="membersChanged", type="org.apache.royale.events.Event")]
 	public class MemberList extends EventDispatcher implements IBeadModel
 	{
 		public function MemberList(target:IEventDispatcher=null)
@@ -77,12 +77,12 @@ package models
 			service.addEventListener("ioError", handleError);
 		}
 
-		public function handleStatusReturn(event:org.apache.flex.events.Event):void
+		public function handleStatusReturn(event:org.apache.royale.events.Event):void
 		{
 			// tbd: should handle a bad status here
 		}
 
-		public function handleLoadComplete(event:org.apache.flex.events.Event):void
+		public function handleLoadComplete(event:org.apache.royale.events.Event):void
 		{
 			members = [];
 			for (var i:int=0; i < collection.length; i++) {
@@ -92,7 +92,7 @@ package models
 			dispatchEvent( new Event("membersChanged") );
 		}
 
-		public function handleError(event:org.apache.flex.events.Event):void
+		public function handleError(event:org.apache.royale.events.Event):void
 		{
 			// tbd: should handle error here
 		}

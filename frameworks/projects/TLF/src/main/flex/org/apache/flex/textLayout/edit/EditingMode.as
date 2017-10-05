@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
 	/** 
 	 * The EditingMode class defines constants used with EditManager class to represent the 
 	 * read, select, and edit permissions of a document.
 	 * 
-	 * @see org.apache.flex.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.edit.EditManager
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

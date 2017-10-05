@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDragInitiator;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.DragEvent;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.css2.Cursors;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDragInitiator;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.css2.Cursors;
 
 	COMPILE::SWF {
 		import flash.display.InteractiveObject;
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="dragEnter", type="org.apache.flex.events.DragEvent")]
+    [Event(name="dragEnter", type="org.apache.royale.events.DragEvent")]
 
     /**
      *  Indicates that the mouse is moving over a component during
@@ -54,7 +54,7 @@ package org.apache.flex.html.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="dragOver", type="org.apache.flex.events.DragEvent")]
+    [Event(name="dragOver", type="org.apache.royale.events.DragEvent")]
 
     /**
      *  Indicates that the mouse is moving out of a component during
@@ -65,7 +65,7 @@ package org.apache.flex.html.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="dragExit", type="org.apache.flex.events.DragEvent")]
+    [Event(name="dragExit", type="org.apache.royale.events.DragEvent")]
 
     /**
      *  Indicates that a drop operation should be executed.
@@ -75,13 +75,13 @@ package org.apache.flex.html.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="dragDrop", type="org.apache.flex.events.DragEvent")]
+    [Event(name="dragDrop", type="org.apache.royale.events.DragEvent")]
 
 	/**
 	 *  The DropMouseController bead handles mouse events on the
 	 *  a component, looking for events from a drag/drop operation.
 	 *
-     *  @royaleignoreimport org.apache.flex.core.IDragInitiator
+     *  @royaleignoreimport org.apache.royale.core.IDragInitiator
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -105,7 +105,7 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -141,7 +141,7 @@ package org.apache.flex.html.beads.controllers
 
         /**
          *  @private
-		 * @royaleignorecoercion org.apache.flex.events.MouseEvent
+		 * @royaleignorecoercion org.apache.royale.events.MouseEvent
          */
         private function dragMoveHandler(event:DragEvent):void
         {
@@ -181,7 +181,7 @@ package org.apache.flex.html.beads.controllers
         }
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.events.MouseEvent
+		 * @royaleignorecoercion org.apache.royale.events.MouseEvent
 		 */
         private function dragEndHandler(event:DragEvent):void
         {

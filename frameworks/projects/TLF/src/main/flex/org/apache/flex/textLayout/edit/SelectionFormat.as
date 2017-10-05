@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit {
+package org.apache.royale.textLayout.edit {
 	
 	/**
 	 * The SelectionFormat class defines the properties of a selection highlight.
 	 * 
-	 * @see org.apache.flex.textLayout.edit.ISelectionManager
-	 * @see org.apache.flex.textLayout.edit.SelectionManager
+	 * @see org.apache.royale.textLayout.edit.ISelectionManager
+	 * @see org.apache.royale.textLayout.edit.SelectionManager
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

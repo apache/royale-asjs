@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.events.Event;
 	
 	COMPILE::SWF
 	{
@@ -36,7 +36,7 @@ package org.apache.flex.html
 	
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;            
     }
     
     /**
@@ -45,8 +45,8 @@ package org.apache.flex.html
 	 *  function to load the application dynamically.
 	 * 
      *  @toplevel
-     *  @see org.apache.flex.html.beads.layout
-     *  @see org.apache.flex.html.supportClasses.ScrollingViewport
+     *  @see org.apache.royale.html.beads.layout
+     *  @see org.apache.royale.html.supportClasses.ScrollingViewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -75,7 +75,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		private function createLoader():void
 		{

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
 	/** 
 	 * The IVerticalJustificationLine interface defines the methods and properties required to allow
@@ -59,7 +59,7 @@ package org.apache.flex.textLayout.compose
 		function set y(val:Number):void;
 
 		/** 
-		 * @copy org.apache.flex.text.engine.TextLine#ascent
+		 * @copy org.apache.royale.text.engine.TextLine#ascent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -68,7 +68,7 @@ package org.apache.flex.textLayout.compose
 		function get ascent():Number;
 
 		/** 
-		 * @copy org.apache.flex.text.engine.TextLine#descent
+		 * @copy org.apache.royale.text.engine.TextLine#descent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

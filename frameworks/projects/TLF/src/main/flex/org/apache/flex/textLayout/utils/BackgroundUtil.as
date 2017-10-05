@@ -16,31 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.IFactoryComposer;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.ParcelList;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.container.ITextContainerManager;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableRowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.formats.BackgroundColor;
-	import org.apache.flex.textLayout.formats.BorderColor;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.IFactoryComposer;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.compose.ParcelList;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.ITextContainerManager;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableRowElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.formats.BackgroundColor;
+	import org.apache.royale.textLayout.formats.BorderColor;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	public class BackgroundUtil
 	{
@@ -72,7 +72,7 @@ package org.apache.flex.textLayout.utils
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableElement
 		 */
 		public static function collectBlock(_textFlow:ITextFlow, elem:IFlowGroupElement, _parcelList:ParcelList = null, tableComposeNotFromBeginning:Boolean = false, tableOutOfView:Boolean = false):void
 		{

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.royale.storage
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 * The IPermanentStorage interface provides the template for creating

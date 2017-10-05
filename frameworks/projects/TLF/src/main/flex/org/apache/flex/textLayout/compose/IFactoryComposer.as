@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.IContainerController;
 
 	public interface IFactoryComposer extends IFlowComposer
 	{

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.cordova.geolocation
+package org.apache.royale.cordova.geolocation
 {
 	/**
 	 * Geolocation provides the interface to the Cordova Geolocation plugin.

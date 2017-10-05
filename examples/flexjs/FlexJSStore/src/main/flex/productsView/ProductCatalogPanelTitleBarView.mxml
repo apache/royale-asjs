@@ -23,14 +23,14 @@ limitations under the License.
                         >
     <fx:Script>
         <![CDATA[
-            import org.apache.flex.html.TitleBar;
-            import org.apache.flex.core.ITitleBarModel;
-            import org.apache.flex.core.UIBase;
-            import org.apache.flex.events.Event;
+            import org.apache.royale.html.TitleBar;
+            import org.apache.royale.core.ITitleBarModel;
+            import org.apache.royale.core.UIBase;
+            import org.apache.royale.events.Event;
             
             private function clickHandler():void
             {
-                var newEvent:org.apache.flex.events.Event = new org.apache.flex.events.Event('close',true);
+                var newEvent:org.apache.royale.events.Event = new org.apache.royale.events.Event('close',true);
                 UIBase(_strand).dispatchEvent(newEvent)   
             }
         ]]>

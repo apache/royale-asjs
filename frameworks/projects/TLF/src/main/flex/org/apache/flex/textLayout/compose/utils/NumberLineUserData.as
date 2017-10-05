@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	public class NumberLineUserData
 	{

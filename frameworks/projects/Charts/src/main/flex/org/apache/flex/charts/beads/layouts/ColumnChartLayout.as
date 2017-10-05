@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads.layouts
+package org.apache.royale.charts.beads.layouts
 {
-	import org.apache.flex.charts.core.ICartesianChartLayout;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.charts.supportClasses.ColumnSeries;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.charts.core.ICartesianChartLayout;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IVerticalAxisBead;
+	import org.apache.royale.charts.supportClasses.ColumnSeries;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 *  The ColumnChartLayout arranges the graphics in vertical columns (or whatever shape

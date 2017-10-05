@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.utils.ObjectMap;
 	
 	// [ExcludeClass]
 	/**

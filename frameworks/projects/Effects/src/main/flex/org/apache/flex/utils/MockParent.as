@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.events.EventDispatcher;
 
 	public class MockParent extends EventDispatcher implements IParent
 	{

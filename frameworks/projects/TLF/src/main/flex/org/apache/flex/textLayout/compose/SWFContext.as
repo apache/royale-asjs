@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose {
-	import org.apache.flex.textLayout.compose.ISWFContext;
+package org.apache.royale.textLayout.compose {
+	import org.apache.royale.textLayout.compose.ISWFContext;
 
 	public class SWFContext implements ISWFContext {
 		public function callInContext(fn : Function, thisArg : Object, argArray : Array, returns : Boolean = true) : * {
@@ -28,8 +28,8 @@ package org.apache.flex.textLayout.compose {
 		}
 	}
 }
-import org.apache.flex.textLayout.compose.ISWFContext;
-import org.apache.flex.textLayout.debug.Debugging;
+import org.apache.royale.textLayout.compose.ISWFContext;
+import org.apache.royale.textLayout.debug.Debugging;
 class GlobalSWFContext implements ISWFContext
 {
 	public function GlobalSWFContext()

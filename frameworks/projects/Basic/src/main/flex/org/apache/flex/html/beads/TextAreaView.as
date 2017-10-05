@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IParent;
-    import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.beads.models.ScrollBarModel;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.VScrollBar;
+	import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IScrollBarModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IParent;
+    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.models.ScrollBarModel;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.VScrollBar;
 
     /**
      *  The TextAreaView class is the default view for
-     *  the org.apache.flex.html.TextArea class.
+     *  the org.apache.royale.html.TextArea class.
      *  It implements the classic desktop-like TextArea with
      *  a border and scrollbars.  It does not support right-to-left text.
      *  
@@ -192,7 +192,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#beads
+         *  @copy org.apache.royale.core.UIBase#beads
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -204,7 +204,7 @@ package org.apache.flex.html.beads
 		private var _beads:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead()
+         *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -220,7 +220,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
+         *  @copy org.apache.royale.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -238,7 +238,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
+         *  @copy org.apache.royale.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

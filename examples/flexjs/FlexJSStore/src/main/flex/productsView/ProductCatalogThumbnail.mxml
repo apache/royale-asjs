@@ -51,8 +51,8 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 
-		import org.apache.flex.events.*;
-        import org.apache.flex.utils.PointUtils;
+		import org.apache.royale.events.*;
+        import org.apache.royale.utils.PointUtils;
             
         import samples.flexstore.Product;
         import samples.flexstore.ProductThumbEvent;
@@ -119,7 +119,7 @@ limitations under the License.
             }
         }
 
-        public function clickHandler(event:org.apache.flex.events.MouseEvent):void
+        public function clickHandler(event:org.apache.royale.events.MouseEvent):void
         {
             if (event.target != purchase &&
                 event.target != compare &&

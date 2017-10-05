@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.jquery
+package org.apache.royale.jquery
 {
-	import org.apache.flex.html.ToggleTextButton;
+	import org.apache.royale.html.ToggleTextButton;
 
     /**
      *  The ToggleButton class is a TextButton that supports
@@ -29,7 +29,7 @@ package org.apache.flex.jquery
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ToggleTextButton extends org.apache.flex.html.ToggleTextButton
+	public class ToggleTextButton extends org.apache.royale.html.ToggleTextButton
 	{
         
 		COMPILE::JS

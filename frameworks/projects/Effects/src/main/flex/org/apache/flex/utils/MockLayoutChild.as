@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 	COMPILE::SWF
 	{
@@ -26,15 +26,15 @@ package org.apache.flex.utils
 	
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	public class MockLayoutChild implements ILayoutChild, IUIBase, IStyleableObject
 	{

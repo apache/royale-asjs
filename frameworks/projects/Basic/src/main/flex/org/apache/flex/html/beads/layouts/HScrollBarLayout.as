@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
 	
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.beads.IScrollBarView;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IScrollBarModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.beads.IScrollBarView;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.utils.CSSContainerUtils;
 
     /**
      *  The HScrollBarLayout class is a layout
@@ -61,7 +61,7 @@ package org.apache.flex.html.beads.layouts
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -75,7 +75,7 @@ package org.apache.flex.html.beads.layouts
 		}
 			
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
+         * @copy org.apache.royale.core.IBeadLayout#layout
          */
 		public function layout():Boolean
 		{

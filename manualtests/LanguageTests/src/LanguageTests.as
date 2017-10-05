@@ -28,8 +28,8 @@ import interfaces.ID;
 import interfaces.IE;
 import interfaces.IF;
 
-import org.apache.flex.core.SimpleApplication;
-import org.apache.flex.events.Event;
+import org.apache.royale.core.SimpleApplication;
+import org.apache.royale.events.Event;
 
 public class LanguageTests extends SimpleApplication implements IA, IE
 {

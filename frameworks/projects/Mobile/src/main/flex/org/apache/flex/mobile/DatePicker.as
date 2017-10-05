@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
-	[Event(name="selectedDateChanged", type="org.apache.flex.events.Event")]
+	[Event(name="selectedDateChanged", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The DatePicker presents a control for picking a date. 

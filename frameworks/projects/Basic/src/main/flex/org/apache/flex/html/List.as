@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectionModel;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectionModel;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
 	/**
@@ -35,7 +35,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
 	 * The change event is dispatched whenever the list's selection changes.
@@ -45,19 +45,19 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
-	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
-	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the list.
+	 *  org.apache.royale.core.IBeadController: the bead that handles input and output.
+	 *  org.apache.royale.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
+	 *  org.apache.royale.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
+	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -156,7 +156,7 @@ package org.apache.flex.html
 		 */
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

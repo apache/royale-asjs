@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.events
+package org.apache.royale.text.events
 {
-    import org.apache.flex.events.IRoyaleEvent;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.text.ime.IIMEClient;
+    import org.apache.royale.events.IRoyaleEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.text.ime.IIMEClient;
 
     public class IMEEvent extends Event
     {

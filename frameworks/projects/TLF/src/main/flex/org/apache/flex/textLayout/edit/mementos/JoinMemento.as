@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos {
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.IMemento;
-	import org.apache.flex.textLayout.edit.TextFlowEdit;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+package org.apache.royale.textLayout.edit.mementos {
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.IMemento;
+	import org.apache.royale.textLayout.edit.TextFlowEdit;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	public class JoinMemento extends BaseMemento implements IMemento {
 		private var _element1:ElementMark;
@@ -53,7 +53,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		static public function performInternal(textFlow:ITextFlow, element1Mark:ElementMark, element2Mark:ElementMark):void {
 			var element1:IFlowGroupElement = element1Mark.findElement(textFlow) as IFlowGroupElement;
@@ -70,7 +70,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function undo():* {
 			_removeParentChain.undo();

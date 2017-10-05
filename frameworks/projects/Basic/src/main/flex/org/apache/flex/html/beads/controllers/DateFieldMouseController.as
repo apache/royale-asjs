@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {	
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.DateFieldView;
-    import org.apache.flex.utils.Timer;
-    import org.apache.flex.utils.UIUtils;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.DateFieldView;
+    import org.apache.royale.utils.Timer;
+    import org.apache.royale.utils.UIUtils;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -57,7 +57,7 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

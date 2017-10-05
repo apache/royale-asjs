@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IStrand;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IStrand;
 
     /**
      *  The IDropDownListView interface is the interface for views for
-     *  the org.apache.flex.html.DropDownList.
+     *  the org.apache.royale.html.DropDownList.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -34,7 +34,7 @@ package org.apache.flex.html.beads
 	{
         
         /**
-         *  @copy org.apache.flex.html.beads.DropDownListView#popup
+         *  @copy org.apache.royale.html.beads.DropDownListView#popup
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
         function get popUp():IStrand;
         
         /**
-         *  @copy org.apache.flex.html.beads.DropDownListView#popupVisible
+         *  @copy org.apache.royale.html.beads.DropDownListView#popupVisible
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

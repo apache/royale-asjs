@@ -32,12 +32,12 @@ limitations under the License.
 			import models.ProductsModel;
 			import models.Stock;
 			
-			import org.apache.flex.binding.SimpleBinding;
-			import org.apache.flex.core.IBeadController;
-			import org.apache.flex.core.IBeadModel;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.mobile.IViewManager;
-			import org.apache.flex.mobile.StackedViewManager;
+			import org.apache.royale.binding.SimpleBinding;
+			import org.apache.royale.core.IBeadController;
+			import org.apache.royale.core.IBeadModel;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.mobile.IViewManager;
+			import org.apache.royale.mobile.StackedViewManager;
 			
 			public function set dataModel(value:IBeadModel):void
 			{
@@ -59,7 +59,7 @@ limitations under the License.
 			
 			private function addSymbol():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("addSymbol"));
+				dispatchEvent(new org.apache.royale.events.Event("addSymbol"));
 			}
 			
 			public var selectedStockIndex:Number;
@@ -67,7 +67,7 @@ limitations under the License.
 			private function selectRow():void
 			{
 				selectedStockIndex = dataGrid.selectedIndex;
-				dispatchEvent(new org.apache.flex.events.Event("stockSelected"));
+				dispatchEvent(new org.apache.royale.events.Event("stockSelected"));
 			}
 			
 			public function showStockDetails(stock:Stock):StockView

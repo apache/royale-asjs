@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 COMPILE::SWF
 {
@@ -27,11 +27,11 @@ COMPILE::SWF
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
 }
-import org.apache.flex.core.IEffectTimer;
-import org.apache.flex.core.ValuesManager;
-import org.apache.flex.events.ValueEvent;
+import org.apache.royale.core.IEffectTimer;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.ValueEvent;
 
 //--------------------------------------
 //  Events
@@ -46,7 +46,7 @@ import org.apache.flex.events.ValueEvent;
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
  */
-[Event(name="update", type="org.apache.flex.events.ValueEvent")]
+[Event(name="update", type="org.apache.royale.events.ValueEvent")]
 
 /**
  *  The Timer class dispatches events based on a delay

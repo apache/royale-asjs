@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The ListBaseStrandChildren exists so that Lists are compatible with
@@ -32,7 +32,7 @@ package org.apache.flex.core
         /**
          *  Constructor.
          *  
-         *  @royaleignorecoercion org.apache.flex.core.ListBase
+         *  @royaleignorecoercion org.apache.royale.core.ListBase
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

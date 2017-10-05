@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads
+package org.apache.royale.html.customControls.beads
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.beads.ListView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.beads.ListView;
 	
 	public class DataGridColumnView extends ListView
 	{

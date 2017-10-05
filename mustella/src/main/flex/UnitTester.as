@@ -65,8 +65,8 @@ use namespace mx_internal;
 
 COMPILE::JS
 {
-import org.apache.flex.events.EventDispatcher;
-import org.apache.flex.geom.Point;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.geom.Point;
 }
 
 [Mixin]

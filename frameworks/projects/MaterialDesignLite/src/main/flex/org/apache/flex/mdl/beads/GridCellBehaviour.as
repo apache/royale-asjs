@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The GridCellBehaviour bead class is used in MDL Dialog to style other components
@@ -50,14 +50,14 @@ package org.apache.flex.mdl.beads
 		private var host:UIBase;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.flex.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{

@@ -35,7 +35,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
         
-        import org.apache.flex.html.SimpleAlert;
+        import org.apache.royale.html.SimpleAlert;
         
         import samples.flexstore.Product;
         import samples.flexstore.ProductListEvent;

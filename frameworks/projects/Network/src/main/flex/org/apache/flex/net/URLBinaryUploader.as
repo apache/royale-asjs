@@ -17,12 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.net
+package org.apache.royale.net
 {
 
-	import org.apache.flex.events.ProgressEvent;
-	import org.apache.flex.net.URLUploadStream;
-	import org.apache.flex.net.URLBinaryUploader;
+	import org.apache.royale.events.ProgressEvent;
+	import org.apache.royale.net.URLUploadStream;
+	import org.apache.royale.net.URLBinaryUploader;
 
 	/**
 	 * @see URLBinaryLoader
@@ -53,7 +53,7 @@ package org.apache.flex.net
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.net.URLUploadStream
+		 * @royaleignorecoercion org.apache.royale.net.URLUploadStream
 		 */
 		override protected function setupCallbacks():void
 		{

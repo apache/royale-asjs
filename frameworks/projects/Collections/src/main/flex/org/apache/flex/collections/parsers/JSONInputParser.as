@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections.parsers
+package org.apache.royale.collections.parsers
 {
     /**
      *  The JSONInputParser class parses a JSON structure
@@ -33,7 +33,7 @@ package org.apache.flex.collections.parsers
 	public class JSONInputParser implements IInputParser
 	{        
         /**
-         *  @copy org.apache.flex.net.IInputParser#parseItems
+         *  @copy org.apache.royale.net.IInputParser#parseItems
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

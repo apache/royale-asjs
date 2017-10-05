@@ -28,7 +28,7 @@
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">
-      <directory>src/main/flex</directory>
+      <directory>src/main/royale</directory>
       <includes>
         <include>**/*.as</include>
       </includes>

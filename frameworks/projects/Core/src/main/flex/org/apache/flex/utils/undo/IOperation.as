@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils.undo
+package org.apache.royale.utils.undo
 {
 	/** 
 	* IOperation defines the interface for operations that can be undone and redone.

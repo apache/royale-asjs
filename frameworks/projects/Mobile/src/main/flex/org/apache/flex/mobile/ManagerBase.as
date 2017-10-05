@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-    import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 	COMPILE::JS
 	{
-			import org.apache.flex.core.WrappedHTMLElement;
+			import org.apache.royale.core.WrappedHTMLElement;
 	}
 	
 	/**
@@ -68,7 +68,7 @@ package org.apache.flex.mobile
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

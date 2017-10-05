@@ -17,10 +17,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
 
-	import org.apache.flex.events.CustomEvent;
+	import org.apache.royale.events.CustomEvent;
 	
 	/**
 	 * The ItemClickedEvent is a custom event issued by an itemRenderer to

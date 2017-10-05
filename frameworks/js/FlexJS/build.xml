@@ -245,8 +245,8 @@
         <ant dir="${basedir}/projects/TLFJS"/>
     </target>
 
-	<target name="flex-config" depends="playerglobal-setswfversion" description="Copy the flex config template to flex-config.xml and inject version numbers">
-		<copy file="${basedir}/flex-config-template.xml" tofile="${basedir}/flex-config.xml" overwrite="true">
+	<target name="royale-config" depends="playerglobal-setswfversion" description="Copy the flex config template to royale-config.xml and inject version numbers">
+		<copy file="${basedir}/royale-config-template.xml" tofile="${basedir}/royale-config.xml" overwrite="true">
 			<filterset>
 				<filter token="playerversion" value="${playerglobal.version}"/>
 				<filter token="swfversion" value="${playerglobal.swfversion}"/>

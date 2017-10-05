@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The ContainerBaseStrandChildren class the provides a way for advanced
@@ -33,7 +33,7 @@ package org.apache.flex.core
         /**
          *  Constructor.
          *  
-         *  @royaleignorecoercion org.apache.flex.core.ContainerBase
+         *  @royaleignorecoercion org.apache.royale.core.ContainerBase
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

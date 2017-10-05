@@ -116,7 +116,7 @@
             <env key="PATH" path="${app.path}:${cordova.path}"/>
 			<arg value="create" />
 			<arg value="${appname}" />
-			<arg value="org.apache.flex.examples.${appname}" />
+			<arg value="org.apache.royale.examples.${appname}" />
 			<arg value="${appname}" />
 		</exec>
     </target>
@@ -179,7 +179,7 @@
     -->
     
     <target name="check-fileplugin">
-    	<property name="storage.file" value="${projectdir}/${target}/bin/js-debug/org/apache/flex/storage/IPermanentStorage.js" />
+    	<property name="storage.file" value="${projectdir}/${target}/bin/js-debug/org/apache.royale/storage/IPermanentStorage.js" />
     	<available file="${storage.file}" type="file" property="file.plugin.needed" />
     </target>
     

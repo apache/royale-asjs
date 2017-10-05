@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.Path;
-	import org.apache.flex.svg.Rect;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.svg.Path;
+	import org.apache.royale.svg.Rect;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.events.Event;
 
 	public class IncrementButtonView extends BeadViewBase implements IBeadView
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.html.beads
 		private var _arrow:Path;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

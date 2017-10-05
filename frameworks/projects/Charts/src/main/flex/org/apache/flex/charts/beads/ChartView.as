@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.royale.charts.beads
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartDataModel;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.beads.ListView;
-	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.charts.core.IAxisGroup;
+	import org.apache.royale.charts.core.IChartDataGroup;
+	import org.apache.royale.charts.core.IChartDataModel;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.charts.core.IHorizontalAxisBead;
+	import org.apache.royale.charts.core.IVerticalAxisBead;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.beads.ListView;
+	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
 	 *  The ChartView class provides the visual elemental structure for a chart. This includes the
@@ -65,7 +65,7 @@ package org.apache.flex.charts.beads
 		private var _verticalAxisGroup:IAxisGroup;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

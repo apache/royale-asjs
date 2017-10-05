@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-    import org.apache.flex.collections.converters.JSONItemConverter;
+    import org.apache.royale.collections.converters.JSONItemConverter;
     
     public class GAStatsDataJSONItemConverter extends JSONItemConverter
     {

@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.providers
+package org.apache.royale.storage.providers
 {
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	COMPILE::SWF {
 		import flash.filesystem.File;
@@ -29,10 +29,10 @@ package org.apache.flex.storage.providers
 		import flash.errors.IOError;
 	}
 		
-	import org.apache.flex.storage.events.FileEvent;
-	import org.apache.flex.storage.events.FileErrorEvent;
-	import org.apache.flex.storage.file.DataOutputStream;
-	import org.apache.flex.storage.file.DataInputStream;
+	import org.apache.royale.storage.events.FileEvent;
+	import org.apache.royale.storage.events.FileErrorEvent;
+	import org.apache.royale.storage.file.DataOutputStream;
+	import org.apache.royale.storage.file.DataInputStream;
 
 	/**
 	 * The AirStorageProvider class implements the IPermanentStorageProvider

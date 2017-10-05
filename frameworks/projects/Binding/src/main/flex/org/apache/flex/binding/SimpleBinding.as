@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.binding
+package org.apache.royale.binding
 {
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IStrand;
-import org.apache.flex.core.IDocument;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.events.Event;
-import org.apache.flex.events.ValueChangeEvent;
-import org.apache.flex.core.IBinding;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.IDocument;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.ValueChangeEvent;
+import org.apache.royale.core.IBinding;
 /**
  *  The SimpleBinding class is lightweight data-binding class that
  *  is optimized for simple assignments of one object's property to
@@ -108,7 +108,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	public var eventName:String;
 
     /**
-     *  @copy org.apache.flex.core.IBinding#destination;
+     *  @copy org.apache.royale.core.IBinding#destination;
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -126,7 +126,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
     }
 
     /**
-     *  @copy org.apache.flex.core.IBinding#sourceID
+     *  @copy org.apache.royale.core.IBinding#sourceID
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -144,7 +144,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
     }
 
     /**
-     *  @copy org.apache.flex.core.IBinding#destinationPropertyName
+     *  @copy org.apache.royale.core.IBinding#destinationPropertyName
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -162,7 +162,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
     }
 
     /**
-     *  @copy org.apache.flex.core.IBinding#sourcePropertyName
+     *  @copy org.apache.royale.core.IBinding#sourcePropertyName
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -180,7 +180,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
     }
 
 	/**
-	 *  @copy org.apache.flex.core.IBead#strand
+	 *  @copy org.apache.royale.core.IBead#strand
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -220,7 +220,7 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 	}
 
 	/**
-	 *  @copy org.apache.flex.core.IDocument#setDocument()
+	 *  @copy org.apache.royale.core.IDocument#setDocument()
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

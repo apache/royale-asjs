@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
 
 	/**
 	 * IFlowComposer defines the interface for managing the layout and display of a text flow.
@@ -55,12 +55,12 @@ package org.apache.flex.textLayout.compose
 	 * These factory classes will typically create lines with less overhead than a flow composer, but do not
 	 * support editing, dynamic changes, or user interaction.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.container.ContainerController ContainerController
+	 * @see org.apache.royale.textLayout.container.ContainerController ContainerController
 	 * @see FlowComposerBase
 	 * @see StandardFlowComposer
-	 * @see org.apache.flex.textLayout.elements.TextFlow TextFlow
-	 * @see org.apache.flex.textLayout.factory.StringTextLineFactory StringTextLineFactory
-	 * @see org.apache.flex.textLayout.factory.TextFlowTextLineFactory TextFlowTextLineFactory
+	 * @see org.apache.royale.textLayout.elements.TextFlow TextFlow
+	 * @see org.apache.royale.textLayout.factory.StringTextLineFactory StringTextLineFactory
+	 * @see org.apache.royale.textLayout.factory.TextFlowTextLineFactory TextFlowTextLineFactory
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
@@ -72,7 +72,7 @@ package org.apache.flex.textLayout.compose
 		 * 
 		 * <p>Only a TextFlow object can be a root element.</p>
 		 *  
-		 * @see org.apache.flex.textLayout.elements.IContainerFormattedElement IContainerFormattedElement
+		 * @see org.apache.royale.textLayout.elements.IContainerFormattedElement IContainerFormattedElement
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -443,7 +443,7 @@ package org.apache.flex.textLayout.compose
 		 * @return 	true if any of the ITextFlowLine objects from the start of the flow up to the line containing the content at
 		 * <code>absolutePosition</code> are marked as damaged OR if there are other reasons to believe the textFlow is damaged.
 		 *
-         * @see org.apache.flex.textLayout.compose.IFlowComposer#isDamaged()
+         * @see org.apache.royale.textLayout.compose.IFlowComposer#isDamaged()
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
@@ -504,8 +504,8 @@ package org.apache.flex.textLayout.compose
 		/** Mark lines as damaged and needing a recompose.
 		 * @param damageStart beginning of range to damage
 		 * @param damageLength number of characters to damage
-		 * @param damageType type of damage.  One of org.apache.flex.textLayout.compose.FlowDamageType
-		 * @see org.apache.flex.textLayout.compose.FlowDamageType
+		 * @param damageType type of damage.  One of org.apache.royale.textLayout.compose.FlowDamageType
+		 * @see org.apache.royale.textLayout.compose.FlowDamageType
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0

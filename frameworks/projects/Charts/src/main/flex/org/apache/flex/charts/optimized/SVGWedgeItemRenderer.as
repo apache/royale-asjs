@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.optimized
+package org.apache.royale.charts.optimized
 {
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.svg.Path;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.charts.supportClasses.IWedgeItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.svg.Path;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.charts.supportClasses.IWedgeItemRenderer;
 	
 	/**
 	 *  The SVGWedgeItemRenderer draws its graphics directly into a SVGChartDataGroup

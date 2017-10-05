@@ -15,11 +15,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.royale.file.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.file.FileProxy;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.file.FileProxy;
 
 	COMPILE::SWF 
 	{
@@ -29,8 +29,8 @@ package org.apache.flex.file.beads
 
 	COMPILE::JS
 	{
-		import org.apache.flex.events.Event;
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.core.WrappedHTMLElement;
 		import goog.events;
 	}
 	
@@ -71,7 +71,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		public function createDelegate():void
@@ -124,7 +124,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -149,7 +149,7 @@ package org.apache.flex.file.beads
 		 *  @royaleignorecoercion HTMLInputElement
 		 */		
 		COMPILE::JS
-		private function fileChangeHandler(e:org.apache.flex.events.Event):void
+		private function fileChangeHandler(e:org.apache.royale.events.Event):void
 		{
 			host.model = new FileModel((delegate as HTMLInputElement).files[0]);
 		}

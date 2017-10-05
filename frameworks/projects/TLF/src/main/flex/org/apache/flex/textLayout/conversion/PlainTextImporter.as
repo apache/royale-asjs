@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion {
-	import org.apache.flex.textLayout.factory.TLFFactory;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IConfiguration;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.ElementHelper;
+package org.apache.royale.textLayout.conversion {
+	import org.apache.royale.textLayout.factory.TLFFactory;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IConfiguration;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.ElementHelper;
 
 
 	// import container.TextFrame;

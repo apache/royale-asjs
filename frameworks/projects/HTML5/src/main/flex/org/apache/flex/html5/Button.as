@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.Button;
+	import org.apache.royale.html.Button;
 	
-	public class Button extends org.apache.flex.html.Button
+	public class Button extends org.apache.royale.html.Button
 	{
 	}
 }

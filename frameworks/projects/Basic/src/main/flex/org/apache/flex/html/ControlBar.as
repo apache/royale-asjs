@@ -16,31 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
 
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.ValuesManager;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position
 	 *  additional controls. The ControlBar appears at the bottom of the
-	 *  org.apache.flex.html.Panel
+	 *  org.apache.royale.html.Panel
 	 *  and is not part of the Panel's scrollable content area. The ControlBar
-	 *  is a Container and implements the org.apache.flex.core.IChrome interface, indicating that is
+	 *  is a Container and implements the org.apache.royale.core.IChrome interface, indicating that is
 	 *  outside of the Container's content area. The ControlBar uses the following
 	 *  beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model for the component.
-	 *  org.apache.flex.core.IMeasurementBead: helps determine the overlay size of the ControlBar for layout.
-	 *  org.apache.flex.core.IBorderBead: if present, displays a border around the component.
-	 *  org.apache.flex.core.IBackgroundBead: if present, displays a solid background below the ControlBar.
+	 *  org.apache.royale.core.IBeadModel: the data model for the component.
+	 *  org.apache.royale.core.IMeasurementBead: helps determine the overlay size of the ControlBar for layout.
+	 *  org.apache.royale.core.IBorderBead: if present, displays a border around the component.
+	 *  org.apache.royale.core.IBackgroundBead: if present, displays a solid background below the ControlBar.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -79,7 +79,7 @@ package org.apache.flex.html
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

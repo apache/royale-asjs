@@ -24,22 +24,22 @@ NavigationBar
 {
 	height: 55px;
 	min-height: 55px;
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalFlexLayout");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalFlexLayout");
 	flex-grow: 0;
 }
 
 StackedViewManager 
 {
-	IBeadModel: ClassReference("org.apache.flex.mobile.models.ViewManagerModel");
-	IBeadView:  ClassReference("org.apache.flex.mobile.beads.StackedViewManagerView");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
+	IBeadModel: ClassReference("org.apache.royale.mobile.models.ViewManagerModel");
+	IBeadView:  ClassReference("org.apache.royale.mobile.beads.StackedViewManagerView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
 }
 
 TabbedViewManager 
 {
-	IBeadModel: ClassReference("org.apache.flex.mobile.models.ViewManagerModel");
-	IBeadView:  ClassReference("org.apache.flex.mobile.beads.TabbedViewManagerView");
-	IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.VerticalFlexLayout");
+	IBeadModel: ClassReference("org.apache.royale.mobile.models.ViewManagerModel");
+	IBeadView:  ClassReference("org.apache.royale.mobile.beads.TabbedViewManagerView");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
 }
 
 TabBar {
@@ -56,40 +56,40 @@ ToolBar {
 
 ToggleSwitch
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-	IBeadView:  ClassReference("org.apache.flex.mobile.beads.ToggleSwitchView");		
-	IBeadController: ClassReference("org.apache.flex.mobile.beads.controllers.ToggleSwitchMouseController");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+	IBeadView:  ClassReference("org.apache.royale.mobile.beads.ToggleSwitchView");		
+	IBeadController: ClassReference("org.apache.royale.mobile.beads.controllers.ToggleSwitchMouseController");
 	width: 40px;
 	height: 25px;
 }
 
 DatePicker {
-	IBeadView: ClassReference("org.apache.flex.mobile.beads.DatePickerView");
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.DateChooserModel");
+	IBeadView: ClassReference("org.apache.royale.mobile.beads.DatePickerView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 }
 		
 .DatePicker_Month {
-	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
-	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+	IBeadView: ClassReference("org.apache.royale.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.RangeStepperMouseController");
 }
 
 .DatePicker_Day {
-	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
-	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+	IBeadView: ClassReference("org.apache.royale.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.RangeStepperMouseController");
 }
 
 .DatePicker_Year {
-	IBeadView: ClassReference("org.apache.flex.html.beads.RangeStepperView");
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.RangeModelExtended");
-	IBeadController: ClassReference("org.apache.flex.html.beads.controllers.RangeStepperMouseController");
+	IBeadView: ClassReference("org.apache.royale.html.beads.RangeStepperView");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModelExtended");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.RangeStepperMouseController");
 }
 
-@media -flex-flash
+@media -royale-swf
 {
 	NavigationBar {
-		IBackgroundBead: ClassReference("org.apache.flex.html.beads.SolidBackgroundBead");
-		IBorderBead: ClassReference("org.apache.flex.html.beads.SingleLineBorderBead");
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 	}
 }

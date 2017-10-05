@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.html.Button;
+    import org.apache.royale.html.Button;
 	
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IScrollBarModel;
+	import org.apache.royale.core.IStrand;
 
     /**
      *  The IScrollBarView interface is the interface for views for
-     *  the org.apache.flex.html.supportClasses.ScrollBar.
+     *  the org.apache.royale.html.supportClasses.ScrollBar.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

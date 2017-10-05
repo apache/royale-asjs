@@ -17,17 +17,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.royale.charts.beads
 {
-	import org.apache.flex.charts.core.IAxisBead;
-	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
+	import org.apache.royale.charts.core.IAxisBead;
+	import org.apache.royale.charts.core.IAxisGroup;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
 	
 	/**
 	 * The AxisBaseBead is the base class for the chart axis beads.
@@ -174,7 +174,7 @@ package org.apache.flex.charts.beads
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IBead#strand
+		 * @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

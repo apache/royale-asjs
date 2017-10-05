@@ -25,8 +25,8 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-        import org.apache.flex.fa.FontAwesomeIconRotation;
-        import org.apache.flex.fa.FontAwesomeIconType;
+        import org.apache.royale.fa.FontAwesomeIconRotation;
+        import org.apache.royale.fa.FontAwesomeIconType;
 
         import vos.MemberVO;
 

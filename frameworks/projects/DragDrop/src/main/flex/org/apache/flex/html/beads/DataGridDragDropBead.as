@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.DragEvent;
-	import org.apache.flex.html.DataGrid;
-	import org.apache.flex.html.supportClasses.DataGridColumn;
-	import org.apache.flex.html.beads.IDataGridView;
-	import org.apache.flex.html.beads.SingleSelectionDragImageBead;
-	import org.apache.flex.html.beads.SingleSelectionDragSourceBead;
-	import org.apache.flex.html.beads.SingleSelectionDropTargetBead;
-	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead;
-	import org.apache.flex.html.beads.DataGridWithDrawingLayerLayout;
-	import org.apache.flex.html.beads.DataGridDrawingLayerBead;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.html.DataGrid;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
+	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+	import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+	import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
+	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+	import org.apache.royale.html.beads.DataGridWithDrawingLayerLayout;
+	import org.apache.royale.html.beads.DataGridDrawingLayerBead;
 
 	/**
 	 *  The DataGridDragDropBead bead should be added to the DataGrid when
@@ -131,7 +131,7 @@ package org.apache.flex.html.beads
 
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

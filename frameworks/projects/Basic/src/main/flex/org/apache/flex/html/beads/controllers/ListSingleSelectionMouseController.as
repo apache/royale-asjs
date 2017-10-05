@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.beads.IListView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.IListView;
 	
-	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
-     *  org.apache.flex.html.List.  Controllers
+     *  org.apache.royale.html.List.  Controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for events from the item renderers
@@ -95,7 +95,7 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -1,5 +1,5 @@
 {
-    "config": "flex",
+    "config": "royale",
     "compilerOptions": {
         "debug": true,
         "source-map": true,
@@ -9,6 +9,6 @@
     "additionalOptions": "-html-template=src/main/resources/mdl-js-index-template.html -compiler.exclude-defaults-css-files=HTML.swc:defaults.css",
     "files":
     [
-        "src/main/flex/App.mxml"
+        "src/main/royale/App.mxml"
     ]
 }

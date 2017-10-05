@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IParentIUIBase;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParentIUIBase;
 	public interface IInlineGraphicElement extends IFlowLeafElement
 	{
 		function get effectiveFloat():*;

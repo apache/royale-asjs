@@ -18,14 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.net.HTTPService;
-	import org.apache.flex.collections.parsers.JSONInputParser;
-	import org.apache.flex.collections.LazyCollection;
-	import org.apache.flex.collections.ArrayList;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.net.HTTPService;
+	import org.apache.royale.collections.parsers.JSONInputParser;
+	import org.apache.royale.collections.LazyCollection;
+	import org.apache.royale.collections.ArrayList;
 		
 	public class ProductsModel extends EventDispatcher implements IBeadModel
 	{

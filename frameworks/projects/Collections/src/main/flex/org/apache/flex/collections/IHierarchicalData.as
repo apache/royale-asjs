@@ -17,9 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
-import org.apache.flex.events.IEventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  The IHierarchicalData interface defines the interface

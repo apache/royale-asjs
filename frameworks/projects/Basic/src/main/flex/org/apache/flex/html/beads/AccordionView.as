@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.beads.layouts.IOneFlexibleChildLayout;
-	import org.apache.flex.html.supportClasses.ICollapsible;
-	import org.apache.flex.utils.StrandUtils;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.layouts.IOneFlexibleChildLayout;
+	import org.apache.royale.html.supportClasses.ICollapsible;
+	import org.apache.royale.utils.StrandUtils;
 	
 	/**
 	 * The AccordionView sets up the components for the Accordion component.

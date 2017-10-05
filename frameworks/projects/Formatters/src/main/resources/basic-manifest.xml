@@ -20,6 +20,6 @@
 
 
 <componentPackage>
-    <component id="NumberFormatter" class="org.apache.flex.html.accessories.NumberFormatter"/>
-    <component id="CurrencyFormatter" class="org.apache.flex.html.accessories.CurrencyFormatter"/>
+    <component id="NumberFormatter" class="org.apache.royale.html.accessories.NumberFormatter"/>
+    <component id="CurrencyFormatter" class="org.apache.royale.html.accessories.CurrencyFormatter"/>
 </componentPackage>

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.binding
+package org.apache.royale.binding
 {	
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.ValueChangeEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ValueChangeEvent;
 
     /**
      *  The PropertyWatcher class is the data-binding class that watches

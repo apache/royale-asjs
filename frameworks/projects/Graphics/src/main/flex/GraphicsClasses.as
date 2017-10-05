@@ -28,28 +28,28 @@ package
 internal class GraphicsClasses
 {	
 
-	import org.apache.flex.graphics.SolidColor; SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke; SolidColorStroke;
-	import org.apache.flex.svg.TransformBead; TransformBead;
-	import org.apache.flex.svg.ClipBead; ClipBead;
-	import org.apache.flex.svg.LinearGradient; LinearGradient;
-	import org.apache.flex.graphics.CubicCurve; CubicCurve;
-	import org.apache.flex.graphics.LineStyle; LineStyle;
-	import org.apache.flex.graphics.LineTo; LineTo;
-	import org.apache.flex.graphics.MoveTo; MoveTo;
-	import org.apache.flex.graphics.PathBuilder; PathBuilder;
+	import org.apache.royale.graphics.SolidColor; SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke; SolidColorStroke;
+	import org.apache.royale.svg.TransformBead; TransformBead;
+	import org.apache.royale.svg.ClipBead; ClipBead;
+	import org.apache.royale.svg.LinearGradient; LinearGradient;
+	import org.apache.royale.graphics.CubicCurve; CubicCurve;
+	import org.apache.royale.graphics.LineStyle; LineStyle;
+	import org.apache.royale.graphics.LineTo; LineTo;
+	import org.apache.royale.graphics.MoveTo; MoveTo;
+	import org.apache.royale.graphics.PathBuilder; PathBuilder;
 	COMPILE::SWF
 	{
-		import org.apache.flex.graphics.utils.PathHelper; PathHelper;
+		import org.apache.royale.graphics.utils.PathHelper; PathHelper;
 	}
-	import org.apache.flex.graphics.QuadraticCurve; QuadraticCurve;
-	import org.apache.flex.graphics.ICircle; ICircle;
-	import org.apache.flex.graphics.IDrawable; IDrawable;
-	import org.apache.flex.graphics.ICompoundGraphic; ICompoundGraphic;
-	import org.apache.flex.graphics.IEllipse; IEllipse;
-	import org.apache.flex.graphics.IPath; IPath;
-	import org.apache.flex.graphics.IRect; IRect;
-	import org.apache.flex.graphics.IText; IText;
+	import org.apache.royale.graphics.QuadraticCurve; QuadraticCurve;
+	import org.apache.royale.graphics.ICircle; ICircle;
+	import org.apache.royale.graphics.IDrawable; IDrawable;
+	import org.apache.royale.graphics.ICompoundGraphic; ICompoundGraphic;
+	import org.apache.royale.graphics.IEllipse; IEllipse;
+	import org.apache.royale.graphics.IPath; IPath;
+	import org.apache.royale.graphics.IRect; IRect;
+	import org.apache.royale.graphics.IText; IText;
 		
 }
 

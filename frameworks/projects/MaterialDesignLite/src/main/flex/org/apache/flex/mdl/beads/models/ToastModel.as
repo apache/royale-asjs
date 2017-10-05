@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.EventDispatcher;
 
     /**
-     *  The ToastModel class defines the data associated with an org.apache.flex.mdl.Toast
+     *  The ToastModel class defines the data associated with an org.apache.royale.mdl.Toast
      *  component.
      *
      *  @langversion 3.0
@@ -41,7 +41,7 @@ package org.apache.flex.mdl.beads.models
         /**
          *  The message of the toast
          *  
-         *  @copy org.apache.flex.mdl.beads.models.IToastModel#message
+         *  @copy org.apache.royale.mdl.beads.models.IToastModel#message
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.mdl.beads.models
 
         private var _timeout:int = 2750;
         /**
-         *  @copy org.apache.flex.mdl.beads.models.IToastModel#timeout
+         *  @copy org.apache.royale.mdl.beads.models.IToastModel#timeout
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -78,7 +78,7 @@ package org.apache.flex.mdl.beads.models
         }
 
         /**
-         *  @copy org.apache.flex.mdl.beads.models.IToastModel#snackbarData
+         *  @copy org.apache.royale.mdl.beads.models.IToastModel#snackbarData
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements.utils
+package org.apache.royale.textLayout.elements.utils
 {
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ParagraphElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ParagraphElement;
 	public class ParagraphHelper
 	{
 				public static function getParagraph():IParagraphElement

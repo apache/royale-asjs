@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.accessories.NumericOnlyTextInputBead;
-	import org.apache.flex.html.accessories.PasswordInputBead;
-	import org.apache.flex.html.accessories.TextPromptBead;
-	import org.apache.flex.html.beads.DisableBead;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.TextInput;
+	import org.apache.royale.html.accessories.NumericOnlyTextInputBead;
+	import org.apache.royale.html.accessories.PasswordInputBead;
+	import org.apache.royale.html.accessories.TextPromptBead;
+	import org.apache.royale.html.beads.DisableBead;
 	
 	COMPILE::SWF {
-		import org.apache.flex.html.beads.TextInputView;
+		import org.apache.royale.html.beads.TextInputView;
 	}
 	
 	/**
@@ -34,7 +34,7 @@ package org.apache.flex.express
 	 * the prompt, password, and numeric accessories (as needed) for
 	 * convenience.
 	 */
-	public class TextInput extends org.apache.flex.html.TextInput
+	public class TextInput extends org.apache.royale.html.TextInput
 	{
 		public function TextInput()
 		{

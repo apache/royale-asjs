@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property
+package org.apache.royale.textLayout.property
 {
-	import org.apache.flex.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
 	public class PropertyUtil
 	{
 

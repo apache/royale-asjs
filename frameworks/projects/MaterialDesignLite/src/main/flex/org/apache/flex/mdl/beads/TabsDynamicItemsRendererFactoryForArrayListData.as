@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
-    import org.apache.flex.collections.IArrayList;
-    import org.apache.flex.core.IListPresentationModel;
-    import org.apache.flex.events.CollectionEvent;
+    import org.apache.royale.collections.IArrayList;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.events.CollectionEvent;
 
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.html.beads.DynamicItemsRendererFactoryForArrayListData;
-    import org.apache.flex.mdl.beads.models.ITabModel;
-    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
-    import org.apache.flex.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData;
+    import org.apache.royale.mdl.beads.models.ITabModel;
+    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
+    import org.apache.royale.events.Event;
 
-    [Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
+    [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
     /**
      *  The TabsDynamicItemsRendererFactoryForArrayListData class reads an

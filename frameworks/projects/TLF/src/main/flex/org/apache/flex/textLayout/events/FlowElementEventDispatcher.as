@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 	// [ExcludeClass]
 	/** The ElementEventDispatcher class adds a simple tracking counter for event listeners

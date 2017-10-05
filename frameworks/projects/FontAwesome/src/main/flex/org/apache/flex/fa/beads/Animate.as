@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.fa.beads {
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IStrand;
-import org.apache.flex.core.UIBase;
+package org.apache.royale.fa.beads {
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.UIBase;
 
 public class Animate implements IBead {
     /**

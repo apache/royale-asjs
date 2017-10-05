@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IUIBase;
 	
 	/**
 	 *  The ISliderView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.flex.html.Slider control.
+	 *  creates the visual parts for a org.apache.royale.html.Slider control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -33,7 +33,7 @@ package org.apache.flex.html.beads
 	public interface ISliderView extends IBead
 	{
 		/**
-		 *  The component used for the track area of the org.apache.flex.html.Slider.
+		 *  The component used for the track area of the org.apache.royale.html.Slider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads
 		function get track():IUIBase;
 		
 		/**
-		 *  The component used for the thumb button of the org.apache.flex.html.Slider.
+		 *  The component used for the thumb button of the org.apache.royale.html.Slider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

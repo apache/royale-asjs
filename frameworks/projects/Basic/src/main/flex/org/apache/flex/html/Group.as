@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IMXMLDocument;
-	import org.apache.flex.core.GroupBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.GroupBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 
 	/**
 	 *  Indicates that the children of the container is have been added.
@@ -32,7 +32,7 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	[Event(name="childrenAdded", type="org.apache.flex.events.Event")]
+	[Event(name="childrenAdded", type="org.apache.royale.events.Event")]
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -46,8 +46,8 @@ package org.apache.flex.html
 	 *  using styles or CSS.
      *
      *  @toplevel
-     *  @see org.apache.flex.html.beads.layout
-     *  @see org.apache.flex.html.supportClasses.ScrollingViewport
+     *  @see org.apache.royale.html.beads.layout
+     *  @see org.apache.royale.html.supportClasses.ScrollingViewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -98,7 +98,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -120,7 +120,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -133,7 +133,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

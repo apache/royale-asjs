@@ -36,7 +36,7 @@ The width and height are hard-coded in the root tag to help the Design view.
 	
 	<fx:Script>
 	    <![CDATA[
-	       import org.apache.flex.html.SimpleAlert;
+	       import org.apache.royale.html.SimpleAlert;
 	    ]]>
 	</fx:Script>
 	

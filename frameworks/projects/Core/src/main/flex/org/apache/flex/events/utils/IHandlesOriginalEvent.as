@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events.utils
+package org.apache.royale.events.utils
 {
 	/**
 	 *  The presence of this interface indicates that the event.target being

@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.utils.MXMLDataInterpreter;
-	import org.apache.flex.utils.Timer;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.Timer;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -33,7 +33,7 @@ package org.apache.flex.core
         import flash.events.Event;
         import flash.system.ApplicationDomain;
         import flash.utils.getQualifiedClassName;
-        import org.apache.flex.events.utils.MouseEventConverter;
+        import org.apache.royale.events.utils.MouseEventConverter;
     }
 
     //--------------------------------------
@@ -51,7 +51,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="initialize", type="org.apache.flex.events.Event")]
+    [Event(name="initialize", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup before the instances get created.
@@ -65,7 +65,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="preinitialize", type="org.apache.flex.events.Event")]
+    [Event(name="preinitialize", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup after the initial view has been
@@ -77,7 +77,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="viewChanged", type="org.apache.flex.events.Event")]
+    [Event(name="viewChanged", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup after the initial view has been
@@ -88,7 +88,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    [Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  The Application class is the main class and entry point for a Royale
@@ -146,9 +146,9 @@ package org.apache.flex.core
             for each (var bead:IBead in beads)
                 addBead(bead);
 
-            dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
 
-            if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+            if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
                 initialize();
             else
                 addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
@@ -158,7 +158,7 @@ package org.apache.flex.core
         COMPILE::SWF
         private function enterFrameHandler(event:flash.events.Event):void
         {
-            if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+            if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
             {
                 removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
                 initialize();
@@ -180,7 +180,7 @@ package org.apache.flex.core
 
             MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
 
-            dispatchEvent(new org.apache.flex.events.Event("initialize"));
+            dispatchEvent(new org.apache.royale.events.Event("initialize"));
 
             if (initialView)
             {
@@ -208,18 +208,18 @@ package org.apache.flex.core
                     graphics.drawRect(0, 0, initialView.width, initialView.height);
                     graphics.endFill();
                 }
-                dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+                dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
             }
-            dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
+            dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
         }
 
         /**
-         *  The org.apache.flex.core.IValuesImpl that will
+         *  The org.apache.royale.core.IValuesImpl that will
          *  determine the default values and other values
          *  for the application.  The most common choice
-         *  is org.apache.flex.core.SimpleCSSValuesImpl.
+         *  is org.apache.royale.core.SimpleCSSValuesImpl.
          *
-         *  @see org.apache.flex.core.SimpleCSSValuesImpl
+         *  @see org.apache.royale.core.SimpleCSSValuesImpl
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -236,7 +236,7 @@ package org.apache.flex.core
         /**
          *  The initial view.
          *
-         *  @see org.apache.flex.core.ViewBase
+         *  @see org.apache.royale.core.ViewBase
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -308,7 +308,7 @@ package org.apache.flex.core
          *  and tags in an MXML document.  This data is usually
          *  decoded by an MXMLDataInterpreter
          *
-         *  @see org.apache.flex.utils.MXMLDataInterpreter
+         *  @see org.apache.royale.utils.MXMLDataInterpreter
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -332,7 +332,7 @@ package org.apache.flex.core
          *  @param data The encoded data representing the
          *  MXML attributes.
          *
-         *  @see org.apache.flex.utils.MXMLDataInterpreter
+         *  @see org.apache.royale.utils.MXMLDataInterpreter
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -360,7 +360,7 @@ package org.apache.flex.core
         private var _beads:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.IStrand#addBead()
+         *  @copy org.apache.royale.core.IStrand#addBead()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -377,7 +377,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
+         *  @copy org.apache.royale.core.IStrand#getBeadByType()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -396,7 +396,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
+         *  @copy org.apache.royale.core.IStrand#removeBead()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -420,13 +420,13 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#addElement()
+         *  @copy org.apache.royale.core.IParent#addElement()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          *  @royaleignorecoercion HTMLElement
          */
         public function addElement(c:IChild, dispatchEvent:Boolean = true):void
@@ -450,13 +450,13 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#addElementAt()
+         *  @copy org.apache.royale.core.IParent#addElementAt()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
@@ -487,7 +487,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#getElementAt()
+         *  @copy org.apache.royale.core.IParent#getElementAt()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -506,7 +506,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#getElementIndex()
+         *  @copy org.apache.royale.core.IParent#getElementIndex()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -534,7 +534,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#removeElement()
+         *  @copy org.apache.royale.core.IParent#removeElement()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -558,7 +558,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#numElements
+         *  @copy org.apache.royale.core.IParent#numElements
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -589,7 +589,7 @@ package org.apache.flex.core
 		protected var startupTimer:Timer;
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IBead
+		 * @royaleignorecoercion org.apache.royale.core.IBead
 		 */
 		COMPILE::JS
 		public function start():void
@@ -601,9 +601,9 @@ package org.apache.flex.core
 				addBead(beads[index]);
 			}
 			
-			dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+			dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
 			
-			if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+			if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 				initialize();
 			else {			
 				startupTimer = new Timer(34, 0);
@@ -618,7 +618,7 @@ package org.apache.flex.core
 		COMPILE::JS
 		protected function handleStartupTimer(event:Event):void
 		{
-			if (dispatchEvent(new org.apache.flex.events.Event("preinitialize", false, true)))
+			if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			{
 				startupTimer.stop();
 				initialize();
@@ -626,7 +626,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IBead
+		 * @royaleignorecoercion org.apache.royale.core.IBead
 		 */
 		COMPILE::JS
 		protected function initialize():void
@@ -647,9 +647,9 @@ package org.apache.flex.core
 					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
 				}
 				
-				dispatchEvent(new org.apache.flex.events.Event("viewChanged"));
+				dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
 			}
-			dispatchEvent(new org.apache.flex.events.Event("applicationComplete"));
+			dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
 		}
         
         COMPILE::SWF

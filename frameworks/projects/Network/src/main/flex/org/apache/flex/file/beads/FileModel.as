@@ -15,14 +15,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file.beads
+package org.apache.royale.file.beads
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.file.IFileModel;
-	import org.apache.flex.utils.BinaryData;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.file.IFileModel;
+	import org.apache.royale.utils.BinaryData;
 
 	COMPILE::SWF
 	{
@@ -76,7 +76,7 @@ package org.apache.flex.file.beads
 		
 		
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#size
+		 *  @copy org.apache.royale.file.IFileModel#size
 		 */
 		public function get size():Number
 		{
@@ -84,7 +84,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#name
+		 *  @copy org.apache.royale.file.IFileModel#name
 		 */
 		public function get name():String
 		{
@@ -93,7 +93,7 @@ package org.apache.flex.file.beads
 		
 		// TODO this will give different results in flash and in JS (extension and MIME respectively). Fix this.
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#type
+		 *  @copy org.apache.royale.file.IFileModel#type
 		 */
 		public function get type():String
 		{
@@ -101,7 +101,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#lastModified
+		 *  @copy org.apache.royale.file.IFileModel#lastModified
 		 */
 		public function get lastModified():uint
 		{
@@ -116,7 +116,7 @@ package org.apache.flex.file.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 */
 		public function set strand(value:IStrand):void
 		{

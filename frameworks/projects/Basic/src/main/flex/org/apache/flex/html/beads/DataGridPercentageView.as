@@ -16,36 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.IDataGridPresentationModel;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.DataGrid;
-	import org.apache.flex.html.DataGridButtonBar;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.IDataGridView;
-	import org.apache.flex.html.beads.layouts.ButtonBarLayout;
-	import org.apache.flex.html.beads.models.ButtonBarModel;
-	import org.apache.flex.html.supportClasses.DataGridColumn;
-	import org.apache.flex.html.supportClasses.DataGridColumnList;
-	import org.apache.flex.html.supportClasses.Viewport;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.DataGrid;
+	import org.apache.royale.html.DataGridButtonBar;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
+	import org.apache.royale.html.supportClasses.DataGridColumnList;
+	import org.apache.royale.html.supportClasses.Viewport;
 	
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStylesWithFlex;
+		import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
 
 	/**
-	 *  The DataGridPercentageView class is the visual bead for the org.apache.flex.html.DataGrid.
+	 *  The DataGridPercentageView class is the visual bead for the org.apache.royale.html.DataGrid.
 	 *  This class constructs the items that make the DataGrid: Lists for each column and a
-	 *  org.apache.flex.html.ButtonBar for the column headers. This class interprets the
+	 *  org.apache.royale.html.ButtonBar for the column headers. This class interprets the
 	 *  columnWidth value of each column to be a percentage rather than a pixel value.
 	 *
 	 *  @viewbead
@@ -101,7 +101,7 @@ package org.apache.flex.html.beads
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -121,7 +121,7 @@ package org.apache.flex.html.beads
 
 			_listArea = new Container();
 			_listArea.percentWidth = 100;
-			_listArea.className = "opt_org-apache-flex-html-DataGrid_ListArea";
+			_listArea.className = "opt_org-apache.royale-html-DataGrid_ListArea";
 			
 			COMPILE::SWF {
 				_header.style = new SimpleCSSStylesWithFlex();

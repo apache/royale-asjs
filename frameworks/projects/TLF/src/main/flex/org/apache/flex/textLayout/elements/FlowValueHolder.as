@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	
 

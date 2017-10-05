@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextBlock;
 
 	public interface IParagraphElement extends IFlowGroupElement
 	{

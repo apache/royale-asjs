@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads.layouts
+package org.apache.royale.charts.beads.layouts
 {
-	import org.apache.flex.charts.core.ChartBase;
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IHorizontalAxisBead;
-	import org.apache.flex.charts.core.IVerticalAxisBead;
-	import org.apache.flex.core.LayoutBase;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.charts.core.ChartBase;
+	import org.apache.royale.charts.core.IChartDataGroup;
+	import org.apache.royale.charts.core.IHorizontalAxisBead;
+	import org.apache.royale.charts.core.IVerticalAxisBead;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	public class ChartBaseLayout extends LayoutBase implements IBeadLayout
 	{
@@ -39,7 +39,7 @@ package org.apache.flex.charts.beads.layouts
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -126,7 +126,7 @@ package org.apache.flex.charts.beads.layouts
 		}
 		
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
+         * @copy org.apache.royale.core.IBeadLayout#layout
          */
 //		public function layout():Boolean
 //		{

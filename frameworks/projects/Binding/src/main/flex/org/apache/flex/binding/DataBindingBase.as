@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.binding
+package org.apache.royale.binding
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.core.IBinding;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IBinding;
 
     /**
      *  The DataBindingBase class is the base class for custom data binding
@@ -52,7 +52,7 @@ package org.apache.flex.binding
         protected var deferredBindings:Object = {};
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

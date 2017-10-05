@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
     /**
      *  This Group subclass uses HorizontalLayout as its default layout.
      *
      *  @toplevel
-     *  @see org.apache.flex.html.beads.layout
+     *  @see org.apache.royale.html.beads.layout
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6

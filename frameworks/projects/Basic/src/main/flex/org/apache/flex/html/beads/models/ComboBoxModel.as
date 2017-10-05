@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.events.Event;
 			
 	/**
-	 *  The ComboBoxModel class bead extends org.apache.flex.html.beads.models.ArraySelectionModel 
-	 *  and adds the text being displayed by the org.apache.flex.html.ComboBox's input field.
+	 *  The ComboBoxModel class bead extends org.apache.royale.html.beads.models.ArraySelectionModel 
+	 *  and adds the text being displayed by the org.apache.royale.html.ComboBox's input field.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -48,9 +48,9 @@ package org.apache.flex.html.beads.models
 		private var _text:String;
 		
 		/**
-		 *  The string to display in the org.apache.flex.html.ComboBox input field.
+		 *  The string to display in the org.apache.royale.html.ComboBox input field.
 		 * 
-		 *  @copy org.apache.flex.core.IComboBoxModel#text
+		 *  @copy org.apache.royale.core.IComboBoxModel#text
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -74,9 +74,9 @@ package org.apache.flex.html.beads.models
 		private var _html:String;
 		
 		/**
-		 *  The HTML string to display in the org.apache.flex.html.ComboBox input field.
+		 *  The HTML string to display in the org.apache.royale.html.ComboBox input field.
 		 * 
-		 *  @copy org.apache.flex.core.IComboBoxModel#html
+		 *  @copy org.apache.royale.core.IComboBoxModel#html
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

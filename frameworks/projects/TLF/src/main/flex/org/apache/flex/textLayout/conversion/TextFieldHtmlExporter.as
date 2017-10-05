@@ -16,39 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.elements.ListElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.text.engine.Kerning;
-	import org.apache.flex.text.engine.TabAlignment;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.BreakElement;
-	import org.apache.flex.textLayout.elements.DivElement;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.InlineGraphicElement;
-	import org.apache.flex.textLayout.elements.LinkElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.ListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.TCYElement;
-	import org.apache.flex.textLayout.elements.TabElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.LeadingModel;
-	import org.apache.flex.textLayout.formats.TabStopFormat;
-	import org.apache.flex.textLayout.formats.TextAlign;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.elements.ListElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.text.engine.Kerning;
+	import org.apache.royale.text.engine.TabAlignment;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.BreakElement;
+	import org.apache.royale.textLayout.elements.DivElement;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.InlineGraphicElement;
+	import org.apache.royale.textLayout.elements.LinkElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.ListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.TCYElement;
+	import org.apache.royale.textLayout.elements.TabElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.formats.TabStopFormat;
+	import org.apache.royale.textLayout.formats.TextAlign;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	// [ExcludeClass]
 	/** 
@@ -463,12 +463,12 @@ package org.apache.flex.textLayout.conversion
 			var outerElement:Object = xml;
 			
 			// Nest in <B/>, <I/>, or <U/> if applicable
-			if (format.textDecoration.toString() == org.apache.flex.textLayout.formats.TextDecoration.UNDERLINE)
+			if (format.textDecoration.toString() == org.apache.royale.textLayout.formats.TextDecoration.UNDERLINE)
 				outerElement = nest (<U/>, outerElement);
 //TODO get HTML based on styles
-//			if (format.fontStyle.toString() == org.apache.flex.text.engine.FontPosture.ITALIC)
+//			if (format.fontStyle.toString() == org.apache.royale.text.engine.FontPosture.ITALIC)
 //				outerElement = nest (<I/>, outerElement);
-//			if (format.fontWeight.toString() == org.apache.flex.text.engine.FontWeight.BOLD)
+//			if (format.fontWeight.toString() == org.apache.royale.text.engine.FontWeight.BOLD)
 //				outerElement = nest (<B/>, outerElement);
 				
 			// Nest in <FONT/> if the computed values of certain character-level formats 

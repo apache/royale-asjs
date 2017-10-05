@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.dummy {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.geom.Matrix;
+package org.apache.royale.textLayout.dummy {
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.geom.Matrix;
 	public class BitmapData {
 		public function BitmapData(width:int, height:int, transparent:Boolean = true, fillColor:uint = 0xFFFFFFFF){
 

@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.ITextModel;
+	import org.apache.royale.core.ITextModel;
 
 	COMPILE::JS {
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
     /**

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	COMPILE::SWF
 	{
@@ -30,20 +30,20 @@ package org.apache.flex.core
     import flash.utils.getQualifiedClassName;
 	}
 	
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
 	COMPILE::SWF {
-	    import org.apache.flex.events.utils.MouseEventConverter;
+	    import org.apache.royale.events.utils.MouseEventConverter;
 	}
-    import org.apache.flex.utils.MXMLDataInterpreter;
+    import org.apache.royale.utils.MXMLDataInterpreter;
     
     /**
      *  The SimpleApplication class can be used as the main class and entry point
      *  for low-level ActionScript-only Royale
      *  applications.  It is not indended for use in MXML applications or most
      *  of the Royale components as they expect a certain application lifecycle
-     *  in the org.apache.flex.core.Application class.
+     *  in the org.apache.royale.core.Application class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

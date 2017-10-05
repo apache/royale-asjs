@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IBinaryImage;
-	import org.apache.flex.core.IBinaryImageModel;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.IBinaryImageLoader;
-	import org.apache.flex.utils.BinaryData;
+	import org.apache.royale.core.IBinaryImage;
+	import org.apache.royale.core.IBinaryImageModel;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IBinaryImageLoader;
+	import org.apache.royale.utils.BinaryData;
 
 	
 	/**
 	 *  The Image class is a component that displays a bitmap. The Image uses
 	 *  the following beads:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
-	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
+	 *  org.apache.royale.core.IBeadModel: the data model for the Image, including the url/binary property.
+	 *  org.apache.royale.core.IBeadView: constructs the visual elements of the component.
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -74,7 +74,7 @@ package org.apache.flex.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IImageModel
+         *  @royaleignorecoercion org.apache.royale.core.IImageModel
 		 */
 		public function get binary():BinaryData
 		{

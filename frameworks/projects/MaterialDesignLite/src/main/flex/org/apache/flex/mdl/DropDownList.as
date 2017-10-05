@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.core.IItemRenderer;
-    import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.events.ItemAddedEvent;
-    import org.apache.flex.html.DataContainer;
-    import org.apache.flex.html.Select;
-    import org.apache.flex.mdl.beads.UpgradeElement;
-    import org.apache.flex.mdl.beads.models.IDropDownListModel;
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.ItemAddedEvent;
+    import org.apache.royale.html.DataContainer;
+    import org.apache.royale.html.Select;
+    import org.apache.royale.mdl.beads.UpgradeElement;
+    import org.apache.royale.mdl.beads.models.IDropDownListModel;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The DropDownList class is a component that displays label field and
@@ -119,7 +119,7 @@ package org.apache.flex.mdl
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.IDropDownListModel#selectedValue
+         *  @copy org.apache.royale.core.IDropDownListModel#selectedValue
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -137,7 +137,7 @@ package org.apache.flex.mdl
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -155,7 +155,7 @@ package org.apache.flex.mdl
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -199,7 +199,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

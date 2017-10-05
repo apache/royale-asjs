@@ -54,8 +54,8 @@
         <java jar="${FALCONJX_HOME}/lib/asdoc.jar" resultProperty="errorCode"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <jvmarg line="-Dflexlib=${ROYALE_HOME}/frameworks}"/>
-            <arg value="+flexlib=${ROYALE_HOME}/frameworks" />
+            <jvmarg line="-Droyalelib=${ROYALE_HOME}/frameworks}"/>
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="-external-library-path=${env.AIR_HOME}/frameworks/libs/air/airglobal.swc" />
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />

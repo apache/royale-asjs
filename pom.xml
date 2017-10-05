@@ -34,7 +34,7 @@
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
-  <description>The Apache Flex ASJS Project</description>
+  <description>The Apache Royale Project</description>
 
   <!--
         This build builds only the framework libraries per default.
@@ -43,9 +43,9 @@
   -->
 
   <scm>
-    <connection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</connection>
-    <developerConnection>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</developerConnection>
-    <url>https://github.com/apache/flex-asjs</url>
+    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
+    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
+    <url>https://github.com/apache/royale-asjs</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -59,8 +59,8 @@
     <royale.typedefs.version>0.9.0-SNAPSHOT</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
-    <flex.debug>true</flex.debug>
-    <flex.version>4.15.0</flex.version>
+    <royale.debug>true</royale.debug>
+    <flex.version>4.15.0</royale.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
@@ -79,29 +79,29 @@
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:git:https://git-wip-us.apache.org/repos/asf/flex-asjs.git</url>
+      <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
     </site>
   </distributionManagement>
 
   <issueManagement>
     <system>Jira</system>
-    <url>https://issues.apache.org/jira/browse/FLEX</url>
+    <url>https://github.com/apache/royale-asjs/issues/url>
   </issueManagement>
 
   <mailingLists>
     <mailingList>
-      <name>Apache Flex User List</name>
-      <subscribe>users-subscribe@flex.apache.org</subscribe>
-      <unsubscribe>users-unsubscribe@flex.apache.org</unsubscribe>
-      <post>users@flex.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/flex-users/</archive>
+      <name>Apache Royale User List</name>
+      <subscribe>users-subscribe@royale.apache.org</subscribe>
+      <unsubscribe>users-unsubscribe@royale.apache.org</unsubscribe>
+      <post>users@royale.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/royale-users/</archive>
     </mailingList>
     <mailingList>
-      <name>Apache Flex Developer List</name>
-      <subscribe>dev-subscribe@flex.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@flex.apache.org</unsubscribe>
-      <post>dev@flex.apache.org</post>
-      <archive>http://mail-archives.apache.org/mod_mbox/flex-dev/</archive>
+      <name>Apache Royale Developer List</name>
+      <subscribe>dev-subscribe@royale.apache.org</subscribe>
+      <unsubscribe>dev-unsubscribe@royale.apache.org</unsubscribe>
+      <post>dev@royale.apache.org</post>
+      <archive>http://mail-archives.apache.org/mod_mbox/royale-dev/</archive>
     </mailingList>
   </mailingLists>
 
@@ -120,7 +120,7 @@
           <extensions>true</extensions>
           <configuration>
             <targetPlayer>${flash.version}</targetPlayer>
-            <debug>${flex.debug}</debug>
+            <debug>${royale.debug}</debug>
             <keepAs3Metadata>
               <name>Bindable</name>
               <name>Managed</name>
@@ -303,7 +303,7 @@
     <profile>
       <id>release</id>
       <properties>
-        <flex.debug>false</flex.debug>
+        <royale.debug>false</royale.debug>
       </properties>
     </profile>
 

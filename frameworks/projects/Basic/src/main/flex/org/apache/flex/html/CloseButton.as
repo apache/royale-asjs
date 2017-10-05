@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;            
     }
 
     /**
@@ -48,7 +48,7 @@ package org.apache.flex.html
 		}
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

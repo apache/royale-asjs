@@ -24,7 +24,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[   
 			
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			
 			public function simpleClick() : void
 			{
@@ -33,7 +33,7 @@ limitations under the License.
 			
 			public function changeLabel() : void
 			{
-				dispatchEvent( new org.apache.flex.events.Event("pushme2Clicked") );
+				dispatchEvent( new org.apache.royale.events.Event("pushme2Clicked") );
 				
 				check1.selected = !check1.selected;
 			}

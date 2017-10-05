@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:js="library://ns.apache.org/royale/basic"
-		 xmlns:local="org.apache.flex.html.*"
+		 xmlns:local="org.apache.royale.html.*"
 		 initComplete="onComplete()">
 	<fx:Script>
 		<![CDATA[
@@ -40,7 +40,7 @@ limitations under the License.
 	
 		<fx:Style>
 		@namespace js "library://ns.apache.org/royale/basic";
-		@namespace internal "org.apache.flex.html.supportClasses.*"; 
+		@namespace internal "org.apache.royale.html.supportClasses.*"; 
 		
 		/*
 		* TextButton
@@ -158,11 +158,11 @@ limitations under the License.
 			box-shadow: 1px 4px 8px gray;
 		}
 			
-@media -flex-flash
+@media -royale-swf
 {
 	js|DateChooser {
-		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px;
@@ -277,11 +277,11 @@ limitations under the License.
 			box-shadow: 1px 4px 8px gray;
 		}
 		
-@media -flex-flash
+@media -royale-swf
 {
 	js|List {
-		iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px;
@@ -314,7 +314,7 @@ limitations under the License.
 		color: #FFFFFF;
 	}
 	
-@media -flex-flash
+@media -royale-swf
 {
 	js|StringItemRenderer:selected {
 		background-color: #77CEFF;
@@ -333,11 +333,11 @@ limitations under the License.
 		box-shadow : 1px 4px 8px gray ;
 	}
 	
-@media -flex-flash
+@media -royale-swf
 {
     js|DataGrid {
-    	iBorderBead: ClassReference('org.apache.flex.html.beads.SingleLineBorderBead');
-		iBackgroundBead: ClassReference('org.apache.flex.html.beads.SolidBackgroundBead');
+    	iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
+		iBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead');
 		border-style: solid;
 		border-color: #000000;
 		border-width: 1px;

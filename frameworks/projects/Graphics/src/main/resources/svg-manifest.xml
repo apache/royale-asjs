@@ -20,8 +20,8 @@
 
 
 <componentPackage>
-	<component id="TransformBead" class="org.apache.flex.svg.TransformBead" />
-	<component id="ClipBead" class="org.apache.flex.svg.ClipBead" />
-	<component id="LinearGradient" class="org.apache.flex.svg.LinearGradient" />
+	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
+	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
+	<component id="LinearGradient" class="org.apache.royale.svg.LinearGradient" />
 	
 </componentPackage>

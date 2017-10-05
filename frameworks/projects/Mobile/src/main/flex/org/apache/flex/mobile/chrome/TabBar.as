@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.chrome
+package org.apache.royale.mobile.chrome
 {
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.html.ButtonBar;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.html.ButtonBar;
 	
 	/**
 	 *  The TabBar class displays a set of buttons that can be used to

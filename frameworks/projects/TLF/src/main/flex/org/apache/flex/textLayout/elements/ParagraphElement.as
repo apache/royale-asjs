@@ -16,37 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements 
+package org.apache.royale.textLayout.elements 
 {
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.text.engine.ContentElement;
-	import org.apache.flex.text.engine.EastAsianJustifier;
-	import org.apache.flex.text.engine.GroupElement;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.LineJustification;
-	import org.apache.flex.text.engine.SpaceJustifier;
-	import org.apache.flex.text.engine.TabAlignment;
-	import org.apache.flex.text.engine.TabStop;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.JustificationRule;
-	import org.apache.flex.textLayout.formats.LeadingModel;
-	import org.apache.flex.textLayout.formats.LineBreak;
-	import org.apache.flex.textLayout.formats.TabStopFormat;
-	import org.apache.flex.textLayout.formats.TextAlign;
-	import org.apache.flex.textLayout.formats.TextJustify;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.textLayout.utils.CharacterUtil;
-	import org.apache.flex.textLayout.utils.LocaleUtil;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.text.engine.ContentElement;
+	import org.apache.royale.text.engine.EastAsianJustifier;
+	import org.apache.royale.text.engine.GroupElement;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.LineJustification;
+	import org.apache.royale.text.engine.SpaceJustifier;
+	import org.apache.royale.text.engine.TabAlignment;
+	import org.apache.royale.text.engine.TabStop;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.JustificationRule;
+	import org.apache.royale.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.formats.LineBreak;
+	import org.apache.royale.textLayout.formats.TabStopFormat;
+	import org.apache.royale.textLayout.formats.TextAlign;
+	import org.apache.royale.textLayout.formats.TextJustify;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.PropertyUtil;
+	import org.apache.royale.textLayout.utils.CharacterUtil;
+	import org.apache.royale.textLayout.utils.LocaleUtil;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 
 
@@ -182,7 +182,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.royale.textLayout.compose.ITextFlowLine
 		 */
 		private function releaseTextBlockInternal(tb:ITextBlock):void
 		{
@@ -359,7 +359,7 @@ package org.apache.flex.textLayout.elements
 		
 		/**
 		*  @private
-		*  @royaleemitcoercion org.apache.flex.text.engine.GroupElement
+		*  @royaleemitcoercion org.apache.royale.text.engine.GroupElement
 		*/
 		public override function createContentAsGroup(pos:int=0):GroupElement
 		{
@@ -640,7 +640,7 @@ package org.apache.flex.textLayout.elements
 		}
 		/**
 		 *  @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISpanElement
 		 */
 		public function ensureTerminatorAfterReplace():void
 		{
@@ -773,7 +773,7 @@ package org.apache.flex.textLayout.elements
 	 	 * @langversion 3.0
 	 	 * 
 	 	 * @see #getPreviousParagraph()
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.ParagraphElement
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.ParagraphElement
 		 */
 		public function getNextParagraph():IParagraphElement
 		{
@@ -811,7 +811,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-	 	 * @see org.apache.flex.text.engine.ITextLine
+	 	 * @see org.apache.royale.text.engine.ITextLine
 		 */
 		 
 		public function findPreviousAtomBoundary(relativePosition:int):int
@@ -911,7 +911,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-	 	 * @see org.apache.flex.text.engine.ITextLine
+	 	 * @see org.apache.royale.text.engine.ITextLine
 		 */
 		 
 		public function findNextAtomBoundary(relativePosition:int):int

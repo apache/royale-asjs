@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.graphics.IStroke;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.graphics.IStroke;
 	
 	/**
 	 *  The ILineSegmentItemRenderer interface must be implemented by any class that

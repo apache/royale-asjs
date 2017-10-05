@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.MementoList;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ListElement;
-	import org.apache.flex.textLayout.elements.ListItemElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.MementoList;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ListElement;
+	import org.apache.royale.textLayout.elements.ListItemElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
 	
 	/**
 	 * The MoveChildrenOperation class allows moving a set of siblings out of its immediate parent chain, and the operation removes any empty ancestor chain left behind.
 	 *
-	 * @see org.apache.flex.textLayout.elements.FlowElement
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.elements.FlowElement
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -133,7 +133,7 @@ package org.apache.flex.textLayout.operations {
 		
 		/**
 		 *  @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public override function doOperation():Boolean
 		{

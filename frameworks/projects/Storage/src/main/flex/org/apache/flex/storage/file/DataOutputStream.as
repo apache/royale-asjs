@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.file
+package org.apache.royale.storage.file
 {
-import org.apache.flex.events.EventDispatcher;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.storage.events.FileEvent;
-import org.apache.flex.storage.events.FileErrorEvent;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.storage.events.FileEvent;
+import org.apache.royale.storage.events.FileErrorEvent;
 
 COMPILE::SWF {
 	import flash.filesystem.File;

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
 
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.WhiteSpaceCollapse;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.WhiteSpaceCollapse;
 
 
 
@@ -28,7 +28,7 @@ package org.apache.flex.textLayout.conversion
 	 * Configure for import/export of standard components.
 	 * Configures the import/export package so it can export all the standard FlowElements.
 	 *  
-	 * @see org.apache.flex.textLayout.elements.Configuration
+	 * @see org.apache.royale.textLayout.elements.Configuration
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0

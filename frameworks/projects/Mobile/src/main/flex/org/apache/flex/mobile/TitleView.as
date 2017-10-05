@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.Group;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.Group;
 	
 	/**
 	 * The TitleView class represents a view in a mobile app that has

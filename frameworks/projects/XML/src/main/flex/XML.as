@@ -21,8 +21,8 @@ package
 	COMPILE::JS
 	public class XML
 	{
-		import org.apache.flex.debugging.assert;
-		import org.apache.flex.debugging.assertType;
+		import org.apache.royale.debugging.assert;
+		import org.apache.royale.debugging.assertType;
 		/*
 		 * Dealing with namespaces:
 		 * If the name is qualified, it has a prefix. Otherwise, the prefix is null.

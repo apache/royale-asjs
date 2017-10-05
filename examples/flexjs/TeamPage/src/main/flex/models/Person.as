@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
 	public class Person extends EventDispatcher
 	{

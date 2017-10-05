@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.html.beads.models.ButtonBarModel;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
 	
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
@@ -31,12 +31,12 @@ package org.apache.flex.html
 	 *  is actually a List with a default horizontal layout and an itemRenderer that
 	 *  produces Buttons. The ButtonBar uses the following beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model for the ButtonBar, including the dataProvider.
-	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
-	 *  org.apache.flex.core.IBeadController: handles input events.
-	 *  org.apache.flex.core.IBeadLayout: sizes and positions the component parts.
-	 *  org.apache.flex.core.IDataProviderItemRendererMapper: produces itemRenderers.
-	 *  org.apache.flex.core.IItemRenderer: the class or class factory to use.
+	 *  org.apache.royale.core.IBeadModel: the data model for the ButtonBar, including the dataProvider.
+	 *  org.apache.royale.core.IBeadView: constructs the parts of the component.
+	 *  org.apache.royale.core.IBeadController: handles input events.
+	 *  org.apache.royale.core.IBeadLayout: sizes and positions the component parts.
+	 *  org.apache.royale.core.IDataProviderItemRendererMapper: produces itemRenderers.
+	 *  org.apache.royale.core.IItemRenderer: the class or class factory to use.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -78,7 +78,7 @@ package org.apache.flex.html
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

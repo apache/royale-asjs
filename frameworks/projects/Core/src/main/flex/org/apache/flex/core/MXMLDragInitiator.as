@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
     
     /**
      *  Indicates that acceptingDrop API has been called.
@@ -31,7 +31,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="acceptingDrop", type="org.apache.flex.events.Event")]
+    [Event(name="acceptingDrop", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that acceptedDrop API has been called.
@@ -41,7 +41,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="acceptedDrop", type="org.apache.flex.events.Event")]
+    [Event(name="acceptedDrop", type="org.apache.royale.events.Event")]
 
     /**
      *  The MXMLDragInitiator is an IDragInitiator that

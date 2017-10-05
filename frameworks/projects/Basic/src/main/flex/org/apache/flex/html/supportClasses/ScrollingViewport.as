@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IViewportModel;
     COMPILE::SWF
     {
-        import org.apache.flex.core.IViewportScroller;
-		import org.apache.flex.utils.CSSContainerUtils;
+        import org.apache.royale.core.IViewportScroller;
+		import org.apache.royale.utils.CSSContainerUtils;
 		import flash.geom.Rectangle;
-		import org.apache.flex.geom.Rectangle;
+		import org.apache.royale.geom.Rectangle;
     }
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.geom.Size;
-	import org.apache.flex.html.beads.ScrollBarView;
-	import org.apache.flex.html.beads.models.ScrollBarModel;
-	import org.apache.flex.geom.Rectangle;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.beads.ScrollBarView;
+	import org.apache.royale.html.beads.models.ScrollBarModel;
+	import org.apache.royale.geom.Rectangle;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -100,7 +100,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		* @copy org.apache.flex.core.IViewport
+		* @copy org.apache.royale.core.IViewport
 		*/
 		override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
 		{
@@ -108,7 +108,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IViewport
+		 * @copy org.apache.royale.core.IViewport
 		 */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
@@ -174,7 +174,7 @@ package org.apache.flex.html.supportClasses
         private var viewportHeight:Number;
 
         /**
-         * @copy org.apache.flex.core.IViewport
+         * @copy org.apache.royale.core.IViewport
          */
         override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
         {
@@ -184,7 +184,7 @@ package org.apache.flex.html.supportClasses
         }
 
         /**
-         * @copy org.apache.flex.core.IViewport
+         * @copy org.apache.royale.core.IViewport
          */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{
@@ -196,7 +196,7 @@ package org.apache.flex.html.supportClasses
 			var hostWidth:Number = host.width;
 			var hostHeight:Number = host.height;
 			
-			var borderMetrics:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
+			var borderMetrics:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(_strand);
 			
 			hostWidth -= borderMetrics.left + borderMetrics.right;
 			hostHeight -= borderMetrics.top + borderMetrics.bottom;

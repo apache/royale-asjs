@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
 	COMPILE::SWF
 	{
@@ -24,15 +24,15 @@ package org.apache.flex.html.supportClasses
 	}
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
-		import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
+		import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
 	}
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.ValuesManager;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
-	 *  extends org.apache.flex.html.supportClasses.UIItemRendererBase and
+	 *  extends org.apache.royale.html.supportClasses.UIItemRendererBase and
 	 *  includes row and column index values.
 	 *
 	 *  @langversion 3.0
@@ -142,7 +142,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *
 		 */
 		COMPILE::JS

@@ -21,7 +21,7 @@ package
 	COMPILE::JS
 	public class XMLList
 	{
-		import org.apache.flex.debugging.throwError;
+		import org.apache.royale.debugging.throwError;
 		public function XMLList(expression:Object = null)
 		{
 			addIndex(0);

@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout
+package org.apache.royale.textLayout
 {
 	internal class ConversionClasses
 	{
-		import org.apache.flex.textLayout.conversion.ConversionType; ConversionType;
-		import org.apache.flex.textLayout.conversion.FormatDescriptor; FormatDescriptor;
-		import org.apache.flex.textLayout.conversion.IHTMLImporter; IHTMLImporter; 
-		import org.apache.flex.textLayout.conversion.IPlainTextExporter; IPlainTextExporter; 
-		import org.apache.flex.textLayout.conversion.ITextImporter; ITextImporter; 
-		import org.apache.flex.textLayout.conversion.ITextExporter; ITextExporter; 
-		import org.apache.flex.textLayout.conversion.ITextLayoutImporter; ITextLayoutImporter; 
-		import org.apache.flex.textLayout.conversion.TextConverter; TextConverter;
-		import org.apache.flex.textLayout.conversion.TextLayoutImporter; TextLayoutImporter;
+		import org.apache.royale.textLayout.conversion.ConversionType; ConversionType;
+		import org.apache.royale.textLayout.conversion.FormatDescriptor; FormatDescriptor;
+		import org.apache.royale.textLayout.conversion.IHTMLImporter; IHTMLImporter; 
+		import org.apache.royale.textLayout.conversion.IPlainTextExporter; IPlainTextExporter; 
+		import org.apache.royale.textLayout.conversion.ITextImporter; ITextImporter; 
+		import org.apache.royale.textLayout.conversion.ITextExporter; ITextExporter; 
+		import org.apache.royale.textLayout.conversion.ITextLayoutImporter; ITextLayoutImporter; 
+		import org.apache.royale.textLayout.conversion.TextConverter; TextConverter;
+		import org.apache.royale.textLayout.conversion.TextLayoutImporter; TextLayoutImporter;
 		// Alphabetical list of classes to be included as part of text_conversion.swc
 	}
 }

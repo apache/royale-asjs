@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.events
+package org.apache.royale.storage.events
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.storage.file.IDataStream;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.storage.file.IDataStream;
 	
 	/**
 	 * The FileErrorEvent class is used to signal varies errors that may occur

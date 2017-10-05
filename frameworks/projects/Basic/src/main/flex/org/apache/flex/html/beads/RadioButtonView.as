@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
@@ -24,15 +24,15 @@ package org.apache.flex.html.beads
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IValueToggleButtonModel;
-	import org.apache.flex.events.Event;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IValueToggleButtonModel;
+	import org.apache.royale.events.Event;
 	
 	/**
-	 *  The RadioButtonView class creates the visual elements of the org.apache.flex.html.RadioButton 
+	 *  The RadioButtonView class creates the visual elements of the org.apache.royale.html.RadioButton 
 	 *  component. 
 	 *  
 	 *  @langversion 3.0
@@ -97,7 +97,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -139,7 +139,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  The string label for the org.apache.flex.html.RadioButton.
+		 *  The string label for the org.apache.royale.html.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -163,7 +163,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  The HTML string for the org.apache.flex.html.RadioButton.
+		 *  The HTML string for the org.apache.royale.html.RadioButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

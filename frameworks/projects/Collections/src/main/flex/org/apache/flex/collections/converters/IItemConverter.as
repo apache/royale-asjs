@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections.converters
+package org.apache.royale.collections.converters
 {
     /**
      *  The IItemConverter interface is the basic interface for
      *  converting a serialized data item to a data class instance.
      * 
      *  This interface is generally used in a LazyCollection.
-     *  @see org.apache.flex.net.dataConverters.LazyCollection.
+     *  @see org.apache.royale.net.dataConverters.LazyCollection.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

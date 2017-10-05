@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IMXMLDocument;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IMXMLDocument;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
     
     /**
      *  The ParentDocumentBead class looks up the parent
@@ -35,7 +35,7 @@ package org.apache.flex.core
      *  this information.  It is intended to be used
      *  as a bead in the top-level tag of an MXML document.
      *  
-     *  @royaleignoreimport org.apache.flex.core.IChild
+     *  @royaleignoreimport org.apache.royale.core.IChild
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.core
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -97,14 +97,14 @@ package org.apache.flex.core
             if (_id != value)
             {
                 _id = value;
-                dispatchEvent(new org.apache.flex.events.Event("idChanged"));
+                dispatchEvent(new org.apache.royale.events.Event("idChanged"));
             }
         }
         
         [Bindable("parentDocumentChange")]
         /**
          *  @private
-         *  @royaleignorecoercion org.apache.flex.core.IChild
+         *  @royaleignorecoercion org.apache.royale.core.IChild
          */
         public function get parentDocument():Object
         {

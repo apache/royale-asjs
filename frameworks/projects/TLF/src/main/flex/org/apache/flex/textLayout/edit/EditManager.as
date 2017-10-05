@@ -16,70 +16,70 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.utils.EditingKeys;
-	import org.apache.flex.events.utils.KeyConverter;
-	import org.apache.flex.events.utils.WhitespaceKeys;
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.text.events.IMEEvent;
-	import org.apache.flex.text.events.TextEvent;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IDivElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.ITCYElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.events.EditEvent;
-	import org.apache.flex.textLayout.events.FlowOperationEvent;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.operations.ApplyElementIDOperation;
-	import org.apache.flex.textLayout.operations.ApplyElementTypeNameOperation;
-	import org.apache.flex.textLayout.operations.ApplyFormatOperation;
-	import org.apache.flex.textLayout.operations.ApplyFormatToElementOperation;
-	import org.apache.flex.textLayout.operations.ApplyLinkOperation;
-	import org.apache.flex.textLayout.operations.ApplyTCYOperation;
-	import org.apache.flex.textLayout.operations.ClearFormatOnElementOperation;
-	import org.apache.flex.textLayout.operations.ClearFormatOperation;
-	import org.apache.flex.textLayout.operations.CompositeOperation;
-	import org.apache.flex.textLayout.operations.CreateDivOperation;
-	import org.apache.flex.textLayout.operations.CreateListOperation;
-	import org.apache.flex.textLayout.operations.CreateSubParagraphGroupOperation;
-	import org.apache.flex.textLayout.operations.CutOperation;
-	import org.apache.flex.textLayout.operations.DeleteTextOperation;
-	import org.apache.flex.textLayout.operations.FlowOperation;
-	import org.apache.flex.textLayout.operations.InsertInlineGraphicOperation;
-	import org.apache.flex.textLayout.operations.InsertTableElementOperation;
-	import org.apache.flex.textLayout.operations.InsertTextOperation;
-	import org.apache.flex.textLayout.operations.ModifyInlineGraphicOperation;
-	import org.apache.flex.textLayout.operations.MoveChildrenOperation;
-	import org.apache.flex.textLayout.operations.PasteOperation;
-	import org.apache.flex.textLayout.operations.RedoOperation;
-	import org.apache.flex.textLayout.operations.SplitElementOperation;
-	import org.apache.flex.textLayout.operations.SplitParagraphOperation;
-	import org.apache.flex.textLayout.operations.UndoOperation;
-	import org.apache.flex.textLayout.utils.CharacterUtil;
-	import org.apache.flex.textLayout.utils.NavigationUtil;
-	import org.apache.flex.utils.AnimationUtil;
-	import org.apache.flex.utils.undo.IOperation;
-	import org.apache.flex.utils.undo.IUndoManager;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.utils.EditingKeys;
+	import org.apache.royale.events.utils.KeyConverter;
+	import org.apache.royale.events.utils.WhitespaceKeys;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.text.events.IMEEvent;
+	import org.apache.royale.text.events.TextEvent;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IDivElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.ITCYElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.events.EditEvent;
+	import org.apache.royale.textLayout.events.FlowOperationEvent;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.operations.ApplyElementIDOperation;
+	import org.apache.royale.textLayout.operations.ApplyElementTypeNameOperation;
+	import org.apache.royale.textLayout.operations.ApplyFormatOperation;
+	import org.apache.royale.textLayout.operations.ApplyFormatToElementOperation;
+	import org.apache.royale.textLayout.operations.ApplyLinkOperation;
+	import org.apache.royale.textLayout.operations.ApplyTCYOperation;
+	import org.apache.royale.textLayout.operations.ClearFormatOnElementOperation;
+	import org.apache.royale.textLayout.operations.ClearFormatOperation;
+	import org.apache.royale.textLayout.operations.CompositeOperation;
+	import org.apache.royale.textLayout.operations.CreateDivOperation;
+	import org.apache.royale.textLayout.operations.CreateListOperation;
+	import org.apache.royale.textLayout.operations.CreateSubParagraphGroupOperation;
+	import org.apache.royale.textLayout.operations.CutOperation;
+	import org.apache.royale.textLayout.operations.DeleteTextOperation;
+	import org.apache.royale.textLayout.operations.FlowOperation;
+	import org.apache.royale.textLayout.operations.InsertInlineGraphicOperation;
+	import org.apache.royale.textLayout.operations.InsertTableElementOperation;
+	import org.apache.royale.textLayout.operations.InsertTextOperation;
+	import org.apache.royale.textLayout.operations.ModifyInlineGraphicOperation;
+	import org.apache.royale.textLayout.operations.MoveChildrenOperation;
+	import org.apache.royale.textLayout.operations.PasteOperation;
+	import org.apache.royale.textLayout.operations.RedoOperation;
+	import org.apache.royale.textLayout.operations.SplitElementOperation;
+	import org.apache.royale.textLayout.operations.SplitParagraphOperation;
+	import org.apache.royale.textLayout.operations.UndoOperation;
+	import org.apache.royale.textLayout.utils.CharacterUtil;
+	import org.apache.royale.textLayout.utils.NavigationUtil;
+	import org.apache.royale.utils.AnimationUtil;
+	import org.apache.royale.utils.undo.IOperation;
+	import org.apache.royale.utils.undo.IUndoManager;
 //	import flash.errors.IllegalOperationError;
 		
 
@@ -117,7 +117,7 @@ package org.apache.flex.textLayout.edit
 	 * <p><strong>Note:</strong> The following keys do not work on Windows: alt-backspace, alt-delete, ctrl+alt-backspace,
 	 * and ctrl+alt-delete. These keys do not generate an event for the runtime.</p>						
  	 * 
- 	 * @see org.apache.flex.textLayout.elements.TextFlow
+ 	 * @see org.apache.royale.textLayout.elements.TextFlow
  	 * @see flashx.undo.UndoManager
 	 *
 	 *  examples\EditManager_example.as -noswf
@@ -194,7 +194,7 @@ package org.apache.flex.textLayout.edit
 		 * 
 		 * @param undo	The UndoManager for the application
 		 * 
-		 * @see org.apache.flex.textLayout.elements.TextFlow#interactionManager
+		 * @see org.apache.royale.textLayout.elements.TextFlow#interactionManager
 		 * @see flashx.undo.IUndoManager
 		 * 
 		 * @playerversion Flash 10
@@ -267,7 +267,7 @@ package org.apache.flex.textLayout.edit
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.element.IListItemElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.element.IListItemElement
 		 */
 		public override function keyDownHandler(event:KeyboardEvent):void
 		{
@@ -983,7 +983,7 @@ package org.apache.flex.textLayout.edit
 					
 			if (operation.endGeneration != textFlow.generation)
 			{
-				//CONFIG::debug { trace("EditManager.undo: skipping undo due to mismatched generation numbers. textFlow",textFlow.generation,org.apache.flex.reflection.getQualifiedClassName(operation),operation.endGeneration); }
+				//CONFIG::debug { trace("EditManager.undo: skipping undo due to mismatched generation numbers. textFlow",textFlow.generation,org.apache.royale.reflection.getQualifiedClassName(operation),operation.endGeneration); }
 				return;
 			}
 				
@@ -1135,7 +1135,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
  	 	 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.edit.EditingMode.
+		 * @see org.apache.royale.textLayout.edit.EditingMode.
 		 */
 		 public override function get editingMode():String
 		 {
@@ -1651,7 +1651,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion Flash 10 + 10.2
 		 * @playerversion AIR 1.5
  	 	 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TextRotation
+		 * @see org.apache.royale.text.engine.TextRotation
 		 */			
 		public function insertInlineGraphic(source:Object, width:Object, height:Object, options:Object = null, operationState:SelectionState = null):IInlineGraphicElement
 		{
@@ -1826,7 +1826,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
  	 	 * @langversion 3.0
  	 	 * 
-		 *  @see org.apache.flex.textLayout.edit.TextScrap
+		 *  @see org.apache.royale.textLayout.edit.TextScrap
 		 */
 		public function cutTextScrap(operationState:SelectionState = null):TextScrap
 		{
@@ -1858,7 +1858,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
  	 	 * @langversion 3.0
  	 	 * 
-		 *  @see org.apache.flex.textLayout.edit.TextScrap
+		 *  @see org.apache.royale.textLayout.edit.TextScrap
 		 */
 		public function pasteTextScrap(scrapToPaste:TextScrap, operationState:SelectionState = null):void
 		{

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
 	public interface ITextContainerManager
 	{

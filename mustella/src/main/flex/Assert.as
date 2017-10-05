@@ -27,7 +27,7 @@ import flash.events.IEventDispatcher;
 import flash.utils.getTimer;
 }
 
-import org.apache.flex.utils.ObjectUtil;
+import org.apache.royale.utils.ObjectUtil;
 
 /**
  *  The base class for all Asserts that the test

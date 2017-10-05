@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.container.ScrollPolicy;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextRange;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.utils.GeometryUtil;
-	import org.apache.flex.textLayout.utils.HitTestArea;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.ScrollPolicy;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.utils.GeometryUtil;
+	import org.apache.royale.textLayout.utils.HitTestArea;
+	import org.apache.royale.utils.ObjectMap;
 
 
 	
@@ -452,7 +452,7 @@ package org.apache.flex.textLayout.events
 		 * @param	startPosition	The starting character position.
 		 * @param	endPosition	The ending character position.
 		 * @param	results		The array to fill with FlowElements that match.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function collectElements(parent:IFlowGroupElement, startPosition:int, endPosition:int, results:Array):void
 		{
@@ -505,7 +505,7 @@ package org.apache.flex.textLayout.events
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ILinkElement
 		 */
 		private function checkCtrlKeyState(curState:Boolean):void
 		{
@@ -641,7 +641,7 @@ package org.apache.flex.textLayout.events
 		 * LinkElements implement several mouse handlers; these are called directly
 		 * so LinkElements do not needs to register themselves with their own 
 		 * event mirror.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ILinkElement
 		 */
 		
 		private function localDispatchEvent(type:String, evt:MouseEvent):void

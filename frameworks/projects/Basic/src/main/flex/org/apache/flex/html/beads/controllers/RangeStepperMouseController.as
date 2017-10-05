@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.ImageButton;
-	import org.apache.flex.html.beads.RangeStepperView;
-	import org.apache.flex.html.beads.models.RangeModel;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.ImageButton;
+	import org.apache.royale.html.beads.RangeStepperView;
+	import org.apache.royale.html.beads.models.RangeModel;
 
 	/**
 	 *  The RangeStepperMouseController bead feeds mouse events to the RangeStepper and its
@@ -55,7 +55,7 @@ package org.apache.flex.html.beads.controllers
 		private var _decrButton:ImageButton;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

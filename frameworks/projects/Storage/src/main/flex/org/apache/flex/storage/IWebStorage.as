@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.royale.storage
 {
 /**
  * The IWebStorage interface provides a template for classes to use that wish

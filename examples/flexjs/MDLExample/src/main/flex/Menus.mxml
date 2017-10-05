@@ -24,8 +24,8 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-        import org.apache.flex.mdl.materialIcons.MaterialIconType;
-        import org.apache.flex.html.SimpleAlert;
+        import org.apache.royale.mdl.materialIcons.MaterialIconType;
+        import org.apache.royale.html.SimpleAlert;
 
         protected function onMyMenuChange(event:Event):void
         {

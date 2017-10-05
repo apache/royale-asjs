@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.CellRange;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextRange;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.CellRange;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	/** 
 	 * The ISelectionManager interface defines the interface for handling text selection.
@@ -34,9 +34,9 @@ package org.apache.flex.textLayout.edit
 	 * and is indicated visually by drawing a cursor. A range
 	 * selection includes the text between an anchor point and an active point.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.edit.SelectionManager
-	 * @see org.apache.flex.textLayout.edit.TextScrap
-	 * @see org.apache.flex.textLayout.elements.TextFlow
+	 * @see org.apache.royale.textLayout.edit.SelectionManager
+	 * @see org.apache.royale.textLayout.edit.TextScrap
+	 * @see org.apache.royale.textLayout.elements.TextFlow
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -51,7 +51,7 @@ package org.apache.flex.textLayout.edit
 		 * assigned to a text flow by setting the <code>interactionManager</code> property of the
 		 * TextFlow object.</p>
 		 * 
-		 * @see org.apache.flex.textLayout.elements.TextFlow#interactionManager
+		 * @see org.apache.royale.textLayout.elements.TextFlow#interactionManager
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -210,7 +210,7 @@ package org.apache.flex.textLayout.edit
 		 * <p>The <code>selectionType</code> describes the kind of selection. 
 		 * It can either be <code>SelectionType.TEXT</code> or <code>SelectionType.CELLS</code></p>
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionType
+		 * @see org.apache.royale.textLayout.edit.SelectionType
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -234,7 +234,7 @@ package org.apache.flex.textLayout.edit
 		 * Gets the SelectionState object of the current selection.
 		 * 
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -245,7 +245,7 @@ package org.apache.flex.textLayout.edit
 		/**
 		 * Sets the SelectionState object of the current selection.
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -388,7 +388,7 @@ package org.apache.flex.textLayout.edit
 		 * A text flow is made selectable by assigning a selection manager and editable by assigning an edit manager.
 		 * Constants representing the editing modes are defined in the EditingMode class.</p>
 		 * 
-		 * @see org.apache.flex.textLayout.EditingMode
+		 * @see org.apache.royale.textLayout.EditingMode
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

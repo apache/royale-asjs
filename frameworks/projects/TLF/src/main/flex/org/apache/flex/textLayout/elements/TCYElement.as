@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.formats.BlockProgression;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.formats.BlockProgression;
 	
 	/** 
 	 * The TCYElement (Tatechuuyoko - ta-tae-chu-yo-ko) class is a subclass of SubParagraphGroupElementBase that causes

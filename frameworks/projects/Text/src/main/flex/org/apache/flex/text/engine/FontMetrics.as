@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.FontMetrics;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.FontMetrics;
 
     /**
      *  The FontMetrics class contains metrics specific to the font.

@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-	import org.apache.flex.core.ImageBase;
+	import org.apache.royale.core.ImageBase;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;            
+		import org.apache.royale.core.WrappedHTMLElement;            
 	}
     public class Image extends ImageBase
     {
@@ -40,7 +40,7 @@ package org.apache.flex.svg
        }
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -57,7 +57,7 @@ package org.apache.flex.svg
 		protected var _image:WrappedHTMLElement;
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		protected function addImageElement():void

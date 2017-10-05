@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package simple
 {
-    import org.apache.flex.html.DataContainer;
+    import org.apache.royale.html.DataContainer;
 
     /**
 	 * GenericList relies on an itemRenderer factory to produce its children componenents

@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
 
 	
@@ -33,8 +33,8 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 *
-	 * @see org.apache.flex.textLayout.elements.TextFlow TextFlow
-	 * @see org.apache.flex.textLayout.edit.SelectionState SelectionState
+	 * @see org.apache.royale.textLayout.elements.TextFlow TextFlow
+	 * @see org.apache.royale.textLayout.edit.SelectionState SelectionState
 	 */
 	public class CellRange
 	{

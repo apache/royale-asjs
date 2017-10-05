@@ -20,9 +20,9 @@
 package 
 {
 
-	import org.apache.flex.promises.enums.PromiseState;
-	import org.apache.flex.promises.interfaces.IThenable;
-	import org.apache.flex.promises.vo.Handler;
+	import org.apache.royale.promises.enums.PromiseState;
+	import org.apache.royale.promises.interfaces.IThenable;
+	import org.apache.royale.promises.vo.Handler;
 
 	public class Promise implements IThenable
 	{

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
 
     /**
      *  Indicates that the state change has completed.  All properties
@@ -34,7 +34,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
+    [Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the initialization of the container is complete.
@@ -44,7 +44,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="initComplete", type="org.apache.flex.events.Event")]
+    [Event(name="initComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the children of the container is have been added.
@@ -54,7 +54,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
+    [Event(name="childrenAdded", type="org.apache.royale.events.Event")]
     
     /**
      *  The ContainerBase class is the base class for most containers
@@ -178,7 +178,7 @@ package org.apache.flex.core
 		 * both SWF and JS platforms, they really only have meaning on the SWF-side. 
 		 * Other subclasses may provide use on the JS-side.
 		 *
-		 * @see org.apache.flex.core.IContainer#strandChildren
+		 * @see org.apache.royale.core.IContainer#strandChildren
 		 */
 		
 		/**

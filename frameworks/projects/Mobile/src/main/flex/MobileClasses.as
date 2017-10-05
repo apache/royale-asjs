@@ -27,23 +27,23 @@ package
  */
 internal class MobileClasses
 {	
-	import org.apache.flex.mobile.ManagerBase; ManagerBase;
+	import org.apache.royale.mobile.ManagerBase; ManagerBase;
 	
-	import org.apache.flex.mobile.DatePicker; DatePicker;
-	import org.apache.flex.mobile.beads.DatePickerView; DatePickerView;
-	import org.apache.flex.mobile.ToggleSwitch; ToggleSwitch;
-	import org.apache.flex.mobile.ViewManagerBase; ViewManagerBase;
-	import org.apache.flex.mobile.beads.StackedViewManagerView; StackedViewManagerView;
-	import org.apache.flex.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
-	import org.apache.flex.mobile.beads.ViewManagerViewBase; ViewManagerViewBase;
-	import org.apache.flex.mobile.beads.ToggleSwitchView; ToggleSwitchView;
-	import org.apache.flex.mobile.beads.controllers.ToggleSwitchMouseController; ToggleSwitchMouseController;
-	import org.apache.flex.mobile.chrome.NavigationBar; NavigationBar;
-	import org.apache.flex.mobile.chrome.TabBar; TabBar;
-	import org.apache.flex.mobile.chrome.ToolBar; ToolBar;
-	import org.apache.flex.mobile.models.ViewManagerModel; ViewManagerModel;
+	import org.apache.royale.mobile.DatePicker; DatePicker;
+	import org.apache.royale.mobile.beads.DatePickerView; DatePickerView;
+	import org.apache.royale.mobile.ToggleSwitch; ToggleSwitch;
+	import org.apache.royale.mobile.ViewManagerBase; ViewManagerBase;
+	import org.apache.royale.mobile.beads.StackedViewManagerView; StackedViewManagerView;
+	import org.apache.royale.mobile.beads.TabbedViewManagerView; TabbedViewManagerView;
+	import org.apache.royale.mobile.beads.ViewManagerViewBase; ViewManagerViewBase;
+	import org.apache.royale.mobile.beads.ToggleSwitchView; ToggleSwitchView;
+	import org.apache.royale.mobile.beads.controllers.ToggleSwitchMouseController; ToggleSwitchMouseController;
+	import org.apache.royale.mobile.chrome.NavigationBar; NavigationBar;
+	import org.apache.royale.mobile.chrome.TabBar; TabBar;
+	import org.apache.royale.mobile.chrome.ToolBar; ToolBar;
+	import org.apache.royale.mobile.models.ViewManagerModel; ViewManagerModel;
 	
-	import org.apache.flex.mobile.beads.MobileWebBrowserView; MobileWebBrowserView;
+	import org.apache.royale.mobile.beads.MobileWebBrowserView; MobileWebBrowserView;
 }
 
 }

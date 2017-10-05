@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IMXMLDocument interface is an interface for a component that
@@ -30,7 +30,7 @@ package org.apache.flex.core
 	public interface IMXMLDocument
 	{
         /**
-         *  @copy org.apache.flex.core.Application#MXMLDescriptor
+         *  @copy org.apache.royale.core.Application#MXMLDescriptor
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -53,7 +53,7 @@ package org.apache.flex.core
         function setMXMLDescriptor(document:Object, value:Array):void;
         
         /**
-         *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+         *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

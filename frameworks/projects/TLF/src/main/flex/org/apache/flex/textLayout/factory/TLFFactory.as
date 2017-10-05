@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.textLayout.debug.assert;
+	import org.apache.royale.textLayout.debug.assert;
 
 	public class TLFFactory
 	{

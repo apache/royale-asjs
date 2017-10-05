@@ -21,7 +21,7 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
-				xmlns:acc="org.apache.flex.html.accessories.*">
+				xmlns:acc="org.apache.royale.html.accessories.*">
 	
 	<fx:Style>
 		.title {
@@ -33,17 +33,17 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[			
-			import org.apache.flex.core.IPopUpHost;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.utils.UIUtils;
+			import org.apache.royale.core.IPopUpHost;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.utils.UIUtils;
 						
-            import org.apache.flex.reflection.describeType;
-            import org.apache.flex.reflection.MetaDataArgDefinition;
-            import org.apache.flex.reflection.MetaDataDefinition;
-            import org.apache.flex.reflection.MethodDefinition;
-            import org.apache.flex.reflection.TypeDefinition;
+            import org.apache.royale.reflection.describeType;
+            import org.apache.royale.reflection.MetaDataArgDefinition;
+            import org.apache.royale.reflection.MetaDataDefinition;
+            import org.apache.royale.reflection.MethodDefinition;
+            import org.apache.royale.reflection.TypeDefinition;
             
-            [Event(name="foo", type="org.apache.flex.events.Event")]
+            [Event(name="foo", type="org.apache.royale.events.Event")]
             public function runTest():void
             {
                 var metadata:Array;

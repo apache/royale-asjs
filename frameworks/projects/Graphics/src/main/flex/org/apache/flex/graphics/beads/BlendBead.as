@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.graphics.beads
+package org.apache.royale.graphics.beads
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.graphics.utils.shaderClasses.ColorBurnShader;
-	import org.apache.flex.graphics.utils.shaderClasses.ColorDodgeShader;
-	import org.apache.flex.graphics.utils.shaderClasses.ColorShader;
-	import org.apache.flex.graphics.utils.shaderClasses.ExclusionShader;
-	import org.apache.flex.graphics.utils.shaderClasses.HueShader;
-	import org.apache.flex.graphics.utils.shaderClasses.LuminosityShader;
-	import org.apache.flex.graphics.utils.shaderClasses.SaturationShader;
-	import org.apache.flex.graphics.utils.shaderClasses.SoftLightShader;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.graphics.utils.shaderClasses.ColorBurnShader;
+	import org.apache.royale.graphics.utils.shaderClasses.ColorDodgeShader;
+	import org.apache.royale.graphics.utils.shaderClasses.ColorShader;
+	import org.apache.royale.graphics.utils.shaderClasses.ExclusionShader;
+	import org.apache.royale.graphics.utils.shaderClasses.HueShader;
+	import org.apache.royale.graphics.utils.shaderClasses.LuminosityShader;
+	import org.apache.royale.graphics.utils.shaderClasses.SaturationShader;
+	import org.apache.royale.graphics.utils.shaderClasses.SoftLightShader;
 
 	COMPILE::SWF
 	{
 		import flash.display.Shader;
 		import flash.display.BlendMode;
-		import org.apache.flex.core.IRenderedObject;
-		import org.apache.flex.core.IStyleableObject;
-		import org.apache.flex.core.ValuesManager;
+		import org.apache.royale.core.IRenderedObject;
+		import org.apache.royale.core.IStyleableObject;
+		import org.apache.royale.core.ValuesManager;
 	}
 	
 	/**
@@ -80,7 +80,7 @@ package org.apache.flex.graphics.beads
 		
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

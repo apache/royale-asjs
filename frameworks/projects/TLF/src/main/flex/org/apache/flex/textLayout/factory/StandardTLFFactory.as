@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory {
-	import org.apache.flex.svg.GraphicContainer;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.svg.Rect;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.textLayout.factory.ITLFFactory;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.graphics.IRect;
-	import org.apache.flex.text.engine.ITextFactory;
-	import org.apache.flex.text.html.HTMLTextFactory;
+package org.apache.royale.textLayout.factory {
+	import org.apache.royale.svg.GraphicContainer;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.svg.Rect;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.textLayout.factory.ITLFFactory;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.graphics.IRect;
+	import org.apache.royale.text.engine.ITextFactory;
+	import org.apache.royale.text.html.HTMLTextFactory;
 
 	public class StandardTLFFactory implements ITLFFactory {
 		public function getRect(blendMode:String="") : IRect {

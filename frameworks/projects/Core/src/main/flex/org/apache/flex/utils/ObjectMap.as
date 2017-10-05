@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
     COMPILE::SWF
     {
@@ -26,7 +26,7 @@ package org.apache.flex.utils
 
     COMPILE::JS
     {
-        import org.apache.flex.utils.UIDUtil;
+        import org.apache.royale.utils.UIDUtil;
     }
 
     public class ObjectMap

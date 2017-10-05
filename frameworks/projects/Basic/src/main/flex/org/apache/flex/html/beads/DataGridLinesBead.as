@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.DataGridPresentationModel;
-	import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.DataGridPresentationModel;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
 	
 	/**
 	 * The DataGridLinesBead is an add on bead for the DataGrid. This bead
@@ -69,7 +69,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
 		/**
-		 * @copy org.apache.flex.core.UIBase#strand
+		 * @copy org.apache.royale.core.UIBase#strand
 	     *  
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2

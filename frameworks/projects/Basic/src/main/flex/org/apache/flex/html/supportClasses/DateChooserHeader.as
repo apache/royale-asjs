@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.html.DataContainer;
-	import org.apache.flex.html.beads.layouts.HorizontalFlexLayout;
+	import org.apache.royale.html.DataContainer;
+	import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;
 	
 	/**
 	 *  The DateChooserHeader is the container for the days of the week labels

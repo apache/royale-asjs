@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.utils.CSSUtils;
 
     /**
      *  This class is the base class for most, if not all, layouts. 
@@ -68,15 +68,15 @@ package org.apache.flex.core
         protected var host:ILayoutChild;
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 * 
-		 * @royaleignorecoercion org.apache.flex.core.ILayoutChild
-		 * @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
@@ -296,7 +296,7 @@ package org.apache.flex.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 * 
-		 * @royaleignorecoercion org.apache.flex.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
 		protected function get layoutView():ILayoutView
 		{
@@ -349,7 +349,7 @@ package org.apache.flex.core
 		}
 
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
+         * @copy org.apache.royale.core.IBeadLayout#layout
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

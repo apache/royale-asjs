@@ -27,12 +27,12 @@ package
  */
 internal class CreateJSClasses
 {	
-	import org.apache.flex.createjs.core.UIBase; UIBase;
-	import org.apache.flex.createjs.core.View; View;
-	import org.apache.flex.createjs.graphics.GraphicShape; GraphicShape;
-	import org.apache.flex.createjs.tween.Ease; Ease;
-	import org.apache.flex.createjs.tween.Tween; Tween;
-	import org.apache.flex.createjs.tween.Sequence; Sequence;
+	import org.apache.royale.createjs.core.UIBase; UIBase;
+	import org.apache.royale.createjs.core.View; View;
+	import org.apache.royale.createjs.graphics.GraphicShape; GraphicShape;
+	import org.apache.royale.createjs.tween.Ease; Ease;
+	import org.apache.royale.createjs.tween.Tween; Tween;
+	import org.apache.royale.createjs.tween.Sequence; Sequence;
 }
 
 }

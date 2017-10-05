@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat.beads
+package org.apache.royale.flat.beads
 {
 	
     /**
      *  The CheckboxCSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.flat.Checkbox class.
+     *  the org.apache.royale.flat.Checkbox class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

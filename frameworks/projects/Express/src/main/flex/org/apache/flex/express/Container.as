@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.binding.ContainerDataBinding;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.supportClasses.ScrollingViewport;
+	import org.apache.royale.binding.ContainerDataBinding;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.supportClasses.ScrollingViewport;
 	
-	import org.apache.flex.core.BindableCSSStyles;
-	import org.apache.flex.core.StyleChangeNotifier;
+	import org.apache.royale.core.BindableCSSStyles;
+	import org.apache.royale.core.StyleChangeNotifier;
 	
 	COMPILE::SWF {
-		import org.apache.flex.html.beads.SolidBackgroundWithChangeListenerBead;
-		import org.apache.flex.html.beads.SingleLineBorderWithChangeListenerBead;
+		import org.apache.royale.html.beads.SolidBackgroundWithChangeListenerBead;
+		import org.apache.royale.html.beads.SingleLineBorderWithChangeListenerBead;
 	}
 	
 	/**
@@ -35,7 +35,7 @@ package org.apache.flex.express
 	 * ContainerDataBinding bead and ScrollingViewport beads for
 	 * convenience.
 	 */
-	public class Container extends org.apache.flex.html.Container
+	public class Container extends org.apache.royale.html.Container
 	{
 		public function Container()
 		{

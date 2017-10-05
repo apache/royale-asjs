@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
 COMPILE::SWF
@@ -25,10 +25,10 @@ COMPILE::SWF
     import flash.geom.Rectangle;
 }
 
-import org.apache.flex.geom.Rectangle;
-import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IUIBase;
-import org.apache.flex.core.IRenderedObject;
+import org.apache.royale.geom.Rectangle;
+import org.apache.royale.core.IDocument;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.core.IRenderedObject;
 
 
 /**
@@ -119,7 +119,7 @@ public class PlatformWiper
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function set visibleRect(value:org.apache.flex.geom.Rectangle):void
+    public function set visibleRect(value:org.apache.royale.geom.Rectangle):void
     {
         COMPILE::SWF
         {

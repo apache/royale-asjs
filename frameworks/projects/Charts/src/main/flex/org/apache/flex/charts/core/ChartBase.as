@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.charts.core.IChart;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.List;
+	import org.apache.royale.charts.core.IChart;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.List;
 	
 	/**
 	 *  The ChartBase class contains all of the properties common to most

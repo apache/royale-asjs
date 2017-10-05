@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBead;
+	import org.apache.royale.core.IBead;
 
     /**
      *  The IBackgroundBead interface is a marker interface for beads

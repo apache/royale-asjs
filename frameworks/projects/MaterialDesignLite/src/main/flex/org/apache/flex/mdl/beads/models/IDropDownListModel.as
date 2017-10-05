@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
     /**
      *  The IDropDownListModel interface describes the minimum set of properties

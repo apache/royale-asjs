@@ -57,8 +57,8 @@
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Dflexcompiler=${FALCONJX_HOME}/../compiler" />
-            <jvmarg value="-Dflexlib=${ROYALE_HOME}/frameworks" />
-            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="+royalelib=${FLEX_HOME}/frameworks" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSFlex" />
             <arg value="-output=${basedir}/target/${target.name}" />
@@ -79,7 +79,7 @@
     
     <target name="check-compiler" depends="check-falcon-home, check-falconjx-home">
         <path id="lib.path">
-            <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+            <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
@@ -94,12 +94,12 @@
         property="FALCON_HOME"
         value="${env.FALCON_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../flex-falcon/compiler/lib/falcon-mxmlc.jar"
+        <available file="${ROYALE_HOME}/../royale-falcon/compiler/lib/falcon-mxmlc.jar"
         type="file"
         property="FALCON_HOME"
-        value="${ROYALE_HOME}/../flex-falcon/compiler"/>
+        value="${ROYALE_HOME}/../royale-falcon/compiler"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or a Royale SDK folder"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
         unless="FALCON_HOME"/>
     </target>
     
@@ -113,12 +113,12 @@
         property="FALCONJX_HOME"
         value="${env.FALCONJX_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../flex-falcon/compiler-jx/lib/jsc.jar"
+        <available file="${ROYALE_HOME}/../royale-falcon/compiler-jx/lib/jsc.jar"
         type="file"
         property="FALCONJX_HOME"
-        value="${ROYALE_HOME}/../flex-falcon/compiler-jx"/>
+        value="${ROYALE_HOME}/../royale-falcon/compiler-jx"/>
         
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a Royale SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
         unless="FALCONJX_HOME"/>
     </target>
     

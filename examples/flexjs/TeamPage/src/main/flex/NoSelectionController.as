@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IStrand;
 
 	/**
 	 * This controller replaces the List's normal mouse controllers because this example

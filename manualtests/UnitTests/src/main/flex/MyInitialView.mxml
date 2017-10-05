@@ -20,7 +20,7 @@ limitations under the License.
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:js="library://ns.apache.org/royale/basic"
 		 xmlns:local="*"
-		 xmlns:acc="org.apache.flex.html.accessories.*"
+		 xmlns:acc="org.apache.royale.html.accessories.*"
 		 initComplete="runTests()"
 >
 
@@ -37,11 +37,11 @@ limitations under the License.
 
 	<fx:Script>
 		<![CDATA[
-		import org.apache.flex.html.Label;
-		import org.apache.flex.reflection.VariableDefinition;
-		import org.apache.flex.reflection.getDefinitionByName;
-		import org.apache.flex.reflection.describeType;
-		import org.apache.flex.reflection.TypeDefinition;
+		import org.apache.royale.html.Label;
+		import org.apache.royale.reflection.VariableDefinition;
+		import org.apache.royale.reflection.getDefinitionByName;
+		import org.apache.royale.reflection.describeType;
+		import org.apache.royale.reflection.TypeDefinition;
 
 		import testshim.RoyaleUnitTestRunner;
 		import testshim.TestResult;

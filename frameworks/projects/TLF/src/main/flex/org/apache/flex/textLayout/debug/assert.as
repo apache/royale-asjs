@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.debug 
+package org.apache.royale.textLayout.debug 
 {
 
 		

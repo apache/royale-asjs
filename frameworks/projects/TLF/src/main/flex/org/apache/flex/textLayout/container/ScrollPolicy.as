@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyFactory;
+	import org.apache.royale.textLayout.property.Property;
 
 
 

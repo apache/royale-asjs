@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {	
 
 
@@ -36,7 +36,7 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 *
-	 * @see org.apache.flex.textLayout.formats.TabStopFormat
+	 * @see org.apache.royale.textLayout.formats.TabStopFormat
 	 * @see FlowElement#tabStops
 	 * @see SpanElement
 	 */

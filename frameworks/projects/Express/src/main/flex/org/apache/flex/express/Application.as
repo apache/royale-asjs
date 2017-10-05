@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.binding.ApplicationDataBinding;
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.AllCSSValuesImpl;
+	import org.apache.royale.binding.ApplicationDataBinding;
+	import org.apache.royale.core.Application;
+	import org.apache.royale.core.AllCSSValuesImpl;
 	
 	/**
 	 * This class extends the standard Application and sets up the
 	 * SimpleCSSValuesImpl (implementation) for convenience.
 	 */
-	public class Application extends org.apache.flex.core.Application
+	public class Application extends org.apache.royale.core.Application
 	{
 		public function Application()
 		{

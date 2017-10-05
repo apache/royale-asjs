@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.geom
+package org.apache.royale.geom
 {
 	COMPILE::SWF
 	{
@@ -41,9 +41,9 @@ package org.apache.flex.geom
 		}
 		
 		[SWFOverride(returns="flash.geom.Rectangle")]
-		override public function clone():org.apache.flex.geom.Rectangle
+		override public function clone():org.apache.royale.geom.Rectangle
 		{
-			return new org.apache.flex.geom.Rectangle(x,y,width,height);
+			return new org.apache.royale.geom.Rectangle(x,y,width,height);
 		}
 
 		[SWFOverride(returns="flash.geom.Point")]
@@ -52,7 +52,7 @@ package org.apache.flex.geom
 			return new Point(x, y);
 		}
 		
-		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
 		override public function set topLeft(value:Point):void
 		{
 			super.topLeft = value;
@@ -64,7 +64,7 @@ package org.apache.flex.geom
 			return new Point(right, bottom);
 		}
 		
-		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
 		override public function set bottomRight(value:Point):void
 		{
 			super.bottomRight = value;
@@ -76,16 +76,16 @@ package org.apache.flex.geom
 			return new Point(width, height);
 		}
 		
-		[SWFOverride(params="flash.geom.Point",altparams="org.apache.flex.geom.Point")]
-		override public function set size(value:org.apache.flex.geom.Point):void
+		[SWFOverride(params="flash.geom.Point",altparams="org.apache.royale.geom.Point")]
+		override public function set size(value:org.apache.royale.geom.Point):void
 		{
 			super.size = value;
 		}
 		
-		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.flex.geom.Rectangle")]
-		override public function intersection(toIntersect:org.apache.flex.geom.Rectangle):org.apache.flex.geom.Rectangle
+		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.royale.geom.Rectangle")]
+		override public function intersection(toIntersect:org.apache.royale.geom.Rectangle):org.apache.royale.geom.Rectangle
 		{
-			var result:org.apache.flex.geom.Rectangle = new org.apache.flex.geom.Rectangle();
+			var result:org.apache.royale.geom.Rectangle = new org.apache.royale.geom.Rectangle();
 			if (isEmpty() || toIntersect.isEmpty())
 			{
 				result.setEmpty();
@@ -102,10 +102,10 @@ package org.apache.flex.geom
 			return result;
 		}
 		
-		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.flex.geom.Rectangle")]
-		override public function union(toUnion:org.apache.flex.geom.Rectangle):org.apache.flex.geom.Rectangle
+		[SWFOverride(returns="flash.geom.Rectangle",params="flash.geom.Rectangle",altparams="org.apache.royale.geom.Rectangle")]
+		override public function union(toUnion:org.apache.royale.geom.Rectangle):org.apache.royale.geom.Rectangle
 		{
-			var r:org.apache.flex.geom.Rectangle = null;
+			var r:org.apache.royale.geom.Rectangle = null;
 			if (isEmpty())
 			{
 				return toUnion.clone();
@@ -114,7 +114,7 @@ package org.apache.flex.geom
 			{
 				return clone();
 			}
-			r = new org.apache.flex.geom.Rectangle();
+			r = new org.apache.royale.geom.Rectangle();
 			r.x = Math.min(x, toUnion.x);
 			r.y = Math.min(y, toUnion.y);
 			r.width = Math.max(x + width, toUnion.x + toUnion.width) - r.x;
@@ -122,19 +122,19 @@ package org.apache.flex.geom
 			return r;
 		}
 		
-		public static function fromJSONString(str:String):org.apache.flex.geom.Rectangle
+		public static function fromJSONString(str:String):org.apache.royale.geom.Rectangle
 		{
 			var obj:Object = JSON.parse(str);
-			return org.apache.flex.geom.Rectangle.fromObject(obj);
+			return org.apache.royale.geom.Rectangle.fromObject(obj);
 		}
 		
-		public static function fromObject(obj:Object):org.apache.flex.geom.Rectangle
+		public static function fromObject(obj:Object):org.apache.royale.geom.Rectangle
 		{
 			var x:Number = obj.x === undefined ? obj.left : obj.x;
 			var y:Number = obj.y === undefined ? obj.top : obj.y;
 			var width:Number = obj.width === undefined ? obj.right - x : obj.width;
 			var height:Number = obj.height === undefined ? obj.bottom - y : obj.height;
-			return new org.apache.flex.geom.Rectangle(x,y,width,height);
+			return new org.apache.royale.geom.Rectangle(x,y,width,height);
 		}
 
 	}

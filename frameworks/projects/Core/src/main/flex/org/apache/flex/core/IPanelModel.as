@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IPanelModel interface describes the minimum set of properties
@@ -31,7 +31,7 @@ package org.apache.flex.core
 	public interface IPanelModel extends IBeadModel, ITitleBarModel
 	{
         /**
-         *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+         *  The items in the org.apache.royale.html.ControlBar. Setting this property automatically
 		 *  causes the ControlBar to display if you are using a View bead that supports it.
          *
          *  @langversion 3.0

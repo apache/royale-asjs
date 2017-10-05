@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The IBeadModel interface is a "marker" interface for beads that 
      *  represent the data model for a control.  A marker interface has no addtional APIs.
      *  It is used to find the model bead on the strand via calls to getBeadByType.
      * 
-     *  @see org.apache.flex.core.IStrand#getBeadByType
+     *  @see org.apache.royale.core.IStrand#getBeadByType
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

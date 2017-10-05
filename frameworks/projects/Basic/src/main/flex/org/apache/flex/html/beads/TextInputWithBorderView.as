@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.utils.CSSContainerUtils;
 
     /**
      *  The TextInputWithBorderView class is the default view for
-     *  the org.apache.flex.html.TextInput.
+     *  the org.apache.royale.html.TextInput.
      *  It displays text using a TextField, so there is no
      *  right-to-left text support in this view.
      *  

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.collections.ArrayList;
+    import org.apache.royale.collections.ArrayList;
 
     import vos.TabVO;
 

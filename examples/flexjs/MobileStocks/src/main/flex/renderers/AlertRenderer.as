@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package renderers
 {
-	import org.apache.flex.html.supportClasses.StringItemRenderer;
+	import org.apache.royale.html.supportClasses.StringItemRenderer;
 	
 	public class AlertRenderer extends StringItemRenderer
 	{

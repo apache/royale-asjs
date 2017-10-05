@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.Application;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.events.Event;
 	
     
     import models.MyModel;

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.text.engine.TextBaseline;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.LeadingModel;
+	import org.apache.royale.text.engine.TextBaseline;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.LeadingModel;
 
 	public class LeadingUtils
 	{
@@ -37,13 +37,13 @@ package org.apache.flex.textLayout.elements
 				case LeadingModel.APPROXIMATE_TEXT_FIELD:
 				case LeadingModel.BOX:
 				case LeadingModel.ROMAN_UP:
-					return org.apache.flex.text.engine.TextBaseline.ROMAN;
+					return org.apache.royale.text.engine.TextBaseline.ROMAN;
 				case LeadingModel.IDEOGRAPHIC_TOP_UP:
 				case LeadingModel.IDEOGRAPHIC_TOP_DOWN:
-					return org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_TOP;
+					return org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_TOP;
 				case LeadingModel.IDEOGRAPHIC_CENTER_UP:
 				case LeadingModel.IDEOGRAPHIC_CENTER_DOWN:
-					return org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_CENTER;
+					return org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_CENTER;
 			}
 		}
 

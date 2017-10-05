@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs
+package org.apache.royale.createjs
 {
     COMPILE::SWF
     {
-        import org.apache.flex.html.Button;            
+        import org.apache.royale.html.Button;            
     }
     COMPILE::JS
     {
@@ -29,13 +29,13 @@ package org.apache.flex.createjs
         import createjs.Shape;
         import createjs.Stage;
         
-        import org.apache.flex.createjs.core.CreateJSBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.CreateJSBase;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.SolidColor;
 	
 	/**
 	 * The TextButton class provides a clickable button.
@@ -142,7 +142,7 @@ package org.apache.flex.createjs
 		
         /**
 		 * @private
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {	

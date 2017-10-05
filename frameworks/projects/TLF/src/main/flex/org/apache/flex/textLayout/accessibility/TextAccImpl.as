@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.accessibility
+package org.apache.royale.textLayout.accessibility
 {
 	import flash.accessibility.Accessibility;
 	import flash.accessibility.AccessibilityImplementation;
 	import flash.accessibility.AccessibilityProperties;
 	import flash.display.DisplayObject;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 	
-	import org.apache.flex.textLayout.edit.EditingMode;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
-	import org.apache.flex.textLayout.events.CompositionCompleteEvent;
+	import org.apache.royale.textLayout.edit.EditingMode;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.events.CompositionCompleteEvent;
 	
 
     //TODO this is in text_edit... which violates MVC yet again... what to do?
-    //import org.apache.flex.textLayout.events.SelectionEvent;
+    //import org.apache.royale.textLayout.events.SelectionEvent;
     
 	//TODO handle selectable text when FP implements the new selection API:
 	//     http://frpbugapp.macromedia.com/bugapp/detail.asp?id=217540

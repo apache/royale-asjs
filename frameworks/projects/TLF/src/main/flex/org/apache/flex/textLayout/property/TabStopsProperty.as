@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property {
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.TabStopFormat;
+package org.apache.royale.textLayout.property {
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.TabStopFormat;
 		
 	// [ExcludeClass]
 	/** Property for tab stops. Extends ArrayProperty; setter takes a string representation of tab stops in addition to an array. @private */

@@ -20,49 +20,49 @@
 @namespace h5 "library://ns.apache.org/royale/html5";
 
 
-@media -flex-flash
+@media -royale-swf
 {
 
 /* HTML5 */
 
 h5|TextButton
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.CSSTextToggleButtonView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.CSSTextToggleButtonView");
 }
 
 h5|TextInput
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.TextInputWithBorderView");
+    IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView");
 }
 
 h5|CheckBox
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.CheckBoxView");			
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.royale.html.beads.CheckBoxView");			
 }
 
 h5|RadioButton
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ValueToggleButtonModel");
-    IBeadView:  ClassReference("org.apache.flex.html.beads.RadioButtonView");			
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
+    IBeadView:  ClassReference("org.apache.royale.html.beads.RadioButtonView");			
 }
 
 h5|List
 {
-	IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 }
 
 h5|DropDownList
 {
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ArraySelectionModel");
-    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
+    IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList");
 }
 
 h5|ComboBox
 {
-    IBeadView: ClassReference("org.apache.flex.html.beads.ComboBoxView");
-    IBeadModel: ClassReference("org.apache.flex.html.beads.models.ComboBoxModel");
-    IPopUp: ClassReference("org.apache.flex.html.supportClasses.DropDownListList");
+    IBeadView: ClassReference("org.apache.royale.html.beads.ComboBoxView");
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+    IPopUp: ClassReference("org.apache.royale.html.supportClasses.DropDownListList");
 }
 
 }

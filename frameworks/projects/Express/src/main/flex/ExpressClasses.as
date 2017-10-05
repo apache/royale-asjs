@@ -28,21 +28,21 @@ package
 internal class ExpressClasses
 {
 
-    import org.apache.flex.express.Application; Application;
-    import org.apache.flex.express.Container; Container;
-    import org.apache.flex.express.DataGrid; DataGrid;
-    import org.apache.flex.express.HContainer; HContainer;
-    import org.apache.flex.express.HView; HView;
-	import org.apache.flex.express.ImageAndTextButton; ImageAndTextButton;
-	import org.apache.flex.express.ImageButton; ImageButton;
-	import org.apache.flex.express.List; List;
-    import org.apache.flex.express.MXMLItemRenderer; MXMLItemRenderer;
-	import org.apache.flex.express.MXMLViewer; MXMLViewer;
-	import org.apache.flex.express.TextButton; TextButton;
-	import org.apache.flex.express.TextInput; TextInput;
-    import org.apache.flex.express.VContainer; VContainer;
-    import org.apache.flex.express.View; View;
-    import org.apache.flex.express.VView; VView;
+    import org.apache.royale.express.Application; Application;
+    import org.apache.royale.express.Container; Container;
+    import org.apache.royale.express.DataGrid; DataGrid;
+    import org.apache.royale.express.HContainer; HContainer;
+    import org.apache.royale.express.HView; HView;
+	import org.apache.royale.express.ImageAndTextButton; ImageAndTextButton;
+	import org.apache.royale.express.ImageButton; ImageButton;
+	import org.apache.royale.express.List; List;
+    import org.apache.royale.express.MXMLItemRenderer; MXMLItemRenderer;
+	import org.apache.royale.express.MXMLViewer; MXMLViewer;
+	import org.apache.royale.express.TextButton; TextButton;
+	import org.apache.royale.express.TextInput; TextInput;
+    import org.apache.royale.express.VContainer; VContainer;
+    import org.apache.royale.express.View; View;
+    import org.apache.royale.express.VView; VView;
 }
 
 }

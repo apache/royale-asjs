@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.events.Event;
 
 	/**
-	 *  The DataGridModel class bead extends org.apache.flex.html.beads.models.ArrayListSelectionModel
+	 *  The DataGridModel class bead extends org.apache.royale.html.beads.models.ArrayListSelectionModel
 	 *  to facilitate using an ArrayList as the dataProvider for the DataGrid.
 	 *
 	 *  @langversion 3.0
@@ -49,8 +49,8 @@ package org.apache.flex.html.beads.models
 		private var _columns:Array;
 
 		/**
-		 *  The array of org.apache.flex.html.supportClasses.DataGridColumns used to
-		 *  define each column of the org.apache.flex.html.DataGrid.
+		 *  The array of org.apache.royale.html.supportClasses.DataGridColumns used to
+		 *  define each column of the org.apache.royale.html.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

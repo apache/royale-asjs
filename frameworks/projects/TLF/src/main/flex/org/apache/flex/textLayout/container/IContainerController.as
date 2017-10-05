@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.FloatCompositionData;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.FloatCompositionData;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TableBlockContainer;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.utils.ObjectMap;
 
 	public interface IContainerController
 	{

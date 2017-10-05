@@ -49,8 +49,8 @@ limitations under the License.
 		
 		.DragDropList
 		{
-			IBeadView: ClassReference("org.apache.flex.html.beads.DragDropListView");
-			IContentView: ClassReference("org.apache.flex.html.supportClasses.DataGroup");
+			IBeadView: ClassReference("org.apache.royale.html.beads.DragDropListView");
+			IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 			border: solid 1px black;
 		}
 		
@@ -60,11 +60,11 @@ limitations under the License.
 		 */
 		 
 		js|DataGridButtonBar {
-			IBeadView: ClassReference("org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns");
+			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridButtonBarViewForMovableColumns");
 		}
 		
 		js|DataGrid {
-			IBeadView: ClassReference("org.apache.flex.html.beads.DataGridColumnReorderView");
+			IBeadView: ClassReference("org.apache.royale.html.beads.DataGridColumnReorderView");
 		}
 	</fx:Style>
 	

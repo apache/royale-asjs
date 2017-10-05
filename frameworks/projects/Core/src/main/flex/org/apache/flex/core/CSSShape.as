@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     import flash.display.DisplayObject;
     import flash.display.Graphics;
     import flash.display.Shape;
     
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.utils.CSSBorderUtils;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.CSSBorderUtils;
     
     /**
      *  The Border class is a class used internally by many

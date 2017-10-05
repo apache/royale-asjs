@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.RadioButton;
+	import org.apache.royale.html.RadioButton;
 	
-	public class RadioButton extends org.apache.flex.html.RadioButton
+	public class RadioButton extends org.apache.royale.html.RadioButton
 	{
 	}
 }

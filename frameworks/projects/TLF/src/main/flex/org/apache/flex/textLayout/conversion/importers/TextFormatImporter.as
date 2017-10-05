@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion.importers {
-	import org.apache.flex.textLayout.conversion.TLFormatImporter;
+package org.apache.royale.textLayout.conversion.importers {
+	import org.apache.royale.textLayout.conversion.TLFormatImporter;
 
 	public class TextFormatImporter extends TLFormatImporter {
 		public function TextFormatImporter(classType:Class, description:Object) {

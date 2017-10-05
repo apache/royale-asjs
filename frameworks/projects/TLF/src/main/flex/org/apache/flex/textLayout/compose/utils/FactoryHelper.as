@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.compose.IFactoryComposer;
-	import org.apache.flex.textLayout.compose.ISimpleCompose;
-	import org.apache.flex.textLayout.utils.FactoryUtil;
+	import org.apache.royale.textLayout.compose.IFactoryComposer;
+	import org.apache.royale.textLayout.compose.ISimpleCompose;
+	import org.apache.royale.textLayout.utils.FactoryUtil;
 	public class FactoryHelper
 	{
 		static public function getComposer():IFactoryComposer

@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.compose.IFlowComposer;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.compose.IFlowComposer;
 
 	public interface IContainerFormattedElement extends IParagraphFormattedElement {
 		function get flowComposer():IFlowComposer;

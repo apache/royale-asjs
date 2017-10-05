@@ -16,64 +16,64 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.core.IApplicationView;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.utils.NavigationKeys;
-	import org.apache.flex.events.utils.UIKeys;
-	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.text.events.IMEEvent;
-	import org.apache.flex.text.events.TextEvent;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.TextFlowTableBlock;
-	import org.apache.flex.textLayout.container.ColumnState;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.dummy.BitmapData;
-	import org.apache.flex.textLayout.dummy.BoundsUtil;
-	import org.apache.flex.textLayout.dummy.ContextMenu;
-	import org.apache.flex.textLayout.dummy.IBitmapDrawable;
-	import org.apache.flex.textLayout.dummy.Mouse;
-	import org.apache.flex.textLayout.dummy.MouseCursor;
-	import org.apache.flex.textLayout.dummy.MouseCursorData;
-	import org.apache.flex.textLayout.elements.CellContainer;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.CellRange;
-	import org.apache.flex.textLayout.elements.Configuration;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableColElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITableRowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TableColElement;
-	import org.apache.flex.textLayout.elements.TextRange;
-	import org.apache.flex.textLayout.events.ContextMenuEvent;
-	import org.apache.flex.textLayout.events.EditEvent;
-	import org.apache.flex.textLayout.events.FlowOperationEvent;
-	import org.apache.flex.textLayout.events.SelectionEvent;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.operations.CopyOperation;
-	import org.apache.flex.textLayout.operations.FlowOperation;
-	import org.apache.flex.textLayout.utils.NavigationUtil;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.textLayout.edit.Clipboard;
+	import org.apache.royale.core.IApplicationView;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.UIKeys;
+	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.text.events.IMEEvent;
+	import org.apache.royale.text.events.TextEvent;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.compose.TextFlowTableBlock;
+	import org.apache.royale.textLayout.container.ColumnState;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.dummy.BitmapData;
+	import org.apache.royale.textLayout.dummy.BoundsUtil;
+	import org.apache.royale.textLayout.dummy.ContextMenu;
+	import org.apache.royale.textLayout.dummy.IBitmapDrawable;
+	import org.apache.royale.textLayout.dummy.Mouse;
+	import org.apache.royale.textLayout.dummy.MouseCursor;
+	import org.apache.royale.textLayout.dummy.MouseCursorData;
+	import org.apache.royale.textLayout.elements.CellContainer;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.CellRange;
+	import org.apache.royale.textLayout.elements.Configuration;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableColElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITableRowElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TableColElement;
+	import org.apache.royale.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.events.ContextMenuEvent;
+	import org.apache.royale.textLayout.events.EditEvent;
+	import org.apache.royale.textLayout.events.FlowOperationEvent;
+	import org.apache.royale.textLayout.events.SelectionEvent;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.operations.CopyOperation;
+	import org.apache.royale.textLayout.operations.FlowOperation;
+	import org.apache.royale.textLayout.utils.NavigationUtil;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.textLayout.edit.Clipboard;
 
 	/** 
 	 * The SelectionManager class manages text selection in a text flow.
@@ -303,7 +303,7 @@ package org.apache.flex.textLayout.edit
 
 		/**
 		 * Selects the table rows provided
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableRowElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableRowElement
 		 **/
 		public function selectRows(rows:Array):void
 		{
@@ -526,7 +526,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 */
 		public function getSelectionState():SelectionState
 		{
@@ -543,7 +543,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 */
 		public function setSelectionState(sel:SelectionState):void
 		{
@@ -581,7 +581,7 @@ package org.apache.flex.textLayout.edit
 		 * <p>The <code>selectionType</code> describes the kind of selection. 
 		 * It can either be <code>SelectionType.TEXT</code> or <code>SelectionType.CELLS</code></p>
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionType
+		 * @see org.apache.royale.textLayout.edit.SelectionType
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -617,7 +617,7 @@ package org.apache.flex.textLayout.edit
 		 * assigned to a text flow by setting the <code>interactionManager</code> property of the
 		 * ITextFlow object.</p>
 		 * 
-		 * @see org.apache.flex.textLayout.elements.ITextFlow#interactionManager
+		 * @see org.apache.royale.textLayout.elements.ITextFlow#interactionManager
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -657,7 +657,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.EditingMode
+		 * @see org.apache.royale.textLayout.edit.EditingMode
 		 */
 		public function get editingMode():String
 		{
@@ -695,7 +695,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function get currentSelectionFormat():SelectionFormat
 		{
@@ -717,7 +717,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function get currentCellSelectionFormat():SelectionFormat
 		{
@@ -739,7 +739,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set focusedSelectionFormat(val:SelectionFormat):void
 		{
@@ -763,7 +763,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set unfocusedSelectionFormat(val:SelectionFormat):void
 		{
@@ -787,7 +787,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set inactiveSelectionFormat(val:SelectionFormat):void
 		{
@@ -811,7 +811,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set focusedCellSelectionFormat(val:SelectionFormat):void
 		{
@@ -835,7 +835,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set unfocusedCellSelectionFormat(val:SelectionFormat):void
 		{
@@ -859,7 +859,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.edit.SelectionFormat
+		 * @see org.apache.royale.textLayout.edit.SelectionFormat
 		 */
 		public function set inactiveCellSelectionFormat(val:SelectionFormat):void
 		{
@@ -876,13 +876,13 @@ package org.apache.flex.textLayout.edit
 			return _inactiveCellSelectionFormat ? _inactiveCellSelectionFormat : (_textFlow ? _textFlow.configuration.inactiveSelectionFormat : null);
 		}
 
-		/** @private - returns the selectionFormatState.  @see org.apache.flex.textLayout.edit.SelectionFormatState */
+		/** @private - returns the selectionFormatState.  @see org.apache.royale.textLayout.edit.SelectionFormatState */
 		public function get selectionFormatState():String
 		{
 			return _selFormatState;
 		}
 
-		/** @private - sets the SelectionFormatState. @see org.apache.flex.textLayout.edit.SelectionFormatState */
+		/** @private - sets the SelectionFormatState. @see org.apache.royale.textLayout.edit.SelectionFormatState */
 		public function setSelectionFormatState(selFormatState:String):void
 		{
 			if (selFormatState != _selFormatState)
@@ -915,7 +915,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 * @param currentTarget     The object that is actively processing the Event object with an event listener.
 		 * @param target            The InteractiveObject instance under the pointing device. The target is not always the object in the display list that registered the event listener. Use the currentTarget property to access the object in the display list that is currently processing the event.
 		 * @param localX            The horizontal coordinate at which the event occurred relative to the containing sprite.
@@ -1041,7 +1041,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		public function selectAll():void
 		{
@@ -1062,7 +1062,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		public function selectRange(anchorPosition:int, activePosition:int):void
 		{
@@ -1108,7 +1108,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		public function selectFirstPosition():void
 		{
@@ -1122,7 +1122,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		public function selectLastPosition():void
 		{
@@ -1137,7 +1137,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		public function deselect():void
 		{
@@ -1758,7 +1758,7 @@ package org.apache.flex.textLayout.edit
 		}
 
 		/**
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		static private function checkForDisplayed(container:IParentIUIBase):Boolean
 		{
@@ -1985,7 +1985,7 @@ package org.apache.flex.textLayout.edit
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 */
 		public function mouseDownHandler(event:MouseEvent):void
 		{
@@ -2892,7 +2892,7 @@ package org.apache.flex.textLayout.edit
 		CONFIG::debug
 		public function debugCheckTextFlow():int
 		{
-			if (org.apache.flex.textLayout.debug.Debugging.debugOn)
+			if (org.apache.royale.textLayout.debug.Debugging.debugOn)
 				return _textFlow.debugCheckTextFlow();
 			return 0;
 		}

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.text.engine.TextJustifier;
+	import org.apache.royale.text.engine.TextJustifier;
 
 	public class TextJustifier
 	{

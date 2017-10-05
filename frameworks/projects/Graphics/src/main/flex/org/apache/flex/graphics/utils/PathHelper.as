@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics.utils
+package org.apache.royale.graphics.utils
 {
 	import flash.display.GraphicsPath;
 	import flash.geom.Rectangle;
@@ -909,7 +909,7 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 
-import org.apache.flex.graphics.utils.MatrixUtil;
+import org.apache.royale.graphics.utils.MatrixUtil;
 
 /**
  *  The CubicBezierSegment draws a cubic bezier curve from the current pen position 
@@ -1284,7 +1284,7 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 
-import org.apache.flex.graphics.utils.MatrixUtil;
+import org.apache.royale.graphics.utils.MatrixUtil;
 
 /**
  *  The QuadraticBezierSegment draws a quadratic curve from the current pen position 

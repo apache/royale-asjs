@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 		
 	COMPILE::SWF {
-		import org.apache.flex.core.IUIBase;
+		import org.apache.royale.core.IUIBase;
 	}
 		
 	/**

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.cordova
+package org.apache.royale.cordova
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.core.AirApplication;
-	import org.apache.flex.core.IFlexInfo;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.AirApplication;
+	import org.apache.royale.core.IFlexInfo;
 
 	/**
 	 *  A customized Application that dispatches the Cordova deviceReady event
@@ -30,7 +30,7 @@ package org.apache.flex.cordova
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Application extends org.apache.flex.core.AirApplication implements IFlexInfo
+	public class Application extends org.apache.royale.core.AirApplication implements IFlexInfo
 	{
 		/**
 		 * FalconJX will inject html into the index.html file.  Surround with

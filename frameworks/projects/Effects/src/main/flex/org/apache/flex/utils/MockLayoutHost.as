@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
 
 	public class MockLayoutHost implements ILayoutHost
 	{

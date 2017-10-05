@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.tween
+package org.apache.royale.createjs.tween
 {	
 	COMPILE::JS {
 		import createjs.Stage;

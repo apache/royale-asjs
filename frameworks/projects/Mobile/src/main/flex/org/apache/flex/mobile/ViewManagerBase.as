@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.IViewManager;
-	import org.apache.flex.mobile.chrome.NavigationBar;
-	import org.apache.flex.mobile.models.ViewManagerModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.mobile.IViewManagerView;
+	import org.apache.royale.mobile.IViewManager;
+	import org.apache.royale.mobile.chrome.NavigationBar;
+	import org.apache.royale.mobile.models.ViewManagerModel;
 	
 	/**
 	 * Event dispatched when the current (selected) view changes.

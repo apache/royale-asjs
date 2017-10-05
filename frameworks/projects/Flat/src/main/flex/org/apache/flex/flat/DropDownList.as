@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat
+package org.apache.royale.flat
 {
-    import org.apache.flex.core.UIBase;
+    import org.apache.royale.core.UIBase;
 
     COMPILE::SWF
     {
-        import org.apache.flex.html.DropDownList;            
+        import org.apache.royale.html.DropDownList;            
     }
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.html.util.addElementToWrapper;
-        import org.apache.flex.html.List;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.core.ISelectionModel;
-        import org.apache.flex.events.Event;
-        import org.apache.flex.html.beads.models.ArraySelectionModel;
-        import org.apache.flex.utils.CSSUtils;
+        import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.List;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.core.ISelectionModel;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.html.beads.models.ArraySelectionModel;
+        import org.apache.royale.utils.CSSUtils;
     }
     
     /**
@@ -46,7 +46,7 @@ package org.apache.flex.flat
      *  @productversion Royale 0.0
      */
     COMPILE::SWF
-	public class DropDownList extends org.apache.flex.html.DropDownList
+	public class DropDownList extends org.apache.royale.html.DropDownList
 	{
         /**
          *  Constructor.
@@ -74,7 +74,7 @@ package org.apache.flex.flat
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
     
     COMPILE::JS
     public class DropDownList extends List
@@ -99,7 +99,7 @@ package org.apache.flex.flat
         private var menu:HTMLUListElement;
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLButtonElement
          * @royaleignorecoercion HTMLDivElement
          * @royaleignorecoercion HTMLSpanElement
@@ -137,7 +137,7 @@ package org.apache.flex.flat
         
         /**
          * @param event The event.
-         * @royaleignorecoercion org.apache.flex.core.UIBase 
+         * @royaleignorecoercion org.apache.royale.core.UIBase 
          */
         private function selectChanged(event:Event):void
         {
@@ -317,7 +317,7 @@ package org.apache.flex.flat
 
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedIndex
+         *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -347,7 +347,7 @@ package org.apache.flex.flat
         
         [Bindable("change")]
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#selectedItem
+         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

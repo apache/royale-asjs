@@ -17,11 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.net.beads {
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IStrand;
-import org.apache.flex.events.Event;
-import org.apache.flex.events.IEventDispatcher;
+package org.apache.royale.net.beads {
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
     COMPILE::SWF
     public class CORSCredentialsBead {
@@ -53,7 +53,7 @@ import org.apache.flex.events.IEventDispatcher;
         /**
          *  Listen for a pre and post send event to modify if user credentials are passed.
          *
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {	
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IStrand;
 
 	/**
 	 *  The IListView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.flex.html.List control.
+	 *  creates the visual parts for a org.apache.royale.html.List control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

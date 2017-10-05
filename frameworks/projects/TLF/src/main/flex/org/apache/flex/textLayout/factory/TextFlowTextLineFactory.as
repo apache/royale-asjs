@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.FloatCompositionData;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ISimpleCompose;
-	import org.apache.flex.textLayout.compose.utils.FactoryHelper;
-	import org.apache.flex.textLayout.container.ScrollPolicy;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.ParagraphElement;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.FloatCompositionData;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ISimpleCompose;
+	import org.apache.royale.textLayout.compose.utils.FactoryHelper;
+	import org.apache.royale.textLayout.container.ScrollPolicy;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.ParagraphElement;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 /**
  * The TextFlowTextLineFactory class provides a simple way to create TextLines for displaying text from a text flow.
@@ -51,8 +51,8 @@ package org.apache.flex.textLayout.factory
  * @playerversion AIR 1.5
  * @langversion 3.0
  *
- * @see org.apache.flex.textLayout.elements.TextFlow TextFlow
- * @see org.apache.flex.textLayout.factory.StringTextLineFactory StringTextLineFactory
+ * @see org.apache.royale.textLayout.elements.TextFlow TextFlow
+ * @see org.apache.royale.textLayout.factory.StringTextLineFactory StringTextLineFactory
 */
 	public class TextFlowTextLineFactory extends TextLineFactoryBase
 	{

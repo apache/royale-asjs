@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.controllers
+package org.apache.royale.mdl.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.beads.ISliderView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.beads.ISliderView;
 
     COMPILE::JS
     {
 		import goog.events;
         import goog.events.EventType;
-        import org.apache.flex.events.BrowserEvent;
-        import org.apache.flex.mdl.Slider;
+        import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.mdl.Slider;
     }
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.flex.mdl.Slider's component parts (in swf thumb and track) and 
+	 *  org.apache.royale.mdl.Slider's component parts (in swf thumb and track) and 
 	 *  dispatches input and change events on behalf of the Slider (in swf, as well,
      *  co-ordinating visual changes (such as moving the thumb when the track has 
      *  been tapped or clicked).
@@ -74,7 +74,7 @@ package org.apache.flex.mdl.beads.controllers
 		
 		private var _strand:IStrand;
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -125,7 +125,7 @@ package org.apache.flex.mdl.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-            //host.dispatchEvent(new org.apache.flex.events.Event('change')); --- This is not needed, the event is thrown in the main comp
+            //host.dispatchEvent(new org.apache.royale.events.Event('change')); --- This is not needed, the event is thrown in the main comp
         }
 
         /**
@@ -143,7 +143,7 @@ package org.apache.flex.mdl.beads.controllers
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
-            host.dispatchEvent(new org.apache.flex.events.Event('input'));
+            host.dispatchEvent(new org.apache.royale.events.Event('input'));
         }
 		
         COMPILE::SWF

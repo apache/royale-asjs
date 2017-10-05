@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.binding
+package org.apache.royale.binding
 {
-    import org.apache.flex.binding.ConstantBinding;
-    import org.apache.flex.binding.GenericBinding;
-    import org.apache.flex.binding.ChainBinding;
-    import org.apache.flex.binding.PropertyWatcher;
-    import org.apache.flex.binding.SimpleBinding;
-    import org.apache.flex.binding.WatcherBase;
-    import org.apache.flex.core.IBinding;
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.binding.ConstantBinding;
+    import org.apache.royale.binding.GenericBinding;
+    import org.apache.royale.binding.ChainBinding;
+    import org.apache.royale.binding.PropertyWatcher;
+    import org.apache.royale.binding.SimpleBinding;
+    import org.apache.royale.binding.WatcherBase;
+    import org.apache.royale.core.IBinding;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
     
     /**
      *  The ViewDataBinding class implements databinding for

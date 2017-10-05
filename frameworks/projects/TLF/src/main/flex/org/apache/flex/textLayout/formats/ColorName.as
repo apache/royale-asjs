@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines a constant for specifying that the value of the <code>color</code> property
@@ -25,7 +25,7 @@ package org.apache.flex.textLayout.formats
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
-	 * @see org.apache.flex.textLayout.formats.TextLayoutFormat#color TextLayoutFormat.color
+	 * @see org.apache.royale.textLayout.formats.TextLayoutFormat#color TextLayoutFormat.color
 	 */
 	public final class ColorName
 	{

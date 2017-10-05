@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IList;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
-    import org.apache.flex.core.IItemRendererClassFactory;
-    import org.apache.flex.core.IItemRendererParent;
-    import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.ItemRendererEvent;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IList;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ItemRendererEvent;
+    import org.apache.royale.events.IEventDispatcher;
 
-	[Event(name="itemRendererCreated",type="org.apache.flex.events.ItemRendererEvent")]
+	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
     /**
      *  The TextItemRendererFactoryForArrayData class is the
@@ -66,7 +66,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

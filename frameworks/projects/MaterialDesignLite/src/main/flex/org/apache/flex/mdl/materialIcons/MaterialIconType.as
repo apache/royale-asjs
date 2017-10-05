@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.materialIcons
+package org.apache.royale.mdl.materialIcons
 {
     /**
      *  The MaterialIconType class list all possible icons

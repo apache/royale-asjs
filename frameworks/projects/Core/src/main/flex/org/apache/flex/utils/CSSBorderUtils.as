@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
     import flash.display.DisplayObject;
     import flash.display.Graphics;
 
-    import org.apache.flex.core.ValuesManager;
+    import org.apache.royale.core.ValuesManager;
 
 	/**
 	 *  The CSSBorderUtils class is shared code for getting the styles

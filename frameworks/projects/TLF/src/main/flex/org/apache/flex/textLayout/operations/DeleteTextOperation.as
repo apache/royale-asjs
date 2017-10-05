@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.edit.IMemento;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.edit.PointFormat;
-	import org.apache.flex.textLayout.edit.SelectionState;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.edit.IMemento;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.edit.PointFormat;
+	import org.apache.royale.textLayout.edit.SelectionState;
 
 	
 
@@ -28,8 +28,8 @@ package org.apache.flex.textLayout.operations {
 	/**
 	 * The DeleteTextOperation class encapsulates the deletion of a range of text.
 	 *
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

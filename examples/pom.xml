@@ -48,7 +48,7 @@
   </modules>
 
   <build>
-    <sourceDirectory>src/main/flex</sourceDirectory>
+    <sourceDirectory>src/main/royale</sourceDirectory>
     <resources>
       <resource>
         <directory>src/main/resources</directory>

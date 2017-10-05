@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITableLeafElement;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITableLeafElement;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	// [ExcludeClass]
 	/**
@@ -214,7 +214,7 @@ package org.apache.flex.textLayout.edit
 		 * @param width	the width of the image
 		 * @param height the height of the image
 		 * @param options none supported
-		 * @royaleignorecoercion org.apache.flex.textLayout.element.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.element.ISpanElement
 		 */
 		public static function createImage(flowBlock:IFlowGroupElement, flowSelBegIdx:int,source:Object, width:Object, height:Object, options:Object, pointFormat:ITextLayoutFormat):IInlineGraphicElement
 		{
@@ -416,7 +416,7 @@ package org.apache.flex.textLayout.edit
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public static function splitElement(elem:IFlowGroupElement, splitPos:int):IFlowGroupElement
 		{
@@ -474,7 +474,7 @@ package org.apache.flex.textLayout.edit
 		}		
 		// TODO: rewrite this method by moving the elements.  This is buggy.
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.element.IParagraphElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.element.IParagraphElement
 		 */
 		public static function mergeParagraphWithNext(para:IParagraphElement):Boolean
 		{

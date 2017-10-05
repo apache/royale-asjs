@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IItemRendererClassFactory interface is the basic interface for beads
      *  that generate instances of IItemRenderers.  Note that this is not the same
-     *  as an org.apache.flex.core.IFactory which is a lower-level interface for generating
+     *  as an org.apache.royale.core.IFactory which is a lower-level interface for generating
      *  an instance of just about anything.  IItemRendererClassFactory implementations
      *  often use IFactory to generate the actual item renderer instance, but
      *  the IItemRendererClassFactory bead allows for more computation about which 
      *  renderer to instantiate. For example, the default implementation
-     *  in org.apache.flex.core.ItemRendererClassFactory checks for an itemRenderer
+     *  in org.apache.royale.core.ItemRendererClassFactory checks for an itemRenderer
      *  property on the strand, then looks for a default definition in CSS, but
      *  also handles the renderer being defined in MXML in sub tags of the
      *  ItemRendererClassFactory.  Other more advanced implementations could
@@ -47,8 +47,8 @@ package org.apache.flex.core
          *  @param parent The parent of the item renderer.
          *  @return The item renderer.
          * 
-         *  @see org.apache.flex.core.IItemRendererParent
-         *  @see org.apache.flex.core.IItemRenderer
+         *  @see org.apache.royale.core.IItemRendererParent
+         *  @see org.apache.royale.core.IItemRenderer
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

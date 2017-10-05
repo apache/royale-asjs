@@ -33,10 +33,10 @@ limitations under the License.
 			import bindables.*;
 			import unbindable.UnbindableParent;
 			
-			import org.apache.flex.events.CustomEvent;
-			import org.apache.flex.utils.Timer;
-			import org.apache.flex.events.ValueChangeEvent;
-			import org.apache.flex.html.Label;
+			import org.apache.royale.events.CustomEvent;
+			import org.apache.royale.utils.Timer;
+			import org.apache.royale.events.ValueChangeEvent;
+			import org.apache.royale.html.Label;
 			private static var timer:Timer;
 			
 			private static const STATIC_PRIVATE_CONST :* = "STATIC_PRIVATE_CONST_VAL";

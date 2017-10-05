@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.graphics
+package org.apache.royale.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.svg.GraphicShape
+		import org.apache.royale.svg.GraphicShape
 	}
 		
     COMPILE::JS
@@ -28,12 +28,12 @@ package org.apache.flex.createjs.graphics
         import createjs.Shape;
 		import createjs.Stage;
         
-        import org.apache.flex.createjs.core.CreateJSBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.CreateJSBase;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
 	
 	/**
 	 * This is the base class for CreateJS graphic shape components such as
@@ -46,7 +46,7 @@ package org.apache.flex.createjs.graphics
 	 */
     
     COMPILE::SWF
-	public class GraphicShape extends org.apache.flex.svg.GraphicShape
+	public class GraphicShape extends org.apache.royale.svg.GraphicShape
 	{
 		// nothing special for SWF version.
 	}
@@ -57,7 +57,7 @@ package org.apache.flex.createjs.graphics
         /**
 		 * Creates a CreateJS Shape as the element.
 		 * 
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion createjs.Shape
          */
         override protected function createElement():WrappedHTMLElement

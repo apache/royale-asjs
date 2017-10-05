@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.utils.WhitespaceKeys;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	
 	COMPILE::JS
 		{
-			import org.apache.flex.core.IRenderedObject;
-			import org.apache.flex.events.KeyboardEvent;
+			import org.apache.royale.core.IRenderedObject;
+			import org.apache.royale.events.KeyboardEvent;
 			import goog.events;
 		}
 		
@@ -36,8 +36,8 @@ package org.apache.flex.html.beads
 		{
 			import flash.events.FocusEvent;
 			import flash.events.KeyboardEvent;
-			import org.apache.flex.html.beads.ITextFieldView;
-			import org.apache.flex.events.utils.WhitespaceKeys;
+			import org.apache.royale.html.beads.ITextFieldView;
+			import org.apache.royale.events.utils.WhitespaceKeys;
 		}
 		
 		/**
@@ -70,7 +70,7 @@ package org.apache.flex.html.beads
 			private var _strand:IStrand;
 			
 			/**
-			 *  @copy org.apache.flex.core.IBead#strand
+			 *  @copy org.apache.royale.core.IBead#strand
 			 *  
 			 *  @langversion 3.0
 			 *  @playerversion Flash 10.2

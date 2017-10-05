@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads
+package org.apache.royale.html.customControls.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererClassFactory;
 
     /**
      * Classes that generate ItemRenderers based on dataProvider contents.

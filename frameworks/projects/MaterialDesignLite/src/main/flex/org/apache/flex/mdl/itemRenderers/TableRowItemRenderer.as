@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.itemRenderers
+package org.apache.royale.mdl.itemRenderers
 {
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	import org.apache.flex.html.supportClasses.MXMLItemRenderer;
+	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
     
 	/**
 	 *  The TableItemRenderer defines the basic Item Renderer for a MDL Table Component.
@@ -117,7 +117,7 @@ package org.apache.flex.mdl.itemRenderers
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion Text
          */
         COMPILE::JS

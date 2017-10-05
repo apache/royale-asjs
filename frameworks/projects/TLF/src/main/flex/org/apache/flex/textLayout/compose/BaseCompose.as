@@ -16,55 +16,55 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.utils.BackgroundUtil;
-	import org.apache.flex.textLayout.elements.ITableRowElement;
-	import org.apache.flex.textLayout.formats.BreakStyle;
-	import org.apache.flex.textLayout.elements.LeadingUtils;
-	import org.apache.flex.textLayout.compose.utils.TextLineUtil;
-	import org.apache.flex.textLayout.elements.ITableColElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.Constants;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextBaseline;
-	import org.apache.flex.text.engine.TextLineCreationResult;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.assert;
-	// import org.apache.flex.textLayout.elements.Configuration;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.OverflowPolicy;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.BaselineOffset;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.ClearFloats;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.LeadingModel;
-	import org.apache.flex.textLayout.formats.ListStylePosition;
-	import org.apache.flex.textLayout.formats.TextAlign;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.VerticalAlign;
-	import org.apache.flex.textLayout.utils.LocaleUtil;
-	import org.apache.flex.textLayout.utils.Twips;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.utils.BackgroundUtil;
+	import org.apache.royale.textLayout.elements.ITableRowElement;
+	import org.apache.royale.textLayout.formats.BreakStyle;
+	import org.apache.royale.textLayout.elements.LeadingUtils;
+	import org.apache.royale.textLayout.compose.utils.TextLineUtil;
+	import org.apache.royale.textLayout.elements.ITableColElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.Constants;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextBaseline;
+	import org.apache.royale.text.engine.TextLineCreationResult;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.assert;
+	// import org.apache.royale.textLayout.elements.Configuration;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.OverflowPolicy;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.BaselineOffset;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.ClearFloats;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.formats.ListStylePosition;
+	import org.apache.royale.textLayout.formats.TextAlign;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.VerticalAlign;
+	import org.apache.royale.textLayout.utils.LocaleUtil;
+	import org.apache.royale.textLayout.utils.Twips;
+	import org.apache.royale.utils.ObjectMap;
 	
 	/** 
 	 * Common composer base class 
@@ -311,8 +311,8 @@ package org.apache.flex.textLayout.compose
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITextFlow
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IParagraphElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITextFlow
 		 */
 		private function composeBlockElement(elem:IFlowGroupElement, absStart:int, isInTable:Boolean=false, startChildIdx:int = -1):Boolean
 		{	
@@ -1603,7 +1603,7 @@ package org.apache.flex.textLayout.compose
 			}
 		}
 		/**
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		protected function composeInlineGraphicElement(inlineGraphic:IInlineGraphicElement, textLine:ITextLine):Boolean
 		{
@@ -2211,7 +2211,7 @@ package org.apache.flex.textLayout.compose
 								}
 							}
 							
-							lineHeight -= curTextLine.getBaselinePosition(org.apache.flex.text.engine.TextBaseline.ROMAN);
+							lineHeight -= curTextLine.getBaselinePosition(org.apache.royale.text.engine.TextBaseline.ROMAN);
 						}
 					}
 				}
@@ -2909,8 +2909,8 @@ package org.apache.flex.textLayout.compose
 	}
 }
 
-import org.apache.flex.textLayout.compose.ITextFlowLine;
-import org.apache.flex.text.engine.ITextLine;
+import org.apache.royale.textLayout.compose.ITextFlowLine;
+import org.apache.royale.text.engine.ITextLine;
 
 
 class AlignData 

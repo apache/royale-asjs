@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
 	COMPILE::JS {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	/**
@@ -27,8 +27,8 @@ package org.apache.flex.html.supportClasses
 	 *  are typically used in groups, identified by the groupName property. RadioButton use
 	 *  the following beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the groupName.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -92,7 +92,7 @@ package org.apache.flex.html.supportClasses
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLInputElement
 		 * @royaleignorecoercion Text
 		 */

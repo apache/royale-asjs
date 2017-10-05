@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.List;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.utils.UIUtils;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.beads.IComboBoxView;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.TextInput;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.List;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.beads.IComboBoxView;
 	
 	/**
-	 *  The ComboBoxView class creates the visual elements of the org.apache.flex.html.ComboBox 
+	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.html.ComboBox 
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
-	 *  control and org.apache.flex.html.Button to trigger the pop-up.
+	 *  control and org.apache.royale.html.Button to trigger the pop-up.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -59,7 +59,7 @@ package org.apache.flex.html.beads
 		/**
 		 *  The TextInput component of the ComboBox.
 		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -76,7 +76,7 @@ package org.apache.flex.html.beads
 		/**
 		 *  The Button component of the ComboBox.
 		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -93,7 +93,7 @@ package org.apache.flex.html.beads
 		/**
 		 *  The pop-up list component of the ComboBox.
 		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -118,7 +118,7 @@ package org.apache.flex.html.beads
 			input.className = "ComboBoxTextInput";			
 			
 			button = new TextButton();
-			button.className = "opt_org-apache-flex-html-ComboBox_Button";
+			button.className = "opt_org-apache.royale-html-ComboBox_Button";
 			button.text = '\u25BC';
 			
 			if (isNaN(host.width)) input.width = 100;
@@ -144,7 +144,7 @@ package org.apache.flex.html.beads
 		/**
 		 *  Returns whether or not the pop-up is visible.
 		 * 
-		 *  @copy org.apache.flex.html.beads.IComboBoxView#text
+		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

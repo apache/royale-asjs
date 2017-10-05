@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
 	/**
 	 *  The FlowDamageType class is an enumeration class that defines types of damage for damage methods and events.
@@ -41,7 +41,7 @@ package org.apache.flex.textLayout.compose
 	 	 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-	 	 * @see org.apache.flex.textLayout.compose.TextFlowLine#validity	 	 */
+	 	 * @see org.apache.royale.textLayout.compose.TextFlowLine#validity	 	 */
 		static public const INVALID:String = "invalid";
 		
 		/**
@@ -53,7 +53,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-	 	 * @see org.apache.flex.textLayout.compose.TextFlowLine#validity
+	 	 * @see org.apache.royale.textLayout.compose.TextFlowLine#validity
 	 	 */
 		static public const GEOMETRY:String = "geometry";
 	}

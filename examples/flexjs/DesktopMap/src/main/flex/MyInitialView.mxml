@@ -25,7 +25,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[			
 			import models.MyModel;
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			import google.maps.LatLng;
 									
 
@@ -53,7 +53,7 @@ limitations under the License.
 			 * Triggered by a change in the drop list with a new city selected. This
 			 * will also update the input fields.
 			 */
-			private function changeCity(event:org.apache.flex.events.Event) : void
+			private function changeCity(event:org.apache.royale.events.Event) : void
 			{
 				var index:int = list.selectedIndex;
 				

@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
 	 *  The SimpleList class is a component that displays data in a vertical column. This
-	 *  component differs from org.apache.flex.html.List in that it displays
+	 *  component differs from org.apache.royale.html.List in that it displays
 	 *  only string values and maps to the &lt;select&gt; HTML element.
 	 *
      *  @toplevel
@@ -52,7 +52,7 @@ package org.apache.flex.html
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS

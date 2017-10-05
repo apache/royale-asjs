@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file
+package org.apache.royale.file
 {
 	public interface IFileModel
 	{

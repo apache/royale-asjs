@@ -27,8 +27,8 @@ package
      */
     internal class BindingClasses
     {
-        import org.apache.flex.binding.ChainBinding; ChainBinding;
-        import org.apache.flex.binding.DataBindingBase; DataBindingBase;
+        import org.apache.royale.binding.ChainBinding; ChainBinding;
+        import org.apache.royale.binding.DataBindingBase; DataBindingBase;
     }
 }
 

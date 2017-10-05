@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-	import org.apache.flex.graphics.GradientBase;
-	import org.apache.flex.graphics.GradientEntry;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IGraphicShape;
-	import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.graphics.GradientBase;
+	import org.apache.royale.graphics.GradientEntry;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IGraphicShape;
+	import org.apache.royale.utils.CSSUtils;
 
     COMPILE::SWF
     {

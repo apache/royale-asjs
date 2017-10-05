@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.conversion.ConversionConstants;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.edit.TextFlowEdit;
-	import org.apache.flex.textLayout.edit.TextScrap;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.conversion.ConversionConstants;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.edit.TextFlowEdit;
+	import org.apache.royale.textLayout.edit.TextScrap;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 
 
@@ -42,8 +42,8 @@ package org.apache.flex.textLayout.operations
 	 * <p><b>Note:</b> The edit manager is responsible for copying the 
 	 * contents of the clipboard.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

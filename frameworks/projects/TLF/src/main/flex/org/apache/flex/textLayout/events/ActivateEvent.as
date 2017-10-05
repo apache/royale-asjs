@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events {
+package org.apache.royale.textLayout.events {
 	public class ActivateEvent {
 
 		public static const ACTIVATE:String = "activate";

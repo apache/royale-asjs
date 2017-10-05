@@ -24,7 +24,7 @@ COMPILE::SWF
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
 }
 
 	[Event(name="valueExpression", type="RunCodeEvent")]	

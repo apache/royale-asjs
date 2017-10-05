@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage
+package org.apache.royale.storage
 {
-	import org.apache.flex.storage.providers.LocalStorageProvider;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.storage.providers.LocalStorageProvider;
+	import org.apache.royale.core.ValuesManager;
 
 /**
  *  The LocalStorage class allows apps to store small amounts of data
@@ -29,10 +29,10 @@ package org.apache.flex.storage
  *  This class uses the ValuesManager to determine a storage provider - an implementation
  *  class the actually does the storing and retrieving. To change the provider implementation,
  *  set a ClassReference for the LocalStorage CSS style. The default is the
- *  org.apache.flex.storage.providers.LocalStorageProvider class.
+ *  org.apache.royale.storage.providers.LocalStorageProvider class.
  *
- *  @see org.apache.flex.storage.IWebStorage
- *  @see org.apache.flex.storage.provides.LocalStorageProvider
+ *  @see org.apache.royale.storage.IWebStorage
+ *  @see org.apache.royale.storage.provides.LocalStorageProvider
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-    import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
+    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
 
-    import org.apache.flex.core.IComboBoxModel;
-    import org.apache.flex.html.beads.models.ComboBoxModel;
+    import org.apache.royale.core.IComboBoxModel;
+    import org.apache.royale.html.beads.models.ComboBoxModel;
 	
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The ComboBox class is a component that displays an input field and
@@ -32,10 +32,10 @@ package org.apache.flex.html
 	 *  places that item into the input field of the ComboBox. The ComboBox
 	 *  uses the following bead types:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the component.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the component.
+	 *  org.apache.royale.core.IBeadController: the bead that handles input and output.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

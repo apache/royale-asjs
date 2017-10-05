@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection
+package org.apache.royale.reflection
 {
 COMPILE::SWF {
   import flash.utils.describeType;
@@ -116,7 +116,7 @@ COMPILE::SWF {
          * The static TypeDefinitions.getDefinition method is the primary access to TypeDefinitions. Although the
          * constructor does not have a lock to prevent use (for performance reasons), using it directly
          * is discouraged.
-         * Most of the time you should retrieve TypeDefinitions with org.apache.flex.reflection.describeType()
+         * Most of the time you should retrieve TypeDefinitions with org.apache.royale.reflection.describeType()
          */
         public function TypeDefinition(name:String, rawData:Object = null)
         {

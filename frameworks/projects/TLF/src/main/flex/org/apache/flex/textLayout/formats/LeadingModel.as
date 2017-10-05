@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines values for setting the <code>leadingModel</code> property
@@ -37,7 +37,7 @@ package org.apache.flex.textLayout.formats
 	 *  @see TextLayoutFormat#leadingModel
 	 *  @see TextLayoutFormat#lineHeight
 	 *  @see flash.text.TextField
-	 *  @see org.apache.flex.text.engine.TextLine 
+	 *  @see org.apache.royale.text.engine.TextLine 
 	 */
 	 
 	public final class LeadingModel

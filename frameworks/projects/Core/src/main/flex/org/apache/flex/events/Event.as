@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
-    import org.apache.flex.core.IRoyaleElement;
+    import org.apache.royale.core.IRoyaleElement;
 
     COMPILE::SWF {
         import flash.events.Event;
@@ -98,7 +98,7 @@ package org.apache.flex.events
 		 */
 		public function cloneEvent():IRoyaleEvent
 		{
-			return new org.apache.flex.events.Event(type, bubbles, cancelable);
+			return new org.apache.royale.events.Event(type, bubbles, cancelable);
 		}
         
         /**
@@ -110,7 +110,7 @@ package org.apache.flex.events
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
-		 * @royaleignorecoercion org.apache.flex.core.IRoyaleElement
+		 * @royaleignorecoercion org.apache.royale.core.IRoyaleElement
          */
         public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
         {
@@ -165,7 +165,7 @@ package org.apache.flex.events
 		
 		public function cloneEvent():IRoyaleEvent
 		{
-			return new org.apache.flex.events.Event(type, bubbles, cancelable);
+			return new org.apache.royale.events.Event(type, bubbles, cancelable);
 		}
 
 		public function isDefaultPrevented():Boolean

@@ -31,14 +31,14 @@ limitations under the License.
 			import models.ProductsModel;
 			import models.Stock;
 			
-			import org.apache.flex.binding.SimpleBinding;
-			import org.apache.flex.core.IBeadController;
-			import org.apache.flex.core.IBeadModel;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.events.ValueChangeEvent;
-			import org.apache.flex.mobile.IViewManager;
-			import org.apache.flex.mobile.StackedViewManager;
-			import org.apache.flex.html.beads.DataProviderChangeNotifier;
+			import org.apache.royale.binding.SimpleBinding;
+			import org.apache.royale.core.IBeadController;
+			import org.apache.royale.core.IBeadModel;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.ValueChangeEvent;
+			import org.apache.royale.mobile.IViewManager;
+			import org.apache.royale.mobile.StackedViewManager;
+			import org.apache.royale.html.beads.DataProviderChangeNotifier;
 						
 			public function set dataModel(value:IBeadModel):void
 			{
@@ -58,17 +58,17 @@ limitations under the License.
 			
 			public function addSymbol():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("addSymbol"));
+				dispatchEvent(new org.apache.royale.events.Event("addSymbol"));
 			}
 			
 			public function removeSymbol():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("removeSymbol"));
+				dispatchEvent(new org.apache.royale.events.Event("removeSymbol"));
 			}
 			
 			public function gridSelected():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("symbolSelected"));
+				dispatchEvent(new org.apache.royale.events.Event("symbolSelected"));
 			}
 		]]>
 	</fx:Script>

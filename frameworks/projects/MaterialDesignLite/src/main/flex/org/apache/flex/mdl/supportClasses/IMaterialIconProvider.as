@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
+    import org.apache.royale.mdl.materialIcons.IMaterialIcon;
 
     /**
      *  Implement if a class will need ability to display Material icon
@@ -30,7 +30,7 @@ package org.apache.flex.mdl.supportClasses
      */
     public interface IMaterialIconProvider
     {
-        function get materialIcon():org.apache.flex.mdl.materialIcons.IMaterialIcon;
-        function set materialIcon(value:org.apache.flex.mdl.materialIcons.IMaterialIcon):void;
+        function get materialIcon():org.apache.royale.mdl.materialIcons.IMaterialIcon;
+        function set materialIcon(value:org.apache.royale.mdl.materialIcons.IMaterialIcon):void;
     }
 }

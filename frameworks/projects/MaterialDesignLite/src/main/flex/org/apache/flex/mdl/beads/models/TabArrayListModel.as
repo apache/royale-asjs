@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
-    import org.apache.flex.html.beads.models.ArrayListSelectionModel;
-    import org.apache.flex.events.Event;
+    import org.apache.royale.html.beads.models.ArrayListSelectionModel;
+    import org.apache.royale.events.Event;
     /**
-     *  The TabArrayListModel class defines the data associated with an org.apache.flex.mdl.Tabs
+     *  The TabArrayListModel class defines the data associated with an org.apache.royale.mdl.Tabs
      *  component.
      *
      *  @langversion 3.0
@@ -39,7 +39,7 @@ package org.apache.flex.mdl.beads.models
         private var _tabIdField:String;
 
         /**
-         *  @copy org.apache.flex.mdl.beads.models.ITabModel#tabIdField
+         *  @copy org.apache.royale.mdl.beads.models.ITabModel#tabIdField
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

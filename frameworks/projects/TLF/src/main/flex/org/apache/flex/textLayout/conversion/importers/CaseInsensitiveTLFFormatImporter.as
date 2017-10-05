@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion.importers {
-	import org.apache.flex.textLayout.conversion.TLFormatImporter;
+package org.apache.royale.textLayout.conversion.importers {
+	import org.apache.royale.textLayout.conversion.TLFormatImporter;
 
 /** Specialized to provide case insensitivity (as required by TEXT_FIELD_HTML_FORMAT)
  *  Keys need to be lower-cased. Values may or may not based on a flag passed to the constructor. 

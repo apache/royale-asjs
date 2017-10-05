@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.dummy {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.core.IUIBase;
+package org.apache.royale.textLayout.dummy {
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.IUIBase;
 	public class BoundsUtil {
 		static public function getBounds(child:IUIBase,parent:IUIBase):Rectangle{
 			if(child == parent)

@@ -21,18 +21,18 @@ package dataTable.mapper
 	import dataTable.DataColumn;
 	import dataTable.model.DataTableModel;
 	
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Label;
-	import org.apache.flex.html.Table;
-	import org.apache.flex.html.TableCell;
-	import org.apache.flex.html.TableHeader;
-	import org.apache.flex.html.TableRow;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Label;
+	import org.apache.royale.html.Table;
+	import org.apache.royale.html.TableCell;
+	import org.apache.royale.html.TableHeader;
+	import org.apache.royale.html.TableRow;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	public class DataTableMapperForArrayListData implements IBead
 	{

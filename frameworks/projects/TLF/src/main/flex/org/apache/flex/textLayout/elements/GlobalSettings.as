@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
 
 
@@ -29,13 +29,13 @@ package org.apache.flex.textLayout.elements
     {
         /** 
         * Specifies the callback used for font mapping.
-        * The callback takes a <code>org.apache.flex.text.engine.FontDescription</code> object and updates it as needed.
+        * The callback takes a <code>org.apache.royale.text.engine.FontDescription</code> object and updates it as needed.
         * 
         * After setting a new font mapping callback, or changing the behavior of the exisiting font mapping callback, 
-        * the client must explicitly call <code>org.apache.flex.textLayout.elements.TextFlow.invalidateAllFormats</code> for each impacted text flow.
+        * the client must explicitly call <code>org.apache.royale.textLayout.elements.TextFlow.invalidateAllFormats</code> for each impacted text flow.
         * This ensures that whenever a leaf element in the text flow is next recomposed, the FontDescription applied to it is recalculated, and the the callback is invoked. 
         * 
-        * @see org.apache.flex.text.engine.FontDescription FontDescription
+        * @see org.apache.royale.text.engine.FontDescription FontDescription
         * @see TextFlow.invalidateAllFormats invalidateAllFormats
         * 
         * @playerversion Flash 10
@@ -75,10 +75,10 @@ package org.apache.flex.textLayout.elements
          * It gives the client the opportunity to modify the FontLookup setting.  The function is called with two parameters an ISWFContext and an ITextLayoutFormat.
          * It must return a valid FontLookup.
          * 
-         * @see org.apache.flex.textLayout.compose.ISWFContext
-         * @see org.apache.flex.textLayout.formats.ITextLayoutFormat
-         * @see org.apache.flex.text.engine.ElementFormat
-         * @see org.apache.flex.text.engine.FontLookup
+         * @see org.apache.royale.textLayout.compose.ISWFContext
+         * @see org.apache.royale.textLayout.formats.ITextLayoutFormat
+         * @see org.apache.royale.text.engine.ElementFormat
+         * @see org.apache.royale.text.engine.FontLookup
          * 
          * @playerversion Flash 10
          * @playerversion AIR 1.5

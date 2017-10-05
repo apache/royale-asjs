@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.accessories
+package org.apache.royale.html.accessories
 {
-	import org.apache.flex.html.accessories.SimpleDateFormatBead;
+	import org.apache.royale.html.accessories.SimpleDateFormatBead;
 
 	/**
 	 * The DateFormatBead class formats the display of a DateField using MM/DD/YYYY format.

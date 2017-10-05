@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
 	
-	import org.apache.flex.core.IValueToggleButtonModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.royale.core.IValueToggleButtonModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
 	
 
 	/**
 	 *  The ValueToggleButtonModel class bead extends the 
-	 *  org.apache.flex.html.beads.models.ToggleButtonModel and adds
-	 *  value intended to represent a collection of similar org.apache.flex.html.Buttons 
-	 *  such as org.apache.flex.html.RadioButtons.
+	 *  org.apache.royale.html.beads.models.ToggleButtonModel and adds
+	 *  value intended to represent a collection of similar org.apache.royale.html.Buttons 
+	 *  such as org.apache.royale.html.RadioButtons.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 	/** Interface to support TLF content in a sub-application. When an application is loaded in an untrusted context,
 	 * mouse events that occur outside of the untrusted application's bounds are not delivered. Clients can handle this
 	 * by implementing ISandboxSupport. 
@@ -27,9 +27,9 @@ package org.apache.flex.textLayout.container
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 * 
-	 * @see org.apache.flex.textLayout.container.ContainerController
-	 * @see org.apache.flex.textLayout.container.TextContainerManager
-	 * @see org.apache.flex.textLayout.edit.SelectionManager
+	 * @see org.apache.royale.textLayout.container.ContainerController
+	 * @see org.apache.royale.textLayout.container.TextContainerManager
+	 * @see org.apache.royale.textLayout.edit.SelectionManager
 	 * @see flash.system.SecurityDomain
 	 */
 	public interface ISandboxSupport

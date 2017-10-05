@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.supportClasses.Viewport;
-	import org.apache.flex.html.beads.layouts.TileLayout;
+	import org.apache.royale.html.List;
+	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.html.beads.layouts.TileLayout;
 	
 	public class DateChooserList extends List
 	{

@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IItemRendererProvider;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererProvider;
 
     /**
      *  The IList interface is implemented by any component that supports being

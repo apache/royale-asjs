@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat.beads
+package org.apache.royale.flat.beads
 {
     import flash.display.DisplayObject;
     import flash.display.Loader;
@@ -26,22 +26,22 @@ package org.apache.flex.flat.beads
     import flash.events.Event;
     import flash.net.URLRequest;
     
-    import org.apache.flex.core.BeadViewBase;
-    import org.apache.flex.core.CSSShape;
-    import org.apache.flex.core.IBeadView;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.ITextModel;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.CSSBorderUtils;
-    import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.StringTrimmer;
-    import org.apache.flex.core.UIHTMLElementWrapper;
+    import org.apache.royale.core.BeadViewBase;
+    import org.apache.royale.core.CSSShape;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextModel;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.CSSBorderUtils;
+    import org.apache.royale.utils.CSSUtils;
+    import org.apache.royale.utils.StringTrimmer;
+    import org.apache.royale.core.UIHTMLElementWrapper;
 
     /**
      *  The CSSScrollBarButtonView class is the default view for
-     *  the buttons in a org.apache.flex.html.ScrollBar class.
+     *  the buttons in a org.apache.royale.html.ScrollBar class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -77,7 +77,7 @@ package org.apache.flex.flat.beads
 		private var shape:Shape;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -104,7 +104,7 @@ package org.apache.flex.flat.beads
             IEventDispatcher(_strand).addEventListener("heightChanged",sizeChangeHandler);
 		}
 	
-        private function sizeChangeHandler(event:org.apache.flex.events.Event):void
+        private function sizeChangeHandler(event:org.apache.royale.events.Event):void
         {
             setupSkins();
         }

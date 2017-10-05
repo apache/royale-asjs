@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.html
+package org.apache.royale.text.html
 {
-    import org.apache.flex.text.engine.ITextFactory;
-    import org.apache.flex.text.engine.ITextBlock;
-    import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IParentIUIBase;
-    import org.apache.flex.html.Div;
-    import org.apache.flex.text.engine.IFontLoader;
+    import org.apache.royale.text.engine.ITextFactory;
+    import org.apache.royale.text.engine.ITextBlock;
+    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParentIUIBase;
+    import org.apache.royale.html.Div;
+    import org.apache.royale.text.engine.IFontLoader;
 
     public class HTMLTextFactory implements ITextFactory
     {

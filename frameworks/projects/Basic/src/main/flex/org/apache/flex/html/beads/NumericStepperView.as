@@ -16,32 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.html.Label;
-	import org.apache.flex.html.Spinner;
-	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.ScrollBar;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.Label;
+	import org.apache.royale.html.Spinner;
+	import org.apache.royale.html.TextInput;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.ScrollBar;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
-	 *  org.apache.flex.html.NumericStepper component. A NumberStepper consists of a 
-	 *  org.apache.flex.html.TextInput component to display the value and a 
-	 *  org.apache.flex.html.Spinner to change the value.
+	 *  org.apache.royale.html.NumericStepper component. A NumberStepper consists of a 
+	 *  org.apache.royale.html.TextInput component to display the value and a 
+	 *  org.apache.royale.html.Spinner to change the value.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads
 		private var spinner:Spinner;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

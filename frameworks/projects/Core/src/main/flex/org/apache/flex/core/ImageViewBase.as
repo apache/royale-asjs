@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -30,21 +30,21 @@ package org.apache.flex.core
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.utils.URLUtils;
+        import org.apache.royale.utils.URLUtils;
     }
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IRenderedObject;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.core.IImageView;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IImageModel;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IImageView;
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.royale.html.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -79,7 +79,7 @@ package org.apache.flex.core
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -103,7 +103,7 @@ package org.apache.flex.core
 		
 		/**
 		 * @private
-         * @royaleignorecoercion org.apache.flex.core.IImage
+         * @royaleignorecoercion org.apache.royale.core.IImage
 		 */
 		protected function handleUrlChange(event:Event):void
 		{
@@ -135,7 +135,7 @@ package org.apache.flex.core
         }
 
 		/**
-		*  @royaleignorecoercion org.apache.flex.core.IImage
+		*  @royaleignorecoercion org.apache.royale.core.IImage
 		*/
 		COMPILE::JS
 		protected function get imageElement():Element

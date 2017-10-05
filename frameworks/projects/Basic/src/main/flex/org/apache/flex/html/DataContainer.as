@@ -16,36 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.DataContainerBase;
+	import org.apache.royale.core.DataContainerBase;
 	
-	import org.apache.flex.core.ContainerBaseStrandChildren;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IFactory;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IList;
-	import org.apache.flex.core.IListPresentationModel;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.ListBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.ContainerBaseStrandChildren;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IList;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.ListBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.ListView;
-        import org.apache.flex.html.supportClasses.DataGroup;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.beads.ListView;
+        import org.apache.royale.html.supportClasses.DataGroup;
     }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ListPresentationModel;
-	import org.apache.flex.html.beads.IListView;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.ListPresentationModel;
+	import org.apache.royale.html.beads.IListView;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -55,18 +55,18 @@ package org.apache.flex.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The DataContainer class is a component that displays multiple data items. The DataContainer uses
 	 *  the following bead types:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the dataProvider.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the list.
-	 *  org.apache.flex.core.IBeadController: the bead that handles input and output.
-	 *  org.apache.flex.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
-	 *  org.apache.flex.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  org.apache.flex.core.IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the dataProvider.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the list.
+	 *  org.apache.royale.core.IBeadController: the bead that handles input and output.
+	 *  org.apache.royale.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
+	 *  org.apache.royale.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
+	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.factory.ITLFFactory;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.factory.ITLFFactory;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 	public interface ITextFlow extends IContainerFormattedElement
 	{
 		function damage(damageStart:int, damageLen:int, damageType:String, needNormalize:Boolean = true):void;

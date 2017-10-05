@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
     /**
      *  The AllCSSStyles class contains all CSS style supported in HTML.

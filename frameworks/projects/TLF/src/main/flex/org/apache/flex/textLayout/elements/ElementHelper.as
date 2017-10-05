@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.factory.ITLFFactory;
-	import org.apache.flex.textLayout.factory.TLFFactory;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.factory.ITLFFactory;
+	import org.apache.royale.textLayout.factory.TLFFactory;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	
 	public class ElementHelper
 	{

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.materialIcons
+package org.apache.royale.mdl.materialIcons
 {
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
+    import org.apache.royale.mdl.supportClasses.MaterialIconBase;
 
     /**
      *  Material icons are beautifully crafted, delightful, and easy to use in your web, 

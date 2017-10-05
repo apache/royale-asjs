@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.CallLaterBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBinaryImageLoader;
-	import org.apache.flex.core.IBinaryImageModel;
-	import org.apache.flex.core.IImageView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.CallLaterBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBinaryImageLoader;
+	import org.apache.royale.core.IBinaryImageModel;
+	import org.apache.royale.core.IImageView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.utils.URLUtils;
-		import org.apache.flex.core.IBinaryImage;
+        import org.apache.royale.utils.URLUtils;
+		import org.apache.royale.core.IBinaryImage;
     }
 	
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.html.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.royale.html.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -74,7 +74,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

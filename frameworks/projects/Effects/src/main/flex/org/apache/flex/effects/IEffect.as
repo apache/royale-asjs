@@ -17,10 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
-import org.apache.flex.events.IEventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  IEffect is the lowest-level interface for effects in Royale.

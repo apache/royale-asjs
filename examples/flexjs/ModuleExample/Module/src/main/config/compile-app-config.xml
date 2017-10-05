@@ -16,11 +16,11 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <js-compiler-option>
         <option>--variable_map_input_file ../../../MainApp/bin/js-release/gccvars.txt</option>
         <option>--property_map_input_file ../../../MainApp/bin/js-release/gccprops.txt</option>
         <option>--variable_map_output_file modgccvars.txt</option>
         <option>--property_map_output_file modgccprops.txt</option>
     </js-compiler-option>
-</flex-config>
+</royale-config>

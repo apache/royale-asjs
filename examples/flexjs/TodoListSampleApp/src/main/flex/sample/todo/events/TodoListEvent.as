@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package sample.todo.events {
-    import org.apache.flex.events.Event;
+    import org.apache.royale.events.Event;
 
     public class TodoListEvent extends Event {
 

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.UIBase;
-    import org.apache.flex.events.Event;
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -37,7 +37,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The TextArea class implements the basic control for
@@ -70,7 +70,7 @@ package org.apache.flex.html
 		}
 
         /**
-         *  @copy org.apache.flex.html.Label#text
+         *  @copy org.apache.royale.html.Label#text
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -111,7 +111,7 @@ package org.apache.flex.html
 		}
 
         /**
-         *  @copy org.apache.flex.html.Label#html
+         *  @copy org.apache.royale.html.Label#html
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -148,7 +148,7 @@ package org.apache.flex.html
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

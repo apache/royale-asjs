@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Size;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Size;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.IStrand;
+		import org.apache.royale.core.IStrand;
 	}
     COMPILE::SWF
     {
@@ -70,7 +70,7 @@ package org.apache.flex.html.supportClasses
         private var viewportHeight:Number;
 
         /**
-         * @copy org.apache.flex.core.IViewport
+         * @copy org.apache.royale.core.IViewport
          */
         override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
         {
@@ -80,7 +80,7 @@ package org.apache.flex.html.supportClasses
         }
 
         /**
-         * @copy org.apache.flex.core.IViewport
+         * @copy org.apache.royale.core.IViewport
          */
 		override public function layoutViewportAfterContentLayout(contentSize:Size):void
 		{

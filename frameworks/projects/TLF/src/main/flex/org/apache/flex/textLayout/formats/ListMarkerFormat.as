@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
-	import org.apache.flex.textLayout.property.CounterContentHandler;
-	import org.apache.flex.textLayout.property.CounterPropHandler;
-	import org.apache.flex.textLayout.property.EnumPropertyHandler;
-	import org.apache.flex.textLayout.property.Property;
-	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.textLayout.property.PropertyUtil;
+	import org.apache.royale.textLayout.property.CounterContentHandler;
+	import org.apache.royale.textLayout.property.CounterPropHandler;
+	import org.apache.royale.textLayout.property.EnumPropertyHandler;
+	import org.apache.royale.textLayout.property.Property;
+	import org.apache.royale.textLayout.property.PropertyFactory;
+	import org.apache.royale.textLayout.property.PropertyUtil;
 
 	
 
@@ -34,7 +34,7 @@ package org.apache.flex.textLayout.formats
 	 *  @playerversion AIR 1.5
 	 *  @langversion 3.0 
 	 * 
-	 *  @see org.apache.flex.textLayout.elements.ListItemElement
+	 *  @see org.apache.royale.textLayout.elements.ListItemElement
 	 */
 	public class ListMarkerFormat extends TextLayoutFormat implements IListMarkerFormat
 	{
@@ -258,8 +258,8 @@ package org.apache.flex.textLayout.formats
 		 * Controls the application of the suffix in the generated text in the ListItemElement.
 		 * <p>Legal values are:
 		 * <ul>
-		 *   <li><code>org.apache.flex.textLayout.formats.Suffix.NONE</code> - No suffix.</li>		 
-		 *   <li><code>org.apache.flex.textLayout.formats.Suffix.AUTO</code> - Follow CSS rules for adding a suffix.</li>
+		 *   <li><code>org.apache.royale.textLayout.formats.Suffix.NONE</code> - No suffix.</li>		 
+		 *   <li><code>org.apache.royale.textLayout.formats.Suffix.AUTO</code> - Follow CSS rules for adding a suffix.</li>
 		 * </ul> 
 		 * </p>
 		 * <p>Default value is <code>Suffix.AUTO</code>.</p>
@@ -269,7 +269,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.Suffix
+		 * @see org.apache.royale.textLayout.formats.Suffix
 		 */
 		public function get suffix():*
 		{ return getStyle(suffixProperty.name); }

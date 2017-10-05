@@ -28,13 +28,13 @@ internal class LanguageClasses
 {
 	COMPILE::JS
 	{
-	    import org.apache.flex.utils.Language; Language;
+	    import org.apache.royale.utils.Language; Language;
 		import QName; QName;
 		import Namespace; Namespace;
 
 	}
-	import org.apache.flex.language.string.match; match;
-	import org.apache.flex.language.string.search; search;
+	import org.apache.royale.language.string.match; match;
+	import org.apache.royale.language.string.search; search;
 }
 
 }

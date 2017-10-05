@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 	
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.geom.Rectangle;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.geom.Rectangle;
 
 	COMPILE::SWF
 	{
@@ -30,9 +30,9 @@ package org.apache.flex.utils
 	
 	COMPILE::JS 
 	{
-		import org.apache.flex.geom.Point;
-		import org.apache.flex.geom.Point;
-		import org.apache.flex.core.ITransformHost;
+		import org.apache.royale.geom.Point;
+		import org.apache.royale.geom.Point;
+		import org.apache.royale.core.ITransformHost;
 	}
 	/**
 	 *  The SpriteUtils class is a collection of static functions that are useful
@@ -77,7 +77,7 @@ package org.apache.flex.utils
 				bounds.y -= window.pageYOffset;
 				if (obj.element is SVGElement)
 				{
-					var m:org.apache.flex.geom.Matrix = getTransormMatrix(obj);
+					var m:org.apache.royale.geom.Matrix = getTransormMatrix(obj);
 					var tl:Point = m.transformPoint(bounds.topLeft);
 					var tr:Point = m.transformPoint(new Point(bounds.right, bounds.top));
 					var bl:Point = m.transformPoint(new Point(bounds.left, bounds.bottom));
@@ -107,19 +107,19 @@ package org.apache.flex.utils
 		 *  @royaleignorecoercion HTMLElement
 		 *  @royaleignorecoercion ITransformHost
 		 */
-		public static function getTransormMatrix(obj:IUIBase):org.apache.flex.geom.Matrix
+		public static function getTransormMatrix(obj:IUIBase):org.apache.royale.geom.Matrix
 		{
 			COMPILE::SWF
 			{
 				var m:flash.geom.Matrix = obj.$displayObject.transform.matrix;
-				return new org.apache.flex.geom.Matrix(m.a, m.b, m.c, m.d, m.tx, m.ty);
+				return new org.apache.royale.geom.Matrix(m.a, m.b, m.c, m.d, m.tx, m.ty);
 			}
 			COMPILE::JS
 			{
 				// currently only works for SVG elements
 				var svgElement:Object = (obj as ITransformHost).transformElement as Object;
 				var sm:SVGMatrix = svgElement.getScreenCTM();
-				return new org.apache.flex.geom.Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
+				return new org.apache.royale.geom.Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
 			}
 			
 		}

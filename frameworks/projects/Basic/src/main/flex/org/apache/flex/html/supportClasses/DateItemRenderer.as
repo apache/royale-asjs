@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
 	COMPILE::SWF
 	{
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFieldType;
 		
-		import org.apache.flex.core.CSSTextField;            
+		import org.apache.royale.core.CSSTextField;            
 	}
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The DateItemRenderer class renders date values for the DateChooser.

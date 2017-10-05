@@ -17,10 +17,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
 
-	import org.apache.flex.events.CustomEvent;
+	import org.apache.royale.events.CustomEvent;
 	
 	/**
 	 * The ItemAddedEvent is dispatched by IItemRendererParent objects whenenver an

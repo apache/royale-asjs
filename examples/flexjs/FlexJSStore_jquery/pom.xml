@@ -28,9 +28,9 @@
 
         JavaScript Version:
           Got these warnings in the build:
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
-            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
+            skipping fx:Binding in /Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/RoyaleStore_jquery/src/productsView/CatalogTitleButtons.mxml. This node should be encoded in the binding data.
 
   -->
 

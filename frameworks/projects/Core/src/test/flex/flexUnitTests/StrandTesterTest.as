@@ -20,7 +20,7 @@ package flexUnitTests
 {
     import flexunit.framework.Assert;
     
-    import org.apache.flex.core.Strand;
+    import org.apache.royale.core.Strand;
     
     public class StrandTesterTest
     {		

@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.net.remoting.messages
+package org.apache.royale.net.remoting.messages
 {
 
 COMPILE::SWF
@@ -28,8 +28,8 @@ COMPILE::SWF
     import flash.utils.getQualifiedClassName;
 }
 
-import org.apache.flex.utils.ObjectUtil;
-import org.apache.flex.utils.UIDUtil;
+import org.apache.royale.utils.ObjectUtil;
+import org.apache.royale.utils.UIDUtil;
 
 /*
 import mx.core.mx_internal;

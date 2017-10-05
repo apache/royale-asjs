@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IDragInitiator interface is the basic interface for the object that
@@ -40,7 +40,7 @@ package org.apache.flex.core
          *  that you want to accept a drop.
          *
          *  @param type The type of drop accepted.  Allowed
-         *  values are in org.apache.flex.core.DropType.
+         *  values are in org.apache.royale.core.DropType.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -54,7 +54,7 @@ package org.apache.flex.core
          *  that you have accepted the drop.
          *
          *  @param type The type of drop accepted.  Allowed
-         *  values are in org.apache.flex.core.DropType.
+         *  values are in org.apache.royale.core.DropType.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

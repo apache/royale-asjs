@@ -19,7 +19,7 @@
 --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.apache.flex.amfsamples</groupId>
+  <groupId>org.apache.royale.amfsamples</groupId>
   <artifactId>sampleamfwebapp</artifactId>
   <version>0.9.0-SNAPSHOT</version>
   <packaging>war</packaging>
@@ -89,7 +89,7 @@
         well as the BlazeDS server.
     -->
     <dependency>
-      <groupId>org.apache.flex.blazeds</groupId>
+      <groupId>org.apache.royale.blazeds</groupId>
       <artifactId>blazeds-spring-boot-starter</artifactId>
       <version>4.7.3</version>
     </dependency>

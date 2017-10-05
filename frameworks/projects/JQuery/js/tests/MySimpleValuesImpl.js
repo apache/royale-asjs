@@ -18,14 +18,14 @@
 
 goog.provide('MySimpleValuesImpl');
 
-goog.require('org.apache.flex.core.SimpleValuesImpl');
+goog.require('org.apache.royale.core.SimpleValuesImpl');
 
 /**
  * @constructor
- * @extends {org.apache.flex.core.SimpleValuesImpl}
+ * @extends {org.apache.royale.core.SimpleValuesImpl}
  */
 MySimpleValuesImpl = function() {
-    org.apache.flex.core.SimpleValuesImpl.call(this);
+    org.apache.royale.core.SimpleValuesImpl.call(this);
 
     /**
      * @private
@@ -34,12 +34,12 @@ MySimpleValuesImpl = function() {
     this.values_ = {
         /*
         ITextButtonBead :
-            org.apache.flex.html.beads.TextButtonBead,
+            org.apache.royale.html.beads.TextButtonBead,
         ITextBead :
-            org.apache.flex.html.beads.TextFieldBead,
+            org.apache.royale.html.beads.TextFieldBead,
         ITextModel :
-            org.apache.flex.html.beads.models.TextModel
+            org.apache.royale.html.beads.models.TextModel
         */
     };
 };
-goog.inherits(MySimpleValuesImpl, org.apache.flex.core.SimpleValuesImpl);
+goog.inherits(MySimpleValuesImpl, org.apache.royale.core.SimpleValuesImpl);

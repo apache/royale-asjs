@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.core.IToggleButtonModel;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.TextButton;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.mdl.beads.UpgradeChildren;
-    import org.apache.flex.mdl.beads.UpgradeElement;
+    import org.apache.royale.core.IToggleButtonModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.TextButton;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.mdl.beads.UpgradeChildren;
+    import org.apache.royale.mdl.beads.UpgradeElement;
 
     COMPILE::JS
     {    
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -46,7 +46,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="textChange", type="org.apache.flex.events.Event")]
+    [Event(name="textChange", type="org.apache.royale.events.Event")]
     
     /**
      *  Dispatched when the user clicks on Switch.
@@ -56,7 +56,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  Dispatched when Switch is being selected/unselected.
@@ -66,7 +66,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The Material Design Lite (MDL) switch component is an enhanced version of the
@@ -104,7 +104,7 @@ package org.apache.flex.mdl
         }
 
         /**
-         *  @copy org.apache.flex.html.Label#text
+         *  @copy org.apache.royale.html.Label#text
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -195,7 +195,7 @@ package org.apache.flex.mdl
         private var span:HTMLSpanElement;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLSpanElement

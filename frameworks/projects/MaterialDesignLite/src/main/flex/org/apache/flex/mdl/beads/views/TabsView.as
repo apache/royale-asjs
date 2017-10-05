@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.views
+package org.apache.royale.mdl.beads.views
 {
-    import org.apache.flex.core.IContentViewHost;
-    import org.apache.flex.core.IDataProviderItemRendererMapper;
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.core.IStrandWithModel;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.mdl.TabBar;
-    import org.apache.flex.mdl.TabBarPanel;
-    import org.apache.flex.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData;
-    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
+    import org.apache.royale.core.IContentViewHost;
+    import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.mdl.TabBar;
+    import org.apache.royale.mdl.TabBarPanel;
+    import org.apache.royale.mdl.beads.TabsDynamicItemsRendererFactoryForArrayListData;
+    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 
     /**
-     *  The TabsView class creates the visual elements of the org.apache.flex.mdl.Tabs
+     *  The TabsView class creates the visual elements of the org.apache.royale.mdl.Tabs
      *  component.
      *
      *  @langversion 3.0
@@ -55,8 +55,8 @@ package org.apache.flex.mdl.beads.views
 
         private var _tabBar:TabBar;
         /**
-         *  The org.apache.flex.mdl.TabBar component of the
-         *  org.apache.flex.mdl.Tabs.
+         *  The org.apache.royale.mdl.TabBar component of the
+         *  org.apache.royale.mdl.Tabs.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -74,7 +74,7 @@ package org.apache.flex.mdl.beads.views
         }
 
         /**
-         * @copy org.apache.flex.core.BeadViewBase#strand
+         * @copy org.apache.royale.core.BeadViewBase#strand
          *
          * @param value
 		 *

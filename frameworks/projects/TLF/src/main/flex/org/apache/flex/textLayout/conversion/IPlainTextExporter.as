@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
 	/** This interface should be implemented by converters that export plain text. Clients that have explicitly
 	 * created an exporter using TextConverter.getExporter may control the export process by calling into these methods on the 

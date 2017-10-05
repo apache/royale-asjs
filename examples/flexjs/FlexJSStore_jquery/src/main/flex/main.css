@@ -27,15 +27,15 @@
 //----------------------------
 */
 .global {
-    IStatesImpl:            ClassReference("org.apache.flex.core.StatesWithTransitionsImpl");
+    IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
     color:                  #170505;
     fillAlphas:             1.00, 1.00; /* last pair are for OVER state */
     fillColors: 		    #FFFFFF, #DDDDDD, #FFFFFF, #EEEEEE;
 }
 
 global {
-    IStatesImpl:            ClassReference("org.apache.flex.core.StatesWithTransitionsImpl");
-	IEffectTimer: 			ClassReference("org.apache.flex.utils.EffectTimer");
+    IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
+	IEffectTimer: 			ClassReference("org.apache.royale.utils.EffectTimer");
 }
 
 /*
@@ -80,7 +80,7 @@ HRule
 
 basic|Container
 {
-    IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.BasicLayout");
+    IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 }
 
 .sectionHeader

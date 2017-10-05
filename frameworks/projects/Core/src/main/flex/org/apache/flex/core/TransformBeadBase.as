@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.geom.Matrix;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.geom.Matrix;
 
 	COMPILE::SWF {
 		import flash.display.Sprite;
@@ -35,7 +35,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -66,7 +66,7 @@ package org.apache.flex.core
 				return;
 			}
 			var element:Sprite = host.transformElement as Sprite;
-			var fjsm:org.apache.flex.geom.Matrix = transformModel.matrix;
+			var fjsm:org.apache.royale.geom.Matrix = transformModel.matrix;
 			var flashMatrix:flash.geom.Matrix = new flash.geom.Matrix(fjsm.a, fjsm.b, fjsm.c, fjsm.d, fjsm.tx, fjsm.ty);
 			element.transform.matrix = flashMatrix;
 		}

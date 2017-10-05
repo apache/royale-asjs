@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {   
-	import org.apache.flex.events.ProgressEvent;
+	import org.apache.royale.events.ProgressEvent;
 	
 	/**
 	 * @see URLStream
@@ -104,7 +104,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public function uploadProgress(callback:Function):org.apache.flex.net.URLStream
+		public function uploadProgress(callback:Function):org.apache.royale.net.URLStream
 		{
 			onUploadProgress = callback;
 			return this;

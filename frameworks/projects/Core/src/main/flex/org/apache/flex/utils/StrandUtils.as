@@ -17,11 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
 	
 	/**
 	 *  The StrandUtils class is an all-static class

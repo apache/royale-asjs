@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.CSSTextField;
+	import org.apache.royale.core.CSSTextField;
 
     /**
      *  The ITextFieldView interface is the interface for views for
@@ -32,7 +32,7 @@ package org.apache.flex.html.beads
 	public interface ITextFieldView
 	{
         /**
-         *  The org.apache.flex.core.CSSTextField used to display text.
+         *  The org.apache.royale.core.CSSTextField used to display text.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

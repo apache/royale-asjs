@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.mdl.beads.UpgradeChildren;
-    import org.apache.flex.mdl.beads.UpgradeElement;
-    import org.apache.flex.mdl.supportClasses.IMaterialIconProvider;
-    import org.apache.flex.mdl.materialIcons.IMaterialIcon;
-    import org.apache.flex.mdl.supportClasses.MaterialIconBase;
-    import org.apache.flex.core.IToggleButtonModel;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.TextButton;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.core.IUIBase;
+    import org.apache.royale.mdl.beads.UpgradeChildren;
+    import org.apache.royale.mdl.beads.UpgradeElement;
+    import org.apache.royale.mdl.supportClasses.IMaterialIconProvider;
+    import org.apache.royale.mdl.materialIcons.IMaterialIcon;
+    import org.apache.royale.mdl.supportClasses.MaterialIconBase;
+    import org.apache.royale.core.IToggleButtonModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.TextButton;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IUIBase;
 
     COMPILE::JS
     {    
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -49,7 +49,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  Dispatched when IconToggle is being selected/unselected.
@@ -59,7 +59,7 @@ package org.apache.flex.mdl
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The Material Design Lite (MDL) icon-toggle component is an enhanced version of
@@ -221,7 +221,7 @@ package org.apache.flex.mdl
         protected var input:HTMLInputElement;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion HTMLInputElement
          */

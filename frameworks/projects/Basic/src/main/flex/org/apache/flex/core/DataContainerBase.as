@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.beads.IListView;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.states.State;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.states.State;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -36,7 +36,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  The DataContainerBase class is the base class for components that
@@ -67,7 +67,7 @@ package org.apache.flex.core
 		*/
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -156,7 +156,7 @@ package org.apache.flex.core
 		/**
 		 * Returns whether or not the itemRenderer property has been set.
 		 *
-		 *  @see org.apache.flex.core.IItemRendererProvider
+		 *  @see org.apache.royale.core.IItemRendererProvider
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -184,7 +184,7 @@ package org.apache.flex.core
 		*/
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#addItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -203,7 +203,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -222,7 +222,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#removeAllItemRenderers()
+		 * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -239,7 +239,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -255,7 +255,7 @@ package org.apache.flex.core
 		/**
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
 		 *
-		 *  @copy org.apache.flex.core.IItemRendererParent#updateAllItemRenderers()
+		 *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

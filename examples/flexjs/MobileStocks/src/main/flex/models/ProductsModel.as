@@ -18,18 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.net.HTTPService;
-	import org.apache.flex.collections.parsers.JSONInputParser;
-	import org.apache.flex.collections.LazyCollection;
-	import org.apache.flex.collections.ArrayList;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.net.HTTPService;
+	import org.apache.royale.collections.parsers.JSONInputParser;
+	import org.apache.royale.collections.LazyCollection;
+	import org.apache.royale.collections.ArrayList;
 
-	import org.apache.flex.storage.PermanentStorage;
-	import org.apache.flex.storage.events.FileEvent;
-	import org.apache.flex.storage.events.FileErrorEvent;
+	import org.apache.royale.storage.PermanentStorage;
+	import org.apache.royale.storage.events.FileEvent;
+	import org.apache.royale.storage.events.FileErrorEvent;
 
 	public class ProductsModel extends EventDispatcher implements IBeadModel
 	{
@@ -49,7 +49,7 @@ package models
 		public function loadDataFromStorage():void
 		{
 			var storage:PermanentStorage = new PermanentStorage();
-			var useFile:String = "com.apache.flex.MobileStocks2";
+			var useFile:String = "com.apache.royale.MobileStocks2";
 
 			storage.addEventListener("READ", handleRead);
 			storage.addEventListener("ERROR", handleReadError);
@@ -86,7 +86,7 @@ package models
 		public function saveDataToStorage():void
 		{
 			var storage:PermanentStorage = new PermanentStorage();
-			var useFile:String = "com.apache.flex.MobileStocks2";
+			var useFile:String = "com.apache.royale.MobileStocks2";
 			var assets:String = "";
 
 			for (var i:int=0; i < _assetList.length; i++) {

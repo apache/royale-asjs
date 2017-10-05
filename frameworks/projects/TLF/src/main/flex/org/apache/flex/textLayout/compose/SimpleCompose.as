@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.compose.utils.NumberlineUtil;
-	import org.apache.flex.textLayout.compose.utils.TextLineUtil;
-	import org.apache.flex.text.engine.Constants;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.VerticalAlign;
+	import org.apache.royale.textLayout.compose.utils.NumberlineUtil;
+	import org.apache.royale.textLayout.compose.utils.TextLineUtil;
+	import org.apache.royale.text.engine.Constants;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.VerticalAlign;
 
 	
 
@@ -404,8 +404,8 @@ package org.apache.flex.textLayout.compose
 		}
 	}
 }
-import org.apache.flex.text.engine.ITextLine;
-import org.apache.flex.textLayout.compose.IVerticalJustificationLine;
+import org.apache.royale.text.engine.ITextLine;
+import org.apache.royale.textLayout.compose.IVerticalJustificationLine;
 
 class VJHelper implements IVerticalJustificationLine
 {

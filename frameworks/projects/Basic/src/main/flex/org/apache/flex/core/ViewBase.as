@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 
     //--------------------------------------
     //  Events
@@ -35,7 +35,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="initComplete", type="org.apache.flex.events.Event")]
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	[DefaultProperty("mxmlContent")]
 

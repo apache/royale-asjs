@@ -25,10 +25,10 @@
         Flash Version:
           - Radio Buttons are not clickable.
           - If Flash-Frame is resized and then the calendar is clicked:
-             TypeError: Error #1034: Type Coercion failed: cannot convert org.apache.flex.events::MouseEvent@3d5032523b81 to org.apache.flex.events.Event.
+             TypeError: Error #1034: Type Coercion failed: cannot convert org.apache.royale.events::MouseEvent@3d5032523b81 to org.apache.royale.events.Event.
 	              at flash.events::EventDispatcher/dispatchEventFunction()
 	              at flash.events::EventDispatcher/dispatchEvent()
-	              at org.apache.flex.events.utils::MouseEventConverter$/mouseEventConverter()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/events/utils/MouseEventConverter.as:92]
+	              at org.apache.royale.events.utils::MouseEventConverter$/mouseEventConverter()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/events/utils/MouseEventConverter.as:92]
   -->
 
   <parent>

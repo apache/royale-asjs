@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IStrand;
 	
 	/**
-	 *  The TextFieldLabelMeasurementBead class helps to measure org.apache.flex.html.Label 
+	 *  The TextFieldLabelMeasurementBead class helps to measure org.apache.royale.html.Label 
 	 *  components.
 	 *  
 	 *  @langversion 3.0
@@ -45,7 +45,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  The overall width of the org.apache.flex.html.Label.
+		 *  The overall width of the org.apache.royale.html.Label.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -60,7 +60,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  The overall height of the org.apache.flex.html.Label.
+		 *  The overall height of the org.apache.royale.html.Label.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -77,7 +77,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

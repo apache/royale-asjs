@@ -136,15 +136,15 @@ limitations under the License.
 		<dataTable:DataColumn 
 			dataField="name" 
 			label="State" 
-			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
 		<dataTable:DataColumn 
 			dataField="capital"
 			label="Capital" 
-			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
 		<dataTable:DataColumn 
 			dataField="country" 
 			label="Country" 
-			itemRenderer="org.apache.flex.html.supportClasses.StringItemRenderer" />
+			itemRenderer="org.apache.royale.html.supportClasses.StringItemRenderer" />
 	</dataTable:DataTable>
 
 </js:View>

@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.supportClasses.DataGroup;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.geom.Point;
+	import org.apache.royale.charts.core.IChartDataGroup;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.geom.Point;
 	
 	/**
 	 *  The ChartDataGroup class provides the actual space for rendering the

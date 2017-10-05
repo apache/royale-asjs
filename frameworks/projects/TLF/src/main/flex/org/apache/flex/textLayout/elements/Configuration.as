@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.compose.utils.StandardHelper;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.ListMarkerFormat;
-	import org.apache.flex.textLayout.formats.TextDecoration;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.compose.utils.StandardHelper;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ListMarkerFormat;
+	import org.apache.royale.textLayout.formats.TextDecoration;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	
 
@@ -42,8 +42,8 @@ package org.apache.flex.textLayout.elements {
 	* @playerversion AIR 1.5
 	* @langversion 3.0
 	* 
-	* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
-	* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
+	* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+	* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
 	* @see TextFlow
 	*/
 	
@@ -115,8 +115,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	* 
-		* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.compose.StandardFlowComposer StandardFlowComposer
+		* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.compose.StandardFlowComposer StandardFlowComposer
 		*/
 		public function Configuration(initializeWithDefaults:Boolean = true)
 		{
@@ -181,7 +181,7 @@ package org.apache.flex.textLayout.elements {
 		/**
 		 *  TextFlows are configured with an immutable clone of a Configuration.  Once a TextFlow is create it uses an immutable configuration.
 		 *  @private
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.Configuration
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.Configuration
 		 */
 		public function getImmutableClone():IConfiguration
 		{
@@ -292,7 +292,7 @@ package org.apache.flex.textLayout.elements {
 	 	* @langversion 3.0
 	 	*
 		* @see FlowElement#linkNormalFormat
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -309,7 +309,7 @@ package org.apache.flex.textLayout.elements {
 		 * @langversion 3.0
 		 *
 		 * @see FlowElement#listMarkerFormat
-		 * @see org.apache.flex.textLayout.formats.IListMarkerFormat IListMarkerFormat
+		 * @see org.apache.royale.textLayout.formats.IListMarkerFormat IListMarkerFormat
 		 * @see LinkElement
 		 */
 		
@@ -326,7 +326,7 @@ package org.apache.flex.textLayout.elements {
 	 	* @langversion 3.0
 	 	*
 		* @see  FlowElement#linkHoverFormat
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -343,7 +343,7 @@ package org.apache.flex.textLayout.elements {
 	 	* @langversion 3.0
 	 	*
 		* @see FlowElement#linkActiveFormat 
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -360,7 +360,7 @@ package org.apache.flex.textLayout.elements {
 	 	* @langversion 3.0
 	 	*
 		* @see TextFlow
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		*/
 		
 		public function get textFlowInitialFormat():ITextLayoutFormat
@@ -377,8 +377,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	*
-	 	* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#focusedSelectionFormat SelectionManager.focusedSelectionFormat
+	 	* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#focusedSelectionFormat SelectionManager.focusedSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -399,8 +399,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	*
-	 	* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#unfocusedSelectionFormat SelectionManager.unfocusedSelectionFormat
+	 	* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#unfocusedSelectionFormat SelectionManager.unfocusedSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -421,8 +421,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	*
-	 	* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#inactiveSelectionFormat SelectionManager.inactiveSelectionFormat
+	 	* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#inactiveSelectionFormat SelectionManager.inactiveSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -516,8 +516,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	*
-	 	* @see org.apache.flex.textLayout.compose.StandardFlowComposer StandardFlowComposer
-		* @see org.apache.flex.textLayout.elements.TextFlow TextFlow
+	 	* @see org.apache.royale.textLayout.compose.StandardFlowComposer StandardFlowComposer
+		* @see org.apache.royale.textLayout.elements.TextFlow TextFlow
 		*/
 		
 		public function get flowComposerClass(): Class
@@ -553,8 +553,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.compose.StandardFlowComposer StandardFlowComposer
-		* @see org.apache.flex.text.engine.TextBlock#releaseLineCreationData() TextBlock.releaseLineCreationData()
+		* @see org.apache.royale.textLayout.compose.StandardFlowComposer StandardFlowComposer
+		* @see org.apache.royale.text.engine.TextBlock#releaseLineCreationData() TextBlock.releaseLineCreationData()
 		*/
 		
 		public function get releaseLineCreationData():Boolean
@@ -590,7 +590,7 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.elements.InlineGraphicElement InlineGraphicElement
+		* @see org.apache.royale.textLayout.elements.InlineGraphicElement InlineGraphicElement
 		*/		
 		public function get inlineGraphicResolverFunction():Function
 		{ 

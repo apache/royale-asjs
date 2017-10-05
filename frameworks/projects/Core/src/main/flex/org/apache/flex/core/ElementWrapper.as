@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::JS
     {
-        import org.apache.flex.events.utils.EventUtils;
-        import org.apache.flex.events.BrowserEvent;
+        import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.events.BrowserEvent;
         import goog.events.BrowserEvent;
-        import org.apache.flex.events.ElementEvents;
+        import org.apache.royale.events.ElementEvents;
         import goog.events;
         import goog.events.EventTarget;
     }
@@ -31,12 +31,12 @@ package org.apache.flex.core
     {
         import flash.events.Event;
         import flash.events.IEventDispatcher;
-        import org.apache.flex.events.ElementEvents;
-        import org.apache.flex.events.IRoyaleEvent;
+        import org.apache.royale.events.ElementEvents;
+        import org.apache.royale.events.IRoyaleEvent;
     }
     
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
 
     COMPILE::SWF
     public class ElementWrapper extends EventDispatcher implements IStrand
@@ -183,7 +183,7 @@ package org.apache.flex.core
          */
 		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
-			var e:org.apache.flex.events.BrowserEvent = new org.apache.flex.events.BrowserEvent();
+			var e:org.apache.royale.events.BrowserEvent = new org.apache.royale.events.BrowserEvent();
 			e.wrapEvent(eventObject);
 			return ElementWrapper.googFireListener(listener, e);
 		}

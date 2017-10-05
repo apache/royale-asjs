@@ -17,14 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
-import org.apache.flex.core.IEffectTimer;
-import org.apache.flex.core.ValuesManager;
-import org.apache.flex.events.ValueEvent;
-import org.apache.flex.events.Event;
-import org.apache.flex.events.EventDispatcher;
+import org.apache.royale.core.IEffectTimer;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
 
 /**
  *  Tween is the underlying animation class for the effects in Royale.
@@ -75,9 +75,9 @@ public class Tween extends Effect
      *       <code>onTweenEnd()</code> method.</td></tr>
      *  </table>
      *
-     *  @see org.apache.flex.effects.Effect
-     *  @see org.apache.flex.effects.TweenEffect
-     *  @see org.apache.flex.events.EffectEvent
+     *  @see org.apache.royale.effects.Effect
+     *  @see org.apache.royale.effects.TweenEffect
+     *  @see org.apache.royale.events.EffectEvent
      *  @eventType tweenEnd
      *
      *  @langversion 3.0
@@ -220,7 +220,7 @@ public class Tween extends Effect
     }
 
     /**
-     *  @royaleignorecoercion org.apache.flex.effects.Tween
+     *  @royaleignorecoercion org.apache.royale.effects.Tween
      *  @private
      */
     private static function updateHandler(event:ValueEvent):void

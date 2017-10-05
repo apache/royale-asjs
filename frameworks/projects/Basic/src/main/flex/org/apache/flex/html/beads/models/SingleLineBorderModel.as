@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
 	import flash.geom.Rectangle;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBorderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBorderModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.EventDispatcher;
 		
     /**
      *  The SingleLineBorderModel class is a data model for
@@ -53,7 +53,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

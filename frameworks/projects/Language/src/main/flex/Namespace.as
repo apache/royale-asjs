@@ -22,7 +22,7 @@ package
 	{
 		COMPILE::JS
 		{
-			import org.apache.flex.utils.Language;
+			import org.apache.royale.utils.Language;
 		}
 		COMPILE::JS
     	public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)

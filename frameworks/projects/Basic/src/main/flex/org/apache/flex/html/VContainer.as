@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.ContainerBase;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
 	
 	[DefaultProperty("mxmlContent")]
     

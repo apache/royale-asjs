@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.royale.core.ContainerBase;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;            
     }
 
     [DefaultProperty("text")]
@@ -82,7 +82,7 @@ package org.apache.flex.html
         private var textNode:Text;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

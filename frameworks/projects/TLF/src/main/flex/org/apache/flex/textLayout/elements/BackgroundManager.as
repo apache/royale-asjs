@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.graphics.IGraphicShape;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.graphics.IGraphicShape;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.utils.ObjectMap;
 	
 
 	

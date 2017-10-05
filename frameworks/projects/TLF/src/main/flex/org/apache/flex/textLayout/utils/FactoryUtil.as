@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.textLayout.compose.FactoryComposer;
-	import org.apache.flex.textLayout.factory.ITLFFactory;
-	import org.apache.flex.textLayout.factory.StandardTLFFactory;
+	import org.apache.royale.textLayout.compose.FactoryComposer;
+	import org.apache.royale.textLayout.factory.ITLFFactory;
+	import org.apache.royale.textLayout.factory.StandardTLFFactory;
 	public class FactoryUtil
 	{
 		/** @private */

@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.chrome
+package org.apache.royale.mobile.chrome
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Container;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Container;
 	
 	/**
 	 * The ToolBar class provides a space below the contentArea of a view manager which can

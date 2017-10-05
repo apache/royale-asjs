@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.debugging.assert;
-	import org.apache.flex.text.engine.IFont;
-	import org.apache.flex.text.engine.FontMetrics;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.text.engine.IFont;
+	import org.apache.royale.text.engine.FontMetrics;
 	
 	public class ElementFormat
 	{

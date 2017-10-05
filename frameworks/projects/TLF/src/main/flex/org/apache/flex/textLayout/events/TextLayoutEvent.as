@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
 	
 	/**
 	 * A TextLayoutEvent instance represents an event, such as the 

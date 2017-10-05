@@ -24,7 +24,7 @@ limitations under the License.
 		<![CDATA[
 		import models.ProductsModel;
 
-		import org.apache.flex.events.Event;
+		import org.apache.royale.events.Event;
 
 		private function onInitComplete(event:Event):void
 		{

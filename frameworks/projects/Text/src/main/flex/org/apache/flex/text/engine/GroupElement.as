@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.text.engine.TextElement;
-	import org.apache.flex.text.engine.GroupElement;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.text.engine.TextElement;
+	import org.apache.royale.text.engine.GroupElement;
 	
 	public class GroupElement extends ContentElement
 	{

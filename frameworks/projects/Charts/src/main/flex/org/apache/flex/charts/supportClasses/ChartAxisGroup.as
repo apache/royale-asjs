@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {
-	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.svg.Path;
-	import org.apache.flex.html.Label;
+	import org.apache.royale.charts.core.IAxisGroup;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.svg.Path;
+	import org.apache.royale.html.Label;
 	
 	/**
 	 * The ChartAxisGroup provides a space where the objects for a chart's

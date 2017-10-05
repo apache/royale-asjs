@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	COMPILE::SWF
     {
 	    import flash.display.InteractiveObject;
 	}
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIHTMLElementWrapper;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.ValueEvent;
-	import org.apache.flex.html.beads.DisableBead;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIHTMLElementWrapper;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.html.beads.DisableBead;
 
 	COMPILE::JS
     {
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	/**
 	 *  The DisabledAlphaBead class is a specialty bead that can be used with
@@ -81,7 +81,7 @@ package org.apache.flex.html.beads
         public var disabledAlpha:Number = 0.5;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -102,7 +102,7 @@ package org.apache.flex.html.beads
 		}
 		
         /**
-         * @royaleignorecoercion org.apache.flex.core.IUIBase
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
 		private function get host():IUIBase
 		{

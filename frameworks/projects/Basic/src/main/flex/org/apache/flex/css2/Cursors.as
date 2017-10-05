@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.css2
+package org.apache.royale.css2
 {
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.MouseEvent;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.MouseEvent;
     
     COMPILE::SWF
     {
@@ -34,7 +34,7 @@ package org.apache.flex.css2
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
     /**
@@ -238,8 +238,8 @@ package org.apache.flex.css2
 	}
 }
 
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IStrand;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IStrand;
 
 class CursorData implements IBead
 {

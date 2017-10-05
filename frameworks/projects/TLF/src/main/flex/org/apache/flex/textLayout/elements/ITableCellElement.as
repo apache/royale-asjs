@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
+package org.apache.royale.textLayout.elements {
 	public interface ITableCellElement extends ITableFormattedElement
 	{
 		function get rowIndex():int;

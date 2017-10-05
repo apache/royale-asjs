@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.textLayout.elements.IConfiguration;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.elements.IConfiguration;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextFlow;
 
 	
 
@@ -332,7 +332,7 @@ package org.apache.flex.textLayout.conversion
 		 * or create a DivElement or a SubParagraphGroupElement with its typeName property set to the tag name.</p>
 		 * <p>The <code>textFieldHTMLFormat</code> exporter will export <code>typeName</code> as the XML tag when it is different from the default.</p>
 		 * 
-		 * @see org.apache.flex.textLayout.elements.FlowElement#typeName
+		 * @see org.apache.royale.textLayout.elements.FlowElement#typeName
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -443,7 +443,7 @@ package org.apache.flex.textLayout.conversion
 		 * @see #TEXT_FIELD_HTML_FORMAT
 		 * @see #PLAIN_TEXT_FORMAT
 		 * @see #TEXT_LAYOUT_FORMAT
-		 * @see org.apache.flex.textLayout.conversion.ConversionType
+		 * @see org.apache.royale.textLayout.conversion.ConversionType
 		 */
 		public static function export(source:TextFlow, format:String, conversionType:String) : Object
 		{
@@ -459,7 +459,7 @@ package org.apache.flex.textLayout.conversion
 		 * source string, an XML object, or any user defined data formats to a TextFlow. 
 		 * Use this method if you have many separate imports to perform, or if you want to 
 		 * handle errors during import. It is equivalent to calling 
-		 * <code>org.apache.flex.textLayout.conversion.TextConverter.importToFlow()</code>.
+		 * <code>org.apache.royale.textLayout.conversion.TextConverter.importToFlow()</code>.
 		 * <p>Use one of the static constants supplied with this class
 		 * to specify the <code>format</code> parameter, a MIME type, or a user defined
 		 * data format.
@@ -474,7 +474,7 @@ package org.apache.flex.textLayout.conversion
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0 
 		 * @param format	Format of source content. Use constants from 
-		 * 					org.apache.flex.textLayout.conversion.TextConverter.TEXT_LAYOUT_FORMAT, PLAIN_TEXT_FORMAT, TEXT_FIELD_HTML_FORMAT etc,
+		 * 					org.apache.royale.textLayout.conversion.TextConverter.TEXT_LAYOUT_FORMAT, PLAIN_TEXT_FORMAT, TEXT_FIELD_HTML_FORMAT etc,
 		 * 					a MIME type, or a user defined format.
 		 * @param config    configuration to use during this import. null means take the current default.
 		 * 					You can also set the configuration via the <code>ITextImporter.configuration</code>
@@ -504,7 +504,7 @@ package org.apache.flex.textLayout.conversion
 		 * Creates and returns an export converter, which you can then use to export from 
 		 * a TextFlow to a source string or XML object. Use this function if 
 		 * you have many separate exports to perform. It is equivalent to calling 
-		 * <code>org.apache.flex.textLayout.conversion.TextConverter.export()</code>.
+		 * <code>org.apache.royale.textLayout.conversion.TextConverter.export()</code>.
 		 * <p>Use one of the static constants supplied with this class
 		 * to specify the <code>format</code> parameter:
 		 * <ul>

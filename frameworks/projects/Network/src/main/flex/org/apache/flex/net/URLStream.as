@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {   
-	import org.apache.flex.events.DetailEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.ProgressEvent;
-	import org.apache.flex.utils.BinaryData;
-	import org.apache.flex.utils.Endian;
+	import org.apache.royale.events.DetailEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ProgressEvent;
+	import org.apache.royale.utils.BinaryData;
+	import org.apache.royale.utils.Endian;
 
 	COMPILE::SWF
 	{
@@ -108,7 +108,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */
-		public function load(urlRequest:org.apache.flex.net.URLRequest):void
+		public function load(urlRequest:org.apache.royale.net.URLRequest):void
 		{
 			COMPILE::JS {
 				requestStatus = 0;
@@ -120,7 +120,7 @@ package org.apache.flex.net
 				var contentTypeSet:Boolean = false;
 				for (var i:int = 0; i < urlRequest.requestHeaders.length; i++)
 				{
-					var header:org.apache.flex.net.URLRequestHeader = urlRequest.requestHeaders[i];
+					var header:org.apache.royale.net.URLRequestHeader = urlRequest.requestHeaders[i];
 					if (header.name.toLowerCase() == "content-type")
 					{
 						contentTypeSet = true;
@@ -139,7 +139,7 @@ package org.apache.flex.net
 				flashUrlStream = new flash.net.URLStream();
 				var req:flash.net.URLRequest = new flash.net.URLRequest(urlRequest.url);
 				var contentSet:Boolean = false;
-				for each (var requestHeader:org.apache.flex.net.URLRequestHeader in urlRequest.requestHeaders)
+				for each (var requestHeader:org.apache.royale.net.URLRequestHeader in urlRequest.requestHeaders)
 				{
 					if(requestHeader.name.toLowerCase() == HTTPHeader.CONTENT_TYPE.toLowerCase())
 					{							 	
@@ -240,7 +240,7 @@ package org.apache.flex.net
 		COMPILE::SWF
 		protected function flash_complete(event:flash.events.Event):void
 		{
-			dispatchEvent(new org.apache.flex.events.Event(HTTPConstants.COMPLETE));
+			dispatchEvent(new org.apache.royale.events.Event(HTTPConstants.COMPLETE));
 			if(onComplete)
 				onComplete(this);
 			cleanupCallbacks();
@@ -257,7 +257,7 @@ package org.apache.flex.net
 		COMPILE::SWF
 		protected function flash_progress(event:flash.events.ProgressEvent):void
 		{
-			var progEv:org.apache.flex.events.ProgressEvent = new org.apache.flex.events.ProgressEvent(org.apache.flex.events.ProgressEvent.PROGRESS);
+			var progEv:org.apache.royale.events.ProgressEvent = new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS);
 			
 			progEv.current = bytesLoaded = event.bytesLoaded;
 			progEv.total = bytesTotal = event.bytesTotal;
@@ -316,7 +316,7 @@ package org.apache.flex.net
 			}
 			else if(xhr.status < 300)
 			{
-				dispatchEvent(new org.apache.flex.events.Event("complete"));
+				dispatchEvent(new org.apache.royale.events.Event("complete"));
 				if(onComplete)
 					onComplete(this);
 				
@@ -458,7 +458,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public function complete(callback:Function):org.apache.flex.net.URLStream
+		public function complete(callback:Function):org.apache.royale.net.URLStream
 		{
 			onComplete = callback;
 			return this;
@@ -472,7 +472,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public function error(callback:Function):org.apache.flex.net.URLStream
+		public function error(callback:Function):org.apache.royale.net.URLStream
 		{
 			onError = callback;
 			return this;
@@ -486,7 +486,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public function progress(callback:Function):org.apache.flex.net.URLStream
+		public function progress(callback:Function):org.apache.royale.net.URLStream
 		{
 			onProgress = callback;
 			return this;
@@ -499,7 +499,7 @@ package org.apache.flex.net
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
 		 */		
-		public function status(callback:Function):org.apache.flex.net.URLStream
+		public function status(callback:Function):org.apache.royale.net.URLStream
 		{
 			onStatus = callback;
 			return this;

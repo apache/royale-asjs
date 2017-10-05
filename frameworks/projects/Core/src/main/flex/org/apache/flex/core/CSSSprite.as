@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -24,10 +24,10 @@ package org.apache.flex.core
     import flash.display.Sprite;
     }
     
-    import org.apache.flex.core.IChild;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.CSSBorderUtils;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.CSSBorderUtils;
     
     /**
      *  The Border class is a class used internally by many

@@ -16,38 +16,38 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IContainerView;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.geom.Size;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.beads.models.ViewportModel;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.ContainerContentArea;
-	import org.apache.flex.html.supportClasses.Viewport;
-	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.ContainerBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IContainerView;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.beads.models.ViewportModel;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.ContainerContentArea;
+	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.utils.CSSContainerUtils;
 
 	/**
 	 * This class creates and manages the contents of a Container. On the ActionScript
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 	{
 		/**
      	 *  The ContainerView class is the default view for
-         *  the org.apache.flex.core.ContainerBase classes.
+         *  the org.apache.royale.core.ContainerBase classes.
          *  It lets you use some CSS styles to manage the border, background
          *  and padding around the content area.
          *

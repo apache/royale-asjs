@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.tween
+package org.apache.royale.createjs.tween
 {		
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.createjs.core.CreateJSBase;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.createjs.core.CreateJSBase;
 	
 	COMPILE::JS {
 		import createjs.Tween;
@@ -29,10 +29,10 @@ package org.apache.flex.createjs.tween
 	}
 		
 	COMPILE::SWF {
-		import org.apache.flex.effects.IEffect;
-		import org.apache.flex.effects.Parallel;
-		import org.apache.flex.effects.Fade;
-		import org.apache.flex.effects.Move;
+		import org.apache.royale.effects.IEffect;
+		import org.apache.royale.effects.Parallel;
+		import org.apache.royale.effects.Fade;
+		import org.apache.royale.effects.Move;
 	}
 		
     /**
@@ -174,7 +174,7 @@ package org.apache.flex.createjs.tween
 		 * @private
 		 * @royaleignorecoercion createjs.Shape
 		 * @royaleignorecoercion createjs.Tween
-		 * @royaleignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 * @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */
 		override public function createTweenOptions():Object
 		{
@@ -212,7 +212,7 @@ package org.apache.flex.createjs.tween
 		 *  @productversion Flex 3
 		 *  @royaleignorecoercion createjs.Shape
 		 *  @royaleignorecoercion createjs.Tween
-		 *  @royaleignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */
 		override public function play():void
 		{

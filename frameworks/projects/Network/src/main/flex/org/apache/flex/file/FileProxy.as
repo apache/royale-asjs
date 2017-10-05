@@ -15,12 +15,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.file
+package org.apache.royale.file
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.Strand;
-	import org.apache.flex.file.beads.FileModel;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.Strand;
+	import org.apache.royale.file.beads.FileModel;
 	
 	/**
 	 *  Indicates that the model has changed
@@ -30,7 +30,7 @@ package org.apache.flex.file
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="modelChanged", type="org.apache.flex.events.Event")]
+	[Event(name="modelChanged", type="org.apache.royale.events.Event")]
 	/**
 	 *  The FileProxy class is where beads regarding file operations are added.
 	 *  Information about operations can be queried in the file model, or by
@@ -64,7 +64,7 @@ package org.apache.flex.file
 		}
 
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#lastModified
+		 *  @copy org.apache.royale.file.IFileModel#lastModified
 		 */
 		public function get lastModified():uint
 		{
@@ -72,7 +72,7 @@ package org.apache.flex.file
 		}
 		
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#name
+		 *  @copy org.apache.royale.file.IFileModel#name
 		 */
 		public function get name():String
 		{
@@ -80,7 +80,7 @@ package org.apache.flex.file
 		}
 		
 		/**
-		 *  @copy org.apache.flex.file.IFileModel#type
+		 *  @copy org.apache.royale.file.IFileModel#type
 		 */
 		public function get type():String
 		{

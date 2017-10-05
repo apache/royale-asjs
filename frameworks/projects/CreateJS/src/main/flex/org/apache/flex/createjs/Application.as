@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs
+package org.apache.royale.createjs
 {	
-	import org.apache.flex.core.ApplicationBase;
-	import org.apache.flex.core.IApplicationView;
-	import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IValuesImpl;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.ApplicationBase;
+	import org.apache.royale.core.IApplicationView;
+	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IValuesImpl;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
         import createjs.DisplayObject;
         import createjs.Stage;
     }
@@ -52,7 +52,7 @@ package org.apache.flex.createjs
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="initialize", type="org.apache.flex.events.Event")]
+	[Event(name="initialize", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  Dispatched at startup before the instances get created.
@@ -66,7 +66,7 @@ package org.apache.flex.createjs
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="preinitialize", type="org.apache.flex.events.Event")]
+	[Event(name="preinitialize", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  Dispatched at startup after the initial view has been
@@ -78,7 +78,7 @@ package org.apache.flex.createjs
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="viewChanged", type="org.apache.flex.events.Event")]
+	[Event(name="viewChanged", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  Dispatched at startup after the initial view has been
@@ -89,7 +89,7 @@ package org.apache.flex.createjs
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+	[Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
 	/**
 	 *  The Application class is the main class and entry point for a Royale
@@ -112,7 +112,7 @@ package org.apache.flex.createjs
 	 */
 	
 	COMPILE::SWF
-	public class Application extends org.apache.flex.core.Application
+	public class Application extends org.apache.royale.core.Application
 	{
 		// does nothing different for SWF side
 	}
@@ -128,7 +128,7 @@ package org.apache.flex.createjs
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="initialize", type="org.apache.flex.events.Event")]
+    [Event(name="initialize", type="org.apache.royale.events.Event")]
     
     /**
      *  Dispatched at startup before the instances get created.
@@ -142,7 +142,7 @@ package org.apache.flex.createjs
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="preinitialize", type="org.apache.flex.events.Event")]
+    [Event(name="preinitialize", type="org.apache.royale.events.Event")]
     
     /**
      *  Dispatched at startup after the initial view has been
@@ -154,7 +154,7 @@ package org.apache.flex.createjs
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="viewChanged", type="org.apache.flex.events.Event")]
+    [Event(name="viewChanged", type="org.apache.royale.events.Event")]
     
     /**
      *  Dispatched at startup after the initial view has been
@@ -165,7 +165,7 @@ package org.apache.flex.createjs
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    [Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
 	COMPILE::JS
 	public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher
@@ -188,7 +188,7 @@ package org.apache.flex.createjs
         
         /**
 		 * @private
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLBodyElement
          * @royaleignorecoercion HTMLCanvasElement
          * @royaleignorecoercion createjs.Stage
@@ -220,7 +220,7 @@ package org.apache.flex.createjs
 				addBead(beads[index]);
 			}
 			
-			dispatchEvent(new org.apache.flex.events.Event("beadsAdded"));
+			dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
             
             initialView.applicationModel = this.model;
             addElement(initialView);
@@ -233,12 +233,12 @@ package org.apache.flex.createjs
         }
 		
 		/**
-		 *  The org.apache.flex.core.IValuesImpl that will
+		 *  The org.apache.royale.core.IValuesImpl that will
 		 *  determine the default values and other values
 		 *  for the application.  The most common choice
-		 *  is org.apache.flex.core.SimpleCSSValuesImpl.
+		 *  is org.apache.royale.core.SimpleCSSValuesImpl.
 		 *
-		 *  @see org.apache.flex.core.SimpleCSSValuesImpl
+		 *  @see org.apache.royale.core.SimpleCSSValuesImpl
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -254,7 +254,7 @@ package org.apache.flex.createjs
 		/**
 		 *  The initial view.
 		 *
-		 *  @see org.apache.flex.core.ViewBase
+		 *  @see org.apache.royale.core.ViewBase
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -314,7 +314,7 @@ package org.apache.flex.createjs
 		 *  and tags in an MXML document.  This data is usually
 		 *  decoded by an MXMLDataInterpreter
 		 *
-		 *  @see org.apache.flex.utils.MXMLDataInterpreter
+		 *  @see org.apache.royale.utils.MXMLDataInterpreter
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -338,7 +338,7 @@ package org.apache.flex.createjs
 		 *  @param data The encoded data representing the
 		 *  MXML attributes.
 		 *
-		 *  @see org.apache.flex.utils.MXMLDataInterpreter
+		 *  @see org.apache.royale.utils.MXMLDataInterpreter
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -363,14 +363,14 @@ package org.apache.flex.createjs
 		public var beads:Array;
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#addElement()
+		 *  @copy org.apache.royale.core.IParent#addElement()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
          *  @royaleignorecoercion createjs.DisplayObject
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -379,13 +379,13 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#addElementAt()
+		 *  @copy org.apache.royale.core.IParent#addElementAt()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -394,14 +394,14 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#getElementAt()
+		 *  @copy org.apache.royale.core.IParent#getElementAt()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @royaleignorecoercion org.apache.flex.core.IChild
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IChild
 		 */
 		public function getElementAt(index:int):IChild
 		{
@@ -410,7 +410,7 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#getElementIndex()
+		 *  @copy org.apache.royale.core.IParent#getElementIndex()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -424,7 +424,7 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#removeElement()
+		 *  @copy org.apache.royale.core.IParent#removeElement()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -437,7 +437,7 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IParent#numElements
+		 *  @copy org.apache.royale.core.IParent#numElements
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

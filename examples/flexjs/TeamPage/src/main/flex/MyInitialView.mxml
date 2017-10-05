@@ -28,7 +28,7 @@ limitations under the License.
 		@namespace js  "library://ns.apache.org/royale/basic";
 		
 		.Repeater {
-			IViewport: ClassReference("org.apache.flex.html.supportClasses.Viewport");
+			IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 			border: none;
 			border-width: 0px;
 		}

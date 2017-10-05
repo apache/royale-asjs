@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.textLayout.compose.utils.FactoryHelper;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.utils.NumberLineUserData;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.compose.utils.FactoryHelper;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.utils.NumberLineUserData;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	public class NumberLineFactory extends StringTextLineFactory implements INumberLineFactory
 	{

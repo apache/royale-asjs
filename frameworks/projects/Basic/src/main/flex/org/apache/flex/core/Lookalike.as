@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -41,7 +41,7 @@ package org.apache.flex.core
         /**
          *  Constructor.
          *  
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

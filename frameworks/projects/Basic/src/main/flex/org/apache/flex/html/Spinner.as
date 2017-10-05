@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	[Event(name="valueChange", type="org.apache.flex.events.Event")]
+	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The Spinner class is a component that displays a control for incrementing a value
-	 *  and a control for decrementing a value. The org.apache.flex.html.NumericStepper
+	 *  and a control for decrementing a value. The org.apache.royale.html.NumericStepper
 	 *  uses a Spinner as part of the component. Spinner uses the following beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: an IRangeModel to hold the properties.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the Spinner.
-	 *  org.apache.flex.core.IBeadController: a bead that handles the input events.
+	 *  org.apache.royale.core.IBeadModel: an IRangeModel to hold the properties.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Spinner.
+	 *  org.apache.royale.core.IBeadController: a bead that handles the input events.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -150,7 +150,7 @@ package org.apache.flex.html
 		}
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

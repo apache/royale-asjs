@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 *  Defines values for setting the <code>clear</code> property
@@ -27,7 +27,7 @@ package org.apache.flex.textLayout.formats
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
      * 
-     * @see org.apache.flex.textLayout.elements.InlineGraphicElement#float 
+     * @see org.apache.royale.textLayout.elements.InlineGraphicElement#float 
 	 * @see TextLayoutFormat#clear 
 	 */
 	public final class ClearFloats

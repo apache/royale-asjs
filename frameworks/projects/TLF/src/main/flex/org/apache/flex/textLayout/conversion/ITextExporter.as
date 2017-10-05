@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion {
-	import org.apache.flex.textLayout.elements.ITextFlow;
+package org.apache.royale.textLayout.conversion {
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 	/** 
 	 * Interface for exporting text content from a TextFlow instance to a given format, 
@@ -37,14 +37,14 @@ package org.apache.flex.textLayout.conversion {
 		 * <p>Set the <code>conversionType</code> parameter to either of the following values,
 		 * or a user defined format in user-defined exporters.
 		 * <ul>
-		 *   <li><code>org.apache.flex.textLayout.conversion.ConversionType.STRING_TYPE</code>;</li>
-		 *   <li><code>org.apache.flex.textLayout.conversion.ConversionType.XML_TYPE</code>.</li>
+		 *   <li><code>org.apache.royale.textLayout.conversion.ConversionType.STRING_TYPE</code>;</li>
+		 *   <li><code>org.apache.royale.textLayout.conversion.ConversionType.XML_TYPE</code>.</li>
 		 * </ul>
 		 * </p>
 		 * @param source	The TextFlow to export
 		 * @param conversionType 	Return a String (STRING_TYPE) or XML (XML_TYPE), or any user defined format.
 		 * @return Object	The exported content
-		 * @see org.apache.flex.textLayout.conversion.ConversionType
+		 * @see org.apache.royale.textLayout.conversion.ConversionType
 	 	 * @playerversion Flash 10
 	 	 * @playerversion AIR 1.5
 		 * @langversion 3.0

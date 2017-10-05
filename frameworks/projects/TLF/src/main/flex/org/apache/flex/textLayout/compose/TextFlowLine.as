@@ -16,56 +16,56 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.graphics.PathBuilder;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.text.engine.Constants;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.FontMetrics;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.textLayout.compose.utils.AdornmentUtils;
-	import org.apache.flex.textLayout.compose.utils.TextLineUtil;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.dummy.BoundsUtil;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.ElementConstants;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.ITableLeafElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.LeadingUtils;
-	import org.apache.flex.textLayout.elements.utils.GeometricElementUtils;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.JustificationRule;
-	import org.apache.flex.textLayout.formats.LeadingModel;
-	import org.apache.flex.textLayout.formats.LineBreak;
-	import org.apache.flex.textLayout.formats.ListStylePosition;
-	import org.apache.flex.textLayout.formats.TextAlign;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.utils.CharacterUtil;
-	import org.apache.flex.textLayout.utils.Twips;
-	import org.apache.flex.utils.ObjectMap;
-	import org.apache.flex.utils.PointUtils;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.graphics.PathBuilder;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.text.engine.Constants;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.FontMetrics;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.textLayout.compose.utils.AdornmentUtils;
+	import org.apache.royale.textLayout.compose.utils.TextLineUtil;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.dummy.BoundsUtil;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.elements.ElementConstants;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.ITableLeafElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.LeadingUtils;
+	import org.apache.royale.textLayout.elements.utils.GeometricElementUtils;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.JustificationRule;
+	import org.apache.royale.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.formats.LineBreak;
+	import org.apache.royale.textLayout.formats.ListStylePosition;
+	import org.apache.royale.textLayout.formats.TextAlign;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.utils.CharacterUtil;
+	import org.apache.royale.textLayout.utils.Twips;
+	import org.apache.royale.utils.ObjectMap;
+	import org.apache.royale.utils.PointUtils;
 
 	/** 
 	 * The TextFlowLine class represents a single line of text in a text flow.
@@ -145,8 +145,8 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.text.engine.ITextLine
-		 * @see org.apache.flex.textLayout.elements.ParagraphElement
+		 * @see org.apache.royale.text.engine.ITextLine
+		 * @see org.apache.royale.textLayout.elements.ParagraphElement
 		 * @see #absoluteStart
 		 */
 		public function TextFlowLine(textLine:ITextLine, paragraph:IParagraphElement, outerTargetWidth:Number = 0, lineOffset:Number = 0, absoluteStart:int = 0, numChars:int = 0)
@@ -283,7 +283,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.text.engine.TextBaseline TextBaseline
+		 * @see org.apache.royale.text.engine.TextBaseline TextBaseline
 		 */
 		public function get textHeight():Number
 		{
@@ -313,7 +313,7 @@ package org.apache.flex.textLayout.compose
 		/** 
 		 * This comment is ignored, but the setter should not be used and exists only to satisfy
 		 * the IVerticalJustificationLine interface.
-		 * @see org.apache.flex.textLayout.compose.IVerticalJustificationLine 
+		 * @see org.apache.royale.textLayout.compose.IVerticalJustificationLine 
 		 * @private 
 		 */
 		public function set x(lineX:Number):void
@@ -358,7 +358,7 @@ package org.apache.flex.textLayout.compose
 
 		/** This comment is ignored, but the setter should not be used and exists only to satisfy
 		 * the IVerticalJustificationLine interface.
-		 * @see org.apache.flex.textLayout.compose.IVerticalJustificationLine
+		 * @see org.apache.royale.textLayout.compose.IVerticalJustificationLine
 		 * @private
 		 */
 		public function set y(lineY:Number):void
@@ -387,7 +387,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.elements.ParagraphElement
+		 * @see org.apache.royale.textLayout.elements.ParagraphElement
 		 * @see TextFlowLineLocation
 		 */
 		public function get location():int
@@ -418,7 +418,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.container.ContainerController 
+		 * @see org.apache.royale.textLayout.container.ContainerController 
 		 */
 		public function get controller():IContainerController
 		{
@@ -438,7 +438,7 @@ package org.apache.flex.textLayout.compose
 
 		/**
 		 *  @private 
-		 * @royaleignorecoercion org.apache.flex.textLayout.container.ContainerController
+		 * @royaleignorecoercion org.apache.royale.textLayout.container.ContainerController
 		 */
 		public function setController(cont:IContainerController, colNumber:int):void
 		{
@@ -459,7 +459,7 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** 
-		 * @copy org.apache.flex.text.engine.ITextLine#ascent
+		 * @copy org.apache.royale.text.engine.ITextLine#ascent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -471,7 +471,7 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** 
-		 * @copy org.apache.flex.text.engine.ITextLine#descent
+		 * @copy org.apache.royale.text.engine.ITextLine#descent
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -502,7 +502,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.elements.ParagraphElement
+		 * @see org.apache.royale.textLayout.elements.ParagraphElement
 		 */
 		public function get paragraph():IParagraphElement
 		{
@@ -518,7 +518,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.elements.TextFlow
+		 * @see org.apache.royale.textLayout.elements.TextFlow
 		 */
 		public function get absoluteStart():int
 		{
@@ -583,7 +583,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat#paragraphSpaceBefore TextLayoutFormat.paragraphSpaceBefore
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat#paragraphSpaceBefore TextLayoutFormat.paragraphSpaceBefore
 		 */
 		public function get spaceBefore():Number
 		{
@@ -602,7 +602,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat#paragraphSpaceAfter TextLayoutFormat.paragraphSpaceAfter
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat#paragraphSpaceAfter TextLayoutFormat.paragraphSpaceAfter
 		 */
 		public function get spaceAfter():Number
 		{
@@ -683,7 +683,7 @@ package org.apache.flex.textLayout.compose
 		 * @langversion 3.0
 		 *
 		 * @see #getTextLine()
-		 * @see org.apache.flex.text.engine.ITextLine#validity ITextLine.validity
+		 * @see org.apache.royale.text.engine.ITextLine#validity ITextLine.validity
 		 * @see FlowDamageType#GEOMETRY
 		 */
 		public function get validity():String
@@ -872,7 +872,7 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** 
-		 * Indicates whether the <code>org.apache.flex.text.engine.ITextLine</code> object for this TextFlowLine exists.  
+		 * Indicates whether the <code>org.apache.royale.text.engine.ITextLine</code> object for this TextFlowLine exists.  
 		 * The value is <code>true</code> if the ITextLine object has <em>not</em> been garbage collected and 
 		 * <code>false</code> if it has been.
 		 *
@@ -880,7 +880,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.text.engine.ITextLine ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine ITextLine
 		 */
 		public function get textLineExists():Boolean
 		{
@@ -911,7 +911,7 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** 
-		 * Returns the <code>org.apache.flex.text.engine.ITextLine</code> object for this line, which might be recreated 
+		 * Returns the <code>org.apache.royale.text.engine.ITextLine</code> object for this line, which might be recreated 
 		 * if it does not exist due to garbage collection. Set <code>forceValid</code> to <code>true</code>
 		 * to cause the ITextLine to be regenerated. Returns null if the ITextLine cannot be recreated.
 		 *.
@@ -924,7 +924,7 @@ package org.apache.flex.textLayout.compose
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.text.engine.ITextLine ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine ITextLine
 		 */
 		public function getTextLine(forceValid:Boolean = false):ITextLine
 		{
@@ -996,7 +996,7 @@ package org.apache.flex.textLayout.compose
 
 		/**
 		 *  @private Regenerate the ITextLine -- called when textLine has been gc'ed 
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IListItemElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IListItemElement
 		 */
 		public function recreateTextLine(textBlock:ITextBlock, previousLine:ITextLine):ITextLine
 		{
@@ -1291,7 +1291,7 @@ package org.apache.flex.textLayout.compose
 		// TODO remove reference to UIBase
 		/**
 		 *  Create a rectangle for selection
-		 * @royaleignorecoercion org.apache.flex.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		static private function createSelectionRect(selObj:ICompoundGraphic, color:uint, x:Number, y:Number, width:Number, height:Number):UIBase
 		{
@@ -1403,8 +1403,8 @@ package org.apache.flex.textLayout.compose
 		}
 
 		/** @private - helper method to calculate all selection blocks within a line.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IInlineGraphicElement
 		 */
 		public function calculateSelectionBounds(textLine:ITextLine, rectArray:Array, begIdx:int, endIdx:int, blockProgression:String, heightAndAdj:Array):void
 		{
@@ -2552,7 +2552,7 @@ package org.apache.flex.textLayout.compose
 	};
 }
 
-import org.apache.flex.geom.Rectangle;
+import org.apache.royale.geom.Rectangle;
 
 
 /** @private - I would have defined this as tlf_internal, but that is not an option, so

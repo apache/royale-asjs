@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.text.engine.ITextFactory;
-	import org.apache.flex.text.engine.ContentElement;
+	import org.apache.royale.text.engine.ITextFactory;
+	import org.apache.royale.text.engine.ContentElement;
 
 	public interface ITextBlock
 	{

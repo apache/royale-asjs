@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics
+package org.apache.royale.graphics
 {
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.core.IUIBase;
 
 	public interface IGraphicShape extends IUIBase
 	{

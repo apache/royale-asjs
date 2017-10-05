@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.CellContainer;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.elements.CellContainer;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.TableBlockContainer;
 
 	/**
 	 * 

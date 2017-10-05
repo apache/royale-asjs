@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     
-    import org.apache.flex.core.ClassFactory;
-    import org.apache.flex.core.IFactory;
-    import org.apache.flex.core.IItemRendererProvider;
+    import org.apache.royale.core.ClassFactory;
+    import org.apache.royale.core.IFactory;
+    import org.apache.royale.core.IItemRendererProvider;
     
-    import org.apache.flex.utils.MXMLDataInterpreter;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]
     
@@ -58,7 +58,7 @@ package org.apache.flex.core
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -86,7 +86,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.Application#MXMLDescriptor
+         *  @copy org.apache.royale.core.Application#MXMLDescriptor
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -112,7 +112,7 @@ package org.apache.flex.core
 		public var mxmlContent:Array;
 		
         /**
-         *  @copy org.apache.flex.core.IItemRendererClassFactory#createItemRenderer()
+         *  @copy org.apache.royale.core.IItemRendererClassFactory#createItemRenderer()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -181,7 +181,7 @@ package org.apache.flex.core
         private var document:Object;
         
         /**
-         *  @copy org.apache.flex.core.IDocument#setDocument()
+         *  @copy org.apache.royale.core.IDocument#setDocument()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -30,8 +30,8 @@ import flash.utils.Timer;
 }
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.utils.Timer;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.Timer;
 }
 /**
  *  A Test.  A Test script comprises several of these

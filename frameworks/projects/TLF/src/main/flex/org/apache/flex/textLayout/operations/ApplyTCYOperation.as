@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations
+package org.apache.royale.textLayout.operations
 {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.IMemento;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.edit.TextFlowEdit;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.TCYElement;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.IMemento;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.edit.TextFlowEdit;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.TCYElement;
 
 	/** 
 	 * The ApplyTCYOperation class encapsulates a TCY transformation.
 	 *
-	 * @see org.apache.flex.textLayout.elements.TCYElement
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.elements.TCYElement
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -84,7 +84,7 @@ package org.apache.flex.textLayout.operations
 		 * TCY element. If <code>false</code>, then the operation removes TCY formatting from
 		 * the first TCY element in the range.</p>
 		 * 
-		 * @see org.apache.flex.textLayout.elements.TCYElement
+		 * @see org.apache.royale.textLayout.elements.TCYElement
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

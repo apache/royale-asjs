@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
 	public class TableFormattedElement extends ContainerFormattedElement implements ITableFormattedElement
 	{
@@ -30,7 +30,7 @@ package org.apache.flex.textLayout.elements
 		/**
 		 * Returns a reference to the table. For this to work we need to set the 
 		 * table to null when it's removed.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableElement
 		 **/
 		public function get table():ITableElement {
 			

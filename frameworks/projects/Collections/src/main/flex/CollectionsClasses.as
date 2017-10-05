@@ -27,11 +27,11 @@ package
  */
 internal class CollectionsClasses
 {
-    import org.apache.flex.collections.ArrayList; ArrayList;
-	import org.apache.flex.collections.FlattenedList; FlattenedList;
-	import org.apache.flex.collections.HierarchicalData; HierarchicalData;
-	import org.apache.flex.collections.LazyCollection; LazyCollection;
-	import org.apache.flex.collections.Collection; Collection;
+    import org.apache.royale.collections.ArrayList; ArrayList;
+	import org.apache.royale.collections.FlattenedList; FlattenedList;
+	import org.apache.royale.collections.HierarchicalData; HierarchicalData;
+	import org.apache.royale.collections.LazyCollection; LazyCollection;
+	import org.apache.royale.collections.Collection; Collection;
 }
 
 }

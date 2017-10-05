@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs
+package org.apache.royale.createjs
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IMXMLDocument;
-	import org.apache.flex.core.IStatesObject;
-	import org.apache.flex.core.IStatesImpl;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.states.State;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.IStatesObject;
+	import org.apache.royale.core.IStatesImpl;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.states.State;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	COMPILE::SWF
 	{
-		import org.apache.flex.html.Container;
+		import org.apache.royale.html.Container;
 	}
 	
 	COMPILE::JS
@@ -43,9 +43,9 @@ package org.apache.flex.createjs
 		import createjs.Container;
 		import createjs.Stage;
 		import createjs.DisplayObject;
-		import org.apache.flex.core.WrappedHTMLElement;   
+		import org.apache.royale.core.WrappedHTMLElement;   
 		
-		import org.apache.flex.createjs.core.UIBase;
+		import org.apache.royale.createjs.core.UIBase;
 	}
 	
 	
@@ -61,7 +61,7 @@ package org.apache.flex.createjs
 	 *  @productversion Royale 0.0
 	 */
 	COMPILE::SWF
-	public class Container extends org.apache.flex.html.Container
+	public class Container extends org.apache.royale.html.Container
 	{
 		// does nothing different for SWF version.
 	}
@@ -93,7 +93,7 @@ package org.apache.flex.createjs
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion createjs.Container
 		 */
 		override protected function createElement():WrappedHTMLElement
@@ -142,7 +142,7 @@ package org.apache.flex.createjs
 		private var _initialized:Boolean;
 		
 		/**
-		 *  @copy org.apache.flex.core.Application#MXMLDescriptor
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -164,7 +164,7 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.Application#generateMXMLAttributes()
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -177,7 +177,7 @@ package org.apache.flex.createjs
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -190,7 +190,7 @@ package org.apache.flex.createjs
 		
 		/**
 		 *  The array of view states. These should
-		 *  be instances of org.apache.flex.states.State.
+		 *  be instances of org.apache.royale.states.State.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -205,7 +205,7 @@ package org.apache.flex.createjs
 		/**
 		 *  @private
 		 *  @royaleignorecoercion Class
-		 *  @royaleignorecoercion org.apache.flex.core.IBead
+		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 */
 		public function set states(value:Array):void
 		{

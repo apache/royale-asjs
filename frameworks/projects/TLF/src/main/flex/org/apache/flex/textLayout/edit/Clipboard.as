@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
     COMPILE::SWF
     {
         import flash.desktop.Clipboard;
-        import org.apache.flex.utils.UIDUtil;
+        import org.apache.royale.utils.UIDUtil;
     }
     COMPILE::JS
     {
-        import org.apache.flex.textLayout.events.EditEvent;
-        import org.apache.flex.events.Event;
+        import org.apache.royale.textLayout.events.EditEvent;
+        import org.apache.royale.events.Event;
     }
 	/** 
 	 * The Clipboard class is used for Clipboard operations such as copy and paste
@@ -50,11 +50,11 @@ package org.apache.flex.textLayout.edit
         {
             return flash.desktop.Clipboard.generalClipboard;
         }
-        private static var _generalClipboard:org.apache.flex.textLayout.edit.Clipboard;
-        public static function get generalClipboard():org.apache.flex.textLayout.edit.Clipboard
+        private static var _generalClipboard:org.apache.royale.textLayout.edit.Clipboard;
+        public static function get generalClipboard():org.apache.royale.textLayout.edit.Clipboard
         {
             if(_generalClipboard == null)
-                _generalClipboard = new org.apache.flex.textLayout.edit.Clipboard();
+                _generalClipboard = new org.apache.royale.textLayout.edit.Clipboard();
             return _generalClipboard;
         }
 		public function hasFormat(format:String):Boolean

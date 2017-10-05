@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.beads
+package org.apache.royale.mobile.beads
 {
 	COMPILE::SWF {
 		import flash.events.Event;
@@ -25,17 +25,17 @@ package org.apache.flex.mobile.beads
 		import flash.geom.Point;
 	}
 
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.WebBrowserModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.WebBrowserModel;
 	
 	COMPILE::JS {
-		import org.apache.flex.html.beads.WebBrowserView;
+		import org.apache.royale.html.beads.WebBrowserView;
 	}
 
 	/**
@@ -80,7 +80,7 @@ package org.apache.flex.mobile.beads
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -107,7 +107,7 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		private function loadPage(event:org.apache.flex.events.Event):void
+		private function loadPage(event:org.apache.royale.events.Event):void
 		{
 			var model:WebBrowserModel = (host as IStrandWithModel).model as WebBrowserModel;
 			stageWebView.loadURL(model.url);
@@ -116,7 +116,7 @@ package org.apache.flex.mobile.beads
 		/**
 		 * @private
 		 */
-		private function handleSizeChange(event:org.apache.flex.events.Event):void
+		private function handleSizeChange(event:org.apache.royale.events.Event):void
 		{
 			var hostOrigin:Point = new Point(0,0);
 			var hostPosition:Point = host.$displayObject.localToGlobal(hostOrigin);
@@ -130,7 +130,7 @@ package org.apache.flex.mobile.beads
 		{
 			var model:WebBrowserModel = (host as IStrandWithModel).model as WebBrowserModel;
 			model.setURL(stageWebView.location);
-			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
+			host.dispatchEvent(new org.apache.royale.events.Event("locationChanged"));
 		}
 	}
 	

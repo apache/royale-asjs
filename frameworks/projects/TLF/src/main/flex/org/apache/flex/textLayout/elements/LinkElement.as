@@ -16,66 +16,66 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.core.BrowserWindow;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.FlowElementMouseEventManager;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.core.BrowserWindow;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.FlowElementMouseEventManager;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	/** 
 	 * Dispatched when the mouse is pressed down over a link.
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_DOWN
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.MOUSE_DOWN
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 */
-	[Event(name="mouseDown", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="mouseDown", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the mouse is released over a link. 
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_UP
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.MOUSE_UP
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="mouseUp", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="mouseUp", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the mouse passes over the link. 
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.MOUSE_MOVE
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.MOUSE_MOVE
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="mouseMove", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="mouseMove", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/**
 	 * Dispatched when the mouse first enters the link. 
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.ROLL_OVER
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.ROLL_OVER
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="rollOver", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="rollOver", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the mouse goes out of the link. 
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.ROLL_OUT
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.ROLL_OUT
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="rollOut", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="rollOut", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/** 
 	 * Dispatched when the link is clicked. 
 	 * Clients may override how the link handles the event by handling it themselves, and calling preventDefault().
-	 * @eventType org.apache.flex.textLayout.events.FlowElementMouseEvent.CLICK
+	 * @eventType org.apache.royale.textLayout.events.FlowElementMouseEvent.CLICK
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
 	 */
-	[Event(name="click", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="click", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	/** The LinkElement class defines a link to a URI (Universal Resource Identifier), which is executed when the user clicks it.
 	 * The LinkElement class is a subclass of the SubParagraphGroupElementBase class and it can contain
 	 * one or more FlowElement objects, such as a SpanElement object that stores the link text. An empty
@@ -178,7 +178,7 @@ package org.apache.flex.textLayout.elements
 		 * references to the inner function (save it in another variable) then it is not 
 		 * garbage-collected and stays persistent.</p>
 		 *
-		 * @copy org.apache.flex.events.IEventDispatcher#addEventListener()
+		 * @copy org.apache.royale.events.IEventDispatcher#addEventListener()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -195,7 +195,7 @@ package org.apache.flex.textLayout.elements
 		// }
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#dispatchEvent()
+		 * @copy org.apache.royale.events.IEventDispatcher#dispatchEvent()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -209,7 +209,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#hasEventListener()
+		 * @copy org.apache.royale.events.IEventDispatcher#hasEventListener()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -228,7 +228,7 @@ package org.apache.flex.textLayout.elements
 		 * @param listener The listener object to remove.
 		 * @param useCapture Specifies whether the listener was registered for the capture phase or the target and bubbling phases. If the listener was registered for both the capture phase and the target and bubbling phases, two calls to <code>removeEventListener()</code> are required to remove both: one call with <code>useCapture</code> set to <code>true</code>, and another call with <code>useCapture</code> set to <code>false</code>. 
 		 *
-		 * @copy org.apache.flex.events.IEventDispatcher#removeEventListener().
+		 * @copy org.apache.royale.events.IEventDispatcher#removeEventListener().
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -241,7 +241,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#willTrigger()
+		 * @copy org.apache.royale.events.IEventDispatcher#willTrigger()
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -329,7 +329,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.LinkElement
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.LinkElement
 		 */
 		public override function shallowCopy(startPos:int = 0, endPos:int = -1):IFlowElement
 		{

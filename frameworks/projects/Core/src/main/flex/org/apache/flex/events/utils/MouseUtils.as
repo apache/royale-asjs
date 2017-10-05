@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events.utils
+package org.apache.royale.events.utils
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
 
 	/**
 	 *  This class maps common event functions for MouseEvent

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.ITextModel;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 *  The ToggleButtonModel class bead holds values for org.apache.flex.html.Buttons 
+	 *  The ToggleButtonModel class bead holds values for org.apache.royale.html.Buttons 
 	 *  that have a state.
 	 *
 	 *  @langversion 3.0
@@ -52,7 +52,7 @@ package org.apache.flex.html.beads.models
 		protected var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -67,9 +67,9 @@ package org.apache.flex.html.beads.models
 		private var _text:String;
 		
 		/**
-		 *  The text string for the org.apache.flex.html.Button's label.
+		 *  The text string for the org.apache.royale.html.Button's label.
 		 * 
-		 *  @copy org.apache.flex.core.IToggleButtonModel#text
+		 *  @copy org.apache.royale.core.IToggleButtonModel#text
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -95,7 +95,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The HTML string for the Button's label.
 		 * 
-		 *  @copy org.apache.flex.core.IToggleButtonModel#html
+		 *  @copy org.apache.royale.core.IToggleButtonModel#html
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -119,9 +119,9 @@ package org.apache.flex.html.beads.models
 		private var _selected:Boolean;
 		
 		/**
-		 *  Whether or not the org.apache.flex.html.Button is selected.
+		 *  Whether or not the org.apache.royale.html.Button is selected.
 		 * 
-		 *  @copy org.apache.flex.core.IToggleButtonModel#selected
+		 *  @copy org.apache.royale.core.IToggleButtonModel#selected
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

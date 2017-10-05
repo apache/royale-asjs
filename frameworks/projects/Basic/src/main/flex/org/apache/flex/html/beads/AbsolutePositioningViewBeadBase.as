@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
 	
 	/**
 	 * Use AbsolutePositioningViewBeadBase as the base class for custom control view beads.
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads
 		protected var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBeaViewd#host
+		 *  @copy org.apache.royale.core.IBeaViewd#host
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

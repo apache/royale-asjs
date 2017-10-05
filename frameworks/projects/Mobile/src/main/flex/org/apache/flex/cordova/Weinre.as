@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.cordova
+package org.apache.royale.cordova
 {
     COMPILE::SWF
     {
@@ -24,8 +24,8 @@ package org.apache.flex.cordova
         import flash.net.navigateToURL;            
     }
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
 	
 	/**
 	 *  A class that helps set up to use Weinre for debugging
@@ -44,7 +44,7 @@ package org.apache.flex.cordova
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

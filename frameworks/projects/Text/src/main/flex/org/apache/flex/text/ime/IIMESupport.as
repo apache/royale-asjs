@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.ime
+package org.apache.royale.text.ime
 {
 
 /**
@@ -24,7 +24,7 @@ package org.apache.flex.text.ime
  *  (input method editor).
  *  IME is used for entering characters in Chinese, Japanese, and Korean.
  * 
- *  @see org.apache.flex.text.ime.IME
+ *  @see org.apache.royale.text.ime.IME
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9

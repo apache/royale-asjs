@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IContainer;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.ListView;
-	import org.apache.flex.html.beads.layouts.VerticalLayout;
-	import org.apache.flex.html.supportClasses.DataGroup;
-	import org.apache.flex.html.supportClasses.ScrollingViewport;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.ListView;
+	import org.apache.royale.html.beads.layouts.VerticalLayout;
+	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.supportClasses.ScrollingViewport;
 
 
 	/**

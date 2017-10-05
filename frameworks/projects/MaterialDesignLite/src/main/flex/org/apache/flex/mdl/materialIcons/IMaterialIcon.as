@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.materialIcons
+package org.apache.royale.mdl.materialIcons
 {
-    import org.apache.flex.core.IUIBase;
+    import org.apache.royale.core.IUIBase;
 
     /**
      *  IMaterialIcon interface provides abstraction for easiest way to implements custom MaterialIcon class

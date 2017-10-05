@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 
 	/**
 	 * This class extends Container and adds the HorizontalLayout

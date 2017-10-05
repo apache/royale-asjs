@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.html.beads.models.RangeModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.html.beads.models.RangeModel;
 
 	/**
 	 *  The RangeModelExtended bead expands on the RangeModel and adds a function to

@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {	
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.mobile.IViewManager;
-	import org.apache.flex.mobile.IViewManagerView;
-	import org.apache.flex.mobile.chrome.NavigationBar;
-	import org.apache.flex.mobile.chrome.ToolBar;
-	import org.apache.flex.mobile.models.ViewManagerModel;
-	import org.apache.flex.mobile.beads.StackedViewManagerView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.mobile.IViewManager;
+	import org.apache.royale.mobile.IViewManagerView;
+	import org.apache.royale.mobile.chrome.NavigationBar;
+	import org.apache.royale.mobile.chrome.ToolBar;
+	import org.apache.royale.mobile.models.ViewManagerModel;
+	import org.apache.royale.mobile.beads.StackedViewManagerView;
 	
-	[Event(name="viewChanged",type="org.apache.flex.events.Event")]
+	[Event(name="viewChanged",type="org.apache.royale.events.Event")]
 	
 	/**
 	 * The StackedViewManager displays a single View at a time from a

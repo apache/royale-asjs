@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads
+package org.apache.royale.html.customControls.beads
 {
-	import org.apache.flex.core.IBeadView;
+	import org.apache.royale.core.IBeadView;
 	
 	public interface IDataGridView extends IBeadView
 	{

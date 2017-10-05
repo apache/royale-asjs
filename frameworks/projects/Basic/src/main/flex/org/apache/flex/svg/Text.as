@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-    import org.apache.flex.graphics.IDrawable;
-	import org.apache.flex.graphics.IText;
-	import org.apache.flex.graphics.SolidColor;
+    import org.apache.royale.graphics.IDrawable;
+	import org.apache.royale.graphics.IText;
+	import org.apache.royale.graphics.SolidColor;
 
     COMPILE::SWF
     {
         import flash.text.TextFieldType;
-        import org.apache.flex.core.CSSTextField;
+        import org.apache.royale.core.CSSTextField;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	/**
@@ -81,7 +81,7 @@ package org.apache.flex.svg
 		private var _textElem:WrappedHTMLElement;
 
 		/**
-		 *  @copy org.apache.flex.core.ITextModel#textField
+		 *  @copy org.apache.royale.core.ITextModel#textField
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -104,7 +104,7 @@ package org.apache.flex.svg
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @royaleignorecoercion Text
          *  @royaleignorecoercion Node
          *  @royaleignorecoercion SVGLocatable

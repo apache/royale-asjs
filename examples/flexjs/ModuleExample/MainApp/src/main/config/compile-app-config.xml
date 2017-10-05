@@ -16,9 +16,9 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <js-compiler-option>
         <option>--variable_map_output_file gccvars.txt</option>
         <option>--property_map_output_file gccprops.txt</option>
     </js-compiler-option>
-</flex-config>
+</royale-config>

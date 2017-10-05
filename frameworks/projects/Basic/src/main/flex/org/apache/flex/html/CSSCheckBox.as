@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
     COMPILE::SWF
     {
         import flash.events.MouseEvent;
-        import org.apache.flex.core.UIButtonBase;
+        import org.apache.royale.core.UIButtonBase;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.supportClasses.CheckBoxIcon;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.supportClasses.CheckBoxIcon;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     //--------------------------------------
@@ -48,7 +48,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The CSSCheckBox class implements the common user interface
@@ -76,7 +76,7 @@ package org.apache.flex.html
 		{
 			super();
 
-			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
+			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
         /**
@@ -123,7 +123,7 @@ package org.apache.flex.html
 			IToggleButtonModel(model).selected = value;
 		}
 
-		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
+		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
 		{
 			selected = !selected;
 			dispatchEvent(new Event("change"));
@@ -148,7 +148,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
     COMPILE::JS
     public class CSSCheckBox extends UIBase
@@ -162,7 +162,7 @@ package org.apache.flex.html
 		private static var _checkNumber:Number = 0;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {

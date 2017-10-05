@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-    import org.apache.flex.graphics.IDrawable;
-	import org.apache.flex.graphics.IRect;
+    import org.apache.royale.graphics.IDrawable;
+	import org.apache.royale.graphics.IRect;
 
     COMPILE::SWF
     {
@@ -28,7 +28,7 @@ package org.apache.flex.svg
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	public class Rect extends GraphicShape implements IRect, IDrawable
@@ -106,7 +106,7 @@ package org.apache.flex.svg
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		public function drawRect(xp:Number, yp:Number, width:Number, height:Number):void
 		{

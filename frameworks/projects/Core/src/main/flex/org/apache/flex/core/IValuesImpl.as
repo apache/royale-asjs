@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The IValuesImpl interface is the basic interface for the subsystem that
      *  provides default values to components.  The most common implementation implements
      *  a simple version of CSS and uses data structures compiled from CSS files.
      *  
-     *  @see org.apache.flex.core.SimpleCSSValuesImpl
+     *  @see org.apache.royale.core.SimpleCSSValuesImpl
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2

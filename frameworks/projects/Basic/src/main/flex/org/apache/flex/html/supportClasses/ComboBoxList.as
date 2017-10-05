@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-    import org.apache.flex.core.IPopUp;
-    import org.apache.flex.html.List;
+    import org.apache.royale.core.IPopUp;
+    import org.apache.royale.html.List;
     
     //--------------------------------------
     //  Events
     //--------------------------------------
     
     /**
-     *  @copy org.apache.flex.core.ISelectionModel#change
+     *  @copy org.apache.royale.core.ISelectionModel#change
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
     
     /**
      *  The ComboBoxList class is the List class used internally

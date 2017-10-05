@@ -17,17 +17,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg.beads
+package org.apache.royale.svg.beads
 {
-	import org.apache.flex.core.ImageViewBase;
+	import org.apache.royale.core.ImageViewBase;
 	COMPILE::JS
 		{
-			import org.apache.flex.core.UIBase;
-			import org.apache.flex.core.ValuesManager;
+			import org.apache.royale.core.UIBase;
+			import org.apache.royale.core.ValuesManager;
 		}
 	
 	/**
-	 *  The ImageView class creates the visual elements of the org.apache.flex.svg.Image component.
+	 *  The ImageView class creates the visual elements of the org.apache.royale.svg.Image component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

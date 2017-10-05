@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IComboBoxModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.TextInput;
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.beads.IComboBoxView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.TextInput;
+	import org.apache.royale.html.List;
+	import org.apache.royale.html.beads.IComboBoxView;
 	
 	public class ComboBoxController implements IBeadController
 	{

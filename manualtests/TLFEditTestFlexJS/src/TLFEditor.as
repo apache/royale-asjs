@@ -28,26 +28,26 @@ import flash.events.FocusEvent;
 import flash.utils.setTimeout;
 }
 
-import org.apache.flex.textLayout.beads.DispatchTLFKeyboardEventBead;
-import org.apache.flex.textLayout.container.TextContainerManager;
-import org.apache.flex.textLayout.factory.TLFFactory;
-import org.apache.flex.textLayout.factory.StandardTLFFactory;
-import org.apache.flex.textLayout.edit.EditingMode;
-import org.apache.flex.textLayout.edit.ISelectionManager;
-import org.apache.flex.textLayout.edit.SelectionFormat;
-import org.apache.flex.textLayout.events.CompositionCompleteEvent;
-import org.apache.flex.textLayout.events.DamageEvent;
+import org.apache.royale.textLayout.beads.DispatchTLFKeyboardEventBead;
+import org.apache.royale.textLayout.container.TextContainerManager;
+import org.apache.royale.textLayout.factory.TLFFactory;
+import org.apache.royale.textLayout.factory.StandardTLFFactory;
+import org.apache.royale.textLayout.edit.EditingMode;
+import org.apache.royale.textLayout.edit.ISelectionManager;
+import org.apache.royale.textLayout.edit.SelectionFormat;
+import org.apache.royale.textLayout.events.CompositionCompleteEvent;
+import org.apache.royale.textLayout.events.DamageEvent;
 
-import org.apache.flex.core.UIBase;
-import org.apache.flex.events.Event;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.events.Event;
 COMPILE::SWF
 {
-import org.apache.flex.html.beads.SingleLineBorderBead;
-import org.apache.flex.html.beads.SolidBackgroundBead;
+import org.apache.royale.html.beads.SingleLineBorderBead;
+import org.apache.royale.html.beads.SolidBackgroundBead;
 }
 COMPILE::JS
 {
-import org.apache.flex.textLayout.events.FocusEvent;
+import org.apache.royale.textLayout.events.FocusEvent;
 }
 
 //import flashx.textLayout.tlf_internal;

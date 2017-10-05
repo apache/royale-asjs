@@ -15,17 +15,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.TextInput;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.TextInput;
     
-    import org.apache.flex.mdl.supportClasses.ITextField;
+    import org.apache.royale.mdl.supportClasses.ITextField;
     
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;            
     }
     
     /**
@@ -57,7 +57,7 @@ package org.apache.flex.mdl.supportClasses
         {
             private var _textNode:Text;
             /**
-             *  @copy org.apache.flex.mdl.supportClasses.ITextField#textNode
+             *  @copy org.apache.royale.mdl.supportClasses.ITextField#textNode
              *
              *  @langversion 3.0
              *  @playerversion Flash 10.2
@@ -76,7 +76,7 @@ package org.apache.flex.mdl.supportClasses
 
             private var _input:HTMLInputElement;
             /**
-             *  @copy org.apache.flex.mdl.supportClasses.ITextField#input
+             *  @copy org.apache.royale.mdl.supportClasses.ITextField#input
              *
              *  @langversion 3.0
              *  @playerversion Flash 10.2
@@ -95,7 +95,7 @@ package org.apache.flex.mdl.supportClasses
 
             private var _label:HTMLLabelElement;
             /**
-             *  @copy org.apache.flex.mdl.supportClasses.ITextField#label
+             *  @copy org.apache.royale.mdl.supportClasses.ITextField#label
              *
              *  @langversion 3.0
              *  @playerversion Flash 10.2

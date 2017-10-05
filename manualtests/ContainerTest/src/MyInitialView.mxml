@@ -24,7 +24,7 @@
 				xmlns:js="library://ns.apache.org/royale/basic" 
 				xmlns:controller="controller.*"
 				xmlns:views="views.*" 
-				xmlns:beads="org.apache.flex.html.beads.*" xmlns:trial="trial.*"
+				xmlns:beads="org.apache.royale.html.beads.*" xmlns:trial="trial.*"
 				>
 	
 	<fx:Style>
@@ -35,13 +35,13 @@
 		* the itemRenderer in a style definition along with other settings.
 		*/
 		.productList {
-			IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DataItemRendererFactoryForArrayData");
+			IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 			IItemRenderer: ClassReference("products.ProductItemRenderer");
 		}
 		
 		sample|ProductItemRenderer {
 			height: 50;
-			IBeadController: ClassReference("org.apache.flex.html.beads.controllers.ItemRendererMouseController");
+			IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 		}
 		
 		.Container1 {
@@ -62,7 +62,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.html.Label;
+			import org.apache.royale.html.Label;
 			
 			private function addAChild() : void
 			{

@@ -24,7 +24,7 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-            import org.apache.flex.mdl.materialIcons.MaterialIconType;
+            import org.apache.royale.mdl.materialIcons.MaterialIconType;
 
             import vos.MaterialVO;
             

@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-    import org.apache.flex.core.Application;
-    import org.apache.flex.core.SimpleCSSValuesImpl;
+    import org.apache.royale.core.Application;
+    import org.apache.royale.core.SimpleCSSValuesImpl;
 		
 	/**
 	 * MDL Application holds specific MDL need in a Royale Application.
@@ -32,7 +32,7 @@ package org.apache.flex.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class Application extends org.apache.flex.core.Application
+	public class Application extends org.apache.royale.core.Application
 	{
 		/**
          *  constructor.

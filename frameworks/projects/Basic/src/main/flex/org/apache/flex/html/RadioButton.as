@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
     COMPILE::SWF
     {
@@ -25,31 +25,31 @@ package org.apache.flex.html
         import flash.utils.Dictionary;
     }
 
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IValueToggleButtonModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IValueToggleButtonModel;
     COMPILE::SWF
     {
-        import org.apache.flex.core.UIButtonBase;
+        import org.apache.royale.core.UIButtonBase;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.supportClasses.RadioButtonIcon;
+        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.supportClasses.RadioButtonIcon;
     }
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.IUIBase;
 
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The RadioButton class is a component that displays a selectable Button. RadioButtons
 	 *  are typically used in groups, identified by the groupName property. RadioButton use
 	 *  the following beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model, which includes the groupName.
-	 *  org.apache.flex.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
+	 *  org.apache.royale.core.IBeadModel: the data model, which includes the groupName.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the RadioButton..
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
@@ -72,7 +72,7 @@ package org.apache.flex.html
 		{
 			super(upState, overState, downState, hitTestState);
 
-			addEventListener(org.apache.flex.events.MouseEvent.CLICK, internalMouseHandler);
+			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
 		protected static var dict:Dictionary = new Dictionary(true);
@@ -212,7 +212,7 @@ package org.apache.flex.html
 		/**
 		 * @private
 		 */
-		private function internalMouseHandler(event:org.apache.flex.events.MouseEvent) : void
+		private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
 		{
 			// prevent radiobutton from being turned off by a click
 			if( !selected ) {
@@ -222,7 +222,7 @@ package org.apache.flex.html
 		}
 	}
 
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
     
     COMPILE::JS
     public class RadioButton extends UIBase
@@ -234,7 +234,7 @@ package org.apache.flex.html
         private var icon:RadioButtonIcon;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion Text

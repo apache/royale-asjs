@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-    import org.apache.flex.html.DropDownList;
+    import org.apache.royale.html.DropDownList;
     
-    public class DropDownList extends org.apache.flex.html.DropDownList
+    public class DropDownList extends org.apache.royale.html.DropDownList
 	{
     }
 }

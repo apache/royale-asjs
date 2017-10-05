@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.core.IItemRenderer;
+	import org.apache.royale.core.IItemRenderer;
 	
 	/**
 	 *  The IChartItemRenderer interface is the interface implemented by any

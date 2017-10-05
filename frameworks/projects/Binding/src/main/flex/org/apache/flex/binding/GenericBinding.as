@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.binding
+package org.apache.royale.binding
 {	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.ValueChangeEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.ValueChangeEvent;
     
     /**
      *  The GenericBinding class is the data-binding class that applies
@@ -124,7 +124,7 @@ package org.apache.flex.binding
         public var staticRoot:Object
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -209,7 +209,7 @@ package org.apache.flex.binding
         }
 		
         /**
-         *  @copy org.apache.flex.core.IDocument#setDocument()
+         *  @copy org.apache.royale.core.IDocument#setDocument()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

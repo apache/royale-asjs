@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.net.HTTPService;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.net.HTTPService;
 
     import vos.MemberVO;
 
-    [Event(name="membersChanged", type="org.apache.flex.events.Event")]
+    [Event(name="membersChanged", type="org.apache.royale.events.Event")]
 
     public class MembersModel extends EventDispatcher
     {

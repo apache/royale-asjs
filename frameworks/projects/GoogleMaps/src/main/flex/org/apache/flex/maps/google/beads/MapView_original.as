@@ -24,7 +24,7 @@
  * the AS/HTMLLoader version for use with AIR. Someday we will come back to this and make
  * it work again.
  */
-package org.apache.flex.maps.google.beads
+package org.apache.royale.maps.google.beads
 {
 	COMPILE::SWF {
 		import flash.events.Event;
@@ -32,15 +32,15 @@ package org.apache.flex.maps.google.beads
 		import flash.net.URLRequest;
 	}
 
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.maps.google.GoogleMap;
-	import org.apache.flex.maps.google.models.MapModel;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.maps.google.GoogleMap;
+	import org.apache.royale.maps.google.models.MapModel;
 
 	/**
 	 *  The MapView bead class displays a Google Map using HTMLLoader.
@@ -102,7 +102,7 @@ package org.apache.flex.maps.google.beads
 		private var _loader:HTMLLoader;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -155,10 +155,10 @@ package org.apache.flex.maps.google.beads
 				_loader.window.addEventListener("markerClicked",onMarkerClicked);
 			}
 
-			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("ready"));
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.royale.events.Event("ready"));
 		}
 
-		private function handleZoomChange(event:org.apache.flex.events.Event):void
+		private function handleZoomChange(event:org.apache.royale.events.Event):void
 		{
 			if (_loader && page) {
 				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -166,7 +166,7 @@ package org.apache.flex.maps.google.beads
 			}
 		}
 
-		private function handleCurrentLocationChange(event:org.apache.flex.events.Event):void
+		private function handleCurrentLocationChange(event:org.apache.royale.events.Event):void
 		{
 			if (_loader && page) {
 				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
@@ -301,7 +301,7 @@ package org.apache.flex.maps.google.beads
 		/**
 		 * @private
 		 */
-		private function handleSizeChange(event:org.apache.flex.events.Event):void
+		private function handleSizeChange(event:org.apache.royale.events.Event):void
 		{
 			_loader.width = UIBase(_strand).width;
 			_loader.height = UIBase(_strand).height;
@@ -312,7 +312,7 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapCentered():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("centered") );
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("centered") );
 		}
 
 		/**
@@ -320,7 +320,7 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapBoundsChanged():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("boundsChanged") );
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("boundsChanged") );
 		}
 
 		/**
@@ -328,7 +328,7 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapZoomChanged():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("zoomChanged") );
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("zoomChanged") );
 		}
 
 		/**
@@ -336,7 +336,7 @@ package org.apache.flex.maps.google.beads
 		 */
 		private function onMapDragEnd():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.flex.events.Event("dragEnd") );
+			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("dragEnd") );
 		}
 
 		/**
@@ -375,7 +375,7 @@ package org.apache.flex.maps.google.beads
 			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
 			model.selectedMarker = marker;
 
-			IEventDispatcher(_strand).dispatchEvent(new org.apache.flex.events.Event("markerClicked"));
+			IEventDispatcher(_strand).dispatchEvent(new org.apache.royale.events.Event("markerClicked"));
 		}
 
 		/**

@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IPanelModel;
+	import org.apache.royale.core.IPanelModel;
 
-	[Event(name="close", type="org.apache.flex.events.Event")]
+	[Event(name="close", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The Panel class is a Container component capable of parenting other
-	 *  components. The Panel has a TitleBar and an optional org.apache.flex.html.ControlBar. 
+	 *  components. The Panel has a TitleBar and an optional org.apache.royale.html.ControlBar. 
 	 *  The Panel uses the following bead types:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
+	 *  org.apache.royale.core.IBeadModel: the data model for the Panel that includes the title and whether
 	 *  or not to display the close button.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Panel.
-	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
-	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  org.apache.royale.core.IBeadView: creates the parts of the Panel.
+	 *  org.apache.royale.core.IBorderBead: if present, draws a border around the Panel.
+	 *  org.apache.royale.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
@@ -55,7 +55,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+		 *  The items in the org.apache.royale.html.ControlBar. Setting this property automatically
 		 *  causes the ControlBar to display.
 		 *
 		 *  @langversion 3.0

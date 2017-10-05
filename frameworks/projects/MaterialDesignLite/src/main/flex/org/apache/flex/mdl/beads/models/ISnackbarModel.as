@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.models
+package org.apache.royale.mdl.beads.models
 {
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The ISnackbarModel interface describes the minimum set of properties

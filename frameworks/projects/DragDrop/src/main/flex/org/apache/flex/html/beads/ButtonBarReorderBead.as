@@ -16,40 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.IDragInitiator;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.DragEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.html.Label;
-	import org.apache.flex.html.beads.controllers.DragMouseController;
-	import org.apache.flex.html.beads.controllers.DropMouseController;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.UIUtils;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.IDragInitiator;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.html.Label;
+	import org.apache.royale.html.beads.controllers.DragMouseController;
+	import org.apache.royale.html.beads.controllers.DropMouseController;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.UIUtils;
 
 
 	/**
 	 *  The ButtonBarReorderBead bead can be added to a ButtonBar to re-order the buttons
 	 *  using drag-and-drop. This bead will add additional beads as necessary.
 	 *
-	 *  @see org.apache.flex.html.beads.SingleSelectionDropTargetBead.
+	 *  @see org.apache.royale.html.beads.SingleSelectionDropTargetBead.
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -82,7 +82,7 @@ package org.apache.flex.html.beads
 
 		/**
 		 * @private
-		 * @royaleignoretypecoercion org.apache.flex.events.IEventDispatcher
+		 * @royaleignoretypecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{

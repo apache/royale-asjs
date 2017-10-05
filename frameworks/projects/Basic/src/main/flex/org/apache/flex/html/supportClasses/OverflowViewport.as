@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-    import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.geom.Size;
-	import org.apache.flex.html.beads.models.ScrollBarModel;
-    import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IContentView;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.geom.Size;
+	import org.apache.royale.html.beads.models.ScrollBarModel;
+    import org.apache.royale.utils.CSSContainerUtils;
 	COMPILE::SWF
 	{
 		import flash.geom.Rectangle;
@@ -68,7 +68,7 @@ package org.apache.flex.html.supportClasses
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.0
-		 * @royaleignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
         public function get contentView():IUIBase
         {
@@ -78,7 +78,7 @@ package org.apache.flex.html.supportClasses
 		protected var _strand:IStrand;
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -90,7 +90,7 @@ package org.apache.flex.html.supportClasses
 		}
 
         /**
-         * @copy org.apache.flex.core.IViewport#setPosition()
+         * @copy org.apache.royale.core.IViewport#setPosition()
 	     *
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
@@ -102,7 +102,7 @@ package org.apache.flex.html.supportClasses
         }
 
         /**
-         * @copy org.apache.flex.core.IViewport#layoutViewportBeforeContentLayout()
+         * @copy org.apache.royale.core.IViewport#layoutViewportBeforeContentLayout()
 	     *
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
@@ -114,7 +114,7 @@ package org.apache.flex.html.supportClasses
 		}
 
         /**
-         * @copy org.apache.flex.core.IViewport#layoutViewportAfterContentLayout()
+         * @copy org.apache.royale.core.IViewport#layoutViewportAfterContentLayout()
 	     *
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2

@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos {
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.IMemento;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+package org.apache.royale.textLayout.edit.mementos {
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.IMemento;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 
 	public class MoveElementMemento extends BaseMemento implements IMemento {
 		private var _target:ElementMark;
@@ -56,7 +56,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function undo():* {
 			var elem:IFlowElement = _elemAfterMove.findElement(_textFlow);
@@ -66,7 +66,7 @@ package org.apache.flex.textLayout.edit.mementos {
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function redo():* {
 			var target:IFlowGroupElement = _target.findElement(_textFlow) as IFlowGroupElement;

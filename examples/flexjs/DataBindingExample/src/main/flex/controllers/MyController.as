@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.Event;
 
-	import org.apache.flex.core.Application;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.net.HTTPService;
-	import org.apache.flex.collections.LazyCollection;
+	import org.apache.royale.core.Application;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.net.HTTPService;
+	import org.apache.royale.collections.LazyCollection;
 
     import models.MyModel;
 

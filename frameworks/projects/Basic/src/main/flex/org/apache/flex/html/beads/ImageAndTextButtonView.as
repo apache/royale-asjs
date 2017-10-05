@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.Loader;
 	import flash.display.Shape;
@@ -27,15 +27,15 @@ package org.apache.flex.html.beads
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.CSSTextField;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStrandWithModel;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.beads.models.ImageAndTextModel;
-    import org.apache.flex.utils.SolidBorderUtil;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.models.ImageAndTextModel;
+    import org.apache.royale.utils.SolidBorderUtil;
 	
 	/**
 	 *  The ImageButtonView class provides an image-only view
@@ -78,7 +78,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -211,7 +211,7 @@ package org.apache.flex.html.beads
         public var overTextField:CSSTextField;
         
         /**
-         *  @copy org.apache.flex.html.core.ITextModel#text
+         *  @copy org.apache.royale.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -239,7 +239,7 @@ package org.apache.flex.html.beads
         }
         
         /**
-         *  @copy org.apache.flex.html.core.ITextModel#text
+         *  @copy org.apache.royale.html.core.ITextModel#text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

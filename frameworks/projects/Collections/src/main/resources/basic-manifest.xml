@@ -21,10 +21,10 @@
 
 <componentPackage>
 
-    <component id="ArrayList" class="org.apache.flex.collections.ArrayList"/>
-    <component id="HierarchicalData" class="org.apache.flex.collections.HierarchicalData"/>
-    <component id="LazyCollection" class="org.apache.flex.collections.LazyCollection"/>
-    <component id="JSONInputParser" class="org.apache.flex.collections.parsers.JSONInputParser"/>
-    <component id="JSONItemConverter" class="org.apache.flex.collections.converters.JSONItemConverter"/>
+    <component id="ArrayList" class="org.apache.royale.collections.ArrayList"/>
+    <component id="HierarchicalData" class="org.apache.royale.collections.HierarchicalData"/>
+    <component id="LazyCollection" class="org.apache.royale.collections.LazyCollection"/>
+    <component id="JSONInputParser" class="org.apache.royale.collections.parsers.JSONInputParser"/>
+    <component id="JSONItemConverter" class="org.apache.royale.collections.converters.JSONItemConverter"/>
 
 </componentPackage>

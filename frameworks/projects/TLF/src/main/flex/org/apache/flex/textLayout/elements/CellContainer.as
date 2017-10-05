@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.UIBase;
 	
 	//import mx.core.IIMESupport;
 	//TODO support different UIBase classes

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.express
+package org.apache.royale.express
 {
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.Label;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.Label;
+	import org.apache.royale.events.Event;
 	
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
 	[DefaultProperty("text")]
@@ -33,7 +33,7 @@ package org.apache.flex.express
 	 * This class extends the standard Label and allows MXML content (ie, XML or HTML) 
 	 * to be displayed.
 	 */
-	public class MXMLViewer extends org.apache.flex.html.Label
+	public class MXMLViewer extends org.apache.royale.html.Label
 	{
 		public function MXMLViewer()
 		{
@@ -51,7 +51,7 @@ package org.apache.flex.express
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

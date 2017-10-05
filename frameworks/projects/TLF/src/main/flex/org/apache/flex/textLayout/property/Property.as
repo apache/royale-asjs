@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property
+package org.apache.royale.textLayout.property
 {
-	import org.apache.flex.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.FormatValue;
 
 	// [ExcludeClass]
 	/** Base class of property metadata.  Each property in the various TextLayout attributes structures has a metadata singletion Property class instance.  The instance

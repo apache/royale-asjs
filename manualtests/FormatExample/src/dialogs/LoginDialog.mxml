@@ -25,16 +25,16 @@ limitations under the License.
 	
 	<!-- fx:Metadata is not recognized by FalconJX -->
 	<!--<fx:Metadata>
-		[Event(name="close", type="org.apache.flex.events.Event")]
+		[Event(name="close", type="org.apache.royale.events.Event")]
 	</fx:Metadata>-->
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			
 			private function cancelLogin():void
 			{
-				dispatchEvent( new org.apache.flex.events.Event("close") );
+				dispatchEvent( new org.apache.royale.events.Event("close") );
 			}
 		]]>
 	</fx:Script>

@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
-	import org.apache.flex.core.LayoutBase;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
-    import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewport;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.html.supportClasses.Viewport;
-    import org.apache.flex.utils.CSSContainerUtils;
-	import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+    import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.html.supportClasses.Viewport;
+    import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.CSSUtils;
 
     /**
      *  The FlexibleFirstChildHorizontalLayout class is a simple layout
@@ -69,7 +69,7 @@ package org.apache.flex.html.beads.layouts
         private var _maxWidth:Number;
 
         /**
-         *  @copy org.apache.flex.core.IBead#maxWidth
+         *  @copy org.apache.royale.core.IBead#maxWidth
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -92,7 +92,7 @@ package org.apache.flex.html.beads.layouts
         private var _maxHeight:Number;
 
         /**
-         *  @copy org.apache.flex.core.IBead#maxHeight
+         *  @copy org.apache.royale.core.IBead#maxHeight
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads.layouts
         }
 
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
+         * @copy org.apache.royale.core.IBeadLayout#layout
          */
 		COMPILE::SWF
 		override public function layout():Boolean

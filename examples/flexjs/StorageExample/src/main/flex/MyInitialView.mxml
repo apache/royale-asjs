@@ -23,11 +23,11 @@ limitations under the License.
 				initComplete="startup()">
     <fx:Script>
         <![CDATA[			
-			import org.apache.flex.storage.PermanentStorage;
-			import org.apache.flex.storage.events.FileEvent;
-			import org.apache.flex.storage.events.FileErrorEvent;
-			import org.apache.flex.storage.file.IDataInput;
-			import org.apache.flex.storage.file.IDataOutput;
+			import org.apache.royale.storage.PermanentStorage;
+			import org.apache.royale.storage.events.FileEvent;
+			import org.apache.royale.storage.events.FileErrorEvent;
+			import org.apache.royale.storage.file.IDataInput;
+			import org.apache.royale.storage.file.IDataOutput;
 			
 			private function startup():void
 			{

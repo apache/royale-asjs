@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.collections.HierarchicalData;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.collections.HierarchicalData;
 
 	public class MyModel extends EventDispatcher
 	{

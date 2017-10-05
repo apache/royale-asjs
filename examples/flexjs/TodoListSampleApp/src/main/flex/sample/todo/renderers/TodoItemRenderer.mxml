@@ -26,17 +26,17 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 		
-			import org.apache.flex.events.Event;
-			import org.apache.flex.events.MouseEvent;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
 			
 			private function checkBoxChange():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("checkChanged"));
+				dispatchEvent(new org.apache.royale.events.Event("checkChanged"));
 			}
 
 			private function removeClick():void
 			{
-				dispatchEvent(new org.apache.flex.events.Event("removeRequest"));
+				dispatchEvent(new org.apache.royale.events.Event("removeRequest"));
 			}
 		]]>
 	</fx:Script>

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IStrand;
 
 	public class DataGridButtonBarViewForMovableColumns extends DragDropListView
 	{

@@ -16,28 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.DropType;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.DragEvent;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.beads.controllers.DropMouseController;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.UIUtils;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.DropType;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.beads.controllers.DropMouseController;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.UIUtils;
 
 
 	/**
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="enter", type="org.apache.flex.events.Event")]
+	[Event(name="enter", type="org.apache.royale.events.Event")]
 
 	/**
 	 * The exit event is sent when the drag goes outside of the drop target space.
@@ -61,7 +61,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="exit", type="org.apache.flex.events.Event")]
+	[Event(name="exit", type="org.apache.royale.events.Event")]
 
 	/**
 	 * The over event is dispatched while the drag is happening over the drop target space. This
@@ -73,7 +73,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="over", type="org.apache.flex.events.Event")]
+	[Event(name="over", type="org.apache.royale.events.Event")]
 
 	/**
 	 * The drop event is dispatched just prior to incorporating the drag source data into the drop
@@ -86,7 +86,7 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="drop", type="org.apache.flex.events.Event")]
+	[Event(name="drop", type="org.apache.royale.events.Event")]
 
 	/**
 	 * The complete event is dispatched when the drop operation has completed from the drop
@@ -97,14 +97,14 @@ package org.apache.flex.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	[Event(name="complete", type="org.apache.flex.events.Event")]
+	[Event(name="complete", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The SingleSelectionDropTargetBead enables items to be dropped onto single-selection List
 	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
 	 *  of rows within the same list.
      *
-	 *  @see org.apache.flex.html.beads.SingleSelectionDropIndicatorBead
+	 *  @see org.apache.royale.html.beads.SingleSelectionDropIndicatorBead
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

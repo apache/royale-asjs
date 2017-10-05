@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.html
+package org.apache.royale.text.html
 {
-	import org.apache.flex.text.engine.ContentElement;
-	import org.apache.flex.text.engine.FontDescription;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TabStop;
-	import org.apache.flex.text.engine.TextJustifier;
-	import org.apache.flex.text.engine.ITextFactory;
-	import org.apache.flex.text.engine.TextElement;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.html.TextLine;
-	import org.apache.flex.html.Span;
+	import org.apache.royale.text.engine.ContentElement;
+	import org.apache.royale.text.engine.FontDescription;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TabStop;
+	import org.apache.royale.text.engine.TextJustifier;
+	import org.apache.royale.text.engine.ITextFactory;
+	import org.apache.royale.text.engine.TextElement;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.html.TextLine;
+	import org.apache.royale.html.Span;
 	
-	import org.apache.flex.core.IParent;
+	import org.apache.royale.core.IParent;
 	
 	public class TextBlock implements ITextBlock
 	{
@@ -185,7 +185,7 @@ package org.apache.flex.text.html
 		private var lines:Array = [];
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IParent
+		 * @royaleignorecoercion org.apache.royale.core.IParent
 		 */
 		public function createTextLine(previousLine:ITextLine = null, width:Number = 1000000, lineOffset:Number = 0.0, fitSomething:Boolean = false):ITextLine
 		{

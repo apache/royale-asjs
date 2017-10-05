@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.TextFlowTableBlock;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.compose.TextFlowTableBlock;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
-	import org.apache.flex.utils.ObjectMap;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
+	import org.apache.royale.utils.ObjectMap;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
 	
 	/** 
 	 * The TableElement class is used for grouping together items into a table. 
@@ -407,7 +407,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Convenience method for checking if table has merged cells
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 */
 		public function hasMergedCells():Boolean
 		{
@@ -585,7 +585,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Removes the row at the index specified and the cells it contains.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function removeRowWithContentAt(idx:int):Array
 		{
@@ -681,7 +681,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Removes the column at the index specified and the cells it contains. 
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function removeColumnWithContentAt(idx:int):Array
 		{
@@ -716,7 +716,7 @@ package org.apache.flex.textLayout.elements {
 		/**
 		 * @private
 		 * Gets table coordinates which represents the space occupied by cells spanning rows or columns
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		private function getBlockedCoords(inRow:int = -1, inColumn:int = -1):Vector.<CellCoords>{
 			var coords:Vector.<CellCoords> = new Vector.<CellCoords>();
@@ -751,7 +751,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Sets the row and column indices of the cells in the table to match their logical position as described by the table columns and rows
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function normalizeCells():void
 		{
@@ -861,7 +861,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Sizes and positions the cells in the table. 
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function composeCells():void{
 			normalizeCells();
@@ -1042,7 +1042,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the previous table cell after the supplied table cell
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function getPreviousCell(tableCell:ITableCellElement):ITableCellElement {
 			var cell:ITableCellElement;
@@ -1079,7 +1079,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the table cell at the row and column specified.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function getCellAt(rowIndex:int, columnIndex:int):ITableCellElement {
 			var cell:ITableCellElement;
@@ -1168,7 +1168,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns a vector of all the damaged cells in the table.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		private function getDamagedCells():Vector.<ITableCellElement>{
 			var cells:Vector.<ITableCellElement> = new Vector.<ITableCellElement>();
@@ -1194,7 +1194,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns a vector of all the table cell elements in the table.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function getCells():Vector.<ITableCellElement> {
 			var cells:Vector.<ITableCellElement> = new Vector.<ITableCellElement>();
@@ -1210,7 +1210,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns an array of all the table cells.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		public function getCellsArray():Array {
 			var cells:Array = [];
@@ -1338,7 +1338,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 * Returns the cell at the specified row and column.
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/
 		private function getCellIndex(rowIdx:int,columnIdx:int):int{
 			if(rowIdx == 0 && columnIdx == 0)

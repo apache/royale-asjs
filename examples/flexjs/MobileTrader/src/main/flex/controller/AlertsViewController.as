@@ -22,13 +22,13 @@ package controller
 	import models.ProductsModel;
 	import models.Stock;
 	
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.utils.Timer;
-	import org.apache.flex.collections.ArrayList;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.Timer;
+	import org.apache.royale.collections.ArrayList;
 	
 	import views.AlertsView;
 	

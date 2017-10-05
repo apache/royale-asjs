@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 	
     [DefaultProperty("mxmlContent")]
 
@@ -93,7 +93,7 @@ package org.apache.flex.html.supportClasses
 		}
 		
         /**
-         *  @copy org.apache.flex.core.ItemRendererClassFactory#mxmlContent
+         *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

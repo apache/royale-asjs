@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
 	public interface IListItemElement extends IContainerFormattedElement
 	{
 		function normalizeNeedsInitialParagraph():Boolean;

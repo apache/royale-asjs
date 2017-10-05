@@ -20,6 +20,6 @@
 
 
 <componentPackage>
-	<component id="LocalStorage" class="org.apache.flex.storage.LocalStorage"/>
-	<component id="PermanentStorage" class="org.apache.flex.storage.PermanentStorage"/>
+	<component id="LocalStorage" class="org.apache.royale.storage.LocalStorage"/>
+	<component id="PermanentStorage" class="org.apache.royale.storage.PermanentStorage"/>
 </componentPackage>

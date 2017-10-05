@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.text.engine
+package org.apache.royale.text.engine
 {
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.EventDispatcher;
 
 	public class ContentElement
 	{

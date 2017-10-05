@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.geom.Point;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.geom.Point;
 
 	/**
 	 *  The IChartDataGroup is the interface for the parent element of

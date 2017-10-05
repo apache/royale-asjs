@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 COMPILE::SWF
 {
@@ -26,7 +26,7 @@ COMPILE::SWF
 
 COMPILE::JS
 {
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.EventDispatcher;
 }
 
 //--------------------------------------

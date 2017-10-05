@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.Event;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
 
     COMPILE::SWF
     {
@@ -31,8 +31,8 @@ package org.apache.flex.html
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.events.MouseEvent;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.MouseEvent;
     }
 
     //--------------------------------------
@@ -47,7 +47,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  Dispatched when ToggleTextButton is being selected/unselected.
@@ -57,7 +57,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
      *  The ToggleButton class is a TextButton that supports

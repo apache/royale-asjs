@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IPopUpHost;
-	import org.apache.flex.core.IUIBase;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IUIBase;
 
 	/**
 	 *  The UIUtils class is a collection of static functions that provide utility

@@ -16,35 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.ContainerBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IList;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.LayoutBase;
-	import org.apache.flex.core.Strand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.ScrollBarModel;
-	import org.apache.flex.html.beads.models.SingleLineBorderModel;
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.DataGroup;
-	import org.apache.flex.html.supportClasses.ScrollBar;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.ContainerBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IList;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.Strand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.ScrollBarModel;
+	import org.apache.royale.html.beads.models.SingleLineBorderModel;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.html.supportClasses.ScrollBar;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -82,7 +82,7 @@ package org.apache.flex.html.beads
 		protected var dataModel:IDataProviderModel;
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IItemRendererParent
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererParent
 		 */
 		public function get dataGroup():IItemRendererParent
 		{
@@ -142,7 +142,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

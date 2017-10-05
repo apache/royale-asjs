@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
+	import org.apache.royale.events.IRoyaleEvent;
 	
 	
 	/**
@@ -96,7 +96,7 @@ package org.apache.flex.textLayout.events
 		 *  The possible values are <code>ScrollEventDirection.VERTICAL</code>
 		 *  or <code>ScrollEventDirection.HORIZONTAL</code>.
 		 *
-		 *  @see org.apache.flex.textLayout.events.ScrollEventDirection
+		 *  @see org.apache.royale.textLayout.events.ScrollEventDirection
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9

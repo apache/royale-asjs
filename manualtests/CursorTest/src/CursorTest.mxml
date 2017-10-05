@@ -26,7 +26,7 @@
 				   >
 	<fx:Script>
         <![CDATA[
-            import org.apache.flex.css2.Cursors;
+            import org.apache.royale.css2.Cursors;
             
             private const dp:Array = [Cursors.AUTO, Cursors.DEFAULT, Cursors.POINTER, Cursors.MOVE, Cursors.TEXT,
                     "alias", "all-scroll", "cell", "context-menu", "col-resize", "copy", "crosshair",
@@ -41,12 +41,12 @@
         @namespace controllers "controllers.*";
         @namespace js "library://ns.apache.org/royale/basic";
 
-        @media -flex-flash
+        @media -royale-swf
         {
 
         global
         {
-            copy: ClassReference("org.apache.flex.css2.Copy");
+            copy: ClassReference("org.apache.royale.css2.Copy");
         }
         }
 

@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.textLayout.elements.IFlowElement;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.textLayout.elements.IFlowElement;
 			
 	/** A link element dispatches this event when it detects mouse activity.
 	 * The Text Layout Framework includes this special version of mouse events
@@ -59,15 +59,15 @@ package org.apache.flex.textLayout.events
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
-	 * @see org.apache.flex.textLayout.elements.LinkElement
-     * @see org.apache.flex.events.MouseEvent
+	 * @see org.apache.royale.textLayout.elements.LinkElement
+     * @see org.apache.royale.events.MouseEvent
 	 */
 	public class FlowElementMouseEvent extends Event
 	{
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>mouseDown</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_DOWN
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_DOWN
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -77,7 +77,7 @@ package org.apache.flex.textLayout.events
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>mouseUp</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_UP
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_UP
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -87,7 +87,7 @@ package org.apache.flex.textLayout.events
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>mouseMove</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_MOVE
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_MOVE
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -97,7 +97,7 @@ package org.apache.flex.textLayout.events
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>rollOver</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#ROLL_OVER
+		 * @see org.apache.royale.events.MouseEvent#ROLL_OVER
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -107,7 +107,7 @@ package org.apache.flex.textLayout.events
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>rollOut</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#ROLL_OUT
+		 * @see org.apache.royale.events.MouseEvent#ROLL_OUT
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -117,7 +117,7 @@ package org.apache.flex.textLayout.events
 		/**
 		 * Defines the value of the <code>type</code> property of a <code>click</code> event object. 
 		 * 
-		 * @see org.apache.flex.events.MouseEvent#CLICK
+		 * @see org.apache.royale.events.MouseEvent#CLICK
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -131,7 +131,7 @@ package org.apache.flex.textLayout.events
 		/** 
 		 * The FlowElement that dispatched the event.
 		 *
-		 * @see org.apache.flex.textLayout.elements.FlowElement
+		 * @see org.apache.royale.textLayout.elements.FlowElement
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
@@ -167,7 +167,7 @@ package org.apache.flex.textLayout.events
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
-		 * @see org.apache.flex.events.MouseEvent
+		 * @see org.apache.royale.events.MouseEvent
 		 */
 		public function get originalEvent():MouseEvent
 		{ return _originalEvent; }		

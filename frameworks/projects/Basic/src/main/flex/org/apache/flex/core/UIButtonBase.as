@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.utils.MouseEventConverter;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.utils.MouseEventConverter;
+	import org.apache.royale.events.IEventDispatcher;
 	
     //--------------------------------------
     //  Events
@@ -45,7 +45,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  The UIButtonBase class is the base class for most Buttons in a Royale
@@ -296,7 +296,7 @@ package org.apache.flex.core
 		[Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
         /**
-         *  @copy org.apache.flex.core.UIBase#width
+         *  @copy org.apache.royale.core.UIBase#width
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -347,7 +347,7 @@ package org.apache.flex.core
 		[Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
         /**
-         *  @copy org.apache.flex.core.UIBase#width
+         *  @copy org.apache.royale.core.UIBase#width
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -394,7 +394,7 @@ package org.apache.flex.core
 		}
 
         /**
-         *  @copy org.apache.flex.core.IUIBase#setHeight
+         *  @copy org.apache.royale.core.IUIBase#setHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -412,7 +412,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#setWidth
+         *  @copy org.apache.royale.core.IUIBase#setWidth
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -430,7 +430,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#setWidthAndHeight
+         *  @copy org.apache.royale.core.IUIBase#setWidthAndHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -456,7 +456,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#isWidthSizedToContent
+         *  @copy org.apache.royale.core.ILayoutChild#isWidthSizedToContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -469,7 +469,7 @@ package org.apache.flex.core
         }
 		        
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setX
+         *  @copy org.apache.royale.core.ILayoutChild#setX
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -482,7 +482,7 @@ package org.apache.flex.core
         }
                 
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setY
+         *  @copy org.apache.royale.core.ILayoutChild#setY
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -506,7 +506,7 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent
+         *  @copy org.apache.royale.core.ILayoutChild#isHeightSizedToContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -521,7 +521,7 @@ package org.apache.flex.core
         private var _model:IBeadModel;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#model
+         *  @copy org.apache.royale.core.UIBase#model
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -589,7 +589,7 @@ package org.apache.flex.core
 		private var _id:String;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -680,7 +680,7 @@ package org.apache.flex.core
 		private var _className:String;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#className
+         *  @copy org.apache.royale.core.UIBase#className
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -705,7 +705,7 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.UIBase#element
+         *  @copy org.apache.royale.core.UIBase#element
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -718,7 +718,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.UIBase#beads
+         *  @copy org.apache.royale.core.UIBase#beads
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -730,7 +730,7 @@ package org.apache.flex.core
 		private var strand:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.UIBase#addBead()
+         *  @copy org.apache.royale.core.UIBase#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -750,7 +750,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#getBeadByType()
+         *  @copy org.apache.royale.core.UIBase#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -768,7 +768,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#removeBead()
+         *  @copy org.apache.royale.core.UIBase#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -791,7 +791,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#addToParent()
+         *  @copy org.apache.royale.core.UIBase#addToParent()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -841,7 +841,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.UIBase#measurementBead
+         *  @copy org.apache.royale.core.UIBase#measurementBead
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -859,7 +859,7 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         *  @copy org.apache.royale.core.IUIBase#topMostEventDispatcher
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

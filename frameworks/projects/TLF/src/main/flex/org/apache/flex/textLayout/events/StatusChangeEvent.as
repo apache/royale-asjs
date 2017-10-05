@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-//	import org.apache.flex.events.ErrorEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+//	import org.apache.royale.events.ErrorEvent;
 	
 	/** 
 	 * A TextFlow instance dispatches this event when the status of a FlowElement changes. 
@@ -77,7 +77,7 @@ package org.apache.flex.textLayout.events
 		
 		/** 
 		 * The FlowElement instance that has experienced a change in status. 
-		 * @see org.apache.flex.textLayout.elements.FlowElement
+		 * @see org.apache.royale.textLayout.elements.FlowElement
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
@@ -99,7 +99,7 @@ package org.apache.flex.textLayout.events
 		 *   <li>SIZE_PENDING : String = "sizePending". Graphic element with auto or percentage width/height has completed loading but has not been recomposed.</li>
 		 * </ul>
 		 *
-		 * @see org.apache.flex.textLayout.elements.InlineGraphicElementStatus
+		 * @see org.apache.royale.textLayout.elements.InlineGraphicElementStatus
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
@@ -111,7 +111,7 @@ package org.apache.flex.textLayout.events
 		
 		/** 
 		 * The ErrorEvent object that was dispatched as a result of the status change. 
-		 * @see org.apache.flex.events.ErrorEvent
+		 * @see org.apache.royale.events.ErrorEvent
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 

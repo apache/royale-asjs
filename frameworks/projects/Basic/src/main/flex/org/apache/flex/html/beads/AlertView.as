@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IAlertModel;
-	import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IMeasurementBead;
-    import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.Alert;
-	import org.apache.flex.html.ControlBar;
-    import org.apache.flex.html.Label;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.CSSContainerUtils;
+    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IAlertModel;
+	import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IMeasurementBead;
+    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.Alert;
+	import org.apache.royale.html.ControlBar;
+    import org.apache.royale.html.Label;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.utils.CSSContainerUtils;
 	
 	/**
-	 *  The AlertView class creates the visual elements of the org.apache.flex.html.Alert
+	 *  The AlertView class creates the visual elements of the org.apache.royale.html.Alert
 	 *  component. The job of the view bead is to put together the parts of the Alert, such as the 
 	 *  title bar, message, and various buttons, within the space of the Alert component strand.
 	 *  
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 		private var _noButton:TextButton;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

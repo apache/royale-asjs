@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IRenderedObject;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.graphics.PathBuilder;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.graphics.PathBuilder;
 
 	COMPILE::SWF {
 	import flash.display.Graphics;
@@ -32,7 +32,7 @@ package org.apache.flex.svg
 
 		COMPILE::JS
 		{
-			import org.apache.flex.utils.UIDUtil;
+			import org.apache.royale.utils.UIDUtil;
 		}
 	/**
 	 *  The ClipBead bead allows you to clip
@@ -69,7 +69,7 @@ package org.apache.flex.svg
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

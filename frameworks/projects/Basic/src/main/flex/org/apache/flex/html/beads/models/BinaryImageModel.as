@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBinaryImageModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.utils.BinaryData;
+	import org.apache.royale.core.IBinaryImageModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.BinaryData;
 	
 	/**
-	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.Image
+	 *  The ImageModel class bead defines the data associated with an org.apache.royale.html.Image
 	 *  component, namely the source of the image.
 	 *
 	 *  @langversion 3.0
@@ -62,7 +62,7 @@ package org.apache.flex.html.beads.models
 		 *  The BinaryData of the image.
 		 *  This is used to set the image using binary content retrieved using HTTP requests or File APIs.
 		 * 
-		 *  @copy org.apache.flex.core.IImageModel#binary
+		 *  @copy org.apache.royale.core.IImageModel#binary
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

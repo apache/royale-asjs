@@ -25,7 +25,7 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[	
-            import org.apache.flex.core.ValuesManager;
+            import org.apache.royale.core.ValuesManager;
             
             /*
 			private var currentTheme:String = "beige";

@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package dialogs
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.beads.PanelView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.beads.PanelView;
 	
 	public class DialogView extends PanelView
 	{

@@ -19,9 +19,9 @@
 package flexUnitTests {
 
 
-    import org.apache.flex.utils.Endian;
+    import org.apache.royale.utils.Endian;
     import flexunit.framework.Assert;
-    import org.apache.flex.utils.BinaryData
+    import org.apache.royale.utils.BinaryData
 
 
     public class BinaryDataTesterTest {

@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion {
-	import org.apache.flex.reflection.getQualifiedClassName;
+package org.apache.royale.textLayout.conversion {
+	import org.apache.royale.reflection.getQualifiedClassName;
 	
 	// [ExcludeClass]
 	/**

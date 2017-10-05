@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.core.UIBase;
-    import org.apache.flex.mdl.supportClasses.IMdlTextColor;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.mdl.supportClasses.IMdlTextColor;
 
     /**
      *  The MdlTextColor apply textColor and textColorWeight provided by google style color.
@@ -43,7 +43,7 @@ package org.apache.flex.mdl.beads
 
         private var _textColor:String = "";
         /**
-         *  @copy org.apache.flex.mdl.supportClasses.IMdlTextColor#textColor
+         *  @copy org.apache.royale.mdl.supportClasses.IMdlTextColor#textColor
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -62,7 +62,7 @@ package org.apache.flex.mdl.beads
 
         private var _textColorWeight:String = "";
         /**
-         *  @copy org.apache.flex.mdl.supportClasses.IMdlTextColor#textColorWeight
+         *  @copy org.apache.royale.mdl.supportClasses.IMdlTextColor#textColorWeight
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -81,7 +81,7 @@ package org.apache.flex.mdl.beads
 
         private var _strand:IStrand;
         /**
-         * @copy org.apache.flex.core.IBead#strand
+         * @copy org.apache.royale.core.IBead#strand
          *
          * @royaleignorecoercion HTMLElement
          *

@@ -50,7 +50,7 @@ limitations under the License.
     <fx:Script>
     	<![CDATA[
     		// import required for Ease functions in data binding.
-    		import org.apache.flex.createjs.tween.Ease;
+    		import org.apache.royale.createjs.tween.Ease;
     	]]>
     </fx:Script>
     

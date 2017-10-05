@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
     COMPILE::SWF
     {
@@ -25,8 +25,8 @@ package org.apache.flex.utils
 	    import flash.display.Stage;
     }
 
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.geom.Point;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.geom.Point;
 
 	/**
 	 *  The PointUtils class is a collection of static functions that convert
@@ -59,12 +59,12 @@ package org.apache.flex.utils
 		 *  @productversion Royale 0.0
          *  @royaleignorecoercion HTMLElement
 		 */
-		public static function globalToLocal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+		public static function globalToLocal( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
 		{
             COMPILE::SWF
             {
                 var fpt:flash.geom.Point = DisplayObject(local.$displayObject).globalToLocal(new flash.geom.Point(pt.x,pt.y));
-                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+                return new org.apache.royale.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
             {
@@ -83,7 +83,7 @@ package org.apache.flex.utils
                     }
                 }
                 while (element);
-                return new org.apache.flex.geom.Point(x, y);
+                return new org.apache.royale.geom.Point(x, y);
 
             }
 		}
@@ -100,7 +100,7 @@ package org.apache.flex.utils
          *  @productversion Royale 0.0
          *  @royaleignorecoercion HTMLElement
          */
-        public static function localToGlobal( pt:org.apache.flex.geom.Point, local:Object ):org.apache.flex.geom.Point
+        public static function localToGlobal( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
         {
             COMPILE::SWF
             {
@@ -109,7 +109,7 @@ package org.apache.flex.utils
 					return pt;
 				}
                 var fpt:flash.geom.Point = DisplayObject(local.$displayObject).localToGlobal(new flash.geom.Point(pt.x,pt.y));
-                return new org.apache.flex.geom.Point(fpt.x, fpt.y);
+                return new org.apache.royale.geom.Point(fpt.x, fpt.y);
             }
             COMPILE::JS
             {
@@ -129,7 +129,7 @@ package org.apache.flex.utils
 	                }
                 	while (element);
 				}
-                return new org.apache.flex.geom.Point(x, y);
+                return new org.apache.royale.geom.Point(x, y);
             }
         }
 	}

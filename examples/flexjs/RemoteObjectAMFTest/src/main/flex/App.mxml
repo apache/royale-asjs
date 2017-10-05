@@ -24,8 +24,8 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-			import org.apache.flex.net.events.FaultEvent;
-			import org.apache.flex.net.events.ResultEvent;
+			import org.apache.royale.net.events.FaultEvent;
+			import org.apache.royale.net.events.ResultEvent;
             import valueObjects.ClientValueObject;
             import valueObjects.Product;
 			

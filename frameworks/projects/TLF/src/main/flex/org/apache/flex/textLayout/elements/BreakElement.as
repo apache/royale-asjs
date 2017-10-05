@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
+package org.apache.royale.textLayout.elements {
 	/** 
 	 * The BreakElement class defines a line break, which provides for creating a line break in the text without 
 	 * creating a new paragraph. It inserts a U+2028 character in the text of the paragraph.

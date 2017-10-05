@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.jquery
+package org.apache.royale.jquery
 {
-	import org.apache.flex.html.TextButton;
+	import org.apache.royale.html.TextButton;
 	
 	COMPILE::JS {
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	
-	public class TextButton extends org.apache.flex.html.TextButton
+	public class TextButton extends org.apache.royale.html.TextButton
 	{
 		public function TextButton()
 		{
@@ -32,7 +32,7 @@ package org.apache.flex.jquery
 		}
 	
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

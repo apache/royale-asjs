@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.TextButton;
+	import org.apache.royale.html.TextButton;
 	
-	public class TextButton extends org.apache.flex.html.TextButton
+	public class TextButton extends org.apache.royale.html.TextButton
 	{
 		public function TextButton()
 		{

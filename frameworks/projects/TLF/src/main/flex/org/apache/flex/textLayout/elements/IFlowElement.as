@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	public interface IFlowElement extends ITextLayoutFormat
 	{

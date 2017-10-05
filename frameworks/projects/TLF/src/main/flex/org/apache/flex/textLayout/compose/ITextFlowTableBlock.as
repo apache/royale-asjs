@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.elements.CellContainer;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableElement;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
+	import org.apache.royale.textLayout.elements.CellContainer;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableElement;
+	import org.apache.royale.textLayout.elements.TableBlockContainer;
 
 	public interface ITextFlowTableBlock extends ITextFlowLine
 	{

@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObjectContainer;
 	
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.html.Container;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.Container;
 	
 	/**
-	 *  The ControlBarMeasurementBead class measures the size of a org.apache.flex.html.ControlBar
+	 *  The ControlBarMeasurementBead class measures the size of a org.apache.royale.html.ControlBar
 	 *  component.
 	 *  
 	 *  @langversion 3.0
@@ -101,7 +101,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

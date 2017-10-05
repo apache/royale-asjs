@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl
+package org.apache.royale.mdl
 {
-	import org.apache.flex.core.IChild;
-    import org.apache.flex.core.IItemRenderer;
+	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IItemRenderer;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-		import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
     }
     
 	/**
@@ -91,13 +91,13 @@ package org.apache.flex.mdl
 
 
         /**
-         *  @copy org.apache.flex.core.IParent#addElement()
+         *  @copy org.apache.royale.core.IParent#addElement()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -161,7 +161,7 @@ package org.apache.flex.mdl
         private var _isTbodyAddedToParent:Boolean = false;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

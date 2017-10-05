@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.CheckBox;
+	import org.apache.royale.html.CheckBox;
 	
-	public class CheckBox extends org.apache.flex.html.CheckBox 
+	public class CheckBox extends org.apache.royale.html.CheckBox 
 	{
 	}
 }

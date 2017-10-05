@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	/** Interface to a format resolver. An implementation allows you to attach a styling mechanism of your choosing, such as
 	 *  Flex CSS styling and named styles, to a ITextFlow.
 	 *
@@ -26,7 +26,7 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 * 
-	 * @see org.apache.flex.textLayout.elements.ITextFlow#formatResolver ITextFlow.formatResolver
+	 * @see org.apache.royale.textLayout.elements.ITextFlow#formatResolver ITextFlow.formatResolver
 	 */
 	 
 	public interface IFormatResolver 

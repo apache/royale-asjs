@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package dataTable
 {
-	import org.apache.flex.html.supportClasses.DataGridColumn;
+	import org.apache.royale.html.supportClasses.DataGridColumn;
 	
 	/**
 	 * DataColumn is exactly like DataGridColumn

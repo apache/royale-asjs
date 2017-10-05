@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IStrand;
 	
 	/**
-	 *  The TextButtonMeasurementBead class helps measure a org.apache.flex.html.TextButton.
+	 *  The TextButtonMeasurementBead class helps measure a org.apache.royale.html.TextButton.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  The overall width of the org.apache.flex.html.TextButton.
+		 *  The overall width of the org.apache.royale.html.TextButton.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -59,7 +59,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 * The overall height of the org.apache.flex.html.TextButton
+		 * The overall height of the org.apache.royale.html.TextButton
 		 */
 		public function get measuredHeight():Number
 		{
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

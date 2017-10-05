@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements.utils
+package org.apache.royale.textLayout.elements.utils
 {
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.FontDescription;
-	import org.apache.flex.text.engine.FontMetrics;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextBaseline;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.text.engine.TypographicCase;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.formats.BaselineShift;
-	import org.apache.flex.textLayout.formats.ColorName;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TLFTypographicCase;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.utils.LocaleUtil;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.factory.TLFFactory;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.FontDescription;
+	import org.apache.royale.text.engine.FontMetrics;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextBaseline;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.text.engine.TypographicCase;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.formats.BaselineShift;
+	import org.apache.royale.textLayout.formats.ColorName;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TLFTypographicCase;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.utils.LocaleUtil;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.factory.TLFFactory;
 	public class GeometricElementUtils
 	{
 		/** @private */

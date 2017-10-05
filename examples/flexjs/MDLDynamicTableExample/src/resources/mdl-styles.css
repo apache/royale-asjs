@@ -25,7 +25,7 @@
 
 .customTableStyle
 {
-	IDataProviderItemRendererMapper: ClassReference("org.apache.flex.html.beads.DynamicItemsRendererFactoryForArrayListData");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData");
     IItemRenderer: ClassReference("itemRenderers.CustomTableRowItemRenderer");
 }
 

@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.textLayout.elements.TextFlow;
+package org.apache.royale.textLayout.events {
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.elements.TextFlow;
 	
 	/** 
 	 * A TextFlow instance dispatches this each time it is marked as damaged.  Damage can be caused by changes to the model or changes to the layout.
 	 * 
-	 * @see org.apache.flex.textLayout.elements.TextFlow 
+	 * @see org.apache.royale.textLayout.elements.TextFlow 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 

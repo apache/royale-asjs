@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-	import org.apache.flex.core.TransformBeadBase;
-	import org.apache.flex.geom.Matrix;
+	import org.apache.royale.core.TransformBeadBase;
+	import org.apache.royale.geom.Matrix;
 
 	public class TransformBead extends TransformBeadBase
 	{
@@ -33,7 +33,7 @@ package org.apache.flex.svg
 			{
 				return;
 			}			
-			var element:org.apache.flex.core.WrappedHTMLElement = host.transformElement;
+			var element:org.apache.royale.core.WrappedHTMLElement = host.transformElement;
 			(element.parentNode as HTMLElement).setAttribute("overflow", "visible");
 			(element.parentNode as HTMLElement).setAttribute("pointer-events", "none");
 			element.setAttribute("pointer-events", "visiblePainted");

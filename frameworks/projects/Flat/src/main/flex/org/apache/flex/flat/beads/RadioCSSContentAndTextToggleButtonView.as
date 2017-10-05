@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat.beads
+package org.apache.royale.flat.beads
 {
     /**
      *  The RadioCSSContentAndTextToggleButtonView class is the default view for
-     *  the org.apache.flex.flat.RadioButton class.
+     *  the org.apache.royale.flat.RadioButton class.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

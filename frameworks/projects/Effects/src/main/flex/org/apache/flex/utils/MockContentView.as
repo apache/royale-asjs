@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 	COMPILE::SWF
 	{
@@ -25,16 +25,16 @@ package org.apache.flex.utils
 	}
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContentView;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.events.IEventDispatcher;
 
 	public class MockContentView implements IContentView, IParentIUIBase, ILayoutView
 	{

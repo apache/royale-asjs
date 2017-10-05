@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.MementoList;
-	import org.apache.flex.textLayout.edit.ModelEdit;
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.MementoList;
+	import org.apache.royale.textLayout.edit.ModelEdit;
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 
 
@@ -80,7 +80,7 @@ package org.apache.flex.textLayout.operations {
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function get parent():IFlowGroupElement
 		{
@@ -149,8 +149,8 @@ package org.apache.flex.textLayout.operations {
 		
 		/**
 		 *  @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISpanElement
 		 */
 		public override function doOperation():Boolean
 		{

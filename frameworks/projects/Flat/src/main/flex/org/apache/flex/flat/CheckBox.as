@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.flat
+package org.apache.royale.flat
 {
     COMPILE::SWF
     {
-        import org.apache.flex.html.CheckBox;            
+        import org.apache.royale.html.CheckBox;            
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.events.Event;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -40,7 +40,7 @@ package org.apache.flex.flat
      *  @productversion Royale 0.0
      */
     COMPILE::SWF
-	public class CheckBox extends org.apache.flex.html.CheckBox
+	public class CheckBox extends org.apache.royale.html.CheckBox
 	{
         /**
          *  Constructor.
@@ -68,7 +68,7 @@ package org.apache.flex.flat
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.flex.events.Event")]
+    [Event(name="change", type="org.apache.royale.events.Event")]
     
     COMPILE::JS
     public class CheckBox extends UIBase
@@ -80,7 +80,7 @@ package org.apache.flex.flat
         private var textNode:Text;
         
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLSpanElement

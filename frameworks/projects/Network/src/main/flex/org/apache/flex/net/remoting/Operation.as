@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net.remoting
+package org.apache.royale.net.remoting
 {
-    import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.net.RemoteObject;
-    import org.apache.flex.net.Responder;
-    import org.apache.flex.net.remoting.messages.AcknowledgeMessage;
-    import org.apache.flex.net.remoting.messages.CommandMessage;
-    import org.apache.flex.net.remoting.messages.RemotingMessage;
-    import org.apache.flex.net.events.FaultEvent;
-    import org.apache.flex.net.events.ResultEvent;
-    import org.apache.flex.reflection.getClassByAlias;
-    import org.apache.flex.reflection.registerClassAlias;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.net.RemoteObject;
+    import org.apache.royale.net.Responder;
+    import org.apache.royale.net.remoting.messages.AcknowledgeMessage;
+    import org.apache.royale.net.remoting.messages.CommandMessage;
+    import org.apache.royale.net.remoting.messages.RemotingMessage;
+    import org.apache.royale.net.events.FaultEvent;
+    import org.apache.royale.net.events.ResultEvent;
+    import org.apache.royale.reflection.getClassByAlias;
+    import org.apache.royale.reflection.registerClassAlias;
     
 
 	public class Operation extends EventDispatcher

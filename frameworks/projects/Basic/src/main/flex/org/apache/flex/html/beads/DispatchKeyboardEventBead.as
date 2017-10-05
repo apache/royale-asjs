@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.utils.KeyboardEventConverter;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.KeyboardEventConverter;
 	
 	COMPILE::JS
 	{
-		import org.apache.flex.core.IRenderedObject;
+		import org.apache.royale.core.IRenderedObject;
 		import goog.events;
 	}
 	
 	COMPILE::SWF
 	{
 		import flash.events.KeyboardEvent;
-		import org.apache.flex.html.beads.ITextFieldView;
+		import org.apache.royale.html.beads.ITextFieldView;
 	}
 	
 	/**
@@ -63,7 +63,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -120,7 +120,7 @@ package org.apache.flex.html.beads
 		{
 			// this will otherwise bubble an event of flash.events.Event
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
+			var newEvent:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -135,7 +135,7 @@ package org.apache.flex.html.beads
 		protected function keyEventHandler(event:KeyboardEvent):void
 		{
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
+			var newEvent:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{

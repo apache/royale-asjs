@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IScrollBarModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.beads.IScrollBarView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IScrollBarModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.IScrollBarView;
 
     /**
      *  The ScrollBarMouseControllerBase class is the base class
@@ -80,7 +80,7 @@ package org.apache.flex.html.beads.controllers
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

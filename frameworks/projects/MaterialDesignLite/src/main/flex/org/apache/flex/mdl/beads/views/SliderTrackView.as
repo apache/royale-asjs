@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.views
+package org.apache.royale.mdl.beads.views
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;			
 	
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.core.IChild;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IChild;
 	
 	/**
-	 *  The SliderTrackView class creates the track area for the org.apache.flex.mdl.Slider
+	 *  The SliderTrackView class creates the track area for the org.apache.royale.mdl.Slider
 	 *  component (swf version).
 	 *  
 	 *  @langversion 3.0
@@ -79,13 +79,13 @@ package org.apache.flex.mdl.beads.views
 		private var hitArea:Shape;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function set strand(value:IStrand):void
 		{

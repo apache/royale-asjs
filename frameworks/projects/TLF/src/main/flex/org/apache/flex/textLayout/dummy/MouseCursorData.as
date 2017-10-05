@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.dummy {
-	import org.apache.flex.geom.Point;
+package org.apache.royale.textLayout.dummy {
+	import org.apache.royale.geom.Point;
 	public class MouseCursorData {
 		public var data : Vector.<BitmapData>;
 		public var frameRate : Number;

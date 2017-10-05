@@ -16,41 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.text.engine.Kerning;
-	import org.apache.flex.textLayout.conversion.importers.CaseInsensitiveTLFFormatImporter;
-	import org.apache.flex.textLayout.conversion.importers.FontImporter;
-	import org.apache.flex.textLayout.conversion.importers.HtmlCustomParaFormatImporter;
-	import org.apache.flex.textLayout.conversion.importers.TextFormatImporter;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.BreakElement;
-	import org.apache.flex.textLayout.elements.DivElement;
-	import org.apache.flex.textLayout.elements.ElementHelper;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.InlineGraphicElement;
-	import org.apache.flex.textLayout.elements.LinkElement;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElement;
-	import org.apache.flex.textLayout.elements.SubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.TabElement;
-	import org.apache.flex.textLayout.elements.TextFlow;
-	import org.apache.flex.textLayout.factory.TLFFactory;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.LeadingModel;
-	import org.apache.flex.textLayout.formats.ListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ListStyleType;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.PropertyFactory;
-	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.text.engine.Kerning;
+	import org.apache.royale.textLayout.conversion.importers.CaseInsensitiveTLFFormatImporter;
+	import org.apache.royale.textLayout.conversion.importers.FontImporter;
+	import org.apache.royale.textLayout.conversion.importers.HtmlCustomParaFormatImporter;
+	import org.apache.royale.textLayout.conversion.importers.TextFormatImporter;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.BreakElement;
+	import org.apache.royale.textLayout.elements.DivElement;
+	import org.apache.royale.textLayout.elements.ElementHelper;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.InlineGraphicElement;
+	import org.apache.royale.textLayout.elements.LinkElement;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElement;
+	import org.apache.royale.textLayout.elements.SubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.TabElement;
+	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.factory.TLFFactory;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.LeadingModel;
+	import org.apache.royale.textLayout.formats.ListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ListStyleType;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.PropertyFactory;
+	import org.apache.royale.textLayout.property.PropertyUtil;
+	import org.apache.royale.utils.ObjectMap;
 
 	// [ExcludeClass]
 	/** 
@@ -821,7 +821,7 @@ package org.apache.flex.textLayout.conversion
 		 */
 		static public function parseBold(importer:TextFieldHtmlImporter, xmlToParse:XML, parent:IFlowGroupElement):void {
 			var newFormat:TextLayoutFormat = new TextLayoutFormat();
-			newFormat.fontWeight = org.apache.flex.text.engine.FontWeight.BOLD;
+			newFormat.fontWeight = org.apache.royale.text.engine.FontWeight.BOLD;
 
 			parseChildrenUnderNewActiveFormatWithImpliedParaFormat(importer, xmlToParse, parent, newFormat);
 		}
@@ -832,7 +832,7 @@ package org.apache.flex.textLayout.conversion
 		 */
 		static public function parseItalic(importer:TextFieldHtmlImporter, xmlToParse:XML, parent:IFlowGroupElement):void {
 			var newFormat:TextLayoutFormat = new TextLayoutFormat();
-			newFormat.fontStyle = org.apache.flex.text.engine.FontPosture.ITALIC;
+			newFormat.fontStyle = org.apache.royale.text.engine.FontPosture.ITALIC;
 			parseChildrenUnderNewActiveFormatWithImpliedParaFormat(importer, xmlToParse, parent, newFormat);
 		}
 
@@ -852,7 +852,7 @@ package org.apache.flex.textLayout.conversion
 		 */
 		static public function parseUnderline(importer:TextFieldHtmlImporter, xmlToParse:XML, parent:IFlowGroupElement):void {
 			var newFormat:TextLayoutFormat = new TextLayoutFormat();
-			newFormat.textDecoration = org.apache.flex.textLayout.formats.TextDecoration.UNDERLINE;
+			newFormat.textDecoration = org.apache.royale.textLayout.formats.TextDecoration.UNDERLINE;
 			parseChildrenUnderNewActiveFormatWithImpliedParaFormat(importer, xmlToParse, parent, newFormat);
 		}
 

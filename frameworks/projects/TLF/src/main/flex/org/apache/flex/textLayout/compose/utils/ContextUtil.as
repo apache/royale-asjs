@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.compose.ISWFContext;
 
 	public class ContextUtil
 	{

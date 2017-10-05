@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 	/** 
 	 * A ITextFlow instance dispatches this event after a compose operation completes. 
@@ -43,7 +43,7 @@ package org.apache.flex.textLayout.events
 	 * The same reasoning applies to the <code>updateToController()</code> method.
 	 * </p>
 	 *
-	 * @see org.apache.flex.textLayout.elements.ITextFlow 
+	 * @see org.apache.royale.textLayout.elements.ITextFlow 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 

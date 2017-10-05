@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.collections.FlattenedList;
-	import org.apache.flex.html.Tree
-	import org.apache.flex.events.ItemClickedEvent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.collections.FlattenedList;
+	import org.apache.royale.html.Tree
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
-	 *  org.apache.flex.html.Tree. This controller watches for selection
+	 *  org.apache.royale.html.Tree. This controller watches for selection
 	 *  events on the tree item renderers and uses those events to open
 	 *  or close nodes of the tree.
 	 *  

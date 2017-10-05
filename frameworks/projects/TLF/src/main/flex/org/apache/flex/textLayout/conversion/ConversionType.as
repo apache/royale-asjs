@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
 	/**
 	 * Values for the format of exported text.
@@ -25,8 +25,8 @@ package org.apache.flex.textLayout.conversion
 	 * the export() method in the ITextExporter interface and the
 	 * TextConverter class.
 	 *
-	 * @see org.apache.flex.textLayout.conversion.ITextExporter#export()
-	 * @see org.apache.flex.textLayout.conversion.TextConverter#export()
+	 * @see org.apache.royale.textLayout.conversion.ITextExporter#export()
+	 * @see org.apache.royale.textLayout.conversion.TextConverter#export()
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0

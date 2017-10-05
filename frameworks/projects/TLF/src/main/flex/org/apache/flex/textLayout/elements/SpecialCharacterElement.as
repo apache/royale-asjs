@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.WhiteSpaceCollapse;
-	import org.apache.flex.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.WhiteSpaceCollapse;
+	import org.apache.royale.textLayout.debug.assert;
 
 	/** The SpecialCharacterElement class is an abstract base class for elements that represent special characters.
 	 *
@@ -59,7 +59,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ISpanElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ISpanElement
 		 */
 		public override function mergeToPreviousIfPossible():Boolean
 		{

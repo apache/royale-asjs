@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITitleBarModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.html.Panel;
-	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.html.beads.PanelView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITitleBarModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.Panel;
+	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.html.beads.PanelView;
 	
 	public class AccordionItemRenderer extends Panel implements ISelectableItemRenderer, ICollapsible
 	{

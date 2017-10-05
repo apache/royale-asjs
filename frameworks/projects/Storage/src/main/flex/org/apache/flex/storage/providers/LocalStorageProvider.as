@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.providers
+package org.apache.royale.storage.providers
 {
-	import org.apache.flex.storage.IWebStorage;
+	import org.apache.royale.storage.IWebStorage;
 
 COMPILE::SWF {
 	import flash.net.SharedObject;

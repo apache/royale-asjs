@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.file
+package org.apache.royale.storage.file
 {
 COMPILE::SWF {
 	import flash.filesystem.File;

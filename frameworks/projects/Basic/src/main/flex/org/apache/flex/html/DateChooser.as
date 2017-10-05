@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.html.Group;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.html.Group;
 
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
 	 */
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The DateChooser class is a component that displays a calendar.

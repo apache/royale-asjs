@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IPanelModel;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.html.beads.PanelView;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IPanelModel;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.html.beads.PanelView;
+	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
     
-	[Event(name="close", type="org.apache.flex.events.Event")]
+	[Event(name="close", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The Panel class is a Container component capable of parenting other
@@ -37,11 +37,11 @@ package org.apache.flex.html
      *  will instantiate, by default, an ControlBar. 
 	 *  The Panel uses the following bead types:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Panel that includes the title and whether
+	 *  org.apache.royale.core.IBeadModel: the data model for the Panel that includes the title and whether
 	 *  or not to display the close button.
-	 *  org.apache.flex.core.IBeadView: creates the parts of the Panel.
-	 *  org.apache.flex.core.IBorderBead: if present, draws a border around the Panel.
-	 *  org.apache.flex.core.IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  org.apache.royale.core.IBeadView: creates the parts of the Panel.
+	 *  org.apache.royale.core.IBorderBead: if present, draws a border around the Panel.
+	 *  org.apache.royale.core.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
      *  @toplevel
 	 *  @see PanelWithControlBar
@@ -85,7 +85,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  The string to display in the org.apache.flex.html.TitleBar.
+		 *  The string to display in the org.apache.royale.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -102,7 +102,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  The HTML string to display in the org.apache.flex.html.TitleBar.
+		 *  The HTML string to display in the org.apache.royale.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -119,7 +119,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 * Whether or not to show a Close button in the org.apache.flex.html.TitleBar.
+		 * Whether or not to show a Close button in the org.apache.royale.html.TitleBar.
 		 */
 		public function get showCloseButton():Boolean
 		{
@@ -133,7 +133,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -144,7 +144,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
@@ -155,7 +155,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function getElementIndex(c:IChild):int
 		{
@@ -165,7 +165,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -175,7 +175,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function get numElements():int
 		{
@@ -185,7 +185,7 @@ package org.apache.flex.html
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.flex.html.beads.PanelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function getElementAt(index:int):IChild
 		{

@@ -20,7 +20,7 @@ limitations under the License.
 <actionScriptProperties analytics="false" mainApplicationPath="Graphics.as" projectUUID="ff3e0531-b7c9-4b0c-9146-05c27a47f837" version="11">
   <compiler additionalCompilerArguments="-locale en_US&#10;-define=COMPILE::SWF,false&#10;-define=COMPILE::JS,true&#10;-load-config=../../../../../../../js-config.xml&#10;-load-config+=../config/compile-js-config.xml" autoRSLOrdering="true" copyDependentFiles="false" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="target" removeUnusedRSL="true" sourceFolderPath="src/main/config" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="${FLEX_ASJS}/frameworks/projects/Graphics/src/main/flex"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="${FLEX_ASJS}/frameworks/projects/Graphics/src/main/royale"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">

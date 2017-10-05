@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.fa
+package org.apache.royale.fa
 {
     public class FontAwesomeIconSize
     {

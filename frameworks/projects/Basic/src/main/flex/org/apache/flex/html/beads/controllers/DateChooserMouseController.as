@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {	
-	import org.apache.flex.html.beads.DateChooserView;
-	import org.apache.flex.html.beads.models.DateChooserModel;
-	import org.apache.flex.html.supportClasses.DateChooserButton;
-    import org.apache.flex.html.supportClasses.DateChooserList;
+	import org.apache.royale.html.beads.DateChooserView;
+	import org.apache.royale.html.beads.models.DateChooserModel;
+	import org.apache.royale.html.supportClasses.DateChooserButton;
+    import org.apache.royale.html.supportClasses.DateChooserList;
 	
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 *  The DateChooserMouseController class is responsible for listening to
@@ -58,7 +58,7 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

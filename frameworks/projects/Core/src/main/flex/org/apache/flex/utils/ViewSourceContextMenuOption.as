@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 
 COMPILE::SWF
@@ -29,9 +29,9 @@ COMPILE::SWF
     import flash.ui.ContextMenuItem;
 }
 
-import org.apache.flex.core.IInitialViewApplication;
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IStrand;
+import org.apache.royale.core.IInitialViewApplication;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IStrand;
 
 /**
  *  The ViewSourceContextMenuOption class is a class that 
@@ -61,7 +61,7 @@ public class ViewSourceContextMenuOption implements IBead
 	private var _strand:IStrand;
 	
     /**
-     *  @copy org.apache.flex.core.UIBase#strand
+     *  @copy org.apache.royale.core.UIBase#strand
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

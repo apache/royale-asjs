@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property
+package org.apache.royale.textLayout.property
 {
-	import org.apache.flex.textLayout.debug.assert;
+	import org.apache.royale.textLayout.debug.assert;
 		
 	// [ExcludeClass]
 	/** An property description with an enumerated string as its value. @private */

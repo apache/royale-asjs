@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.net
+package org.apache.royale.net
 {
     COMPILE::SWF
     {
-        import org.apache.flex.events.EventDispatcher;            
+        import org.apache.royale.events.EventDispatcher;            
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.ElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
     }
     
     /**

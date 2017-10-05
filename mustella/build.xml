@@ -41,8 +41,8 @@
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
-            <jvmarg value="-Dflexlib=${FLEX_HOME}/frameworks" />
-            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <jvmarg value="-Droyalelib=${FLEX_HOME}/frameworks" />
+            <arg value="+royalelib=${FLEX_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSFlex" />
@@ -67,8 +67,8 @@
         <java jar="${FALCONJX_HOME}/lib/compc.jar" fork="true" >
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
-            <jvmarg value="-Dflexlib=${FLEX_HOME}/frameworks" />
-            <arg value="+flexlib=${FLEX_HOME}/frameworks" />
+            <jvmarg value="-Droyalelib=${FLEX_HOME}/frameworks" />
+            <arg value="+royalelib=${FLEX_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
@@ -82,7 +82,7 @@
     
     <target name="check-compiler" depends="check-falcon-home,check-falconjx-home">
         <path id="lib.path">
-            <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-flexTasks.jar"/>
+            <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
@@ -95,7 +95,7 @@
         property="FALCON_HOME"
         value="${ROYALE_HOME}"/>
         
-        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in flex-falcon repo or the root of a Royale SDK"
+        <fail message="FALCON_HOME must be set to a folder with a lib sub-folder containing falcon-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
         unless="FALCON_HOME"/>
     </target>
     
@@ -107,7 +107,7 @@
         property="FALCONJX_HOME"
         value="${ROYALE_HOME}/js"/>
         
-        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in flex-falcon repo or the js folder of a Royale SDK"
+        <fail message="FALCONJX_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
         unless="FALCONJX_HOME"/>
     </target>
     

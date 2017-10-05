@@ -18,7 +18,7 @@
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
 
-package org.apache.flex.net.remoting.amf
+package org.apache.royale.net.remoting.amf
 {
 
 COMPILE::SWF
@@ -31,11 +31,11 @@ import flash.net.NetConnection;
 import flash.net.ObjectEncoding;
 }
     
-import org.apache.flex.net.Responder;
-import org.apache.flex.net.remoting.messages.ActionMessage;
-import org.apache.flex.net.remoting.messages.ErrorMessage;
-import org.apache.flex.net.remoting.messages.MessageBody;
-import org.apache.flex.net.remoting.messages.MessageHeader;
+import org.apache.royale.net.Responder;
+import org.apache.royale.net.remoting.messages.ActionMessage;
+import org.apache.royale.net.remoting.messages.ErrorMessage;
+import org.apache.royale.net.remoting.messages.MessageBody;
+import org.apache.royale.net.remoting.messages.MessageHeader;
     
 /**
  *  Send data via AMF to a server.

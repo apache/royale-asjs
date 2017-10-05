@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	COMPILE::SWF {
 		import flash.events.Event;
@@ -24,13 +24,13 @@ package org.apache.flex.html.beads
 		import flash.net.URLRequest;
 	}
 
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.beads.models.WebBrowserModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.models.WebBrowserModel;
 
 	/**
 	 *  The WebBrowserView creates an instance of HTMLLoader to load
@@ -73,7 +73,7 @@ package org.apache.flex.html.beads
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -100,7 +100,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function loadPage(event:org.apache.flex.events.Event):void
+		private function loadPage(event:org.apache.royale.events.Event):void
 		{
 			var model:WebBrowserModel = (host as UIBase).model as WebBrowserModel;
 			loader.load(new URLRequest(model.url));
@@ -109,7 +109,7 @@ package org.apache.flex.html.beads
 		/**
 		 * @private
 		 */
-		private function handleSizeChange(event:org.apache.flex.events.Event):void
+		private function handleSizeChange(event:org.apache.royale.events.Event):void
 		{
 			loader.width = host.width;
 			loader.height = host.height;
@@ -122,7 +122,7 @@ package org.apache.flex.html.beads
 		{
 			var model:WebBrowserModel = (host as UIBase).model as WebBrowserModel;
 			model.setURL(loader.location);
-			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
+			host.dispatchEvent(new org.apache.royale.events.Event("locationChanged"));
 		}
 	}
 
@@ -153,7 +153,7 @@ package org.apache.flex.html.beads
 		}
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -191,7 +191,7 @@ package org.apache.flex.html.beads
 			var iframe:HTMLIFrameElement = (host as UIBase).element as HTMLIFrameElement;
 
 			model.setURL(iframe.src);
-			host.dispatchEvent(new org.apache.flex.events.Event("locationChanged"));
+			host.dispatchEvent(new org.apache.royale.events.Event("locationChanged"));
 		}
 	}
 }

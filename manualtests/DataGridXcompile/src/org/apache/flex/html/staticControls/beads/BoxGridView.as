@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.staticControls.beads
+package org.apache.royale.html.staticControls.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.html.Label;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.Label;
 	
 	public class BoxGridView implements IBeadView
 	{
@@ -46,7 +46,7 @@ package org.apache.flex.html.staticControls.beads
 			UIBase(_strand).addElement(label);
 		}
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function get host():IUIBase
 		{

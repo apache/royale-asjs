@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITitleBarModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITitleBarModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 *  The TitleBarModel class bead holds the values for the org.apache.flex.html.TitleBar's 
+	 *  The TitleBarModel class bead holds the values for the org.apache.royale.html.TitleBar's 
 	 *  properties.
 	 *
 	 *  @langversion 3.0
@@ -43,7 +43,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -59,9 +59,9 @@ package org.apache.flex.html.beads.models
 		
         [Bindable("titleChange")]
 		/**
-		 *  The string title for the org.apache.flex.html.TitleBar.
+		 *  The string title for the org.apache.royale.html.TitleBar.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#title
+		 *  @copy org.apache.royale.core.ITitleBarModel#title
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -87,7 +87,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The HTML string for the title.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#htmlTitle
+		 *  @copy org.apache.royale.core.ITitleBarModel#htmlTitle
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -113,7 +113,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  Whether or not to show a close button.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#showCloseButton
+		 *  @copy org.apache.royale.core.ITitleBarModel#showCloseButton
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

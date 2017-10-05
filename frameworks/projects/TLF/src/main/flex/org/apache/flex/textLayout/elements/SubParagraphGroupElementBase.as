@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.text.engine.ContentElement;
-	import org.apache.flex.text.engine.GroupElement;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.FlowElementEventDispatcher;
-	import org.apache.flex.textLayout.events.ModelChange;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.text.engine.ContentElement;
+	import org.apache.royale.text.engine.GroupElement;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.FlowElementEventDispatcher;
+	import org.apache.royale.textLayout.events.ModelChange;
 	
 
 	
@@ -145,8 +145,8 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.EventDispatcher
-		 * @see org.apache.flex.textLayout.events.FlowElementMouseEvent
+		 * @see org.apache.royale.events.EventDispatcher
+		 * @see org.apache.royale.textLayout.events.FlowElementMouseEvent
 		 */
 		public override function getEventMirror():IEventDispatcher
 		{

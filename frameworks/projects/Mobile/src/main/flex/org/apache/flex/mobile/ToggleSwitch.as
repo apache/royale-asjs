@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile
+package org.apache.royale.mobile
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IToggleButtonModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
 	
 	/**
 	 * The ToggleSwitch is a UI control that displays on/off or yes/no states.

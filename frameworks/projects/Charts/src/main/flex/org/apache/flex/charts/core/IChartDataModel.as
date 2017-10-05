@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.charts.core.IChartSeries;
 	
 	/**
 	 *  The IChartDataModel provides extensions to the standard ISelectionModel to

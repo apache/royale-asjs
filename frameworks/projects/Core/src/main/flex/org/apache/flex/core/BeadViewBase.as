@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.EventDispatcher;
     
     /**
      *  The BeadViewBase class is the base class for most view beads.
@@ -69,7 +69,7 @@ package org.apache.flex.core
          *  Override this for whatever else you need to do when
          *  being hooked to the Strand
          * 
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

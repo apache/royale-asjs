@@ -16,11 +16,11 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <remove-circulars>true</remove-circulars>
     <compiler>
         <js-external-library-path append="true">
             <path-element>../../../../../../js/libs/cordova.swc</path-element>
         </js-external-library-path>
     </compiler>
-</flex-config>
+</royale-config>

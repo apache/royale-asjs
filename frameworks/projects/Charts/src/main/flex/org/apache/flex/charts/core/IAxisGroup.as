@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.core
+package org.apache.royale.charts.core
 {
-    import org.apache.flex.core.IChild;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
 
 	/**
 	 * The IAxisGroup defines the interface for classes that provide drawing

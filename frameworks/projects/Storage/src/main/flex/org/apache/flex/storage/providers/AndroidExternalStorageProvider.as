@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.storage.providers
+package org.apache.royale.storage.providers
 {
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
-	import org.apache.flex.storage.events.FileEvent;
-	import org.apache.flex.storage.events.FileErrorEvent;
-	import org.apache.flex.storage.file.DataInputStream;
-	import org.apache.flex.storage.file.DataOutputStream;
+	import org.apache.royale.storage.events.FileEvent;
+	import org.apache.royale.storage.events.FileErrorEvent;
+	import org.apache.royale.storage.file.DataInputStream;
+	import org.apache.royale.storage.file.DataOutputStream;
 
 	/**
 	 * The AndroidStorageProvider class implements the IPermanentStorageProvider

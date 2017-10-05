@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IStrand;
- 	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.DataGrid;
+	import org.apache.royale.core.IStrand;
+ 	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.DataGrid;
 
 		/**
 		 *  The DataGridColumnReorderView bead extends DataGridView and
@@ -56,7 +56,7 @@ package org.apache.flex.html.beads
 
 
 			/**
-			 *  @copy org.apache.flex.core.IBead#strand
+			 *  @copy org.apache.royale.core.IBead#strand
 			 *
 			 *  @langversion 3.0
 			 *  @playerversion Flash 10.2

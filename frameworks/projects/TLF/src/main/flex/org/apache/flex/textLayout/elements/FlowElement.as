@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.reflection.getDefinitionByName;
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormatBase;
-	import org.apache.flex.textLayout.property.PropertyUtil;
-	import org.apache.flex.textLayout.utils.CreateTLFUtil;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.reflection.getDefinitionByName;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormatBase;
+	import org.apache.royale.textLayout.property.PropertyUtil;
+	import org.apache.royale.textLayout.utils.CreateTLFUtil;
+	import org.apache.royale.utils.ObjectMap;
 
 	[IMXMLObject]
 	/**
@@ -156,7 +156,7 @@ package org.apache.flex.textLayout.elements
 		 * styles dictionary. The coreStyles object encapsulates the formats that are defined by TextLayoutFormat and are in TextLayoutFormat.description. The
 		 * <code>coreStyles</code> object consists of an array of <em>stylename-value</em> pairs.
 		 * 
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -171,7 +171,7 @@ package org.apache.flex.textLayout.elements
 		 * styles dictionary. The returned object encapsulates all styles set in the format property including core and user styles. The
 		 * returned object consists of an array of <em>stylename-value</em> pairs.
 		 * 
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -554,9 +554,9 @@ package org.apache.flex.textLayout.elements
 		 * 
 		 * <p>See the <code>TEXT_FIELD_HTML_FORMAT</code> documentation for how this used..</p>
 		 * 
-		 * @see org.apache.flex.textLayout.conversion.TextConverter
-		 * @see org.apache.flex.textLayout.conversion.TextConverter#TEXT_FIELD_HTML_FORMAT
-		 * @see org.apache.flex.textLayout.conversion.IHTMLImporter
+		 * @see org.apache.royale.textLayout.conversion.TextConverter
+		 * @see org.apache.royale.textLayout.conversion.TextConverter#TEXT_FIELD_HTML_FORMAT
+		 * @see org.apache.royale.textLayout.conversion.IHTMLImporter
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -664,7 +664,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		 */
 		public function get computedFormat():ITextLayoutFormat
 		{
@@ -1041,7 +1041,7 @@ package org.apache.flex.textLayout.elements
 		 * @see ParagraphElement
 		 */
 		/**
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.IParagraphElement
 		 */
 		public function getParagraph():IParagraphElement
 		{
@@ -1063,7 +1063,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.ITableCellElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 */
 		public function getParentCellElement():ITableCellElement
 		{
@@ -1198,8 +1198,8 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.EventDispatcher
-		 * @see org.apache.flex.textLayout.events.FlowElementMouseEvent
+		 * @see org.apache.royale.events.EventDispatcher
+		 * @see org.apache.royale.textLayout.events.FlowElementMouseEvent
 		 */
 		public function getEventMirror():IEventDispatcher
 		{
@@ -1267,7 +1267,7 @@ package org.apache.flex.textLayout.elements
 
 		/**
 		 *  @private 
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IContainerFormattedElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IContainerFormattedElement
 		 */
 		public function getEnclosingController(relativePos:int):IContainerController
 		{
@@ -1368,7 +1368,7 @@ package org.apache.flex.textLayout.elements
 		/**
 		 *  Support for splitting FlowLeafElements.  Does a quick copy of _characterFormat if necessary.
 		 *  @private 
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.FlowValueHolder
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.FlowValueHolder
 		 */
 		public function quickCloneTextLayoutFormat(sibling:IFlowElement):void
 		{

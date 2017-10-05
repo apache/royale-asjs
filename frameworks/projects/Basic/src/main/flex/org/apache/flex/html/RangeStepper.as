@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
 
 	/**
 	 *  The RangeStepper control allows for the selection of a single value

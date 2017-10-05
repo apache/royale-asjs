@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.supportClasses
+package org.apache.royale.charts.supportClasses
 {
-	import org.apache.flex.core.IFactory;
+	import org.apache.royale.core.IFactory;
 	
-	import org.apache.flex.charts.core.IChartSeries;
+	import org.apache.royale.charts.core.IChartSeries;
 	
 	/**
 	 *  The LineChartSeries represents a pair of X and Y values to be drawn
-	 *  within a org.apache.flex.charts.LineChart. 
+	 *  within a org.apache.royale.charts.LineChart. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

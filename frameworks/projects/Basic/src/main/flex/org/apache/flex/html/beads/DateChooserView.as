@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.SimpleCSSStylesWithFlex;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.beads.GroupView;
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
-	import org.apache.flex.html.beads.layouts.TileLayout;
-	import org.apache.flex.html.beads.models.DateChooserModel;
-	import org.apache.flex.html.supportClasses.DateHeaderButton;
-	import org.apache.flex.html.supportClasses.DateChooserHeader;
-	import org.apache.flex.html.supportClasses.DateChooserList;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.html.List;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.layouts.TileLayout;
+	import org.apache.royale.html.beads.models.DateChooserModel;
+	import org.apache.royale.html.supportClasses.DateHeaderButton;
+	import org.apache.royale.html.supportClasses.DateChooserHeader;
+	import org.apache.royale.html.supportClasses.DateChooserList;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser. This class
@@ -130,7 +130,7 @@ package org.apache.flex.html.beads
 			monthButtonsContainer = new Group();
 			monthButtonsContainer.height = controlHeight;
 			monthButtonsContainer.id = "dateChooserMonthButtons";
-			monthButtonsContainer.className = "opt_org-apache-flex-html-DateChooser_MonthButtons";
+			monthButtonsContainer.className = "opt_org-apache.royale-html-DateChooser_MonthButtons";
 			monthButtonsContainer.style = new SimpleCSSStylesWithFlex();
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {

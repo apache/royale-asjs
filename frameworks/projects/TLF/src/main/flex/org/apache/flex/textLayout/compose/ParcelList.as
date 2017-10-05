@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.text.engine.Constants;
-	import org.apache.flex.geom.Rectangle;
+	import org.apache.royale.text.engine.Constants;
+	import org.apache.royale.geom.Rectangle;
 	
-	import org.apache.flex.textLayout.container.ColumnState;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.container.ScrollPolicy;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.LineBreak;
+	import org.apache.royale.textLayout.container.ColumnState;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.container.ScrollPolicy;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.LineBreak;
 
 	
 

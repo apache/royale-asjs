@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.factory
+package org.apache.royale.textLayout.factory
 {
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	
 	/** 
 	 * The TruncationOptions class specifies options for limiting the number of lines of text 

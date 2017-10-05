@@ -19,8 +19,8 @@
 -->
 <project name="marmotinni" default="main" basedir=".">
 
-	<property name="test.file" value="Royale/framework/org/apache/flex/html/TextButton/TextButton.mxml" />
-	<property name="test.class" value="org.apache.flex.html.textButton.TextButton" />
+	<property name="test.file" value="Royale/framework/org/apache.royale/html/TextButton/TextButton.mxml" />
+	<property name="test.class" value="org.apache.royale.html.textButton.TextButton" />
 	
 	<property file="build.properties" />
 	
@@ -31,9 +31,9 @@
 	</condition>
 	
 	<!-- Constants -->
-	<property name="mxmlc.dir" value="../../flex-falcon/compiler.jx/bin" />
+	<property name="mxmlc.dir" value="../../royale-falcon/compiler.jx/bin" />
 	<property name="player.version" value="11.1" />
-	<property name="sdk.dir" value="../../flex-sdk" />
+	<property name="sdk.dir" value="../../royale-sdk" />
 	
 	<property name="output.goog.dir.name" value="library" />
     <property name="output.intermediate.dir.name" value="js-debug" />
@@ -166,7 +166,7 @@
     </target>
 
     <target name="test_compile" depends="test_prepare">
-        <javac srcdir="${basedir}/java/src/org/apache/flex/html/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
+        <javac srcdir="${basedir}/java/src/org/apache.royale/html/textButton" destdir="${basedir}/java/bin" debug="off" optimize="on">
             <classpath>
             	<pathelement location="${basedir}/java/lib/selenium/selenium-java-2.48.2.jar"/>
             	<pathelement location="${basedir}/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
@@ -239,7 +239,7 @@
 		
 		<antcall target="test">
 			<param name="param.test.class" value="${test.class}"/>
-			<param name="param.test.url" value="file://localhost/Users/erik/Documents/ApacheFlex/git/flex-asjs/marmotinni/temp/bin/js-release/index.html"/>
+			<param name="param.test.url" value="file://localhost/Users/erik/Documents/ApacheFlex/git/royale-asjs/marmotinni/temp/bin/js-release/index.html"/>
 		</antcall>
 		
 		<antcall target="run_teardown" />
@@ -274,7 +274,7 @@
 		<exec executable="${mxmlc.dir}/${mxmlc.exe}">
 			<env key="PLAYERGLOBAL_HOME" value="${playerglobal.home}" />
 			<arg value="+playerglobal.version=${player.version}" /> 
-			<arg value="-load-config=${sdk.dir}/frameworks/flex-config.xml" /> 
+			<arg value="-load-config=${sdk.dir}/frameworks/royale-config.xml" /> 
 			<arg value="-js-output-type=${param.type}" /> 
 			<arg value="-library-path+=${param.lib}" />
 			<arg value="-sdk-js-lib=${param.js.sdk}" />

@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.collections.IArrayList;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
 	public class MyModel extends EventDispatcher
 	{

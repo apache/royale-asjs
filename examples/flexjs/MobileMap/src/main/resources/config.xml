@@ -22,7 +22,7 @@
     <description>
         ${description}
     </description>
-    <author email="dev@flex.apache.org" href="http://flex.apache.org">
+    <author email="dev@flex.apache.org" href="http://royale.apache.org">
         Apache Flex Team
     </author>
     <content src="index.html" />

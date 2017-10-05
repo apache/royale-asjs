@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 COMPILE::SWF
 {
     import flash.html.HTMLLoader;
-	import org.apache.flex.events.utils.IHandlesOriginalEvent;
+	import org.apache.royale.events.utils.IHandlesOriginalEvent;
 }
 
 /**

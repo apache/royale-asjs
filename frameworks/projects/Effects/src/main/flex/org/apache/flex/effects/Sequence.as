@@ -17,9 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
-	import org.apache.flex.effects.beads.SequencePlayBead;
+	import org.apache.royale.effects.beads.SequencePlayBead;
 	
 	
 	/**

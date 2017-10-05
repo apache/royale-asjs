@@ -26,7 +26,7 @@
 				   >
 	<fx:Script>
         <![CDATA[
-            import org.apache.flex.events.Event;
+            import org.apache.royale.events.Event;
             private function init():void
             {
                 outer.addEventListener(MouseEvent.MOUSE_DOWN,outerHandler);

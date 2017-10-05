@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	COMPILE::JS
 	public class WrappedHTMLElement extends HTMLElement implements IRoyaleElement

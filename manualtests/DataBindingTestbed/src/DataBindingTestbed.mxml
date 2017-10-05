@@ -28,7 +28,7 @@ limitations under the License.
 		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		global {
-    		IStatesImpl:            ClassReference("org.apache.flex.core.SimpleStatesImpl");
+    		IStatesImpl:            ClassReference("org.apache.royale.core.SimpleStatesImpl");
 		}
 	</fx:Style>
     <js:valuesImpl>

@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics
+package org.apache.royale.graphics
 {
-    import org.apache.flex.utils.CSSUtils;
+    import org.apache.royale.utils.CSSUtils;
 
     COMPILE::SWF
     {
@@ -162,7 +162,7 @@ package org.apache.flex.graphics
          *  
          *  @default butt
          *
-         *  @see org.apache.flex.graphics.LineStyle
+         *  @see org.apache.royale.graphics.LineStyle
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -201,7 +201,7 @@ package org.apache.flex.graphics
          *  
          *  @default miter
          *
-         *  @see org.apache.flex.graphics.LineStyle
+         *  @see org.apache.royale.graphics.LineStyle
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

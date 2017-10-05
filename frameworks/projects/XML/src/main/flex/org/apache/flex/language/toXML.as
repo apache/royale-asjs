@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.language
+package org.apache.royale.language
 {
 	COMPILE::JS
 	{
 		import XML; XML;
 		import XMLList; XMLList;
-        import org.apache.flex.debugging.notNull;
+        import org.apache.royale.debugging.notNull;
 	}
     /**
      * @royaleignorecoercion XML

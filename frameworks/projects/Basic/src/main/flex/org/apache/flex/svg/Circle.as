@@ -16,10 +16,10 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-	import org.apache.flex.graphics.ICircle;
-    import org.apache.flex.graphics.IDrawable;
+	import org.apache.royale.graphics.ICircle;
+    import org.apache.royale.graphics.IDrawable;
 
     COMPILE::SWF
     {
@@ -29,7 +29,7 @@ package org.apache.flex.svg
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
     public class Circle extends GraphicShape implements ICircle, IDrawable
@@ -74,7 +74,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @royaleignorecoercion SVGCircleElement
          */
         public function drawCircle(cx:Number, cy:Number, radius:Number):void

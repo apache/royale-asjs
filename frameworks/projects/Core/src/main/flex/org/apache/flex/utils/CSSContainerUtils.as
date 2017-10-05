@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-import org.apache.flex.core.ValuesManager;
-import org.apache.flex.geom.Rectangle;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.geom.Rectangle;
 
 /**
  *  The CSSContainerUtils class is a utility class that computes the values

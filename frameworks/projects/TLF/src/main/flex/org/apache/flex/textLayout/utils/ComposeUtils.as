@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.utils
+package org.apache.royale.textLayout.utils
 {
-	import org.apache.flex.textLayout.compose.ComposeState;
-	import org.apache.flex.textLayout.compose.IComposer;
+	import org.apache.royale.textLayout.compose.ComposeState;
+	import org.apache.royale.textLayout.compose.IComposer;
 	public class ComposeUtils
 	{
 		

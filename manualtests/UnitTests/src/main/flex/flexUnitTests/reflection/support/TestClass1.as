@@ -19,7 +19,7 @@
 package flexUnitTests.reflection.support
 {
 
-	import org.apache.flex.reflection.TypeDefinition;
+	import org.apache.royale.reflection.TypeDefinition;
 
 	[RemoteClass(alias="TestClass1_alias")]
 	public class TestClass1 implements ITestInterface
@@ -30,9 +30,9 @@ package flexUnitTests.reflection.support
 		}
 		
 		[Bindable]
-		[Event(name="foo", type="org.apache.flex.events.Event")]
+		[Event(name="foo", type="org.apache.royale.events.Event")]
 		public var bindableVar:String;
-		[Event(name="foo", type="org.apache.flex.events.Event")]
+		[Event(name="foo", type="org.apache.royale.events.Event")]
 		public var temp:Boolean;
 		
 		public static var tempStatic:Boolean;

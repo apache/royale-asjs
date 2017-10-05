@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-    import org.apache.flex.graphics.ICompoundGraphic;
-    import org.apache.flex.graphics.IFill;
-    import org.apache.flex.graphics.IStroke;
-    import org.apache.flex.graphics.PathBuilder;
-    import org.apache.flex.graphics.SolidColor;
+    import org.apache.royale.graphics.ICompoundGraphic;
+    import org.apache.royale.graphics.IFill;
+    import org.apache.royale.graphics.IStroke;
+    import org.apache.royale.graphics.PathBuilder;
+    import org.apache.royale.graphics.SolidColor;
 
     COMPILE::SWF
     {
@@ -33,12 +33,12 @@ package org.apache.flex.svg
         import flash.geom.Rectangle;
         import flash.text.TextFieldType;
 
-        import org.apache.flex.core.CSSTextField;
-        import org.apache.flex.graphics.utils.PathHelper;
+        import org.apache.royale.core.CSSTextField;
+        import org.apache.royale.graphics.utils.PathHelper;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
     /**
@@ -136,7 +136,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0.3
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawRect(x:Number, y:Number, width:Number, height:Number):void
         {
@@ -167,7 +167,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0.3
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawRoundRect(x:Number, y:Number, width:Number, height:Number, radiusX:Number, radiusY:Number = NaN):void
         {
@@ -216,7 +216,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0.3
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawEllipse(x:Number, y:Number, width:Number, height:Number):void
         {
@@ -253,7 +253,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawCircle(x:Number, y:Number, radius:Number):void
         {
@@ -289,7 +289,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawPathCommands(data:PathBuilder):void
         {
@@ -310,7 +310,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawStringPath(data:String):void
         {
@@ -509,7 +509,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @royaleignorecoercion Text
          *  @royaleignorecoercion Node
          */

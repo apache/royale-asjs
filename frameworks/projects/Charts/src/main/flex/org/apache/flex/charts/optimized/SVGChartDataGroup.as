@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.optimized
+package org.apache.royale.charts.optimized
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-    import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IContentView;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.charts.core.IChartDataGroup;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContentView;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The SVGChartDataGroup serves as the drawing canvas for SVG itemRenderers. Rather than having
@@ -68,7 +68,7 @@ package org.apache.flex.charts.optimized
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -85,7 +85,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -123,7 +123,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IItemRendererParent#removeAllElements()
+		 *  @copy org.apache.royale.core.IItemRendererParent#removeAllElements()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -176,7 +176,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IItemRendererParent#removeItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0

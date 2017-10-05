@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.itemRenderers
+package org.apache.royale.mdl.itemRenderers
 {
-    import org.apache.flex.html.Option;
-    import org.apache.flex.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.html.Option;
+    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;            
+        import org.apache.royale.core.WrappedHTMLElement;            
     }
 	
     /**
@@ -90,7 +90,7 @@ package org.apache.flex.mdl.itemRenderers
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

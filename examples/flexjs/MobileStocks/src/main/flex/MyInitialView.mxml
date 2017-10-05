@@ -21,8 +21,8 @@ limitations under the License.
 				xmlns:local="*"
 				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:views="views.*" 
-				xmlns:apache="org.apache.flex.html.beads.*"
-				xmlns:html="org.apache.flex.html.*"
+				xmlns:apache="org.apache.royale.html.beads.*"
+				xmlns:html="org.apache.royale.html.*"
 				xmlns:controller="controller.*"
 				initComplete="onInitComplete()" xmlns:models="models.*" >
 	
@@ -63,7 +63,7 @@ limitations under the License.
 			background-image: url("assets/background.png");
 			height: 56px;
 			width: 100%;
-			IBeadLayout: ClassReference("org.apache.flex.html.beads.layouts.HorizontalLayout");
+			IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 		}
 		
 		.TabBar {
@@ -172,10 +172,10 @@ limitations under the License.
 			color: #999999;
 		}
 		
-		@media -flex-flash
+		@media -royale-swf
 		{
 			.NavigationBar {
-				IBackgroundBead: ClassReference("org.apache.flex.html.beads.BackgroundImageBead");
+				IBackgroundBead: ClassReference("org.apache.royale.html.beads.BackgroundImageBead");
 			}
 		}
 		
@@ -183,12 +183,12 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.core.IBeadController;
-			import org.apache.flex.core.IBeadModel;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.mobile.IViewManagerView;
-			import org.apache.flex.mobile.IViewManager;
-			import org.apache.flex.mobile.chrome.NavigationBar;
+			import org.apache.royale.core.IBeadController;
+			import org.apache.royale.core.IBeadModel;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.mobile.IViewManagerView;
+			import org.apache.royale.mobile.IViewManager;
+			import org.apache.royale.mobile.chrome.NavigationBar;
 			
 			import models.ProductsModel;
 			
@@ -198,13 +198,13 @@ limitations under the License.
 			}
 			
 			/* debugging */
-			private function tabbedViewChanged(event:org.apache.flex.events.Event):void
+			private function tabbedViewChanged(event:org.apache.royale.events.Event):void
 			{
 				//var manager:IViewManager = event.currentTarget as IViewManager;
 				//trace("TabbedViewChanged for "+manager);
 			}
 			
-			private function watchListStackChanged(event:org.apache.flex.events.Event):void
+			private function watchListStackChanged(event:org.apache.royale.events.Event):void
 			{
 				//trace("watchlist stack changed");
 				var manager:StackedViewManager = event.currentTarget as StackedViewManager;
@@ -213,7 +213,7 @@ limitations under the License.
 				backButton.visible = manager.views.length > 1;
 			}
 			
-			private function goBack(event:org.apache.flex.events.MouseEvent):void
+			private function goBack(event:org.apache.royale.events.MouseEvent):void
 			{
 				if (navController.selectedIndex == 1) {
 					watchListStack.pop();

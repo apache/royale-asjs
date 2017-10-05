@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ContentElement;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.FontMetrics;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextElement;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.utils.GeometricElementUtils;
-	import org.apache.flex.textLayout.events.FlowElementEventDispatcher;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ContentElement;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.FontMetrics;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextElement;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.utils.GeometricElementUtils;
+	import org.apache.royale.textLayout.events.FlowElementEventDispatcher;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	/** Base class for FlowElements that appear at the lowest level of the flow hierarchy. FlowLeafElement objects have
 	 * no children and include InlineGraphicElement objects and SpanElement objects.
@@ -132,8 +132,8 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.EventDispatcher
-		 * @see org.apache.flex.textLayout.events.FlowElementMouseEvent
+		 * @see org.apache.royale.events.EventDispatcher
+		 * @see org.apache.royale.textLayout.events.FlowElementMouseEvent
 		 */
 		public override function getEventMirror():IEventDispatcher
 		{
@@ -186,7 +186,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.elements.SpanElement#replaceText()
+		 * @see org.apache.royale.textLayout.elements.SpanElement#replaceText()
 		 */
 		public function get text():String
 		{
@@ -311,8 +311,8 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.text.engine.FontMetrics
-		 * @see org.apache.flex.text.engine.ElementFormat#getFontMetrics()
+		 * @see org.apache.royale.text.engine.FontMetrics
+		 * @see org.apache.royale.text.engine.ElementFormat#getFontMetrics()
 		 *
 		 * @return font metrics associated with the span
 		 */
@@ -363,7 +363,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat
 		 */
 		public override function get computedFormat():ITextLayoutFormat
 		{

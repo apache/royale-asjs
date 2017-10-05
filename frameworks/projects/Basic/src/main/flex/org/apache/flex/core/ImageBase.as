@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IImage;
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IImage;
+	import org.apache.royale.core.IImageModel;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The ImageBase class serves as a base class for components that displays a bitmap. The Image uses
 	 *  the following beads:
 	 * 
-	 *  org.apache.flex.core.IBeadModel: the data model for the Image, including the url/binary property.
-	 *  org.apache.flex.core.IBeadView: constructs the visual elements of the component.
+	 *  org.apache.royale.core.IBeadModel: the data model for the Image, including the url/binary property.
+	 *  org.apache.royale.core.IBeadView: constructs the visual elements of the component.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -56,7 +56,7 @@ package org.apache.flex.core
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IImageModel
+         *  @royaleignorecoercion org.apache.royale.core.IImageModel
 		 */
 		public function get src():String
 		{

@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.BeadViewBase;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
 	COMPILE::SWF {
-		import org.apache.flex.geom.Size;
-		import org.apache.flex.geom.Rectangle;
-		import org.apache.flex.utils.CSSContainerUtils;
+		import org.apache.royale.geom.Size;
+		import org.apache.royale.geom.Rectangle;
+		import org.apache.royale.utils.CSSContainerUtils;
 	}
 
 	/**
@@ -52,7 +52,7 @@ package org.apache.flex.html.beads
 	{
 		/**
      	 *  The GroupView class is the default view for
-         *  the org.apache.flex.html.Group class.
+         *  the org.apache.royale.html.Group class.
          *  It lets you use some CSS styles to manage the border, background
          *  and padding around the content area.
          *
@@ -247,8 +247,8 @@ package org.apache.flex.html.beads
 				maxHeight = Math.max(maxHeight, childYMax);
 			}
 
-			var padding:org.apache.flex.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
-			var border:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
+			var padding:org.apache.royale.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
+			var border:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
 
 			// return the content size as the max plus right/bottom padding. the x,y position of
 			// each child is already offset by the left/top padding by the layout algorithm.
@@ -268,10 +268,10 @@ package org.apache.flex.html.beads
 		{
 			var host:UIBase = _strand as UIBase;
 			var contentSize:Size = calculateContentSize();
-			var border:org.apache.flex.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
+			var border:org.apache.royale.geom.Rectangle = CSSContainerUtils.getBorderMetrics(this._strand);
 			contentSize.width += border.left + border.right;
 			contentSize.height += border.top + border.bottom;
-			var padding:org.apache.flex.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
+			var padding:org.apache.royale.geom.Rectangle = CSSContainerUtils.getPaddingMetrics(this._strand);
 			// add padding.left since it wasn't considered in contentSize,
 			// and add border.right so the border can be drawn in that column of pixels
 			contentSize.width += padding.left + border.right; 

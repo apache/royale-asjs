@@ -17,8 +17,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package sample.todo.models {
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.EventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
 
     public class TodoListModel extends EventDispatcher {
         public function TodoListModel() {

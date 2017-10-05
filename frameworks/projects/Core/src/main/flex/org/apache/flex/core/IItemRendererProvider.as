@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IFactory;
+	import org.apache.royale.core.IFactory;
 	
     /**
      *  The IItemRendererProvider interface is implemented by classes that
      *  provide a ClassFactory for itemRenderers. 
      * 
-     *  @see org.apache.flex.core.IItemRenderer
+     *  @see org.apache.royale.core.IItemRenderer
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2

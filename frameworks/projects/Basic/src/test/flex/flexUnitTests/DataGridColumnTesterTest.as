@@ -20,7 +20,7 @@ package flexUnitTests
 {
     import flexunit.framework.Assert;
     
-    import org.apache.flex.html.supportClasses.DataGridColumn;
+    import org.apache.royale.html.supportClasses.DataGridColumn;
     
     public class DataGridColumnTesterTest
     {		

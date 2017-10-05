@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	
 
@@ -57,7 +57,7 @@ package org.apache.flex.core
 		 *  @productversion Royale 0.0
 		 */
 		COMPILE::JS
-		function get transformElement():org.apache.flex.core.WrappedHTMLElement;
+		function get transformElement():org.apache.royale.core.WrappedHTMLElement;
 		
 	}
 }

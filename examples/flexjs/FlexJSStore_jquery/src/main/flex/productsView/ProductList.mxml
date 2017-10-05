@@ -34,12 +34,12 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-        import org.apache.flex.effects.Effect;
-        import org.apache.flex.effects.Move;
-        import org.apache.flex.effects.Sequence;
-        import org.apache.flex.core.DropType;
-        import org.apache.flex.core.IUIBase;
-        import org.apache.flex.events.DragEvent;
+        import org.apache.royale.effects.Effect;
+        import org.apache.royale.effects.Move;
+        import org.apache.royale.effects.Sequence;
+        import org.apache.royale.core.DropType;
+        import org.apache.royale.core.IUIBase;
+        import org.apache.royale.events.DragEvent;
         
         import samples.flexstore.Product;
         import samples.flexstore.ProductListEvent;

@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.beads
+package org.apache.royale.textLayout.beads
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.utils.EditingKeys;
-    import org.apache.flex.events.utils.KeyboardEventConverter;
-	import org.apache.flex.text.events.TextEvent;
-	import org.apache.flex.textLayout.events.FocusEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.EditingKeys;
+    import org.apache.royale.events.utils.KeyboardEventConverter;
+	import org.apache.royale.text.events.TextEvent;
+	import org.apache.royale.textLayout.events.FocusEvent;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.IRenderedObject;
+		import org.apache.royale.core.IRenderedObject;
 		import goog.events;
 	}
 	
@@ -68,7 +68,7 @@ package org.apache.flex.textLayout.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -101,7 +101,7 @@ package org.apache.flex.textLayout.beads
 		 * @private
 		 */
 		COMPILE::SWF
-		private function viewChangedHandler(e:org.apache.flex.events.Event):void
+		private function viewChangedHandler(e:org.apache.royale.events.Event):void
 		{
 			attachEventListeners();
 		}
@@ -129,12 +129,12 @@ package org.apache.flex.textLayout.beads
 		COMPILE::SWF
 		protected function textEventHandler(event:flash.events.Event):void
 		{
-			if (event is org.apache.flex.events.Event) return;
+			if (event is org.apache.royale.events.Event) return;
 
 			// this will otherwise bubble an event of flash.events.Event
 			event.stopImmediatePropagation();
 			var textEvent:flash.events.TextEvent = event as flash.events.TextEvent;
-			var newEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(textEvent.type);
+			var newEvent:org.apache.royale.text.events.TextEvent = new org.apache.royale.text.events.TextEvent(textEvent.type);
 			newEvent.text = textEvent.text;
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
@@ -151,12 +151,12 @@ package org.apache.flex.textLayout.beads
 		COMPILE::SWF
 		protected function keyEventHandler(event:flash.events.Event):void
 		{
-			if (event is org.apache.flex.events.Event) return;
+			if (event is org.apache.royale.events.Event) return;
 			
 			// this will otherwise bubble an event of flash.events.Event
 			event.stopImmediatePropagation();
 			var keyEvent:flash.events.KeyboardEvent = event as flash.events.KeyboardEvent;
-			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(keyEvent);
+			var newEvent:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(keyEvent);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -172,11 +172,11 @@ package org.apache.flex.textLayout.beads
 		COMPILE::SWF
 		protected function eventHandler(event:flash.events.Event):void
 		{
-			if (event is org.apache.flex.events.Event) return;
+			if (event is org.apache.royale.events.Event) return;
 			
 			// this will otherwise dispatch an event of flash.events.Event
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.events.Event = new org.apache.flex.events.Event(event.type);
+			var newEvent:org.apache.royale.events.Event = new org.apache.royale.events.Event(event.type);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -190,12 +190,12 @@ package org.apache.flex.textLayout.beads
 		COMPILE::SWF
 		protected function focusEventHandler(event:flash.events.Event):void
 		{
-			if (event is org.apache.flex.events.Event) return;
+			if (event is org.apache.royale.events.Event) return;
 			
 			// this will otherwise dispatch an event of flash.events.FocusEvent
 			event.stopImmediatePropagation();
 			var focusEvent:flash.events.FocusEvent = event as flash.events.FocusEvent;
-			var newEvent:org.apache.flex.textLayout.events.FocusEvent = new org.apache.flex.textLayout.events.FocusEvent(event.type);
+			var newEvent:org.apache.royale.textLayout.events.FocusEvent = new org.apache.royale.textLayout.events.FocusEvent(event.type);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -214,7 +214,7 @@ package org.apache.flex.textLayout.beads
             if (inKeyEventHandler) return;
             inKeyEventHandler = true;
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.events.KeyboardEvent = KeyboardEventConverter.convert(event);
+			var newEvent:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(event);
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{
@@ -226,7 +226,7 @@ package org.apache.flex.textLayout.beads
                 // in keyDownHandler
                 if (event.key == EditingKeys.BACKSPACE)
                     return;
-				var textEvent:org.apache.flex.text.events.TextEvent = new org.apache.flex.text.events.TextEvent(TextEvent.TEXT_INPUT);
+				var textEvent:org.apache.royale.text.events.TextEvent = new org.apache.royale.text.events.TextEvent(TextEvent.TEXT_INPUT);
 				if (event.key != null)
 					textEvent.text = event.key;
 				else if (event['which'] != null)
@@ -245,7 +245,7 @@ package org.apache.flex.textLayout.beads
 		protected function focusEventHandler(event:FocusEvent):void
 		{
 			event.stopImmediatePropagation();
-			var newEvent:org.apache.flex.textLayout.events.FocusEvent = new org.apache.flex.textLayout.events.FocusEvent(event.type == "focus" ? "focusIn" : "focusOut");
+			var newEvent:org.apache.royale.textLayout.events.FocusEvent = new org.apache.royale.textLayout.events.FocusEvent(event.type == "focus" ? "focusIn" : "focusOut");
 			(_strand as IEventDispatcher).dispatchEvent(newEvent);
 			if(newEvent.defaultPrevented)
 			{

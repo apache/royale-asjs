@@ -16,22 +16,22 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
-    import org.apache.flex.graphics.IDrawable;
-    import org.apache.flex.graphics.IPath;
-    import org.apache.flex.graphics.PathBuilder;
+    import org.apache.royale.graphics.IDrawable;
+    import org.apache.royale.graphics.IPath;
+    import org.apache.royale.graphics.PathBuilder;
 
     COMPILE::SWF
     {
         import flash.display.GraphicsPath;
         import flash.geom.Point;
         import flash.geom.Rectangle;
-        import org.apache.flex.graphics.utils.PathHelper;
+        import org.apache.royale.graphics.utils.PathHelper;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 
@@ -76,7 +76,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawPathCommands(xp:Number,yp:Number,data:PathBuilder):void
         {
@@ -97,7 +97,7 @@ package org.apache.flex.svg
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         public function drawStringPath(xp:Number,yp:Number,data:String):void
         {

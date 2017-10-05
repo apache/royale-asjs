@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
-    import org.apache.flex.core.IDragInitiator;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.geom.Point;
+    import org.apache.royale.core.IDragInitiator;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
     COMPILE::JS
     {
-        import org.apache.flex.core.IUIBase;
-		import org.apache.flex.core.IStrand;
+        import org.apache.royale.core.IUIBase;
+		import org.apache.royale.core.IStrand;
         import window.Event;
         import window.MouseEvent;
-        import org.apache.flex.events.utils.EventUtils;
+        import org.apache.royale.events.utils.EventUtils;
     }
 	COMPILE::SWF
 	{
@@ -348,7 +348,7 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.events.DragEvent
+         *  @royaleignorecoercion org.apache.royale.events.DragEvent
          *  @royaleignorecoercion window.Event
          *  @royaleignorecoercion Event
          */
@@ -402,8 +402,8 @@ package org.apache.flex.events
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.IUIBase
-         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion window.Event
          */
         public static function dispatchDragEvent(event:DragEvent, target:Object):void

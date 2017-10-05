@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.conversion.ConversionConstants;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISpanElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.conversion.ConversionConstants;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISpanElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextRange;
 
 	
 
@@ -34,8 +34,8 @@ package org.apache.flex.textLayout.edit
 	 * <p>A TextScrap is a holding place for all or part of a TextFlow. A range of text can be copied 
 	 * from a TextFlow into a TextScrap, and pasted from the TextScrap into another TextFlow.</p>
 	 *
-	 * @see org.apache.flex.textLayout.elements.TextFlow
-	 * @see org.apache.flex.textLayout.edit.SelectionManager
+	 * @see org.apache.royale.textLayout.elements.TextFlow
+	 * @see org.apache.royale.textLayout.edit.SelectionManager
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

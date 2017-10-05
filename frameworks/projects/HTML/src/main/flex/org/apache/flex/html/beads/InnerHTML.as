@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
+    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	
     [DefaultProperty("text")]
 
@@ -75,13 +75,13 @@ package org.apache.flex.html.beads
 
 		private var _strand:IStrand;		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.flex.mdl.TextInput;
+		 *  @royaleignorecoercion org.apache.royale.mdl.TextInput;
 		 */
 		public function set strand(value:IStrand):void
 		{

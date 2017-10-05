@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IFactory;
+	import org.apache.royale.core.IFactory;
 	
     /**
      *  The ClassFactory class is the basic implementation

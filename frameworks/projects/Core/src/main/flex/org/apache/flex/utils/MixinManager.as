@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 
 COMPILE::SWF
@@ -25,10 +25,10 @@ COMPILE::SWF
     import flash.system.ApplicationDomain;            
 }
 
-import org.apache.flex.core.ElementWrapper;
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IFlexInfo;
-import org.apache.flex.core.IStrand;
+import org.apache.royale.core.ElementWrapper;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IFlexInfo;
+import org.apache.royale.core.IStrand;
 
 /**
  *  The MixinManager class is the class that instantiates mixins
@@ -58,15 +58,15 @@ public class MixinManager implements IBead
     private var _strand:IStrand;
     
     /**
-     *  @copy org.apache.flex.core.IBead#strand
+     *  @copy org.apache.royale.core.IBead#strand
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      *  @royaleignorecoercion Array
-     *  @royaleignorecoercion org.apache.flex.core.IFlexInfo
-     *  @royaleignoreimport org.apache.flex.core.IFlexInfo
+     *  @royaleignorecoercion org.apache.royale.core.IFlexInfo
+     *  @royaleignoreimport org.apache.royale.core.IFlexInfo
      */
     public function set strand(value:IStrand):void
     {

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection {
+package org.apache.royale.reflection {
 COMPILE::SWF {
     import flash.net.registerClassAlias;
 }

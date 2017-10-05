@@ -22,7 +22,7 @@
 				xmlns:local="*"
 				xmlns:models="models.*"
 				xmlns:js="library://ns.apache.org/royale/basic" 
-				xmlns:beads="org.apache.flex.html.beads.*"
+				xmlns:beads="org.apache.royale.html.beads.*"
 				>
 	
 	<js:valuesImpl>

@@ -1,5 +1,5 @@
 {
-  "config": "flex",
+  "config": "royale",
   "compilerOptions": {
     "debug": true,
     "js-output-type": "royale",
@@ -15,7 +15,7 @@
     ]
   },
   "files": [
-    "src/main/flex/MobileClasses.as",
-    "src/main/flex/CordovaClasses.as"
+    "src/main/royale/MobileClasses.as",
+    "src/main/royale/CordovaClasses.as"
   ]
 }

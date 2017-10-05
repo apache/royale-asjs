@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
-	import org.apache.flex.core.LayoutBase;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.utils.CSSContainerUtils;
-	import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.CSSUtils;
 
     /**
      *  The OneFlexibleChildVerticalLayoutForOverflow is 
@@ -69,7 +69,7 @@ package org.apache.flex.html.beads.layouts
 
 	
         /**
-         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher;
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
          */
 		COMPILE::JS
 		override public function set strand(value:IStrand):void
@@ -116,7 +116,7 @@ package org.apache.flex.html.beads.layouts
 		}
 
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
+         * @copy org.apache.royale.core.IBeadLayout#layout
          */
 		COMPILE::JS
 		override public function layout():Boolean

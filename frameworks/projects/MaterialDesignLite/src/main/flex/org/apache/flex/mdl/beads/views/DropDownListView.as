@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.views
+package org.apache.royale.mdl.beads.views
 {
-    import org.apache.flex.core.ISelectionModel;
-    import org.apache.flex.core.IStrand;
-    import org.apache.flex.html.Option;
-    import org.apache.flex.html.Select;
-    import org.apache.flex.html.beads.DataContainerView;
-    import org.apache.flex.mdl.DropDownList;
-    import org.apache.flex.events.Event;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.Option;
+    import org.apache.royale.html.Select;
+    import org.apache.royale.html.beads.DataContainerView;
+    import org.apache.royale.mdl.DropDownList;
+    import org.apache.royale.events.Event;
 
     /**
-     *  The DropDownListView class creates the visual elements of the org.apache.flex.mdl.DropDownList
+     *  The DropDownListView class creates the visual elements of the org.apache.royale.mdl.DropDownList
      *  component. The job of the view bead is to put together the parts of the DropDownList such as the Select and Label
      *
      *  @viewbead
@@ -44,7 +44,7 @@ package org.apache.flex.mdl.beads.views
         }
 
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *
          *  @royaleignorecoercion HTMLLabelElement
          *
@@ -90,7 +90,7 @@ package org.apache.flex.mdl.beads.views
             }
         }
 
-        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
+        override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
 

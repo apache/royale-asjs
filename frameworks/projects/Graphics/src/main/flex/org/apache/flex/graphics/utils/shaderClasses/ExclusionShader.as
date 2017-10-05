@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.graphics.utils.shaderClasses
+package org.apache.royale.graphics.utils.shaderClasses
 {
 import flash.display.Shader;
     

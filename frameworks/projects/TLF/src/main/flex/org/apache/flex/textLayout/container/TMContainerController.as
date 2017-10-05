@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container
+package org.apache.royale.textLayout.container
 {
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.dummy.ContextMenu;
-	import org.apache.flex.textLayout.edit.IInteractionEventHandler;
-	import org.apache.flex.textLayout.formats.BlockProgression;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.dummy.ContextMenu;
+	import org.apache.royale.textLayout.edit.IInteractionEventHandler;
+	import org.apache.royale.textLayout.formats.BlockProgression;
 
 	public class TMContainerController extends ContainerController
 	{

@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.utils.NumberFactoryUtil;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.compose.SWFContext;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.ILinkElement;
-	import org.apache.flex.textLayout.elements.IListElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.LinkState;
-	import org.apache.flex.textLayout.factory.INumberLineFactory;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ListStylePosition;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.utils.NumberFactoryUtil;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.compose.SWFContext;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.ILinkElement;
+	import org.apache.royale.textLayout.elements.IListElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.LinkState;
+	import org.apache.royale.textLayout.factory.INumberLineFactory;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ListStylePosition;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 
 	public class NumberlineUtil
 	{
@@ -45,8 +45,8 @@ package org.apache.flex.textLayout.compose.utils
 		/**
 		*
 		* @private Logic to generate and position the ITextLine containing the numbering for a listElement's first line 
-		* @royaleignorecoercion org.apache.flex.textLayout.elements.ILinkElement
-		* @royaleignorecoercion org.apache.flex.textLayout.elements.IListElement
+		* @royaleignorecoercion org.apache.royale.textLayout.elements.ILinkElement
+		* @royaleignorecoercion org.apache.royale.textLayout.elements.IListElement
 		 */
 		static public function createNumberLine(listItemElement:IListItemElement, curParaElement:IParagraphElement, swfContext:ISWFContext, totalStartIndent:Number):ITextLine
 		{

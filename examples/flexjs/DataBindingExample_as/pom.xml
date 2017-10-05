@@ -24,13 +24,13 @@
         TODO:
         Flash version:
           TypeError: Error #1007: Instantiation attempted on a non-constructor.
-          	at org.apache.flex.core::UIBase/get model()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/UIBase.as:815]
-          	at org.apache.flex.html::Label/set text()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/HTML/src/main/flex/org/apache/flex/html/Label.as:91]
-          	at MyInitialView/get MXMLDescriptor()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/examples/royale/DataBindingExample_as/src/MyInitialView.as:143]
-          	at org.apache.flex.core::ContainerBase/addedToParent()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/ContainerBase.as:207]
-          	at org.apache.flex.core::Application/addElement()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:424]
-          	at org.apache.flex.core::Application/initialize()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:183]
-          	at org.apache.flex.core::Application/initHandler()[/Users/christoferdutz/Projects/Apache/Flex/flex-asjs/frameworks/projects/Core/src/main/flex/org/apache/flex/core/Application.as:147]
+          	at org.apache.royale.core::UIBase/get model()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/core/UIBase.as:815]
+          	at org.apache.royale.html::Label/set text()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/HTML/src/main/royale/org/apache.royale/html/Label.as:91]
+          	at MyInitialView/get MXMLDescriptor()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/examples/royale/DataBindingExample_as/src/MyInitialView.as:143]
+          	at org.apache.royale.core::ContainerBase/addedToParent()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/core/ContainerBase.as:207]
+          	at org.apache.royale.core::Application/addElement()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/core/Application.as:424]
+          	at org.apache.royale.core::Application/initialize()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/core/Application.as:183]
+          	at org.apache.royale.core::Application/initHandler()[/Users/christoferdutz/Projects/Apache/Flex/royale-asjs/frameworks/projects/Core/src/main/royale/org/apache.royale/core/Application.as:147]
 
         JS Version:
           - Checkbox binding doesn't seem to work. Details field is always visible

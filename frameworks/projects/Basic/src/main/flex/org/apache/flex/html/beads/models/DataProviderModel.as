@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 			
     /**
      *  The DataProviderModel class is a model for
@@ -49,7 +49,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -64,7 +64,7 @@ package org.apache.flex.html.beads.models
 		private var _dataProvider:Object;
         
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#dataProvider
+         *  @copy org.apache.royale.core.ISelectionModel#dataProvider
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -90,7 +90,7 @@ package org.apache.flex.html.beads.models
 		private var _labelField:String = null;
 		
         /**
-         *  @copy org.apache.flex.core.ISelectionModel#labelField
+         *  @copy org.apache.royale.core.ISelectionModel#labelField
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

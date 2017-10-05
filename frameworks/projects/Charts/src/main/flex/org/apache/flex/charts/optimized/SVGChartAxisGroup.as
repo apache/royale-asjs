@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.optimized
+package org.apache.royale.charts.optimized
 {
-	import org.apache.flex.charts.core.IAxisGroup;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
+	import org.apache.royale.charts.core.IAxisGroup;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
 	
 	/**
 	 * The SVGChartAxisGroup provides a CompoundGraphic whose drawing functions

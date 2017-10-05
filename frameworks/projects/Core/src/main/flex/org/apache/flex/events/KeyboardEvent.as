@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-		import org.apache.flex.events.Event;
+		import org.apache.royale.events.Event;
     }
-    import org.apache.flex.events.IBrowserEvent;
+    import org.apache.royale.events.IBrowserEvent;
 
     public class KeyboardEvent extends Event implements IBrowserEvent
     {
@@ -77,7 +77,7 @@ package org.apache.flex.events
         COMPILE::JS
         private var _target:Object;
 		/**
-         *  @copy org.apache.flex.events.BrowserEvent#target
+         *  @copy org.apache.royale.events.BrowserEvent#target
          *
          * @langversion 3.0
          * @playerversion Flash 10.2
@@ -97,7 +97,7 @@ package org.apache.flex.events
 		}
 
 		/**
-         *  @copy org.apache.flex.events.BrowserEvent#currentTarget
+         *  @copy org.apache.royale.events.BrowserEvent#currentTarget
          *
          * @langversion 3.0
          * @playerversion Flash 10.2

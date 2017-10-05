@@ -24,18 +24,18 @@ limitations under the License.
 			   >
     <fx:Script>
         <![CDATA[            
-			import org.apache.flex.svg.Circle;
-			import org.apache.flex.svg.Ellipse;
-			import org.apache.flex.graphics.GradientEntry;
-			import org.apache.flex.svg.CompoundGraphic;
-			import org.apache.flex.svg.LinearGradient;
-			import org.apache.flex.svg.Path;
-			import org.apache.flex.svg.Rect;
-			import org.apache.flex.graphics.SolidColor;
-			import org.apache.flex.graphics.SolidColorStroke;
-			import org.apache.flex.events.Event;
+			import org.apache.royale.svg.Circle;
+			import org.apache.royale.svg.Ellipse;
+			import org.apache.royale.graphics.GradientEntry;
+			import org.apache.royale.svg.CompoundGraphic;
+			import org.apache.royale.svg.LinearGradient;
+			import org.apache.royale.svg.Path;
+			import org.apache.royale.svg.Rect;
+			import org.apache.royale.graphics.SolidColor;
+			import org.apache.royale.graphics.SolidColorStroke;
+			import org.apache.royale.events.Event;
 
-			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
+			protected function viewbase1_initCompleteHandler(event:org.apache.royale.events.Event):void
 			{
 				//drawIndividualShapes();
 				//drawOnCompoundGraphic();

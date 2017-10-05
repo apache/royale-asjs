@@ -23,7 +23,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 			
-			import org.apache.flex.cordova.Camera;
+			import org.apache.royale.cordova.Camera;
 			
 			private var cam:Camera;
 			

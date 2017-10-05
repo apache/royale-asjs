@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {	
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.utils.ObjectMap;
 	
-	// CONFIG::debug { import org.apache.flex.textLayout.debug.assert; }
+	// CONFIG::debug { import org.apache.royale.textLayout.debug.assert; }
 
 	
 

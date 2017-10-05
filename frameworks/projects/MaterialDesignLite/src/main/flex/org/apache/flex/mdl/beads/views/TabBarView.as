@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads.views
+package org.apache.royale.mdl.beads.views
 {
-    import org.apache.flex.core.IParent;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.core.IContentViewHost;
-    import org.apache.flex.mdl.TabBarButton;
-    import org.apache.flex.mdl.supportClasses.ITabItemRenderer;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.core.IContentViewHost;
+    import org.apache.royale.mdl.TabBarButton;
+    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 
     /**
-     *  The TabBarView class creates the visual elements of the org.apache.flex.mdl.TabBar
+     *  The TabBarView class creates the visual elements of the org.apache.royale.mdl.TabBar
      *  component.
      *
      *  @langversion 3.0
@@ -48,7 +48,7 @@ package org.apache.flex.mdl.beads.views
             super();
         }
 
-        override protected function itemsCreatedHandler(event:org.apache.flex.events.Event):void
+        override protected function itemsCreatedHandler(event:org.apache.royale.events.Event):void
         {
             super.itemsCreatedHandler(event);
 

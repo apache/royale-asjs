@@ -14,16 +14,16 @@
 <componentPackage>
 
 
-	<component id="Button" class="org.apache.flex.html5.Button" />
-	<component id="Label" class="org.apache.flex.html5.Label" />
-	<component id="TextButton" class="org.apache.flex.html5.TextButton" />
-	<component id="TextInput" class="org.apache.flex.html5.TextInput" />
-	<component id="TextArea" class="org.apache.flex.html5.TextArea" />
-	<component id="CheckBox" class="org.apache.flex.html5.CheckBox" />
-	<component id="RadioButton" class="org.apache.flex.html5.RadioButton" />
-	<component id="List" class="org.apache.flex.html5.List" />
-	<component id="DropDownList" class="org.apache.flex.html5.DropDownList" />
-	<component id="ComboBox" class="org.apache.flex.html5.ComboBox" />
-	<component id="TransformBead" class="org.apache.flex.html5.TransformBead" />
+	<component id="Button" class="org.apache.royale.html5.Button" />
+	<component id="Label" class="org.apache.royale.html5.Label" />
+	<component id="TextButton" class="org.apache.royale.html5.TextButton" />
+	<component id="TextInput" class="org.apache.royale.html5.TextInput" />
+	<component id="TextArea" class="org.apache.royale.html5.TextArea" />
+	<component id="CheckBox" class="org.apache.royale.html5.CheckBox" />
+	<component id="RadioButton" class="org.apache.royale.html5.RadioButton" />
+	<component id="List" class="org.apache.royale.html5.List" />
+	<component id="DropDownList" class="org.apache.royale.html5.DropDownList" />
+	<component id="ComboBox" class="org.apache.royale.html5.ComboBox" />
+	<component id="TransformBead" class="org.apache.royale.html5.TransformBead" />
 
 </componentPackage>

@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <js-output-optimization>
         <optimization>skipAsCoercions</optimization>
     </js-output-optimization>
@@ -25,4 +25,4 @@
             <filename>../../../../../../frameworks/libs/Flat.swc</filename>
         </theme>
     </compiler>
-</flex-config>
+</royale-config>

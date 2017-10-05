@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 COMPILE::SWF
 {
@@ -25,16 +25,16 @@ COMPILE::SWF
 	import flash.display.SimpleButton;
 }
 
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IMeasurementBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.utils.MouseEventConverter;
-	import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.utils.MouseEventConverter;
+	import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
 	
     //--------------------------------------
     //  Events
@@ -50,7 +50,7 @@ COMPILE::SWF
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  The UIHTMLElementWrapper class is the base class for most Buttons
@@ -102,14 +102,14 @@ COMPILE::SWF
         
         /**
          * @royaleignorecoercion Class 
-         * @royaleignorecoercion org.apache.flex.core.IBeadModel 
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel 
          */
         public function get model():Object
         {
             if (_model == null) 
             {
                 // addbead will set _model
-                var m:Class = org.apache.flex.core.ValuesManager.valuesImpl.
+                var m:Class = org.apache.royale.core.ValuesManager.valuesImpl.
                     getValue(this, 'iBeadModel') as Class;
                 if (m)
                 {
@@ -129,7 +129,7 @@ COMPILE::SWF
                     addBead(value as IBead);
                 else
                     _model = value;
-                dispatchEvent(new org.apache.flex.events.Event("modelChanged"));
+                dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
             }
         }
         
@@ -239,8 +239,8 @@ COMPILE::SWF
         
         /**
          * @param value The event containing new style properties.
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @royaleignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.IParent
          */
         public function get parent():IParent
         {

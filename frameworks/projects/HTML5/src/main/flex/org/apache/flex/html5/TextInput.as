@@ -15,11 +15,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html5
+package org.apache.royale.html5
 {
-	import org.apache.flex.html.TextInput;
+	import org.apache.royale.html.TextInput;
 	
-	public class TextInput extends org.apache.flex.html.TextInput
+	public class TextInput extends org.apache.royale.html.TextInput
 	{
 	}
 }

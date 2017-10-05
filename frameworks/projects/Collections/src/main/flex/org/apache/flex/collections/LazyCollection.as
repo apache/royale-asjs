@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.collections
+package org.apache.royale.collections
 {
     COMPILE::SWF
     {
         import flash.events.Event;            
     }
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-    import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-    import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.collections.parsers.IInputParser;
-    import org.apache.flex.collections.converters.IItemConverter;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.collections.parsers.IInputParser;
+    import org.apache.royale.collections.converters.IItemConverter;
     
     //--------------------------------------
     //  Events
@@ -43,7 +43,7 @@ package org.apache.flex.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="complete", type="org.apache.flex.events.Event")]
+    [Event(name="complete", type="org.apache.royale.events.Event")]
     
     /**
      *  The LazyCollection class implements a collection
@@ -114,7 +114,7 @@ package org.apache.flex.collections
 			if (_inputParser != value)
 			{
                 _inputParser = value;
-				dispatchEvent(new org.apache.flex.events.Event("inputParserChanged"));
+				dispatchEvent(new org.apache.royale.events.Event("inputParserChanged"));
 			}
 		}
 		
@@ -143,14 +143,14 @@ package org.apache.flex.collections
             if (_itemConverter != value)
             {
                 _itemConverter = value;
-                dispatchEvent(new org.apache.flex.events.Event("itemConverterChanged"));
+                dispatchEvent(new org.apache.royale.events.Event("itemConverterChanged"));
             }
         }
 
         private var _id:String;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#id
+         *  @copy org.apache.royale.core.UIBase#id
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -170,14 +170,14 @@ package org.apache.flex.collections
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new org.apache.flex.events.Event("idChanged"));
+				dispatchEvent(new org.apache.royale.events.Event("idChanged"));
 			}
 		}
 		
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.UIBase#strand
+         *  @copy org.apache.royale.core.UIBase#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -226,7 +226,7 @@ package org.apache.flex.collections
             dispatchEvent(event);
         }
         COMPILE::JS
-        private function completeHandler(event:org.apache.flex.events.Event):void
+        private function completeHandler(event:org.apache.royale.events.Event):void
         {
             rawData = inputParser.parseItems(_strand["data"]);  
             data = new Array(rawData.length);

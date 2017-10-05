@@ -26,16 +26,16 @@ package
     */
     internal class NetworkClasses
     {	
-        import org.apache.flex.net.URLBinaryLoader; URLBinaryLoader;
-        import org.apache.flex.net.HTTPConstants; HTTPConstants;
-        import org.apache.flex.net.URLBinaryUploader; URLBinaryUploader;
-        import org.apache.flex.net.events.ResultEvent; ResultEvent;
-        import org.apache.flex.net.events.FaultEvent; FaultEvent;
+        import org.apache.royale.net.URLBinaryLoader; URLBinaryLoader;
+        import org.apache.royale.net.HTTPConstants; HTTPConstants;
+        import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
+        import org.apache.royale.net.events.ResultEvent; ResultEvent;
+        import org.apache.royale.net.events.FaultEvent; FaultEvent;
         
-        import org.apache.flex.net.remoting.messages.AsyncMessage; AsyncMessage;
-        import org.apache.flex.net.remoting.messages.CommandMessage; CommandMessage;
-        import org.apache.flex.net.remoting.messages.RemotingMessage; RemotingMessage;
-        import org.apache.flex.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
+        import org.apache.royale.net.remoting.messages.AsyncMessage; AsyncMessage;
+        import org.apache.royale.net.remoting.messages.CommandMessage; CommandMessage;
+        import org.apache.royale.net.remoting.messages.RemotingMessage; RemotingMessage;
+        import org.apache.royale.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
     }
 }
 

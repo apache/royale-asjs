@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
 	COMPILE::JS
 	{
@@ -40,7 +40,7 @@ package org.apache.flex.events
 	 * @productversion Royale 0.0
 	 */
 	COMPILE::SWF
-	public class EventDispatcher extends flash.events.EventDispatcher implements org.apache.flex.events.IEventDispatcher
+	public class EventDispatcher extends flash.events.EventDispatcher implements org.apache.royale.events.IEventDispatcher
 	{
 		/**
 		 * Constructor.
@@ -50,7 +50,7 @@ package org.apache.flex.events
 		 * @playerversion AIR 2.6
 		 * @productversion Royale 0.0
 		 */
-		public function EventDispatcher(target:org.apache.flex.events.IEventDispatcher = null)
+		public function EventDispatcher(target:org.apache.royale.events.IEventDispatcher = null)
 		{
 			super(target as flash.events.IEventDispatcher);
 		}

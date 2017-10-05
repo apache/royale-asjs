@@ -16,39 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 
-	import org.apache.flex.collections.ArrayList;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IDataProviderModel;
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.core.IDragInitiator;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IParent;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.Lookalike;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.DragEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.html.Button;
-	import org.apache.flex.html.Group;
-	import org.apache.flex.html.Label;
-	import org.apache.flex.html.beads.controllers.DragMouseController;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.getParentOrSelfByType;
+	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.core.IDragInitiator;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.Lookalike;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.html.Button;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.html.Label;
+	import org.apache.royale.html.beads.controllers.DragMouseController;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.getParentOrSelfByType;
 
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
 
@@ -61,7 +61,7 @@ package org.apache.flex.html.beads
 	 *
 	 *  The createDragImage() function can be overridden and a different component returned.
 	 *
-	 *  @see org.apache.flex.html.beads.SingleSelectionDragSourceBead.
+	 *  @see org.apache.royale.html.beads.SingleSelectionDragSourceBead.
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -101,7 +101,7 @@ package org.apache.flex.html.beads
 		 * @param ir IItemRenderer The itemRenderer to be used as a template.
 		 * @return UIBase The "dragImage" to use.
 		 *
-		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

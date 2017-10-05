@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <js-output-optimization>
         <optimization>skipFunctionCoercions</optimization>
     </js-output-optimization>
@@ -25,4 +25,4 @@
             <path-element>../../../../../../js/libs/createjs.swc</path-element>
         </js-external-library-path>
     </compiler>
-</flex-config>
+</royale-config>

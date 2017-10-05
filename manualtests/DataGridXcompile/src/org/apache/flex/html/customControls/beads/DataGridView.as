@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads
+package org.apache.royale.html.customControls.beads
 {
 //	import flash.display.DisplayObject;
 //	import flash.display.DisplayObjectContainer;
 //	import flash.display.Shape;
 	
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.IDataGridPresentationModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.ButtonBar;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.List;
-	import org.apache.flex.html.SimpleList;
-	import org.apache.flex.html.beads.layouts.HorizontalLayout;
-	import org.apache.flex.html.beads.models.ArraySelectionModel;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.ButtonBar;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.List;
+	import org.apache.royale.html.SimpleList;
+	import org.apache.royale.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	
 	public class DataGridView implements IDataGridView
 	{
@@ -147,7 +147,7 @@ package org.apache.flex.html.customControls.beads
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 		}
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function get host():IUIBase
 		{

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package controllers
 {
-	import org.apache.flex.collections.parsers.JSONInputParser;
+	import org.apache.royale.collections.parsers.JSONInputParser;
 	
 	public class GAJSONInputParser extends JSONInputParser
 	{

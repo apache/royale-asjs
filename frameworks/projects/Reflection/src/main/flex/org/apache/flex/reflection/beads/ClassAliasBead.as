@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.reflection.beads
+package org.apache.royale.reflection.beads
 {
     COMPILE::SWF
     {
@@ -25,13 +25,13 @@ package org.apache.flex.reflection.beads
     }
     COMPILE::JS
     {
-        import org.apache.flex.reflection.registerClassAlias;
-        import org.apache.flex.reflection.getDefinitionByName;        
+        import org.apache.royale.reflection.registerClassAlias;
+        import org.apache.royale.reflection.getDefinitionByName;        
     }
     
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IFlexInfo;
-    import org.apache.flex.core.IStrand;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IFlexInfo;
+    import org.apache.royale.core.IStrand;
     
     /**
      *  The ClassAliasBead class is the registers class
@@ -62,9 +62,9 @@ package org.apache.flex.reflection.beads
         private var _strand:IStrand;
         
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
-         *  @royaleignorecoercion org.apache.flex.core.IFlexInfo
+         *  @royaleignorecoercion org.apache.royale.core.IFlexInfo
          *  @royaleignorecoercion Class
          *  @langversion 3.0
          *  @playerversion Flash 10.2

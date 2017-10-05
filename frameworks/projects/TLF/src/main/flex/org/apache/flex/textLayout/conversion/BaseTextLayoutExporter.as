@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.conversion
+package org.apache.royale.textLayout.conversion
 {
-	import org.apache.flex.reflection.getQualifiedClassName;
-	import org.apache.flex.textLayout.TextLayoutVersion;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.FlowGroupElement;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IParagraphFormattedElement;
-	import org.apache.flex.textLayout.elements.SpanElement;
-	import org.apache.flex.textLayout.elements.TableCellElement;
-	import org.apache.flex.textLayout.elements.TableElement;
-	import org.apache.flex.textLayout.elements.TableRowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.textLayout.TextLayoutVersion;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.FlowGroupElement;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IParagraphFormattedElement;
+	import org.apache.royale.textLayout.elements.SpanElement;
+	import org.apache.royale.textLayout.elements.TableCellElement;
+	import org.apache.royale.textLayout.elements.TableElement;
+	import org.apache.royale.textLayout.elements.TableRowElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
 	
 	/** 
 	 * Base export converter for TextLayout format. 

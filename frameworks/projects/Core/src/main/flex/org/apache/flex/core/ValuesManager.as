@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     /**
      *  The ValuesManager class is one of the few Singleton classes in
@@ -49,7 +49,7 @@ package org.apache.flex.core
          *  The implementation of IValuesImpl where you can
          *  get default values and shared instances.
          * 
-         *  @see org.apache.flex.core.IValuesImpl
+         *  @see org.apache.royale.core.IValuesImpl
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

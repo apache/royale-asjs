@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.supportClasses
+package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.flex.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
 
     /**
      *  Base class for Tabs item renderers
@@ -47,7 +47,7 @@ package org.apache.flex.mdl.supportClasses
 
         private var _tabIdField:String;
         /**
-         *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#tabIdField
+         *  @copy org.apache.royale.mdl.supportClasses.ITabItemRenderer#tabIdField
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -66,7 +66,7 @@ package org.apache.flex.mdl.supportClasses
 
         private var _isActive:Boolean;
         /**
-         *  @copy org.apache.flex.mdl.supportClasses.ITabItemRenderer#isActive
+         *  @copy org.apache.royale.mdl.supportClasses.ITabItemRenderer#isActive
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

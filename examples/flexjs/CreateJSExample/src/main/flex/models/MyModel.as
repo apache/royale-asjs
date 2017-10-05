@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package models
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
 	/**
 	 * This model exists to satisfy the requirement that Royale apps have

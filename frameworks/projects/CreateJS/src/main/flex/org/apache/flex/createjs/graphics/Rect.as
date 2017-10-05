@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.graphics
+package org.apache.royale.createjs.graphics
 {
 	COMPILE::SWF
 	{
-		import org.apache.flex.svg.Rect
+		import org.apache.royale.svg.Rect
 	}
 		
     COMPILE::JS
@@ -29,13 +29,13 @@ package org.apache.flex.createjs.graphics
 		import createjs.Stage;
 		import createjs.Graphics;
         
-        import org.apache.flex.createjs.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 	
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
 	
 	/**
 	 * Creates a rectangle.
@@ -47,7 +47,7 @@ package org.apache.flex.createjs.graphics
 	 */
     
     COMPILE::SWF
-	public class Rect extends org.apache.flex.svg.Rect
+	public class Rect extends org.apache.royale.svg.Rect
 	{
 		// nothing special for SWF version.
 	}

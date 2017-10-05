@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package simple
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IDataProviderItemRendererMapper;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
 
-	import org.apache.flex.events.Event;
-    import org.apache.flex.html.beads.ListView;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.html.beads.ListView;
 
     /**
 	 * GenericListView makes sure the itemRendererFactory and the layout beads are installed.

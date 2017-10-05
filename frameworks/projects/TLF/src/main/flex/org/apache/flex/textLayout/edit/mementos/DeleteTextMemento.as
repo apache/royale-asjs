@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit.mementos {
-	import org.apache.flex.textLayout.elements.FlowElement;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.edit.ElementMark;
-	import org.apache.flex.textLayout.edit.IMemento;
+package org.apache.royale.textLayout.edit.mementos {
+	import org.apache.royale.textLayout.elements.FlowElement;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.edit.ElementMark;
+	import org.apache.royale.textLayout.edit.IMemento;
 
 // Use this for operations that undo using copy & paste
 /**
- * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+ * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
  */
 public class DeleteTextMemento extends BaseMemento implements IMemento
 {
@@ -115,7 +115,7 @@ public class DeleteTextMemento extends BaseMemento implements IMemento
 	}
 	
 	/**
-	 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+	 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 	 */
 	public function get commonRoot():IFlowGroupElement
 	{

@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.UIBase;
 	
     /**
      *  The Border class is a class used internally by many

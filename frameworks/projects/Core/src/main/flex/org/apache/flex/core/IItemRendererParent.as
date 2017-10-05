@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The IItemRendererParent interface is the basic interface for the 
@@ -38,7 +38,7 @@ package org.apache.flex.core
          *  @param index The index of the data item.
          *  @return The item renderer for the data item.
          * 
-         *  @see org.apache.flex.core.IItemRenderer
+         *  @see org.apache.royale.core.IItemRenderer
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

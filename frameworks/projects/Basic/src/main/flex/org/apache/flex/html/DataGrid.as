@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDataGridModel;
-	import org.apache.flex.core.IDataGridPresentationModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.GroupBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.html.beads.models.DataGridPresentationModel;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.GroupBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.models.DataGridPresentationModel;
+	import org.apache.royale.events.Event;
 	
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The DataGrid class displays a collection of data using columns and rows. Each
 	 *  column represents a specific field in the data set; each row represents a specific
-	 *  datum. The DataGrid is a composite component built with a org.apache.flex.html.ButtonBar 
-	 *  for the column headers and a org.apache.flex.html.List for each column. The DataGrid's 
-	 *  view bead (usually org.apache.flex.html.beads.DataGridView) constructs these parts while 
+	 *  datum. The DataGrid is a composite component built with a org.apache.royale.html.ButtonBar 
+	 *  for the column headers and a org.apache.royale.html.List for each column. The DataGrid's 
+	 *  view bead (usually org.apache.royale.html.beads.DataGridView) constructs these parts while 
 	 *  itemRenderer factories contruct the elements to display the data in each cell.
 	 *  
      *  @toplevel
@@ -61,7 +61,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  The array of org.apache.flex.html.supportClasses.DataGridColumns used to 
+		 *  The array of org.apache.royale.html.supportClasses.DataGridColumns used to 
 		 *  describe each column.
 		 *
 		 *  @langversion 3.0
@@ -79,7 +79,7 @@ package org.apache.flex.html
 		}
 		
 		/**
-		 *  The object used to provide data to the org.apache.flex.html.DataGrid.
+		 *  The object used to provide data to the org.apache.royale.html.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

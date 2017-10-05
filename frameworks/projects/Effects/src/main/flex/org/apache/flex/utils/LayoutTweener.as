@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.effects.Effect;
-	import org.apache.flex.effects.IEffect;
-	import org.apache.flex.effects.Parallel;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.effects.Effect;
+	import org.apache.royale.effects.IEffect;
+	import org.apache.royale.effects.Parallel;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
 	/**
 	 *

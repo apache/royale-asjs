@@ -16,34 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.beads.ISliderView;
-	import org.apache.flex.html.beads.SliderTrackView;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.beads.ISliderView;
+	import org.apache.royale.html.beads.SliderTrackView;
 
     COMPILE::JS
     {
         import goog.events;
         import goog.events.EventType;
-        import org.apache.flex.events.BrowserEvent;
-        import org.apache.flex.html.Slider;
-        import org.apache.flex.html.beads.SliderThumbView;
-        import org.apache.flex.html.beads.SliderTrackView;
+        import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.html.Slider;
+        import org.apache.royale.html.beads.SliderThumbView;
+        import org.apache.royale.html.beads.SliderTrackView;
     }
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.flex.html.Slider's component parts (thumb and track) and 
+	 *  org.apache.royale.html.Slider's component parts (thumb and track) and 
 	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
 	 *  changes (such as moving the thumb when the track has been tapped or clicked).
 	 *  
@@ -73,7 +73,7 @@ package org.apache.flex.html.beads.controllers
 		private var oldValue:Number;
 				
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

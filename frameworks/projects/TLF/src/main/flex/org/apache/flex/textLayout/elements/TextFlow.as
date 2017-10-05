@@ -16,62 +16,62 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.compose.utils.ContextUtil;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.elements.utils.BackgroundHelper;
-	import org.apache.flex.textLayout.events.DamageEvent;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.factory.ITLFFactory;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.utils.CreateTLFUtil;
-	import org.apache.flex.utils.ObjectMap;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.compose.utils.ContextUtil;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.elements.utils.BackgroundHelper;
+	import org.apache.royale.textLayout.events.DamageEvent;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.factory.ITLFFactory;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.utils.CreateTLFUtil;
+	import org.apache.royale.utils.ObjectMap;
 
 		
 
 	
 	/**
 	 *
-	 *  @eventType org.apache.flex.textLayout.events.FlowOperationEvent.FLOW_OPERATION_BEGIN
+	 *  @eventType org.apache.royale.textLayout.events.FlowOperationEvent.FLOW_OPERATION_BEGIN
 	 *
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 */
 	 
-	[Event(name="flowOperationBegin", type="org.apache.flex.textLayout.events.FlowOperationEvent")]
+	[Event(name="flowOperationBegin", type="org.apache.royale.textLayout.events.FlowOperationEvent")]
 	
 	/**
 	 * 
-	 * @eventType org.apache.flex.textLayout.events.FlowOperationEvent.FLOW_OPERATION_END
+	 * @eventType org.apache.royale.textLayout.events.FlowOperationEvent.FLOW_OPERATION_END
 	 *
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 */
 	 
-	[Event(name="flowOperationEnd", type="org.apache.flex.textLayout.events.FlowOperationEvent")]
+	[Event(name="flowOperationEnd", type="org.apache.royale.textLayout.events.FlowOperationEvent")]
 	
 	/**
 	 * 
-	 * @eventType org.apache.flex.textLayout.events.FlowOperationEvent.FLOW_OPERATION_COMPLETE
+	 * @eventType org.apache.royale.textLayout.events.FlowOperationEvent.FLOW_OPERATION_COMPLETE
 	 *
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="flowOperationComplete", type="org.apache.flex.textLayout.events.FlowOperationEvent")]
+	[Event(name="flowOperationComplete", type="org.apache.royale.textLayout.events.FlowOperationEvent")]
 	
 	/** Dispatched whenever the selection is changed.  Primarily used to update selection-dependent user interface. 
 	 * It can also be used to alter the selection, but cannot be used to alter the TextFlow itself.
@@ -81,7 +81,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="selectionChange", type="org.apache.flex.textLayout.events.SelectionEvent")]
+	[Event(name="selectionChange", type="org.apache.royale.textLayout.events.SelectionEvent")]
 	
 	/** Dispatched after every recompose. 
 	*
@@ -90,7 +90,7 @@ package org.apache.flex.textLayout.elements
 	* @langversion 3.0
 	*/
 	
-	[Event(name="compositionComplete", type="org.apache.flex.textLayout.events.CompositionCompleteEvent")]
+	[Event(name="compositionComplete", type="org.apache.royale.textLayout.events.CompositionCompleteEvent")]
 	
 	/** Dispatched when the mouse is pressed down over any link. 
 	 *
@@ -99,7 +99,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="mouseDown", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="mouseDown", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	
 	/** Dispatched when the mouse is released over any link. 
 	 *
@@ -108,7 +108,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="mouseUp", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="mouseUp", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	
 	/** Dispatched when the mouse passes over any link. 
 	 *
@@ -117,7 +117,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="mouseMove", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]	
+	[Event(name="mouseMove", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]	
 	
 	/** Dispatched when the mouse first enters any link. 
 	 *
@@ -126,7 +126,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="rollOver", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="rollOver", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	
 	/** Dispatched when the mouse goes out of any link. 
 	 *
@@ -135,7 +135,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="rollOut", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]	
+	[Event(name="rollOut", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]	
 	
 	/** Dispatched when any link is clicked. 
 	 *
@@ -144,7 +144,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="click", type="org.apache.flex.textLayout.events.FlowElementMouseEvent")]
+	[Event(name="click", type="org.apache.royale.textLayout.events.FlowElementMouseEvent")]
 	
 	/** Dispatched when a InlineGraphicElement is resized due to having width or height as auto or percent 
 	 * and the graphic has finished loading. 
@@ -154,7 +154,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="inlineGraphicStatusChanged", type="org.apache.flex.textLayout.events.StatusChangeEvent")]
+	[Event(name="inlineGraphicStatusChanged", type="org.apache.royale.textLayout.events.StatusChangeEvent")]
 	
 	/** Dispatched by a TextFlow object after text is scrolled within a controller container.  
 	 *
@@ -163,7 +163,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="scroll", type="org.apache.flex.textLayout.events.TextLayoutEvent")]
+	[Event(name="scroll", type="org.apache.royale.textLayout.events.TextLayoutEvent")]
 	
 	/** Dispatched by a TextFlow object each time it is damaged 
 	 * 
@@ -177,7 +177,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="damage", type="org.apache.flex.textLayout.events.DamageEvent")]
+	[Event(name="damage", type="org.apache.royale.textLayout.events.DamageEvent")]
 
 	/** Dispatched by a TextFlow object each time a container has had new DisplayObjects added or updated as a result of composition.
 	 *
@@ -186,7 +186,7 @@ package org.apache.flex.textLayout.elements
 	 * @langversion 3.0
 	 */
 	
-	[Event(name="updateComplete", type="org.apache.flex.textLayout.events.UpdateCompleteEvent")]
+	[Event(name="updateComplete", type="org.apache.royale.textLayout.events.UpdateCompleteEvent")]
 
 
 	/**
@@ -228,7 +228,7 @@ package org.apache.flex.textLayout.elements
 	 * @see FlowElement
 	 * @see IFlowGroupElement
 	 * @see FlowLeafElement
-	 * @see org.apache.flex.textLayout.compose.IFlowComposer IFlowComposer
+	 * @see org.apache.royale.textLayout.compose.IFlowComposer IFlowComposer
 	 * @see ParagraphElement
 	 * @see SpanElement
 	 */
@@ -409,8 +409,8 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-		 * @see org.apache.flex.textLayout.edit.ISelectionManager ISelectionManager
-		 * @see org.apache.flex.textLayout.edit.IEditManager IEditManager
+		 * @see org.apache.royale.textLayout.edit.ISelectionManager ISelectionManager
+		 * @see org.apache.royale.textLayout.edit.IEditManager IEditManager
 		 */
 		public function get interactionManager():ISelectionManager
 		{
@@ -449,7 +449,7 @@ package org.apache.flex.textLayout.elements
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 *
-	 	 * @see org.apache.flex.textLayout.compose.IFlowComposer FlowComposer
+	 	 * @see org.apache.royale.textLayout.compose.IFlowComposer FlowComposer
 		 */
 		public override function get flowComposer():IFlowComposer
 		{ 
@@ -844,7 +844,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#addEventListener()
+		 * @copy org.apache.royale.events.IEventDispatcher#addEventListener()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -863,7 +863,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#dispatchEvent()
+		 * @copy org.apache.royale.events.IEventDispatcher#dispatchEvent()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -878,7 +878,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#hasEventListener()
+		 * @copy org.apache.royale.events.IEventDispatcher#hasEventListener()
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -893,7 +893,7 @@ package org.apache.flex.textLayout.elements
 		}
 		
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#removeEventListener().
+		 * @copy org.apache.royale.events.IEventDispatcher#removeEventListener().
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -908,7 +908,7 @@ package org.apache.flex.textLayout.elements
 		}
 
 		/**
-		 * @copy org.apache.flex.events.IEventDispatcher#willTrigger()
+		 * @copy org.apache.royale.events.IEventDispatcher#willTrigger()
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -1054,7 +1054,7 @@ package org.apache.flex.textLayout.elements
 		* @playerversion AIR 1.5
 	 	* @langversion 3.0
 	 	*
-	 	* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+	 	* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 	 	*/
 	 	
 		public function get hostFormat():ITextLayoutFormat
@@ -1215,9 +1215,9 @@ package org.apache.flex.textLayout.elements
 	} // end TextFlow class
 }
 
-import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-import org.apache.flex.textLayout.formats.TextLayoutFormat;
-import org.apache.flex.textLayout.utils.CreateTLFUtil;
+import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+import org.apache.royale.textLayout.formats.TextLayoutFormat;
+import org.apache.royale.textLayout.utils.CreateTLFUtil;
 
 
 

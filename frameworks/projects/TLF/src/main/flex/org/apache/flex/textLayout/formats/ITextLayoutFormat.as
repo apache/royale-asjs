@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/**
 	 * This interface provides read access to FlowElements-related properties.
@@ -51,7 +51,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BreakStyle
+		 * @see org.apache.royale.textLayout.formats.BreakStyle
 		 */
 		function get columnBreakBefore():*;
 
@@ -66,7 +66,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BreakStyle
+		 * @see org.apache.royale.textLayout.formats.BreakStyle
 		 */
 		function get columnBreakAfter():*;
 
@@ -81,7 +81,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BreakStyle
+		 * @see org.apache.royale.textLayout.formats.BreakStyle
 		 */
 		function get containerBreakBefore():*;
 
@@ -96,7 +96,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BreakStyle
+		 * @see org.apache.royale.textLayout.formats.BreakStyle
 		 */
 		function get containerBreakAfter():*;
 
@@ -111,7 +111,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.ColorName
+		 * @see org.apache.royale.textLayout.formats.ColorName
 		 */
 		function get color():*;
 
@@ -126,7 +126,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BackgroundColor
+		 * @see org.apache.royale.textLayout.formats.BackgroundColor
 		 */
 		function get backgroundColor():*;
 
@@ -199,7 +199,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BaselineShift
+		 * @see org.apache.royale.textLayout.formats.BaselineShift
 		 */
 		function get baselineShift():*;
 
@@ -262,7 +262,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.BreakOpportunity
+		 * @see org.apache.royale.text.engine.BreakOpportunity
 		 */
 		function get breakOpportunity():*;
 
@@ -277,7 +277,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.DigitCase
+		 * @see org.apache.royale.text.engine.DigitCase
 		 */
 		function get digitCase():*;
 
@@ -292,7 +292,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.DigitWidth
+		 * @see org.apache.royale.text.engine.DigitWidth
 		 */
 		function get digitWidth():*;
 
@@ -307,7 +307,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TextBaseline
+		 * @see org.apache.royale.text.engine.TextBaseline
 		 */
 		function get dominantBaseline():*;
 
@@ -322,7 +322,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.Kerning
+		 * @see org.apache.royale.text.engine.Kerning
 		 */
 		function get kerning():*;
 
@@ -337,7 +337,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.LigatureLevel
+		 * @see org.apache.royale.text.engine.LigatureLevel
 		 */
 		function get ligatureLevel():*;
 
@@ -352,7 +352,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TextBaseline
+		 * @see org.apache.royale.text.engine.TextBaseline
 		 */
 		function get alignmentBaseline():*;
 
@@ -380,7 +380,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TLFTypographicCase
+		 * @see org.apache.royale.textLayout.formats.TLFTypographicCase
 		 */
 		function get typographicCase():*;
 
@@ -408,7 +408,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TextDecoration
+		 * @see org.apache.royale.textLayout.formats.TextDecoration
 		 */
 		function get textDecoration():*;
 
@@ -424,7 +424,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.FontPosture
+		 * @see org.apache.royale.text.engine.FontPosture
 		 */
 		function get fontStyle():*;
 
@@ -439,7 +439,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.WhiteSpaceCollapse
+		 * @see org.apache.royale.textLayout.formats.WhiteSpaceCollapse
 		 */
 		function get whiteSpaceCollapse():*;
 
@@ -454,7 +454,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.RenderingMode
+		 * @see org.apache.royale.text.engine.RenderingMode
 		 */
 		function get renderingMode():*;
 
@@ -469,7 +469,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.CFFHinting
+		 * @see org.apache.royale.text.engine.CFFHinting
 		 */
 		function get cffHinting():*;
 
@@ -484,7 +484,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.FontLookup
+		 * @see org.apache.royale.text.engine.FontLookup
 		 */
 		function get fontLookup():*;
 
@@ -499,7 +499,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.TextRotation
+		 * @see org.apache.royale.text.engine.TextRotation
 		 */
 		function get textRotation():*;
 
@@ -588,7 +588,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TextAlign
+		 * @see org.apache.royale.textLayout.formats.TextAlign
 		 */
 		function get textAlign():*;
 
@@ -604,7 +604,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TextAlign
+		 * @see org.apache.royale.textLayout.formats.TextAlign
 		 */
 		function get textAlignLast():*;
 
@@ -620,7 +620,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TextJustify
+		 * @see org.apache.royale.textLayout.formats.TextJustify
 		 */
 		function get textJustify():*;
 
@@ -636,7 +636,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.JustificationRule
+		 * @see org.apache.royale.textLayout.formats.JustificationRule
 		 */
 		function get justificationRule():*;
 
@@ -652,7 +652,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.text.engine.JustificationStyle
+		 * @see org.apache.royale.text.engine.JustificationStyle
 		 */
 		function get justificationStyle():*;
 
@@ -668,7 +668,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.Direction
+		 * @see org.apache.royale.textLayout.formats.Direction
 		 */
 		function get direction():*;
 
@@ -693,7 +693,7 @@ package org.apache.flex.textLayout.formats
 		 * Setters can take an array of TabStopFormat, a condensed string representation, undefined, or <code>FormatValue.INHERIT</code>. The condensed string representation is always converted into an array of TabStopFormat. <p>The string-based format is a list of tab stops, where each tab stop is delimited by one or more spaces.</p><p>A tab stop takes the following form: &lt;alignment type&gt;&lt;alignment position&gt;|&lt;alignment token&gt;.</p><p>The alignment type is a single character, and can be S, E, C, or D (or lower-case equivalents). S or s for start, E or e for end, C or c for center, D or d for decimal. The alignment type is optional, and if its not specified will default to S.</p><p>The alignment position is a Number, and is specified according to FXG spec for Numbers (decimal or scientific notation). The alignment position is required.</p><p>The vertical bar is used to separate the alignment position from the alignment token, and should only be present if the alignment token is present.</p><p> The alignment token is optional if the alignment type is D, and should not be present if the alignment type is anything other than D. The alignment token may be any sequence of characters terminated by the space that ends the tab stop (for the last tab stop, the terminating space is optional; end of alignment token is implied). A space may be part of the alignment token if it is escaped with a backslash (\ ). A backslash may be part of the alignment token if it is escaped with another backslash (\\). If the alignment type is D, and the alignment token is not specified, it will take on the default value of null.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will inherit its value from an ancestor. If no ancestor has set this property, it will have a value of null.</p>
-		 * @see org.apache.flex.textLayout.formats.TabStopFormat
+		 * @see org.apache.royale.textLayout.formats.TabStopFormat
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
@@ -715,7 +715,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.LeadingModel
+		 * @see org.apache.royale.textLayout.formats.LeadingModel
 		 */
 		function get leadingModel():*;
 
@@ -740,14 +740,14 @@ package org.apache.flex.textLayout.formats
 		 * <p>Legal values as a string are FormatValue.AUTO, FormatValue.INHERIT and numbers from -8000 to 8000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will have a value of FormatValue.AUTO.</p>
-		 * @see org.apache.flex.textLayout.elements.Configuration#autoListElementStartPadding
+		 * @see org.apache.royale.textLayout.elements.Configuration#autoListElementStartPadding
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get paddingLeft():*;
 
@@ -757,14 +757,14 @@ package org.apache.flex.textLayout.formats
 		 * <p>Legal values as a string are FormatValue.AUTO, FormatValue.INHERIT and numbers from -8000 to 8000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will have a value of FormatValue.AUTO.</p>
-		 * @see org.apache.flex.textLayout.elements.Configuration#autoListElementStartPadding
+		 * @see org.apache.royale.textLayout.elements.Configuration#autoListElementStartPadding
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get paddingTop():*;
 
@@ -774,14 +774,14 @@ package org.apache.flex.textLayout.formats
 		 * <p>Legal values as a string are FormatValue.AUTO, FormatValue.INHERIT and numbers from -8000 to 8000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will have a value of FormatValue.AUTO.</p>
-		 * @see org.apache.flex.textLayout.elements.Configuration#autoListElementStartPadding
+		 * @see org.apache.royale.textLayout.elements.Configuration#autoListElementStartPadding
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get paddingRight():*;
 
@@ -791,14 +791,14 @@ package org.apache.flex.textLayout.formats
 		 * <p>Legal values as a string are FormatValue.AUTO, FormatValue.INHERIT and numbers from -8000 to 8000.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will have a value of FormatValue.AUTO.</p>
-		 * @see org.apache.flex.textLayout.elements.Configuration#autoListElementStartPadding
+		 * @see org.apache.royale.textLayout.elements.Configuration#autoListElementStartPadding
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get paddingBottom():*;
 
@@ -814,7 +814,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get columnCount():*;
 
@@ -830,7 +830,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.FormatValue
+		 * @see org.apache.royale.textLayout.formats.FormatValue
 		 */
 		function get columnWidth():*;
 
@@ -846,7 +846,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BaselineOffset
+		 * @see org.apache.royale.textLayout.formats.BaselineOffset
 		 */
 		function get firstBaselineOffset():*;
 
@@ -862,7 +862,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.VerticalAlign
+		 * @see org.apache.royale.textLayout.formats.VerticalAlign
 		 */
 		function get verticalAlign():*;
 
@@ -878,7 +878,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BlockProgression
+		 * @see org.apache.royale.textLayout.formats.BlockProgression
 		 */
 		function get blockProgression():*;
 
@@ -894,7 +894,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.LineBreak
+		 * @see org.apache.royale.textLayout.formats.LineBreak
 		 */
 		function get lineBreak():*;
 
@@ -908,7 +908,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.ListStyleType
+		 * @see org.apache.royale.textLayout.formats.ListStyleType
 		 */
 		function get listStyleType():*;
 
@@ -922,7 +922,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.ListStylePosition
+		 * @see org.apache.royale.textLayout.formats.ListStylePosition
 		 */
 		function get listStylePosition():*;
 
@@ -945,14 +945,14 @@ package org.apache.flex.textLayout.formats
 		 * <p>Legal values are ClearFloats.START, ClearFloats.END, ClearFloats.LEFT, ClearFloats.RIGHT, ClearFloats.BOTH, ClearFloats.NONE, FormatValue.INHERIT.</p>
 		 * <p>Default value is undefined indicating not set.</p>
 		 * <p>If undefined during the cascade this property will have a value of ClearFloats.NONE.</p>
-		 * @see org.apache.flex.textLayout.formats.ClearFloats
+		 * @see org.apache.royale.textLayout.formats.ClearFloats
 		 * 
 		 * @throws RangeError when set value is not within range for this property
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.ClearFloats
+		 * @see org.apache.royale.textLayout.formats.ClearFloats
 		 */
 		function get clearFloats():*;
 
@@ -1098,7 +1098,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BorderColor
+		 * @see org.apache.royale.textLayout.formats.BorderColor
 		 */
 		function get borderLeftColor():*;
 
@@ -1113,7 +1113,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BorderColor
+		 * @see org.apache.royale.textLayout.formats.BorderColor
 		 */
 		function get borderRightColor():*;
 
@@ -1128,7 +1128,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BorderColor
+		 * @see org.apache.royale.textLayout.formats.BorderColor
 		 */
 		function get borderTopColor():*;
 
@@ -1143,7 +1143,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.BorderColor
+		 * @see org.apache.royale.textLayout.formats.BorderColor
 		 */
 		function get borderBottomColor():*;
 
@@ -1362,7 +1362,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TableFrame
+		 * @see org.apache.royale.textLayout.formats.TableFrame
 		 */
 		function get frame():*;
 
@@ -1377,7 +1377,7 @@ package org.apache.flex.textLayout.formats
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
-		 * @see org.apache.flex.textLayout.formats.TableRules
+		 * @see org.apache.royale.textLayout.formats.TableRules
 		 */
 		function get rules():*;
 		

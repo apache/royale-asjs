@@ -19,8 +19,8 @@
 package samples.flexstore
 {
     
-import org.apache.flex.events.Event;
-import org.apache.flex.events.IRoyaleEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 
 public class ProductThumbEvent extends Event
 {

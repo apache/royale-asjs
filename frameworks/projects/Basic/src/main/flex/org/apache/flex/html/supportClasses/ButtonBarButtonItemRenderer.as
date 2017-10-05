@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.beads.ITextItemRenderer;
-	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.beads.ITextItemRenderer;
+	import org.apache.royale.events.ItemClickedEvent;
 
 	/**
 	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the 
-	 *  org.apache.flex.html.ButtonBar component. This class uses a 
-	 *  org.apache.flex.html.Button to represent the data.
+	 *  org.apache.royale.html.ButtonBar component. This class uses a 
+	 *  org.apache.royale.html.Button to represent the data.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

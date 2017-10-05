@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.edit.SelectionState;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.IFlowGroupElement;
-	import org.apache.flex.textLayout.elements.InlineGraphicElement;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.edit.SelectionState;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.IFlowGroupElement;
+	import org.apache.royale.textLayout.elements.InlineGraphicElement;
 
 	/**
 	 * The InsertInlineGraphicOperation class encapsulates the modification of an existing inline graphic.
 	 *
-	 * @see org.apache.flex.textLayout.elements.InlineGraphicElement
-	 * @see org.apache.flex.textLayout.edit.EditManager
-	 * @see org.apache.flex.textLayout.events.FlowOperationEvent
+	 * @see org.apache.royale.textLayout.elements.InlineGraphicElement
+	 * @see org.apache.royale.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.events.FlowOperationEvent
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -67,7 +67,7 @@ package org.apache.flex.textLayout.operations {
 		}
 		
 		/**	
-		 * @copy org.apache.flex.textLayout.elements.InlineGraphicElement#source
+		 * @copy org.apache.royale.textLayout.elements.InlineGraphicElement#source
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -83,7 +83,7 @@ package org.apache.flex.textLayout.operations {
 		}
 
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.InlineGraphicElement#width
+		 * @copy org.apache.royale.textLayout.elements.InlineGraphicElement#width
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -99,7 +99,7 @@ package org.apache.flex.textLayout.operations {
 		}
 
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.InlineGraphicElement#height
+		 * @copy org.apache.royale.textLayout.elements.InlineGraphicElement#height
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

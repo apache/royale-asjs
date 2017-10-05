@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.html.Container;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.Container;
 	
 	/**
 	 *  The IDataGridView interface marks as a component as being the bead that
-	 *  can create the visual pieces for a org.apache.flex.html.DataGrid. 
+	 *  can create the visual pieces for a org.apache.royale.html.DataGrid. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	COMPILE::SWF
 	{
@@ -28,7 +28,7 @@ package org.apache.flex.core
      *  represent image views.  
      *  It is used to find the view bead on the strand via calls to getBeadByType.
      * 
-     *  @see org.apache.flex.core.IStrand#getBeadByType
+     *  @see org.apache.royale.core.IStrand#getBeadByType
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

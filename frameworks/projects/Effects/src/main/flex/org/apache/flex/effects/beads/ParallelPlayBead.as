@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.effects.beads
+package org.apache.royale.effects.beads
 {
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.effects.Effect;
-	import org.apache.flex.effects.ICompoundEffect;
-	import org.apache.flex.effects.IEffect;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.effects.Effect;
+	import org.apache.royale.effects.ICompoundEffect;
+	import org.apache.royale.effects.IEffect;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	public class ParallelPlayBead implements IBead
 	{

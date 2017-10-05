@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.elements.utils.GeometricElementUtils;
-	import org.apache.flex.text.engine.ElementFormat;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.engine.TextElement;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ISWFContext;
-	import org.apache.flex.textLayout.compose.SWFContext;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.elements.utils.GeometricElementUtils;
+	import org.apache.royale.text.engine.ElementFormat;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.engine.TextElement;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.compose.SWFContext;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	public class TableLeafElement extends FlowLeafElement implements ITableLeafElement
 	{

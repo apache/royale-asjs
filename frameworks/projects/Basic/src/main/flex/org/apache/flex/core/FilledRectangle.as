@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
         import flash.display.Shape;            
     }
 	
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.UIBase;
 	
     /**
      *  The FilledRectangle class draws a simple filled

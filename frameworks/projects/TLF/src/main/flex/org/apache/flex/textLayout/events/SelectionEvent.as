@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.textLayout.edit.SelectionState;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.edit.SelectionState;
 	
 	/** 
 	 * A TextFlow instance dispatches a SelectionEvent object when
@@ -85,8 +85,8 @@ package org.apache.flex.textLayout.events
 		 * 
 		 * 
 		 * 
-		 * @see org.apache.flex.textLayout.edit.ElementRange
-		 * @see org.apache.flex.textLayout.edit.SelectionState
+		 * @see org.apache.royale.textLayout.edit.ElementRange
+		 * @see org.apache.royale.textLayout.edit.SelectionState
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 

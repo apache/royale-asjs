@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.UIBase;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.UIBase;
     COMPILE::JS
     {
         import goog.events;
-        import org.apache.flex.core.IBead;
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.events.IEventDispatcher;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.IBead;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.IEventDispatcher;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	[Event(name="valueChange", type="org.apache.flex.events.Event")]
+	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The NumericStepper class is a component that displays a numeric
-	 *  value and up/down controls (using a org.apache.flex.html.Spinner) to
+	 *  value and up/down controls (using a org.apache.royale.html.Spinner) to
 	 *  increase and decrease the value by specific amounts. The NumericStepper uses the following beads:
 	 *
-	 *  org.apache.flex.core.IBeadModel: the data model for the component of type org.apache.flex.core.IRangeModel.
-	 *  org.apache.flex.core.IBeadView: constructs the parts of the component.
-	 *  org.apache.flex.core.IBeadController: handles the input events.
+	 *  org.apache.royale.core.IBeadModel: the data model for the component of type org.apache.royale.core.IRangeModel.
+	 *  org.apache.royale.core.IBeadView: constructs the parts of the component.
+	 *  org.apache.royale.core.IBeadController: handles the input events.
 	 *
      *  @toplevel
 	 *  @langversion 3.0
@@ -157,7 +157,7 @@ package org.apache.flex.html
         private var spinner:Spinner;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

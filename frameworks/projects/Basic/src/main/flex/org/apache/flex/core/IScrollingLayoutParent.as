@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.html.supportClasses.Border;
-	import org.apache.flex.html.supportClasses.ScrollBar;
+	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.html.supportClasses.ScrollBar;
 
     /**
      *  The IScrollingLayoutParent interface is an ILayoutParent

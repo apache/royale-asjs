@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.collections.FlattenedList;
-	import org.apache.flex.collections.HierarchicalData;
+	import org.apache.royale.collections.FlattenedList;
+	import org.apache.royale.collections.HierarchicalData;
 
 	/**
 	 *  The Tree component displays structured data. The Tree uses a HierarchicalData
@@ -55,7 +55,7 @@ package org.apache.flex.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @see org.apache.flex.collections.HierarchicalData.
+		 *  @see org.apache.royale.collections.HierarchicalData.
 		 */
 		override public function get dataProvider():Object
 		{

@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit {
-	import org.apache.flex.textLayout.elements.CellRange;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TextRange;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+package org.apache.royale.textLayout.edit {
+	import org.apache.royale.textLayout.elements.CellRange;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TextRange;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 
 	
 
@@ -35,9 +35,9 @@ package org.apache.flex.textLayout.edit {
 	 * the anchor point in the text. If a selection is modified (for example, by a user shift-clicking with the mouse),
 	 * the active point changes while the anchor point always remains in the same position.</p>
 	 *
-	 * @see org.apache.flex.textLayout.edit.ISelectionManager#getSelectionState()
-	 * @see org.apache.flex.textLayout.elements.TextFlow
-	 * @see org.apache.flex.textLayout.elements.TextRange
+	 * @see org.apache.royale.textLayout.edit.ISelectionManager#getSelectionState()
+	 * @see org.apache.royale.textLayout.elements.TextFlow
+	 * @see org.apache.royale.textLayout.elements.TextRange
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -65,9 +65,9 @@ package org.apache.flex.textLayout.edit {
 		 * @param activePosition	The active index of the selection.
 		 * @param	format	The TextLayoutFormat to be applied on next character typed when a point selection
 		 * 
-		 * @see org.apache.flex.textLayout.edit.ISelectionManager#getSelectionState()
-		 * @see org.apache.flex.textLayout.edit.SelectionManager
-		 * @see org.apache.flex.textLayout.edit.EditManager
+		 * @see org.apache.royale.textLayout.edit.ISelectionManager#getSelectionState()
+		 * @see org.apache.royale.textLayout.edit.SelectionManager
+		 * @see org.apache.royale.textLayout.edit.EditManager
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5

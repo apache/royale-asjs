@@ -75,7 +75,7 @@
         <java fork="true"
             jar="${FLEX_SDK_HOME}/lib/mxmlc.jar">
             <jvmarg line="${mxmlc.jvm.args}"/>
-            <arg value="+flexlib=${FLEX_SDK_HOME}/frameworks" />
+            <arg value="+royalelib=${FLEX_SDK_HOME}/frameworks" />
             <arg value="-output=${basedir}/../fonts/flat-ui-icons-regular.swf" />
             <arg value="${basedir}/FlatUIIcons.as" />
         </java>

@@ -17,12 +17,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events
+package org.apache.royale.events
 {
 
 	/**
 	 * MXML auto-imports flash.events.Event which then requires
-	 * full qualification to use org.apache.flex.events.Event.
+	 * full qualification to use org.apache.royale.events.Event.
 	 * Use CustomEvent to skip all that extra typing.
 	 *
 	 * @langversion 3.0

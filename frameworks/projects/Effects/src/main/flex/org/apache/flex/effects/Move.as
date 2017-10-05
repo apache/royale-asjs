@@ -17,11 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
-import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IUIBase;
+import org.apache.royale.core.IDocument;
+import org.apache.royale.core.IUIBase;
 
 /**
  *  The Move effect animates a UI component's x or y position.

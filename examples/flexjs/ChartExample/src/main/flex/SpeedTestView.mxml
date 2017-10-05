@@ -23,7 +23,7 @@ limitations under the License.
 		<![CDATA[
 			import models.ProductsModel;
 			
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			
 			private var startTime:Date;
 			private var endTime:Date;
@@ -41,7 +41,7 @@ limitations under the License.
 				svgChart.dataProvider = m.wave1;
 			}
 			
-			private function wave1Complete(event:org.apache.flex.events.Event):void
+			private function wave1Complete(event:org.apache.royale.events.Event):void
 			{
 				endTime = new Date();
 				var diff:Number = endTime.getTime() - startTime.getTime();
@@ -61,7 +61,7 @@ limitations under the License.
 				regChart.dataProvider = m.wave1;
 			}
 			
-			private function wave2Complete(event:org.apache.flex.events.Event):void
+			private function wave2Complete(event:org.apache.royale.events.Event):void
 			{
 				endTime = new Date();
 				var diff:Number = endTime.getTime() - startTime.getTime();
@@ -75,9 +75,9 @@ limitations under the License.
 		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		.hsline {
-			IDataGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartDataGroup");
-			IHorizontalAxisGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartAxisGroup");
-			IVerticalAxisGroup: ClassReference("org.apache.flex.charts.optimized.SVGChartAxisGroup");
+			IDataGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartDataGroup");
+			IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartAxisGroup");
+			IVerticalAxisGroup: ClassReference("org.apache.royale.charts.optimized.SVGChartAxisGroup");
 		}
 	</fx:Style>
 	

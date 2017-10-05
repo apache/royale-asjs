@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads.models
+package org.apache.royale.html.customControls.beads.models
 {
-	import org.apache.flex.core.IDataGridPresentationModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	public class DataGridPresentationModel extends EventDispatcher implements IDataGridPresentationModel
 	{

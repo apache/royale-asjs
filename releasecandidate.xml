@@ -86,7 +86,7 @@
 		type="dir" 
 		property="site" value="${svn.site}" />
     
-	<fail message="The svn.site property is not set to the working copy for https://flex.apache.org."
+	<fail message="The svn.site property is not set to the working copy for https://royale.apache.org."
         unless="site"/>
 				
 	<available file="${env.AIR_HOME}"
@@ -343,7 +343,7 @@
 		</exec>
 		<!-- pause to give buildbot chance to react -->
 		<sleep seconds="5" />
-		<get src="https://cms.apache.org/flex/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
+		<get src="https://cms.apache.org/royale/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
 		<delete file="${basedir}/getresult.txt" />
 	</target>
 	
@@ -431,7 +431,7 @@
 		</exec>
 		<!-- pause to give buildbot chance to react -->
 		<sleep seconds="5" />
-		<get src="https://cms.apache.org/flex/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
+		<get src="https://cms.apache.org/royale/publish" username="${apache.username}" password="${apache.password}" dest="${basedir}/getresult.txt" />
 		<delete file="${basedir}/getresult.txt" />
 	</target>
 
@@ -560,7 +560,7 @@ ${my.name}
 		<fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
 			unless="dist.release"/>
 				
-		<exec executable="${svn}" dir="${dist.release}/flex" failonerror="true" >
+		<exec executable="${svn}" dir="${dist.release}/royale" failonerror="true" >
 			<arg value="update" />
 		</exec>
 		<exec executable="${svn}" dir="${dist.release}/royale" failonerror="true" >

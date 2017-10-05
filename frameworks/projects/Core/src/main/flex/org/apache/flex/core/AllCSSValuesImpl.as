@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
@@ -26,11 +26,11 @@ package org.apache.flex.core
         import flash.utils.getQualifiedSuperclassName;            
     }
 	
-	import org.apache.flex.events.EventDispatcher;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.events.ValueEvent;
-	import org.apache.flex.utils.CSSUtils;
-    import org.apache.flex.utils.StringUtil;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.CSSUtils;
+    import org.apache.royale.utils.StringUtil;
     
     /**
      *  The AllCSSValuesImpl class will eventually implement a full set of
@@ -61,7 +61,7 @@ package org.apache.flex.core
 		private var conditionCombiners:Object;
 
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#init()
+         *  @copy org.apache.royale.core.IValuesImpl#init()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -301,7 +301,7 @@ package org.apache.flex.core
         public var values:Object;
 		
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#getValue()
+         *  @copy org.apache.royale.core.IValuesImpl#getValue()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -511,7 +511,7 @@ package org.apache.flex.core
 		}
         
 		/**
-		 *  @copy org.apache.flex.core.IValuesImpl#newInstance()
+		 *  @copy org.apache.royale.core.IValuesImpl#newInstance()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -527,7 +527,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#getInstance()
+         *  @copy org.apache.royale.core.IValuesImpl#getInstance()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -560,7 +560,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#convertColor()
+         *  @copy org.apache.royale.core.IValuesImpl#convertColor()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -573,7 +573,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#parseStyles()
+         *  @copy org.apache.royale.core.IValuesImpl#parseStyles()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -620,7 +620,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IValuesImpl#addRule()
+         *  @copy org.apache.royale.core.IValuesImpl#addRule()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

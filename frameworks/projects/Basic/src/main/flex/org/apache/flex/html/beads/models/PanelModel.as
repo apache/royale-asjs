@@ -16,16 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IPanelModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IPanelModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 *  The PanelModel bead class holds the values for a org.apache.flex.html.Panel, such as its
+	 *  The PanelModel bead class holds the values for a org.apache.royale.html.Panel, such as its
 	 *  title.
 	 *
 	 *  @langversion 3.0
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -66,7 +66,7 @@ package org.apache.flex.html.beads.models
         private var _controlBar:Array;
         
         /**
-         *  The items in the org.apache.flex.html.ControlBar. Setting this property automatically
+         *  The items in the org.apache.royale.html.ControlBar. Setting this property automatically
          *  causes the ControlBar to display if you are using a View bead that supports it.
          *
          *  @langversion 3.0
@@ -86,9 +86,9 @@ package org.apache.flex.html.beads.models
         private var _title:String;
 		
 		/**
-		 *  The title string for the org.apache.flex.html.Panel.
+		 *  The title string for the org.apache.royale.html.Panel.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#title
+		 *  @copy org.apache.royale.core.ITitleBarModel#title
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -112,7 +112,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The HTML string for the title.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#htmlTitle
+		 *  @copy org.apache.royale.core.ITitleBarModel#htmlTitle
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -134,9 +134,9 @@ package org.apache.flex.html.beads.models
 		private var _showCloseButton:Boolean = false;
 		
 		/**
-		 *  Indicates whether or not there is a Close button for the org.apache.flex.html.Panel.
+		 *  Indicates whether or not there is a Close button for the org.apache.royale.html.Panel.
 		 * 
-		 *  @copy org.apache.flex.core.ITitleBarModel#showCloseButton
+		 *  @copy org.apache.royale.core.ITitleBarModel#showCloseButton
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

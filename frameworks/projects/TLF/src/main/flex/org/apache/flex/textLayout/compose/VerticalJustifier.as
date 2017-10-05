@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.VerticalAlign;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.VerticalAlign;
 
 	
 
@@ -33,7 +33,7 @@ package org.apache.flex.textLayout.compose
 	 */
 	public final class VerticalJustifier
 	{
-		[ ArrayElementType("org.apache.flex.textLayout.compose.IVerticalJustificationLine") ] 
+		[ ArrayElementType("org.apache.royale.textLayout.compose.IVerticalJustificationLine") ] 
 		/** Vertical justify the subset of lines from startIndext to startIndex to numLines according to the rule specified by verticalAlignAttr.  
 		 * The assumption is that they are all the lines in a single column of cont. 
 		 * @see text.formats.VerticalAlign
@@ -82,12 +82,12 @@ package org.apache.flex.textLayout.compose
 	}
 }
 
-import org.apache.flex.textLayout.compose.FloatCompositionData;
-import org.apache.flex.textLayout.compose.IVerticalJustificationLine;
-import org.apache.flex.textLayout.compose.ITextFlowLine;
-import org.apache.flex.textLayout.container.IContainerController;
-import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-import org.apache.flex.textLayout.formats.Float;
+import org.apache.royale.textLayout.compose.FloatCompositionData;
+import org.apache.royale.textLayout.compose.IVerticalJustificationLine;
+import org.apache.royale.textLayout.compose.ITextFlowLine;
+import org.apache.royale.textLayout.container.IContainerController;
+import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+import org.apache.royale.textLayout.formats.Float;
 
 // interface IVerticalAdjustmentHelper
 // {
@@ -183,7 +183,7 @@ class TB_VJHelper/* implements IVerticalAdjustmentHelper*/
 	
 	// one line: untouched, two lines: first line untouched and descent of last line at the bottom of the frame, 
 	// and more than two lines: line spacing increased proportionally, with first line untouched and descent of last line at the bottom of the frame
-	[ ArrayElementType("org.apache.flex.textLayout.compose.IVerticalJustificationLine") ]
+	[ ArrayElementType("org.apache.royale.textLayout.compose.IVerticalJustificationLine") ]
 	public function computeJustifyAdjustment(lineArray:Array, firstLineIndex:int, numLines:int):Number
 	{
 		adj = 0;
@@ -211,7 +211,7 @@ class TB_VJHelper/* implements IVerticalAdjustmentHelper*/
 		return adj;
 	}
 	
-	[ ArrayElementType("org.apache.flex.textLayout.compose.IVerticalJustificationLine") ]
+	[ ArrayElementType("org.apache.royale.textLayout.compose.IVerticalJustificationLine") ]
 	public function applyJustifyAdjustment(lineArray:Array, firstLineIndex:int, numLines:int):void
 	{ 
 		if (numLines == 1 || adj == 0)
@@ -295,7 +295,7 @@ class RL_VJHelper/* implements IVerticalAdjustmentHelper*/
 	
 	// one line: untouched, two lines: first line untouched and descent of last line at the bottom of the frame, 
 	// and more than two lines: line spacing increased proportionally, with first line untouched and descent of last line at the bottom of the frame
-	[ ArrayElementType("org.apache.flex.textLayout.compose.IVerticalJustificationLine") ]
+	[ ArrayElementType("org.apache.royale.textLayout.compose.IVerticalJustificationLine") ]
 	public function computeJustifyAdjustment(lineArray:Array, firstLineIndex:int, numLines:int):Number
 	{ 
 		adj = 0;
@@ -321,7 +321,7 @@ class RL_VJHelper/* implements IVerticalAdjustmentHelper*/
 		return -adj;
 	}
 	
-	[ ArrayElementType("org.apache.flex.textLayout.compose.IVerticalJustificationLine") ]
+	[ ArrayElementType("org.apache.royale.textLayout.compose.IVerticalJustificationLine") ]
 	public function applyJustifyAdjustment(lineArray:Array, firstLineIndex:int, numLines:int):void
 	{
 		if (numLines == 1 || adj == 0)

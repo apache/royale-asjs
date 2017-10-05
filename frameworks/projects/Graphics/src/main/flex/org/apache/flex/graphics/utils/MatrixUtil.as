@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.graphics.utils
+package org.apache.royale.graphics.utils
 {
 	
 	import flash.display.DisplayObject;

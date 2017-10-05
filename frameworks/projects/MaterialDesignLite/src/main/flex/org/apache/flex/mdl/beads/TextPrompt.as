@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mdl.beads
+package org.apache.royale.mdl.beads
 {
 	COMPILE::SWF
 	{
 		import flash.text.TextFieldType;			
 		
-		import org.apache.flex.core.CSSTextField;
+		import org.apache.royale.core.CSSTextField;
 	}
 	
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
-    import org.apache.flex.mdl.supportClasses.ITextField;
-	import org.apache.flex.mdl.supportClasses.TextFieldBase;
+    import org.apache.royale.mdl.supportClasses.ITextField;
+	import org.apache.royale.mdl.supportClasses.TextFieldBase;
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -80,14 +80,14 @@ package org.apache.flex.mdl.beads
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.flex.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{

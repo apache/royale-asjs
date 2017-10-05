@@ -21,6 +21,6 @@
 
 <componentPackage>
 
-    <component id="ClassAliasBead" class="org.apache.flex.reflection.beads.ClassAliasBead" />
+    <component id="ClassAliasBead" class="org.apache.royale.reflection.beads.ClassAliasBead" />
     
 </componentPackage>

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.compose.ParcelList;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.compose.ISWFContext;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.compose.ParcelList;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.compose.ISWFContext;
 
 	public interface IComposer
 	{

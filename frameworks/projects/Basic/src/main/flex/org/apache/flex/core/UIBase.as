@@ -16,26 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
     COMPILE::SWF
     {
         import flash.display.DisplayObject;
         import flash.display.Sprite;
         import flash.display.Stage;
-        import org.apache.flex.events.utils.MouseEventConverter;
+        import org.apache.royale.events.utils.MouseEventConverter;
     }
 	
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.ValueChangeEvent;
-    import org.apache.flex.utils.StringUtil;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.utils.StringUtil;
 
     COMPILE::JS
     {
-        import org.apache.flex.html.util.addElementToWrapper;
-        import org.apache.flex.utils.CSSUtils;
+        import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.utils.CSSUtils;
     }
 	
 	/**
@@ -48,7 +48,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 	
     /**
      *  Set a different class for rollOver events so that
@@ -60,7 +60,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="rollOver", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
     
     /**
      *  Set a different class for rollOut events so that
@@ -72,7 +72,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="rollOut", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
     
     /**
      *  Set a different class for mouseDown events so that
@@ -84,7 +84,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="mouseDown", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
     
     /**
      *  Set a different class for mouseUp events so that
@@ -96,7 +96,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="mouseUp", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
     
     /**
      *  Set a different class for mouseMove events so that
@@ -108,7 +108,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="mouseMove", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
     
     /**
      *  Set a different class for mouseOut events so that
@@ -120,7 +120,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="mouseOut", type="org.apache.flex.events.MouseEvent")]
+    [Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
     
 	/**
 	 *  Set a different class for mouseOver events so that
@@ -132,7 +132,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="mouseOver", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
 	/**
 	 *  Set a different class for mouseWheel events so that
 	 *  there aren't dependencies on the flash classes
@@ -143,7 +143,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="mouseWheel", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
 	
 	/**
 	 *  Set a different class for doubleClick events so that
@@ -155,7 +155,7 @@ package org.apache.flex.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="doubleClick", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
 	
     /**
      *  The UIBase class is the base class for most composite user interface
@@ -546,7 +546,7 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setHeight
+         *  @copy org.apache.royale.core.ILayoutChild#setHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -568,7 +568,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setWidth
+         *  @copy org.apache.royale.core.ILayoutChild#setWidth
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -590,7 +590,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setWidthAndHeight
+         *  @copy org.apache.royale.core.ILayoutChild#setWidthAndHeight
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -623,7 +623,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#isWidthSizedToContent
+         *  @copy org.apache.royale.core.ILayoutChild#isWidthSizedToContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -643,7 +643,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#isHeightSizedToContent
+         *  @copy org.apache.royale.core.ILayoutChild#isHeightSizedToContent
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -697,7 +697,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setX
+         *  @copy org.apache.royale.core.ILayoutChild#setX
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -753,7 +753,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.ILayoutChild#setY
+         *  @copy org.apache.royale.core.ILayoutChild#setY
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1046,7 +1046,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#element
+         *  @copy org.apache.royale.core.IUIBase#element
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1060,7 +1060,7 @@ package org.apache.flex.core
         }
 		
         /**
-         *  @copy org.apache.flex.core.Application#beads
+         *  @copy org.apache.royale.core.Application#beads
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1073,7 +1073,7 @@ package org.apache.flex.core
 		private var _beads:Vector.<IBead>;
         
         /**
-         *  @copy org.apache.flex.core.IStrand#addBead()
+         *  @copy org.apache.royale.core.IStrand#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1097,7 +1097,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
+         *  @copy org.apache.royale.core.IStrand#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1116,7 +1116,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
+         *  @copy org.apache.royale.core.IStrand#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1140,13 +1140,13 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IParent#addElement()
+         *  @copy org.apache.royale.core.IParent#addElement()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
 		public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
@@ -1171,13 +1171,13 @@ package org.apache.flex.core
 		}
         
         /**
-         *  @copy org.apache.flex.core.IParent#addElementAt()
+         *  @copy org.apache.royale.core.IParent#addElementAt()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
@@ -1209,7 +1209,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IParent#getElementAt()
+         *  @copy org.apache.royale.core.IParent#getElementAt()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1234,7 +1234,7 @@ package org.apache.flex.core
         }        
         
         /**
-         *  @copy org.apache.flex.core.IParent#getElementIndex()
+         *  @copy org.apache.royale.core.IParent#getElementIndex()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1264,7 +1264,7 @@ package org.apache.flex.core
         }
 
         /**
-         *  @copy org.apache.flex.core.IParent#removeElement()
+         *  @copy org.apache.royale.core.IParent#removeElement()
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1288,7 +1288,7 @@ package org.apache.flex.core
         }
 		
         /**
-         *  @copy org.apache.flex.core.IParent#numElements
+         *  @copy org.apache.royale.core.IParent#numElements
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -1437,14 +1437,14 @@ package org.apache.flex.core
         private var _stageProxy:StageProxy;
         
         /**
-         *  @copy org.apache.flex.core.IUIBase#topMostEventDispatcher
+         *  @copy org.apache.royale.core.IUIBase#topMostEventDispatcher
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-         *  @royaleignorecoercion org.apache.flex.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		public function get topMostEventDispatcher():IEventDispatcher
         {
@@ -1499,7 +1499,7 @@ package org.apache.flex.core
         
         /**
          * @return The actual element to be parented.
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         protected function createElement():WrappedHTMLElement
@@ -1541,8 +1541,8 @@ package org.apache.flex.core
         }
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-         * @royaleignorecoercion org.apache.flex.core.IParent
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.IParent
          */
         COMPILE::JS
         public function get parent():IParent
@@ -1575,8 +1575,8 @@ package org.apache.flex.core
         
         COMPILE::SWF
         {
-        [SWFOverride(params="flash.events.Event", altparams="org.apache.flex.events.Event:org.apache.flex.events.MouseEvent")]
-        override public function dispatchEvent(event:org.apache.flex.events.Event):Boolean
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
+        override public function dispatchEvent(event:org.apache.royale.events.Event):Boolean
         {
             return super.dispatchEvent(event);
         }

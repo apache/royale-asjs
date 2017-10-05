@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose
+package org.apache.royale.textLayout.compose
 {
 	/** 
 	 * The ISWFContext interface allows a SWF file to share its context with other SWF files that load it.
@@ -46,8 +46,8 @@ package org.apache.flex.textLayout.compose
 	 * <p>Please note, however, that the <code>TextBlock.recreateTextLine()</code> is available
 	 * only in Flash Player 10.1 and later.</p>
 	 *
-	 * @see org.apache.flex.text.engine.TextBlock#createTextLine()
-	 * @see org.apache.flex.text.engine.TextBlock#recreateTextLine()
+	 * @see org.apache.royale.text.engine.TextBlock#createTextLine()
+	 * @see org.apache.royale.text.engine.TextBlock#recreateTextLine()
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

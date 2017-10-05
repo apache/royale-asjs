@@ -16,36 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IPanelModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ITitleBarModel;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.IViewportModel;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.geom.Size;
-	import org.apache.flex.html.Container;
-	import org.apache.flex.html.Panel;
-	import org.apache.flex.html.ControlBar;
-	import org.apache.flex.html.TitleBar;
-	import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IPanelModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITitleBarModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.Panel;
+	import org.apache.royale.html.ControlBar;
+	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.utils.CSSContainerUtils;
 	
 	COMPILE::SWF {
-		import org.apache.flex.core.SimpleCSSStylesWithFlex;
+		import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
 	
 	/**
-	 *  The Panel class creates the visual elements of the org.apache.flex.html.Panel 
-	 *  component. A Panel has a org.apache.flex.html.TitleBar, content, and an 
-	 *  optional org.apache.flex.html.ControlBar.
+	 *  The Panel class creates the visual elements of the org.apache.royale.html.Panel 
+	 *  component. A Panel has a org.apache.royale.html.TitleBar, content, and an 
+	 *  optional org.apache.royale.html.ControlBar.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -71,7 +71,7 @@ package org.apache.flex.html.beads
 		private var _controlBar:ControlBar;
 		
 		/**
-		 *  The org.apache.flex.html.ControlBar for the Panel; may be null.
+		 *  The org.apache.royale.html.ControlBar for the Panel; may be null.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -84,7 +84,7 @@ package org.apache.flex.html.beads
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

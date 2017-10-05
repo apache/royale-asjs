@@ -70,7 +70,7 @@
   <flex-client>
     <!-- Make sure clients are automatically expired -->
     <timeout-minutes>720</timeout-minutes>
-  </flex-client>
+  </royale-client>
 
   <logging>
     <!--

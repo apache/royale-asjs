@@ -16,6 +16,6 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <remove-circulars>true</remove-circulars>
-</flex-config>
+</royale-config>

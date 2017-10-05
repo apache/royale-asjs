@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.tween
+package org.apache.royale.createjs.tween
 {		
-	import org.apache.flex.core.IDocument;
-	import org.apache.flex.createjs.core.CreateJSBase;
+	import org.apache.royale.core.IDocument;
+	import org.apache.royale.createjs.core.CreateJSBase;
 	
 	COMPILE::JS {
 		import createjs.Tween;
@@ -29,13 +29,13 @@ package org.apache.flex.createjs.tween
 	}
 		
 	COMPILE::SWF {
-		import org.apache.flex.core.IUIBase;
-		import org.apache.flex.events.Event;
-		import org.apache.flex.effects.IEffect;
-		import org.apache.flex.effects.Sequence;
-		import org.apache.flex.effects.Parallel;
-		import org.apache.flex.effects.Fade;
-		import org.apache.flex.effects.Move;
+		import org.apache.royale.core.IUIBase;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.effects.IEffect;
+		import org.apache.royale.effects.Sequence;
+		import org.apache.royale.effects.Parallel;
+		import org.apache.royale.effects.Fade;
+		import org.apache.royale.effects.Move;
 	}
 		
 	[DefaultProperty("tweens")]
@@ -65,7 +65,7 @@ package org.apache.flex.createjs.tween
 			_tweens = [];
 			
 			COMPILE::SWF {
-				_sequence = new org.apache.flex.effects.Sequence();
+				_sequence = new org.apache.royale.effects.Sequence();
 			}
 		}
 		
@@ -91,7 +91,7 @@ package org.apache.flex.createjs.tween
 		private var _tween:createjs.Tween;
 		
 		COMPILE::SWF
-		private var _sequence:org.apache.flex.effects.Sequence;
+		private var _sequence:org.apache.royale.effects.Sequence;
 		
 		COMPILE::SWF
 		public function internalEffect():IEffect
@@ -129,7 +129,7 @@ package org.apache.flex.createjs.tween
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 *  @royaleignorecoercion createjs.Shape
-		 *  @royaleignorecoercion org.apache.flex.createjs.core.CreateJSBase
+		 *  @royaleignorecoercion org.apache.royale.createjs.core.CreateJSBase
 		 */
 		override public function play():void
 		{

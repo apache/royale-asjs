@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads
+package org.apache.royale.charts.beads
 {
-	import org.apache.flex.charts.core.IChartDataGroup;
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.utils.MouseUtils;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.html.accessories.ToolTipBead;
-	import org.apache.flex.html.beads.IListView;
-	import org.apache.flex.utils.PointUtils;
+	import org.apache.royale.charts.core.IChartDataGroup;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.utils.MouseUtils;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.html.accessories.ToolTipBead;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.PointUtils;
 	
 	/**
 	 *  The DataTipBead can be added to a chart to produce a helpful tip when the

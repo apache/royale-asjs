@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.events.StyleChangeEvent;
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStyleableObject;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.events.StyleChangeEvent;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyleableObject;
 	
 	/**
 	 * The StyleChangeNotifier can be added to the bead list of any UI component
@@ -40,7 +40,7 @@ package org.apache.flex.core
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -59,8 +59,8 @@ package org.apache.flex.core
 		
 		/**
 		 *  @private
-		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
-		 *  @royaleignorecoercion org.apache.flex.core.UIHTMLElementWrapper
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.UIHTMLElementWrapper
 		 */
 		private function handleStyleChange(event:ValueChangeEvent):void
 		{

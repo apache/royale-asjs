@@ -27,11 +27,11 @@ package
  */
 internal class EffectsClasses
 {
-    import org.apache.flex.core.StatesWithTransitionsImpl; StatesWithTransitionsImpl;
-	import org.apache.flex.effects.Fade; Fade;
-	import org.apache.flex.effects.Move; Move;
-    import org.apache.flex.effects.PlatformWiper; PlatformWiper;
-	import org.apache.flex.effects.Tween; Tween;
+    import org.apache.royale.core.StatesWithTransitionsImpl; StatesWithTransitionsImpl;
+	import org.apache.royale.effects.Fade; Fade;
+	import org.apache.royale.effects.Move; Move;
+    import org.apache.royale.effects.PlatformWiper; PlatformWiper;
+	import org.apache.royale.effects.Tween; Tween;
 }
 
 }

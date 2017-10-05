@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.IEventDispatcher;
     COMPILE::SWF
     {
-    	import org.apache.flex.core.UIButtonBase;
+    	import org.apache.royale.core.UIButtonBase;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.UIBase;
-		import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.core.UIBase;
+		import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
     
 	
@@ -46,7 +46,7 @@ package org.apache.flex.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	[Event(name="click", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  The ButtonBase class is the base class for Button.
@@ -77,15 +77,15 @@ package org.apache.flex.html
     public class ButtonBase extends UIBase implements IStrand, IEventDispatcher, IUIBase
     {
         /**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'button');
             element.setAttribute('type', 'button');
             /* AJH comment out until we figure out why it is needed
-            if (org.apache.flex.core.ValuesManager.valuesImpl.getValue) {
-                var impl:Object = org.apache.flex.core.ValuesManager.valuesImpl.
+            if (org.apache.royale.core.ValuesManager.valuesImpl.getValue) {
+                var impl:Object = org.apache.royale.core.ValuesManager.valuesImpl.
                     getValue(this, 'iStatesImpl');
             }*/
             return element;

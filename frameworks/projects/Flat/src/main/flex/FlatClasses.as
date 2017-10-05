@@ -29,13 +29,13 @@ internal class FlatClasses
 {	
 	COMPILE::SWF
 	{
-		import org.apache.flex.flat.beads.CSSScrollBarView; CSSScrollBarView;
-		import org.apache.flex.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
-		import org.apache.flex.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
-    	import org.apache.flex.flat.supportClasses.DropDownListList; DropDownListList;
-		import org.apache.flex.flat.beads.DropDownListView; DropDownListView;
-    	import org.apache.flex.flat.beads.CheckboxCSSContentAndTextToggleButtonView; CheckboxCSSContentAndTextToggleButtonView;
-    	import org.apache.flex.flat.beads.RadioCSSContentAndTextToggleButtonView; RadioCSSContentAndTextToggleButtonView;
+		import org.apache.royale.flat.beads.CSSScrollBarView; CSSScrollBarView;
+		import org.apache.royale.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
+		import org.apache.royale.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
+    	import org.apache.royale.flat.supportClasses.DropDownListList; DropDownListList;
+		import org.apache.royale.flat.beads.DropDownListView; DropDownListView;
+    	import org.apache.royale.flat.beads.CheckboxCSSContentAndTextToggleButtonView; CheckboxCSSContentAndTextToggleButtonView;
+    	import org.apache.royale.flat.beads.RadioCSSContentAndTextToggleButtonView; RadioCSSContentAndTextToggleButtonView;
 
 	}
 }

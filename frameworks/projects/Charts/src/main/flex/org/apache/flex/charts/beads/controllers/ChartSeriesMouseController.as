@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.beads.controllers
+package org.apache.royale.charts.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.IRollOverModel;
-	import org.apache.flex.core.ISelectableItemRenderer;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.ItemAddedEvent;
-	import org.apache.flex.events.ItemRemovedEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.html.beads.IListView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.IListView;
 
-	import org.apache.flex.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemClickedEvent;
 
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartDataModel;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IChartDataModel;
 
 	public class ChartSeriesMouseController implements IBeadController
 	{
@@ -76,7 +76,7 @@ package org.apache.flex.charts.beads.controllers
 		private var _strand:IStrand;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

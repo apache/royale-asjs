@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 
 COMPILE::SWF
@@ -24,15 +24,15 @@ COMPILE::SWF
     import flash.display.DisplayObject;
 }
 
-import org.apache.flex.core.IBead;
-import org.apache.flex.core.IContainer;
-import org.apache.flex.core.IDocument;
-import org.apache.flex.core.IMXMLDocument;
-import org.apache.flex.core.IParent;
-import org.apache.flex.core.IStrand;
-import org.apache.flex.events.Event;
-import org.apache.flex.events.IEventDispatcher;
-import org.apache.flex.core.IChild;        
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IDocument;
+import org.apache.royale.core.IMXMLDocument;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.core.IChild;        
 
 COMPILE::JS
 {
@@ -168,7 +168,7 @@ public class MXMLDataInterpreter
     
     /**
      * @royaleignorecoercion Function 
-     * @royaleignorecoercion org.apache.flex.core.IChild 
+     * @royaleignorecoercion org.apache.royale.core.IChild 
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {

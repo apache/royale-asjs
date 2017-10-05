@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.events.utils
+package org.apache.royale.events.utils
 {	
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.utils.OSUtils;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.utils.OSUtils;
 
 	COMPILE::SWF
 	{
@@ -46,13 +46,13 @@ package org.apache.flex.events.utils
 		 *  @productversion Royale 0.8
 		 */
 		COMPILE::SWF
-		public static function convert(oldEvent:flash.events.KeyboardEvent):org.apache.flex.events.KeyboardEvent
+		public static function convert(oldEvent:flash.events.KeyboardEvent):org.apache.royale.events.KeyboardEvent
 		{
 			var code:String = KeyConverter.convertKeyCode(oldEvent.keyCode);
 			var key:String = KeyConverter.convertCharCode(oldEvent.charCode);
-			var type:String = oldEvent.type == flash.events.KeyboardEvent.KEY_DOWN ? org.apache.flex.events.KeyboardEvent.KEY_DOWN : 
-				org.apache.flex.events.KeyboardEvent.KEY_UP;
-			var newEvent:org.apache.flex.events.KeyboardEvent = new org.apache.flex.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
+			var type:String = oldEvent.type == flash.events.KeyboardEvent.KEY_DOWN ? org.apache.royale.events.KeyboardEvent.KEY_DOWN : 
+				org.apache.royale.events.KeyboardEvent.KEY_UP;
+			var newEvent:org.apache.royale.events.KeyboardEvent = new org.apache.royale.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
 			newEvent.altKey = oldEvent.altKey;
 //			newEvent.ctrlKey = oldEvent.controlKey; // TODO
 			newEvent.specialKey = oldEvent.ctrlKey;

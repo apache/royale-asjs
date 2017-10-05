@@ -16,8 +16,8 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.operations {
-	import org.apache.flex.textLayout.edit.SelectionState;
+package org.apache.royale.textLayout.operations {
+	import org.apache.royale.textLayout.edit.SelectionState;
 
 
 
@@ -33,7 +33,7 @@ package org.apache.flex.textLayout.operations {
 	/** 
 	 * The FlowTextOperation is the base class for operations that transform a range of text.
 	 * 
-	 * @see org.apache.flex.textLayout.edit.EditManager
+	 * @see org.apache.royale.textLayout.edit.EditManager
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

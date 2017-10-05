@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.mobile.chrome
+package org.apache.royale.mobile.chrome
 {
-	import org.apache.flex.core.IChrome;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.Container;
+	import org.apache.royale.core.IChrome;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.Container;
 	
 	/**
 	 * The NavigationBar class is part of the mobile view manager's chrome. When present,

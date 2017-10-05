@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.debugging
+package org.apache.royale.debugging
 {
     COMPILE::SWF
     {

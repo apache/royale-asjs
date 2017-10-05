@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.property {
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.property.EnumPropertyHandler;
-	import org.apache.flex.textLayout.property.UndefinedPropertyHandler;
-	import org.apache.flex.textLayout.property.UintPropertyHandler;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.ListMarkerFormat;
+package org.apache.royale.textLayout.property {
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.property.EnumPropertyHandler;
+	import org.apache.royale.textLayout.property.UndefinedPropertyHandler;
+	import org.apache.royale.textLayout.property.UintPropertyHandler;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ListMarkerFormat;
 	public class PropertyFactory {
 		// shared propertyHandler instances
 		/** @private */

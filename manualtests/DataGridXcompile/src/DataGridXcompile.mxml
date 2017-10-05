@@ -22,7 +22,7 @@
 				   xmlns:local="*"
 				   xmlns:models="models.*"
 				   xmlns:js="library://ns.apache.org/royale/basic" 
-				   xmlns:staticControls="org.apache.flex.html.*"
+				   xmlns:staticControls="org.apache.royale.html.*"
 				   >
 	
 	<js:valuesImpl>

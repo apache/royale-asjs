@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-    import org.apache.flex.events.Event;
-    import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
 
     //--------------------------------------
     //  Events
@@ -36,7 +36,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="initialize", type="org.apache.flex.events.Event")]
+    [Event(name="initialize", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup before the instances get created.
@@ -50,7 +50,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="preinitialize", type="org.apache.flex.events.Event")]
+    [Event(name="preinitialize", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup after the initial view has been
@@ -62,7 +62,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="viewChanged", type="org.apache.flex.events.Event")]
+    [Event(name="viewChanged", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched at startup after the initial view has been
@@ -73,7 +73,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="applicationComplete", type="org.apache.flex.events.Event")]
+    [Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  The AirApplication class should be used by Air applications as their
@@ -105,7 +105,7 @@ package org.apache.flex.core
         }
 		
 		COMPILE::SWF
-		private function handlePreInitialize(event:org.apache.flex.events.Event):void
+		private function handlePreInitialize(event:org.apache.royale.events.Event):void
 		{
 			event.preventDefault();
 			removeEventListener("preinitialize", handlePreInitialize);

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.createjs.core
+package org.apache.royale.createjs.core
 {
     COMPILE::JS
     {
@@ -25,17 +25,17 @@ package org.apache.flex.createjs.core
         import createjs.Shape;
         import createjs.Stage;
         
-        import org.apache.flex.createjs.core.UIBase;
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.createjs.core.UIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
 		
-		import org.apache.flex.graphics.IFill;
-		import org.apache.flex.graphics.IStroke;
-		import org.apache.flex.graphics.SolidColor;
+		import org.apache.royale.graphics.IFill;
+		import org.apache.royale.graphics.IStroke;
+		import org.apache.royale.graphics.SolidColor;
     }
 	
 	COMPILE::SWF
 	{
-		import org.apache.flex.core.UIBase;
+		import org.apache.royale.core.UIBase;
 	}
 	
 	/**
@@ -50,7 +50,7 @@ package org.apache.flex.createjs.core
 	 */
 	
 	COMPILE::SWF
-	public class CreateJSBase extends org.apache.flex.core.UIBase
+	public class CreateJSBase extends org.apache.royale.core.UIBase
 	{
 		// does nothing for SWF version.
 	}

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
 
 COMPILE::SWF
@@ -147,7 +147,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  Indicates the byte order for the data.
      *  The default is Endian BIG_ENDIAN.
      *  It is possible to check the default system Endianness of the target platform at runtime with
-     *  <code>org.apache.flex.utils.Endian.systemEndian</code>.
+     *  <code>org.apache.royale.utils.Endian.systemEndian</code>.
      *  Setting to values other than Endian.BIG_ENDIAN or Endian.LITTLE_ENDIAN is ignored.
      *
      *  @langversion 3.0

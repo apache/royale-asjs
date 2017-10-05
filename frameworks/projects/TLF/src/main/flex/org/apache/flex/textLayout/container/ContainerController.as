@@ -16,74 +16,74 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.container 
+package org.apache.royale.textLayout.container 
 {
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.KeyboardEvent;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.geom.Matrix;
-	import org.apache.flex.geom.Point;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.graphics.IRect;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.text.engine.ITextBlock;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.text.events.IMEEvent;
-	import org.apache.flex.text.events.TextEvent;
-	import org.apache.flex.textLayout.compose.FloatCompositionData;
-	import org.apache.flex.textLayout.compose.FlowDamageType;
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.compose.ITextFlowTableBlock;
-	import org.apache.flex.textLayout.compose.TextLineRecycler;
-	import org.apache.flex.textLayout.debug.Debugging;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.dummy.BoundsUtil;
-	import org.apache.flex.textLayout.dummy.ContextMenu;
-	import org.apache.flex.textLayout.edit.EditingMode;
-	import org.apache.flex.textLayout.edit.IInteractionEventHandler;
-	import org.apache.flex.textLayout.edit.ISelectionManager;
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.elements.CellCoordinates;
-	import org.apache.flex.textLayout.elements.GlobalSettings;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IContainerFormattedElement;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ITableCellElement;
-	import org.apache.flex.textLayout.elements.ITableRowElement;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.elements.TableBlockContainer;
-	import org.apache.flex.textLayout.events.ActivateEvent;
-	import org.apache.flex.textLayout.events.ContextMenuEvent;
-	import org.apache.flex.textLayout.events.EditEvent;
-	import org.apache.flex.textLayout.events.FlowElementMouseEventManager;
-	import org.apache.flex.textLayout.events.FocusEvent;
-	import org.apache.flex.textLayout.events.ModelChange;
-	import org.apache.flex.textLayout.events.ScrollEvent;
-	import org.apache.flex.textLayout.events.ScrollEventDirection;
-	import org.apache.flex.textLayout.events.SelectionEvent;
-	import org.apache.flex.textLayout.events.TextLayoutEvent;
-	import org.apache.flex.textLayout.events.UpdateCompleteEvent;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormatBase;
-	import org.apache.flex.textLayout.utils.CreateTLFUtil;
-	import org.apache.flex.textLayout.utils.Twips;
-	import org.apache.flex.utils.DisplayUtils;
-	import org.apache.flex.utils.ObjectMap;
-	import org.apache.flex.utils.PointUtils;
-	import org.apache.flex.utils.Timer;
-	import org.apache.flex.graphics.IDrawable;
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.graphics.IRect;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.text.engine.ITextBlock;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.text.events.IMEEvent;
+	import org.apache.royale.text.events.TextEvent;
+	import org.apache.royale.textLayout.compose.FloatCompositionData;
+	import org.apache.royale.textLayout.compose.FlowDamageType;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.compose.ITextFlowTableBlock;
+	import org.apache.royale.textLayout.compose.TextLineRecycler;
+	import org.apache.royale.textLayout.debug.Debugging;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.dummy.BoundsUtil;
+	import org.apache.royale.textLayout.dummy.ContextMenu;
+	import org.apache.royale.textLayout.edit.EditingMode;
+	import org.apache.royale.textLayout.edit.IInteractionEventHandler;
+	import org.apache.royale.textLayout.edit.ISelectionManager;
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.elements.CellCoordinates;
+	import org.apache.royale.textLayout.elements.GlobalSettings;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IContainerFormattedElement;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ITableCellElement;
+	import org.apache.royale.textLayout.elements.ITableRowElement;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.elements.TableBlockContainer;
+	import org.apache.royale.textLayout.events.ActivateEvent;
+	import org.apache.royale.textLayout.events.ContextMenuEvent;
+	import org.apache.royale.textLayout.events.EditEvent;
+	import org.apache.royale.textLayout.events.FlowElementMouseEventManager;
+	import org.apache.royale.textLayout.events.FocusEvent;
+	import org.apache.royale.textLayout.events.ModelChange;
+	import org.apache.royale.textLayout.events.ScrollEvent;
+	import org.apache.royale.textLayout.events.ScrollEventDirection;
+	import org.apache.royale.textLayout.events.SelectionEvent;
+	import org.apache.royale.textLayout.events.TextLayoutEvent;
+	import org.apache.royale.textLayout.events.UpdateCompleteEvent;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormatBase;
+	import org.apache.royale.textLayout.utils.CreateTLFUtil;
+	import org.apache.royale.textLayout.utils.Twips;
+	import org.apache.royale.utils.DisplayUtils;
+	import org.apache.royale.utils.ObjectMap;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.Timer;
+	import org.apache.royale.graphics.IDrawable;
 
 
 
@@ -106,9 +106,9 @@ package org.apache.flex.textLayout.container
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 *
-	 * @see org.apache.flex.textLayout.compose.IFlowComposer
-	 * @see org.apache.flex.textLayout.elements.TextFlow
-	 * @see org.apache.flex.text.engine.ITextLine
+	 * @see org.apache.royale.textLayout.compose.IFlowComposer
+	 * @see org.apache.royale.textLayout.elements.TextFlow
+	 * @see org.apache.royale.text.engine.ITextLine
 	 */
 	public class ContainerController extends TextLayoutFormatBase implements IInteractionEventHandler, ISandboxSupport, IContainerController
 	{		
@@ -299,7 +299,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 */
 		
 		public function get flowComposer():IFlowComposer
@@ -395,8 +395,8 @@ package org.apache.flex.textLayout.container
 		 * @param h The height in pixels that's available for text in the container.   <code>NaN</code> indicates no specified height.  
 		 *
 		 * 
-		 * @see org.apache.flex.text.engine.ITextLine#MAX_LINE_WIDTH
-		 * @see org.apache.flex.textLayout.formats.BlockProgression
+		 * @see org.apache.royale.text.engine.ITextLine#MAX_LINE_WIDTH
+		 * @see org.apache.royale.textLayout.formats.BlockProgression
 		 * @see #getContentBounds()
 		 *
 		 * @playerversion Flash 10
@@ -443,7 +443,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0
 	 	 * 
-	 	 * @see org.apache.flex.textLayout.elements.TextFlow TextFlow
+	 	 * @see org.apache.royale.textLayout.elements.TextFlow TextFlow
 	 	 */		 
 		public function get textFlow():ITextFlow
 		{ 
@@ -462,9 +462,9 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.elements.IContainerFormattedElement
-		 * @see org.apache.flex.textLayout.elements.DivElement
-		 * @see org.apache.flex.textLayout.elements.TextFlow
+		 * @see org.apache.royale.textLayout.elements.IContainerFormattedElement
+		 * @see org.apache.royale.textLayout.elements.DivElement
+		 * @see org.apache.royale.textLayout.elements.TextFlow
 		 */
 		
 		public function get rootElement():IContainerFormattedElement
@@ -509,13 +509,13 @@ package org.apache.flex.textLayout.container
 		}
 		
 		/** 
-		 * @copy org.apache.flex.textLayout.elements.TextFlow#interactionManager
+		 * @copy org.apache.royale.textLayout.elements.TextFlow#interactionManager
 		 *
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.textLayout.elements.TextFlow#interactionManager
+		 * @see org.apache.royale.textLayout.elements.TextFlow#interactionManager
 		 */
 		
 		public function get interactionManager():ISelectionManager
@@ -547,7 +547,7 @@ package org.apache.flex.textLayout.container
 		 * this value is updated when the text is composed, that is when the IFlowComposer's <code>compose()</code> or 
 		 * <code>updateAllControllers()</code> methods are called.
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
@@ -578,7 +578,7 @@ package org.apache.flex.textLayout.container
 		 * if the container is scrollable. This value is updated when the text is composed (when the IFlowComposer's <code>compose()</code> 
 		 * or <code>updateAllControllers()</code> methods are called).
 		 * 
-		 * @see org.apache.flex.textLayout.compose.IFlowComposer
+		 * @see org.apache.royale.textLayout.compose.IFlowComposer
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
@@ -590,7 +590,7 @@ package org.apache.flex.textLayout.container
 		}
 		/**
 		 *  @private
-		 * @royaleignorecoercion org.apache.flex.textLayout.container.ContainerController
+		 * @royaleignorecoercion org.apache.royale.textLayout.container.ContainerController
 		 */
 		public function setTextLengthOnly(numChars:int):void
 		{ 
@@ -1112,7 +1112,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.geom.Rectangle Rectangle
+		 * @see org.apache.royale.geom.Rectangle Rectangle
 		 */
 		public function getContentBounds():Rectangle
 		{
@@ -2084,7 +2084,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_OVER MouseEvent.MOUSE_OVER
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_OVER MouseEvent.MOUSE_OVER
 		 */
 		
 		public function mouseOverHandler(event:MouseEvent):void
@@ -2112,7 +2112,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_OUT MouseEvent.MOUSE_OUT
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_OUT MouseEvent.MOUSE_OUT
 		 */				
 		public function mouseOutHandler(event:MouseEvent):void
 		{
@@ -2130,7 +2130,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_WHEEL MouseEvent.MOUSE_WHEEL
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_WHEEL MouseEvent.MOUSE_WHEEL
 		 */
 		public function mouseWheelHandler(event:MouseEvent):void
 		{
@@ -2164,7 +2164,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_DOWN MouseEvent.MOUSE_DOWN
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_DOWN MouseEvent.MOUSE_DOWN
 		 */
 		
 		public function mouseDownHandler(event:MouseEvent):void
@@ -2210,7 +2210,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_UP MouseEvent.MOUSE_UP
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_UP MouseEvent.MOUSE_UP
 		 *
 		 */
 		public function mouseUpHandler(event:MouseEvent):void
@@ -2329,7 +2329,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.MouseEvent#MOUSE_MOVE MouseEvent.MOUSE_MOVE
+		 * @see org.apache.royale.events.MouseEvent#MOUSE_MOVE MouseEvent.MOUSE_MOVE
 		 */
 		
 		public function mouseMoveHandler(event:MouseEvent):void
@@ -2363,7 +2363,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.events.MouseEvent#DOUBLE_CLICK MouseEvent.DOUBLE_CLICK
+		 * @see org.apache.royale.events.MouseEvent#DOUBLE_CLICK MouseEvent.DOUBLE_CLICK
 		 */
 		public function mouseDoubleClickHandler(event:MouseEvent):void
 		{
@@ -2388,7 +2388,7 @@ package org.apache.flex.textLayout.container
 		
 		/**
 		 *  @private
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		public function getContainerController(container:IParentIUIBase):IContainerController
 		{
@@ -2421,9 +2421,9 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.FocusEvent#KEY_FOCUS_CHANGE FocusEvent.KEY_FOCUS_CHANGE
-		 * @see org.apache.flex.events.FocusEvent#MOUSE_FOCUS_CHANGE FocusEvent.MOUSE_FOCUS_CHANGE
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+		 * @see org.apache.royale.events.FocusEvent#KEY_FOCUS_CHANGE FocusEvent.KEY_FOCUS_CHANGE
+		 * @see org.apache.royale.events.FocusEvent#MOUSE_FOCUS_CHANGE FocusEvent.MOUSE_FOCUS_CHANGE
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		public function focusChangeHandler(event:Event):void
 		{
@@ -2460,7 +2460,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.events.FocusEvent#FOCUS_IN FocusEvent.FOCUS_IN
+		 * @see org.apache.royale.events.FocusEvent#FOCUS_IN FocusEvent.FOCUS_IN
 		 */
 		public function focusInHandler(event:Event):void
 		{
@@ -2497,7 +2497,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.FocusEvent#FOCUS_OUT FocusEvent.FOCUS_OUT
+		 * @see org.apache.royale.events.FocusEvent#FOCUS_OUT FocusEvent.FOCUS_OUT
 		 */
 		
 		public function focusOutHandler(event:Event):void
@@ -2532,7 +2532,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.events.Event#ACTIVATE Event.ACTIVATE
+		 * @see org.apache.royale.events.Event#ACTIVATE Event.ACTIVATE
 		 */						
 		public function activateHandler(event:Event):void
 		{
@@ -2548,7 +2548,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.events.Event#DEACTIVATE Event.DEACTIVATE
+		 * @see org.apache.royale.events.Event#DEACTIVATE Event.DEACTIVATE
 		 */
 		
 		public function deactivateHandler(event:Event):void
@@ -2565,7 +2565,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.KeyboardEvent#KEY_DOWN KeyboardEvent.KEY_DOWN
+		 * @see org.apache.royale.events.KeyboardEvent#KEY_DOWN KeyboardEvent.KEY_DOWN
 		 */
 		public function keyDownHandler(event:KeyboardEvent):void
 		{
@@ -2582,7 +2582,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 *
-		 * @see org.apache.flex.events.KeyboardEvent#KEY_UP KeyboardEvent.KEY_UP
+		 * @see org.apache.royale.events.KeyboardEvent#KEY_UP KeyboardEvent.KEY_UP
 		 */
 		
 		public function keyUpHandler(event:KeyboardEvent):void
@@ -2599,7 +2599,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.events.FocusEvent#KEY_FOCUS_CHANGE FocusEvent.KEY_FOCUS_CHANGE
+		 * @see org.apache.royale.events.FocusEvent#KEY_FOCUS_CHANGE FocusEvent.KEY_FOCUS_CHANGE
 		 */
 		public function keyFocusChangeHandler(event:Event):void
 		{
@@ -2615,7 +2615,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 * 
 		 *
-		 * @see org.apache.flex.events.TextEvent#TEXT_INPUT TextEvent.TEXT_INPUT
+		 * @see org.apache.royale.events.TextEvent#TEXT_INPUT TextEvent.TEXT_INPUT
 		 */
 		
 		public function textInputHandler(event:TextEvent):void
@@ -2632,7 +2632,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.events.SoftKeyboardEvent#SOFT_KEYBOARD_ACTIVATING SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATING
+		 * @see org.apache.royale.events.SoftKeyboardEvent#SOFT_KEYBOARD_ACTIVATING SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATING
 		 */
 		
 		public function softKeyboardActivatingHandler(event:Event):void
@@ -2649,7 +2649,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.events.IMEEvent.IME_START_COMPOSITION
+		 * @see org.apache.royale.events.IMEEvent.IME_START_COMPOSITION
 		 */
 		
 		public function imeStartCompositionHandler(event:IMEEvent):void
@@ -2669,7 +2669,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 * 
-		 * @see org.apache.flex.events.ContextMenuEvent#MENU_SELECT ContextMenuEvent.MENU_SELECT
+		 * @see org.apache.royale.events.ContextMenuEvent#MENU_SELECT ContextMenuEvent.MENU_SELECT
 		 */						
 		public function menuSelectHandler(event:ContextMenuEvent):void
 		{			
@@ -2703,7 +2703,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 *
 		 * 
-		 * @see org.apache.flex.events.Event Event
+		 * @see org.apache.royale.events.Event Event
 		 */	
 		
 		public function editHandler(event:Event):void
@@ -3148,7 +3148,7 @@ package org.apache.flex.textLayout.container
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.elements.TextFlow TextFlow
+		* @see org.apache.royale.textLayout.elements.TextFlow TextFlow
 		*/
 		
 		static public function get containerControllerInitialFormat():ITextLayoutFormat
@@ -3213,7 +3213,7 @@ package org.apache.flex.textLayout.container
 		/**
 		 *  Add DisplayObjects that were created by composition to the container.
 		 *  @private 
-		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
+		 * @royaleignorecoercion org.apache.royale.textLayout.compose.ITextFlowTableBlock
 		 */
 		public function updateCompositionShapes():void
 		{
@@ -3467,8 +3467,8 @@ package org.apache.flex.textLayout.container
 		
 		
 		/**
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
-		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */		
 		public function updateGraphics(updateStart:int):void
 		{
@@ -4254,7 +4254,7 @@ package org.apache.flex.textLayout.container
 		/**
 		 * Gets the index at which the first text line must appear in its parent.
 		 * The default implementation of this method, which may be overriden, returns the child index 
-		 * of the first <code>org.apache.flex.text.engine.ITextLine</code> child of <code>container</code>
+		 * of the first <code>org.apache.royale.text.engine.ITextLine</code> child of <code>container</code>
 		 * if one exists, and that of the last child of <code>container</code> otherwise. 
 		 * 
 		 * @return the index at which the first text line must appear in its parent.
@@ -4263,7 +4263,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 */	
 		protected function getFirstTextLineChildIndex():int
@@ -4287,18 +4287,18 @@ package org.apache.flex.textLayout.container
 		}
 		
 		/**
-		 * Adds a <code>org.apache.flex.text.engine.ITextLine</code> object as a descendant of <code>container</code>.
+		 * Adds a <code>org.apache.royale.text.engine.ITextLine</code> object as a descendant of <code>container</code>.
 		 * The default implementation of this method, which may be overriden, adds the object
 		 * as a direct child of <code>container</code> at the specified index.
 		 * 
-		 * @param textLine the <code>org.apache.flex.text.engine.ITextLine</code> object to add
+		 * @param textLine the <code>org.apache.royale.text.engine.ITextLine</code> object to add
 		 * @param index insertion index of the text line in its parent 
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 * 
 		 */	
@@ -4310,20 +4310,20 @@ package org.apache.flex.textLayout.container
 		}
 		
 		/**
-		 * Removes a <code>org.apache.flex.text.engine.ITextLine</code> object from its parent. 
+		 * Removes a <code>org.apache.royale.text.engine.ITextLine</code> object from its parent. 
 		 * The default implementation of this method, which may be overriden, removes the object
 		 * from <code>container</code> if it is a direct child of the latter.
 		 * 
 		 * This method may be called even if the object is not a descendant of <code>container</code>.
 		 * Any implementation of this method must ensure that no action is taken in this case.
 		 * 
-		 * @param textLine the <code>org.apache.flex.text.engine.ITextLine</code> object to remove 
+		 * @param textLine the <code>org.apache.royale.text.engine.ITextLine</code> object to remove 
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 * 
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 * 
 		 */	
@@ -4384,7 +4384,7 @@ package org.apache.flex.textLayout.container
 		/**
 		 * Adds a <code>flash.display.Shape</code> object on which background shapes (such as background color) are drawn.
 		 * The default implementation of this method, which may be overriden, adds the object to <code>container</code>
-		 * just before the first <code>org.apache.flex.text.engine.ITextLine</code> child, if one exists, and after the last exisiting
+		 * just before the first <code>org.apache.royale.text.engine.ITextLine</code> child, if one exists, and after the last exisiting
 		 * child otherwise. 
 		 * 
 		 * @param shape <code>flash.display.Shape</code> object to add
@@ -4394,7 +4394,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 * 
 		 * @see flash.display.Shape
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 * 
 		 */
@@ -4414,7 +4414,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 * 
 		 * @see flash.display.Shape
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 * 
 		 */
@@ -4427,7 +4427,7 @@ package org.apache.flex.textLayout.container
 		/**
 		 * Adds a <code>flash.display.DisplayObjectContainer</code> object to which selection shapes (such as block selection highlight, cursor etc.) are added.
 		 * The default implementation of this method, which may be overriden, has the following behavior:
-		 * The object is added just before first <code>org.apache.flex.text.engine.ITextLine</code> child of <code>container</code> if one exists 
+		 * The object is added just before first <code>org.apache.royale.text.engine.ITextLine</code> child of <code>container</code> if one exists 
 		 * and the object is opaque and has normal blend mode. 
 		 * In all other cases, it is added as the last child of <code>container</code>.
 		 * 
@@ -4438,7 +4438,7 @@ package org.apache.flex.textLayout.container
 		 * @langversion 3.0
 		 * 
 		 * @see flash.display.DisplayObjectContainer
-		 * @see org.apache.flex.text.engine.ITextLine
+		 * @see org.apache.royale.text.engine.ITextLine
 		 * @see #container
 		 */
 		protected function addSelectionContainer(selectionContainer:IParentIUIBase):void
@@ -4653,7 +4653,7 @@ package org.apache.flex.textLayout.container
 		 * styles dictionary. The returned object includes the formats that are defined by TextLayoutFormat and are in TextLayoutFormat.description. The
 		 * returned object consists of an array of <em>stylename-value</em> pairs.
 		 * 
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -4667,7 +4667,7 @@ package org.apache.flex.textLayout.container
 		 * styles dictionary. The returned object includes all styles set in the format property including core and user styles. The
 		 * returned object consists of an array of <em>stylename-value</em> pairs.
 		 * 
-		 * @see org.apache.flex.textLayout.formats.TextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.TextLayoutFormat
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -4686,7 +4686,7 @@ package org.apache.flex.textLayout.container
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
 		 *
-		 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat
 		 */
 		public override function get format():ITextLayoutFormat
 		{ return _format; }
@@ -4837,8 +4837,8 @@ package org.apache.flex.textLayout.container
 		
 		/** @private 
 		 * @returns -1 BEFORE visible, ITextLine visible, 1 AFTER visible, 2 AFTER visible by auto-size image(bug #2988852)
-		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowTableBlock
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.compose.ITextFlowTableBlock
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IInlineGraphicElement
 		 * */
 		public function testLineVisible(wmode:String, scrollXTW:int, scrollYTW:int, scrollWidthTW:int, scrollHeightTW:int, textFlowLine:ITextFlowLine, textLine:ITextLine):*
 		{
@@ -4980,8 +4980,8 @@ package org.apache.flex.textLayout.container
 
 				
 		/**
-		 *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IInlineGraphicElement
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.IInlineGraphicElement
 		 */
 		private function computeLineBoundsWithGraphics(line:ITextFlowLine, textLine:ITextLine, boundsRect:Rectangle):Rectangle
 		{
@@ -5261,9 +5261,9 @@ package org.apache.flex.textLayout.container
 	
 }
 
-import org.apache.flex.events.MouseEvent;
+import org.apache.royale.events.MouseEvent;
 
-class PsuedoMouseEvent extends org.apache.flex.events.MouseEvent
+class PsuedoMouseEvent extends org.apache.royale.events.MouseEvent
 {
 	public function PsuedoMouseEvent(type:String, bubbles:Boolean = true, cancelable:Boolean = false, localX:Number = NaN, localY:Number = NaN, relatedObject:Object = null, ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false, buttonDown:Boolean = false)
 	{

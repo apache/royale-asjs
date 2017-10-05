@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.promises.vo
+package org.apache.royale.promises.vo
 {
 
 	public final class Handler

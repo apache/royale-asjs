@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.formats
+package org.apache.royale.textLayout.formats
 {
 	/** Defines values for setting the <code>lineBreak</code> property of <code>TextLayoutFormat</code> to
 	 *  specify how lines are broken within wrapping text.

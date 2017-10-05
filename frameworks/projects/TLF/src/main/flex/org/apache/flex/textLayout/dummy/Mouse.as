@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.dummy {
+package org.apache.royale.textLayout.dummy {
 	public class Mouse {
 		public static var cursor : String;
 

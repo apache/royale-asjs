@@ -16,9 +16,9 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics
+package org.apache.royale.graphics
 {
-	import org.apache.flex.graphics.utils.CompoundTransform;
+	import org.apache.royale.graphics.utils.CompoundTransform;
 
 	public class GradientBase
 	{

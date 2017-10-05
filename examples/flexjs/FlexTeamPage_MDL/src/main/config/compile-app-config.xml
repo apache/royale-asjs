@@ -16,11 +16,11 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
     <compiler>
         <exclude-defaults-css-files>
             <filename>HTML.swc:defaults.css</filename>
         </exclude-defaults-css-files>
     </compiler>
     <html-template>../resources/mdl-js-index-template.html</html-template>
-</flex-config>
+</royale-config>

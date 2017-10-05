@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events {
+package org.apache.royale.textLayout.events {
 	public class EditEvent {
 		public static const CLEAR:String = "clear";
 		public static const COPY:String = "copy";

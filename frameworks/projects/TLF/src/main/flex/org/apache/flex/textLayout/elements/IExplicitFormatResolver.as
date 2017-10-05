@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements
+package org.apache.royale.textLayout.elements
 {
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	/** Interface to a format resolver. Different from IFormatResolver, IExplicitFormatResolver allow you to
 	 *  set "before style" and "after style". "After Style" can override the local computedFormat explicitly, 
 	 *  which can be fetched by calling function resolveExplicitFormat(), "Before Style" is the format returned
@@ -28,7 +28,7 @@ package org.apache.flex.textLayout.elements
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0
 	 * 
-	 * @see org.apache.flex.textLayout.elements.TextFlow#formatResolver TextFlow.formatResolver
+	 * @see org.apache.royale.textLayout.elements.TextFlow#formatResolver TextFlow.formatResolver
 	 */
 	public interface IExplicitFormatResolver extends IFormatResolver
 	{

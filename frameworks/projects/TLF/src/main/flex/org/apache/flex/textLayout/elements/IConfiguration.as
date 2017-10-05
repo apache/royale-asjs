@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.edit.SelectionFormat;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.edit.SelectionFormat;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
 	/** Read-only interface to a configuration object.  Used by TextFlow to guarantee it has an unchangeable 
 	 * configuration once its constructed.
 	 * @playerversion Flash 10
@@ -118,7 +118,7 @@ package org.apache.flex.textLayout.elements {
 	 	* @langversion 3.0
 	 	*
 		* @see FlowElement#linkNormalFormat
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -136,7 +136,7 @@ package org.apache.flex.textLayout.elements {
 		* @langversion 3.0
 		*
 		* @see  FlowElement#linkHoverFormat
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -153,7 +153,7 @@ package org.apache.flex.textLayout.elements {
 		* @langversion 3.0
 		*
 		* @see FlowElement#linkActiveFormat 
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		* @see LinkElement
 		*/
 		
@@ -170,7 +170,7 @@ package org.apache.flex.textLayout.elements {
 		 * @langversion 3.0
 		 *
 		 * @see FlowElement#linkActiveFormat 
-		 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		 * @see LinkElement
 		 */
 		
@@ -186,7 +186,7 @@ package org.apache.flex.textLayout.elements {
 		* @langversion 3.0
 		*
 		* @see TextFlow
-		* @see org.apache.flex.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
+		* @see org.apache.royale.textLayout.formats.ITextLayoutFormat ITextLayoutFormat
 		*/
 		
 		function get textFlowInitialFormat():ITextLayoutFormat;
@@ -203,8 +203,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#focusedSelectionFormat SelectionManager.focusedSelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#focusedSelectionFormat SelectionManager.focusedSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -227,8 +227,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#unfocusedSelectionFormat SelectionManager.unfocusedSelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#unfocusedSelectionFormat SelectionManager.unfocusedSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -251,8 +251,8 @@ package org.apache.flex.textLayout.elements {
 		* @playerversion AIR 1.5
 		* @langversion 3.0
 		*
-		* @see org.apache.flex.textLayout.edit.SelectionFormat SelectionFormat
-		* @see org.apache.flex.textLayout.edit.SelectionManager#inactiveSelectionFormat SelectionManager.inactiveSelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionFormat SelectionFormat
+		* @see org.apache.royale.textLayout.edit.SelectionManager#inactiveSelectionFormat SelectionManager.inactiveSelectionFormat
 		* @see TextFlow
 		*/
 		
@@ -301,8 +301,8 @@ package org.apache.flex.textLayout.elements {
 		
 		/** Specifies the type of flow composer to attach to a new TextFlow object by default. Default value is StandardFlowComposer.
 		*
-		* @see org.apache.flex.textLayout.compose.StandardFlowComposer StandardFlowComposer
-		* @see org.apache.flex.textLayout.elements.TextFlow TextFlow
+		* @see org.apache.royale.textLayout.compose.StandardFlowComposer StandardFlowComposer
+		* @see org.apache.royale.textLayout.elements.TextFlow TextFlow
 		* 
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5
@@ -316,8 +316,8 @@ package org.apache.flex.textLayout.elements {
 		*
 		* <p>Default value is <code>false</code>.</p>
 		*
-		* @see org.apache.flex.textLayout.compose.StandardFlowComposer StandardFlowComposer
-		* @see org.apache.flex.text.engine.TextBlock#releaseLineCreationData() TextBlock.releaseLineCreationData()
+		* @see org.apache.royale.textLayout.compose.StandardFlowComposer StandardFlowComposer
+		* @see org.apache.royale.text.engine.TextBlock#releaseLineCreationData() TextBlock.releaseLineCreationData()
 		* 
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5
@@ -326,15 +326,15 @@ package org.apache.flex.textLayout.elements {
 		function get releaseLineCreationData():Boolean;
 		
 		/** Specifies the callback used for resolving an inline graphic element.
-		* The callback takes a <code>org.apache.flex.textLayout.elements.InlineGraphicElement</code> object and returns
-		* the value to be used as the element's <code>org.apache.flex.textLayout.elements.InlineGraphicElement#source</code>.
+		* The callback takes a <code>org.apache.royale.textLayout.elements.InlineGraphicElement</code> object and returns
+		* the value to be used as the element's <code>org.apache.royale.textLayout.elements.InlineGraphicElement#source</code>.
 		* 
 		* This callback provides the mechanism to delay providing an inline graphic element's source until just before it is composed.
 		* <p><strong>Note:</strong> this callback will be invoked only if a 
 		* placeholder source of String type is already set. Moreover, it may be invoked
 		* multiple times. </p>
 		* 
-		* @see org.apache.flex.textLayout.elements.InlineGraphicElement InlineGraphicElement
+		* @see org.apache.royale.textLayout.elements.InlineGraphicElement InlineGraphicElement
 		* 
 		* @playerversion Flash 10
 		* @playerversion AIR 1.5

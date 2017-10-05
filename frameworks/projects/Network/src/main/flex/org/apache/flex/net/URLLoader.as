@@ -17,9 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.net
+package org.apache.royale.net
 {
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.EventDispatcher;
 
 	//--------------------------------------
 	//  Events
@@ -33,7 +33,7 @@ package org.apache.flex.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="complete", type="org.apache.flex.events.Event")]
+	[Event(name="complete", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  Dispatched if an error occurs in the server communication.
@@ -43,7 +43,7 @@ package org.apache.flex.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="communicationError", type="org.apache.flex.events.Event")]
+	[Event(name="communicationError", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  Dispatched when an httpStatus code is received from the server.
@@ -53,7 +53,7 @@ package org.apache.flex.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	[Event(name="httpStatus", type="org.apache.flex.events.Event")]
+	[Event(name="httpStatus", type="org.apache.royale.events.Event")]
 	
 	/**
 	 *  The URLLoader class is a base class for the specific flavors of loaders such as binary,

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -24,13 +24,13 @@ package org.apache.flex.core
         import flash.text.TextFieldAutoSize;
         import flash.text.TextFormat;
         
-        import org.apache.flex.events.Event;
-        import org.apache.flex.events.EventDispatcher;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.events.EventDispatcher;
 	}
 
-    import org.apache.flex.core.ValuesManager;
-    import org.apache.flex.events.Event;
-    import org.apache.flex.utils.CSSUtils;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.utils.CSSUtils;
 
     /**
      *  The CSSTextField class implements CSS text styles in a TextField.

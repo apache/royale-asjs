@@ -17,10 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.effects
+package org.apache.royale.effects
 {
 
-import org.apache.flex.events.EventDispatcher;
+import org.apache.royale.events.EventDispatcher;
 
 /**
  *  Effect is the base class for effects in Royale.
@@ -236,7 +236,7 @@ public class Effect extends EventDispatcher implements IEffect
     }   
 
     /**
-     *  @copy org.apache.flex.effects.IEffect#captureStartValues
+     *  @copy org.apache.royale.effects.IEffect#captureStartValues
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
@@ -248,7 +248,7 @@ public class Effect extends EventDispatcher implements IEffect
     }   
 
     /**
-     *  @copy org.apache.flex.effects.IEffect#captureEndValues
+     *  @copy org.apache.royale.effects.IEffect#captureEndValues
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9

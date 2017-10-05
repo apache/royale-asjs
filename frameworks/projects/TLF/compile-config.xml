@@ -16,7 +16,7 @@
   limitations under the License.
 
 -->
-<flex-config>
+<royale-config>
 
     <compiler>
         <accessible>false</accessible>
@@ -32,8 +32,8 @@
 		<mxml>
 			<children-as-data>true</children-as-data>
 		</mxml>
-		<binding-value-change-event>org.apache.flex.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.flex.events.ValueChangeEvent</binding-value-change-event-kind>
+		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <keep-as3-metadata>
@@ -67,11 +67,11 @@
     
     <include-classes>
         <class>TLFClasses</class>
-        <!--<class>org.apache.flex.textLayout.ConversionClasses</class>
-        <class>org.apache.flex.textLayout.CoreClasses</class>
-        <class>org.apache.flex.textLayout.EditClasses</class>
-        <class>org.apache.flex.textLayout.TextLayoutVersion</class>-->
+        <!--<class>org.apache.royale.textLayout.ConversionClasses</class>
+        <class>org.apache.royale.textLayout.CoreClasses</class>
+        <class>org.apache.royale.textLayout.EditClasses</class>
+        <class>org.apache.royale.textLayout.TextLayoutVersion</class>-->
     </include-classes>
     	
 
-</flex-config>
+</royale-config>

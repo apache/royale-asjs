@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
 	import flash.display.DisplayObject;
 	
-	import org.apache.flex.events.Event;
-    import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  The HScrollBarMouseController class is the controller for
-     *  org.apache.flex.html.supportClasses.HScrollBar
+     *  org.apache.royale.html.supportClasses.HScrollBar
      *  that acts as the Horizontal ScrollBar.
      *  
      *  @langversion 3.0

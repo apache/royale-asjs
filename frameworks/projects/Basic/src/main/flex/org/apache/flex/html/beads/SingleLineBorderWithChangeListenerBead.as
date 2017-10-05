@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IStyleableObject;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.StyleChangeEvent;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.StyleChangeEvent;
 
     /**
      *  The SingleLineBorderWithChangeListenerBead adds the ability to react to
@@ -51,7 +51,7 @@ package org.apache.flex.html.beads
 		private var _strand:IStrand;
 		
         /**
-         *  @copy org.apache.flex.core.IBead#strand
+         *  @copy org.apache.royale.core.IBead#strand
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

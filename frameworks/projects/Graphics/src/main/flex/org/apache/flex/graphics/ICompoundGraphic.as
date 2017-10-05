@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flex.graphics
+package org.apache.royale.graphics
 {
 	public interface ICompoundGraphic extends IGraphicShape
 	{

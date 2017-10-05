@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.ITextModel;
+	import org.apache.royale.core.ITextModel;
 
 	COMPILE::JS {
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
     [DefaultProperty("text")]
@@ -51,7 +51,7 @@ package org.apache.flex.html
 		}
 
         /**
-         *  @copy org.apache.flex.html.Label#text
+         *  @copy org.apache.royale.html.Label#text
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -87,7 +87,7 @@ package org.apache.flex.html
 		}
 
         /**
-         *  @copy org.apache.flex.html.Label#html
+         *  @copy org.apache.royale.html.Label#html
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

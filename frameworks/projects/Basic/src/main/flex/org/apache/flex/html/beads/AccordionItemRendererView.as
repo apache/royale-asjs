@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {		
-	import org.apache.flex.core.IChild;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.supportClasses.ICollapsible;
-	import org.apache.flex.html.supportClasses.AccordionItemRenderer
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.supportClasses.ICollapsible;
+	import org.apache.royale.html.supportClasses.AccordionItemRenderer
     
 	/**
 	 * This class creates and manages the contents of an AccordionItemRenderer
@@ -37,9 +37,9 @@ package org.apache.flex.html.beads
 	{
 		/**
      	 *  The AccordionItemRendererView class is the default view for
-         *  the org.apache.flex.html.supportClasses.AccordionItemRenderer classes.
+         *  the org.apache.royale.html.supportClasses.AccordionItemRenderer classes.
          *  It provides some layout optimizations that can be attained by assuming
-		 *  the strand to be an org.apache.flex.html.supportClasses.ICollapsible.
+		 *  the strand to be an org.apache.royale.html.supportClasses.ICollapsible.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

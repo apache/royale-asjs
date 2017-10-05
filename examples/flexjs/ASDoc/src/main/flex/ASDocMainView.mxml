@@ -24,8 +24,8 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 			import models.ASDocModel;
-            import org.apache.flex.events.Event;
-            import org.apache.flex.events.DetailEvent;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.events.DetailEvent;
 			
             public var currentPackage:String;
             

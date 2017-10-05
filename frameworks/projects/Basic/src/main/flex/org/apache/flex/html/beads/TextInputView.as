@@ -15,21 +15,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
 	import flash.display.DisplayObject;
 	import flash.text.TextFieldType;
 	
-	import org.apache.flex.core.ILayoutChild;
-    import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-    import org.apache.flex.geom.Rectangle;
-    import org.apache.flex.utils.CSSContainerUtils;
+	import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.utils.CSSContainerUtils;
 	
     /**
      *  The TextInputView class is the view for
-     *  the org.apache.flex.html.TextInput in
+     *  the org.apache.royale.html.TextInput in
      *  a ComboBox and other controls 
      *  because it does not display a border.
      *  It displays text using a TextField, so there is no

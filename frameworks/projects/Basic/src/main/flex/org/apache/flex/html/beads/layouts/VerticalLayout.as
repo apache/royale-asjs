@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
-	import org.apache.flex.core.LayoutBase;
+	import org.apache.royale.core.LayoutBase;
 	
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.core.ValuesManager;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ValuesManager;
 	COMPILE::JS
 	{
-		import org.apache.flex.core.WrappedHTMLElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.utils.CSSContainerUtils;
-	import org.apache.flex.utils.CSSUtils;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.utils.CSSContainerUtils;
+	import org.apache.royale.utils.CSSUtils;
 
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -73,8 +73,8 @@ package org.apache.flex.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.flex.core.ILayoutHost
-		 *  @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		override public function layout():Boolean
 		{

@@ -20,7 +20,7 @@ package flexUnitTests.reflection
 {
     import flexunit.framework.Assert;
 	import flexUnitTests.reflection.support.*;
-    import org.apache.flex.reflection.*;
+    import org.apache.royale.reflection.*;
     
     public class ReflectionTesterTestAlias
     {		

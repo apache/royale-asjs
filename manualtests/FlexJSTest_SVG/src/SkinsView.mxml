@@ -19,45 +19,45 @@ limitations under the License.
 -->
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic" 
-				xmlns:svg="org.apache.flex.svg.*"
-				xmlns:graphics="org.apache.flex.graphics.*" 
+				xmlns:svg="org.apache.royale.svg.*"
+				xmlns:graphics="org.apache.royale.graphics.*" 
 				xmlns:skins="skins.*" xmlns:mx="library://ns.adobe.com/flex/mx"
 				initComplete="viewbase1_initCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
-			import org.apache.flex.svg.Rect;
-			import org.apache.flex.graphics.SolidColor;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.events.MouseEvent;
+			import org.apache.royale.svg.Rect;
+			import org.apache.royale.graphics.SolidColor;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
 			
-			protected function viewbase1_initCompleteHandler(event:org.apache.flex.events.Event):void
+			protected function viewbase1_initCompleteHandler(event:org.apache.royale.events.Event):void
 			{
 				//this.mouseChildren = false;
 				currentState = "up";
-				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_DOWN, handleMouseDown);
-				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_UP, handleMouseUp);
-				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_OVER, handleMouseOver);
-				this.addEventListener(org.apache.flex.events.MouseEvent.MOUSE_OUT, handleMouseOut);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_DOWN, handleMouseDown);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_UP, handleMouseUp);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_OVER, handleMouseOver);
+				this.addEventListener(org.apache.royale.events.MouseEvent.MOUSE_OUT, handleMouseOut);
 			}
 			
-			private function handleMouseDown(event:org.apache.flex.events.MouseEvent):void
+			private function handleMouseDown(event:org.apache.royale.events.MouseEvent):void
 			{
 				currentState = "down";
 			}
 			
-			private function handleMouseUp(event:org.apache.flex.events.MouseEvent):void
+			private function handleMouseUp(event:org.apache.royale.events.MouseEvent):void
 			{
 				currentState = "up";
 			}
 			
-			private function handleMouseOver(event:org.apache.flex.events.MouseEvent):void
+			private function handleMouseOver(event:org.apache.royale.events.MouseEvent):void
 			{
 				currentState = "over";
 				// This will cause the stroke to appear on the second hover
 				//fill_over.stroke.lineDash = dashArray;
 			}
 			
-			private function handleMouseOut(event:org.apache.flex.events.MouseEvent):void
+			private function handleMouseOut(event:org.apache.royale.events.MouseEvent):void
 			{
 				currentState = "up";
 			}

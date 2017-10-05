@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.customControls.beads
+package org.apache.royale.html.customControls.beads
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.IItemRenderer;
-	import org.apache.flex.core.IItemRendererClassFactory;
-	import org.apache.flex.core.IItemRendererParent;
-	import org.apache.flex.core.ISelectionModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.html.beads.IListView;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
 	
 	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper
 	{

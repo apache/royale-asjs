@@ -24,7 +24,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[		
 			import models.MyModel;			
-			import org.apache.flex.events.Event;
+			import org.apache.royale.events.Event;
 			
 			import google.maps.places.PlaceResult;
 			import google.maps.Marker;
@@ -51,7 +51,7 @@ limitations under the License.
 			 * Triggered by a change in the drop list with a new city selected. This
 			 * will also update the input fields.
 			 */
-			private function changeCity(event:org.apache.flex.events.Event) : void
+			private function changeCity(event:org.apache.royale.events.Event) : void
 			{
 				var index:int = list.selectedIndex;
 				mapLocation.text = MyModel(applicationModel).cities[index];
@@ -82,7 +82,7 @@ limitations under the License.
 			 * Called when the map has been re-centered or moved. The search results are
 			 * cleared and a new search is triggered.
 			 */
-			private function onMapCenteredOrChanged(event:org.apache.flex.events.Event):void
+			private function onMapCenteredOrChanged(event:org.apache.royale.events.Event):void
 			{
 				clearSearchResults();
 				if (search.text) searchOnMap();
@@ -93,7 +93,7 @@ limitations under the License.
 			 * transfers those results to the application's model which is bound to the
 			 * List component.
 			 */
-			private function onSearchResults(event:org.apache.flex.events.Event):void
+			private function onSearchResults(event:org.apache.royale.events.Event):void
 			{
 				var searchResults:Array = map.searchResults;
 				MyModel(applicationModel).searchResults = searchResults;
@@ -104,7 +104,7 @@ limitations under the License.
 			 * the map on the marker and, if necessary, zooms the map in for closer
 			 * inspection.
 			 */
-			private function onMarkerClicked(event:org.apache.flex.events.Event):void
+			private function onMarkerClicked(event:org.apache.royale.events.Event):void
 			{
 				var marker:Marker = map.selectedMarker as Marker;
 				map.setZoom(12);

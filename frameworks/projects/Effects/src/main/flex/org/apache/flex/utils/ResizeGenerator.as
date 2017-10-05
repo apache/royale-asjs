@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.utils
+package org.apache.royale.utils
 {
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.effects.IEffect;
-	import org.apache.flex.effects.Resize;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.effects.IEffect;
+	import org.apache.royale.effects.Resize;
 	
 	public class ResizeGenerator implements IEffectsGenerator
 	{

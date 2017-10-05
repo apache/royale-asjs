@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.core.IContentViewHost;
-	import org.apache.flex.core.ILayoutParent;
-	import org.apache.flex.core.ILayoutHost;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.states.State;
-	import org.apache.flex.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.IContentViewHost;
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.states.State;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 
     COMPILE::JS
     {
-        import org.apache.flex.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
     /**
@@ -45,7 +45,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="stateChangeComplete", type="org.apache.flex.events.Event")]
+    [Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the initialization of the container is complete.
@@ -55,7 +55,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="initComplete", type="org.apache.flex.events.Event")]
+    [Event(name="initComplete", type="org.apache.royale.events.Event")]
     
     /**
      *  Indicates that the children of the container is have been added.
@@ -65,7 +65,7 @@ package org.apache.flex.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    [Event(name="childrenAdded", type="org.apache.flex.events.Event")]
+    [Event(name="childrenAdded", type="org.apache.royale.events.Event")]
     
     /**
      *  The GroupBase class is the base class for most simple containers
@@ -93,7 +93,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
@@ -164,7 +164,7 @@ package org.apache.flex.core
 		}
 		
 		/**
-		 * @copy org.apache.flex.core.IContentViewHost#strandChildren
+		 * @copy org.apache.royale.core.IContentViewHost#strandChildren
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -180,7 +180,7 @@ package org.apache.flex.core
         
         /**
          *  The array of view states. These should
-         *  be instances of org.apache.flex.states.State.
+         *  be instances of org.apache.royale.states.State.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -195,7 +195,7 @@ package org.apache.flex.core
         /**
          *  @private
          *  @royaleignorecoercion Class
-         *  @royaleignorecoercion org.apache.flex.core.IBead
+         *  @royaleignorecoercion org.apache.royale.core.IBead
          */
         public function set states(value:Array):void
         {

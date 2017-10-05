@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.compose.IFlowComposer;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.compose.IFlowComposer;
 	CONFIG::debug{
-		import org.apache.flex.textLayout.container.IContainerController;
+		import org.apache.royale.textLayout.container.IContainerController;
 	}
 	
 

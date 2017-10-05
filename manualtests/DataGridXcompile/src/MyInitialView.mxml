@@ -22,25 +22,25 @@ limitations under the License.
 				xmlns:local="*"
 				xmlns:models="models.*"
 				initComplete="initControls()" 
-				xmlns:customControls="org.apache.flex.html.customControls.*" 
-				xmlns:beads="org.apache.flex.html.customControls.beads.*">
+				xmlns:customControls="org.apache.royale.html.customControls.*" 
+				xmlns:beads="org.apache.royale.html.customControls.beads.*">
 	
 	<fx:Style>
 		@namespace basic "library://ns.apache.org/royale/basic";
-		@namespace custom "org.apache.flex.html.customControls.*";
+		@namespace custom "org.apache.royale.html.customControls.*";
 		
 		.boxGrid {
 			background-color: #FF0000;
-			IBeadView: ClassReference('org.apache.flex.html.beads.BoxGridView');
+			IBeadView: ClassReference('org.apache.royale.html.beads.BoxGridView');
 		}
 		
 		custom|DataGrid
 		{
-			IDataGridPresentationModel: ClassReference("org.apache.flex.html.beads.models.DataGridPresentationModel");
-			IBeadView: ClassReference("org.apache.flex.html.customControls.beads.DataGridView");
-			IBeadModel: ClassReference("org.apache.flex.html.beads.models.DataGridModel");
-			IItemRendererClassFactory: ClassReference("org.apache.flex.core.ItemRendererClassFactory");
-			IItemRenderer: ClassReference("org.apache.flex.html.supportClasses.StringItemRenderer");
+			IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+			IBeadView: ClassReference("org.apache.royale.html.customControls.beads.DataGridView");
+			IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+			IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+			IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 			
 			background-color: #FFFFFF;
 		}

@@ -16,19 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html
+package org.apache.royale.html
 {
-	import org.apache.flex.core.IBead;
-	import org.apache.flex.core.IDateChooserModel;
-	import org.apache.flex.core.IFormatBead;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
 	
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
 	 */
-	[Event(name="change", type="org.apache.flex.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
 	 * The DateField class provides an input field where a date can be entered

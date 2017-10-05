@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads
+package org.apache.royale.html.beads
 {
-    import org.apache.flex.core.IBead;
-    import org.apache.flex.core.IUIBase;
-    import org.apache.flex.core.IStrand;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.IStrand;
 
 	/**
 	 *  UnselectableElement bead prevents from text selection of html element
@@ -48,7 +48,7 @@ package org.apache.flex.html.beads
         private var _strand:IStrand;
 
         /**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

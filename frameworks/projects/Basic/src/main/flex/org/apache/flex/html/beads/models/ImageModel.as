@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.models
+package org.apache.royale.html.beads.models
 {
-	import org.apache.flex.core.IImageModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.core.IImageModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
-	 *  The ImageModel class bead defines the data associated with an org.apache.flex.html.Image
+	 *  The ImageModel class bead defines the data associated with an org.apache.royale.html.Image
 	 *  component, namely the source of the image.
 	 *
 	 *  @langversion 3.0
@@ -50,7 +50,7 @@ package org.apache.flex.html.beads.models
 		private var _strand:IStrand;
 		
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -67,7 +67,7 @@ package org.apache.flex.html.beads.models
 		/**
 		 *  The source of the image.
 		 * 
-		 *  @copy org.apache.flex.core.IImageModel#source
+		 *  @copy org.apache.royale.core.IImageModel#source
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

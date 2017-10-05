@@ -16,20 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
-	import org.apache.flex.core.LayoutBase;
+	import org.apache.royale.core.LayoutBase;
 	
-	import org.apache.flex.core.IBeadLayout;
-	import org.apache.flex.core.ILayoutChild;
-	import org.apache.flex.core.ILayoutView;
-	import org.apache.flex.html.TableCell;
-	import org.apache.flex.html.TableRow;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.html.TableCell;
+	import org.apache.royale.html.TableRow;
 	
 	COMPILE::SWF {
-		import org.apache.flex.geom.Rectangle;
-		import org.apache.flex.utils.CSSUtils;
-		import org.apache.flex.utils.CSSContainerUtils;
+		import org.apache.royale.geom.Rectangle;
+		import org.apache.royale.utils.CSSUtils;
+		import org.apache.royale.utils.CSSContainerUtils;
 	}
 
     /**
@@ -57,9 +57,9 @@ package org.apache.flex.html.beads.layouts
 		}
 
         /**
-         * @copy org.apache.flex.core.IBeadLayout#layout
-		 * @royaleignorecoercion org.apache.flex.core.ILayoutHost
-		 * @royaleignorecoercion org.apache.flex.core.UIBase
+         * @copy org.apache.royale.core.IBeadLayout#layout
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
          */
 		override public function layout():Boolean
 		{

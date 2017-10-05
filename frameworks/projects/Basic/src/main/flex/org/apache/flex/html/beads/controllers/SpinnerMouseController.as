@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.beads.controllers
+package org.apache.royale.html.beads.controllers
 {
-	import org.apache.flex.core.IBeadController;
-	import org.apache.flex.core.IRangeModel;
-	import org.apache.flex.core.IStrand;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
-	import org.apache.flex.events.MouseEvent;
-	import org.apache.flex.events.ValueChangeEvent;
-	import org.apache.flex.html.TextButton;
-	import org.apache.flex.html.beads.ISpinnerView;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.html.TextButton;
+	import org.apache.royale.html.beads.ISpinnerView;
     COMPILE::JS
     {
-        import org.apache.flex.html.Spinner;
-        import org.apache.flex.html.supportClasses.SpinnerButton;
+        import org.apache.royale.html.Spinner;
+        import org.apache.royale.html.supportClasses.SpinnerButton;
         import goog.events;
         import goog.events.EventType;
     }
 
 	/**
 	 *  The SpinnerMouseController class bead handles mouse events on the
-	 *  org.apache.flex.html.Spinner's component buttons, changing the
+	 *  org.apache.royale.html.Spinner's component buttons, changing the
 	 *  value of the Spinner.
 	 *
 	 *  @langversion 3.0
@@ -65,9 +65,9 @@ package org.apache.flex.html.beads.controllers
 		private var _strand:IStrand;
 
 		/**
-		 *  @copy org.apache.flex.core.IBead#strand
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *
-		 *  @royaleignorecoercion org.apache.flex.html.Spinner
+		 *  @royaleignorecoercion org.apache.royale.html.Spinner
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -107,7 +107,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function decrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
+		private function decrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
 		{
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
@@ -118,7 +118,7 @@ package org.apache.flex.html.beads.controllers
 		/**
 		 * @private
 		 */
-		private function incrementClickHandler( event:org.apache.flex.events.MouseEvent ) : void
+		private function incrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
 		{
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);

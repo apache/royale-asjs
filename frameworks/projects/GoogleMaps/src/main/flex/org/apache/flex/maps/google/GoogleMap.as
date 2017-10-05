@@ -16,32 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.maps.google
+package org.apache.royale.maps.google
 {
-	import org.apache.flex.core.IBeadModel;
-	import org.apache.flex.core.IBeadView;
-	import org.apache.flex.core.UIBase;
-	import org.apache.flex.core.ValuesManager;
-	import org.apache.flex.events.Event;
-	import org.apache.flex.maps.google.beads.GoogleMapView;
-	import org.apache.flex.maps.google.models.MapModel;
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.maps.google.beads.GoogleMapView;
+	import org.apache.royale.maps.google.models.MapModel;
 
 	import google.maps.LatLng;
 	import google.maps.Marker;
 
-	[Event(name="ready", type="org.apache.flex.events.Event")]
-	[Event(name="centered", type="org.apache.flex.events.Event")]
-	[Event(name="boundsChanged", type="org.apache.flex.events.Event")]
-	[Event(name="zoomChanged", type="org.apache.flex.events.Event")]
-	[Event(name="dragEnd", type="org.apache.flex.events.Event")]
-	[Event(name="searchResult", type="org.apache.flex.events.Event")]
-	[Event(name="markerClicked", type="org.apache.flex.events.MouseEvent")]
+	[Event(name="ready", type="org.apache.royale.events.Event")]
+	[Event(name="centered", type="org.apache.royale.events.Event")]
+	[Event(name="boundsChanged", type="org.apache.royale.events.Event")]
+	[Event(name="zoomChanged", type="org.apache.royale.events.Event")]
+	[Event(name="dragEnd", type="org.apache.royale.events.Event")]
+	[Event(name="searchResult", type="org.apache.royale.events.Event")]
+	[Event(name="markerClicked", type="org.apache.royale.events.MouseEvent")]
 
 	/**
 	 *  The Map class displays a Google Map centered on lat/lng coordinates. The Map uses
 	 *  the following bead type:
 	 *
-	 *  org.apache.flex.maps.beads.MapView: Uses HTMLLoader to display the map.
+	 *  org.apache.royale.maps.beads.MapView: Uses HTMLLoader to display the map.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

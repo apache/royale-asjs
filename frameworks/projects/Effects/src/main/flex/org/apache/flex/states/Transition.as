@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.states
+package org.apache.royale.states
 {
 	
     [DefaultProperty("effects")]

@@ -27,16 +27,16 @@ package
  */
 internal class FormattersClasses
 {	
-	import org.apache.flex.core.FormatBase; FormatBase;
+	import org.apache.royale.core.FormatBase; FormatBase;
 	
-	import org.apache.flex.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
-	import org.apache.flex.html.accessories.DateFormatDDMMYYYYBead; DateFormatDDMMYYYYBead;
-	import org.apache.flex.html.accessories.DateFormatYYYYMMDDBead; DateFormatYYYYMMDDBead;
-	import org.apache.flex.html.accessories.SimpleDateFormatBead; SimpleDateFormatBead;
+	import org.apache.royale.html.accessories.DateFormatMMDDYYYYBead; DateFormatMMDDYYYYBead;
+	import org.apache.royale.html.accessories.DateFormatDDMMYYYYBead; DateFormatDDMMYYYYBead;
+	import org.apache.royale.html.accessories.DateFormatYYYYMMDDBead; DateFormatYYYYMMDDBead;
+	import org.apache.royale.html.accessories.SimpleDateFormatBead; SimpleDateFormatBead;
 	COMPILE::SWF
 	{
-    	import org.apache.flex.html.beads.FormatableLabelView; FormatableLabelView;
-	    import org.apache.flex.html.beads.FormatableTextInputView; FormatableTextInputView;
+    	import org.apache.royale.html.beads.FormatableLabelView; FormatableLabelView;
+	    import org.apache.royale.html.beads.FormatableTextInputView; FormatableTextInputView;
 	}
 }
 

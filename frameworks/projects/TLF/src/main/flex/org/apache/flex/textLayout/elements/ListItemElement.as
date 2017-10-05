@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.elements {
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
+package org.apache.royale.textLayout.elements {
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
 
 	
 
@@ -43,9 +43,9 @@ package org.apache.flex.textLayout.elements {
 	 * @langversion 3.0
 	 *
 	 * @see ParagraphElement
-	 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat#listStyleType
-	 * @see org.apache.flex.textLayout.formats.ITextLayoutFormat#listStylePosition
-	 * @see org.apache.flex.textLayout.formats.ListMarkerFormat
+	 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat#listStyleType
+	 * @see org.apache.royale.textLayout.formats.ITextLayoutFormat#listStylePosition
+	 * @see org.apache.royale.textLayout.formats.ListMarkerFormat
 	 */
 	public final class ListItemElement extends ContainerFormattedElement implements IListItemElement
 	{	
@@ -81,7 +81,7 @@ package org.apache.flex.textLayout.elements {
 		
 		/**
 		 *  @private ListItems must begin with zero or more divs with a paragraph
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowGroupElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowGroupElement
 		 */
 		public function normalizeNeedsInitialParagraph():Boolean
 		{

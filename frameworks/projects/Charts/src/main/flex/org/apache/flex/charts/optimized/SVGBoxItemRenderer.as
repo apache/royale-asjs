@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts.optimized
+package org.apache.royale.charts.optimized
 {
-	import org.apache.flex.charts.core.IChartItemRenderer;
-	import org.apache.flex.charts.core.IChartSeries;
-	import org.apache.flex.svg.CompoundGraphic;
-	import org.apache.flex.graphics.IFill;
-	import org.apache.flex.graphics.IStroke;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.graphics.SolidColorStroke;
-	import org.apache.flex.html.supportClasses.DataItemRenderer;
-	import org.apache.flex.html.supportClasses.GraphicsItemRenderer;
+	import org.apache.royale.charts.core.IChartItemRenderer;
+	import org.apache.royale.charts.core.IChartSeries;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.graphics.IFill;
+	import org.apache.royale.graphics.IStroke;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.GraphicsItemRenderer;
 	
 	/**
 	 *  The SVGBoxItemRenderer draws its graphics directly into a SVGChartDataGroup
@@ -111,7 +111,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.flex.supportClasses.UIItemRendererBase#data
+		 *  @copy org.apache.royale.supportClasses.UIItemRendererBase#data
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -125,7 +125,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.UIBase#width
+		 *  @copy org.apache.royale.core.UIBase#width
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -139,7 +139,7 @@ package org.apache.flex.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.flex.core.UIBase#height
+		 *  @copy org.apache.royale.core.UIBase#height
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

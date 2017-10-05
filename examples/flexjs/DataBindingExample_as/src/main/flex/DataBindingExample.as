@@ -19,53 +19,53 @@ limitations under the License.
 package
 {
 
-import org.apache.flex.core.Application;
-import org.apache.flex.core.ItemRendererClassFactory;
-import org.apache.flex.core.SimpleCSSValuesImpl;
-import org.apache.flex.events.Event;
-import org.apache.flex.html.beads.ContainerView;
-import org.apache.flex.html.beads.GroupView;
-import org.apache.flex.html.beads.DataItemRendererFactoryForArrayData;
-import org.apache.flex.html.beads.ListView;
-import org.apache.flex.html.beads.TextItemRendererFactoryForArrayData;
-import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
-import org.apache.flex.html.beads.controllers.ListSingleSelectionMouseController;
-import org.apache.flex.html.beads.layouts.BasicLayout;
-import org.apache.flex.html.beads.layouts.VerticalLayout;
-import org.apache.flex.html.beads.models.ArraySelectionModel;
-import org.apache.flex.html.beads.models.TextModel;
-import org.apache.flex.html.beads.models.ToggleButtonModel;
-import org.apache.flex.html.beads.models.ViewportModel;
-import org.apache.flex.html.supportClasses.ContainerContentArea;
-import org.apache.flex.html.supportClasses.DropDownListList;
-import org.apache.flex.html.supportClasses.DataGroup;
-import org.apache.flex.html.supportClasses.ScrollingViewport;
-import org.apache.flex.html.supportClasses.Viewport;
-import org.apache.flex.html.supportClasses.StringItemRenderer;
-import org.apache.flex.net.HTTPService;
-import org.apache.flex.collections.parsers.JSONInputParser;
-import org.apache.flex.collections.LazyCollection;
-import org.apache.flex.utils.ViewSourceContextMenuOption;
+import org.apache.royale.core.Application;
+import org.apache.royale.core.ItemRendererClassFactory;
+import org.apache.royale.core.SimpleCSSValuesImpl;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.beads.ContainerView;
+import org.apache.royale.html.beads.GroupView;
+import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData;
+import org.apache.royale.html.beads.ListView;
+import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData;
+import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
+import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
+import org.apache.royale.html.beads.layouts.BasicLayout;
+import org.apache.royale.html.beads.layouts.VerticalLayout;
+import org.apache.royale.html.beads.models.ArraySelectionModel;
+import org.apache.royale.html.beads.models.TextModel;
+import org.apache.royale.html.beads.models.ToggleButtonModel;
+import org.apache.royale.html.beads.models.ViewportModel;
+import org.apache.royale.html.supportClasses.ContainerContentArea;
+import org.apache.royale.html.supportClasses.DropDownListList;
+import org.apache.royale.html.supportClasses.DataGroup;
+import org.apache.royale.html.supportClasses.ScrollingViewport;
+import org.apache.royale.html.supportClasses.Viewport;
+import org.apache.royale.html.supportClasses.StringItemRenderer;
+import org.apache.royale.net.HTTPService;
+import org.apache.royale.collections.parsers.JSONInputParser;
+import org.apache.royale.collections.LazyCollection;
+import org.apache.royale.utils.ViewSourceContextMenuOption;
 
 COMPILE::SWF
 {
-import org.apache.flex.html.beads.CSSButtonView;
-import org.apache.flex.html.beads.CSSTextButtonView;
-import org.apache.flex.html.beads.CSSTextToggleButtonView;
-import org.apache.flex.html.beads.CheckBoxView;
-import org.apache.flex.html.beads.DropDownListView;
-import org.apache.flex.html.beads.RadioButtonView;
-import org.apache.flex.html.beads.TextInputWithBorderView;
-import org.apache.flex.html.beads.models.SingleLineBorderModel;
-import org.apache.flex.html.beads.models.ValueToggleButtonModel;
-import org.apache.flex.html.beads.controllers.DropDownListController;
-import org.apache.flex.html.beads.controllers.EditableTextKeyboardController;
-import org.apache.flex.html.beads.SingleLineBorderBead;
-import org.apache.flex.html.beads.SolidBackgroundBead;
-import org.apache.flex.html.beads.TextAreaView;
-import org.apache.flex.html.beads.TextButtonMeasurementBead;
-import org.apache.flex.html.beads.TextFieldLabelMeasurementBead;
-import org.apache.flex.html.beads.TextFieldView;
+import org.apache.royale.html.beads.CSSButtonView;
+import org.apache.royale.html.beads.CSSTextButtonView;
+import org.apache.royale.html.beads.CSSTextToggleButtonView;
+import org.apache.royale.html.beads.CheckBoxView;
+import org.apache.royale.html.beads.DropDownListView;
+import org.apache.royale.html.beads.RadioButtonView;
+import org.apache.royale.html.beads.TextInputWithBorderView;
+import org.apache.royale.html.beads.models.SingleLineBorderModel;
+import org.apache.royale.html.beads.models.ValueToggleButtonModel;
+import org.apache.royale.html.beads.controllers.DropDownListController;
+import org.apache.royale.html.beads.controllers.EditableTextKeyboardController;
+import org.apache.royale.html.beads.SingleLineBorderBead;
+import org.apache.royale.html.beads.SolidBackgroundBead;
+import org.apache.royale.html.beads.TextAreaView;
+import org.apache.royale.html.beads.TextButtonMeasurementBead;
+import org.apache.royale.html.beads.TextFieldLabelMeasurementBead;
+import org.apache.royale.html.beads.TextFieldView;
 
 }
 
@@ -110,7 +110,7 @@ public class DataBindingExample extends Application
             fontSize: 12
         });
 
-		var s:String = makeDefinitionName("org.apache.flex.html::Container");
+		var s:String = makeDefinitionName("org.apache.royale.html::Container");
         vi.addRule(s,
         {
 
@@ -126,7 +126,7 @@ public class DataBindingExample extends Application
          	o.iViewportModel = ViewportModel;
          };
 
-        s = makeDefinitionName("org.apache.flex.core::View");
+        s = makeDefinitionName("org.apache.royale.core::View");
 		vi.addRule(s,
         {
 
@@ -140,7 +140,7 @@ public class DataBindingExample extends Application
             o.iBorderBead = SingleLineBorderBead;
         }
 
-        s = makeDefinitionName("org.apache.flex.html::List");
+        s = makeDefinitionName("org.apache.royale.html::List");
 		vi.addRule(s,
         {
             iBeadModel: ArraySelectionModel,
@@ -155,7 +155,7 @@ public class DataBindingExample extends Application
             iItemRenderer: StringItemRenderer
         });
 
-        s = makeDefinitionName("org.apache.flex.html::Button");
+        s = makeDefinitionName("org.apache.royale.html::Button");
 		vi.addRule(s,
         {
             backgroundColor: 0xd8d8d8,
@@ -169,7 +169,7 @@ public class DataBindingExample extends Application
             o.iBeadView = CSSButtonView;
         }
 
-        s = makeDefinitionName("org.apache.flex.html::Button:hover");
+        s = makeDefinitionName("org.apache.royale.html::Button:hover");
 		vi.addRule(s,
         {
             backgroundColor: 0x9fa0a1,
@@ -179,7 +179,7 @@ public class DataBindingExample extends Application
             padding: 4
         });
 
-        s = makeDefinitionName("org.apache.flex.html::Button:active");
+        s = makeDefinitionName("org.apache.royale.html::Button:active");
 		vi.addRule(s,
         {
             backgroundColor: 0x929496,
@@ -190,13 +190,13 @@ public class DataBindingExample extends Application
         });
 
         COMPILE::SWF {
-            viv["org.apache.flex.html::CheckBox"] =
+            viv["org.apache.royale.html::CheckBox"] =
             {
                 iBeadModel: ToggleButtonModel,
                 iBeadView:  CheckBoxView
             };
 
-            viv["org.apache.flex.html::DropDownList"] =
+            viv["org.apache.royale.html::DropDownList"] =
             {
                 iBeadModel: ArraySelectionModel,
                 iBeadView: DropDownListView,
@@ -204,7 +204,7 @@ public class DataBindingExample extends Application
                 iPopUp: DropDownListList
             };
 
-            viv["org.apache.flex.html.supportClasses::DropDownListList"] =
+            viv["org.apache.royale.html.supportClasses::DropDownListList"] =
             {
                 iBeadModel: ArraySelectionModel,
                 iDataProviderItemRendererMapper: TextItemRendererFactoryForArrayData,
@@ -218,7 +218,7 @@ public class DataBindingExample extends Application
 			    backgroundColor: 0xFFFFFF
             };
 
-            viv["org.apache.flex.html.supportClasses::Border"] =
+            viv["org.apache.royale.html.supportClasses::Border"] =
             {
 				borderStyle: "inherit",
     			borderRadius: "inherit",
@@ -227,26 +227,26 @@ public class DataBindingExample extends Application
 			    border: "inherit"
             };
 
-            viv["org.apache.flex.html::Label"] =
+            viv["org.apache.royale.html::Label"] =
             {
                 iBeadModel: TextModel,
                 iBeadView: TextFieldView,
                 iMeasurementBead: TextFieldLabelMeasurementBead
             };
 
-            viv["org.apache.flex.html::List"] =
+            viv["org.apache.royale.html::List"] =
             {
                 iBorderBead: SingleLineBorderBead,
                 iBorderModel: SingleLineBorderModel
             };
 
-            viv["org.apache.flex.html::RadioButton"] =
+            viv["org.apache.royale.html::RadioButton"] =
             {
                 iBeadModel: ValueToggleButtonModel,
                 iBeadView:  RadioButtonView
             };
 
-            viv["org.apache.flex.html::TextArea"] =
+            viv["org.apache.royale.html::TextArea"] =
             {
                 iBeadModel: TextModel,
                 iBeadView: TextAreaView,
@@ -259,14 +259,14 @@ public class DataBindingExample extends Application
     			backgroundColor: 0xFFFFFF
             };
 
-            viv["org.apache.flex.html::TextButton"] =
+            viv["org.apache.royale.html::TextButton"] =
             {
                 iBeadModel: TextModel,
                 iBeadView: CSSTextButtonView,
                 iMeasurementBead: TextButtonMeasurementBead
             };
 
-            viv["org.apache.flex.html::TextInput"] =
+            viv["org.apache.royale.html::TextInput"] =
             {
                 iBeadModel: TextModel,
                 iBeadView: TextInputWithBorderView,
@@ -279,13 +279,13 @@ public class DataBindingExample extends Application
     			backgroundColor: 0xFFFFFF
             };
 
-            viv["org.apache.flex.html::ToggleTextButton"] =
+            viv["org.apache.royale.html::ToggleTextButton"] =
             {
                 iBeadModel: ToggleButtonModel,
                 iBeadView:  CSSTextToggleButtonView
             };
 
-            viv["org.apache.flex.html::SimpleList"] =
+            viv["org.apache.royale.html::SimpleList"] =
             {
                 iBeadModel: ArraySelectionModel,
                 iBeadView:  ListView,
@@ -299,7 +299,7 @@ public class DataBindingExample extends Application
                 iItemRenderer: StringItemRenderer
             }
 
-            viv["org.apache.flex.html.supportClasses::StringItemRenderer"] =
+            viv["org.apache.royale.html.supportClasses::StringItemRenderer"] =
             {
                 iBeadController: ItemRendererMouseController,
                 height: 16

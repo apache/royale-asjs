@@ -16,12 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.events
+package org.apache.royale.textLayout.events
 {
-	import org.apache.flex.events.IRoyaleEvent;
-	import org.apache.flex.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
+	import org.apache.royale.events.Event;
 	
-	import org.apache.flex.textLayout.operations.FlowOperation; 
+	import org.apache.royale.textLayout.operations.FlowOperation; 
 	
 	/** A TextFlow instance dispatches this event just before an operation commences
 	 * and again just after an operation completes. Although the event object
@@ -53,7 +53,7 @@ package org.apache.flex.textLayout.events
 	 * will be undone as a unit with the operation that triggered the event.
 	 * </p> 
 	 *
-	 * @see org.apache.flex.textLayout.operations.FlowOperation
+	 * @see org.apache.royale.textLayout.operations.FlowOperation
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0 
@@ -103,7 +103,7 @@ package org.apache.flex.textLayout.events
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0 
-	         * @see org.apache.flex.textLayout.operations.FlowOperation
+	         * @see org.apache.royale.textLayout.operations.FlowOperation
 		 */		
 		public function get operation():FlowOperation
 		{ return _op; }	

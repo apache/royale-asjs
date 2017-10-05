@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
-	import org.apache.flex.events.Event;
-	import org.apache.flex.events.EventDispatcher;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
     /**
      *  The Strand class is the base class for non-display object
@@ -104,7 +104,7 @@ package org.apache.flex.core
 		}
 				
         /**
-         *  @copy org.apache.flex.core.Application#beads
+         *  @copy org.apache.royale.core.Application#beads
          *  
          *  The beads are not automatically added to the
          *  strand.  Subclasses must decide when to
@@ -120,7 +120,7 @@ package org.apache.flex.core
 		private var _beads:Vector.<IBead>;
 
         /**
-         *  @copy org.apache.flex.core.IStrand#addBead()
+         *  @copy org.apache.royale.core.IStrand#addBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -138,7 +138,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IStrand#getBeadByType()
+         *  @copy org.apache.royale.core.IStrand#getBeadByType()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -156,7 +156,7 @@ package org.apache.flex.core
 		}
 		
         /**
-         *  @copy org.apache.flex.core.IStrand#removeBead()
+         *  @copy org.apache.royale.core.IStrand#removeBead()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

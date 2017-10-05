@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.charts
+package org.apache.royale.charts
 {
-	import org.apache.flex.charts.core.ChartBase;
-	import org.apache.flex.charts.core.IChart;
+	import org.apache.royale.charts.core.ChartBase;
+	import org.apache.royale.charts.core.IChart;
 	
 	/**
 	 *  The BarChart class draws a multi-series graph of data using vertical

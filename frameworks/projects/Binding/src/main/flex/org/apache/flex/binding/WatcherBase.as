@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.flex.binding
+package org.apache.royale.binding
 {
     /**
      *  The WatcherBase class is the base class for data-binding classes that watch

@@ -27,25 +27,25 @@ package
  */
 internal class DragDropClasses
 {
-    import org.apache.flex.core.DropType; DropType;
-    import org.apache.flex.events.DragEvent; DragEvent;
+    import org.apache.royale.core.DropType; DropType;
+    import org.apache.royale.events.DragEvent; DragEvent;
 
-	import org.apache.flex.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
-	import org.apache.flex.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
-	import org.apache.flex.html.beads.SingleSelectionDropIndicatorBead; SingleSelectionDropIndicatorBead;
-	import org.apache.flex.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
+	import org.apache.royale.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
+	import org.apache.royale.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
+	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead; SingleSelectionDropIndicatorBead;
+	import org.apache.royale.html.beads.SingleSelectionDropTargetBead; SingleSelectionDropTargetBead;
 
-	import org.apache.flex.html.beads.DataGridDrawingLayerBead; DataGridDrawingLayerBead;
-	import org.apache.flex.html.beads.DataGridWithDrawingLayerLayout; DataGridWithDrawingLayerLayout;
-	import org.apache.flex.html.beads.IDrawingLayerBead; IDrawingLayerBead;
-	import org.apache.flex.html.beads.DragDropListView; DragDropListView;
-	import org.apache.flex.html.beads.ListDrawingLayerBead; ListDrawingLayerBead;
+	import org.apache.royale.html.beads.DataGridDrawingLayerBead; DataGridDrawingLayerBead;
+	import org.apache.royale.html.beads.DataGridWithDrawingLayerLayout; DataGridWithDrawingLayerLayout;
+	import org.apache.royale.html.beads.IDrawingLayerBead; IDrawingLayerBead;
+	import org.apache.royale.html.beads.DragDropListView; DragDropListView;
+	import org.apache.royale.html.beads.ListDrawingLayerBead; ListDrawingLayerBead;
 
-	import org.apache.flex.html.beads.DataGridButtonBarViewForMovableColumns; DataGridButtonBarViewForMovableColumns;
-	import org.apache.flex.html.beads.DataGridColumnReorderView; DataGridColumnReorderView;
-	import org.apache.flex.html.beads.ButtonBarReorderBead; ButtonBarReorderBead;
+	import org.apache.royale.html.beads.DataGridButtonBarViewForMovableColumns; DataGridButtonBarViewForMovableColumns;
+	import org.apache.royale.html.beads.DataGridColumnReorderView; DataGridColumnReorderView;
+	import org.apache.royale.html.beads.ButtonBarReorderBead; ButtonBarReorderBead;
 
-	import org.apache.flex.html.beads.DataGridDragDropBead; DataGridDragDropBead;
+	import org.apache.royale.html.beads.DataGridDragDropBead; DataGridDragDropBead;
 
 }
 

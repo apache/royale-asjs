@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-	import org.apache.flex.core.LayoutBase;
+	import org.apache.royale.core.LayoutBase;
 	
 	/**
 	 * This layout does nothing which allows any styles to be applied

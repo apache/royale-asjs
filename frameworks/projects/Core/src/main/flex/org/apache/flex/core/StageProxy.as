@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.core
+package org.apache.royale.core
 {
 	import flash.display.Stage;
     import flash.events.Event;
 	
-    import org.apache.flex.events.Event;
-	import org.apache.flex.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The StageProxy class wraps the stage and
@@ -56,11 +56,11 @@ package org.apache.flex.core
         private function removedFromStageHandler(event:flash.events.Event):void
         {
             _stage.removeEventListener("removedFromStage", removedFromStageHandler);
-            dispatchEvent(new org.apache.flex.events.Event("removedFromStage"));
+            dispatchEvent(new org.apache.royale.events.Event("removedFromStage"));
         }
         
         /**
-         *  @copy org.apache.flex.core.IEventDispatcher#addEventListener()
+         *  @copy org.apache.royale.core.IEventDispatcher#addEventListener()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -73,7 +73,7 @@ package org.apache.flex.core
 		}
        
         /**
-         *  @copy org.apache.flex.core.IEventDispatcher#removeEventListener()
+         *  @copy org.apache.royale.core.IEventDispatcher#removeEventListener()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -86,7 +86,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IEventDispatcher#removeEventListener()
+         *  @copy org.apache.royale.core.IEventDispatcher#removeEventListener()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -99,7 +99,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IEventDispatcher#willTriger()
+         *  @copy org.apache.royale.core.IEventDispatcher#willTriger()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -112,7 +112,7 @@ package org.apache.flex.core
         }
         
         /**
-         *  @copy org.apache.flex.core.IEventDispatcher#hasEventListener()
+         *  @copy org.apache.royale.core.IEventDispatcher#hasEventListener()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -16,22 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.html.supportClasses
+package org.apache.royale.html.supportClasses
 {
     COMPILE::SWF
     {
         import flash.text.TextFieldAutoSize;
         import flash.text.TextFieldType;
 
-        import org.apache.flex.core.CSSTextField;
+        import org.apache.royale.core.CSSTextField;
     }
     COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
-        import org.apache.flex.html.beads.controllers.ItemRendererMouseController;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
     }
-    import org.apache.flex.events.Event;
-    import org.apache.flex.html.beads.ITextItemRenderer;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.html.beads.ITextItemRenderer;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
@@ -157,7 +157,7 @@ package org.apache.flex.html.supportClasses
         private var backgroundView:WrappedHTMLElement;
 
         /**
-         * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement

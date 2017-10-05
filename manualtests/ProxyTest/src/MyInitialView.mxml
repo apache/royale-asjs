@@ -21,7 +21,7 @@ limitations under the License.
 				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:local="*" 
 				xmlns:models="models.*" 
-				xmlns:acc="org.apache.flex.html.accessories.*">
+				xmlns:acc="org.apache.royale.html.accessories.*">
 	
 	<fx:Style>
 		.title {
@@ -33,11 +33,11 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[			
-			import org.apache.flex.core.IPopUpHost;
-			import org.apache.flex.events.Event;
-			import org.apache.flex.utils.UIUtils;
+			import org.apache.royale.core.IPopUpHost;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.utils.UIUtils;
 						
-            import org.apache.flex.utils.Proxy;
+            import org.apache.royale.utils.Proxy;
             
             public function runTest():void
             {

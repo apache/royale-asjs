@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.elements.IBackgroundManager;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.elements.IListItemElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.textLayout.formats.Direction;
-	import org.apache.flex.textLayout.formats.FormatValue;
-	import org.apache.flex.textLayout.formats.IListMarkerFormat;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.ListStylePosition;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.elements.IBackgroundManager;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.elements.IListItemElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.textLayout.formats.Direction;
+	import org.apache.royale.textLayout.formats.FormatValue;
+	import org.apache.royale.textLayout.formats.IListMarkerFormat;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.ListStylePosition;
 
 	public class TextLineUtil
 	{
@@ -149,7 +149,7 @@ package org.apache.flex.textLayout.compose.utils
 			CONFIG::debug
 			{
 				assert(!elem || elemStart == elem.getAbsoluteStart(), "bad elemStart passed to getTextLineTypographicAscent"); }
-			var rslt:Number = textLine.getBaselinePosition(org.apache.flex.text.engine.TextBaseline.ROMAN) - textLine.getBaselinePosition(org.apache.flex.text.engine.TextBaseline.ASCENT);
+			var rslt:Number = textLine.getBaselinePosition(org.apache.royale.text.engine.TextBaseline.ROMAN) - textLine.getBaselinePosition(org.apache.royale.text.engine.TextBaseline.ASCENT);
 
 			if (textLine.hasGraphicElement)
 			{

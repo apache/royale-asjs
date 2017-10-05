@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-package org.apache.flex.svg
+package org.apache.royale.svg
 {
   COMPILE::JS
     {
-        import org.apache.flex.core.WrappedHTMLElement;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
-	import org.apache.flex.core.ContainerBase;
+	import org.apache.royale.core.ContainerBase;
 
 	public class DOMWrapper extends ContainerBase
 	{
@@ -31,7 +31,7 @@ package org.apache.flex.svg
 		/**
 		 * Constructor
 		 *
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
         public function DOMWrapper()
         {
@@ -39,7 +39,7 @@ package org.apache.flex.svg
         }
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement

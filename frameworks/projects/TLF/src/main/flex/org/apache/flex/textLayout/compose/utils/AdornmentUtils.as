@@ -16,40 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.compose.utils
+package org.apache.royale.textLayout.compose.utils
 {
-	import org.apache.flex.textLayout.elements.utils.GeometricElementUtils;
-	import org.apache.flex.core.IUIBase;
-	import org.apache.flex.textLayout.dummy.BoundsUtil;
-	import org.apache.flex.textLayout.elements.IFlowElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.formats.Float;
-	import org.apache.flex.graphics.SolidColor;
-	import org.apache.flex.textLayout.elements.ITCYElement;
-	import org.apache.flex.text.engine.TextBaseline;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.graphics.SolidColorStroke;
-	import org.apache.flex.textLayout.formats.JustificationRule;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.graphics.PathBuilder;
-	import org.apache.flex.graphics.ICompoundGraphic;
-	import org.apache.flex.textLayout.debug.assert;
-	import org.apache.flex.textLayout.formats.BackgroundColor;
-	import org.apache.flex.textLayout.formats.TextDecoration;
-	import org.apache.flex.text.engine.TextRotation;
-	import org.apache.flex.textLayout.compose.ITextFlowLine;
-	import org.apache.flex.textLayout.formats.BlockProgression;
-	import org.apache.flex.core.IParentIUIBase;
-	import org.apache.flex.textLayout.elements.InlineGraphicElementStatus;
-	import org.apache.flex.textLayout.elements.IInlineGraphicElement;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.formats.BaselineShift;
-	import org.apache.flex.geom.Rectangle;
-	import org.apache.flex.textLayout.formats.IMEStatus;
-	import org.apache.flex.text.engine.FontMetrics;
-	import org.apache.flex.textLayout.utils.CharacterUtil;
-	import org.apache.flex.text.engine.ITextLine;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.utils.GeometricElementUtils;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.textLayout.dummy.BoundsUtil;
+	import org.apache.royale.textLayout.elements.IFlowElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.formats.Float;
+	import org.apache.royale.graphics.SolidColor;
+	import org.apache.royale.textLayout.elements.ITCYElement;
+	import org.apache.royale.text.engine.TextBaseline;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.textLayout.formats.JustificationRule;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.graphics.PathBuilder;
+	import org.apache.royale.graphics.ICompoundGraphic;
+	import org.apache.royale.textLayout.debug.assert;
+	import org.apache.royale.textLayout.formats.BackgroundColor;
+	import org.apache.royale.textLayout.formats.TextDecoration;
+	import org.apache.royale.text.engine.TextRotation;
+	import org.apache.royale.textLayout.compose.ITextFlowLine;
+	import org.apache.royale.textLayout.formats.BlockProgression;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.textLayout.elements.InlineGraphicElementStatus;
+	import org.apache.royale.textLayout.elements.IInlineGraphicElement;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.formats.BaselineShift;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.textLayout.formats.IMEStatus;
+	import org.apache.royale.text.engine.FontMetrics;
+	import org.apache.royale.textLayout.utils.CharacterUtil;
+	import org.apache.royale.text.engine.ITextLine;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
 
 	public class AdornmentUtils
 	{
@@ -90,8 +90,8 @@ package org.apache.flex.textLayout.compose.utils
 			
 		}
 		/**
-		 * @royaleignorecoercion org.apache.flex.core.IParentIUIBase
-		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 * @royaleignorecoercion org.apache.royale.textLayout.compose.ITextFlowLine
 		 */
 		static private function calculateGraphicStrikeThrough(element:IInlineGraphicElement, textLine:ITextLine, blockProgression:String, metrics:FontMetrics):Number
 		{
@@ -138,7 +138,7 @@ package org.apache.flex.textLayout.compose.utils
 			
 			//if the alignment baseline differs from the dominant, then we need to apply the delta between the
 			//dominant and the alignment to determine the line along which the glyphs are lining up...
-			if(alignmentBaselineString != org.apache.flex.text.engine.TextBaseline.USE_DOMINANT_BASELINE && 
+			if(alignmentBaselineString != org.apache.royale.text.engine.TextBaseline.USE_DOMINANT_BASELINE && 
 				alignmentBaselineString != domBaselineString)
 			{
 				alignDomBaselineAdjustment = textLine.getBaselinePosition(alignmentBaselineString);
@@ -153,18 +153,18 @@ package org.apache.flex.textLayout.compose.utils
 			//why are we using the stOffset?  Well, the stOffset effectively tells us where the mid-point
 			//of the glyph is.  By using this value, we can determine how we need to offset the underline.
 			//now adjust the value.  If it is center, then the glyphs are aligned along the ST position already
-			if(domBaselineString == org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_CENTER)
+			if(domBaselineString == org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_CENTER)
 			{
 				stOffset = 0;
 			}
-			else if(domBaselineString == org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_TOP || 
-				domBaselineString == org.apache.flex.text.engine.TextBaseline.ASCENT)
+			else if(domBaselineString == org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_TOP || 
+				domBaselineString == org.apache.royale.text.engine.TextBaseline.ASCENT)
 			{
 				stOffset *= -2;  //if the glyphs are top or ascent, then we need to invert and double the offset
 				stOffset -= (2 * metrics.strikethroughThickness);
 			}
-			else if(domBaselineString == org.apache.flex.text.engine.TextBaseline.IDEOGRAPHIC_BOTTOM || 
-				domBaselineString == org.apache.flex.text.engine.TextBaseline.DESCENT)
+			else if(domBaselineString == org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_BOTTOM || 
+				domBaselineString == org.apache.royale.text.engine.TextBaseline.DESCENT)
 			{
 				stOffset *= 2; //if they're bottom, then we need to simply double it
 				stOffset += (2 * metrics.strikethroughThickness);
@@ -202,7 +202,7 @@ package org.apache.flex.textLayout.compose.utils
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.elements.IParagraphElement
+		 * @royaleignorecoercion org.apache.royale.textLayout.elements.IParagraphElement
 		 */
 		static private function updateAdornmentsOnBounds(element:IFlowLeafElement, tLine:ITextLine, blockProgression:String, spanBounds:Rectangle):void
 		{
@@ -376,7 +376,7 @@ package org.apache.flex.textLayout.compose.utils
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.flex.textLayout.compose.ITextFlowLine
+		 * @royaleignorecoercion org.apache.royale.textLayout.compose.ITextFlowLine
 		 */
 		public static function updateIMEAdornments(element:IFlowLeafElement,tLine:ITextLine, blockProgression:String, imeStatus:String):void
 		{
@@ -516,7 +516,7 @@ package org.apache.flex.textLayout.compose.utils
 	
 	        /**
          *  @private 
-         *  @royaleignorecoercion org.apache.flex.core.IParentIUIBase
+         *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
          */
         static private function calculateGraphicUnderlineOffset(element:IInlineGraphicElement, stOffset:Number, blockProgression:String, metrics:FontMetrics, tLine:ITextLine):Number
         {
@@ -636,8 +636,8 @@ package org.apache.flex.textLayout.compose.utils
 		
 				/**
 		 *  @private
-		 *  @royaleignorecoercion org.apache.flex.core.IUIBase
-		 *  @royaleignorecoercion org.apache.flex.textLayout.elements.IFlowLeafElement
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.textLayout.elements.IFlowLeafElement
 		 */
 		static public function calculateAdornmentBounds(spg:ISubParagraphGroupElementBase, tLine:ITextLine, blockProgression:String, spgRect:Rectangle):void
 		{

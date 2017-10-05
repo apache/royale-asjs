@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.flex.textLayout.edit
+package org.apache.royale.textLayout.edit
 {
-	import org.apache.flex.textLayout.compose.IFlowComposer;
-	import org.apache.flex.textLayout.container.IContainerController;
-	import org.apache.flex.textLayout.elements.IFlowLeafElement;
-	import org.apache.flex.textLayout.elements.IParagraphElement;
-	import org.apache.flex.textLayout.elements.ISubParagraphGroupElementBase;
-	import org.apache.flex.textLayout.elements.ITextFlow;
-	import org.apache.flex.textLayout.formats.Category;
-	import org.apache.flex.textLayout.formats.ITextLayoutFormat;
-	import org.apache.flex.textLayout.formats.TextLayoutFormat;
-	import org.apache.flex.textLayout.property.PropertyUtil;
+	import org.apache.royale.textLayout.compose.IFlowComposer;
+	import org.apache.royale.textLayout.container.IContainerController;
+	import org.apache.royale.textLayout.elements.IFlowLeafElement;
+	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ISubParagraphGroupElementBase;
+	import org.apache.royale.textLayout.elements.ITextFlow;
+	import org.apache.royale.textLayout.formats.Category;
+	import org.apache.royale.textLayout.formats.ITextLayoutFormat;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
+	import org.apache.royale.textLayout.property.PropertyUtil;
 
 	/**
 	 * The ElementRange class represents the range of objects selected within a text flow.
@@ -36,7 +36,7 @@ package org.apache.flex.textLayout.edit
 	 * (such as <code>firstLeaf</code>) are always less than or equal to the end elements (in this case, <code>lastLeaf</code>)
 	 * for each pair of values in an element range.</p>
 	 * 
-	 * @see org.apache.flex.textLayout.elements.TextFlow
+	 * @see org.apache.royale.textLayout.elements.TextFlow
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
@@ -280,7 +280,7 @@ package org.apache.flex.textLayout.edit
 		 * 	 
 		 * @return The common paragraph style settings
 		 * 
-		 * @see org.apache.flex.textLayout.edit.ISelectionManager#getCommonParagraphFormat
+		 * @see org.apache.royale.textLayout.edit.ISelectionManager#getCommonParagraphFormat
 		 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
@@ -308,7 +308,7 @@ package org.apache.flex.textLayout.edit
 		 * 	 
 		 * @return The common paragraph style settings
 		 * 
-		 * @see org.apache.flex.textLayout.edit.ISelectionManager#getCommonParagraphFormat	 * 
+		 * @see org.apache.royale.textLayout.edit.ISelectionManager#getCommonParagraphFormat	 * 
 		 * @playerversion Flash 10
 		 * @playerversion AIR 1.5
 		 * @langversion 3.0
